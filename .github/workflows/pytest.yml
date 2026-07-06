@@ -1,0 +1,25 @@
+# The safety net: run the full pytest suite on every push + PR to main. The suite is offline and
+# in-memory (~13s), so there is no reason not to gate on it. This closes the same class of failure
+# ADR-035 addressed for migrations — catch a break in CI, not on a user's black screen.
+#
+# pillow-heif ships a manylinux wheel with libheif bundled, so no apt packages are needed.
+name: Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch: {}
+
+jobs:
+  pytest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt -r requirements-dev.txt
+      - run: python -m pytest -q

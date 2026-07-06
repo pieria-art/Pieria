@@ -15,13 +15,17 @@ from sqlalchemy.pool import StaticPool
 
 import app as app_module
 from app import DISPLAY_MAX_EDGE, app
-from config import LIBRARY_DIR
 from database import Base, get_db
 from models import ArtworkModel
 
 
 @pytest.fixture
-def client():
+def client(tmp_path, monkeypatch):
+    # Redirect the library + derivatives cache into a throwaway dir so tests never
+    # read from or write into the real shipped Artwork/ tree (test isolation).
+    monkeypatch.setattr(app_module, "LIBRARY_DIR", tmp_path / "_Library")
+    monkeypatch.setattr(app_module, "DERIVATIVES_DIR", tmp_path / "_derivatives")
+
     engine = create_engine("sqlite://", connect_args={"check_same_thread": False}, poolclass=StaticPool)
     Base.metadata.create_all(bind=engine)
     db = sessionmaker(bind=engine, autocommit=False, autoflush=False)()
@@ -37,26 +41,19 @@ def client():
 
 @pytest.fixture
 def make_artwork(client):
-    """Write a real image into LIBRARY_DIR, register it, and clean up both the
-    original and any generated derivatives afterwards."""
+    """Write a real image into the (redirected) library and register it. The whole
+    library + derivatives cache lives under tmp_path, so no cleanup is needed."""
     c, db = client
-    created = []
 
     def _make(name, size, color=(120, 80, 40)):
-        LIBRARY_DIR.mkdir(parents=True, exist_ok=True)
-        path = LIBRARY_DIR / name
+        app_module.LIBRARY_DIR.mkdir(parents=True, exist_ok=True)
+        path = app_module.LIBRARY_DIR / name
         Image.new("RGB", size, color).save(path, format="JPEG", quality=85)
         art = ArtworkModel(filename=name, title="t", status="approved")
         db.add(art); db.commit(); db.refresh(art)
-        created.append((path, art.id))
         return c, art
 
-    yield _make
-
-    for path, art_id in created:
-        path.unlink(missing_ok=True)
-        for d in app_module.DERIVATIVES_DIR.glob(f"{art_id}-*"):
-            d.unlink(missing_ok=True)
+    return _make
 
 
 def test_oversized_image_is_capped(make_artwork):

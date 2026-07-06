@@ -118,23 +118,21 @@ def test_next_image_records_last_playlist(client):
 
 # ---- filesystem sync ignores internal dirs (regression: _derivatives-as-collection) ----
 
-def test_sync_ignores_underscore_dirs(client):
+def test_sync_ignores_underscore_dirs(client, tmp_path, monkeypatch):
     """An underscore-prefixed internal dir (e.g. the _derivatives display cache) must never become a
     collection or have its .jpg files absorbed into the library as artworks."""
     from PIL import Image
 
+    import app as app_module
     from app import sync_db_with_filesystem
-    from config import ARTWORK_ROOT
     c, db = client
-    cache = ARTWORK_ROOT / "_derivtest"
+    # Redirect the artwork tree into tmp_path so the sync scan never touches the real Artwork/ dir.
+    monkeypatch.setattr(app_module, "ARTWORK_ROOT", tmp_path / "art")
+    monkeypatch.setattr(app_module, "LIBRARY_DIR", tmp_path / "art" / "_Library")
+    cache = app_module.ARTWORK_ROOT / "_derivtest"
     cache.mkdir(parents=True, exist_ok=True)
     Image.new("RGB", (10, 10)).save(cache / "5-123-7680.jpg", "JPEG")
-    try:
-        sync_db_with_filesystem(db)
-        assert "_derivtest" not in [p.name for p in db.query(PlaylistModel).all()]      # no bogus collection
-        assert db.query(ArtworkModel).filter(ArtworkModel.filename == "5-123-7680.jpg").first() is None  # not absorbed
-        assert (cache / "5-123-7680.jpg").exists()                                       # left in place
-    finally:
-        for f in cache.glob("*"):
-            f.unlink()
-        cache.rmdir()
+    sync_db_with_filesystem(db)
+    assert "_derivtest" not in [p.name for p in db.query(PlaylistModel).all()]      # no bogus collection
+    assert db.query(ArtworkModel).filter(ArtworkModel.filename == "5-123-7680.jpg").first() is None  # not absorbed
+    assert (cache / "5-123-7680.jpg").exists()                                       # left in place
