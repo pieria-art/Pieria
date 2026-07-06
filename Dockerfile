@@ -18,6 +18,12 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the rest of the application code
 COPY . .
 
+# Run as a non-root user (C1 hardening: contains any future write-primitive). uid/gid 1000 matches the
+# host owner of the ./Artwork and ./data bind mounts on the Pi and the dev laptop, so the unprivileged
+# container can still create/write library files, the SQLite DB, and the appliance request files.
+RUN groupadd -g 1000 app && useradd -m -u 1000 -g 1000 app && chown -R app:app /app
+USER app
+
 # Expose the port the app runs on
 EXPOSE 8000
 

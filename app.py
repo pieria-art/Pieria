@@ -28,6 +28,7 @@ from fastapi import (
     FastAPI,
     File,
     Form,
+    Header,
     HTTPException,
     Query,
     Request,
@@ -36,7 +37,6 @@ from fastapi import (
     WebSocketDisconnect,
 )
 from fastapi.concurrency import run_in_threadpool
-from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, HTMLResponse, RedirectResponse, Response
 from fastapi.staticfiles import StaticFiles
 from PIL import Image, ImageOps
@@ -507,15 +507,68 @@ async def inject_aggressive_cache_headers(request: Request, call_next):
     elif is_code_asset:
         # JS/CSS/JSON change during development — short cache + revalidate
         response.headers["Cache-Control"] = "public, max-age=60, must-revalidate"
+    # Security headers (L2). nosniff is defense-in-depth against the /media MIME-confusion XSS class
+    # (H1); Referrer-Policy keeps LAN paths out of any outbound Referer.
+    response.headers["X-Content-Type-Options"] = "nosniff"
+    response.headers["Referrer-Policy"] = "same-origin"
     return response
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+
+# --- CORS + cross-origin state-change guard (ADR-036) ------------------------------------------------
+# The app is a no-login LAN kiosk (ADR-013/015): the trust boundary is "you are a device on my LAN".
+# The old wildcard `CORSMiddleware(allow_origins=["*"], allow_credentials=True)` silently widened that
+# to "any browser tab on the LAN can drive the full API cross-origin". We replace it with a policy that
+# keeps the no-login model honest:
+#   * Cross-origin STATE CHANGES are blocked — a hostile page (bad ad, phishing tab) always sends an
+#     Origin header on a cross-origin state-changing fetch; curl/native integrations send none and are
+#     allowed (the accepted LAN-presence risk, unchanged).
+#   * The read-only public FEED (what integrations consume) stays cross-origin readable.
+#   * Admin/library GETs are NOT cross-origin readable (no ACAO) — a hostile tab can't exfiltrate them.
+#   * Same-origin (the kiosk's own page) and explicitly configured SD_ALLOWED_ORIGINS always pass.
+_PUBLIC_FEED_GET_PREFIXES = ("/next-image", "/api/catalog", "/display/")
+_MUTATING_METHODS = frozenset({"POST", "PUT", "PATCH", "DELETE"})
+
+
+def _same_origin(origin: str, host: str) -> bool:
+    """True when the request Origin points back at the same host:port the request was addressed to
+    (the kiosk loading its own page). Origin is `scheme://host[:port]`; Host is `host[:port]`."""
+    sep = origin.find("://")
+    return bool(origin) and bool(host) and sep != -1 and origin[sep + 3:] == host
+
+
+def _origin_allowed(origin: str, host: str) -> bool:
+    return origin in config.ALLOWED_ORIGINS or _same_origin(origin, host)
+
+
+@app.middleware("http")
+async def cors_and_origin_guard(request: Request, call_next):
+    origin = request.headers.get("origin", "")
+    host = request.headers.get("host", "")
+    path = request.url.path
+    allowed = _origin_allowed(origin, host)
+    # A CORS preflight advertises the real method it is clearing; judge against that, not OPTIONS.
+    effective_method = (request.headers.get("access-control-request-method", "GET").upper()
+                        if request.method == "OPTIONS" else request.method)
+    is_public_read = effective_method in ("GET", "HEAD") and path.startswith(_PUBLIC_FEED_GET_PREFIXES)
+
+    # The teeth: refuse a cross-origin state change from a browser tab (blocks the preflight too).
+    if effective_method in _MUTATING_METHODS and origin and not allowed:
+        return Response("cross-origin request blocked", status_code=403)
+
+    if request.method == "OPTIONS" and origin:
+        resp = Response(status_code=204)
+    else:
+        resp = await call_next(request)
+
+    if origin and (is_public_read or allowed):
+        resp.headers["Access-Control-Allow-Origin"] = "*" if is_public_read else origin
+        resp.headers["Vary"] = "Origin"
+        if request.method == "OPTIONS":
+            resp.headers["Access-Control-Allow-Methods"] = "GET, POST, PUT, PATCH, DELETE, OPTIONS"
+            resp.headers["Access-Control-Allow-Headers"] = (
+                request.headers.get("access-control-request-headers") or "*")
+            resp.headers["Access-Control-Max-Age"] = "600"
+    return resp
 
 
 
@@ -697,17 +750,33 @@ async def upload_artwork(background_tasks: BackgroundTasks, file: UploadFile = F
     try:
         with Image.open(io.BytesIO(raw)) as src:
             fmt = (src.format or "").upper()
+            # NEVER build the on-disk path from the client-supplied filename (C1: it was written
+            # verbatim, giving any LAN client an unauth path-traversal / arbitrary-write primitive).
+            # Derive a safe base from the filename *stem only* (Path().name/.stem strips directories)
+            # and pick the extension from Pillow's own detected format, mirroring /upload/personal and
+            # _download_image_to_library.
+            # HEIC/HEIF is transcoded to JPEG below; every other format keeps its exact bytes, so the
+            # extension is taken from Pillow's detected format (trustworthy) rather than the client string.
+            ext = {"JPEG": ".jpg", "HEIF": ".jpg", "HEIC": ".jpg", "PNG": ".png", "WEBP": ".webp",
+                   "GIF": ".gif", "BMP": ".bmp", "TIFF": ".tiff"}.get(fmt, f".{fmt.lower()}" if fmt else ".jpg")
+            stem = Path(file.filename or "").stem
+            base = "".join(c for c in stem if c.isalnum() or c in " _-").strip()
+            base = (base.replace(" ", "_")[:24] or "artwork").lower()
+            fname = f"upload_{base}{ext}"
+            dest = LIBRARY_DIR / fname
+            n = 1
+            while dest.exists():
+                fname = f"upload_{base}_{n}{ext}"; dest = LIBRARY_DIR / fname; n += 1
+
             if fmt in ("HEIF", "HEIC"):
-                # Browsers can't render HEIC — transcode to JPEG (orientation baked) and rename .heic→.jpg.
+                # Browsers can't render HEIC — transcode to JPEG (orientation baked).
                 img = ImageOps.exif_transpose(src)
                 if img.mode not in ("RGB", "L"): img = img.convert("RGB")
-                fname = f"{Path(file.filename or 'photo').stem}.jpg"
-                img.save(LIBRARY_DIR / fname, format="JPEG", quality=92)
+                img.save(dest, format="JPEG", quality=92)
                 w, h = img.size
             else:
                 # Every other format keeps its exact original bytes (and orientation) as before.
-                fname = file.filename
-                (LIBRARY_DIR / fname).write_bytes(raw)
+                dest.write_bytes(raw)
                 w, h = src.size
     except Exception:
         raise HTTPException(400, detail="That file isn't a readable image.")
@@ -1136,8 +1205,12 @@ async def clear_pending_discoveries(db: Session = Depends(get_db)):
     _search_sessions.clear()
     return {"status": f"Cleared {result.rowcount} pending discoveries"}
 
+class FactoryResetRequest(BaseModel):
+    confirm: str = ""
+
+
 @app.post("/api/admin/factory-reset")
-async def factory_reset(db: Session = Depends(get_db)):
+async def factory_reset(req: FactoryResetRequest, db: Session = Depends(get_db)):
     """
     Resets the app to factory state:
     - Keeps only seed artworks (is_seed=True)
@@ -1145,7 +1218,12 @@ async def factory_reset(db: Session = Depends(get_db)):
     - Clears entire discovery queue (all statuses)
     - Clears playlist-artwork associations for deleted art
     - Clears search sessions
+
+    H4: the "RESET" confirmation is enforced server-side, not just by the admin UI's dialog — a bare
+    POST (accidental, scripted, or drive-by) must not be able to wipe the library.
     """
+    if req.confirm != "RESET":
+        raise HTTPException(400, detail='Confirmation required: POST {"confirm": "RESET"}.')
 
     # 1. Delete all discovery queue items (all statuses)
     discover_count = db.execute(delete(DiscoveryQueueModel)).rowcount
@@ -1621,6 +1699,7 @@ async def get_host_health(db: Session = Depends(get_db)):
 # whitelisted host helper `sd-update`, which writes status back here for the UI to poll. The web
 # app never gains host privileges.
 ALLOWED_UPDATE_ACTIONS = {"update-app", "update-scripts", "reboot"}
+_appliance_token_warned = False
 
 
 class ApplianceUpdateRequest(BaseModel):
@@ -1628,11 +1707,27 @@ class ApplianceUpdateRequest(BaseModel):
 
 
 @app.post("/api/appliance/update")
-async def appliance_update(req: ApplianceUpdateRequest):
+async def appliance_update(req: ApplianceUpdateRequest, request: Request,
+                           x_appliance_token: Optional[str] = Header(None)):
+    global _appliance_token_warned
     if not config.IS_APPLIANCE:
         raise HTTPException(status_code=403, detail="appliance update bridge not enabled")
     if req.action not in ALLOWED_UPDATE_ACTIONS:
         raise HTTPException(status_code=400, detail=f"unknown action: {req.action}")
+    # H6: this is the highest-consequence action (host git reset+rebuild / reboot). The cross-origin
+    # guard already blocks a hostile browser tab; the shared-secret token additionally closes the
+    # no-Origin path (curl / any other LAN device). Accept EITHER a valid token OR a trusted
+    # (same-origin) Origin, so the same-origin admin GUI keeps working without holding the secret.
+    if config.APPLIANCE_UPDATE_TOKEN:
+        token_ok = bool(x_appliance_token) and secrets.compare_digest(
+            x_appliance_token, config.APPLIANCE_UPDATE_TOKEN)
+        origin_ok = _origin_allowed(request.headers.get("origin", ""), request.headers.get("host", ""))
+        if not (token_ok or origin_ok):
+            raise HTTPException(status_code=403, detail="appliance update requires a valid token")
+    elif not _appliance_token_warned:
+        logger.warning("SD_APPLIANCE_UPDATE_TOKEN is unset — /api/appliance/update is gated only by the "
+                       "cross-origin guard. Set it to require a shared secret from non-browser callers.")
+        _appliance_token_warned = True
     nonce = secrets.token_hex(8)
     config.APPLIANCE_DIR.mkdir(parents=True, exist_ok=True)
     # Write the status FIRST (so the .path trigger always finds a status), then the request.
@@ -1682,6 +1777,13 @@ async def remote_change_playlist(request: RemoteChangeRequest, db: Session = Dep
 @app.websocket("/ws/{display_id}")
 async def websocket_endpoint(websocket: WebSocket, display_id: str):
     """Handles targeted display connections with multi-worker synchronization."""
+    # H5: WebSockets are not covered by CORS, so a hostile page could otherwise open this socket
+    # (CSWSH) to observe/redirect a display. Reject a cross-origin handshake; a browser always sends
+    # Origin, while native kiosk/CDP clients send none (allowed — the accepted LAN-presence model).
+    origin = websocket.headers.get("origin", "")
+    if origin and not _origin_allowed(origin, websocket.headers.get("host", "")):
+        await websocket.close(code=1008)
+        return
     await manager.connect(websocket, display_id)
 
     async def heartbeat():
@@ -1721,9 +1823,10 @@ async def websocket_endpoint(websocket: WebSocket, display_id: str):
 
     try:
         while True:
-            # We mostly broadcast from the API, but remotes can still talk directly here if needed
+            # A frame sent up this socket is echoed only to sockets on THIS display_id — never
+            # broadcast to every screen (H5: that let one anonymous client inject to all displays).
             data = await websocket.receive_json()
-            await manager.broadcast(data)
+            await manager.send_personal_message(data, display_id)
     except WebSocketDisconnect:
         manager.disconnect(websocket, display_id)
     except Exception as e:
@@ -2082,8 +2185,9 @@ async def _download_image_to_library(source_url: str, *, filename: str,
                                      retries: int = 3) -> tuple[Path, str, int, int]:
     """Robustly download a remote image into LIBRARY_DIR — the one downloader the seed, discovery,
     and catalog paths share. Sends a descriptive User-Agent (the default httpx UA is rejected by
-    Wikimedia and others), follows redirects, retries 429s with escalating backoff, writes to a
-    collision-safe unique filename, and validates the bytes are a real image (a bad download is
+    Wikimedia and others), follows redirects through SSRF-validated hops only (M1), retries 429s with
+    escalating backoff, writes to a collision-safe unique filename, and validates the bytes are a real
+    image (a bad download is
     deleted, never left in the library). Returns (dest_path, safe_filename, width, height); raises
     HTTPException on download or validation failure."""
     safe_name = "".join(x for x in filename if x.isalnum() or x in "_-.")
@@ -2096,9 +2200,26 @@ async def _download_image_to_library(source_url: str, *, filename: str,
         safe_name = f"{stem}_{n}.jpg"; dest_path = LIBRARY_DIR / safe_name; n += 1
 
     resp = None
+    # M1: follow redirects MANUALLY and SSRF-validate every hop. httpx's own follow_redirects=True
+    # would bounce a 3xx to an internal host (127.0.0.1, router admin, cloud metadata) that the
+    # caller's initial pre-check never saw. We can't simply refuse redirects — Wikimedia's
+    # Special:FilePath (most of the catalog + seed) legitimately 302s to the real image — so we
+    # follow, but only to validated public hosts.
     async with httpx.AsyncClient(headers={"User-Agent": SD_USER_AGENT}) as client:
         for attempt in range(retries):
-            resp = await client.get(source_url, timeout=45.0, follow_redirects=True)
+            url = source_url
+            for _hop in range(6):
+                resp = await client.get(url, timeout=45.0, follow_redirects=False)
+                if resp.status_code not in (301, 302, 303, 307, 308):
+                    break
+                loc = resp.headers.get("location")
+                if not loc:
+                    break
+                url = str(resp.url.join(loc))   # resolve relative redirects against the current URL
+                try:
+                    federation._assert_public_url(url)
+                except federation.FederationError as e:
+                    raise HTTPException(502, detail=f"Image redirected to a blocked host ({e}).")
             if resp.status_code == 429:
                 await asyncio.sleep(3 * (attempt + 1))
                 continue

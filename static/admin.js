@@ -932,7 +932,11 @@ async function factoryReset() {
 
     enqueueAction(async () => {
         try {
-            const res = await fetch(`${API_BASE}/api/admin/factory-reset`, { method: 'POST' });
+            const res = await fetch(`${API_BASE}/api/admin/factory-reset`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ confirm: 'RESET' }),
+            });
             const data = await res.json();
             showToast(`${data.status} — ${data.artworks_removed} removed, ${data.seed_artworks_preserved} seeds kept.`, 'success');
             // Full page reload to reflect the reset state
