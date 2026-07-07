@@ -1027,6 +1027,21 @@ async def create_personal_album(payload: StudioAlbumPayload, db: Session = Depen
     return {"id": pl.id, "name": pl.name, "count": 0, "is_default": False}
 
 
+@app.delete("/api/studio/albums/{album_id}")
+async def delete_personal_album(album_id: int, db: Session = Depends(get_db)):
+    """S2: delete a personal album (is_personal playlist). Photos are NOT deleted — they just become
+    Unfiled; only the grouping goes. Scoped to personal albums (never a Museum collection) and refuses
+    the default 'My Photos' album so gramps can't lose the home bucket."""
+    pl = db.query(PlaylistModel).filter(PlaylistModel.id == album_id,
+                                        PlaylistModel.is_personal.is_(True)).first()
+    if not pl:
+        raise HTTPException(status_code=404, detail="Personal album not found")
+    if pl.name == PERSONAL_PLAYLIST_NAME:
+        raise HTTPException(status_code=400, detail="The default My Photos album can't be deleted")
+    db.delete(pl); db.commit()
+    return {"status": "deleted"}
+
+
 @app.get("/artworks/pending", response_model=List[ArtworkSchema])
 async def get_pending_artworks(db: Session = Depends(get_db)):
     return db.query(ArtworkModel).filter(ArtworkModel.status == 'pending_review').all()

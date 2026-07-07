@@ -45,7 +45,7 @@
 </head>
 <body>
 <div class="topbar">
-  <a class="brand" href="/admin"><img src="/logo.svg" alt=""> My Photos</a>
+  <a class="brand" href="/studio"><img src="/logo.svg" alt=""> My Photos</a>
   <span class="spacer"></span>
   <a class="topbar-link" id="display-link" href="/?playlist=My%20Photos">▶ Display</a>
   <a class="topbar-link" href="/admin">⚙ Admin</a>
@@ -55,6 +55,7 @@
 
   <!-- One control: pick an album to view it + add photos to it; "＋ New album" creates one. -->
   <div id="album-chips" class="chips"></div>
+  <div id="album-actions" style="margin:-4px 0 10px; display:flex; gap:14px;"></div>
 
   <label class="dropzone" id="dropzone">
     <input type="file" id="file-input" accept="image/*" multiple capture="environment" hidden>
@@ -65,6 +66,7 @@
     </div>
   </label>
 
+  <div id="upload-progress" class="note" hidden style="text-align:center; margin:6px 0;"></div>
   <div id="grid"></div>
   <section id="gallery"></section>
 </main>
@@ -101,6 +103,33 @@ function renderChips(){
   const out = [chipHtml('all', 'All photos', null, currentAlbum === 'all')];
   for(const a of albums) out.push(chipHtml(a.id, a.name, a.count, currentAlbum === a.id));
   chipsEl.innerHTML = out.join('') + `<button class="chip chip-new" onclick="newAlbum()">＋ New album</button>`;
+  renderAlbumActions();
+}
+
+// S2: rename / delete for the ACTIVE album — shown only for a real, non-default personal album
+// ("All photos" and the default "My Photos" have no actions, so gramps can't lose the home bucket).
+function renderAlbumActions(){
+  const el = $('#album-actions'); if(!el) return;
+  const a = (typeof currentAlbum === 'number') ? albums.find(x => x.id === currentAlbum) : null;
+  if(!a || a.is_default){ el.innerHTML = ''; return; }
+  el.innerHTML = `<button class="link-btn" onclick="renameAlbum(${a.id})" style="background:none;border:none;color:var(--accent-color,#3b82f6);cursor:pointer;font-size:.85rem;">✎ Rename album</button>
+                  <button class="link-btn" onclick="deleteAlbum(${a.id})" style="background:none;border:none;color:#ef4444;cursor:pointer;font-size:.85rem;">🗑 Delete album</button>`;
+}
+async function renameAlbum(id){
+  const cur = (albums.find(a => a.id === id) || {}).name || '';
+  const name = (await promptModal('Rename album', {placeholder:cur, confirmText:'Rename'}) || '').trim();
+  if(!name) return;
+  const r = await fetch(`/playlists/${id}`, {method:'PATCH', headers:{'Content-Type':'application/json'}, body:JSON.stringify({name})});
+  if(!r.ok){ const d = await r.json().catch(()=>({})); showToast(d.detail || 'Rename failed', 'error'); return; }
+  showToast('Renamed ✓', 'success');
+  await loadAlbums(); renderGallery();
+}
+async function deleteAlbum(id){
+  if(!(await confirmModal('Delete this album? Your photos stay in your library — they just become Unfiled.', {confirmText:'Delete album', danger:true}))) return;
+  const r = await fetch(`/api/studio/albums/${id}`, {method:'DELETE'});
+  if(!r.ok){ const d = await r.json().catch(()=>({})); showToast(d.detail || 'Delete failed', 'error'); return; }
+  showToast('Album deleted', 'success');
+  currentAlbum = 'all'; await loadAlbums(); await loadPhotos();
 }
 function chipHtml(val, label, count, active){
   const arg = (val === 'all') ? "'all'" : val;
@@ -149,9 +178,14 @@ fileInput.addEventListener('change', () => { handleFiles(fileInput.files); fileI
 const IMG_EXT = /\.(jpe?g|png|gif|webp|bmp|tiff?|heic|heif|avif)$/i;
 async function handleFiles(files){
   const pid = uploadTargetId();
-  let any = false;
-  for(const file of files){
-    if(!(file.type.startsWith('image/') || IMG_EXT.test(file.name))) continue;
+  // S4: batch progress so a 30-photo iPhone dump shows overall progress, not just per-card spinners.
+  const imgs = [...files].filter(f => f.type.startsWith('image/') || IMG_EXT.test(f.name));
+  const prog = $('#upload-progress');
+  let any = false, done = 0, failed = 0;
+  const showProg = () => { if(prog){ prog.hidden = false; prog.textContent =
+    `Uploading… ${done} of ${imgs.length}${failed ? ` (${failed} failed)` : ''}`; } };
+  if(imgs.length > 1) showProg();
+  for(const file of imgs){
     const card = makeCard(file);
     grid.prepend(card.el);
     try{
@@ -160,8 +194,11 @@ async function handleFiles(files){
       if(!r.ok) throw new Error();
       bindCard(card, await r.json());
       any = true;
-    }catch(e){ card.note.textContent='✗ upload failed'; card.note.className='note warn'; }
+    }catch(e){ card.note.textContent='✗ upload failed'; card.note.className='note warn'; failed++; }
+    done++; if(imgs.length > 1) showProg();
   }
+  if(prog){ if(failed){ prog.textContent = `Added ${done - failed} of ${imgs.length} (${failed} failed)`; }
+            else { prog.hidden = true; } }
   if(any){ await loadAlbums(); await loadPhotos(); grid.innerHTML=''; }  // refresh counts + gallery; drop optimistic cards
 }
 
@@ -178,11 +215,17 @@ function blankCard(){
       </div>
       <input type="text" class="date" placeholder="When? (optional, e.g. Summer 2026)" disabled>
       <div class="note"></div>
+      <div class="card-actions" hidden style="display:flex; justify-content:space-between; align-items:center; gap:8px; margin-top:8px;">
+        <select class="move-to" aria-label="Move to album" style="flex:1; min-width:0; background:#0f172a; color:inherit; border:1px solid var(--border-color,#334155); border-radius:6px; padding:5px;"><option value="">Move to…</option></select>
+        <button class="remove" aria-label="Remove photo" title="Remove photo" style="background:none; border:none; color:#ef4444; cursor:pointer; font-size:.85rem; white-space:nowrap;">🗑 Remove</button>
+      </div>
     </div>`;
   return { el, img:el.querySelector('img'), dot:el.querySelector('.focal-dot'),
            hint:el.querySelector('.focal-hint'), cap:el.querySelector('.cap'),
            date:el.querySelector('.date'), suggest:el.querySelector('.suggest'),
-           note:el.querySelector('.note'), wrap:el.querySelector('.thumb-wrap') };
+           note:el.querySelector('.note'), wrap:el.querySelector('.thumb-wrap'),
+           actions:el.querySelector('.card-actions'), moveSel:el.querySelector('.move-to'),
+           remove:el.querySelector('.remove') };
 }
 
 // New-upload card (local preview from the File until the server responds).
@@ -225,12 +268,12 @@ function renderGallery(){
     for(const art of album.photos){
       const card = makeCardFromArtwork(art);
       gallery.appendChild(card.el);
-      bindCard(card, art);
+      bindCard(card, art, album.playlist_id);   // playlist_id is the source album (null for Unfiled)
     }
   }
 }
 
-function bindCard(card, art){
+function bindCard(card, art, sourceAlbumId){
   const id = art.id;
   // Swap the local preview for the server-rendered thumbnail — a real JPEG even for HEIC uploads,
   // which the browser can't preview locally (so the blob: URL would show a broken image).
@@ -254,6 +297,28 @@ function bindCard(card, art){
   // save caption / date on change
   card.cap.addEventListener('change', () => savePhoto(id, {caption:card.cap.value}, card));
   card.date.addEventListener('change', () => savePhoto(id, {date:card.date.value}, card));
+
+  // S1: remove the photo. S2: move it to another album. Only meaningful once it exists server-side.
+  card.actions.hidden = false;
+  card.remove.onclick = async () => {
+    if(!(await confirmModal('Remove this photo? This deletes it from your library.', {confirmText:'Remove', danger:true}))) return;
+    const r = await fetch(`/artworks/${id}`, {method:'DELETE'});
+    if(!r.ok){ showToast('Could not remove', 'error'); return; }
+    showToast('Removed', 'success');
+    await loadAlbums(); await loadPhotos();
+  };
+  card.moveSel.innerHTML = '<option value="">Move to…</option>' +
+    albums.filter(a => a.id !== sourceAlbumId).map(a => `<option value="${a.id}">${_esc(a.name)}</option>`).join('');
+  card.moveSel.onchange = async () => {
+    const target = parseInt(card.moveSel.value, 10); card.moveSel.value = '';
+    if(!target) return;
+    // Add to the target album; if this card is shown within a specific source album, remove it there
+    // too (a real move). From "All photos"/Unfiled there's no unambiguous source, so it just files it.
+    await fetch(`/playlists/${target}/artworks/${id}`, {method:'POST'}).catch(()=>{});
+    if(typeof sourceAlbumId === 'number') await fetch(`/playlists/${sourceAlbumId}/artworks/${id}`, {method:'DELETE'}).catch(()=>{});
+    showToast('Moved', 'success');
+    await loadAlbums(); await loadPhotos();
+  };
 
   // ✨ Suggest — gated + honest privacy note
   if(!ai.has_key){
