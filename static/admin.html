@@ -384,7 +384,8 @@
                     Drag & Drop or Click to Add to Library
                     <input type="file" id="library-file-input" hidden multiple onchange="uploadFiles(this.files, null)">
                 </div>
-                <button class="secondary" onclick="toggleSelectMode()" style="white-space:nowrap; margin-left:20px;">☑ Select</button>
+                <input type="search" id="library-filter" placeholder="🔍 Filter by title, artist, tag…" oninput="filterLibrary(this.value)" aria-label="Filter library" style="flex:1; min-width:0; margin-left:20px; padding:8px 12px; background:#0f172a; color:var(--text-color); border:1px solid var(--border-color); border-radius:6px;">
+                <button class="secondary" onclick="toggleSelectMode()" style="white-space:nowrap; margin-left:12px;">☑ Select</button>
             </div>
             <div id="library-grid" class="artwork-grid"></div>
         </div>

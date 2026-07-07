@@ -632,6 +632,7 @@ class ArtworkApproval(BaseModel):
     title: str; agent_name: str; agent_role: str; creation_date: str; cultural_context: str; medium: str; date_display: str; description_narrative: str; tags: str
 
 class PlaylistUpdate(BaseModel):
+    name: Optional[str] = None
     display_time: Optional[int] = None
     default_mode: Optional[str] = None
     shuffle: Optional[bool] = None
@@ -703,6 +704,15 @@ async def create_playlist(name: str = Form(...), db: Session = Depends(get_db)):
 async def update_playlist(playlist_id: int, data: PlaylistUpdate, db: Session = Depends(get_db)):
     p = db.query(PlaylistModel).filter(PlaylistModel.id == playlist_id).first()
     if not p: raise HTTPException(status_code=404)
+    if data.name is not None:   # A4: rename (collision-guarded, no empty/internal "_" names)
+        new_name = data.name.strip()
+        if not new_name or new_name.startswith("_"):
+            raise HTTPException(400, detail="Invalid collection name")
+        if new_name != p.name:
+            clash = db.query(PlaylistModel).filter(PlaylistModel.name == new_name,
+                                                   PlaylistModel.id != playlist_id).first()
+            if clash: raise HTTPException(400, detail="A collection with that name already exists")
+            p.name = new_name
     if data.display_time is not None: p.display_time = data.display_time
     if data.default_mode is not None: p.default_mode = data.default_mode
     if data.shuffle is not None: p.shuffle = data.shuffle
