@@ -11,6 +11,7 @@ Security posture (we index pointers, never host bytes; the user chose the URL):
 Untrusted manifest strings are escaped at *render* time (the /art page + browse UI), not here.
 """
 
+import asyncio
 import base64
 import ipaddress
 import json
@@ -113,7 +114,7 @@ def _assert_public_url(url: str) -> None:
 
 async def fetch_manifest(url: str) -> dict:
     """Safely fetch + validate a Manifest v2 collection from `url`. Raises FederationError."""
-    _assert_public_url(url)
+    await asyncio.to_thread(_assert_public_url, url)   # C2: getaddrinfo is blocking — keep it off the loop
     try:
         async with httpx.AsyncClient(headers={"User-Agent": "ScreenDocent-Federation/1.0"}) as client:
             # follow_redirects=False on purpose — a redirect could bypass the SSRF pre-check.

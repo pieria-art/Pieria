@@ -28,8 +28,9 @@ async def enrich_artwork(artwork_id: int, db: Session, context_hints: str = None
 
     fact_context = ""
     try:
-        # Search Wikipedia for the first paragraph summary
-        wiki_page = wikipedia.summary(search_query, sentences=3, auto_suggest=True)
+        # Search Wikipedia for the first paragraph summary.
+        # B2: wikipedia.summary is a sync `requests` round-trip — thread it (the AI call below already is).
+        wiki_page = await asyncio.to_thread(wikipedia.summary, search_query, sentences=3, auto_suggest=True)
         fact_context = wiki_page
         logger.info(f"[RAG Curator] Found Wikipedia context for {artwork.title}")
     except Exception as e:

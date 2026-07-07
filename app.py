@@ -257,7 +257,9 @@ async def run_scouts_bg(query: str = None, sources: List[str] = None,
             intent = session.intent
             offset = session.offset
         else:
-            intent = _query_classifier.classify(query) if query else None
+            # B1: classify() → sync ai_client.chat (httpx, 90s default) — thread it so a slow provider
+            # can't stall this worker's loop.
+            intent = await asyncio.to_thread(_query_classifier.classify, query) if query else None
             offset = 0
 
         logger.info(f"[Scout BG] Starting scouts: query='{query}', sources={sources}, "
@@ -747,16 +749,15 @@ async def reorder_playlist(playlist_id: int, request: ReorderRequest, db: Sessio
 async def upload_artwork(background_tasks: BackgroundTasks, file: UploadFile = File(...), playlist_id: Optional[int] = Form(None), db: Session = Depends(get_db)):
     if not LIBRARY_DIR.exists(): LIBRARY_DIR.mkdir(parents=True)
     raw = await file.read()
-    try:
+
+    def _decode_and_store():
+        # NEVER build the on-disk path from the client-supplied filename (C1: it was written verbatim,
+        # giving any LAN client an unauth path-traversal / arbitrary-write primitive). Derive a safe base
+        # from the filename *stem only* (Path().stem strips directories) and pick the extension from
+        # Pillow's own detected format. HEIC/HEIF is transcoded to JPEG; every other format keeps its
+        # exact bytes. All of this (decode/transpose/encode + disk write) is blocking → run in a thread.
         with Image.open(io.BytesIO(raw)) as src:
             fmt = (src.format or "").upper()
-            # NEVER build the on-disk path from the client-supplied filename (C1: it was written
-            # verbatim, giving any LAN client an unauth path-traversal / arbitrary-write primitive).
-            # Derive a safe base from the filename *stem only* (Path().name/.stem strips directories)
-            # and pick the extension from Pillow's own detected format, mirroring /upload/personal and
-            # _download_image_to_library.
-            # HEIC/HEIF is transcoded to JPEG below; every other format keeps its exact bytes, so the
-            # extension is taken from Pillow's detected format (trustworthy) rather than the client string.
             ext = {"JPEG": ".jpg", "HEIF": ".jpg", "HEIC": ".jpg", "PNG": ".png", "WEBP": ".webp",
                    "GIF": ".gif", "BMP": ".bmp", "TIFF": ".tiff"}.get(fmt, f".{fmt.lower()}" if fmt else ".jpg")
             stem = Path(file.filename or "").stem
@@ -769,15 +770,15 @@ async def upload_artwork(background_tasks: BackgroundTasks, file: UploadFile = F
                 fname = f"upload_{base}_{n}{ext}"; dest = LIBRARY_DIR / fname; n += 1
 
             if fmt in ("HEIF", "HEIC"):
-                # Browsers can't render HEIC — transcode to JPEG (orientation baked).
                 img = ImageOps.exif_transpose(src)
                 if img.mode not in ("RGB", "L"): img = img.convert("RGB")
                 img.save(dest, format="JPEG", quality=92)
-                w, h = img.size
-            else:
-                # Every other format keeps its exact original bytes (and orientation) as before.
-                dest.write_bytes(raw)
-                w, h = src.size
+                return fname, *img.size
+            dest.write_bytes(raw)
+            return fname, *src.size
+
+    try:
+        fname, w, h = await run_in_threadpool(_decode_and_store)
     except Exception:
         raise HTTPException(400, detail="That file isn't a readable image.")
     new_a = ArtworkModel(filename=fname, original_width=w, original_height=h, status='pending_review')
@@ -832,30 +833,33 @@ async def upload_personal_photo(
     if not LIBRARY_DIR.exists():
         LIBRARY_DIR.mkdir(parents=True)
     raw = await file.read()
-    try:
+
+    def _decode_and_store():
+        # A1: decode + EXIF-transpose + encode + disk write are blocking — run in a thread.
         with Image.open(io.BytesIO(raw)) as src:
             fmt = (src.format or "JPEG").upper()
             img = ImageOps.exif_transpose(src)   # bake phone orientation; drops the EXIF tag
+        ext = {"PNG": ".png", "WEBP": ".webp"}.get(fmt, ".jpg")
+        stem = Path(file.filename or "").stem
+        base = "".join(c for c in (caption or stem or "photo") if c.isalnum() or c in " _-").strip()
+        base = (base.replace(" ", "_")[:24] or "photo").lower()
+        safe = f"personal_{base}{ext}"
+        dest = LIBRARY_DIR / safe
+        n = 1
+        while dest.exists():
+            safe = f"personal_{base}_{n}{ext}"; dest = LIBRARY_DIR / safe; n += 1
+        if ext == ".jpg":
+            if img.mode not in ("RGB", "L"):
+                img = img.convert("RGB")
+            img.save(dest, quality=92)
+        else:
+            img.save(dest)
+        return safe, *img.size
+
+    try:
+        safe, w, h = await run_in_threadpool(_decode_and_store)
     except Exception:
         raise HTTPException(400, detail="That file isn't a readable image.")
-
-    ext = {"PNG": ".png", "WEBP": ".webp"}.get(fmt, ".jpg")
-    stem = Path(file.filename or "").stem
-    base = "".join(c for c in (caption or stem or "photo") if c.isalnum() or c in " _-").strip()
-    base = (base.replace(" ", "_")[:24] or "photo").lower()
-    safe = f"personal_{base}{ext}"
-    dest = LIBRARY_DIR / safe
-    n = 1
-    while dest.exists():
-        safe = f"personal_{base}_{n}{ext}"; dest = LIBRARY_DIR / safe; n += 1
-
-    if ext == ".jpg":
-        if img.mode not in ("RGB", "L"):
-            img = img.convert("RGB")
-        img.save(dest, quality=92)
-    else:
-        img.save(dest)
-    w, h = img.size
 
     art = ArtworkModel(
         filename=safe, original_width=w, original_height=h,
@@ -1075,8 +1079,9 @@ async def get_discovery_queue(
 @app.post("/api/discover/dispatch")
 async def dispatch_discovery(request: DispatchRequest, background_tasks: BackgroundTasks, db: Session = Depends(get_db)):
     """Smart multi-source art discovery dispatch with query classification."""
-    # Classify the query upfront to create a session with the right intent
-    intent = _query_classifier.classify(request.search) if request.search else None
+    # Classify the query upfront to create a session with the right intent.
+    # B1: thread the sync classify() (→ ai_client.chat, up to 90s) so it can't freeze the worker.
+    intent = await asyncio.to_thread(_query_classifier.classify, request.search) if request.search else None
     limit = max(1, min(request.limit, 10))  # Clamp to 1–10
 
     # Create a search session for Load More support
@@ -1296,14 +1301,18 @@ async def get_artwork_thumbnail(artwork_id: int, db: Session = Depends(get_db)):
     art = db.query(ArtworkModel).filter(ArtworkModel.id == artwork_id).first()
     if not art: raise HTTPException(404)
     path = LIBRARY_DIR / art.filename
-    return Response(content=get_optimized_image(path, (400, 400), quality=70), media_type="image/jpeg")
+    # A1: Pillow decode/resize/encode is blocking — thread it so a cold admin grid (dozens of concurrent
+    # misses) doesn't serialize on the worker's event loop. Mirrors /display.jpg below.
+    data = await run_in_threadpool(get_optimized_image, path, (400, 400), quality=70)
+    return Response(content=data, media_type="image/jpeg")
 
 @app.get("/artworks/{artwork_id}/preview")
 async def get_artwork_preview(artwork_id: int, db: Session = Depends(get_db)):
     art = db.query(ArtworkModel).filter(ArtworkModel.id == artwork_id).first()
     if not art: raise HTTPException(404)
     path = LIBRARY_DIR / art.filename
-    return Response(content=get_optimized_image(path, (1920, 1080), quality=85), media_type="image/jpeg")
+    data = await run_in_threadpool(get_optimized_image, path, (1920, 1080), quality=85)
+    return Response(content=data, media_type="image/jpeg")
 
 @app.get("/artworks/{artwork_id}/display.jpg")
 async def get_artwork_display(artwork_id: int, db: Session = Depends(get_db)):
@@ -1640,8 +1649,10 @@ async def get_display_image(
         raise HTTPException(404, detail="Artwork file missing")
 
     try:
-        data = render_for_epaper(path, w, h, palette=palette, fit=fit,
-                                 focal=(art.focal_x, art.focal_y), fmt=ext)
+        # A1: crop + enhance + Floyd–Steinberg dither + encode is heavy and blocking — thread it so an
+        # e-ink cache miss doesn't stall the worker loop (frame_push threads its sibling render likewise).
+        data = await run_in_threadpool(render_for_epaper, path, w, h, palette=palette, fit=fit,
+                                       focal=(art.focal_x, art.focal_y), fmt=ext)
     except Exception as e:
         logger.error(f"[epaper] render failed for {path.name}: {e}", exc_info=True)
         raise HTTPException(500, detail="Render failed")
@@ -2217,7 +2228,7 @@ async def _download_image_to_library(source_url: str, *, filename: str,
                     break
                 url = str(resp.url.join(loc))   # resolve relative redirects against the current URL
                 try:
-                    federation._assert_public_url(url)
+                    await asyncio.to_thread(federation._assert_public_url, url)   # C2: DNS off the loop
                 except federation.FederationError as e:
                     raise HTTPException(502, detail=f"Image redirected to a blocked host ({e}).")
             if resp.status_code == 429:
@@ -2535,7 +2546,7 @@ async def add_catalog_item(payload: CatalogAddPayload, db: Session = Depends(get
     # (a malicious manifest could point image.full_url at an internal/loopback address).
     if payload.collection_id.startswith(SUB_PREFIX):
         try:
-            federation._assert_public_url(item["source_url"])
+            await asyncio.to_thread(federation._assert_public_url, item["source_url"])
         except federation.FederationError as e:
             raise HTTPException(400, detail=f"Refused to fetch image: {e}") from e
     art = await _download_and_create_artwork(
@@ -2566,7 +2577,7 @@ async def add_catalog_items_bulk(payload: CatalogAddBulkPayload, db: Session = D
         # Federated items are third-party — SSRF-guard the image URL before the server fetches it.
         if it.collection_id.startswith(SUB_PREFIX):
             try:
-                federation._assert_public_url(item["source_url"])
+                await asyncio.to_thread(federation._assert_public_url, item["source_url"])
             except federation.FederationError:
                 failed += 1; continue
         try:
@@ -2689,15 +2700,15 @@ def _identity_public(rows: dict) -> dict:
     }
 
 
-def _assert_public_urls(items: list) -> None:
+async def _assert_public_urls(items: list) -> None:
     """SSRF-guard every image URL the publisher pasted (defense in depth: the subscriber checks too,
-    but we never persist a private/loopback target)."""
+    but we never persist a private/loopback target). C2: getaddrinfo is blocking → thread each check."""
     for it in items or []:
         for url in (it.get("full_url"), it.get("thumbnail_url")):
             if not url:
                 continue
             try:
-                federation._assert_public_url(url)
+                await asyncio.to_thread(federation._assert_public_url, url)
             except federation.FederationError as e:
                 raise HTTPException(400, detail=f"Image URL rejected ({url}): {e}") from e
 
@@ -2816,18 +2827,18 @@ async def list_publisher_collections(db: Session = Depends(get_db)):
             db.query(PublisherCollectionModel).order_by(PublisherCollectionModel.id).all()]
 
 
-def _checked_cover(payload: PublisherCollectionPayload) -> str | None:
+async def _checked_cover(payload: PublisherCollectionPayload) -> str | None:
     cover = (payload.cover_image or "").strip() or None
     if cover:
-        _assert_public_urls([{"full_url": cover}])
+        await _assert_public_urls([{"full_url": cover}])
     return cover
 
 
 @app.post("/api/publisher/collections")
 async def create_publisher_collection(payload: PublisherCollectionPayload, db: Session = Depends(get_db)):
     items = [it.model_dump() for it in payload.items]
-    _assert_public_urls(items)
-    cover = _checked_cover(payload)
+    await _assert_public_urls(items)
+    cover = await _checked_cover(payload)
     slug = _unique_slug(db, payload.slug or payload.title)
     norm = [publisher.build_item(it) for it in items]
     c = PublisherCollectionModel(
@@ -2855,8 +2866,8 @@ async def update_publisher_collection(cid: int, payload: PublisherCollectionPayl
                                       db: Session = Depends(get_db)):
     c = _get_collection(db, cid)
     items = [it.model_dump() for it in payload.items]
-    _assert_public_urls(items)
-    cover = _checked_cover(payload)
+    await _assert_public_urls(items)
+    cover = await _checked_cover(payload)
     if payload.slug and publisher._slugify(payload.slug) != c.slug:
         c.slug = _unique_slug(db, payload.slug, exclude_id=c.id)
     c.title = payload.title.strip()
@@ -2891,7 +2902,7 @@ async def export_publisher_collection(cid: int, db: Session = Depends(get_db)):
     if not identity.get("publisher_private_key"):
         raise HTTPException(400, detail="Set up your publisher identity first (it creates a signing key).")
     items = json.loads(c.items_json or "[]")
-    _assert_public_urls(items)
+    await _assert_public_urls(items)
     generated_at = datetime.now(UTC).isoformat(timespec="seconds")
     manifest, errors = publisher.assemble_validate_sign(
         _meta_for(c, identity), items,
