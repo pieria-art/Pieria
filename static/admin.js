@@ -353,7 +353,7 @@ function _renderActiveDisplays(displays) {
     el.innerHTML = displays.map(d =>
         `<div style="display:flex; align-items:center; gap:8px; padding:6px 0; border-bottom:1px solid var(--border-color);">
             <span style="color:var(--success-color);">●</span>
-            <code style="color:var(--text-color);">${d.display_id}</code>
+            <code style="color:var(--text-color);">${_esc(d.display_id)}</code>
         </div>`).join('');
 }
 
@@ -1063,7 +1063,7 @@ function openLibraryPicker() {
         };
         card.innerHTML = `
             <img src="${API_BASE}/artworks/${art.id}/thumbnail?f=${encodeURIComponent(art.filename)}">
-            <p>${art.title || art.filename}</p>
+            <p>${_esc(art.title || art.filename)}</p>
         `;
         grid.appendChild(card);
     });
