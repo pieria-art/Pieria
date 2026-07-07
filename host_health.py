@@ -128,6 +128,18 @@ def read_throttled():
     return "unavailable"
 
 
+def read_watchdog():
+    """Last self-heal snapshot written by the host-side sd-watchdog timer (all-in-one). Shows the mode
+    (observe/enforce), the last probe result, and any action taken. None off-Pi / before the first run."""
+    wd_file = config.APPLIANCE_DIR / "watchdog.json"
+    try:
+        if wd_file.exists():
+            return json.loads(wd_file.read_text())
+    except (OSError, ValueError, json.JSONDecodeError):
+        pass
+    return None
+
+
 def collect() -> dict:
     """Assemble a single JSON-able health snapshot. Never raises."""
     return {
@@ -137,4 +149,5 @@ def collect() -> dict:
         "uptime_s": read_uptime_s(),
         "disk": read_disk(),
         "throttled": read_throttled(),
+        "watchdog": read_watchdog(),
     }

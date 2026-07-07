@@ -72,6 +72,7 @@ install -m 0755 "$BIN_SRC/sd-wait-for-server" /usr/local/bin/sd-wait-for-server
 install -m 0755 "$BIN_SRC/sd-rotate-keep"    /usr/local/bin/sd-rotate-keep
 install -m 0755 "$BIN_SRC/sd-metrics"        /usr/local/bin/sd-metrics
 install -m 0755 "$BIN_SRC/sd-quiet-hours"    /usr/local/bin/sd-quiet-hours
+install -m 0755 "$BIN_SRC/sd-watchdog"       /usr/local/bin/sd-watchdog
 install -m 0755 "$BIN_SRC/sd-setup-boot"     /usr/local/bin/sd-setup-boot
 install -m 0755 "$SETUP_SRC/sd_setup.py"     /usr/local/bin/sd-setup
 install -m 0755 "$BIN_SRC/sd-update"         /usr/local/bin/sd-update
@@ -176,6 +177,14 @@ if [ "${ALL_IN_ONE:-0}" = "1" ]; then
   install -m 0644 "$UNIT_SRC/sd-quiet-hours.timer" /etc/systemd/system/sd-quiet-hours.timer
   systemctl daemon-reload
   systemctl enable --now sd-quiet-hours.timer || true
+
+  echo "==> Installing kiosk/server watchdog (self-heal; ships in observe/log-only mode)"
+  sed -e "s#__BOOT_CONF__#$BOOT_CONF#g" -e "s#__REPO_ROOT__#$REPO_ROOT#g" \
+    "$UNIT_SRC/sd-watchdog.service" > /etc/systemd/system/sd-watchdog.service
+  install -m 0644 "$UNIT_SRC/sd-watchdog.timer" /etc/systemd/system/sd-watchdog.timer
+  systemctl daemon-reload
+  # Safe to enable: WATCHDOG defaults to 'observe' (logs, never acts) until you set enforce in the conf.
+  systemctl enable --now sd-watchdog.timer || true
 
   echo "==> Advertising the server over mDNS (friendly name in network browsers)"
   install -d /etc/avahi/services

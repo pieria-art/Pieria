@@ -30,7 +30,7 @@ def test_decode_throttled_bits():
 
 def test_collect_never_raises_and_has_all_keys():
     snap = host_health.collect()
-    for key in ("loadavg", "temp_c", "memory", "uptime_s", "disk", "throttled"):
+    for key in ("loadavg", "temp_c", "memory", "uptime_s", "disk", "throttled", "watchdog"):
         assert key in snap
 
 
@@ -38,6 +38,20 @@ def test_read_throttled_unavailable_without_file_or_vcgencmd(tmp_path, monkeypat
     monkeypatch.setattr(config, "APPLIANCE_DIR", tmp_path)  # empty dir → no host_metrics.json
     monkeypatch.setattr(host_health, "_read_vcgencmd_throttled", lambda: None)
     assert host_health.read_throttled() == "unavailable"
+
+
+def test_read_watchdog_none_without_file(tmp_path, monkeypatch):
+    monkeypatch.setattr(config, "APPLIANCE_DIR", tmp_path)  # empty dir → no watchdog.json
+    assert host_health.read_watchdog() is None
+
+
+def test_read_watchdog_returns_snapshot(tmp_path, monkeypatch):
+    monkeypatch.setattr(config, "APPLIANCE_DIR", tmp_path)
+    (tmp_path / "watchdog.json").write_text(
+        '{"mode":"observe","server_ok":1,"kiosk_ok":0,"action":"observe:relaunch-kiosk"}')
+    wd = host_health.read_watchdog()
+    assert wd["mode"] == "observe"
+    assert wd["action"] == "observe:relaunch-kiosk"
 
 
 def test_read_throttled_from_host_writer_file(tmp_path, monkeypatch):
@@ -77,5 +91,5 @@ def test_host_health_200_when_appliance(client, monkeypatch):
     assert resp.status_code == 200
     body = resp.json()
     assert body["available"] is True
-    assert set(body["host"].keys()) == {"loadavg", "temp_c", "memory", "uptime_s", "disk", "throttled"}
+    assert set(body["host"].keys()) == {"loadavg", "temp_c", "memory", "uptime_s", "disk", "throttled", "watchdog"}
     assert isinstance(body["displays"], list)
