@@ -43,6 +43,7 @@ from fastapi.staticfiles import StaticFiles
 from PIL import Image, ImageOps
 from pydantic import BaseModel
 from sqlalchemy import delete, select, update
+from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 
 # Load environment variables
@@ -1516,16 +1517,24 @@ async def get_next_image(
     if not artworks: raise HTTPException(404, detail="No approved images")
     count = len(artworks)
 
-    # Get or create playback session
-    session = db.query(DisplayPlaybackSessionModel).filter(
-        DisplayPlaybackSessionModel.display_id == display_id,
-        DisplayPlaybackSessionModel.playlist_id == p.id
-    ).first()
+    # Get or create playback session. A8: the (display_id, playlist_id) UNIQUE constraint backstops the
+    # check-then-insert race across the 4 workers — if another worker inserts first, catch the
+    # IntegrityError, roll back, and re-query the row it created instead of duplicating it.
+    def _get_session():
+        return db.query(DisplayPlaybackSessionModel).filter(
+            DisplayPlaybackSessionModel.display_id == display_id,
+            DisplayPlaybackSessionModel.playlist_id == p.id
+        ).first()
 
+    session = _get_session()
     if not session:
         session = DisplayPlaybackSessionModel(display_id=display_id, playlist_id=p.id)
         db.add(session)
-        db.commit()
+        try:
+            db.commit()
+        except IntegrityError:
+            db.rollback()
+            session = _get_session()
 
     selected_art = None
     selected_idx = -1

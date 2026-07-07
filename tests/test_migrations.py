@@ -44,6 +44,10 @@ def _set_legacy_stamp(db_path: str, rev: str) -> None:
         conn.execute(text("INSERT INTO alembic_version (version_num) VALUES (:r)"), {"r": rev})
 
 
+def _head(db_path: str) -> str:
+    return ScriptDirectory.from_config(_cfg(db_path)).get_current_head()
+
+
 def _columns(db_path: str) -> dict:
     insp = inspect(create_engine(f"sqlite:///{db_path}"))
     return {
@@ -57,10 +61,12 @@ def db_path(tmp_path) -> str:
     return str(tmp_path / "artwork.db")
 
 
-def test_baseline_is_the_single_head(db_path):
-    """Exactly one head, and it is the baseline (guards against a stray/branching migration)."""
+def test_single_head_and_baseline_anchors_the_chain(db_path):
+    """Exactly one head (guards against a stray/branching migration) and the baseline still anchors
+    the chain. As post-baseline migrations are added the head moves past BASELINE — that's expected."""
     script = ScriptDirectory.from_config(_cfg(db_path))
-    assert script.get_current_head() == BASELINE
+    assert len(script.get_heads()) == 1
+    assert script.get_revision(BASELINE) is not None
 
 
 def test_fresh_upgrade_from_empty_reaches_head_and_matches_models(db_path, tmp_path):
@@ -68,7 +74,7 @@ def test_fresh_upgrade_from_empty_reaches_head_and_matches_models(db_path, tmp_p
     Then the migration-built schema must equal the models' create_all schema (zero drift).
     This is the exact check whose absence let the original drift ship."""
     command.upgrade(_cfg(db_path), "head")
-    assert _stamp(db_path) == BASELINE
+    assert _stamp(db_path) == _head(db_path)
 
     ref = str(tmp_path / "ref.db")
     Base.metadata.create_all(create_engine(f"sqlite:///{ref}"))
@@ -77,7 +83,7 @@ def test_fresh_upgrade_from_empty_reaches_head_and_matches_models(db_path, tmp_p
 
 def test_run_migrations_builds_fresh_db(db_path):
     run_migrations(_cfg(db_path))
-    assert _stamp(db_path) == BASELINE
+    assert _stamp(db_path) == _head(db_path)
     cols = _columns(db_path)
     assert "artworks" in cols and "is_personal" in cols["artworks"]
 
@@ -91,7 +97,7 @@ def test_reconcile_from_retired_stamp(db_path, legacy_rev):
     _set_legacy_stamp(db_path, legacy_rev)
 
     run_migrations(_cfg(db_path))
-    assert _stamp(db_path) == BASELINE
+    assert _stamp(db_path) == _head(db_path)
 
 
 def test_reconcile_preserves_data(db_path):
@@ -107,7 +113,7 @@ def test_reconcile_preserves_data(db_path):
     _set_legacy_stamp(db_path, "a1b2c3d4e5f6")
 
     run_migrations(_cfg(db_path))
-    assert _stamp(db_path) == BASELINE
+    assert _stamp(db_path) == _head(db_path)
     with eng.connect() as conn:
         assert conn.execute(text("SELECT filename FROM artworks")).scalar() == "keep.jpg"
 
@@ -128,4 +134,28 @@ def test_incomplete_schema_fails_loud(db_path):
 def test_run_migrations_is_idempotent(db_path):
     run_migrations(_cfg(db_path))
     run_migrations(_cfg(db_path))  # second run is a no-op, must not raise
-    assert _stamp(db_path) == BASELINE
+    assert _stamp(db_path) == _head(db_path)
+
+
+def test_playback_session_unique_constraint_present(db_path):
+    """A8: upgrading to head yields a UNIQUE(display_id, playlist_id) on the playback sessions table."""
+    command.upgrade(_cfg(db_path), "head")
+    insp = inspect(create_engine(f"sqlite:///{db_path}"))
+    ucs = insp.get_unique_constraints("display_playback_sessions")
+    assert any(set(uc["column_names"]) == {"display_id", "playlist_id"} for uc in ucs)
+
+
+def test_playback_session_rejects_duplicate(db_path):
+    """A8: the constraint actually enforces one row per (display, playlist) — a duplicate insert raises,
+    which is what makes the get_next_image get-or-create's IntegrityError re-query path fire."""
+    from sqlalchemy.exc import IntegrityError
+    from sqlalchemy.orm import Session as _Session
+
+    from models import DisplayPlaybackSessionModel
+    eng = create_engine(f"sqlite:///{db_path}")
+    Base.metadata.create_all(eng)
+    with _Session(eng) as s:
+        s.add(DisplayPlaybackSessionModel(display_id="wall", playlist_id=1)); s.commit()
+        s.add(DisplayPlaybackSessionModel(display_id="wall", playlist_id=1))
+        with pytest.raises(IntegrityError):
+            s.commit()
