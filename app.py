@@ -5,6 +5,7 @@ Phase 4: Targeted WebSocket Routing for Multiple Displays.
 """
 
 import asyncio
+import copy
 import fcntl
 import html
 import io
@@ -140,16 +141,26 @@ from epaper import PALETTES, VALID_FORMATS, media_type_for, render_for_epaper
 
 
 @lru_cache(maxsize=256)
-def get_optimized_image(image_path: Path, size: tuple, quality: int = 85) -> bytes:
-    """Resizes and compresses an image for web delivery."""
+def _optimized_image_cached(image_path: Path, size: tuple, quality: int, mtime: int) -> bytes:
+    """Resize + JPEG-compress for web delivery. `mtime` participates only in the cache key (A4): a file
+    replaced in place gets a fresh entry instead of serving stale bytes until process restart."""
     logger.info(f"[Image Processor] Optimizing: {image_path.name}")
     with Image.open(image_path) as img:
-        if img.mode in ("RGBA", "P"):
+        if img.mode not in ("RGB", "L"):      # covers RGBA/P/LA/CMYK — "LA" used to crash the JPEG save
             img = img.convert("RGB")
         img.thumbnail(size, Image.Resampling.LANCZOS)
         buf = io.BytesIO()
         img.save(buf, format="JPEG", quality=quality)
         return buf.getvalue()
+
+
+def get_optimized_image(image_path: Path, size: tuple, quality: int = 85) -> bytes:
+    """mtime-keyed wrapper over the lru cache — see A4."""
+    try:
+        mtime = int(image_path.stat().st_mtime)
+    except OSError:
+        mtime = 0
+    return _optimized_image_cached(image_path, size, quality, mtime)
 
 # --- Canvas display image (resolution-capped) -------------------------------
 # The Canvas <img> previously loaded the full-res original via /media. Museum
@@ -190,7 +201,10 @@ def render_canvas_image(src: Path, art_id: int) -> bytes:
         if old != dst:
             try: old.unlink()
             except OSError: pass
-    tmp = dst.with_suffix(".tmp")          # atomic publish so a concurrent reader never sees a partial file
+    # Atomic publish so a concurrent reader never sees a partial file. Per-writer tmp name (A3): the boot
+    # warm sweep and a lazy /display.jpg render can target the same dst — a shared .tmp would let their
+    # writes interleave before os.replace. os.replace is atomic, so last-writer-wins on identical bytes.
+    tmp = dst.with_name(f"{dst.name}.{os.getpid()}.tmp")
     tmp.write_bytes(data)
     os.replace(tmp, dst)
     return data
@@ -2077,11 +2091,25 @@ CATALOG_DIR = Path("static/catalog")
 # SD_USER_AGENT (the descriptive UA Wikimedia/museums require) now lives in config.py so the
 # offline tools/ scripts can reuse it without importing this app.
 
+# A2: mtime-keyed memo for the bundled catalog JSON. suggest_catalog/search_catalog walk every
+# collection per keystroke and previously re-opened + re-parsed index.json + each <id>.json every time.
+# We cache the parsed result keyed by (path, mtime) and hand back a deepcopy, because callers mutate
+# what they get (_catalog_index does `.extend(subscribed)` / `setdefault("origin", ...)`) — a shared
+# object would accumulate those mutations across calls.
+_local_json_cache: dict = {}
+
+
 def _read_local_json(path: Path):
     if not path.exists():
         return None
+    mtime = path.stat().st_mtime
+    hit = _local_json_cache.get(path)
+    if hit and hit[0] == mtime:
+        return copy.deepcopy(hit[1])
     with open(path) as f:
-        return json.load(f)
+        data = json.load(f)
+    _local_json_cache[path] = (mtime, data)
+    return copy.deepcopy(data)
 
 async def _catalog_remote_base(db: Session) -> Optional[str]:
     """Optional remote override: a static base URL hosting index.json + <id>.json (no server needed)."""
@@ -2492,9 +2520,9 @@ async def search_catalog(q: str = "", db: Session = Depends(get_db)):
 @app.get("/api/catalog/suggest")
 async def suggest_catalog(q: str = "", db: Session = Depends(get_db)):
     """Lightweight autocomplete for the Museum search box — distinct artist names + titles from the
-    catalog whose text contains the typed query, startswith matches ranked first. Reuses the cached
-    catalog (no per-keystroke disk work). Defined *before* the `/{collection_id}` route so "suggest"
-    isn't swallowed as a collection id."""
+    catalog whose text contains the typed query, startswith matches ranked first. Backed by the
+    mtime-keyed `_read_local_json` cache (A2), so repeat keystrokes don't re-read the catalog from disk.
+    Defined *before* the `/{collection_id}` route so "suggest" isn't swallowed as a collection id."""
     ql = q.strip().lower()
     if len(ql) < 2:
         return {"query": q, "suggestions": []}
