@@ -70,6 +70,17 @@ def test_resolve_boot_conf_path_targets_the_conf_file():
     assert sd_setup.resolve_boot_conf_path().name == "screen-docent.conf"
 
 
+def test_orientation_preview_degrades_gracefully_without_wlr_randr(monkeypatch):
+    """On anything but the wlroots kiosk (dev laptop, or before the kiosk starts) wlr-randr is absent —
+    the preview must report 'unavailable' + record the choice, never surface a raw errno as an error."""
+    monkeypatch.setattr(sd_setup.shutil, "which", lambda _: None)  # simulate wlr-randr not installed
+    cfg = sd_setup.SetupConfig(dry_run=True, all_in_one=False,
+                               boot_conf=pathlib.Path("/tmp/none"), output="HDMI-A-1")
+    result = sd_setup._apply_rotation("HDMI-A-1", "90", 30, cfg)
+    assert result["mode"] == "unavailable"
+    assert "error" not in result
+
+
 # --- dry-run safety contract (integration) ------------------------------------
 
 @pytest.fixture

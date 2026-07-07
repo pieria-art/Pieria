@@ -21,6 +21,7 @@ import argparse
 import json
 import os
 import re
+import shutil
 import subprocess
 import threading
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
@@ -125,11 +126,16 @@ class SetupConfig:
 
 def _apply_rotation(output: str, orientation: str, revert_after: int, cfg: SetupConfig) -> dict:
     """Best-effort live rotate via wlr-randr (opt-in on the Pi), with an auto-revert so a wrong pick on
-    a keyboard-less wall mount can't strand the display. Returns a status dict for the UI."""
+    a keyboard-less wall mount can't strand the display. Returns a status dict for the UI.
+
+    Live rotation only works inside the wlroots kiosk session (Pi / all-in-one). Anywhere else — a dev
+    laptop, or the wizard running before the kiosk starts — wlr-randr isn't present (or there's no
+    Wayland session), so we record the choice and report it plainly instead of erroring."""
     transform = {"landscape": "normal", "90": "90", "180": "180", "270": "270"}.get(orientation, "normal")
-    if not os.environ.get("WAYLAND_DISPLAY"):
+    if not shutil.which("wlr-randr") or not os.environ.get("WAYLAND_DISPLAY"):
         return {"mode": "unavailable",
-                "message": "No Wayland session here — rotation applies on the real kiosk. Choice recorded."}
+                "message": "Live preview runs on the display itself (the Pi kiosk). Your choice is "
+                           "recorded and written to the config."}
     try:
         subprocess.run(["wlr-randr", "--output", output, "--transform", transform],
                        check=True, capture_output=True, timeout=10)
