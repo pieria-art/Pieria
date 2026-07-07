@@ -523,13 +523,16 @@ async function fetchLibrary() {
     try {
         const response = await fetch(`${API_BASE}/artworks`);
         const data = await response.json();
-        
-        // Simple optimization: only re-render if count changed
-        if (data.length !== fullLibrary.length) {
-            fullLibrary = data;
-            document.getElementById('library-count').textContent = fullLibrary.length;
-            renderLibraryGrid();
-        }
+
+        // Re-render when the data actually changed — not just when the COUNT changed. The old
+        // count-only guard meant an in-place metadata edit (same count) never repainted the grid, so a
+        // saved edit looked lost (UX-A1). Diff the payload so edits re-render but idle polls don't churn.
+        const newStr = JSON.stringify(data);
+        if (window._lastLibraryJSON === newStr) return;
+        window._lastLibraryJSON = newStr;
+        fullLibrary = data;
+        document.getElementById('library-count').textContent = fullLibrary.length;
+        renderLibraryGrid();
     } catch (error) { console.error('[Admin] Fetch library failed:', error); }
 }
 
@@ -607,56 +610,29 @@ async function fetchDiscoveryQueue() {
     } catch (error) { console.error('[Admin] Fetch discovery failed:', error); }
 }
 
-function renderDiscoveryGrid() {
-    const grid = document.getElementById('discover-grid');
-    
-    // Prune obsolete cards BEFORE indexing to prevent 'leapfrog' detaching
-    const newIds = new Set(discoveryQueue.map(item => String(item.id)));
-    Array.from(grid.children).forEach(card => {
-        if (card.dataset.id && !newIds.has(card.dataset.id)) card.remove();
-    });
-
-    const existingCards = {};
-    Array.from(grid.children).forEach(card => {
-        if (card.dataset.id) existingCards[card.dataset.id] = card;
-    });
-
-    let currentDOMIndex = 0;
-
-    discoveryQueue.forEach(item => {
-        const idStr = String(item.id);
-        let card = existingCards[idStr];
-        
-        if (card) {
-            delete existingCards[idStr];
-            if (grid.children[currentDOMIndex] !== card) {
-                grid.insertBefore(card, grid.children[currentDOMIndex]);
-            }
-        } else {
-            card = document.createElement('div');
-            card.className = 'artwork-card';
-            card.dataset.id = item.id;
-                const thumbUrl = item.thumbnail_url + (item.thumbnail_url.includes('?') ? '&' : '?') + '_cb=' + encodeURIComponent(item.source_url);
-                card.innerHTML = `
-                <img src="${thumbUrl}" alt="${item.proposed_title}">
+// proposed_title/proposed_artist/source_api come verbatim from external museum-API JSON — every field
+// is escaped (H2: a crafted title like `"><img src=x onerror=...>` would otherwise execute in the
+// unauth admin the moment a scout returns it).
+function discoveryCardHTML(item) {
+    const thumbUrl = item.thumbnail_url + (item.thumbnail_url.includes('?') ? '&' : '?') + '_cb=' + encodeURIComponent(item.source_url);
+    return `
+                <img src="${_esc(thumbUrl)}" alt="${_esc(item.proposed_title)}">
                 <div class="info">
-                    <strong>${item.proposed_title}</strong><br>
-                    <small>${item.proposed_artist}</small><br>
-                    <small style="opacity:0.6">${item.source_api}</small>
+                    <strong>${_esc(item.proposed_title)}</strong><br>
+                    <small>${_esc(item.proposed_artist)}</small><br>
+                    <small style="opacity:0.6">${_esc(item.source_api)}</small>
                 </div>
                 <div class="actions" style="grid-template-columns: 1fr 1fr;">
                     <button onclick="reviewDiscoveryInline(${item.id}, this)" class="success" title="Finalize &amp; publish right here — no tab hop">Review</button>
                     <button onclick="rejectDiscovery(${item.id}, this)" style="color: #ef4444;">Reject</button>
-                </div>
-            `;
-            if (currentDOMIndex < grid.children.length) {
-                grid.insertBefore(card, grid.children[currentDOMIndex]);
-            } else {
-                grid.appendChild(card);
-            }
-        }
-        currentDOMIndex++;
-    });
+                </div>`;
+}
+
+function renderDiscoveryGrid() {
+    // A card mid inline-review has had its dataset.id removed and its item dropped from discoveryQueue,
+    // so it is invisible to reconcile (never matched, never pruned) and its form is left intact.
+    reconcileGrid(document.getElementById('discover-grid'), discoveryQueue, it => it.id,
+        'artwork-card', discoveryCardHTML);
 }
 
 async function dispatchScouts() {
@@ -981,105 +957,70 @@ function cardSubtitle(art) {
     return art.agent_name || 'Unknown';
 }
 
-function renderLibraryGrid() {
-    const grid = document.getElementById('library-grid');
-    
-    // Prune obsolete cards BEFORE indexing to prevent 'leapfrog' detaching
-    const newIds = new Set(fullLibrary.map(art => String(art.id)));
-    Array.from(grid.children).forEach(card => {
+// Reconcile a list of id-keyed cards into `container` in place: prune removed cards, insert/reorder,
+// and REPAINT matched cards so edited data actually shows (the old copies reused a matched card without
+// ever rewriting it → "saved edit doesn't refresh the grid"). One helper replaces the four hand-rolled
+// copies. `cardHTML(item)` returns the card's inner HTML — ALL untrusted text inside it MUST go through
+// _esc() (these grids render external-museum metadata into the unauth admin → stored-XSS surface).
+// opts.repaintOnReuse=false leaves a matched card's DOM alone (for cards with live <input>s the user may
+// be editing — the caller patches those via opts.onCard instead). opts.onCard(card,item,isNew) runs for
+// every card after placement.
+function reconcileGrid(container, items, keyFn, cardClass, cardHTML, opts = {}) {
+    const { repaintOnReuse = true, onCard = null } = opts;
+    const ids = items.map(it => String(keyFn(it)));
+    const newIds = new Set(ids);
+    // Prune obsolete cards BEFORE indexing to prevent 'leapfrog' detaching on reorder.
+    Array.from(container.children).forEach(card => {
         if (card.dataset.id && !newIds.has(card.dataset.id)) card.remove();
     });
-
-    const existingCards = {};
-    Array.from(grid.children).forEach(card => {
-        if (card.dataset.id) existingCards[card.dataset.id] = card;
+    const existing = {};
+    Array.from(container.children).forEach(card => {
+        if (card.dataset.id) existing[card.dataset.id] = card;
     });
-
-    let currentDOMIndex = 0;
-
-    fullLibrary.forEach(art => {
-        const idStr = String(art.id);
-        let card = existingCards[idStr];
-        
+    items.forEach((item, i) => {
+        const idStr = ids[i];
+        let card = existing[idStr];
+        const isNew = !card;
         if (card) {
-            delete existingCards[idStr];
-            if (grid.children[currentDOMIndex] !== card) {
-                grid.insertBefore(card, grid.children[currentDOMIndex]);
-            }
+            delete existing[idStr];
+            if (repaintOnReuse) card.innerHTML = cardHTML(item);
+            if (container.children[i] !== card) container.insertBefore(card, container.children[i]);
         } else {
             card = document.createElement('div');
-            card.className = 'artwork-card';
-            card.dataset.id = art.id;
-            card.innerHTML = `
-                <img src="${API_BASE}/artworks/${art.id}/thumbnail?f=${encodeURIComponent(art.filename)}" alt="${art.filename}" onclick="openEdit(${art.id})" style="cursor: pointer;">
-                <div class="info">
-                    <strong>${art.title || art.filename}</strong><br>
-                    <small>${cardSubtitle(art)}</small>${art.is_seed ? '<br><span style="color: #10b981; font-weight: bold; font-size: 0.75rem;">🌱 Built-In</span>' : ''}
-                </div>
-                <div class="actions" style="grid-template-columns: 1fr auto;">
-                    <button onclick="openEdit(${art.id}, 'library')">Edit</button>
-                    <button onclick="deleteArtworkPermanently(${art.id})" title="Delete from library" style="color: #ef4444;">✕</button>
-                </div>
-            `;
-            if (currentDOMIndex < grid.children.length) {
-                grid.insertBefore(card, grid.children[currentDOMIndex]);
-            } else {
-                grid.appendChild(card);
-            }
+            card.className = cardClass;
+            card.dataset.id = idStr;
+            card.innerHTML = cardHTML(item);
+            if (i < container.children.length) container.insertBefore(card, container.children[i]);
+            else container.appendChild(card);
         }
-        currentDOMIndex++;
+        if (onCard) onCard(card, item, isNew);
     });
 }
 
-function renderArtworkGrid(artworks) {
-    const grid = document.getElementById('artwork-grid');
-    
-    // Prune obsolete cards BEFORE indexing to prevent 'leapfrog' detaching
-    const newIds = new Set(artworks.map(art => String(art.id)));
-    Array.from(grid.children).forEach(card => {
-        if (card.dataset.id && !newIds.has(card.dataset.id)) card.remove();
-    });
-
-    const existingCards = {};
-    Array.from(grid.children).forEach(card => {
-        if (card.dataset.id) existingCards[card.dataset.id] = card;
-    });
-
-    let currentDOMIndex = 0;
-
-    artworks.forEach(art => {
-        const idStr = String(art.id);
-        let card = existingCards[idStr];
-        
-        if (card) {
-            delete existingCards[idStr];
-            if (grid.children[currentDOMIndex] !== card) {
-                grid.insertBefore(card, grid.children[currentDOMIndex]);
-            }
-        } else {
-            card = document.createElement('div');
-            card.className = 'artwork-card';
-            card.dataset.id = art.id;
-            card.innerHTML = `
-                <img src="${API_BASE}/artworks/${art.id}/thumbnail?f=${encodeURIComponent(art.filename)}" alt="${art.filename}" onclick="openEdit(${art.id})" style="cursor: pointer;">
+function artworkCardHTML(art, view) {
+    const removeBtn = view === 'collection'
+        ? `<button onclick="removeArtworkFromPlaylist(${art.id})" title="Remove from this collection" style="color: #f59e0b;">✕</button>`
+        : `<button onclick="deleteArtworkPermanently(${art.id})" title="Delete from library" style="color: #ef4444;">✕</button>`;
+    return `
+                <img src="${API_BASE}/artworks/${art.id}/thumbnail?f=${encodeURIComponent(art.filename)}" alt="${_esc(art.filename)}" onclick="openEdit(${art.id})" style="cursor: pointer;">
                 <div class="info">
-                    <strong>${art.title || art.filename}</strong><br>
-                    <small>${cardSubtitle(art)}</small>${art.is_seed ? '<br><span style="color: #10b981; font-weight: bold; font-size: 0.75rem;">🌱 Built-In</span>' : ''}
+                    <strong>${_esc(art.title || art.filename)}</strong><br>
+                    <small>${_esc(cardSubtitle(art))}</small>${art.is_seed ? '<br><span style="color: #10b981; font-weight: bold; font-size: 0.75rem;">🌱 Built-In</span>' : ''}
                 </div>
                 <div class="actions" style="grid-template-columns: 1fr auto;">
-                    <button onclick="openEdit(${art.id}, 'collection')">Edit</button>
-                    <button onclick="removeArtworkFromPlaylist(${art.id})" title="Remove from this collection" style="color: #f59e0b;">✕</button>
-                </div>
-            `;
-            if (currentDOMIndex < grid.children.length) {
-                grid.insertBefore(card, grid.children[currentDOMIndex]);
-            } else {
-                grid.appendChild(card);
-            }
-        }
-        currentDOMIndex++;
-    });
+                    <button onclick="openEdit(${art.id}, '${view}')">Edit</button>
+                    ${removeBtn}
+                </div>`;
+}
 
+function renderLibraryGrid() {
+    reconcileGrid(document.getElementById('library-grid'), fullLibrary, a => a.id,
+        'artwork-card', art => artworkCardHTML(art, 'library'));
+}
+
+function renderArtworkGrid(artworks) {
+    reconcileGrid(document.getElementById('artwork-grid'), artworks, a => a.id,
+        'artwork-card', art => artworkCardHTML(art, 'collection'));
     setupSortable();
 }
 
@@ -1365,6 +1306,17 @@ async function catalogBulkAdd() {
 
 function renderSidebar() {
     const list = document.getElementById('playlist-list');
+    // Delegated delete handler (L3): the collection name is never interpolated into an inline onclick
+    // string (a name like `x'); …//` used to break out). Bound once; survives innerHTML rebuilds.
+    if (!list.dataset.delDelegated) {
+        list.dataset.delDelegated = '1';
+        list.addEventListener('click', (e) => {
+            const btn = e.target.closest('.pl-delete');
+            if (!btn) return;
+            e.stopPropagation();
+            deletePlaylist(parseInt(btn.dataset.id, 10));
+        });
+    }
     list.innerHTML = '';
     currentPlaylists.forEach(p => {
         const li = document.createElement('li');
@@ -1372,8 +1324,8 @@ function renderSidebar() {
         li.dataset.id = p.id;
         li.innerHTML = `
             <div style="display:flex; justify-content:space-between;">
-                <strong>${p.name}</strong>
-                <button onclick="event.stopPropagation(); deletePlaylist(${p.id}, '${p.name}')" style="background:none; border:none; color:#ef4444;">×</button>
+                <strong>${_esc(p.name)}</strong>
+                <button class="pl-delete" data-id="${p.id}" style="background:none; border:none; color:#ef4444; cursor:pointer;">×</button>
             </div>
             <div style="font-size:0.75rem; color:#94a3b8; margin-top:5px;">${p.artworks?.length || 0} images</div>
             <div class="playlist-meta" onclick="event.stopPropagation()" style="display: grid; grid-template-columns: 1fr 1fr; gap: 5px; margin-top: 10px;">
@@ -1419,7 +1371,8 @@ function renderSidebar() {
     });
 }
 
-async function deletePlaylist(id, name) {
+async function deletePlaylist(id) {
+    const name = (currentPlaylists.find(p => p.id === id) || {}).name || 'this collection';
     if (!(await confirmModal(`Delete collection "${name}"? Library images will remain.`, { confirmText: 'Delete', danger: true }))) return;
     try {
         await fetch(`${API_BASE}/playlists/${id}`, { method: 'DELETE' });
@@ -1585,15 +1538,15 @@ function reviewFormHTML(art) {
     return `
                 <div class="review-image"><img src="${API_BASE}/artworks/${art.id}/thumbnail?f=${encodeURIComponent(art.filename || '')}"></div>
                 <div class="review-form">
-                    <div class="form-group"><label>Title</label><input type="text" id="title-${art.id}" value="${art.title || ''}"></div>
-                    <div class="form-group"><label>Agent/Artist</label><input type="text" id="agent-${art.id}" value="${art.agent_name || ''}"></div>
-                    <div class="form-group"><label>Role</label><input type="text" id="role-${art.id}" value="${art.agent_role || ''}"></div>
-                    <div class="form-group"><label>Date/Year</label><input type="text" id="date-${art.id}" value="${_fmtDate(art.creation_date)}"></div>
-                    <div class="form-group"><label>Context</label><input type="text" id="context-${art.id}" value="${art.cultural_context || ''}"></div>
-                    <div class="form-group"><label>Medium</label><input type="text" id="medium-${art.id}" value="${art.medium || ''}"></div>
-                    <div class="form-group"><label>Display Date</label><input type="text" id="date-display-${art.id}" value="${art.date_display || ''}"></div>
-                    <div class="form-group"><label>Tags</label><input type="text" id="tags-${art.id}" value="${art.tags || ''}"></div>
-                    <div class="form-group full"><label>Narrative Description</label><textarea id="desc-${art.id}" rows="3">${art.description_narrative || ''}</textarea></div>
+                    <div class="form-group"><label>Title</label><input type="text" id="title-${art.id}" value="${_esc(art.title || '')}"></div>
+                    <div class="form-group"><label>Agent/Artist</label><input type="text" id="agent-${art.id}" value="${_esc(art.agent_name || '')}"></div>
+                    <div class="form-group"><label>Role</label><input type="text" id="role-${art.id}" value="${_esc(art.agent_role || '')}"></div>
+                    <div class="form-group"><label>Date/Year</label><input type="text" id="date-${art.id}" value="${_esc(_fmtDate(art.creation_date))}"></div>
+                    <div class="form-group"><label>Context</label><input type="text" id="context-${art.id}" value="${_esc(art.cultural_context || '')}"></div>
+                    <div class="form-group"><label>Medium</label><input type="text" id="medium-${art.id}" value="${_esc(art.medium || '')}"></div>
+                    <div class="form-group"><label>Display Date</label><input type="text" id="date-display-${art.id}" value="${_esc(art.date_display || '')}"></div>
+                    <div class="form-group"><label>Tags</label><input type="text" id="tags-${art.id}" value="${_esc(art.tags || '')}"></div>
+                    <div class="form-group full"><label>Narrative Description</label><textarea id="desc-${art.id}" rows="3">${_esc(art.description_narrative || '')}</textarea></div>
                     <div class="form-group full" style="border-top: 1px solid var(--border-color); padding-top: 15px; margin-top: 5px;">
                         <label>AI Guidance (Optional)</label>
                         <div style="display: flex; gap: 10px;">
@@ -1630,51 +1583,21 @@ function renderReviewQueue(artworks) {
         return;
     }
     
-    // Prune obsolete cards BEFORE indexing to prevent 'leapfrog' detaching
-    const newIds = new Set(artworks.map(a => String(a.id)));
-    Array.from(list.children).forEach(card => {
-        if (card.dataset.id && !newIds.has(card.dataset.id)) card.remove();
-    });
-
-    const existingCards = {};
-    Array.from(list.children).forEach(card => {
-        if (card.dataset.id) existingCards[card.dataset.id] = card;
-    });
-
-    let currentDOMIndex = 0;
-
-    artworks.forEach(art => {
-        const idStr = String(art.id);
-        let card = existingCards[idStr];
-        
-        if (card) {
-            delete existingCards[idStr];
-            // Since obsolete siblings are already removed, if the index diverges, it's a genuine reorder
-            if (list.children[currentDOMIndex] !== card) {
-                list.insertBefore(card, list.children[currentDOMIndex]);
-            }
-        } else {
-            card = document.createElement('div');
-            card.className = 'review-card';
-            card.dataset.id = art.id;
-            card.innerHTML = `
+    // repaintOnReuse:false — these cards hold live <input>s the user may be editing, so we never
+    // rewrite a matched card's DOM; syncReviewCardFields patches values in place (and is XSS-safe
+    // because it assigns .value, not innerHTML — the escaping that matters is in reviewFormHTML above).
+    reconcileGrid(list, artworks, a => a.id, 'review-card',
+        art => `
                 <label class="review-select" title="Select for bulk approve"><input type="checkbox" onchange="_reviewSelectToggle(${art.id}, this.checked)"></label>
                 ${reviewFormHTML(art)}
-            `;
-            if (currentDOMIndex < list.children.length) {
-                list.insertBefore(card, list.children[currentDOMIndex]);
-            } else {
-                list.appendChild(card);
-            }
-        }
-        // For new cards this just records the server baseline; for existing cards it
-        // fills in any enrichment that has arrived since the card was first rendered.
-        syncReviewCardFields(art);
-        // Keep the bulk-select checkbox in sync with gridSelected across polling re-renders.
-        const cb = card.querySelector('.review-select input');
-        if (cb) { const sel = gridSelected.has(art.id); cb.checked = sel; card.classList.toggle('selected', sel); }
-        currentDOMIndex++;
-    });
+            `,
+        { repaintOnReuse: false, onCard: (card, art) => {
+            // New cards: records the server baseline. Existing cards: fills in enrichment that
+            // arrived since first render. Then keep the bulk-select checkbox in sync with gridSelected.
+            syncReviewCardFields(art);
+            const cb = card.querySelector('.review-select input');
+            if (cb) { const sel = gridSelected.has(art.id); cb.checked = sel; card.classList.toggle('selected', sel); }
+        }});
 
     applyAiGating(); // re-gate freshly rendered Regenerate buttons + toggle the no-AI banner
 }
