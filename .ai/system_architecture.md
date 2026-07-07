@@ -275,7 +275,8 @@ Screen-Docent/
 
 ## Admin Utilities & Key Endpoints
 
-- **Factory Reset** `POST /api/admin/factory-reset` (body `"RESET"`) — wipe non-seed data.
+- **Factory Reset** `POST /api/admin/factory-reset` (JSON body `{"confirm":"RESET"}`, enforced
+  server-side per ADR-036) — wipe non-seed data.
 - **Discover maintenance** — clear pending / rejected history / orphaned approvals.
 - **Catalog** — `GET /api/catalog` (index, origin-tagged) · `GET /api/catalog/{id}` · `GET /api/catalog/search`
   (flat AND-token) · `GET /api/catalog/suggest` (autocomplete) · `POST /api/catalog/add` · `POST /api/catalog/add-bulk`.
