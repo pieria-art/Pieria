@@ -1,0 +1,64 @@
+#!/usr/bin/env bash
+# sd-setup-boot — first-boot gate for the setup wizard (R1-F1).
+#
+# If the box is already configured (a real screen-docent.conf exists), do nothing and let the normal
+# kiosk boot proceed. Otherwise bring up the "Docent-Setup" Wi-Fi AP + captive portal and run the setup
+# wizard so a non-technical user configures the display from their phone — no SSH, no SD-card editing.
+#
+# Runs as a systemd oneshot (sd-setup.service) BEFORE the kiosk. On commit the wizard writes the conf,
+# joins the chosen Wi-Fi, and reboots — the second boot is "configured" and falls through to the kiosk.
+#
+# ⚠ Pi-gated: the AP bring-up / teardown and Wi-Fi hand-off can only be fully validated on real Pi
+# hardware with a flash cycle. The wizard's HTTP/conf logic is verified on the laptop via `--dry-run`.
+set -u
+
+CONF="${1:-/boot/firmware/screen-docent.conf}"
+[ -e "$CONF" ] || CONF="/boot/screen-docent.conf"
+SETUP_DIR="/usr/local/share/screen-docent/setup"
+AP_ADDR="10.0.0.1/24"
+
+# --- Is this box already configured? --------------------------------------------------------------
+# Configured = the conf exists AND carries non-placeholder SERVER_URL + DISPLAY_ID (the shipped example
+# uses DISPLAY_ID=living_room / SERVER_URL=http://192.168.1.50:8000 — treat those as "not set yet").
+is_configured() {
+  [ -r "$CONF" ] || return 1
+  local SERVER_URL="" DISPLAY_ID=""
+  # shellcheck disable=SC1090
+  . "$CONF" 2>/dev/null || return 1
+  [ -n "${SERVER_URL:-}" ] && [ -n "${DISPLAY_ID:-}" ] || return 1
+  [ "${DISPLAY_ID}" = "living_room" ] && [ "${SERVER_URL}" = "http://192.168.1.50:8000" ] && return 1
+  return 0
+}
+
+if is_configured; then
+  echo "sd-setup-boot: already configured ($CONF) — skipping setup, continuing to kiosk."
+  exit 0
+fi
+
+echo "sd-setup-boot: no configuration found — starting the Docent-Setup wizard."
+
+# --- Bring up the AP + captive portal -------------------------------------------------------------
+start_ap() {
+  rfkill unblock wlan 2>/dev/null || true
+  ip link set wlan0 up 2>/dev/null || true
+  ip addr flush dev wlan0 2>/dev/null || true
+  ip addr add "$AP_ADDR" dev wlan0 2>/dev/null || true
+  # NetworkManager would fight hostapd for wlan0 — hand the interface to us for the setup window.
+  nmcli device set wlan0 managed no 2>/dev/null || true
+  systemctl start hostapd 2>/dev/null || hostapd -B "$SETUP_DIR/hostapd.conf" 2>/dev/null || true
+  dnsmasq --conf-file="$SETUP_DIR/dnsmasq.conf" 2>/dev/null || true
+}
+
+stop_ap() {
+  pkill dnsmasq 2>/dev/null || true
+  systemctl stop hostapd 2>/dev/null || pkill hostapd 2>/dev/null || true
+  ip addr flush dev wlan0 2>/dev/null || true
+  nmcli device set wlan0 managed yes 2>/dev/null || true
+}
+trap stop_ap EXIT
+
+start_ap
+
+# Serve the wizard on port 80 (the captive portal redirects every probe here). The wizard writes the
+# conf, joins Wi-Fi, and reboots on commit — so this normally does not return.
+/usr/local/bin/sd-setup --port 80 --boot-conf "$CONF"

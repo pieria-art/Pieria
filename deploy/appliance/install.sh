@@ -20,6 +20,7 @@ KIOSK_USER="${KIOSK_USER:-kiosk}"
 HERE="$(cd "$(dirname "$0")" && pwd)"
 BIN_SRC="$HERE/bin"
 UNIT_SRC="$HERE/systemd"
+SETUP_SRC="$HERE/setup"
 CONF_EXAMPLE="$HERE/config/screen-docent.conf.example"
 
 # Read an existing appliance config if one is already present (e.g. placed on
@@ -71,6 +72,8 @@ install -m 0755 "$BIN_SRC/sd-wait-for-server" /usr/local/bin/sd-wait-for-server
 install -m 0755 "$BIN_SRC/sd-rotate-keep"    /usr/local/bin/sd-rotate-keep
 install -m 0755 "$BIN_SRC/sd-metrics"        /usr/local/bin/sd-metrics
 install -m 0755 "$BIN_SRC/sd-quiet-hours"    /usr/local/bin/sd-quiet-hours
+install -m 0755 "$BIN_SRC/sd-setup-boot"     /usr/local/bin/sd-setup-boot
+install -m 0755 "$SETUP_SRC/sd_setup.py"     /usr/local/bin/sd-setup
 install -m 0755 "$BIN_SRC/sd-update"         /usr/local/bin/sd-update
 
 echo "==> Installing boot splash (shows the admin URL while the server starts)"
@@ -113,6 +116,21 @@ if [ ! -e "$BOOT_CONF" ]; then
 else
   echo "    $BOOT_CONF already exists — leaving it untouched"
 fi
+
+echo "==> Installing first-run setup wizard (assets only — enabled on the .img, NOT on this box)"
+# The wizard writes screen-docent.conf on a fresh flash so a non-technical user never edits files.
+# We install the assets everywhere but keep sd-setup.service DISABLED here: enabling it is the .img
+# build's job (a flashed card boots into setup once, then never again). hostapd/dnsmasq power the
+# Docent-Setup AP but are kept disabled so they never fight a working box's network.
+install -d /usr/local/share/screen-docent/setup
+install -m 0644 "$SETUP_SRC/hostapd.conf" /usr/local/share/screen-docent/setup/hostapd.conf
+install -m 0644 "$SETUP_SRC/dnsmasq.conf" /usr/local/share/screen-docent/setup/dnsmasq.conf
+apt-get install -y --no-install-recommends hostapd dnsmasq \
+  || echo "    (hostapd/dnsmasq unavailable — the setup AP won't come up, but a pre-seeded conf still works)"
+systemctl disable --now hostapd dnsmasq 2>/dev/null || true
+sed "s#__BOOT_CONF__#$BOOT_CONF#g" "$UNIT_SRC/sd-setup.service" > /etc/systemd/system/sd-setup.service
+systemctl daemon-reload
+echo "    sd-setup.service installed but left DISABLED (the .img build enables it for out-of-box setup)."
 
 echo "==> Disabling console blanking"
 for CMDLINE in /boot/firmware/cmdline.txt /boot/cmdline.txt; do
