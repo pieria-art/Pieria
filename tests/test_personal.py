@@ -130,15 +130,31 @@ def test_museum_upload_heic_transcodes_to_jpeg(client, monkeypatch):
         assert im.format == "JPEG" and im.size == (50, 40)
 
 
-def test_museum_upload_png_preserves_original(client, monkeypatch):
-    """Regression: the non-HEIC museum path keeps the exact original file + name as before."""
+def test_museum_upload_png_preserves_bytes_with_safe_name(client, monkeypatch):
+    """Non-HEIC museum path keeps the exact original bytes + format, but the on-disk NAME is now
+    server-generated (C1: the client filename is never used to build the path). The stem still
+    carries a sanitized hint from the original name for recognizability."""
     c, db = client
     monkeypatch.setattr(app_module, "run_ai_pipeline", lambda *a, **k: None)
     r = c.post("/upload", files={"file": ("art.png", _png_bytes((70, 50)), "image/png")})
     assert r.status_code == 200, r.text
     art = db.get(ArtworkModel, r.json()["id"])
-    assert art.filename == "art.png"
+    assert art.filename.startswith("upload_") and art.filename.endswith(".png")   # server-generated
     assert art.original_width == 70 and art.original_height == 50
+    with Image.open(app_module.LIBRARY_DIR / art.filename) as im:
+        assert im.format == "PNG" and im.size == (70, 50)   # bytes/format preserved
+
+
+def test_museum_upload_rejects_traversal_filename(client, monkeypatch):
+    """C1 regression: a client filename with path traversal cannot escape LIBRARY_DIR — the name is
+    server-generated, so the artwork lands safely inside the library."""
+    c, db = client
+    monkeypatch.setattr(app_module, "run_ai_pipeline", lambda *a, **k: None)
+    r = c.post("/upload", files={"file": ("../../../evil.png", _png_bytes((20, 20)), "image/png")})
+    assert r.status_code == 200, r.text
+    art = db.get(ArtworkModel, r.json()["id"])
+    assert "/" not in art.filename and ".." not in art.filename
+    assert (app_module.LIBRARY_DIR / art.filename).resolve().parent == app_module.LIBRARY_DIR.resolve()
 
 
 # --- AI auto-caption (increment ④) ---

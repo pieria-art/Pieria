@@ -210,7 +210,11 @@
             playlists.forEach(p => {
                 const btn = document.createElement('button');
                 btn.className = 'remote-btn';
-                btn.innerHTML = `${p.name} <span>${p.artworks?.length || 0} pieces</span>`;
+                // textContent, not innerHTML — collection names are user data and must not render as markup.
+                btn.textContent = (p.name || '') + ' ';
+                const span = document.createElement('span');
+                span.textContent = `${p.artworks?.length || 0} pieces`;
+                btn.appendChild(span);
                 btn.onclick = () => setPlaylist(p.name);
                 grid.appendChild(btn);
             });

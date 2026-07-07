@@ -63,7 +63,11 @@ def test_factory_reset_wipes_db_files_and_queue(client):
     db.add(DiscoveryQueueModel(source_url="http://x/a.jpg", thumbnail_url="http://x/t.jpg", source_api="test"))
     db.commit()
 
-    r = c.post("/api/admin/factory-reset")
+    # H4: a bare POST with no confirmation is refused server-side.
+    assert c.post("/api/admin/factory-reset", json={}).status_code == 400
+    assert db.query(ArtworkModel).count() == 2   # nothing wiped by the rejected call
+
+    r = c.post("/api/admin/factory-reset", json={"confirm": "RESET"})
     assert r.status_code == 200
     body = r.json()
     assert body["artworks_removed"] == 1             # the one non-seed
