@@ -335,13 +335,25 @@ function _renderHostHealth(host) {
         else { throttle = 'OK'; }
     }
 
+    // Self-heal (watchdog): show mode + health + any action. Warn if it's actually acting (enforce +
+    // a real action) or currently seeing the box as unhealthy.
+    let selfheal = null, selfhealWarn = false;
+    const wd = host.watchdog;
+    if (wd) {
+        const acting = wd.action && wd.action !== 'none';
+        const unhealthy = wd.server_ok === 0 || wd.kiosk_ok === 0;
+        selfheal = `${wd.mode}${acting ? ' · ' + wd.action : (unhealthy ? ' · watching' : ' · healthy')}`;
+        selfhealWarn = unhealthy || (acting && !String(wd.action).startsWith('observe'));
+    }
+
     grid.innerHTML =
         _metricTile('CPU Load', load) +
         _metricTile('Temperature', temp, host.temp_c != null && host.temp_c >= 75) +
         _metricTile('Memory', mem, host.memory && host.memory.used_pct >= 90) +
         _metricTile('Disk', disk, host.disk && host.disk.used_pct >= 90) +
         _metricTile('Uptime', uptime) +
-        _metricTile('Power / Throttle', throttle, throttleWarn);
+        _metricTile('Power / Throttle', throttle, throttleWarn) +
+        (selfheal ? _metricTile('Self-heal', selfheal, selfhealWarn) : '');
 }
 
 function _renderActiveDisplays(displays) {

@@ -38,6 +38,13 @@ OUTPUT=HDMI-A-1
 # reachable, then paints automatically). Recommended: 0 for a home server.
 WAIT_TIMEOUT=0
 
+# WATCHDOG: kiosk/server self-heal (all-in-one). On sustained failure it escalates
+# relaunch-kiosk -> restart-container -> reboot (with a boot-loop guard).
+#   observe  = probe + log what it WOULD do, take NO action (default; safe to leave on)
+#   enforce  = actually self-heal (set this once you've confirmed it on YOUR hardware)
+#   off      = disabled
+WATCHDOG=observe
+
 # --- All-in-one mode (optional) -------------------------------------------
 # Set ALL_IN_ONE=1 to ALSO run the Screen Docent server on THIS box via Docker
 # (one box = server + display). Then set SERVER_URL=http://localhost:8000 above.

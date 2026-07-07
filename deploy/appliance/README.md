@@ -210,6 +210,7 @@ like Fire TV / bring-your-own-browser; it's simply inert here.)
 | `bin/sd-metrics` | (all-in-one) Writes the Pi `vcgencmd` throttle/under-voltage reading into `data/appliance/` for the Device Health console; run by `sd-metrics.timer` every 30 s. |
 | `bin/sd-quiet-hours` | (all-in-one) Powers the TV off/on over HDMI-CEC to match the app's Night & Quiet Hours schedule (only when `quiet_mode=cec`, on-transition only); run by `sd-quiet-hours.timer` every 60 s. Needs `cec-utils`; the Canvas software blackout is the fallback. |
 | `setup/sd_setup.py` | First-run wizard web server (stdlib only). Installed as `/usr/local/bin/sd-setup`. Serves the setup form + captive-portal redirects; `--dry-run` for a safe in-situ test. |
+| `bin/sd-watchdog` | (all-in-one) Self-heal: probes server + kiosk; on sustained failure escalates relaunch-kiosk → restart-container → reboot (with a boot-loop cap). Ships in `WATCHDOG=observe` (logs only) until you set `enforce`; run by `sd-watchdog.timer` every 60 s. |
 | `bin/sd-setup-boot` | First-boot gate: if unconfigured, brings up the `Docent-Setup` AP + captive portal and runs the wizard; else no-ops. Run by `sd-setup.service` (enabled on the `.img` only). |
 | `setup/{hostapd,dnsmasq}.conf` | The `Docent-Setup` access point + DNS catch-all that make the captive portal fire. Used only while `sd-setup-boot` runs. |
 | `bin/sd-update` | (all-in-one) Root host helper for GUI updates — whitelisted update-app / update-scripts / reboot; triggered by `sd-update.path`. |
@@ -217,6 +218,7 @@ like Fire TV / bring-your-own-browser; it's simply inert here.)
 | `systemd/autologin.conf` | `getty@tty1` drop-in enabling kiosk-user autologin. |
 | `systemd/sd-metrics.{service,timer}` | (all-in-one) Periodic host-metrics writer for Device Health. |
 | `systemd/sd-quiet-hours.{service,timer}` | (all-in-one) Polls the quiet-hours schedule and drives HDMI-CEC panel power. |
+| `systemd/sd-watchdog.{service,timer}` | (all-in-one) Runs the self-heal watchdog every 60 s (observe mode by default). |
 | `systemd/sd-setup.service` | Runs `sd-setup-boot` on first boot. Installed disabled; enabled only on the pre-baked `.img`. |
 | `systemd/sd-update.{path,service}` | (all-in-one) Watches for GUI update requests and runs `sd-update`. |
 | `udev/99-screen-docent-no-cec-pointer.rules` | Ignores the HDMI-CEC phantom pointer so no stray cursor shows on the display. |

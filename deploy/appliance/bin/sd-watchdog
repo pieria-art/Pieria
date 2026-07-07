@@ -1,0 +1,131 @@
+#!/usr/bin/env bash
+# sd-watchdog — kiosk / server self-heal (R1-F3). Reliability as a documented feature: an appliance
+# behind a wall-mounted TV must survive months unattended without a power cycle.
+#
+# Probes the server (HTTP) and the kiosk (cage + Chromium alive). On SUSTAINED failure (hysteresis:
+# FAIL_THRESHOLD consecutive bad probes, so a transient blip is ignored) it escalates:
+#     relaunch kiosk  ->  restart container  ->  reboot
+# with a reboot cap so a genuinely-broken box can't boot-loop.
+#
+# MODE (screen-docent.conf  WATCHDOG=):
+#   observe  (default) — probe + log what it WOULD do, take NO action. Safe to run un-verified.
+#   enforce            — actually relaunch / restart / reboot.
+#   off                — no-op.
+#
+# Writes data/appliance/watchdog.json for the Devices console ("last self-heal"). Run by a systemd timer.
+#
+# ⚠ Pi-gated: the enforce actions (session relaunch / docker restart / reboot) are only fully validated
+# on real hardware — verify on the bench Pi before flipping WATCHDOG=enforce on a production display.
+set -u
+
+CONF="${1:-/boot/firmware/screen-docent.conf}"
+[ -e "$CONF" ] || CONF="/boot/screen-docent.conf"
+REPO_ROOT="${2:-$HOME/Screen-Docent}"
+
+# shellcheck disable=SC1090
+[ -r "$CONF" ] && . "$CONF" 2>/dev/null || true
+SERVER_URL="${SERVER_URL:-http://localhost:8000}"
+MODE="${WATCHDOG:-observe}"
+[ "$MODE" = "off" ] && exit 0
+
+OUT_DIR="$REPO_ROOT/data/appliance"
+mkdir -p "$OUT_DIR" 2>/dev/null || true
+STATUS="$OUT_DIR/watchdog.json"
+# Consecutive-failure counter. Lives in /run ON PURPOSE: it must reset on reboot, so a box that
+# escalated to a reboot comes back with a clean count instead of immediately re-escalating (boot-loop
+# guard). Overridable for testing in an environment without a writable /run.
+STATE="${SD_WATCHDOG_STATE:-/run/sd-watchdog.fails}"
+REBOOTS="$OUT_DIR/watchdog-reboots.log"   # epoch per reboot (persistent → survives a reboot for the cap)
+COMPOSE=(-f docker-compose.yml -f deploy/appliance/compose/docker-compose.appliance.yml)
+
+FAIL_THRESHOLD=3        # consecutive bad probes before acting (hysteresis)
+REBOOT_CAP=3            # at most this many reboots ...
+REBOOT_WINDOW=1800      # ... within this many seconds (boot-loop guard)
+
+now="$(date +%s)"
+now_iso="$(date -Is 2>/dev/null || date)"
+
+# --- enforce actions (only called when MODE=enforce) --------------------------
+reboot_capped() {
+  # Boot-loop guard: refuse to reboot if we've already rebooted REBOOT_CAP times in REBOOT_WINDOW.
+  local recent=0
+  if [ -r "$REBOOTS" ]; then
+    recent="$(awk -v n="$now" -v w="$REBOOT_WINDOW" '$1 > n - w' "$REBOOTS" 2>/dev/null | wc -l)"
+  fi
+  if [ "$recent" -ge "$REBOOT_CAP" ]; then
+    logger -t sd-watchdog "reboot cap reached ($recent in ${REBOOT_WINDOW}s) — refusing to reboot (boot-loop guard)"
+    return 0
+  fi
+  echo "$now" >> "$REBOOTS"
+  systemctl reboot
+}
+
+perform() {
+  case "$1" in
+    relaunch-kiosk)    systemctl restart getty@tty1 2>/dev/null || pkill -f "[c]hromium" 2>/dev/null || true ;;
+    restart-container) ( cd "$REPO_ROOT" && docker compose "${COMPOSE[@]}" up -d ) 2>/dev/null || true ;;
+    reboot)            reboot_capped ;;
+  esac
+}
+
+# --- probes -------------------------------------------------------------------
+server_ok=0
+curl -fsS --max-time 8 -o /dev/null "${SERVER_URL%/}/logo.svg" 2>/dev/null && server_ok=1
+
+kiosk_ok=0
+# [c] keeps pgrep from matching itself. Kiosk is healthy when the compositor AND a browser are up.
+if pgrep -f "[c]age" >/dev/null 2>&1 && pgrep -f "[c]hromium" >/dev/null 2>&1; then
+  kiosk_ok=1
+fi
+
+healthy=0
+[ "$server_ok" = 1 ] && [ "$kiosk_ok" = 1 ] && healthy=1
+
+# --- hysteresis + escalation --------------------------------------------------
+fails="$(cat "$STATE" 2>/dev/null || echo 0)"
+case "$fails" in ''|*[!0-9]*) fails=0 ;; esac
+
+action="none"
+message="healthy"
+
+if [ "$healthy" = 1 ]; then
+  fails=0
+else
+  fails=$((fails + 1))
+  # Pick the escalation rung. Server down is worse than a dead browser; a persistently-failing box
+  # escalates to reboot only after we've already tried the cheaper fixes (fails past 2x threshold).
+  want="none"
+  if [ "$fails" -ge "$FAIL_THRESHOLD" ]; then
+    if [ "$fails" -ge $((FAIL_THRESHOLD * 2)) ]; then
+      want="reboot"
+    elif [ "$server_ok" = 0 ]; then
+      want="restart-container"
+    else
+      want="relaunch-kiosk"
+    fi
+  fi
+
+  if [ "$want" != "none" ]; then
+    if [ "$MODE" = "enforce" ]; then
+      action="$want"
+      message="enforcing: $want (fails=$fails)"
+      perform "$want"
+    else
+      action="observe:$want"
+      message="would $want (fails=$fails) — observe mode, no action taken"
+    fi
+  else
+    message="unhealthy (server_ok=$server_ok kiosk_ok=$kiosk_ok fails=$fails) — within hysteresis"
+  fi
+fi
+
+printf '%s' "$fails" > "$STATE" 2>/dev/null || true
+
+# --- status file for the Devices console --------------------------------------
+tmp="$(mktemp "$OUT_DIR/.watchdog.XXXXXX" 2>/dev/null || echo "$STATUS.tmp")"
+printf '{"mode":"%s","checked_at":"%s","server_ok":%s,"kiosk_ok":%s,"consecutive_fails":%s,"action":"%s","message":"%s"}\n' \
+  "$MODE" "$now_iso" "$server_ok" "$kiosk_ok" "$fails" "$action" "$message" > "$tmp"
+mv -f "$tmp" "$STATUS" 2>/dev/null || true
+
+[ "$action" != "none" ] && logger -t sd-watchdog "$message"
+exit 0

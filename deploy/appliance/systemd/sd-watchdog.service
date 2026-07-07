@@ -1,0 +1,10 @@
+# Installed by install.sh (all-in-one only) as /etc/systemd/system/sd-watchdog.service.
+# Oneshot self-heal probe. In WATCHDOG=observe (the default) it only logs what it would do; in
+# WATCHDOG=enforce it relaunches the kiosk / restarts the container / reboots on sustained failure.
+# Triggered by sd-watchdog.timer. __BOOT_CONF__ and __REPO_ROOT__ are substituted by install.sh.
+[Unit]
+Description=Screen Docent kiosk/server watchdog (self-heal)
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/sd-watchdog __BOOT_CONF__ __REPO_ROOT__

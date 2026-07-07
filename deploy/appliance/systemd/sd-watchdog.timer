@@ -1,0 +1,14 @@
+# Installed by install.sh (all-in-one only) as /etc/systemd/system/sd-watchdog.timer.
+# Runs sd-watchdog.service ~60s after boot and every 60s thereafter. Combined with the script's
+# FAIL_THRESHOLD=3, a real fault needs ~3 minutes of sustained failure before any action — long
+# enough to ignore transient blips, short enough to self-heal an unattended wall display.
+[Unit]
+Description=Run the Screen Docent watchdog every 60s
+
+[Timer]
+OnBootSec=60
+OnUnitActiveSec=60
+AccuracySec=10s
+
+[Install]
+WantedBy=timers.target
