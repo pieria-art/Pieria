@@ -162,6 +162,13 @@ if [ "${ALL_IN_ONE:-0}" = "1" ]; then
     [ -f "$REPO_ROOT/.env" ] || ( umask 077; : > "$REPO_ROOT/.env" )
   fi
 
+  # The image runs as non-root (uid 1000, Phase 1 C1). The bind-mounted data/ + Artwork/ MUST be owned
+  # by 1000 or the container can't write the DB — migrations fail and every DB endpoint 500s (a box first
+  # set up under the OLD root container leaves these root-owned; this reconciles it, idempotently, BEFORE
+  # the container boots so the very first migration can write).
+  mkdir -p "$REPO_ROOT/data" "$REPO_ROOT/Artwork"
+  chown -R 1000:1000 "$REPO_ROOT/data" "$REPO_ROOT/Artwork" || true
+
   echo "    Building & starting the stack (first run downloads + builds; be patient)..."
   ( cd "$REPO_ROOT" && docker compose -f docker-compose.yml -f "$OVERRIDE" up -d --build )
   echo "    Server is starting on http://localhost:8000 (restart: unless-stopped survives reboot)"
