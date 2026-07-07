@@ -1605,6 +1605,11 @@ async def get_next_image(
 
     db.commit()
 
+    # Now-playing: record what this display is showing so /remote + Devices can surface it. Covers
+    # both Canvas (calls this route) and e-ink (calls it via get_display_image). Own commit; liveness
+    # stays heartbeat-owned so a fresh selection never masks a display that stopped checking in.
+    _record_now_playing(db, display_id, selected_art.id, playlist_name)
+
     try:
         _ver = int((LIBRARY_DIR / selected_art.filename).stat().st_mtime)
     except OSError:
@@ -1633,6 +1638,41 @@ async def get_next_image(
             "description": selected_art.description_narrative, "tags": selected_art.tags
         }
     }
+
+
+def _record_now_playing(db: Session, display_id: str, artwork_id: int, playlist_name: str):
+    """Persist the artwork/collection a display is currently showing. Upserts only the current_* fields;
+    last_seen_at (liveness) is owned by the WS heartbeat / touch_active_display, so updating now-playing
+    never revives a display that stopped checking in. Best-effort — a failure here must not break a serve."""
+    try:
+        d = db.query(ActiveDisplayModel).filter(ActiveDisplayModel.display_id == display_id).first()
+        if d:
+            d.current_artwork_id = artwork_id
+            d.current_playlist = playlist_name
+        else:
+            db.add(ActiveDisplayModel(display_id=display_id, current_artwork_id=artwork_id,
+                                      current_playlist=playlist_name))
+        db.commit()
+    except Exception as e:
+        logger.error(f"_record_now_playing error for {display_id}: {e}", exc_info=True)
+        db.rollback()
+
+
+def _now_playing_artwork(db: Session, artwork_id: Optional[int]) -> Optional[dict]:
+    """Compact card for the artwork currently on a display (None if unknown/deleted)."""
+    if not artwork_id:
+        return None
+    a = db.query(ArtworkModel).filter(ArtworkModel.id == artwork_id).first()
+    if not a:
+        return None
+    return {"id": a.id, "title": a.title, "agent_name": a.agent_name,
+            "is_personal": a.is_personal, "thumb_url": f"/artworks/{a.id}/thumbnail"}
+
+
+def _display_now_playing(db: Session, row: "ActiveDisplayModel") -> dict:
+    """{display_id, playlist, artwork} for a display row — the shared shape for /remote + Devices."""
+    return {"display_id": row.display_id, "playlist": row.current_playlist,
+            "artwork": _now_playing_artwork(db, row.current_artwork_id)}
 
 
 def touch_active_display(db: Session, display_id: str):
@@ -1724,11 +1764,25 @@ async def get_remote_page():
 
 @app.get("/api/remote/displays")
 async def get_active_displays(db: Session = Depends(get_db)):
-    """Returns a list of all display IDs currently connected via WebSocket across all workers."""
-    # Consider a display active if seen in the last 15 seconds
+    """Active displays (seen in the last 15s), each with what it's currently showing so the Remote can
+    render a 'now showing' panel + highlight the active collection. Shape: {display_id, playlist, artwork}."""
     cutoff = datetime.now(UTC) - timedelta(seconds=15)
     displays = db.query(ActiveDisplayModel).filter(ActiveDisplayModel.last_seen_at > cutoff).all()
-    return [d.display_id for d in displays]
+    return [_display_now_playing(db, d) for d in displays]
+
+
+@app.get("/api/displays/{display_id}/now-playing")
+async def get_display_now_playing(display_id: str, db: Session = Depends(get_db)):
+    """What one display is currently showing (artwork + collection). Powers the Remote's 'now showing'
+    panel; polled alongside the display list. artwork is null until the display has served a frame."""
+    cutoff = datetime.now(UTC) - timedelta(seconds=15)
+    row = db.query(ActiveDisplayModel).filter(ActiveDisplayModel.display_id == display_id).first()
+    if not row:
+        return {"display_id": display_id, "active": False, "playlist": None, "artwork": None}
+    active = db.query(ActiveDisplayModel).filter(
+        ActiveDisplayModel.display_id == display_id,
+        ActiveDisplayModel.last_seen_at > cutoff).first() is not None
+    return {**_display_now_playing(db, row), "active": active}
 
 @app.get("/api/health/host")
 async def get_host_health(db: Session = Depends(get_db)):
@@ -1746,7 +1800,8 @@ async def get_host_health(db: Session = Depends(get_db)):
         "available": True,
         "host": host_health.collect(),
         "displays": [
-            {"display_id": d.display_id, "last_seen_at": d.last_seen_at.isoformat()}
+            {"display_id": d.display_id, "last_seen_at": d.last_seen_at.isoformat(),
+             "playlist": d.current_playlist, "artwork": _now_playing_artwork(db, d.current_artwork_id)}
             for d in displays
         ],
     }

@@ -40,6 +40,10 @@ class ActiveDisplayModel(Base):
 
     display_id: Mapped[str] = mapped_column(String, primary_key=True)
     last_seen_at: Mapped[datetime] = mapped_column(DateTime, default=lambda: datetime.now(UTC))
+    # Now-playing: the artwork/collection currently on this display. Written by /next-image (the single
+    # selection brain, used by both Canvas and e-ink); liveness (last_seen_at) stays heartbeat-owned.
+    current_artwork_id: Mapped[Optional[int]] = mapped_column(Integer, nullable=True)
+    current_playlist: Mapped[Optional[str]] = mapped_column(String, nullable=True)
 
 class RemoteCommandModel(Base):
     """

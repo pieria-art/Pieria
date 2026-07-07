@@ -77,6 +77,29 @@
 
         .remote-btn:active { transform: scale(0.95); background: var(--accent-color); }
         .remote-btn span { font-size: 0.7rem; font-weight: normal; opacity: 0.6; }
+        /* The collection the selected display is currently showing. */
+        .remote-btn.active-collection {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 2px var(--accent-color), 0 4px 6px rgba(0,0,0,0.2);
+        }
+        .remote-btn.active-collection::after {
+            content: '▶ now showing'; font-size: 0.6rem; font-weight: 600; opacity: 0.9;
+            color: var(--accent-color); letter-spacing: 0.05rem;
+        }
+
+        /* "Now showing" panel — what the selected display currently has on screen. */
+        #now-playing {
+            display: none; align-items: center; gap: 12px;
+            background: #0f172a; border: 1px solid var(--border-color);
+            border-radius: 12px; padding: 12px;
+        }
+        #np-thumb {
+            width: 56px; height: 56px; flex: 0 0 auto; border-radius: 8px;
+            object-fit: cover; background: #1e293b;
+        }
+        #np-label { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.1rem; color: var(--accent-color); }
+        #np-title { font-weight: 600; font-size: 0.95rem; margin-top: 2px; }
+        #np-sub { font-size: 0.8rem; color: #94a3b8; margin-top: 2px; }
         .footer { 
             margin-top: auto; 
             padding: 40px 20px 20px; 
@@ -105,6 +128,15 @@
                 <!-- Populated dynamically -->
                 <option value="">Searching for displays...</option>
             </select>
+        </div>
+
+        <div id="now-playing">
+            <img id="np-thumb" alt="">
+            <div style="min-width:0;">
+                <div id="np-label">▶ Now showing</div>
+                <div id="np-title"></div>
+                <div id="np-sub"></div>
+            </div>
         </div>
 
         <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px;">
@@ -145,14 +177,17 @@
         if (urlParams.get('rotate') === 'true') document.body.classList.add('force-portrait');
 
         const API_BASE = window.location.origin;
-        let lastKnownDisplays = null;   // R1: sentinel so the FIRST poll always renders, even when empty
+        let lastKnownIds = null;        // R1: sentinel so the FIRST poll always renders, even when empty
                                         // (was []; an empty first result equalled [] and never populated,
                                         // leaving the static "Searching…" placeholder up forever).
+        let displaysById = {};          // display_id -> {display_id, playlist, artwork} from the last poll
 
         async function init() {
             await fetchPlaylists();
             await refreshActiveDisplays();
-            // Poll for new displays every 5 seconds
+            // Update the now-showing panel + collection highlight when the target display changes.
+            document.getElementById('display-select').addEventListener('change', updateNowPlaying);
+            // Poll for new displays (and their now-playing) every 5 seconds
             setInterval(refreshActiveDisplays, 5000);
         }
 
@@ -188,22 +223,29 @@
         async function refreshActiveDisplays() {
             try {
                 const response = await fetch(`${API_BASE}/api/remote/displays`);
-                const displays = await response.json();
-                
-                // Only re-render if the list has changed to preserve selection
-                if (JSON.stringify(displays) !== JSON.stringify(lastKnownDisplays)) {
-                    lastKnownDisplays = displays;
-                    populateDisplaySelect(displays);
+                const displays = await response.json();   // [{display_id, playlist, artwork}]
+
+                displaysById = {};
+                displays.forEach(d => { displaysById[d.display_id] = d; });
+
+                // Only re-render the <select> when the set of displays changes (preserves the open
+                // dropdown + selection); now-playing is refreshed every poll below since it advances
+                // independently of the display list.
+                const ids = displays.map(d => d.display_id);
+                if (JSON.stringify(ids) !== JSON.stringify(lastKnownIds)) {
+                    lastKnownIds = ids;
+                    populateDisplaySelect(ids);
                 }
+                updateNowPlaying();
             } catch (err) { console.error('Discovery failed', err); }
         }
 
-        function populateDisplaySelect(displays) {
+        function populateDisplaySelect(ids) {
             const select = document.getElementById('display-select');
             const currentVal = select.value;
             select.innerHTML = '';
 
-            if (displays.length === 0) {
+            if (ids.length === 0) {
                 const opt = document.createElement('option');
                 opt.value = "";
                 opt.textContent = "No active displays found";
@@ -213,7 +255,7 @@
             }
             _setHint("");
 
-            displays.forEach(id => {
+            ids.forEach(id => {
                 const opt = document.createElement('option');
                 opt.value = id;
                 opt.textContent = id === 'default' ? "Default Display" : `Display: ${id}`;
@@ -221,9 +263,30 @@
             });
 
             // Restore selection if it still exists
-            if (displays.includes(currentVal)) {
+            if (ids.includes(currentVal)) {
                 select.value = currentVal;
             }
+        }
+
+        // Fill the "Now showing" panel + highlight the active collection for the selected display.
+        function updateNowPlaying() {
+            const sel = document.getElementById('display-select');
+            const info = displaysById[sel.value];
+            const panel = document.getElementById('now-playing');
+
+            // Highlight the collection button the display is currently playing (if any).
+            document.querySelectorAll('#playlist-grid .remote-btn').forEach(b => {
+                b.classList.toggle('active-collection', !!(info && info.playlist && b.dataset.collection === info.playlist));
+            });
+
+            const art = info && info.artwork;
+            if (!art) { panel.style.display = 'none'; return; }
+            panel.style.display = 'flex';
+            document.getElementById('np-thumb').src = art.thumb_url;
+            // textContent throughout — titles/artist names are museum/user data, never trusted as markup.
+            const artist = (!art.is_personal && art.agent_name) ? ` — ${art.agent_name}` : '';
+            document.getElementById('np-title').textContent = (art.title || 'Untitled') + artist;
+            document.getElementById('np-sub').textContent = info.playlist ? `in “${info.playlist}” collection` : '';
         }
 
         async function fetchPlaylists() {
@@ -240,6 +303,7 @@
             playlists.forEach(p => {
                 const btn = document.createElement('button');
                 btn.className = 'remote-btn';
+                btn.dataset.collection = p.name || '';   // used to highlight the display's active collection
                 // textContent, not innerHTML — collection names are user data and must not render as markup.
                 btn.textContent = (p.name || '') + ' ';
                 const span = document.createElement('span');
