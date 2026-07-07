@@ -10,7 +10,8 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Screen Docent">
     <link rel="icon" type="image/svg+xml" href="/logo.svg">
-    <link rel="apple-touch-icon" href="/logo.svg">
+    <!-- iOS ignores SVG for the home-screen icon, so ship a real 180x180 PNG (logo on brand-dark). -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="stylesheet" href="/app.css">
 
     <style>
@@ -20,7 +21,11 @@
             background-color: var(--bg-color);
             color: var(--text-color);
             margin: 0;
-            padding: 20px;
+            /* Installed to the iOS home screen the Remote runs fullscreen under the status bar/Dynamic
+               Island (black-translucent + viewport-fit=cover). Pad by the safe-area insets so the top
+               (and rounded corners) aren't clipped — at least 20px, more where the notch needs it. */
+            padding: max(20px, env(safe-area-inset-top)) max(20px, env(safe-area-inset-right))
+                     max(20px, env(safe-area-inset-bottom)) max(20px, env(safe-area-inset-left));
             display: flex;
             flex-direction: column;
             align-items: center;
