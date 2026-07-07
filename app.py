@@ -137,7 +137,7 @@ import federation
 import frame_push
 import host_health
 import publisher
-from config import ARTWORK_ROOT, LIBRARY_DIR, SD_USER_AGENT
+from config import ARTWORK_ROOT, LIBRARY_DIR, SD_USER_AGENT, strip_markdown
 from epaper import PALETTES, VALID_FORMATS, media_type_for, render_for_epaper
 
 
@@ -632,6 +632,7 @@ class ArtworkApproval(BaseModel):
     title: str; agent_name: str; agent_role: str; creation_date: str; cultural_context: str; medium: str; date_display: str; description_narrative: str; tags: str
 
 class PlaylistUpdate(BaseModel):
+    name: Optional[str] = None
     display_time: Optional[int] = None
     default_mode: Optional[str] = None
     shuffle: Optional[bool] = None
@@ -703,6 +704,15 @@ async def create_playlist(name: str = Form(...), db: Session = Depends(get_db)):
 async def update_playlist(playlist_id: int, data: PlaylistUpdate, db: Session = Depends(get_db)):
     p = db.query(PlaylistModel).filter(PlaylistModel.id == playlist_id).first()
     if not p: raise HTTPException(status_code=404)
+    if data.name is not None:   # A4: rename (collision-guarded, no empty/internal "_" names)
+        new_name = data.name.strip()
+        if not new_name or new_name.startswith("_"):
+            raise HTTPException(400, detail="Invalid collection name")
+        if new_name != p.name:
+            clash = db.query(PlaylistModel).filter(PlaylistModel.name == new_name,
+                                                   PlaylistModel.id != playlist_id).first()
+            if clash: raise HTTPException(400, detail="A collection with that name already exists")
+            p.name = new_name
     if data.display_time is not None: p.display_time = data.display_time
     if data.default_mode is not None: p.default_mode = data.default_mode
     if data.shuffle is not None: p.shuffle = data.shuffle
@@ -1015,6 +1025,21 @@ async def create_personal_album(payload: StudioAlbumPayload, db: Session = Depen
     pl = PlaylistModel(name=name, is_personal=True)
     db.add(pl); db.commit(); db.refresh(pl)
     return {"id": pl.id, "name": pl.name, "count": 0, "is_default": False}
+
+
+@app.delete("/api/studio/albums/{album_id}")
+async def delete_personal_album(album_id: int, db: Session = Depends(get_db)):
+    """S2: delete a personal album (is_personal playlist). Photos are NOT deleted — they just become
+    Unfiled; only the grouping goes. Scoped to personal albums (never a Museum collection) and refuses
+    the default 'My Photos' album so gramps can't lose the home bucket."""
+    pl = db.query(PlaylistModel).filter(PlaylistModel.id == album_id,
+                                        PlaylistModel.is_personal.is_(True)).first()
+    if not pl:
+        raise HTTPException(status_code=404, detail="Personal album not found")
+    if pl.name == PERSONAL_PLAYLIST_NAME:
+        raise HTTPException(status_code=400, detail="The default My Photos album can't be deleted")
+    db.delete(pl); db.commit()
+    return {"status": "deleted"}
 
 
 @app.get("/artworks/pending", response_model=List[ArtworkSchema])
@@ -1354,12 +1379,12 @@ async def artwork_detail_page(artwork_id: int, db: Session = Depends(get_db)):
         artist_line = e(art.date_display or art.creation_date or "")
         meta_bits = desc = tag_html = source = ""
     else:
-        title = e(art.title or "Untitled")
+        title = e(strip_markdown(art.title or "Untitled"))
         role = e(art.agent_role) if art.agent_role and art.agent_role != "Artist" else ""
         date = e(art.date_display or art.creation_date or "")
         artist_line = e(art.agent_name or "Unknown artist") + (f" · {role}" if role else "") + (f" · {date}" if date else "")
         meta_bits = " · ".join(b for b in [e(art.cultural_context or ""), e(art.medium or "")] if b)
-        desc = e(art.description_narrative or "")
+        desc = e(strip_markdown(art.description_narrative or ""))
         tag_html = "".join(f"<span class=tag>{e(t.strip())}</span>" for t in (art.tags or "").split(",") if t.strip())
         source = (f"<a class=source href='{e(art.source_url)}' target=_blank rel=noopener>View original source ↗</a>"
                   if art.source_url else "")

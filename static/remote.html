@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Screen Docent Remote</title>
     
     <!-- Apple Web App Meta Tags -->
@@ -136,7 +136,7 @@
     <div id="playlist-grid" class="playlist-grid"></div>
 
     <div class="footer">
-        <span>Smart Discovery Remote V2.2</span>
+        <span>Screen Docent</span>
         <span><a href="/admin">⚙ Admin</a> &nbsp;·&nbsp; <a href="/help">Help</a></span>
     </div>
 
@@ -145,13 +145,41 @@
         if (urlParams.get('rotate') === 'true') document.body.classList.add('force-portrait');
 
         const API_BASE = window.location.origin;
-        let lastKnownDisplays = [];
+        let lastKnownDisplays = null;   // R1: sentinel so the FIRST poll always renders, even when empty
+                                        // (was []; an empty first result equalled [] and never populated,
+                                        // leaving the static "Searching…" placeholder up forever).
 
         async function init() {
             await fetchPlaylists();
             await refreshActiveDisplays();
             // Poll for new displays every 5 seconds
             setInterval(refreshActiveDisplays, 5000);
+        }
+
+        // R2: a small self-contained toast (this page doesn't load app-core.js) — replaces native alert().
+        function toast(msg) {
+            let t = document.getElementById('remote-toast');
+            if (!t) {
+                t = document.createElement('div');
+                t.id = 'remote-toast';
+                t.style.cssText = 'position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#1e293b;color:#f1f5f9;padding:10px 18px;border-radius:8px;box-shadow:0 6px 24px rgba(0,0,0,.45);z-index:999;font-size:.9rem;opacity:0;transition:opacity .25s;';
+                document.body.appendChild(t);
+            }
+            t.textContent = msg; t.style.opacity = '1';
+            clearTimeout(t._h); t._h = setTimeout(() => { t.style.opacity = '0'; }, 2600);
+        }
+
+        // R1: hint under the display selector when none are connected.
+        function _setHint(msg) {
+            const sel = document.getElementById('display-select');
+            let h = document.getElementById('display-hint');
+            if (!h) {
+                h = document.createElement('p');
+                h.id = 'display-hint';
+                h.style.cssText = 'font-size:.8rem;color:#94a3b8;margin:6px 0 0;';
+                sel.parentNode.appendChild(h);
+            }
+            h.textContent = msg; h.style.display = msg ? '' : 'none';
         }
 
         /**
@@ -180,8 +208,10 @@
                 opt.value = "";
                 opt.textContent = "No active displays found";
                 select.appendChild(opt);
+                _setHint("Open your server's address on a screen (a TV, tablet, or browser) and it'll appear here.");
                 return;
             }
+            _setHint("");
 
             displays.forEach(id => {
                 const opt = document.createElement('option');
@@ -213,9 +243,15 @@
                 // textContent, not innerHTML — collection names are user data and must not render as markup.
                 btn.textContent = (p.name || '') + ' ';
                 const span = document.createElement('span');
-                span.textContent = `${p.artworks?.length || 0} pieces`;
+                const n = p.artworks?.length || 0;
+                span.textContent = n === 1 ? '1 piece' : `${n} pieces`;   // R4: pluralize
                 btn.appendChild(span);
-                btn.onclick = () => setPlaylist(p.name);
+                if (n === 0) {   // R4: an empty collection would blank the display — don't let it be tapped
+                    btn.disabled = true;
+                    btn.style.opacity = '0.5';
+                } else {
+                    btn.onclick = () => setPlaylist(p.name);
+                }
                 grid.appendChild(btn);
             });
         }
@@ -226,7 +262,7 @@
 
         async function sendRemoteCommand(action, data = {}) {
             const targetDisplay = document.getElementById('display-select').value;
-            if (!targetDisplay) return alert("Select an active display first");
+            if (!targetDisplay) { toast("Select an active display first"); return; }   // R2: no native alert()
 
             try {
                 const response = await fetch(`${API_BASE}/api/remote/change`, {

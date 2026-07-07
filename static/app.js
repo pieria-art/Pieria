@@ -10,13 +10,31 @@ if (urlParams.get('rotate') === 'true') {
 }
 
 // 2. True Fullscreen Trigger
-document.addEventListener('click', () => {
+document.addEventListener('click', (e) => {
+    // C4: don't yank to fullscreen when the user is operating the controls/placard (❮ ❯, the playlist
+    // dropdown, etc.) — only a click on the bare canvas should request it.
+    if (e.target.closest('#controls') || e.target.closest('#placard')) return;
     if (!document.fullscreenElement) {
         document.documentElement.requestFullscreen().catch(err => {
             console.warn(`[Client] Fullscreen failed: ${err.message}`);
         });
     }
 }, { once: false });
+
+// C3: keyboard / TV-remote (Fire TV, Android TV d-pad) control — the Canvas had no key handlers, so a
+// mouse was required. ←/→ advance, Enter/OK reveals placard + controls, Esc hides them.
+document.addEventListener('keydown', (e) => {
+    switch (e.key) {
+        case 'ArrowRight': startDisplayCycleManually(1); break;
+        case 'ArrowLeft': startDisplayCycleManually(-1); break;
+        case 'Enter': case ' ': showPlacard(8000); showControls(6000); break;
+        case 'Escape':
+            document.body.classList.remove('placard-visible', 'controls-visible');
+            break;
+        default: return;
+    }
+    e.preventDefault();
+});
 
 const API_BASE = (window.location.origin === 'null' || window.location.protocol === 'file:') 
     ? 'http://localhost:8000' 
@@ -249,6 +267,10 @@ async function refreshPlaylists(isInitial = false) {
     try {
         const response = await fetch(`${API_BASE}/playlists`);
         const playlists = await response.json();
+        if (playlists.length === 0) {
+            setEmptyState(true);   // C7: no collections at all → show guidance, never a silent black screen
+            return;
+        }
         if (playlists.length > 0) {
             currentPlaylists = playlists;
             populatePlaylistSelect(playlists);
@@ -421,6 +443,20 @@ function showPlacardFlow(waitSec, showSec) {
     }, waitSec * 1000);
 }
 
+// C1: AI enrichment emits Markdown emphasis (e.g. "*The Irish Question*"); placard fields are plain
+// textContent, so the markers render literally. Strip the common inline emphasis to plain prose.
+function stripMd(s) {
+    if (!s) return '';
+    return String(s)
+        .replace(/\*\*([^*]+)\*\*/g, '$1')
+        .replace(/\*([^*]+)\*/g, '$1')
+        .replace(/__([^_]+)__/g, '$1')
+        .replace(/_([^_]+)_/g, '$1')
+        .replace(/`([^`]+)`/g, '$1')
+        .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')
+        .replace(/^#{1,6}\s+/gm, '');
+}
+
 function updatePlacard(metadata) {
     const placard = document.getElementById('placard');
     if (!metadata || !metadata.title) { placard.classList.add('hidden'); return; }
@@ -429,7 +465,7 @@ function updatePlacard(metadata) {
     const isPersonal = !!metadata.is_personal;
     placard.classList.toggle('personal', isPersonal);
 
-    document.getElementById('art-title').textContent = metadata.title;
+    document.getElementById('art-title').textContent = stripMd(metadata.title);
     const agentDate = document.getElementById('art-agent-date');
     const museumDetails = document.getElementById('art-museum-details');
     const description = document.getElementById('art-description');
@@ -452,9 +488,13 @@ function updatePlacard(metadata) {
     qrContainer.style.display = '';
     agentDate.textContent = `${metadata.agent_name || 'Unknown Artist'} ${metadata.agent_role && metadata.agent_role !== 'Artist' ? '(' + metadata.agent_role + ')' : ''} ${metadata.creation_date ? '• ' + metadata.creation_date : ''}`;
 
-    const details = [metadata.cultural_context, metadata.medium, metadata.date_display].filter(Boolean).join(' | ');
+    // C2: drop date_display from the details row when it just repeats the byline's creation_date
+    // (the common "… • 1503-1519" byline + "… | 1503-1519" details double-print).
+    const dd = metadata.date_display;
+    const dupDate = dd && dd.toLowerCase() === (metadata.creation_date || '').toLowerCase();
+    const details = [metadata.cultural_context, metadata.medium, dupDate ? null : dd].filter(Boolean).join(' | ');
     museumDetails.textContent = details;
-    description.textContent = metadata.description || '';
+    description.textContent = stripMd(metadata.description || '');
     if (metadata.tags) {
         metadata.tags.split(',').forEach(tag => {
             const span = document.createElement('span');
@@ -487,7 +527,15 @@ function performCrossfade(imageUrl, cropData, focal) {
         activeLayer.classList.remove('active');
         activeLayerId = targetLayerId;
         firstLoad = false;
-        document.body.classList.remove('controls-visible');
+        // C5: don't yank the controls out from under a viewer who's mid-interaction when the cycle
+        // advances — keep them up while the playlist dropdown is open or the controls are hovered.
+        const options = document.getElementById('playlist-options');
+        const controls = document.getElementById('controls');
+        const isOptionsOpen = options && !options.classList.contains('hidden');
+        const isHovering = controls && controls.matches(':hover');
+        if (!isOptionsOpen && !isHovering) {
+            document.body.classList.remove('controls-visible');
+        }
     };
 }
 

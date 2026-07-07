@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Screen Docent Admin</title>
+    <link rel="icon" type="image/svg+xml" href="/logo.svg">
     <!-- Cropper.js + Sortable.js — vendored locally so admin works offline / air-gapped -->
     <link rel="stylesheet" href="/vendor/cropper.min.css">
     <link rel="stylesheet" href="/app.css">
@@ -367,10 +368,10 @@
 
         <div id="sidebar-playlists">
             <button id="batch-enrich-btn" data-ai-action="1" class="secondary" style="width:100%; margin-bottom:20px; font-size:0.7rem;" onclick="batchEnrich()">Batch Enrich Library (RAG)</button>
-            <h2>Playlists</h2>
+            <h2>Collections</h2>
             <ul id="playlist-list" class="playlist-list"></ul>
             <div class="new-playlist">
-                <input type="text" id="new-playlist-name" placeholder="New Playlist Name...">
+                <input type="text" id="new-playlist-name" placeholder="New Collection Name...">
                 <button onclick="createPlaylist()">+</button>
             </div>
         </div>
@@ -384,7 +385,8 @@
                     Drag & Drop or Click to Add to Library
                     <input type="file" id="library-file-input" hidden multiple onchange="uploadFiles(this.files, null)">
                 </div>
-                <button class="secondary" onclick="toggleSelectMode()" style="white-space:nowrap; margin-left:20px;">☑ Select</button>
+                <input type="search" id="library-filter" placeholder="🔍 Filter by title, artist, tag…" oninput="filterLibrary(this.value)" aria-label="Filter library" style="flex:1; min-width:0; margin-left:20px; padding:8px 12px; background:#0f172a; color:var(--text-color); border:1px solid var(--border-color); border-radius:6px;">
+                <button class="secondary" onclick="toggleSelectMode()" style="white-space:nowrap; margin-left:12px;">☑ Select</button>
             </div>
             <div id="library-grid" class="artwork-grid"></div>
         </div>
@@ -673,7 +675,7 @@
                         </div>
 
                         <div>
-                            <label style="display:block; margin-bottom:6px; font-size:0.8rem; color:#94a3b8;">Playlist</label>
+                            <label style="display:block; margin-bottom:6px; font-size:0.8rem; color:#94a3b8;">Collection</label>
                             <select id="frame-playlist" style="width:100%; box-sizing:border-box; background:#0f172a; border:1px solid var(--border-color); color:white; padding:10px 12px; border-radius:6px; font-size:0.85rem;"></select>
                         </div>
 
@@ -746,7 +748,7 @@
 
                 <!-- Default Playlist — what a display boots to when it has no last-played history -->
                 <div id="default-playlist-card" style="background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 25px;">
-                    <h3 style="margin-top: 0; font-size: 0.9rem; color: var(--text-color);">▶️ Default Playlist (on reboot)</h3>
+                    <h3 style="margin-top: 0; font-size: 0.9rem; color: var(--text-color);">▶️ Default Collection (on reboot)</h3>
                     <p style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 18px;">
                         A display reboots to whatever it was last showing. This is the fallback it uses when it has
                         <em>no</em> history yet — e.g. a brand-new wall display's first boot. Leave as “First non-empty”

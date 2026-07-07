@@ -984,8 +984,8 @@ function reconcileGrid(container, items, keyFn, cardClass, cardHTML, opts = {}) 
 
 function artworkCardHTML(art, view) {
     const removeBtn = view === 'collection'
-        ? `<button onclick="removeArtworkFromPlaylist(${art.id})" title="Remove from this collection" style="color: #f59e0b;">✕</button>`
-        : `<button onclick="deleteArtworkPermanently(${art.id})" title="Delete from library" style="color: #ef4444;">✕</button>`;
+        ? `<button onclick="removeArtworkFromPlaylist(${art.id})" title="Remove from this collection" aria-label="Remove from this collection" style="color: #f59e0b;">✕</button>`
+        : `<button onclick="deleteArtworkPermanently(${art.id})" title="Delete from library" aria-label="Delete from library" style="color: #ef4444;">✕</button>`;
     return `
                 <img src="${API_BASE}/artworks/${art.id}/thumbnail?f=${encodeURIComponent(art.filename)}" alt="${_esc(art.filename)}" onclick="openEdit(${art.id})" style="cursor: pointer;">
                 <div class="info">
@@ -998,8 +998,22 @@ function artworkCardHTML(art, view) {
                 </div>`;
 }
 
+// A3: client-side filter over the already-loaded library (title/artist/tags/filename). Curation stops
+// scaling past ~100 works without it; Museum Art already set the expectation that search exists.
+let libraryFilter = '';
+
+function _filteredLibrary() {
+    const q = libraryFilter.trim().toLowerCase();
+    if (!q) return fullLibrary;
+    return fullLibrary.filter(a => (
+        `${a.title || ''} ${a.agent_name || ''} ${a.tags || ''} ${a.filename || ''}`
+    ).toLowerCase().includes(q));
+}
+
+function filterLibrary(q) { libraryFilter = q; renderLibraryGrid(); }
+
 function renderLibraryGrid() {
-    reconcileGrid(document.getElementById('library-grid'), fullLibrary, a => a.id,
+    reconcileGrid(document.getElementById('library-grid'), _filteredLibrary(), a => a.id,
         'artwork-card', art => artworkCardHTML(art, 'library'));
 }
 
@@ -1295,11 +1309,24 @@ function renderSidebar() {
     // string (a name like `x'); …//` used to break out). Bound once; survives innerHTML rebuilds.
     if (!list.dataset.delDelegated) {
         list.dataset.delDelegated = '1';
-        list.addEventListener('click', (e) => {
-            const btn = e.target.closest('.pl-delete');
-            if (!btn) return;
-            e.stopPropagation();
-            deletePlaylist(parseInt(btn.dataset.id, 10));
+        list.addEventListener('click', async (e) => {
+            const del = e.target.closest('.pl-delete');
+            if (del) { e.stopPropagation(); deletePlaylist(parseInt(del.dataset.id, 10)); return; }
+            const ren = e.target.closest('.pl-rename');
+            if (ren) {   // A4: rename via promptModal (name never interpolated into inline onclick)
+                e.stopPropagation();
+                const id = parseInt(ren.dataset.id, 10);
+                const cur = (currentPlaylists.find(p => p.id === id) || {}).name || '';
+                const name = await promptModal('Rename collection', { placeholder: cur, confirmText: 'Rename' });
+                if (name === null || !name.trim()) return;
+                const r = await fetch(`${API_BASE}/playlists/${id}`, {
+                    method: 'PATCH', headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name: name.trim() }),
+                });
+                if (!r.ok) { const d = await r.json().catch(() => ({})); showToast(d.detail || 'Rename failed', 'error'); return; }
+                showToast('Renamed ✓', 'success');
+                await refreshData();
+            }
         });
     }
     list.innerHTML = '';
@@ -1308,9 +1335,12 @@ function renderSidebar() {
         li.className = `playlist-item ${p.id === currentPlaylistId ? 'active' : ''}`;
         li.dataset.id = p.id;
         li.innerHTML = `
-            <div style="display:flex; justify-content:space-between;">
+            <div style="display:flex; justify-content:space-between; align-items:center; gap:6px;">
                 <strong>${_esc(p.name)}</strong>
-                <button class="pl-delete" data-id="${p.id}" style="background:none; border:none; color:#ef4444; cursor:pointer;">×</button>
+                <span style="display:flex; gap:8px; flex-shrink:0;">
+                    <button class="pl-rename" data-id="${p.id}" title="Rename collection" aria-label="Rename collection" style="background:none; border:none; color:#94a3b8; cursor:pointer;">✎</button>
+                    <button class="pl-delete" data-id="${p.id}" title="Delete collection" aria-label="Delete collection" style="background:none; border:none; color:#ef4444; cursor:pointer;">×</button>
+                </span>
             </div>
             <div style="font-size:0.75rem; color:#94a3b8; margin-top:5px;">${p.artworks?.length || 0} images</div>
             <div class="playlist-meta" onclick="event.stopPropagation()" style="display: grid; grid-template-columns: 1fr 1fr; gap: 5px; margin-top: 10px;">
@@ -1560,13 +1590,21 @@ function renderReviewQueue(artworks) {
     });
     artworks = artworks.filter(a => !inlineReviewing.has(a.id));
 
-    // Clear any empty message if artworks exist
-    if (artworks.length > 0 && list.innerHTML.includes('Queue is empty')) {
+    // A5: rich empty state that teaches what the queue is + where items come from; hide the ☑ Select
+    // toolbar when there's nothing to select.
+    const toolbar = document.getElementById('review-toolbar');
+    if (artworks.length > 0 && list.innerHTML.includes('review-empty')) {
         list.innerHTML = '';
     } else if (artworks.length === 0) {
-        list.innerHTML = '<p style="text-align:center; color:#94a3b8; margin-top:40px;">Queue is empty.</p>';
+        if (toolbar) toolbar.style.display = 'none';
+        list.innerHTML = `<div class="review-empty" style="text-align:center; color:#94a3b8; margin-top:40px;">
+            <p style="font-size:1rem; color:var(--text-color);">Your review queue is empty.</p>
+            <p style="font-size:0.85rem; max-width:440px; margin:8px auto 18px;">Live museum finds and your uploads land here for approval — so nothing reaches your walls unchecked.</p>
+            <p><a href="#" onclick="switchView('museum');return false;">🏛️ Search live museums</a> &nbsp;·&nbsp; <a href="#" onclick="switchView('library');return false;">⬆ Upload to Library</a></p>
+        </div>`;
         return;
     }
+    if (toolbar) toolbar.style.display = '';
     
     // repaintOnReuse:false — these cards hold live <input>s the user may be editing, so we never
     // rewrite a matched card's DOM; syncReviewCardFields patches values in place (and is XSS-safe
@@ -2088,7 +2126,7 @@ async function loadFrameSettings() {
         const cfg = await cfgResp.json();
         const playlists = plResp.ok ? await plResp.json() : [];
         const sel = document.getElementById('frame-playlist');
-        sel.innerHTML = '<option value="">First playlist (default)</option>' +
+        sel.innerHTML = '<option value="">First collection (default)</option>' +
             playlists.map(p => `<option value="${_esc(p.name)}">${_esc(p.name)}</option>`).join('');
         document.getElementById('frame-enabled').checked = !!cfg.enabled;
         document.getElementById('frame-host').value = cfg.host || '';

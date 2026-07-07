@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Screen Docent Help</title>
+    <link rel="icon" type="image/svg+xml" href="/logo.svg">
     <link rel="stylesheet" href="/app.css">
     <style>
         /* Help — shared tokens + the responsive app-shell (sidebar→drawer) come from app.css.
@@ -258,7 +259,7 @@ docker compose up -d --build</code></pre>
                <a href="/studio" style="color:var(--accent-color);">/studio</a>. Add or snap photos, give each a
                caption (or tap <strong>✨ Suggest</strong> for an AI one in a warm photo-album voice), tap the
                photo to set its <strong>focus point</strong>, and they go straight to a <strong>My Photos</strong>
-               playlist — no review queue, no museum jargon, just a clean caption on the wall. Every photo
+               collection — no review queue, no museum jargon, just a clean caption on the wall. Every photo
                you've added shows in a gallery below the uploader, <strong>grouped by album</strong> — tap any
                one to re-edit its caption, date, or focus point anytime. <strong>iPhone photos work as-is</strong>:
                Apple's HEIC format is converted to a standard image automatically on upload.</p>
@@ -401,7 +402,7 @@ GEMINI_API_KEY=your_free_key_here</code></pre>
             <p>Open <code>/remote</code> on any phone on the same network — a no-refresh console for every screen.</p>
             <figure>
                 <img class="shot phone" src="/docs/remote.png" alt="The mobile remote control on a phone">
-                <figcaption>Switch playlists, change modes, jump pieces, and trigger placards — instantly.</figcaption>
+                <figcaption>Switch collections, change modes, jump pieces, and trigger placards — instantly.</figcaption>
             </figure>
             <ul>
                 <li><strong>WebSocket routing:</strong> changes hit the targeted TV instantly, with no page refresh.</li>
@@ -417,7 +418,7 @@ GEMINI_API_KEY=your_free_key_here</code></pre>
             <div class="hierarchy-box">
                 <div class="hierarchy-step"><span>Priority 1</span><strong>URL Parameters</strong></div>
                 <div class="hierarchy-arrow">→</div>
-                <div class="hierarchy-step"><span>Priority 2</span><strong>Playlist Defaults</strong></div>
+                <div class="hierarchy-step"><span>Priority 2</span><strong>Collection Defaults</strong></div>
                 <div class="hierarchy-arrow">→</div>
                 <div class="hierarchy-step"><span>Priority 3</span><strong>Global Defaults</strong></div>
             </div>
@@ -429,7 +430,7 @@ GEMINI_API_KEY=your_free_key_here</code></pre>
             <h2>URL Parameters Reference</h2>
             <p>Append these to a display URL (e.g. <code>http://SERVER:8000/?display=tv_01&amp;rotate=true</code>)
                to override behavior for one screen.</p>
-            <table>
+            <div class="table-scroll"><table>
                 <thead>
                     <tr><th style="width: 25%;">Parameter</th><th>Description</th><th>Example</th></tr>
                 </thead>
@@ -443,7 +444,7 @@ GEMINI_API_KEY=your_free_key_here</code></pre>
                     <tr><td><code>placard_show</code></td><td>Seconds to keep the placard visible on its initial entrance.</td><td><code>placard_show=20</code></td></tr>
                     <tr><td><code>placard_manual</code></td><td>Seconds to display the placard when triggered by the remote.</td><td><code>placard_manual=15</code></td></tr>
                 </tbody>
-            </table>
+            </table></div>
         </section>
 
         <section id="appliance">
@@ -528,17 +529,17 @@ CYCLE_TIME=                           # optional: seconds per image</code></pre>
 
             <h3>The endpoint</h3>
             <pre><code>GET /display/{display_id}/current.png?playlist=Masterpieces&amp;w=1600&amp;h=1200&amp;palette=spectra6</code></pre>
-            <table>
+            <div class="table-scroll"><table>
                 <thead><tr><th>Parameter</th><th>Values</th></tr></thead>
                 <tbody>
                     <tr><td><code>display_id</code></td><td>A unique name for this frame (path segment)</td></tr>
-                    <tr><td><code>playlist</code></td><td>Collection name (defaults to the first playlist)</td></tr>
+                    <tr><td><code>playlist</code></td><td>Collection name (defaults to the first collection)</td></tr>
                     <tr><td><code>w</code> / <code>h</code></td><td>Your panel's pixel dimensions</td></tr>
                     <tr><td><code>palette</code></td><td><code>spectra6</code>, <code>acep7</code>, <code>gray4</code>, <code>gray16</code></td></tr>
                     <tr><td><code>fit</code></td><td><code>cover</code> (fill, default) or <code>contain</code> (letterbox)</td></tr>
                     <tr><td>format</td><td>End the path in <code>.png</code> (default) or <code>.bmp</code> (firmware without a PNG decoder)</td></tr>
                 </tbody>
-            </table>
+            </table></div>
             <p>Each request <strong>advances to the next image</strong>, so the frame's wake interval becomes its
                rotation. The response's <code>X-Refresh-After</code> header tells the frame how many seconds to
                deep-sleep before fetching again.</p>
