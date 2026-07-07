@@ -512,7 +512,7 @@ async def inject_aggressive_cache_headers(request: Request, call_next):
         or path.endswith((".svg", ".png", ".jpg", ".webp"))
     )
     is_code_asset = path.endswith((".css", ".js", ".json"))
-    is_html_asset = path.endswith(".html") or path == "/admin" or path == "/remote" or path == "/"
+    is_html_asset = path.endswith(".html") or path in ("/admin", "/remote", "/studio", "/help", "/")
 
     if path.startswith("/api/") or is_html_asset or path.startswith("/display/"):
         # API/HTML and the per-display e-ink endpoint must never be cached.
@@ -630,9 +630,6 @@ class PlaylistSchema(BaseModel):
 
 class ArtworkApproval(BaseModel):
     title: str; agent_name: str; agent_role: str; creation_date: str; cultural_context: str; medium: str; date_display: str; description_narrative: str; tags: str
-
-class CropMetadataUpdate(BaseModel):
-    crop_x: float; crop_y: float; crop_width: float; crop_height: float
 
 class PlaylistUpdate(BaseModel):
     display_time: Optional[int] = None
@@ -1072,10 +1069,12 @@ async def reenrich_artwork(artwork_id: int, request: RegenerationRequest, db: Se
     db.commit()
 
     updated_art = await process_artwork(artwork_id, db, user_hint=request.hint)
+    if not updated_art:      # A7: guard like the regenerate sibling — a None fails ArtworkSchema as an ugly 500
+        raise HTTPException(status_code=500, detail="AI Re-enrichment failed")
     return updated_art
 
 @app.post("/api/curate/batch-enrich")
-async def batch_enrich(background_tasks: BackgroundTasks, db: Session = Depends(get_db)):
+async def batch_enrich(background_tasks: BackgroundTasks):
     """Triggers RAG enrichment for all approved artworks."""
     background_tasks.add_task(run_batch_enrich_bg)
     return {"status": "Batch enrichment started in background"}
@@ -1092,7 +1091,7 @@ async def get_discovery_queue(
     return query.order_by(DiscoveryQueueModel.relevance_score.desc()).all()
 
 @app.post("/api/discover/dispatch")
-async def dispatch_discovery(request: DispatchRequest, background_tasks: BackgroundTasks, db: Session = Depends(get_db)):
+async def dispatch_discovery(request: DispatchRequest, background_tasks: BackgroundTasks):
     """Smart multi-source art discovery dispatch with query classification."""
     # Classify the query upfront to create a session with the right intent.
     # B1: thread the sync classify() (→ ai_client.chat, up to 90s) so it can't freeze the worker.
@@ -1126,7 +1125,7 @@ async def dispatch_discovery(request: DispatchRequest, background_tasks: Backgro
     }
 
 @app.post("/api/discover/more")
-async def load_more_discoveries(request: LoadMoreRequest, background_tasks: BackgroundTasks, db: Session = Depends(get_db)):
+async def load_more_discoveries(request: LoadMoreRequest, background_tasks: BackgroundTasks):
     """Fetches the next batch of results from an existing search session."""
     session = get_search_session(request.session_id)
     if not session:
@@ -1943,6 +1942,8 @@ async def verify_and_save_api_key(source: str, payload: dict, db: Session = Depe
                 db_key = "europeana_api_key"
             else:
                 raise HTTPException(400, f"Unsupported museum target: {source}")
+    except HTTPException:
+        raise   # A6: don't re-wrap a deliberate 400 (unsupported source) as a 401 "Validation Failed"
     except Exception as e:
         raise HTTPException(401, detail=f"Validation Failed: {str(e)}")
 

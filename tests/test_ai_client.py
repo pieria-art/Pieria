@@ -1,8 +1,8 @@
 """
 Unit tests for ai_client — the unified OpenAI-compatible model client.
 
-These tests avoid real network calls: httpx.post is monkeypatched, and DB reads are
-stubbed via ai_client._read_settings_rows so config resolution is exercised in isolation.
+These tests avoid real network calls: the pooled ai_client._http_client.post is monkeypatched, and
+DB reads are stubbed via ai_client._read_settings_rows so config resolution is exercised in isolation.
 """
 
 import io
@@ -133,7 +133,7 @@ def _capture_post(monkeypatch):
         captured["headers"] = headers
         return _FakeResp(200, "hello")
 
-    monkeypatch.setattr(ai_client.httpx, "post", fake_post)
+    monkeypatch.setattr(ai_client._http_client, "post", fake_post)
     return captured
 
 
@@ -181,7 +181,7 @@ def test_chat_raises_without_key(monkeypatch):
 def test_chat_raises_on_http_error(monkeypatch):
     def fake_post(url, json=None, headers=None, timeout=None):
         return _FakeResp(401)
-    monkeypatch.setattr(ai_client.httpx, "post", fake_post)
+    monkeypatch.setattr(ai_client._http_client, "post", fake_post)
     with pytest.raises(ai_client.AIConfigError):
         ai_client.chat("vision", [{"role": "user", "content": "hi"}], cfg=_cfg("gemini"))
 

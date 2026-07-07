@@ -249,6 +249,9 @@ def _resolve_model(cfg: dict, role: str) -> str:
     return cfg["model_fast"] if role == "fast" else cfg["model"]
 
 
+_http_client = httpx.Client()   # B5: pooled + thread-safe; chat() runs via asyncio.to_thread
+
+
 def chat(
     role: str,
     messages: list,
@@ -289,10 +292,20 @@ def chat(
     headers["X-Title"] = "Screen Docent"
 
     url = f"{cfg['base_url'].rstrip('/')}/chat/completions"
-    try:
-        resp = httpx.post(url, json=payload, headers=headers, timeout=timeout)
-    except httpx.HTTPError as e:
-        raise AIConfigError(f"Could not reach the model endpoint: {e}") from e
+    # B5: reuse a pooled client (no fresh TLS handshake per call) + one bounded retry on transient
+    # errors — matching the scout pattern, so a single 429/5xx blip doesn't silently fail an artwork's
+    # enrichment (which happens in tight loops during batch_enrich).
+    resp = None
+    for attempt in range(2):
+        try:
+            resp = _http_client.post(url, json=payload, headers=headers, timeout=timeout)
+        except httpx.HTTPError as e:
+            if attempt == 0:
+                time.sleep(1.5); continue
+            raise AIConfigError(f"Could not reach the model endpoint: {e}") from e
+        if resp.status_code in (429, 500, 502, 503, 504) and attempt == 0:
+            time.sleep(1.5); continue
+        break
 
     if resp.status_code != 200:
         raise AIConfigError(f"Model API error {resp.status_code}: {resp.text[:300]}")

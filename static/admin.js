@@ -748,21 +748,6 @@ async function loadMoreDiscoveries() {
     }
 }
 
-function approveDiscovery(id, btn) {
-    btn.disabled = true;
-    btn.textContent = "Queued...";
-    btn.style.opacity = "0.7";
-    enqueueAction(async () => {
-        btn.textContent = "Sending...";
-        const res = await fetch(`${API_BASE}/api/discover/approve/${id}`, { method: 'POST' });
-        if (!res.ok) {
-            showToast("Couldn't fetch that artwork — the museum server may be busy.", "error");
-        } else {
-            showToast("Sent to the Review Queue →", "success");
-        }
-    });
-}
-
 function rejectDiscovery(id, btn) {
     btn.disabled = true;
     btn.textContent = "Queued...";

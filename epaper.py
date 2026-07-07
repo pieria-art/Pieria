@@ -62,7 +62,14 @@ def _fit_rgb(image_path: Path, w: int, h: int, fit: str = "cover",
         fit = "cover"
     with Image.open(image_path) as src:
         img = ImageOps.exif_transpose(src)
-        img = img.convert("RGB")
+        # C5: composite any transparency onto white "paper" BEFORE flattening. A plain convert("RGB")
+        # fills transparent regions with black, which renders wrong on a paper-white e-ink/Frame panel.
+        if img.mode in ("RGBA", "LA") or (img.mode == "P" and "transparency" in img.info):
+            img = img.convert("RGBA")
+            bg = Image.new("RGBA", img.size, (255, 255, 255, 255))
+            img = Image.alpha_composite(bg, img).convert("RGB")
+        else:
+            img = img.convert("RGB")
         if fit == "cover":
             return ImageOps.fit(
                 img, (w, h), method=Image.Resampling.LANCZOS, centering=focal

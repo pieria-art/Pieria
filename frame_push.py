@@ -166,9 +166,10 @@ class FrameClient(ABC):
 
 class SamsungFrameClient(FrameClient):
     """Thin wrapper over the synchronous `samsungtvws` library, called via asyncio.to_thread.
-    THE ONLY HARDWARE-DEPENDENT CODE. A single connection is reused across calls; on error it's
-    dropped so the next call reconnects. `tv_factory` is injectable purely so tests can verify the
-    mapping without the real library or a TV."""
+    THE ONLY HARDWARE-DEPENDENT CODE. One connection is reused across the calls within a single push
+    cycle; the scheduler builds a fresh client each tick (see _run_one_cycle), so there is no
+    long-lived socket to reset. `tv_factory` is injectable purely so tests can verify the mapping
+    without the real library or a TV."""
 
     def __init__(self, host: str, port: int = 8001, token_file: Optional[str] = None, tv_factory=None):
         self.host = host
@@ -186,9 +187,6 @@ class SamsungFrameClient(FrameClient):
         if self._tv is None:
             self._tv = self._tv_factory()
         return self._tv
-
-    def _reset(self):
-        self._tv = None
 
     async def push(self, image: bytes, file_type: str, matte: str) -> str:
         return await asyncio.to_thread(

@@ -390,6 +390,8 @@ class RijksmuseumScout(MuseumScout):
                     if not item_url:
                         continue
 
+                    await asyncio.sleep(0.2)  # B4: space the per-item resolution requests (rate-limit courtesy, like Met)
+
                     # Ensure we use the 'data' resolver directly to preserve profile params
                     item_url = item_url.replace("id.rijksmuseum.nl", "data.rijksmuseum.nl")
 
