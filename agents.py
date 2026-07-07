@@ -11,6 +11,7 @@ from PIL import Image
 from sqlalchemy.orm import Session
 
 import ai_client
+from config import strip_markdown
 from models import ArtworkModel
 
 # Increase Pillow limit for high-res artwork
@@ -97,7 +98,7 @@ async def process_artwork(artwork_id: int, db: Session, user_hint: str = None):
         metadata = ai_client.parse_json(response_text)
         logger.info(f"[AI Agent] Metadata generated for {artwork.filename}")
 
-        artwork.title = metadata.get('title', 'Untitled')
+        artwork.title = strip_markdown(metadata.get('title', 'Untitled'))
         artwork.agent_name = metadata.get('agent_name', 'Unknown Artist')
         artwork.agent_role = metadata.get('agent_role', 'Artist')
         artwork.creation_date = metadata.get('creation_date', 'Unknown')
@@ -105,7 +106,7 @@ async def process_artwork(artwork_id: int, db: Session, user_hint: str = None):
         artwork.medium = metadata.get('medium', '')
         artwork.date_display = metadata.get('date_display', '')
 
-        artwork.description_narrative = metadata.get('description_narrative', '')
+        artwork.description_narrative = strip_markdown(metadata.get('description_narrative', ''))
 
         tags = metadata.get('tags', [])
         artwork.tags = ", ".join(tags) if isinstance(tags, list) else str(tags)

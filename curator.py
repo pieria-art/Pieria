@@ -11,6 +11,7 @@ from sqlalchemy.orm import Session
 
 import ai_client
 from agents import FOCAL_POINT_INSTRUCTION, apply_focal_point
+from config import strip_markdown
 from models import ArtworkModel
 
 logger = logging.getLogger("artwork-display-api.curator")
@@ -76,7 +77,7 @@ async def enrich_artwork(artwork_id: int, db: Session, context_hints: str = None
         )
         metadata = ai_client.parse_json(response_text)
 
-        artwork.title = metadata.get('title', artwork.title)
+        artwork.title = strip_markdown(metadata.get('title', artwork.title))
         artwork.agent_name = metadata.get('agent_name', artwork.agent_name)
         artwork.agent_role = metadata.get('agent_role', artwork.agent_role)
         artwork.creation_date = metadata.get('creation_date', artwork.creation_date)
@@ -84,7 +85,7 @@ async def enrich_artwork(artwork_id: int, db: Session, context_hints: str = None
         artwork.medium = metadata.get('medium', artwork.medium)
         artwork.date_display = metadata.get('date_display', getattr(artwork, 'date_display', ''))
 
-        artwork.description_narrative = metadata.get('description_narrative', getattr(artwork, 'description_narrative', ''))
+        artwork.description_narrative = strip_markdown(metadata.get('description_narrative', getattr(artwork, 'description_narrative', '')))
 
         tags = metadata.get('tags', [])
         if tags:

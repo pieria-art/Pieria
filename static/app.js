@@ -421,6 +421,20 @@ function showPlacardFlow(waitSec, showSec) {
     }, waitSec * 1000);
 }
 
+// C1: AI enrichment emits Markdown emphasis (e.g. "*The Irish Question*"); placard fields are plain
+// textContent, so the markers render literally. Strip the common inline emphasis to plain prose.
+function stripMd(s) {
+    if (!s) return '';
+    return String(s)
+        .replace(/\*\*([^*]+)\*\*/g, '$1')
+        .replace(/\*([^*]+)\*/g, '$1')
+        .replace(/__([^_]+)__/g, '$1')
+        .replace(/_([^_]+)_/g, '$1')
+        .replace(/`([^`]+)`/g, '$1')
+        .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')
+        .replace(/^#{1,6}\s+/gm, '');
+}
+
 function updatePlacard(metadata) {
     const placard = document.getElementById('placard');
     if (!metadata || !metadata.title) { placard.classList.add('hidden'); return; }
@@ -429,7 +443,7 @@ function updatePlacard(metadata) {
     const isPersonal = !!metadata.is_personal;
     placard.classList.toggle('personal', isPersonal);
 
-    document.getElementById('art-title').textContent = metadata.title;
+    document.getElementById('art-title').textContent = stripMd(metadata.title);
     const agentDate = document.getElementById('art-agent-date');
     const museumDetails = document.getElementById('art-museum-details');
     const description = document.getElementById('art-description');
@@ -452,9 +466,13 @@ function updatePlacard(metadata) {
     qrContainer.style.display = '';
     agentDate.textContent = `${metadata.agent_name || 'Unknown Artist'} ${metadata.agent_role && metadata.agent_role !== 'Artist' ? '(' + metadata.agent_role + ')' : ''} ${metadata.creation_date ? '• ' + metadata.creation_date : ''}`;
 
-    const details = [metadata.cultural_context, metadata.medium, metadata.date_display].filter(Boolean).join(' | ');
+    // C2: drop date_display from the details row when it just repeats the byline's creation_date
+    // (the common "… • 1503-1519" byline + "… | 1503-1519" details double-print).
+    const dd = metadata.date_display;
+    const dupDate = dd && dd.toLowerCase() === (metadata.creation_date || '').toLowerCase();
+    const details = [metadata.cultural_context, metadata.medium, dupDate ? null : dd].filter(Boolean).join(' | ');
     museumDetails.textContent = details;
-    description.textContent = metadata.description || '';
+    description.textContent = stripMd(metadata.description || '');
     if (metadata.tags) {
         metadata.tags.split(',').forEach(tag => {
             const span = document.createElement('span');

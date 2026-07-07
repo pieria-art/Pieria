@@ -4,11 +4,30 @@ Extracted from app.py to break circular import dependencies.
 """
 
 import os
+import re
 from pathlib import Path
 
 from dotenv import load_dotenv
 
 load_dotenv()
+
+# C1: AI enrichment sometimes emits Markdown emphasis (e.g. "*The Irish Question*"). The placard and
+# /art page render plain text, so the markers show literally. Flatten inline emphasis to plain prose.
+# Lives here (dep-free) so app.py, curator.py and agents.py all share one implementation; mirrored by
+# stripMd() in static/app.js for the client-rendered Canvas placard.
+_MD_STRIP = [
+    (re.compile(r"\*\*([^*]+)\*\*"), r"\1"), (re.compile(r"\*([^*]+)\*"), r"\1"),
+    (re.compile(r"__([^_]+)__"), r"\1"), (re.compile(r"_([^_]+)_"), r"\1"),
+    (re.compile(r"`([^`]+)`"), r"\1"), (re.compile(r"\[([^\]]+)\]\([^)]*\)"), r"\1"),
+    (re.compile(r"^#{1,6}\s+", re.MULTILINE), ""),
+]
+
+
+def strip_markdown(s: str | None) -> str:
+    s = s or ""
+    for pat, repl in _MD_STRIP:
+        s = pat.sub(repl, s)
+    return s
 
 ARTWORK_ROOT = Path(os.getenv("ARTWORK_ROOT", "Artwork"))
 LIBRARY_DIR = ARTWORK_ROOT / "_Library"

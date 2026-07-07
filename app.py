@@ -137,7 +137,7 @@ import federation
 import frame_push
 import host_health
 import publisher
-from config import ARTWORK_ROOT, LIBRARY_DIR, SD_USER_AGENT
+from config import ARTWORK_ROOT, LIBRARY_DIR, SD_USER_AGENT, strip_markdown
 from epaper import PALETTES, VALID_FORMATS, media_type_for, render_for_epaper
 
 
@@ -1354,12 +1354,12 @@ async def artwork_detail_page(artwork_id: int, db: Session = Depends(get_db)):
         artist_line = e(art.date_display or art.creation_date or "")
         meta_bits = desc = tag_html = source = ""
     else:
-        title = e(art.title or "Untitled")
+        title = e(strip_markdown(art.title or "Untitled"))
         role = e(art.agent_role) if art.agent_role and art.agent_role != "Artist" else ""
         date = e(art.date_display or art.creation_date or "")
         artist_line = e(art.agent_name or "Unknown artist") + (f" · {role}" if role else "") + (f" · {date}" if date else "")
         meta_bits = " · ".join(b for b in [e(art.cultural_context or ""), e(art.medium or "")] if b)
-        desc = e(art.description_narrative or "")
+        desc = e(strip_markdown(art.description_narrative or ""))
         tag_html = "".join(f"<span class=tag>{e(t.strip())}</span>" for t in (art.tags or "").split(",") if t.strip())
         source = (f"<a class=source href='{e(art.source_url)}' target=_blank rel=noopener>View original source ↗</a>"
                   if art.source_url else "")
