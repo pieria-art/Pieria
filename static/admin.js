@@ -984,8 +984,8 @@ function reconcileGrid(container, items, keyFn, cardClass, cardHTML, opts = {}) 
 
 function artworkCardHTML(art, view) {
     const removeBtn = view === 'collection'
-        ? `<button onclick="removeArtworkFromPlaylist(${art.id})" title="Remove from this collection" style="color: #f59e0b;">✕</button>`
-        : `<button onclick="deleteArtworkPermanently(${art.id})" title="Delete from library" style="color: #ef4444;">✕</button>`;
+        ? `<button onclick="removeArtworkFromPlaylist(${art.id})" title="Remove from this collection" aria-label="Remove from this collection" style="color: #f59e0b;">✕</button>`
+        : `<button onclick="deleteArtworkPermanently(${art.id})" title="Delete from library" aria-label="Delete from library" style="color: #ef4444;">✕</button>`;
     return `
                 <img src="${API_BASE}/artworks/${art.id}/thumbnail?f=${encodeURIComponent(art.filename)}" alt="${_esc(art.filename)}" onclick="openEdit(${art.id})" style="cursor: pointer;">
                 <div class="info">

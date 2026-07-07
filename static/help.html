@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Screen Docent Help</title>
+    <link rel="icon" type="image/svg+xml" href="/logo.svg">
     <link rel="stylesheet" href="/app.css">
     <style>
         /* Help — shared tokens + the responsive app-shell (sidebar→drawer) come from app.css.
@@ -429,7 +430,7 @@ GEMINI_API_KEY=your_free_key_here</code></pre>
             <h2>URL Parameters Reference</h2>
             <p>Append these to a display URL (e.g. <code>http://SERVER:8000/?display=tv_01&amp;rotate=true</code>)
                to override behavior for one screen.</p>
-            <table>
+            <div class="table-scroll"><table>
                 <thead>
                     <tr><th style="width: 25%;">Parameter</th><th>Description</th><th>Example</th></tr>
                 </thead>
@@ -443,7 +444,7 @@ GEMINI_API_KEY=your_free_key_here</code></pre>
                     <tr><td><code>placard_show</code></td><td>Seconds to keep the placard visible on its initial entrance.</td><td><code>placard_show=20</code></td></tr>
                     <tr><td><code>placard_manual</code></td><td>Seconds to display the placard when triggered by the remote.</td><td><code>placard_manual=15</code></td></tr>
                 </tbody>
-            </table>
+            </table></div>
         </section>
 
         <section id="appliance">
@@ -528,7 +529,7 @@ CYCLE_TIME=                           # optional: seconds per image</code></pre>
 
             <h3>The endpoint</h3>
             <pre><code>GET /display/{display_id}/current.png?playlist=Masterpieces&amp;w=1600&amp;h=1200&amp;palette=spectra6</code></pre>
-            <table>
+            <div class="table-scroll"><table>
                 <thead><tr><th>Parameter</th><th>Values</th></tr></thead>
                 <tbody>
                     <tr><td><code>display_id</code></td><td>A unique name for this frame (path segment)</td></tr>
@@ -538,7 +539,7 @@ CYCLE_TIME=                           # optional: seconds per image</code></pre>
                     <tr><td><code>fit</code></td><td><code>cover</code> (fill, default) or <code>contain</code> (letterbox)</td></tr>
                     <tr><td>format</td><td>End the path in <code>.png</code> (default) or <code>.bmp</code> (firmware without a PNG decoder)</td></tr>
                 </tbody>
-            </table>
+            </table></div>
             <p>Each request <strong>advances to the next image</strong>, so the frame's wake interval becomes its
                rotation. The response's <code>X-Refresh-After</code> header tells the frame how many seconds to
                deep-sleep before fetching again.</p>

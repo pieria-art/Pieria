@@ -128,7 +128,11 @@ body.app-shell { display: flex; height: 100vh; overflow: hidden; }
     display: flex; flex-direction: column; padding: 20px; overflow-y: auto;
 }
 .app-shell main { flex-grow: 1; padding: 0 40px; overflow-y: auto; }
-.app-shell .nav-section { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.12rem; color: #64748b; font-weight: 600; margin: 14px 4px 6px; }
+.app-shell .nav-section { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.12rem; color: var(--text-muted); font-weight: 600; margin: 14px 4px 6px; }
+
+/* H1: wide tables (Help URL-params, e-ink endpoint) scroll inside their own box instead of panning the
+   whole page sideways at phone widths. */
+.table-scroll { overflow-x: auto; max-width: 100%; }
 .app-shell .nav-btn {
     display: block; background: transparent; border: 1px solid var(--border-color);
     color: var(--text-color); padding: 11px 12px; border-radius: 8px; margin-bottom: 8px;

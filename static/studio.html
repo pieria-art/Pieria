@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>My Photos — Screen Docent</title>
+<link rel="icon" type="image/svg+xml" href="/logo.svg">
 <link rel="stylesheet" href="/app.css">
 <style>
   /* My Photos — phone-first; shared tokens/components come from app.css. */
@@ -211,7 +212,7 @@ function blankCard(){
     <div class="card-body">
       <div class="cap-row">
         <input type="text" class="cap" placeholder="Add a caption…" disabled>
-        <button class="suggest" disabled>✨</button>
+        <button class="suggest" aria-label="Suggest a caption with AI" title="Suggest a caption" disabled>✨</button>
       </div>
       <input type="text" class="date" placeholder="When? (optional, e.g. Summer 2026)" disabled>
       <div class="note"></div>
