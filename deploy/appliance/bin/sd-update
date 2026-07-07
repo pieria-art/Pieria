@@ -69,6 +69,14 @@ run() {
   "$@" >> "$LOG" 2>&1
 }
 
+# A container rebuild leaves the already-loaded kiosk Canvas WS-connected but with a stalled auto-advance
+# timer (it doesn't re-fetch on reconnect) — the display freezes until something nudges it (a Remote tap,
+# or the next cycle up to display_time away). Relaunch the kiosk so it reloads fresh against the rebuilt
+# container. Best-effort + non-fatal (a headless/server-only box has no getty@tty1).
+reload_kiosk() {
+  run systemctl restart getty@tty1 || true
+}
+
 rc=0
 case "$ACTION" in
   update-app)
@@ -80,10 +88,12 @@ case "$ACTION" in
     ( cd "$REPO_ROOT" && run git "${GIT_SAFE[@]}" fetch --prune origin ) || rc=$?
     [ $rc -eq 0 ] && { ( cd "$REPO_ROOT" && run git "${GIT_SAFE[@]}" reset --hard origin/main ) || rc=$?; }
     [ $rc -eq 0 ] && { ( cd "$REPO_ROOT" && run docker compose -f docker-compose.yml -f "$OVERRIDE" up -d --build ) || rc=$?; }
+    [ $rc -eq 0 ] && reload_kiosk
     ;;
   update-scripts)
-    # Re-run the idempotent installer to refresh sd-* binaries + units.
+    # Re-run the idempotent installer to refresh sd-* binaries + units (also rebuilds the container).
     run "$REPO_ROOT/deploy/appliance/install.sh" || rc=$?
+    [ $rc -eq 0 ] && reload_kiosk
     ;;
   reboot)
     write_status done "rebooting"
