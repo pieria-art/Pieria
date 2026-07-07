@@ -2088,7 +2088,7 @@ async function loadFrameSettings() {
         const cfg = await cfgResp.json();
         const playlists = plResp.ok ? await plResp.json() : [];
         const sel = document.getElementById('frame-playlist');
-        sel.innerHTML = '<option value="">First playlist (default)</option>' +
+        sel.innerHTML = '<option value="">First collection (default)</option>' +
             playlists.map(p => `<option value="${_esc(p.name)}">${_esc(p.name)}</option>`).join('');
         document.getElementById('frame-enabled').checked = !!cfg.enabled;
         document.getElementById('frame-host').value = cfg.host || '';
