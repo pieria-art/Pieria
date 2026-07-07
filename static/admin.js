@@ -350,11 +350,28 @@ function _renderActiveDisplays(displays) {
         el.innerHTML = '<span style="color:#94a3b8;">No displays connected in the last 15s.</span>';
         return;
     }
-    el.innerHTML = displays.map(d =>
-        `<div style="display:flex; align-items:center; gap:8px; padding:6px 0; border-bottom:1px solid var(--border-color);">
-            <span style="color:var(--success-color);">●</span>
-            <code style="color:var(--text-color);">${_esc(d.display_id)}</code>
-        </div>`).join('');
+    el.innerHTML = displays.map(d => {
+        const art = d.artwork;
+        const thumb = art
+            ? `<img src="${_esc(art.thumb_url)}" alt="" style="width:44px;height:44px;border-radius:6px;object-fit:cover;background:#1e293b;flex:0 0 auto;">`
+            : `<span style="width:44px;height:44px;border-radius:6px;background:#1e293b;flex:0 0 auto;"></span>`;
+        // Museum/user data — escape title, artist, and collection name.
+        const artist = (art && !art.is_personal && art.agent_name) ? ' — ' + _esc(art.agent_name) : '';
+        const nowShowing = art
+            ? `<div style="color:var(--text-color);font-size:0.9rem;">▶ ${_esc(art.title || 'Untitled')}${artist}</div>`
+            : `<div style="color:#94a3b8;font-size:0.9rem;">Idle — nothing showing yet</div>`;
+        const coll = d.playlist ? `<div style="color:#94a3b8;font-size:0.75rem;">in “${_esc(d.playlist)}” collection</div>` : '';
+        return `<div style="display:flex; align-items:center; gap:10px; padding:8px 0; border-bottom:1px solid var(--border-color);">
+            ${thumb}
+            <div style="min-width:0;">
+                <div style="display:flex; align-items:center; gap:6px;">
+                    <span style="color:var(--success-color);">●</span>
+                    <code style="color:var(--text-color);">${_esc(d.display_id)}</code>
+                </div>
+                ${nowShowing}${coll}
+            </div>
+        </div>`;
+    }).join('');
 }
 
 async function refreshHostHealth() {
