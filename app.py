@@ -1833,7 +1833,7 @@ async def websocket_endpoint(websocket: WebSocket, display_id: str):
                         db.add(display)
                     db.commit()
             except Exception as e:
-                logger.error(f"Heartbeat error for {display_id}: {e}")
+                logger.error(f"Heartbeat error for {display_id}: {e}", exc_info=True)
             await asyncio.sleep(5)
 
     async def command_poller():
@@ -1848,7 +1848,7 @@ async def websocket_endpoint(websocket: WebSocket, display_id: str):
                         db.delete(cmd)
                     db.commit()
             except Exception as e:
-                logger.error(f"Command poller error for {display_id}: {e}")
+                logger.error(f"Command poller error for {display_id}: {e}", exc_info=True)
             await asyncio.sleep(1)
 
     # Start sync workers
@@ -1864,7 +1864,7 @@ async def websocket_endpoint(websocket: WebSocket, display_id: str):
     except WebSocketDisconnect:
         manager.disconnect(websocket, display_id)
     except Exception as e:
-        logger.error(f"WebSocket error on '{display_id}': {e}")
+        logger.error(f"WebSocket error on '{display_id}': {e}", exc_info=True)
         manager.disconnect(websocket, display_id)
     finally:
         heartbeat_task.cancel()

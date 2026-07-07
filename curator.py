@@ -98,7 +98,7 @@ async def enrich_artwork(artwork_id: int, db: Session, context_hints: str = None
         return artwork
 
     except Exception as e:
-        logger.error(f"[RAG Curator] Gemini enrichment failed: {e}")
+        logger.error(f"[RAG Curator] Gemini enrichment failed: {e}", exc_info=True)
         db.rollback()
         artwork.status = 'pending_review'
         db.add(artwork)

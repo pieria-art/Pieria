@@ -573,7 +573,7 @@ class HarvardScout(MuseumScout):
                         "context_hints": json.dumps(art)
                     })
         except Exception as e:
-            logger.error(f"[Scout] Harvard error: {e}")
+            logger.error(f"[Scout] Harvard error: {e}", exc_info=True)
         return found
 
 
@@ -632,7 +632,7 @@ class SmithsonianScout(MuseumScout):
                         "context_hints": json.dumps(art)
                     })
         except Exception as e:
-            logger.error(f"[Scout] Smithsonian error: {e}")
+            logger.error(f"[Scout] Smithsonian error: {e}", exc_info=True)
         return found
 
 
