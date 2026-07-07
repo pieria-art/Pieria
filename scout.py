@@ -390,6 +390,8 @@ class RijksmuseumScout(MuseumScout):
                     if not item_url:
                         continue
 
+                    await asyncio.sleep(0.2)  # B4: space the per-item resolution requests (rate-limit courtesy, like Met)
+
                     # Ensure we use the 'data' resolver directly to preserve profile params
                     item_url = item_url.replace("id.rijksmuseum.nl", "data.rijksmuseum.nl")
 
@@ -573,7 +575,7 @@ class HarvardScout(MuseumScout):
                         "context_hints": json.dumps(art)
                     })
         except Exception as e:
-            logger.error(f"[Scout] Harvard error: {e}")
+            logger.error(f"[Scout] Harvard error: {e}", exc_info=True)
         return found
 
 
@@ -632,7 +634,7 @@ class SmithsonianScout(MuseumScout):
                         "context_hints": json.dumps(art)
                     })
         except Exception as e:
-            logger.error(f"[Scout] Smithsonian error: {e}")
+            logger.error(f"[Scout] Smithsonian error: {e}", exc_info=True)
         return found
 
 

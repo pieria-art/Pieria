@@ -353,7 +353,7 @@ function _renderActiveDisplays(displays) {
     el.innerHTML = displays.map(d =>
         `<div style="display:flex; align-items:center; gap:8px; padding:6px 0; border-bottom:1px solid var(--border-color);">
             <span style="color:var(--success-color);">●</span>
-            <code style="color:var(--text-color);">${d.display_id}</code>
+            <code style="color:var(--text-color);">${_esc(d.display_id)}</code>
         </div>`).join('');
 }
 
@@ -748,21 +748,6 @@ async function loadMoreDiscoveries() {
     }
 }
 
-function approveDiscovery(id, btn) {
-    btn.disabled = true;
-    btn.textContent = "Queued...";
-    btn.style.opacity = "0.7";
-    enqueueAction(async () => {
-        btn.textContent = "Sending...";
-        const res = await fetch(`${API_BASE}/api/discover/approve/${id}`, { method: 'POST' });
-        if (!res.ok) {
-            showToast("Couldn't fetch that artwork — the museum server may be busy.", "error");
-        } else {
-            showToast("Sent to the Review Queue →", "success");
-        }
-    });
-}
-
 function rejectDiscovery(id, btn) {
     btn.disabled = true;
     btn.textContent = "Queued...";
@@ -1063,7 +1048,7 @@ function openLibraryPicker() {
         };
         card.innerHTML = `
             <img src="${API_BASE}/artworks/${art.id}/thumbnail?f=${encodeURIComponent(art.filename)}">
-            <p>${art.title || art.filename}</p>
+            <p>${_esc(art.title || art.filename)}</p>
         `;
         grid.appendChild(card);
     });

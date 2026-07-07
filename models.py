@@ -6,7 +6,18 @@ Phase 3: Many-to-Many relationship between Playlists and Artworks.
 from datetime import UTC, datetime
 from typing import List, Optional
 
-from sqlalchemy import Boolean, Column, DateTime, Float, ForeignKey, Integer, String, Table, Text
+from sqlalchemy import (
+    Boolean,
+    Column,
+    DateTime,
+    Float,
+    ForeignKey,
+    Integer,
+    String,
+    Table,
+    Text,
+    UniqueConstraint,
+)
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from database import Base
@@ -47,6 +58,9 @@ class DisplayPlaybackSessionModel(Base):
     Tracks playback state per display to ensure variety and resume capability.
     """
     __tablename__ = "display_playback_sessions"
+    # A8: one row per (display, playlist). Without this, two concurrent first-requests (4 workers) could
+    # each insert a session, after which .first() picks nondeterministically and the bag state splits.
+    __table_args__ = (UniqueConstraint("display_id", "playlist_id", name="uq_playback_display_playlist"),)
 
     id: Mapped[int] = mapped_column(primary_key=True, index=True)
     display_id: Mapped[str] = mapped_column(String, index=True)

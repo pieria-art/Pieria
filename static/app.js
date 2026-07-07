@@ -333,17 +333,24 @@ async function sendTelemetry(artworkId, startTime, skipped) {
     }
 }
 
+// E1: a monotonic generation guards against overlapping transitions. The WS onmessage handler is not
+// awaited, so a burst (next_image/prev_image) plus the auto-cycle timer can launch concurrent
+// fetchAndTransition calls; without this the slower response clobbers newer state and each caller
+// schedules its own setTimeout, leaving an orphan timer that fires an extra advance.
+let cycleGen = 0;
+
 async function startDisplayCycle() {
     if (cycleTimeout) clearTimeout(cycleTimeout);
-    await fetchAndTransition(1, false); 
-    cycleTimeout = setTimeout(startDisplayCycle, currentDisplayTime);
+    const gen = await fetchAndTransition(1, false);
+    if (gen === cycleGen) cycleTimeout = setTimeout(startDisplayCycle, currentDisplayTime);  // only the latest reschedules
 }
 
 let currentPlaylistData = null;
 
 async function fetchAndTransition(direction = 1, isSkipped = false) {
-    if (!currentPlaylist) return;
-    
+    if (!currentPlaylist) return cycleGen;
+    const gen = ++cycleGen;   // this call is now the latest; any older in-flight call will bail below
+
     // Telemetry: Record completion of previous image before fetching next
     if (activeArtworkId) {
         sendTelemetry(activeArtworkId, activeImageStartTime, isSkipped);
@@ -362,8 +369,10 @@ async function fetchAndTransition(direction = 1, isSkipped = false) {
         }
 
         const response = await fetch(`${API_BASE}/next-image?${params.toString()}`);
-        if (!response.ok) { setEmptyState(true); return; }  // no approved images → guidance, not black
+        if (gen !== cycleGen) return gen;                   // a newer transition started — don't clobber it
+        if (!response.ok) { setEmptyState(true); return gen; }  // no approved images → guidance, not black
         const data = await response.json();
+        if (gen !== cycleGen) return gen;
         setEmptyState(false);
 
         currentPlaylistData = data;
@@ -397,6 +406,7 @@ async function fetchAndTransition(direction = 1, isSkipped = false) {
         showPlacardFlow(waitTime, showTime);
 
     } catch (error) { console.error('[Client] Transition Error:', error.message); }
+    return gen;
 }
 
 function showPlacardFlow(waitSec, showSec) {
@@ -545,8 +555,8 @@ function initNavButtons() {
 
 async function startDisplayCycleManually(direction) {
     if (cycleTimeout) clearTimeout(cycleTimeout);
-    await fetchAndTransition(direction, true); // true = user skipped
-    cycleTimeout = setTimeout(startDisplayCycle, currentDisplayTime);
+    const gen = await fetchAndTransition(direction, true); // true = user skipped
+    if (gen === cycleGen) cycleTimeout = setTimeout(startDisplayCycle, currentDisplayTime);  // only the latest reschedules
 }
 
 function initModeToggles() {

@@ -68,7 +68,7 @@ def read_memory() -> dict | None:
             "available_mb": round(available / 1024),
             "used_pct": round((total - available) / total * 100, 1) if total else None,
         }
-    except (OSError, ValueError, KeyError):
+    except (OSError, ValueError, KeyError, IndexError):   # C6: a malformed meminfo line must not raise
         return None
 
 

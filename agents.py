@@ -116,6 +116,6 @@ async def process_artwork(artwork_id: int, db: Session, user_hint: str = None):
         return artwork # Return updated object
 
     except Exception as e:
-        logger.error(f"[AI Agent] AI processing failed: {e}")
+        logger.error(f"[AI Agent] AI processing failed: {e}", exc_info=True)
         db.rollback()
         return None

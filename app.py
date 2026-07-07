@@ -5,6 +5,7 @@ Phase 4: Targeted WebSocket Routing for Multiple Displays.
 """
 
 import asyncio
+import copy
 import fcntl
 import html
 import io
@@ -42,6 +43,7 @@ from fastapi.staticfiles import StaticFiles
 from PIL import Image, ImageOps
 from pydantic import BaseModel
 from sqlalchemy import delete, select, update
+from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 
 # Load environment variables
@@ -140,16 +142,26 @@ from epaper import PALETTES, VALID_FORMATS, media_type_for, render_for_epaper
 
 
 @lru_cache(maxsize=256)
-def get_optimized_image(image_path: Path, size: tuple, quality: int = 85) -> bytes:
-    """Resizes and compresses an image for web delivery."""
+def _optimized_image_cached(image_path: Path, size: tuple, quality: int, mtime: int) -> bytes:
+    """Resize + JPEG-compress for web delivery. `mtime` participates only in the cache key (A4): a file
+    replaced in place gets a fresh entry instead of serving stale bytes until process restart."""
     logger.info(f"[Image Processor] Optimizing: {image_path.name}")
     with Image.open(image_path) as img:
-        if img.mode in ("RGBA", "P"):
+        if img.mode not in ("RGB", "L"):      # covers RGBA/P/LA/CMYK — "LA" used to crash the JPEG save
             img = img.convert("RGB")
         img.thumbnail(size, Image.Resampling.LANCZOS)
         buf = io.BytesIO()
         img.save(buf, format="JPEG", quality=quality)
         return buf.getvalue()
+
+
+def get_optimized_image(image_path: Path, size: tuple, quality: int = 85) -> bytes:
+    """mtime-keyed wrapper over the lru cache — see A4."""
+    try:
+        mtime = int(image_path.stat().st_mtime)
+    except OSError:
+        mtime = 0
+    return _optimized_image_cached(image_path, size, quality, mtime)
 
 # --- Canvas display image (resolution-capped) -------------------------------
 # The Canvas <img> previously loaded the full-res original via /media. Museum
@@ -190,7 +202,10 @@ def render_canvas_image(src: Path, art_id: int) -> bytes:
         if old != dst:
             try: old.unlink()
             except OSError: pass
-    tmp = dst.with_suffix(".tmp")          # atomic publish so a concurrent reader never sees a partial file
+    # Atomic publish so a concurrent reader never sees a partial file. Per-writer tmp name (A3): the boot
+    # warm sweep and a lazy /display.jpg render can target the same dst — a shared .tmp would let their
+    # writes interleave before os.replace. os.replace is atomic, so last-writer-wins on identical bytes.
+    tmp = dst.with_name(f"{dst.name}.{os.getpid()}.tmp")
     tmp.write_bytes(data)
     os.replace(tmp, dst)
     return data
@@ -257,7 +272,9 @@ async def run_scouts_bg(query: str = None, sources: List[str] = None,
             intent = session.intent
             offset = session.offset
         else:
-            intent = _query_classifier.classify(query) if query else None
+            # B1: classify() → sync ai_client.chat (httpx, 90s default) — thread it so a slow provider
+            # can't stall this worker's loop.
+            intent = await asyncio.to_thread(_query_classifier.classify, query) if query else None
             offset = 0
 
         logger.info(f"[Scout BG] Starting scouts: query='{query}', sources={sources}, "
@@ -495,7 +512,7 @@ async def inject_aggressive_cache_headers(request: Request, call_next):
         or path.endswith((".svg", ".png", ".jpg", ".webp"))
     )
     is_code_asset = path.endswith((".css", ".js", ".json"))
-    is_html_asset = path.endswith(".html") or path == "/admin" or path == "/remote" or path == "/"
+    is_html_asset = path.endswith(".html") or path in ("/admin", "/remote", "/studio", "/help", "/")
 
     if path.startswith("/api/") or is_html_asset or path.startswith("/display/"):
         # API/HTML and the per-display e-ink endpoint must never be cached.
@@ -613,9 +630,6 @@ class PlaylistSchema(BaseModel):
 
 class ArtworkApproval(BaseModel):
     title: str; agent_name: str; agent_role: str; creation_date: str; cultural_context: str; medium: str; date_display: str; description_narrative: str; tags: str
-
-class CropMetadataUpdate(BaseModel):
-    crop_x: float; crop_y: float; crop_width: float; crop_height: float
 
 class PlaylistUpdate(BaseModel):
     display_time: Optional[int] = None
@@ -747,16 +761,15 @@ async def reorder_playlist(playlist_id: int, request: ReorderRequest, db: Sessio
 async def upload_artwork(background_tasks: BackgroundTasks, file: UploadFile = File(...), playlist_id: Optional[int] = Form(None), db: Session = Depends(get_db)):
     if not LIBRARY_DIR.exists(): LIBRARY_DIR.mkdir(parents=True)
     raw = await file.read()
-    try:
+
+    def _decode_and_store():
+        # NEVER build the on-disk path from the client-supplied filename (C1: it was written verbatim,
+        # giving any LAN client an unauth path-traversal / arbitrary-write primitive). Derive a safe base
+        # from the filename *stem only* (Path().stem strips directories) and pick the extension from
+        # Pillow's own detected format. HEIC/HEIF is transcoded to JPEG; every other format keeps its
+        # exact bytes. All of this (decode/transpose/encode + disk write) is blocking → run in a thread.
         with Image.open(io.BytesIO(raw)) as src:
             fmt = (src.format or "").upper()
-            # NEVER build the on-disk path from the client-supplied filename (C1: it was written
-            # verbatim, giving any LAN client an unauth path-traversal / arbitrary-write primitive).
-            # Derive a safe base from the filename *stem only* (Path().name/.stem strips directories)
-            # and pick the extension from Pillow's own detected format, mirroring /upload/personal and
-            # _download_image_to_library.
-            # HEIC/HEIF is transcoded to JPEG below; every other format keeps its exact bytes, so the
-            # extension is taken from Pillow's detected format (trustworthy) rather than the client string.
             ext = {"JPEG": ".jpg", "HEIF": ".jpg", "HEIC": ".jpg", "PNG": ".png", "WEBP": ".webp",
                    "GIF": ".gif", "BMP": ".bmp", "TIFF": ".tiff"}.get(fmt, f".{fmt.lower()}" if fmt else ".jpg")
             stem = Path(file.filename or "").stem
@@ -769,15 +782,15 @@ async def upload_artwork(background_tasks: BackgroundTasks, file: UploadFile = F
                 fname = f"upload_{base}_{n}{ext}"; dest = LIBRARY_DIR / fname; n += 1
 
             if fmt in ("HEIF", "HEIC"):
-                # Browsers can't render HEIC — transcode to JPEG (orientation baked).
                 img = ImageOps.exif_transpose(src)
                 if img.mode not in ("RGB", "L"): img = img.convert("RGB")
                 img.save(dest, format="JPEG", quality=92)
-                w, h = img.size
-            else:
-                # Every other format keeps its exact original bytes (and orientation) as before.
-                dest.write_bytes(raw)
-                w, h = src.size
+                return fname, *img.size
+            dest.write_bytes(raw)
+            return fname, *src.size
+
+    try:
+        fname, w, h = await run_in_threadpool(_decode_and_store)
     except Exception:
         raise HTTPException(400, detail="That file isn't a readable image.")
     new_a = ArtworkModel(filename=fname, original_width=w, original_height=h, status='pending_review')
@@ -832,30 +845,33 @@ async def upload_personal_photo(
     if not LIBRARY_DIR.exists():
         LIBRARY_DIR.mkdir(parents=True)
     raw = await file.read()
-    try:
+
+    def _decode_and_store():
+        # A1: decode + EXIF-transpose + encode + disk write are blocking — run in a thread.
         with Image.open(io.BytesIO(raw)) as src:
             fmt = (src.format or "JPEG").upper()
             img = ImageOps.exif_transpose(src)   # bake phone orientation; drops the EXIF tag
+        ext = {"PNG": ".png", "WEBP": ".webp"}.get(fmt, ".jpg")
+        stem = Path(file.filename or "").stem
+        base = "".join(c for c in (caption or stem or "photo") if c.isalnum() or c in " _-").strip()
+        base = (base.replace(" ", "_")[:24] or "photo").lower()
+        safe = f"personal_{base}{ext}"
+        dest = LIBRARY_DIR / safe
+        n = 1
+        while dest.exists():
+            safe = f"personal_{base}_{n}{ext}"; dest = LIBRARY_DIR / safe; n += 1
+        if ext == ".jpg":
+            if img.mode not in ("RGB", "L"):
+                img = img.convert("RGB")
+            img.save(dest, quality=92)
+        else:
+            img.save(dest)
+        return safe, *img.size
+
+    try:
+        safe, w, h = await run_in_threadpool(_decode_and_store)
     except Exception:
         raise HTTPException(400, detail="That file isn't a readable image.")
-
-    ext = {"PNG": ".png", "WEBP": ".webp"}.get(fmt, ".jpg")
-    stem = Path(file.filename or "").stem
-    base = "".join(c for c in (caption or stem or "photo") if c.isalnum() or c in " _-").strip()
-    base = (base.replace(" ", "_")[:24] or "photo").lower()
-    safe = f"personal_{base}{ext}"
-    dest = LIBRARY_DIR / safe
-    n = 1
-    while dest.exists():
-        safe = f"personal_{base}_{n}{ext}"; dest = LIBRARY_DIR / safe; n += 1
-
-    if ext == ".jpg":
-        if img.mode not in ("RGB", "L"):
-            img = img.convert("RGB")
-        img.save(dest, quality=92)
-    else:
-        img.save(dest)
-    w, h = img.size
 
     art = ArtworkModel(
         filename=safe, original_width=w, original_height=h,
@@ -1053,10 +1069,12 @@ async def reenrich_artwork(artwork_id: int, request: RegenerationRequest, db: Se
     db.commit()
 
     updated_art = await process_artwork(artwork_id, db, user_hint=request.hint)
+    if not updated_art:      # A7: guard like the regenerate sibling — a None fails ArtworkSchema as an ugly 500
+        raise HTTPException(status_code=500, detail="AI Re-enrichment failed")
     return updated_art
 
 @app.post("/api/curate/batch-enrich")
-async def batch_enrich(background_tasks: BackgroundTasks, db: Session = Depends(get_db)):
+async def batch_enrich(background_tasks: BackgroundTasks):
     """Triggers RAG enrichment for all approved artworks."""
     background_tasks.add_task(run_batch_enrich_bg)
     return {"status": "Batch enrichment started in background"}
@@ -1073,10 +1091,11 @@ async def get_discovery_queue(
     return query.order_by(DiscoveryQueueModel.relevance_score.desc()).all()
 
 @app.post("/api/discover/dispatch")
-async def dispatch_discovery(request: DispatchRequest, background_tasks: BackgroundTasks, db: Session = Depends(get_db)):
+async def dispatch_discovery(request: DispatchRequest, background_tasks: BackgroundTasks):
     """Smart multi-source art discovery dispatch with query classification."""
-    # Classify the query upfront to create a session with the right intent
-    intent = _query_classifier.classify(request.search) if request.search else None
+    # Classify the query upfront to create a session with the right intent.
+    # B1: thread the sync classify() (→ ai_client.chat, up to 90s) so it can't freeze the worker.
+    intent = await asyncio.to_thread(_query_classifier.classify, request.search) if request.search else None
     limit = max(1, min(request.limit, 10))  # Clamp to 1–10
 
     # Create a search session for Load More support
@@ -1106,7 +1125,7 @@ async def dispatch_discovery(request: DispatchRequest, background_tasks: Backgro
     }
 
 @app.post("/api/discover/more")
-async def load_more_discoveries(request: LoadMoreRequest, background_tasks: BackgroundTasks, db: Session = Depends(get_db)):
+async def load_more_discoveries(request: LoadMoreRequest, background_tasks: BackgroundTasks):
     """Fetches the next batch of results from an existing search session."""
     session = get_search_session(request.session_id)
     if not session:
@@ -1296,14 +1315,18 @@ async def get_artwork_thumbnail(artwork_id: int, db: Session = Depends(get_db)):
     art = db.query(ArtworkModel).filter(ArtworkModel.id == artwork_id).first()
     if not art: raise HTTPException(404)
     path = LIBRARY_DIR / art.filename
-    return Response(content=get_optimized_image(path, (400, 400), quality=70), media_type="image/jpeg")
+    # A1: Pillow decode/resize/encode is blocking — thread it so a cold admin grid (dozens of concurrent
+    # misses) doesn't serialize on the worker's event loop. Mirrors /display.jpg below.
+    data = await run_in_threadpool(get_optimized_image, path, (400, 400), quality=70)
+    return Response(content=data, media_type="image/jpeg")
 
 @app.get("/artworks/{artwork_id}/preview")
 async def get_artwork_preview(artwork_id: int, db: Session = Depends(get_db)):
     art = db.query(ArtworkModel).filter(ArtworkModel.id == artwork_id).first()
     if not art: raise HTTPException(404)
     path = LIBRARY_DIR / art.filename
-    return Response(content=get_optimized_image(path, (1920, 1080), quality=85), media_type="image/jpeg")
+    data = await run_in_threadpool(get_optimized_image, path, (1920, 1080), quality=85)
+    return Response(content=data, media_type="image/jpeg")
 
 @app.get("/artworks/{artwork_id}/display.jpg")
 async def get_artwork_display(artwork_id: int, db: Session = Depends(get_db)):
@@ -1493,16 +1516,24 @@ async def get_next_image(
     if not artworks: raise HTTPException(404, detail="No approved images")
     count = len(artworks)
 
-    # Get or create playback session
-    session = db.query(DisplayPlaybackSessionModel).filter(
-        DisplayPlaybackSessionModel.display_id == display_id,
-        DisplayPlaybackSessionModel.playlist_id == p.id
-    ).first()
+    # Get or create playback session. A8: the (display_id, playlist_id) UNIQUE constraint backstops the
+    # check-then-insert race across the 4 workers — if another worker inserts first, catch the
+    # IntegrityError, roll back, and re-query the row it created instead of duplicating it.
+    def _get_session():
+        return db.query(DisplayPlaybackSessionModel).filter(
+            DisplayPlaybackSessionModel.display_id == display_id,
+            DisplayPlaybackSessionModel.playlist_id == p.id
+        ).first()
 
+    session = _get_session()
     if not session:
         session = DisplayPlaybackSessionModel(display_id=display_id, playlist_id=p.id)
         db.add(session)
-        db.commit()
+        try:
+            db.commit()
+        except IntegrityError:
+            db.rollback()
+            session = _get_session()
 
     selected_art = None
     selected_idx = -1
@@ -1640,8 +1671,10 @@ async def get_display_image(
         raise HTTPException(404, detail="Artwork file missing")
 
     try:
-        data = render_for_epaper(path, w, h, palette=palette, fit=fit,
-                                 focal=(art.focal_x, art.focal_y), fmt=ext)
+        # A1: crop + enhance + Floyd–Steinberg dither + encode is heavy and blocking — thread it so an
+        # e-ink cache miss doesn't stall the worker loop (frame_push threads its sibling render likewise).
+        data = await run_in_threadpool(render_for_epaper, path, w, h, palette=palette, fit=fit,
+                                       focal=(art.focal_x, art.focal_y), fmt=ext)
     except Exception as e:
         logger.error(f"[epaper] render failed for {path.name}: {e}", exc_info=True)
         raise HTTPException(500, detail="Render failed")
@@ -1799,7 +1832,7 @@ async def websocket_endpoint(websocket: WebSocket, display_id: str):
                         db.add(display)
                     db.commit()
             except Exception as e:
-                logger.error(f"Heartbeat error for {display_id}: {e}")
+                logger.error(f"Heartbeat error for {display_id}: {e}", exc_info=True)
             await asyncio.sleep(5)
 
     async def command_poller():
@@ -1814,7 +1847,7 @@ async def websocket_endpoint(websocket: WebSocket, display_id: str):
                         db.delete(cmd)
                     db.commit()
             except Exception as e:
-                logger.error(f"Command poller error for {display_id}: {e}")
+                logger.error(f"Command poller error for {display_id}: {e}", exc_info=True)
             await asyncio.sleep(1)
 
     # Start sync workers
@@ -1830,7 +1863,7 @@ async def websocket_endpoint(websocket: WebSocket, display_id: str):
     except WebSocketDisconnect:
         manager.disconnect(websocket, display_id)
     except Exception as e:
-        logger.error(f"WebSocket error on '{display_id}': {e}")
+        logger.error(f"WebSocket error on '{display_id}': {e}", exc_info=True)
         manager.disconnect(websocket, display_id)
     finally:
         heartbeat_task.cancel()
@@ -1909,6 +1942,8 @@ async def verify_and_save_api_key(source: str, payload: dict, db: Session = Depe
                 db_key = "europeana_api_key"
             else:
                 raise HTTPException(400, f"Unsupported museum target: {source}")
+    except HTTPException:
+        raise   # A6: don't re-wrap a deliberate 400 (unsupported source) as a 401 "Validation Failed"
     except Exception as e:
         raise HTTPException(401, detail=f"Validation Failed: {str(e)}")
 
@@ -2066,11 +2101,25 @@ CATALOG_DIR = Path("static/catalog")
 # SD_USER_AGENT (the descriptive UA Wikimedia/museums require) now lives in config.py so the
 # offline tools/ scripts can reuse it without importing this app.
 
+# A2: mtime-keyed memo for the bundled catalog JSON. suggest_catalog/search_catalog walk every
+# collection per keystroke and previously re-opened + re-parsed index.json + each <id>.json every time.
+# We cache the parsed result keyed by (path, mtime) and hand back a deepcopy, because callers mutate
+# what they get (_catalog_index does `.extend(subscribed)` / `setdefault("origin", ...)`) — a shared
+# object would accumulate those mutations across calls.
+_local_json_cache: dict = {}
+
+
 def _read_local_json(path: Path):
     if not path.exists():
         return None
+    mtime = path.stat().st_mtime
+    hit = _local_json_cache.get(path)
+    if hit and hit[0] == mtime:
+        return copy.deepcopy(hit[1])
     with open(path) as f:
-        return json.load(f)
+        data = json.load(f)
+    _local_json_cache[path] = (mtime, data)
+    return copy.deepcopy(data)
 
 async def _catalog_remote_base(db: Session) -> Optional[str]:
     """Optional remote override: a static base URL hosting index.json + <id>.json (no server needed)."""
@@ -2217,7 +2266,7 @@ async def _download_image_to_library(source_url: str, *, filename: str,
                     break
                 url = str(resp.url.join(loc))   # resolve relative redirects against the current URL
                 try:
-                    federation._assert_public_url(url)
+                    await asyncio.to_thread(federation._assert_public_url, url)   # C2: DNS off the loop
                 except federation.FederationError as e:
                     raise HTTPException(502, detail=f"Image redirected to a blocked host ({e}).")
             if resp.status_code == 429:
@@ -2481,9 +2530,9 @@ async def search_catalog(q: str = "", db: Session = Depends(get_db)):
 @app.get("/api/catalog/suggest")
 async def suggest_catalog(q: str = "", db: Session = Depends(get_db)):
     """Lightweight autocomplete for the Museum search box — distinct artist names + titles from the
-    catalog whose text contains the typed query, startswith matches ranked first. Reuses the cached
-    catalog (no per-keystroke disk work). Defined *before* the `/{collection_id}` route so "suggest"
-    isn't swallowed as a collection id."""
+    catalog whose text contains the typed query, startswith matches ranked first. Backed by the
+    mtime-keyed `_read_local_json` cache (A2), so repeat keystrokes don't re-read the catalog from disk.
+    Defined *before* the `/{collection_id}` route so "suggest" isn't swallowed as a collection id."""
     ql = q.strip().lower()
     if len(ql) < 2:
         return {"query": q, "suggestions": []}
@@ -2535,7 +2584,7 @@ async def add_catalog_item(payload: CatalogAddPayload, db: Session = Depends(get
     # (a malicious manifest could point image.full_url at an internal/loopback address).
     if payload.collection_id.startswith(SUB_PREFIX):
         try:
-            federation._assert_public_url(item["source_url"])
+            await asyncio.to_thread(federation._assert_public_url, item["source_url"])
         except federation.FederationError as e:
             raise HTTPException(400, detail=f"Refused to fetch image: {e}") from e
     art = await _download_and_create_artwork(
@@ -2566,7 +2615,7 @@ async def add_catalog_items_bulk(payload: CatalogAddBulkPayload, db: Session = D
         # Federated items are third-party — SSRF-guard the image URL before the server fetches it.
         if it.collection_id.startswith(SUB_PREFIX):
             try:
-                federation._assert_public_url(item["source_url"])
+                await asyncio.to_thread(federation._assert_public_url, item["source_url"])
             except federation.FederationError:
                 failed += 1; continue
         try:
@@ -2689,15 +2738,15 @@ def _identity_public(rows: dict) -> dict:
     }
 
 
-def _assert_public_urls(items: list) -> None:
+async def _assert_public_urls(items: list) -> None:
     """SSRF-guard every image URL the publisher pasted (defense in depth: the subscriber checks too,
-    but we never persist a private/loopback target)."""
+    but we never persist a private/loopback target). C2: getaddrinfo is blocking → thread each check."""
     for it in items or []:
         for url in (it.get("full_url"), it.get("thumbnail_url")):
             if not url:
                 continue
             try:
-                federation._assert_public_url(url)
+                await asyncio.to_thread(federation._assert_public_url, url)
             except federation.FederationError as e:
                 raise HTTPException(400, detail=f"Image URL rejected ({url}): {e}") from e
 
@@ -2816,18 +2865,18 @@ async def list_publisher_collections(db: Session = Depends(get_db)):
             db.query(PublisherCollectionModel).order_by(PublisherCollectionModel.id).all()]
 
 
-def _checked_cover(payload: PublisherCollectionPayload) -> str | None:
+async def _checked_cover(payload: PublisherCollectionPayload) -> str | None:
     cover = (payload.cover_image or "").strip() or None
     if cover:
-        _assert_public_urls([{"full_url": cover}])
+        await _assert_public_urls([{"full_url": cover}])
     return cover
 
 
 @app.post("/api/publisher/collections")
 async def create_publisher_collection(payload: PublisherCollectionPayload, db: Session = Depends(get_db)):
     items = [it.model_dump() for it in payload.items]
-    _assert_public_urls(items)
-    cover = _checked_cover(payload)
+    await _assert_public_urls(items)
+    cover = await _checked_cover(payload)
     slug = _unique_slug(db, payload.slug or payload.title)
     norm = [publisher.build_item(it) for it in items]
     c = PublisherCollectionModel(
@@ -2855,8 +2904,8 @@ async def update_publisher_collection(cid: int, payload: PublisherCollectionPayl
                                       db: Session = Depends(get_db)):
     c = _get_collection(db, cid)
     items = [it.model_dump() for it in payload.items]
-    _assert_public_urls(items)
-    cover = _checked_cover(payload)
+    await _assert_public_urls(items)
+    cover = await _checked_cover(payload)
     if payload.slug and publisher._slugify(payload.slug) != c.slug:
         c.slug = _unique_slug(db, payload.slug, exclude_id=c.id)
     c.title = payload.title.strip()
@@ -2891,7 +2940,7 @@ async def export_publisher_collection(cid: int, db: Session = Depends(get_db)):
     if not identity.get("publisher_private_key"):
         raise HTTPException(400, detail="Set up your publisher identity first (it creates a signing key).")
     items = json.loads(c.items_json or "[]")
-    _assert_public_urls(items)
+    await _assert_public_urls(items)
     generated_at = datetime.now(UTC).isoformat(timespec="seconds")
     manifest, errors = publisher.assemble_validate_sign(
         _meta_for(c, identity), items,

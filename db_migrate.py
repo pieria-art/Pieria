@@ -39,7 +39,12 @@ RETIRED_REVISIONS = frozenset({
 
 
 def _alembic_config() -> Config:
-    return Config("alembic.ini")
+    # D2: single-source the DB URL — the boot migration path uses the same (env-overridable) URL the
+    # app engine does, instead of alembic.ini's separate hardcoded literal drifting from database.py.
+    from database import SQLALCHEMY_DATABASE_URL
+    cfg = Config("alembic.ini")
+    cfg.set_main_option("sqlalchemy.url", SQLALCHEMY_DATABASE_URL)
+    return cfg
 
 
 def _current_stamp(engine) -> Optional[str]:
