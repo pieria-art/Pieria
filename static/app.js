@@ -115,8 +115,44 @@ async function init() {
 
     showManageHint();
 
+    initNightSchedule();
+
     await refreshPlaylists(true);
     setInterval(() => refreshPlaylists(false), 15000);
+}
+
+// R1-F2: Night & Quiet Hours. The server resolves the current brightness/warmth/quiet from the wall
+// clock (hierarchy lives there); the Canvas just applies a GPU-cheap CSS veil. `?schedule=off` opts a
+// given display out (dev-rule #4); `?now=HH:MM` (also honored server-side) is handy for demos/time-lapse.
+function applyScheduleState(state) {
+    const warm = document.getElementById('night-warm');
+    const dim = document.getElementById('night-dim');
+    const black = document.getElementById('quiet-blackout');
+    if (!warm || !dim || !black) return;
+    if (!state || !state.enabled) {   // feature off -> fully neutral
+        warm.style.opacity = '0'; dim.style.opacity = '0'; black.style.opacity = '0';
+        return;
+    }
+    warm.style.opacity = String(state.warmth || 0);
+    dim.style.opacity = String(1 - (state.brightness ?? 1));   // brightness 1 -> no dim
+    // Always software-blackout during quiet hours; on the appliance HDMI-CEC also powers the panel
+    // off (this is the fallback that works on any TV / off-Pi).
+    black.style.opacity = state.quiet ? '1' : '0';
+}
+
+async function refreshScheduleState() {
+    try {
+        const nowOverride = urlParams.get('now');
+        const url = `${API_BASE}/api/displays/${encodeURIComponent(DISPLAY_ID)}/schedule-state`
+            + (nowOverride ? `?now=${encodeURIComponent(nowOverride)}` : '');
+        applyScheduleState(await fetch(url).then(r => r.json()));
+    } catch (e) { /* transient — the next poll retries; art keeps showing */ }
+}
+
+function initNightSchedule() {
+    if (urlParams.get('schedule') === 'off') return;   // dev/per-display opt-out
+    refreshScheduleState();
+    setInterval(refreshScheduleState, 60000);          // re-resolve each minute for the slow ramps
 }
 
 // Briefly point a first-time viewer at the admin, then fade out (so it's invisible on a wall).

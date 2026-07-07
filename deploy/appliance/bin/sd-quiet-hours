@@ -1,0 +1,56 @@
+#!/usr/bin/env bash
+# sd-quiet-hours — appliance HDMI-CEC panel power, driven by the app's Night & Quiet Hours schedule.
+#
+# Polls the local server's schedule-state and, on a TRANSITION into/out of quiet hours, powers the TV
+# off/on over HDMI-CEC. Firing only on change (not every tick) means it never fights a viewer who
+# turned the TV on with their own remote mid-window. The Canvas's software blackout is the always-on
+# fallback (works on any TV and off-Pi); this is the real-panel-off enhancement on top of it, and only
+# when the schedule's quiet_mode is "cec".
+#
+# Run on a short systemd timer (sd-quiet-hours.timer). Reads SERVER_URL + DISPLAY_ID from the appliance
+# config so it targets the same server/display as the kiosk.
+#
+# Usage: sd-quiet-hours <CONFIG_FILE>   (the appliance screen-docent.conf)
+set -u
+
+CONF="${1:-}"
+if [ -n "$CONF" ] && [ -r "$CONF" ]; then
+  # shellcheck disable=SC1090
+  . "$CONF"
+fi
+SERVER_URL="${SERVER_URL:-http://localhost:8000}"
+DISPLAY_ID="${DISPLAY_ID:-default}"
+STATE_FILE="/run/sd-quiet-hours.state"     # last power state we applied (on|off)
+
+resp="$(curl -fsS --max-time 8 "$SERVER_URL/api/displays/$DISPLAY_ID/schedule-state" 2>/dev/null)" || exit 0
+
+# Only this script owns the panel when the user chose CEC; "blackout" mode is handled entirely in the
+# browser, so leave the TV's power alone.
+case "$resp" in
+  *'"quiet_mode":"cec"'*) ;;
+  *) exit 0 ;;
+esac
+
+want=on
+case "$resp" in
+  *'"quiet":true'*) want=off ;;
+esac
+
+prev="$(cat "$STATE_FILE" 2>/dev/null || true)"
+if [ "$want" = "$prev" ]; then
+  exit 0     # no transition — don't re-issue CEC (respects a manual power toggle)
+fi
+
+if ! command -v cec-client >/dev/null 2>&1; then
+  logger -t sd-quiet-hours "cec-client not installed; cannot power the panel $want (software blackout still applies)"
+  exit 0
+fi
+
+# cec-client -s: single command then exit; -d 1: quietest log level. Address 0 = the TV.
+if [ "$want" = "off" ]; then
+  echo 'standby 0' | cec-client -s -d 1 >/dev/null 2>&1 || true
+else
+  echo 'on 0' | cec-client -s -d 1 >/dev/null 2>&1 || true
+fi
+printf '%s' "$want" > "$STATE_FILE"
+logger -t sd-quiet-hours "panel powered $want (quiet-hours transition, display=$DISPLAY_ID)"

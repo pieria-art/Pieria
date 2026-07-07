@@ -89,6 +89,36 @@ body.force-portrait .ui-overlay-wrapper {
     z-index: 100;
 }
 
+/* --------------------------------------------------------------------------
+   R1-F2 Night & Quiet Hours overlays (clock-driven, set from app.js)
+   -------------------------------------------------------------------------- */
+/* Warm + dim veils tint the artwork only (z 50 < controls z 100), so the placard/controls stay
+   readable if someone interacts at night. Slow transition keeps the shift imperceptible between the
+   60s polls (and makes a lovely sunset time-lapse). */
+#night-warm, #night-dim {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 50;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 4s ease-in-out;
+}
+#night-warm { background: #ff7b19; mix-blend-mode: multiply; }   /* amber warmth */
+#night-dim  { background: #000; }                                 /* brightness reduction */
+
+/* Software panel-off: full blackout above every layer (the fallback when HDMI-CEC isn't available). */
+#quiet-blackout {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 300;
+    pointer-events: none;
+    background: #000;
+    opacity: 0;
+    transition: opacity 3s ease-in-out;
+}
+
 /* Museum Placard - Dynamic Height for Full Descriptions */
 .museum-placard {
     position: absolute;
