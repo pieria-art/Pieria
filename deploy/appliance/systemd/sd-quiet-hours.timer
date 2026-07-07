@@ -1,0 +1,16 @@
+# Installed by install.sh (all-in-one only) as:
+#   /etc/systemd/system/sd-quiet-hours.timer
+#
+# Runs sd-quiet-hours.service ~60s after boot and every 60s thereafter, so the panel
+# follows the quiet-hours window within a minute of each boundary. Firing on-change only
+# (state file) means this cheap poll doesn't spam CEC.
+[Unit]
+Description=Poll Screen Docent quiet-hours schedule every 60s
+
+[Timer]
+OnBootSec=60
+OnUnitActiveSec=60
+AccuracySec=10s
+
+[Install]
+WantedBy=timers.target

@@ -40,7 +40,9 @@ apt-get update
 # chromium-browser is the Raspberry Pi OS package; plain `chromium` on others.
 # avahi-daemon powers <hostname>.local (mDNS) so users reach the box by name, not IP.
 # wlr-randr applies the ROTATE= display rotation for portrait/rotated panels.
-apt-get install -y --no-install-recommends cage seatd curl avahi-daemon wlr-randr \
+# cec-utils provides cec-client, used by sd-quiet-hours to power the TV off/on over HDMI-CEC
+# (Night & Quiet Hours). Non-fatal if unavailable — the Canvas software blackout still applies.
+apt-get install -y --no-install-recommends cage seatd curl avahi-daemon wlr-randr cec-utils \
   || { echo "package install failed" >&2; exit 1; }
 if ! apt-get install -y --no-install-recommends chromium-browser; then
   apt-get install -y --no-install-recommends chromium
@@ -68,6 +70,7 @@ install -m 0755 "$BIN_SRC/sd-kiosk-launch"   /usr/local/bin/sd-kiosk-launch
 install -m 0755 "$BIN_SRC/sd-wait-for-server" /usr/local/bin/sd-wait-for-server
 install -m 0755 "$BIN_SRC/sd-rotate-keep"    /usr/local/bin/sd-rotate-keep
 install -m 0755 "$BIN_SRC/sd-metrics"        /usr/local/bin/sd-metrics
+install -m 0755 "$BIN_SRC/sd-quiet-hours"    /usr/local/bin/sd-quiet-hours
 install -m 0755 "$BIN_SRC/sd-update"         /usr/local/bin/sd-update
 
 echo "==> Installing boot splash (shows the admin URL while the server starts)"
@@ -149,6 +152,12 @@ if [ "${ALL_IN_ONE:-0}" = "1" ]; then
   install -m 0644 "$UNIT_SRC/sd-metrics.timer" /etc/systemd/system/sd-metrics.timer
   systemctl daemon-reload
   systemctl enable --now sd-metrics.timer || true
+
+  echo "==> Installing quiet-hours HDMI-CEC panel power timer (Night & Quiet Hours)"
+  sed "s#__BOOT_CONF__#$BOOT_CONF#g" "$UNIT_SRC/sd-quiet-hours.service" > /etc/systemd/system/sd-quiet-hours.service
+  install -m 0644 "$UNIT_SRC/sd-quiet-hours.timer" /etc/systemd/system/sd-quiet-hours.timer
+  systemctl daemon-reload
+  systemctl enable --now sd-quiet-hours.timer || true
 
   echo "==> Advertising the server over mDNS (friendly name in network browsers)"
   install -d /etc/avahi/services

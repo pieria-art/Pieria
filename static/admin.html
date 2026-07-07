@@ -763,6 +763,64 @@
                     </div>
                 </div>
 
+                <!-- Night & Quiet Hours (R1-F2) — clock-driven warm-shift/dim + optional panel-off overnight -->
+                <div id="night-schedule-card" style="background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 25px;">
+                    <h3 style="margin-top: 0; font-size: 0.9rem; color: var(--text-color);">🌙 Night &amp; Quiet Hours</h3>
+                    <p style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 18px;">
+                        Warms and dims the display in the evening so it doesn't glow like a mini-sun at night, then
+                        brightens by morning — on a clock, no sensor. Optionally blanks (or powers off) the panel
+                        overnight. E-ink displays ignore this (no backlight). Times use this device's clock.
+                    </p>
+
+                    <label style="display:flex; align-items:center; gap:10px; font-size:0.85rem; color:var(--text-color); text-transform:none; letter-spacing:normal; margin-bottom:18px;">
+                        <input type="checkbox" id="sched-enabled"> Enable warm-shift &amp; dimming
+                    </label>
+
+                    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:16px;">
+                        <div>
+                            <label style="font-size:0.72rem; color:#94a3b8;">Day brightness · <span id="sched-day-b-val"></span></label>
+                            <input type="range" id="sched-day-brightness" min="0.1" max="1" step="0.02" style="width:100%;">
+                        </div>
+                        <div>
+                            <label style="font-size:0.72rem; color:#94a3b8;">Night brightness · <span id="sched-night-b-val"></span></label>
+                            <input type="range" id="sched-night-brightness" min="0.1" max="1" step="0.02" style="width:100%;">
+                        </div>
+                        <div>
+                            <label style="font-size:0.72rem; color:#94a3b8;">Night warmth · <span id="sched-warmth-val"></span></label>
+                            <input type="range" id="sched-night-warmth" min="0" max="1" step="0.02" style="width:100%;">
+                        </div>
+                    </div>
+
+                    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:16px; margin-top:16px;">
+                        <div><label style="font-size:0.72rem; color:#94a3b8;">Evening dim starts</label><input type="time" id="sched-evening-start" style="width:100%; background:#0f172a; border:1px solid var(--border-color); color:white; padding:8px; border-radius:6px;"></div>
+                        <div><label style="font-size:0.72rem; color:#94a3b8;">Full night by</label><input type="time" id="sched-night-start" style="width:100%; background:#0f172a; border:1px solid var(--border-color); color:white; padding:8px; border-radius:6px;"></div>
+                        <div><label style="font-size:0.72rem; color:#94a3b8;">Morning brighten starts</label><input type="time" id="sched-morning-start" style="width:100%; background:#0f172a; border:1px solid var(--border-color); color:white; padding:8px; border-radius:6px;"></div>
+                        <div><label style="font-size:0.72rem; color:#94a3b8;">Full day by</label><input type="time" id="sched-day-start" style="width:100%; background:#0f172a; border:1px solid var(--border-color); color:white; padding:8px; border-radius:6px;"></div>
+                    </div>
+
+                    <hr style="border:none; border-top:1px solid var(--border-color); margin:22px 0;">
+
+                    <label style="display:flex; align-items:center; gap:10px; font-size:0.85rem; color:var(--text-color); text-transform:none; letter-spacing:normal; margin-bottom:14px;">
+                        <input type="checkbox" id="sched-quiet-enabled"> Blank the panel during quiet hours (opt-in)
+                    </label>
+                    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:16px;">
+                        <div><label style="font-size:0.72rem; color:#94a3b8;">Quiet hours start</label><input type="time" id="sched-quiet-start" style="width:100%; background:#0f172a; border:1px solid var(--border-color); color:white; padding:8px; border-radius:6px;"></div>
+                        <div><label style="font-size:0.72rem; color:#94a3b8;">Quiet hours end</label><input type="time" id="sched-quiet-end" style="width:100%; background:#0f172a; border:1px solid var(--border-color); color:white; padding:8px; border-radius:6px;"></div>
+                        <div>
+                            <label style="font-size:0.72rem; color:#94a3b8;">Panel off via</label>
+                            <select id="sched-quiet-mode" style="width:100%; background:#0f172a; border:1px solid var(--border-color); color:white; padding:8px; border-radius:6px;">
+                                <option value="cec">HDMI-CEC power off (appliance)</option>
+                                <option value="blackout">Software blackout only</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div style="display:flex; align-items:center; gap:14px; margin-top:22px;">
+                        <button class="primary" id="sched-save-btn" onclick="saveNightSchedule()" style="padding:12px 22px; font-weight:600;">Save</button>
+                        <span id="sched-result" style="font-size:0.8rem;"></span>
+                    </div>
+                </div>
+
                 <!-- Discovery Maintenance -->
                 <div style="background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 25px;">
                     <h3 style="margin-top: 0; font-size: 0.9rem; color: var(--text-color);">Discovery Queue Maintenance</h3>

@@ -54,6 +54,7 @@ async function init() {
     loadFrameSettings();   // non-blocking: populate the Frame TV panel
     loadCatalogSource();   // non-blocking: populate the Catalog Source panel
     loadDefaultPlaylist(); // non-blocking: populate the Default Playlist panel
+    loadNightSchedule();   // non-blocking: populate the Night & Quiet Hours panel
     loadCatalogCount();    // non-blocking: show the Museum Art count without opening the view
     loadPhotosCount();     // non-blocking: show the My Photos count
 
@@ -2274,6 +2275,75 @@ async function saveDefaultPlaylist() {
         const data = await resp.json();
         if (!resp.ok) { result.textContent = '✗ ' + (data.detail || 'Save failed'); result.style.color = '#ef4444'; }
         else { result.textContent = sel.value ? `✓ Boots to “${sel.value}”` : '✓ Automatic'; result.style.color = '#34d399'; }
+    } catch (e) { result.textContent = '✗ Network error'; result.style.color = '#ef4444'; }
+    finally { btn.disabled = false; btn.textContent = orig; }
+}
+
+// --- Night & Quiet Hours (R1-F2) ---
+const _SCHED_RANGES = {   // range input id -> live value-label id
+    'sched-day-brightness': 'sched-day-b-val',
+    'sched-night-brightness': 'sched-night-b-val',
+    'sched-night-warmth': 'sched-warmth-val',
+};
+function _schedShowRangeVals() {
+    for (const [inp, out] of Object.entries(_SCHED_RANGES)) {
+        const i = document.getElementById(inp), o = document.getElementById(out);
+        if (i && o) o.textContent = Math.round(parseFloat(i.value) * 100) + '%';
+    }
+}
+
+async function loadNightSchedule() {
+    const card = document.getElementById('night-schedule-card');
+    if (!card) return;
+    try {
+        const s = await fetch(`${API_BASE}/api/settings/display-schedule`).then(r => r.json());
+        const set = (id, v) => { const el = document.getElementById(id); if (el) el.value = v; };
+        document.getElementById('sched-enabled').checked = !!s.enabled;
+        document.getElementById('sched-quiet-enabled').checked = !!s.quiet_enabled;
+        set('sched-day-brightness', s.day_brightness);
+        set('sched-night-brightness', s.night_brightness);
+        set('sched-night-warmth', s.night_warmth);
+        set('sched-evening-start', s.evening_start);
+        set('sched-night-start', s.night_start);
+        set('sched-morning-start', s.morning_start);
+        set('sched-day-start', s.day_start);
+        set('sched-quiet-start', s.quiet_start);
+        set('sched-quiet-end', s.quiet_end);
+        set('sched-quiet-mode', s.quiet_mode);
+        _schedShowRangeVals();
+        // Keep the % labels live as the sliders move.
+        for (const inp of Object.keys(_SCHED_RANGES)) {
+            const el = document.getElementById(inp);
+            if (el) el.oninput = _schedShowRangeVals;
+        }
+    } catch (e) { /* non-fatal: the card just stays blank */ }
+}
+
+async function saveNightSchedule() {
+    const btn = document.getElementById('sched-save-btn');
+    const result = document.getElementById('sched-result');
+    const orig = btn.textContent;
+    btn.disabled = true; btn.textContent = '⏳ Saving…'; result.textContent = '';
+    const v = id => document.getElementById(id).value;
+    const payload = {
+        enabled: document.getElementById('sched-enabled').checked,
+        quiet_enabled: document.getElementById('sched-quiet-enabled').checked,
+        day_brightness: parseFloat(v('sched-day-brightness')),
+        night_brightness: parseFloat(v('sched-night-brightness')),
+        night_warmth: parseFloat(v('sched-night-warmth')),
+        evening_start: v('sched-evening-start'), night_start: v('sched-night-start'),
+        morning_start: v('sched-morning-start'), day_start: v('sched-day-start'),
+        quiet_start: v('sched-quiet-start'), quiet_end: v('sched-quiet-end'),
+        quiet_mode: v('sched-quiet-mode'),
+    };
+    try {
+        const resp = await fetch(`${API_BASE}/api/settings/display-schedule`, {
+            method: 'POST', headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        });
+        const data = await resp.json();
+        if (!resp.ok) { result.textContent = '✗ ' + (data.detail || 'Save failed'); result.style.color = '#ef4444'; }
+        else { result.textContent = '✓ Saved — displays update within a minute'; result.style.color = '#34d399'; }
     } catch (e) { result.textContent = '✗ Network error'; result.style.color = '#ef4444'; }
     finally { btn.disabled = false; btn.textContent = orig; }
 }
