@@ -36,3 +36,6 @@ printf '{"throttled": %s, "temp_c": %s}\n' \
   "$( [ -n "$TEMP" ] && printf '%s' "$TEMP" || printf 'null' )" \
   > "$TMP"
 mv -f "$TMP" "$OUT"
+# mktemp makes the file 0600; the non-root (uid 1000) container reads it via host_health, so make it
+# world-readable (root writes it, the container only reads).
+chmod 0644 "$OUT" 2>/dev/null || true

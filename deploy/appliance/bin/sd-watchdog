@@ -73,13 +73,28 @@ server_ok=0
 curl -fsS --max-time 8 -o /dev/null "${SERVER_URL%/}/logo.svg" 2>/dev/null && server_ok=1
 
 kiosk_ok=0
-# [c] keeps pgrep from matching itself. Kiosk is healthy when the compositor AND a browser are up.
+# [c] keeps pgrep from matching itself. The compositor AND a browser must be up.
 if pgrep -f "[c]age" >/dev/null 2>&1 && pgrep -f "[c]hromium" >/dev/null 2>&1; then
   kiosk_ok=1
 fi
 
+# Paint probe: process-alive isn't enough — a Canvas that connected while the server was unhealthy stays
+# WS-connected (so it looks alive) but never starts its image loop (black screen). now-playing exposes
+# exactly that: our display is registered but its artwork is null. If cage+chromium are up but the display
+# isn't actually painting, a kiosk relaunch (browser reload) is the fix — which is what recovers it.
+paint_ok=1
+if [ "$server_ok" = 1 ] && [ "$kiosk_ok" = 1 ]; then
+  paint_ok="$(curl -fsS --max-time 8 "${SERVER_URL%/}/api/remote/displays" 2>/dev/null \
+    | SD_DID="$DISPLAY_ID" python3 -c 'import os,sys,json
+try:
+    d = json.load(sys.stdin); did = os.environ["SD_DID"]
+    print(1 if any(x.get("display_id") == did and x.get("artwork") for x in d) else 0)
+except Exception:
+    print(1)' 2>/dev/null || echo 1)"
+fi
+
 healthy=0
-[ "$server_ok" = 1 ] && [ "$kiosk_ok" = 1 ] && healthy=1
+[ "$server_ok" = 1 ] && [ "$kiosk_ok" = 1 ] && [ "$paint_ok" = 1 ] && healthy=1
 
 # --- hysteresis + escalation --------------------------------------------------
 fails="$(cat "$STATE" 2>/dev/null || echo 0)"
@@ -115,7 +130,7 @@ else
       message="would $want (fails=$fails) — observe mode, no action taken"
     fi
   else
-    message="unhealthy (server_ok=$server_ok kiosk_ok=$kiosk_ok fails=$fails) — within hysteresis"
+    message="unhealthy (server_ok=$server_ok kiosk_ok=$kiosk_ok paint_ok=$paint_ok fails=$fails) — within hysteresis"
   fi
 fi
 
@@ -123,9 +138,11 @@ printf '%s' "$fails" > "$STATE" 2>/dev/null || true
 
 # --- status file for the Devices console --------------------------------------
 tmp="$(mktemp "$OUT_DIR/.watchdog.XXXXXX" 2>/dev/null || echo "$STATUS.tmp")"
-printf '{"mode":"%s","checked_at":"%s","server_ok":%s,"kiosk_ok":%s,"consecutive_fails":%s,"action":"%s","message":"%s"}\n' \
-  "$MODE" "$now_iso" "$server_ok" "$kiosk_ok" "$fails" "$action" "$message" > "$tmp"
+printf '{"mode":"%s","checked_at":"%s","server_ok":%s,"kiosk_ok":%s,"paint_ok":%s,"consecutive_fails":%s,"action":"%s","message":"%s"}\n' \
+  "$MODE" "$now_iso" "$server_ok" "$kiosk_ok" "$paint_ok" "$fails" "$action" "$message" > "$tmp"
 mv -f "$tmp" "$STATUS" 2>/dev/null || true
+# mktemp makes 0600; the non-root container reads this for the Devices "Self-heal" tile — make it readable.
+chmod 0644 "$STATUS" 2>/dev/null || true
 
 [ "$action" != "none" ] && logger -t sd-watchdog "$message"
 exit 0
