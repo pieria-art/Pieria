@@ -1,0 +1,447 @@
+#!/usr/bin/env python3
+"""Screen Docent — first-run setup wizard (R1-F1).
+
+A tiny, dependency-free (Python stdlib only) web wizard that collects Wi-Fi + server/display config on
+first boot and writes the appliance `screen-docent.conf`, so a non-technical user never touches SSH or
+hand-edits a file. On a freshly flashed Pi it runs behind a `Docent-Setup` Wi-Fi hotspot + captive
+portal (see sd-setup-boot); here it is just the HTTP brain.
+
+Two modes:
+  * live      — writes the real boot-partition conf, joins Wi-Fi (nmcli), tears down the AP, reboots.
+  * --dry-run — writes a PREVIEW conf to a temp dir and shows the exact bytes it *would* write; never
+                touches the real conf, Wi-Fi, or reboots. Safe to run on a working Pi in-situ:
+                    python3 sd_setup.py --dry-run --port 8080
+                then open http://<pi>:8080 from a phone/laptop on the same network.
+
+The wizard NEVER touches Artwork/ or the database — it only ever writes screen-docent.conf.
+"""
+from __future__ import annotations
+
+import argparse
+import json
+import os
+import re
+import subprocess
+import threading
+from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+from pathlib import Path
+
+# --- pure config logic (unit-tested) ------------------------------------------
+
+# orientation choice -> (ROTATE value, human label). Landscape leaves ROTATE blank (the compositor
+# default); 90/270 are the two portrait mounts; 180 flips a landscape panel.
+ORIENTATIONS = {
+    "landscape": ("", "Landscape"),
+    "90": ("90", "Portrait (rotated 90°)"),
+    "270": ("270", "Portrait (rotated 270°)"),
+    "180": ("180", "Upside-down (180°)"),
+}
+
+_SERVER_URL_RE = re.compile(r"^https?://[^\s/]+(?::\d+)?(?:/.*)?$")
+_DISPLAY_ID_RE = re.compile(r"[^a-z0-9_-]+")
+
+
+def sanitize_display_id(raw: str) -> str:
+    """Lowercase, collapse anything that isn't [a-z0-9_-] to a single underscore, and trim leading/
+    trailing separators so an id never starts or ends with a stray '-' or '_'."""
+    return _DISPLAY_ID_RE.sub("_", (raw or "").strip().lower()).strip("_-")
+
+
+def validate_fields(fields: dict) -> dict:
+    """Return {field: error_message} for anything invalid — empty dict means the form is good.
+
+    Wi-Fi is optional (a wired / already-connected box needs none); if an SSID is given the rest is
+    accepted as-is (open networks have no password). SERVER_URL + DISPLAY_ID + orientation are required.
+    """
+    errors = {}
+    url = (fields.get("server_url") or "").strip()
+    if not url:
+        errors["server_url"] = "Enter your server address (e.g. http://localhost:8000)."
+    elif not _SERVER_URL_RE.match(url):
+        errors["server_url"] = "Must look like http://host:port (e.g. http://192.168.1.50:8000)."
+
+    if not sanitize_display_id(fields.get("display_id", "")):
+        errors["display_id"] = "Give this display a name (letters, numbers, - or _)."
+
+    if fields.get("orientation") not in ORIENTATIONS:
+        errors["orientation"] = "Choose an orientation."
+
+    return errors
+
+
+def build_conf(fields: dict, all_in_one: bool = False) -> str:
+    """Render the screen-docent.conf text from validated wizard fields.
+
+    Only kiosk variables land here (SERVER_URL/DISPLAY_ID/ROTATE/OUTPUT/…). Wi-Fi credentials are NOT
+    written to this FAT boot file — they go to NetworkManager via nmcli at commit time. GEMINI_API_KEY
+    is left blank (a separate, optional step for all-in-one AI).
+    """
+    rotate = ORIENTATIONS.get(fields.get("orientation", "landscape"), ("", ""))[0]
+    display_id = sanitize_display_id(fields.get("display_id", "")) or "display"
+    server_url = (fields.get("server_url") or "").strip() or "http://localhost:8000"
+    output = (fields.get("output") or "HDMI-A-1").strip()
+    return (
+        "# Screen Docent — Appliance configuration\n"
+        "# Written by the first-run setup wizard. Safe to edit on the SD card's boot partition.\n"
+        f"SERVER_URL={server_url}\n"
+        f"DISPLAY_ID={display_id}\n"
+        "MODE=\n"
+        "CYCLE_TIME=\n"
+        f"ROTATE={rotate}\n"
+        f"OUTPUT={output}\n"
+        "WAIT_TIMEOUT=0\n"
+        f"ALL_IN_ONE={'1' if all_in_one else '0'}\n"
+        "GEMINI_API_KEY=\n"
+    )
+
+
+def resolve_boot_conf_path() -> Path:
+    """Where the real conf lives — Bookworm moved it from /boot to /boot/firmware."""
+    firmware = Path("/boot/firmware")
+    return (firmware if firmware.is_dir() else Path("/boot")) / "screen-docent.conf"
+
+
+# --- HTTP server --------------------------------------------------------------
+
+# OS connectivity-check URLs. A captive portal answers these with a redirect so the "Sign in to
+# network" sheet pops on iOS/Android/Windows. (Only reachable via the AP's DNS catch-all on a real
+# first boot; harmless in dry-run.)
+_CAPTIVE_PROBES = {
+    "/generate_204", "/gen_204", "/hotspot-detect.html", "/library/test/success.html",
+    "/ncsi.txt", "/connecttest.txt", "/redirect", "/canonical.html", "/success.txt",
+}
+
+
+class SetupConfig:
+    """Runtime knobs shared with the request handler."""
+    def __init__(self, dry_run: bool, all_in_one: bool, boot_conf: Path, output: str):
+        self.dry_run = dry_run
+        self.all_in_one = all_in_one
+        self.boot_conf = boot_conf
+        self.output = output
+        self.preview_path = Path("/tmp/sd-setup-preview/screen-docent.conf")
+        self._revert_timer: threading.Timer | None = None
+
+
+def _apply_rotation(output: str, orientation: str, revert_after: int, cfg: SetupConfig) -> dict:
+    """Best-effort live rotate via wlr-randr (opt-in on the Pi), with an auto-revert so a wrong pick on
+    a keyboard-less wall mount can't strand the display. Returns a status dict for the UI."""
+    transform = {"landscape": "normal", "90": "90", "180": "180", "270": "270"}.get(orientation, "normal")
+    if not os.environ.get("WAYLAND_DISPLAY"):
+        return {"mode": "unavailable",
+                "message": "No Wayland session here — rotation applies on the real kiosk. Choice recorded."}
+    try:
+        subprocess.run(["wlr-randr", "--output", output, "--transform", transform],
+                       check=True, capture_output=True, timeout=10)
+    except (subprocess.SubprocessError, FileNotFoundError) as e:
+        return {"mode": "error", "message": f"Could not rotate: {e}"}
+
+    # Cancel any prior pending revert, then arm a new one.
+    if cfg._revert_timer:
+        cfg._revert_timer.cancel()
+
+    def _revert():
+        try:
+            subprocess.run(["wlr-randr", "--output", output, "--transform", "normal"],
+                           check=False, capture_output=True, timeout=10)
+        except (subprocess.SubprocessError, FileNotFoundError):
+            pass
+
+    cfg._revert_timer = threading.Timer(revert_after, _revert)
+    cfg._revert_timer.daemon = True
+    cfg._revert_timer.start()
+    return {"mode": "applied", "revert_in": revert_after,
+            "message": f"Applied — reverts in {revert_after}s unless you keep it."}
+
+
+def make_handler(cfg: SetupConfig):
+    class Handler(BaseHTTPRequestHandler):
+        # Quiet the default noisy logging.
+        def log_message(self, *args):  # noqa: D401
+            pass
+
+        def _send(self, code, body, ctype="application/json"):
+            data = body.encode() if isinstance(body, str) else body
+            self.send_response(code)
+            self.send_header("Content-Type", ctype)
+            self.send_header("Content-Length", str(len(data)))
+            self.send_header("Cache-Control", "no-store")
+            self.end_headers()
+            self.wfile.write(data)
+
+        def _json(self, code, obj):
+            self._send(code, json.dumps(obj))
+
+        def _body(self) -> dict:
+            length = int(self.headers.get("Content-Length") or 0)
+            if not length:
+                return {}
+            try:
+                return json.loads(self.rfile.read(length) or b"{}")
+            except json.JSONDecodeError:
+                return {}
+
+        def do_GET(self):
+            path = self.path.split("?", 1)[0]
+            if path == "/":
+                self._send(200, WIZARD_HTML, "text/html; charset=utf-8")
+            elif path == "/api/mode":
+                self._json(200, {"dry_run": cfg.dry_run, "all_in_one": cfg.all_in_one,
+                                 "boot_conf": str(cfg.boot_conf)})
+            elif path in _CAPTIVE_PROBES:
+                # Trigger the OS captive-portal sheet: redirect the probe to our wizard.
+                self.send_response(302)
+                self.send_header("Location", "/")
+                self.end_headers()
+            else:
+                # DNS catch-all sends every host here; unknown paths bounce to the wizard.
+                self.send_response(302)
+                self.send_header("Location", "/")
+                self.end_headers()
+
+        def do_POST(self):
+            path = self.path.split("?", 1)[0]
+            body = self._body()
+            if path == "/api/validate":
+                errors = validate_fields(body)
+                out = {"errors": errors}
+                if not errors:
+                    out["conf"] = build_conf(body, cfg.all_in_one)
+                self._json(200 if not errors else 422, out)
+            elif path == "/api/orientation":
+                self._json(200, _apply_rotation(cfg.output, body.get("orientation", "landscape"),
+                                                int(body.get("revert_after", 30)), cfg))
+            elif path == "/api/orientation/keep":
+                if cfg._revert_timer:
+                    cfg._revert_timer.cancel()
+                self._json(200, {"kept": True})
+            elif path == "/api/commit":
+                self._commit(body)
+            else:
+                self._json(404, {"error": "not found"})
+
+        def _commit(self, fields):
+            errors = validate_fields(fields)
+            if errors:
+                self._json(422, {"errors": errors})
+                return
+            conf = build_conf(fields, cfg.all_in_one)
+            ssid = (fields.get("wifi_ssid") or "").strip()
+
+            if cfg.dry_run:
+                cfg.preview_path.parent.mkdir(parents=True, exist_ok=True)
+                cfg.preview_path.write_text(conf)
+                self._json(200, {
+                    "dry_run": True,
+                    "conf": conf,
+                    "preview_path": str(cfg.preview_path),
+                    "would_write_to": str(cfg.boot_conf),
+                    "would_join_wifi": ssid or None,
+                    "would_reboot": True,
+                    "message": "Dry run — nothing on this device was changed. Above is exactly what a "
+                               "real first boot would write.",
+                })
+                return
+
+            # --- live path (Pi-gated; runs on a real first boot) ---
+            try:
+                cfg.boot_conf.write_text(conf)
+                if ssid:
+                    _join_wifi(ssid, fields.get("wifi_pass", ""))
+                _schedule_reboot()
+                self._json(200, {"committed": True, "wrote_to": str(cfg.boot_conf),
+                                 "joined_wifi": ssid or None, "rebooting": True,
+                                 "message": "Saved. The display will restart into your gallery now."})
+            except Exception as e:  # noqa: BLE001 — surface any commit failure to the user
+                self._json(500, {"error": f"Commit failed: {e}"})
+
+    return Handler
+
+
+def _join_wifi(ssid: str, password: str) -> None:
+    """Join Wi-Fi via NetworkManager (Bookworm default). Live-mode only."""
+    cmd = ["nmcli", "device", "wifi", "connect", ssid]
+    if password:
+        cmd += ["password", password]
+    subprocess.run(cmd, check=True, capture_output=True, timeout=45)
+
+
+def _schedule_reboot() -> None:
+    """Reboot shortly after responding, so the user sees the success page first. Live-mode only."""
+    subprocess.Popen(["sh", "-c", "sleep 3; systemctl reboot"])
+
+
+def main(argv=None):
+    ap = argparse.ArgumentParser(description="Screen Docent first-run setup wizard")
+    ap.add_argument("--dry-run", action="store_true",
+                    help="Run the full wizard but change nothing (safe to run on a working Pi).")
+    ap.add_argument("--port", type=int, default=80, help="Port to serve on (default 80; use 8080 for dry-run).")
+    ap.add_argument("--all-in-one", action="store_true", help="Preselect ALL_IN_ONE=1 / localhost server.")
+    ap.add_argument("--boot-conf", default="", help="Override the boot-partition conf path.")
+    ap.add_argument("--output", default="HDMI-A-1", help="HDMI output for the live-rotate preview.")
+    args = ap.parse_args(argv)
+
+    boot_conf = Path(args.boot_conf) if args.boot_conf else resolve_boot_conf_path()
+    cfg = SetupConfig(dry_run=args.dry_run, all_in_one=args.all_in_one, boot_conf=boot_conf, output=args.output)
+    server = ThreadingHTTPServer(("0.0.0.0", args.port), make_handler(cfg))
+    mode = "DRY RUN (nothing will be changed)" if args.dry_run else "LIVE"
+    print(f"Screen Docent setup wizard — {mode} — http://0.0.0.0:{args.port}  (conf target: {boot_conf})")
+    try:
+        server.serve_forever()
+    except KeyboardInterrupt:
+        server.shutdown()
+
+
+# --- wizard page (self-contained; no external assets so it works behind the captive portal) ----------
+WIZARD_HTML = """<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Set up your Screen Docent</title>
+<style>
+  :root { --bg:#0f172a; --card:#1e293b; --border:#334155; --accent:#3b82f6; --text:#f1f5f9; --muted:#94a3b8; --danger:#ef4444; --ok:#34d399; }
+  * { box-sizing: border-box; }
+  body { margin:0; padding:20px; background:var(--bg); color:var(--text); font-family:'Inter',-apple-system,sans-serif; min-height:100vh; }
+  .wrap { max-width:440px; margin:0 auto; }
+  h1 { font-size:1.4rem; margin:8px 0 4px; }
+  .sub { color:var(--muted); font-size:0.85rem; margin-bottom:18px; }
+  .banner { background:#78350f; color:#fde68a; border:1px solid #b45309; border-radius:8px; padding:10px 12px; font-size:0.8rem; margin-bottom:18px; }
+  .card { background:var(--card); border:1px solid var(--border); border-radius:14px; padding:18px; margin-bottom:16px; }
+  label { display:block; font-size:0.72rem; text-transform:uppercase; letter-spacing:0.06rem; color:var(--muted); margin:14px 0 6px; }
+  label:first-child { margin-top:0; }
+  input[type=text], input[type=password], select { width:100%; background:var(--bg); border:1px solid var(--border); color:var(--text); padding:11px; border-radius:8px; font-size:1rem; outline:none; }
+  input:focus, select:focus { border-color:var(--accent); }
+  .err { color:var(--danger); font-size:0.75rem; margin-top:5px; display:none; }
+  .hint { color:var(--muted); font-size:0.72rem; margin-top:5px; }
+  button { background:var(--accent); color:white; border:none; padding:13px 18px; border-radius:9px; font-size:0.95rem; font-weight:600; cursor:pointer; width:100%; }
+  button.secondary { background:transparent; border:1px solid var(--border); color:var(--text); }
+  button:disabled { opacity:0.5; cursor:default; }
+  .row { display:flex; gap:10px; }
+  pre { background:var(--bg); border:1px solid var(--border); border-radius:8px; padding:12px; font-size:0.75rem; overflow-x:auto; white-space:pre-wrap; word-break:break-word; color:#cbd5e1; }
+  .ok { color:var(--ok); } .muted { color:var(--muted); font-size:0.8rem; }
+  .hidden { display:none; }
+</style>
+</head><body>
+<div class="wrap">
+  <h1>Set up your display</h1>
+  <div class="sub">A couple of details and your gallery is live. No apps, no accounts.</div>
+  <div id="mode-banner" class="banner hidden"></div>
+
+  <div class="card" id="form-card">
+    <label>Wi-Fi network <span style="text-transform:none;letter-spacing:0;color:var(--muted)">(skip if wired)</span></label>
+    <input type="text" id="wifi_ssid" placeholder="Your Wi-Fi name" autocomplete="off">
+    <label>Wi-Fi password</label>
+    <input type="password" id="wifi_pass" placeholder="Leave blank for an open network" autocomplete="off">
+
+    <label>Server address</label>
+    <input type="text" id="server_url" value="http://localhost:8000">
+    <div class="err" id="err-server_url"></div>
+    <div class="hint">Where Screen Docent runs. If this box runs the server too, keep localhost.</div>
+
+    <label>Name this display</label>
+    <input type="text" id="display_id" placeholder="living_room">
+    <div class="err" id="err-display_id"></div>
+    <div class="hint">Appears in the phone remote. Letters, numbers, - or _.</div>
+
+    <label>Orientation</label>
+    <select id="orientation">
+      <option value="landscape">Landscape (normal)</option>
+      <option value="90">Portrait — rotated 90°</option>
+      <option value="270">Portrait — rotated 270°</option>
+      <option value="180">Upside-down (180°)</option>
+    </select>
+    <div class="err" id="err-orientation"></div>
+    <div class="row" style="margin-top:8px;">
+      <button class="secondary" id="try-rotate" type="button">Preview this rotation on the screen</button>
+    </div>
+    <div class="hint" id="rotate-status"></div>
+
+    <div style="margin-top:20px;"><button id="continue">Review &amp; finish →</button></div>
+  </div>
+
+  <div class="card hidden" id="confirm-card">
+    <h1 style="font-size:1.1rem;">Does this look right?</h1>
+    <div class="muted" id="confirm-summary"></div>
+    <pre id="conf-preview"></pre>
+    <div id="commit-result" class="muted" style="margin-bottom:12px;"></div>
+    <div class="row">
+      <button class="secondary" id="back" type="button">← Back</button>
+      <button id="commit">Save &amp; start</button>
+    </div>
+  </div>
+</div>
+<script>
+const $ = id => document.getElementById(id);
+let MODE = { dry_run:false };
+
+async function loadMode() {
+  try {
+    MODE = await fetch('/api/mode').then(r=>r.json());
+    if (MODE.dry_run) {
+      const b = $('mode-banner'); b.classList.remove('hidden');
+      b.textContent = '🔒 Dry run — nothing on this device will be changed. This is a safe preview.';
+    }
+    if (MODE.all_in_one) $('server_url').value = 'http://localhost:8000';
+  } catch(e){}
+}
+
+function fields() {
+  return {
+    wifi_ssid: $('wifi_ssid').value, wifi_pass: $('wifi_pass').value,
+    server_url: $('server_url').value, display_id: $('display_id').value,
+    orientation: $('orientation').value,
+  };
+}
+function clearErrors(){ ['server_url','display_id','orientation'].forEach(f=>{ const e=$('err-'+f); e.style.display='none'; }); }
+function showErrors(errs){ clearErrors(); for(const [f,m] of Object.entries(errs)){ const e=$('err-'+f); if(e){ e.textContent=m; e.style.display='block'; } } }
+
+$('try-rotate').onclick = async () => {
+  $('rotate-status').textContent = 'Applying…';
+  const r = await fetch('/api/orientation', {method:'POST',headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({orientation: $('orientation').value})}).then(r=>r.json());
+  $('rotate-status').textContent = r.message || '';
+};
+
+$('continue').onclick = async () => {
+  const r = await fetch('/api/validate', {method:'POST',headers:{'Content-Type':'application/json'},
+    body: JSON.stringify(fields())});
+  const data = await r.json();
+  if (data.errors && Object.keys(data.errors).length) { showErrors(data.errors); return; }
+  clearErrors();
+  $('conf-preview').textContent = data.conf;
+  const f = fields();
+  $('confirm-summary').textContent = `Display “${f.display_id}” → ${f.server_url}` +
+    (f.wifi_ssid ? ` · Wi-Fi “${f.wifi_ssid}”` : ' · wired network');
+  $('form-card').classList.add('hidden');
+  $('confirm-card').classList.remove('hidden');
+  window.scrollTo(0,0);
+};
+
+$('back').onclick = () => { $('confirm-card').classList.add('hidden'); $('form-card').classList.remove('hidden'); };
+
+$('commit').onclick = async () => {
+  $('commit').disabled = true;
+  $('commit-result').textContent = 'Saving…';
+  const r = await fetch('/api/commit', {method:'POST',headers:{'Content-Type':'application/json'},
+    body: JSON.stringify(fields())});
+  const data = await r.json();
+  if (data.errors) { $('commit').disabled=false; $('commit-result').textContent='Please fix the form.'; return; }
+  if (data.dry_run) {
+    $('commit-result').innerHTML = '<span class="ok">✓ Dry run complete.</span> ' + data.message +
+      '<br>Would write to: <code>' + data.would_write_to + '</code>' +
+      (data.would_join_wifi ? '<br>Would join Wi-Fi: <code>' + data.would_join_wifi + '</code>' : '') +
+      '<br>Preview saved at: <code>' + data.preview_path + '</code>';
+    $('commit').textContent = 'Done (dry run)';
+  } else {
+    $('commit-result').innerHTML = '<span class="ok">✓ ' + (data.message||'Saved.') + '</span>';
+    $('commit').textContent = 'Starting…';
+  }
+};
+
+loadMode();
+</script>
+</body></html>"""
+
+
+if __name__ == "__main__":
+    main()

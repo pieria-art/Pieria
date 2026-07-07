@@ -103,6 +103,36 @@ isn't reachable yet, the screen stays black and paints automatically once it is.
 
 ---
 
+## First-run setup wizard (R1-F1)
+
+Instead of editing `screen-docent.conf` by hand, a freshly flashed card can configure itself from a
+phone. On first boot (no valid conf yet), `sd-setup-boot` brings up an open **`Docent-Setup`** Wi-Fi AP
+with a captive portal; you join it, a setup page opens, you enter Wi-Fi + server + display name +
+orientation, confirm "does this look right?", and the Pi writes the conf, joins your network, and
+reboots into the gallery. No SSH, no SD-card editing.
+
+- **Enabled on the pre-baked `.img`, not by `install.sh`.** `install.sh` installs the wizard assets but
+  leaves `sd-setup.service` **disabled** (and `hostapd`/`dnsmasq` disabled) so it never disturbs a
+  working box. The image-build step enables `sd-setup.service`.
+- **The wizard only ever writes `screen-docent.conf`** — it never touches `Artwork/` or the database.
+
+**Test it non-destructively on a working Pi (no flash, no changes):**
+
+```
+python3 ~/Screen-Docent/deploy/appliance/setup/sd_setup.py --dry-run --port 8080
+```
+
+Then open `http://<pi-ip>:8080` from a phone or laptop on the same network and walk the wizard. In
+`--dry-run` it skips the AP, `nmcli`, and the reboot, writes the conf only to `/tmp/sd-setup-preview/`,
+and shows you the exact bytes it *would* write to the boot partition. Your Wi-Fi, config, art, and
+display are untouched. (Orientation preview is simulated unless you opt into the live 30 s auto-revert.)
+
+> **Pi-gated:** the AP bring-up / captive portal / Wi-Fi hand-off and the `.img` build pipeline are only
+> fully validated on real hardware with a flash cycle. The wizard's form + conf-writer logic is verified
+> off-Pi via `--dry-run` (and the pytest suite).
+
+---
+
 ## All-in-one mode (server + display on one box)
 
 For a single-frame setup with **no separate server**, the appliance can also run the Screen Docent
@@ -179,11 +209,15 @@ like Fire TV / bring-your-own-browser; it's simply inert here.)
 | `bin/sd-rotate-keep` | Re-asserts the `ROTATE` transform on every display power-cycle/hotplug so portrait survives the TV's sleep timer (only runs when `ROTATE` is set). |
 | `bin/sd-metrics` | (all-in-one) Writes the Pi `vcgencmd` throttle/under-voltage reading into `data/appliance/` for the Device Health console; run by `sd-metrics.timer` every 30 s. |
 | `bin/sd-quiet-hours` | (all-in-one) Powers the TV off/on over HDMI-CEC to match the app's Night & Quiet Hours schedule (only when `quiet_mode=cec`, on-transition only); run by `sd-quiet-hours.timer` every 60 s. Needs `cec-utils`; the Canvas software blackout is the fallback. |
+| `setup/sd_setup.py` | First-run wizard web server (stdlib only). Installed as `/usr/local/bin/sd-setup`. Serves the setup form + captive-portal redirects; `--dry-run` for a safe in-situ test. |
+| `bin/sd-setup-boot` | First-boot gate: if unconfigured, brings up the `Docent-Setup` AP + captive portal and runs the wizard; else no-ops. Run by `sd-setup.service` (enabled on the `.img` only). |
+| `setup/{hostapd,dnsmasq}.conf` | The `Docent-Setup` access point + DNS catch-all that make the captive portal fire. Used only while `sd-setup-boot` runs. |
 | `bin/sd-update` | (all-in-one) Root host helper for GUI updates — whitelisted update-app / update-scripts / reboot; triggered by `sd-update.path`. |
 | `share/sd-splash.html` | Boot splash shown while the server starts, displaying the admin URL / `<hostname>.local` / IP; self-redirects to the canvas once the server answers. |
 | `systemd/autologin.conf` | `getty@tty1` drop-in enabling kiosk-user autologin. |
 | `systemd/sd-metrics.{service,timer}` | (all-in-one) Periodic host-metrics writer for Device Health. |
 | `systemd/sd-quiet-hours.{service,timer}` | (all-in-one) Polls the quiet-hours schedule and drives HDMI-CEC panel power. |
+| `systemd/sd-setup.service` | Runs `sd-setup-boot` on first boot. Installed disabled; enabled only on the pre-baked `.img`. |
 | `systemd/sd-update.{path,service}` | (all-in-one) Watches for GUI update requests and runs `sd-update`. |
 | `udev/99-screen-docent-no-cec-pointer.rules` | Ignores the HDMI-CEC phantom pointer so no stray cursor shows on the display. |
 | `avahi/screen-docent.service` | (all-in-one) Advertises the server over mDNS with a friendly name. |
