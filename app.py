@@ -12,8 +12,6 @@ import io
 import json
 import logging
 import os
-import re
-import secrets
 import shutil
 from contextlib import asynccontextmanager
 from datetime import UTC, datetime, timedelta
@@ -28,7 +26,6 @@ from fastapi import (
     FastAPI,
     File,
     Form,
-    Header,
     HTTPException,
     Query,
     Request,
@@ -37,7 +34,7 @@ from fastapi import (
     WebSocketDisconnect,
 )
 from fastapi.concurrency import run_in_threadpool
-from fastapi.responses import FileResponse, HTMLResponse, RedirectResponse, Response
+from fastapi.responses import HTMLResponse, Response
 from fastapi.staticfiles import StaticFiles
 from PIL import Image, ImageOps
 from pydantic import BaseModel
@@ -62,7 +59,11 @@ logging.basicConfig(
 logger = logging.getLogger("artwork-display-api")
 
 # Local imports
-import httpx
+# httpx: no longer called directly here (its call sites moved to routers/settings.py + core/downloads.py),
+# but tests/test_download.py + tests/test_catalog.py patch `app_module.httpx.AsyncClient` — since it's
+# the same singleton module object core.downloads imports, that patch only works while `app` still
+# binds the name `httpx` at module scope. Keep the import.
+import httpx  # noqa: F401
 
 import curator
 import scout
@@ -76,7 +77,6 @@ from models import (
     ArtworkModel,
     DiscoveryQueueModel,
     PlaylistModel,
-    PublisherCollectionModel,
     RemoteCommandModel,
     SettingsModel,
     SubscriptionModel,
@@ -91,12 +91,9 @@ _query_classifier = QueryClassifier()
 _result_ranker = ResultRanker()
 
 import ai_client
-import config
 import federation
 import frame_push
-import host_health
-import publisher
-from config import ARTWORK_ROOT, LIBRARY_DIR, strip_markdown
+from config import ARTWORK_ROOT, LIBRARY_DIR, STATIC_DIR, SUB_PREFIX, strip_markdown
 
 # SSRF-safe downloader + focal-point parsing (see core/downloads.py).
 from core.downloads import _download_image_to_library, _focal_xy  # noqa: E402
@@ -111,7 +108,7 @@ from core.media import (  # noqa: E402
 )
 from core.playback import (  # noqa: E402
     _display_now_playing,
-    _now_playing_artwork,
+    _frame_select,
     _playlist_name_if_playable,
     select_next_image,
     touch_active_display,
@@ -126,14 +123,23 @@ from core.security import (  # noqa: E402
 
 # Settings-table read/write + schedule helpers (see core/settings_util.py).
 from core.settings_util import (  # noqa: E402
+    _HHMM_RE,
     DEFAULT_SCHEDULE,  # noqa: F401  — re-exported for tests/test_schedule.py
-    SCHEDULE_SETTING_KEY,
     _catalog_remote_base,
     _fetch_remote_json,
     _load_schedule,
-    _upsert_setting,
+    _parse_hhmm,
+    resolve_schedule_state,  # noqa: F401  — re-exported for tests/test_schedule.py
 )
 from epaper import PALETTES, VALID_FORMATS, media_type_for, render_for_epaper
+
+# Leaf domain routers extracted from app.py (Phase 1 of the app-split refactor). Each is a plain
+# APIRouter with no dependency on this module — see routers/__init__.py for the import rule.
+from routers.federation import router as federation_router
+from routers.health import router as health_router
+from routers.pages import router as pages_router
+from routers.publisher import router as publisher_router
+from routers.settings import router as settings_router
 
 
 async def warm_all_canvas_cache() -> None:
@@ -410,6 +416,13 @@ async def lifespan(app: FastAPI):
     yield
 
 app = FastAPI(title="Artwork Display Engine API", version="0.4.5", lifespan=lifespan)
+
+# Leaf domain routers (Phase 1 of the app-split refactor — see .ai/refactor_app_split_plan.md).
+app.include_router(publisher_router)
+app.include_router(federation_router)
+app.include_router(health_router)
+app.include_router(pages_router)
+app.include_router(settings_router)
 
 @app.middleware("http")
 async def inject_aggressive_cache_headers(request: Request, call_next):
@@ -1377,145 +1390,11 @@ async def get_preferred_playlist(display_id: str, db: Session = Depends(get_db))
             or _playlist_name_if_playable(db, default.setting_value if default else None))
     return {"playlist": name}
 
-class DefaultPlaylistPayload(BaseModel):
-    default_playlist: Optional[str] = None
-
-@app.get("/api/settings/default-playlist")
-async def get_default_playlist(db: Session = Depends(get_db)):
-    row = db.query(SettingsModel).filter(SettingsModel.setting_key == "default_playlist").first()
-    return {"default_playlist": row.setting_value if row else None}
-
-@app.post("/api/settings/default-playlist")
-async def set_default_playlist(payload: DefaultPlaylistPayload, db: Session = Depends(get_db)):
-    """Pin the fallback playlist a display boots to when it has no last-played history (e.g. a brand-new
-    wall display). Empty string clears it. Validated against existing playlists."""
-    name = (payload.default_playlist or "").strip()
-    if name and not db.query(PlaylistModel).filter(PlaylistModel.name == name).first():
-        raise HTTPException(400, detail=f"No playlist named '{name}'")
-    _upsert_setting(db, "default_playlist", name)
-    db.commit()
-    return {"default_playlist": name}
-
 # --- R1-F2: Night & Quiet Hours (clock-driven brightness/warmth + quiet-hours panel power) ----------
-# Gentle defaults, warm-shift ON, quiet-hours panel-off OFF (opt-in) so nothing blanks unexpectedly.
-# One global schedule for v1; the resolver takes a display_id so per-display overrides can layer in later
-# (dev-rule #4 hierarchy). The Canvas applies a GPU-cheap CSS overlay; the appliance drives HDMI-CEC.
-# SCHEDULE_SETTING_KEY, DEFAULT_SCHEDULE now live in core/settings_util.py (imported above).
-
-
-def _parse_hhmm(value: str, fallback: int = 0) -> int:
-    """'HH:MM' -> minutes since midnight (0..1439); tolerant, clamps, falls back on garbage."""
-    try:
-        h, m = str(value).split(":")
-        return (int(h) % 24) * 60 + (int(m) % 60)
-    except (ValueError, AttributeError):
-        return fallback
-
-
-def _cyc_len(a: int, b: int) -> int:
-    """Clockwise minute span from a to b on a 24h dial (a==b -> full 1440-min day is treated as 0)."""
-    return (b - a) % 1440
-
-
-def _cyc_in(t: int, a: int, b: int) -> bool:
-    """Is minute t within the clockwise window [a, b) — handles windows that wrap past midnight."""
-    span = _cyc_len(a, b)
-    return span > 0 and (t - a) % 1440 < span
-
-
-def _cyc_frac(t: int, a: int, b: int) -> float:
-    """Fraction (0..1) of the clockwise window [a, b) elapsed at minute t (wrap-safe)."""
-    span = _cyc_len(a, b)
-    return 0.0 if span == 0 else ((t - a) % 1440) / span
-
-
-def resolve_schedule_state(schedule: dict, now: datetime) -> dict:
-    """Pure: given the schedule config + a wall-clock time, return what the display should look like NOW.
-
-    Returns {enabled, brightness (0.1..1), warmth (0..1), quiet (bool), quiet_mode}. 'night factor' n
-    ramps 0 (day) -> 1 (night) across the evening window, holds at 1 overnight, and ramps back down over
-    the morning window; brightness/warmth interpolate on n. Disabled -> fully neutral, no quiet.
-    """
-    s = {**DEFAULT_SCHEDULE, **(schedule or {})}
-    if not s.get("enabled", True):
-        return {"enabled": False, "brightness": 1.0, "warmth": 0.0, "quiet": False, "quiet_mode": s.get("quiet_mode", "cec")}
-
-    t = now.hour * 60 + now.minute
-    day_start = _parse_hhmm(s["day_start"], 480)
-    evening = _parse_hhmm(s["evening_start"], 1200)
-    night = _parse_hhmm(s["night_start"], 1350)
-    morning = _parse_hhmm(s["morning_start"], 390)
-
-    if _cyc_in(t, day_start, evening):
-        n = 0.0
-    elif _cyc_in(t, evening, night):
-        n = _cyc_frac(t, evening, night)          # rising: day -> night
-    elif _cyc_in(t, night, morning):
-        n = 1.0                                    # night plateau (wraps midnight)
-    elif _cyc_in(t, morning, day_start):
-        n = 1.0 - _cyc_frac(t, morning, day_start)  # falling: night -> day
-    else:
-        n = 0.0                                    # windows didn't tile (misconfig) — default to day
-
-    n = max(0.0, min(1.0, n))
-    day_b = float(s["day_brightness"])
-    night_b = float(s["night_brightness"])
-    brightness = round(day_b + (night_b - day_b) * n, 4)
-    warmth = round(float(s["night_warmth"]) * n, 4)
-
-    quiet = bool(s.get("quiet_enabled")) and _cyc_in(
-        t, _parse_hhmm(s["quiet_start"], 1410), _parse_hhmm(s["quiet_end"], 420))
-
-    return {"enabled": True, "brightness": brightness, "warmth": warmth,
-            "quiet": quiet, "quiet_mode": s.get("quiet_mode", "cec")}
-
-
-# _load_schedule now lives in core/settings_util.py (imported above).
-
-
-class DisplaySchedulePayload(BaseModel):
-    enabled: Optional[bool] = None
-    day_brightness: Optional[float] = None
-    night_brightness: Optional[float] = None
-    night_warmth: Optional[float] = None
-    evening_start: Optional[str] = None
-    night_start: Optional[str] = None
-    morning_start: Optional[str] = None
-    day_start: Optional[str] = None
-    quiet_enabled: Optional[bool] = None
-    quiet_start: Optional[str] = None
-    quiet_end: Optional[str] = None
-    quiet_mode: Optional[str] = None
-
-
-_HHMM_RE = re.compile(r"^\d{1,2}:\d{2}$")
-
-
-@app.get("/api/settings/display-schedule")
-async def get_display_schedule(db: Session = Depends(get_db)):
-    return _load_schedule(db)
-
-
-@app.post("/api/settings/display-schedule")
-async def set_display_schedule(payload: DisplaySchedulePayload, db: Session = Depends(get_db)):
-    """Merge the given fields over the current schedule, validate, and persist as JSON."""
-    merged = _load_schedule(db)
-    for k, v in payload.model_dump(exclude_none=True).items():
-        merged[k] = v
-    # Validate ranges/formats so a bad value can't wedge the resolver or the Canvas overlay.
-    for bkey in ("day_brightness", "night_brightness"):
-        if not (0.1 <= float(merged[bkey]) <= 1.0):
-            raise HTTPException(400, detail=f"{bkey} must be between 0.1 and 1.0")
-    if not (0.0 <= float(merged["night_warmth"]) <= 1.0):
-        raise HTTPException(400, detail="night_warmth must be between 0.0 and 1.0")
-    for tkey in ("evening_start", "night_start", "morning_start", "day_start", "quiet_start", "quiet_end"):
-        if not _HHMM_RE.match(str(merged[tkey])):
-            raise HTTPException(400, detail=f"{tkey} must be HH:MM")
-    if merged["quiet_mode"] not in ("cec", "blackout"):
-        raise HTTPException(400, detail="quiet_mode must be 'cec' or 'blackout'")
-    _upsert_setting(db, SCHEDULE_SETTING_KEY, json.dumps(merged))
-    db.commit()
-    return merged
+# The settings routes (GET/POST /api/settings/display-schedule) now live in routers/settings.py; the
+# resolver (resolve_schedule_state), its minute-math helpers (_parse_hhmm/_cyc_*), DEFAULT_SCHEDULE,
+# SCHEDULE_SETTING_KEY, and _HHMM_RE all live in core/settings_util.py (imported above) — this
+# schedule-state route is display-domain (not settings) and is the one caller left here.
 
 
 @app.get("/api/displays/{display_id}/schedule-state")
@@ -1612,10 +1491,7 @@ async def get_display_image(
 # -----------------------------------------------------------------------------
 # 4. WebSocket & Remote Control
 # -----------------------------------------------------------------------------
-@app.get("/remote")
-async def get_remote_page():
-    return FileResponse(STATIC_DIR / "remote.html")
-
+# GET /remote (the page) now lives in routers/pages.py.
 @app.get("/api/remote/displays")
 async def get_active_displays(db: Session = Depends(get_db)):
     """Active displays (seen in the last 15s), each with what it's currently showing so the Remote can
@@ -1638,86 +1514,8 @@ async def get_display_now_playing(display_id: str, db: Session = Depends(get_db)
         ActiveDisplayModel.last_seen_at > cutoff).first() is not None
     return {**_display_now_playing(db, row), "active": active}
 
-@app.get("/api/health/host")
-async def get_host_health(db: Session = Depends(get_db)):
-    """Device Health console data: this box's host metrics + the displays it currently serves.
-
-    All-in-one only — returns 404 on a generic/MS-01 server or thin-client topology (where the
-    server isn't running ON the managed device), so the admin UI keeps the Devices tab hidden there.
-    Compute-on-request: the readers are microseconds of /proc + /sys reads, so no DB table or
-    background collector is needed."""
-    if not config.IS_APPLIANCE:
-        raise HTTPException(status_code=404, detail="host metrics unavailable")
-    cutoff = datetime.now(UTC) - timedelta(seconds=15)
-    displays = db.query(ActiveDisplayModel).filter(ActiveDisplayModel.last_seen_at > cutoff).all()
-    return {
-        "available": True,
-        "host": host_health.collect(),
-        "displays": [
-            {"display_id": d.display_id, "last_seen_at": d.last_seen_at.isoformat(),
-             "playlist": d.current_playlist, "artwork": _now_playing_artwork(db, d.current_artwork_id)}
-            for d in displays
-        ],
-    }
-
-# --- Appliance update bridge (all-in-one only) -------------------------------------------------
-# The container is unprivileged and cannot run git/docker/reboot. So a GUI action just writes a
-# request file into the ./data bind mount; a root systemd .path unit notices it and runs the
-# whitelisted host helper `sd-update`, which writes status back here for the UI to poll. The web
-# app never gains host privileges.
-ALLOWED_UPDATE_ACTIONS = {"update-app", "update-scripts", "reboot"}
-_appliance_token_warned = False
-
-
-class ApplianceUpdateRequest(BaseModel):
-    action: str
-
-
-@app.post("/api/appliance/update")
-async def appliance_update(req: ApplianceUpdateRequest, request: Request,
-                           x_appliance_token: Optional[str] = Header(None)):
-    global _appliance_token_warned
-    if not config.IS_APPLIANCE:
-        raise HTTPException(status_code=403, detail="appliance update bridge not enabled")
-    if req.action not in ALLOWED_UPDATE_ACTIONS:
-        raise HTTPException(status_code=400, detail=f"unknown action: {req.action}")
-    # H6: this is the highest-consequence action (host git reset+rebuild / reboot). The cross-origin
-    # guard already blocks a hostile browser tab; the shared-secret token additionally closes the
-    # no-Origin path (curl / any other LAN device). Accept EITHER a valid token OR a trusted
-    # (same-origin) Origin, so the same-origin admin GUI keeps working without holding the secret.
-    if config.APPLIANCE_UPDATE_TOKEN:
-        token_ok = bool(x_appliance_token) and secrets.compare_digest(
-            x_appliance_token, config.APPLIANCE_UPDATE_TOKEN)
-        origin_ok = _origin_allowed(request.headers.get("origin", ""), request.headers.get("host", ""))
-        if not (token_ok or origin_ok):
-            raise HTTPException(status_code=403, detail="appliance update requires a valid token")
-    elif not _appliance_token_warned:
-        logger.warning("SD_APPLIANCE_UPDATE_TOKEN is unset — /api/appliance/update is gated only by the "
-                       "cross-origin guard. Set it to require a shared secret from non-browser callers.")
-        _appliance_token_warned = True
-    nonce = secrets.token_hex(8)
-    config.APPLIANCE_DIR.mkdir(parents=True, exist_ok=True)
-    # Write the status FIRST (so the .path trigger always finds a status), then the request.
-    status = {"state": "queued", "action": req.action, "nonce": nonce,
-              "message": "queued", "log_tail": []}
-    (config.APPLIANCE_DIR / "status.json").write_text(json.dumps(status))
-    request = {"action": req.action, "requested_at": datetime.now(UTC).isoformat(), "nonce": nonce}
-    (config.APPLIANCE_DIR / "request.json").write_text(json.dumps(request))
-    logger.info(f"Appliance update queued: {req.action} (nonce {nonce})")
-    return {"status": "queued", "nonce": nonce}
-
-
-@app.get("/api/appliance/update/status")
-async def appliance_update_status():
-    if not config.IS_APPLIANCE:
-        raise HTTPException(status_code=403, detail="appliance update bridge not enabled")
-    status_file = config.APPLIANCE_DIR / "status.json"
-    if not status_file.exists():
-        return {"state": "idle"}
-    try:
-        return json.loads(status_file.read_text())
-    except (OSError, json.JSONDecodeError):
-        return {"state": "idle"}
+# /api/health/host + the appliance update bridge (/api/appliance/update*) now live in
+# routers/health.py.
 
 @app.post("/api/remote/change")
 async def remote_change_playlist(request: RemoteChangeRequest, db: Session = Depends(get_db)):
@@ -1808,18 +1606,8 @@ async def websocket_endpoint(websocket: WebSocket, display_id: str):
             db.commit()
 
 # -----------------------------------------------------------------------------
-# 4.5 Settings (API Keys)
+# 4.5 Settings (API Keys) — GET/POST /api/settings/keys* now live in routers/settings.py.
 # -----------------------------------------------------------------------------
-@app.get("/api/settings/keys")
-async def get_api_keys(db: Session = Depends(get_db)):
-    """Returns a map of which API keys are unlocked."""
-    settings = db.query(SettingsModel).all()
-    # Check for presence of keys
-    return {
-        "harvard": any(s.setting_key == "harvard_api_key" for s in settings),
-        "smithsonian": any(s.setting_key == "smithsonian_api_key" for s in settings),
-        "europeana": any(s.setting_key == "europeana_api_key" for s in settings)
-    }
 
 class TelemetryHeartbeat(BaseModel):
     artwork_id: int
@@ -1854,171 +1642,12 @@ def record_telemetry(payload: TelemetryHeartbeat, db: Session = Depends(get_db))
     db.commit()
     return {"status": "ok", "affinity": artwork.affinity_score}
 
-@app.post("/api/settings/keys/{source}")
-async def verify_and_save_api_key(source: str, payload: dict, db: Session = Depends(get_db)):
-    """Validates an API key against the source museum backend and persists it."""
-    key = payload.get("api_key")
-    if not key: raise HTTPException(400, "api_key payload is required.")
-
-    try:
-        async with httpx.AsyncClient() as client:
-            if source == "harvard":
-                resp = await client.get(f"https://api.harvardartmuseums.org/object?apikey={key}&size=1", timeout=15)
-                if resp.status_code != 200: raise Exception("Harvard API rejected the key.")
-                db_key = "harvard_api_key"
-            elif source == "smithsonian":
-                resp = await client.get(f"https://api.si.edu/openaccess/api/v1.0/search?q=art&api_key={key}&rows=1", timeout=15)
-                if resp.status_code != 200: raise Exception("Smithsonian API rejected the key.")
-                db_key = "smithsonian_api_key"
-            elif source == "europeana":
-                resp = await client.get(f"https://api.europeana.eu/record/v2/search.json?wskey={key}&query=*&rows=1", timeout=15)
-                if resp.status_code != 200: raise Exception("Europeana API rejected the key.")
-                db_key = "europeana_api_key"
-            else:
-                raise HTTPException(400, f"Unsupported museum target: {source}")
-    except HTTPException:
-        raise   # A6: don't re-wrap a deliberate 400 (unsupported source) as a 401 "Validation Failed"
-    except Exception as e:
-        raise HTTPException(401, detail=f"Validation Failed: {str(e)}")
-
-    setting = db.query(SettingsModel).filter(SettingsModel.setting_key == db_key).first()
-    if setting:
-        setting.setting_value = key
-    else:
-        setting = SettingsModel(setting_key=db_key, setting_value=key)
-        db.add(setting)
-    db.commit()
-    return {"status": "success", "source": source}
+# POST /api/settings/keys/{source} now lives in routers/settings.py.
 
 # -----------------------------------------------------------------------------
-# 4.6 AI Engine (model provider configuration)
+# 4.6 AI Engine (model provider configuration) — /api/settings/ai*, /api/settings/ai/oauth/* now
+# live in routers/settings.py.
 # -----------------------------------------------------------------------------
-# _upsert_setting now lives in core/settings_util.py (imported above).
-
-@app.get("/api/settings/ai")
-async def get_ai_settings(db: Session = Depends(get_db)):
-    """Returns the current AI engine config (never the raw key) + provider presets for the UI."""
-    rows = {
-        s.setting_key: s.setting_value
-        for s in db.query(SettingsModel)
-        .filter(SettingsModel.setting_key.in_(ai_client.AI_SETTING_KEYS))
-        .all()
-    }
-    cfg = ai_client.get_ai_config(force=True)
-    return {
-        "provider": rows.get("ai_provider", ai_client.DEFAULT_PROVIDER),
-        "base_url": rows.get("ai_base_url", ""),
-        "model": rows.get("ai_model", ""),
-        "model_fast": rows.get("ai_model_fast", ""),
-        "temperature": rows.get("ai_temperature", ""),
-        "has_key": cfg["configured"],
-        "key_source": "db" if rows.get("ai_api_key") else ("env" if cfg["configured"] else "none"),
-        "model_is_local": ai_client.is_local_base_url(cfg["base_url"]),
-        "presets": {
-            k: {
-                "label": v["label"],
-                "base_url": v["base_url"],
-                "models": v["models"],
-                "oauth": v.get("oauth", False),
-                "key_optional": v.get("key_optional", False),
-                "key_url": v.get("key_url", ""),
-            }
-            for k, v in ai_client.PRESETS.items()
-        },
-    }
-
-class AISettingsPayload(BaseModel):
-    model_config = {"protected_namespaces": ()}  # allow "model"/"model_fast" field names
-    provider: str
-    base_url: Optional[str] = ""
-    api_key: Optional[str] = None  # blank/omitted ⇒ keep the existing stored key
-    model: str
-    model_fast: Optional[str] = ""
-    temperature: Optional[str] = ""
-
-@app.post("/api/settings/ai")
-async def save_ai_settings(payload: AISettingsPayload, db: Session = Depends(get_db)):
-    """Validates a candidate AI config against the live endpoint, then persists it."""
-    provider = payload.provider
-    if provider not in ai_client.PRESETS:
-        raise HTTPException(400, f"Unknown provider: {provider}")
-    if not payload.model:
-        raise HTTPException(400, "A model name is required.")
-
-    base_url = (payload.base_url or ai_client.PRESETS[provider]["base_url"]).rstrip("/")
-    existing = db.query(SettingsModel).filter(SettingsModel.setting_key == "ai_api_key").first()
-    api_key = (
-        (payload.api_key or "").strip()
-        or (existing.setting_value if existing else "")
-        or os.getenv("GEMINI_API_KEY", "")
-    )
-    key_optional = ai_client.PRESETS[provider].get("key_optional", False)
-    if not api_key and not key_optional:
-        raise HTTPException(400, "An API key is required for this provider.")
-
-    # Validate against the live endpoint before persisting (mirrors the museum-key flow).
-    try:
-        await asyncio.to_thread(ai_client.validate_config, provider, base_url, api_key, payload.model)
-    except Exception as e:
-        raise HTTPException(401, detail=f"Validation failed: {str(e)}")
-
-    _upsert_setting(db, "ai_provider", provider)
-    _upsert_setting(db, "ai_base_url", base_url)
-    if api_key:
-        _upsert_setting(db, "ai_api_key", api_key)
-    _upsert_setting(db, "ai_model", payload.model)
-    _upsert_setting(db, "ai_model_fast", (payload.model_fast or "").strip())
-    _upsert_setting(db, "ai_temperature", (payload.temperature or "").strip())
-    db.commit()
-    ai_client.invalidate_config_cache()
-    return {"status": "success", "provider": provider, "model": payload.model}
-
-@app.get("/api/settings/ai/oauth/start")
-async def ai_oauth_start(callback_url: str, challenge: str):
-    """Assembles the OpenRouter authorization URL (PKCE). The client holds the code_verifier."""
-    from urllib.parse import urlencode
-    params = urlencode({
-        "callback_url": callback_url,
-        "code_challenge": challenge,
-        "code_challenge_method": "S256",
-    })
-    return {"auth_url": f"https://openrouter.ai/auth?{params}"}
-
-class OAuthExchangePayload(BaseModel):
-    code: str
-    verifier: str
-
-@app.post("/api/settings/ai/oauth/exchange")
-async def ai_oauth_exchange(payload: OAuthExchangePayload, db: Session = Depends(get_db)):
-    """Exchanges an OpenRouter auth code (+ PKCE verifier) for an API key and saves it."""
-    try:
-        async with httpx.AsyncClient() as client:
-            resp = await client.post(
-                "https://openrouter.ai/api/v1/auth/keys",
-                json={
-                    "code": payload.code,
-                    "code_verifier": payload.verifier,
-                    "code_challenge_method": "S256",
-                },
-                timeout=20,
-            )
-        if resp.status_code != 200:
-            raise Exception(resp.text[:200])
-        key = resp.json().get("key")
-        if not key:
-            raise Exception("No key returned by OpenRouter.")
-    except Exception as e:
-        raise HTTPException(401, detail=f"OAuth exchange failed: {str(e)}")
-
-    provider = "openrouter"
-    _upsert_setting(db, "ai_provider", provider)
-    _upsert_setting(db, "ai_base_url", ai_client.PRESETS[provider]["base_url"])
-    _upsert_setting(db, "ai_api_key", key)
-    if not db.query(SettingsModel).filter(SettingsModel.setting_key == "ai_model").first():
-        _upsert_setting(db, "ai_model", ai_client.PRESETS[provider]["models"][0])
-    db.commit()
-    ai_client.invalidate_config_cache()
-    return {"status": "success", "provider": provider}
 
 # -----------------------------------------------------------------------------
 # 4.7 Catalog (browseable curated public-domain art; lazy high-res on add)
@@ -2054,7 +1683,7 @@ def _read_local_json(path: Path):
 
 # Subscribed (federated) collections share the catalog browse surface, but their ids are namespaced
 # so they can never collide with — or masquerade as — a bundled/official collection.
-SUB_PREFIX = "sub_"
+# SUB_PREFIX now lives in config.py (imported above) — shared with routers/federation.py.
 
 
 def _subscribed_summaries(db: Session) -> list:
@@ -2207,141 +1836,10 @@ async def _download_and_create_artwork(db: Session, *, source_url: str, thumbnai
 # ---------------------------------------------------------------------------
 # §4.8 Samsung Frame TV push (Integrations)
 # ---------------------------------------------------------------------------
-
-async def _frame_select(playlist: str):
-    """Selector injected into the Frame pusher: pick the current artwork for a playlist (reusing the
-    bag-shuffle/affinity in get_next_image, on a dedicated display_id) and return (file_path, id)."""
-    db = SessionLocal()
-    try:
-        pl = playlist
-        if not pl:
-            first = db.query(PlaylistModel).order_by(PlaylistModel.id).first()
-            if not first:
-                return None
-            pl = first.name
-        cfg = frame_push.get_frame_config()
-        info = await select_next_image(
-            playlist_name=pl, shuffle=None, display_id=cfg["display_id"], direction=1, db=db
-        )
-        art_id = (info.get("metadata") or {}).get("id")
-        if not art_id:
-            return None
-        art = db.query(ArtworkModel).filter(ArtworkModel.id == art_id).first()
-        if not art:
-            return None
-        return (LIBRARY_DIR / art.filename, art_id, (art.focal_x, art.focal_y))
-    except Exception as e:
-        logger.warning(f"[Frame] selection failed: {e}")
-        return None
-    finally:
-        db.close()
-
-
-@app.get("/api/settings/frame")
-async def get_frame_settings(db: Session = Depends(get_db)):
-    """Current Frame TV config (+ last-push status) for the Settings panel."""
-    cfg = frame_push.get_frame_config(force=True)
-    return {
-        "enabled": cfg["enabled"],
-        "host": cfg["host"],
-        "port": cfg["port"],
-        "playlist": cfg["playlist"],
-        "interval_sec": cfg["interval_sec"],
-        "width": cfg["width"],
-        "height": cfg["height"],
-        "matte": cfg["matte"],
-        "last_artwork_id": cfg["last_artwork_id"],
-        "last_push_at": cfg["last_push_at"],
-    }
-
-
-class FrameSettingsPayload(BaseModel):
-    enabled: bool = False
-    host: Optional[str] = ""
-    port: Optional[int] = 8001
-    playlist: Optional[str] = ""
-    interval_sec: Optional[int] = 900
-    width: Optional[int] = 3840
-    height: Optional[int] = 2160
-    matte: Optional[str] = "none"
-
-
-@app.post("/api/settings/frame")
-async def save_frame_settings(payload: FrameSettingsPayload, db: Session = Depends(get_db)):
-    """Persist Frame TV settings. Takes effect on the next push cycle (config cache invalidated)."""
-    if payload.enabled and not (payload.host or "").strip():
-        raise HTTPException(400, "A Frame TV host/IP is required to enable pushing.")
-    _upsert_setting(db, "frame_enabled", "true" if payload.enabled else "false")
-    _upsert_setting(db, "frame_host", (payload.host or "").strip())
-    _upsert_setting(db, "frame_port", str(payload.port or 8001))
-    _upsert_setting(db, "frame_playlist", (payload.playlist or "").strip())
-    _upsert_setting(db, "frame_interval_sec", str(max(60, payload.interval_sec or 900)))
-    _upsert_setting(db, "frame_width", str(payload.width or 3840))
-    _upsert_setting(db, "frame_height", str(payload.height or 2160))
-    _upsert_setting(db, "frame_matte", (payload.matte or "none").strip())
-    db.commit()
-    frame_push.invalidate_frame_cache()
-    return {"status": "success"}
-
-
-@app.post("/api/settings/frame/test")
-async def test_frame_push(db: Session = Depends(get_db)):
-    """One-shot 'Test / Push now'. Returns a structured result (never 500s) so the GUI can show a
-    clean message with or without a TV present."""
-    return await frame_push.run_test_push(_frame_select)
-
-
-class CatalogSourcePayload(BaseModel):
-    catalog_url: Optional[str] = ""
-
-
-@app.get("/api/settings/catalog")
-async def get_catalog_source(db: Session = Depends(get_db)):
-    """Current remote catalog base URL (empty ⇒ serving the bundled catalog)."""
-    base = await _catalog_remote_base(db)
-    return {"catalog_url": base or "", "using_remote": bool(base)}
-
-
-@app.post("/api/settings/catalog")
-async def save_catalog_source(payload: CatalogSourcePayload, db: Session = Depends(get_db)):
-    """Set or clear the remote catalog base URL — a static host serving `index.json` + per-collection
-    files (no server required). Validation is advisory: we test-fetch `index.json` and report the
-    collection count, but still persist a currently-unreachable URL (the runtime fetch falls back to
-    bundled on any failure) so the GUI can warn rather than block. An empty value reverts to bundled."""
-    url = (payload.catalog_url or "").strip().rstrip("/")
-    if not url:
-        row = db.query(SettingsModel).filter(SettingsModel.setting_key == "catalog_url").first()
-        if row:
-            db.delete(row); db.commit()
-        return {"status": "success", "catalog_url": "", "using_remote": False,
-                "message": "Reverted to the bundled catalog."}
-    if not url.startswith(("http://", "https://")):
-        raise HTTPException(400, "Catalog URL must start with http:// or https://")
-
-    warning = None
-    collections = 0
-    try:
-        index = await _fetch_remote_json(url, "index.json")
-        if not isinstance(index, dict) or "collections" not in index:
-            raise HTTPException(400, "Reached the URL, but it doesn't look like a catalog index "
-                                     "(no 'collections' key). Point at the base path that serves "
-                                     "index.json.")
-        collections = len(index.get("collections") or [])
-    except HTTPException:
-        raise
-    except Exception as e:
-        warning = (f"Saved, but couldn't reach {url}/index.json right now ({e}). The app will keep "
-                   f"using the bundled catalog until it becomes reachable.")
-
-    _upsert_setting(db, "catalog_url", url)
-    db.commit()
-    result = {"status": "success", "catalog_url": url, "using_remote": True}
-    if warning:
-        result["warning"] = warning
-    else:
-        result["message"] = f"Connected — {collections} collection(s) found."
-    return result
-
+# _frame_select (the selector shared with lifespan's frame_push_loop AND routers/settings.py's
+# "Test / Push now" route) now lives in core/playback.py (imported above) — see that module's
+# docstring for why. The /api/settings/frame*, /api/settings/catalog* routes now live in
+# routers/settings.py.
 
 @app.get("/api/catalog")
 async def get_catalog(db: Session = Depends(get_db)):
@@ -2503,329 +2001,16 @@ async def add_catalog_collection(payload: CatalogAddCollectionPayload, db: Sessi
             logger.warning(f"[Catalog] add-collection item failed: {e}")
     return {"status": "done", "added": added, "failed": failed}
 
-# -----------------------------------------------------------------------------
-# §4.9 Federation — subscribe to third-party Manifest v2 collections by URL
-# -----------------------------------------------------------------------------
-
-def _sub_summary(s: SubscriptionModel) -> dict:
-    return {
-        "id": s.id,
-        "url": s.url,
-        "collection_id": f"{SUB_PREFIX}{s.id}",
-        "title": s.title,
-        "publisher": {"id": s.publisher_id, "name": s.publisher_name, "url": s.publisher_url},
-        "trust": s.trust,
-        "enabled": s.enabled,
-        "item_count": s.item_count,
-        "last_synced": s.last_synced.isoformat() if s.last_synced else None,
-        "last_status": s.last_status,
-    }
-
-class SubscriptionPayload(BaseModel):
-    url: str
-
-@app.get("/api/subscriptions")
-async def list_subscriptions(db: Session = Depends(get_db)):
-    return [_sub_summary(s) for s in db.query(SubscriptionModel).order_by(SubscriptionModel.id).all()]
-
-@app.post("/api/subscriptions")
-async def add_subscription(payload: SubscriptionPayload, db: Session = Depends(get_db)):
-    """Subscribe to a publisher's Manifest v2 URL. Fetched + safety-checked + validated BEFORE a row
-    is created, so a bad/unsafe URL never persists. Trust starts at 'community' (URL-added)."""
-    url = payload.url.strip()
-    if db.query(SubscriptionModel).filter(SubscriptionModel.url == url).first():
-        raise HTTPException(409, detail="Already subscribed to this URL")
-    try:
-        manifest = await federation.fetch_manifest(url)
-    except federation.FederationError as e:
-        raise HTTPException(400, detail=str(e)) from e
-    pub = manifest.get("publisher") or {}
-    sub = SubscriptionModel(
-        url=url, collection_id=manifest.get("id"), title=manifest.get("title"),
-        publisher_id=pub.get("id"), publisher_name=pub.get("name"), publisher_url=pub.get("url"),
-        trust=federation.assess_trust(manifest), enabled=True, cached_manifest=json.dumps(manifest),
-        item_count=len(manifest.get("items", [])), last_status="ok", last_synced=datetime.now(UTC))
-    db.add(sub); db.commit(); db.refresh(sub)
-    return _sub_summary(sub)
-
-@app.post("/api/subscriptions/{sub_id}/sync")
-async def sync_subscription_endpoint(sub_id: int, db: Session = Depends(get_db)):
-    sub = db.query(SubscriptionModel).filter(SubscriptionModel.id == sub_id).first()
-    if not sub:
-        raise HTTPException(404)
-    await federation.sync_subscription(db, sub)
-    return _sub_summary(sub)
-
-@app.delete("/api/subscriptions/{sub_id}")
-async def delete_subscription(sub_id: int, db: Session = Depends(get_db)):
-    sub = db.query(SubscriptionModel).filter(SubscriptionModel.id == sub_id).first()
-    if not sub:
-        raise HTTPException(404)
-    db.delete(sub); db.commit()
-    return {"status": "removed"}
-
-# -----------------------------------------------------------------------------
-# 4.9 Publisher Studio — author + sign a Manifest v2 feed of your OWN hosted images.
-# The mirror of Subscriptions: that consumes feeds, this AUTHORS one. Images are URL-first
-# (we never host them); the artist's Ed25519 identity key lives in SettingsModel and signs
-# server-side on export; the browser never sees the private key.
-# -----------------------------------------------------------------------------
-_PUB_IDENTITY_KEYS = ("publisher_id", "publisher_name", "publisher_url",
-                      "publisher_public_key", "publisher_private_key")
-
-
-def _publisher_identity(db: Session) -> dict:
-    rows = {s.setting_key: s.setting_value for s in
-            db.query(SettingsModel).filter(SettingsModel.setting_key.in_(_PUB_IDENTITY_KEYS)).all()}
-    return rows
-
-
-def _identity_public(rows: dict) -> dict:
-    """Public-safe view of the identity — NEVER includes the private key."""
-    return {
-        "id": rows.get("publisher_id") or "",
-        "name": rows.get("publisher_name") or "",
-        "url": rows.get("publisher_url") or "",
-        "public_key": rows.get("publisher_public_key") or "",
-        "has_private_key": bool(rows.get("publisher_private_key")),
-    }
-
-
-async def _assert_public_urls(items: list) -> None:
-    """SSRF-guard every image URL the publisher pasted (defense in depth: the subscriber checks too,
-    but we never persist a private/loopback target). C2: getaddrinfo is blocking → thread each check."""
-    for it in items or []:
-        for url in (it.get("full_url"), it.get("thumbnail_url")):
-            if not url:
-                continue
-            try:
-                await asyncio.to_thread(federation._assert_public_url, url)
-            except federation.FederationError as e:
-                raise HTTPException(400, detail=f"Image URL rejected ({url}): {e}") from e
-
-
-def _collection_summary(c: PublisherCollectionModel) -> dict:
-    try:
-        items = json.loads(c.items_json or "[]")
-    except ValueError:
-        items = []
-    return {"id": c.id, "slug": c.slug, "title": c.title, "item_count": len(items),
-            "updated_at": c.updated_at.isoformat() if c.updated_at else None}
-
-
-def _collection_detail(c: PublisherCollectionModel) -> dict:
-    try:
-        items = json.loads(c.items_json or "[]")
-    except ValueError:
-        items = []
-    return {"id": c.id, "slug": c.slug, "title": c.title, "description": c.description,
-            "default_license": c.default_license, "cover_image": c.cover_image, "items": items,
-            "updated_at": c.updated_at.isoformat() if c.updated_at else None}
-
-
-def _unique_slug(db: Session, desired: str, exclude_id: int | None = None) -> str:
-    base = publisher._slugify(desired)
-    slug, n = base, 2
-    while True:
-        q = db.query(PublisherCollectionModel).filter(PublisherCollectionModel.slug == slug)
-        if exclude_id is not None:
-            q = q.filter(PublisherCollectionModel.id != exclude_id)
-        if not q.first():
-            return slug
-        slug, n = f"{base}-{n}", n + 1
-
-
-def _meta_for(c: PublisherCollectionModel, identity: dict) -> dict:
-    return {"slug": c.slug, "title": c.title, "description": c.description,
-            "default_license": c.default_license, "cover_image": c.cover_image,
-            "publisher": {"id": identity.get("publisher_id"), "name": identity.get("publisher_name"),
-                          "url": identity.get("publisher_url")}}
-
-
-class PublisherIdentityPayload(BaseModel):
-    id: str
-    name: str
-    url: Optional[str] = None
-    regenerate: bool = False
-
-
-class PublisherItemPayload(BaseModel):
-    id: Optional[str] = None
-    title: str
-    artist: Optional[str] = None
-    artist_role: Optional[str] = None
-    date: Optional[str] = None
-    creation_date: Optional[str] = None
-    medium: Optional[str] = None
-    culture: Optional[str] = None
-    tags: Optional[List[str]] = None
-    placard: Optional[str] = None
-    full_url: str
-    thumbnail_url: Optional[str] = None
-    license: Optional[str] = None
-    attribution: Optional[str] = None
-    rights_holder: Optional[str] = None
-    width: Optional[int] = None
-    height: Optional[int] = None
-    focal_point: Optional[List[float]] = None
-
-
-class PublisherCollectionPayload(BaseModel):
-    slug: Optional[str] = None
-    title: str
-    description: Optional[str] = None
-    default_license: Optional[str] = None
-    cover_image: Optional[str] = None
-    items: List[PublisherItemPayload] = []
-
-
-@app.get("/api/publisher/identity")
-async def get_publisher_identity(db: Session = Depends(get_db)):
-    return _identity_public(_publisher_identity(db))
-
-
-@app.post("/api/publisher/identity")
-async def set_publisher_identity(payload: PublisherIdentityPayload, db: Session = Depends(get_db)):
-    """Save the publisher id/name/url and ensure an Ed25519 identity key exists. Generates a keypair on
-    first save; `regenerate=true` rotates it — which invalidates the signature on anything already
-    published (the response carries a warning the UI surfaces)."""
-    pid = payload.id.strip()
-    name = payload.name.strip()
-    if not pid or not name:
-        raise HTTPException(400, detail="Publisher id and name are required.")
-    rows = _publisher_identity(db)
-    _upsert_setting(db, "publisher_id", pid)
-    _upsert_setting(db, "publisher_name", name)
-    _upsert_setting(db, "publisher_url", (payload.url or "").strip())
-    warning = None
-    if payload.regenerate or not rows.get("publisher_private_key"):
-        priv, pub = publisher.keygen()
-        _upsert_setting(db, "publisher_private_key", priv)
-        _upsert_setting(db, "publisher_public_key", pub)
-        if payload.regenerate and rows.get("publisher_private_key"):
-            warning = ("Signing key rotated. Any manifest you already published is now signed with the "
-                       "old key — re-export and re-host it, and update the registry if you were verified.")
-    db.commit()
-    result = _identity_public(_publisher_identity(db))
-    if warning:
-        result["warning"] = warning
-    return result
-
-
-@app.get("/api/publisher/collections")
-async def list_publisher_collections(db: Session = Depends(get_db)):
-    return [_collection_summary(c) for c in
-            db.query(PublisherCollectionModel).order_by(PublisherCollectionModel.id).all()]
-
-
-async def _checked_cover(payload: PublisherCollectionPayload) -> str | None:
-    cover = (payload.cover_image or "").strip() or None
-    if cover:
-        await _assert_public_urls([{"full_url": cover}])
-    return cover
-
-
-@app.post("/api/publisher/collections")
-async def create_publisher_collection(payload: PublisherCollectionPayload, db: Session = Depends(get_db)):
-    items = [it.model_dump() for it in payload.items]
-    await _assert_public_urls(items)
-    cover = await _checked_cover(payload)
-    slug = _unique_slug(db, payload.slug or payload.title)
-    norm = [publisher.build_item(it) for it in items]
-    c = PublisherCollectionModel(
-        slug=slug, title=payload.title.strip(), description=(payload.description or "").strip() or None,
-        default_license=(payload.default_license or "").strip() or None, cover_image=cover,
-        items_json=json.dumps(norm), created_at=datetime.now(UTC), updated_at=datetime.now(UTC))
-    db.add(c); db.commit(); db.refresh(c)
-    return _collection_detail(c)
-
-
-def _get_collection(db: Session, cid: int) -> PublisherCollectionModel:
-    c = db.query(PublisherCollectionModel).filter(PublisherCollectionModel.id == cid).first()
-    if not c:
-        raise HTTPException(404, detail="Collection not found")
-    return c
-
-
-@app.get("/api/publisher/collections/{cid}")
-async def get_publisher_collection(cid: int, db: Session = Depends(get_db)):
-    return _collection_detail(_get_collection(db, cid))
-
-
-@app.put("/api/publisher/collections/{cid}")
-async def update_publisher_collection(cid: int, payload: PublisherCollectionPayload,
-                                      db: Session = Depends(get_db)):
-    c = _get_collection(db, cid)
-    items = [it.model_dump() for it in payload.items]
-    await _assert_public_urls(items)
-    cover = await _checked_cover(payload)
-    if payload.slug and publisher._slugify(payload.slug) != c.slug:
-        c.slug = _unique_slug(db, payload.slug, exclude_id=c.id)
-    c.title = payload.title.strip()
-    c.description = (payload.description or "").strip() or None
-    c.default_license = (payload.default_license or "").strip() or None
-    c.cover_image = cover
-    c.items_json = json.dumps([publisher.build_item(it) for it in items])
-    c.updated_at = datetime.now(UTC)
-    db.commit(); db.refresh(c)
-    return _collection_detail(c)
-
-
-@app.delete("/api/publisher/collections/{cid}")
-async def delete_publisher_collection(cid: int, db: Session = Depends(get_db)):
-    db.delete(_get_collection(db, cid)); db.commit()
-    return {"status": "removed"}
-
-
-@app.post("/api/publisher/collections/{cid}/validate")
-async def validate_publisher_collection(cid: int, db: Session = Depends(get_db)):
-    c = _get_collection(db, cid)
-    items = json.loads(c.items_json or "[]")
-    _, errors = publisher.assemble_and_validate(_meta_for(c, _publisher_identity(db)), items)
-    return {"valid": not errors, "errors": errors}
-
-
-@app.post("/api/publisher/collections/{cid}/export")
-async def export_publisher_collection(cid: int, db: Session = Depends(get_db)):
-    """Assemble → validate → sign → download. 400 if no identity/key; 422 if the manifest is invalid."""
-    c = _get_collection(db, cid)
-    identity = _publisher_identity(db)
-    if not identity.get("publisher_private_key"):
-        raise HTTPException(400, detail="Set up your publisher identity first (it creates a signing key).")
-    items = json.loads(c.items_json or "[]")
-    await _assert_public_urls(items)
-    generated_at = datetime.now(UTC).isoformat(timespec="seconds")
-    manifest, errors = publisher.assemble_validate_sign(
-        _meta_for(c, identity), items,
-        identity["publisher_private_key"], identity.get("publisher_public_key"),
-        generated_at=generated_at)
-    if errors:
-        raise HTTPException(422, detail=errors)
-    return Response(
-        content=json.dumps(manifest, indent=2, ensure_ascii=False),
-        media_type="application/json",
-        headers={"Content-Disposition": f'attachment; filename="{c.slug}.json"'})
-
+# Federation (/api/subscriptions*) now lives in routers/federation.py.
+# Publisher Studio (/api/publisher/*) now lives in routers/publisher.py.
 
 # -----------------------------------------------------------------------------
 # 5. Static File Serving
 # -----------------------------------------------------------------------------
 if ARTWORK_ROOT.exists():
     app.mount("/media", StaticFiles(directory=str(ARTWORK_ROOT)), name="media")
-STATIC_DIR = Path("static")
-@app.get("/admin")
-async def get_admin_page(): return FileResponse(STATIC_DIR / "admin.html")
-
-@app.get("/help")
-async def get_help_page(): return FileResponse(STATIC_DIR / "help.html")
-
-@app.get("/studio")
-async def get_studio_page(): return FileResponse(STATIC_DIR / "studio.html")
-
-@app.get("/publisher")
-async def get_publisher_page():
-    # Publisher Studio is now a view inside the admin SPA; keep this path working for bookmarks/links.
-    return RedirectResponse(url="/admin?view=publisher")
+# The /admin, /help, /studio, /remote page routes + the /publisher redirect now live in
+# routers/pages.py.
 
 if STATIC_DIR.exists():
     app.mount("/", StaticFiles(directory=str(STATIC_DIR), html=True), name="static")

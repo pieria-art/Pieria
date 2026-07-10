@@ -17,7 +17,9 @@ from fastapi import HTTPException
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 
+import frame_push
 from config import LIBRARY_DIR
+from database import SessionLocal
 from models import (
     ActiveDisplayModel,
     ArtworkModel,
@@ -223,3 +225,36 @@ def _playlist_name_if_playable(db: Session, name: Optional[str]) -> Optional[str
         return None
     pl = db.query(PlaylistModel).filter(PlaylistModel.name == name).first()
     return name if (pl and len(pl.artworks) > 0) else None
+
+
+async def _frame_select(playlist: str):
+    """Selector injected into the Frame pusher: pick the current artwork for a playlist (reusing the
+    bag-shuffle/affinity in get_next_image, on a dedicated display_id) and return (file_path, id).
+
+    Lives here (not a router) so `core.lifespan`'s boot task can start `frame_push.frame_push_loop`
+    without importing a router, and so `routers/settings.py`'s "Test / Push now" route can reuse the
+    same selector without importing app.py."""
+    db = SessionLocal()
+    try:
+        pl = playlist
+        if not pl:
+            first = db.query(PlaylistModel).order_by(PlaylistModel.id).first()
+            if not first:
+                return None
+            pl = first.name
+        cfg = frame_push.get_frame_config()
+        info = await select_next_image(
+            playlist_name=pl, shuffle=None, display_id=cfg["display_id"], direction=1, db=db
+        )
+        art_id = (info.get("metadata") or {}).get("id")
+        if not art_id:
+            return None
+        art = db.query(ArtworkModel).filter(ArtworkModel.id == art_id).first()
+        if not art:
+            return None
+        return (LIBRARY_DIR / art.filename, art_id, (art.focal_x, art.focal_y))
+    except Exception as e:
+        logger.warning(f"[Frame] selection failed: {e}")
+        return None
+    finally:
+        db.close()

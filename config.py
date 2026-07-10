@@ -32,6 +32,17 @@ def strip_markdown(s: str | None) -> str:
 ARTWORK_ROOT = Path(os.getenv("ARTWORK_ROOT", "Artwork"))
 LIBRARY_DIR = ARTWORK_ROOT / "_Library"
 
+# Where the static frontend (admin/help/studio/remote pages + the JS/CSS bundle) is served from.
+# Lives here (not app.py) so both app.py's static mount and routers/pages.py's page routes share
+# one constant instead of two independently-defined `Path("static")` literals.
+STATIC_DIR = Path("static")
+
+# Namespace prefix for federated-subscription pseudo-collection ids in the catalog browse surface
+# (e.g. "sub_3") — keeps them from ever colliding with, or masquerading as, a bundled/official
+# collection id. Shared by routers/federation.py (mints `sub_<id>`) and app.py's catalog-merge
+# internals (which consume it to detect/resolve a subscription id).
+SUB_PREFIX = "sub_"
+
 # Wikimedia (and most museum/image hosts) reject the default httpx User-Agent; every outbound image
 # fetch must send this descriptive UA. Lives here (not app.py) so the offline tools/ scripts can
 # reuse it without importing the FastAPI app.
