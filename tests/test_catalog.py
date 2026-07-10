@@ -16,6 +16,7 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy.pool import StaticPool
 
 import app as app_module
+import core.downloads as core_downloads
 from app import app
 from database import Base, get_db
 from models import ArtworkModel, PlaylistModel, playlist_artwork
@@ -57,6 +58,7 @@ def client(monkeypatch, tmp_path):
 
     # Redirect library/playlist writes
     monkeypatch.setattr(app_module, "LIBRARY_DIR", tmp_path)
+    monkeypatch.setattr(core_downloads, "LIBRARY_DIR", tmp_path)
     monkeypatch.setattr(app_module, "ARTWORK_ROOT", tmp_path)
 
     # Mock the high-res download with a real tiny PNG

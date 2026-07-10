@@ -12,15 +12,13 @@ import io
 import json
 import logging
 import os
-import random
 import re
 import secrets
 import shutil
 from contextlib import asynccontextmanager
 from datetime import UTC, datetime, timedelta
-from functools import lru_cache
 from pathlib import Path
-from typing import Dict, List, Optional
+from typing import List, Optional
 
 import pillow_heif
 from dotenv import load_dotenv
@@ -44,7 +42,6 @@ from fastapi.staticfiles import StaticFiles
 from PIL import Image, ImageOps
 from pydantic import BaseModel
 from sqlalchemy import delete, select, update
-from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 
 # Load environment variables
@@ -64,59 +61,20 @@ logging.basicConfig(
 )
 logger = logging.getLogger("artwork-display-api")
 
-class ConnectionManager:
-    """Manages targeted WebSocket connections grouped by display_id."""
-    def __init__(self):
-        # Maps display_id -> list of active WebSocket connections
-        self.active_connections: Dict[str, List[WebSocket]] = {}
-
-    async def connect(self, websocket: WebSocket, display_id: str):
-        await websocket.accept()
-        if display_id not in self.active_connections:
-            self.active_connections[display_id] = []
-        self.active_connections[display_id].append(websocket)
-        logger.info(f"New connection to display '{display_id}'. Total for ID: {len(self.active_connections[display_id])}")
-
-    def disconnect(self, websocket: WebSocket, display_id: str):
-        if display_id in self.active_connections:
-            if websocket in self.active_connections[display_id]:
-                self.active_connections[display_id].remove(websocket)
-                if not self.active_connections[display_id]:
-                    del self.active_connections[display_id]
-            logger.info(f"Disconnected from display '{display_id}'.")
-
-    async def send_personal_message(self, message: dict, display_id: str):
-        """Sends a JSON message only to sockets registered under a specific display_id."""
-        if display_id in self.active_connections:
-            for connection in self.active_connections[display_id]:
-                try:
-                    await connection.send_json(message)
-                except Exception:
-                    pass
-
-    async def broadcast(self, message: dict):
-        """Sends a JSON message to absolutely all connected clients."""
-        for display_id in self.active_connections:
-            for connection in self.active_connections[display_id]:
-                try:
-                    await connection.send_json(message)
-                except Exception:
-                    pass
-
-manager = ConnectionManager()
-
 # Local imports
 import httpx
 
 import curator
 import scout
 from agents import process_artwork
+
+# Targeted WebSocket connection registry (shared by the ws + remote push paths).
+from core.connections import ConnectionManager, manager  # noqa: F401
 from database import SessionLocal, get_db
 from models import (
     ActiveDisplayModel,
     ArtworkModel,
     DiscoveryQueueModel,
-    DisplayPlaybackSessionModel,
     PlaylistModel,
     PublisherCollectionModel,
     RemoteCommandModel,
@@ -138,93 +96,44 @@ import federation
 import frame_push
 import host_health
 import publisher
-from config import ARTWORK_ROOT, LIBRARY_DIR, SD_USER_AGENT, strip_markdown
+from config import ARTWORK_ROOT, LIBRARY_DIR, strip_markdown
+
+# SSRF-safe downloader + focal-point parsing (see core/downloads.py).
+from core.downloads import _download_image_to_library, _focal_xy  # noqa: E402
+
+# Derivative-image rendering primitives (see core/media.py).
+from core.media import (  # noqa: E402
+    DERIVATIVES_DIR,
+    DISPLAY_MAX_EDGE,  # noqa: F401  — re-exported for tests/test_display_image.py
+    get_optimized_image,
+    render_canvas_image,
+    warm_canvas_cache_async,
+)
+from core.playback import (  # noqa: E402
+    _display_now_playing,
+    _now_playing_artwork,
+    _playlist_name_if_playable,
+    select_next_image,
+    touch_active_display,
+)
+
+# Origin/CORS trust checks used by the middleware below (see core/security.py).
+from core.security import (  # noqa: E402
+    _PUBLIC_FEED_GET_PREFIXES,
+    _origin_allowed,
+    _same_origin,  # noqa: F401  — re-exported; used only by the middleware below
+)
+
+# Settings-table read/write + schedule helpers (see core/settings_util.py).
+from core.settings_util import (  # noqa: E402
+    DEFAULT_SCHEDULE,  # noqa: F401  — re-exported for tests/test_schedule.py
+    SCHEDULE_SETTING_KEY,
+    _catalog_remote_base,
+    _fetch_remote_json,
+    _load_schedule,
+    _upsert_setting,
+)
 from epaper import PALETTES, VALID_FORMATS, media_type_for, render_for_epaper
-
-
-@lru_cache(maxsize=256)
-def _optimized_image_cached(image_path: Path, size: tuple, quality: int, mtime: int) -> bytes:
-    """Resize + JPEG-compress for web delivery. `mtime` participates only in the cache key (A4): a file
-    replaced in place gets a fresh entry instead of serving stale bytes until process restart."""
-    logger.info(f"[Image Processor] Optimizing: {image_path.name}")
-    with Image.open(image_path) as img:
-        if img.mode not in ("RGB", "L"):      # covers RGBA/P/LA/CMYK — "LA" used to crash the JPEG save
-            img = img.convert("RGB")
-        img.thumbnail(size, Image.Resampling.LANCZOS)
-        buf = io.BytesIO()
-        img.save(buf, format="JPEG", quality=quality)
-        return buf.getvalue()
-
-
-def get_optimized_image(image_path: Path, size: tuple, quality: int = 85) -> bytes:
-    """mtime-keyed wrapper over the lru cache — see A4."""
-    try:
-        mtime = int(image_path.stat().st_mtime)
-    except OSError:
-        mtime = 0
-    return _optimized_image_cached(image_path, size, quality, mtime)
-
-# --- Canvas display image (resolution-capped) -------------------------------
-# The Canvas <img> previously loaded the full-res original via /media. Museum
-# originals can be 40–110 MB / 150+ MP — too big for a Pi-class browser to decode
-# and GPU-texture (GL_MAX_TEXTURE_SIZE is commonly 8192), so the placard cycles
-# while the image never paints. We serve a capped derivative instead; the full-res
-# original stays on disk untouched (focal/crop quality unaffected). 7680 px long
-# edge keeps ~4K detail even after a portrait→landscape cover-crop + Ken Burns
-# zoom, while staying under the 8192 texture ceiling.
-DISPLAY_MAX_EDGE = 7680
-DISPLAY_QUALITY = 90
-DERIVATIVES_DIR = ARTWORK_ROOT / "_derivatives"
-
-
-def render_canvas_image(src: Path, art_id: int) -> bytes:
-    """Resolution-capped, EXIF-baked JPEG for the Canvas; disk-cached per source mtime.
-
-    Heavy (decode + LANCZOS downscale + encode of a 150 MP original) — call via
-    run_in_threadpool so it never blocks the event loop. The derivative is written
-    once and then served from disk on every later request; the cap is only applied
-    when the source actually exceeds it (smaller originals are re-encoded as-is)."""
-    DERIVATIVES_DIR.mkdir(exist_ok=True)
-    mtime = int(src.stat().st_mtime)
-    dst = DERIVATIVES_DIR / f"{art_id}-{mtime}-{DISPLAY_MAX_EDGE}.jpg"
-    if dst.exists():
-        return dst.read_bytes()
-    with Image.open(src) as img:
-        img = ImageOps.exif_transpose(img)   # bake orientation — a re-encode drops the EXIF tag
-        if img.mode != "RGB":
-            img = img.convert("RGB")
-        if max(img.size) > DISPLAY_MAX_EDGE:
-            img.thumbnail((DISPLAY_MAX_EDGE, DISPLAY_MAX_EDGE), Image.Resampling.LANCZOS)
-        buf = io.BytesIO()
-        img.save(buf, format="JPEG", quality=DISPLAY_QUALITY, progressive=True)
-        data = buf.getvalue()
-    # Prune stale derivatives for this artwork (an earlier crop/replace → new mtime).
-    for old in DERIVATIVES_DIR.glob(f"{art_id}-*.jpg"):
-        if old != dst:
-            try: old.unlink()
-            except OSError: pass
-    # Atomic publish so a concurrent reader never sees a partial file. Per-writer tmp name (A3): the boot
-    # warm sweep and a lazy /display.jpg render can target the same dst — a shared .tmp would let their
-    # writes interleave before os.replace. os.replace is atomic, so last-writer-wins on identical bytes.
-    tmp = dst.with_name(f"{dst.name}.{os.getpid()}.tmp")
-    tmp.write_bytes(data)
-    os.replace(tmp, dst)
-    return data
-
-
-def warm_canvas_cache_async(art_id: int, filename: str) -> None:
-    """Fire-and-forget: pre-render the capped display derivative in the background so the Canvas never
-    pays the one-time encode (up to several seconds for a 150 MP original) on first display. Best-effort;
-    a missing loop or a bad file is swallowed (the lazy path + the boot sweep are the backstops)."""
-    async def _run():
-        try:
-            await run_in_threadpool(render_canvas_image, LIBRARY_DIR / filename, art_id)
-        except Exception as e:
-            logger.warning(f"[Warm] could not pre-render display image for art {art_id}: {e}")
-    try:
-        asyncio.get_running_loop().create_task(_run())
-    except RuntimeError:
-        pass  # no running loop (sync context) — the boot sweep will catch it
 
 
 async def warm_all_canvas_cache() -> None:
@@ -543,19 +452,8 @@ async def inject_aggressive_cache_headers(request: Request, call_next):
 #   * The read-only public FEED (what integrations consume) stays cross-origin readable.
 #   * Admin/library GETs are NOT cross-origin readable (no ACAO) — a hostile tab can't exfiltrate them.
 #   * Same-origin (the kiosk's own page) and explicitly configured SD_ALLOWED_ORIGINS always pass.
-_PUBLIC_FEED_GET_PREFIXES = ("/next-image", "/api/catalog", "/display/")
+# _same_origin, _origin_allowed, _PUBLIC_FEED_GET_PREFIXES now live in core/security.py (imported above).
 _MUTATING_METHODS = frozenset({"POST", "PUT", "PATCH", "DELETE"})
-
-
-def _same_origin(origin: str, host: str) -> bool:
-    """True when the request Origin points back at the same host:port the request was addressed to
-    (the kiosk loading its own page). Origin is `scheme://host[:port]`; Host is `host[:port]`."""
-    sep = origin.find("://")
-    return bool(origin) and bool(host) and sep != -1 and origin[sep + 3:] == host
-
-
-def _origin_allowed(origin: str, host: str) -> bool:
-    return origin in config.ALLOWED_ORIGINS or _same_origin(origin, host)
 
 
 @app.middleware("http")
@@ -1468,13 +1366,6 @@ async def bulk_delete_artworks(payload: ArtworkIds, db: Session = Depends(get_db
         _wipe_artwork(db, art)
     db.commit(); return {"status": "wiped", "count": len(arts)}
 
-def _playlist_name_if_playable(db: Session, name: Optional[str]) -> Optional[str]:
-    """Return `name` only if that playlist still exists AND has at least one artwork; else None."""
-    if not name:
-        return None
-    pl = db.query(PlaylistModel).filter(PlaylistModel.name == name).first()
-    return name if (pl and len(pl.artworks) > 0) else None
-
 @app.get("/api/displays/{display_id}/preferred-playlist")
 async def get_preferred_playlist(display_id: str, db: Session = Depends(get_db)):
     """Which playlist a freshly-loaded display (no ?playlist= given) should show. Precedence:
@@ -1509,21 +1400,7 @@ async def set_default_playlist(payload: DefaultPlaylistPayload, db: Session = De
 # Gentle defaults, warm-shift ON, quiet-hours panel-off OFF (opt-in) so nothing blanks unexpectedly.
 # One global schedule for v1; the resolver takes a display_id so per-display overrides can layer in later
 # (dev-rule #4 hierarchy). The Canvas applies a GPU-cheap CSS overlay; the appliance drives HDMI-CEC.
-SCHEDULE_SETTING_KEY = "display_schedule"
-DEFAULT_SCHEDULE = {
-    "enabled": True,
-    "day_brightness": 1.0,     # 0.1..1.0 — screen brightness by day
-    "night_brightness": 0.72,  # 0.1..1.0 — dimmed at full night
-    "night_warmth": 0.28,      # 0..1 — amber tint strength at full night (0 = no colour shift)
-    "evening_start": "20:00",  # begin the day -> night ramp
-    "night_start": "22:30",    # fully night by here
-    "morning_start": "06:30",  # begin the night -> day ramp
-    "day_start": "08:00",      # fully day by here
-    "quiet_enabled": False,    # opt-in: blank / power the panel off overnight
-    "quiet_start": "23:30",
-    "quiet_end": "07:00",
-    "quiet_mode": "cec",       # "cec" (appliance powers panel) | "blackout" (software only)
-}
+# SCHEDULE_SETTING_KEY, DEFAULT_SCHEDULE now live in core/settings_util.py (imported above).
 
 
 def _parse_hhmm(value: str, fallback: int = 0) -> int:
@@ -1593,16 +1470,7 @@ def resolve_schedule_state(schedule: dict, now: datetime) -> dict:
             "quiet": quiet, "quiet_mode": s.get("quiet_mode", "cec")}
 
 
-def _load_schedule(db: Session) -> dict:
-    """Stored schedule merged over the defaults (so new keys always have a value)."""
-    row = db.query(SettingsModel).filter(SettingsModel.setting_key == SCHEDULE_SETTING_KEY).first()
-    stored = {}
-    if row and row.setting_value:
-        try:
-            stored = json.loads(row.setting_value)
-        except json.JSONDecodeError:
-            logger.warning("display_schedule setting is not valid JSON — using defaults")
-    return {**DEFAULT_SCHEDULE, **stored}
+# _load_schedule now lives in core/settings_util.py (imported above).
 
 
 class DisplaySchedulePayload(BaseModel):
@@ -1672,182 +1540,8 @@ async def get_next_image(
     direction: int = Query(1),
     db: Session = Depends(get_db)
 ):
-    """
-    Phase 6: Stateful next-image selection.
-    Uses 'bag shuffle' for variety and persists state per display.
-    """
-    p = db.query(PlaylistModel).filter(PlaylistModel.name == playlist_name).first()
-    if not p: raise HTTPException(404)
-
-    # Remember the active playlist for this display so a reboot resumes it (not the first playlist).
-    # Guarded so it only writes on change; rides the session-state commit below.
-    if display_id and display_id != "default":
-        _lp_key = f"last_playlist:{display_id}"
-        _lp_row = db.query(SettingsModel).filter(SettingsModel.setting_key == _lp_key).first()
-        if _lp_row is None:
-            db.add(SettingsModel(setting_key=_lp_key, setting_value=playlist_name))
-        elif _lp_row.setting_value != playlist_name:
-            _lp_row.setting_value = playlist_name
-
-    # Resolve Shuffle Hierarchy (URL override > Playlist setting)
-    resolved_shuffle = shuffle if shuffle is not None else p.shuffle
-
-    # Fetch all approved artworks in this playlist
-    artworks = db.query(ArtworkModel).join(playlist_artwork).filter(
-        playlist_artwork.c.playlist_id == p.id,
-        ArtworkModel.status == 'approved'
-    ).order_by(playlist_artwork.c.display_order).all()
-
-    if not artworks: raise HTTPException(404, detail="No approved images")
-    count = len(artworks)
-
-    # Get or create playback session. A8: the (display_id, playlist_id) UNIQUE constraint backstops the
-    # check-then-insert race across the 4 workers — if another worker inserts first, catch the
-    # IntegrityError, roll back, and re-query the row it created instead of duplicating it.
-    def _get_session():
-        return db.query(DisplayPlaybackSessionModel).filter(
-            DisplayPlaybackSessionModel.display_id == display_id,
-            DisplayPlaybackSessionModel.playlist_id == p.id
-        ).first()
-
-    session = _get_session()
-    if not session:
-        session = DisplayPlaybackSessionModel(display_id=display_id, playlist_id=p.id)
-        db.add(session)
-        try:
-            db.commit()
-        except IntegrityError:
-            db.rollback()
-            session = _get_session()
-
-    selected_art = None
-    selected_idx = -1
-
-    if resolved_shuffle:
-        # Bag Shuffle Logic
-        unplayed_ids = json.loads(session.unplayed_artworks_json)
-
-        # Valid approved IDs in this playlist
-        valid_ids = [a.id for a in artworks]
-
-        # Filter unplayed to only include currently valid/approved IDs
-        bag = [aid for aid in unplayed_ids if aid in valid_ids]
-
-        # If bag is empty, refill it
-        if not bag:
-            bag = valid_ids
-            logger.info(f"[Director] Refilling bag for display '{display_id}' / playlist '{playlist_name}'")
-
-        # Phase 6 Bonus: Weighted random draw based on affinity_score
-        # Get actual artwork objects for the IDs in the bag to access affinity scores
-        bag_artworks = [a for a in artworks if a.id in bag]
-
-        if bag_artworks:
-            # random.choices uses weights. affinity_score defaults to 1.0.
-            weights = [max(0.1, a.affinity_score) for a in bag_artworks]
-            selected_art = random.choices(bag_artworks, weights=weights, k=1)[0]
-
-            # Remove from bag
-            bag.remove(selected_art.id)
-            session.unplayed_artworks_json = json.dumps(bag)
-
-            # Find its index in the ordered list for the frontend (optional but helpful)
-            for i, a in enumerate(artworks):
-                if a.id == selected_art.id:
-                    selected_idx = i
-                    break
-    else:
-        # Stateful Sequential Logic
-        base_idx = session.last_sequential_index
-        selected_idx = (base_idx + direction) % count
-        selected_art = artworks[selected_idx]
-        session.last_sequential_index = selected_idx
-
-    db.commit()
-
-    # Now-playing: record what this display is showing so /remote + Devices can surface it. Covers
-    # both Canvas (calls this route) and e-ink (calls it via get_display_image). Own commit; liveness
-    # stays heartbeat-owned so a fresh selection never masks a display that stopped checking in.
-    _record_now_playing(db, display_id, selected_art.id, playlist_name)
-
-    try:
-        _ver = int((LIBRARY_DIR / selected_art.filename).stat().st_mtime)
-    except OSError:
-        _ver = 0
-
-    return {
-        "index": selected_idx,
-        # Resolution-capped derivative (not the full-res original) so a Pi-class browser
-        # can actually decode/paint it; ?v=mtime busts the immutable cache on re-crop/replace.
-        "image_url": f"/artworks/{selected_art.id}/display.jpg?v={_ver}",
-        "playlist": playlist_name,
-        "display_time": p.display_time,
-        "default_mode": p.default_mode,
-        "shuffle": resolved_shuffle,
-        "placard_wait": p.placard_initial_wait_sec,
-        "placard_show": p.placard_initial_show_sec,
-        "placard_manual": p.placard_interaction_show_sec,
-        "crop": {"x": selected_art.crop_x, "y": selected_art.crop_y, "width": selected_art.crop_width, "height": selected_art.crop_height},
-        "focal_point": {"x": selected_art.focal_x, "y": selected_art.focal_y},
-        "metadata": {
-            "id": selected_art.id,
-            "is_personal": selected_art.is_personal,
-            "title": selected_art.title, "agent_name": selected_art.agent_name, "agent_role": selected_art.agent_role,
-            "creation_date": selected_art.creation_date, "cultural_context": selected_art.cultural_context,
-            "medium": selected_art.medium, "date_display": selected_art.date_display,
-            "description": selected_art.description_narrative, "tags": selected_art.tags
-        }
-    }
-
-
-def _record_now_playing(db: Session, display_id: str, artwork_id: int, playlist_name: str):
-    """Persist the artwork/collection a display is currently showing. Upserts only the current_* fields;
-    last_seen_at (liveness) is owned by the WS heartbeat / touch_active_display, so updating now-playing
-    never revives a display that stopped checking in. Best-effort — a failure here must not break a serve."""
-    try:
-        d = db.query(ActiveDisplayModel).filter(ActiveDisplayModel.display_id == display_id).first()
-        if d:
-            d.current_artwork_id = artwork_id
-            d.current_playlist = playlist_name
-        else:
-            db.add(ActiveDisplayModel(display_id=display_id, current_artwork_id=artwork_id,
-                                      current_playlist=playlist_name))
-        db.commit()
-    except Exception as e:
-        logger.error(f"_record_now_playing error for {display_id}: {e}", exc_info=True)
-        db.rollback()
-
-
-def _now_playing_artwork(db: Session, artwork_id: Optional[int]) -> Optional[dict]:
-    """Compact card for the artwork currently on a display (None if unknown/deleted)."""
-    if not artwork_id:
-        return None
-    a = db.query(ArtworkModel).filter(ArtworkModel.id == artwork_id).first()
-    if not a:
-        return None
-    return {"id": a.id, "title": a.title, "agent_name": a.agent_name,
-            "is_personal": a.is_personal, "thumb_url": f"/artworks/{a.id}/thumbnail"}
-
-
-def _display_now_playing(db: Session, row: "ActiveDisplayModel") -> dict:
-    """{display_id, playlist, artwork} for a display row — the shared shape for /remote + Devices."""
-    return {"display_id": row.display_id, "playlist": row.current_playlist,
-            "artwork": _now_playing_artwork(db, row.current_artwork_id)}
-
-
-def touch_active_display(db: Session, display_id: str):
-    """Upsert last_seen_at so pull-on-wake e-ink frames show up in the remote/
-    admin just like WebSocket-connected Canvas displays."""
-    try:
-        d = db.query(ActiveDisplayModel).filter(ActiveDisplayModel.display_id == display_id).first()
-        if d:
-            d.last_seen_at = datetime.now(UTC)
-        else:
-            db.add(ActiveDisplayModel(display_id=display_id))
-        db.commit()
-    except Exception as e:
-        logger.error(f"touch_active_display error for {display_id}: {e}")
-        db.rollback()
+    """Stateful next-image selection — thin route over core.playback.select_next_image."""
+    return await select_next_image(playlist_name, shuffle, display_id, direction, db)
 
 
 @app.get("/display/{display_id}/current.{ext}")
@@ -1884,7 +1578,7 @@ async def get_display_image(
         playlist = first.name
 
     # Reuse the canonical selection brain (advances state once per fetch).
-    info = await get_next_image(
+    info = await select_next_image(
         playlist_name=playlist, shuffle=shuffle, display_id=display_id, direction=1, db=db
     )
 
@@ -2199,12 +1893,7 @@ async def verify_and_save_api_key(source: str, payload: dict, db: Session = Depe
 # -----------------------------------------------------------------------------
 # 4.6 AI Engine (model provider configuration)
 # -----------------------------------------------------------------------------
-def _upsert_setting(db: Session, key: str, value: str):
-    row = db.query(SettingsModel).filter(SettingsModel.setting_key == key).first()
-    if row:
-        row.setting_value = value
-    else:
-        db.add(SettingsModel(setting_key=key, setting_value=value))
+# _upsert_setting now lives in core/settings_util.py (imported above).
 
 @app.get("/api/settings/ai")
 async def get_ai_settings(db: Session = Depends(get_db)):
@@ -2361,17 +2050,7 @@ def _read_local_json(path: Path):
     _local_json_cache[path] = (mtime, data)
     return copy.deepcopy(data)
 
-async def _catalog_remote_base(db: Session) -> Optional[str]:
-    """Optional remote override: a static base URL hosting index.json + <id>.json (no server needed)."""
-    setting = db.query(SettingsModel).filter(SettingsModel.setting_key == "catalog_url").first()
-    return setting.setting_value.rstrip("/") if setting and setting.setting_value else None
-
-async def _fetch_remote_json(base: str, name: str):
-    async with httpx.AsyncClient(headers={"User-Agent": SD_USER_AGENT}) as client:
-        r = await client.get(f"{base}/{name}", timeout=15.0, follow_redirects=True)
-        if r.status_code == 200:
-            return r.json()
-    raise RuntimeError(f"HTTP {r.status_code}")
+# _catalog_remote_base, _fetch_remote_json now live in core/settings_util.py (imported above).
 
 # Subscribed (federated) collections share the catalog browse surface, but their ids are namespaced
 # so they can never collide with — or masquerade as — a bundled/official collection.
@@ -2470,73 +2149,7 @@ async def _catalog_collection(db: Session, collection_id: str):
         col.setdefault("origin", "bundled")
     return col
 
-async def _download_image_to_library(source_url: str, *, filename: str,
-                                     retries: int = 3) -> tuple[Path, str, int, int]:
-    """Robustly download a remote image into LIBRARY_DIR — the one downloader the seed, discovery,
-    and catalog paths share. Sends a descriptive User-Agent (the default httpx UA is rejected by
-    Wikimedia and others), follows redirects through SSRF-validated hops only (M1), retries 429s with
-    escalating backoff, writes to a collision-safe unique filename, and validates the bytes are a real
-    image (a bad download is
-    deleted, never left in the library). Returns (dest_path, safe_filename, width, height); raises
-    HTTPException on download or validation failure."""
-    safe_name = "".join(x for x in filename if x.isalnum() or x in "_-.")
-    if not safe_name.lower().endswith(".jpg"):
-        safe_name += ".jpg"
-    stem = safe_name[:-4]
-    dest_path = LIBRARY_DIR / safe_name
-    n = 1
-    while dest_path.exists():
-        safe_name = f"{stem}_{n}.jpg"; dest_path = LIBRARY_DIR / safe_name; n += 1
-
-    resp = None
-    # M1: follow redirects MANUALLY and SSRF-validate every hop. httpx's own follow_redirects=True
-    # would bounce a 3xx to an internal host (127.0.0.1, router admin, cloud metadata) that the
-    # caller's initial pre-check never saw. We can't simply refuse redirects — Wikimedia's
-    # Special:FilePath (most of the catalog + seed) legitimately 302s to the real image — so we
-    # follow, but only to validated public hosts.
-    async with httpx.AsyncClient(headers={"User-Agent": SD_USER_AGENT}) as client:
-        for attempt in range(retries):
-            url = source_url
-            for _hop in range(6):
-                resp = await client.get(url, timeout=45.0, follow_redirects=False)
-                if resp.status_code not in (301, 302, 303, 307, 308):
-                    break
-                loc = resp.headers.get("location")
-                if not loc:
-                    break
-                url = str(resp.url.join(loc))   # resolve relative redirects against the current URL
-                try:
-                    await asyncio.to_thread(federation._assert_public_url, url)   # C2: DNS off the loop
-                except federation.FederationError as e:
-                    raise HTTPException(502, detail=f"Image redirected to a blocked host ({e}).")
-            if resp.status_code == 429:
-                await asyncio.sleep(3 * (attempt + 1))
-                continue
-            break
-    if not resp or resp.status_code != 200:
-        raise HTTPException(502, detail=f"Could not download image (HTTP {resp.status_code if resp else 'none'}).")
-
-    with open(dest_path, "wb") as f:
-        f.write(resp.content)
-    try:
-        with Image.open(dest_path) as img:
-            w, h = img.size
-    except Exception:
-        dest_path.unlink(missing_ok=True)
-        raise HTTPException(502, detail="Downloaded file was not a valid image.")
-    return dest_path, safe_name, w, h
-
-
-def _focal_xy(item: dict, default: tuple = (0.5, 0.5)) -> tuple:
-    """Parse a flat 'focal_point': [x, y] (normalized 0..1) from a catalog/seed item — the Ken Burns
-    / crop framing anchor baked by tools/backfill_focal_*. Absent or malformed ⇒ centered default."""
-    fp = item.get("focal_point")
-    if isinstance(fp, (list, tuple)) and len(fp) == 2:
-        try:
-            return min(1.0, max(0.0, float(fp[0]))), min(1.0, max(0.0, float(fp[1])))
-        except (TypeError, ValueError):
-            pass
-    return default
+# _download_image_to_library, _focal_xy now live in core/downloads.py (imported above).
 
 
 async def _download_and_create_artwork(db: Session, *, source_url: str, thumbnail_url: str,
@@ -2607,7 +2220,7 @@ async def _frame_select(playlist: str):
                 return None
             pl = first.name
         cfg = frame_push.get_frame_config()
-        info = await get_next_image(
+        info = await select_next_image(
             playlist_name=pl, shuffle=None, display_id=cfg["display_id"], direction=1, db=db
         )
         art_id = (info.get("metadata") or {}).get("id")
