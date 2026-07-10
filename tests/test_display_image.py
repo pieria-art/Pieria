@@ -14,6 +14,7 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy.pool import StaticPool
 
 import app as app_module
+import core.media as core_media
 from app import DISPLAY_MAX_EDGE, app
 from database import Base, get_db
 from models import ArtworkModel
@@ -25,6 +26,9 @@ def client(tmp_path, monkeypatch):
     # read from or write into the real shipped Artwork/ tree (test isolation).
     monkeypatch.setattr(app_module, "LIBRARY_DIR", tmp_path / "_Library")
     monkeypatch.setattr(app_module, "DERIVATIVES_DIR", tmp_path / "_derivatives")
+    # render_canvas_image now lives in core.media and reads core.media.DERIVATIVES_DIR;
+    # patch it to the same throwaway dir so the derivative write stays isolated.
+    monkeypatch.setattr(core_media, "DERIVATIVES_DIR", tmp_path / "_derivatives")
 
     engine = create_engine("sqlite://", connect_args={"check_same_thread": False}, poolclass=StaticPool)
     Base.metadata.create_all(bind=engine)

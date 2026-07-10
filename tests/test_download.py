@@ -17,6 +17,7 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy.pool import StaticPool
 
 import app as app_module
+import core.downloads as core_downloads
 from app import _download_image_to_library, app
 from database import Base, get_db
 from models import ArtworkModel, DiscoveryQueueModel
@@ -59,6 +60,7 @@ def _fake_client_factory(responses, captured):
 @pytest.fixture
 def lib(monkeypatch, tmp_path):
     monkeypatch.setattr(app_module, "LIBRARY_DIR", tmp_path)
+    monkeypatch.setattr(core_downloads, "LIBRARY_DIR", tmp_path)
     return tmp_path
 
 
@@ -125,6 +127,7 @@ def client(monkeypatch, tmp_path):
         yield db
     app.dependency_overrides[get_db] = _override_db
     monkeypatch.setattr(app_module, "LIBRARY_DIR", tmp_path)
+    monkeypatch.setattr(core_downloads, "LIBRARY_DIR", tmp_path)
     monkeypatch.setattr(app_module, "ARTWORK_ROOT", tmp_path)
 
     # Enrichment runs as a background task; stub it so the test touches no AI/network.
