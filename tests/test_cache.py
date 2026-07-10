@@ -8,18 +8,19 @@ import os
 from PIL import Image
 
 import app as app_module
+import core.media as core_media
 
 
 def test_optimized_image_busts_on_mtime_change(tmp_path):
     p = tmp_path / "x.jpg"
     Image.new("RGB", (800, 600), (10, 20, 30)).save(p, "JPEG")
     os.utime(p, (1000, 1000))
-    before = app_module.get_optimized_image(p, (400, 400), 70)
+    before = core_media.get_optimized_image(p, (400, 400), 70)
 
     # Replace the file in place with a clearly different image + a newer mtime.
     Image.new("RGB", (800, 600), (200, 100, 50)).save(p, "JPEG")
     os.utime(p, (2000, 2000))
-    after = app_module.get_optimized_image(p, (400, 400), 70)
+    after = core_media.get_optimized_image(p, (400, 400), 70)
 
     assert before != after   # mtime participates in the lru key → no stale thumbnail (A4)
 

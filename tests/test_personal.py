@@ -10,6 +10,7 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy.pool import StaticPool
 
 import app as app_module
+import routers.library as routers_library
 from app import PERSONAL_PLAYLIST_NAME, app
 from database import Base, get_db
 from models import ArtworkModel, PlaylistModel, playlist_artwork
@@ -25,6 +26,9 @@ def client(monkeypatch, tmp_path):
         yield db
     app.dependency_overrides[get_db] = _override_db
     monkeypatch.setattr(app_module, "LIBRARY_DIR", tmp_path)
+    # POST /upload (the museum path) now lives in routers/library.py — it reads its own LIBRARY_DIR
+    # binding, so redirect it too (established dual-patch pattern; see test_catalog.py).
+    monkeypatch.setattr(routers_library, "LIBRARY_DIR", tmp_path)
 
     with TestClient(app) as c:
         yield c, db
@@ -121,7 +125,7 @@ def test_personal_upload_heic_transcodes_to_jpeg(client):
 
 def test_museum_upload_heic_transcodes_to_jpeg(client, monkeypatch):
     c, db = client
-    monkeypatch.setattr(app_module, "run_ai_pipeline", lambda *a, **k: None)
+    monkeypatch.setattr(routers_library, "run_ai_pipeline", lambda *a, **k: None)
     r = c.post("/upload", files={"file": ("photo.heic", _heic_bytes((50, 40)), "image/heic")})
     assert r.status_code == 200, r.text
     art = db.get(ArtworkModel, r.json()["id"])
@@ -135,7 +139,7 @@ def test_museum_upload_png_preserves_bytes_with_safe_name(client, monkeypatch):
     server-generated (C1: the client filename is never used to build the path). The stem still
     carries a sanitized hint from the original name for recognizability."""
     c, db = client
-    monkeypatch.setattr(app_module, "run_ai_pipeline", lambda *a, **k: None)
+    monkeypatch.setattr(routers_library, "run_ai_pipeline", lambda *a, **k: None)
     r = c.post("/upload", files={"file": ("art.png", _png_bytes((70, 50)), "image/png")})
     assert r.status_code == 200, r.text
     art = db.get(ArtworkModel, r.json()["id"])
@@ -149,7 +153,7 @@ def test_museum_upload_rejects_traversal_filename(client, monkeypatch):
     """C1 regression: a client filename with path traversal cannot escape LIBRARY_DIR — the name is
     server-generated, so the artwork lands safely inside the library."""
     c, db = client
-    monkeypatch.setattr(app_module, "run_ai_pipeline", lambda *a, **k: None)
+    monkeypatch.setattr(routers_library, "run_ai_pipeline", lambda *a, **k: None)
     r = c.post("/upload", files={"file": ("../../../evil.png", _png_bytes((20, 20)), "image/png")})
     assert r.status_code == 200, r.text
     art = db.get(ArtworkModel, r.json()["id"])
