@@ -15,6 +15,7 @@ from sqlalchemy.pool import StaticPool
 
 import app as app_module
 import core.media as core_media
+import routers.display as routers_display
 from app import DISPLAY_MAX_EDGE, app
 from database import Base, get_db
 from models import ArtworkModel
@@ -26,6 +27,9 @@ def client(tmp_path, monkeypatch):
     # read from or write into the real shipped Artwork/ tree (test isolation).
     monkeypatch.setattr(app_module, "LIBRARY_DIR", tmp_path / "_Library")
     monkeypatch.setattr(app_module, "DERIVATIVES_DIR", tmp_path / "_derivatives")
+    # GET /artworks/{id}/display.jpg now lives in routers/display.py — it reads its own LIBRARY_DIR
+    # binding, so redirect it too (established dual-patch pattern; see test_catalog.py).
+    monkeypatch.setattr(routers_display, "LIBRARY_DIR", tmp_path / "_Library")
     # render_canvas_image now lives in core.media and reads core.media.DERIVATIVES_DIR;
     # patch it to the same throwaway dir so the derivative write stays isolated.
     monkeypatch.setattr(core_media, "DERIVATIVES_DIR", tmp_path / "_derivatives")

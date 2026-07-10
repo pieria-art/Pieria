@@ -11,6 +11,7 @@ from sqlalchemy.pool import StaticPool
 
 import app as app_module
 import routers.library as routers_library
+import routers.studio as routers_studio
 from app import PERSONAL_PLAYLIST_NAME, app
 from database import Base, get_db
 from models import ArtworkModel, PlaylistModel, playlist_artwork
@@ -29,6 +30,8 @@ def client(monkeypatch, tmp_path):
     # POST /upload (the museum path) now lives in routers/library.py — it reads its own LIBRARY_DIR
     # binding, so redirect it too (established dual-patch pattern; see test_catalog.py).
     monkeypatch.setattr(routers_library, "LIBRARY_DIR", tmp_path)
+    # POST /upload/personal + the studio routes now live in routers/studio.py — same dual-patch need.
+    monkeypatch.setattr(routers_studio, "LIBRARY_DIR", tmp_path)
 
     with TestClient(app) as c:
         yield c, db
@@ -182,9 +185,9 @@ def test_is_local_base_url(url, local):
 def test_caption_suggests_and_reports_local(client, monkeypatch):
     c, _ = client
     body = _upload(c, caption="").json()   # creates a personal artwork + its file on disk
-    monkeypatch.setattr(app_module.ai_client, "get_ai_config",
+    monkeypatch.setattr(routers_studio.ai_client, "get_ai_config",
                         lambda force=False: {"configured": True, "base_url": "http://localhost:11434/v1"})
-    monkeypatch.setattr(app_module.ai_client, "chat",
+    monkeypatch.setattr(routers_studio.ai_client, "chat",
                         lambda *a, **k: '{"caption": "A Sunny Day at Bondi Beach"}')
     r = c.post(f"/api/studio/caption/{body['id']}", json={"hint": "Bondi"})
     assert r.status_code == 200, r.text
@@ -196,9 +199,9 @@ def test_caption_suggests_and_reports_local(client, monkeypatch):
 def test_caption_reports_cloud_model(client, monkeypatch):
     c, _ = client
     body = _upload(c).json()
-    monkeypatch.setattr(app_module.ai_client, "get_ai_config",
+    monkeypatch.setattr(routers_studio.ai_client, "get_ai_config",
                         lambda force=False: {"configured": True, "base_url": "https://api.openai.com/v1"})
-    monkeypatch.setattr(app_module.ai_client, "chat", lambda *a, **k: '{"caption": "Golden Hour"}')
+    monkeypatch.setattr(routers_studio.ai_client, "chat", lambda *a, **k: '{"caption": "Golden Hour"}')
     d = c.post(f"/api/studio/caption/{body['id']}", json={}).json()
     assert d["caption"] == "Golden Hour" and d["model_is_local"] is False
 
@@ -206,7 +209,7 @@ def test_caption_reports_cloud_model(client, monkeypatch):
 def test_caption_requires_configured_model(client, monkeypatch):
     c, _ = client
     body = _upload(c).json()
-    monkeypatch.setattr(app_module.ai_client, "get_ai_config",
+    monkeypatch.setattr(routers_studio.ai_client, "get_ai_config",
                         lambda force=False: {"configured": False, "base_url": ""})
     assert c.post(f"/api/studio/caption/{body['id']}", json={}).status_code == 400
 

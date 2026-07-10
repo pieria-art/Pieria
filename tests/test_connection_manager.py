@@ -12,6 +12,7 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy.pool import StaticPool
 
 import app as app_module
+import routers.ws as routers_ws
 from app import ConnectionManager, app, manager
 from database import Base
 
@@ -108,7 +109,11 @@ def test_ws_endpoint_broadcasts_received_frame(monkeypatch):
     # /ws handler never writes to the real artwork.db.
     engine = create_engine("sqlite://", connect_args={"check_same_thread": False}, poolclass=StaticPool)
     Base.metadata.create_all(bind=engine)
-    monkeypatch.setattr(app_module, "SessionLocal", sessionmaker(bind=engine, autoflush=False, autocommit=False))
+    session_factory = sessionmaker(bind=engine, autoflush=False, autocommit=False)
+    monkeypatch.setattr(app_module, "SessionLocal", session_factory)
+    # /ws/{display_id}'s heartbeat + command_poller now live in routers/ws.py — they read their own
+    # SessionLocal binding, so redirect it too (established dual-patch pattern; see test_catalog.py).
+    monkeypatch.setattr(routers_ws, "SessionLocal", session_factory)
 
     with TestClient(app) as c:
         with c.websocket_connect("/ws/testdisp") as ws:
