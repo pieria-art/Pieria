@@ -13,6 +13,7 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy.pool import StaticPool
 
 import app as app_module
+import routers.admin as routers_admin
 from app import app
 from database import Base, get_db
 from models import (
@@ -31,6 +32,12 @@ def client(tmp_path, monkeypatch):
     monkeypatch.setattr(app_module, "ARTWORK_ROOT", art_root)
     monkeypatch.setattr(app_module, "LIBRARY_DIR", lib)
     monkeypatch.setattr(app_module, "DERIVATIVES_DIR", art_root / "_derivatives")
+    # POST /api/admin/factory-reset now lives in routers/admin.py — it reads its own
+    # ARTWORK_ROOT/LIBRARY_DIR/DERIVATIVES_DIR bindings, so redirect those too (established
+    # dual-patch pattern; see tests/test_catalog.py).
+    monkeypatch.setattr(routers_admin, "ARTWORK_ROOT", art_root)
+    monkeypatch.setattr(routers_admin, "LIBRARY_DIR", lib)
+    monkeypatch.setattr(routers_admin, "DERIVATIVES_DIR", art_root / "_derivatives")
 
     engine = create_engine("sqlite://", connect_args={"check_same_thread": False}, poolclass=StaticPool)
     Base.metadata.create_all(bind=engine)

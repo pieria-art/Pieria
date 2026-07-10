@@ -4,29 +4,20 @@ FastAPI Backend for the Artwork Display Engine.
 Phase 4: Targeted WebSocket Routing for Multiple Displays.
 """
 
-import asyncio
-import fcntl
+# asyncio: no longer called directly here, but tests/test_download.py patches
+# `app_module.asyncio.sleep` — since it's the same stdlib singleton module object core/downloads.py
+# imports, that patch only works while `app` still binds the name `asyncio` at module scope.
+import asyncio  # noqa: F401
 import logging
-import os
-import shutil
-from contextlib import asynccontextmanager
-from pathlib import Path
 
 import pillow_heif
 from dotenv import load_dotenv
 from fastapi import (
-    Depends,
     FastAPI,
-    HTTPException,
     Request,
 )
-from fastapi.concurrency import run_in_threadpool
 from fastapi.responses import Response
 from fastapi.staticfiles import StaticFiles
-from PIL import Image
-from pydantic import BaseModel
-from sqlalchemy import delete, select
-from sqlalchemy.orm import Session
 
 # Load environment variables
 load_dotenv()
@@ -57,22 +48,34 @@ import httpx  # noqa: F401
 # patch `app_module.federation.*` — since it's the same singleton module object those routers import,
 # that patch only works while `app` still binds the name `federation` at module scope. Keep the import.
 import federation  # noqa: F401
-import frame_push
-from config import ARTWORK_ROOT, LIBRARY_DIR, STATIC_DIR
+
+# config: ARTWORK_ROOT is used below (static /media mount); LIBRARY_DIR and STATIC_DIR are no
+# longer read internally here (their call sites moved to core/lifespan.py + routers/*), but several
+# tests (e.g. tests/test_display_image.py, tests/test_factory_reset.py, tests/test_playlist_resume.py)
+# monkeypatch `app_module.LIBRARY_DIR` as part of the established dual-patch pattern — keep the names
+# bound at module scope so those patches have an attribute to set. STATIC_DIR is used below (static mount).
+from config import ARTWORK_ROOT, LIBRARY_DIR, STATIC_DIR  # noqa: F401
 
 # Targeted WebSocket connection registry (shared by the ws + remote push paths).
 from core.connections import ConnectionManager, manager  # noqa: F401
 
-# SSRF-safe downloader + focal-point parsing (see core/downloads.py).
-from core.downloads import _download_image_to_library, _focal_xy  # noqa: E402
+# SSRF-safe downloader (see core/downloads.py): no longer called directly here (its call site moved
+# to core/lifespan.py), but tests/test_download.py imports `_download_image_to_library` off `app`.
+from core.downloads import _download_image_to_library  # noqa: F401,E402
 
-# Derivative-image rendering primitives (see core/media.py).
-from core.media import (  # noqa: E402
-    DERIVATIVES_DIR,
-    DISPLAY_MAX_EDGE,  # noqa: F401  — re-exported for tests/test_display_image.py
-    render_canvas_image,
+# Boot machinery (leader election, migrations, filesystem sync, factory seed, Canvas warmer) — see
+# core/lifespan.py (Phase 4 of the app-split refactor). `lifespan` is passed to FastAPI() below;
+# `sync_db_with_filesystem` is re-exported because tests/test_playlist_resume.py imports it off `app`.
+from core.lifespan import (
+    lifespan,
+    sync_db_with_filesystem,  # noqa: F401  — re-exported for tests/test_playlist_resume.py
 )
-from core.playback import _frame_select  # noqa: E402
+
+# Derivative-image rendering primitives (see core/media.py). DERIVATIVES_DIR/DISPLAY_MAX_EDGE are no
+# longer read internally here (call sites moved to routers/admin.py + core/media.py), but
+# tests/test_factory_reset.py + tests/test_display_image.py monkeypatch `app_module.DERIVATIVES_DIR`
+# (dual-patch pattern) and tests/test_display_image.py imports DISPLAY_MAX_EDGE off `app`.
+from core.media import DERIVATIVES_DIR, DISPLAY_MAX_EDGE  # noqa: F401,E402
 
 # Origin/CORS trust checks used by the middleware below (see core/security.py).
 from core.security import (  # noqa: E402
@@ -88,17 +91,16 @@ from core.settings_util import (  # noqa: E402
     DEFAULT_SCHEDULE,  # noqa: F401  — re-exported for tests/test_schedule.py
     resolve_schedule_state,  # noqa: F401  — re-exported for tests/test_schedule.py
 )
-from database import SessionLocal, get_db
-from models import (
-    ArtworkModel,
-    DiscoveryQueueModel,
-    PlaylistModel,
-    playlist_artwork,
-)
+
+# SessionLocal: no longer called directly here (its call sites moved to core/lifespan.py), but
+# tests/test_connection_manager.py monkeypatches `app_module.SessionLocal` (established dual-patch
+# pattern — the route it drives, /ws/{display_id}, reads its own SessionLocal binding in routers/ws.py).
+from database import SessionLocal  # noqa: F401,E402
 
 # Leaf domain routers extracted from app.py (Phase 1 + Phase 2 + Phase 3 of the app-split refactor).
 # Each is a plain APIRouter with no dependency on this module — see routers/__init__.py for the
 # import rule.
+from routers.admin import router as admin_router
 from routers.catalog import _read_local_json  # noqa: F401  — re-exported for tests/test_cache.py
 from routers.catalog import router as catalog_router
 from routers.curation import router as curation_router
@@ -113,210 +115,11 @@ from routers.studio import PERSONAL_PLAYLIST_NAME  # noqa: F401  — re-exported
 from routers.studio import router as studio_router
 from routers.ws import router as ws_router
 
-
-async def warm_all_canvas_cache() -> None:
-    """Leader boot task: pre-render the capped display image for every approved artwork so the Canvas
-    never stalls on first display (esp. huge museum originals on a Pi). Sequential — one encode at a
-    time — to avoid a CPU storm while the server is also serving; `render_canvas_image` skips anything
-    already cached, so reruns are cheap. Best-effort per item."""
-    db = SessionLocal()
-    try:
-        arts = (db.query(ArtworkModel.id, ArtworkModel.filename)
-                .filter(ArtworkModel.status == "approved").all())
-    finally:
-        db.close()
-    logger.info(f"[Warm] pre-rendering display derivatives for {len(arts)} artworks...")
-    done = 0
-    for art_id, filename in arts:
-        try:
-            await run_in_threadpool(render_canvas_image, LIBRARY_DIR / filename, art_id)
-            done += 1
-        except Exception as e:
-            logger.warning(f"[Warm] art {art_id} ({filename}): {e}")
-    logger.info(f"[Warm] display cache warm complete ({done}/{len(arts)}).")
-
-def sync_db_with_filesystem(db: Session) -> None:
-    if not ARTWORK_ROOT.exists():
-        ARTWORK_ROOT.mkdir(parents=True, exist_ok=True)
-    if not LIBRARY_DIR.exists():
-        LIBRARY_DIR.mkdir(parents=True, exist_ok=True)
-
-    valid_extensions = {".jpg", ".jpeg", ".png", ".webp"}
-    for item in ARTWORK_ROOT.iterdir():
-        # Skip internal dirs (underscore-prefixed: _Library canonical store, _derivatives display cache).
-        # They are NOT collections — enumerating them here would mint a bogus playlist and absorb cache files.
-        if item.is_dir() and not item.name.startswith("_"):
-            playlist = db.query(PlaylistModel).filter(PlaylistModel.name == item.name).first()
-            if not playlist:
-                playlist = PlaylistModel(name=item.name)
-                db.add(playlist); db.commit(); db.refresh(playlist)
-
-            for file_path in item.iterdir():
-                if file_path.suffix.lower() in valid_extensions:
-                    dest_path = LIBRARY_DIR / file_path.name
-                    if not dest_path.exists():
-                        shutil.move(file_path, dest_path)
-
-                    artwork = db.query(ArtworkModel).filter(ArtworkModel.filename == file_path.name).first()
-                    if not artwork:
-                        with Image.open(dest_path) as img:
-                            w, h = img.size
-                        artwork = ArtworkModel(
-                            filename=file_path.name,
-                            original_width=w, original_height=h,
-                            status='approved'
-                        )
-                        db.add(artwork); db.commit(); db.refresh(artwork)
-
-                    existing_link = db.execute(
-                        select(playlist_artwork).where(
-                            playlist_artwork.c.playlist_id == playlist.id,
-                            playlist_artwork.c.artwork_id == artwork.id
-                        )
-                    ).first()
-
-                    if not existing_link:
-                        db.execute(playlist_artwork.insert().values(
-                            playlist_id=playlist.id,
-                            artwork_id=artwork.id,
-                            display_order=0
-                        ))
-            db.commit()
-
-async def run_factory_seed(db: Session):
-    """Parses factory_seed.json and injects masterpieces if library is empty."""
-    seed_file = Path("static/factory_seed.json")
-    if not seed_file.exists(): return
-
-    existing = db.query(ArtworkModel).filter(ArtworkModel.is_seed == True).first()
-    if existing: return
-
-    try:
-        import json
-        with open(seed_file) as f:
-            seeds = json.load(f)
-
-        logger.info(f"[Bootstrapper] Injecting {len(seeds)} Masterpieces from Factory Seed...")
-
-        async def perform_downloads(seed_items: list):
-            db_local = SessionLocal()
-            try:
-                await asyncio.sleep(2)
-                for idx, item in enumerate(seed_items):
-                    await asyncio.sleep(2.0)
-                    try:
-                        pl_name = item.get("playlist", "The Masterpieces")
-                        playlist = db_local.query(PlaylistModel).filter(PlaylistModel.name == pl_name).first()
-                        if not playlist:
-                            playlist = PlaylistModel(name=pl_name)
-                            db_local.add(playlist); db_local.commit(); db_local.refresh(playlist)
-                            (ARTWORK_ROOT / pl_name).mkdir(parents=True, exist_ok=True)
-
-                        filename = f"seed_{idx}_{item.get('title', 'art').replace(' ','_').lower()[:15]}"
-                        logger.info(f"[Bootstrapper] Downloading '{filename}'...")
-
-                        # Shared robust downloader (UA + 429 retry + validation).
-                        try:
-                            dest_path, safe_name, w, h = await _download_image_to_library(
-                                item.get("source_url"), filename=filename)
-                        except HTTPException as e:
-                            logger.error(f"[Bootstrapper] Failed download {filename}: {e.detail}")
-                            continue
-
-                        pl_path = ARTWORK_ROOT / pl_name / safe_name
-                        # Remove stale symlink before creating new one
-                        if pl_path.is_symlink() or pl_path.exists():
-                            pl_path.unlink()
-                        try: os.symlink(dest_path.resolve(), pl_path)
-                        except OSError: shutil.copy(dest_path, pl_path)
-
-                        sfx, sfy = _focal_xy(item)
-                        artwork = ArtworkModel(
-                            filename=safe_name, original_width=w, original_height=h,
-                            crop_width=float(w), crop_height=float(h),
-                            status='approved',
-                            title=item.get("title"), agent_name=item.get("agent_name"),
-                            agent_role=item.get("agent_role"), creation_date=item.get("creation_date"),
-                            cultural_context=item.get("cultural_context"), medium=item.get("medium"),
-                            date_display=item.get("date_display"), description_narrative=item.get("description_narrative"),
-                            tags=item.get("tags"), is_seed=True,
-                            focal_x=sfx, focal_y=sfy,
-                        )
-                        db_local.add(artwork); db_local.commit(); db_local.refresh(artwork)
-
-                        try:
-                            db_local.execute(playlist_artwork.insert().values(
-                                playlist_id=playlist.id, artwork_id=artwork.id, display_order=idx
-                            ))
-                            db_local.commit()
-                        except Exception:
-                            db_local.rollback()  # playlist_artwork may already exist
-
-                        logger.info(f"[Bootstrapper] ✓ Seeded '{item.get('title')}' → {pl_name}")
-
-                    except Exception as inner_e: logger.error(f"[Bootstrapper] Item error: {inner_e}")
-            finally: db_local.close()
-
-        asyncio.create_task(perform_downloads(seeds))
-
-    except Exception as e:
-        logger.error(f"[Bootstrapper] Failed to parse factory_seed.json: {e}")
-
-from db_migrate import run_migrations
-
-
-@asynccontextmanager
-async def lifespan(app: FastAPI):
-    """Lifecycle events for FastAPI application with multi-worker concurrency locks."""
-
-    # Leader Election using fcntl: the first worker grabs the exclusive non-blocking lock
-    # and runs exclusive boot tasks; the other workers get BlockingIOError and skip them.
-    # We deliberately never unlock — the OS releases the flock when the worker process exits,
-    # so a slightly delayed follower can't grab it mid-boot and race the migrations.
-    lock_file = open("/tmp/screen_docent_startup.lock", "w")
-    try:
-        fcntl.flock(lock_file, fcntl.LOCK_EX | fcntl.LOCK_NB)
-    except BlockingIOError:
-        logger.info("[Startup] Follower worker initialized. Skipping exclusive boot tasks.")
-        yield
-        return
-
-    logger.info("[Startup] Leader elected. Running exclusive boot tasks (migrations, filesystem sync)...")
-
-    # 1) Schema: Alembic is the single source of truth (create_all no longer runs at boot).
-    #    A migration failure MUST halt startup — it is caught at deploy, not by a user's
-    #    black screen. Deliberately NOT wrapped in a swallowing try/except (see ADR-035).
-    logger.info("Running Alembic migrations...")
-    run_migrations()
-    logger.info("Alembic migrations complete.")
-
-    # 2) Best-effort init: a hiccup in filesystem sync / seed / warmers should not wedge the
-    #    whole box, so these stay tolerant (unlike migrations above).
-    try:
-        db = SessionLocal()
-        try:
-            sync_db_with_filesystem(db)
-            await run_factory_seed(db)
-        finally:
-            db.close()
-
-        # Pre-render the capped Canvas derivatives in the background so the display never stalls on
-        # the one-time encode of a huge original (leader-only; runs while the server serves traffic).
-        asyncio.create_task(warm_all_canvas_cache())
-
-        # Leader-only: the Samsung Frame TV pusher. Running it solely in the leader avoids
-        # firing it once per uvicorn worker. No-op until enabled in Settings → Frame TV.
-        asyncio.create_task(frame_push.frame_push_loop(_frame_select))
-        logger.info("[Startup] Frame TV push loop scheduled (leader).")
-    except Exception as e:
-        logger.error(f"[Startup] Non-fatal error during initialization: {e}", exc_info=True)
-
-    yield
-
 app = FastAPI(title="Artwork Display Engine API", version="0.4.5", lifespan=lifespan)
 
-# Leaf domain routers (Phase 1 + Phase 2 + Phase 3 of the app-split refactor — see
+# Leaf domain routers (Phase 1 + Phase 2 + Phase 3 + Phase 4 of the app-split refactor — see
 # .ai/refactor_app_split_plan.md).
+app.include_router(admin_router)
 app.include_router(publisher_router)
 app.include_router(federation_router)
 app.include_router(health_router)
@@ -405,91 +208,7 @@ async def cors_and_origin_guard(request: Request, call_next):
     return resp
 
 
-class FactoryResetRequest(BaseModel):
-    confirm: str = ""
-
-
-@app.post("/api/admin/factory-reset")
-async def factory_reset(req: FactoryResetRequest, db: Session = Depends(get_db)):
-    """
-    Resets the app to factory state:
-    - Keeps only seed artworks (is_seed=True)
-    - Removes all non-seed artworks from DB and disk
-    - Clears entire discovery queue (all statuses)
-    - Clears playlist-artwork associations for deleted art
-    - Clears search sessions
-
-    H4: the "RESET" confirmation is enforced server-side, not just by the admin UI's dialog — a bare
-    POST (accidental, scripted, or drive-by) must not be able to wipe the library.
-    """
-    if req.confirm != "RESET":
-        raise HTTPException(400, detail='Confirmation required: POST {"confirm": "RESET"}.')
-
-    # 1. Delete all discovery queue items (all statuses)
-    discover_count = db.execute(delete(DiscoveryQueueModel)).rowcount
-
-    # 2. Get non-seed artworks to delete their files
-    non_seed_art = db.query(ArtworkModel).filter(ArtworkModel.is_seed != True).all()
-    files_deleted = 0
-    for art in non_seed_art:
-        filepath = LIBRARY_DIR / art.filename
-        # Handle both real files and symlinks
-        if filepath.is_symlink() or filepath.exists():
-            try:
-                filepath.unlink()
-                files_deleted += 1
-            except Exception as e:
-                logger.warning(f"[Factory Reset] Could not delete {filepath}: {e}")
-        # Also clean up any playlist symlinks pointing to this file
-        for pl_dir in ARTWORK_ROOT.iterdir():
-            if pl_dir.is_dir() and not pl_dir.name.startswith('_'):
-                pl_link = pl_dir / art.filename
-                if pl_link.is_symlink() or pl_link.exists():
-                    try: pl_link.unlink()
-                    except Exception: pass
-
-    # 3. Remove ALL artwork-playlist associations (both seed and non-seed)
-    db.execute(playlist_artwork.delete())
-
-    # 4. Delete non-seed artwork records from DB
-    art_count = db.query(ArtworkModel).filter(ArtworkModel.is_seed != True).delete(synchronize_session='fetch')
-
-    # 5. Delete seed artworks too so bootstrapper re-downloads on next start
-    seed_art = db.query(ArtworkModel).filter(ArtworkModel.is_seed == True).all()
-    for art in seed_art:
-        filepath = LIBRARY_DIR / art.filename
-        if filepath.is_symlink() or filepath.exists():
-            try: filepath.unlink()
-            except Exception: pass
-        # Clean playlist symlinks for seed art too
-        for pl_dir in ARTWORK_ROOT.iterdir():
-            if pl_dir.is_dir() and not pl_dir.name.startswith('_'):
-                pl_link = pl_dir / art.filename
-                if pl_link.is_symlink() or pl_link.exists():
-                    try: pl_link.unlink()
-                    except Exception: pass
-    seed_count = db.query(ArtworkModel).filter(ArtworkModel.is_seed == True).delete(synchronize_session='fetch')
-
-    # 6. Clear search sessions
-    from scout import _search_sessions
-    _search_sessions.clear()
-
-    # 7. Drop cached Canvas display derivatives (regenerated on demand from originals)
-    if DERIVATIVES_DIR.exists():
-        for d in DERIVATIVES_DIR.glob("*.jpg"):
-            try: d.unlink()
-            except OSError: pass
-
-    db.commit()
-
-    logger.info(f"[Factory Reset] Removed {art_count} + {seed_count} seed artworks, {files_deleted} files, {discover_count} queue items. Seeds will re-download on restart.")
-    return {
-        "status": "Factory reset complete. Restart the server to re-seed masterpieces.",
-        "artworks_removed": art_count,
-        "seed_artworks_removed": seed_count,
-        "files_deleted": files_deleted,
-        "queue_items_cleared": discover_count,
-    }
+# POST /api/admin/factory-reset now lives in routers/admin.py.
 
 # GET /next-image, /display/{display_id}/current.{ext}, /artworks/{artwork_id}/display.jpg,
 # /api/telemetry/heartbeat, /api/displays/{display_id}/preferred-playlist, and
@@ -521,8 +240,8 @@ async def factory_reset(req: FactoryResetRequest, db: Session = Depends(get_db))
 # ---------------------------------------------------------------------------
 # §4.8 Samsung Frame TV push (Integrations)
 # ---------------------------------------------------------------------------
-# _frame_select (the selector shared with lifespan's frame_push_loop AND routers/settings.py's
-# "Test / Push now" route) now lives in core/playback.py (imported above) — see that module's
+# _frame_select (the selector shared with core/lifespan.py's frame_push_loop AND routers/settings.py's
+# "Test / Push now" route) now lives in core/playback.py — see that module's
 # docstring for why. The /api/settings/frame*, /api/settings/catalog* routes now live in
 # routers/settings.py; the /api/catalog* browse + add routes now live in routers/catalog.py.
 # Federation (/api/subscriptions*) now lives in routers/federation.py.
