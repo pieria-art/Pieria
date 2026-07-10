@@ -17,6 +17,7 @@ from sqlalchemy.pool import StaticPool
 
 import app as app_module
 import core.downloads as core_downloads
+import routers.settings as routers_settings
 from app import app
 from database import Base, get_db
 from models import ArtworkModel, PlaylistModel, playlist_artwork
@@ -287,6 +288,8 @@ def test_catalog_source_saves_and_reports_count(client, monkeypatch):
         assert name == "index.json"
         return {"version": 1, "collections": [{"id": "x"}, {"id": "y"}]}
     monkeypatch.setattr(app_module, "_fetch_remote_json", _fake_fetch)
+    # save_catalog_source's own validation fetch now runs in routers/settings.py — patch there too.
+    monkeypatch.setattr(routers_settings, "_fetch_remote_json", _fake_fetch)
 
     r = c.post("/api/settings/catalog", json={"catalog_url": "https://cdn.test/catalog/"})
     assert r.status_code == 200, r.text
@@ -305,6 +308,8 @@ def test_catalog_source_saves_with_warning_when_unreachable(client, monkeypatch)
     async def _boom(base, name):
         raise RuntimeError("HTTP 503")
     monkeypatch.setattr(app_module, "_fetch_remote_json", _boom)
+    # save_catalog_source's own validation fetch now runs in routers/settings.py — patch there too.
+    monkeypatch.setattr(routers_settings, "_fetch_remote_json", _boom)
 
     r = c.post("/api/settings/catalog", json={"catalog_url": "https://down.test/cat"})
     assert r.status_code == 200, r.text
@@ -320,6 +325,8 @@ def test_catalog_source_clear_reverts_to_bundled(client, monkeypatch):
     async def _fake_fetch(base, name):
         return {"version": 1, "collections": [{"id": "x"}]}
     monkeypatch.setattr(app_module, "_fetch_remote_json", _fake_fetch)
+    # save_catalog_source's own validation fetch now runs in routers/settings.py — patch there too.
+    monkeypatch.setattr(routers_settings, "_fetch_remote_json", _fake_fetch)
 
     c.post("/api/settings/catalog", json={"catalog_url": "https://cdn.test/catalog"})
     r = c.post("/api/settings/catalog", json={"catalog_url": ""})
@@ -336,6 +343,8 @@ def test_remote_index_serves_over_bundled(client, monkeypatch):
             return {"version": 1, "collections": [{"id": "remote-col", "title": "Remote", "count": 1}]}
         raise RuntimeError("only index fetched in this test")
     monkeypatch.setattr(app_module, "_fetch_remote_json", _fake_fetch)
+    # save_catalog_source's own validation fetch now runs in routers/settings.py — patch there too.
+    monkeypatch.setattr(routers_settings, "_fetch_remote_json", _fake_fetch)
 
     c.post("/api/settings/catalog", json={"catalog_url": "https://cdn.test/catalog"})
     ids = [col["id"] for col in c.get("/api/catalog").json()["collections"]]
