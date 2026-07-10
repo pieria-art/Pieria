@@ -1,7 +1,7 @@
 """
 Catalog endpoint tests — split manifest (index + per-collection) + lazy add.
 
-A temp catalog dir with controlled fixtures is wired in via app.CATALOG_DIR; the remote image
+A temp catalog dir with controlled fixtures is wired in via routers.catalog.CATALOG_DIR; the remote image
 download is mocked; library/playlist writes go to a tmp dir. No network is touched.
 """
 
@@ -17,6 +17,7 @@ from sqlalchemy.pool import StaticPool
 
 import app as app_module
 import core.downloads as core_downloads
+import routers.catalog as routers_catalog
 import routers.settings as routers_settings
 from app import app
 from database import Base, get_db
@@ -55,12 +56,15 @@ def client(monkeypatch, tmp_path):
         "id": "demo", "title": "Demo", "description": "d", "source": "Test Museum",
         "license": "Public Domain", "items": [ITEM_A, ITEM_B],
     }))
-    monkeypatch.setattr(app_module, "CATALOG_DIR", cat)
+    # /api/catalog* now lives in routers/catalog.py — it reads its own CATALOG_DIR/ARTWORK_ROOT
+    # bindings, so that's the module to patch (no app_module copies exist anymore).
+    monkeypatch.setattr(routers_catalog, "CATALOG_DIR", cat)
 
     # Redirect library/playlist writes
     monkeypatch.setattr(app_module, "LIBRARY_DIR", tmp_path)
     monkeypatch.setattr(core_downloads, "LIBRARY_DIR", tmp_path)
     monkeypatch.setattr(app_module, "ARTWORK_ROOT", tmp_path)
+    monkeypatch.setattr(routers_catalog, "ARTWORK_ROOT", tmp_path)
 
     # Mock the high-res download with a real tiny PNG
     buf = io.BytesIO()
@@ -287,7 +291,7 @@ def test_catalog_source_saves_and_reports_count(client, monkeypatch):
     async def _fake_fetch(base, name):
         assert name == "index.json"
         return {"version": 1, "collections": [{"id": "x"}, {"id": "y"}]}
-    monkeypatch.setattr(app_module, "_fetch_remote_json", _fake_fetch)
+    monkeypatch.setattr(routers_catalog, "_fetch_remote_json", _fake_fetch)
     # save_catalog_source's own validation fetch now runs in routers/settings.py — patch there too.
     monkeypatch.setattr(routers_settings, "_fetch_remote_json", _fake_fetch)
 
@@ -307,7 +311,7 @@ def test_catalog_source_saves_with_warning_when_unreachable(client, monkeypatch)
 
     async def _boom(base, name):
         raise RuntimeError("HTTP 503")
-    monkeypatch.setattr(app_module, "_fetch_remote_json", _boom)
+    monkeypatch.setattr(routers_catalog, "_fetch_remote_json", _boom)
     # save_catalog_source's own validation fetch now runs in routers/settings.py — patch there too.
     monkeypatch.setattr(routers_settings, "_fetch_remote_json", _boom)
 
@@ -324,7 +328,7 @@ def test_catalog_source_clear_reverts_to_bundled(client, monkeypatch):
 
     async def _fake_fetch(base, name):
         return {"version": 1, "collections": [{"id": "x"}]}
-    monkeypatch.setattr(app_module, "_fetch_remote_json", _fake_fetch)
+    monkeypatch.setattr(routers_catalog, "_fetch_remote_json", _fake_fetch)
     # save_catalog_source's own validation fetch now runs in routers/settings.py — patch there too.
     monkeypatch.setattr(routers_settings, "_fetch_remote_json", _fake_fetch)
 
@@ -342,7 +346,7 @@ def test_remote_index_serves_over_bundled(client, monkeypatch):
         if name == "index.json":
             return {"version": 1, "collections": [{"id": "remote-col", "title": "Remote", "count": 1}]}
         raise RuntimeError("only index fetched in this test")
-    monkeypatch.setattr(app_module, "_fetch_remote_json", _fake_fetch)
+    monkeypatch.setattr(routers_catalog, "_fetch_remote_json", _fake_fetch)
     # save_catalog_source's own validation fetch now runs in routers/settings.py — patch there too.
     monkeypatch.setattr(routers_settings, "_fetch_remote_json", _fake_fetch)
 

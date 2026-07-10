@@ -18,6 +18,7 @@ from sqlalchemy.pool import StaticPool
 
 import app as app_module
 import core.downloads as core_downloads
+import routers.curation as routers_curation
 from app import _download_image_to_library, app
 from database import Base, get_db
 from models import ArtworkModel, DiscoveryQueueModel
@@ -133,7 +134,9 @@ def client(monkeypatch, tmp_path):
     # Enrichment runs as a background task; stub it so the test touches no AI/network.
     async def _noop(*a, **k):
         return None
-    monkeypatch.setattr(app_module, "run_rag_pipeline", _noop)
+    # /api/discover/approve now lives in routers/curation.py — it reads its own run_rag_pipeline
+    # binding, so patch there (single-router helper; no app_module copy exists anymore).
+    monkeypatch.setattr(routers_curation, "run_rag_pipeline", _noop)
 
     with TestClient(app) as c:
         yield c, db, monkeypatch

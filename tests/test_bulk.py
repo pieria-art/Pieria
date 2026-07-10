@@ -7,6 +7,7 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy.pool import StaticPool
 
 import app as app_module
+import routers.library as routers_library
 from app import app
 from database import Base, get_db
 from models import ArtworkModel, PlaylistModel, playlist_artwork
@@ -22,6 +23,9 @@ def client(monkeypatch, tmp_path):
         yield db
     app.dependency_overrides[get_db] = _override_db
     monkeypatch.setattr(app_module, "LIBRARY_DIR", tmp_path)
+    # The bulk delete route (_wipe_artwork) now lives in routers/library.py — it reads its own
+    # LIBRARY_DIR binding, so redirect it too (established dual-patch pattern; see test_catalog.py).
+    monkeypatch.setattr(routers_library, "LIBRARY_DIR", tmp_path)
 
     with TestClient(app) as c:
         yield c, db, tmp_path
