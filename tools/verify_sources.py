@@ -137,18 +137,38 @@ def collect_subscriptions(db) -> list[UrlCheck]:
 
 # --------------------------------------------------------------- per-URL checks
 
+# Transient transport failures (timeouts, connection resets, protocol hiccups) get retried with
+# backoff rather than recorded as a dead source — a slow/throttling host (notably Wikimedia's
+# on-the-fly thumbnail generation, which is slow on first hit then cached) must not read as rot.
+# Genuine rot still fails: 404/403/deleted/not-an-image are none of these and return immediately.
+_TRANSIENT_EXC = httpx.TransportError
+
+
 async def _get(client, url, **kw):
-    """GET with 429 resilience honoring Retry-After (mirrors tools/build_catalog.py:_get)."""
+    """GET resilient to 429 (Retry-After), transient transport errors, and 5xx — each retried with
+    backoff (mirrors tools/build_catalog.py:_get). Permanent 4xx (other than 429) return at once, so
+    real source-rot still surfaces; only flaky timeouts/throttling are absorbed."""
     r = None
     for attempt in range(5):
-        r = await client.get(url, **kw)
-        if getattr(r, "status_code", None) != 429:
-            return r
         try:
-            wait = float(r.headers.get("retry-after", "") or 0)
-        except ValueError:
-            wait = 0.0
-        await asyncio.sleep(min(wait or 2.0 * (attempt + 1), 30.0))
+            r = await client.get(url, **kw)
+        except _TRANSIENT_EXC:
+            if attempt == 4:
+                raise                                  # persistent → let check_url record it as failed
+            await asyncio.sleep(min(2.0 * (attempt + 1), 30.0))
+            continue
+        code = getattr(r, "status_code", None)
+        if code == 429:
+            try:
+                wait = float(r.headers.get("retry-after", "") or 0)
+            except ValueError:
+                wait = 0.0
+            await asyncio.sleep(min(wait or 2.0 * (attempt + 1), 30.0))
+            continue
+        if code in (500, 502, 503, 504) and attempt < 4:  # transient server-side → back off and retry
+            await asyncio.sleep(min(2.0 * (attempt + 1), 30.0))
+            continue
+        return r
     return r
 
 
@@ -233,22 +253,60 @@ async def run_checks(checks: list[UrlCheck], *, client=None) -> list[CheckResult
             await client.aclose()
 
 
-def report(results: list[CheckResult]) -> tuple[str, int]:
+# A rot-detector must red on ROT (a source that stopped resolving), not on a host's transient mood.
+# Transient = timeout / 429 / 5xx / no-response AFTER _get already retried with backoff — most often
+# Wikimedia throttling an expensive on-the-fly thumbnail render, which is fine once cached. We tolerate
+# a small number of these; a spike (systemic outage, or a block like the AIC-Cloudflare event) still reds.
+TRANSIENT_TOLERANCE_FRAC = 0.005    # tolerate transient blips up to 0.5% of all checks…
+TRANSIENT_TOLERANCE_MIN = 3         # …but always allow at least this many
+_TRANSIENT_EXC_NAMES = ("Timeout", "ConnectError", "ReadError", "RemoteProtocolError",
+                        "NetworkError", "TransportError", "PoolTimeout")
+
+
+def _is_transient(detail: str) -> bool:
+    """True for retry-exhausted timeout/429/5xx/no-response — NOT for 404/403/wrong-type/too-small."""
+    d = detail or ""
+    if d.startswith("HTTP "):
+        tok = (d.split() + [""])[1]
+        return tok in {"429", "500", "502", "503", "504", "None"}
+    if d.startswith("error: "):
+        return any(name in d for name in _TRANSIENT_EXC_NAMES)
+    return False
+
+
+def report(results: list[CheckResult], *, strict: bool = False) -> tuple[str, int]:
     fails = [r for r in results if not r.ok]
+    hard = [r for r in fails if not _is_transient(r.detail)]
+    transient = [r for r in fails if _is_transient(r.detail)]
+    total = len(results)
+    tol = 0 if strict else max(TRANSIENT_TOLERANCE_MIN, int(total * TRANSIENT_TOLERANCE_FRAC))
+
     lines: list[str] = []
-    if fails:
-        lines.append(f"\n{len(fails)} FAILURE(S):")
-        for r in fails:
+    if hard:
+        lines.append(f"\n{len(hard)} HARD FAILURE(S) — likely source rot:")
+        for r in hard:
             lines.append(f'  FAIL [{r.uc.origin}/{r.uc.collection}] "{r.uc.title}" ({r.uc.kind}) — {r.detail}')
             if r.uc.url:
                 lines.append(f"        {r.uc.url}")
-    total = Counter(r.uc.origin for r in results)
+    if transient:
+        over = strict or len(transient) > tol
+        lines.append(f"\n{len(transient)} TRANSIENT failure(s) (timeout/429/5xx, retry-exhausted) "
+                     f"— tolerance {tol}{' [EXCEEDED]' if over else ''}:")
+        for r in transient:
+            lines.append(f'  {"FAIL" if over else "warn"} [{r.uc.origin}/{r.uc.collection}] '
+                         f'"{r.uc.title}" — {r.detail}')
+
+    total_c = Counter(r.uc.origin for r in results)
     okc = Counter(r.uc.origin for r in results if r.ok)
     lines.append("")
-    for origin in sorted(total):
-        lines.append(f"  {origin}: {okc[origin]}/{total[origin]} ok")
-    lines.append(f"\nchecked {len(results)} urls — {len(results) - len(fails)} passed, {len(fails)} failed")
-    return "\n".join(lines), (1 if fails else 0)
+    for origin in sorted(total_c):
+        lines.append(f"  {origin}: {okc[origin]}/{total_c[origin]} ok")
+    lines.append(f"\nchecked {total} urls — {total - len(fails)} passed, "
+                 f"{len(hard)} hard-fail, {len(transient)} transient (tolerance {tol})")
+    code = 1 if (hard or len(transient) > tol) else 0
+    if code == 0 and transient:
+        lines.append("PASS — transient blips within tolerance, not treated as rot.")
+    return "\n".join(lines), code
 
 
 def main(argv=None) -> int:
@@ -257,6 +315,8 @@ def main(argv=None) -> int:
                     help="all | comma list of: seed, catalog, subscriptions")
     ap.add_argument("--limit", type=int, default=0, help="check at most N URLs (smoke runs)")
     ap.add_argument("--json", action="store_true", help="emit machine-readable JSON results")
+    ap.add_argument("--strict", action="store_true",
+                    help="fail on ANY failure incl. transient blips (zero tolerance)")
     args = ap.parse_args(argv)
 
     scopes = ({"seed", "catalog", "subscriptions"} if args.scope == "all"
@@ -279,7 +339,7 @@ def main(argv=None) -> int:
         checks = checks[:args.limit]
 
     results = asyncio.run(run_checks(checks))
-    text, code = report(results)
+    text, code = report(results, strict=args.strict)
 
     if args.json:
         print(json.dumps([{"origin": r.uc.origin, "collection": r.uc.collection, "title": r.uc.title,
