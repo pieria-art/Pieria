@@ -1,5 +1,9 @@
 # 🖼️ Screen Docent
 
+[![CI](https://github.com/AiwendilInTheWoods/Screen-Docent/actions/workflows/pytest.yml/badge.svg)](https://github.com/AiwendilInTheWoods/Screen-Docent/actions/workflows/pytest.yml)
+[![Sources](https://github.com/AiwendilInTheWoods/Screen-Docent/actions/workflows/verify-sources.yml/badge.svg)](https://github.com/AiwendilInTheWoods/Screen-Docent/actions/workflows/verify-sources.yml)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](LICENSE)
+
 **Screen Docent** is an open-source, AI-powered digital art curator and signage platform. It transforms any TV or monitor into a high-end museum display, complete with autonomous artwork analysis, intelligent metadata generation, and instant mobile remote control.
 
 ![A Screen Docent display showing Vermeer's The Milkmaid with an auto-generated museum placard](static/docs/display.png)

@@ -1,5 +1,5 @@
 """
-SQLAlchemy models for the Artwork Display Engine.
+SQLAlchemy models for Screen Docent.
 Phase 3: Many-to-Many relationship between Playlists and Artworks.
 """
 
