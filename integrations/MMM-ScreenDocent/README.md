@@ -83,4 +83,4 @@ If the server is briefly unreachable, the module keeps showing the last artwork 
 
 ## License
 
-MIT — part of the [Screen Docent](https://github.com/AiwendilInTheWoods/Screen-Docent) project.
+GPL-3.0 — part of the [Screen Docent](https://github.com/AiwendilInTheWoods/Screen-Docent) project.
