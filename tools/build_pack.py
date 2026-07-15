@@ -47,6 +47,7 @@ import federation
 from config import SD_USER_AGENT
 from core.media import DISPLAY_MAX_EDGE, DISPLAY_QUALITY
 from scout import _wm_throttle
+from tools import aic_tiles
 
 logging.basicConfig(level=logging.INFO, format="%(message)s")
 logger = logging.getLogger("build-pack")
@@ -283,8 +284,12 @@ async def ensure_master(state: BuildState, wi: WorkItem) -> str | None:
             state.url_to_master[su] = filename
             state.stats.master_cached += 1
             return filename
-        async with state.sem:
-            raw = await _fetch_bytes(state.client, _pack_fetch_url(su))
+        if aic_tiles.is_aic_iiif(su):
+            # AIC blocks full/max but serves deep-zoom tiles — stitch the native master (self-throttled).
+            raw = await aic_tiles.fetch_native_bytes(state.client, su, quality=DISPLAY_QUALITY)
+        else:
+            async with state.sem:
+                raw = await _fetch_bytes(state.client, _pack_fetch_url(su))
         if raw is None:
             state.stats.master_failed += 1
             return None
