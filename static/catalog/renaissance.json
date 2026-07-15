@@ -692,6 +692,132 @@
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/El%20Descendimiento%2C%20by%20Rogier%20van%20der%20Weyden%2C%20from%20Prado%20in%20Google%20Earth.jpg?width=3840",
    "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/El%20Descendimiento%2C%20by%20Rogier%20van%20der%20Weyden%2C%20from%20Prado%20in%20Google%20Earth.jpg?width=600"
+  },
+  {
+   "title": "The Assumption of the Virgin",
+   "agent_name": "El Greco",
+   "agent_role": "Painter",
+   "creation_date": "1577",
+   "cultural_context": "Spanish Renaissance / Mannerism, Toledo",
+   "medium": "Oil on canvas",
+   "date_display": "1577–79",
+   "description_narrative": "Painted as the central altarpiece for the church of Santo Domingo el Antiguo in Toledo, this was El Greco's first major Spanish commission and established the elongated figures and luminous color that became his signature style. It remains one of the artist's most celebrated large-scale religious paintings.",
+   "tags": [
+    "El Greco",
+    "Spanish Renaissance",
+    "Mannerism",
+    "altarpiece",
+    "religious art"
+   ],
+   "source": "Art Institute of Chicago",
+   "license": "Public Domain",
+   "source_url": "https://www.artic.edu/iiif/2/47fd1564-93f5-f30b-7786-013421133b4a/full/2000,/0/default.jpg",
+   "thumbnail_url": "https://www.artic.edu/iiif/2/47fd1564-93f5-f30b-7786-013421133b4a/full/400,/0/default.jpg"
+  },
+  {
+   "title": "Saint Francis Kneeling in Meditation",
+   "agent_name": "El Greco",
+   "agent_role": "Painter",
+   "creation_date": "1595",
+   "cultural_context": "Spanish Renaissance / Mannerism, Toledo",
+   "medium": "Oil on canvas",
+   "date_display": "c. 1595–c. 1600",
+   "description_narrative": "El Greco painted numerous versions of Saint Francis in contemplative prayer, reflecting the Counter-Reformation's emphasis on personal spiritual devotion. This example shows the saint's characteristically elongated form and intense, mystical expression.",
+   "tags": [
+    "El Greco",
+    "Counter-Reformation",
+    "religious art",
+    "Saint Francis",
+    "Spanish Renaissance"
+   ],
+   "source": "Art Institute of Chicago",
+   "license": "Public Domain",
+   "source_url": "https://www.artic.edu/iiif/2/b703b636-976c-b35b-8a8e-f8df3f5ba003/full/2000,/0/default.jpg",
+   "thumbnail_url": "https://www.artic.edu/iiif/2/b703b636-976c-b35b-8a8e-f8df3f5ba003/full/400,/0/default.jpg"
+  },
+  {
+   "title": "Saint Martin and the Beggar",
+   "agent_name": "El Greco",
+   "agent_role": "Painter",
+   "creation_date": "1597",
+   "cultural_context": "Spanish Renaissance / Mannerism, Toledo",
+   "medium": "Oil on canvas",
+   "date_display": "c. 1597–c. 1600",
+   "description_narrative": "This painting depicts the Roman soldier Saint Martin of Tours dividing his cloak to share with a beggar, a popular subject of Christian charity. El Greco produced this composition for a private chapel in Toledo, working in his characteristic elongated forms and dramatic light.",
+   "tags": [
+    "El Greco",
+    "Saint Martin",
+    "religious art",
+    "Spanish Renaissance",
+    "charity"
+   ],
+   "source": "Art Institute of Chicago",
+   "license": "Public Domain",
+   "source_url": "https://www.artic.edu/iiif/2/52098776-6e2e-9683-e258-7b1cec8660dd/full/2000,/0/default.jpg",
+   "thumbnail_url": "https://www.artic.edu/iiif/2/52098776-6e2e-9683-e258-7b1cec8660dd/full/400,/0/default.jpg"
+  },
+  {
+   "title": "The Feast in the House of Simon",
+   "agent_name": "El Greco and Workshop",
+   "agent_role": "Painter",
+   "creation_date": "1608",
+   "cultural_context": "Spanish Renaissance / Mannerism, Toledo",
+   "medium": "Oil on canvas",
+   "date_display": "c. 1608–14",
+   "description_narrative": "This large canvas depicts the biblical episode in which a sinful woman anoints Christ's feet, painted late in El Greco's career with the assistance of his Toledo workshop. It reflects the artist's mature style of visionary color and dramatically elongated figures.",
+   "tags": [
+    "El Greco",
+    "workshop painting",
+    "religious art",
+    "Toledo",
+    "Spanish Renaissance"
+   ],
+   "source": "Art Institute of Chicago",
+   "license": "Public Domain",
+   "source_url": "https://www.artic.edu/iiif/2/75886aaa-002a-2047-a05c-baf73f0ac093/full/2000,/0/default.jpg",
+   "thumbnail_url": "https://www.artic.edu/iiif/2/75886aaa-002a-2047-a05c-baf73f0ac093/full/400,/0/default.jpg"
+  },
+  {
+   "title": "Virgin and Child with the Young Saint John the Baptist",
+   "agent_name": "Correggio",
+   "agent_role": "Painter",
+   "creation_date": "1515",
+   "cultural_context": "High Renaissance, Parma school",
+   "medium": "Oil on panel",
+   "date_display": "c. 1515",
+   "description_narrative": "Painted early in Correggio's career, this intimate panel shows the soft modeling and gentle sentiment that would define his mature style as a leading painter of the Parma school. The composition places the infant Christ and the young Saint John the Baptist in tender interaction with the Virgin.",
+   "tags": [
+    "Correggio",
+    "Parma school",
+    "High Renaissance",
+    "Virgin and Child",
+    "panel painting"
+   ],
+   "source": "Art Institute of Chicago",
+   "license": "Public Domain",
+   "source_url": "https://www.artic.edu/iiif/2/d63b9402-c42b-cce3-aa63-6d213ad621cd/full/2000,/0/default.jpg",
+   "thumbnail_url": "https://www.artic.edu/iiif/2/d63b9402-c42b-cce3-aa63-6d213ad621cd/full/400,/0/default.jpg"
+  },
+  {
+   "title": "Tarquin and Lucretia",
+   "agent_name": "Tintoretto",
+   "agent_role": "Painter",
+   "creation_date": "1578",
+   "cultural_context": "Venetian Renaissance / Mannerism",
+   "medium": "Oil on canvas",
+   "date_display": "1578–80",
+   "description_narrative": "Tintoretto depicted the ancient Roman legend of Tarquin's assault on Lucretia with the dramatic diagonal composition and dynamic movement characteristic of Venetian Mannerism. The subject was popular among Renaissance patrons as an exemplar of virtue and honor.",
+   "tags": [
+    "Tintoretto",
+    "Venetian Renaissance",
+    "Mannerism",
+    "mythology",
+    "Lucretia"
+   ],
+   "source": "Art Institute of Chicago",
+   "license": "Public Domain",
+   "source_url": "https://www.artic.edu/iiif/2/84bc6762-6a64-dde5-5dc3-ec31c75aa32b/full/2000,/0/default.jpg",
+   "thumbnail_url": "https://www.artic.edu/iiif/2/84bc6762-6a64-dde5-5dc3-ec31c75aa32b/full/400,/0/default.jpg"
   }
  ]
 }

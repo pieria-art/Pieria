@@ -591,6 +591,90 @@
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/An%20Officer%20of%20the%20Imperial%20Horse%20Guards%20Charging%20-%20G%C3%A9ricault%20%28Louvre%20INV%204885%29.jpg?width=3840",
    "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/An%20Officer%20of%20the%20Imperial%20Horse%20Guards%20Charging%20-%20G%C3%A9ricault%20%28Louvre%20INV%204885%29.jpg?width=600"
+  },
+  {
+   "title": "The Combat of the Giaour and Hassan",
+   "agent_name": "Eugène Delacroix",
+   "agent_role": "Painter",
+   "creation_date": "1826",
+   "cultural_context": "French Romanticism",
+   "medium": "Oil on canvas",
+   "date_display": "1826",
+   "description_narrative": "Delacroix based this violent, swirling composition on a scene from Lord Byron's narrative poem 'The Giaour,' depicting a duel between a Christian avenger and a Turkish pasha. The painting exemplifies the Romantic fascination with literary drama, exotic settings, and dynamic movement.",
+   "tags": [
+    "Eugene Delacroix",
+    "Romanticism",
+    "Lord Byron",
+    "Orientalism",
+    "19th century France"
+   ],
+   "source": "Art Institute of Chicago",
+   "license": "Public Domain",
+   "source_url": "https://www.artic.edu/iiif/2/ae0793ac-8ace-6c4a-84d4-a33162ae6832/full/2000,/0/default.jpg",
+   "thumbnail_url": "https://www.artic.edu/iiif/2/ae0793ac-8ace-6c4a-84d4-a33162ae6832/full/400,/0/default.jpg"
+  },
+  {
+   "title": "Lion Hunt",
+   "agent_name": "Eugène Delacroix",
+   "agent_role": "Painter",
+   "creation_date": "1860",
+   "cultural_context": "French Romanticism",
+   "medium": "Oil on canvas",
+   "date_display": "1860–61",
+   "description_narrative": "Delacroix returned repeatedly to the subject of lion hunts late in his career, inspired by his 1832 trip to North Africa and by Rubens's earlier treatments of the theme. This turbulent composition of struggling men, horses, and lions survives as a fragment of a larger, partially destroyed canvas.",
+   "tags": [
+    "Eugene Delacroix",
+    "Romanticism",
+    "lion hunt",
+    "North Africa",
+    "19th century France"
+   ],
+   "source": "Art Institute of Chicago",
+   "license": "Public Domain",
+   "source_url": "https://www.artic.edu/iiif/2/1299b0e5-6a3d-8039-087b-35bf03caea1a/full/2000,/0/default.jpg",
+   "thumbnail_url": "https://www.artic.edu/iiif/2/1299b0e5-6a3d-8039-087b-35bf03caea1a/full/400,/0/default.jpg"
+  },
+  {
+   "title": "Friar Pedro Shoots El Maragato as His Horse Runs Off",
+   "agent_name": "Francisco Goya",
+   "agent_role": "Painter",
+   "creation_date": "1806",
+   "cultural_context": "Spanish proto-Romanticism",
+   "medium": "Oil on panel",
+   "date_display": "c. 1806",
+   "description_narrative": "This panel is one of six small paintings by Goya narrating the true story of a monk who overpowered and captured a notorious Spanish bandit, El Maragato, in 1806. The series' compressed, cinematic storytelling and stark realism anticipate the dramatic intensity of Goya's later work.",
+   "tags": [
+    "Francisco Goya",
+    "Spanish Romanticism",
+    "narrative painting",
+    "banditry",
+    "19th century"
+   ],
+   "source": "Art Institute of Chicago",
+   "license": "Public Domain",
+   "source_url": "https://www.artic.edu/iiif/2/622998f1-73f9-4c96-08cf-60bda7c9ce4b/full/2000,/0/default.jpg",
+   "thumbnail_url": "https://www.artic.edu/iiif/2/622998f1-73f9-4c96-08cf-60bda7c9ce4b/full/400,/0/default.jpg"
+  },
+  {
+   "title": "Peasants Bringing Home a Calf Born in the Fields",
+   "agent_name": "Jean-François Millet",
+   "agent_role": "Painter",
+   "creation_date": "1864",
+   "cultural_context": "French Barbizon school",
+   "medium": "Oil on canvas",
+   "date_display": "1864",
+   "description_narrative": "Millet painted this scene of French peasants carrying a newborn calf home from the fields, dignifying rural labor as a subject worthy of serious art. The painting reflects the Barbizon school's sympathetic focus on the everyday lives of the French peasantry.",
+   "tags": [
+    "Jean-Francois Millet",
+    "Barbizon school",
+    "rural life",
+    "French painting",
+    "19th century"
+   ],
+   "source": "Art Institute of Chicago",
+   "license": "Public Domain",
+   "source_url": "https://www.artic.edu/iiif/2/7b0ea6ca-9424-050e-7e0e-3b67d2289480/full/2000,/0/default.jpg",
+   "thumbnail_url": "https://www.artic.edu/iiif/2/7b0ea6ca-9424-050e-7e0e-3b67d2289480/full/400,/0/default.jpg"
   }
  ]
 }

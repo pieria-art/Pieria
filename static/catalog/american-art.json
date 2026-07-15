@@ -766,6 +766,48 @@
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Whistler%20James%20Symphony%20in%20White%20no%201%20%28The%20White%20Girl%29%201862.jpg?width=3840",
    "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Whistler%20James%20Symphony%20in%20White%20no%201%20%28The%20White%20Girl%29%201862.jpg?width=600"
+  },
+  {
+   "title": "After the Bullfight",
+   "agent_name": "Mary Cassatt",
+   "agent_role": "Painter",
+   "creation_date": "1873",
+   "cultural_context": "American painter, Spanish subject",
+   "medium": "Oil on canvas",
+   "date_display": "1873",
+   "description_narrative": "Painted during a trip to Spain, this work shows Cassatt experimenting with the bold brushwork and dark palette of Spanish masters such as Velázquez before she settled permanently in Paris. It depicts a matador in his traje de luces, a subject that fascinated many foreign artists visiting 19th-century Spain.",
+   "tags": [
+    "Mary Cassatt",
+    "Spanish influence",
+    "genre painting",
+    "19th century",
+    "American art"
+   ],
+   "source": "Art Institute of Chicago",
+   "license": "Public Domain",
+   "source_url": "https://www.artic.edu/iiif/2/7a314af6-336f-b6a4-809c-15659313a757/full/2000,/0/default.jpg",
+   "thumbnail_url": "https://www.artic.edu/iiif/2/7a314af6-336f-b6a4-809c-15659313a757/full/400,/0/default.jpg"
+  },
+  {
+   "title": "Love of Winter",
+   "agent_name": "George Bellows",
+   "agent_role": "Painter",
+   "creation_date": "1914",
+   "cultural_context": "American Ashcan School",
+   "medium": "Oil on canvas",
+   "date_display": "1914",
+   "description_narrative": "George Bellows painted this vigorous scene of ice skaters in New York's Central Park at the height of his engagement with everyday urban recreation. Its bright winter palette and dynamic composition are characteristic of the Ashcan School's embrace of modern American life as subject matter.",
+   "tags": [
+    "George Bellows",
+    "Ashcan School",
+    "winter",
+    "Central Park",
+    "American art"
+   ],
+   "source": "Art Institute of Chicago",
+   "license": "Public Domain",
+   "source_url": "https://www.artic.edu/iiif/2/18ab0c35-e35c-0216-9afd-f93357920db1/full/2000,/0/default.jpg",
+   "thumbnail_url": "https://www.artic.edu/iiif/2/18ab0c35-e35c-0216-9afd-f93357920db1/full/400,/0/default.jpg"
   }
  ]
 }

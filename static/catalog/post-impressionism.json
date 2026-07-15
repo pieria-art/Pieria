@@ -701,6 +701,144 @@
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Paul%20Gauguin%20-%20Le%20Christ%20jaune%20%28The%20Yellow%20Christ%29%20-%201946-4%20-%20Albright%E2%80%93Knox%20Art%20Gallery.tiff?width=3840",
    "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Paul%20Gauguin%20-%20Le%20Christ%20jaune%20%28The%20Yellow%20Christ%29%20-%201946-4%20-%20Albright%E2%80%93Knox%20Art%20Gallery.tiff?width=600"
+  },
+  {
+   "title": "Equestrienne (At the Cirque Fernando)",
+   "agent_name": "Henri de Toulouse-Lautrec",
+   "agent_role": "Painter",
+   "creation_date": "1887",
+   "cultural_context": "French Post-Impressionism, Montmartre entertainment",
+   "medium": "Oil on canvas",
+   "date_display": "1887-1888",
+   "description_narrative": "Toulouse-Lautrec painted a bareback rider performing in the ring at the Cirque Fernando in Montmartre, using a sharply cropped, elevated viewpoint that suggests the influence of Japanese prints and photography. The circus was one of several Montmartre entertainment venues, alongside cabarets and dance halls, that became signature subjects of his career.",
+   "tags": [
+    "toulouse-lautrec",
+    "post-impressionism",
+    "circus",
+    "montmartre",
+    "performer",
+    "cropped-composition",
+    "paris"
+   ],
+   "source": "Art Institute of Chicago",
+   "license": "Public Domain",
+   "source_url": "https://www.artic.edu/iiif/2/65db9e21-83c3-1cc6-7240-1e1996d87f52/full/2000,/0/default.jpg",
+   "thumbnail_url": "https://www.artic.edu/iiif/2/65db9e21-83c3-1cc6-7240-1e1996d87f52/full/400,/0/default.jpg"
+  },
+  {
+   "title": "Moulin de la Galette",
+   "agent_name": "Henri de Toulouse-Lautrec",
+   "agent_role": "Painter",
+   "creation_date": "1889",
+   "cultural_context": "French Post-Impressionism, Montmartre nightlife",
+   "medium": "Oil on canvas",
+   "date_display": "1889",
+   "description_narrative": "Toulouse-Lautrec depicted patrons seated around the dance hall of the Moulin de la Galette in Montmartre, the same popular venue Renoir had painted more than a decade earlier, but rendered here with flatter forms, sharper outlines, and a cooler, more detached mood. The painting reflects Toulouse-Lautrec's early engagement with the cafés and dance halls that would define his mature work.",
+   "tags": [
+    "toulouse-lautrec",
+    "post-impressionism",
+    "montmartre",
+    "dance-hall",
+    "nightlife",
+    "paris",
+    "cabaret"
+   ],
+   "source": "Art Institute of Chicago",
+   "license": "Public Domain",
+   "source_url": "https://www.artic.edu/iiif/2/156aaed6-fe3c-a13c-f39e-55f381205929/full/2000,/0/default.jpg",
+   "thumbnail_url": "https://www.artic.edu/iiif/2/156aaed6-fe3c-a13c-f39e-55f381205929/full/400,/0/default.jpg"
+  },
+  {
+   "title": "At the Circus: The Bareback Rider (Au Cirque: Écuyère)",
+   "agent_name": "Henri de Toulouse-Lautrec",
+   "agent_role": "Painter",
+   "creation_date": "1888",
+   "cultural_context": "French Post-Impressionism, circus subjects",
+   "medium": "Oil on vellum",
+   "date_display": "1888",
+   "description_narrative": "Toulouse-Lautrec painted this circus performer on vellum, a support he favored for its smooth surface and slight translucency, capturing a bareback rider mid-performance with rapid, calligraphic brushwork. The subject reflects his lifelong fascination with the circus as a site of spectacle and physical performance.",
+   "tags": [
+    "toulouse-lautrec",
+    "post-impressionism",
+    "circus",
+    "performer",
+    "vellum",
+    "movement",
+    "paris"
+   ],
+   "source": "Art Institute of Chicago",
+   "license": "Public Domain",
+   "source_url": "https://www.artic.edu/iiif/2/f37b8965-3643-d101-a401-9c5f033cb312/full/2000,/0/default.jpg",
+   "thumbnail_url": "https://www.artic.edu/iiif/2/f37b8965-3643-d101-a401-9c5f033cb312/full/400,/0/default.jpg"
+  },
+  {
+   "title": "Mahana no atua (Day of the God)",
+   "agent_name": "Paul Gauguin",
+   "agent_role": "Painter",
+   "creation_date": "1894",
+   "cultural_context": "French Post-Impressionism and Symbolism, Tahiti",
+   "medium": "Oil on linen canvas",
+   "date_display": "1894",
+   "description_narrative": "Painted in Paris after Gauguin's first stay in Tahiti, this canvas combines invented Polynesian imagery with a central idol arranged around a pool that reflects the figures above in bands of flattened, unnaturalistic color. The painting exemplifies Gauguin's Symbolist ambition to evoke myth and spiritual mystery rather than record observed reality.",
+   "tags": [
+    "gauguin",
+    "post-impressionism",
+    "symbolism",
+    "tahiti",
+    "mythology",
+    "color",
+    "polynesia"
+   ],
+   "source": "Art Institute of Chicago",
+   "license": "Public Domain",
+   "source_url": "https://www.artic.edu/iiif/2/a4bef587-48a4-d186-813d-f297441b1ab3/full/2000,/0/default.jpg",
+   "thumbnail_url": "https://www.artic.edu/iiif/2/a4bef587-48a4-d186-813d-f297441b1ab3/full/400,/0/default.jpg"
+  },
+  {
+   "title": "Arlésiennes (Mistral)",
+   "agent_name": "Paul Gauguin",
+   "agent_role": "Painter",
+   "creation_date": "1888",
+   "cultural_context": "French Post-Impressionism, Arles period",
+   "medium": "Oil on jute canvas",
+   "date_display": "1888",
+   "description_narrative": "Gauguin painted this scene of women bundled against the wind in Arles during his brief, tumultuous stay with Vincent van Gogh in the south of France in late 1888. The flattened forms, dark outlines, and unconventional cropped viewpoint show Gauguin moving away from Impressionist naturalism toward the bolder, more decorative style he would carry to Tahiti.",
+   "tags": [
+    "gauguin",
+    "post-impressionism",
+    "arles",
+    "van-gogh",
+    "women",
+    "symbolism",
+    "france"
+   ],
+   "source": "Art Institute of Chicago",
+   "license": "Public Domain",
+   "source_url": "https://www.artic.edu/iiif/2/ae6ac285-6887-dd76-4570-d379c786dfae/full/2000,/0/default.jpg",
+   "thumbnail_url": "https://www.artic.edu/iiif/2/ae6ac285-6887-dd76-4570-d379c786dfae/full/400,/0/default.jpg"
+  },
+  {
+   "title": "Woman in Front of a Still Life by Cézanne",
+   "agent_name": "Paul Gauguin",
+   "agent_role": "Painter",
+   "creation_date": "1890",
+   "cultural_context": "French Post-Impressionism, homage to Cézanne",
+   "medium": "Oil on linen canvas",
+   "date_display": "1890",
+   "description_narrative": "Gauguin painted his companion Juliette Huet seated before a still life by Paul Cézanne that he owned and treasured, a painting he later carried with him to Tahiti as one of his few possessions. The work reflects Gauguin's deep admiration for Cézanne, whom he considered one of the most important painters of his generation.",
+   "tags": [
+    "gauguin",
+    "post-impressionism",
+    "cezanne",
+    "portrait",
+    "still-life",
+    "homage",
+    "paris"
+   ],
+   "source": "Art Institute of Chicago",
+   "license": "Public Domain",
+   "source_url": "https://www.artic.edu/iiif/2/38f866cb-9000-de5a-e655-d3fb4d8dc056/full/2000,/0/default.jpg",
+   "thumbnail_url": "https://www.artic.edu/iiif/2/38f866cb-9000-de5a-e655-d3fb4d8dc056/full/400,/0/default.jpg"
   }
  ]
 }

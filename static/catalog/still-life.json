@@ -582,6 +582,75 @@
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Balthasar%20van%20der%20Ast%20-%20Fruit%20Still%20Life%20with%20Shells%20and%20Tulip%20-%201066%20-%20Mauritshuis.jpg?width=3840",
    "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Balthasar%20van%20der%20Ast%20-%20Fruit%20Still%20Life%20with%20Shells%20and%20Tulip%20-%201066%20-%20Mauritshuis.jpg?width=600"
+  },
+  {
+   "title": "Fish (Still Life)",
+   "agent_name": "Édouard Manet",
+   "agent_role": "Painter",
+   "creation_date": "1864",
+   "cultural_context": "French Realism, precursor to Impressionism",
+   "medium": "Oil on canvas",
+   "date_display": "1864",
+   "description_narrative": "Manet painted this arrangement of fish, oysters, and other seafood in a style that pays homage to seventeenth-century Dutch and Spanish still-life painting while using the fluid, direct brushwork that made him a hero to the younger Impressionist generation. Still life gave Manet a vehicle to display his technical bravura apart from the controversies that often surrounded his figure paintings.",
+   "tags": [
+    "manet",
+    "still-life",
+    "seafood",
+    "realism",
+    "dutch-influence",
+    "paris",
+    "19th-century"
+   ],
+   "source": "Art Institute of Chicago",
+   "license": "Public Domain",
+   "source_url": "https://www.artic.edu/iiif/2/0cbe27e8-2fec-3445-bc48-ce40a8f2dc25/full/2000,/0/default.jpg",
+   "thumbnail_url": "https://www.artic.edu/iiif/2/0cbe27e8-2fec-3445-bc48-ce40a8f2dc25/full/400,/0/default.jpg"
+  },
+  {
+   "title": "Still Life with Geranium",
+   "agent_name": "Henri Matisse",
+   "agent_role": "Painter",
+   "creation_date": "1906",
+   "cultural_context": "Early French modernism, Fauvism",
+   "medium": "Oil on canvas",
+   "date_display": "1906",
+   "description_narrative": "Painted the year after Matisse and his circle were dubbed Fauves, or wild beasts, for their explosive use of color at the 1905 Salon d'Automne, this still life shows a potted geranium rendered in the bold, non-naturalistic palette that defined the short-lived Fauvist movement. Matisse used everyday domestic objects like this throughout his career as vehicles for his ongoing experiments with color and pattern.",
+   "tags": [
+    "matisse",
+    "fauvism",
+    "still-life",
+    "color",
+    "modern-art",
+    "flowers",
+    "france"
+   ],
+   "source": "Art Institute of Chicago",
+   "license": "Public Domain",
+   "source_url": "https://www.artic.edu/iiif/2/d0049e0b-bd55-020e-aa8c-b137d06ae7df/full/2000,/0/default.jpg",
+   "thumbnail_url": "https://www.artic.edu/iiif/2/d0049e0b-bd55-020e-aa8c-b137d06ae7df/full/400,/0/default.jpg"
+  },
+  {
+   "title": "Still Life with Fruit and Wine Jug",
+   "agent_name": "Adolphe Monticelli",
+   "agent_role": "Painter",
+   "creation_date": "1874",
+   "cultural_context": "Precursor to Post-Impressionism, influence on van Gogh",
+   "medium": "Oil on panel",
+   "date_display": "1874",
+   "description_narrative": "Adolphe Monticelli painted this richly textured still life using thick, encrusted layers of paint and jewel-like color that anticipated the expressive brushwork of Post-Impressionism. Vincent van Gogh deeply admired Monticelli's work, copying his paintings and citing him as a formative influence on his own approach to color and paint application.",
+   "tags": [
+    "monticelli",
+    "still-life",
+    "van-gogh-influence",
+    "impasto",
+    "color",
+    "provence",
+    "19th-century"
+   ],
+   "source": "Art Institute of Chicago",
+   "license": "Public Domain",
+   "source_url": "https://www.artic.edu/iiif/2/3c61e694-6a53-c3ad-8a1e-a2c5d3f25080/full/2000,/0/default.jpg",
+   "thumbnail_url": "https://www.artic.edu/iiif/2/3c61e694-6a53-c3ad-8a1e-a2c5d3f25080/full/400,/0/default.jpg"
   }
  ]
 }

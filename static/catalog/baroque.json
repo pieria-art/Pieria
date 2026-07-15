@@ -2,7 +2,7 @@
  "id": "baroque",
  "title": "Baroque & the Dramatic Light",
  "description": "The drama, movement, and shadow-pierced chiaroscuro of 17th-century Europe.",
- "source": "Cleveland Museum of Art, Wikimedia Commons",
+ "source": "Art Institute of Chicago, Cleveland Museum of Art, Wikimedia Commons",
  "license": "Public Domain",
  "items": [
   {
@@ -588,6 +588,69 @@
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Agnus%20Dei%20%28The%20Lamb%20of%20God%29%2C%20by%20Francisco%20de%20Zurbaran%2C%20c.%201635-1640%20-%20San%20Diego%20Museum%20of%20Art%20-%20DSC06627.JPG?width=3840",
    "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Agnus%20Dei%20%28The%20Lamb%20of%20God%29%2C%20by%20Francisco%20de%20Zurbaran%2C%20c.%201635-1640%20-%20San%20Diego%20Museum%20of%20Art%20-%20DSC06627.JPG?width=600"
+  },
+  {
+   "title": "The Holy Family with Saints Elizabeth and John the Baptist",
+   "agent_name": "Peter Paul Rubens",
+   "agent_role": "Painter",
+   "creation_date": "1615",
+   "cultural_context": "Flemish Baroque, Antwerp",
+   "medium": "Oil on panel",
+   "date_display": "c. 1615",
+   "description_narrative": "Rubens painted this intimate devotional scene not long after returning to Antwerp from Italy, combining Flemish naturalism with the grand figural style he had absorbed from Italian art. The composition gathers the Holy Family with Saint Elizabeth and the infant John the Baptist in an affectionate domestic grouping.",
+   "tags": [
+    "Peter Paul Rubens",
+    "Flemish Baroque",
+    "Holy Family",
+    "religious art",
+    "Antwerp"
+   ],
+   "source": "Art Institute of Chicago",
+   "license": "Public Domain",
+   "source_url": "https://www.artic.edu/iiif/2/caac7478-b78f-a94d-a36c-fc5dde17e7c9/full/2000,/0/default.jpg",
+   "thumbnail_url": "https://www.artic.edu/iiif/2/caac7478-b78f-a94d-a36c-fc5dde17e7c9/full/400,/0/default.jpg"
+  },
+  {
+   "title": "Salome with the Head of Saint John the Baptist",
+   "agent_name": "Guido Reni",
+   "agent_role": "Painter",
+   "creation_date": "1639",
+   "cultural_context": "Italian Baroque, Bologna",
+   "medium": "Oil on canvas",
+   "date_display": "c. 1639–42",
+   "description_narrative": "Guido Reni painted several versions of this biblical subject late in his career, presenting Salome with cool composure rather than horror as she receives the severed head of John the Baptist. The painting exemplifies the idealized classical beauty and refined technique for which Reni was renowned in Baroque Bologna.",
+   "tags": [
+    "Guido Reni",
+    "Bolognese Baroque",
+    "Salome",
+    "biblical narrative",
+    "Italian Baroque"
+   ],
+   "source": "Art Institute of Chicago",
+   "license": "Public Domain",
+   "source_url": "https://www.artic.edu/iiif/2/8eccb189-92f3-353a-3337-c0778c2680d9/full/2000,/0/default.jpg",
+   "thumbnail_url": "https://www.artic.edu/iiif/2/8eccb189-92f3-353a-3337-c0778c2680d9/full/400,/0/default.jpg"
+  },
+  {
+   "title": "Saint Romanus of Antioch and Saint Barulas",
+   "agent_name": "Francisco de Zurbarán",
+   "agent_role": "Painter",
+   "creation_date": "1638",
+   "cultural_context": "Spanish Baroque, Seville",
+   "medium": "Oil on canvas",
+   "date_display": "1638",
+   "description_narrative": "Zurbarán painted this depiction of the early Christian martyr Saint Romanus of Antioch alongside the child martyr Saint Barulas for a Spanish monastic commission. The painting reflects Zurbarán's characteristic austere realism and use of dramatic light to heighten devotional intensity.",
+   "tags": [
+    "Francisco de Zurbaran",
+    "Spanish Baroque",
+    "martyrdom",
+    "religious art",
+    "Seville"
+   ],
+   "source": "Art Institute of Chicago",
+   "license": "Public Domain",
+   "source_url": "https://www.artic.edu/iiif/2/5fa784d4-f5d4-cc88-2f8c-0d7bad4945c4/full/2000,/0/default.jpg",
+   "thumbnail_url": "https://www.artic.edu/iiif/2/5fa784d4-f5d4-cc88-2f8c-0d7bad4945c4/full/400,/0/default.jpg"
   }
  ]
 }

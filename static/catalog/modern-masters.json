@@ -460,6 +460,144 @@
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Henri%20Rousseau%20-%20La%20zingara%20addormentata.jpg?width=3840",
    "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Henri%20Rousseau%20-%20La%20zingara%20addormentata.jpg?width=600"
+  },
+  {
+   "title": "Woman on Rose Divan",
+   "agent_name": "Henri Matisse",
+   "agent_role": "Painter",
+   "creation_date": "1921",
+   "cultural_context": "Early French modernism, Matisse's Nice period",
+   "medium": "Oil on canvas",
+   "date_display": "1921",
+   "description_narrative": "Painted during Matisse's years in Nice, this work belongs to a series of odalisque-inspired interiors in which he posed models amid richly patterned, decorative settings drenched in Mediterranean light. The reclining figure and ornamental surroundings reflect Matisse's enduring interest in pattern, color, and the sensuous pleasures of painting.",
+   "tags": [
+    "matisse",
+    "modern-art",
+    "nice",
+    "interior",
+    "pattern",
+    "odalisque",
+    "color"
+   ],
+   "source": "Art Institute of Chicago",
+   "license": "Public Domain",
+   "source_url": "https://www.artic.edu/iiif/2/65e58fc4-4dd1-7149-b76b-94547745bece/full/2000,/0/default.jpg",
+   "thumbnail_url": "https://www.artic.edu/iiif/2/65e58fc4-4dd1-7149-b76b-94547745bece/full/400,/0/default.jpg"
+  },
+  {
+   "title": "Landscape: Window Overlooking the Woods",
+   "agent_name": "Édouard Vuillard",
+   "agent_role": "Painter",
+   "creation_date": "1899",
+   "cultural_context": "Early French modernism, the Nabis group",
+   "medium": "Oil on canvas",
+   "date_display": "1899",
+   "description_narrative": "Édouard Vuillard, a member of the Nabis, a group of young painters influenced by Paul Gauguin and Japanese prints, painted this densely patterned view through a window using flattened space and decorative surface texture. The Nabis rejected illusionistic depth in favor of paintings that asserted their own flat, patterned reality.",
+   "tags": [
+    "vuillard",
+    "nabis",
+    "modern-art",
+    "landscape",
+    "window",
+    "pattern",
+    "france"
+   ],
+   "source": "Art Institute of Chicago",
+   "license": "Public Domain",
+   "source_url": "https://www.artic.edu/iiif/2/a1dc6109-6e0c-7801-ebe8-8c95fec2c4e4/full/2000,/0/default.jpg",
+   "thumbnail_url": "https://www.artic.edu/iiif/2/a1dc6109-6e0c-7801-ebe8-8c95fec2c4e4/full/400,/0/default.jpg"
+  },
+  {
+   "title": "Te burao (The Hibiscus Tree)",
+   "agent_name": "Paul Gauguin",
+   "agent_role": "Painter",
+   "creation_date": "1892",
+   "cultural_context": "Tahiti period, proto-modernist primitivism",
+   "medium": "Oil on canvas",
+   "date_display": "1892",
+   "description_narrative": "Gauguin painted this scene of Tahitian women in the shade of a hibiscus tree during his first stay on the island, using flattened planes of saturated color and simplified forms drawn from his idealized vision of Polynesian life. Works like this, made in deliberate rejection of European academic convention, became a touchstone for early twentieth-century modernists searching for new visual languages.",
+   "tags": [
+    "gauguin",
+    "tahiti",
+    "modern-art",
+    "color",
+    "primitivism",
+    "symbolism",
+    "polynesia"
+   ],
+   "source": "Art Institute of Chicago",
+   "license": "Public Domain",
+   "source_url": "https://www.artic.edu/iiif/2/604fe021-6008-f666-bce8-456b2fdc9bd4/full/2000,/0/default.jpg",
+   "thumbnail_url": "https://www.artic.edu/iiif/2/604fe021-6008-f666-bce8-456b2fdc9bd4/full/400,/0/default.jpg"
+  },
+  {
+   "title": "No te aha oe riri (Why Are You Angry?)",
+   "agent_name": "Paul Gauguin",
+   "agent_role": "Painter",
+   "creation_date": "1896",
+   "cultural_context": "Tahiti period, proto-modernist primitivism",
+   "medium": "Oil on jute canvas",
+   "date_display": "1896",
+   "description_narrative": "Painted during Gauguin's second stay in Tahiti, this large canvas depicts a domestic dispute among Tahitian women rendered in bold, flattened color and a frieze-like arrangement of figures. Gauguin gave the painting a Tahitian title inscribed directly on the canvas, part of his deliberate effort to distance his work from European artistic tradition.",
+   "tags": [
+    "gauguin",
+    "tahiti",
+    "modern-art",
+    "color",
+    "figures",
+    "symbolism",
+    "polynesia"
+   ],
+   "source": "Art Institute of Chicago",
+   "license": "Public Domain",
+   "source_url": "https://www.artic.edu/iiif/2/2adb35ce-8e94-cda5-210e-b04d488bbdc8/full/2000,/0/default.jpg",
+   "thumbnail_url": "https://www.artic.edu/iiif/2/2adb35ce-8e94-cda5-210e-b04d488bbdc8/full/400,/0/default.jpg"
+  },
+  {
+   "title": "Sawmill, Outskirts of Paris",
+   "agent_name": "Henri Rousseau",
+   "agent_role": "Painter",
+   "creation_date": "1893",
+   "cultural_context": "Early French modernism, self-taught Naive painting",
+   "medium": "Oil on canvas",
+   "date_display": "c. 1893/95",
+   "description_narrative": "Henri Rousseau, a self-taught toll collector who painted only on evenings and weekends, depicted this suburban sawmill on the edge of Paris with the flattened perspective and meticulous, almost obsessive detail that became his signature style. Rousseau's untrained but intensely personal vision was later championed by Picasso and other early modernists as a radical alternative to academic realism.",
+   "tags": [
+    "rousseau",
+    "naive-art",
+    "modern-art",
+    "paris",
+    "industry",
+    "self-taught",
+    "primitivism"
+   ],
+   "source": "Art Institute of Chicago",
+   "license": "Public Domain",
+   "source_url": "https://www.artic.edu/iiif/2/3826e366-e82a-e853-12e4-b303a1618103/full/2000,/0/default.jpg",
+   "thumbnail_url": "https://www.artic.edu/iiif/2/3826e366-e82a-e853-12e4-b303a1618103/full/400,/0/default.jpg"
+  },
+  {
+   "title": "Mill of Pont Maupuit",
+   "agent_name": "Armand Guillaumin",
+   "agent_role": "Painter",
+   "creation_date": "1900",
+   "cultural_context": "Late Impressionism, color experiments anticipating Fauvism",
+   "medium": "Oil on canvas",
+   "date_display": "c. 1900",
+   "description_narrative": "Armand Guillaumin, a close friend of Cézanne and Pissarro who exhibited in several Impressionist group shows, painted this rural mill scene using the intensified, high-keyed color of his later career. His bold use of pure, saturated pigment in his final decades anticipated the color experiments of the Fauve painters who emerged in the years that followed.",
+   "tags": [
+    "guillaumin",
+    "impressionism",
+    "color",
+    "mill",
+    "landscape",
+    "france",
+    "proto-fauvism"
+   ],
+   "source": "Art Institute of Chicago",
+   "license": "Public Domain",
+   "source_url": "https://www.artic.edu/iiif/2/f4abdcdc-1d4f-4b8c-5f16-dacc42d509f5/full/2000,/0/default.jpg",
+   "thumbnail_url": "https://www.artic.edu/iiif/2/f4abdcdc-1d4f-4b8c-5f16-dacc42d509f5/full/400,/0/default.jpg"
   }
  ]
 }
