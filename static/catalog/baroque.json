@@ -519,6 +519,75 @@
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Susanna%20and%20the%20Elders%20%281610%29%2C%20Artemisia%20Gentileschi.jpg?width=3840",
    "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Susanna%20and%20the%20Elders%20%281610%29%2C%20Artemisia%20Gentileschi.jpg?width=600"
+  },
+  {
+   "title": "Esther before Ahasuerus",
+   "agent_name": "Artemisia Gentileschi",
+   "agent_role": "Painter",
+   "creation_date": "1628-1635",
+   "cultural_context": "Italian Baroque, Naples",
+   "medium": "Oil on canvas",
+   "date_display": "c. 1628-1635",
+   "description_narrative": "Artemisia's largest known canvas depicts Queen Esther fainting before King Ahasuerus after breaking court protocol to plead for her people. X-rays revealed a painted-over page boy restraining a dog, a compositional link to Veronese's treatment of the theme.",
+   "tags": [
+    "artemisia gentileschi",
+    "italian baroque",
+    "esther",
+    "biblical",
+    "met",
+    "female artist",
+    "drama"
+   ],
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Esther%20before%20Ahasuerus%2C%20Franciszek%20Smuglewicz%2C%201778.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Esther%20before%20Ahasuerus%2C%20Franciszek%20Smuglewicz%2C%201778.jpg?width=600"
+  },
+  {
+   "title": "The Abduction of the Sabine Women",
+   "agent_name": "Nicolas Poussin",
+   "agent_role": "Painter",
+   "creation_date": "1633-1634",
+   "cultural_context": "French Baroque classicism, Rome",
+   "medium": "Oil on canvas",
+   "date_display": "c. 1633-1634",
+   "description_narrative": "The Metropolitan's version stages the Roman founding myth in which Romulus's men seize the Sabine women during a festival, arranged as a frieze of struggling figures. Poussin's rigorous classical composition was studied closely by later artists including Jacques-Louis David.",
+   "tags": [
+    "poussin",
+    "french baroque",
+    "roman myth",
+    "classicism",
+    "met",
+    "abduction",
+    "history painting"
+   ],
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Abduction%20of%20the%20Sabine%20Women%20%28Poussin%2C%20MET%29.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Abduction%20of%20the%20Sabine%20Women%20%28Poussin%2C%20MET%29.jpg?width=600"
+  },
+  {
+   "title": "Agnus Dei",
+   "agent_name": "Francisco de Zurbaran",
+   "agent_role": "Painter",
+   "creation_date": "1635-1640",
+   "cultural_context": "Spanish Baroque, Seville",
+   "medium": "Oil on canvas",
+   "date_display": "c. 1635-1640",
+   "description_narrative": "A single bound lamb lies on its side against a plain dark ground, a spare image of Christ as the sacrificial Lamb of God. Its sculptural realism and stark tenebrist lighting make it one of the most affecting devotional still lifes of the Spanish Baroque.",
+   "tags": [
+    "zurbaran",
+    "spanish baroque",
+    "lamb",
+    "tenebrism",
+    "prado",
+    "devotional",
+    "religious"
+   ],
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Agnus%20Dei%20%28The%20Lamb%20of%20God%29%2C%20by%20Francisco%20de%20Zurbaran%2C%20c.%201635-1640%20-%20San%20Diego%20Museum%20of%20Art%20-%20DSC06627.JPG?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Agnus%20Dei%20%28The%20Lamb%20of%20God%29%2C%20by%20Francisco%20de%20Zurbaran%2C%20c.%201635-1640%20-%20San%20Diego%20Museum%20of%20Art%20-%20DSC06627.JPG?width=600"
   }
  ]
 }

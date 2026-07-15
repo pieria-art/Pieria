@@ -364,6 +364,71 @@
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Wang%20Ximeng.%20A%20Thousand%20Li%20of%20Rivers%20and%20Mountains.%20%28Complete%2C%2051%2C3x1191%2C5%20cm%29.%201113.%20Palace%20museum%2C%20Beijing.jpg?width=3840",
    "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Wang%20Ximeng.%20A%20Thousand%20Li%20of%20Rivers%20and%20Mountains.%20%28Complete%2C%2051%2C3x1191%2C5%20cm%29.%201113.%20Palace%20museum%2C%20Beijing.jpg?width=600"
+  },
+  {
+   "title": "Fish and Rocks",
+   "agent_name": "Bada Shanren (Zhu Da)",
+   "agent_role": "Painter",
+   "creation_date": "1699",
+   "cultural_context": "Chinese, Qing dynasty",
+   "medium": "Ink on paper, hanging scroll",
+   "date_display": "1699",
+   "description_narrative": "A few sparse fish drift beneath looming, abstracted rocks conjured in spare, wet strokes of ink. A Ming imperial descendant who became a Buddhist monk, Bada Shanren charged such minimalist images with veiled melancholy and quiet defiance.",
+   "tags": [
+    "chinese",
+    "ink painting",
+    "qing dynasty",
+    "fish",
+    "literati",
+    "hanging scroll"
+   ],
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bada%20Shanren%20-%20Fish%20and%20Rocks%20-%201953.247%20-%20Cleveland%20Museum%20of%20Art.tiff?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bada%20Shanren%20-%20Fish%20and%20Rocks%20-%201953.247%20-%20Cleveland%20Museum%20of%20Art.tiff?width=600"
+  },
+  {
+   "title": "Cypress Trees",
+   "agent_name": "Kano Eitoku",
+   "agent_role": "Painter",
+   "creation_date": "c. 1590",
+   "cultural_context": "Japanese, Azuchi-Momoyama period",
+   "medium": "Ink, color and gold leaf on paper, folding screen",
+   "date_display": "c. 1590",
+   "description_narrative": "A colossal, gnarled cypress writhes across gilded panels streaked with gold clouds and blue water. Its bold scale and shimmering ground define the grand decorative manner Eitoku devised for the castles of Japan's warlords.",
+   "tags": [
+    "japanese",
+    "folding screen",
+    "gold leaf",
+    "momoyama",
+    "kano school",
+    "tree"
+   ],
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Kano%20Eitoku%20-%20Cypress%20Trees.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Kano%20Eitoku%20-%20Cypress%20Trees.jpg?width=600"
+  },
+  {
+   "title": "Youth Holding a Pomegranate",
+   "agent_name": "Reza Abbasi",
+   "agent_role": "Painter",
+   "creation_date": "c. 1600-1650",
+   "cultural_context": "Persian, Safavid period",
+   "medium": "Ink and color on paper, single-page miniature",
+   "date_display": "c. 1600–50",
+   "description_narrative": "An elegant youth in a gold-patterned robe holds a pomegranate, his figure drawn in a single graceful, calligraphic contour. Reza Abbasi, court painter to Shah Abbas I, was the last great master of the Persian miniature.",
+   "tags": [
+    "persian",
+    "miniature",
+    "safavid",
+    "isfahan",
+    "islamic art"
+   ],
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Riza-yi%20Abbasi%20-%20Youth%20Holding%20a%20Pomegranate%3B%20Illustration%20from%20a%20Single%20Page%20Manuscript%20-%201947.497%20-%20Cleveland%20Museum%20of%20Art.tif?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Riza-yi%20Abbasi%20-%20Youth%20Holding%20a%20Pomegranate%3B%20Illustration%20from%20a%20Single%20Page%20Manuscript%20-%201947.497%20-%20Cleveland%20Museum%20of%20Art.tif?width=600"
   }
  ]
 }

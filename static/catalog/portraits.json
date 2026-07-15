@@ -749,6 +749,98 @@
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Diego%20Rodriguez%20de%20Silva%20y%20Vel%C3%A1zquez%20-%20Infanta%20Margarita%20Teresa%20in%20a%20Blue%20Dress%20-%20Google%20Art%20Project.jpg?width=3840",
    "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Diego%20Rodriguez%20de%20Silva%20y%20Vel%C3%A1zquez%20-%20Infanta%20Margarita%20Teresa%20in%20a%20Blue%20Dress%20-%20Google%20Art%20Project.jpg?width=600"
+  },
+  {
+   "title": "Charles I at the Hunt",
+   "agent_name": "Anthony van Dyck",
+   "agent_role": "Painter",
+   "creation_date": "1635",
+   "cultural_context": "Flemish Baroque at the English court",
+   "medium": "Oil on canvas",
+   "date_display": "c. 1635",
+   "description_narrative": "Van Dyck presents King Charles I informally at rest during a hunt, one hand on a cane, as a courtier holds his horse. The low viewpoint and elegant pose lend an air of effortless majesty to the notably short monarch.",
+   "tags": [
+    "van dyck",
+    "charles i",
+    "portrait",
+    "royal",
+    "louvre",
+    "hunt",
+    "flemish baroque"
+   ],
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Charles%20I%20of%20England.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Charles%20I%20of%20England.jpg?width=600"
+  },
+  {
+   "title": "Portrait of Pope Innocent X",
+   "agent_name": "Diego Velazquez",
+   "agent_role": "Painter",
+   "creation_date": "1650",
+   "cultural_context": "Spanish Baroque, Rome",
+   "medium": "Oil on canvas",
+   "date_display": "1650",
+   "description_narrative": "Painted during Velazquez's second stay in Italy, this portrait fixes the pope with an unflinching, penetrating realism that the sitter himself reportedly found too truthful. Widely counted among the greatest portraits ever made, it later obsessed the painter Francis Bacon.",
+   "tags": [
+    "velazquez",
+    "pope",
+    "portrait",
+    "spanish baroque",
+    "doria pamphilj",
+    "realism",
+    "papal"
+   ],
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Portrait%20of%20Innocentius%20X%20by%20Diego%20Vel%C3%A1zquez%20in%20Galleria%20Doria%20Pamphilj%20%28Rome%29.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Portrait%20of%20Innocentius%20X%20by%20Diego%20Vel%C3%A1zquez%20in%20Galleria%20Doria%20Pamphilj%20%28Rome%29.jpg?width=600"
+  },
+  {
+   "title": "Portrait of Pope Julius II",
+   "agent_name": "Raphael",
+   "agent_role": "Painter",
+   "creation_date": "1511-1512",
+   "cultural_context": "Italian High Renaissance, Rome",
+   "medium": "Oil on poplar panel",
+   "date_display": "1511-1512",
+   "description_narrative": "Raphael broke with convention by showing the pope seated and inwardly absorbed rather than in rigid formal majesty, setting the template for papal portraiture for two centuries. The unusual beard was grown by Julius as a vow tied to the fortunes of the papal states.",
+   "tags": [
+    "raphael",
+    "pope",
+    "portrait",
+    "high renaissance",
+    "national gallery",
+    "julius ii",
+    "papal"
+   ],
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Raphael%20and%20Workshop%20-%20Portrait%20of%20Pope%20Julius%20II%20-%20Google%20Art%20Project.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Raphael%20and%20Workshop%20-%20Portrait%20of%20Pope%20Julius%20II%20-%20Google%20Art%20Project.jpg?width=600"
+  },
+  {
+   "title": "Self-Portrait in a Straw Hat",
+   "agent_name": "Elisabeth Louise Vigee Le Brun",
+   "agent_role": "Painter",
+   "creation_date": "1782",
+   "cultural_context": "French pre-Revolutionary portraiture",
+   "medium": "Oil on canvas",
+   "date_display": "after 1782",
+   "description_narrative": "The artist depicts herself outdoors with a palette in hand and a feathered straw hat, directly inspired by a Rubens portrait she had admired in Antwerp. Her unpowdered hair and natural presentation were a fresh, informal statement in the years just before the Revolution.",
+   "tags": [
+    "vigee le brun",
+    "self-portrait",
+    "female artist",
+    "straw hat",
+    "national gallery",
+    "rubens",
+    "french"
+   ],
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Self-portrait%20in%20a%20Straw%20Hat%20by%20Elisabeth-Louise%20Vig%C3%A9e-Lebrun%20%282%29.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Self-portrait%20in%20a%20Straw%20Hat%20by%20Elisabeth-Louise%20Vig%C3%A9e-Lebrun%20%282%29.jpg?width=600"
   }
  ]
 }

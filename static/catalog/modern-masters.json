@@ -359,6 +359,107 @@
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Edvard%20Munch%20-%20The%20Sick%20Child%20-%20NG.M.00839%20-%20National%20Museum%20of%20Art%2C%20Architecture%20and%20Design.jpg?width=3840",
    "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Edvard%20Munch%20-%20The%20Sick%20Child%20-%20NG.M.00839%20-%20National%20Museum%20of%20Art%2C%20Architecture%20and%20Design.jpg?width=600"
+  },
+  {
+   "title": "Judith I",
+   "agent_name": "Gustav Klimt",
+   "agent_role": "Painter",
+   "creation_date": "1901",
+   "cultural_context": "Vienna Secession; Art Nouveau",
+   "medium": "Oil on canvas",
+   "date_display": "1901",
+   "description_narrative": "Klimt recasts the biblical heroine Judith as a rapturous, half-undressed femme fatale cradling the severed head of Holofernes against a shimmering gold-leaf ground. The painting inaugurated the celebrated 'golden phase' of his career.",
+   "tags": [
+    "symbolism",
+    "art nouveau",
+    "gold",
+    "femme fatale",
+    "austrian",
+    "biblical"
+   ],
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/%28Venice%29%20Judith%20with%20the%20head%20of%20Holofernes%20by%20Jacopo%20Amigoni.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/%28Venice%29%20Judith%20with%20the%20head%20of%20Holofernes%20by%20Jacopo%20Amigoni.jpg?width=600"
+  },
+  {
+   "title": "Jeanne Hébuterne with Yellow Sweater",
+   "agent_name": "Amedeo Modigliani",
+   "agent_role": "Painter",
+   "creation_date": "1919",
+   "cultural_context": "École de Paris; modern portraiture",
+   "medium": "Oil on canvas",
+   "date_display": "1919",
+   "description_narrative": "Modigliani's companion Jeanne sits in a yellow sweater, her swanlike neck, tilted head and blank almond eyes pared down to pure, elegant contour. It was painted in the final months before the artist's death in 1920.",
+   "tags": [
+    "portrait",
+    "ecole de paris",
+    "modern",
+    "italian",
+    "elongation"
+   ],
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jeanne%20H%C3%A9buterne%20im%20gelben%20Pullover%20%28Amedeo%20Modigliani%29-WUS04200.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jeanne%20H%C3%A9buterne%20im%20gelben%20Pullover%20%28Amedeo%20Modigliani%29-WUS04200.jpg?width=600"
+  },
+  {
+   "title": "The Buddha",
+   "agent_name": "Odilon Redon",
+   "agent_role": "Painter",
+   "creation_date": "c. 1906-1907",
+   "cultural_context": "Symbolism",
+   "medium": "Pastel on paper",
+   "date_display": "c. 1906–07",
+   "description_narrative": "A robed Buddha stands in profile beside a flowering tree amid shimmering, jewel-toned fields of color. The work belongs to Redon's luminous late period, a mystical turn away from the somber charcoal 'noirs' of his earlier years.",
+   "tags": [
+    "symbolism",
+    "pastel",
+    "buddha",
+    "spiritual",
+    "french",
+    "color"
+   ],
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Odilon%20Redon%20-%20The%20Buddha%20-%201961.279%20-%20Cleveland%20Museum%20of%20Art.tif?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Odilon%20Redon%20-%20The%20Buddha%20-%201961.279%20-%20Cleveland%20Museum%20of%20Art.tif?width=600"
+  },
+  {
+   "title": "Woman in a Striped Dress",
+   "agent_name": "Édouard Vuillard",
+   "agent_role": "Painter",
+   "creation_date": "1895",
+   "cultural_context": "Les Nabis; Post-Impressionism",
+   "medium": "Oil on canvas",
+   "date_display": "1895",
+   "description_narrative": "A woman arranging flowers nearly dissolves into a dense weave of stripes, blossoms and patterned interior. One of a set of decorative panels made for the Natanson family, it embodies the intimate, flattened aesthetic of the Nabis.",
+   "tags": [
+    "nabis",
+    "interior",
+    "pattern",
+    "decorative",
+    "french"
+   ],
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Edouard%20Vuillard%20-%20Woman%20in%20a%20Striped%20Dress%20-%20Google%20Art%20Project.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Edouard%20Vuillard%20-%20Woman%20in%20a%20Striped%20Dress%20-%20Google%20Art%20Project.jpg?width=600"
+  },
+  {
+   "title": "The Sleeping Gypsy",
+   "agent_name": "Henri Rousseau",
+   "agent_role": "Painter",
+   "creation_date": "1897",
+   "cultural_context": "Post-Impressionism / Naïve art, French",
+   "medium": "Oil on canvas",
+   "date_display": "1897",
+   "description_narrative": "A lion sniffs a sleeping mandolin-player beside her water jug under a full moon in a silent moonlit desert. Rousseau's most hauntingly still, dreamlike scene, it was later revered by the Surrealists.",
+   "tags": "dream, lion, desert, moonlight, naive art, surreal",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Henri%20Rousseau%20-%20La%20zingara%20addormentata.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Henri%20Rousseau%20-%20La%20zingara%20addormentata.jpg?width=600"
   }
  ]
 }

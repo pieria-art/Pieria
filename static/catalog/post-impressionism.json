@@ -609,6 +609,98 @@
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/La%20vision%20apr%C3%A8s%20le%20sermon%20%28Paul%20Gauguin%29.jpg?width=3840",
    "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/La%20vision%20apr%C3%A8s%20le%20sermon%20%28Paul%20Gauguin%29.jpg?width=600"
+  },
+  {
+   "title": "The Potato Eaters",
+   "agent_name": "Vincent van Gogh",
+   "agent_role": "Painter",
+   "creation_date": "1885",
+   "cultural_context": "Dutch Post-Impressionism",
+   "medium": "Oil on canvas",
+   "date_display": "1885",
+   "description_narrative": "Painted in Nuenen before Van Gogh moved to Paris and lightened his palette, this dark, earth-toned scene of a peasant family sharing a meal was intended as a statement of solidarity with rural laborers. Van Gogh considered it the first major work of his career; it now hangs in the Van Gogh Museum, Amsterdam.",
+   "tags": [
+    "van gogh",
+    "post-impressionism",
+    "peasants",
+    "dutch",
+    "realism",
+    "interior",
+    "poverty"
+   ],
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Vincent%20van%20Gogh%20-%20The%20potato%20eaters%20-%20Google%20Art%20Project.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Vincent%20van%20Gogh%20-%20The%20potato%20eaters%20-%20Google%20Art%20Project.jpg?width=600"
+  },
+  {
+   "title": "Wheatfield with Cypresses",
+   "agent_name": "Vincent van Gogh",
+   "agent_role": "Painter",
+   "creation_date": "1889",
+   "cultural_context": "Dutch Post-Impressionism",
+   "medium": "Oil on canvas",
+   "date_display": "1889",
+   "description_narrative": "Painted near the asylum at Saint-Rémy-de-Provence, this canvas pairs a wind-tossed wheatfield with dark flame-like cypress trees Van Gogh described as 'beautiful in line and proportion, like an Egyptian obelisk.' He made several versions of the composition; this one is held by the Metropolitan Museum of Art.",
+   "tags": [
+    "van gogh",
+    "post-impressionism",
+    "landscape",
+    "cypress",
+    "provence",
+    "wheatfield",
+    "dutch"
+   ],
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Vincent%20van%20Gogh%20-%20A%20Wheatfield%2C%20with%20Cypressess%20%281889%29.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Vincent%20van%20Gogh%20-%20A%20Wheatfield%2C%20with%20Cypressess%20%281889%29.jpg?width=600"
+  },
+  {
+   "title": "The Large Bathers",
+   "agent_name": "Paul Cezanne",
+   "agent_role": "Painter",
+   "creation_date": "1898–1905",
+   "cultural_context": "French Post-Impressionism",
+   "medium": "Oil on canvas",
+   "date_display": "1898–1905",
+   "description_narrative": "Cezanne worked on this monumental composition of nude bathers arranged beneath a triangular canopy of trees for several years near the end of his life, treating the figures as geometric forms integrated with the landscape. Left unfinished at his death, it is regarded as a bridge to twentieth-century modernism and hangs in the Philadelphia Museum of Art.",
+   "tags": [
+    "cezanne",
+    "post-impressionism",
+    "bathers",
+    "nude",
+    "landscape",
+    "french",
+    "modernism"
+   ],
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Paul%20Cezanne%20-%20The%20bathers%20%28large%20plate%29%20-%20Google%20Art%20Project.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Paul%20Cezanne%20-%20The%20bathers%20%28large%20plate%29%20-%20Google%20Art%20Project.jpg?width=600"
+  },
+  {
+   "title": "The Yellow Christ",
+   "agent_name": "Paul Gauguin",
+   "agent_role": "Painter",
+   "creation_date": "1889",
+   "cultural_context": "French Post-Impressionism / Symbolism",
+   "medium": "Oil on canvas",
+   "date_display": "1889",
+   "description_narrative": "Gauguin painted this crucifixion scene in Brittany, basing the yellow wooden Christ figure on a polychrome sculpture in a nearby chapel and surrounding it with local peasant women in traditional dress. Its flattened forms and bold outlined color fields exemplify Gauguin's Synthetist style; it is held by the Albright-Knox Art Gallery in Buffalo.",
+   "tags": [
+    "gauguin",
+    "post-impressionism",
+    "symbolism",
+    "brittany",
+    "religious",
+    "synthetism",
+    "french"
+   ],
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Paul%20Gauguin%20-%20Le%20Christ%20jaune%20%28The%20Yellow%20Christ%29%20-%201946-4%20-%20Albright%E2%80%93Knox%20Art%20Gallery.tiff?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Paul%20Gauguin%20-%20Le%20Christ%20jaune%20%28The%20Yellow%20Christ%29%20-%201946-4%20-%20Albright%E2%80%93Knox%20Art%20Gallery.tiff?width=600"
   }
  ]
 }

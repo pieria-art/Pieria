@@ -809,6 +809,121 @@
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Carel%20Fabritius%20-%20The%20Goldfinch%20-%20605%20-%20Mauritshuis.jpg?width=3840",
    "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Carel%20Fabritius%20-%20The%20Goldfinch%20-%20605%20-%20Mauritshuis.jpg?width=600"
+  },
+  {
+   "title": "The Art of Painting",
+   "agent_name": "Johannes Vermeer",
+   "agent_role": "Painter",
+   "creation_date": "1666-1668",
+   "cultural_context": "Dutch Golden Age, Delft",
+   "medium": "Oil on canvas",
+   "date_display": "c. 1666-1668",
+   "description_narrative": "An allegory of painting shows an artist at his easel before a model posed as Clio, the muse of history, in a light-filled studio hung with a map of the Netherlands. Vermeer never sold the work, keeping it as a showpiece of his art throughout his life.",
+   "tags": [
+    "vermeer",
+    "dutch golden age",
+    "allegory",
+    "studio",
+    "kunsthistorisches",
+    "muse",
+    "interior"
+   ],
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jan%20Vermeer%20-%20The%20Art%20of%20Painting%20-%20Google%20Art%20Project.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jan%20Vermeer%20-%20The%20Art%20of%20Painting%20-%20Google%20Art%20Project.jpg?width=600"
+  },
+  {
+   "title": "The Laughing Cavalier",
+   "agent_name": "Frans Hals",
+   "agent_role": "Painter",
+   "creation_date": "1624",
+   "cultural_context": "Dutch Golden Age, Haarlem",
+   "medium": "Oil on canvas",
+   "date_display": "1624",
+   "description_narrative": "This half-length portrait of an unidentified man, who is not actually laughing but wears a confident half-smile beneath an upturned moustache, is celebrated for the dazzling detail of his embroidered costume. The popular title was coined by the Victorian public long after Hals painted it.",
+   "tags": [
+    "frans hals",
+    "dutch golden age",
+    "portrait",
+    "cavalier",
+    "wallace collection",
+    "costume",
+    "smile"
+   ],
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frans%20Hals%20%E2%80%93%20The%20Laughing%20Cavalier.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frans%20Hals%20%E2%80%93%20The%20Laughing%20Cavalier.jpg?width=600"
+  },
+  {
+   "title": "Belshazzar's Feast",
+   "agent_name": "Rembrandt van Rijn",
+   "agent_role": "Painter",
+   "creation_date": "1636-1638",
+   "cultural_context": "Dutch Golden Age, Amsterdam",
+   "medium": "Oil on canvas",
+   "date_display": "c. 1636-1638",
+   "description_narrative": "Rembrandt captures the Book of Daniel's moment of terror as glowing Hebrew words appear on the wall and King Belshazzar recoils, upsetting his banquet. The inscription was supplied by Rembrandt's learned neighbor Menasseh ben Israel and arranged in unusual columns.",
+   "tags": [
+    "rembrandt",
+    "dutch golden age",
+    "biblical",
+    "belshazzar",
+    "national gallery",
+    "chiaroscuro",
+    "feast"
+   ],
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Belshazzar%E2%80%99s%20Feast%20-%20DPLA%20-%2057628220d480590391afd80a5c66f056.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Belshazzar%E2%80%99s%20Feast%20-%20DPLA%20-%2057628220d480590391afd80a5c66f056.jpg?width=600"
+  },
+  {
+   "title": "The Courtyard of a House in Delft",
+   "agent_name": "Pieter de Hooch",
+   "agent_role": "Painter",
+   "creation_date": "1658",
+   "cultural_context": "Dutch Golden Age, Delft",
+   "medium": "Oil on canvas",
+   "date_display": "1658",
+   "description_narrative": "A woman and child stand in a sunlit brick courtyard beside a passage that opens onto a glimpse of the street, an image of quiet domestic order. Signed and dated on the archway, it exemplifies de Hooch's mastery of light, texture, and receding architectural space.",
+   "tags": [
+    "pieter de hooch",
+    "dutch golden age",
+    "courtyard",
+    "delft",
+    "domestic",
+    "national gallery",
+    "interior"
+   ],
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pieter%20de%20Hooch%20-%20The%20Courtyard%20of%20a%20House%20in%20Delft.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pieter%20de%20Hooch%20-%20The%20Courtyard%20of%20a%20House%20in%20Delft.jpg?width=600"
+  },
+  {
+   "title": "The Young Bull",
+   "agent_name": "Paulus Potter",
+   "agent_role": "Painter",
+   "creation_date": "1647",
+   "cultural_context": "Dutch Golden Age, The Hague",
+   "medium": "Oil on canvas",
+   "date_display": "1647",
+   "description_narrative": "Potter painted this near life-size bull standing in a meadow with a farmer and other livestock when he was only twenty-two years old. Its monumental scale elevated animal painting, traditionally a low-ranked genre, into an ambitious subject in its own right.",
+   "tags": [
+    "paulus potter",
+    "dutch golden age",
+    "animal",
+    "bull",
+    "mauritshuis",
+    "meadow",
+    "livestock"
+   ],
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Paulus%20Potter%20-%20The%20Bull%20-%20136%20-%20Mauritshuis.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Paulus%20Potter%20-%20The%20Bull%20-%20136%20-%20Mauritshuis.jpg?width=600"
   }
  ]
 }

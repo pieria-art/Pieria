@@ -639,6 +639,133 @@
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frederic%20Edwin%20Church%20-%20Twilight%20in%20the%20Wilderness.jpg?width=3840",
    "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frederic%20Edwin%20Church%20-%20Twilight%20in%20the%20Wilderness.jpg?width=600"
+  },
+  {
+   "title": "The Veteran in a New Field",
+   "agent_name": "Winslow Homer",
+   "agent_role": "Painter",
+   "creation_date": "1865",
+   "cultural_context": "American Realism; post-Civil War",
+   "medium": "Oil on canvas",
+   "date_display": "1865",
+   "description_narrative": "A discharged Union soldier, his jacket and canteen cast aside, harvests a golden field of wheat with a single-bladed scythe. Painted just after the war's end and Lincoln's assassination, the scythe evokes the Grim Reaper and the vast toll of the fallen.",
+   "tags": [
+    "landscape",
+    "harvest",
+    "civil war",
+    "wheat",
+    "american",
+    "realism"
+   ],
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Veteran%20in%20a%20New%20Field%201865%20Winslow%20Homer.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Veteran%20in%20a%20New%20Field%201865%20Winslow%20Homer.jpg?width=600"
+  },
+  {
+   "title": "The Heart of the Andes",
+   "agent_name": "Frederic Edwin Church",
+   "agent_role": "Painter",
+   "creation_date": "1859",
+   "cultural_context": "Hudson River School; American landscape",
+   "medium": "Oil on canvas",
+   "date_display": "1859",
+   "description_narrative": "A monumental South American panorama distills Church's travels retracing the naturalist Alexander von Humboldt, from snow-capped peaks to tropical foreground foliage. When first shown, paying crowds viewed the canvas through a curtained frame with opera glasses as if peering through a window.",
+   "tags": [
+    "landscape",
+    "andes",
+    "mountains",
+    "hudson river school",
+    "american"
+   ],
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Church%20Heart%20of%20the%20Andes.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Church%20Heart%20of%20the%20Andes.jpg?width=600"
+  },
+  {
+   "title": "The Rocky Mountains, Lander's Peak",
+   "agent_name": "Albert Bierstadt",
+   "agent_role": "Painter",
+   "creation_date": "1863",
+   "cultural_context": "Hudson River School; American West",
+   "medium": "Oil on canvas",
+   "date_display": "1863",
+   "description_narrative": "A luminous, idealized vista of the Wind River Range rises above a Shoshone encampment, based on sketches from an 1859 survey expedition. The grand image fed Eastern fascination with the frontier and helped define the mythology of the American West.",
+   "tags": [
+    "landscape",
+    "mountains",
+    "american west",
+    "native american",
+    "luminism"
+   ],
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Rocky%20Mountains%2C%20Lander%27s%20Peak%20%28Albert%20Bierstadt%29%2C%201863%20%28oil%20on%20linen%20-%20scan%29.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Rocky%20Mountains%2C%20Lander%27s%20Peak%20%28Albert%20Bierstadt%29%2C%201863%20%28oil%20on%20linen%20-%20scan%29.jpg?width=600"
+  },
+  {
+   "title": "The Boating Party",
+   "agent_name": "Mary Cassatt",
+   "agent_role": "Painter",
+   "creation_date": "1893-1894",
+   "cultural_context": "American Impressionism",
+   "medium": "Oil on canvas",
+   "date_display": "1893–94",
+   "description_narrative": "A dark-clad oarsman rows a mother and restless child across sunlit water near Antibes, the composition boldly cropped and tilted upward. Its flattened planes of color reveal Cassatt's deep study of Japanese woodblock prints.",
+   "tags": [
+    "impressionism",
+    "boating",
+    "mother and child",
+    "american",
+    "japonisme"
+   ],
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Mary%20Cassatt%20-%20The%20Boating%20Party%20-%20Google%20Art%20Project.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Mary%20Cassatt%20-%20The%20Boating%20Party%20-%20Google%20Art%20Project.jpg?width=600"
+  },
+  {
+   "title": "The Fall of the Cowboy",
+   "agent_name": "Frederic Remington",
+   "agent_role": "Painter",
+   "creation_date": "1895",
+   "cultural_context": "American West genre painting",
+   "medium": "Oil on canvas",
+   "date_display": "1895",
+   "description_narrative": "Two cowboys pause at a barbed-wire fence gate in a bleak wintry plain, one dismounted to work the wire. Painted to illustrate a Harper's Monthly article, it is an elegy for the vanishing open range that barbed wire had begun to close.",
+   "tags": [
+    "american west",
+    "cowboy",
+    "winter",
+    "genre",
+    "frontier"
+   ],
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Fall%20of%20the%20Cowboy%2C%201895%2C%20by%20Frederic%20S.%20Remington.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Fall%20of%20the%20Cowboy%2C%201895%2C%20by%20Frederic%20S.%20Remington.jpg?width=600"
+  },
+  {
+   "title": "Symphony in White, No. 1: The White Girl",
+   "agent_name": "James McNeill Whistler",
+   "agent_role": "Painter",
+   "creation_date": "1861-1862",
+   "cultural_context": "Aestheticism",
+   "medium": "Oil on canvas",
+   "date_display": "1861–62",
+   "description_narrative": "A full-length portrait of Whistler's model and companion Joanna Hiffernan, dressed in white and standing on a wolfskin before a white curtain. Rejected by the Paris Salon, it caused a sensation at the 1863 Salon des Refuses and became a manifesto of art-for-art's-sake Aestheticism.",
+   "tags": [
+    "portrait",
+    "aestheticism",
+    "white",
+    "american",
+    "symbolism"
+   ],
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Whistler%20James%20Symphony%20in%20White%20no%201%20%28The%20White%20Girl%29%201862.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Whistler%20James%20Symphony%20in%20White%20no%201%20%28The%20White%20Girl%29%201862.jpg?width=600"
   }
  ]
 }

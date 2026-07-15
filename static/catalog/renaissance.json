@@ -554,6 +554,144 @@
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Last%20Judgement%20%28Michelangelo%29.jpg?width=3840",
    "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Last%20Judgement%20%28Michelangelo%29.jpg?width=600"
+  },
+  {
+   "title": "Virgin of the Rocks",
+   "agent_name": "Leonardo da Vinci",
+   "agent_role": "Painter",
+   "creation_date": "1483-1486",
+   "cultural_context": "Italian High Renaissance, Milan",
+   "medium": "Oil on panel, transferred to canvas",
+   "date_display": "c. 1483-1486",
+   "description_narrative": "The Louvre's version of Leonardo's altarpiece, one of two nearly identical compositions he painted, showing the Virgin, the infant Christ, the young John the Baptist, and an angel in a shadowy grotto. It is a defining demonstration of Leonardo's sfumato technique, with figures modeled in soft gradations of light and shade rather than hard outlines.",
+   "tags": [
+    "leonardo",
+    "sfumato",
+    "madonna",
+    "louvre",
+    "high renaissance",
+    "grotto",
+    "religious"
+   ],
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Leonardo%20da%20Vinci%20-%20Virgin%20of%20the%20Rocks%20%28National%20Gallery%20London%29%2002.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Leonardo%20da%20Vinci%20-%20Virgin%20of%20the%20Rocks%20%28National%20Gallery%20London%29%2002.jpg?width=600"
+  },
+  {
+   "title": "The Sistine Madonna",
+   "agent_name": "Raphael",
+   "agent_role": "Painter",
+   "creation_date": "1512-1514",
+   "cultural_context": "Italian High Renaissance, Rome",
+   "medium": "Oil on canvas",
+   "date_display": "c. 1512-1514",
+   "description_narrative": "Commissioned by Pope Julius II as an altarpiece for the church of San Sisto in Piacenza, the painting shows the Madonna descending through parted curtains with the Christ Child, flanked by Saint Sixtus and Saint Barbara. The two winged putti daydreaming at the base of the composition became independently famous, endlessly reproduced on their own.",
+   "tags": [
+    "raphael",
+    "madonna",
+    "putti",
+    "altarpiece",
+    "high renaissance",
+    "dresden",
+    "religious"
+   ],
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Raphael%20-%20The%20Sistine%20Madonna%20-%20Google%20Arts%20%26%20Culture.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Raphael%20-%20The%20Sistine%20Madonna%20-%20Google%20Arts%20%26%20Culture.jpg?width=600"
+  },
+  {
+   "title": "Pallas and the Centaur",
+   "agent_name": "Sandro Botticelli",
+   "agent_role": "Painter",
+   "creation_date": "1482",
+   "cultural_context": "Italian Early Renaissance, Florence",
+   "medium": "Tempera on canvas",
+   "date_display": "c. 1482",
+   "description_narrative": "The armed figure of Pallas Athena restrains a centaur by the hair, widely read as an allegory of reason subduing base instinct. Her gown is patterned with the interlaced diamond-ring emblem of the Medici, tying the work to the family's patronage.",
+   "tags": [
+    "botticelli",
+    "mythology",
+    "athena",
+    "centaur",
+    "allegory",
+    "uffizi",
+    "medici"
+   ],
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Botticelli%20Pallas%20and%20the%20Centaur.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Botticelli%20Pallas%20and%20the%20Centaur.jpg?width=600"
+  },
+  {
+   "title": "The Battle of San Romano",
+   "agent_name": "Paolo Uccello",
+   "agent_role": "Painter",
+   "creation_date": "1438-1440",
+   "cultural_context": "Italian Early Renaissance, Florence",
+   "medium": "Egg tempera with oil on poplar panel",
+   "date_display": "c. 1438-1440",
+   "description_narrative": "The National Gallery's panel, one of three depicting the 1432 battle between Florence and Siena, shows Florentine commander Niccolo da Tolentino leading the cavalry charge. Broken lances and fallen soldiers are arranged along calculated orthogonal lines, an early showcase of Renaissance linear perspective.",
+   "tags": [
+    "uccello",
+    "battle",
+    "perspective",
+    "cavalry",
+    "florence",
+    "national gallery",
+    "early renaissance"
+   ],
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Uccello%20%E2%80%94%20the%20Battle%20of%20San%20Romano.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Uccello%20%E2%80%94%20the%20Battle%20of%20San%20Romano.jpg?width=600"
+  },
+  {
+   "title": "The Lamentation over the Dead Christ",
+   "agent_name": "Andrea Mantegna",
+   "agent_role": "Painter",
+   "creation_date": "1480",
+   "cultural_context": "Italian Early Renaissance, Mantua",
+   "medium": "Tempera on canvas",
+   "date_display": "c. 1480",
+   "description_narrative": "Mantegna presents the body of the dead Christ in extreme foreshortening, drawing the viewer almost to the soles of his feet in a radical compositional experiment. The Virgin Mary, Saint John, and Mary Magdalene mourn at the edge of the marble slab in a stark, emotionally intense scene.",
+   "tags": [
+    "mantegna",
+    "foreshortening",
+    "lamentation",
+    "christ",
+    "brera",
+    "perspective",
+    "religious"
+   ],
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/%28Venice%29%20Lamentation%20over%20the%20Dead%20Christ%20-%20Girolamo%20Romanino%20-%20gallerie%20Accademia%20Venice.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/%28Venice%29%20Lamentation%20over%20the%20Dead%20Christ%20-%20Girolamo%20Romanino%20-%20gallerie%20Accademia%20Venice.jpg?width=600"
+  },
+  {
+   "title": "Deposition",
+   "agent_name": "Rogier van der Weyden",
+   "agent_role": "Painter",
+   "creation_date": "1435-1443",
+   "cultural_context": "Early Netherlandish Renaissance, Leuven",
+   "medium": "Oil on panel",
+   "date_display": "c. 1435-1443",
+   "description_narrative": "Commissioned by the Leuven Guild of Crossbowmen, this deposition arranges Christ's body in a shape echoing a crossbow as a nod to the patrons. The swooning Virgin Mary, collapsing in a pose that mirrors her son's, was an emotional innovation that shaped Netherlandish painting for generations.",
+   "tags": [
+    "van der weyden",
+    "netherlandish",
+    "deposition",
+    "christ",
+    "prado",
+    "emotion",
+    "religious"
+   ],
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/El%20Descendimiento%2C%20by%20Rogier%20van%20der%20Weyden%2C%20from%20Prado%20in%20Google%20Earth.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/El%20Descendimiento%2C%20by%20Rogier%20van%20der%20Weyden%2C%20from%20Prado%20in%20Google%20Earth.jpg?width=600"
   }
  ]
 }

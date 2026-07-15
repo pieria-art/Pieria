@@ -499,6 +499,98 @@
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Fighting%20Temeraire%2C%20JMW%20Turner%2C%20National%20Gallery.jpg?width=3840",
    "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Fighting%20Temeraire%2C%20JMW%20Turner%2C%20National%20Gallery.jpg?width=600"
+  },
+  {
+   "title": "The Death of Sardanapalus",
+   "agent_name": "Eugène Delacroix",
+   "agent_role": "Painter",
+   "creation_date": "1827",
+   "cultural_context": "French Romanticism",
+   "medium": "Oil on canvas",
+   "date_display": "1827",
+   "description_narrative": "Inspired by Lord Byron's play, Delacroix depicted the legendary Assyrian king ordering the destruction of his possessions, concubines, and horses as his besieged palace burns around him. Its swirling composition and violent color scandalized critics at the 1827 Salon and it remains a landmark of French Romantic painting, held by the Louvre.",
+   "tags": [
+    "delacroix",
+    "romanticism",
+    "orientalism",
+    "death",
+    "french",
+    "louvre",
+    "byron"
+   ],
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Ferdinand-Victor-Eug%C3%A8ne%20Delacroix%2C%20French%20-%20The%20Death%20of%20Sardanapalus%20-%20Google%20Art%20Project.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Ferdinand-Victor-Eug%C3%A8ne%20Delacroix%2C%20French%20-%20The%20Death%20of%20Sardanapalus%20-%20Google%20Art%20Project.jpg?width=600"
+  },
+  {
+   "title": "Women of Algiers in their Apartment",
+   "agent_name": "Eugène Delacroix",
+   "agent_role": "Painter",
+   "creation_date": "1834",
+   "cultural_context": "French Romanticism / Orientalism",
+   "medium": "Oil on canvas",
+   "date_display": "1834",
+   "description_narrative": "Painted after Delacroix visited North Africa in 1832, this interior scene of Algerian women at leisure was among the first Orientalist paintings by a European artist to depict a Muslim domestic space he had actually observed. It profoundly influenced later artists including Renoir, Matisse, and Picasso, and hangs in the Louvre.",
+   "tags": [
+    "delacroix",
+    "romanticism",
+    "orientalism",
+    "algeria",
+    "interior",
+    "french",
+    "louvre"
+   ],
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Eug%C3%A8ne%20Delacroix%2C%20Women%20of%20Algiers%2C%201833%2C%20NGA%206491.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Eug%C3%A8ne%20Delacroix%2C%20Women%20of%20Algiers%2C%201833%2C%20NGA%206491.jpg?width=600"
+  },
+  {
+   "title": "The Cornfield",
+   "agent_name": "John Constable",
+   "agent_role": "Painter",
+   "creation_date": "1826",
+   "cultural_context": "British Romanticism",
+   "medium": "Oil on canvas",
+   "date_display": "1826",
+   "description_narrative": "Constable depicted a boy pausing to drink from a stream on a lane through the Suffolk countryside near his childhood home, a scene combining closely observed nature with nostalgic sentiment. Presented to the National Gallery, London shortly after his death, it became one of the paintings most associated with his legacy.",
+   "tags": [
+    "constable",
+    "romanticism",
+    "landscape",
+    "countryside",
+    "british",
+    "suffolk",
+    "pastoral"
+   ],
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/John%20Constable%20-%20The%20Cornfield%20-%202009.53%20-%20Indianapolis%20Museum%20of%20Art.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/John%20Constable%20-%20The%20Cornfield%20-%202009.53%20-%20Indianapolis%20Museum%20of%20Art.jpg?width=600"
+  },
+  {
+   "title": "The Charging Chasseur",
+   "agent_name": "Théodore Géricault",
+   "agent_role": "Painter",
+   "creation_date": "1812",
+   "cultural_context": "French Romanticism",
+   "medium": "Oil on canvas",
+   "date_display": "1812",
+   "description_narrative": "Painted when Géricault was only twenty-one, this dynamic portrait of a mounted officer of Napoleon's Imperial Guard, rearing amid smoke and cannon fire, announced the arrival of French Romantic painting at the Salon of 1812. It hangs today in the Louvre.",
+   "tags": [
+    "gericault",
+    "romanticism",
+    "military",
+    "horse",
+    "napoleon",
+    "french",
+    "louvre"
+   ],
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/An%20Officer%20of%20the%20Imperial%20Horse%20Guards%20Charging%20-%20G%C3%A9ricault%20%28Louvre%20INV%204885%29.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/An%20Officer%20of%20the%20Imperial%20Horse%20Guards%20Charging%20-%20G%C3%A9ricault%20%28Louvre%20INV%204885%29.jpg?width=600"
   }
  ]
 }

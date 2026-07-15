@@ -829,6 +829,167 @@
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Berthe%20Morisot%20-%20The%20Cradle%20-%20Google%20Art%20Project.jpg?width=3840",
    "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Berthe%20Morisot%20-%20The%20Cradle%20-%20Google%20Art%20Project.jpg?width=600"
+  },
+  {
+   "title": "The Magpie",
+   "agent_name": "Claude Monet",
+   "agent_role": "Painter",
+   "creation_date": "1868–1869",
+   "cultural_context": "French Impressionism",
+   "medium": "Oil on canvas",
+   "date_display": "1868–1869",
+   "description_narrative": "Monet painted this snow scene at Étretat in the winter of 1868–69, using colored shadows of blue and violet rather than black to render the snow. Rejected by the official Paris Salon, it is now considered one of the finest snowscapes in Western art and hangs in the Musée d'Orsay.",
+   "tags": [
+    "monet",
+    "impressionism",
+    "snow",
+    "landscape",
+    "french",
+    "winter",
+    "orsay"
+   ],
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Claude%20Monet%20-%20The%20Magpie%20-%20Google%20Art%20Project.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Claude%20Monet%20-%20The%20Magpie%20-%20Google%20Art%20Project.jpg?width=600"
+  },
+  {
+   "title": "The Japanese Footbridge",
+   "agent_name": "Claude Monet",
+   "agent_role": "Painter",
+   "creation_date": "1899",
+   "cultural_context": "French Impressionism",
+   "medium": "Oil on canvas",
+   "date_display": "1899",
+   "description_narrative": "Monet painted this view of the arched wooden bridge over his water-lily pond at Giverny, a motif he returned to in dozens of canvases over three decades. This early, relatively naturalistic version predates the looser treatments he produced after 1918 and is held by the National Gallery of Art in Washington.",
+   "tags": [
+    "monet",
+    "impressionism",
+    "giverny",
+    "bridge",
+    "garden",
+    "water lilies",
+    "french"
+   ],
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Claude%20Monet%20-%20The%20Japanese%20Footbridge.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Claude%20Monet%20-%20The%20Japanese%20Footbridge.jpg?width=600"
+  },
+  {
+   "title": "Snow at Louveciennes",
+   "agent_name": "Alfred Sisley",
+   "agent_role": "Painter",
+   "creation_date": "1878",
+   "cultural_context": "French Impressionism",
+   "medium": "Oil on canvas",
+   "date_display": "1878",
+   "description_narrative": "Sisley depicted a solitary figure walking a snow-covered lane in the village of Louveciennes, where he lived for several years in the 1870s. Snow scenes became a recurring subject for Sisley, prized for the way falling and settled snow let him study subtle variations of white, gray, and blue light.",
+   "tags": [
+    "sisley",
+    "impressionism",
+    "snow",
+    "winter",
+    "louveciennes",
+    "landscape",
+    "french"
+   ],
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Alfred%20Sisley%20-%20Snow%20at%20Louveciennes%20-%20Google%20Art%20Project.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Alfred%20Sisley%20-%20Snow%20at%20Louveciennes%20-%20Google%20Art%20Project.jpg?width=600"
+  },
+  {
+   "title": "Boulevard Montmartre at Night",
+   "agent_name": "Camille Pissarro",
+   "agent_role": "Painter",
+   "creation_date": "1897",
+   "cultural_context": "French Impressionism",
+   "medium": "Oil on canvas",
+   "date_display": "1897",
+   "description_narrative": "Painted from a hotel window overlooking the Boulevard Montmartre, this nocturne is one of the rare night scenes in Pissarro's otherwise daylight-focused body of work. Gas lamps and carriage lights streak the wet Paris street, and the painting is held by the National Gallery, London.",
+   "tags": [
+    "pissarro",
+    "impressionism",
+    "paris",
+    "night",
+    "boulevard",
+    "cityscape",
+    "french"
+   ],
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pissarro%20-%20The%20Boulevard%20Montmartre%20at%20Night%20%281897%29.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pissarro%20-%20The%20Boulevard%20Montmartre%20at%20Night%20%281897%29.jpg?width=600"
+  },
+  {
+   "title": "Summer's Day",
+   "agent_name": "Berthe Morisot",
+   "agent_role": "Painter",
+   "creation_date": "c. 1879",
+   "cultural_context": "French Impressionism",
+   "medium": "Oil on canvas",
+   "date_display": "c. 1879",
+   "description_narrative": "Morisot painted two women boating on a lake in Paris's Bois de Boulogne, rendering the water and figures in the rapid, feathery brushwork that defined her contribution to Impressionism. It is one of her most celebrated works and is held by the National Gallery, London.",
+   "tags": [
+    "morisot",
+    "impressionism",
+    "women",
+    "boating",
+    "lake",
+    "paris",
+    "french"
+   ],
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/A%20summers%20day%20by%20Berthe%20Morisot.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/A%20summers%20day%20by%20Berthe%20Morisot.jpg?width=600"
+  },
+  {
+   "title": "Girl Arranging Her Hair",
+   "agent_name": "Mary Cassatt",
+   "agent_role": "Painter",
+   "creation_date": "1886",
+   "cultural_context": "American Impressionism",
+   "medium": "Oil on canvas",
+   "date_display": "1886",
+   "description_narrative": "Cassatt, an American expatriate who exhibited with the French Impressionists, painted this intimate view of a young woman at her toilette, treated with unusual directness and lack of idealization. Edgar Degas praised the canvas and helped arrange its exhibition; it now hangs in the National Gallery of Art, Washington.",
+   "tags": [
+    "cassatt",
+    "impressionism",
+    "portrait",
+    "woman",
+    "toilette",
+    "american",
+    "interior"
+   ],
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Mary%20Cassatt%20-%20Girl%20Arranging%20Her%20Hair%20-%20Google%20Art%20Project.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Mary%20Cassatt%20-%20Girl%20Arranging%20Her%20Hair%20-%20Google%20Art%20Project.jpg?width=600"
+  },
+  {
+   "title": "The Floor Scrapers",
+   "agent_name": "Gustave Caillebotte",
+   "agent_role": "Painter",
+   "creation_date": "1875",
+   "cultural_context": "French Impressionism",
+   "medium": "Oil on canvas",
+   "date_display": "1875",
+   "description_narrative": "Caillebotte's unflinching depiction of shirtless laborers scraping a Parisian apartment floor broke with academic convention by giving working-class subjects the scale and seriousness of history painting. Rejected by the 1875 Salon, it was shown at the second Impressionist exhibition in 1876 and is now in the Musée d'Orsay.",
+   "tags": [
+    "caillebotte",
+    "impressionism",
+    "labor",
+    "interior",
+    "paris",
+    "realism",
+    "french"
+   ],
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Gustave%20Caillebotte%20-%20The%20Floor%20Planers%20-%20Google%20Art%20Project.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Gustave%20Caillebotte%20-%20The%20Floor%20Planers%20-%20Google%20Art%20Project.jpg?width=600"
   }
  ]
 }
