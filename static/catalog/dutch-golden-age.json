@@ -2,7 +2,7 @@
  "id": "dutch-golden-age",
  "title": "The Dutch Golden Age",
  "description": "Light, intimacy, and virtuosity from the 17th-century Netherlands.",
- "source": "Rijksmuseum, The Metropolitan Museum of Art",
+ "source": "Rijksmuseum, The Metropolitan Museum of Art, Wikimedia Commons",
  "license": "Public Domain",
  "items": [
   {
@@ -664,6 +664,63 @@
     0.4
    ],
    "featured_rank": 96
+  },
+  {
+   "title": "Girl with a Pearl Earring",
+   "agent_name": "Johannes Vermeer",
+   "agent_role": "Painter",
+   "creation_date": "1665",
+   "cultural_context": "Dutch Golden Age",
+   "medium": "Oil on canvas",
+   "date_display": "c. 1665",
+   "description_narrative": "Often referred to as the 'Mona Lisa of the North', this tronie depicts a European girl wearing an exotic dress, an oriental turban, and what appears to be a very large pearl as an earring. It is a masterclass in the use of light.",
+   "tags": "portrait, dutch golden age, pearl, turban, female",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Johannes%20Vermeer%20-%20Girl%20with%20a%20Pearl%20Earring%20-%20670%20-%20Mauritshuis.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Johannes%20Vermeer%20-%20Girl%20with%20a%20Pearl%20Earring%20-%20670%20-%20Mauritshuis.jpg?width=600",
+   "focal_point": [
+    0.42,
+    0.42
+   ]
+  },
+  {
+   "title": "The Night Watch",
+   "agent_name": "Rembrandt van Rijn",
+   "agent_role": "Painter",
+   "creation_date": "1642",
+   "cultural_context": "Dutch Golden Age, Baroque",
+   "medium": "Oil on canvas",
+   "date_display": "1642",
+   "description_narrative": "Rembrandt's most famous painting depicts a city guard led by Captain Frans Banninck Cocq. Revolutionary for its use of dramatic lighting, life-sized figures in motion, and the sense of spontaneous action in what was traditionally a static group portrait.",
+   "tags": "group portrait, militia, baroque, dramatic lighting, dutch golden age",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Night%20Watch%20-%20HD.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Night%20Watch%20-%20HD.jpg?width=600",
+   "focal_point": [
+    0.47,
+    0.55
+   ]
+  },
+  {
+   "title": "The Milkmaid",
+   "agent_name": "Johannes Vermeer",
+   "agent_role": "Painter",
+   "creation_date": "1658",
+   "cultural_context": "Dutch Golden Age",
+   "medium": "Oil on canvas",
+   "date_display": "c. 1657–58",
+   "description_narrative": "A kitchen maid carefully pours milk from a jug into an earthenware bowl, bathed in soft natural light from a window. Vermeer elevates an ordinary domestic scene into a meditation on quiet dignity and the beauty of everyday life.",
+   "tags": "domestic, light, milk, kitchen, dutch golden age, still life",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Milkmaid%20by%20Johannes%20Vermeer%20%281%29.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Milkmaid%20by%20Johannes%20Vermeer%20%281%29.jpg?width=600",
+   "focal_point": [
+    0.56,
+    0.27
+   ]
   }
  ]
 }

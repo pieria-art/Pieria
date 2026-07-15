@@ -2,7 +2,7 @@
  "id": "romanticism",
  "title": "Romanticism & the Sublime",
  "description": "Nature at its most awe-inspiring, and the human drama set against it.",
- "source": "Art Institute of Chicago",
+ "source": "Art Institute of Chicago, Wikimedia Commons",
  "license": "Public Domain",
  "items": [
   {
@@ -384,6 +384,44 @@
     0.69
    ],
    "featured_rank": 15
+  },
+  {
+   "title": "Wanderer above the Sea of Fog",
+   "agent_name": "Caspar David Friedrich",
+   "agent_role": "Painter",
+   "creation_date": "1818",
+   "cultural_context": "Romanticism, German",
+   "medium": "Oil on canvas",
+   "date_display": "1818",
+   "description_narrative": "A quintessential piece of Romanticism. A man stands upon a rocky precipice with his back to the viewer, gazing out over a landscape covered in a thick sea of fog. It evokes a feeling of the sublime and the profound scale of nature.",
+   "tags": "fog, mountains, romanticism, sublime, landscape, wanderer",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Caspar%20David%20Friedrich%20-%20Wanderer%20above%20the%20Sea%20of%20Fog.jpeg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Caspar%20David%20Friedrich%20-%20Wanderer%20above%20the%20Sea%20of%20Fog.jpeg?width=600",
+   "focal_point": [
+    0.5,
+    0.37
+   ]
+  },
+  {
+   "title": "Liberty Leading the People",
+   "agent_name": "Eugène Delacroix",
+   "agent_role": "Painter",
+   "creation_date": "1830",
+   "cultural_context": "Romanticism, French",
+   "medium": "Oil on canvas",
+   "date_display": "1830",
+   "description_narrative": "Commemorating the July Revolution of 1830, the allegorical figure of Liberty strides over barricades and fallen fighters, holding the tricolour flag aloft. It combines the idealism of classical art with the gritty reality of modern war.",
+   "tags": "revolution, liberty, flag, france, romanticism, battle",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Eug%C3%A8ne%20Delacroix%20-%20Le%2028%20Juillet.%20La%20Libert%C3%A9%20guidant%20le%20peuple.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Eug%C3%A8ne%20Delacroix%20-%20Le%2028%20Juillet.%20La%20Libert%C3%A9%20guidant%20le%20peuple.jpg?width=600",
+   "focal_point": [
+    0.55,
+    0.26
+   ]
   }
  ]
 }

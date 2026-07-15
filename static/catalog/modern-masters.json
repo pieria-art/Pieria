@@ -2,7 +2,7 @@
  "id": "modern-masters",
  "title": "Modern Masters",
  "description": "The turn into modernism — symbolism and expression at the dawn of the new century.",
- "source": "Art Institute of Chicago",
+ "source": "Art Institute of Chicago, Wikimedia Commons",
  "license": "Public Domain",
  "items": [
   {
@@ -244,6 +244,44 @@
     0.22
    ],
    "featured_rank": 30
+  },
+  {
+   "title": "The Kiss",
+   "agent_name": "Gustav Klimt",
+   "agent_role": "Painter",
+   "creation_date": "1907-1908",
+   "cultural_context": "Art Nouveau, Vienna Secession, Austrian",
+   "medium": "Oil and gold leaf on canvas",
+   "date_display": "1907–08",
+   "description_narrative": "A couple locked in an intimate embrace, cloaked in elaborate gold-patterned robes, kneeling in a flower-strewn meadow. Klimt's masterful use of gold leaf and ornamental motifs epitomizes his 'Golden Phase' and the height of the Vienna Secession movement.",
+   "tags": "love, gold, art nouveau, couple, embrace, ornamental",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Kiss%20-%20Gustav%20Klimt%20-%20Google%20Cultural%20Institute.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Kiss%20-%20Gustav%20Klimt%20-%20Google%20Cultural%20Institute.jpg?width=600",
+   "focal_point": [
+    0.45,
+    0.22
+   ]
+  },
+  {
+   "title": "The Scream",
+   "agent_name": "Edvard Munch",
+   "agent_role": "Painter",
+   "creation_date": "1893",
+   "cultural_context": "Expressionism, Norwegian",
+   "medium": "Oil, tempera, pastel and crayon on cardboard",
+   "date_display": "1893",
+   "description_narrative": "An agonized figure against a tumultuous orange sky, standing on a bridge. Widely interpreted as representing the universal anxiety of modern humanity. Munch described the inspiration as feeling an infinite scream passing through nature.",
+   "tags": "scream, anxiety, expressionism, bridge, sunset, anguish",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Scream%20by%20Edvard%20Munch.tif?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Scream%20by%20Edvard%20Munch.tif?width=600",
+   "focal_point": [
+    0.55,
+    0.72
+   ]
   }
  ]
 }

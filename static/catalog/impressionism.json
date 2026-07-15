@@ -2,7 +2,7 @@
  "id": "impressionism",
  "title": "Impressionism",
  "description": "Light, color, and fleeting moments from the movement that broke with the academy.",
- "source": "Art Institute of Chicago",
+ "source": "Art Institute of Chicago, Wikimedia Commons",
  "license": "Public Domain",
  "items": [
   {
@@ -664,6 +664,63 @@
     0.74
    ],
    "featured_rank": 30
+  },
+  {
+   "title": "Impression, Sunrise",
+   "agent_name": "Claude Monet",
+   "agent_role": "Painter",
+   "creation_date": "1872",
+   "cultural_context": "Impressionism, French",
+   "medium": "Oil on canvas",
+   "date_display": "1872",
+   "description_narrative": "The painting that gave the Impressionist movement its name. A hazy sunrise over the port of Le Havre, rendered in loose, visible brushstrokes that prioritize the sensation of light and color over precise detail.",
+   "tags": "sunrise, harbor, boats, impressionism, fog, water",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Monet%20-%20Impression%2C%20Sunrise.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Monet%20-%20Impression%2C%20Sunrise.jpg?width=600",
+   "focal_point": [
+    0.61,
+    0.32
+   ]
+  },
+  {
+   "title": "A Bar at the Folies-Bergère",
+   "agent_name": "Édouard Manet",
+   "agent_role": "Painter",
+   "creation_date": "1882",
+   "cultural_context": "Impressionism, French",
+   "medium": "Oil on canvas",
+   "date_display": "1882",
+   "description_narrative": "Manet's last major work depicts a barmaid at the famous Parisian cabaret, standing behind a marble counter laden with bottles. The mirror behind her reflects the bustling crowd. A brilliant study in modernity and the complex relationship between viewer and subject.",
+   "tags": "bar, barmaid, mirror, paris, impressionism, nightlife",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/%22Un%20Bar%20aux%20Folies-Berg%C3%A8re%22%20by%20%C3%89douard%20Manet%20%281882%29.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/%22Un%20Bar%20aux%20Folies-Berg%C3%A8re%22%20by%20%C3%89douard%20Manet%20%281882%29.jpg?width=600",
+   "focal_point": [
+    0.47,
+    0.22
+   ]
+  },
+  {
+   "title": "Bal du moulin de la Galette",
+   "agent_name": "Pierre-Auguste Renoir",
+   "agent_role": "Painter",
+   "creation_date": "1876",
+   "cultural_context": "Impressionism, French",
+   "medium": "Oil on canvas",
+   "date_display": "1876",
+   "description_narrative": "A vibrant depiction of a typical Sunday afternoon at the Moulin de la Galette in the Montmartre district of Paris. The dappled sunlight filtering through the trees onto the dancing crowd is one of Impressionism's most celebrated treatments of light and motion.",
+   "tags": "dance, party, paris, montmartre, impressionism, sunlight",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pierre-Auguste%20Renoir%20-%20Bal%20du%20moulin%20de%20la%20Galette.jpeg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pierre-Auguste%20Renoir%20-%20Bal%20du%20moulin%20de%20la%20Galette.jpeg?width=600",
+   "focal_point": [
+    0.46,
+    0.54
+   ]
   }
  ]
 }

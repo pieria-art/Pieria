@@ -2,7 +2,7 @@
  "id": "american-art",
  "title": "American Art",
  "description": "From frontier light to mid-century city scenes — the American eye.",
- "source": "Art Institute of Chicago",
+ "source": "Art Institute of Chicago, Wikimedia Commons",
  "license": "Public Domain",
  "items": [
   {
@@ -504,6 +504,63 @@
     0.27
    ],
    "featured_rank": 26
+  },
+  {
+   "title": "American Gothic",
+   "agent_name": "Grant Wood",
+   "agent_role": "Painter",
+   "creation_date": "1930",
+   "cultural_context": "Regionalism, American",
+   "medium": "Oil on beaverboard",
+   "date_display": "1930",
+   "description_narrative": "A stern-faced farmer standing beside his spinster daughter in front of a house with a distinctive Gothic window. One of the most familiar images in 20th-century American art, it is an ambiguous statement about rural American character.",
+   "tags": "portrait, american, gothic, rural, farmer, pitchfork",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Grant%20Wood%20-%20American%20Gothic%20%281930%29.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Grant%20Wood%20-%20American%20Gothic%20%281930%29.jpg?width=600",
+   "focal_point": [
+    0.66,
+    0.27
+   ]
+  },
+  {
+   "title": "Whistler's Mother",
+   "agent_name": "James McNeill Whistler",
+   "agent_role": "Painter",
+   "creation_date": "1871",
+   "cultural_context": "Tonalism, American",
+   "medium": "Oil on canvas",
+   "date_display": "1871",
+   "description_narrative": "Formally titled 'Arrangement in Grey and Black No.1', this austere portrait of Whistler's mother seated in profile has become an American cultural icon and symbol of motherhood. Its restrained palette and compositional harmony exemplify Whistler's belief in art for art's sake.",
+   "tags": "portrait, mother, seated, profile, tonalism, grey",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Whistlers%20Mother%20high%20res.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Whistlers%20Mother%20high%20res.jpg?width=600",
+   "focal_point": [
+    0.73,
+    0.24
+   ]
+  },
+  {
+   "title": "Nighthawks",
+   "agent_name": "Edward Hopper",
+   "agent_role": "Painter",
+   "creation_date": "1942",
+   "cultural_context": "American Realism",
+   "medium": "Oil on canvas",
+   "date_display": "1942",
+   "description_narrative": "Four figures sit in a brightly lit diner at night on a desolate city corner. The painting captures the loneliness and alienation of modern urban life with cinematic intensity. It has become one of the most reproduced paintings in American art.",
+   "tags": "diner, night, urban, loneliness, realism, american",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Nighthawks%20by%20Edward%20Hopper.png?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Nighthawks%20by%20Edward%20Hopper.png?width=600",
+   "focal_point": [
+    0.66,
+    0.55
+   ]
   }
  ]
 }

@@ -2,7 +2,7 @@
  "id": "post-impressionism",
  "title": "Post-Impressionism",
  "description": "Bold color and expressive form — the bridge from Impressionism to modern art.",
- "source": "Art Institute of Chicago",
+ "source": "Art Institute of Chicago, Wikimedia Commons",
  "license": "Public Domain",
  "items": [
   {
@@ -444,6 +444,63 @@
     0.42
    ],
    "featured_rank": 35
+  },
+  {
+   "title": "The Starry Night",
+   "agent_name": "Vincent van Gogh",
+   "agent_role": "Painter",
+   "creation_date": "1889",
+   "cultural_context": "Post-Impressionism, Dutch",
+   "medium": "Oil on canvas",
+   "date_display": "1889",
+   "description_narrative": "A swirling, dynamic night sky over a quiet village, painted during Van Gogh's stay at the Saint-Paul-de-Mausole asylum in Saint-Rémy-de-Provence. It is one of the most recognized masterpieces in the history of Western art.",
+   "tags": "night, sky, stars, village, post-impressionism, landscape",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Van%20Gogh%20-%20Starry%20Night%20-%20Google%20Art%20Project.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Van%20Gogh%20-%20Starry%20Night%20-%20Google%20Art%20Project.jpg?width=600",
+   "focal_point": [
+    0.45,
+    0.35
+   ]
+  },
+  {
+   "title": "Sunflowers",
+   "agent_name": "Vincent van Gogh",
+   "agent_role": "Painter",
+   "creation_date": "1888",
+   "cultural_context": "Post-Impressionism, Dutch",
+   "medium": "Oil on canvas",
+   "date_display": "1888",
+   "description_narrative": "One of two series of sunflower still lifes by Van Gogh. Painted in Arles to decorate the room of his friend Paul Gauguin, the vivid yellows and expressive brushwork make this among the most recognizable still-life paintings in art history.",
+   "tags": "sunflowers, still life, yellow, vase, post-impressionism",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Vincent%20van%20Gogh%20-%20Sunflowers%20%281888%2C%20National%20Gallery%20London%29.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Vincent%20van%20Gogh%20-%20Sunflowers%20%281888%2C%20National%20Gallery%20London%29.jpg?width=600",
+   "focal_point": [
+    0.5,
+    0.42
+   ]
+  },
+  {
+   "title": "Café Terrace at Night",
+   "agent_name": "Vincent van Gogh",
+   "agent_role": "Painter",
+   "creation_date": "1888",
+   "cultural_context": "Post-Impressionism, Dutch",
+   "medium": "Oil on canvas",
+   "date_display": "1888",
+   "description_narrative": "A warmly lit café terrace on the Place du Forum in Arles, France, under a deep blue starry sky. One of Van Gogh's first paintings to feature his signature nocturnal sky, it contrasts the warm golden gaslight with the cool blues of the evening.",
+   "tags": "cafe, night, stars, arles, post-impressionism, urban",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Van%20Gogh%20-%20Terrace%20of%20a%20Caf%C3%A9%20at%20Night%20%28Place%20du%20Forum%29%201888.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Van%20Gogh%20-%20Terrace%20of%20a%20Caf%C3%A9%20at%20Night%20%28Place%20du%20Forum%29%201888.jpg?width=600",
+   "focal_point": [
+    0.32,
+    0.55
+   ]
   }
  ]
 }

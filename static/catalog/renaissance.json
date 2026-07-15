@@ -2,7 +2,7 @@
  "id": "renaissance",
  "title": "The Italian Renaissance",
  "description": "Harmony, perspective, and humanism from the rebirth of classical ideals.",
- "source": "Art Institute of Chicago, The Metropolitan Museum of Art",
+ "source": "Art Institute of Chicago, The Metropolitan Museum of Art, Wikimedia Commons",
  "license": "Public Domain",
  "items": [
   {
@@ -384,6 +384,82 @@
     0.5
    ],
    "featured_rank": 40
+  },
+  {
+   "title": "Mona Lisa",
+   "agent_name": "Leonardo da Vinci",
+   "agent_role": "Painter",
+   "creation_date": "1503-1519",
+   "cultural_context": "High Renaissance, Italian",
+   "medium": "Oil on poplar panel",
+   "date_display": "1503–1519",
+   "description_narrative": "The most famous painting in the world. It depicts Lisa Gherardini, wife of Francesco del Giocondo, sitting in front of an imaginary landscape. Her enigmatic expression and the masterful use of sfumato make it a masterpiece of the Renaissance.",
+   "tags": "portrait, renaissance, sfumato, enigmatic, female",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Mona%20Lisa%2C%20by%20Leonardo%20da%20Vinci%2C%20from%20C2RMF.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Mona%20Lisa%2C%20by%20Leonardo%20da%20Vinci%2C%20from%20C2RMF.jpg?width=600",
+   "focal_point": [
+    0.5,
+    0.28
+   ]
+  },
+  {
+   "title": "The Birth of Venus",
+   "agent_name": "Sandro Botticelli",
+   "agent_role": "Painter",
+   "creation_date": "1485",
+   "cultural_context": "Italian Renaissance, Florentine",
+   "medium": "Tempera on canvas",
+   "date_display": "c. 1484–86",
+   "description_narrative": "The goddess Venus emerges from the sea as a fully grown woman, arriving at the shore on a giant scallop shell. One of the world's most famous and appreciated works of art, it has become a landmark of Italian Renaissance painting.",
+   "tags": "mythology, venus, renaissance, goddess, shell, classical",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Birth%20of%20Venus%20%28Botticelli%29%201.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Birth%20of%20Venus%20%28Botticelli%29%201.jpg?width=600",
+   "focal_point": [
+    0.52,
+    0.18
+   ]
+  },
+  {
+   "title": "The Creation of Adam",
+   "agent_name": "Michelangelo",
+   "agent_role": "Painter, Sculptor",
+   "creation_date": "1512",
+   "cultural_context": "High Renaissance, Italian",
+   "medium": "Fresco",
+   "date_display": "c. 1508–12",
+   "description_narrative": "The most famous section of the Sistine Chapel ceiling. God reaches out to give life to Adam, their fingers nearly touching. This single gesture has become one of the most replicated religious images and an enduring icon of humanity.",
+   "tags": "fresco, sistine chapel, genesis, god, adam, renaissance",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sistine%20Chapel%20ceiling%2C%20Creation%20of%20Adam.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sistine%20Chapel%20ceiling%2C%20Creation%20of%20Adam.jpg?width=600",
+   "focal_point": [
+    0.5,
+    0.46
+   ]
+  },
+  {
+   "title": "The School of Athens",
+   "agent_name": "Raphael",
+   "agent_role": "Painter",
+   "creation_date": "1511",
+   "cultural_context": "High Renaissance, Italian",
+   "medium": "Fresco",
+   "date_display": "1509–11",
+   "description_narrative": "A fresco in the Apostolic Palace in the Vatican depicting a congregation of the greatest philosophers, mathematicians, and scientists of antiquity, with Plato and Aristotle at the center. It is considered a masterpiece of perspective and one of the greatest achievements of Renaissance art.",
+   "tags": "philosophy, plato, aristotle, fresco, renaissance, architecture",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/%22School%20of%20Athens%22%20by%20Raphael%2C%20Raphael%20Rooms%2C%20Vatican%20Museum%20%2848466167851%29.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/%22School%20of%20Athens%22%20by%20Raphael%2C%20Raphael%20Rooms%2C%20Vatican%20Museum%20%2848466167851%29.jpg?width=600",
+   "focal_point": [
+    0.5,
+    0.46
+   ]
   }
  ]
 }

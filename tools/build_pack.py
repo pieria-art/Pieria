@@ -38,7 +38,7 @@ import shutil
 from dataclasses import dataclass, field
 from io import BytesIO
 from pathlib import Path
-from urllib.parse import urlparse
+from urllib.parse import parse_qsl, urlencode, urlparse, urlsplit, urlunsplit
 
 import httpx
 from PIL import Image, ImageOps
@@ -156,6 +156,21 @@ def _is_wikimedia_host(url: str) -> bool:
     return (urlparse(url).hostname or "") in WIKIMEDIA_HOSTS
 
 
+def _pack_fetch_url(url: str) -> str:
+    """The catalog stores Wikimedia `source_url`s capped at width=3840 (a live-serve convenience),
+    which is *below* the pack's 4K floor — fetching them as-is would drop 86% of the catalog. For the
+    pack we want native-max, so drop the width cap and fetch the ORIGINAL file. (Wikimedia caps
+    on-the-fly thumbnail renders at 3840px — requesting width=5120/7680 still returns 3840 — so only
+    the un-parameterised Special:FilePath original yields true native; `_cap_master` then downcaps it
+    to DISPLAY_MAX_EDGE=7680.) Non-Wikimedia URLs (museum full/max originals) are already native-max and
+    returned unchanged. See [[catalog-3840-vs-pack-5120]]."""
+    if not _is_wikimedia_host(url) or "Special:FilePath" not in url:
+        return url
+    parts = urlsplit(url)
+    q = [(k, v) for k, v in parse_qsl(parts.query) if k != "width"]
+    return urlunsplit(parts._replace(query=urlencode(q)))
+
+
 async def _throttle_for(url: str) -> None:
     if _is_wikimedia_host(url):
         await _wm_throttle()
@@ -268,7 +283,7 @@ async def ensure_master(state: BuildState, wi: WorkItem) -> str | None:
             state.stats.master_cached += 1
             return filename
         async with state.sem:
-            raw = await _fetch_bytes(state.client, su)
+            raw = await _fetch_bytes(state.client, _pack_fetch_url(su))
         if raw is None:
             state.stats.master_failed += 1
             return None
