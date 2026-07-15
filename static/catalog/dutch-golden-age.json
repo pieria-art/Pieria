@@ -682,26 +682,8 @@
    "focal_point": [
     0.42,
     0.42
-   ]
-  },
-  {
-   "title": "The Night Watch",
-   "agent_name": "Rembrandt van Rijn",
-   "agent_role": "Painter",
-   "creation_date": "1642",
-   "cultural_context": "Dutch Golden Age, Baroque",
-   "medium": "Oil on canvas",
-   "date_display": "1642",
-   "description_narrative": "Rembrandt's most famous painting depicts a city guard led by Captain Frans Banninck Cocq. Revolutionary for its use of dramatic lighting, life-sized figures in motion, and the sense of spontaneous action in what was traditionally a static group portrait.",
-   "tags": "group portrait, militia, baroque, dramatic lighting, dutch golden age",
-   "source": "Wikimedia Commons",
-   "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Night%20Watch%20-%20HD.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Night%20Watch%20-%20HD.jpg?width=600",
-   "focal_point": [
-    0.47,
-    0.55
-   ]
+   ],
+   "featured_rank": 96
   },
   {
    "title": "The Milkmaid",
@@ -720,7 +702,8 @@
    "focal_point": [
     0.56,
     0.27
-   ]
+   ],
+   "featured_rank": 86
   }
  ]
 }

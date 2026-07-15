@@ -3,13 +3,13 @@
  "generated": "2026-06-21T16:54:11+00:00",
  "collections": [
   {
-   "id": "greatest-hits",
-   "title": "Greatest Hits",
-   "description": "The most recognizable masterpieces across the whole collection — start here.",
+   "id": "masterpieces",
+   "title": "Masterpieces",
+   "description": "The most iconic paintings of all time — start here.",
    "source": "Screen Docent",
    "license": "Public Domain",
    "count": 40,
-   "cover_thumbnail": "https://commons.wikimedia.org/wiki/Special:FilePath/Katsushika%20Hokusai%20-%20The%20Great%20Wave%20off%20the%20Coast%20of%20Kanagawa%20LCCN2008660568.jpg?width=600"
+   "cover_thumbnail": "https://commons.wikimedia.org/wiki/Special:FilePath/Mona%20Lisa%2C%20by%20Leonardo%20da%20Vinci%2C%20from%20C2RMF.jpg?width=600"
   },
   {
    "id": "impressionism",
@@ -35,7 +35,7 @@
    "description": "Light, intimacy, and virtuosity from the 17th-century Netherlands.",
    "source": "Rijksmuseum, The Metropolitan Museum of Art",
    "license": "Public Domain",
-   "count": 36,
+   "count": 35,
    "cover_thumbnail": "https://images.metmuseum.org/CRDImages/ep/web-large/DP-30758-001.jpg"
   },
   {

@@ -682,7 +682,8 @@
    "focal_point": [
     0.61,
     0.32
-   ]
+   ],
+   "featured_rank": 87
   },
   {
    "title": "A Bar at the Folies-Bergère",
@@ -701,7 +702,8 @@
    "focal_point": [
     0.47,
     0.22
-   ]
+   ],
+   "featured_rank": 86
   },
   {
    "title": "Bal du moulin de la Galette",
@@ -720,7 +722,8 @@
    "focal_point": [
     0.46,
     0.54
-   ]
+   ],
+   "featured_rank": 85
   }
  ]
 }

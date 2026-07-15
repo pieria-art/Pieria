@@ -522,7 +522,8 @@
    "focal_point": [
     0.66,
     0.27
-   ]
+   ],
+   "featured_rank": 94
   },
   {
    "title": "Whistler's Mother",
@@ -541,7 +542,8 @@
    "focal_point": [
     0.73,
     0.24
-   ]
+   ],
+   "featured_rank": 89
   },
   {
    "title": "Nighthawks",
@@ -560,7 +562,8 @@
    "focal_point": [
     0.66,
     0.55
-   ]
+   ],
+   "featured_rank": 92
   }
  ]
 }

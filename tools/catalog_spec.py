@@ -968,3 +968,47 @@ COLLECTIONS = [
 
 def get_collection(collection_id: str):
     return next((c for c in COLLECTIONS if c["id"] == collection_id), None)
+
+
+# --------------------------------------------------------------------------- medium / kind
+# The structured medium the free-text `medium` field lacks (~51% coverage). Collections are
+# homogeneous by type, so a per-collection `kind` is a reliable, deterministic signal. This drives the
+# paintings-only "Masterpieces" first-glimpse (CURATION-v2 / ADR-039): only PAINTERLY_KINDS are eligible
+# for it, which excludes the high-fame NON-paintings (sculpture, photography, posters, space imagery,
+# artifacts, maps, illuminated manuscripts) that otherwise dominate a purely fame-ranked first glance.
+PAINTERLY_KINDS = {"painting", "print"}
+
+COLLECTION_KIND = {
+    "impressionism": "painting",
+    "post-impressionism": "painting",
+    "dutch-golden-age": "painting",
+    "renaissance": "painting",
+    "romanticism": "painting",
+    "american-art": "painting",
+    "portraits": "painting",
+    "still-life": "painting",
+    "modern-masters": "painting",
+    "baroque": "painting",
+    "symbolism-romance": "painting",
+    "asian-art": "painting",
+    "marine": "painting",
+    "ukiyo-e": "print",           # fine-art woodblock prints (the Great Wave) — painterly, INCLUDED
+    "botanical": "print",         # Audubon/Redouté prints & plates — painterly, low fame
+    "sculpture-antiquity": "sculpture",
+    "documentary-photography": "photo",
+    "vintage-posters": "poster",
+    "art-nouveau-decorative": "decorative",
+    "cosmos": "space",
+    "earth-and-spaceflight": "space",
+    "ancient-egypt": "artifact",
+    "cartography": "map",
+    "medieval-illuminated": "illumination",
+}
+
+assert set(COLLECTION_KIND) == {c["id"] for c in COLLECTIONS}, \
+    "COLLECTION_KIND must cover exactly the defined collections (guard against drift)"
+
+
+def kind_for(collection_id: str) -> str:
+    """Structured medium for a collection id ('painting' | 'print' | 'sculpture' | ...); '' if unknown."""
+    return COLLECTION_KIND.get(collection_id, "")

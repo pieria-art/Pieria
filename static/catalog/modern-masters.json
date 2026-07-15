@@ -262,7 +262,8 @@
    "focal_point": [
     0.45,
     0.22
-   ]
+   ],
+   "featured_rank": 92
   },
   {
    "title": "The Scream",
@@ -281,7 +282,8 @@
    "focal_point": [
     0.55,
     0.72
-   ]
+   ],
+   "featured_rank": 97
   }
  ]
 }

@@ -319,6 +319,11 @@ async def build_collection(db, spec, cache, *, limit=None, enrich=True, verify=T
             out_items.append(it)
             logger.info(f"    ✓ {it['title'][:48]} — {it['agent_name'][:24]}")
 
+    # Stamp the structured medium (CURATION-v2): a collection-level kind is the reliable signal the
+    # free-text `medium` lacks — it gates the paintings-only Masterpieces first-glimpse downstream.
+    kind = catalog_spec.kind_for(cid)
+    for it in out_items:
+        it["kind"] = kind
     return {
         "id": cid,
         "title": spec["title"],

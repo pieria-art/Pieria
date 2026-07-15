@@ -462,7 +462,8 @@
    "focal_point": [
     0.45,
     0.35
-   ]
+   ],
+   "featured_rank": 98
   },
   {
    "title": "Sunflowers",
@@ -481,7 +482,8 @@
    "focal_point": [
     0.5,
     0.42
-   ]
+   ],
+   "featured_rank": 94
   },
   {
    "title": "Café Terrace at Night",
@@ -500,7 +502,8 @@
    "focal_point": [
     0.32,
     0.55
-   ]
+   ],
+   "featured_rank": 90
   }
  ]
 }

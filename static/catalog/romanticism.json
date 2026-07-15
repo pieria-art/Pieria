@@ -402,7 +402,8 @@
    "focal_point": [
     0.5,
     0.37
-   ]
+   ],
+   "featured_rank": 87
   },
   {
    "title": "Liberty Leading the People",
@@ -421,7 +422,8 @@
    "focal_point": [
     0.55,
     0.26
-   ]
+   ],
+   "featured_rank": 88
   }
  ]
 }
