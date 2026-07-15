@@ -966,6 +966,30 @@ COLLECTIONS = [
             {"title": "The Icebergs", "artist": "Frederic Edwin Church"},
         ],
     },
+    {
+        # Populated by greedy category-grab + LOC sourcing (not build_catalog picks). kind=photo -> not
+        # painterly, so it never enters the paintings-only Masterpieces first-glimpse.
+        "id": "cities-architecture",
+        "title": "Cities & Architecture",
+        "description": "The built world in photography — grand skylines, streets, and monuments, from "
+                       "Belle Époque photochroms to Atget's Paris.",
+        "license": "Public Domain",
+        "sources": ["loc"],
+        "picks": [],
+        "target": 60,
+    },
+    {
+        # Curated pre-1931 PD illustrators (Pyle, Wyeth, Parrish, Leyendecker, ...). kind=illustration ->
+        # a distinct tradition from fine-art painting, so it stays out of Masterpieces.
+        "id": "golden-age-illustration",
+        "title": "The Golden Age of Illustration",
+        "description": "The great illustrators of the storybook and magazine age — Pyle, Wyeth, Parrish, "
+                       "Leyendecker, Rackham — in their pre-1931 heyday.",
+        "license": "Public Domain",
+        "sources": ["met", "loc"],
+        "picks": [],
+        "target": 40,
+    },
 ]
 
 
@@ -1006,6 +1030,8 @@ COLLECTION_KIND = {
     "ancient-egypt": "artifact",
     "cartography": "map",
     "medieval-illuminated": "illumination",
+    "cities-architecture": "photo",
+    "golden-age-illustration": "illustration",
 }
 
 assert set(COLLECTION_KIND) == {c["id"] for c in COLLECTIONS}, \
