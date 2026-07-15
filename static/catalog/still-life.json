@@ -22,7 +22,8 @@
    "focal_point": [
     0.45,
     0.5
-   ]
+   ],
+   "featured_rank": 30
   },
   {
    "title": "Still Life with Flowers",
@@ -41,7 +42,8 @@
    "focal_point": [
     0.45,
     0.5
-   ]
+   ],
+   "featured_rank": 35
   },
   {
    "title": "Trompe-l'Oeil Still Life with a Flower Garland and a Curtain",
@@ -60,7 +62,8 @@
    "focal_point": [
     0.4,
     0.52
-   ]
+   ],
+   "featured_rank": 40
   },
   {
    "title": "Magnolias on Light Blue Velvet Cloth",
@@ -79,7 +82,8 @@
    "focal_point": [
     0.6,
     0.58
-   ]
+   ],
+   "featured_rank": 40
   },
   {
    "title": "For Sunday's Dinner",
@@ -98,7 +102,8 @@
    "focal_point": [
     0.45,
     0.5
-   ]
+   ],
+   "featured_rank": 30
   },
   {
    "title": "The Irish Question",
@@ -117,7 +122,8 @@
    "focal_point": [
     0.5,
     0.55
-   ]
+   ],
+   "featured_rank": 20
   },
   {
    "title": "Chrysanthemums",
@@ -136,7 +142,8 @@
    "focal_point": [
     0.5,
     0.4
-   ]
+   ],
+   "featured_rank": 30
   },
   {
    "title": "Still Life with Dead Game, Fruits, and Vegetables in a Market",
@@ -155,7 +162,8 @@
    "focal_point": [
     0.2,
     0.3
-   ]
+   ],
+   "featured_rank": 30
   },
   {
    "title": "Just Dessert",
@@ -174,7 +182,8 @@
    "focal_point": [
     0.45,
     0.55
-   ]
+   ],
+   "featured_rank": 25
   },
   {
    "title": "Still Life with Monkey, Fruits, and Flowers",
@@ -193,7 +202,8 @@
    "focal_point": [
     0.45,
     0.42
-   ]
+   ],
+   "featured_rank": 28
   },
   {
    "title": "Apples and Grapes",
@@ -212,7 +222,8 @@
    "focal_point": [
     0.55,
     0.45
-   ]
+   ],
+   "featured_rank": 30
   },
   {
    "title": "Still Life",
@@ -231,7 +242,8 @@
    "focal_point": [
     0.5,
     0.45
-   ]
+   ],
+   "featured_rank": 30
   },
   {
    "title": "Thistles",
@@ -250,7 +262,8 @@
    "focal_point": [
     0.5,
     0.5
-   ]
+   ],
+   "featured_rank": 24
   },
   {
    "title": "Apples",
@@ -269,7 +282,8 @@
    "focal_point": [
     0.45,
     0.3
-   ]
+   ],
+   "featured_rank": 35
   },
   {
    "title": "Roses in a Bowl",
@@ -288,7 +302,8 @@
    "focal_point": [
     0.5,
     0.4
-   ]
+   ],
+   "featured_rank": 25
   },
   {
    "title": "Wine, Cheese, and Fruit",
@@ -307,7 +322,8 @@
    "focal_point": [
     0.4,
     0.45
-   ]
+   ],
+   "featured_rank": 20
   },
   {
    "title": "Lights of Other Days",
@@ -326,7 +342,8 @@
    "focal_point": [
     0.55,
     0.3
-   ]
+   ],
+   "featured_rank": 35
   },
   {
    "title": "A Vanitas Still Life with a Flag, Candlestick, Musical Instruments, Books, Writing Paraphernalia, Globes, and Hourglass",
@@ -345,7 +362,8 @@
    "focal_point": [
     0.5,
     0.55
-   ]
+   ],
+   "featured_rank": 20
   },
   {
    "title": "A Sunday on La Grande Jatte — 1884",
@@ -364,26 +382,8 @@
    "focal_point": [
     0.78,
     0.4
-   ]
-  },
-  {
-   "title": "Interior of St. Mark's, Venice",
-   "agent_name": "David Dalhoff Neal",
-   "agent_role": "Artist",
-   "creation_date": "1869",
-   "cultural_context": "19th Century American",
-   "medium": "Oil on canvas",
-   "date_display": "1869",
-   "description_narrative": "This oil on canvas depicts the grand interior of St. Mark's Basilica in Venice, capturing its architectural details and atmosphere. Painted by David Dalhoff Neal in 1869, the work reflects a meticulous study of the historic Italian landmark.",
-   "tags": "interior, church, venice, architectural, oil painting, 19th century, american art, realism",
-   "source": "Art Institute of Chicago",
-   "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/David%20Dalhoff%20Neal%20-%20Interior%20of%20St.%20Mark%27s%2C%20Venice%20-%201887.232%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/David%20Dalhoff%20Neal%20-%20Interior%20of%20St.%20Mark%27s%2C%20Venice%20-%201887.232%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
-   "focal_point": [
-    0.5,
-    0.6
-   ]
+   ],
+   "featured_rank": 90
   }
  ]
 }

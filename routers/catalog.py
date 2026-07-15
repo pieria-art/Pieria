@@ -267,13 +267,26 @@ async def suggest_catalog(q: str = "", db: Session = Depends(get_db)):
 @router.get("/api/catalog/{collection_id}")
 async def get_catalog_collection(collection_id: str, db: Session = Depends(get_db)):
     """One collection's items — prefilled placard metadata + hotlinked thumbnail_url + an `added`
-    flag (matched by source_url). High-res is fetched only on add."""
+    flag (matched by source_url). High-res is fetched only on add.
+
+    Items are ranked by `featured_rank` (fame, 0-100) descending — a stable sort, so ties keep their
+    original order — meaning crowd-pleasers surface first instead of ~1000 works reading as flat
+    decision-paralysis. Because that reorders the array, each item is stamped with `item_index`: the
+    position in the *original* (unsorted) items list, which is what /api/catalog/add and add-bulk
+    expect. Callers (the browse UI) must send back `item_index`, not the item's position in this
+    response."""
     col = await _catalog_collection(db, collection_id)
     if not col:
         raise HTTPException(404, detail=f"Unknown collection: {collection_id}")
     added = {row[0] for row in db.query(ArtworkModel.source_url).filter(ArtworkModel.source_url.isnot(None)).all()}
-    for it in col.get("items", []):
+    ranked = sorted(enumerate(col.get("items", [])),
+                    key=lambda pair: pair[1].get("featured_rank", 0), reverse=True)
+    items = []
+    for idx, it in ranked:
         it["added"] = it.get("source_url") in added
+        it["item_index"] = idx
+        items.append(it)
+    col["items"] = items
     return col
 
 class CatalogAddPayload(BaseModel):
@@ -344,18 +357,38 @@ class CatalogAddCollectionPayload(BaseModel):
     collection_id: str
     playlist_id: Optional[int] = None
 
+
+def _get_or_create_playlist_by_title(db: Session, name: str) -> PlaylistModel:
+    """Get-or-create a (non-personal) playlist by name. Used by add-collection's no-playlist-chosen
+    path so "add the whole collection" yields a playlist named after the collection — its identity —
+    rather than a nameless library dump. `PlaylistModel.name` is unique, so a repeat add-collection
+    call (or a playlist the user already made with that name) is reused, not duplicated."""
+    pl = db.query(PlaylistModel).filter(PlaylistModel.name == name).first()
+    if not pl:
+        pl = PlaylistModel(name=name)
+        db.add(pl); db.commit(); db.refresh(pl)
+    return pl
+
 @router.post("/api/catalog/add-collection")
 async def add_catalog_collection(payload: CatalogAddCollectionPayload, db: Session = Depends(get_db)):
-    """Best-effort add of every item in a collection (continues past individual failures)."""
+    """Best-effort add of every item in a collection (continues past individual failures).
+
+    Back-compatible: an explicit playlist_id is honored unchanged. When none is given, get-or-create
+    a playlist named after the collection's title (falling back to its id) so the collection's
+    identity survives instead of a nameless dump into the plain library."""
     col = await _catalog_collection(db, payload.collection_id)
     if not col:
         raise HTTPException(404, detail=f"Unknown collection: {payload.collection_id}")
+    playlist_id = payload.playlist_id
+    if playlist_id is None:
+        title = col.get("title") or payload.collection_id
+        playlist_id = _get_or_create_playlist_by_title(db, title).id
     added, failed = 0, 0
     for item in col.get("items", []):
         try:
             await _download_and_create_artwork(
                 db, source_url=item["source_url"], thumbnail_url=item.get("thumbnail_url"),
-                metadata=item, playlist_id=payload.playlist_id)
+                metadata=item, playlist_id=playlist_id)
             added += 1
         except Exception as e:
             failed += 1

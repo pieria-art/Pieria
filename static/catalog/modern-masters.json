@@ -22,7 +22,8 @@
    "focal_point": [
     0.6,
     0.45
-   ]
+   ],
+   "featured_rank": 82
   },
   {
    "title": "Hercules and the Lernaean Hydra",
@@ -41,7 +42,8 @@
    "focal_point": [
     0.25,
     0.52
-   ]
+   ],
+   "featured_rank": 25
   },
   {
    "title": "Calf's Head and Ox Tongue",
@@ -60,7 +62,8 @@
    "focal_point": [
     0.28,
     0.3
-   ]
+   ],
+   "featured_rank": 20
   },
   {
    "title": "Alpine Scene",
@@ -79,7 +82,8 @@
    "focal_point": [
     0.5,
     0.6
-   ]
+   ],
+   "featured_rank": 22
   },
   {
    "title": "Mère Grégoire",
@@ -98,7 +102,8 @@
    "focal_point": [
     0.5,
     0.28
-   ]
+   ],
+   "featured_rank": 25
   },
   {
    "title": "The Rock of Hautepierre",
@@ -117,7 +122,8 @@
    "focal_point": [
     0.5,
     0.4
-   ]
+   ],
+   "featured_rank": 22
   },
   {
    "title": "An Alpine Scene",
@@ -136,7 +142,8 @@
    "focal_point": [
     0.42,
     0.62
-   ]
+   ],
+   "featured_rank": 22
   },
   {
    "title": "The Valley of Les Puits-Noir",
@@ -155,7 +162,8 @@
    "focal_point": [
     0.45,
     0.5
-   ]
+   ],
+   "featured_rank": 22
   },
   {
    "title": "Rêverie (Portrait of Gabrielle Borreau)",
@@ -174,7 +182,8 @@
    "focal_point": [
     0.52,
     0.32
-   ]
+   ],
+   "featured_rank": 25
   },
   {
    "title": "Cliffs on the Sea Coast: Small Beach, Sunrise (Falaise au bord de la mer, vu Petite Plage, soleil levant)",
@@ -193,7 +202,8 @@
    "focal_point": [
     0.22,
     0.55
-   ]
+   ],
+   "featured_rank": 22
   },
   {
    "title": "The Brook of Les Puits-Noir",
@@ -212,7 +222,8 @@
    "focal_point": [
     0.56,
     0.74
-   ]
+   ],
+   "featured_rank": 22
   },
   {
    "title": "The Girl by the Window",
@@ -231,7 +242,8 @@
    "focal_point": [
     0.55,
     0.22
-   ]
+   ],
+   "featured_rank": 30
   }
  ]
 }

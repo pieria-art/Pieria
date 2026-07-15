@@ -22,7 +22,8 @@
    "focal_point": [
     0.49,
     0.27
-   ]
+   ],
+   "featured_rank": 15
   },
   {
    "title": "Self-Portrait",
@@ -41,7 +42,8 @@
    "focal_point": [
     0.45,
     0.34
-   ]
+   ],
+   "featured_rank": 55
   },
   {
    "title": "The Captive Slave (Ira Aldridge)",
@@ -60,7 +62,8 @@
    "focal_point": [
     0.48,
     0.29
-   ]
+   ],
+   "featured_rank": 25
   },
   {
    "title": "Portrait of a Man with Gray Hair",
@@ -79,7 +82,8 @@
    "focal_point": [
     0.48,
     0.34
-   ]
+   ],
+   "featured_rank": 20
   },
   {
    "title": "Édouard Manet",
@@ -98,7 +102,8 @@
    "focal_point": [
     0.47,
     0.22
-   ]
+   ],
+   "featured_rank": 35
   },
   {
    "title": "Madame Cezanne in a Yellow Chair",
@@ -117,7 +122,8 @@
    "focal_point": [
     0.52,
     0.21
-   ]
+   ],
+   "featured_rank": 45
   },
   {
    "title": "Madame de Pastoret and Her Son",
@@ -136,7 +142,8 @@
    "focal_point": [
     0.5,
     0.25
-   ]
+   ],
+   "featured_rank": 30
   },
   {
    "title": "Madame Roulin Rocking the Cradle (La berceuse)",
@@ -155,7 +162,8 @@
    "focal_point": [
     0.5,
     0.28
-   ]
+   ],
+   "featured_rank": 55
   },
   {
    "title": "Old Man with a Gold Chain",
@@ -174,7 +182,8 @@
    "focal_point": [
     0.55,
     0.32
-   ]
+   ],
+   "featured_rank": 40
   },
   {
    "title": "Young Woman at an Open Half-Door",
@@ -193,7 +202,8 @@
    "focal_point": [
     0.5,
     0.28
-   ]
+   ],
+   "featured_rank": 20
   },
   {
    "title": "The Child's Bath",
@@ -212,7 +222,8 @@
    "focal_point": [
     0.5,
     0.22
-   ]
+   ],
+   "featured_rank": 55
   },
   {
    "title": "Interrupted Reading",
@@ -231,7 +242,8 @@
    "focal_point": [
     0.55,
     0.2
-   ]
+   ],
+   "featured_rank": 35
   },
   {
    "title": "Madame François Buron",
@@ -250,7 +262,8 @@
    "focal_point": [
     0.46,
     0.33
-   ]
+   ],
+   "featured_rank": 20
   },
   {
    "title": "Jean Renoir Sewing",
@@ -269,7 +282,8 @@
    "focal_point": [
     0.48,
     0.33
-   ]
+   ],
+   "featured_rank": 30
   },
   {
    "title": "Portrait of a Man with a Pink",
@@ -288,7 +302,8 @@
    "focal_point": [
     0.52,
     0.38
-   ]
+   ],
+   "featured_rank": 25
   },
   {
    "title": "Amédée-David, the Comte de Pastoret",
@@ -307,7 +322,8 @@
    "focal_point": [
     0.46,
     0.22
-   ]
+   ],
+   "featured_rank": 30
   },
   {
    "title": "Lucie Berard (Child in White)",
@@ -326,7 +342,8 @@
    "focal_point": [
     0.45,
     0.28
-   ]
+   ],
+   "featured_rank": 40
   },
   {
    "title": "Merahi metua no Tehamana (Tehamana Has Many Parents or The Ancestors of Tehamana)",
@@ -345,7 +362,8 @@
    "focal_point": [
     0.6,
     0.27
-   ]
+   ],
+   "featured_rank": 45
   },
   {
    "title": "Francesco de' Medici",
@@ -364,7 +382,8 @@
    "focal_point": [
     0.45,
     0.21
-   ]
+   ],
+   "featured_rank": 20
   },
   {
    "title": "Beggar with Oysters (Philosopher)",
@@ -383,7 +402,8 @@
    "focal_point": [
     0.43,
     0.17
-   ]
+   ],
+   "featured_rank": 30
   },
   {
    "title": "Polynesian Woman with Children",
@@ -402,7 +422,8 @@
    "focal_point": [
     0.4,
     0.18
-   ]
+   ],
+   "featured_rank": 30
   },
   {
    "title": "Portrait of General José Manuel Romero",
@@ -421,7 +442,8 @@
    "focal_point": [
     0.45,
     0.27
-   ]
+   ],
+   "featured_rank": 30
   },
   {
    "title": "Portrait of Constance Pipelet",
@@ -440,7 +462,8 @@
    "focal_point": [
     0.43,
     0.27
-   ]
+   ],
+   "featured_rank": 15
   },
   {
    "title": "Winged Figure",
@@ -459,7 +482,8 @@
    "focal_point": [
     0.55,
     0.2
-   ]
+   ],
+   "featured_rank": 30
   },
   {
    "title": "The Advance-Guard, or The Military Sacrifice (The Ambush)",
@@ -478,7 +502,8 @@
    "focal_point": [
     0.33,
     0.3
-   ]
+   ],
+   "featured_rank": 35
   },
   {
    "title": "Mrs. Potter Palmer",
@@ -497,7 +522,8 @@
    "focal_point": [
     0.45,
     0.21
-   ]
+   ],
+   "featured_rank": 30
   },
   {
    "title": "John Thomlinson and His Family",
@@ -516,7 +542,8 @@
    "focal_point": [
     0.45,
     0.4
-   ]
+   ],
+   "featured_rank": 18
   },
   {
    "title": "Portrait of a Noblewoman Dressed in Mourning",
@@ -535,7 +562,8 @@
    "focal_point": [
     0.45,
     0.24
-   ]
+   ],
+   "featured_rank": 18
   },
   {
    "title": "Helena Tromper Du Bois",
@@ -554,7 +582,8 @@
    "focal_point": [
     0.5,
     0.21
-   ]
+   ],
+   "featured_rank": 20
   },
   {
    "title": "Elaine",
@@ -573,7 +602,8 @@
    "focal_point": [
     0.4,
     0.42
-   ]
+   ],
+   "featured_rank": 30
   },
   {
    "title": "Self-Portrait",
@@ -592,7 +622,8 @@
    "focal_point": [
     0.5,
     0.21
-   ]
+   ],
+   "featured_rank": 30
   },
   {
    "title": "Portrait of a Woman with a Man at a Casement",
@@ -611,7 +642,8 @@
    "focal_point": [
     0.55,
     0.22
-   ]
+   ],
+   "featured_rank": 45
   }
  ]
 }

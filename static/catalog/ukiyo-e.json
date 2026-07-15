@@ -22,7 +22,8 @@
    "focal_point": [
     0.32,
     0.38
-   ]
+   ],
+   "featured_rank": 99
   },
   {
    "title": "Under the Wave off Kanagawa (Kanagawa oki nami ura), also known as The Great Wave, from the series \"Thirty-Six Views of Mount Fuji (Fugaku sanjurokkei)\"",
@@ -41,7 +42,8 @@
    "focal_point": [
     0.3,
     0.4
-   ]
+   ],
+   "featured_rank": 99
   }
  ]
 }

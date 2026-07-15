@@ -22,7 +22,8 @@
    "focal_point": [
     0.62,
     0.27
-   ]
+   ],
+   "featured_rank": 35
   },
   {
    "title": "Virgin and Child with Two Angels",
@@ -41,7 +42,8 @@
    "focal_point": [
     0.45,
     0.27
-   ]
+   ],
+   "featured_rank": 35
   },
   {
    "title": "A Sunday on La Grande Jatte — 1884",
@@ -60,26 +62,8 @@
    "focal_point": [
     0.78,
     0.4
-   ]
-  },
-  {
-   "title": "Interior of St. Mark's, Venice",
-   "agent_name": "David Dalhoff Neal",
-   "agent_role": "Artist",
-   "creation_date": "1869",
-   "cultural_context": "19th Century American",
-   "medium": "Oil on canvas",
-   "date_display": "1869",
-   "description_narrative": "This oil on canvas depicts the grand interior of St. Mark's Basilica in Venice, capturing its architectural details and atmosphere. Painted by David Dalhoff Neal in 1869, the work reflects a meticulous study of the historic Italian landmark.",
-   "tags": "interior, church, venice, architectural, oil painting, 19th century, american art, realism",
-   "source": "Art Institute of Chicago",
-   "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/David%20Dalhoff%20Neal%20-%20Interior%20of%20St.%20Mark%27s%2C%20Venice%20-%201887.232%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/David%20Dalhoff%20Neal%20-%20Interior%20of%20St.%20Mark%27s%2C%20Venice%20-%201887.232%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
-   "focal_point": [
-    0.5,
-    0.6
-   ]
+   ],
+   "featured_rank": 90
   },
   {
    "title": "Allegory of Venus and Cupid",
@@ -98,7 +82,8 @@
    "focal_point": [
     0.72,
     0.32
-   ]
+   ],
+   "featured_rank": 20
   },
   {
    "title": "Portrait of a Lady",
@@ -117,7 +102,8 @@
    "focal_point": [
     0.43,
     0.27
-   ]
+   ],
+   "featured_rank": 15
   },
   {
    "title": "Scenes from the Life of Saint John the Baptist",
@@ -136,7 +122,8 @@
    "focal_point": [
     0.45,
     0.55
-   ]
+   ],
+   "featured_rank": 12
   },
   {
    "title": "Cupid Chastised",
@@ -155,7 +142,8 @@
    "focal_point": [
     0.5,
     0.27
-   ]
+   ],
+   "featured_rank": 25
   },
   {
    "title": "The Nativity",
@@ -174,7 +162,8 @@
    "focal_point": [
     0.46,
     0.78
-   ]
+   ],
+   "featured_rank": 30
   },
   {
    "title": "The Crucifixion",
@@ -193,7 +182,8 @@
    "focal_point": [
     0.45,
     0.28
-   ]
+   ],
+   "featured_rank": 45
   },
   {
    "title": "Alessandro de' Medici",
@@ -212,7 +202,8 @@
    "focal_point": [
     0.45,
     0.34
-   ]
+   ],
+   "featured_rank": 32
   },
   {
    "title": "Christ Carrying the Cross",
@@ -231,7 +222,8 @@
    "focal_point": [
     0.37,
     0.45
-   ]
+   ],
+   "featured_rank": 30
   },
   {
    "title": "The Crucifixion",
@@ -250,7 +242,8 @@
    "focal_point": [
     0.5,
     0.27
-   ]
+   ],
+   "featured_rank": 28
   },
   {
    "title": "Saint John the Baptist Entering the Wilderness",
@@ -269,7 +262,8 @@
    "focal_point": [
     0.47,
     0.31
-   ]
+   ],
+   "featured_rank": 28
   },
   {
    "title": "Ecce Agnus Dei",
@@ -288,7 +282,8 @@
    "focal_point": [
     0.45,
     0.47
-   ]
+   ],
+   "featured_rank": 25
   },
   {
    "title": "The Assassination and Funeral of Julius Caesar",
@@ -307,7 +302,8 @@
    "focal_point": [
     0.6,
     0.5
-   ]
+   ],
+   "featured_rank": 18
   },
   {
    "title": "The Garden of Paradise",
@@ -326,7 +322,8 @@
    "focal_point": [
     0.62,
     0.6
-   ]
+   ],
+   "featured_rank": 35
   },
   {
    "title": "The Adventures of Ulysses",
@@ -345,7 +342,8 @@
    "focal_point": [
     0.42,
     0.6
-   ]
+   ],
+   "featured_rank": 18
   },
   {
    "title": "The Last Communion of Saint Jerome",
@@ -364,7 +362,8 @@
    "focal_point": [
     0.55,
     0.48
-   ]
+   ],
+   "featured_rank": 32
   },
   {
    "title": "The Annunciation",
@@ -383,7 +382,8 @@
    "focal_point": [
     0.45,
     0.5
-   ]
+   ],
+   "featured_rank": 40
   }
  ]
 }

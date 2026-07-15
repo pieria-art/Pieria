@@ -22,7 +22,8 @@
    "focal_point": [
     0.47,
     0.28
-   ]
+   ],
+   "featured_rank": 95
   },
   {
    "title": "Toward Los Angeles",
@@ -41,7 +42,8 @@
    "focal_point": [
     0.32,
     0.45
-   ]
+   ],
+   "featured_rank": 25
   },
   {
    "title": "Tractored Out, Childress County Texas",
@@ -60,7 +62,8 @@
    "focal_point": [
     0.56,
     0.36
-   ]
+   ],
+   "featured_rank": 20
   },
   {
    "title": "The Steerage",
@@ -79,7 +82,8 @@
    "focal_point": [
     0.5,
     0.23
-   ]
+   ],
+   "featured_rank": 85
   },
   {
    "title": "Floyd Burroughs, cotton sharecropper",
@@ -98,7 +102,8 @@
    "focal_point": [
     0.5,
     0.33
-   ]
+   ],
+   "featured_rank": 55
   },
   {
    "title": "Allie Mae Burroughs",
@@ -117,7 +122,8 @@
    "focal_point": [
     0.48,
     0.38
-   ]
+   ],
+   "featured_rank": 65
   },
   {
    "title": "American Gothic, Washington, D.C.",
@@ -136,7 +142,8 @@
    "focal_point": [
     0.5,
     0.42
-   ]
+   ],
+   "featured_rank": 65
   },
   {
    "title": "Power house mechanic working on steam pump",
@@ -155,7 +162,8 @@
    "focal_point": [
     0.68,
     0.5
-   ]
+   ],
+   "featured_rank": 55
   },
   {
    "title": "Breaker Boys, Pennsylvania",
@@ -174,7 +182,8 @@
    "focal_point": [
     0.42,
     0.55
-   ]
+   ],
+   "featured_rank": 50
   },
   {
    "title": "Spinner in a Cotton Mill",
@@ -193,7 +202,8 @@
    "focal_point": [
     0.55,
     0.27
-   ]
+   ],
+   "featured_rank": 40
   },
   {
    "title": "Bandit's Roost",
@@ -212,64 +222,8 @@
    "focal_point": [
     0.62,
     0.33
-   ]
-  },
-  {
-   "title": "A Harvest of Death, Gettysburg",
-   "agent_name": "Timothy H. O'Sullivan",
-   "agent_role": "Artist",
-   "creation_date": "",
-   "cultural_context": "American Civil War, 19th century photography",
-   "medium": "",
-   "date_display": "July 1863",
-   "description_narrative": "This stark photograph captures the grim reality of the aftermath of the Battle of Gettysburg, showing fallen soldiers littering the field. Timothy H. O'Sullivan's work is a powerful document of the human cost of the American Civil War.",
-   "tags": "civil war, battle of gettysburg, death, documentary photography, realism, somber, historical",
-   "source": "Wikimedia Commons",
-   "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/A%20harvest%20of%20death%2C%20Gettysburg%2C%20Pennsylvania%20-%20negative%20by%20T.H.%20O%27Sullivan%3B%20positive%20by%20A%20Gardner.%20LCCN2006685384.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/A%20harvest%20of%20death%2C%20Gettysburg%2C%20Pennsylvania%20-%20negative%20by%20T.H.%20O%27Sullivan%3B%20positive%20by%20A%20Gardner.%20LCCN2006685384.jpg?width=600",
-   "focal_point": [
-    0.45,
-    0.53
-   ]
-  },
-  {
-   "title": "Home of a Rebel Sharpshooter",
-   "agent_name": "Alexander Gardner",
-   "agent_role": "Artist",
-   "creation_date": "",
-   "cultural_context": "American Civil War, American photography",
-   "medium": "",
-   "date_display": "1863",
-   "description_narrative": "This stark photograph depicts a deceased Confederate soldier in a rocky den at the Battle of Gettysburg, capturing the grim reality of the American Civil War. Alexander Gardner's work is notable for its powerful documentation of the conflict, though some elements of this scene were staged for dramatic effect.",
-   "tags": "civil war, photography, battle of gettysburg, historical, soldier, death, documentary, staged",
-   "source": "Wikimedia Commons",
-   "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Home%20of%20a%20rebel%20sharpshooter%20-%20Alex.%20Gardner%2C%20photographer.%20LCCN2006692502.tif?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Home%20of%20a%20rebel%20sharpshooter%20-%20Alex.%20Gardner%2C%20photographer.%20LCCN2006692502.tif?width=600",
-   "focal_point": [
-    0.45,
-    0.58
-   ]
-  },
-  {
-   "title": "The Dead of Antietam",
-   "agent_name": "Alexander Gardner",
-   "agent_role": "Artist",
-   "creation_date": "",
-   "cultural_context": "American Civil War, American",
-   "medium": "",
-   "date_display": "1862",
-   "description_narrative": "This artwork depicts the grim aftermath of the Battle of Antietam, one of the deadliest single-day battles in American history. Created by Alexander Gardner, it powerfully conveys the brutal reality and human cost of armed conflict.",
-   "tags": "war, battle, death, aftermath, American Civil War, realism, somber",
-   "source": "Wikimedia Commons",
-   "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/View%20on%20battle%20field%20of%20Antietam%20near%20Sherrick%27s%20house%2C%20where%20the%2079th%20New%20York%20Volunteers%20fought%20after%20they%20crossed%20the%20creek.%20Group%20of%20dead%20Confederates%2C%20by%20Gardner%2C%20Alexander%2C%201821-1882.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/View%20on%20battle%20field%20of%20Antietam%20near%20Sherrick%27s%20house%2C%20where%20the%2079th%20New%20York%20Volunteers%20fought%20after%20they%20crossed%20the%20creek.%20Group%20of%20dead%20Confederates%2C%20by%20Gardner%2C%20Alexander%2C%201821-1882.jpg?width=600",
-   "focal_point": [
-    0.28,
-    0.5
-   ]
+   ],
+   "featured_rank": 55
   },
   {
    "title": "Ancient Ruins in the Canyon de Chelly",
@@ -288,26 +242,8 @@
    "focal_point": [
     0.27,
     0.62
-   ]
-  },
-  {
-   "title": "Cape Horn near Celilo",
-   "agent_name": "Carleton Watkins",
-   "agent_role": "Artist",
-   "creation_date": "",
-   "cultural_context": "19th century American, Landscape Photography",
-   "medium": "",
-   "date_display": "c. 1867",
-   "description_narrative": "This photograph by Carleton Watkins captures the dramatic landscape of Cape Horn near Celilo, showcasing the rugged natural beauty of the American West. Watkins's masterful use of large-format photography reveals intricate details and vast scale, contributing significantly to the visual documentation of the frontier.",
-   "tags": "landscape, photography, american west, 19th century, nature, majestic, frontier, scenic",
-   "source": "Wikimedia Commons",
-   "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Cape%20Horn%2C%20near%20Celilo%2C%20Columbia%20River%2C%20by%20Watkins%2C%20Carleton%20E.%2C%201829-1916%203.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Cape%20Horn%2C%20near%20Celilo%2C%20Columbia%20River%2C%20by%20Watkins%2C%20Carleton%20E.%2C%201829-1916%203.jpg?width=600",
-   "focal_point": [
-    0.27,
-    0.33
-   ]
+   ],
+   "featured_rank": 35
   },
   {
    "title": "Yosemite Valley from Inspiration Point",
@@ -326,64 +262,8 @@
    "focal_point": [
     0.27,
     0.32
-   ]
-  },
-  {
-   "title": "Mountain of the Holy Cross",
-   "agent_name": "William Henry Jackson",
-   "agent_role": "Artist",
-   "creation_date": "",
-   "cultural_context": "American West exploration, 19th century",
-   "medium": "",
-   "date_display": "1873",
-   "description_narrative": "William Henry Jackson's iconic photograph captures the majestic Mount of the Holy Cross in Colorado, named for the distinctive cross-shaped snow formation on its eastern face. This image, taken during the Hayden Geological Survey, brought the remote grandeur of the American West to a wider audience, contributing to early conservation efforts.",
-   "tags": "landscape, photography, american west, mountain, exploration, frontier, nature, documentary",
-   "source": "Wikimedia Commons",
-   "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Mountain%20of%20the%20Holy%20Cross%2C%20by%20Jackson%2C%20William%20Henry%2C%201843-1942.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Mountain%20of%20the%20Holy%20Cross%2C%20by%20Jackson%2C%20William%20Henry%2C%201843-1942.jpg?width=600",
-   "focal_point": [
-    0.33,
-    0.31
-   ]
-  },
-  {
-   "title": "Grand Canyon of the Yellowstone",
-   "agent_name": "William Henry Jackson",
-   "agent_role": "Artist",
-   "creation_date": "",
-   "cultural_context": "American West, 19th Century Exploration, Early Conservation",
-   "medium": "",
-   "date_display": "c. 1871",
-   "description_narrative": "William Henry Jackson's iconic photographs, such as this view of the Grand Canyon of the Yellowstone, were pivotal in documenting the American West. His detailed visual records significantly influenced public opinion and contributed to the establishment of Yellowstone as the world's first national park.",
-   "tags": "landscape, photography, american west, yellowstone, national park, exploration, historic, documentary",
-   "source": "Wikimedia Commons",
-   "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Grand%20Canyon%20of%20the%20Yellowstone%20River%20LCCN95514179.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Grand%20Canyon%20of%20the%20Yellowstone%20River%20LCCN95514179.jpg?width=600",
-   "focal_point": [
-    0.5,
-    0.5
-   ]
-  },
-  {
-   "title": "The Horse in Motion",
-   "agent_name": "Eadweard Muybridge",
-   "agent_role": "Artist",
-   "creation_date": "",
-   "cultural_context": "Victorian era, American photography, scientific photography",
-   "medium": "",
-   "date_display": "1878",
-   "description_narrative": "This groundbreaking series of photographs captured a horse mid-gallop, definitively proving that all four hooves leave the ground simultaneously. It represents a pivotal early experiment in chronophotography, laying foundational groundwork for motion pictures.",
-   "tags": "photography, chronophotography, motion study, animal study, science, horse, early cinema",
-   "source": "Wikimedia Commons",
-   "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20horse%20in%20motion%2C%20illus.%20by%20Muybridge.%20%22Sallie%20Gardner%2C%22%20owned%20by%20Leland%20Stanford%2C%20running%20at%20a%201-40%20gait%20over%20the%20Palo%20Alto%20track%2C%2019%20June%201878-%202%20frames%20showing%20diagram%20of%20foot%20LCCN2007678037.tif?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20horse%20in%20motion%2C%20illus.%20by%20Muybridge.%20%22Sallie%20Gardner%2C%22%20owned%20by%20Leland%20Stanford%2C%20running%20at%20a%201-40%20gait%20over%20the%20Palo%20Alto%20track%2C%2019%20June%201878-%202%20frames%20showing%20diagram%20of%20foot%20LCCN2007678037.tif?width=600",
-   "focal_point": [
-    0.5,
-    0.42
-   ]
+   ],
+   "featured_rank": 40
   },
   {
    "title": "Boulevard du Temple",
@@ -402,7 +282,8 @@
    "focal_point": [
     0.21,
     0.78
-   ]
+   ],
+   "featured_rank": 65
   },
   {
    "title": "The Open Door",
@@ -421,7 +302,8 @@
    "focal_point": [
     0.4,
     0.5
-   ]
+   ],
+   "featured_rank": 35
   },
   {
    "title": "View from the Window at Le Gras",
@@ -440,7 +322,8 @@
    "focal_point": [
     0.45,
     0.5
-   ]
+   ],
+   "featured_rank": 65
   },
   {
    "title": "Geronimo",
@@ -459,7 +342,8 @@
    "focal_point": [
     0.5,
     0.42
-   ]
+   ],
+   "featured_rank": 55
   }
  ]
 }

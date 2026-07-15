@@ -4,6 +4,7 @@ and the Canvas cache warmer. Extracted verbatim from app.py (Phase 4 of the app-
 
 import asyncio
 import fcntl
+import json
 import logging
 import os
 import shutil
@@ -21,11 +22,17 @@ from config import ARTWORK_ROOT, LIBRARY_DIR
 from core.downloads import _download_image_to_library, _focal_xy
 from core.media import render_canvas_image
 from core.playback import _frame_select
+from core.settings_util import _upsert_setting
 from database import SessionLocal
 from db_migrate import run_migrations
-from models import ArtworkModel, PlaylistModel, playlist_artwork
+from models import ArtworkModel, PlaylistModel, SettingsModel, playlist_artwork
 
 logger = logging.getLogger("artwork-display-api")
+
+# ADR-038: the manifest tools/build_pack.py bakes into a self-contained appliance art-pack. When
+# present, boot mints its collections straight from local masters (pre_seed_from_pack) instead of
+# downloading factory_seed.json live (run_factory_seed) — see the leader-only boot section below.
+PACK_MANIFEST = ARTWORK_ROOT / "pack-manifest.json"
 
 
 async def warm_all_canvas_cache() -> None:
@@ -96,6 +103,103 @@ def sync_db_with_filesystem(db: Session) -> None:
                             display_order=0
                         ))
             db.commit()
+
+def pre_seed_from_pack(db: Session) -> bool:
+    """Boot-time consumer of tools/build_pack.py's pack-manifest.json (ADR-038): when the appliance
+    ships with a baked-in art-pack, mint its collections into playlists with masters already local
+    (no downloads) — the offline counterpart to run_factory_seed's live-download path.
+
+    Returns False when there's no pack (PACK_MANIFEST absent) so the caller falls back to
+    run_factory_seed; True once seeded (including "already seeded" on a repeat boot).
+    """
+    if not PACK_MANIFEST.exists():
+        return False
+
+    if db.query(SettingsModel).filter(SettingsModel.setting_key == "pack_seeded").first():
+        return True  # idempotency guard — distinct from is_seed, which run_factory_seed also sets
+
+    manifest = json.loads(PACK_MANIFEST.read_text())
+    collections = manifest.get("collections", [])
+    logger.info(f"[PackSeed] Pre-seeding {len(collections)} collection(s) from pack-manifest.json...")
+
+    default_title = None
+    greatest_hits_present = False
+
+    for col in collections:
+        title = col.get("title") or col.get("id")
+        if not title:
+            continue
+        if default_title is None:
+            default_title = title
+        if title == "Greatest Hits":
+            greatest_hits_present = True
+
+        playlist = db.query(PlaylistModel).filter(PlaylistModel.name == title).first()
+        if not playlist:
+            playlist = PlaylistModel(name=title, is_personal=False)
+            db.add(playlist); db.commit(); db.refresh(playlist)
+
+        # Highest-ranked work first (display_order=0) within its own collection.
+        items = sorted(col.get("items", []), key=lambda it: it.get("featured_rank", 50), reverse=True)
+
+        for idx, item in enumerate(items):
+            filename = item.get("filename")
+            if not filename:
+                continue
+            master = LIBRARY_DIR / filename
+            if not master.exists():
+                logger.warning(f"[PackSeed] '{title}': missing master {filename!r} — skipping")
+                continue
+
+            source_url = item.get("source_url") or ""
+            artwork = None
+            if source_url:
+                artwork = db.query(ArtworkModel).filter(ArtworkModel.source_url == source_url).first()
+            if artwork is None:
+                artwork = db.query(ArtworkModel).filter(ArtworkModel.filename == filename).first()
+
+            if artwork is None:
+                fx, fy = _focal_xy(item)
+                rank = item.get("featured_rank", 50)
+                artwork = ArtworkModel(
+                    filename=filename,
+                    status="approved",
+                    title=item.get("title"), agent_name=item.get("agent_name"),
+                    agent_role=item.get("agent_role"), creation_date=item.get("creation_date"),
+                    cultural_context=item.get("cultural_context"), medium=item.get("medium"),
+                    date_display=item.get("date_display"),
+                    description_narrative=item.get("description_narrative"),
+                    tags=item.get("tags"), is_seed=True, source_url=source_url,
+                    focal_x=fx, focal_y=fy,
+                    affinity_score=round(0.5 + rank / 100.0, 3),
+                )
+                db.add(artwork); db.commit(); db.refresh(artwork)
+
+            existing_link = db.execute(
+                select(playlist_artwork).where(
+                    playlist_artwork.c.playlist_id == playlist.id,
+                    playlist_artwork.c.artwork_id == artwork.id,
+                )
+            ).first()
+            if not existing_link:
+                db.execute(playlist_artwork.insert().values(
+                    playlist_id=playlist.id, artwork_id=artwork.id, display_order=idx
+                ))
+
+        db.commit()
+
+    # Honor "Greatest Hits" as the canonical default rotation when present; else the first collection —
+    # same setting key routers/settings.py's default-playlist get/set uses, so the Canvas picks it up.
+    chosen_default = "Greatest Hits" if greatest_hits_present else default_title
+    if chosen_default:
+        _upsert_setting(db, "default_playlist", chosen_default)
+
+    _upsert_setting(db, "pack_seeded", manifest.get("version", "v1"))
+    db.commit()
+
+    logger.info("[PackSeed] Pre-seed complete.")
+    return True
+
 
 async def run_factory_seed(db: Session):
     """Parses factory_seed.json and injects masterpieces if library is empty."""
@@ -208,7 +312,16 @@ async def lifespan(app: FastAPI):
         db = SessionLocal()
         try:
             sync_db_with_filesystem(db)
-            await run_factory_seed(db)
+            # ADR-038: a bundled appliance art-pack pre-seeds from local masters, no network. Only
+            # fall back to the live-download factory seed when there's no pack to consume. Guarded
+            # separately from the tolerant block below — a bad manifest must never block the fallback.
+            try:
+                has_pack = pre_seed_from_pack(db)
+            except Exception as e:
+                logger.error(f"[PackSeed] Non-fatal error during pack pre-seed: {e}", exc_info=True)
+                has_pack = False
+            if not has_pack:
+                await run_factory_seed(db)
         finally:
             db.close()
 

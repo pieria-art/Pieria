@@ -22,7 +22,8 @@
    "focal_point": [
     0.5,
     0.32
-   ]
+   ],
+   "featured_rank": 45
   },
   {
    "title": "After the Hurricane, Bahamas",
@@ -41,7 +42,8 @@
    "focal_point": [
     0.18,
     0.66
-   ]
+   ],
+   "featured_rank": 48
   },
   {
    "title": "Croquet Scene",
@@ -60,7 +62,8 @@
    "focal_point": [
     0.31,
     0.25
-   ]
+   ],
+   "featured_rank": 40
   },
   {
    "title": "The Water Fan",
@@ -79,7 +82,8 @@
    "focal_point": [
     0.39,
     0.4
-   ]
+   ],
+   "featured_rank": 30
   },
   {
    "title": "Life-Size Black Bass",
@@ -98,7 +102,8 @@
    "focal_point": [
     0.55,
     0.45
-   ]
+   ],
+   "featured_rank": 25
   },
   {
    "title": "Stowing Sail",
@@ -117,7 +122,8 @@
    "focal_point": [
     0.67,
     0.45
-   ]
+   ],
+   "featured_rank": 22
   },
   {
    "title": "North Woods Club, Adirondacks (The Interrupted Tete-a-Tete)",
@@ -136,7 +142,8 @@
    "focal_point": [
     0.74,
     0.73
-   ]
+   ],
+   "featured_rank": 25
   },
   {
    "title": "Mount Washington",
@@ -155,7 +162,8 @@
    "focal_point": [
     0.25,
     0.42
-   ]
+   ],
+   "featured_rank": 22
   },
   {
    "title": "Peach Blossoms",
@@ -174,7 +182,8 @@
    "focal_point": [
     0.52,
     0.27
-   ]
+   ],
+   "featured_rank": 22
   },
   {
    "title": "Coast of Maine",
@@ -193,7 +202,8 @@
    "focal_point": [
     0.42,
     0.42
-   ]
+   ],
+   "featured_rank": 28
   },
   {
    "title": "The Rapids, Hudson River, Adirondacks",
@@ -212,7 +222,8 @@
    "focal_point": [
     0.4,
     0.42
-   ]
+   ],
+   "featured_rank": 24
   },
   {
    "title": "Fishing off Scarborough",
@@ -231,7 +242,8 @@
    "focal_point": [
     0.42,
     0.62
-   ]
+   ],
+   "featured_rank": 28
   },
   {
    "title": "Adirondacks Guide",
@@ -250,7 +262,8 @@
    "focal_point": [
     0.36,
     0.42
-   ]
+   ],
+   "featured_rank": 28
   },
   {
    "title": "The Watcher, Tynemouth",
@@ -269,7 +282,8 @@
    "focal_point": [
     0.32,
     0.36
-   ]
+   ],
+   "featured_rank": 24
   },
   {
    "title": "Boy in Boat, Gloucester",
@@ -288,7 +302,8 @@
    "focal_point": [
     0.55,
     0.62
-   ]
+   ],
+   "featured_rank": 22
   },
   {
    "title": "Campfire, Adirondacks",
@@ -307,7 +322,8 @@
    "focal_point": [
     0.48,
     0.5
-   ]
+   ],
+   "featured_rank": 24
   },
   {
    "title": "The Fountain, Villa Torlonia, Frascati, Italy",
@@ -326,7 +342,8 @@
    "focal_point": [
     0.27,
     0.36
-   ]
+   ],
+   "featured_rank": 28
   },
   {
    "title": "Mrs. George Swinton (Elizabeth Ebsworth)",
@@ -345,7 +362,8 @@
    "focal_point": [
     0.5,
     0.2
-   ]
+   ],
+   "featured_rank": 35
   },
   {
    "title": "Madame Paul Escudier (Louise Lefevre)",
@@ -364,7 +382,8 @@
    "focal_point": [
     0.59,
     0.27
-   ]
+   ],
+   "featured_rank": 28
   },
   {
    "title": "Life Study (Study of an Egyptian Girl)",
@@ -383,7 +402,8 @@
    "focal_point": [
     0.48,
     0.16
-   ]
+   ],
+   "featured_rank": 22
   },
   {
    "title": "Venetian Glass Workers",
@@ -402,7 +422,8 @@
    "focal_point": [
     0.86,
     0.46
-   ]
+   ],
+   "featured_rank": 30
   },
   {
    "title": "Thistles",
@@ -421,7 +442,8 @@
    "focal_point": [
     0.5,
     0.5
-   ]
+   ],
+   "featured_rank": 24
   },
   {
    "title": "Mrs. Charles Gifford Dyer (Mary Anthony)",
@@ -440,7 +462,8 @@
    "focal_point": [
     0.52,
     0.26
-   ]
+   ],
+   "featured_rank": 26
   },
   {
    "title": "Rehearsal of the Pasdeloup Orchestra at the Cirque d'Hiver",
@@ -459,7 +482,8 @@
    "focal_point": [
     0.62,
     0.78
-   ]
+   ],
+   "featured_rank": 35
   },
   {
    "title": "Mrs. Charles Deering (Marion Denison Whipple)",
@@ -478,7 +502,8 @@
    "focal_point": [
     0.52,
     0.27
-   ]
+   ],
+   "featured_rank": 26
   }
  ]
 }

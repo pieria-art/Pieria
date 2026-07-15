@@ -22,7 +22,8 @@
    "focal_point": [
     0.42,
     0.46
-   ]
+   ],
+   "featured_rank": 85
   },
   {
    "title": "The Supper at Emmaus",
@@ -41,7 +42,8 @@
    "focal_point": [
     0.37,
     0.4
-   ]
+   ],
+   "featured_rank": 75
   },
   {
    "title": "The Conversion of Saint Paul on the Way to Damascus",
@@ -60,7 +62,8 @@
    "focal_point": [
     0.66,
     0.82
-   ]
+   ],
+   "featured_rank": 72
   },
   {
    "title": "Bacchus",
@@ -79,7 +82,8 @@
    "focal_point": [
     0.48,
     0.27
-   ]
+   ],
+   "featured_rank": 65
   },
   {
    "title": "Judith Beheading Holofernes",
@@ -98,7 +102,8 @@
    "focal_point": [
     0.68,
     0.22
-   ]
+   ],
+   "featured_rank": 72
   },
   {
    "title": "David with the Head of Goliath",
@@ -117,7 +122,8 @@
    "focal_point": [
     0.45,
     0.27
-   ]
+   ],
+   "featured_rank": 62
   },
   {
    "title": "Boy with a Basket of Fruit",
@@ -136,7 +142,8 @@
    "focal_point": [
     0.45,
     0.26
-   ]
+   ],
+   "featured_rank": 50
   },
   {
    "title": "The Cardsharps",
@@ -155,26 +162,8 @@
    "focal_point": [
     0.27,
     0.32
-   ]
-  },
-  {
-   "title": "Judith Slaying Holofernes",
-   "agent_name": "Artemisia Gentileschi",
-   "agent_role": "Artist",
-   "creation_date": "",
-   "cultural_context": "Baroque, Italian",
-   "medium": "",
-   "date_display": "c. 1612-1621",
-   "description_narrative": "This painting powerfully illustrates the biblical story of Judith, who courageously beheads the Assyrian general Holofernes to save her people. Artemisia Gentileschi's dramatic use of light, shadow, and visceral action embodies the intensity and psychological depth characteristic of her renowned Baroque style.",
-   "tags": "biblical, baroque, violence, dramatic, Caravaggesque, female heroism, intense, psychological",
-   "source": "Wikimedia Commons",
-   "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Judith%20Slaying%20Holofernes%20by%20Artemisia%20Gentileschi.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Judith%20Slaying%20Holofernes%20by%20Artemisia%20Gentileschi.jpg?width=600",
-   "focal_point": [
-    0.46,
-    0.35
-   ]
+   ],
+   "featured_rank": 58
   },
   {
    "title": "Self-Portrait as the Allegory of Painting",
@@ -193,26 +182,8 @@
    "focal_point": [
     0.52,
     0.28
-   ]
-  },
-  {
-   "title": "The Descent from the Cross",
-   "agent_name": "Peter Paul Rubens",
-   "agent_role": "Artist",
-   "creation_date": "",
-   "cultural_context": "Baroque, Flemish",
-   "medium": "",
-   "date_display": "1611-1614",
-   "description_narrative": "Peter Paul Rubens's \"The Descent from the Cross\" dramatically depicts the weighty moment Christ's body is carefully lowered from the cross. The composition emphasizes the physical effort and emotional gravity of the scene through its dynamic figures and masterful use of light and shadow.",
-   "tags": "christian art, biblical, baroque, flemish, dramatic, sorrowful, religious, lamentation",
-   "source": "Wikimedia Commons",
-   "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Descent%20from%20the%20Cross%20-%20WGA20212.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Descent%20from%20the%20Cross%20-%20WGA20212.jpg?width=600",
-   "focal_point": [
-    0.52,
-    0.39
-   ]
+   ],
+   "featured_rank": 48
   },
   {
    "title": "The Garden of Love",
@@ -231,7 +202,8 @@
    "focal_point": [
     0.52,
     0.66
-   ]
+   ],
+   "featured_rank": 40
   },
   {
    "title": "Samson and Delilah",
@@ -250,7 +222,8 @@
    "focal_point": [
     0.38,
     0.5
-   ]
+   ],
+   "featured_rank": 55
   },
   {
    "title": "The Three Graces",
@@ -269,7 +242,8 @@
    "focal_point": [
     0.5,
     0.28
-   ]
+   ],
+   "featured_rank": 55
   },
   {
    "title": "The Surrender of Breda",
@@ -288,7 +262,8 @@
    "focal_point": [
     0.5,
     0.45
-   ]
+   ],
+   "featured_rank": 60
   },
   {
    "title": "The Toilet of Venus (Rokeby Venus)",
@@ -307,7 +282,8 @@
    "focal_point": [
     0.43,
     0.4
-   ]
+   ],
+   "featured_rank": 60
   },
   {
    "title": "Old Woman Frying Eggs",
@@ -326,7 +302,8 @@
    "focal_point": [
     0.66,
     0.28
-   ]
+   ],
+   "featured_rank": 35
   },
   {
    "title": "The Storm on the Sea of Galilee",
@@ -345,7 +322,8 @@
    "focal_point": [
     0.5,
     0.7
-   ]
+   ],
+   "featured_rank": 55
   },
   {
    "title": "The Penitent Magdalene",
@@ -364,7 +342,8 @@
    "focal_point": [
     0.33,
     0.16
-   ]
+   ],
+   "featured_rank": 35
   },
   {
    "title": "Saint Francis in Meditation",
@@ -383,26 +362,8 @@
    "focal_point": [
     0.6,
     0.16
-   ]
-  },
-  {
-   "title": "Aurora",
-   "agent_name": "Guido Reni",
-   "agent_role": "Artist",
-   "creation_date": "",
-   "cultural_context": "Italian Baroque",
-   "medium": "",
-   "date_display": "c. 1614",
-   "description_narrative": "Guido Reni's acclaimed fresco \"Aurora\" depicts the goddess of dawn scattering flowers as she leads Apollo's sun chariot across the sky, accompanied by the Hours. This work, famed for its classical composition and vibrant colors, is a celebrated example of Baroque ceiling painting.",
-   "tags": "mythology, fresco, baroque, classical, allegorical, celestial, italian, painting",
-   "source": "Wikimedia Commons",
-   "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Fotoreproductie%20van%20%28vermoedelijk%29%20een%20fresco%20in%20het%20Palazzo%20Pallavicini-Rospigliosi%20door%20Guido%20Reni%2C%20voorstellend%20Aurora%20ROMA%20-%20Aurora%2C%20Guido%20Reni%2C%20Galleria%20Rospigliosi%20%28titel%20op%20object%29%2C%20RP-F-F01184-AQ.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Fotoreproductie%20van%20%28vermoedelijk%29%20een%20fresco%20in%20het%20Palazzo%20Pallavicini-Rospigliosi%20door%20Guido%20Reni%2C%20voorstellend%20Aurora%20ROMA%20-%20Aurora%2C%20Guido%20Reni%2C%20Galleria%20Rospigliosi%20%28titel%20op%20object%29%2C%20RP-F-F01184-AQ.jpg?width=600",
-   "focal_point": [
-    0.5,
-    0.42
-   ]
+   ],
+   "featured_rank": 35
   },
   {
    "title": "Et in Arcadia ego",
@@ -421,7 +382,8 @@
    "focal_point": [
     0.5,
     0.5
-   ]
+   ],
+   "featured_rank": 48
   },
   {
    "title": "Seaport with the Embarkation of the Queen of Sheba",
@@ -440,7 +402,8 @@
    "focal_point": [
     0.46,
     0.5
-   ]
+   ],
+   "featured_rank": 40
   },
   {
    "title": "The Martyrdom of Saint Philip",
@@ -459,7 +422,8 @@
    "focal_point": [
     0.45,
     0.45
-   ]
+   ],
+   "featured_rank": 32
   },
   {
    "title": "The Immaculate Conception",
@@ -478,7 +442,8 @@
    "focal_point": [
     0.5,
     0.13
-   ]
+   ],
+   "featured_rank": 40
   }
  ]
 }

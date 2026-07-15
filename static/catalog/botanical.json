@@ -22,7 +22,8 @@
    "focal_point": [
     0.32,
     0.29
-   ]
+   ],
+   "featured_rank": 35
   },
   {
    "title": "At Mouquin's",
@@ -41,7 +42,8 @@
    "focal_point": [
     0.4,
     0.23
-   ]
+   ],
+   "featured_rank": 35
   },
   {
    "title": "James William Wallack",
@@ -60,7 +62,8 @@
    "focal_point": [
     0.47,
     0.33
-   ]
+   ],
+   "featured_rank": 15
   },
   {
    "title": "James Vibert, Sculptor",
@@ -79,7 +82,8 @@
    "focal_point": [
     0.5,
     0.33
-   ]
+   ],
+   "featured_rank": 20
   },
   {
    "title": "The Fountain, Villa Torlonia, Frascati, Italy",
@@ -98,7 +102,8 @@
    "focal_point": [
     0.27,
     0.36
-   ]
+   ],
+   "featured_rank": 28
   },
   {
    "title": "Scenes from the Life of Saint John the Baptist",
@@ -117,7 +122,8 @@
    "focal_point": [
     0.45,
     0.55
-   ]
+   ],
+   "featured_rank": 12
   },
   {
    "title": "Stoke-by-Nayland",
@@ -136,7 +142,8 @@
    "focal_point": [
     0.62,
     0.8
-   ]
+   ],
+   "featured_rank": 35
   },
   {
    "title": "Landscape with Saint John on Patmos",
@@ -155,7 +162,8 @@
    "focal_point": [
     0.62,
     0.82
-   ]
+   ],
+   "featured_rank": 35
   },
   {
    "title": "Mrs. George Swinton (Elizabeth Ebsworth)",
@@ -174,7 +182,8 @@
    "focal_point": [
     0.5,
     0.2
-   ]
+   ],
+   "featured_rank": 35
   },
   {
    "title": "The Captive Slave (Ira Aldridge)",
@@ -193,7 +202,8 @@
    "focal_point": [
     0.48,
     0.29
-   ]
+   ],
+   "featured_rank": 25
   },
   {
    "title": "Rip Van Winkle",
@@ -212,7 +222,8 @@
    "focal_point": [
     0.5,
     0.45
-   ]
+   ],
+   "featured_rank": 20
   },
   {
    "title": "Coast Scene, Bathers",
@@ -231,7 +242,8 @@
    "focal_point": [
     0.55,
     0.27
-   ]
+   ],
+   "featured_rank": 20
   },
   {
    "title": "Grey and Silver: Old Battersea Reach",
@@ -250,7 +262,8 @@
    "focal_point": [
     0.62,
     0.45
-   ]
+   ],
+   "featured_rank": 20
   },
   {
    "title": "The Artist in His Studio",
@@ -269,7 +282,8 @@
    "focal_point": [
     0.78,
     0.42
-   ]
+   ],
+   "featured_rank": 25
   },
   {
    "title": "Mrs. John Nicholson (Hannah Duncan) and John Nicholson, Jr.",
@@ -288,7 +302,8 @@
    "focal_point": [
     0.42,
     0.36
-   ]
+   ],
+   "featured_rank": 15
   },
   {
    "title": "Arrangement in Flesh Color and Brown: Portrait of Arthur Jerome Eddy",
@@ -307,7 +322,8 @@
    "focal_point": [
     0.45,
     0.1
-   ]
+   ],
+   "featured_rank": 30
   },
   {
    "title": "Madame Paul Escudier (Louise Lefevre)",
@@ -326,7 +342,8 @@
    "focal_point": [
     0.59,
     0.27
-   ]
+   ],
+   "featured_rank": 28
   },
   {
    "title": "Icebound",
@@ -345,7 +362,8 @@
    "focal_point": [
     0.5,
     0.55
-   ]
+   ],
+   "featured_rank": 30
   }
  ]
 }

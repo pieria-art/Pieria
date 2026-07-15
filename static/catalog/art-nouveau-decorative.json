@@ -22,7 +22,8 @@
    "focal_point": [
     0.74,
     0.49
-   ]
+   ],
+   "featured_rank": 55
   },
   {
    "title": "Pallas Athene",
@@ -41,7 +42,8 @@
    "focal_point": [
     0.45,
     0.27
-   ]
+   ],
+   "featured_rank": 50
   },
   {
    "title": "Danaë",
@@ -60,7 +62,8 @@
    "focal_point": [
     0.6,
     0.22
-   ]
+   ],
+   "featured_rank": 62
   },
   {
    "title": "The Beethoven Frieze",
@@ -79,7 +82,8 @@
    "focal_point": [
     0.36,
     0.28
-   ]
+   ],
+   "featured_rank": 55
   },
   {
    "title": "The Slav Epic: The Apotheosis of the Slavs",
@@ -98,7 +102,8 @@
    "focal_point": [
     0.5,
     0.13
-   ]
+   ],
+   "featured_rank": 40
   },
   {
    "title": "Strawberry Thief",
@@ -117,7 +122,8 @@
    "focal_point": [
     0.5,
     0.32
-   ]
+   ],
+   "featured_rank": 55
   },
   {
    "title": "Trellis",
@@ -136,7 +142,8 @@
    "focal_point": [
     0.25,
     0.4
-   ]
+   ],
+   "featured_rank": 40
   },
   {
    "title": "Acanthus",
@@ -155,7 +162,8 @@
    "focal_point": [
     0.5,
     0.35
-   ]
+   ],
+   "featured_rank": 30
   },
   {
    "title": "Magnolia and Irises",
@@ -174,7 +182,8 @@
    "focal_point": [
     0.45,
     0.2
-   ]
+   ],
+   "featured_rank": 30
   },
   {
    "title": "The Peacock Skirt",
@@ -193,26 +202,8 @@
    "focal_point": [
     0.5,
     0.18
-   ]
-  },
-  {
-   "title": "The Climax",
-   "agent_name": "Aubrey Beardsley",
-   "agent_role": "Artist",
-   "creation_date": "",
-   "cultural_context": "Art Nouveau, Decadent Movement, English",
-   "medium": "",
-   "date_display": "1894",
-   "description_narrative": "This illustration by Aubrey Beardsley depicts Salomé in a dramatic moment, kissing the severed head of John the Baptist. The striking black-and-white composition highlights the decadent and macabre themes characteristic of Beardsley's work.",
-   "tags": "salome, macabre, art nouveau, symbolism, illustration, decadent, black and white",
-   "source": "Wikimedia Commons",
-   "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Climax%2C%20RP-P-2018-3317.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Climax%2C%20RP-P-2018-3317.jpg?width=600",
-   "focal_point": [
-    0.6,
-    0.27
-   ]
+   ],
+   "featured_rank": 45
   },
   {
    "title": "The Dancer's Reward",
@@ -231,7 +222,8 @@
    "focal_point": [
     0.55,
     0.12
-   ]
+   ],
+   "featured_rank": 35
   },
   {
    "title": "Neptune's Horses",
@@ -250,7 +242,8 @@
    "focal_point": [
     0.5,
     0.35
-   ]
+   ],
+   "featured_rank": 40
   },
   {
    "title": "Grammar of Ornament: Moresque No. 1",
@@ -269,7 +262,8 @@
    "focal_point": [
     0.5,
     0.45
-   ]
+   ],
+   "featured_rank": 20
   },
   {
    "title": "Grammar of Ornament: Egyptian No. 1",
@@ -288,7 +282,8 @@
    "focal_point": [
     0.5,
     0.45
-   ]
+   ],
+   "featured_rank": 18
   },
   {
    "title": "Ver Sacrum",
@@ -307,7 +302,8 @@
    "focal_point": [
     0.5,
     0.35
-   ]
+   ],
+   "featured_rank": 20
   }
  ]
 }

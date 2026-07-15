@@ -51,10 +51,25 @@ def client(monkeypatch, tmp_path):
     (cat / "index.json").write_text(json.dumps({"version": 1, "collections": [
         {"id": "demo", "title": "Demo", "description": "d", "source": "Test Museum",
          "license": "Public Domain", "count": 2, "cover_thumbnail": ITEM_A["thumbnail_url"]},
+        {"id": "ranked", "title": "Ranked", "description": "r", "source": "Test Museum",
+         "license": "Public Domain", "count": 3, "cover_thumbnail": ITEM_A["thumbnail_url"]},
     ]}))
     (cat / "demo.json").write_text(json.dumps({
         "id": "demo", "title": "Demo", "description": "d", "source": "Test Museum",
         "license": "Public Domain", "items": [ITEM_A, ITEM_B],
+    }))
+    # A dedicated collection with distinct featured_rank values (unlike ITEM_A/ITEM_B, which tie at
+    # the default) so fame-sort ordering + item_index re-mapping can be tested independently of the
+    # other "demo" tests, which all assume original-order-preserved (tied rank) semantics.
+    RANKED_LOW = dict(ITEM_A, title="Ranked Low", source_url="https://example.test/low/full.jpg",
+                       thumbnail_url="https://example.test/low/thumb.jpg", featured_rank=5)
+    RANKED_MID = dict(ITEM_A, title="Ranked Mid", source_url="https://example.test/mid/full.jpg",
+                       thumbnail_url="https://example.test/mid/thumb.jpg", featured_rank=50)
+    RANKED_HIGH = dict(ITEM_A, title="Ranked High", source_url="https://example.test/high/full.jpg",
+                        thumbnail_url="https://example.test/high/thumb.jpg", featured_rank=95)
+    (cat / "ranked.json").write_text(json.dumps({
+        "id": "ranked", "title": "Ranked", "description": "r", "source": "Test Museum",
+        "license": "Public Domain", "items": [RANKED_LOW, RANKED_MID, RANKED_HIGH],
     }))
     # /api/catalog* now lives in routers/catalog.py — it reads its own CATALOG_DIR/ARTWORK_ROOT
     # bindings, so that's the module to patch (no app_module copies exist anymore).
@@ -94,7 +109,7 @@ def test_index_returns_collection_summaries(client):
     r = c.get("/api/catalog")
     assert r.status_code == 200
     data = r.json()
-    assert [col["id"] for col in data["collections"]] == ["demo"]
+    assert [col["id"] for col in data["collections"]] == ["demo", "ranked"]
     assert data["collections"][0]["count"] == 2
     assert "cover_thumbnail" in data["collections"][0]
     # Index must NOT inline items (that's the per-collection endpoint).
@@ -396,6 +411,77 @@ def test_crop_patch_clamps_focal_and_leaves_omitted_untouched(client):
     assert r.status_code == 200, r.text
     db.refresh(art)
     assert art.focal_x == 1.0 and art.focal_y == 0.5
+
+
+# --- Fame-sorted collection items (featured_rank) ---
+
+def test_collection_items_sorted_by_featured_rank_desc(client):
+    c, _ = client
+    items = c.get("/api/catalog/ranked").json()["items"]
+    # Original file order is Low(5), Mid(50), High(95) — response must be fame-sorted, High first.
+    assert [it["title"] for it in items] == ["Ranked High", "Ranked Mid", "Ranked Low"]
+
+
+def test_collection_items_stamp_original_item_index(client):
+    c, _ = client
+    items = c.get("/api/catalog/ranked").json()["items"]
+    # High/Mid/Low sit at raw indices 2/1/0 respectively — /api/catalog/add expects those, not the
+    # fame-sorted display position.
+    by_title = {it["title"]: it["item_index"] for it in items}
+    assert by_title == {"Ranked High": 2, "Ranked Mid": 1, "Ranked Low": 0}
+
+
+def test_add_using_stamped_item_index_adds_the_right_item(client):
+    c, db = client
+    items = c.get("/api/catalog/ranked").json()["items"]
+    low = next(it for it in items if it["title"] == "Ranked Low")
+    r = c.post("/api/catalog/add", json={"collection_id": "ranked", "item_index": low["item_index"]})
+    assert r.status_code == 200, r.text
+    art = db.query(ArtworkModel).filter(ArtworkModel.source_url == "https://example.test/low/full.jpg").first()
+    assert art is not None and art.title == "Ranked Low"
+
+
+def test_tied_rank_items_keep_original_order(client):
+    # ITEM_A/ITEM_B (the "demo" collection) have no featured_rank — both default to 0 and tie, so the
+    # sort must be stable and leave them in their original order (already covered implicitly by the
+    # add-flow tests above, asserted directly here for the fame-sort change).
+    c, _ = client
+    items = c.get("/api/catalog/demo").json()["items"]
+    assert [it["title"] for it in items] == ["Test Sunrise", "Test Dusk"]
+    assert [it["item_index"] for it in items] == [0, 1]
+
+
+# --- add-collection: get-or-create a playlist named after the collection (Museum "Start Here") ---
+
+def test_add_collection_with_no_playlist_creates_named_playlist(client):
+    c, db = client
+    r = c.post("/api/catalog/add-collection", json={"collection_id": "demo"})
+    assert r.status_code == 200, r.text
+    data = r.json()
+    assert data["added"] == 2 and data["failed"] == 0
+    pl = db.query(PlaylistModel).filter(PlaylistModel.name == "Demo").first()
+    assert pl is not None
+    links = db.execute(playlist_artwork.select().where(playlist_artwork.c.playlist_id == pl.id)).all()
+    assert len(links) == 2
+
+
+def test_add_collection_with_no_playlist_reuses_existing_named_playlist(client):
+    c, db = client
+    c.post("/api/catalog/add-collection", json={"collection_id": "demo"})
+    c.post("/api/catalog/add-collection", json={"collection_id": "demo"})  # idempotent items, same playlist
+    assert db.query(PlaylistModel).filter(PlaylistModel.name == "Demo").count() == 1
+
+
+def test_add_collection_with_explicit_playlist_id_is_unchanged(client):
+    c, db = client
+    pl = PlaylistModel(name="Wall"); db.add(pl); db.commit(); db.refresh(pl)
+    r = c.post("/api/catalog/add-collection", json={"collection_id": "demo", "playlist_id": pl.id})
+    assert r.status_code == 200, r.text
+    assert r.json()["added"] == 2
+    # No auto-named "Demo" playlist should have been created alongside the explicit target.
+    assert db.query(PlaylistModel).filter(PlaylistModel.name == "Demo").first() is None
+    links = db.execute(playlist_artwork.select().where(playlist_artwork.c.playlist_id == pl.id)).all()
+    assert len(links) == 2
 
 
 def test_crop_patch_unknown_artwork_404(client):

@@ -22,7 +22,8 @@
    "focal_point": [
     0.5,
     0.48
-   ]
+   ],
+   "featured_rank": 45
   },
   {
    "title": "Nova et Aucta Orbis Terrae Descriptio",
@@ -41,7 +42,8 @@
    "focal_point": [
     0.5,
     0.4
-   ]
+   ],
+   "featured_rank": 50
   },
   {
    "title": "Universalis Cosmographia",
@@ -60,7 +62,8 @@
    "focal_point": [
     0.45,
     0.45
-   ]
+   ],
+   "featured_rank": 55
   },
   {
    "title": "Nova Totius Terrarum Orbis Geographica",
@@ -79,7 +82,8 @@
    "focal_point": [
     0.5,
     0.5
-   ]
+   ],
+   "featured_rank": 30
   },
   {
    "title": "Americae Nova Tabula",
@@ -98,7 +102,8 @@
    "focal_point": [
     0.5,
     0.5
-   ]
+   ],
+   "featured_rank": 28
   },
   {
    "title": "Fra Mauro map",
@@ -117,7 +122,8 @@
    "focal_point": [
     0.5,
     0.5
-   ]
+   ],
+   "featured_rank": 35
   },
   {
    "title": "Tabula Rogeriana",
@@ -136,7 +142,8 @@
    "focal_point": [
     0.5,
     0.5
-   ]
+   ],
+   "featured_rank": 35
   },
   {
    "title": "Leo Belgicus",
@@ -155,7 +162,8 @@
    "focal_point": [
     0.5,
     0.45
-   ]
+   ],
+   "featured_rank": 15
   },
   {
    "title": "Ptolemy world map",
@@ -174,7 +182,8 @@
    "focal_point": [
     0.5,
     0.45
-   ]
+   ],
+   "featured_rank": 40
   },
   {
    "title": "Harmonia Macrocosmica: Planisphaerium Copernicanum",
@@ -193,7 +202,8 @@
    "focal_point": [
     0.5,
     0.52
-   ]
+   ],
+   "featured_rank": 35
   },
   {
    "title": "Harmonia Macrocosmica: Planisphaerium Ptolemaicum",
@@ -212,7 +222,8 @@
    "focal_point": [
     0.5,
     0.5
-   ]
+   ],
+   "featured_rank": 32
   },
   {
    "title": "Harmonia Macrocosmica: Northern Constellations",
@@ -231,7 +242,8 @@
    "focal_point": [
     0.5,
     0.5
-   ]
+   ],
+   "featured_rank": 30
   },
   {
    "title": "Uranometria: Orion",
@@ -250,7 +262,8 @@
    "focal_point": [
     0.45,
     0.32
-   ]
+   ],
+   "featured_rank": 30
   },
   {
    "title": "Firmamentum Sobiescianum",
@@ -269,7 +282,8 @@
    "focal_point": [
     0.5,
     0.5
-   ]
+   ],
+   "featured_rank": 22
   },
   {
    "title": "Atlas Coelestis",
@@ -288,7 +302,8 @@
    "focal_point": [
     0.78,
     0.25
-   ]
+   ],
+   "featured_rank": 20
   },
   {
    "title": "Civitates Orbis Terrarum: Constantinople",
@@ -307,7 +322,8 @@
    "focal_point": [
     0.42,
     0.42
-   ]
+   ],
+   "featured_rank": 22
   },
   {
    "title": "Carta Marina",
@@ -326,7 +342,8 @@
    "focal_point": [
     0.5,
     0.5
-   ]
+   ],
+   "featured_rank": 35
   },
   {
    "title": "A New and Accurate Map of the World",
@@ -345,7 +362,8 @@
    "focal_point": [
     0.5,
     0.45
-   ]
+   ],
+   "featured_rank": 22
   },
   {
    "title": "Nova Belgica et Anglia Nova",
@@ -364,7 +382,8 @@
    "focal_point": [
     0.45,
     0.5
-   ]
+   ],
+   "featured_rank": 25
   },
   {
    "title": "Asiae Nova Descriptio",
@@ -383,7 +402,8 @@
    "focal_point": [
     0.5,
     0.45
-   ]
+   ],
+   "featured_rank": 18
   }
  ]
 }

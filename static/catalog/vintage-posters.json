@@ -22,7 +22,8 @@
    "focal_point": [
     0.5,
     0.27
-   ]
+   ],
+   "featured_rank": 70
   },
   {
    "title": "Moulin Rouge: La Goulue",
@@ -41,7 +42,8 @@
    "focal_point": [
     0.34,
     0.27
-   ]
+   ],
+   "featured_rank": 85
   },
   {
    "title": "Divan Japonais",
@@ -60,7 +62,8 @@
    "focal_point": [
     0.5,
     0.27
-   ]
+   ],
+   "featured_rank": 70
   },
   {
    "title": "Aristide Bruant dans son cabaret",
@@ -79,7 +82,8 @@
    "focal_point": [
     0.4,
     0.27
-   ]
+   ],
+   "featured_rank": 80
   },
   {
    "title": "Jane Avril",
@@ -98,7 +102,8 @@
    "focal_point": [
     0.62,
     0.4
-   ]
+   ],
+   "featured_rank": 75
   },
   {
    "title": "Reine de Joie",
@@ -117,7 +122,8 @@
    "focal_point": [
     0.45,
     0.22
-   ]
+   ],
+   "featured_rank": 55
   },
   {
    "title": "La Revue Blanche",
@@ -136,7 +142,8 @@
    "focal_point": [
     0.3,
     0.31
-   ]
+   ],
+   "featured_rank": 60
   },
   {
    "title": "May Belfort",
@@ -155,7 +162,8 @@
    "focal_point": [
     0.42,
     0.21
-   ]
+   ],
+   "featured_rank": 50
   },
   {
    "title": "Job",
@@ -174,7 +182,8 @@
    "focal_point": [
     0.55,
     0.27
-   ]
+   ],
+   "featured_rank": 65
   },
   {
    "title": "Bières de la Meuse",
@@ -193,7 +202,8 @@
    "focal_point": [
     0.42,
     0.32
-   ]
+   ],
+   "featured_rank": 55
   },
   {
    "title": "F. Champenois Imprimeur-Éditeur",
@@ -212,7 +222,8 @@
    "focal_point": [
     0.5,
     0.3
-   ]
+   ],
+   "featured_rank": 45
   },
   {
    "title": "Zodiac",
@@ -231,7 +242,8 @@
    "focal_point": [
     0.46,
     0.34
-   ]
+   ],
+   "featured_rank": 75
   },
   {
    "title": "Rêverie",
@@ -250,7 +262,8 @@
    "focal_point": [
     0.5,
     0.3
-   ]
+   ],
+   "featured_rank": 40
   },
   {
    "title": "The Seasons: Spring",
@@ -269,7 +282,8 @@
    "focal_point": [
     0.55,
     0.22
-   ]
+   ],
+   "featured_rank": 55
   },
   {
    "title": "The Seasons: Autumn",
@@ -288,7 +302,8 @@
    "focal_point": [
     0.56,
     0.21
-   ]
+   ],
+   "featured_rank": 55
   },
   {
    "title": "La Dame aux Camélias",
@@ -307,7 +322,8 @@
    "focal_point": [
     0.5,
     0.28
-   ]
+   ],
+   "featured_rank": 60
   },
   {
    "title": "Monaco Monte-Carlo",
@@ -326,7 +342,8 @@
    "focal_point": [
     0.42,
     0.28
-   ]
+   ],
+   "featured_rank": 50
   },
   {
    "title": "Le Chat Noir",
@@ -345,7 +362,8 @@
    "focal_point": [
     0.38,
     0.22
-   ]
+   ],
+   "featured_rank": 75
   },
   {
    "title": "Folies Bergère",
@@ -364,7 +382,8 @@
    "focal_point": [
     0.45,
     0.3
-   ]
+   ],
+   "featured_rank": 45
   },
   {
    "title": "Folies-Bergère, La Loïe Fuller",
@@ -383,7 +402,8 @@
    "focal_point": [
     0.55,
     0.32
-   ]
+   ],
+   "featured_rank": 45
   },
   {
    "title": "Bal du Moulin Rouge",
@@ -402,7 +422,8 @@
    "focal_point": [
     0.6,
     0.32
-   ]
+   ],
+   "featured_rank": 55
   },
   {
    "title": "Salon des Cent",
@@ -421,7 +442,8 @@
    "focal_point": [
     0.4,
     0.32
-   ]
+   ],
+   "featured_rank": 35
   },
   {
    "title": "Absinthe Robette",
@@ -440,7 +462,8 @@
    "focal_point": [
     0.32,
     0.38
-   ]
+   ],
+   "featured_rank": 55
   },
   {
    "title": "Bitter Campari",
@@ -459,7 +482,8 @@
    "focal_point": [
     0.42,
     0.36
-   ]
+   ],
+   "featured_rank": 60
   },
   {
    "title": "Maurin Quina",
@@ -478,7 +502,8 @@
    "focal_point": [
     0.45,
     0.23
-   ]
+   ],
+   "featured_rank": 55
   },
   {
    "title": "See America Welcome to Montana",
@@ -497,7 +522,8 @@
    "focal_point": [
     0.4,
     0.27
-   ]
+   ],
+   "featured_rank": 35
   },
   {
    "title": "I Want You for U.S. Army",
@@ -516,7 +542,8 @@
    "focal_point": [
     0.5,
     0.27
-   ]
+   ],
+   "featured_rank": 95
   },
   {
    "title": "Destroy This Mad Brute",
@@ -535,7 +562,8 @@
    "focal_point": [
     0.46,
     0.36
-   ]
+   ],
+   "featured_rank": 50
   },
   {
    "title": "When Hearts are Trumps",
@@ -554,7 +582,8 @@
    "focal_point": [
     0.5,
     0.25
-   ]
+   ],
+   "featured_rank": 25
   },
   {
    "title": "Harper's March",
@@ -573,7 +602,8 @@
    "focal_point": [
     0.65,
     0.18
-   ]
+   ],
+   "featured_rank": 20
   },
   {
    "title": "The Boston Sunday Herald",
@@ -592,7 +622,8 @@
    "focal_point": [
     0.5,
     0.3
-   ]
+   ],
+   "featured_rank": 20
   }
  ]
 }

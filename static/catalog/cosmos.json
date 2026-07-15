@@ -22,7 +22,8 @@
    "focal_point": [
     0.5,
     0.45
-   ]
+   ],
+   "featured_rank": 92
   },
   {
    "title": "Webb's First Deep Field",
@@ -41,7 +42,8 @@
    "focal_point": [
     0.72,
     0.5
-   ]
+   ],
+   "featured_rank": 75
   },
   {
    "title": "Cosmic Cliffs Carina Nebula",
@@ -60,7 +62,8 @@
    "focal_point": [
     0.4,
     0.45
-   ]
+   ],
+   "featured_rank": 75
   },
   {
    "title": "Hubble Ultra Deep Field",
@@ -79,7 +82,8 @@
    "focal_point": [
     0.5,
     0.5
-   ]
+   ],
+   "featured_rank": 70
   },
   {
    "title": "Sombrero Galaxy",
@@ -98,7 +102,8 @@
    "focal_point": [
     0.5,
     0.52
-   ]
+   ],
+   "featured_rank": 60
   },
   {
    "title": "Crab Nebula",
@@ -117,7 +122,8 @@
    "focal_point": [
     0.52,
     0.5
-   ]
+   ],
+   "featured_rank": 65
   },
   {
    "title": "Horsehead Nebula",
@@ -136,7 +142,8 @@
    "focal_point": [
     0.56,
     0.46
-   ]
+   ],
+   "featured_rank": 75
   },
   {
    "title": "Andromeda Galaxy",
@@ -155,7 +162,8 @@
    "focal_point": [
     0.42,
     0.55
-   ]
+   ],
+   "featured_rank": 70
   },
   {
    "title": "Veil Nebula",
@@ -174,7 +182,8 @@
    "focal_point": [
     0.5,
     0.45
-   ]
+   ],
+   "featured_rank": 40
   },
   {
    "title": "Southern Ring Nebula Webb",
@@ -193,7 +202,8 @@
    "focal_point": [
     0.28,
     0.45
-   ]
+   ],
+   "featured_rank": 45
   },
   {
    "title": "Stephan's Quintet Webb",
@@ -212,7 +222,8 @@
    "focal_point": [
     0.6,
     0.45
-   ]
+   ],
+   "featured_rank": 55
   },
   {
    "title": "Eagle Nebula",
@@ -231,7 +242,8 @@
    "focal_point": [
     0.4,
     0.2
-   ]
+   ],
+   "featured_rank": 55
   },
   {
    "title": "Tarantula Nebula Webb",
@@ -250,7 +262,8 @@
    "focal_point": [
     0.5,
     0.55
-   ]
+   ],
+   "featured_rank": 50
   },
   {
    "title": "Helix Nebula",
@@ -269,7 +282,8 @@
    "focal_point": [
     0.47,
     0.5
-   ]
+   ],
+   "featured_rank": 55
   },
   {
    "title": "Ring Nebula",
@@ -288,7 +302,8 @@
    "focal_point": [
     0.5,
     0.52
-   ]
+   ],
+   "featured_rank": 60
   },
   {
    "title": "Orion Nebula",
@@ -307,7 +322,8 @@
    "focal_point": [
     0.45,
     0.48
-   ]
+   ],
+   "featured_rank": 75
   },
   {
    "title": "Pinwheel Galaxy",
@@ -326,7 +342,8 @@
    "focal_point": [
     0.55,
     0.55
-   ]
+   ],
+   "featured_rank": 45
   },
   {
    "title": "Antennae Galaxies",
@@ -345,7 +362,8 @@
    "focal_point": [
     0.55,
     0.4
-   ]
+   ],
+   "featured_rank": 50
   },
   {
    "title": "Mystic Mountain",
@@ -364,7 +382,8 @@
    "focal_point": [
     0.47,
     0.35
-   ]
+   ],
+   "featured_rank": 55
   },
   {
    "title": "Butterfly Nebula NGC 6302",
@@ -383,7 +402,8 @@
    "focal_point": [
     0.5,
     0.5
-   ]
+   ],
+   "featured_rank": 40
   },
   {
    "title": "Cartwheel Galaxy Webb",
@@ -402,7 +422,8 @@
    "focal_point": [
     0.6,
     0.55
-   ]
+   ],
+   "featured_rank": 48
   },
   {
    "title": "Cosmic Reef",
@@ -421,7 +442,8 @@
    "focal_point": [
     0.55,
     0.4
-   ]
+   ],
+   "featured_rank": 35
   }
  ]
 }

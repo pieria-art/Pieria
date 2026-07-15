@@ -22,7 +22,8 @@
    "focal_point": [
     0.55,
     0.32
-   ]
+   ],
+   "featured_rank": 65
   },
   {
    "title": "Portrait of a Man (\"The Auctioneer\")",
@@ -41,7 +42,8 @@
    "focal_point": [
     0.4,
     0.28
-   ]
+   ],
+   "featured_rank": 30
   },
   {
    "title": "Herman Doomer (ca. 1595–1650)",
@@ -60,7 +62,8 @@
    "focal_point": [
     0.48,
     0.38
-   ]
+   ],
+   "featured_rank": 35
   },
   {
    "title": "Portrait of Gerard de Lairesse",
@@ -79,7 +82,8 @@
    "focal_point": [
     0.52,
     0.3
-   ]
+   ],
+   "featured_rank": 30
   },
   {
    "title": "Self-Portrait",
@@ -98,7 +102,8 @@
    "focal_point": [
     0.45,
     0.32
-   ]
+   ],
+   "featured_rank": 40
   },
   {
    "title": "Hendrickje Stoffels (1626–1663)",
@@ -117,7 +122,8 @@
    "focal_point": [
     0.45,
     0.38
-   ]
+   ],
+   "featured_rank": 35
   },
   {
    "title": "Bellona",
@@ -136,45 +142,8 @@
    "focal_point": [
     0.45,
     0.28
-   ]
-  },
-  {
-   "title": "Satire on Art Criticism",
-   "agent_name": "Rembrandt (Rembrandt van Rijn)",
-   "agent_role": "Artist",
-   "creation_date": "1644",
-   "cultural_context": "Drawings",
-   "medium": "Pen and brown ink corrected with white.",
-   "date_display": "1644",
-   "description_narrative": "Rembrandt's drawing, \"Satire on Art Criticism,\" offers a witty commentary on the artistic world and its evaluators. Executed in pen and brown ink with white corrections, this work exemplifies the artist's keen observational skills and expressive draftsmanship.",
-   "tags": "satire, art criticism, drawing, dutch golden age, humor, baroque, pen and ink",
-   "source": "The Metropolitan Museum of Art",
-   "license": "Public Domain",
-   "source_url": "https://images.metmuseum.org/CRDImages/rl/original/DP359033.jpg",
-   "thumbnail_url": "https://images.metmuseum.org/CRDImages/rl/web-large/DP359033.jpg",
-   "focal_point": [
-    0.5,
-    0.45
-   ]
-  },
-  {
-   "title": "The Last Supper, after Leonardo da Vinci",
-   "agent_name": "Rembrandt (Rembrandt van Rijn)",
-   "agent_role": "Artist",
-   "creation_date": "1634–35",
-   "cultural_context": "Drawings",
-   "medium": "Red chalk",
-   "date_display": "1634–35",
-   "description_narrative": "This red chalk drawing by Rembrandt reinterprets Leonardo da Vinci's iconic Last Supper, transforming the Renaissance composition with a distinctly Baroque energy. Rembrandt explores dramatic lighting and individual psychological states, rendering the apostles with expressive gestures and varying emotional responses.",
-   "tags": "drawing, red chalk, religious art, last supper, rembrandt, dutch golden age, baroque, study",
-   "source": "The Metropolitan Museum of Art",
-   "license": "Public Domain",
-   "source_url": "https://images.metmuseum.org/CRDImages/rl/original/DP287735.jpg",
-   "thumbnail_url": "https://images.metmuseum.org/CRDImages/rl/web-large/DP287735.jpg",
-   "focal_point": [
-    0.5,
-    0.55
-   ]
+   ],
+   "featured_rank": 25
   },
   {
    "title": "Man in a Turban",
@@ -193,7 +162,8 @@
    "focal_point": [
     0.5,
     0.27
-   ]
+   ],
+   "featured_rank": 20
   },
   {
    "title": "Cottage near the Entrance to a Wood",
@@ -212,7 +182,8 @@
    "focal_point": [
     0.65,
     0.55
-   ]
+   ],
+   "featured_rank": 15
   },
   {
    "title": "Lucas van Uffel (died 1637)",
@@ -231,7 +202,8 @@
    "focal_point": [
     0.55,
     0.28
-   ]
+   ],
+   "featured_rank": 25
   },
   {
    "title": "Cottage among Trees",
@@ -250,7 +222,8 @@
    "focal_point": [
     0.46,
     0.6
-   ]
+   ],
+   "featured_rank": 15
   },
   {
    "title": "Christ Crucified between the Two Thieves: The Three Crosses",
@@ -269,7 +242,8 @@
    "focal_point": [
     0.5,
     0.35
-   ]
+   ],
+   "featured_rank": 45
   },
   {
    "title": "Reclining Female Nude",
@@ -288,7 +262,8 @@
    "focal_point": [
     0.5,
     0.5
-   ]
+   ],
+   "featured_rank": 15
   },
   {
    "title": "A Maid Asleep",
@@ -307,7 +282,8 @@
    "focal_point": [
     0.27,
     0.45
-   ]
+   ],
+   "featured_rank": 45
   },
   {
    "title": "Study of a Young Woman",
@@ -326,7 +302,8 @@
    "focal_point": [
     0.47,
     0.32
-   ]
+   ],
+   "featured_rank": 40
   },
   {
    "title": "Charity",
@@ -345,7 +322,8 @@
    "focal_point": [
     0.43,
     0.27
-   ]
+   ],
+   "featured_rank": 20
   },
   {
    "title": "The Crucifixion with the Virgin and Saint John",
@@ -364,7 +342,8 @@
    "focal_point": [
     0.5,
     0.21
-   ]
+   ],
+   "featured_rank": 18
   },
   {
    "title": "The Jabach Family",
@@ -383,7 +362,8 @@
    "focal_point": [
     0.42,
     0.4
-   ]
+   ],
+   "featured_rank": 22
   },
   {
    "title": "The Fieschi Morgan Staurotheke",
@@ -402,26 +382,8 @@
    "focal_point": [
     0.5,
     0.4
-   ]
-  },
-  {
-   "title": "Portrait of a Woman, Possibly a Nun of San Secondo; (verso) Scene in Grisaille",
-   "agent_name": "Jacometto (Jacometto Veneziano)",
-   "agent_role": "Artist",
-   "creation_date": "ca. 1485–95",
-   "cultural_context": "Paintings",
-   "medium": "Oil on wood; (verso: oil and gold on wood)",
-   "date_display": "ca. 1485–95",
-   "description_narrative": "This intimate Renaissance oil painting on wood depicts a woman, possibly a nun of San Secondo, captured with delicate detail and quiet dignity. On its reverse, a monochromatic scene in grisaille, executed in oil and gold, adds another layer of artistic complexity to this early panel painting.",
-   "tags": "renaissance, portrait, oil painting, italian art, religious art, panel painting, woman, grisaille",
-   "source": "The Metropolitan Museum of Art",
-   "license": "Public Domain",
-   "source_url": "https://images.metmuseum.org/CRDImages/rl/original/DP221483.jpg",
-   "thumbnail_url": "https://images.metmuseum.org/CRDImages/rl/web-large/DP221483.jpg",
-   "focal_point": [
-    0.45,
-    0.42
-   ]
+   ],
+   "featured_rank": 15
   },
   {
    "title": "Portrait of Alvise Contarini(?); (verso) A Tethered Roebuck",
@@ -440,7 +402,8 @@
    "focal_point": [
     0.5,
     0.38
-   ]
+   ],
+   "featured_rank": 12
   },
   {
    "title": "The Japanese Robe",
@@ -459,7 +422,8 @@
    "focal_point": [
     0.55,
     0.28
-   ]
+   ],
+   "featured_rank": 15
   },
   {
    "title": "The Death of Socrates",
@@ -478,7 +442,8 @@
    "focal_point": [
     0.5,
     0.42
-   ]
+   ],
+   "featured_rank": 78
   },
   {
    "title": "Hermann von Wedigh III (died 1560)",
@@ -497,7 +462,8 @@
    "focal_point": [
     0.58,
     0.28
-   ]
+   ],
+   "featured_rank": 35
   },
   {
    "title": "Don Gaspar de Guzmán (1587–1645), Count-Duke of Olivares",
@@ -516,7 +482,8 @@
    "focal_point": [
     0.57,
     0.22
-   ]
+   ],
+   "featured_rank": 20
   },
   {
    "title": "Young Man and Woman in an Inn",
@@ -535,7 +502,8 @@
    "focal_point": [
     0.4,
     0.34
-   ]
+   ],
+   "featured_rank": 30
   },
   {
    "title": "Boy with a Lute",
@@ -554,7 +522,8 @@
    "focal_point": [
     0.5,
     0.35
-   ]
+   ],
+   "featured_rank": 35
   },
   {
    "title": "Petrus Scriverius (1576–1660)",
@@ -573,7 +542,8 @@
    "focal_point": [
     0.45,
     0.37
-   ]
+   ],
+   "featured_rank": 25
   },
   {
    "title": "Jacob Willemsz van Veen (1456–1535), the Artist's Father",
@@ -592,7 +562,8 @@
    "focal_point": [
     0.48,
     0.33
-   ]
+   ],
+   "featured_rank": 15
   },
   {
    "title": "The Smokers",
@@ -611,7 +582,8 @@
    "focal_point": [
     0.42,
     0.28
-   ]
+   ],
+   "featured_rank": 30
   },
   {
    "title": "Portrait of a Young Man",
@@ -630,7 +602,8 @@
    "focal_point": [
     0.52,
     0.21
-   ]
+   ],
+   "featured_rank": 35
   },
   {
    "title": "The Annunciation",
@@ -649,7 +622,8 @@
    "focal_point": [
     0.72,
     0.45
-   ]
+   ],
+   "featured_rank": 30
   },
   {
    "title": "Landschap met stenen brug",
@@ -668,7 +642,8 @@
    "focal_point": [
     0.42,
     0.45
-   ]
+   ],
+   "featured_rank": 45
   },
   {
    "title": "De Nachtwacht",
@@ -687,7 +662,8 @@
    "focal_point": [
     0.5,
     0.4
-   ]
+   ],
+   "featured_rank": 96
   }
  ]
 }

@@ -22,7 +22,8 @@
    "focal_point": [
     0.5,
     0.5
-   ]
+   ],
+   "featured_rank": 92
   },
   {
    "title": "Earthrise",
@@ -41,7 +42,8 @@
    "focal_point": [
     0.47,
     0.27
-   ]
+   ],
+   "featured_rank": 92
   },
   {
    "title": "Pale Blue Dot",
@@ -60,7 +62,8 @@
    "focal_point": [
     0.62,
     0.5
-   ]
+   ],
+   "featured_rank": 85
   },
   {
    "title": "Buzz Aldrin on the Moon Apollo 11",
@@ -79,7 +82,8 @@
    "focal_point": [
     0.5,
     0.6
-   ]
+   ],
+   "featured_rank": 85
   },
   {
    "title": "Bruce McCandless spacewalk",
@@ -98,7 +102,8 @@
    "focal_point": [
     0.63,
     0.26
-   ]
+   ],
+   "featured_rank": 75
   },
   {
    "title": "Saturn from Cassini",
@@ -117,7 +122,8 @@
    "focal_point": [
     0.48,
     0.53
-   ]
+   ],
+   "featured_rank": 55
   },
   {
    "title": "The Earth seen from Apollo 17",
@@ -136,7 +142,8 @@
    "focal_point": [
     0.5,
     0.47
-   ]
+   ],
+   "featured_rank": 40
   },
   {
    "title": "Apollo 11 bootprint on the Moon",
@@ -155,26 +162,8 @@
    "focal_point": [
     0.5,
     0.56
-   ]
-  },
-  {
-   "title": "Blue Marble 2012",
-   "agent_name": "NASA’s Terra satellite for the MODIS imageries, combined by Meow. Credit: NASA Goddard Space Flight Center Image by Reto Stöckli (land surface, shallow water, clouds). Enhancements by Robert Simmon (ocean color, compositing, 3D globes, animation). Data and technical support: MODIS Land Group; MODIS Science Data Support Team; MODIS Atmosphere Group; MODIS Ocean Group Additional data: USGS EROS Data Center (topography); USGS Terrestrial Remote Sensing Flagstaff Field Center (Antarctica); Defense Meteorological Satellite Program (city lights).",
-   "agent_role": "Artist",
-   "creation_date": "",
-   "cultural_context": "21st century scientific visualization",
-   "medium": "",
-   "date_display": "2012",
-   "description_narrative": "This iconic 'Blue Marble' image presents a full view of Earth, meticulously composited from satellite data to showcase the planet's land surfaces, shallow waters, and cloud formations. Utilizing advanced imaging and data enhancement techniques, it offers a striking portrayal of our home planet from space.",
-   "tags": "earth, satellite imagery, space, planet, composite image, scientific visualization, global, cartography",
-   "source": "Wikimedia Commons",
-   "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Blue%20Marble%202002.png?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Blue%20Marble%202002.png?width=600",
-   "focal_point": [
-    0.5,
-    0.45
-   ]
+   ],
+   "featured_rank": 85
   },
   {
    "title": "The Day the Earth Smiled",
@@ -193,7 +182,8 @@
    "focal_point": [
     0.5,
     0.5
-   ]
+   ],
+   "featured_rank": 45
   },
   {
    "title": "Apollo 8 Crew Portrait",
@@ -212,7 +202,8 @@
    "focal_point": [
     0.5,
     0.62
-   ]
+   ],
+   "featured_rank": 25
   },
   {
    "title": "Apollo 11 Lunar Module Eagle",
@@ -231,7 +222,8 @@
    "focal_point": [
     0.4,
     0.71
-   ]
+   ],
+   "featured_rank": 60
   },
   {
    "title": "Curiosity Self-Portrait at Mars",
@@ -250,7 +242,8 @@
    "focal_point": [
     0.53,
     0.42
-   ]
+   ],
+   "featured_rank": 55
   },
   {
    "title": "Perseverance Selfie with Ingenuity",
@@ -269,7 +262,8 @@
    "focal_point": [
     0.34,
     0.52
-   ]
+   ],
+   "featured_rank": 40
   },
   {
    "title": "Pluto New Horizons",
@@ -288,7 +282,8 @@
    "focal_point": [
     0.5,
     0.5
-   ]
+   ],
+   "featured_rank": 65
   },
   {
    "title": "Jupiter's Great Red Spot Juno",
@@ -307,26 +302,8 @@
    "focal_point": [
     0.45,
     0.4
-   ]
-  },
-  {
-   "title": "Voyager Family Portrait",
-   "agent_name": "NASA, Voyager 1",
-   "agent_role": "Artist",
-   "creation_date": "",
-   "cultural_context": "Space Age, American scientific exploration",
-   "medium": "",
-   "date_display": "1990",
-   "description_narrative": "This iconic mosaic, captured by the Voyager 1 space probe in 1990, presents a unique perspective of our solar system's planets from beyond Neptune. It famously includes the 'Pale Blue Dot' image, revealing Earth as a tiny speck of light in the vastness of space.",
-   "tags": "space, solar system, planets, earth, scientific image, mosaic, exploration, perspective",
-   "source": "Wikimedia Commons",
-   "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Family%20portrait%20%28Voyager%201%29.png?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Family%20portrait%20%28Voyager%201%29.png?width=600",
-   "focal_point": [
-    0.1,
-    0.52
-   ]
+   ],
+   "featured_rank": 45
   },
   {
    "title": "Hubble Space Telescope in Orbit",
@@ -345,7 +322,8 @@
    "focal_point": [
     0.4,
     0.42
-   ]
+   ],
+   "featured_rank": 40
   }
  ]
 }
