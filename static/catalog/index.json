@@ -15,18 +15,18 @@
    "id": "impressionism",
    "title": "Impressionism",
    "description": "Light, color, and fleeting moments from the movement that broke with the academy.",
-   "source": "Art Institute of Chicago",
+   "source": "Art Institute of Chicago, Wikimedia Commons",
    "license": "Public Domain",
-   "count": 60,
-   "cover_thumbnail": "https://commons.wikimedia.org/wiki/Special:FilePath/Claude%20Monet%20-%20Water%20Lilies%20-%201906%2C%20Ryerson.jpg?width=600"
+   "count": 373,
+   "cover_thumbnail": "https://www.artic.edu/iiif/2/3c27b499-af56-f0d5-93b5-a7f2f1ad5813/full/400,/0/default.jpg"
   },
   {
    "id": "post-impressionism",
    "title": "Post-Impressionism",
    "description": "Bold color and expressive form — the bridge from Impressionism to modern art.",
-   "source": "Art Institute of Chicago",
+   "source": "Art Institute of Chicago, Wikimedia Commons",
    "license": "Public Domain",
-   "count": 43,
+   "count": 231,
    "cover_thumbnail": "https://commons.wikimedia.org/wiki/Special:FilePath/Vincent%20van%20Gogh%20-%20The%20Bedroom%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
