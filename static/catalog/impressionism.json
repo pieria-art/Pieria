@@ -4736,7 +4736,8 @@
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Le%20Village%20de%20Knocke%20Pissarro.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Le%20Village%20de%20Knocke%20Pissarro.jpg?width=600"
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Le%20Village%20de%20Knocke%20Pissarro.jpg?width=600",
+   "needs_frame_crop": true
   },
   {
    "title": "Vegetable Garden",
@@ -5201,7 +5202,8 @@
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Automne%20%C3%A1%20%C3%89ragny%2C%20Camille%20Pissarro%20-%203159.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Automne%20%C3%A1%20%C3%89ragny%2C%20Camille%20Pissarro%20-%203159.jpg?width=600"
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Automne%20%C3%A1%20%C3%89ragny%2C%20Camille%20Pissarro%20-%203159.jpg?width=600",
+   "needs_frame_crop": true
   },
   {
    "title": "Effect of Snow at Éragny",
@@ -5606,7 +5608,8 @@
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Kew%20Greens.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Kew%20Greens.jpg?width=600"
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Kew%20Greens.jpg?width=600",
+   "needs_frame_crop": true
   },
   {
    "title": "The Fence",
@@ -5651,7 +5654,8 @@
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Barberini%20August%202023-Camille%20Pissarro%20-%20Die%20H%C3%BCgel%20von%20Le%20Chou%2C%20Pontoise%2C%201882%20-%20Sammlung%20Hasso%20Plattner.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Barberini%20August%202023-Camille%20Pissarro%20-%20Die%20H%C3%BCgel%20von%20Le%20Chou%2C%20Pontoise%2C%201882%20-%20Sammlung%20Hasso%20Plattner.jpg?width=600"
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Barberini%20August%202023-Camille%20Pissarro%20-%20Die%20H%C3%BCgel%20von%20Le%20Chou%2C%20Pontoise%2C%201882%20-%20Sammlung%20Hasso%20Plattner.jpg?width=600",
+   "needs_frame_crop": true
   },
   {
    "title": "View of Bazincourt, Snow, Sunset",
@@ -5666,7 +5670,8 @@
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Barberini%20August%202023-Camille%20Pissarro%20-%20Blick%20auf%20Bazincourt%2C%20Schnee%2C%20Sonnenuntergang%2C%201892%20-%20Sammlung%20Hasso%20Plattner.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Barberini%20August%202023-Camille%20Pissarro%20-%20Blick%20auf%20Bazincourt%2C%20Schnee%2C%20Sonnenuntergang%2C%201892%20-%20Sammlung%20Hasso%20Plattner.jpg?width=600"
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Barberini%20August%202023-Camille%20Pissarro%20-%20Blick%20auf%20Bazincourt%2C%20Schnee%2C%20Sonnenuntergang%2C%201892%20-%20Sammlung%20Hasso%20Plattner.jpg?width=600",
+   "needs_frame_crop": true
   },
   {
    "title": "Peasant Women Planting Poles",
@@ -5741,7 +5746,8 @@
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pissarro%2C%20Louveciennes%20with%20Mount%20Valerien%20in%20the%20Background%2C%201870%2C%20Alte%20Nationalgalerie%2C%20Berlin%20%2825308145107%29.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pissarro%2C%20Louveciennes%20with%20Mount%20Valerien%20in%20the%20Background%2C%201870%2C%20Alte%20Nationalgalerie%2C%20Berlin%20%2825308145107%29.jpg?width=600"
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pissarro%2C%20Louveciennes%20with%20Mount%20Valerien%20in%20the%20Background%2C%201870%2C%20Alte%20Nationalgalerie%2C%20Berlin%20%2825308145107%29.jpg?width=600",
+   "needs_frame_crop": true
   },
   {
    "title": "The Road, Louveciennes, Effect of Snow",
