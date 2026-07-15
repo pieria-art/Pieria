@@ -3,6 +3,15 @@
  "generated": "2026-06-21T16:54:11+00:00",
  "collections": [
   {
+   "id": "greatest-hits",
+   "title": "Greatest Hits",
+   "description": "The most recognizable masterpieces across the whole collection — start here.",
+   "source": "Screen Docent",
+   "license": "Public Domain",
+   "count": 40,
+   "cover_thumbnail": "https://commons.wikimedia.org/wiki/Special:FilePath/Katsushika%20Hokusai%20-%20The%20Great%20Wave%20off%20the%20Coast%20of%20Kanagawa%20LCCN2008660568.jpg?width=600"
+  },
+  {
    "id": "impressionism",
    "title": "Impressionism",
    "description": "Light, color, and fleeting moments from the movement that broke with the academy.",
@@ -26,7 +35,7 @@
    "description": "Light, intimacy, and virtuosity from the 17th-century Netherlands.",
    "source": "Rijksmuseum, The Metropolitan Museum of Art",
    "license": "Public Domain",
-   "count": 36,
+   "count": 33,
    "cover_thumbnail": "https://images.metmuseum.org/CRDImages/ep/web-large/DP-30758-001.jpg"
   },
   {
@@ -35,7 +44,7 @@
    "description": "Harmony, perspective, and humanism from the rebirth of classical ideals.",
    "source": "Art Institute of Chicago, The Metropolitan Museum of Art",
    "license": "Public Domain",
-   "count": 20,
+   "count": 19,
    "cover_thumbnail": "https://commons.wikimedia.org/wiki/Special:FilePath/Sandro%20Botticelli%20-%20Virgin%20and%20Child%20with%20an%20Angel%20-%201954.283%20-%20Art%20Institute%20of%20Chicago.jpg?width=600"
   },
   {
@@ -80,7 +89,7 @@
    "description": "Quiet arrangements of fruit, flowers, and objects — beauty in the everyday.",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "count": 20,
+   "count": 19,
    "cover_thumbnail": "https://commons.wikimedia.org/wiki/Special:FilePath/Odilon%20Redon%20-%20Still%20Life%20with%20Flowers%20-%201988.141.22%20-%20Art%20Institute%20of%20Chicago.jpg?width=600"
   },
   {
@@ -89,7 +98,7 @@
    "description": "Marble, bronze, and stone — the enduring forms of the ancient and classical world.",
    "source": "The Metropolitan Museum of Art, Wikimedia Commons",
    "license": "Public Domain",
-   "count": 32,
+   "count": 31,
    "cover_thumbnail": "https://images.metmuseum.org/CRDImages/es/web-large/DT8910.jpg"
   },
   {
@@ -125,7 +134,7 @@
    "description": "Our planet and the missions that let us see it — from Apollo to deep space.",
    "source": "Wikimedia Commons",
    "license": "Public Domain (NASA)",
-   "count": 18,
+   "count": 16,
    "cover_thumbnail": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Blue%20Marble%2C%20AS17-148-22727.jpg?width=600"
   },
   {
@@ -143,7 +152,7 @@
    "description": "The unflinching photograph — the FSA archive and the pioneers of the form.",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "count": 24,
+   "count": 17,
    "cover_thumbnail": "https://commons.wikimedia.org/wiki/Special:FilePath/Migrant%20Mother%20by%20Dorothea%20Lange%20%28original%29.tif?width=600"
   },
   {
@@ -152,7 +161,7 @@
    "description": "The drama, movement, and shadow-pierced chiaroscuro of 17th-century Europe.",
    "source": "Cleveland Museum of Art, Wikimedia Commons",
    "license": "Public Domain",
-   "count": 25,
+   "count": 22,
    "cover_thumbnail": "https://commons.wikimedia.org/wiki/Special:FilePath/Caravaggio%20%E2%80%94%20The%20Calling%20of%20Saint%20Matthew.jpg?width=600"
   },
   {
@@ -161,7 +170,7 @@
    "description": "Dreamlike myth, doomed romance, and veiled mystery from the later 19th century.",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "count": 27,
+   "count": 24,
    "cover_thumbnail": "https://commons.wikimedia.org/wiki/Special:FilePath/John%20Everett%20Millais%20-%20Ophelia%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
@@ -170,7 +179,7 @@
    "description": "Sinuous line, gilded ornament, and the whiplash curve across print, glass, and design.",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "count": 16,
+   "count": 15,
    "cover_thumbnail": "https://commons.wikimedia.org/wiki/Special:FilePath/Klimt%20-%20Nine%20Cartoons%20for%20the%20Stoclet%20Frieze-%20Part%204%2C%20Part%20of%20the%20tree%20of%20life%20%281910-11%29.jpg?width=600"
   },
   {
@@ -188,7 +197,7 @@
    "description": "Treasures of the Nile and Mesopotamia — gold, stone, and hieroglyph across five thousand years.",
    "source": "The Metropolitan Museum of Art, Wikimedia Commons",
    "license": "Public Domain",
-   "count": 17,
+   "count": 13,
    "cover_thumbnail": "https://images.metmuseum.org/CRDImages/eg/web-large/DP248993.jpg"
   },
   {
@@ -197,7 +206,7 @@
    "description": "Chinese, Korean, Persian, and Indian masterworks of brush, ink, and gold across a thousand years.",
    "source": "Cleveland Museum of Art, The Metropolitan Museum of Art, Wikimedia Commons",
    "license": "Public Domain",
-   "count": 18,
+   "count": 15,
    "cover_thumbnail": "https://images.metmuseum.org/CRDImages/as/web-large/DP151504_CRD.jpg"
   },
   {
@@ -215,7 +224,7 @@
    "description": "Ships, storms, and the sublime power of the ocean across the centuries.",
    "source": "The Metropolitan Museum of Art, Wikimedia Commons",
    "license": "Public Domain",
-   "count": 22,
+   "count": 21,
    "cover_thumbnail": "https://images.metmuseum.org/CRDImages/ep/web-large/DP143157.jpg"
   }
  ]

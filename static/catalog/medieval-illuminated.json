@@ -22,7 +22,8 @@
    "focal_point": [
     0.45,
     0.25
-   ]
+   ],
+   "featured_rank": 20
   },
   {
    "title": "The Belles Heures of Jean de France, duc de Berry",
@@ -41,7 +42,8 @@
    "focal_point": [
     0.5,
     0.33
-   ]
+   ],
+   "featured_rank": 30
   },
   {
    "title": "The Unicorn Rests in a Garden (from the Unicorn Tapestries)",
@@ -60,7 +62,8 @@
    "focal_point": [
     0.45,
     0.45
-   ]
+   ],
+   "featured_rank": 65
   },
   {
    "title": "Book of Kells: Chi Rho Page",
@@ -79,7 +82,8 @@
    "focal_point": [
     0.45,
     0.4
-   ]
+   ],
+   "featured_rank": 75
   },
   {
    "title": "Très Riches Heures du Duc de Berry: January",
@@ -98,7 +102,8 @@
    "focal_point": [
     0.78,
     0.45
-   ]
+   ],
+   "featured_rank": 70
   },
   {
    "title": "Très Riches Heures du Duc de Berry: February",
@@ -117,7 +122,8 @@
    "focal_point": [
     0.33,
     0.63
-   ]
+   ],
+   "featured_rank": 70
   },
   {
    "title": "Bayeux Tapestry: Harold's Oath",
@@ -136,7 +142,8 @@
    "focal_point": [
     0.45,
     0.5
-   ]
+   ],
+   "featured_rank": 70
   },
   {
    "title": "Ghent Altarpiece: Adoration of the Mystic Lamb",
@@ -155,7 +162,8 @@
    "focal_point": [
     0.5,
     0.33
-   ]
+   ],
+   "featured_rank": 88
   },
   {
    "title": "Maestà",
@@ -174,7 +182,8 @@
    "focal_point": [
     0.42,
     0.4
-   ]
+   ],
+   "featured_rank": 45
   },
   {
    "title": "Santa Trinita Maestà",
@@ -193,7 +202,8 @@
    "focal_point": [
     0.5,
     0.2
-   ]
+   ],
+   "featured_rank": 40
   },
   {
    "title": "Annunciation",
@@ -212,7 +222,8 @@
    "focal_point": [
     0.64,
     0.52
-   ]
+   ],
+   "featured_rank": 55
   },
   {
    "title": "Annunciation",
@@ -231,7 +242,8 @@
    "focal_point": [
     0.6,
     0.38
-   ]
+   ],
+   "featured_rank": 65
   },
   {
    "title": "Sainte-Chapelle Stained Glass",
@@ -250,7 +262,8 @@
    "focal_point": [
     0.5,
     0.5
-   ]
+   ],
+   "featured_rank": 45
   }
  ]
 }

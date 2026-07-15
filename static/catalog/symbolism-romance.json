@@ -22,7 +22,8 @@
    "focal_point": [
     0.35,
     0.5
-   ]
+   ],
+   "featured_rank": 90
   },
   {
    "title": "Christ in the House of His Parents",
@@ -41,7 +42,8 @@
    "focal_point": [
     0.52,
     0.42
-   ]
+   ],
+   "featured_rank": 65
   },
   {
    "title": "Proserpine",
@@ -60,7 +62,8 @@
    "focal_point": [
     0.45,
     0.22
-   ]
+   ],
+   "featured_rank": 55
   },
   {
    "title": "Beata Beatrix",
@@ -79,7 +82,8 @@
    "focal_point": [
     0.5,
     0.25
-   ]
+   ],
+   "featured_rank": 65
   },
   {
    "title": "The Day Dream",
@@ -98,7 +102,8 @@
    "focal_point": [
     0.55,
     0.16
-   ]
+   ],
+   "featured_rank": 50
   },
   {
    "title": "Lady Lilith",
@@ -117,26 +122,8 @@
    "focal_point": [
     0.6,
     0.25
-   ]
-  },
-  {
-   "title": "The Light of the World",
-   "agent_name": "William Holman Hunt",
-   "agent_role": "Artist",
-   "creation_date": "",
-   "cultural_context": "Pre-Raphaelite Brotherhood, Victorian, British",
-   "medium": "",
-   "date_display": "1851-1853",
-   "description_narrative": "William Holman Hunt's \"The Light of the World\" portrays Jesus Christ, lantern in hand, knocking on a heavily overgrown, doorless door, symbolizing a soul resistant to entry. This highly allegorical work, based on Revelation 3:20, is renowned for its rich symbolism and meticulous detail.",
-   "tags": "religious, allegory, pre-raphaelite, jesus christ, symbolism, victorian, spiritual",
-   "source": "Wikimedia Commons",
-   "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Light%20of%20the%20World%20Hunt.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Light%20of%20the%20World%20Hunt.jpg?width=600",
-   "focal_point": [
-    0.5,
-    0.32
-   ]
+   ],
+   "featured_rank": 60
   },
   {
    "title": "The Awakening Conscience",
@@ -155,7 +142,8 @@
    "focal_point": [
     0.5,
     0.27
-   ]
+   ],
+   "featured_rank": 55
   },
   {
    "title": "The Golden Stairs",
@@ -174,7 +162,8 @@
    "focal_point": [
     0.5,
     0.45
-   ]
+   ],
+   "featured_rank": 55
   },
   {
    "title": "The Beguiling of Merlin",
@@ -193,7 +182,8 @@
    "focal_point": [
     0.6,
     0.18
-   ]
+   ],
+   "featured_rank": 55
   },
   {
    "title": "King Cophetua and the Beggar Maid",
@@ -212,7 +202,8 @@
    "focal_point": [
     0.62,
     0.33
-   ]
+   ],
+   "featured_rank": 65
   },
   {
    "title": "The Lady of Shalott",
@@ -231,7 +222,8 @@
    "focal_point": [
     0.4,
     0.34
-   ]
+   ],
+   "featured_rank": 88
   },
   {
    "title": "Hylas and the Nymphs",
@@ -250,7 +242,8 @@
    "focal_point": [
     0.37,
     0.18
-   ]
+   ],
+   "featured_rank": 75
   },
   {
    "title": "Ophelia",
@@ -269,7 +262,8 @@
    "focal_point": [
     0.5,
     0.22
-   ]
+   ],
+   "featured_rank": 55
   },
   {
    "title": "The Magic Circle",
@@ -288,7 +282,8 @@
    "focal_point": [
     0.4,
     0.42
-   ]
+   ],
+   "featured_rank": 45
   },
   {
    "title": "Work",
@@ -307,7 +302,8 @@
    "focal_point": [
     0.42,
     0.4
-   ]
+   ],
+   "featured_rank": 50
   },
   {
    "title": "The Last of England",
@@ -326,7 +322,8 @@
    "focal_point": [
     0.5,
     0.28
-   ]
+   ],
+   "featured_rank": 55
   },
   {
    "title": "The Apparition",
@@ -345,7 +342,8 @@
    "focal_point": [
     0.6,
     0.42
-   ]
+   ],
+   "featured_rank": 65
   },
   {
    "title": "Jupiter and Semele",
@@ -364,7 +362,8 @@
    "focal_point": [
     0.5,
     0.27
-   ]
+   ],
+   "featured_rank": 55
   },
   {
    "title": "Oedipus and the Sphinx",
@@ -383,7 +382,8 @@
    "focal_point": [
     0.56,
     0.28
-   ]
+   ],
+   "featured_rank": 65
   },
   {
    "title": "The Cyclops",
@@ -402,7 +402,8 @@
    "focal_point": [
     0.45,
     0.52
-   ]
+   ],
+   "featured_rank": 55
   },
   {
    "title": "Isle of the Dead",
@@ -421,7 +422,8 @@
    "focal_point": [
     0.42,
     0.78
-   ]
+   ],
+   "featured_rank": 70
   },
   {
    "title": "The Poor Fisherman",
@@ -440,45 +442,8 @@
    "focal_point": [
     0.38,
     0.3
-   ]
-  },
-  {
-   "title": "I Lock My Door Upon Myself",
-   "agent_name": "Fernand Khnopff",
-   "agent_role": "Artist",
-   "creation_date": "",
-   "cultural_context": "Symbolism, Belgian, Fin-de-siècle",
-   "medium": "",
-   "date_display": "1891",
-   "description_narrative": "This enigmatic oil painting depicts a solitary woman in a muted, dreamlike interior, her gaze averted, suggesting a world of inner thought. It evokes themes of introspection and isolation, characteristic of the Symbolist movement's focus on subjective experience.",
-   "tags": "symbolism, introspection, solitude, female portrait, belgian art, dreamlike, fin-de-siècle, enigmatic",
-   "source": "Wikimedia Commons",
-   "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Fernand%20Khnopff%20-%20I%20lock%20my%20door%20upon%20myself%20-%20with%20frame.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Fernand%20Khnopff%20-%20I%20lock%20my%20door%20upon%20myself%20-%20with%20frame.jpg?width=600",
-   "focal_point": [
-    0.37,
-    0.45
-   ]
-  },
-  {
-   "title": "The Sin",
-   "agent_name": "Franz von Stuck",
-   "agent_role": "Artist",
-   "creation_date": "",
-   "cultural_context": "Symbolism, German, Fin de siècle",
-   "medium": "",
-   "date_display": "1893",
-   "description_narrative": "Franz von Stuck's iconic painting depicts a mesmerizing nude female figure, often interpreted as Eve, intertwined with a large serpent in a dark, enigmatic space. This dramatic portrayal explores themes of temptation and sin with intense psychological depth.",
-   "tags": "nude, serpent, temptation, symbolism, dark, psychological, allegorical, fin de siècle",
-   "source": "Wikimedia Commons",
-   "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Sin%2C%20c.1905%20by%20Franz%20von%20Stuck.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Sin%2C%20c.1905%20by%20Franz%20von%20Stuck.jpg?width=600",
-   "focal_point": [
-    0.46,
-    0.37
-   ]
+   ],
+   "featured_rank": 50
   },
   {
    "title": "Flaming June",
@@ -497,7 +462,8 @@
    "focal_point": [
     0.45,
     0.33
-   ]
+   ],
+   "featured_rank": 85
   },
   {
    "title": "The Roses of Heliogabalus",
@@ -516,7 +482,8 @@
    "focal_point": [
     0.5,
     0.28
-   ]
+   ],
+   "featured_rank": 65
   }
  ]
 }

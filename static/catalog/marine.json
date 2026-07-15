@@ -22,7 +22,8 @@
    "focal_point": [
     0.5,
     0.5
-   ]
+   ],
+   "featured_rank": 20
   },
   {
    "title": "The Slave Ship",
@@ -41,7 +42,8 @@
    "focal_point": [
     0.5,
     0.5
-   ]
+   ],
+   "featured_rank": 80
   },
   {
    "title": "Snow Storm: Steam-Boat off a Harbour's Mouth",
@@ -60,7 +62,8 @@
    "focal_point": [
     0.52,
     0.5
-   ]
+   ],
+   "featured_rank": 70
   },
   {
    "title": "The Shipwreck",
@@ -79,7 +82,8 @@
    "focal_point": [
     0.5,
     0.5
-   ]
+   ],
+   "featured_rank": 45
   },
   {
    "title": "Dutch Boats in a Gale",
@@ -98,7 +102,8 @@
    "focal_point": [
     0.4,
     0.55
-   ]
+   ],
+   "featured_rank": 40
   },
   {
    "title": "Breezing Up (A Fair Wind)",
@@ -117,7 +122,8 @@
    "focal_point": [
     0.5,
     0.45
-   ]
+   ],
+   "featured_rank": 80
   },
   {
    "title": "The Fog Warning",
@@ -136,7 +142,8 @@
    "focal_point": [
     0.4,
     0.3
-   ]
+   ],
+   "featured_rank": 70
   },
   {
    "title": "Northeaster",
@@ -155,7 +162,8 @@
    "focal_point": [
     0.3,
     0.4
-   ]
+   ],
+   "featured_rank": 65
   },
   {
    "title": "Eight Bells",
@@ -174,7 +182,8 @@
    "focal_point": [
     0.5,
     0.42
-   ]
+   ],
+   "featured_rank": 75
   },
   {
    "title": "The Ninth Wave",
@@ -193,7 +202,8 @@
    "focal_point": [
     0.36,
     0.85
-   ]
+   ],
+   "featured_rank": 70
   },
   {
    "title": "The Black Sea",
@@ -212,7 +222,8 @@
    "focal_point": [
     0.2,
     0.55
-   ]
+   ],
+   "featured_rank": 30
   },
   {
    "title": "Among the Waves",
@@ -231,7 +242,8 @@
    "focal_point": [
     0.7,
     0.62
-   ]
+   ],
+   "featured_rank": 45
   },
   {
    "title": "A Dutch Ship in a Strong Breeze",
@@ -250,7 +262,8 @@
    "focal_point": [
     0.32,
     0.66
-   ]
+   ],
+   "featured_rank": 25
   },
   {
    "title": "Ships in a Stormy Sea",
@@ -269,7 +282,8 @@
    "focal_point": [
     0.42,
     0.58
-   ]
+   ],
+   "featured_rank": 20
   },
   {
    "title": "Ships in Distress off a Rocky Coast",
@@ -288,7 +302,8 @@
    "focal_point": [
     0.5,
     0.55
-   ]
+   ],
+   "featured_rank": 20
   },
   {
    "title": "The Monk by the Sea",
@@ -307,7 +322,8 @@
    "focal_point": [
     0.35,
     0.85
-   ]
+   ],
+   "featured_rank": 78
   },
   {
    "title": "The Stormy Sea",
@@ -326,7 +342,8 @@
    "focal_point": [
     0.27,
     0.78
-   ]
+   ],
+   "featured_rank": 45
   },
   {
    "title": "Calm Sea",
@@ -345,7 +362,8 @@
    "focal_point": [
     0.5,
     0.6
-   ]
+   ],
+   "featured_rank": 30
   },
   {
    "title": "Brig upon the Water",
@@ -364,7 +382,8 @@
    "focal_point": [
     0.54,
     0.66
-   ]
+   ],
+   "featured_rank": 45
   },
   {
    "title": "The Great Wave, Sète",
@@ -383,26 +402,8 @@
    "focal_point": [
     0.45,
     0.47
-   ]
-  },
-  {
-   "title": "Ships in a Storm",
-   "agent_name": "Hendrick Dubbels",
-   "agent_role": "Artist",
-   "creation_date": "",
-   "cultural_context": "",
-   "medium": "",
-   "date_display": "",
-   "description_narrative": "Hendrick Dubbels' artwork, 'Ships in a Storm,' vividly captures the turbulent power of the sea. The composition likely depicts vessels battling against formidable maritime conditions.",
-   "tags": "ships, storm, sea, marine, turbulence, dramatic",
-   "source": "Wikimedia Commons",
-   "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Dubbels%20-%20Ships%20in%20the%20storm%20-%20with%20frame.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Dubbels%20-%20Ships%20in%20the%20storm%20-%20with%20frame.jpg?width=600",
-   "focal_point": [
-    0.37,
-    0.55
-   ]
+   ],
+   "featured_rank": 60
   },
   {
    "title": "The Icebergs",
@@ -421,7 +422,8 @@
    "focal_point": [
     0.5,
     0.4
-   ]
+   ],
+   "featured_rank": 75
   }
  ]
 }

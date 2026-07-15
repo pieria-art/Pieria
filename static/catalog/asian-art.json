@@ -22,7 +22,8 @@
    "focal_point": [
     0.53,
     0.5
-   ]
+   ],
+   "featured_rank": 45
   },
   {
    "title": "Old Trees, Level Distance",
@@ -41,26 +42,8 @@
    "focal_point": [
     0.6,
     0.5
-   ]
-  },
-  {
-   "title": "Along the River During the Qingming Festival",
-   "agent_name": "Zhang Zeduan",
-   "agent_role": "Artist",
-   "creation_date": "",
-   "cultural_context": "Song Dynasty, Chinese",
-   "medium": "",
-   "date_display": "early 12th century",
-   "description_narrative": "Along the River During the Qingming Festival is a renowned masterpiece of Chinese art, attributed to the Song dynasty artist Zhang Zeduan. It vividly captures the everyday life and bustling urban landscape of a city during the Qingming Festival.",
-   "tags": "chinese painting, song dynasty, daily life, urban landscape, festival, genre scene, historical, scroll painting",
-   "source": "Wikimedia Commons",
-   "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Along%20the%20River%20During%20the%20Qingming%20Festival%20%28Qing%20Court%20Version%29.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Along%20the%20River%20During%20the%20Qingming%20Festival%20%28Qing%20Court%20Version%29.jpg?width=600",
-   "focal_point": [
-    0.5,
-    0.5
-   ]
+   ],
+   "featured_rank": 35
   },
   {
    "title": "Travelers Among Mountains and Streams",
@@ -79,26 +62,8 @@
    "focal_point": [
     0.55,
     0.38
-   ]
-  },
-  {
-   "title": "A Thousand Li of Rivers and Mountains",
-   "agent_name": "Wang Ximeng",
-   "agent_role": "Artist",
-   "creation_date": "",
-   "cultural_context": "Song Dynasty, Chinese",
-   "medium": "",
-   "date_display": "1113",
-   "description_narrative": "Wang Ximeng's 'A Thousand Li of Rivers and Mountains' is a monumental handscroll renowned for its vivid blue and green pigments and intricate details. This masterpiece of Chinese landscape painting captures an expansive, idealized vision of nature, reflecting the artistic grandeur of the Song dynasty.",
-   "tags": "landscape, handscroll, Chinese art, Song dynasty, blue-green, nature, classical",
-   "source": "Wikimedia Commons",
-   "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Wang%20Ximeng.%20A%20Thousand%20Li%20of%20Rivers%20and%20Mountains.%20%28Complete%2C%2051%2C3x1191%2C5%20cm%29.%201113.%20Palace%20museum%2C%20Beijing.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Wang%20Ximeng.%20A%20Thousand%20Li%20of%20Rivers%20and%20Mountains.%20%28Complete%2C%2051%2C3x1191%2C5%20cm%29.%201113.%20Palace%20museum%2C%20Beijing.jpg?width=600",
-   "focal_point": [
-    0.5,
-    0.45
-   ]
+   ],
+   "featured_rank": 55
   },
   {
    "title": "Early Spring",
@@ -117,7 +82,8 @@
    "focal_point": [
     0.5,
     0.45
-   ]
+   ],
+   "featured_rank": 50
   },
   {
    "title": "Nine Dragons",
@@ -136,7 +102,8 @@
    "focal_point": [
     0.78,
     0.5
-   ]
+   ],
+   "featured_rank": 40
   },
   {
    "title": "Night Revels of Han Xizai",
@@ -155,7 +122,8 @@
    "focal_point": [
     0.13,
     0.42
-   ]
+   ],
+   "featured_rank": 48
   },
   {
    "title": "Summer Mountains",
@@ -174,7 +142,8 @@
    "focal_point": [
     0.42,
     0.35
-   ]
+   ],
+   "featured_rank": 25
   },
   {
    "title": "The Court of Gayumars",
@@ -193,7 +162,8 @@
    "focal_point": [
     0.5,
     0.4
-   ]
+   ],
+   "featured_rank": 50
   },
   {
    "title": "Folio from the Shahnameh of Shah Tahmasp",
@@ -212,7 +182,8 @@
    "focal_point": [
     0.6,
     0.5
-   ]
+   ],
+   "featured_rank": 35
   },
   {
    "title": "Folio from the Hamzanama",
@@ -231,7 +202,8 @@
    "focal_point": [
     0.62,
     0.66
-   ]
+   ],
+   "featured_rank": 28
   },
   {
    "title": "Krishna Lifting Mount Govardhan",
@@ -250,7 +222,8 @@
    "focal_point": [
     0.45,
     0.43
-   ]
+   ],
+   "featured_rank": 30
   },
   {
    "title": "Pine Trees Screen",
@@ -269,7 +242,8 @@
    "focal_point": [
     0.3,
     0.4
-   ]
+   ],
+   "featured_rank": 50
   },
   {
    "title": "Wind God and Thunder God",
@@ -288,7 +262,8 @@
    "focal_point": [
     0.4,
     0.22
-   ]
+   ],
+   "featured_rank": 55
   },
   {
    "title": "Red and White Plum Blossoms",
@@ -307,7 +282,8 @@
    "focal_point": [
     0.5,
     0.5
-   ]
+   ],
+   "featured_rank": 55
   },
   {
    "title": "Irises Screen",
@@ -326,26 +302,8 @@
    "focal_point": [
     0.3,
     0.4
-   ]
-  },
-  {
-   "title": "David Vases",
-   "agent_name": "Chinese (Yuan)",
-   "agent_role": "Artist",
-   "creation_date": "",
-   "cultural_context": "Yuan Dynasty, Chinese",
-   "medium": "",
-   "date_display": "1351",
-   "description_narrative": "The David Vases are a pair of blue-and-white porcelain temple vases, among the most celebrated examples of their kind from the Yuan dynasty. Their significant historical value comes from the long, inscribed dedications on their necks, providing the precise date of their creation.",
-   "tags": "porcelain, blue and white, Yuan dynasty, Chinese art, temple vases, historical, ceramics, decorative",
-   "source": "Wikimedia Commons",
-   "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20David%20Vases.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20David%20Vases.jpg?width=600",
-   "focal_point": [
-    0.5,
-    0.42
-   ]
+   ],
+   "featured_rank": 55
   }
  ]
 }

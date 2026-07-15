@@ -29,6 +29,9 @@
         /* Sidebar Styling */
         aside {
             width: 320px;
+            /* Never let main's content (e.g. an oversized catalog thumbnail) squeeze the
+               sidebar narrower than its intended width — see the `main` min-width note below. */
+            flex-shrink: 0;
             background-color: var(--sidebar-bg);
             border-right: 1px solid var(--border-color);
             display: flex;
@@ -91,7 +94,11 @@
         }
 
         /* Main Content */
-        main { flex-grow: 1; padding: 0 40px; overflow-y: auto; }
+        /* min-width: 0 overrides the flex-item default of min-width: auto, which otherwise lets
+           oversized content (e.g. a 10:1 handscroll thumbnail — see .artwork-card img below) force
+           this column wider than its flex track and squeeze the sidebar. overflow-x: hidden backstops
+           it so any content that still computes wider than the column clips instead of overflowing. */
+        main { flex-grow: 1; min-width: 0; padding: 0 40px; overflow-x: hidden; overflow-y: auto; }
 
         /* Sticky header: keeps the drop zone + Add buttons pinned to the top of the
            right pane while the artwork grid scrolls beneath it. Single scroll (main). */
@@ -131,7 +138,12 @@
             border: 1px solid var(--border-color);
             position: relative;
         }
-        .artwork-card img { width: 100%; height: 180px; object-fit: cover; }
+        /* aspect-ratio pins the ratio the browser uses when it derives a width from the fixed
+           height during grid track sizing (before the column width is resolved). Without it, an
+           extreme-aspect source image (a Chinese handscroll, a space panorama) falls back to its
+           OWN natural ratio for that calculation and can demand a column hundreds of px too wide,
+           which is what deformed the sidebar. max-width:100% + object-fit:cover keep the crop. */
+        .artwork-card img { width: 100%; max-width: 100%; height: 180px; aspect-ratio: 3 / 2; object-fit: cover; }
         .artwork-card .info { padding: 15px; font-size: 0.85rem; }
         .artwork-card .actions { 
             position: absolute; top: 10px; right: 10px; display: flex; gap: 5px; 
@@ -144,6 +156,12 @@
             border-radius: 4px;
             cursor: pointer;
         }
+
+        /* Museum Art curation: "Start Here" (Greatest Hits) surfaces first + visually distinct;
+           a small-set badge de-emphasizes (never hides) collections under 5 works. */
+        .artwork-card.catalog-start-here { border-color: var(--accent-color); box-shadow: 0 0 0 1px var(--accent-color); }
+        .start-here-badge { background: var(--accent-color); color: #fff; font-weight: 600; }
+        .few-works-badge { opacity: 0.7; }
 
         /* Review Queue Styling */
         .review-card {

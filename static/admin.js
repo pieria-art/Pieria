@@ -16,6 +16,9 @@ let currentView = 'playlists';
 let pollInterval = null;
 let sortableInstance = null;
 let currentSessionId = null;
+// Set only during page load when a catalog collection was open at refresh time; renderCatalog()
+// consumes it once (re-opening that collection instead of drawing the grid) then clears it.
+let pendingCatalogRestore = null;
 
 // Serialization Queue for API Actions
 let actionQueue = [];
@@ -62,6 +65,10 @@ async function init() {
     let savedView = (() => { try { return localStorage.getItem('sd_admin_view'); } catch (e) { return null; } })();
     // Migrate the old split Discover/Browse-Catalog views to the merged Museum Art view.
     if (savedView === 'catalog' || savedView === 'discover') savedView = 'museum';
+    // Restore the catalog collection that was open, so refresh returns to it (not the collections
+    // grid). Must be read before switchView() below — switching to 'museum' synchronously renders
+    // the grid via enterMuseum(), and renderCatalog() consumes this to redirect into the collection.
+    try { pendingCatalogRestore = localStorage.getItem('sd_admin_catalog_collection'); } catch (e) { pendingCatalogRestore = null; }
     const validViews = ['playlists', 'library', 'review', 'museum', 'devices', 'publisher', 'settings'];
     if (savedView && validViews.includes(savedView)) {
         switchView(savedView);
@@ -2599,6 +2606,16 @@ async function loadPhotosCount() {
 
 async function renderCatalog() {
     if (catalogSelectMode) exitCatalogSelect();  // clean slate when navigating between catalog views
+    // Page-load restore: re-open the collection that was open at refresh time instead of drawing
+    // the grid. Consumed once so later calls to renderCatalog() (e.g. the "All collections" back
+    // button) behave normally.
+    if (pendingCatalogRestore) {
+        const restoreId = pendingCatalogRestore;
+        pendingCatalogRestore = null;
+        return openCatalogCollection(restoreId);
+    }
+    // Showing the collections grid means we're no longer inside a specific collection.
+    try { localStorage.removeItem('sd_admin_catalog_collection'); } catch (e) {}
     const container = document.getElementById('catalog-container');
     if (!container) return;
     container.innerHTML = '<p style="color:#94a3b8;">Loading catalog…</p>';
@@ -2617,13 +2634,22 @@ async function renderCatalog() {
             const card = document.createElement('div');
             card.className = 'artwork-card';
             card.style.cursor = 'pointer';
+            // "Start Here" — the curated Greatest Hits collection is the fame-sorted on-ramp into a
+            // ~1000-work catalog; index.json already lists it first, this just makes that visible.
+            const isStartHere = col.id === 'greatest-hits';
+            // A tiny collection (e.g. 2-item Ukiyo-e) reads as broken next to 30-work neighbors —
+            // de-emphasize, never hide, so it doesn't look like a UI bug.
+            const isSmall = (col.count || 0) > 0 && col.count < 5;
+            if (isStartHere) card.classList.add('catalog-start-here');
             card.onclick = () => openCatalogCollection(col.id);
             card.innerHTML = `
                 <img loading="lazy" src="${_esc(col.cover_thumbnail)}" alt="${_esc(col.title)}" style="background:#0f172a;">
                 <div class="info">
+                    ${isStartHere ? '<span class="badge start-here-badge">★ Start Here</span><br>' : ''}
                     <strong>${_esc(col.title)}</strong> ${trustBadge(col.origin, col.trust)}<br>
                     <small style="opacity:0.7">${_esc(col.description || '')}</small><br>
                     <small style="color:var(--accent-color)">${col.count} works →</small>
+                    ${isSmall ? ' <span class="badge few-works-badge">small set</span>' : ''}
                 </div>`;
             grid.appendChild(card);
         });
@@ -2638,12 +2664,20 @@ async function renderCatalog() {
 // Level 2: one collection's items (lazy — only this collection's thumbnails load).
 async function openCatalogCollection(collectionId) {
     if (catalogSelectMode) exitCatalogSelect();  // clean slate when navigating between catalog views
+    // Remember the open collection so a browser refresh returns to it instead of resetting to the
+    // collections grid (mirrors sd_admin_playlist for the LIBRARY playlist sidebar).
+    try { localStorage.setItem('sd_admin_catalog_collection', String(collectionId)); } catch (e) {}
     const container = document.getElementById('catalog-container');
     if (!container) return;
     container.innerHTML = '<p style="color:#94a3b8;">Loading…</p>';
     try {
         const resp = await fetch(`${API_BASE}/api/catalog/${encodeURIComponent(collectionId)}`);
-        if (!resp.ok) { container.innerHTML = '<p style="color:#ef4444;">Collection not found.</p>'; return; }
+        if (!resp.ok) {
+            // Stale/deleted collection id — self-heal so a refresh doesn't keep retrying it.
+            try { localStorage.removeItem('sd_admin_catalog_collection'); } catch (e) {}
+            container.innerHTML = '<p style="color:#ef4444;">Collection not found.</p>';
+            return;
+        }
         const col = await resp.json();
         const items = col.items || [];
 
@@ -2669,9 +2703,14 @@ async function openCatalogCollection(collectionId) {
             const card = document.createElement('div');
             card.className = 'artwork-card';
             const added = !!it.added;
+            // Items arrive fame-sorted (featured_rank desc), so the array position `idx` is NOT the
+            // index /api/catalog/add expects — the server stamps the original position as
+            // `item_index` on every item for exactly this reason. Fall back to `idx` only if it's
+            // ever missing (e.g. an older cached response).
+            const itemIdx = it.item_index ?? idx;
             card.dataset.cid = col.id;
-            card.dataset.idx = idx;
-            card.dataset.cidx = `${col.id}:${idx}`;
+            card.dataset.idx = itemIdx;
+            card.dataset.cidx = `${col.id}:${itemIdx}`;
             if (added) card.dataset.added = '1';
             card.innerHTML = `
                 <img loading="lazy" src="${_esc(it.thumbnail_url)}" alt="${_esc(it.title)}" style="background:#0f172a;">
@@ -2681,7 +2720,7 @@ async function openCatalogCollection(collectionId) {
                     <small style="opacity:0.6">${_esc(it.date_display || '')}</small>
                 </div>
                 <div class="actions">
-                    <button class="success" ${added ? 'disabled' : ''} onclick="addCatalogItem('${_esc(col.id)}', ${idx}, this)">${added ? 'Added ✓' : 'Add to Library'}</button>
+                    <button class="success" ${added ? 'disabled' : ''} onclick="addCatalogItem('${_esc(col.id)}', ${itemIdx}, this)">${added ? 'Added ✓' : 'Add to Library'}</button>
                 </div>`;
             grid.appendChild(card);
         });

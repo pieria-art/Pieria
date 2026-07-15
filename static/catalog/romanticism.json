@@ -22,7 +22,8 @@
    "focal_point": [
     0.5,
     0.5
-   ]
+   ],
+   "featured_rank": 30
   },
   {
    "title": "New England Scenery",
@@ -41,7 +42,8 @@
    "focal_point": [
     0.5,
     0.55
-   ]
+   ],
+   "featured_rank": 28
   },
   {
    "title": "A Friendly Warning",
@@ -60,7 +62,8 @@
    "focal_point": [
     0.52,
     0.32
-   ]
+   ],
+   "featured_rank": 18
   },
   {
    "title": "Capture of the Tripoli by the Enterprise",
@@ -79,7 +82,8 @@
    "focal_point": [
     0.6,
     0.55
-   ]
+   ],
+   "featured_rank": 20
   },
   {
    "title": "Pergola with Oranges",
@@ -98,7 +102,8 @@
    "focal_point": [
     0.52,
     0.6
-   ]
+   ],
+   "featured_rank": 18
   },
   {
    "title": "Coming Squall (Nahant Beach with a Summer Shower)",
@@ -117,7 +122,8 @@
    "focal_point": [
     0.38,
     0.57
-   ]
+   ],
+   "featured_rank": 18
   },
   {
    "title": "Apollo and Marsyas",
@@ -136,7 +142,8 @@
    "focal_point": [
     0.4,
     0.68
-   ]
+   ],
+   "featured_rank": 18
   },
   {
    "title": "Study for \"William Rush Carving His Allegorical Figure of the Schuylkill River\"",
@@ -155,7 +162,8 @@
    "focal_point": [
     0.46,
     0.33
-   ]
+   ],
+   "featured_rank": 30
   },
   {
    "title": "Summit of the Sierras",
@@ -174,7 +182,8 @@
    "focal_point": [
     0.5,
     0.28
-   ]
+   ],
+   "featured_rank": 30
   },
   {
    "title": "Portrait of Mary Adeline Williams",
@@ -193,7 +202,8 @@
    "focal_point": [
     0.42,
     0.28
-   ]
+   ],
+   "featured_rank": 25
   },
   {
    "title": "Riter Fitzgerald",
@@ -212,7 +222,8 @@
    "focal_point": [
     0.38,
     0.3
-   ]
+   ],
+   "featured_rank": 20
   },
   {
    "title": "Sarah Dupont",
@@ -231,7 +242,8 @@
    "focal_point": [
     0.48,
     0.36
-   ]
+   ],
+   "featured_rank": 20
   },
   {
    "title": "Landscape with Dog",
@@ -250,7 +262,8 @@
    "focal_point": [
     0.47,
     0.47
-   ]
+   ],
+   "featured_rank": 18
   },
   {
    "title": "Mrs. Klapp (Anna Milnor)",
@@ -269,7 +282,8 @@
    "focal_point": [
     0.48,
     0.25
-   ]
+   ],
+   "featured_rank": 18
   },
   {
    "title": "Dr. Joseph Klapp",
@@ -288,7 +302,8 @@
    "focal_point": [
     0.46,
     0.27
-   ]
+   ],
+   "featured_rank": 18
   },
   {
    "title": "Isabella Wolff",
@@ -307,7 +322,8 @@
    "focal_point": [
     0.52,
     0.3
-   ]
+   ],
+   "featured_rank": 28
   },
   {
    "title": "Fishing Boats with Hucksters Bargaining for Fish",
@@ -326,7 +342,8 @@
    "focal_point": [
     0.27,
     0.5
-   ]
+   ],
+   "featured_rank": 32
   },
   {
    "title": "Valley of Aosta: Snowstorm, Avalanche, and Thunderstorm",
@@ -345,7 +362,8 @@
    "focal_point": [
     0.45,
     0.35
-   ]
+   ],
+   "featured_rank": 42
   },
   {
    "title": "Study for \"An Aragonese Smuggler\"",
@@ -364,7 +382,8 @@
    "focal_point": [
     0.62,
     0.69
-   ]
+   ],
+   "featured_rank": 15
   }
  ]
 }

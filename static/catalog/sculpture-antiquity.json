@@ -22,7 +22,8 @@
    "focal_point": [
     0.5,
     0.5
-   ]
+   ],
+   "featured_rank": 25
   },
   {
    "title": "Sabine Houdon (1787–1836)",
@@ -41,7 +42,8 @@
    "focal_point": [
     0.5,
     0.4
-   ]
+   ],
+   "featured_rank": 25
   },
   {
    "title": "Damascus Room",
@@ -60,7 +62,8 @@
    "focal_point": [
     0.5,
     0.45
-   ]
+   ],
+   "featured_rank": 35
   },
   {
    "title": "The Death of Socrates",
@@ -79,26 +82,8 @@
    "focal_point": [
     0.5,
     0.42
-   ]
-  },
-  {
-   "title": "Portrait of a Woman, Possibly a Nun of San Secondo; (verso) Scene in Grisaille",
-   "agent_name": "Jacometto (Jacometto Veneziano)",
-   "agent_role": "Artist",
-   "creation_date": "ca. 1485–95",
-   "cultural_context": "Paintings",
-   "medium": "Oil on wood; (verso: oil and gold on wood)",
-   "date_display": "ca. 1485–95",
-   "description_narrative": "This intimate Renaissance oil painting on wood depicts a woman, possibly a nun of San Secondo, captured with delicate detail and quiet dignity. On its reverse, a monochromatic scene in grisaille, executed in oil and gold, adds another layer of artistic complexity to this early panel painting.",
-   "tags": "renaissance, portrait, oil painting, italian art, religious art, panel painting, woman, grisaille",
-   "source": "The Metropolitan Museum of Art",
-   "license": "Public Domain",
-   "source_url": "https://images.metmuseum.org/CRDImages/rl/original/DP221483.jpg",
-   "thumbnail_url": "https://images.metmuseum.org/CRDImages/rl/web-large/DP221483.jpg",
-   "focal_point": [
-    0.45,
-    0.42
-   ]
+   ],
+   "featured_rank": 78
   },
   {
    "title": "Portrait of Alvise Contarini(?); (verso) A Tethered Roebuck",
@@ -117,7 +102,8 @@
    "focal_point": [
     0.5,
     0.38
-   ]
+   ],
+   "featured_rank": 12
   },
   {
    "title": "Oedipus and the Sphinx",
@@ -136,7 +122,8 @@
    "focal_point": [
     0.5,
     0.33
-   ]
+   ],
+   "featured_rank": 45
   },
   {
    "title": "The Jabach Family",
@@ -155,7 +142,8 @@
    "focal_point": [
     0.42,
     0.4
-   ]
+   ],
+   "featured_rank": 22
   },
   {
    "title": "Tommaso di Folco Portinari (1428–1501); Maria Portinari (Maria Maddalena Baroncelli, born 1456)",
@@ -174,7 +162,8 @@
    "focal_point": [
     0.5,
     0.33
-   ]
+   ],
+   "featured_rank": 30
   },
   {
    "title": "Standing Figure with Jeweled Headdress",
@@ -193,7 +182,8 @@
    "focal_point": [
     0.5,
     0.18
-   ]
+   ],
+   "featured_rank": 15
   },
   {
    "title": "Bronze figure of a boy in Eastern dress",
@@ -212,7 +202,8 @@
    "focal_point": [
     0.48,
     0.23
-   ]
+   ],
+   "featured_rank": 12
   },
   {
    "title": "Bronze statuette of a philosopher on a lamp stand",
@@ -231,7 +222,8 @@
    "focal_point": [
     0.52,
     0.16
-   ]
+   ],
+   "featured_rank": 12
   },
   {
    "title": "Marble torso of a boy",
@@ -250,7 +242,8 @@
    "focal_point": [
     0.45,
     0.4
-   ]
+   ],
+   "featured_rank": 10
   },
   {
    "title": "Limestone statue of Aphrodite holding winged Eros",
@@ -269,7 +262,8 @@
    "focal_point": [
     0.48,
     0.22
-   ]
+   ],
+   "featured_rank": 12
   },
   {
    "title": "The Horse Fair",
@@ -288,7 +282,8 @@
    "focal_point": [
     0.5,
     0.42
-   ]
+   ],
+   "featured_rank": 55
   },
   {
    "title": "The Fieschi Morgan Staurotheke",
@@ -307,7 +302,8 @@
    "focal_point": [
     0.5,
     0.4
-   ]
+   ],
+   "featured_rank": 15
   },
   {
    "title": "Tobatsu Bishamonten",
@@ -326,7 +322,8 @@
    "focal_point": [
     0.46,
     0.21
-   ]
+   ],
+   "featured_rank": 15
   },
   {
    "title": "Self-Portrait",
@@ -345,7 +342,8 @@
    "focal_point": [
     0.5,
     0.35
-   ]
+   ],
+   "featured_rank": 35
   },
   {
    "title": "Uraeus fitting from shrine",
@@ -364,7 +362,8 @@
    "focal_point": [
     0.45,
     0.2
-   ]
+   ],
+   "featured_rank": 8
   },
   {
    "title": "Marble portrait of the co-emperor Lucius Verus",
@@ -383,7 +382,8 @@
    "focal_point": [
     0.43,
     0.38
-   ]
+   ],
+   "featured_rank": 12
   },
   {
    "title": "Marble portrait bust of a woman",
@@ -402,7 +402,8 @@
    "focal_point": [
     0.45,
     0.32
-   ]
+   ],
+   "featured_rank": 8
   },
   {
    "title": "The Storm",
@@ -421,7 +422,8 @@
    "focal_point": [
     0.45,
     0.42
-   ]
+   ],
+   "featured_rank": 35
   },
   {
    "title": "Miniature tabard",
@@ -440,7 +442,8 @@
    "focal_point": [
     0.5,
     0.4
-   ]
+   ],
+   "featured_rank": 8
   },
   {
    "title": "Hercules and Achelous",
@@ -459,7 +462,8 @@
    "focal_point": [
     0.42,
     0.28
-   ]
+   ],
+   "featured_rank": 10
   },
   {
    "title": "Venus de Milo",
@@ -478,7 +482,8 @@
    "focal_point": [
     0.42,
     0.15
-   ]
+   ],
+   "featured_rank": 98
   },
   {
    "title": "Winged Victory of Samothrace",
@@ -497,7 +502,8 @@
    "focal_point": [
     0.43,
     0.27
-   ]
+   ],
+   "featured_rank": 95
   },
   {
    "title": "Laocoön and His Sons",
@@ -516,7 +522,8 @@
    "focal_point": [
     0.4,
     0.13
-   ]
+   ],
+   "featured_rank": 90
   },
   {
    "title": "Pietà",
@@ -535,7 +542,8 @@
    "focal_point": [
     0.52,
     0.22
-   ]
+   ],
+   "featured_rank": 97
   },
   {
    "title": "Moses",
@@ -554,7 +562,8 @@
    "focal_point": [
     0.5,
     0.36
-   ]
+   ],
+   "featured_rank": 85
   },
   {
    "title": "Discobolus",
@@ -573,7 +582,8 @@
    "focal_point": [
     0.5,
     0.4
-   ]
+   ],
+   "featured_rank": 82
   },
   {
    "title": "The Thinker",
@@ -592,7 +602,8 @@
    "focal_point": [
     0.68,
     0.27
-   ]
+   ],
+   "featured_rank": 96
   },
   {
    "title": "The Kiss",
@@ -611,7 +622,8 @@
    "focal_point": [
     0.52,
     0.14
-   ]
+   ],
+   "featured_rank": 94
   }
  ]
 }
