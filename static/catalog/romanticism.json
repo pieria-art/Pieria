@@ -2,7 +2,7 @@
  "id": "romanticism",
  "title": "Romanticism & the Sublime",
  "description": "Nature at its most awe-inspiring, and the human drama set against it.",
- "source": "Art Institute of Chicago, Wikimedia Commons",
+ "source": "Art Institute of Chicago, The Metropolitan Museum of Art, Wikimedia Commons",
  "license": "Public Domain",
  "items": [
   {
@@ -46,46 +46,6 @@
    "featured_rank": 28
   },
   {
-   "title": "A Friendly Warning",
-   "agent_name": "Thomas Hicks",
-   "agent_role": "Artist",
-   "creation_date": "1881–90",
-   "cultural_context": "19th century, American",
-   "medium": "Oil on canvas",
-   "date_display": "1881–90",
-   "description_narrative": "This oil on canvas, titled 'A Friendly Warning,' presents a narrative scene inviting viewer contemplation. The artist, Thomas Hicks, utilized traditional painting techniques to convey the depicted interaction.",
-   "tags": "painting, 19th century, american art, narrative, figurative, oil painting",
-   "source": "Art Institute of Chicago",
-   "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Thomas%20Hicks%20-%20A%20Friendly%20Warning%20-%201967.174%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Thomas%20Hicks%20-%20A%20Friendly%20Warning%20-%201967.174%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
-   "focal_point": [
-    0.52,
-    0.32
-   ],
-   "featured_rank": 18
-  },
-  {
-   "title": "Capture of the Tripoli by the Enterprise",
-   "agent_name": "Thomas Birch",
-   "agent_role": "Artist",
-   "creation_date": "1806–12",
-   "cultural_context": "American, Early 19th Century",
-   "medium": "Oil on canvas",
-   "date_display": "1806–12",
-   "description_narrative": "This historical painting by Thomas Birch depicts the dramatic naval engagement between the USS Enterprise and the Tripolitan ship Tripoli. Rendered in oil on canvas, it captures a pivotal moment from the First Barbary War.",
-   "tags": "naval, historical, marine, early american, war, 19th century, dramatic",
-   "source": "Art Institute of Chicago",
-   "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Thomas%20Birch%20-%20Capture%20of%20the%20Tripoli%20by%20the%20Enterprise%20-%201991.30%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Thomas%20Birch%20-%20Capture%20of%20the%20Tripoli%20by%20the%20Enterprise%20-%201991.30%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
-   "focal_point": [
-    0.6,
-    0.55
-   ],
-   "featured_rank": 20
-  },
-  {
    "title": "Pergola with Oranges",
    "agent_name": "Thomas Fearnley",
    "agent_role": "Artist",
@@ -126,46 +86,6 @@
    "featured_rank": 18
   },
   {
-   "title": "Apollo and Marsyas",
-   "agent_name": "Hans Thoma",
-   "agent_role": "Artist",
-   "creation_date": "1888",
-   "cultural_context": "German, Late 19th Century",
-   "medium": "Oil on panel",
-   "date_display": "1888",
-   "description_narrative": "This painting depicts the mythological contest between the god Apollo and the satyr Marsyas, a narrative often explored in art to symbolize the conflict between order and chaos or divine and earthly music. The work, rendered in oil on panel, captures a moment from this dramatic ancient Greek story.",
-   "tags": "mythology, classical, German art, painting, narrative, late 19th century, symbolist",
-   "source": "Art Institute of Chicago",
-   "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/13d31515-70ec-197f-59f6-b71dc6f60903/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/13d31515-70ec-197f-59f6-b71dc6f60903/full/400,/0/default.jpg",
-   "focal_point": [
-    0.4,
-    0.68
-   ],
-   "featured_rank": 18
-  },
-  {
-   "title": "Study for \"William Rush Carving His Allegorical Figure of the Schuylkill River\"",
-   "agent_name": "Thomas Eakins",
-   "agent_role": "Artist",
-   "creation_date": "1876–77",
-   "cultural_context": "American Realism, 19th century",
-   "medium": "Oil on canvas mounted on board",
-   "date_display": "1876–77",
-   "description_narrative": "This oil on canvas study by Thomas Eakins depicts American sculptor William Rush at work. Rush is shown meticulously carving his allegorical figure of the Schuylkill River in his Philadelphia studio.",
-   "tags": "realism, american art, portraiture, sculpture, studio scene, 19th century, preparatory study",
-   "source": "Art Institute of Chicago",
-   "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Thomas%20Eakins%20-%20Study%20for%20%22William%20Rush%20Carving%20His%20Allegorical%20Figure%20of%20the%20Schuylkill%20River%22%20-%201968.91%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Thomas%20Eakins%20-%20Study%20for%20%22William%20Rush%20Carving%20His%20Allegorical%20Figure%20of%20the%20Schuylkill%20River%22%20-%201968.91%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
-   "focal_point": [
-    0.46,
-    0.33
-   ],
-   "featured_rank": 30
-  },
-  {
    "title": "Summit of the Sierras",
    "agent_name": "Thomas Moran",
    "agent_role": "Artist",
@@ -186,66 +106,6 @@
    "featured_rank": 30
   },
   {
-   "title": "Portrait of Mary Adeline Williams",
-   "agent_name": "Thomas Eakins",
-   "agent_role": "Artist",
-   "creation_date": "1899",
-   "cultural_context": "American Realism, late 19th century",
-   "medium": "Oil on canvas",
-   "date_display": "1899",
-   "description_narrative": "Thomas Eakins's 1899 oil on canvas depicts Mary Adeline Williams with a characteristic directness and psychological insight. His work is celebrated for its unvarnished realism, capturing the sitter's individual presence with a precise eye.",
-   "tags": "portrait, realism, american art, oil painting, late 19th century, psychological, contemplative",
-   "source": "Art Institute of Chicago",
-   "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/8cb9f5ea-c955-96fd-c2d6-c720b0dbf7d4/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/8cb9f5ea-c955-96fd-c2d6-c720b0dbf7d4/full/400,/0/default.jpg",
-   "focal_point": [
-    0.42,
-    0.28
-   ],
-   "featured_rank": 25
-  },
-  {
-   "title": "Riter Fitzgerald",
-   "agent_name": "Thomas Eakins",
-   "agent_role": "Artist",
-   "creation_date": "1895",
-   "cultural_context": "American Realism, late 19th century",
-   "medium": "Oil on canvas",
-   "date_display": "1895",
-   "description_narrative": "Thomas Eakins's 1895 portrait of Riter Fitzgerald exemplifies his commitment to capturing individual presence rather than idealizing his subjects. Through a muted palette and direct gaze, Eakins reveals a quiet intensity in the sitter.",
-   "tags": "portrait, american realism, oil painting, male subject, 19th century, psychological, muted",
-   "source": "Art Institute of Chicago",
-   "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/0ba00909-2927-68ce-5c4d-a7534d18c4f4/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/0ba00909-2927-68ce-5c4d-a7534d18c4f4/full/400,/0/default.jpg",
-   "focal_point": [
-    0.38,
-    0.3
-   ],
-   "featured_rank": 20
-  },
-  {
-   "title": "Sarah Dupont",
-   "agent_name": "Thomas Gainsborough",
-   "agent_role": "Artist",
-   "creation_date": "c. 1777–79",
-   "cultural_context": "18th Century, British art",
-   "medium": "Oil on canvas",
-   "date_display": "c. 1777–79",
-   "description_narrative": "Thomas Gainsborough was a prominent English portrait and landscape painter of the 18th century. This oil painting captures a likeness, reflecting the artist's characteristic elegant style and mastery of brushwork.",
-   "tags": "portraiture, 18th century, British art, oil painting, elegant, aristocratic, Georgian era",
-   "source": "Art Institute of Chicago",
-   "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/d763c113-194b-62a5-3e39-e2b479c5df47/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/d763c113-194b-62a5-3e39-e2b479c5df47/full/400,/0/default.jpg",
-   "focal_point": [
-    0.48,
-    0.36
-   ],
-   "featured_rank": 20
-  },
-  {
    "title": "Landscape with Dog",
    "agent_name": "Thomas Doughty",
    "agent_role": "Artist",
@@ -264,66 +124,6 @@
     0.47
    ],
    "featured_rank": 18
-  },
-  {
-   "title": "Mrs. Klapp (Anna Milnor)",
-   "agent_name": "Thomas Sully",
-   "agent_role": "Artist",
-   "creation_date": "1814",
-   "cultural_context": "American, Early 19th Century",
-   "medium": "Oil on canvas",
-   "date_display": "1814",
-   "description_narrative": "Thomas Sully's 1814 oil on canvas presents a portrait of Mrs. Klapp, also known as Anna Milnor. This work exemplifies the artist's refined approach to capturing individual likeness through the medium of paint.",
-   "tags": "portrait, oil painting, American art, 19th century, realism, woman, Thomas Sully",
-   "source": "Art Institute of Chicago",
-   "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Thomas%20Sully%20-%20Mrs.%20Klapp%20%28Anna%20Milnor%29%20-%201950.1362%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Thomas%20Sully%20-%20Mrs.%20Klapp%20%28Anna%20Milnor%29%20-%201950.1362%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
-   "focal_point": [
-    0.48,
-    0.25
-   ],
-   "featured_rank": 18
-  },
-  {
-   "title": "Dr. Joseph Klapp",
-   "agent_name": "Thomas Sully",
-   "agent_role": "Artist",
-   "creation_date": "1814",
-   "cultural_context": "American, 19th century",
-   "medium": "Oil on canvas",
-   "date_display": "1814",
-   "description_narrative": "Painted by Thomas Sully in 1814, this oil on canvas depicts Dr. Joseph Klapp. The work serves as a formal portrait, representative of American painting from the early 19th century.",
-   "tags": "portrait, oil painting, American, 19th century, formal, doctor, realism",
-   "source": "Art Institute of Chicago",
-   "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Thomas%20Sully%20-%20Dr.%20Joseph%20Klapp%20-%201950.1363%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Thomas%20Sully%20-%20Dr.%20Joseph%20Klapp%20-%201950.1363%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
-   "focal_point": [
-    0.46,
-    0.27
-   ],
-   "featured_rank": 18
-  },
-  {
-   "title": "Isabella Wolff",
-   "agent_name": "Sir Thomas Lawrence",
-   "agent_role": "Artist",
-   "creation_date": "1803–15",
-   "cultural_context": "Romanticism, British, 19th century",
-   "medium": "Oil on canvas",
-   "date_display": "1803–15",
-   "description_narrative": "Sir Thomas Lawrence's oil on canvas portrait depicts Isabella Wolff, capturing her refined presence with remarkable detail. Created between 1803 and 1815, this work exemplifies the artist's celebrated ability to convey character and elegance through his brushwork.",
-   "tags": "portrait, woman, romanticism, british art, oil painting, 19th century, elegance, refined",
-   "source": "Art Institute of Chicago",
-   "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/0052fc88-353e-db97-8741-b6b5ec6fb354/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/0052fc88-353e-db97-8741-b6b5ec6fb354/full/400,/0/default.jpg",
-   "focal_point": [
-    0.52,
-    0.3
-   ],
-   "featured_rank": 28
   },
   {
    "title": "Fishing Boats with Hucksters Bargaining for Fish",
@@ -364,26 +164,6 @@
     0.35
    ],
    "featured_rank": 42
-  },
-  {
-   "title": "Study for \"An Aragonese Smuggler\"",
-   "agent_name": "William Turner Dannat",
-   "agent_role": "Artist",
-   "creation_date": "1881",
-   "cultural_context": "19th century",
-   "medium": "Oil on canvas",
-   "date_display": "1881",
-   "description_narrative": "This oil on canvas is a preparatory study for a larger work, focusing on the figure of an Aragonese smuggler. It provides insight into the artist's process in developing a narrative scene.",
-   "tags": "study, smuggler, aragonese, oil painting, figure study, 19th century art, preparatory work",
-   "source": "Art Institute of Chicago",
-   "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/William%20Turner%20Dannat%20-%20Study%20for%20%22An%20Aragonese%20Smuggler%22%20-%201887.231%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/William%20Turner%20Dannat%20-%20Study%20for%20%22An%20Aragonese%20Smuggler%22%20-%201887.231%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
-   "focal_point": [
-    0.62,
-    0.69
-   ],
-   "featured_rank": 15
   },
   {
    "title": "Wanderer above the Sea of Fog",
@@ -675,6 +455,66 @@
    "license": "Public Domain",
    "source_url": "https://www.artic.edu/iiif/2/7b0ea6ca-9424-050e-7e0e-3b67d2289480/full/2000,/0/default.jpg",
    "thumbnail_url": "https://www.artic.edu/iiif/2/7b0ea6ca-9424-050e-7e0e-3b67d2289480/full/400,/0/default.jpg"
+  },
+  {
+   "title": "Stoke-by-Nayland",
+   "agent_name": "John Constable",
+   "agent_role": "Artist",
+   "creation_date": "1836",
+   "cultural_context": "English Romanticism, 19th century",
+   "medium": "Oil on canvas",
+   "date_display": "1836",
+   "description_narrative": "John Constable's \"Stoke-by-Nayland\" depicts a familiar rural English landscape, rendered with his characteristic attention to natural light and atmospheric conditions. This oil on canvas masterwork captures the vastness of the Suffolk countryside under a dynamic sky, reflecting Constable's deep connection to his native region.",
+   "tags": "landscape, romanticism, england, nature, rural, atmospheric, 19th century",
+   "source": "Art Institute of Chicago",
+   "license": "Public Domain",
+   "source_url": "https://www.artic.edu/iiif/2/400ce9e8-2f67-44e2-dd68-e6c98880d27f/full/2000,/0/default.jpg",
+   "thumbnail_url": "https://www.artic.edu/iiif/2/400ce9e8-2f67-44e2-dd68-e6c98880d27f/full/400,/0/default.jpg",
+   "focal_point": [
+    0.62,
+    0.8
+   ],
+   "featured_rank": 35
+  },
+  {
+   "title": "Alpine Scene",
+   "agent_name": "Gustave Doré",
+   "agent_role": "Artist",
+   "creation_date": "1865",
+   "cultural_context": "19th Century, French Romanticism",
+   "medium": "Oil on canvas",
+   "date_display": "1865",
+   "description_narrative": "Gustave Doré's 'Alpine Scene' from 1865 captures the majestic beauty of mountainous landscapes through oil on canvas. This painting exemplifies his ability to render dramatic natural environments with intricate detail and atmospheric depth.",
+   "tags": "landscape, alpine, mountains, oil painting, 19th century, romanticism, french, sublime",
+   "source": "Art Institute of Chicago",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Gustave%20Dor%C3%A9%20-%20Alpine%20Scene%20-%201967.588%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Gustave%20Dor%C3%A9%20-%20Alpine%20Scene%20-%201967.588%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
+   "focal_point": [
+    0.5,
+    0.6
+   ],
+   "featured_rank": 22
+  },
+  {
+   "title": "The Storm",
+   "agent_name": "Pierre-Auguste Cot",
+   "agent_role": "Artist",
+   "creation_date": "1880",
+   "cultural_context": "Paintings",
+   "medium": "Oil on canvas",
+   "date_display": "1880",
+   "description_narrative": "Pierre-Auguste Cot's 'The Storm,' created in 1880, captures a moment of dramatic intensity and emotional fervor. This oil on canvas masterpiece is a quintessential example of academic painting, renowned for its technical skill and evocative storytelling.",
+   "tags": "academic art, French painting, 19th century, drama, romance, oil painting, figure painting",
+   "source": "The Metropolitan Museum of Art",
+   "license": "Public Domain",
+   "source_url": "https://images.metmuseum.org/CRDImages/ep/original/DT11964.jpg",
+   "thumbnail_url": "https://images.metmuseum.org/CRDImages/ep/web-large/DT11964.jpg",
+   "focal_point": [
+    0.45,
+    0.42
+   ],
+   "featured_rank": 35
   }
  ]
 }

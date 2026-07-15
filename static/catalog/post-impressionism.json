@@ -839,6 +839,21 @@
    "license": "Public Domain",
    "source_url": "https://www.artic.edu/iiif/2/38f866cb-9000-de5a-e655-d3fb4d8dc056/full/2000,/0/default.jpg",
    "thumbnail_url": "https://www.artic.edu/iiif/2/38f866cb-9000-de5a-e655-d3fb4d8dc056/full/400,/0/default.jpg"
+  },
+  {
+   "title": "Bathers at Asnières",
+   "agent_name": "Georges Seurat",
+   "agent_role": "Painter",
+   "creation_date": "1884",
+   "cultural_context": "Post-Impressionism / Neo-Impressionism",
+   "medium": "Oil on canvas",
+   "date_display": "1884",
+   "description_narrative": "Working-class Parisians lounge and swim along the Seine at Asnières, bathed in flat, hazy summer light and rendered with Seurat's early experiments in broken brushwork. It was the artist's first large-scale Salon submission and a precursor to his masterpiece \"A Sunday on La Grande Jatte.\"",
+   "tags": "neo-impressionism, seine, leisure, pointillism precursor, national gallery london, working class",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Georges%20Seurat%2C%20Bathers%20%28Study%20for%20%22Bathers%20at%20Asni%C3%A8res%22%29%2C%201883-1884%2C%20NGA%20164964.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Georges%20Seurat%2C%20Bathers%20%28Study%20for%20%22Bathers%20at%20Asni%C3%A8res%22%29%2C%201883-1884%2C%20NGA%20164964.jpg?width=600"
   }
  ]
 }

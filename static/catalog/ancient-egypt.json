@@ -264,6 +264,26 @@
     0.09
    ],
    "featured_rank": 30
+  },
+  {
+   "title": "Uraeus fitting from shrine",
+   "agent_name": "Unknown Artist",
+   "agent_role": "Artist",
+   "creation_date": "664–30 B.C.",
+   "cultural_context": "Ancient Egypt",
+   "medium": "Cupreous metal",
+   "date_display": "664–30 B.C.",
+   "description_narrative": "This uraeus fitting, crafted from cupreous metal, once adorned a shrine, symbolizing divine protection and royal authority. The cobra, a powerful emblem in ancient Egypt, represented sovereignty and was often associated with deities and pharaohs.",
+   "tags": "ancient egypt, uraeus, cobra, metalwork, shrine fitting, religious object, symbolism",
+   "source": "The Metropolitan Museum of Art",
+   "license": "Public Domain",
+   "source_url": "https://images.metmuseum.org/CRDImages/eg/original/41.160.110_EGDP014920.jpg",
+   "thumbnail_url": "https://images.metmuseum.org/CRDImages/eg/web-large/41.160.110_EGDP014920.jpg",
+   "focal_point": [
+    0.45,
+    0.2
+   ],
+   "featured_rank": 8
   }
  ]
 }

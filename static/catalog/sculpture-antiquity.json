@@ -6,26 +6,6 @@
  "license": "Public Domain",
  "items": [
   {
-   "title": "Commode à vantaux",
-   "agent_name": "David Roentgen",
-   "agent_role": "Artist",
-   "creation_date": "ca. 1775–79 with later alterations",
-   "cultural_context": "Woodwork-Furniture",
-   "medium": "Oak, pine, walnut, mahogany, and cherry veneered with hornbeam (partially stained), tulipwood, walnut, holly and maple (both partially stained), boxwood, mahogany, and other woods; red brocatelle marble; gilt bronze; iron, steel, and brass",
-   "date_display": "ca. 1775–79 with later alterations",
-   "description_narrative": "This Commode à vantaux, crafted by David Roentgen, showcases exquisite woodworking and intricate marquetry. Its construction features a luxurious combination of veneered woods, red brocatelle marble, and gilt bronze elements.",
-   "tags": "furniture, commode, woodwork, marquetry, elegant, luxurious, 18th century, decorative arts",
-   "source": "The Metropolitan Museum of Art",
-   "license": "Public Domain",
-   "source_url": "https://images.metmuseum.org/CRDImages/es/original/DT8910.jpg",
-   "thumbnail_url": "https://images.metmuseum.org/CRDImages/es/web-large/DT8910.jpg",
-   "focal_point": [
-    0.5,
-    0.5
-   ],
-   "featured_rank": 25
-  },
-  {
    "title": "Sabine Houdon (1787–1836)",
    "agent_name": "Jean Antoine Houdon",
    "agent_role": "Artist",
@@ -44,126 +24,6 @@
     0.4
    ],
    "featured_rank": 25
-  },
-  {
-   "title": "Damascus Room",
-   "agent_name": "Unknown Artist",
-   "agent_role": "Artist",
-   "creation_date": "dated 1119 AH/1707 CE",
-   "cultural_context": "Wood",
-   "medium": "Wood (poplar) with gesso relief, gold and tin leaf, glazes and paint; wood (cypress, poplar, and mulberry), mother-of-pearl, marble and other stones, stucco with glass, plaster ceramic tiles, iron, brass",
-   "date_display": "dated 1119 AH/1707 CE",
-   "description_narrative": "The Damascus Room is a lavishly decorated interior from an 18th-century Syrian home. Its surfaces are adorned with intricate gesso relief, gold leaf, mother-of-pearl, and painted details, creating an immersive and opulent setting.",
-   "tags": "syrian, islamic, interior, architectural, decorated, opulent, 18th century, wood",
-   "source": "The Metropolitan Museum of Art",
-   "license": "Public Domain",
-   "source_url": "https://images.metmuseum.org/CRDImages/is/original/DP240367.jpg",
-   "thumbnail_url": "https://images.metmuseum.org/CRDImages/is/web-large/DP240367.jpg",
-   "focal_point": [
-    0.5,
-    0.45
-   ],
-   "featured_rank": 35
-  },
-  {
-   "title": "The Death of Socrates",
-   "agent_name": "Jacques Louis David",
-   "agent_role": "Artist",
-   "creation_date": "1787",
-   "cultural_context": "Paintings",
-   "medium": "Oil on canvas",
-   "date_display": "1787",
-   "description_narrative": "Jacques Louis David's monumental 1787 oil painting depicts the final moments of Socrates as he prepares to drink hemlock. Surrounded by his devoted students, Socrates remains stoic, pointing skyward in a gesture of philosophical defiance.",
-   "tags": "socrates, classical, philosophy, death, neoclassicism, history painting, stoicism, sacrifice",
-   "source": "The Metropolitan Museum of Art",
-   "license": "Public Domain",
-   "source_url": "https://images.metmuseum.org/CRDImages/ep/original/DP-13139-001.jpg",
-   "thumbnail_url": "https://images.metmuseum.org/CRDImages/ep/web-large/DP-13139-001.jpg",
-   "focal_point": [
-    0.5,
-    0.42
-   ],
-   "featured_rank": 78
-  },
-  {
-   "title": "Portrait of Alvise Contarini(?); (verso) A Tethered Roebuck",
-   "agent_name": "Jacometto (Jacometto Veneziano)",
-   "agent_role": "Artist",
-   "creation_date": "ca. 1485–95",
-   "cultural_context": "Paintings",
-   "medium": "Oil on wood; verso: oil and gold on wood",
-   "date_display": "ca. 1485–95",
-   "description_narrative": "This painting features a probable portrait of Alvise Contarini on the front, rendered in oil on wood. The reverse side reveals 'A Tethered Roebuck,' executed with oil and gold on wood, showcasing the dual nature of the artwork.",
-   "tags": "portrait, renaissance, italian, oil painting, roebuck, contemplative, venetian, 15th century",
-   "source": "The Metropolitan Museum of Art",
-   "license": "Public Domain",
-   "source_url": "https://images.metmuseum.org/CRDImages/rl/original/DP221485.jpg",
-   "thumbnail_url": "https://images.metmuseum.org/CRDImages/rl/web-large/DP221485.jpg",
-   "focal_point": [
-    0.5,
-    0.38
-   ],
-   "featured_rank": 12
-  },
-  {
-   "title": "Oedipus and the Sphinx",
-   "agent_name": "Gustave Moreau",
-   "agent_role": "Artist",
-   "creation_date": "1864",
-   "cultural_context": "Paintings",
-   "medium": "Oil on canvas",
-   "date_display": "1864",
-   "description_narrative": "Gustave Moreau's seminal work dramatically captures the mythological confrontation between Oedipus and the Sphinx. This oil on canvas painting emphasizes the psychological tension and intricate detail, showcasing the artist's distinctive Symbolist approach to ancient themes.",
-   "tags": "oedipus, sphinx, mythology, symbolism, french art, dramatic, psychological, confrontation",
-   "source": "The Metropolitan Museum of Art",
-   "license": "Public Domain",
-   "source_url": "https://images.metmuseum.org/CRDImages/ep/original/DP-14201-023.jpg",
-   "thumbnail_url": "https://images.metmuseum.org/CRDImages/ep/web-large/DP-14201-023.jpg",
-   "focal_point": [
-    0.5,
-    0.33
-   ],
-   "featured_rank": 45
-  },
-  {
-   "title": "The Jabach Family",
-   "agent_name": "Charles Le Brun",
-   "agent_role": "Artist",
-   "creation_date": "ca. 1660",
-   "cultural_context": "Paintings",
-   "medium": "Oil on canvas",
-   "date_display": "ca. 1660",
-   "description_narrative": "This grand portrait depicts the Jabach family, patrons of the arts, in a setting indicative of their wealth and intellectual pursuits. Charles Le Brun, a leading artist of his time, masterfully captures the family's presence and status through rich detail and classical composition.",
-   "tags": "family portrait, baroque, french art, 17th century, oil painting, group portrait, aristocracy",
-   "source": "The Metropolitan Museum of Art",
-   "license": "Public Domain",
-   "source_url": "https://images.metmuseum.org/CRDImages/ep/original/DP352819.jpg",
-   "thumbnail_url": "https://images.metmuseum.org/CRDImages/ep/web-large/DP352819.jpg",
-   "focal_point": [
-    0.42,
-    0.4
-   ],
-   "featured_rank": 22
-  },
-  {
-   "title": "Tommaso di Folco Portinari (1428–1501); Maria Portinari (Maria Maddalena Baroncelli, born 1456)",
-   "agent_name": "Hans Memling",
-   "agent_role": "Artist",
-   "creation_date": "ca. 1470",
-   "cultural_context": "Paintings",
-   "medium": "Oil on oak",
-   "date_display": "ca. 1470",
-   "description_narrative": "These oil portraits depict Tommaso di Folco Portinari and Maria Maddalena Baroncelli, meticulously rendered by Hans Memling. Created around 1470, these works exemplify the detailed portraiture of the period.",
-   "tags": "portrait, oil painting, Northern Renaissance, 15th century, realism, Flemish art",
-   "source": "The Metropolitan Museum of Art",
-   "license": "Public Domain",
-   "source_url": "https://images.metmuseum.org/CRDImages/ep/original/DP-44362-005.jpg",
-   "thumbnail_url": "https://images.metmuseum.org/CRDImages/ep/web-large/DP-44362-005.jpg",
-   "focal_point": [
-    0.5,
-    0.33
-   ],
-   "featured_rank": 30
   },
   {
    "title": "Standing Figure with Jeweled Headdress",
@@ -266,106 +126,6 @@
    "featured_rank": 12
   },
   {
-   "title": "The Horse Fair",
-   "agent_name": "Rosa Bonheur",
-   "agent_role": "Artist",
-   "creation_date": "1852–55",
-   "cultural_context": "Paintings",
-   "medium": "Oil on canvas",
-   "date_display": "1852–55",
-   "description_narrative": "This monumental work by Rosa Bonheur depicts a bustling horse market in Paris, capturing the power and majesty of the animals with striking realism. Bonheur, known for her meticulous studies of anatomy, rendered each horse with extraordinary detail and dynamic energy.",
-   "tags": "horses, realism, animal painting, French art, 19th century, large scale, plein air",
-   "source": "The Metropolitan Museum of Art",
-   "license": "Public Domain",
-   "source_url": "https://images.metmuseum.org/CRDImages/ep/original/DP-23550-001.jpg",
-   "thumbnail_url": "https://images.metmuseum.org/CRDImages/ep/web-large/DP-23550-001.jpg",
-   "focal_point": [
-    0.5,
-    0.42
-   ],
-   "featured_rank": 55
-  },
-  {
-   "title": "The Fieschi Morgan Staurotheke",
-   "agent_name": "Unknown Artist",
-   "agent_role": "Artist",
-   "creation_date": "early 9th century",
-   "cultural_context": "Byzantine",
-   "medium": "Gilded silver, gold, enamel worked in cloisonné, and niello",
-   "date_display": "early 9th century",
-   "description_narrative": "The Fieschi Morgan Staurotheke is an exquisite Byzantine reliquary designed to hold a fragment of the True Cross. Crafted from gilded silver and gold, it features intricate cloisonné enamel and niello decoration, showcasing the skilled artistry of the early 9th century.",
-   "tags": "byzantine, reliquary, gold, silver, enamel, christian, medieval, sacred art",
-   "source": "The Metropolitan Museum of Art",
-   "license": "Public Domain",
-   "source_url": "https://images.metmuseum.org/CRDImages/md/original/DT119.jpg",
-   "thumbnail_url": "https://images.metmuseum.org/CRDImages/md/web-large/DT119.jpg",
-   "focal_point": [
-    0.5,
-    0.4
-   ],
-   "featured_rank": 15
-  },
-  {
-   "title": "Tobatsu Bishamonten",
-   "agent_name": "Unknown Artist",
-   "agent_role": "Artist",
-   "creation_date": "late 10th–early 11th century",
-   "cultural_context": "Japan",
-   "medium": "Zelkova wood with traces of color",
-   "date_display": "late 10th–early 11th century",
-   "description_narrative": "This majestic sculpture depicts Tobatsu Bishamonten, a powerful guardian deity, meticulously carved from zelkova wood with subtle traces of original color. Originating from Japan, it represents a significant example of religious artistry from the late 10th to early 11th century.",
-   "tags": "buddhist deity, sculpture, wood carving, japanese art, religious, medieval, guardian",
-   "source": "The Metropolitan Museum of Art",
-   "license": "Public Domain",
-   "source_url": "https://images.metmuseum.org/CRDImages/as/original/DP-27915-006.jpg",
-   "thumbnail_url": "https://images.metmuseum.org/CRDImages/as/web-large/DP-27915-006.jpg",
-   "focal_point": [
-    0.46,
-    0.21
-   ],
-   "featured_rank": 15
-  },
-  {
-   "title": "Self-Portrait",
-   "agent_name": "Salvator Rosa",
-   "agent_role": "Artist",
-   "creation_date": "ca. 1647",
-   "cultural_context": "Paintings",
-   "medium": "Oil on canvas",
-   "date_display": "ca. 1647",
-   "description_narrative": "This striking self-portrait by Salvator Rosa captures the artist's likeness, showcasing his characteristic intensity and a direct gaze. Painted with oil on canvas around 1647, it offers a personal glimpse into the artist's own perception of himself.",
-   "tags": "self-portrait, baroque, italian, 17th century, oil painting, artist portrait, male portrait",
-   "source": "The Metropolitan Museum of Art",
-   "license": "Public Domain",
-   "source_url": "https://images.metmuseum.org/CRDImages/ep/original/DP323414.jpg",
-   "thumbnail_url": "https://images.metmuseum.org/CRDImages/ep/web-large/DP323414.jpg",
-   "focal_point": [
-    0.5,
-    0.35
-   ],
-   "featured_rank": 35
-  },
-  {
-   "title": "Uraeus fitting from shrine",
-   "agent_name": "Unknown Artist",
-   "agent_role": "Artist",
-   "creation_date": "664–30 B.C.",
-   "cultural_context": "Ancient Egypt",
-   "medium": "Cupreous metal",
-   "date_display": "664–30 B.C.",
-   "description_narrative": "This uraeus fitting, crafted from cupreous metal, once adorned a shrine, symbolizing divine protection and royal authority. The cobra, a powerful emblem in ancient Egypt, represented sovereignty and was often associated with deities and pharaohs.",
-   "tags": "ancient egypt, uraeus, cobra, metalwork, shrine fitting, religious object, symbolism",
-   "source": "The Metropolitan Museum of Art",
-   "license": "Public Domain",
-   "source_url": "https://images.metmuseum.org/CRDImages/eg/original/41.160.110_EGDP014920.jpg",
-   "thumbnail_url": "https://images.metmuseum.org/CRDImages/eg/web-large/41.160.110_EGDP014920.jpg",
-   "focal_point": [
-    0.45,
-    0.2
-   ],
-   "featured_rank": 8
-  },
-  {
    "title": "Marble portrait of the co-emperor Lucius Verus",
    "agent_name": "Unknown Artist",
    "agent_role": "Artist",
@@ -406,66 +166,6 @@
    "featured_rank": 8
   },
   {
-   "title": "The Storm",
-   "agent_name": "Pierre-Auguste Cot",
-   "agent_role": "Artist",
-   "creation_date": "1880",
-   "cultural_context": "Paintings",
-   "medium": "Oil on canvas",
-   "date_display": "1880",
-   "description_narrative": "Pierre-Auguste Cot's 'The Storm,' created in 1880, captures a moment of dramatic intensity and emotional fervor. This oil on canvas masterpiece is a quintessential example of academic painting, renowned for its technical skill and evocative storytelling.",
-   "tags": "academic art, French painting, 19th century, drama, romance, oil painting, figure painting",
-   "source": "The Metropolitan Museum of Art",
-   "license": "Public Domain",
-   "source_url": "https://images.metmuseum.org/CRDImages/ep/original/DT11964.jpg",
-   "thumbnail_url": "https://images.metmuseum.org/CRDImages/ep/web-large/DT11964.jpg",
-   "focal_point": [
-    0.45,
-    0.42
-   ],
-   "featured_rank": 35
-  },
-  {
-   "title": "Miniature tabard",
-   "agent_name": "Unknown Artist",
-   "agent_role": "Artist",
-   "creation_date": "1600–1700",
-   "cultural_context": "Inca and Spanish",
-   "medium": "Cotton, camelid hair, silk, metal",
-   "date_display": "1600–1700",
-   "description_narrative": "This intricate miniature tabard, crafted from cotton, camelid hair, silk, and metal, reflects the artistic traditions of both Inca and Spanish cultures. Dating from the 17th century, it showcases a fusion of indigenous Andean and European influences.",
-   "tags": "textile, miniature, tabard, inca, spanish, andean, 17th century, colonial",
-   "source": "The Metropolitan Museum of Art",
-   "license": "Public Domain",
-   "source_url": "https://images.metmuseum.org/CRDImages/ao/original/DP107700.jpg",
-   "thumbnail_url": "https://images.metmuseum.org/CRDImages/ao/web-large/DP107700.jpg",
-   "focal_point": [
-    0.5,
-    0.4
-   ],
-   "featured_rank": 8
-  },
-  {
-   "title": "Hercules and Achelous",
-   "agent_name": "Master of the Martyrdom of St. Sebastian",
-   "agent_role": "Artist",
-   "creation_date": "probably mid-17th century",
-   "cultural_context": "Sculpture-Miniature",
-   "medium": "Ivory",
-   "date_display": "probably mid-17th century",
-   "description_narrative": "This intricate ivory sculpture depicts the mythological struggle between Hercules and the river god Achelous. Crafted as a miniature in the mid-17th century, it showcases the detailed artistry of the period.",
-   "tags": "mythology, greek myth, hercules, achelou, ivory, sculpture, miniature, baroque",
-   "source": "The Metropolitan Museum of Art",
-   "license": "Public Domain",
-   "source_url": "https://images.metmuseum.org/CRDImages/es/original/DP234110.jpg",
-   "thumbnail_url": "https://images.metmuseum.org/CRDImages/es/web-large/DP234110.jpg",
-   "focal_point": [
-    0.42,
-    0.28
-   ],
-   "featured_rank": 10
-  },
-  {
    "title": "Venus de Milo",
    "agent_name": "Ancient Greek",
    "agent_role": "Artist",
@@ -497,8 +197,8 @@
    "tags": "ancient greek, hellenistic, sculpture, nike, victory, marble, dramatic, movement",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Winged%20Victory%20of%20Samothrace%2C%20Marble%2C%20c.%20190%20BC%2C%20Louvre%2C%20Paris%20%2828265400246%29.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Winged%20Victory%20of%20Samothrace%2C%20Marble%2C%20c.%20190%20BC%2C%20Louvre%2C%20Paris%20%2828265400246%29.jpg?width=600",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Nike%20of%20Samothrace%2C%20Louvre.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Nike%20of%20Samothrace%2C%20Louvre.jpg?width=600",
    "focal_point": [
     0.43,
     0.27

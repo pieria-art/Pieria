@@ -2,7 +2,7 @@
  "id": "baroque",
  "title": "Baroque & the Dramatic Light",
  "description": "The drama, movement, and shadow-pierced chiaroscuro of 17th-century Europe.",
- "source": "Art Institute of Chicago, Cleveland Museum of Art, Wikimedia Commons",
+ "source": "Art Institute of Chicago, Cleveland Museum of Art, The Metropolitan Museum of Art, Wikimedia Commons",
  "license": "Public Domain",
  "items": [
   {
@@ -651,6 +651,230 @@
    "license": "Public Domain",
    "source_url": "https://www.artic.edu/iiif/2/5fa784d4-f5d4-cc88-2f8c-0d7bad4945c4/full/2000,/0/default.jpg",
    "thumbnail_url": "https://www.artic.edu/iiif/2/5fa784d4-f5d4-cc88-2f8c-0d7bad4945c4/full/400,/0/default.jpg"
+  },
+  {
+   "title": "Landscape with Saint John on Patmos",
+   "agent_name": "Nicolas Poussin",
+   "agent_role": "Artist",
+   "creation_date": "1640",
+   "cultural_context": "Baroque, French",
+   "medium": "Oil on canvas",
+   "date_display": "1640",
+   "description_narrative": "Nicolas Poussin's \"Landscape with Saint John on Patmos\" depicts the evangelist on the island of Patmos, a traditional setting for the writing of the Book of Revelation. The scene is presented as an idealized classical landscape, reflecting Poussin's characteristic approach to integrating figures within grand, structured natural environments.",
+   "tags": "landscape, religious, classical, baroque, serene, saint john, patmos",
+   "source": "Art Institute of Chicago",
+   "license": "Public Domain",
+   "source_url": "https://www.artic.edu/iiif/2/aa870b0d-5a1b-660a-6dc6-56c12109cf6e/full/2000,/0/default.jpg",
+   "thumbnail_url": "https://www.artic.edu/iiif/2/aa870b0d-5a1b-660a-6dc6-56c12109cf6e/full/400,/0/default.jpg",
+   "focal_point": [
+    0.62,
+    0.82
+   ],
+   "featured_rank": 35
+  },
+  {
+   "title": "The Feast in the House of Simon",
+   "agent_name": "El Greco and Workshop",
+   "agent_role": "Painter",
+   "creation_date": "1608",
+   "cultural_context": "Spanish Renaissance / Mannerism, Toledo",
+   "medium": "Oil on canvas",
+   "date_display": "c. 1608–14",
+   "description_narrative": "This large canvas depicts the biblical episode in which a sinful woman anoints Christ's feet, painted late in El Greco's career with the assistance of his Toledo workshop. It reflects the artist's mature style of visionary color and dramatically elongated figures.",
+   "tags": [
+    "El Greco",
+    "workshop painting",
+    "religious art",
+    "Toledo",
+    "Spanish Renaissance"
+   ],
+   "source": "Art Institute of Chicago",
+   "license": "Public Domain",
+   "source_url": "https://www.artic.edu/iiif/2/75886aaa-002a-2047-a05c-baf73f0ac093/full/2000,/0/default.jpg",
+   "thumbnail_url": "https://www.artic.edu/iiif/2/75886aaa-002a-2047-a05c-baf73f0ac093/full/400,/0/default.jpg"
+  },
+  {
+   "title": "Saint Martin and the Beggar",
+   "agent_name": "El Greco",
+   "agent_role": "Painter",
+   "creation_date": "1597",
+   "cultural_context": "Spanish Renaissance / Mannerism, Toledo",
+   "medium": "Oil on canvas",
+   "date_display": "c. 1597–c. 1600",
+   "description_narrative": "This painting depicts the Roman soldier Saint Martin of Tours dividing his cloak to share with a beggar, a popular subject of Christian charity. El Greco produced this composition for a private chapel in Toledo, working in his characteristic elongated forms and dramatic light.",
+   "tags": [
+    "El Greco",
+    "Saint Martin",
+    "religious art",
+    "Spanish Renaissance",
+    "charity"
+   ],
+   "source": "Art Institute of Chicago",
+   "license": "Public Domain",
+   "source_url": "https://www.artic.edu/iiif/2/52098776-6e2e-9683-e258-7b1cec8660dd/full/2000,/0/default.jpg",
+   "thumbnail_url": "https://www.artic.edu/iiif/2/52098776-6e2e-9683-e258-7b1cec8660dd/full/400,/0/default.jpg"
+  },
+  {
+   "title": "Saint Francis Kneeling in Meditation",
+   "agent_name": "El Greco",
+   "agent_role": "Painter",
+   "creation_date": "1595",
+   "cultural_context": "Spanish Renaissance / Mannerism, Toledo",
+   "medium": "Oil on canvas",
+   "date_display": "c. 1595–c. 1600",
+   "description_narrative": "El Greco painted numerous versions of Saint Francis in contemplative prayer, reflecting the Counter-Reformation's emphasis on personal spiritual devotion. This example shows the saint's characteristically elongated form and intense, mystical expression.",
+   "tags": [
+    "El Greco",
+    "Counter-Reformation",
+    "religious art",
+    "Saint Francis",
+    "Spanish Renaissance"
+   ],
+   "source": "Art Institute of Chicago",
+   "license": "Public Domain",
+   "source_url": "https://www.artic.edu/iiif/2/b703b636-976c-b35b-8a8e-f8df3f5ba003/full/2000,/0/default.jpg",
+   "thumbnail_url": "https://www.artic.edu/iiif/2/b703b636-976c-b35b-8a8e-f8df3f5ba003/full/400,/0/default.jpg"
+  },
+  {
+   "title": "The Assumption of the Virgin",
+   "agent_name": "El Greco",
+   "agent_role": "Painter",
+   "creation_date": "1577",
+   "cultural_context": "Spanish Renaissance / Mannerism, Toledo",
+   "medium": "Oil on canvas",
+   "date_display": "1577–79",
+   "description_narrative": "Painted as the central altarpiece for the church of Santo Domingo el Antiguo in Toledo, this was El Greco's first major Spanish commission and established the elongated figures and luminous color that became his signature style. It remains one of the artist's most celebrated large-scale religious paintings.",
+   "tags": [
+    "El Greco",
+    "Spanish Renaissance",
+    "Mannerism",
+    "altarpiece",
+    "religious art"
+   ],
+   "source": "Art Institute of Chicago",
+   "license": "Public Domain",
+   "source_url": "https://www.artic.edu/iiif/2/47fd1564-93f5-f30b-7786-013421133b4a/full/2000,/0/default.jpg",
+   "thumbnail_url": "https://www.artic.edu/iiif/2/47fd1564-93f5-f30b-7786-013421133b4a/full/400,/0/default.jpg"
+  },
+  {
+   "title": "The Crucifixion",
+   "agent_name": "Francisco de Zurbarán",
+   "agent_role": "Artist",
+   "creation_date": "1627",
+   "cultural_context": "Spanish Baroque, 17th century Spain",
+   "medium": "Oil on canvas",
+   "date_display": "1627",
+   "description_narrative": "Francisco de Zurbarán's 1627 oil on canvas, 'The Crucifixion,' presents a singular, stark depiction of Christ on the cross. The painting is characterized by its dramatic use of light and shadow, emphasizing the figure's isolation and the solemnity of the moment.",
+   "tags": "crucifixion, religious art, Spanish Baroque, realism, tenebrism, devotional, dramatic",
+   "source": "Art Institute of Chicago",
+   "license": "Public Domain",
+   "source_url": "https://www.artic.edu/iiif/2/c8ee825f-bc8c-c76b-1f05-5d692d9a6b47/full/2000,/0/default.jpg",
+   "thumbnail_url": "https://www.artic.edu/iiif/2/c8ee825f-bc8c-c76b-1f05-5d692d9a6b47/full/400,/0/default.jpg",
+   "focal_point": [
+    0.45,
+    0.28
+   ],
+   "featured_rank": 45
+  },
+  {
+   "title": "Cupid Chastised",
+   "agent_name": "Bartolomeo Manfredi",
+   "agent_role": "Artist",
+   "creation_date": "1613",
+   "cultural_context": "Baroque, Italian",
+   "medium": "Oil on canvas",
+   "date_display": "1613",
+   "description_narrative": "Bartolomeo Manfredi's \"Cupid Chastised\" depicts a mythological scene centered on the punishment of the god of love. Executed in oil on canvas, the work showcases the dramatic light and shadow characteristic of the artist's era.",
+   "tags": "mythology, cupid, baroque, caravaggism, italian, oil painting, dramatic",
+   "source": "Art Institute of Chicago",
+   "license": "Public Domain",
+   "source_url": "https://www.artic.edu/iiif/2/0f951635-312c-0829-451b-553f461c5518/full/2000,/0/default.jpg",
+   "thumbnail_url": "https://www.artic.edu/iiif/2/0f951635-312c-0829-451b-553f461c5518/full/400,/0/default.jpg",
+   "focal_point": [
+    0.5,
+    0.27
+   ],
+   "featured_rank": 25
+  },
+  {
+   "title": "Don Gaspar de Guzmán (1587–1645), Count-Duke of Olivares",
+   "agent_name": "Juan Bautista Martínez del Mazo",
+   "agent_role": "Artist",
+   "creation_date": "ca. 1636 or later",
+   "cultural_context": "Paintings",
+   "medium": "Oil on canvas",
+   "date_display": "ca. 1636 or later",
+   "description_narrative": "This striking oil on canvas captures Don Gaspar de Guzmán, Count-Duke of Olivares, a prominent statesman and court favorite in 17th-century Spain. The portrait was skillfully rendered by Juan Bautista Martínez del Mazo, an artist associated with the Spanish court.",
+   "tags": "portrait, nobleman, spanish art, baroque, 17th century, oil painting",
+   "source": "The Metropolitan Museum of Art",
+   "license": "Public Domain",
+   "source_url": "https://images.metmuseum.org/CRDImages/ep/original/DP-14936-011.jpg",
+   "thumbnail_url": "https://images.metmuseum.org/CRDImages/ep/web-large/DP-14936-011.jpg",
+   "focal_point": [
+    0.57,
+    0.22
+   ],
+   "featured_rank": 20
+  },
+  {
+   "title": "The Jabach Family",
+   "agent_name": "Charles Le Brun",
+   "agent_role": "Artist",
+   "creation_date": "ca. 1660",
+   "cultural_context": "Paintings",
+   "medium": "Oil on canvas",
+   "date_display": "ca. 1660",
+   "description_narrative": "This grand portrait depicts the Jabach family, patrons of the arts, in a setting indicative of their wealth and intellectual pursuits. Charles Le Brun, a leading artist of his time, masterfully captures the family's presence and status through rich detail and classical composition.",
+   "tags": "family portrait, baroque, french art, 17th century, oil painting, group portrait, aristocracy",
+   "source": "The Metropolitan Museum of Art",
+   "license": "Public Domain",
+   "source_url": "https://images.metmuseum.org/CRDImages/ep/original/DP352819.jpg",
+   "thumbnail_url": "https://images.metmuseum.org/CRDImages/ep/web-large/DP352819.jpg",
+   "focal_point": [
+    0.42,
+    0.4
+   ],
+   "featured_rank": 22
+  },
+  {
+   "title": "Charity",
+   "agent_name": "Guido Reni",
+   "agent_role": "Artist",
+   "creation_date": "ca. 1630",
+   "cultural_context": "Paintings",
+   "medium": "Oil on canvas",
+   "date_display": "ca. 1630",
+   "description_narrative": "Guido Reni's \"Charity\" exemplifies the artist's refined Baroque style through its graceful composition and idealized figures. This oil on canvas work from around 1630 portrays the allegorical figure of Charity, often depicted nourishing or caring for children, embodying selfless love.",
+   "tags": "charity, allegory, baroque, italian baroque, religious, devotion, figurative",
+   "source": "The Metropolitan Museum of Art",
+   "license": "Public Domain",
+   "source_url": "https://images.metmuseum.org/CRDImages/ep/original/DT10776.jpg",
+   "thumbnail_url": "https://images.metmuseum.org/CRDImages/ep/web-large/DT10776.jpg",
+   "focal_point": [
+    0.43,
+    0.27
+   ],
+   "featured_rank": 20
+  },
+  {
+   "title": "Self-Portrait",
+   "agent_name": "Salvator Rosa",
+   "agent_role": "Artist",
+   "creation_date": "ca. 1647",
+   "cultural_context": "Paintings",
+   "medium": "Oil on canvas",
+   "date_display": "ca. 1647",
+   "description_narrative": "This striking self-portrait by Salvator Rosa captures the artist's likeness, showcasing his characteristic intensity and a direct gaze. Painted with oil on canvas around 1647, it offers a personal glimpse into the artist's own perception of himself.",
+   "tags": "self-portrait, baroque, italian, 17th century, oil painting, artist portrait, male portrait",
+   "source": "The Metropolitan Museum of Art",
+   "license": "Public Domain",
+   "source_url": "https://images.metmuseum.org/CRDImages/ep/original/DP323414.jpg",
+   "thumbnail_url": "https://images.metmuseum.org/CRDImages/ep/web-large/DP323414.jpg",
+   "focal_point": [
+    0.5,
+    0.35
+   ],
+   "featured_rank": 35
   }
  ]
 }

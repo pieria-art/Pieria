@@ -444,6 +444,106 @@
     0.4
    ],
    "featured_rank": 35
+  },
+  {
+   "title": "Jupiter's Great Red Spot Juno",
+   "agent_name": "NASA/JPL-Caltech/MSSS/SwRI/Kevin M. Gill",
+   "agent_role": "Artist",
+   "creation_date": "",
+   "cultural_context": "Space exploration, 21st century",
+   "medium": "",
+   "date_display": "Undated",
+   "description_narrative": "This image captures the colossal vortex of Jupiter's Great Red Spot, a persistent storm larger than Earth. It was captured by the Juno spacecraft during its close flyby and further processed to enhance its vibrant details.",
+   "tags": "jupiter, great red spot, astronomy, space exploration, planetary science, nasa, scientific visualization, cosmic",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jupiter%27s%20Great%20Red%20Spot%20-%20Juno%20Perijove%207.png?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jupiter%27s%20Great%20Red%20Spot%20-%20Juno%20Perijove%207.png?width=600",
+   "focal_point": [
+    0.45,
+    0.4
+   ],
+   "featured_rank": 45
+  },
+  {
+   "title": "Pluto New Horizons",
+   "agent_name": "NASA/Johns Hopkins University Applied Physics Laboratory/Southwest Research Institute/Alex Parker",
+   "agent_role": "Artist",
+   "creation_date": "",
+   "cultural_context": "Contemporary Science, Space Exploration",
+   "medium": "",
+   "date_display": "2015",
+   "description_narrative": "This striking image presents Pluto's varied surface, captured during the New Horizons mission's historic flyby. It reveals diverse geological features across the dwarf planet, offering unprecedented detail.",
+   "tags": "space, dwarf planet, pluto, new horizons, planetary science, astronomical image, celestial body",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/This%20image%2C%20taken%20by%20New%20Horizons%20on%20July%2014%2C%202015%2C%20is%20the%20most%20accurate%20natural%20color%20image%20of%20Pluto.png?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/This%20image%2C%20taken%20by%20New%20Horizons%20on%20July%2014%2C%202015%2C%20is%20the%20most%20accurate%20natural%20color%20image%20of%20Pluto.png?width=600",
+   "focal_point": [
+    0.5,
+    0.5
+   ],
+   "featured_rank": 65
+  },
+  {
+   "title": "Perseverance Selfie with Ingenuity",
+   "agent_name": "NASA/JPL-Caltech/MSSS/Dejasu",
+   "agent_role": "Artist",
+   "creation_date": "",
+   "cultural_context": "Contemporary, Space Exploration",
+   "medium": "",
+   "date_display": "Early 2020s",
+   "description_narrative": "This image captures the Perseverance rover on the surface of Mars, presenting a self-portrait that includes the Ingenuity helicopter nearby. It serves as a remarkable record of robotic exploration and humanity's venture into understanding the Red Planet.",
+   "tags": "mars, rover, ingenuity, perseverance, space exploration, robotics, scientific photography, self-portrait",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/FnIhdCQXoAAD6-z%20Perseverance%27s%20Three%20Forks%20Sample%20Depot%20Selfie%20containing%20ingenuity.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/FnIhdCQXoAAD6-z%20Perseverance%27s%20Three%20Forks%20Sample%20Depot%20Selfie%20containing%20ingenuity.jpg?width=600",
+   "focal_point": [
+    0.34,
+    0.52
+   ],
+   "featured_rank": 40
+  },
+  {
+   "title": "Curiosity Self-Portrait at Mars",
+   "agent_name": "NASA/JPL-Caltech/MSSS",
+   "agent_role": "Artist",
+   "creation_date": "",
+   "cultural_context": "Space Exploration, 21st Century",
+   "medium": "",
+   "date_display": "December 2012",
+   "description_narrative": "The Curiosity rover, a robotic explorer, captured this intricate self-portrait on Mars using its Mars Hand Lens Imager (MAHLI). This mosaic image showcases the rover's design and its presence against the expansive, desolate Martian landscape.",
+   "tags": "mars, rover, self-portrait, space exploration, scientific imaging, extraterrestrial, robotic art",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/PIA19142%20Curiosity%20Self-Portrait%20at%20%27Mojave%27%20Site%20on%20Mount%20Sharp.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/PIA19142%20Curiosity%20Self-Portrait%20at%20%27Mojave%27%20Site%20on%20Mount%20Sharp.jpg?width=600",
+   "focal_point": [
+    0.53,
+    0.42
+   ],
+   "featured_rank": 55
+  },
+  {
+   "title": "Saturn from Cassini",
+   "agent_name": "NASA/JPL/Space Science Institute",
+   "agent_role": "Artist",
+   "creation_date": "",
+   "cultural_context": "Scientific Photography, Space Exploration",
+   "medium": "",
+   "date_display": "",
+   "description_narrative": "This striking view captures the gas giant Saturn and its intricate ring system, showcasing the planet's majestic scale and atmospheric details. Captured by the Cassini spacecraft, this image provides a detailed perspective of one of our solar system's most recognizable features.",
+   "tags": "saturn, planet, rings, space, astronomy, scientific, solar system, cosmic",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/PIA05380%20-%20Saturn%20from%20Cassini%20Orbiter%20%28square%29.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/PIA05380%20-%20Saturn%20from%20Cassini%20Orbiter%20%28square%29.jpg?width=600",
+   "focal_point": [
+    0.48,
+    0.53
+   ],
+   "featured_rank": 55
   }
  ]
 }

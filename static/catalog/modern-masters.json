@@ -6,26 +6,6 @@
  "license": "Public Domain",
  "items": [
   {
-   "title": "Paris Street; Rainy Day",
-   "agent_name": "Gustave Caillebotte",
-   "agent_role": "Artist",
-   "creation_date": "1877",
-   "cultural_context": "Impressionism, French",
-   "medium": "Oil on canvas",
-   "date_display": "1877",
-   "description_narrative": "Gustave Caillebotte's 'Paris Street; Rainy Day' captures a striking urban scene in 1877 Paris, depicting well-dressed figures strolling under umbrellas on a wet street. The composition offers a unique perspective of modern city life, characterized by its precise realism and distinctive viewpoints.",
-   "tags": "urban life, street scene, rainy day, 19th century, realism, city, umbrellas, french art",
-   "source": "Art Institute of Chicago",
-   "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/f8fd76e9-c396-5678-36ed-6a348c904d27/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/f8fd76e9-c396-5678-36ed-6a348c904d27/full/400,/0/default.jpg",
-   "focal_point": [
-    0.6,
-    0.45
-   ],
-   "featured_rank": 82
-  },
-  {
    "title": "Hercules and the Lernaean Hydra",
    "agent_name": "Gustave Moreau",
    "agent_role": "Artist",
@@ -44,186 +24,6 @@
     0.52
    ],
    "featured_rank": 25
-  },
-  {
-   "title": "Calf's Head and Ox Tongue",
-   "agent_name": "Gustave Caillebotte",
-   "agent_role": "Artist",
-   "creation_date": "c. 1882",
-   "cultural_context": "Impressionism, French",
-   "medium": "Oil on canvas",
-   "date_display": "c. 1882",
-   "description_narrative": "This painting presents a starkly realistic still life featuring a butchered calf's head and an ox tongue, rendered with unflinching detail. Gustave Caillebotte's meticulous brushwork captures the textures and forms of the meat, reflecting his mastery of realistic depiction.",
-   "tags": "still life, realism, meat, food, detailed, oil painting, 19th century",
-   "source": "Art Institute of Chicago",
-   "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Gustave%20Caillebotte%20-%20Calf%27s%20Head%20and%20Ox%20Tongue%20-%201999.561%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Gustave%20Caillebotte%20-%20Calf%27s%20Head%20and%20Ox%20Tongue%20-%201999.561%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
-   "focal_point": [
-    0.28,
-    0.3
-   ],
-   "featured_rank": 20
-  },
-  {
-   "title": "Alpine Scene",
-   "agent_name": "Gustave Doré",
-   "agent_role": "Artist",
-   "creation_date": "1865",
-   "cultural_context": "19th Century, French Romanticism",
-   "medium": "Oil on canvas",
-   "date_display": "1865",
-   "description_narrative": "Gustave Doré's 'Alpine Scene' from 1865 captures the majestic beauty of mountainous landscapes through oil on canvas. This painting exemplifies his ability to render dramatic natural environments with intricate detail and atmospheric depth.",
-   "tags": "landscape, alpine, mountains, oil painting, 19th century, romanticism, french, sublime",
-   "source": "Art Institute of Chicago",
-   "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Gustave%20Dor%C3%A9%20-%20Alpine%20Scene%20-%201967.588%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Gustave%20Dor%C3%A9%20-%20Alpine%20Scene%20-%201967.588%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
-   "focal_point": [
-    0.5,
-    0.6
-   ],
-   "featured_rank": 22
-  },
-  {
-   "title": "Mère Grégoire",
-   "agent_name": "Gustave Courbet",
-   "agent_role": "Artist",
-   "creation_date": "1855, reworked 1857–59",
-   "cultural_context": "Realism, French",
-   "medium": "Oil on canvas",
-   "date_display": "1855, reworked 1857–59",
-   "description_narrative": "Gustave Courbet's 'Mère Grégoire' is an oil on canvas portrait depicting an older woman. This work exemplifies Courbet's commitment to portraying everyday people with directness and realism.",
-   "tags": "portrait, woman, realism, french realism, direct, naturalistic, oil painting",
-   "source": "Art Institute of Chicago",
-   "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/2e6d08c8-dac0-4f1c-3e56-de3539ceb905/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/2e6d08c8-dac0-4f1c-3e56-de3539ceb905/full/400,/0/default.jpg",
-   "focal_point": [
-    0.5,
-    0.28
-   ],
-   "featured_rank": 25
-  },
-  {
-   "title": "The Rock of Hautepierre",
-   "agent_name": "Gustave Courbet",
-   "agent_role": "Artist",
-   "creation_date": "c. 1869",
-   "cultural_context": "Realism, French",
-   "medium": "Oil on canvas",
-   "date_display": "c. 1869",
-   "description_narrative": "Gustave Courbet's 'The Rock of Hautepierre' depicts a rugged natural landscape with a prominent rock formation. This oil on canvas exemplifies Courbet's commitment to Realism, capturing the unadorned beauty of the natural world.",
-   "tags": "landscape, realism, nature, oil painting, rock formation, french art",
-   "source": "Art Institute of Chicago",
-   "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/e0f47937-a1ee-76b4-6505-35a33119a634/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/e0f47937-a1ee-76b4-6505-35a33119a634/full/400,/0/default.jpg",
-   "focal_point": [
-    0.5,
-    0.4
-   ],
-   "featured_rank": 22
-  },
-  {
-   "title": "An Alpine Scene",
-   "agent_name": "Gustave Courbet",
-   "agent_role": "Artist",
-   "creation_date": "1874",
-   "cultural_context": "Realism, French",
-   "medium": "Oil on canvas",
-   "date_display": "1874",
-   "description_narrative": "Gustave Courbet's \"An Alpine Scene\" captures a dramatic mountain landscape, rendered with the artist's characteristic impasto technique. This oil on canvas work from 1874 exemplifies his dedication to depicting natural subjects with unflinching realism.",
-   "tags": "landscape, Realism, oil painting, French art, mountain, nature, alpine, Courbet",
-   "source": "Art Institute of Chicago",
-   "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/54b7fd5e-3467-f777-45e7-0719400ecfc0/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/54b7fd5e-3467-f777-45e7-0719400ecfc0/full/400,/0/default.jpg",
-   "focal_point": [
-    0.42,
-    0.62
-   ],
-   "featured_rank": 22
-  },
-  {
-   "title": "The Valley of Les Puits-Noir",
-   "agent_name": "Gustave Courbet",
-   "agent_role": "Artist",
-   "creation_date": "1868",
-   "cultural_context": "Realism, French, 19th century",
-   "medium": "Oil on canvas",
-   "date_display": "1868",
-   "description_narrative": "Gustave Courbet's 'The Valley of Les Puits-Noir' depicts a rugged, unidealized landscape from his native Jura region in eastern France. Executed in oil on canvas, this work exemplifies his Realist approach, capturing nature with a somber palette and textured brushwork.",
-   "tags": "landscape, realism, french art, 19th century, nature, valley, oil painting",
-   "source": "Art Institute of Chicago",
-   "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Gustave%20Courbet%20-%20The%20Valley%20of%20Les%20Puits-Noir%20%281868%29.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Gustave%20Courbet%20-%20The%20Valley%20of%20Les%20Puits-Noir%20%281868%29.jpg?width=600",
-   "focal_point": [
-    0.45,
-    0.5
-   ],
-   "featured_rank": 22
-  },
-  {
-   "title": "Rêverie (Portrait of Gabrielle Borreau)",
-   "agent_name": "Gustave Courbet",
-   "agent_role": "Artist",
-   "creation_date": "1862",
-   "cultural_context": "Realism, French",
-   "medium": "Oil on paper, mounted on canvas",
-   "date_display": "1862",
-   "description_narrative": "This intimate portrait by Gustave Courbet depicts Gabrielle Borreau in a contemplative pose. Painted in 1862, the work captures a moment of quiet introspection.",
-   "tags": "portrait, realism, 19th century, contemplative, figure study, oil painting, french art",
-   "source": "Art Institute of Chicago",
-   "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/40d69445-feb4-d6d5-bcad-bb142856f0a6/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/40d69445-feb4-d6d5-bcad-bb142856f0a6/full/400,/0/default.jpg",
-   "focal_point": [
-    0.52,
-    0.32
-   ],
-   "featured_rank": 25
-  },
-  {
-   "title": "Cliffs on the Sea Coast: Small Beach, Sunrise (Falaise au bord de la mer, vu Petite Plage, soleil levant)",
-   "agent_name": "Gustave Courbet",
-   "agent_role": "Artist",
-   "creation_date": "1865",
-   "cultural_context": "Realism, French",
-   "medium": "Oil on canvas",
-   "date_display": "1865",
-   "description_narrative": "Gustave Courbet captures the rugged beauty of a coastal scene in 'Cliffs on the Sea Coast: Small Beach, Sunrise.' This oil on canvas painting from 1865 depicts a dramatic interplay of light and shadow on the cliffs as the sun rises over the sea.",
-   "tags": "seascape, landscape, realism, nature, cliffs, sunrise, oil painting",
-   "source": "Art Institute of Chicago",
-   "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Gustave%20Courbet%20-%20Falaise%20au%20bord%20de%20la%20mer%20%281865%29.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Gustave%20Courbet%20-%20Falaise%20au%20bord%20de%20la%20mer%20%281865%29.jpg?width=600",
-   "focal_point": [
-    0.22,
-    0.55
-   ],
-   "featured_rank": 22
-  },
-  {
-   "title": "The Brook of Les Puits-Noir",
-   "agent_name": "Gustave Courbet",
-   "agent_role": "Artist",
-   "creation_date": "c. 1855",
-   "cultural_context": "Realism, French",
-   "medium": "Oil on canvas",
-   "date_display": "c. 1855",
-   "description_narrative": "Gustave Courbet captures the quiet solitude of a brook winding through a densely wooded landscape in Les Puits-Noir. This painting exemplifies his commitment to depicting unidealized nature with a robust, earthy palette.",
-   "tags": "landscape, nature, brook, forest, realism, 19th-century art, tranquil",
-   "source": "Art Institute of Chicago",
-   "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Gustave%20Courbet%20-%20The%20Brook%20of%20Les%20Puits-Noir%20-%201933.1117%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Gustave%20Courbet%20-%20The%20Brook%20of%20Les%20Puits-Noir%20-%201933.1117%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
-   "focal_point": [
-    0.56,
-    0.74
-   ],
-   "featured_rank": 22
   },
   {
    "title": "The Girl by the Window",
@@ -277,8 +77,8 @@
    "tags": "scream, anxiety, expressionism, bridge, sunset, anguish",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Scream%20by%20Edvard%20Munch.tif?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Scream%20by%20Edvard%20Munch.tif?width=600",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Edvard%20Munch%2C%201893%2C%20The%20Scream%2C%20oil%2C%20tempera%20and%20pastel%20on%20cardboard%2C%2091%20x%2073%20cm%2C%20National%20Gallery%20of%20Norway.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Edvard%20Munch%2C%201893%2C%20The%20Scream%2C%20oil%2C%20tempera%20and%20pastel%20on%20cardboard%2C%2091%20x%2073%20cm%2C%20National%20Gallery%20of%20Norway.jpg?width=600",
    "focal_point": [
     0.55,
     0.72
@@ -314,21 +114,6 @@
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Adele%20Bloch-Bauer.jpg?width=3840",
    "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Adele%20Bloch-Bauer.jpg?width=600"
-  },
-  {
-   "title": "Bathers at Asnières",
-   "agent_name": "Georges Seurat",
-   "agent_role": "Painter",
-   "creation_date": "1884",
-   "cultural_context": "Post-Impressionism / Neo-Impressionism",
-   "medium": "Oil on canvas",
-   "date_display": "1884",
-   "description_narrative": "Working-class Parisians lounge and swim along the Seine at Asnières, bathed in flat, hazy summer light and rendered with Seurat's early experiments in broken brushwork. It was the artist's first large-scale Salon submission and a precursor to his masterpiece \"A Sunday on La Grande Jatte.\"",
-   "tags": "neo-impressionism, seine, leisure, pointillism precursor, national gallery london, working class",
-   "source": "Wikimedia Commons",
-   "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Georges%20Seurat%2C%20Bathers%20%28Study%20for%20%22Bathers%20at%20Asni%C3%A8res%22%29%2C%201883-1884%2C%20NGA%20164964.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Georges%20Seurat%2C%20Bathers%20%28Study%20for%20%22Bathers%20at%20Asni%C3%A8res%22%29%2C%201883-1884%2C%20NGA%20164964.jpg?width=600"
   },
   {
    "title": "At the Moulin Rouge",
@@ -575,29 +360,6 @@
    "license": "Public Domain",
    "source_url": "https://www.artic.edu/iiif/2/3826e366-e82a-e853-12e4-b303a1618103/full/2000,/0/default.jpg",
    "thumbnail_url": "https://www.artic.edu/iiif/2/3826e366-e82a-e853-12e4-b303a1618103/full/400,/0/default.jpg"
-  },
-  {
-   "title": "Mill of Pont Maupuit",
-   "agent_name": "Armand Guillaumin",
-   "agent_role": "Painter",
-   "creation_date": "1900",
-   "cultural_context": "Late Impressionism, color experiments anticipating Fauvism",
-   "medium": "Oil on canvas",
-   "date_display": "c. 1900",
-   "description_narrative": "Armand Guillaumin, a close friend of Cézanne and Pissarro who exhibited in several Impressionist group shows, painted this rural mill scene using the intensified, high-keyed color of his later career. His bold use of pure, saturated pigment in his final decades anticipated the color experiments of the Fauve painters who emerged in the years that followed.",
-   "tags": [
-    "guillaumin",
-    "impressionism",
-    "color",
-    "mill",
-    "landscape",
-    "france",
-    "proto-fauvism"
-   ],
-   "source": "Art Institute of Chicago",
-   "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/f4abdcdc-1d4f-4b8c-5f16-dacc42d509f5/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/f4abdcdc-1d4f-4b8c-5f16-dacc42d509f5/full/400,/0/default.jpg"
   }
  ]
 }

@@ -26,26 +26,6 @@
    "featured_rank": 15
   },
   {
-   "title": "Self-Portrait",
-   "agent_name": "Vincent van Gogh",
-   "agent_role": "Artist",
-   "creation_date": "1887",
-   "cultural_context": "Post-Impressionism, Dutch",
-   "medium": "Oil on artist's board, mounted on cradled panel",
-   "date_display": "1887",
-   "description_narrative": "This self-portrait by Vincent van Gogh, painted in 1887, captures the artist with characteristic intensity. Utilizing bold brushstrokes and vibrant colors, the work exemplifies his innovative approach to portraiture during his Parisian period.",
-   "tags": "self-portrait, post-impressionism, oil painting, expressive, dutch art, portraiture, intense",
-   "source": "Art Institute of Chicago",
-   "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/47c5bcb8-62ef-e5d7-55e7-f5121f409a30/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/47c5bcb8-62ef-e5d7-55e7-f5121f409a30/full/400,/0/default.jpg",
-   "focal_point": [
-    0.45,
-    0.34
-   ],
-   "featured_rank": 55
-  },
-  {
    "title": "The Captive Slave (Ira Aldridge)",
    "agent_name": "John Philip Simpson",
    "agent_role": "Artist",
@@ -106,26 +86,6 @@
    "featured_rank": 35
   },
   {
-   "title": "Madame Cezanne in a Yellow Chair",
-   "agent_name": "Paul Cezanne",
-   "agent_role": "Artist",
-   "creation_date": "1888–90",
-   "cultural_context": "Post-Impressionism, French",
-   "medium": "Oil on canvas",
-   "date_display": "1888–90",
-   "description_narrative": "Paul Cezanne's portrait of his wife, Hortense Fiquet, presents her with a striking solidity as she sits in a yellow chair. Through his characteristic brushwork and geometric approach, Cezanne transforms the sitter into an enduring, monumental form.",
-   "tags": "portrait, post-impressionism, oil painting, figure study, domestic scene, structural, modern art",
-   "source": "Art Institute of Chicago",
-   "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/4822cd01-44ac-041a-36b8-c0542377b750/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/4822cd01-44ac-041a-36b8-c0542377b750/full/400,/0/default.jpg",
-   "focal_point": [
-    0.52,
-    0.21
-   ],
-   "featured_rank": 45
-  },
-  {
    "title": "Madame de Pastoret and Her Son",
    "agent_name": "Jacques Louis David",
    "agent_role": "Artist",
@@ -144,26 +104,6 @@
     0.25
    ],
    "featured_rank": 30
-  },
-  {
-   "title": "Madame Roulin Rocking the Cradle (La berceuse)",
-   "agent_name": "Vincent van Gogh",
-   "agent_role": "Artist",
-   "creation_date": "1889",
-   "cultural_context": "Post-Impressionism, French",
-   "medium": "Oil on canvas",
-   "date_display": "1889",
-   "description_narrative": "Vincent van Gogh's 'Madame Roulin Rocking the Cradle' portrays the subject in a vibrant, stylized manner, emphasizing the act of nurturing. Created in 1889, this oil painting captures an intimate moment of a woman rocking a cradle.",
-   "tags": "portrait, woman, motherhood, oil painting, post-impressionism, vibrant colors, arles period",
-   "source": "Art Institute of Chicago",
-   "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/6f3ca8b9-fef6-edfc-a71c-3e7b471d5f6c/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/6f3ca8b9-fef6-edfc-a71c-3e7b471d5f6c/full/400,/0/default.jpg",
-   "focal_point": [
-    0.5,
-    0.28
-   ],
-   "featured_rank": 55
   },
   {
    "title": "Old Man with a Gold Chain",
@@ -266,26 +206,6 @@
    "featured_rank": 20
   },
   {
-   "title": "Jean Renoir Sewing",
-   "agent_name": "Pierre-Auguste Renoir",
-   "agent_role": "Artist",
-   "creation_date": "1899–1900",
-   "cultural_context": "Impressionism, French",
-   "medium": "Oil on canvas",
-   "date_display": "1899–1900",
-   "description_narrative": "This oil on canvas depicts Pierre-Auguste Renoir's son, Jean, engaged in the quiet domestic act of sewing. Painted between 1899 and 1900, the artwork captures an intimate moment from the artist's personal life.",
-   "tags": "portrait, domestic scene, child, sewing, impressionism, French art, familial, oil painting",
-   "source": "Art Institute of Chicago",
-   "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pierre-Auguste%20Renoir%20-%20Jean%20Renoir%20Sewing%20-%201937.1027%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pierre-Auguste%20Renoir%20-%20Jean%20Renoir%20Sewing%20-%201937.1027%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
-   "focal_point": [
-    0.48,
-    0.33
-   ],
-   "featured_rank": 30
-  },
-  {
    "title": "Portrait of a Man with a Pink",
    "agent_name": "Quentin Massys",
    "agent_role": "Artist",
@@ -324,26 +244,6 @@
     0.22
    ],
    "featured_rank": 30
-  },
-  {
-   "title": "Lucie Berard (Child in White)",
-   "agent_name": "Pierre-Auguste Renoir",
-   "agent_role": "Artist",
-   "creation_date": "1883",
-   "cultural_context": "Impressionism, French",
-   "medium": "Oil on canvas",
-   "date_display": "1883",
-   "description_narrative": "Pierre-Auguste Renoir captures Lucie Bérard, a young child, in this delicate oil portrait, emphasizing her youthful innocence. The artist's characteristic brushwork and soft light illuminate the subject dressed in white, a hallmark of his Impressionist approach to portraiture.",
-   "tags": "child, portrait, impressionism, french art, girl, innocence, oil painting, delicate",
-   "source": "Art Institute of Chicago",
-   "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pierre-Auguste%20Renoir%20-%20Lucie%20Berard%20%28Child%20in%20White%29%20-%201933.1172%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pierre-Auguste%20Renoir%20-%20Lucie%20Berard%20%28Child%20in%20White%29%20-%201933.1172%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
-   "focal_point": [
-    0.45,
-    0.28
-   ],
-   "featured_rank": 40
   },
   {
    "title": "Merahi metua no Tehamana (Tehamana Has Many Parents or The Ancestors of Tehamana)",
@@ -466,46 +366,6 @@
    "featured_rank": 15
   },
   {
-   "title": "Winged Figure",
-   "agent_name": "Abbott Handerson Thayer",
-   "agent_role": "Artist",
-   "creation_date": "1889",
-   "cultural_context": "American Art, Late 19th Century, Symbolism",
-   "medium": "Oil on canvas",
-   "date_display": "1889",
-   "description_narrative": "Abbott Handerson Thayer's 'Winged Figure' presents an ethereal female form, often interpreted as a guardian or angel, embodying purity and grace. Painted in oil on canvas in 1889, this work exemplifies Thayer's distinctive approach to idealized figures and soft, atmospheric rendering.",
-   "tags": "american art, symbolism, idealism, winged figure, angel, ethereal, serene",
-   "source": "Art Institute of Chicago",
-   "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Abbott%20Handerson%20Thayer%20-%20Winged%20Figure%20-%201947.32%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Abbott%20Handerson%20Thayer%20-%20Winged%20Figure%20-%201947.32%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
-   "focal_point": [
-    0.55,
-    0.2
-   ],
-   "featured_rank": 30
-  },
-  {
-   "title": "The Advance-Guard, or The Military Sacrifice (The Ambush)",
-   "agent_name": "Frederic Remington",
-   "agent_role": "Artist",
-   "creation_date": "1890",
-   "cultural_context": "American West, Late 19th Century",
-   "medium": "Oil on canvas",
-   "date_display": "1890",
-   "description_narrative": "Frederic Remington captures a tense moment in *The Advance-Guard*, depicting a military unit on alert, possibly anticipating conflict, amidst a rugged landscape. This oil painting exemplifies Remington's dedication to illustrating the dynamic and often perilous realities of the American West.",
-   "tags": "western art, american west, military, frontier, horses, oil painting, realism, late 19th century",
-   "source": "Art Institute of Chicago",
-   "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/f1e03813-f9c7-f4f8-fbe8-a5eeae84fda4/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/f1e03813-f9c7-f4f8-fbe8-a5eeae84fda4/full/400,/0/default.jpg",
-   "focal_point": [
-    0.33,
-    0.3
-   ],
-   "featured_rank": 35
-  },
-  {
    "title": "Mrs. Potter Palmer",
    "agent_name": "Anders Zorn",
    "agent_role": "Artist",
@@ -584,26 +444,6 @@
     0.21
    ],
    "featured_rank": 20
-  },
-  {
-   "title": "Elaine",
-   "agent_name": "Toby Edward Rosenthal",
-   "agent_role": "Artist",
-   "creation_date": "1874",
-   "cultural_context": "Victorian, American",
-   "medium": "Oil on canvas",
-   "date_display": "1874",
-   "description_narrative": "Toby Edward Rosenthal's 'Elaine' illustrates a poignant scene from Arthurian legend, depicting Elaine of Astolat, who dies of unrequited love for Sir Lancelot. The artwork captures the emotional gravity of her final journey, as she is sent by barge to Camelot bearing a letter that reveals her tragic fate.",
-   "tags": "arthurian legend, tragedy, romanticism, narrative art, victorian, figure painting, mythology",
-   "source": "Art Institute of Chicago",
-   "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Toby%20Edward%20Rosenthal%20-%20Elaine%20-%201917.3%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Toby%20Edward%20Rosenthal%20-%20Elaine%20-%201917.3%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
-   "focal_point": [
-    0.4,
-    0.42
-   ],
-   "featured_rank": 30
   },
   {
    "title": "Self-Portrait",
@@ -921,6 +761,246 @@
    "license": "Public Domain",
    "source_url": "https://www.artic.edu/iiif/2/f9aacbc6-191c-3725-85bf-198612a51d25/full/2000,/0/default.jpg",
    "thumbnail_url": "https://www.artic.edu/iiif/2/f9aacbc6-191c-3725-85bf-198612a51d25/full/400,/0/default.jpg"
+  },
+  {
+   "title": "Arrangement in Flesh Color and Brown: Portrait of Arthur Jerome Eddy",
+   "agent_name": "James McNeill Whistler",
+   "agent_role": "Artist",
+   "creation_date": "1894",
+   "cultural_context": "Tonalism, American",
+   "medium": "Oil on canvas",
+   "date_display": "1894",
+   "description_narrative": "This striking oil portrait, titled \"Arrangement in Flesh Color and Brown,\" captures Arthur Jerome Eddy with an emphasis on color harmony rather than detailed representation. Created by James McNeill Whistler in 1894, it exemplifies his innovative approach to portraiture as a study in tonal relationships and artistic arrangement.",
+   "tags": "portrait, oil painting, whistler, tonalism, aestheticism, fin de siècle, american art",
+   "source": "Art Institute of Chicago",
+   "license": "Public Domain",
+   "source_url": "https://www.artic.edu/iiif/2/43165650-0212-8897-0605-dc3fdda88c13/full/2000,/0/default.jpg",
+   "thumbnail_url": "https://www.artic.edu/iiif/2/43165650-0212-8897-0605-dc3fdda88c13/full/400,/0/default.jpg",
+   "focal_point": [
+    0.45,
+    0.1
+   ],
+   "featured_rank": 30
+  },
+  {
+   "title": "Mrs. John Nicholson (Hannah Duncan) and John Nicholson, Jr.",
+   "agent_name": "Charles Willson Peale",
+   "agent_role": "Artist",
+   "creation_date": "1790",
+   "cultural_context": "Late 18th Century, American",
+   "medium": "Oil on canvas",
+   "date_display": "1790",
+   "description_narrative": "This double portrait by Charles Willson Peale depicts Hannah Duncan Nicholson and her son, John Nicholson, Jr., capturing a tender familial moment. Painted in oil on canvas in 1790, it exemplifies Peale's skill in rendering lifelike figures and intimate domestic scenes.",
+   "tags": "portrait, mother and child, family, 18th century, american art, oil painting, realism, domestic scene",
+   "source": "Art Institute of Chicago",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Charles%20Willson%20Peale%20-%20Mrs.%20John%20Nicholson%20%28Hannah%20Duncan%29%20and%20John%20Nicholson%2C%20Jr.%20-%201952.1001%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Charles%20Willson%20Peale%20-%20Mrs.%20John%20Nicholson%20%28Hannah%20Duncan%29%20and%20John%20Nicholson%2C%20Jr.%20-%201952.1001%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
+   "focal_point": [
+    0.42,
+    0.36
+   ],
+   "featured_rank": 15
+  },
+  {
+   "title": "James Vibert, Sculptor",
+   "agent_name": "Ferdinand Hodler",
+   "agent_role": "Artist",
+   "creation_date": "1907",
+   "cultural_context": "Early 20th century",
+   "medium": "Oil on canvas",
+   "date_display": "1907",
+   "description_narrative": "Ferdinand Hodler's 1907 oil on canvas presents a portrait titled 'James Vibert, Sculptor'. The painting depicts the sculptor James Vibert, created by Hodler, and serves as an example of his portraiture.",
+   "tags": "portraiture, male subject, sculptor, oil painting, 1907, ferdinand hodler",
+   "source": "Art Institute of Chicago",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Ferdinand%20Hodler%20-%20James%20Vibert%2C%20Sculptor%20-%201926.212%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Ferdinand%20Hodler%20-%20James%20Vibert%2C%20Sculptor%20-%201926.212%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
+   "focal_point": [
+    0.5,
+    0.33
+   ],
+   "featured_rank": 20
+  },
+  {
+   "title": "James William Wallack",
+   "agent_name": "Charles Robert Leslie",
+   "agent_role": "Artist",
+   "creation_date": "1835–40",
+   "cultural_context": "19th century, British-American",
+   "medium": "Oil on canvas",
+   "date_display": "1835–40",
+   "description_narrative": "This oil on canvas painting by Charles Robert Leslie depicts James William Wallack. Created between 1835 and 1840, it showcases Leslie's skill as a portraitist.",
+   "tags": "portrait, oil painting, 19th century, male figure, charles robert leslie, james william wallack, american art, british art",
+   "source": "Art Institute of Chicago",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Charles%20Robert%20Leslie%20-%20James%20William%20Wallack%20-%201923.359%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Charles%20Robert%20Leslie%20-%20James%20William%20Wallack%20-%201923.359%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
+   "focal_point": [
+    0.47,
+    0.33
+   ],
+   "featured_rank": 15
+  },
+  {
+   "title": "Isabella Wolff",
+   "agent_name": "Sir Thomas Lawrence",
+   "agent_role": "Artist",
+   "creation_date": "1803–15",
+   "cultural_context": "Romanticism, British, 19th century",
+   "medium": "Oil on canvas",
+   "date_display": "1803–15",
+   "description_narrative": "Sir Thomas Lawrence's oil on canvas portrait depicts Isabella Wolff, capturing her refined presence with remarkable detail. Created between 1803 and 1815, this work exemplifies the artist's celebrated ability to convey character and elegance through his brushwork.",
+   "tags": "portrait, woman, romanticism, british art, oil painting, 19th century, elegance, refined",
+   "source": "Art Institute of Chicago",
+   "license": "Public Domain",
+   "source_url": "https://www.artic.edu/iiif/2/0052fc88-353e-db97-8741-b6b5ec6fb354/full/2000,/0/default.jpg",
+   "thumbnail_url": "https://www.artic.edu/iiif/2/0052fc88-353e-db97-8741-b6b5ec6fb354/full/400,/0/default.jpg",
+   "focal_point": [
+    0.52,
+    0.3
+   ],
+   "featured_rank": 28
+  },
+  {
+   "title": "Dr. Joseph Klapp",
+   "agent_name": "Thomas Sully",
+   "agent_role": "Artist",
+   "creation_date": "1814",
+   "cultural_context": "American, 19th century",
+   "medium": "Oil on canvas",
+   "date_display": "1814",
+   "description_narrative": "Painted by Thomas Sully in 1814, this oil on canvas depicts Dr. Joseph Klapp. The work serves as a formal portrait, representative of American painting from the early 19th century.",
+   "tags": "portrait, oil painting, American, 19th century, formal, doctor, realism",
+   "source": "Art Institute of Chicago",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Thomas%20Sully%20-%20Dr.%20Joseph%20Klapp%20-%201950.1363%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Thomas%20Sully%20-%20Dr.%20Joseph%20Klapp%20-%201950.1363%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
+   "focal_point": [
+    0.46,
+    0.27
+   ],
+   "featured_rank": 18
+  },
+  {
+   "title": "Mrs. Klapp (Anna Milnor)",
+   "agent_name": "Thomas Sully",
+   "agent_role": "Artist",
+   "creation_date": "1814",
+   "cultural_context": "American, Early 19th Century",
+   "medium": "Oil on canvas",
+   "date_display": "1814",
+   "description_narrative": "Thomas Sully's 1814 oil on canvas presents a portrait of Mrs. Klapp, also known as Anna Milnor. This work exemplifies the artist's refined approach to capturing individual likeness through the medium of paint.",
+   "tags": "portrait, oil painting, American art, 19th century, realism, woman, Thomas Sully",
+   "source": "Art Institute of Chicago",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Thomas%20Sully%20-%20Mrs.%20Klapp%20%28Anna%20Milnor%29%20-%201950.1362%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Thomas%20Sully%20-%20Mrs.%20Klapp%20%28Anna%20Milnor%29%20-%201950.1362%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
+   "focal_point": [
+    0.48,
+    0.25
+   ],
+   "featured_rank": 18
+  },
+  {
+   "title": "Sarah Dupont",
+   "agent_name": "Thomas Gainsborough",
+   "agent_role": "Artist",
+   "creation_date": "c. 1777–79",
+   "cultural_context": "18th Century, British art",
+   "medium": "Oil on canvas",
+   "date_display": "c. 1777–79",
+   "description_narrative": "Thomas Gainsborough was a prominent English portrait and landscape painter of the 18th century. This oil painting captures a likeness, reflecting the artist's characteristic elegant style and mastery of brushwork.",
+   "tags": "portraiture, 18th century, British art, oil painting, elegant, aristocratic, Georgian era",
+   "source": "Art Institute of Chicago",
+   "license": "Public Domain",
+   "source_url": "https://www.artic.edu/iiif/2/d763c113-194b-62a5-3e39-e2b479c5df47/full/2000,/0/default.jpg",
+   "thumbnail_url": "https://www.artic.edu/iiif/2/d763c113-194b-62a5-3e39-e2b479c5df47/full/400,/0/default.jpg",
+   "focal_point": [
+    0.48,
+    0.36
+   ],
+   "featured_rank": 20
+  },
+  {
+   "title": "Riter Fitzgerald",
+   "agent_name": "Thomas Eakins",
+   "agent_role": "Artist",
+   "creation_date": "1895",
+   "cultural_context": "American Realism, late 19th century",
+   "medium": "Oil on canvas",
+   "date_display": "1895",
+   "description_narrative": "Thomas Eakins's 1895 portrait of Riter Fitzgerald exemplifies his commitment to capturing individual presence rather than idealizing his subjects. Through a muted palette and direct gaze, Eakins reveals a quiet intensity in the sitter.",
+   "tags": "portrait, american realism, oil painting, male subject, 19th century, psychological, muted",
+   "source": "Art Institute of Chicago",
+   "license": "Public Domain",
+   "source_url": "https://www.artic.edu/iiif/2/0ba00909-2927-68ce-5c4d-a7534d18c4f4/full/2000,/0/default.jpg",
+   "thumbnail_url": "https://www.artic.edu/iiif/2/0ba00909-2927-68ce-5c4d-a7534d18c4f4/full/400,/0/default.jpg",
+   "focal_point": [
+    0.38,
+    0.3
+   ],
+   "featured_rank": 20
+  },
+  {
+   "title": "Portrait of Mary Adeline Williams",
+   "agent_name": "Thomas Eakins",
+   "agent_role": "Artist",
+   "creation_date": "1899",
+   "cultural_context": "American Realism, late 19th century",
+   "medium": "Oil on canvas",
+   "date_display": "1899",
+   "description_narrative": "Thomas Eakins's 1899 oil on canvas depicts Mary Adeline Williams with a characteristic directness and psychological insight. His work is celebrated for its unvarnished realism, capturing the sitter's individual presence with a precise eye.",
+   "tags": "portrait, realism, american art, oil painting, late 19th century, psychological, contemplative",
+   "source": "Art Institute of Chicago",
+   "license": "Public Domain",
+   "source_url": "https://www.artic.edu/iiif/2/8cb9f5ea-c955-96fd-c2d6-c720b0dbf7d4/full/2000,/0/default.jpg",
+   "thumbnail_url": "https://www.artic.edu/iiif/2/8cb9f5ea-c955-96fd-c2d6-c720b0dbf7d4/full/400,/0/default.jpg",
+   "focal_point": [
+    0.42,
+    0.28
+   ],
+   "featured_rank": 25
+  },
+  {
+   "title": "Rêverie (Portrait of Gabrielle Borreau)",
+   "agent_name": "Gustave Courbet",
+   "agent_role": "Artist",
+   "creation_date": "1862",
+   "cultural_context": "Realism, French",
+   "medium": "Oil on paper, mounted on canvas",
+   "date_display": "1862",
+   "description_narrative": "This intimate portrait by Gustave Courbet depicts Gabrielle Borreau in a contemplative pose. Painted in 1862, the work captures a moment of quiet introspection.",
+   "tags": "portrait, realism, 19th century, contemplative, figure study, oil painting, french art",
+   "source": "Art Institute of Chicago",
+   "license": "Public Domain",
+   "source_url": "https://www.artic.edu/iiif/2/40d69445-feb4-d6d5-bcad-bb142856f0a6/full/2000,/0/default.jpg",
+   "thumbnail_url": "https://www.artic.edu/iiif/2/40d69445-feb4-d6d5-bcad-bb142856f0a6/full/400,/0/default.jpg",
+   "focal_point": [
+    0.52,
+    0.32
+   ],
+   "featured_rank": 25
+  },
+  {
+   "title": "Mère Grégoire",
+   "agent_name": "Gustave Courbet",
+   "agent_role": "Artist",
+   "creation_date": "1855, reworked 1857–59",
+   "cultural_context": "Realism, French",
+   "medium": "Oil on canvas",
+   "date_display": "1855, reworked 1857–59",
+   "description_narrative": "Gustave Courbet's 'Mère Grégoire' is an oil on canvas portrait depicting an older woman. This work exemplifies Courbet's commitment to portraying everyday people with directness and realism.",
+   "tags": "portrait, woman, realism, french realism, direct, naturalistic, oil painting",
+   "source": "Art Institute of Chicago",
+   "license": "Public Domain",
+   "source_url": "https://www.artic.edu/iiif/2/2e6d08c8-dac0-4f1c-3e56-de3539ceb905/full/2000,/0/default.jpg",
+   "thumbnail_url": "https://www.artic.edu/iiif/2/2e6d08c8-dac0-4f1c-3e56-de3539ceb905/full/400,/0/default.jpg",
+   "focal_point": [
+    0.5,
+    0.28
+   ],
+   "featured_rank": 25
   }
  ]
 }

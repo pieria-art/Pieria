@@ -2,7 +2,7 @@
  "id": "masterpieces",
  "title": "Masterpieces",
  "description": "The most iconic paintings of all time — start here.",
- "source": "Screen Docent",
+ "source": "Art Institute of Chicago, Rijksmuseum, The Metropolitan Museum of Art, Wikimedia Commons",
  "license": "Public Domain",
  "items": [
   {
@@ -77,8 +77,8 @@
    "tags": "scream, anxiety, expressionism, bridge, sunset, anguish",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Scream%20by%20Edvard%20Munch.tif?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Scream%20by%20Edvard%20Munch.tif?width=600",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Edvard%20Munch%2C%201893%2C%20The%20Scream%2C%20oil%2C%20tempera%20and%20pastel%20on%20cardboard%2C%2091%20x%2073%20cm%2C%20National%20Gallery%20of%20Norway.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Edvard%20Munch%2C%201893%2C%20The%20Scream%2C%20oil%2C%20tempera%20and%20pastel%20on%20cardboard%2C%2091%20x%2073%20cm%2C%20National%20Gallery%20of%20Norway.jpg?width=600",
    "focal_point": [
     0.55,
     0.72
@@ -457,8 +457,8 @@
    "tags": "domestic, light, milk, kitchen, dutch golden age, still life",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Milkmaid%20by%20Johannes%20Vermeer%20%281%29.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Milkmaid%20by%20Johannes%20Vermeer%20%281%29.jpg?width=600",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Johannes%20Vermeer%20-%20Het%20melkmeisje%20-%20Google%20Art%20Project.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Johannes%20Vermeer%20-%20Het%20melkmeisje%20-%20Google%20Art%20Project.jpg?width=600",
    "focal_point": [
     0.56,
     0.27
@@ -644,26 +644,6 @@
     0.45
    ],
    "featured_rank": 80
-  },
-  {
-   "title": "The Death of Socrates",
-   "agent_name": "Jacques Louis David",
-   "agent_role": "Artist",
-   "creation_date": "1787",
-   "cultural_context": "Paintings",
-   "medium": "Oil on canvas",
-   "date_display": "1787",
-   "description_narrative": "Jacques Louis David's monumental 1787 oil painting depicts the final moments of Socrates as he prepares to drink hemlock. Surrounded by his devoted students, Socrates remains stoic, pointing skyward in a gesture of philosophical defiance.",
-   "tags": "socrates, classical, philosophy, death, neoclassicism, history painting, stoicism, sacrifice",
-   "source": "The Metropolitan Museum of Art",
-   "license": "Public Domain",
-   "source_url": "https://images.metmuseum.org/CRDImages/ep/original/DP-13139-001.jpg",
-   "thumbnail_url": "https://images.metmuseum.org/CRDImages/ep/web-large/DP-13139-001.jpg",
-   "focal_point": [
-    0.5,
-    0.42
-   ],
-   "featured_rank": 78
   },
   {
    "title": "The Monk by the Sea",

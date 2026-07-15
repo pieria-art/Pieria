@@ -287,9 +287,13 @@ async def build_collection(db, spec, cache, *, limit=None, enrich=True, verify=T
         if missing:
             logger.info(f"  MISSING (no verified PD source): {', '.join(str(m)[:32] for m in missing)}")
 
-        # 2) Optional query-discovery supplement to top up toward the target.
+        # 2) Optional query-discovery supplement to top up toward the target. OPT-IN (default off):
+        # keyword search cross-contaminates collections (name collisions like "Thomas"/"Turner"/
+        # "Gustave", broad theme queries pull off-topic works) — CURATION-v2 audit found ~104 mis-filed
+        # works from this. Curated picks are the source of truth; a collection must set
+        # query_supplement=True explicitly to re-enable discovery.
         query_cands = []
-        if spec.get("query_supplement", True) and spec.get("queries"):
+        if spec.get("query_supplement", False) and spec.get("queries"):
             query_cands = await fetch_collection(db, spec)
         logger.info(f"  resolved {len(resolved)} picks (+{len(query_cands)} query candidates)")
 

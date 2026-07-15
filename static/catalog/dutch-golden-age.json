@@ -166,26 +166,6 @@
    "featured_rank": 20
   },
   {
-   "title": "Cottage near the Entrance to a Wood",
-   "agent_name": "Rembrandt (Rembrandt van Rijn)",
-   "agent_role": "Artist",
-   "creation_date": "1644",
-   "cultural_context": "Drawings",
-   "medium": "Pen and inks ranging from light to dark brown, brown washes, corrected in white (oxidized, partially abraded), and touches of red chalk (in added structures to the left of the main cottage).",
-   "date_display": "1644",
-   "description_narrative": "This evocative drawing by Rembrandt depicts a humble cottage nestled near the entrance to a wood. Masterfully executed with a range of light to dark brown inks and washes, the work also features corrections in white and subtle touches of red chalk.",
-   "tags": "rembrandt, dutch baroque, landscape, drawing, cottage, rural, ink, 17th century",
-   "source": "The Metropolitan Museum of Art",
-   "license": "Public Domain",
-   "source_url": "https://images.metmuseum.org/CRDImages/rl/original/DP-15506-001.jpg",
-   "thumbnail_url": "https://images.metmuseum.org/CRDImages/rl/web-large/DP-15506-001.jpg",
-   "focal_point": [
-    0.65,
-    0.55
-   ],
-   "featured_rank": 15
-  },
-  {
    "title": "Lucas van Uffel (died 1637)",
    "agent_name": "Anthony van Dyck",
    "agent_role": "Artist",
@@ -204,66 +184,6 @@
     0.28
    ],
    "featured_rank": 25
-  },
-  {
-   "title": "Cottage among Trees",
-   "agent_name": "Rembrandt (Rembrandt van Rijn)",
-   "agent_role": "Artist",
-   "creation_date": "ca. 1650",
-   "cultural_context": "Drawings",
-   "medium": "Pen and brown ink, brush and brown wash, on paper washed with brown",
-   "date_display": "ca. 1650",
-   "description_narrative": "Rembrandt masterfully renders a rustic cottage nestled amidst trees, utilizing expressive lines and washes to evoke a sense of humble rural life. The intricate interplay of pen and brown ink with broad brushstrokes of brown wash creates depth and atmosphere on the prepared paper.",
-   "tags": "rembrandt, landscape, drawing, dutch baroque, rural scene, ink wash, cottage, trees",
-   "source": "The Metropolitan Museum of Art",
-   "license": "Public Domain",
-   "source_url": "https://images.metmuseum.org/CRDImages/dp/original/DP832659.jpg",
-   "thumbnail_url": "https://images.metmuseum.org/CRDImages/dp/web-large/DP832659.jpg",
-   "focal_point": [
-    0.46,
-    0.6
-   ],
-   "featured_rank": 15
-  },
-  {
-   "title": "Christ Crucified between the Two Thieves: The Three Crosses",
-   "agent_name": "Rembrandt (Rembrandt van Rijn)",
-   "agent_role": "Artist",
-   "creation_date": "1653",
-   "cultural_context": "Prints",
-   "medium": "Drypoint printed on vellum",
-   "date_display": "1653",
-   "description_narrative": "Rembrandt's dramatic drypoint depicts Christ's crucifixion, flanked by the two thieves, amidst a somber and emotionally charged scene. The artist masterfully uses the drypoint medium to create rich, dark tones and intricate details that heighten the intensity of this pivotal biblical event.",
-   "tags": "religious, biblical, crucifixion, drypoint, Rembrandt, Dutch Golden Age, printmaking, dramatic",
-   "source": "The Metropolitan Museum of Art",
-   "license": "Public Domain",
-   "source_url": "https://images.metmuseum.org/CRDImages/dp/original/DT11821.jpg",
-   "thumbnail_url": "https://images.metmuseum.org/CRDImages/dp/web-large/DT11821.jpg",
-   "focal_point": [
-    0.5,
-    0.35
-   ],
-   "featured_rank": 45
-  },
-  {
-   "title": "Reclining Female Nude",
-   "agent_name": "Rembrandt (Rembrandt van Rijn)",
-   "agent_role": "Artist",
-   "creation_date": "1658",
-   "cultural_context": "Prints",
-   "medium": "Etching, drypoint, and engraving on Japanese paper; second of six states",
-   "date_display": "1658",
-   "description_narrative": "This etching by Rembrandt depicts a reclining female nude, rendered with a combination of etching, drypoint, and engraving techniques. The artist's mastery of printmaking is evident in the nuanced tones and lines on the Japanese paper, showcasing the second of six states.",
-   "tags": "nude, female, etching, drypoint, engraving, rembrandt, printmaking, dutch golden age",
-   "source": "The Metropolitan Museum of Art",
-   "license": "Public Domain",
-   "source_url": "https://images.metmuseum.org/CRDImages/dp/original/DP815606.jpg",
-   "thumbnail_url": "https://images.metmuseum.org/CRDImages/dp/web-large/DP815606.jpg",
-   "focal_point": [
-    0.5,
-    0.5
-   ],
-   "featured_rank": 15
   },
   {
    "title": "A Maid Asleep",
@@ -306,26 +226,6 @@
    "featured_rank": 40
   },
   {
-   "title": "Charity",
-   "agent_name": "Guido Reni",
-   "agent_role": "Artist",
-   "creation_date": "ca. 1630",
-   "cultural_context": "Paintings",
-   "medium": "Oil on canvas",
-   "date_display": "ca. 1630",
-   "description_narrative": "Guido Reni's \"Charity\" exemplifies the artist's refined Baroque style through its graceful composition and idealized figures. This oil on canvas work from around 1630 portrays the allegorical figure of Charity, often depicted nourishing or caring for children, embodying selfless love.",
-   "tags": "charity, allegory, baroque, italian baroque, religious, devotion, figurative",
-   "source": "The Metropolitan Museum of Art",
-   "license": "Public Domain",
-   "source_url": "https://images.metmuseum.org/CRDImages/ep/original/DT10776.jpg",
-   "thumbnail_url": "https://images.metmuseum.org/CRDImages/ep/web-large/DT10776.jpg",
-   "focal_point": [
-    0.43,
-    0.27
-   ],
-   "featured_rank": 20
-  },
-  {
    "title": "The Crucifixion with the Virgin and Saint John",
    "agent_name": "Hendrick ter Brugghen",
    "agent_role": "Artist",
@@ -344,146 +244,6 @@
     0.21
    ],
    "featured_rank": 18
-  },
-  {
-   "title": "The Jabach Family",
-   "agent_name": "Charles Le Brun",
-   "agent_role": "Artist",
-   "creation_date": "ca. 1660",
-   "cultural_context": "Paintings",
-   "medium": "Oil on canvas",
-   "date_display": "ca. 1660",
-   "description_narrative": "This grand portrait depicts the Jabach family, patrons of the arts, in a setting indicative of their wealth and intellectual pursuits. Charles Le Brun, a leading artist of his time, masterfully captures the family's presence and status through rich detail and classical composition.",
-   "tags": "family portrait, baroque, french art, 17th century, oil painting, group portrait, aristocracy",
-   "source": "The Metropolitan Museum of Art",
-   "license": "Public Domain",
-   "source_url": "https://images.metmuseum.org/CRDImages/ep/original/DP352819.jpg",
-   "thumbnail_url": "https://images.metmuseum.org/CRDImages/ep/web-large/DP352819.jpg",
-   "focal_point": [
-    0.42,
-    0.4
-   ],
-   "featured_rank": 22
-  },
-  {
-   "title": "The Fieschi Morgan Staurotheke",
-   "agent_name": "Unknown Artist",
-   "agent_role": "Artist",
-   "creation_date": "early 9th century",
-   "cultural_context": "Byzantine",
-   "medium": "Gilded silver, gold, enamel worked in cloisonné, and niello",
-   "date_display": "early 9th century",
-   "description_narrative": "The Fieschi Morgan Staurotheke is an exquisite Byzantine reliquary designed to hold a fragment of the True Cross. Crafted from gilded silver and gold, it features intricate cloisonné enamel and niello decoration, showcasing the skilled artistry of the early 9th century.",
-   "tags": "byzantine, reliquary, gold, silver, enamel, christian, medieval, sacred art",
-   "source": "The Metropolitan Museum of Art",
-   "license": "Public Domain",
-   "source_url": "https://images.metmuseum.org/CRDImages/md/original/DT119.jpg",
-   "thumbnail_url": "https://images.metmuseum.org/CRDImages/md/web-large/DT119.jpg",
-   "focal_point": [
-    0.5,
-    0.4
-   ],
-   "featured_rank": 15
-  },
-  {
-   "title": "Portrait of Alvise Contarini(?); (verso) A Tethered Roebuck",
-   "agent_name": "Jacometto (Jacometto Veneziano)",
-   "agent_role": "Artist",
-   "creation_date": "ca. 1485–95",
-   "cultural_context": "Paintings",
-   "medium": "Oil on wood; verso: oil and gold on wood",
-   "date_display": "ca. 1485–95",
-   "description_narrative": "This painting features a probable portrait of Alvise Contarini on the front, rendered in oil on wood. The reverse side reveals 'A Tethered Roebuck,' executed with oil and gold on wood, showcasing the dual nature of the artwork.",
-   "tags": "portrait, renaissance, italian, oil painting, roebuck, contemplative, venetian, 15th century",
-   "source": "The Metropolitan Museum of Art",
-   "license": "Public Domain",
-   "source_url": "https://images.metmuseum.org/CRDImages/rl/original/DP221485.jpg",
-   "thumbnail_url": "https://images.metmuseum.org/CRDImages/rl/web-large/DP221485.jpg",
-   "focal_point": [
-    0.5,
-    0.38
-   ],
-   "featured_rank": 12
-  },
-  {
-   "title": "The Japanese Robe",
-   "agent_name": "Alfred Stevens",
-   "agent_role": "Artist",
-   "creation_date": "ca. 1872",
-   "cultural_context": "Paintings",
-   "medium": "Oil on canvas",
-   "date_display": "ca. 1872",
-   "description_narrative": "This oil on canvas painting, \"The Japanese Robe,\" by Alfred Stevens, depicts a woman in a richly appointed interior. Created around 1872, the work captures a moment of quiet contemplation, showcasing a popular fashion trend of the era.",
-   "tags": "woman, interior, japonisme, elegant, 19th century, genre painting",
-   "source": "The Metropolitan Museum of Art",
-   "license": "Public Domain",
-   "source_url": "https://images.metmuseum.org/CRDImages/ep/original/DP-42347-001.jpg",
-   "thumbnail_url": "https://images.metmuseum.org/CRDImages/ep/web-large/DP-42347-001.jpg",
-   "focal_point": [
-    0.55,
-    0.28
-   ],
-   "featured_rank": 15
-  },
-  {
-   "title": "The Death of Socrates",
-   "agent_name": "Jacques Louis David",
-   "agent_role": "Artist",
-   "creation_date": "1787",
-   "cultural_context": "Paintings",
-   "medium": "Oil on canvas",
-   "date_display": "1787",
-   "description_narrative": "Jacques Louis David's monumental 1787 oil painting depicts the final moments of Socrates as he prepares to drink hemlock. Surrounded by his devoted students, Socrates remains stoic, pointing skyward in a gesture of philosophical defiance.",
-   "tags": "socrates, classical, philosophy, death, neoclassicism, history painting, stoicism, sacrifice",
-   "source": "The Metropolitan Museum of Art",
-   "license": "Public Domain",
-   "source_url": "https://images.metmuseum.org/CRDImages/ep/original/DP-13139-001.jpg",
-   "thumbnail_url": "https://images.metmuseum.org/CRDImages/ep/web-large/DP-13139-001.jpg",
-   "focal_point": [
-    0.5,
-    0.42
-   ],
-   "featured_rank": 78
-  },
-  {
-   "title": "Hermann von Wedigh III (died 1560)",
-   "agent_name": "Hans Holbein the Younger",
-   "agent_role": "Artist",
-   "creation_date": "1532",
-   "cultural_context": "Paintings",
-   "medium": "Oil and gold on oak",
-   "date_display": "1532",
-   "description_narrative": "Hans Holbein the Younger masterfully depicted Hermann von Wedigh III in this striking oil and gold on oak portrait. Painted in 1532, this work exemplifies Holbein's meticulous realism and attention to detail.",
-   "tags": "portrait, renaissance, northern renaissance, 16th century, german, oil painting, formal, realism",
-   "source": "The Metropolitan Museum of Art",
-   "license": "Public Domain",
-   "source_url": "https://images.metmuseum.org/CRDImages/ep/original/DP164836.jpg",
-   "thumbnail_url": "https://images.metmuseum.org/CRDImages/ep/web-large/DP164836.jpg",
-   "focal_point": [
-    0.58,
-    0.28
-   ],
-   "featured_rank": 35
-  },
-  {
-   "title": "Don Gaspar de Guzmán (1587–1645), Count-Duke of Olivares",
-   "agent_name": "Juan Bautista Martínez del Mazo",
-   "agent_role": "Artist",
-   "creation_date": "ca. 1636 or later",
-   "cultural_context": "Paintings",
-   "medium": "Oil on canvas",
-   "date_display": "ca. 1636 or later",
-   "description_narrative": "This striking oil on canvas captures Don Gaspar de Guzmán, Count-Duke of Olivares, a prominent statesman and court favorite in 17th-century Spain. The portrait was skillfully rendered by Juan Bautista Martínez del Mazo, an artist associated with the Spanish court.",
-   "tags": "portrait, nobleman, spanish art, baroque, 17th century, oil painting",
-   "source": "The Metropolitan Museum of Art",
-   "license": "Public Domain",
-   "source_url": "https://images.metmuseum.org/CRDImages/ep/original/DP-14936-011.jpg",
-   "thumbnail_url": "https://images.metmuseum.org/CRDImages/ep/web-large/DP-14936-011.jpg",
-   "focal_point": [
-    0.57,
-    0.22
-   ],
-   "featured_rank": 20
   },
   {
    "title": "Young Man and Woman in an Inn",
@@ -546,26 +306,6 @@
    "featured_rank": 25
   },
   {
-   "title": "Jacob Willemsz van Veen (1456–1535), the Artist's Father",
-   "agent_name": "Maarten van Heemskerck",
-   "agent_role": "Artist",
-   "creation_date": "1532",
-   "cultural_context": "Paintings",
-   "medium": "Oil on wood",
-   "date_display": "1532",
-   "description_narrative": "Maarten van Heemskerck captures his father, Jacob Willemsz van Veen, in this striking portrait. Executed in oil on wood in 1532, the work offers a personal glimpse into the artist's family.",
-   "tags": "portrait, old master, oil painting, father, renaissance, 16th century, dutch art",
-   "source": "The Metropolitan Museum of Art",
-   "license": "Public Domain",
-   "source_url": "https://images.metmuseum.org/CRDImages/ep/original/DP-38857-001.jpg",
-   "thumbnail_url": "https://images.metmuseum.org/CRDImages/ep/web-large/DP-38857-001.jpg",
-   "focal_point": [
-    0.48,
-    0.33
-   ],
-   "featured_rank": 15
-  },
-  {
    "title": "The Smokers",
    "agent_name": "Adriaen Brouwer",
    "agent_role": "Artist",
@@ -582,46 +322,6 @@
    "focal_point": [
     0.42,
     0.28
-   ],
-   "featured_rank": 30
-  },
-  {
-   "title": "Portrait of a Young Man",
-   "agent_name": "Bronzino (Agnolo di Cosimo di Mariano)",
-   "agent_role": "Artist",
-   "creation_date": "1530s",
-   "cultural_context": "Paintings",
-   "medium": "Oil on wood",
-   "date_display": "1530s",
-   "description_narrative": "Bronzino's 'Portrait of a Young Man,' painted in oil on wood during the 1530s, exemplifies the artist's refined style and meticulous detail. The sitter's composed expression and elegant demeanor reflect the sophisticated portraiture characteristic of the period.",
-   "tags": "portrait, young man, mannerism, italian renaissance, elegant, intense, sophisticated",
-   "source": "The Metropolitan Museum of Art",
-   "license": "Public Domain",
-   "source_url": "https://images.metmuseum.org/CRDImages/ep/original/DP-14286-011.jpg",
-   "thumbnail_url": "https://images.metmuseum.org/CRDImages/ep/web-large/DP-14286-011.jpg",
-   "focal_point": [
-    0.52,
-    0.21
-   ],
-   "featured_rank": 35
-  },
-  {
-   "title": "The Annunciation",
-   "agent_name": "Petrus Christus",
-   "agent_role": "Artist",
-   "creation_date": "ca. 1445",
-   "cultural_context": "Paintings",
-   "medium": "Oil on wood",
-   "date_display": "ca. 1445",
-   "description_narrative": "Petrus Christus's 'The Annunciation' depicts the pivotal biblical moment when the Archangel Gabriel announces to Mary that she will conceive Jesus. This significant oil on wood panel exemplifies the detailed artistry of early Netherlandish painting.",
-   "tags": "annunciation, biblical, religious, oil painting, early netherlandish, sacred, petrus christus",
-   "source": "The Metropolitan Museum of Art",
-   "license": "Public Domain",
-   "source_url": "https://images.metmuseum.org/CRDImages/ep/original/DT1479.jpg",
-   "thumbnail_url": "https://images.metmuseum.org/CRDImages/ep/web-large/DT1479.jpg",
-   "focal_point": [
-    0.72,
-    0.45
    ],
    "featured_rank": 30
   },
@@ -697,8 +397,8 @@
    "tags": "domestic, light, milk, kitchen, dutch golden age, still life",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Milkmaid%20by%20Johannes%20Vermeer%20%281%29.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Milkmaid%20by%20Johannes%20Vermeer%20%281%29.jpg?width=600",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Johannes%20Vermeer%20-%20Het%20melkmeisje%20-%20Google%20Art%20Project.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Johannes%20Vermeer%20-%20Het%20melkmeisje%20-%20Google%20Art%20Project.jpg?width=600",
    "focal_point": [
     0.56,
     0.27

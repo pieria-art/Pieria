@@ -46,26 +46,6 @@
    "featured_rank": 35
   },
   {
-   "title": "A Sunday on La Grande Jatte — 1884",
-   "agent_name": "Georges Seurat",
-   "agent_role": "Artist",
-   "creation_date": "1884–86, border added 1888–89",
-   "cultural_context": "Neo-Impressionism, French",
-   "medium": "Oil on canvas",
-   "date_display": "1884–86, border added 1888–89",
-   "description_narrative": "Georges Seurat's monumental oil on canvas, \"A Sunday on La Grande Jatte — 1884,\" captures Parisians enjoying a leisurely afternoon on an island in the Seine. This iconic work is meticulously composed using the artist's groundbreaking pointillist technique, creating luminous color and form.",
-   "tags": "sunday, leisure, park, pointillism, post-impressionism, Parisian life, serene, vibrant",
-   "source": "Art Institute of Chicago",
-   "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/A%20Sunday%20on%20La%20Grande%20Jatte%2C%20Georges%20Seurat%2C%201884.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/A%20Sunday%20on%20La%20Grande%20Jatte%2C%20Georges%20Seurat%2C%201884.jpg?width=600",
-   "focal_point": [
-    0.78,
-    0.4
-   ],
-   "featured_rank": 90
-  },
-  {
    "title": "Allegory of Venus and Cupid",
    "agent_name": "Imitator of Titian",
    "agent_role": "Artist",
@@ -126,26 +106,6 @@
    "featured_rank": 12
   },
   {
-   "title": "Cupid Chastised",
-   "agent_name": "Bartolomeo Manfredi",
-   "agent_role": "Artist",
-   "creation_date": "1613",
-   "cultural_context": "Baroque, Italian",
-   "medium": "Oil on canvas",
-   "date_display": "1613",
-   "description_narrative": "Bartolomeo Manfredi's \"Cupid Chastised\" depicts a mythological scene centered on the punishment of the god of love. Executed in oil on canvas, the work showcases the dramatic light and shadow characteristic of the artist's era.",
-   "tags": "mythology, cupid, baroque, caravaggism, italian, oil painting, dramatic",
-   "source": "Art Institute of Chicago",
-   "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/0f951635-312c-0829-451b-553f461c5518/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/0f951635-312c-0829-451b-553f461c5518/full/400,/0/default.jpg",
-   "focal_point": [
-    0.5,
-    0.27
-   ],
-   "featured_rank": 25
-  },
-  {
    "title": "The Nativity",
    "agent_name": "Fra Bartolommeo",
    "agent_role": "Artist",
@@ -164,26 +124,6 @@
     0.78
    ],
    "featured_rank": 30
-  },
-  {
-   "title": "The Crucifixion",
-   "agent_name": "Francisco de Zurbarán",
-   "agent_role": "Artist",
-   "creation_date": "1627",
-   "cultural_context": "Spanish Baroque, 17th century Spain",
-   "medium": "Oil on canvas",
-   "date_display": "1627",
-   "description_narrative": "Francisco de Zurbarán's 1627 oil on canvas, 'The Crucifixion,' presents a singular, stark depiction of Christ on the cross. The painting is characterized by its dramatic use of light and shadow, emphasizing the figure's isolation and the solemnity of the moment.",
-   "tags": "crucifixion, religious art, Spanish Baroque, realism, tenebrism, devotional, dramatic",
-   "source": "Art Institute of Chicago",
-   "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/c8ee825f-bc8c-c76b-1f05-5d692d9a6b47/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/c8ee825f-bc8c-c76b-1f05-5d692d9a6b47/full/400,/0/default.jpg",
-   "focal_point": [
-    0.45,
-    0.28
-   ],
-   "featured_rank": 45
   },
   {
    "title": "Alessandro de' Medici",
@@ -304,26 +244,6 @@
     0.5
    ],
    "featured_rank": 18
-  },
-  {
-   "title": "The Garden of Paradise",
-   "agent_name": "Workshop of Hieronymus Bosch",
-   "agent_role": "Artist",
-   "creation_date": "c. 1500–c. 1520",
-   "cultural_context": "Northern Renaissance, Netherlandish",
-   "medium": "Oil on panel",
-   "date_display": "c. 1500–c. 1520",
-   "description_narrative": "This oil on panel artwork, 'The Garden of Paradise,' emerges from the workshop of Hieronymus Bosch. It presents a fantastical and allegorical vision typical of the artist's distinctive style.",
-   "tags": "religious art, northern renaissance, fantasy, allegorical, netherlandish, oil painting, workshop production",
-   "source": "Art Institute of Chicago",
-   "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Imitator%20of%20Hieronymus%20Bosch%20-%20The%20Garden%20of%20Paradise%20-%201936.239%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Imitator%20of%20Hieronymus%20Bosch%20-%20The%20Garden%20of%20Paradise%20-%201936.239%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
-   "focal_point": [
-    0.62,
-    0.6
-   ],
-   "featured_rank": 35
   },
   {
    "title": "The Adventures of Ulysses",
@@ -671,113 +591,6 @@
    "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/%28Venice%29%20Lamentation%20over%20the%20Dead%20Christ%20-%20Girolamo%20Romanino%20-%20gallerie%20Accademia%20Venice.jpg?width=600"
   },
   {
-   "title": "Deposition",
-   "agent_name": "Rogier van der Weyden",
-   "agent_role": "Painter",
-   "creation_date": "1435-1443",
-   "cultural_context": "Early Netherlandish Renaissance, Leuven",
-   "medium": "Oil on panel",
-   "date_display": "c. 1435-1443",
-   "description_narrative": "Commissioned by the Leuven Guild of Crossbowmen, this deposition arranges Christ's body in a shape echoing a crossbow as a nod to the patrons. The swooning Virgin Mary, collapsing in a pose that mirrors her son's, was an emotional innovation that shaped Netherlandish painting for generations.",
-   "tags": [
-    "van der weyden",
-    "netherlandish",
-    "deposition",
-    "christ",
-    "prado",
-    "emotion",
-    "religious"
-   ],
-   "source": "Wikimedia Commons",
-   "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/El%20Descendimiento%2C%20by%20Rogier%20van%20der%20Weyden%2C%20from%20Prado%20in%20Google%20Earth.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/El%20Descendimiento%2C%20by%20Rogier%20van%20der%20Weyden%2C%20from%20Prado%20in%20Google%20Earth.jpg?width=600"
-  },
-  {
-   "title": "The Assumption of the Virgin",
-   "agent_name": "El Greco",
-   "agent_role": "Painter",
-   "creation_date": "1577",
-   "cultural_context": "Spanish Renaissance / Mannerism, Toledo",
-   "medium": "Oil on canvas",
-   "date_display": "1577–79",
-   "description_narrative": "Painted as the central altarpiece for the church of Santo Domingo el Antiguo in Toledo, this was El Greco's first major Spanish commission and established the elongated figures and luminous color that became his signature style. It remains one of the artist's most celebrated large-scale religious paintings.",
-   "tags": [
-    "El Greco",
-    "Spanish Renaissance",
-    "Mannerism",
-    "altarpiece",
-    "religious art"
-   ],
-   "source": "Art Institute of Chicago",
-   "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/47fd1564-93f5-f30b-7786-013421133b4a/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/47fd1564-93f5-f30b-7786-013421133b4a/full/400,/0/default.jpg"
-  },
-  {
-   "title": "Saint Francis Kneeling in Meditation",
-   "agent_name": "El Greco",
-   "agent_role": "Painter",
-   "creation_date": "1595",
-   "cultural_context": "Spanish Renaissance / Mannerism, Toledo",
-   "medium": "Oil on canvas",
-   "date_display": "c. 1595–c. 1600",
-   "description_narrative": "El Greco painted numerous versions of Saint Francis in contemplative prayer, reflecting the Counter-Reformation's emphasis on personal spiritual devotion. This example shows the saint's characteristically elongated form and intense, mystical expression.",
-   "tags": [
-    "El Greco",
-    "Counter-Reformation",
-    "religious art",
-    "Saint Francis",
-    "Spanish Renaissance"
-   ],
-   "source": "Art Institute of Chicago",
-   "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/b703b636-976c-b35b-8a8e-f8df3f5ba003/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/b703b636-976c-b35b-8a8e-f8df3f5ba003/full/400,/0/default.jpg"
-  },
-  {
-   "title": "Saint Martin and the Beggar",
-   "agent_name": "El Greco",
-   "agent_role": "Painter",
-   "creation_date": "1597",
-   "cultural_context": "Spanish Renaissance / Mannerism, Toledo",
-   "medium": "Oil on canvas",
-   "date_display": "c. 1597–c. 1600",
-   "description_narrative": "This painting depicts the Roman soldier Saint Martin of Tours dividing his cloak to share with a beggar, a popular subject of Christian charity. El Greco produced this composition for a private chapel in Toledo, working in his characteristic elongated forms and dramatic light.",
-   "tags": [
-    "El Greco",
-    "Saint Martin",
-    "religious art",
-    "Spanish Renaissance",
-    "charity"
-   ],
-   "source": "Art Institute of Chicago",
-   "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/52098776-6e2e-9683-e258-7b1cec8660dd/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/52098776-6e2e-9683-e258-7b1cec8660dd/full/400,/0/default.jpg"
-  },
-  {
-   "title": "The Feast in the House of Simon",
-   "agent_name": "El Greco and Workshop",
-   "agent_role": "Painter",
-   "creation_date": "1608",
-   "cultural_context": "Spanish Renaissance / Mannerism, Toledo",
-   "medium": "Oil on canvas",
-   "date_display": "c. 1608–14",
-   "description_narrative": "This large canvas depicts the biblical episode in which a sinful woman anoints Christ's feet, painted late in El Greco's career with the assistance of his Toledo workshop. It reflects the artist's mature style of visionary color and dramatically elongated figures.",
-   "tags": [
-    "El Greco",
-    "workshop painting",
-    "religious art",
-    "Toledo",
-    "Spanish Renaissance"
-   ],
-   "source": "Art Institute of Chicago",
-   "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/75886aaa-002a-2047-a05c-baf73f0ac093/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/75886aaa-002a-2047-a05c-baf73f0ac093/full/400,/0/default.jpg"
-  },
-  {
    "title": "Virgin and Child with the Young Saint John the Baptist",
    "agent_name": "Correggio",
    "agent_role": "Painter",
@@ -818,6 +631,166 @@
    "license": "Public Domain",
    "source_url": "https://www.artic.edu/iiif/2/84bc6762-6a64-dde5-5dc3-ec31c75aa32b/full/2000,/0/default.jpg",
    "thumbnail_url": "https://www.artic.edu/iiif/2/84bc6762-6a64-dde5-5dc3-ec31c75aa32b/full/400,/0/default.jpg"
+  },
+  {
+   "title": "Annunciation",
+   "agent_name": "Fra Angelico",
+   "agent_role": "Artist",
+   "creation_date": "",
+   "cultural_context": "Early Renaissance, Italian",
+   "medium": "",
+   "date_display": "c. 1430s",
+   "description_narrative": "Fra Angelico masterfully depicts the pivotal moment of the Annunciation, where the Archangel Gabriel conveys the divine message to the Virgin Mary. The scene is imbued with serene beauty and spiritual grace, characterized by the artist's use of radiant colors and delicate forms.",
+   "tags": "early renaissance, christian art, religious, annunciation, mary, gabriel, italian, spiritual",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Fra%20Angelico%20-%20Annunciation.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Fra%20Angelico%20-%20Annunciation.jpg?width=600",
+   "focal_point": [
+    0.6,
+    0.38
+   ],
+   "featured_rank": 65
+  },
+  {
+   "title": "Ghent Altarpiece: Adoration of the Mystic Lamb",
+   "agent_name": "Jan van Eyck",
+   "agent_role": "Artist",
+   "creation_date": "",
+   "cultural_context": "Early Netherlandish, Northern Renaissance",
+   "medium": "",
+   "date_display": "1432",
+   "description_narrative": "Jan van Eyck's iconic Ghent Altarpiece, specifically the 'Adoration of the Mystic Lamb' panel, is a pivotal work in art history. This complex, multi-paneled artwork is renowned for its meticulous detail, vibrant colors, and profound theological narrative.",
+   "tags": "religious art, altarpiece, early netherlandish, christianity, northern renaissance, adoration, sacred, detailed",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Ghent%20Altarpiece%20-%20Adoration%20of%20the%20Mystic%20Lamb.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Ghent%20Altarpiece%20-%20Adoration%20of%20the%20Mystic%20Lamb.jpg?width=600",
+   "focal_point": [
+    0.5,
+    0.33
+   ],
+   "featured_rank": 88
+  },
+  {
+   "title": "The Annunciation",
+   "agent_name": "Petrus Christus",
+   "agent_role": "Artist",
+   "creation_date": "ca. 1445",
+   "cultural_context": "Paintings",
+   "medium": "Oil on wood",
+   "date_display": "ca. 1445",
+   "description_narrative": "Petrus Christus's 'The Annunciation' depicts the pivotal biblical moment when the Archangel Gabriel announces to Mary that she will conceive Jesus. This significant oil on wood panel exemplifies the detailed artistry of early Netherlandish painting.",
+   "tags": "annunciation, biblical, religious, oil painting, early netherlandish, sacred, petrus christus",
+   "source": "The Metropolitan Museum of Art",
+   "license": "Public Domain",
+   "source_url": "https://images.metmuseum.org/CRDImages/ep/original/DT1479.jpg",
+   "thumbnail_url": "https://images.metmuseum.org/CRDImages/ep/web-large/DT1479.jpg",
+   "focal_point": [
+    0.72,
+    0.45
+   ],
+   "featured_rank": 30
+  },
+  {
+   "title": "Portrait of a Young Man",
+   "agent_name": "Bronzino (Agnolo di Cosimo di Mariano)",
+   "agent_role": "Artist",
+   "creation_date": "1530s",
+   "cultural_context": "Paintings",
+   "medium": "Oil on wood",
+   "date_display": "1530s",
+   "description_narrative": "Bronzino's 'Portrait of a Young Man,' painted in oil on wood during the 1530s, exemplifies the artist's refined style and meticulous detail. The sitter's composed expression and elegant demeanor reflect the sophisticated portraiture characteristic of the period.",
+   "tags": "portrait, young man, mannerism, italian renaissance, elegant, intense, sophisticated",
+   "source": "The Metropolitan Museum of Art",
+   "license": "Public Domain",
+   "source_url": "https://images.metmuseum.org/CRDImages/ep/original/DP-14286-011.jpg",
+   "thumbnail_url": "https://images.metmuseum.org/CRDImages/ep/web-large/DP-14286-011.jpg",
+   "focal_point": [
+    0.52,
+    0.21
+   ],
+   "featured_rank": 35
+  },
+  {
+   "title": "Jacob Willemsz van Veen (1456–1535), the Artist's Father",
+   "agent_name": "Maarten van Heemskerck",
+   "agent_role": "Artist",
+   "creation_date": "1532",
+   "cultural_context": "Paintings",
+   "medium": "Oil on wood",
+   "date_display": "1532",
+   "description_narrative": "Maarten van Heemskerck captures his father, Jacob Willemsz van Veen, in this striking portrait. Executed in oil on wood in 1532, the work offers a personal glimpse into the artist's family.",
+   "tags": "portrait, old master, oil painting, father, renaissance, 16th century, dutch art",
+   "source": "The Metropolitan Museum of Art",
+   "license": "Public Domain",
+   "source_url": "https://images.metmuseum.org/CRDImages/ep/original/DP-38857-001.jpg",
+   "thumbnail_url": "https://images.metmuseum.org/CRDImages/ep/web-large/DP-38857-001.jpg",
+   "focal_point": [
+    0.48,
+    0.33
+   ],
+   "featured_rank": 15
+  },
+  {
+   "title": "Hermann von Wedigh III (died 1560)",
+   "agent_name": "Hans Holbein the Younger",
+   "agent_role": "Artist",
+   "creation_date": "1532",
+   "cultural_context": "Paintings",
+   "medium": "Oil and gold on oak",
+   "date_display": "1532",
+   "description_narrative": "Hans Holbein the Younger masterfully depicted Hermann von Wedigh III in this striking oil and gold on oak portrait. Painted in 1532, this work exemplifies Holbein's meticulous realism and attention to detail.",
+   "tags": "portrait, renaissance, northern renaissance, 16th century, german, oil painting, formal, realism",
+   "source": "The Metropolitan Museum of Art",
+   "license": "Public Domain",
+   "source_url": "https://images.metmuseum.org/CRDImages/ep/original/DP164836.jpg",
+   "thumbnail_url": "https://images.metmuseum.org/CRDImages/ep/web-large/DP164836.jpg",
+   "focal_point": [
+    0.58,
+    0.28
+   ],
+   "featured_rank": 35
+  },
+  {
+   "title": "Portrait of Alvise Contarini(?); (verso) A Tethered Roebuck",
+   "agent_name": "Jacometto (Jacometto Veneziano)",
+   "agent_role": "Artist",
+   "creation_date": "ca. 1485–95",
+   "cultural_context": "Paintings",
+   "medium": "Oil on wood; verso: oil and gold on wood",
+   "date_display": "ca. 1485–95",
+   "description_narrative": "This painting features a probable portrait of Alvise Contarini on the front, rendered in oil on wood. The reverse side reveals 'A Tethered Roebuck,' executed with oil and gold on wood, showcasing the dual nature of the artwork.",
+   "tags": "portrait, renaissance, italian, oil painting, roebuck, contemplative, venetian, 15th century",
+   "source": "The Metropolitan Museum of Art",
+   "license": "Public Domain",
+   "source_url": "https://images.metmuseum.org/CRDImages/rl/original/DP221485.jpg",
+   "thumbnail_url": "https://images.metmuseum.org/CRDImages/rl/web-large/DP221485.jpg",
+   "focal_point": [
+    0.5,
+    0.38
+   ],
+   "featured_rank": 12
+  },
+  {
+   "title": "Tommaso di Folco Portinari (1428–1501); Maria Portinari (Maria Maddalena Baroncelli, born 1456)",
+   "agent_name": "Hans Memling",
+   "agent_role": "Artist",
+   "creation_date": "ca. 1470",
+   "cultural_context": "Paintings",
+   "medium": "Oil on oak",
+   "date_display": "ca. 1470",
+   "description_narrative": "These oil portraits depict Tommaso di Folco Portinari and Maria Maddalena Baroncelli, meticulously rendered by Hans Memling. Created around 1470, these works exemplify the detailed portraiture of the period.",
+   "tags": "portrait, oil painting, Northern Renaissance, 15th century, realism, Flemish art",
+   "source": "The Metropolitan Museum of Art",
+   "license": "Public Domain",
+   "source_url": "https://images.metmuseum.org/CRDImages/ep/original/DP-44362-005.jpg",
+   "thumbnail_url": "https://images.metmuseum.org/CRDImages/ep/web-large/DP-44362-005.jpg",
+   "focal_point": [
+    0.5,
+    0.33
+   ],
+   "featured_rank": 30
   }
  ]
 }

@@ -1174,6 +1174,49 @@
    "license": "Public Domain",
    "source_url": "https://www.artic.edu/iiif/2/0f076222-52b2-9bb4-4409-72fdf485d895/full/2000,/0/default.jpg",
    "thumbnail_url": "https://www.artic.edu/iiif/2/0f076222-52b2-9bb4-4409-72fdf485d895/full/400,/0/default.jpg"
+  },
+  {
+   "title": "Mill of Pont Maupuit",
+   "agent_name": "Armand Guillaumin",
+   "agent_role": "Painter",
+   "creation_date": "1900",
+   "cultural_context": "Late Impressionism, color experiments anticipating Fauvism",
+   "medium": "Oil on canvas",
+   "date_display": "c. 1900",
+   "description_narrative": "Armand Guillaumin, a close friend of Cézanne and Pissarro who exhibited in several Impressionist group shows, painted this rural mill scene using the intensified, high-keyed color of his later career. His bold use of pure, saturated pigment in his final decades anticipated the color experiments of the Fauve painters who emerged in the years that followed.",
+   "tags": [
+    "guillaumin",
+    "impressionism",
+    "color",
+    "mill",
+    "landscape",
+    "france",
+    "proto-fauvism"
+   ],
+   "source": "Art Institute of Chicago",
+   "license": "Public Domain",
+   "source_url": "https://www.artic.edu/iiif/2/f4abdcdc-1d4f-4b8c-5f16-dacc42d509f5/full/2000,/0/default.jpg",
+   "thumbnail_url": "https://www.artic.edu/iiif/2/f4abdcdc-1d4f-4b8c-5f16-dacc42d509f5/full/400,/0/default.jpg"
+  },
+  {
+   "title": "Paris Street; Rainy Day",
+   "agent_name": "Gustave Caillebotte",
+   "agent_role": "Artist",
+   "creation_date": "1877",
+   "cultural_context": "Impressionism, French",
+   "medium": "Oil on canvas",
+   "date_display": "1877",
+   "description_narrative": "Gustave Caillebotte's 'Paris Street; Rainy Day' captures a striking urban scene in 1877 Paris, depicting well-dressed figures strolling under umbrellas on a wet street. The composition offers a unique perspective of modern city life, characterized by its precise realism and distinctive viewpoints.",
+   "tags": "urban life, street scene, rainy day, 19th century, realism, city, umbrellas, french art",
+   "source": "Art Institute of Chicago",
+   "license": "Public Domain",
+   "source_url": "https://www.artic.edu/iiif/2/f8fd76e9-c396-5678-36ed-6a348c904d27/full/2000,/0/default.jpg",
+   "thumbnail_url": "https://www.artic.edu/iiif/2/f8fd76e9-c396-5678-36ed-6a348c904d27/full/400,/0/default.jpg",
+   "focal_point": [
+    0.6,
+    0.45
+   ],
+   "featured_rank": 82
   }
  ]
 }

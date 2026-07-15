@@ -426,26 +426,6 @@
    "featured_rank": 30
   },
   {
-   "title": "Thistles",
-   "agent_name": "John Singer Sargent",
-   "agent_role": "Artist",
-   "creation_date": "1883–89",
-   "cultural_context": "American, Late 19th Century",
-   "medium": "Oil on canvas",
-   "date_display": "1883–89",
-   "description_narrative": "John Singer Sargent's 'Thistles' offers a detailed study of the plant, rendered in oil on canvas. Painted between 1883 and 1889, this work exemplifies the artist's expressive brushwork and keen observation of nature.",
-   "tags": "thistles, botanical study, nature, oil painting, american art, late 19th century",
-   "source": "Art Institute of Chicago",
-   "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/John%20Singer%20Sargent%20-%20Thistles%20-%201996.446%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/John%20Singer%20Sargent%20-%20Thistles%20-%201996.446%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
-   "focal_point": [
-    0.5,
-    0.5
-   ],
-   "featured_rank": 24
-  },
-  {
    "title": "Mrs. Charles Gifford Dyer (Mary Anthony)",
    "agent_name": "John Singer Sargent",
    "agent_role": "Artist",
@@ -808,6 +788,106 @@
    "license": "Public Domain",
    "source_url": "https://www.artic.edu/iiif/2/18ab0c35-e35c-0216-9afd-f93357920db1/full/2000,/0/default.jpg",
    "thumbnail_url": "https://www.artic.edu/iiif/2/18ab0c35-e35c-0216-9afd-f93357920db1/full/400,/0/default.jpg"
+  },
+  {
+   "title": "Icebound",
+   "agent_name": "John Henry Twachtman",
+   "agent_role": "Artist",
+   "creation_date": "c. 1889",
+   "cultural_context": "American Impressionism, American",
+   "medium": "Oil on canvas",
+   "date_display": "c. 1889",
+   "description_narrative": "John Henry Twachtman's 'Icebound' captures a serene winter landscape, likely reflecting the artist's home in Greenwich, Connecticut. The composition features a muted palette and delicate brushwork, evoking the quiet beauty and reflective atmosphere of a snow-covered scene.",
+   "tags": "winter, landscape, snow, ice, impressionism, american impressionism, serene, subtle",
+   "source": "Art Institute of Chicago",
+   "license": "Public Domain",
+   "source_url": "https://www.artic.edu/iiif/2/3ae75415-0551-ae17-c478-3b8687a6f246/full/2000,/0/default.jpg",
+   "thumbnail_url": "https://www.artic.edu/iiif/2/3ae75415-0551-ae17-c478-3b8687a6f246/full/400,/0/default.jpg",
+   "focal_point": [
+    0.5,
+    0.55
+   ],
+   "featured_rank": 30
+  },
+  {
+   "title": "The Artist in His Studio",
+   "agent_name": "James McNeill Whistler",
+   "agent_role": "Artist",
+   "creation_date": "1865–66",
+   "cultural_context": "19th Century, American, British",
+   "medium": "Oil on paper mounted on panel",
+   "date_display": "1865–66",
+   "description_narrative": "James McNeill Whistler's 'The Artist in His Studio' offers an intimate glimpse into a painter's private creative space. Rendered in oil on paper mounted on panel, the work subtly reveals details of the artistic environment during the mid-19th century.",
+   "tags": "artist, studio, interior, oil painting, 19th century, american art, british art",
+   "source": "Art Institute of Chicago",
+   "license": "Public Domain",
+   "source_url": "https://www.artic.edu/iiif/2/e01a4f76-d089-8e22-8431-3488db37a293/full/2000,/0/default.jpg",
+   "thumbnail_url": "https://www.artic.edu/iiif/2/e01a4f76-d089-8e22-8431-3488db37a293/full/400,/0/default.jpg",
+   "focal_point": [
+    0.78,
+    0.42
+   ],
+   "featured_rank": 25
+  },
+  {
+   "title": "Rip Van Winkle",
+   "agent_name": "John Quidor",
+   "agent_role": "Artist",
+   "creation_date": "1829",
+   "cultural_context": "American Romanticism, Early American",
+   "medium": "Oil on canvas",
+   "date_display": "1829",
+   "description_narrative": "This painting depicts a scene from Washington Irving's classic American short story, 'Rip Van Winkle,' first published in 1819. John Quidor frequently drew inspiration from literary sources, bringing narrative depth to his canvases.",
+   "tags": "american painting, romanticism, literature, folklore, narrative, oil painting",
+   "source": "Art Institute of Chicago",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/John%20Quidor%20-%20Rip%20Van%20Winkle%20-%201982.765%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/John%20Quidor%20-%20Rip%20Van%20Winkle%20-%201982.765%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
+   "focal_point": [
+    0.5,
+    0.45
+   ],
+   "featured_rank": 20
+  },
+  {
+   "title": "At Mouquin's",
+   "agent_name": "William James Glackens",
+   "agent_role": "Artist",
+   "creation_date": "1905",
+   "cultural_context": "Ashcan School, American",
+   "medium": "Oil on canvas",
+   "date_display": "1905",
+   "description_narrative": "William Glackens's 'At Mouquin's' captures a lively restaurant interior, depicting patrons engaged in dining and conversation. Rendered in oil on canvas, this 1905 work exemplifies a candid observation of urban life.",
+   "tags": "restaurant, urban life, genre scene, american art, ashcan school, early 20th century, social realism",
+   "source": "Art Institute of Chicago",
+   "license": "Public Domain",
+   "source_url": "https://www.artic.edu/iiif/2/b146368d-a855-63ac-6115-04b835c60bb0/full/2000,/0/default.jpg",
+   "thumbnail_url": "https://www.artic.edu/iiif/2/b146368d-a855-63ac-6115-04b835c60bb0/full/400,/0/default.jpg",
+   "focal_point": [
+    0.4,
+    0.23
+   ],
+   "featured_rank": 35
+  },
+  {
+   "title": "The Advance-Guard, or The Military Sacrifice (The Ambush)",
+   "agent_name": "Frederic Remington",
+   "agent_role": "Artist",
+   "creation_date": "1890",
+   "cultural_context": "American West, Late 19th Century",
+   "medium": "Oil on canvas",
+   "date_display": "1890",
+   "description_narrative": "Frederic Remington captures a tense moment in *The Advance-Guard*, depicting a military unit on alert, possibly anticipating conflict, amidst a rugged landscape. This oil painting exemplifies Remington's dedication to illustrating the dynamic and often perilous realities of the American West.",
+   "tags": "western art, american west, military, frontier, horses, oil painting, realism, late 19th century",
+   "source": "Art Institute of Chicago",
+   "license": "Public Domain",
+   "source_url": "https://www.artic.edu/iiif/2/f1e03813-f9c7-f4f8-fbe8-a5eeae84fda4/full/2000,/0/default.jpg",
+   "thumbnail_url": "https://www.artic.edu/iiif/2/f1e03813-f9c7-f4f8-fbe8-a5eeae84fda4/full/400,/0/default.jpg",
+   "focal_point": [
+    0.33,
+    0.3
+   ],
+   "featured_rank": 35
   }
  ]
 }

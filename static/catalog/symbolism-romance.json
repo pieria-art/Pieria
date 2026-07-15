@@ -2,7 +2,7 @@
  "id": "symbolism-romance",
  "title": "Symbolism & the Pre-Raphaelites",
  "description": "Dreamlike myth, doomed romance, and veiled mystery from the later 19th century.",
- "source": "Wikimedia Commons",
+ "source": "Art Institute of Chicago, Wikimedia Commons",
  "license": "Public Domain",
  "items": [
   {
@@ -598,6 +598,66 @@
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Edvard%20Munch%20-%20Madonna%20-%20NG.M.00841%20-%20National%20Museum%20of%20Art%2C%20Architecture%20and%20Design.jpg?width=3840",
    "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Edvard%20Munch%20-%20Madonna%20-%20NG.M.00841%20-%20National%20Museum%20of%20Art%2C%20Architecture%20and%20Design.jpg?width=600"
+  },
+  {
+   "title": "Elaine",
+   "agent_name": "Toby Edward Rosenthal",
+   "agent_role": "Artist",
+   "creation_date": "1874",
+   "cultural_context": "Victorian, American",
+   "medium": "Oil on canvas",
+   "date_display": "1874",
+   "description_narrative": "Toby Edward Rosenthal's 'Elaine' illustrates a poignant scene from Arthurian legend, depicting Elaine of Astolat, who dies of unrequited love for Sir Lancelot. The artwork captures the emotional gravity of her final journey, as she is sent by barge to Camelot bearing a letter that reveals her tragic fate.",
+   "tags": "arthurian legend, tragedy, romanticism, narrative art, victorian, figure painting, mythology",
+   "source": "Art Institute of Chicago",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Toby%20Edward%20Rosenthal%20-%20Elaine%20-%201917.3%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Toby%20Edward%20Rosenthal%20-%20Elaine%20-%201917.3%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
+   "focal_point": [
+    0.4,
+    0.42
+   ],
+   "featured_rank": 30
+  },
+  {
+   "title": "Winged Figure",
+   "agent_name": "Abbott Handerson Thayer",
+   "agent_role": "Artist",
+   "creation_date": "1889",
+   "cultural_context": "American Art, Late 19th Century, Symbolism",
+   "medium": "Oil on canvas",
+   "date_display": "1889",
+   "description_narrative": "Abbott Handerson Thayer's 'Winged Figure' presents an ethereal female form, often interpreted as a guardian or angel, embodying purity and grace. Painted in oil on canvas in 1889, this work exemplifies Thayer's distinctive approach to idealized figures and soft, atmospheric rendering.",
+   "tags": "american art, symbolism, idealism, winged figure, angel, ethereal, serene",
+   "source": "Art Institute of Chicago",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Abbott%20Handerson%20Thayer%20-%20Winged%20Figure%20-%201947.32%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Abbott%20Handerson%20Thayer%20-%20Winged%20Figure%20-%201947.32%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
+   "focal_point": [
+    0.55,
+    0.2
+   ],
+   "featured_rank": 30
+  },
+  {
+   "title": "Apollo and Marsyas",
+   "agent_name": "Hans Thoma",
+   "agent_role": "Artist",
+   "creation_date": "1888",
+   "cultural_context": "German, Late 19th Century",
+   "medium": "Oil on panel",
+   "date_display": "1888",
+   "description_narrative": "This painting depicts the mythological contest between the god Apollo and the satyr Marsyas, a narrative often explored in art to symbolize the conflict between order and chaos or divine and earthly music. The work, rendered in oil on panel, captures a moment from this dramatic ancient Greek story.",
+   "tags": "mythology, classical, German art, painting, narrative, late 19th century, symbolist",
+   "source": "Art Institute of Chicago",
+   "license": "Public Domain",
+   "source_url": "https://www.artic.edu/iiif/2/13d31515-70ec-197f-59f6-b71dc6f60903/full/2000,/0/default.jpg",
+   "thumbnail_url": "https://www.artic.edu/iiif/2/13d31515-70ec-197f-59f6-b71dc6f60903/full/400,/0/default.jpg",
+   "focal_point": [
+    0.4,
+    0.68
+   ],
+   "featured_rank": 18
   }
  ]
 }

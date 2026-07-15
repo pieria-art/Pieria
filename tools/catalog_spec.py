@@ -11,8 +11,11 @@ Per-collection keys:
   - picks: [{title, artist?, sources?}]   the curated canon (resolved + verified)
   - pick_sources: resolver order for picks (default ["wikimedia", "museums"])
   - sources: museum ids for the resolver + query supplement; "nasa"/"loc" for those fetchers
-  - queries / query_supplement: optional discovery to top up painting collections (default on);
-    turned OFF for collections where loose queries pulled junk (botanical/sculpture/cosmos/...).
+  - queries / query_supplement: optional keyword-discovery top-up. **OPT-IN (default OFF)** — set
+    query_supplement=True to enable. It's off by default because loose keyword search cross-contaminates
+    collections (artist-name collisions like "Thomas"/"Turner"/"Gustave", broad theme queries pull
+    off-topic works); the CURATION-v2 audit found ~104 mis-filed works from it. Curated picks are the
+    source of truth.
   - target: cap on items.
 
 Resolver ids: museum ids "chicago"/"met"/"cleveland"/"rijks"/"smk", plus "wikimedia", "nasa",

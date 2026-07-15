@@ -126,26 +126,6 @@
    "featured_rank": 20
   },
   {
-   "title": "Chrysanthemums",
-   "agent_name": "Pierre-Auguste Renoir",
-   "agent_role": "Artist",
-   "creation_date": "1881–82",
-   "cultural_context": "Impressionism, French",
-   "medium": "Oil on canvas",
-   "date_display": "1881–82",
-   "description_narrative": "Pierre-Auguste Renoir's 'Chrysanthemums' captures the vibrant beauty of a floral arrangement with characteristic Impressionist brushwork. Executed in oil on canvas, the painting emphasizes light and color, showcasing the delicate textures and rich hues of the blooms.",
-   "tags": "chrysanthemums, flowers, still life, impressionism, french art, vibrant, delicate",
-   "source": "Art Institute of Chicago",
-   "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pierre-Auguste%20Renoir%20-%20Chrysanthemums%20-%201933.1173%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pierre-Auguste%20Renoir%20-%20Chrysanthemums%20-%201933.1173%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
-   "focal_point": [
-    0.5,
-    0.4
-   ],
-   "featured_rank": 30
-  },
-  {
    "title": "Still Life with Dead Game, Fruits, and Vegetables in a Market",
    "agent_name": "Frans Snyders",
    "agent_role": "Artist",
@@ -204,26 +184,6 @@
     0.42
    ],
    "featured_rank": 28
-  },
-  {
-   "title": "Apples and Grapes",
-   "agent_name": "Claude Monet",
-   "agent_role": "Artist",
-   "creation_date": "1880",
-   "cultural_context": "Impressionism, French",
-   "medium": "Oil on canvas",
-   "date_display": "1880",
-   "description_narrative": "Claude Monet's 'Apples and Grapes' presents a vibrant still life, capturing the interplay of light and color on the fruit. Rendered in oil on canvas, this 1880 work exemplifies the artist's Impressionistic approach to capturing everyday subjects with fresh immediacy.",
-   "tags": "apples, grapes, still life, impressionism, french art, oil painting, fruit",
-   "source": "Art Institute of Chicago",
-   "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/c12058f4-188f-c6ed-f0fe-52b32acfb296/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/c12058f4-188f-c6ed-f0fe-52b32acfb296/full/400,/0/default.jpg",
-   "focal_point": [
-    0.55,
-    0.45
-   ],
-   "featured_rank": 30
   },
   {
    "title": "Still Life",
@@ -364,26 +324,6 @@
     0.55
    ],
    "featured_rank": 20
-  },
-  {
-   "title": "A Sunday on La Grande Jatte — 1884",
-   "agent_name": "Georges Seurat",
-   "agent_role": "Artist",
-   "creation_date": "1884–86, border added 1888–89",
-   "cultural_context": "Neo-Impressionism, French",
-   "medium": "Oil on canvas",
-   "date_display": "1884–86, border added 1888–89",
-   "description_narrative": "Georges Seurat's monumental oil on canvas, \"A Sunday on La Grande Jatte — 1884,\" captures Parisians enjoying a leisurely afternoon on an island in the Seine. This iconic work is meticulously composed using the artist's groundbreaking pointillist technique, creating luminous color and form.",
-   "tags": "sunday, leisure, park, pointillism, post-impressionism, Parisian life, serene, vibrant",
-   "source": "Art Institute of Chicago",
-   "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/A%20Sunday%20on%20La%20Grande%20Jatte%2C%20Georges%20Seurat%2C%201884.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/A%20Sunday%20on%20La%20Grande%20Jatte%2C%20Georges%20Seurat%2C%201884.jpg?width=600",
-   "focal_point": [
-    0.78,
-    0.4
-   ],
-   "featured_rank": 90
   },
   {
    "title": "Basket of Fruit (Canestra di Frutta)",
@@ -651,6 +591,26 @@
    "license": "Public Domain",
    "source_url": "https://www.artic.edu/iiif/2/3c61e694-6a53-c3ad-8a1e-a2c5d3f25080/full/2000,/0/default.jpg",
    "thumbnail_url": "https://www.artic.edu/iiif/2/3c61e694-6a53-c3ad-8a1e-a2c5d3f25080/full/400,/0/default.jpg"
+  },
+  {
+   "title": "Calf's Head and Ox Tongue",
+   "agent_name": "Gustave Caillebotte",
+   "agent_role": "Artist",
+   "creation_date": "c. 1882",
+   "cultural_context": "Impressionism, French",
+   "medium": "Oil on canvas",
+   "date_display": "c. 1882",
+   "description_narrative": "This painting presents a starkly realistic still life featuring a butchered calf's head and an ox tongue, rendered with unflinching detail. Gustave Caillebotte's meticulous brushwork captures the textures and forms of the meat, reflecting his mastery of realistic depiction.",
+   "tags": "still life, realism, meat, food, detailed, oil painting, 19th century",
+   "source": "Art Institute of Chicago",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Gustave%20Caillebotte%20-%20Calf%27s%20Head%20and%20Ox%20Tongue%20-%201999.561%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Gustave%20Caillebotte%20-%20Calf%27s%20Head%20and%20Ox%20Tongue%20-%201999.561%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
+   "focal_point": [
+    0.28,
+    0.3
+   ],
+   "featured_rank": 20
   }
  ]
 }
