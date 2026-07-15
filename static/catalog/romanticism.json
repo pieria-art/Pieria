@@ -424,6 +424,81 @@
     0.26
    ],
    "featured_rank": 88
+  },
+  {
+   "title": "The Raft of the Medusa",
+   "agent_name": "Théodore Géricault",
+   "agent_role": "Painter",
+   "creation_date": "1818-1819",
+   "cultural_context": "Romanticism, French",
+   "medium": "Oil on canvas",
+   "date_display": "1818–19",
+   "description_narrative": "Géricault based this monumental shipwreck scene on a real 1816 disaster in which survivors of the frigate Méduse drifted for thirteen days on a makeshift raft, resorting to starvation and mutiny. Its raw depiction of suffering and political scandal made it an inaugural masterpiece of French Romanticism.",
+   "tags": "gericault, shipwreck, raft, romanticism, disaster, survival, french painting",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Th%C3%A9odore%20G%C3%A9ricault%20-%20The%20Raft%20of%20the%20Medusa%20-%20WGA08630.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Th%C3%A9odore%20G%C3%A9ricault%20-%20The%20Raft%20of%20the%20Medusa%20-%20WGA08630.jpg?width=600"
+  },
+  {
+   "title": "The Nightmare",
+   "agent_name": "Henry Fuseli",
+   "agent_role": "Painter",
+   "creation_date": "1781",
+   "cultural_context": "Romanticism / Gothic, Swiss-British",
+   "medium": "Oil on canvas",
+   "date_display": "1781",
+   "description_narrative": "A goblin-like incubus crouches on the chest of a sleeping woman while a wild-eyed horse peers through the curtains, an unsettling image of dream and desire that scandalized and thrilled London audiences. Fuseli's proto-Romantic vision of the unconscious mind became one of the most reproduced images of its era.",
+   "tags": "fuseli, nightmare, gothic, dream, incubus, romanticism, horror",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Johann%20Heinrich%20F%C3%BCssli%20-%20The%20Nightmare%2055.5.A-d1-2019-04-15.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Johann%20Heinrich%20F%C3%BCssli%20-%20The%20Nightmare%2055.5.A-d1-2019-04-15.jpg?width=600"
+  },
+  {
+   "title": "The Hay Wain",
+   "agent_name": "John Constable",
+   "agent_role": "Painter",
+   "creation_date": "1821",
+   "cultural_context": "Romanticism, British",
+   "medium": "Oil on canvas",
+   "date_display": "1821",
+   "description_narrative": "Constable depicted a horse-drawn wagon fording the River Stour near his childhood home in Suffolk, capturing the changeable English sky and rural life with unprecedented naturalism. Poorly received in England at first, it won a gold medal in Paris and profoundly influenced French Romantic and Barbizon painters.",
+   "tags": "constable, suffolk, countryside, river stour, romanticism, rural england",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/John-constable-the-hay-wain.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/John-constable-the-hay-wain.jpg?width=600"
+  },
+  {
+   "title": "Rain, Steam and Speed - The Great Western Railway",
+   "agent_name": "Joseph Mallord William Turner",
+   "agent_role": "Painter",
+   "creation_date": "1844",
+   "cultural_context": "Romanticism, British",
+   "medium": "Oil on canvas",
+   "date_display": "1844",
+   "description_narrative": "A steam locomotive races across the Maidenhead railway bridge, dissolving into swirling rain and light in one of Turner's boldest meditations on modern industry overtaking nature. Its near-abstract handling of atmosphere anticipated Impressionism decades before the movement existed.",
+   "tags": "turner, railway, steam locomotive, industrial age, romanticism, atmosphere",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rain%20Steam%20and%20Speed%20the%20Great%20Western%20Railway.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rain%20Steam%20and%20Speed%20the%20Great%20Western%20Railway.jpg?width=600"
+  },
+  {
+   "title": "The Fighting Temeraire",
+   "agent_name": "Joseph Mallord William Turner",
+   "agent_role": "Painter",
+   "creation_date": "1839",
+   "cultural_context": "Romanticism, British",
+   "medium": "Oil on canvas",
+   "date_display": "1839",
+   "description_narrative": "A grand old warship that fought at Trafalgar is towed by a small, sooty steam tug to be broken up for scrap, its ghostly white sails glowing against a blazing sunset. Turner's elegy for the age of sail mourns the passing of a heroic era before industrial modernity.",
+   "tags": "turner, warship, trafalgar, sunset, romanticism, steam tug, british navy",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Fighting%20Temeraire%2C%20JMW%20Turner%2C%20National%20Gallery.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Fighting%20Temeraire%2C%20JMW%20Turner%2C%20National%20Gallery.jpg?width=600"
   }
  ]
 }

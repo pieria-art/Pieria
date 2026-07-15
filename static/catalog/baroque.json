@@ -444,6 +444,81 @@
     0.13
    ],
    "featured_rank": 40
+  },
+  {
+   "title": "Las Meninas",
+   "agent_name": "Diego Velázquez",
+   "agent_role": "Painter",
+   "creation_date": "1656",
+   "cultural_context": "Baroque, Spanish",
+   "medium": "Oil on canvas",
+   "date_display": "1656",
+   "description_narrative": "Velázquez places himself at his easel alongside the young Infanta Margarita Theresa and her attendants, while the king and queen appear only as reflections in a mirror. Its layered play of viewpoints and presence has made it one of the most analyzed paintings in Western art history.",
+   "tags": "baroque, spanish, court, portrait, illusion, masterpiece, velazquez",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Las%20Meninas%2C%20by%20Diego%20Vel%C3%A1zquez%2C%20from%20Prado%20in%20Google%20Earth.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Las%20Meninas%2C%20by%20Diego%20Vel%C3%A1zquez%2C%20from%20Prado%20in%20Google%20Earth.jpg?width=600"
+  },
+  {
+   "title": "Judith Slaying Holofernes",
+   "agent_name": "Artemisia Gentileschi",
+   "agent_role": "Painter",
+   "creation_date": "1614-1620",
+   "cultural_context": "Baroque, Italian",
+   "medium": "Oil on canvas",
+   "date_display": "c. 1614–1620",
+   "description_narrative": "Judith and her maidservant pin down the Assyrian general Holofernes as blood sprays across the sheets in an unflinchingly physical rendering of the biblical story. Gentileschi's forceful realism and command of chiaroscuro established her as one of the era's most powerful Caravaggisti.",
+   "tags": "baroque, biblical, dramatic, chiaroscuro, violent, italian, gentileschi",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Judith%20Slaying%20Holofernes%20by%20Artemisia%20Gentileschi.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Judith%20Slaying%20Holofernes%20by%20Artemisia%20Gentileschi.jpg?width=600"
+  },
+  {
+   "title": "The Descent from the Cross",
+   "agent_name": "Peter Paul Rubens",
+   "agent_role": "Painter",
+   "creation_date": "1612-1614",
+   "cultural_context": "Baroque, Flemish",
+   "medium": "Oil on panel",
+   "date_display": "1612–1614",
+   "description_narrative": "Christ's limp body is lowered along a diagonal sweep of white cloth, its pallor set against the surrounding figures' grief-stricken faces and rich crimson drapery. The triptych's controlled emotion and sculptural clarity mark a shift toward calmer classicism within Rubens's Baroque vocabulary.",
+   "tags": "baroque, flemish, religious, somber, triptych, antwerp, rubens",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Descent%20from%20the%20Cross%20-%20WGA20212.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Descent%20from%20the%20Cross%20-%20WGA20212.jpg?width=600"
+  },
+  {
+   "title": "The Massacre of the Innocents",
+   "agent_name": "Peter Paul Rubens",
+   "agent_role": "Painter",
+   "creation_date": "1611-1612",
+   "cultural_context": "Baroque, Flemish",
+   "medium": "Oil on panel",
+   "date_display": "c. 1611–1612",
+   "description_narrative": "Soldiers and desperate mothers grapple in a violent tangle of bodies as Herod's men carry out the biblical slaughter of infants in Bethlehem. Rubens channels the raw physicality of Michelangelo and the color of Titian into one of the most brutal history paintings of the Baroque era.",
+   "tags": "baroque, flemish, biblical, violent, dramatic, dynamic, rubens",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20%E2%80%93%20The%20Massacre%20of%20the%20Innocents%20%28Art%20Gallery%20of%20Ontario%29.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20%E2%80%93%20The%20Massacre%20of%20the%20Innocents%20%28Art%20Gallery%20of%20Ontario%29.jpg?width=600"
+  },
+  {
+   "title": "Susanna and the Elders",
+   "agent_name": "Artemisia Gentileschi",
+   "agent_role": "Painter",
+   "creation_date": "1610",
+   "cultural_context": "Baroque, Italian",
+   "medium": "Oil on canvas",
+   "date_display": "1610",
+   "description_narrative": "Painted when Gentileschi was only seventeen, the composition shows Susanna recoiling in genuine distress from two leering elders, a striking departure from the eroticized treatments common to the subject. Its psychological honesty distinguishes it as one of the earliest and most incisive works by a woman in the Caravaggisti circle.",
+   "tags": "baroque, biblical, italian, psychological, chiaroscuro, gentileschi, early work",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Susanna%20and%20the%20Elders%20%281610%29%2C%20Artemisia%20Gentileschi.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Susanna%20and%20the%20Elders%20%281610%29%2C%20Artemisia%20Gentileschi.jpg?width=600"
   }
  ]
 }

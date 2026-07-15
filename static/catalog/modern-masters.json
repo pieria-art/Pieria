@@ -284,6 +284,81 @@
     0.72
    ],
    "featured_rank": 97
+  },
+  {
+   "title": "Portrait of Jeanne Hébuterne",
+   "agent_name": "Amedeo Modigliani",
+   "agent_role": "Painter",
+   "creation_date": "1918",
+   "cultural_context": "School of Paris / Modernism",
+   "medium": "Oil on canvas",
+   "date_display": "1918",
+   "description_narrative": "Modigliani portrays his companion and muse with his signature elongated neck, almond-shaped blank eyes, and tilted oval head against a flat, warm-toned ground. The portrait exemplifies his fusion of African sculptural form with Italian Renaissance portrait tradition.",
+   "tags": "school of paris, portraiture, elongation, muse, modernism, montparnasse",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Amedeo%20Modigliani%20-%20Portrait%20of%20Jeanne%20H%C3%A9buterne%20%28Portrait%20de%20Jeanne%20H%C3%A9buterne%29%20-%20BF422%20-%20Barnes%20Foundation.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Amedeo%20Modigliani%20-%20Portrait%20of%20Jeanne%20H%C3%A9buterne%20%28Portrait%20de%20Jeanne%20H%C3%A9buterne%29%20-%20BF422%20-%20Barnes%20Foundation.jpg?width=600"
+  },
+  {
+   "title": "Portrait of Adele Bloch-Bauer I",
+   "agent_name": "Gustav Klimt",
+   "agent_role": "Painter",
+   "creation_date": "1907",
+   "cultural_context": "Vienna Secession",
+   "medium": "Oil, silver, and gold on canvas",
+   "date_display": "1907",
+   "description_narrative": "Klimt envelops Viennese patron Adele Bloch-Bauer in shimmering, mosaic-like gold ornament, fusing Byzantine influence with Art Nouveau glamour. Later dubbed the \"Woman in Gold\" after a landmark restitution case, it remains Klimt's most celebrated portrait.",
+   "tags": "vienna secession, gold leaf, portraiture, art nouveau, byzantine, symbolism",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Adele%20Bloch-Bauer.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Adele%20Bloch-Bauer.jpg?width=600"
+  },
+  {
+   "title": "Bathers at Asnières",
+   "agent_name": "Georges Seurat",
+   "agent_role": "Painter",
+   "creation_date": "1884",
+   "cultural_context": "Post-Impressionism / Neo-Impressionism",
+   "medium": "Oil on canvas",
+   "date_display": "1884",
+   "description_narrative": "Working-class Parisians lounge and swim along the Seine at Asnières, bathed in flat, hazy summer light and rendered with Seurat's early experiments in broken brushwork. It was the artist's first large-scale Salon submission and a precursor to his masterpiece \"A Sunday on La Grande Jatte.\"",
+   "tags": "neo-impressionism, seine, leisure, pointillism precursor, national gallery london, working class",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Georges%20Seurat%2C%20Bathers%20%28Study%20for%20%22Bathers%20at%20Asni%C3%A8res%22%29%2C%201883-1884%2C%20NGA%20164964.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Georges%20Seurat%2C%20Bathers%20%28Study%20for%20%22Bathers%20at%20Asni%C3%A8res%22%29%2C%201883-1884%2C%20NGA%20164964.jpg?width=600"
+  },
+  {
+   "title": "At the Moulin Rouge",
+   "agent_name": "Henri de Toulouse-Lautrec",
+   "agent_role": "Painter",
+   "creation_date": "1892-1895",
+   "cultural_context": "Post-Impressionism / Parisian nightlife",
+   "medium": "Oil on canvas",
+   "date_display": "1892–95",
+   "description_narrative": "Toulouse-Lautrec crowds a nocturnal cabaret table with sharply characterized Montmartre regulars, their faces lit by an eerie greenish glow while a ghostly woman looms in the foreground. Painted from the artist's intimate knowledge of the venue, it captures fin-de-siècle Paris at its most theatrical.",
+   "tags": "montmartre, cabaret, nightlife, parisian bohemia, post-impressionism, art institute chicago",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Henri%20de%20Toulouse-Lautrec%2C%20French%20-%20At%20the%20Moulin%20Rouge-%20The%20Dance%20-%20Google%20Art%20Project.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Henri%20de%20Toulouse-Lautrec%2C%20French%20-%20At%20the%20Moulin%20Rouge-%20The%20Dance%20-%20Google%20Art%20Project.jpg?width=600"
+  },
+  {
+   "title": "The Sick Child",
+   "agent_name": "Edvard Munch",
+   "agent_role": "Painter",
+   "creation_date": "1885-1886",
+   "cultural_context": "Norwegian Expressionism / Symbolism",
+   "medium": "Oil on canvas",
+   "date_display": "1885–86",
+   "description_narrative": "Munch reworked this haunting image of a dying girl and her grieving mother throughout his career, scraping and repainting the canvas to evoke raw memory rather than polished illusion. Rooted in the death of his own sister, it announced the emotionally charged style that would culminate in \"The Scream.\"",
+   "tags": "symbolism, grief, illness, norwegian art, expressionism, memory",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Edvard%20Munch%20-%20The%20Sick%20Child%20-%20NG.M.00839%20-%20National%20Museum%20of%20Art%2C%20Architecture%20and%20Design.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Edvard%20Munch%20-%20The%20Sick%20Child%20-%20NG.M.00839%20-%20National%20Museum%20of%20Art%2C%20Architecture%20and%20Design.jpg?width=600"
   }
  ]
 }

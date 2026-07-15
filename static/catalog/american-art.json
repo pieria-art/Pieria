@@ -564,6 +564,81 @@
     0.55
    ],
    "featured_rank": 92
+  },
+  {
+   "title": "Watson and the Shark",
+   "agent_name": "John Singleton Copley",
+   "agent_role": "Painter",
+   "creation_date": "1778",
+   "cultural_context": "American Colonial/Revolutionary-era painting (London)",
+   "medium": "Oil on canvas",
+   "date_display": "1778",
+   "description_narrative": "Copley's dramatic canvas depicts the real 1749 shark attack on young Brook Watson in Havana harbor, its diagonal composition and multiracial crew capturing Enlightenment-era heroism. It became one of the first American history paintings to gain international acclaim and now anchors the National Gallery of Art's collection.",
+   "tags": "history painting, maritime, drama, colonial america, shark attack, national gallery",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/John%20Singleton%20Copley%20-%20Watson%20and%20the%20Shark%20%281778%29%20-%20NGA%20Washington.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/John%20Singleton%20Copley%20-%20Watson%20and%20the%20Shark%20%281778%29%20-%20NGA%20Washington.jpg?width=600"
+  },
+  {
+   "title": "Kindred Spirits",
+   "agent_name": "Asher Brown Durand",
+   "agent_role": "Painter",
+   "creation_date": "1849",
+   "cultural_context": "Hudson River School",
+   "medium": "Oil on canvas",
+   "date_display": "1849",
+   "description_narrative": "Painted as a tribute to the recently deceased Thomas Cole, this idealized Catskills landscape shows Cole and poet William Cullen Bryant conversing on a rocky ledge above a wooded gorge. It became the defining manifesto of the Hudson River School's reverence for the American wilderness.",
+   "tags": "hudson river school, landscape, catskills, friendship, american wilderness, romanticism",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Lionel%20Percy%20Smythe%20-%20Kindred%20spirits.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Lionel%20Percy%20Smythe%20-%20Kindred%20spirits.jpg?width=600"
+  },
+  {
+   "title": "The Gross Clinic",
+   "agent_name": "Thomas Eakins",
+   "agent_role": "Painter",
+   "creation_date": "1875",
+   "cultural_context": "American Realism",
+   "medium": "Oil on canvas",
+   "date_display": "1875",
+   "description_narrative": "Eakins depicts the renowned surgeon Samuel Gross lecturing mid-operation in a Philadelphia amphitheater, rendered with unsparing clinical detail that shocked contemporary audiences. Its raw honesty and Rembrandt-like handling of light now rank it among the greatest American paintings of the 19th century.",
+   "tags": "realism, medicine, surgery, philadelphia, portraiture, 19th century",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Thomas%20Eakins%2C%20American%20-%20Portrait%20of%20Dr.%20Samuel%20D.%20Gross%20%28The%20Gross%20Clinic%29%20-%20Google%20Art%20Project.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Thomas%20Eakins%2C%20American%20-%20Portrait%20of%20Dr.%20Samuel%20D.%20Gross%20%28The%20Gross%20Clinic%29%20-%20Google%20Art%20Project.jpg?width=600"
+  },
+  {
+   "title": "Among the Sierra Nevada, California",
+   "agent_name": "Albert Bierstadt",
+   "agent_role": "Painter",
+   "creation_date": "1868",
+   "cultural_context": "Rocky Mountain School",
+   "medium": "Oil on canvas",
+   "date_display": "1868",
+   "description_narrative": "Bierstadt's sweeping, light-flooded vista of jagged peaks, a placid lake, and grazing deer romanticizes the American West as an untouched Eden. Exhibited to great acclaim in the East, it helped shape the era's popular imagination of the western frontier.",
+   "tags": "rocky mountain school, western landscape, sierra nevada, sublime, wilderness, luminism",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Albert%20Bierstadt%20-%20Among%20the%20Sierra%20Nevada%2C%20California%20-%20Google%20Art%20Project.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Albert%20Bierstadt%20-%20Among%20the%20Sierra%20Nevada%2C%20California%20-%20Google%20Art%20Project.jpg?width=600"
+  },
+  {
+   "title": "Twilight in the Wilderness",
+   "agent_name": "Frederic Edwin Church",
+   "agent_role": "Painter",
+   "creation_date": "1860",
+   "cultural_context": "Hudson River School / Luminism",
+   "medium": "Oil on canvas",
+   "date_display": "1860",
+   "description_narrative": "Painted on the eve of the Civil War, Church's uninhabited wilderness scene blazes with a fiery, crimson-streaked sunset reflected across a still New England river. Devoid of any human figure, it stands as a luminist meditation on nature's sublime, unsettled grandeur.",
+   "tags": "hudson river school, luminism, sunset, wilderness, new england, sublime",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frederic%20Edwin%20Church%20-%20Twilight%20in%20the%20Wilderness.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frederic%20Edwin%20Church%20-%20Twilight%20in%20the%20Wilderness.jpg?width=600"
   }
  ]
 }

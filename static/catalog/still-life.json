@@ -2,7 +2,7 @@
  "id": "still-life",
  "title": "Still Life & Flowers",
  "description": "Quiet arrangements of fruit, flowers, and objects — beauty in the everyday.",
- "source": "Art Institute of Chicago",
+ "source": "Art Institute of Chicago, Wikimedia Commons",
  "license": "Public Domain",
  "items": [
   {
@@ -384,6 +384,66 @@
     0.4
    ],
    "featured_rank": 90
+  },
+  {
+   "title": "Basket of Fruit (Canestra di Frutta)",
+   "agent_name": "Caravaggio",
+   "agent_role": "Painter",
+   "creation_date": "c. 1599",
+   "cultural_context": "Baroque, Italian",
+   "medium": "Oil on canvas",
+   "date_display": "c. 1599",
+   "description_narrative": "A woven basket of fruit and leaves, some already spotted and withering, sits alone against a bare golden background with startling illusionistic precision. Widely considered the first pure still life in Italian art, it announced Caravaggio's unflinching naturalism even in a minor genre.",
+   "tags": "still life, baroque, italian, naturalistic, fruit, caravaggio, precise",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Basket%20of%20Fruit-Caravaggio%20%28c.1595%29.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Basket%20of%20Fruit-Caravaggio%20%28c.1595%29.jpg?width=600"
+  },
+  {
+   "title": "Still Life with Flowers in a Wan-Li Vase",
+   "agent_name": "Ambrosius Bosschaert the Elder",
+   "agent_role": "Painter",
+   "creation_date": "1619",
+   "cultural_context": "Dutch Golden Age",
+   "medium": "Oil on copper",
+   "date_display": "1619",
+   "description_narrative": "An impossibly precise bouquet of tulips, roses, and other blooms from different seasons fills a porcelain vase, each petal and insect rendered with jewel-like clarity. Bosschaert helped establish the Dutch flower still life as a genre prized for both botanical accuracy and luxury display.",
+   "tags": "still life, dutch golden age, flowers, precise, botanical, bosschaert, luxury",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Stilleven%20met%20bloemen%20in%20een%20Wan-li%20vaas%2C%20SK-A-1522.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Stilleven%20met%20bloemen%20in%20een%20Wan-li%20vaas%2C%20SK-A-1522.jpg?width=600"
+  },
+  {
+   "title": "Vase of Flowers",
+   "agent_name": "Jan van Huysum",
+   "agent_role": "Painter",
+   "creation_date": "1722",
+   "cultural_context": "Dutch Golden Age (late), Flower Painting",
+   "medium": "Oil on panel",
+   "date_display": "1722",
+   "description_narrative": "A cascading arrangement of roses, poppies, and morning glories spills from a sculpted urn, catching droplets of dew and the occasional insect with extraordinary refinement. Van Huysum was celebrated across Europe as the most technically dazzling flower painter of his generation.",
+   "tags": "still life, flowers, dutch, luminous, refined, van huysum, decorative",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jan%20van%20Huysum%20%28Dutch%20-%20Vase%20of%20Flowers%20-%20Google%20Art%20Project.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jan%20van%20Huysum%20%28Dutch%20-%20Vase%20of%20Flowers%20-%20Google%20Art%20Project.jpg?width=600"
+  },
+  {
+   "title": "Still Life with Lobster",
+   "agent_name": "Willem Kalf",
+   "agent_role": "Painter",
+   "creation_date": "1650-1653",
+   "cultural_context": "Dutch Golden Age, Pronkstilleven",
+   "medium": "Oil on canvas",
+   "date_display": "c. 1650–1653",
+   "description_narrative": "A boiled lobster, a Chinese porcelain bowl, and a gleaming silver dish are arranged in dramatic candlelit contrast against deep shadow. Kalf's opulent \"pronkstilleven\" (ostentatious still life) style displayed the imported luxuries flowing through Amsterdam's golden-age trade.",
+   "tags": "still life, dutch golden age, luxury, dramatic lighting, opulent, kalf, pronkstilleven",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Willem%20Kalf%2C%20Still%20Life%20with%20Drinking-Horn%2C%20c.%201653%2C%20oil%20on%20canvas%2C%20National%20Gallery.png?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Willem%20Kalf%2C%20Still%20Life%20with%20Drinking-Horn%2C%20c.%201653%2C%20oil%20on%20canvas%2C%20National%20Gallery.png?width=600"
   }
  ]
 }
