@@ -484,6 +484,120 @@
     0.28
    ],
    "featured_rank": 65
+  },
+  {
+   "title": "Circe Invidiosa",
+   "agent_name": "John William Waterhouse",
+   "agent_role": "Painter",
+   "creation_date": "1892",
+   "cultural_context": "Symbolism / Pre-Raphaelite, British",
+   "medium": "Oil on canvas",
+   "date_display": "1892",
+   "description_narrative": "The sorceress Circe pours emerald poison into the sea to transform her rival Scylla into a monster, her jealous rage rendered in swirling green drapery and glowing pigment. Waterhouse drew on Ovid's Metamorphoses to cast Circe as one of literature's archetypal femme fatales.",
+   "tags": "waterhouse, circe, greek mythology, sorceress, symbolism, femme fatale",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/J.%20W.%20Waterhouse%20-%20Circe%20Invidiosa%20-%20Google%20Art%20Project.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/J.%20W.%20Waterhouse%20-%20Circe%20Invidiosa%20-%20Google%20Art%20Project.jpg?width=600"
+  },
+  {
+   "title": "Hope",
+   "agent_name": "George Frederic Watts",
+   "agent_role": "Painter",
+   "creation_date": "1886",
+   "cultural_context": "Symbolism / Victorian allegory, British",
+   "medium": "Oil on canvas",
+   "date_display": "1886",
+   "description_narrative": "A blindfolded woman perches atop a globe, bent over a lyre with all its strings broken but one, straining to hear a faint note of music amid apparent desolation. Watts intended the figure not as despair but as hope persisting against the odds, and the image became one of the most widely reproduced allegorical paintings of the Victorian era.",
+   "tags": "watts, allegory, hope, blindfold, lyre, symbolism, victorian",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/George%20Frederick%20Watts%20-%20Hope%20-%20B2011.32%20-%20Yale%20Center%20for%20British%20Art.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/George%20Frederick%20Watts%20-%20Hope%20-%20B2011.32%20-%20Yale%20Center%20for%20British%20Art.jpg?width=600"
+  },
+  {
+   "title": "The Caress (Les Caresses)",
+   "agent_name": "Fernand Khnopff",
+   "agent_role": "Painter",
+   "creation_date": "1896",
+   "cultural_context": "Symbolism, Belgian",
+   "medium": "Oil on canvas",
+   "date_display": "1896",
+   "description_narrative": "A leopard-bodied sphinx with a woman's head presses affectionately against an androgynous youth clutching a staff, an enigmatic scene drawn from the myth of Oedipus. Khnopff's fusion of sensuality and menace made it one of the signature images of Belgian Symbolism.",
+   "tags": "khnopff, sphinx, oedipus, symbolism, belgian, myth, sensuality",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Fernand%20Khnopff%20-%20Caresses%20-%20Google%20Art%20Project.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Fernand%20Khnopff%20-%20Caresses%20-%20Google%20Art%20Project.jpg?width=600"
+  },
+  {
+   "title": "The Wheel of Fortune",
+   "agent_name": "Edward Burne-Jones",
+   "agent_role": "Painter",
+   "creation_date": "1875–1883",
+   "cultural_context": "British Symbolism (Pre-Raphaelite)",
+   "medium": "Oil on canvas",
+   "date_display": "1875–1883",
+   "description_narrative": "Burne-Jones depicted the goddess Fortuna turning a great wheel bearing a king, a slave, and a poet, illustrating the medieval idea that all worldly rank is subject to chance. Commissioned by his patron Arthur Balfour, the painting is now held by the Musée d'Orsay.",
+   "tags": [
+    "burne-jones",
+    "symbolism",
+    "pre-raphaelite",
+    "allegory",
+    "fortune",
+    "british",
+    "mythology"
+   ],
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Edward%20Burne-Jones%20-%20The%20Wheel%20of%20Fortune%20-%20Google%20Art%20Project.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Edward%20Burne-Jones%20-%20The%20Wheel%20of%20Fortune%20-%20Google%20Art%20Project.jpg?width=600"
+  },
+  {
+   "title": "Echo and Narcissus",
+   "agent_name": "John William Waterhouse",
+   "agent_role": "Painter",
+   "creation_date": "1903",
+   "cultural_context": "British Symbolism (Neoclassical Romantic)",
+   "medium": "Oil on canvas",
+   "date_display": "1903",
+   "description_narrative": "Waterhouse illustrated the Ovidian myth of the youth Narcissus, transfixed by his own reflection in a pool, while the nymph Echo looks on in unrequited longing. The painting is held by the Walker Art Gallery in Liverpool.",
+   "tags": [
+    "waterhouse",
+    "symbolism",
+    "mythology",
+    "narcissus",
+    "echo",
+    "british",
+    "ovid"
+   ],
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Echo%20and%20Narcissus%20by%20John%20William%20Waterhouse.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Echo%20and%20Narcissus%20by%20John%20William%20Waterhouse.jpg?width=600"
+  },
+  {
+   "title": "Madonna",
+   "agent_name": "Edvard Munch",
+   "agent_role": "Painter",
+   "creation_date": "1894–1895",
+   "cultural_context": "Norwegian Symbolism",
+   "medium": "Oil on canvas",
+   "date_display": "1894–1895",
+   "description_narrative": "Munch portrayed a nude woman in a trance-like pose ringed by a halo-like red arc, conflating religious icon with erotic vision as part of his cycle 'The Frieze of Life.' He painted several versions of the composition; this one is held by the National Museum of Norway in Oslo.",
+   "tags": [
+    "munch",
+    "symbolism",
+    "madonna",
+    "norwegian",
+    "frieze of life",
+    "expressionism",
+    "eros"
+   ],
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Edvard%20Munch%20-%20Madonna%20-%20NG.M.00841%20-%20National%20Museum%20of%20Art%2C%20Architecture%20and%20Design.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Edvard%20Munch%20-%20Madonna%20-%20NG.M.00841%20-%20National%20Museum%20of%20Art%2C%20Architecture%20and%20Design.jpg?width=600"
   }
  ]
 }

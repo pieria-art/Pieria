@@ -2,7 +2,7 @@
  "id": "renaissance",
  "title": "The Italian Renaissance",
  "description": "Harmony, perspective, and humanism from the rebirth of classical ideals.",
- "source": "Art Institute of Chicago, The Metropolitan Museum of Art",
+ "source": "Art Institute of Chicago, The Metropolitan Museum of Art, Wikimedia Commons",
  "license": "Public Domain",
  "items": [
   {
@@ -17,8 +17,8 @@
    "tags": "religious art, renaissance, italian, madonna, sacred, serene, tempera painting",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sandro%20Botticelli%20-%20Virgin%20and%20Child%20with%20an%20Angel%20-%201954.283%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sandro%20Botticelli%20-%20Virgin%20and%20Child%20with%20an%20Angel%20-%201954.283%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
+   "source_url": "https://www.artic.edu/iiif/2/b59cc3e9-a7c0-5aa1-1a22-bb472bb2e6d4/full/2000,/0/default.jpg",
+   "thumbnail_url": "https://www.artic.edu/iiif/2/b59cc3e9-a7c0-5aa1-1a22-bb472bb2e6d4/full/400,/0/default.jpg",
    "focal_point": [
     0.62,
     0.27
@@ -117,8 +117,8 @@
    "tags": "religious, narrative, early renaissance, italian, tempera, saint john the baptist",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bartolommeo%20di%20Giovanni%20-%20Scenes%20from%20the%20Life%20of%20Saint%20John%20the%20Baptist%20-%201937.996%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bartolommeo%20di%20Giovanni%20-%20Scenes%20from%20the%20Life%20of%20Saint%20John%20the%20Baptist%20-%201937.996%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
+   "source_url": "https://www.artic.edu/iiif/2/a6c18204-e035-5fd0-408e-46b27d1ee6c5/full/2000,/0/default.jpg",
+   "thumbnail_url": "https://www.artic.edu/iiif/2/a6c18204-e035-5fd0-408e-46b27d1ee6c5/full/400,/0/default.jpg",
    "focal_point": [
     0.45,
     0.55
@@ -137,8 +137,8 @@
    "tags": "mythology, cupid, baroque, caravaggism, italian, oil painting, dramatic",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bartolomeo%20Manfredi%20-%20Cupid%20Chastised%20-%201947.58%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bartolomeo%20Manfredi%20-%20Cupid%20Chastised%20-%201947.58%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
+   "source_url": "https://www.artic.edu/iiif/2/0f951635-312c-0829-451b-553f461c5518/full/2000,/0/default.jpg",
+   "thumbnail_url": "https://www.artic.edu/iiif/2/0f951635-312c-0829-451b-553f461c5518/full/400,/0/default.jpg",
    "focal_point": [
     0.5,
     0.27
@@ -157,8 +157,8 @@
    "tags": "nativity, religious art, christianity, renaissance, high renaissance, italian art, sacred, oil painting",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Fra%20Bartolommeo%20-%20The%20Nativity%20-%202005.49%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Fra%20Bartolommeo%20-%20The%20Nativity%20-%202005.49%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
+   "source_url": "https://www.artic.edu/iiif/2/40fdb1d6-93fe-2916-78fb-f56a1ac261f1/full/2000,/0/default.jpg",
+   "thumbnail_url": "https://www.artic.edu/iiif/2/40fdb1d6-93fe-2916-78fb-f56a1ac261f1/full/400,/0/default.jpg",
    "focal_point": [
     0.46,
     0.78
@@ -177,8 +177,8 @@
    "tags": "crucifixion, religious art, Spanish Baroque, realism, tenebrism, devotional, dramatic",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Francisco%20de%20Zurbar%C3%A1n%20-%20The%20Crucifixion%20-%201954.15%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Francisco%20de%20Zurbar%C3%A1n%20-%20The%20Crucifixion%20-%201954.15%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
+   "source_url": "https://www.artic.edu/iiif/2/c8ee825f-bc8c-c76b-1f05-5d692d9a6b47/full/2000,/0/default.jpg",
+   "thumbnail_url": "https://www.artic.edu/iiif/2/c8ee825f-bc8c-c76b-1f05-5d692d9a6b47/full/400,/0/default.jpg",
    "focal_point": [
     0.45,
     0.28
@@ -197,8 +197,8 @@
    "tags": "portrait, mannerism, italian renaissance, medici, nobility, oil painting, 16th century",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pontormo%2C%20%28Jacopo%20Carrucci%29%20-%20Alessandro%20de%27%20Medici%20-%201933.1002%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pontormo%2C%20%28Jacopo%20Carrucci%29%20-%20Alessandro%20de%27%20Medici%20-%201933.1002%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
+   "source_url": "https://www.artic.edu/iiif/2/2b751a0e-a492-7fa9-749c-6667cdd1c928/full/2000,/0/default.jpg",
+   "thumbnail_url": "https://www.artic.edu/iiif/2/2b751a0e-a492-7fa9-749c-6667cdd1c928/full/400,/0/default.jpg",
    "focal_point": [
     0.45,
     0.34
@@ -217,8 +217,8 @@
    "tags": "christ, crucifixion, religious art, high renaissance, italian, suffering, dramatic, oil painting",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sebastiano%20del%20Piombo%20-%20Christ%20Carrying%20the%20Cross%20-%202016.15%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sebastiano%20del%20Piombo%20-%20Christ%20Carrying%20the%20Cross%20-%202016.15%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
+   "source_url": "https://www.artic.edu/iiif/2/13a251ba-2c7a-2d0c-3f65-820c0e1f1a39/full/2000,/0/default.jpg",
+   "thumbnail_url": "https://www.artic.edu/iiif/2/13a251ba-2c7a-2d0c-3f65-820c0e1f1a39/full/400,/0/default.jpg",
    "focal_point": [
     0.37,
     0.45
@@ -384,6 +384,440 @@
     0.5
    ],
    "featured_rank": 40
+  },
+  {
+   "title": "Mona Lisa",
+   "agent_name": "Leonardo da Vinci",
+   "agent_role": "Painter",
+   "creation_date": "1503-1519",
+   "cultural_context": "High Renaissance, Italian",
+   "medium": "Oil on poplar panel",
+   "date_display": "1503–1519",
+   "description_narrative": "The most famous painting in the world. It depicts Lisa Gherardini, wife of Francesco del Giocondo, sitting in front of an imaginary landscape. Her enigmatic expression and the masterful use of sfumato make it a masterpiece of the Renaissance.",
+   "tags": "portrait, renaissance, sfumato, enigmatic, female",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Mona%20Lisa%2C%20by%20Leonardo%20da%20Vinci%2C%20from%20C2RMF.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Mona%20Lisa%2C%20by%20Leonardo%20da%20Vinci%2C%20from%20C2RMF.jpg?width=600",
+   "focal_point": [
+    0.5,
+    0.28
+   ],
+   "featured_rank": 100
+  },
+  {
+   "title": "The Birth of Venus",
+   "agent_name": "Sandro Botticelli",
+   "agent_role": "Painter",
+   "creation_date": "1485",
+   "cultural_context": "Italian Renaissance, Florentine",
+   "medium": "Tempera on canvas",
+   "date_display": "c. 1484–86",
+   "description_narrative": "The goddess Venus emerges from the sea as a fully grown woman, arriving at the shore on a giant scallop shell. One of the world's most famous and appreciated works of art, it has become a landmark of Italian Renaissance painting.",
+   "tags": "mythology, venus, renaissance, goddess, shell, classical",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Birth%20of%20Venus%20%28Botticelli%29%201.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Birth%20of%20Venus%20%28Botticelli%29%201.jpg?width=600",
+   "focal_point": [
+    0.52,
+    0.18
+   ],
+   "featured_rank": 93
+  },
+  {
+   "title": "The Creation of Adam",
+   "agent_name": "Michelangelo",
+   "agent_role": "Painter, Sculptor",
+   "creation_date": "1512",
+   "cultural_context": "High Renaissance, Italian",
+   "medium": "Fresco",
+   "date_display": "c. 1508–12",
+   "description_narrative": "The most famous section of the Sistine Chapel ceiling. God reaches out to give life to Adam, their fingers nearly touching. This single gesture has become one of the most replicated religious images and an enduring icon of humanity.",
+   "tags": "fresco, sistine chapel, genesis, god, adam, renaissance",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sistine%20Chapel%20ceiling%2C%20Creation%20of%20Adam.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sistine%20Chapel%20ceiling%2C%20Creation%20of%20Adam.jpg?width=600",
+   "focal_point": [
+    0.5,
+    0.46
+   ],
+   "featured_rank": 95
+  },
+  {
+   "title": "The School of Athens",
+   "agent_name": "Raphael",
+   "agent_role": "Painter",
+   "creation_date": "1511",
+   "cultural_context": "High Renaissance, Italian",
+   "medium": "Fresco",
+   "date_display": "1509–11",
+   "description_narrative": "A fresco in the Apostolic Palace in the Vatican depicting a congregation of the greatest philosophers, mathematicians, and scientists of antiquity, with Plato and Aristotle at the center. It is considered a masterpiece of perspective and one of the greatest achievements of Renaissance art.",
+   "tags": "philosophy, plato, aristotle, fresco, renaissance, architecture",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/%22School%20of%20Athens%22%20by%20Raphael%2C%20Raphael%20Rooms%2C%20Vatican%20Museum%20%2848466167851%29.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/%22School%20of%20Athens%22%20by%20Raphael%2C%20Raphael%20Rooms%2C%20Vatican%20Museum%20%2848466167851%29.jpg?width=600",
+   "focal_point": [
+    0.5,
+    0.46
+   ],
+   "featured_rank": 90
+  },
+  {
+   "title": "The Last Supper",
+   "agent_name": "Leonardo da Vinci",
+   "agent_role": "Painter",
+   "creation_date": "1495-1498",
+   "cultural_context": "High Renaissance, Italian",
+   "medium": "Tempera and oil on plaster",
+   "date_display": "c. 1495–1498",
+   "description_narrative": "Painted on the refectory wall of Santa Maria delle Grazie in Milan, Leonardo captures the instant Christ announces that one of the Twelve Apostles will betray him, freezing each figure mid-reaction. Its rigorous perspective and psychological drama made it one of the most studied and reproduced compositions in Western art.",
+   "tags": "renaissance, religious, fresco, italian, dramatic, iconic, milan",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Last%20Supper%20-%20Leonardo%20Da%20Vinci%20-%20High%20Resolution%2032x16.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Last%20Supper%20-%20Leonardo%20Da%20Vinci%20-%20High%20Resolution%2032x16.jpg?width=600"
+  },
+  {
+   "title": "Primavera",
+   "agent_name": "Sandro Botticelli",
+   "agent_role": "Painter",
+   "creation_date": "1477-1482",
+   "cultural_context": "Early Renaissance, Florentine",
+   "medium": "Tempera on panel",
+   "date_display": "c. 1477–1482",
+   "description_narrative": "A procession of mythological figures - Venus, the Three Graces, Flora, and Mercury - drifts through an orange grove in one of the most celebrated allegories of the Florentine Renaissance. Botticelli's linear grace and flowering meadow have made it an emblem of Renaissance humanism.",
+   "tags": "renaissance, mythology, allegory, florentine, springtime, elegant, botticelli",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Botticelli-primavera.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Botticelli-primavera.jpg?width=600"
+  },
+  {
+   "title": "Venus of Urbino",
+   "agent_name": "Titian",
+   "agent_role": "Painter",
+   "creation_date": "1538",
+   "cultural_context": "High Renaissance, Venetian",
+   "medium": "Oil on canvas",
+   "date_display": "1538",
+   "description_narrative": "A reclining nude gazes directly at the viewer from a sumptuous Venetian interior, her pose derived from Giorgione but charged with new immediacy and warmth. The painting became the touchstone for centuries of reclining-nude compositions, from Manet's Olympia onward.",
+   "tags": "renaissance, venetian, nude, sensual, domestic, titian, masterpiece",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tizian%20Venus%20von%20Urbino%201538%20Sammlung%20Uffizien.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tizian%20Venus%20von%20Urbino%201538%20Sammlung%20Uffizien.jpg?width=600"
+  },
+  {
+   "title": "Bacchus and Ariadne",
+   "agent_name": "Titian",
+   "agent_role": "Painter",
+   "creation_date": "1520-1523",
+   "cultural_context": "High Renaissance, Venetian",
+   "medium": "Oil on canvas",
+   "date_display": "1520–1523",
+   "description_narrative": "Bacchus leaps from his chariot toward the abandoned Ariadne in a whirl of leopards, satyrs, and brilliant ultramarine sky. Painted for the Duke of Ferrara's private study, it remains one of the most vividly colored mythological scenes of the Italian Renaissance.",
+   "tags": "renaissance, mythology, venetian, dynamic, colorful, titian, movement",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/%22Bacchus%20and%20Ariadne%22%20by%20Titian%20-%20National%20Gallery%2C%20London%20-%20Joy%20of%20Museums.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/%22Bacchus%20and%20Ariadne%22%20by%20Titian%20-%20National%20Gallery%2C%20London%20-%20Joy%20of%20Museums.jpg?width=600"
+  },
+  {
+   "title": "The Wedding at Cana",
+   "agent_name": "Paolo Veronese",
+   "agent_role": "Painter",
+   "creation_date": "1563",
+   "cultural_context": "Late Renaissance, Venetian",
+   "medium": "Oil on canvas",
+   "date_display": "1563",
+   "description_narrative": "Christ's first miracle, turning water into wine, unfolds amid a vast banquet of over a hundred contemporary Venetian figures, musicians, and architecture. At nearly ten meters wide, it stands among the largest and most theatrically staged paintings of the Renaissance.",
+   "tags": "renaissance, religious, venetian, banquet, monumental, crowded, veronese",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Veronese%2C%20The%20Marriage%20at%20Cana%20%281563%29.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Veronese%2C%20The%20Marriage%20at%20Cana%20%281563%29.jpg?width=600"
+  },
+  {
+   "title": "The Last Judgment",
+   "agent_name": "Michelangelo",
+   "agent_role": "Painter",
+   "creation_date": "1536-1541",
+   "cultural_context": "High Renaissance, Italian",
+   "medium": "Fresco",
+   "date_display": "1536–1541",
+   "description_narrative": "Covering the altar wall of the Sistine Chapel, Christ presides over the resurrection of the dead, the saved ascending and the damned cast down in a swirling mass of muscular bodies. Its sculptural intensity and unflinching nudity provoked controversy even as it cemented Michelangelo's reputation as the supreme master of the human form.",
+   "tags": "renaissance, religious, fresco, sistine chapel, dramatic, monumental, michelangelo",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Last%20Judgement%20%28Michelangelo%29.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Last%20Judgement%20%28Michelangelo%29.jpg?width=600"
+  },
+  {
+   "title": "Virgin of the Rocks",
+   "agent_name": "Leonardo da Vinci",
+   "agent_role": "Painter",
+   "creation_date": "1483-1486",
+   "cultural_context": "Italian High Renaissance, Milan",
+   "medium": "Oil on panel, transferred to canvas",
+   "date_display": "c. 1483-1486",
+   "description_narrative": "The Louvre's version of Leonardo's altarpiece, one of two nearly identical compositions he painted, showing the Virgin, the infant Christ, the young John the Baptist, and an angel in a shadowy grotto. It is a defining demonstration of Leonardo's sfumato technique, with figures modeled in soft gradations of light and shade rather than hard outlines.",
+   "tags": [
+    "leonardo",
+    "sfumato",
+    "madonna",
+    "louvre",
+    "high renaissance",
+    "grotto",
+    "religious"
+   ],
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Leonardo%20da%20Vinci%20-%20Virgin%20of%20the%20Rocks%20%28National%20Gallery%20London%29%2002.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Leonardo%20da%20Vinci%20-%20Virgin%20of%20the%20Rocks%20%28National%20Gallery%20London%29%2002.jpg?width=600"
+  },
+  {
+   "title": "The Sistine Madonna",
+   "agent_name": "Raphael",
+   "agent_role": "Painter",
+   "creation_date": "1512-1514",
+   "cultural_context": "Italian High Renaissance, Rome",
+   "medium": "Oil on canvas",
+   "date_display": "c. 1512-1514",
+   "description_narrative": "Commissioned by Pope Julius II as an altarpiece for the church of San Sisto in Piacenza, the painting shows the Madonna descending through parted curtains with the Christ Child, flanked by Saint Sixtus and Saint Barbara. The two winged putti daydreaming at the base of the composition became independently famous, endlessly reproduced on their own.",
+   "tags": [
+    "raphael",
+    "madonna",
+    "putti",
+    "altarpiece",
+    "high renaissance",
+    "dresden",
+    "religious"
+   ],
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Raphael%20-%20The%20Sistine%20Madonna%20-%20Google%20Arts%20%26%20Culture.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Raphael%20-%20The%20Sistine%20Madonna%20-%20Google%20Arts%20%26%20Culture.jpg?width=600"
+  },
+  {
+   "title": "Pallas and the Centaur",
+   "agent_name": "Sandro Botticelli",
+   "agent_role": "Painter",
+   "creation_date": "1482",
+   "cultural_context": "Italian Early Renaissance, Florence",
+   "medium": "Tempera on canvas",
+   "date_display": "c. 1482",
+   "description_narrative": "The armed figure of Pallas Athena restrains a centaur by the hair, widely read as an allegory of reason subduing base instinct. Her gown is patterned with the interlaced diamond-ring emblem of the Medici, tying the work to the family's patronage.",
+   "tags": [
+    "botticelli",
+    "mythology",
+    "athena",
+    "centaur",
+    "allegory",
+    "uffizi",
+    "medici"
+   ],
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Botticelli%20Pallas%20and%20the%20Centaur.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Botticelli%20Pallas%20and%20the%20Centaur.jpg?width=600"
+  },
+  {
+   "title": "The Battle of San Romano",
+   "agent_name": "Paolo Uccello",
+   "agent_role": "Painter",
+   "creation_date": "1438-1440",
+   "cultural_context": "Italian Early Renaissance, Florence",
+   "medium": "Egg tempera with oil on poplar panel",
+   "date_display": "c. 1438-1440",
+   "description_narrative": "The National Gallery's panel, one of three depicting the 1432 battle between Florence and Siena, shows Florentine commander Niccolo da Tolentino leading the cavalry charge. Broken lances and fallen soldiers are arranged along calculated orthogonal lines, an early showcase of Renaissance linear perspective.",
+   "tags": [
+    "uccello",
+    "battle",
+    "perspective",
+    "cavalry",
+    "florence",
+    "national gallery",
+    "early renaissance"
+   ],
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Uccello%20%E2%80%94%20the%20Battle%20of%20San%20Romano.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Uccello%20%E2%80%94%20the%20Battle%20of%20San%20Romano.jpg?width=600"
+  },
+  {
+   "title": "The Lamentation over the Dead Christ",
+   "agent_name": "Andrea Mantegna",
+   "agent_role": "Painter",
+   "creation_date": "1480",
+   "cultural_context": "Italian Early Renaissance, Mantua",
+   "medium": "Tempera on canvas",
+   "date_display": "c. 1480",
+   "description_narrative": "Mantegna presents the body of the dead Christ in extreme foreshortening, drawing the viewer almost to the soles of his feet in a radical compositional experiment. The Virgin Mary, Saint John, and Mary Magdalene mourn at the edge of the marble slab in a stark, emotionally intense scene.",
+   "tags": [
+    "mantegna",
+    "foreshortening",
+    "lamentation",
+    "christ",
+    "brera",
+    "perspective",
+    "religious"
+   ],
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/%28Venice%29%20Lamentation%20over%20the%20Dead%20Christ%20-%20Girolamo%20Romanino%20-%20gallerie%20Accademia%20Venice.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/%28Venice%29%20Lamentation%20over%20the%20Dead%20Christ%20-%20Girolamo%20Romanino%20-%20gallerie%20Accademia%20Venice.jpg?width=600"
+  },
+  {
+   "title": "Deposition",
+   "agent_name": "Rogier van der Weyden",
+   "agent_role": "Painter",
+   "creation_date": "1435-1443",
+   "cultural_context": "Early Netherlandish Renaissance, Leuven",
+   "medium": "Oil on panel",
+   "date_display": "c. 1435-1443",
+   "description_narrative": "Commissioned by the Leuven Guild of Crossbowmen, this deposition arranges Christ's body in a shape echoing a crossbow as a nod to the patrons. The swooning Virgin Mary, collapsing in a pose that mirrors her son's, was an emotional innovation that shaped Netherlandish painting for generations.",
+   "tags": [
+    "van der weyden",
+    "netherlandish",
+    "deposition",
+    "christ",
+    "prado",
+    "emotion",
+    "religious"
+   ],
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/El%20Descendimiento%2C%20by%20Rogier%20van%20der%20Weyden%2C%20from%20Prado%20in%20Google%20Earth.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/El%20Descendimiento%2C%20by%20Rogier%20van%20der%20Weyden%2C%20from%20Prado%20in%20Google%20Earth.jpg?width=600"
+  },
+  {
+   "title": "The Assumption of the Virgin",
+   "agent_name": "El Greco",
+   "agent_role": "Painter",
+   "creation_date": "1577",
+   "cultural_context": "Spanish Renaissance / Mannerism, Toledo",
+   "medium": "Oil on canvas",
+   "date_display": "1577–79",
+   "description_narrative": "Painted as the central altarpiece for the church of Santo Domingo el Antiguo in Toledo, this was El Greco's first major Spanish commission and established the elongated figures and luminous color that became his signature style. It remains one of the artist's most celebrated large-scale religious paintings.",
+   "tags": [
+    "El Greco",
+    "Spanish Renaissance",
+    "Mannerism",
+    "altarpiece",
+    "religious art"
+   ],
+   "source": "Art Institute of Chicago",
+   "license": "Public Domain",
+   "source_url": "https://www.artic.edu/iiif/2/47fd1564-93f5-f30b-7786-013421133b4a/full/2000,/0/default.jpg",
+   "thumbnail_url": "https://www.artic.edu/iiif/2/47fd1564-93f5-f30b-7786-013421133b4a/full/400,/0/default.jpg"
+  },
+  {
+   "title": "Saint Francis Kneeling in Meditation",
+   "agent_name": "El Greco",
+   "agent_role": "Painter",
+   "creation_date": "1595",
+   "cultural_context": "Spanish Renaissance / Mannerism, Toledo",
+   "medium": "Oil on canvas",
+   "date_display": "c. 1595–c. 1600",
+   "description_narrative": "El Greco painted numerous versions of Saint Francis in contemplative prayer, reflecting the Counter-Reformation's emphasis on personal spiritual devotion. This example shows the saint's characteristically elongated form and intense, mystical expression.",
+   "tags": [
+    "El Greco",
+    "Counter-Reformation",
+    "religious art",
+    "Saint Francis",
+    "Spanish Renaissance"
+   ],
+   "source": "Art Institute of Chicago",
+   "license": "Public Domain",
+   "source_url": "https://www.artic.edu/iiif/2/b703b636-976c-b35b-8a8e-f8df3f5ba003/full/2000,/0/default.jpg",
+   "thumbnail_url": "https://www.artic.edu/iiif/2/b703b636-976c-b35b-8a8e-f8df3f5ba003/full/400,/0/default.jpg"
+  },
+  {
+   "title": "Saint Martin and the Beggar",
+   "agent_name": "El Greco",
+   "agent_role": "Painter",
+   "creation_date": "1597",
+   "cultural_context": "Spanish Renaissance / Mannerism, Toledo",
+   "medium": "Oil on canvas",
+   "date_display": "c. 1597–c. 1600",
+   "description_narrative": "This painting depicts the Roman soldier Saint Martin of Tours dividing his cloak to share with a beggar, a popular subject of Christian charity. El Greco produced this composition for a private chapel in Toledo, working in his characteristic elongated forms and dramatic light.",
+   "tags": [
+    "El Greco",
+    "Saint Martin",
+    "religious art",
+    "Spanish Renaissance",
+    "charity"
+   ],
+   "source": "Art Institute of Chicago",
+   "license": "Public Domain",
+   "source_url": "https://www.artic.edu/iiif/2/52098776-6e2e-9683-e258-7b1cec8660dd/full/2000,/0/default.jpg",
+   "thumbnail_url": "https://www.artic.edu/iiif/2/52098776-6e2e-9683-e258-7b1cec8660dd/full/400,/0/default.jpg"
+  },
+  {
+   "title": "The Feast in the House of Simon",
+   "agent_name": "El Greco and Workshop",
+   "agent_role": "Painter",
+   "creation_date": "1608",
+   "cultural_context": "Spanish Renaissance / Mannerism, Toledo",
+   "medium": "Oil on canvas",
+   "date_display": "c. 1608–14",
+   "description_narrative": "This large canvas depicts the biblical episode in which a sinful woman anoints Christ's feet, painted late in El Greco's career with the assistance of his Toledo workshop. It reflects the artist's mature style of visionary color and dramatically elongated figures.",
+   "tags": [
+    "El Greco",
+    "workshop painting",
+    "religious art",
+    "Toledo",
+    "Spanish Renaissance"
+   ],
+   "source": "Art Institute of Chicago",
+   "license": "Public Domain",
+   "source_url": "https://www.artic.edu/iiif/2/75886aaa-002a-2047-a05c-baf73f0ac093/full/2000,/0/default.jpg",
+   "thumbnail_url": "https://www.artic.edu/iiif/2/75886aaa-002a-2047-a05c-baf73f0ac093/full/400,/0/default.jpg"
+  },
+  {
+   "title": "Virgin and Child with the Young Saint John the Baptist",
+   "agent_name": "Correggio",
+   "agent_role": "Painter",
+   "creation_date": "1515",
+   "cultural_context": "High Renaissance, Parma school",
+   "medium": "Oil on panel",
+   "date_display": "c. 1515",
+   "description_narrative": "Painted early in Correggio's career, this intimate panel shows the soft modeling and gentle sentiment that would define his mature style as a leading painter of the Parma school. The composition places the infant Christ and the young Saint John the Baptist in tender interaction with the Virgin.",
+   "tags": [
+    "Correggio",
+    "Parma school",
+    "High Renaissance",
+    "Virgin and Child",
+    "panel painting"
+   ],
+   "source": "Art Institute of Chicago",
+   "license": "Public Domain",
+   "source_url": "https://www.artic.edu/iiif/2/d63b9402-c42b-cce3-aa63-6d213ad621cd/full/2000,/0/default.jpg",
+   "thumbnail_url": "https://www.artic.edu/iiif/2/d63b9402-c42b-cce3-aa63-6d213ad621cd/full/400,/0/default.jpg"
+  },
+  {
+   "title": "Tarquin and Lucretia",
+   "agent_name": "Tintoretto",
+   "agent_role": "Painter",
+   "creation_date": "1578",
+   "cultural_context": "Venetian Renaissance / Mannerism",
+   "medium": "Oil on canvas",
+   "date_display": "1578–80",
+   "description_narrative": "Tintoretto depicted the ancient Roman legend of Tarquin's assault on Lucretia with the dramatic diagonal composition and dynamic movement characteristic of Venetian Mannerism. The subject was popular among Renaissance patrons as an exemplar of virtue and honor.",
+   "tags": [
+    "Tintoretto",
+    "Venetian Renaissance",
+    "Mannerism",
+    "mythology",
+    "Lucretia"
+   ],
+   "source": "Art Institute of Chicago",
+   "license": "Public Domain",
+   "source_url": "https://www.artic.edu/iiif/2/84bc6762-6a64-dde5-5dc3-ec31c75aa32b/full/2000,/0/default.jpg",
+   "thumbnail_url": "https://www.artic.edu/iiif/2/84bc6762-6a64-dde5-5dc3-ec31c75aa32b/full/400,/0/default.jpg"
   }
  ]
 }

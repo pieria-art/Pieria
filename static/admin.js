@@ -2634,9 +2634,9 @@ async function renderCatalog() {
             const card = document.createElement('div');
             card.className = 'artwork-card';
             card.style.cursor = 'pointer';
-            // "Start Here" — the curated Greatest Hits collection is the fame-sorted on-ramp into a
-            // ~1000-work catalog; index.json already lists it first, this just makes that visible.
-            const isStartHere = col.id === 'greatest-hits';
+            // "Start Here" — the curated Masterpieces collection is the paintings-only fame-sorted
+            // on-ramp into the catalog; index.json already lists it first, this just makes that visible.
+            const isStartHere = col.id === 'masterpieces';
             // A tiny collection (e.g. 2-item Ukiyo-e) reads as broken next to 30-work neighbors —
             // de-emphasize, never hide, so it doesn't look like a UI bug.
             const isSmall = (col.count || 0) > 0 && col.count < 5;

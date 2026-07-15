@@ -21,18 +21,25 @@ import argparse
 import json
 from pathlib import Path
 
+from tools.catalog_spec import PAINTERLY_KINDS, kind_for
+
 REPO_ROOT = Path(__file__).resolve().parent.parent
 CATALOG_DIR = REPO_ROOT / "static" / "catalog"
 INDEX_FILE = CATALOG_DIR / "index.json"
-GREATEST_HITS_ID = "greatest-hits"
-GREATEST_HITS_TITLE = "Greatest Hits"
-GREATEST_HITS_DESC = "The most recognizable masterpieces across the whole collection — start here."
+# CURATION-v2 (ADR-039): the out-of-box first-glimpse is a paintings-only "Masterpieces" set, replacing
+# the old top-fame "Greatest Hits" (which led with sculptures/photos/posters/space imagery).
+MASTERPIECES_ID = "masterpieces"
+MASTERPIECES_TITLE = "Masterpieces"
+MASTERPIECES_DESC = "The most iconic paintings of all time — start here."
+LEGACY_GH_ID = "greatest-hits"   # retired synthesized collection; cleaned up on bake
 
 
 def _catalog_files() -> list[Path]:
-    """Every real collection file (skip `_`-prefixed, index.json, and the synthesized greatest-hits)."""
+    """Every real collection file (skip `_`-prefixed, index.json, and the synthesized first-glimpse —
+    both the current Masterpieces and the retired Greatest Hits, so neither is scored as a source)."""
+    skip = ("index.json", f"{MASTERPIECES_ID}.json", f"{LEGACY_GH_ID}.json")
     return sorted(f for f in CATALOG_DIR.glob("*.json")
-                  if not f.name.startswith("_") and f.name not in ("index.json", f"{GREATEST_HITS_ID}.json"))
+                  if not f.name.startswith("_") and f.name not in skip)
 
 
 # --------------------------------------------------------------------------- emit
@@ -81,6 +88,9 @@ def bake(scores_path: Path, top: int, dry_run: bool) -> int:
     candidates: dict[tuple, dict] = {}   # (title, artist) -> best-ranked item for that work
     for f in _catalog_files():
         d = json.loads(f.read_text())
+        # Masterpieces is paintings-only: a collection's `kind` (from catalog_spec) gates first-glimpse
+        # eligibility, so sculpture/photo/poster/space/artifact collections never feed the candidate pool.
+        painterly = kind_for(d.get("id", f.stem)) in PAINTERLY_KINDS
         changed = False
         for it in d.get("items", []):
             su = it.get("source_url")
@@ -89,21 +99,26 @@ def bake(scores_path: Path, top: int, dry_run: bool) -> int:
                     it["featured_rank"] = scores[su]
                     changed = True
                 updated += 1
+            else:
+                missing += 1
+            # Masterpieces candidacy uses the item's EFFECTIVE rank (this batch's score if present, else
+            # the already-baked featured_rank), so a partial re-score still builds the first-glimpse from
+            # the whole scored catalog rather than only the works in this scores file.
+            rank = it.get("featured_rank")
+            if painterly and rank is not None:
                 # normalize the title (drop parenthetical/series suffixes like "(…nami ura), from the
-                # series …") so two museum records of the SAME print collapse to one Greatest Hits entry.
+                # series …") so two museum records of the SAME work collapse to one Masterpieces entry.
                 norm_title = it.get("title", "").split("(")[0].split(",")[0].strip().lower()
                 key = (norm_title, (it.get("agent_name") or "").strip().lower())
                 prev = candidates.get(key)
-                if prev is None or scores[su] > prev.get("featured_rank", -1):
+                if prev is None or rank > prev.get("featured_rank", -1):
                     candidates[key] = it
-            else:
-                missing += 1
         if changed and not dry_run:
             f.write_text(json.dumps(d, indent=1, ensure_ascii=False))
 
     top_items = sorted(candidates.values(), key=lambda it: it.get("featured_rank", 0), reverse=True)[:top]
     print(f"featured_rank written: {updated} items updated, {missing} items had no score")
-    print(f"\nGreatest Hits (top {len(top_items)}):")
+    print(f"\nMasterpieces (paintings-only, top {len(top_items)}):")
     for it in top_items[:12]:
         print(f"  {it.get('featured_rank', 0):3}  {it.get('title', '?')[:44]:44} {it.get('agent_name', '')[:24]}")
     if len(top_items) > 12:
@@ -113,23 +128,29 @@ def bake(scores_path: Path, top: int, dry_run: bool) -> int:
         print("\n[dry-run] no files written")
         return 0
 
-    # Synthesize the Greatest Hits collection file (build_pack + pre-seed consume it like any collection;
+    # Synthesize the Masterpieces collection file (build_pack + pre-seed consume it like any collection;
     # items are dup-by-source_url of their home collections, which the downstream dedup handles).
-    gh = {"id": GREATEST_HITS_ID, "title": GREATEST_HITS_TITLE, "description": GREATEST_HITS_DESC,
+    mp = {"id": MASTERPIECES_ID, "title": MASTERPIECES_TITLE, "description": MASTERPIECES_DESC,
           "source": "Screen Docent", "license": "Public Domain", "items": top_items}
-    (CATALOG_DIR / f"{GREATEST_HITS_ID}.json").write_text(json.dumps(gh, indent=1, ensure_ascii=False))
+    (CATALOG_DIR / f"{MASTERPIECES_ID}.json").write_text(json.dumps(mp, indent=1, ensure_ascii=False))
 
-    # Register it in index.json (front of the list so browse shows it first).
+    # Retire the old Greatest Hits synthesized collection if present (renamed to Masterpieces).
+    legacy = CATALOG_DIR / f"{LEGACY_GH_ID}.json"
+    if legacy.exists():
+        legacy.unlink()
+
+    # Register Masterpieces in index.json (front of the list so browse shows it first); drop any stale
+    # Masterpieces/Greatest Hits entry first.
     index = json.loads(INDEX_FILE.read_text())
-    cols = index.get("collections", [])
-    cols = [c for c in cols if c.get("id") != GREATEST_HITS_ID]
+    cols = [c for c in index.get("collections", []) if c.get("id") not in (MASTERPIECES_ID, LEGACY_GH_ID)]
     cover = top_items[0].get("thumbnail_url", "") if top_items else ""
-    cols.insert(0, {"id": GREATEST_HITS_ID, "title": GREATEST_HITS_TITLE, "description": GREATEST_HITS_DESC,
+    cols.insert(0, {"id": MASTERPIECES_ID, "title": MASTERPIECES_TITLE, "description": MASTERPIECES_DESC,
                     "source": "Screen Docent", "license": "Public Domain",
                     "count": len(top_items), "cover_thumbnail": cover})
     index["collections"] = cols
     INDEX_FILE.write_text(json.dumps(index, indent=1, ensure_ascii=False))
-    print(f"\nwrote static/catalog/{GREATEST_HITS_ID}.json ({len(top_items)} items) + registered in index.json")
+    print(f"\nwrote static/catalog/{MASTERPIECES_ID}.json ({len(top_items)} items) + registered in index.json"
+          + ("; retired greatest-hits.json" if not legacy.exists() else ""))
     return 0
 
 

@@ -1,0 +1,809 @@
+{
+ "id": "masterpieces",
+ "title": "Masterpieces",
+ "description": "The most iconic paintings of all time — start here.",
+ "source": "Screen Docent",
+ "license": "Public Domain",
+ "items": [
+  {
+   "title": "Mona Lisa",
+   "agent_name": "Leonardo da Vinci",
+   "agent_role": "Painter",
+   "creation_date": "1503-1519",
+   "cultural_context": "High Renaissance, Italian",
+   "medium": "Oil on poplar panel",
+   "date_display": "1503–1519",
+   "description_narrative": "The most famous painting in the world. It depicts Lisa Gherardini, wife of Francesco del Giocondo, sitting in front of an imaginary landscape. Her enigmatic expression and the masterful use of sfumato make it a masterpiece of the Renaissance.",
+   "tags": "portrait, renaissance, sfumato, enigmatic, female",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Mona%20Lisa%2C%20by%20Leonardo%20da%20Vinci%2C%20from%20C2RMF.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Mona%20Lisa%2C%20by%20Leonardo%20da%20Vinci%2C%20from%20C2RMF.jpg?width=600",
+   "focal_point": [
+    0.5,
+    0.28
+   ],
+   "featured_rank": 100
+  },
+  {
+   "title": "Under the Wave off Kanagawa (Kanagawa oki nami ura), also known as The Great Wave, from the series \"Thirty-Six Views of Mount Fuji (Fugaku sanjūrokkei)\"",
+   "agent_name": "Katsushika Hokusai",
+   "agent_role": "Artist",
+   "creation_date": "1830/33",
+   "cultural_context": "Ukiyo-e, Edo Period, Japanese",
+   "medium": "Color woodblock print; oban",
+   "date_display": "1830/33",
+   "description_narrative": "Katsushika Hokusai's iconic color woodblock print, 'The Great Wave,' captures a colossal wave cresting over three fishing boats, threatening to engulf them amidst a turbulent sea. In the distance, the serene form of Mount Fuji stands against the sky, anchoring this dramatic scene from his famous series 'Thirty-Six Views of Mount Fuji.'",
+   "tags": "great wave, mount fuji, ukiyo-e, woodblock print, ocean, dramatic, japanese landscape",
+   "source": "Art Institute of Chicago",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Katsushika%20Hokusai%20-%20The%20Great%20Wave%20off%20the%20Coast%20of%20Kanagawa%20LCCN2008660568.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Katsushika%20Hokusai%20-%20The%20Great%20Wave%20off%20the%20Coast%20of%20Kanagawa%20LCCN2008660568.jpg?width=600",
+   "focal_point": [
+    0.32,
+    0.38
+   ],
+   "featured_rank": 99
+  },
+  {
+   "title": "The Starry Night",
+   "agent_name": "Vincent van Gogh",
+   "agent_role": "Painter",
+   "creation_date": "1889",
+   "cultural_context": "Post-Impressionism, Dutch",
+   "medium": "Oil on canvas",
+   "date_display": "1889",
+   "description_narrative": "A swirling, dynamic night sky over a quiet village, painted during Van Gogh's stay at the Saint-Paul-de-Mausole asylum in Saint-Rémy-de-Provence. It is one of the most recognized masterpieces in the history of Western art.",
+   "tags": "night, sky, stars, village, post-impressionism, landscape",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Van%20Gogh%20-%20Starry%20Night%20-%20Google%20Art%20Project.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Van%20Gogh%20-%20Starry%20Night%20-%20Google%20Art%20Project.jpg?width=600",
+   "focal_point": [
+    0.45,
+    0.35
+   ],
+   "featured_rank": 98
+  },
+  {
+   "title": "The Scream",
+   "agent_name": "Edvard Munch",
+   "agent_role": "Painter",
+   "creation_date": "1893",
+   "cultural_context": "Expressionism, Norwegian",
+   "medium": "Oil, tempera, pastel and crayon on cardboard",
+   "date_display": "1893",
+   "description_narrative": "An agonized figure against a tumultuous orange sky, standing on a bridge. Widely interpreted as representing the universal anxiety of modern humanity. Munch described the inspiration as feeling an infinite scream passing through nature.",
+   "tags": "scream, anxiety, expressionism, bridge, sunset, anguish",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Scream%20by%20Edvard%20Munch.tif?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Scream%20by%20Edvard%20Munch.tif?width=600",
+   "focal_point": [
+    0.55,
+    0.72
+   ],
+   "featured_rank": 97
+  },
+  {
+   "title": "De Nachtwacht",
+   "agent_name": "Rembrandt van Rijn",
+   "agent_role": "Artist",
+   "creation_date": "",
+   "cultural_context": "Dutch Golden Age, Baroque, Dutch",
+   "medium": "",
+   "date_display": "1642",
+   "description_narrative": "Rembrandt's 'The Night Watch' depicts the company of Captain Frans Banninck Cocq and Lieutenant Willem van Ruytenburch moving out, renowned for its dramatic use of light and shadow. This monumental group portrait is a masterpiece of the Dutch Golden Age, celebrated for its dynamic composition and psychological depth.",
+   "tags": "dutch golden age, group portrait, baroque, militia, dramatic, masterpiece, civic guard",
+   "source": "Rijksmuseum",
+   "license": "Public Domain",
+   "source_url": "https://iiif.micr.io/PJEZO/full/max/0/default.jpg",
+   "thumbnail_url": "https://iiif.micr.io/PJEZO/full/400,/0/default.jpg",
+   "focal_point": [
+    0.5,
+    0.4
+   ],
+   "featured_rank": 96
+  },
+  {
+   "title": "Girl with a Pearl Earring",
+   "agent_name": "Johannes Vermeer",
+   "agent_role": "Painter",
+   "creation_date": "1665",
+   "cultural_context": "Dutch Golden Age",
+   "medium": "Oil on canvas",
+   "date_display": "c. 1665",
+   "description_narrative": "Often referred to as the 'Mona Lisa of the North', this tronie depicts a European girl wearing an exotic dress, an oriental turban, and what appears to be a very large pearl as an earring. It is a masterclass in the use of light.",
+   "tags": "portrait, dutch golden age, pearl, turban, female",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Johannes%20Vermeer%20-%20Girl%20with%20a%20Pearl%20Earring%20-%20670%20-%20Mauritshuis.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Johannes%20Vermeer%20-%20Girl%20with%20a%20Pearl%20Earring%20-%20670%20-%20Mauritshuis.jpg?width=600",
+   "focal_point": [
+    0.42,
+    0.42
+   ],
+   "featured_rank": 96
+  },
+  {
+   "title": "Water Lilies",
+   "agent_name": "Claude Monet",
+   "agent_role": "Artist",
+   "creation_date": "1906",
+   "cultural_context": "Impressionism, French",
+   "medium": "Oil on canvas",
+   "date_display": "1906",
+   "description_narrative": "Claude Monet's 'Water Lilies' captures the ephemeral play of light and reflection on the surface of his water garden at Giverny. This painting is part of an extensive series, through which Monet explored the subtle changes in nature across different times of day and seasons.",
+   "tags": "water lilies, pond, nature, impressionism, french art, tranquil, reflections, garden",
+   "source": "Art Institute of Chicago",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Claude%20Monet%20-%20Water%20Lilies%20-%201906%2C%20Ryerson.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Claude%20Monet%20-%20Water%20Lilies%20-%201906%2C%20Ryerson.jpg?width=600",
+   "focal_point": [
+    0.5,
+    0.7
+   ],
+   "featured_rank": 95
+  },
+  {
+   "title": "The Creation of Adam",
+   "agent_name": "Michelangelo",
+   "agent_role": "Painter, Sculptor",
+   "creation_date": "1512",
+   "cultural_context": "High Renaissance, Italian",
+   "medium": "Fresco",
+   "date_display": "c. 1508–12",
+   "description_narrative": "The most famous section of the Sistine Chapel ceiling. God reaches out to give life to Adam, their fingers nearly touching. This single gesture has become one of the most replicated religious images and an enduring icon of humanity.",
+   "tags": "fresco, sistine chapel, genesis, god, adam, renaissance",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sistine%20Chapel%20ceiling%2C%20Creation%20of%20Adam.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sistine%20Chapel%20ceiling%2C%20Creation%20of%20Adam.jpg?width=600",
+   "focal_point": [
+    0.5,
+    0.46
+   ],
+   "featured_rank": 95
+  },
+  {
+   "title": "American Gothic",
+   "agent_name": "Grant Wood",
+   "agent_role": "Painter",
+   "creation_date": "1930",
+   "cultural_context": "Regionalism, American",
+   "medium": "Oil on beaverboard",
+   "date_display": "1930",
+   "description_narrative": "A stern-faced farmer standing beside his spinster daughter in front of a house with a distinctive Gothic window. One of the most familiar images in 20th-century American art, it is an ambiguous statement about rural American character.",
+   "tags": "portrait, american, gothic, rural, farmer, pitchfork",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Grant%20Wood%20-%20American%20Gothic%20%281930%29.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Grant%20Wood%20-%20American%20Gothic%20%281930%29.jpg?width=600",
+   "focal_point": [
+    0.66,
+    0.27
+   ],
+   "featured_rank": 94
+  },
+  {
+   "title": "Sunflowers",
+   "agent_name": "Vincent van Gogh",
+   "agent_role": "Painter",
+   "creation_date": "1888",
+   "cultural_context": "Post-Impressionism, Dutch",
+   "medium": "Oil on canvas",
+   "date_display": "1888",
+   "description_narrative": "One of two series of sunflower still lifes by Van Gogh. Painted in Arles to decorate the room of his friend Paul Gauguin, the vivid yellows and expressive brushwork make this among the most recognizable still-life paintings in art history.",
+   "tags": "sunflowers, still life, yellow, vase, post-impressionism",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Vincent%20van%20Gogh%20-%20Sunflowers%20%281888%2C%20National%20Gallery%20London%29.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Vincent%20van%20Gogh%20-%20Sunflowers%20%281888%2C%20National%20Gallery%20London%29.jpg?width=600",
+   "focal_point": [
+    0.5,
+    0.42
+   ],
+   "featured_rank": 94
+  },
+  {
+   "title": "The Birth of Venus",
+   "agent_name": "Sandro Botticelli",
+   "agent_role": "Painter",
+   "creation_date": "1485",
+   "cultural_context": "Italian Renaissance, Florentine",
+   "medium": "Tempera on canvas",
+   "date_display": "c. 1484–86",
+   "description_narrative": "The goddess Venus emerges from the sea as a fully grown woman, arriving at the shore on a giant scallop shell. One of the world's most famous and appreciated works of art, it has become a landmark of Italian Renaissance painting.",
+   "tags": "mythology, venus, renaissance, goddess, shell, classical",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Birth%20of%20Venus%20%28Botticelli%29%201.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Birth%20of%20Venus%20%28Botticelli%29%201.jpg?width=600",
+   "focal_point": [
+    0.52,
+    0.18
+   ],
+   "featured_rank": 93
+  },
+  {
+   "title": "Nighthawks",
+   "agent_name": "Edward Hopper",
+   "agent_role": "Painter",
+   "creation_date": "1942",
+   "cultural_context": "American Realism",
+   "medium": "Oil on canvas",
+   "date_display": "1942",
+   "description_narrative": "Four figures sit in a brightly lit diner at night on a desolate city corner. The painting captures the loneliness and alienation of modern urban life with cinematic intensity. It has become one of the most reproduced paintings in American art.",
+   "tags": "diner, night, urban, loneliness, realism, american",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Nighthawks%20by%20Edward%20Hopper.png?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Nighthawks%20by%20Edward%20Hopper.png?width=600",
+   "focal_point": [
+    0.66,
+    0.55
+   ],
+   "featured_rank": 92
+  },
+  {
+   "title": "The Kiss",
+   "agent_name": "Gustav Klimt",
+   "agent_role": "Painter",
+   "creation_date": "1907-1908",
+   "cultural_context": "Art Nouveau, Vienna Secession, Austrian",
+   "medium": "Oil and gold leaf on canvas",
+   "date_display": "1907–08",
+   "description_narrative": "A couple locked in an intimate embrace, cloaked in elaborate gold-patterned robes, kneeling in a flower-strewn meadow. Klimt's masterful use of gold leaf and ornamental motifs epitomizes his 'Golden Phase' and the height of the Vienna Secession movement.",
+   "tags": "love, gold, art nouveau, couple, embrace, ornamental",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Kiss%20-%20Gustav%20Klimt%20-%20Google%20Cultural%20Institute.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Kiss%20-%20Gustav%20Klimt%20-%20Google%20Cultural%20Institute.jpg?width=600",
+   "focal_point": [
+    0.45,
+    0.22
+   ],
+   "featured_rank": 92
+  },
+  {
+   "title": "A Sunday on La Grande Jatte — 1884",
+   "agent_name": "Georges Seurat",
+   "agent_role": "Artist",
+   "creation_date": "1884–86, border added 1888–89",
+   "cultural_context": "Neo-Impressionism, French",
+   "medium": "Oil on canvas",
+   "date_display": "1884–86, border added 1888–89",
+   "description_narrative": "Georges Seurat's monumental oil on canvas, \"A Sunday on La Grande Jatte — 1884,\" captures Parisians enjoying a leisurely afternoon on an island in the Seine. This iconic work is meticulously composed using the artist's groundbreaking pointillist technique, creating luminous color and form.",
+   "tags": "sunday, leisure, park, pointillism, post-impressionism, Parisian life, serene, vibrant",
+   "source": "Art Institute of Chicago",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/A%20Sunday%20on%20La%20Grande%20Jatte%2C%20Georges%20Seurat%2C%201884.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/A%20Sunday%20on%20La%20Grande%20Jatte%2C%20Georges%20Seurat%2C%201884.jpg?width=600",
+   "focal_point": [
+    0.78,
+    0.4
+   ],
+   "featured_rank": 90
+  },
+  {
+   "title": "Café Terrace at Night",
+   "agent_name": "Vincent van Gogh",
+   "agent_role": "Painter",
+   "creation_date": "1888",
+   "cultural_context": "Post-Impressionism, Dutch",
+   "medium": "Oil on canvas",
+   "date_display": "1888",
+   "description_narrative": "A warmly lit café terrace on the Place du Forum in Arles, France, under a deep blue starry sky. One of Van Gogh's first paintings to feature his signature nocturnal sky, it contrasts the warm golden gaslight with the cool blues of the evening.",
+   "tags": "cafe, night, stars, arles, post-impressionism, urban",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Van%20Gogh%20-%20Terrace%20of%20a%20Caf%C3%A9%20at%20Night%20%28Place%20du%20Forum%29%201888.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Van%20Gogh%20-%20Terrace%20of%20a%20Caf%C3%A9%20at%20Night%20%28Place%20du%20Forum%29%201888.jpg?width=600",
+   "focal_point": [
+    0.32,
+    0.55
+   ],
+   "featured_rank": 90
+  },
+  {
+   "title": "The School of Athens",
+   "agent_name": "Raphael",
+   "agent_role": "Painter",
+   "creation_date": "1511",
+   "cultural_context": "High Renaissance, Italian",
+   "medium": "Fresco",
+   "date_display": "1509–11",
+   "description_narrative": "A fresco in the Apostolic Palace in the Vatican depicting a congregation of the greatest philosophers, mathematicians, and scientists of antiquity, with Plato and Aristotle at the center. It is considered a masterpiece of perspective and one of the greatest achievements of Renaissance art.",
+   "tags": "philosophy, plato, aristotle, fresco, renaissance, architecture",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/%22School%20of%20Athens%22%20by%20Raphael%2C%20Raphael%20Rooms%2C%20Vatican%20Museum%20%2848466167851%29.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/%22School%20of%20Athens%22%20by%20Raphael%2C%20Raphael%20Rooms%2C%20Vatican%20Museum%20%2848466167851%29.jpg?width=600",
+   "focal_point": [
+    0.5,
+    0.46
+   ],
+   "featured_rank": 90
+  },
+  {
+   "title": "Ophelia",
+   "agent_name": "John Everett Millais",
+   "agent_role": "Artist",
+   "creation_date": "",
+   "cultural_context": "Pre-Raphaelite Brotherhood, British, Victorian era",
+   "medium": "",
+   "date_display": "1851-1852",
+   "description_narrative": "John Everett Millais's *Ophelia* vividly captures the tragic moment of Ophelia's drowning, as described in Shakespeare's *Hamlet*. The artwork is renowned for its meticulous detail in depicting the surrounding flora and Ophelia's ethereal pose, painted from a model floating in water.",
+   "tags": "ophelia, shakespeare, pre-raphaelite, victorian art, tragedy, nature, detail, melancholy",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/John%20Everett%20Millais%20-%20Ophelia%20-%20Google%20Art%20Project.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/John%20Everett%20Millais%20-%20Ophelia%20-%20Google%20Art%20Project.jpg?width=600",
+   "focal_point": [
+    0.35,
+    0.5
+   ],
+   "featured_rank": 90
+  },
+  {
+   "title": "Whistler's Mother",
+   "agent_name": "James McNeill Whistler",
+   "agent_role": "Painter",
+   "creation_date": "1871",
+   "cultural_context": "Tonalism, American",
+   "medium": "Oil on canvas",
+   "date_display": "1871",
+   "description_narrative": "Formally titled 'Arrangement in Grey and Black No.1', this austere portrait of Whistler's mother seated in profile has become an American cultural icon and symbol of motherhood. Its restrained palette and compositional harmony exemplify Whistler's belief in art for art's sake.",
+   "tags": "portrait, mother, seated, profile, tonalism, grey",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Whistlers%20Mother%20high%20res.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Whistlers%20Mother%20high%20res.jpg?width=600",
+   "focal_point": [
+    0.73,
+    0.24
+   ],
+   "featured_rank": 89
+  },
+  {
+   "title": "Liberty Leading the People",
+   "agent_name": "Eugène Delacroix",
+   "agent_role": "Painter",
+   "creation_date": "1830",
+   "cultural_context": "Romanticism, French",
+   "medium": "Oil on canvas",
+   "date_display": "1830",
+   "description_narrative": "Commemorating the July Revolution of 1830, the allegorical figure of Liberty strides over barricades and fallen fighters, holding the tricolour flag aloft. It combines the idealism of classical art with the gritty reality of modern war.",
+   "tags": "revolution, liberty, flag, france, romanticism, battle",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Eug%C3%A8ne%20Delacroix%20-%20Le%2028%20Juillet.%20La%20Libert%C3%A9%20guidant%20le%20peuple.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Eug%C3%A8ne%20Delacroix%20-%20Le%2028%20Juillet.%20La%20Libert%C3%A9%20guidant%20le%20peuple.jpg?width=600",
+   "focal_point": [
+    0.55,
+    0.26
+   ],
+   "featured_rank": 88
+  },
+  {
+   "title": "The Lady of Shalott",
+   "agent_name": "John William Waterhouse",
+   "agent_role": "Artist",
+   "creation_date": "",
+   "cultural_context": "Pre-Raphaelite Brotherhood, Victorian, British",
+   "medium": "",
+   "date_display": "1888",
+   "description_narrative": "John William Waterhouse's iconic painting depicts the tragic Lady of Shalott from Tennyson's poem, captured at the moment she leaves her island tower to face her doom. Her gaze fixed towards Camelot, she sits in a boat amidst unraveling tapestry threads, embodying a pivotal moment of fate and consequence.",
+   "tags": "pre-raphaelite, victorian, painting, literature, arthurian legend, symbolism, tragic, romanticism",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/John%20William%20Waterhouse%20-%20The%20Lady%20of%20Shalott%20-%20Google%20Art%20Project.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/John%20William%20Waterhouse%20-%20The%20Lady%20of%20Shalott%20-%20Google%20Art%20Project.jpg?width=600",
+   "focal_point": [
+    0.4,
+    0.34
+   ],
+   "featured_rank": 88
+  },
+  {
+   "title": "Impression, Sunrise",
+   "agent_name": "Claude Monet",
+   "agent_role": "Painter",
+   "creation_date": "1872",
+   "cultural_context": "Impressionism, French",
+   "medium": "Oil on canvas",
+   "date_display": "1872",
+   "description_narrative": "The painting that gave the Impressionist movement its name. A hazy sunrise over the port of Le Havre, rendered in loose, visible brushstrokes that prioritize the sensation of light and color over precise detail.",
+   "tags": "sunrise, harbor, boats, impressionism, fog, water",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Monet%20-%20Impression%2C%20Sunrise.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Monet%20-%20Impression%2C%20Sunrise.jpg?width=600",
+   "focal_point": [
+    0.61,
+    0.32
+   ],
+   "featured_rank": 87
+  },
+  {
+   "title": "Wanderer above the Sea of Fog",
+   "agent_name": "Caspar David Friedrich",
+   "agent_role": "Painter",
+   "creation_date": "1818",
+   "cultural_context": "Romanticism, German",
+   "medium": "Oil on canvas",
+   "date_display": "1818",
+   "description_narrative": "A quintessential piece of Romanticism. A man stands upon a rocky precipice with his back to the viewer, gazing out over a landscape covered in a thick sea of fog. It evokes a feeling of the sublime and the profound scale of nature.",
+   "tags": "fog, mountains, romanticism, sublime, landscape, wanderer",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Caspar%20David%20Friedrich%20-%20Wanderer%20above%20the%20Sea%20of%20Fog.jpeg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Caspar%20David%20Friedrich%20-%20Wanderer%20above%20the%20Sea%20of%20Fog.jpeg?width=600",
+   "focal_point": [
+    0.5,
+    0.37
+   ],
+   "featured_rank": 87
+  },
+  {
+   "title": "The Milkmaid",
+   "agent_name": "Johannes Vermeer",
+   "agent_role": "Painter",
+   "creation_date": "1658",
+   "cultural_context": "Dutch Golden Age",
+   "medium": "Oil on canvas",
+   "date_display": "c. 1657–58",
+   "description_narrative": "A kitchen maid carefully pours milk from a jug into an earthenware bowl, bathed in soft natural light from a window. Vermeer elevates an ordinary domestic scene into a meditation on quiet dignity and the beauty of everyday life.",
+   "tags": "domestic, light, milk, kitchen, dutch golden age, still life",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Milkmaid%20by%20Johannes%20Vermeer%20%281%29.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Milkmaid%20by%20Johannes%20Vermeer%20%281%29.jpg?width=600",
+   "focal_point": [
+    0.56,
+    0.27
+   ],
+   "featured_rank": 86
+  },
+  {
+   "title": "A Bar at the Folies-Bergère",
+   "agent_name": "Édouard Manet",
+   "agent_role": "Painter",
+   "creation_date": "1882",
+   "cultural_context": "Impressionism, French",
+   "medium": "Oil on canvas",
+   "date_display": "1882",
+   "description_narrative": "Manet's last major work depicts a barmaid at the famous Parisian cabaret, standing behind a marble counter laden with bottles. The mirror behind her reflects the bustling crowd. A brilliant study in modernity and the complex relationship between viewer and subject.",
+   "tags": "bar, barmaid, mirror, paris, impressionism, nightlife",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/%22Un%20Bar%20aux%20Folies-Berg%C3%A8re%22%20by%20%C3%89douard%20Manet%20%281882%29.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/%22Un%20Bar%20aux%20Folies-Berg%C3%A8re%22%20by%20%C3%89douard%20Manet%20%281882%29.jpg?width=600",
+   "focal_point": [
+    0.47,
+    0.22
+   ],
+   "featured_rank": 86
+  },
+  {
+   "title": "The Calling of Saint Matthew",
+   "agent_name": "Caravaggio",
+   "agent_role": "Artist",
+   "creation_date": "",
+   "cultural_context": "Baroque, Italian",
+   "medium": "",
+   "date_display": "c. 1599-1600",
+   "description_narrative": "This monumental work captures the dramatic moment when Jesus Christ calls Matthew to abandon his life as a tax collector and follow him. Caravaggio's use of intense chiaroscuro and naturalism illuminates the figures, highlighting the spiritual encounter within a seemingly everyday setting.",
+   "tags": "religious, biblical, baroque, chiaroscuro, tenebrism, dramatic, naturalism, calling",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Caravaggio%20%E2%80%94%20The%20Calling%20of%20Saint%20Matthew.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Caravaggio%20%E2%80%94%20The%20Calling%20of%20Saint%20Matthew.jpg?width=600",
+   "focal_point": [
+    0.42,
+    0.46
+   ],
+   "featured_rank": 85
+  },
+  {
+   "title": "Bal du moulin de la Galette",
+   "agent_name": "Pierre-Auguste Renoir",
+   "agent_role": "Painter",
+   "creation_date": "1876",
+   "cultural_context": "Impressionism, French",
+   "medium": "Oil on canvas",
+   "date_display": "1876",
+   "description_narrative": "A vibrant depiction of a typical Sunday afternoon at the Moulin de la Galette in the Montmartre district of Paris. The dappled sunlight filtering through the trees onto the dancing crowd is one of Impressionism's most celebrated treatments of light and motion.",
+   "tags": "dance, party, paris, montmartre, impressionism, sunlight",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pierre-Auguste%20Renoir%20-%20Bal%20du%20moulin%20de%20la%20Galette.jpeg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pierre-Auguste%20Renoir%20-%20Bal%20du%20moulin%20de%20la%20Galette.jpeg?width=600",
+   "focal_point": [
+    0.46,
+    0.54
+   ],
+   "featured_rank": 85
+  },
+  {
+   "title": "The Bedroom",
+   "agent_name": "Vincent van Gogh",
+   "agent_role": "Artist",
+   "creation_date": "1889",
+   "cultural_context": "Post-Impressionism, Dutch",
+   "medium": "Oil on canvas",
+   "date_display": "1889",
+   "description_narrative": "Vincent van Gogh's 'The Bedroom' depicts his living space in the 'Yellow House' in Arles, France. The painting features vibrant colors and a distinctive perspective, inviting viewers into the artist's personal world.",
+   "tags": "interior, bedroom, post-impressionism, vibrant, personal, arles",
+   "source": "Art Institute of Chicago",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Vincent%20van%20Gogh%20-%20The%20Bedroom%20-%20Google%20Art%20Project.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Vincent%20van%20Gogh%20-%20The%20Bedroom%20-%20Google%20Art%20Project.jpg?width=600",
+   "focal_point": [
+    0.6,
+    0.5
+   ],
+   "featured_rank": 85
+  },
+  {
+   "title": "Flaming June",
+   "agent_name": "Frederic Leighton",
+   "agent_role": "Artist",
+   "creation_date": "",
+   "cultural_context": "Victorian, British Aestheticism",
+   "medium": "",
+   "date_display": "1895",
+   "description_narrative": "Frederic Leighton's iconic work depicts a woman in a vibrant orange gown, asleep in a dream-like, contorted pose. Bathed in the golden light of a setting sun, the figure is positioned against a distant, serene Mediterranean seascape.",
+   "tags": "sleeping woman, aestheticism, victorian art, classical, mediterranean, orange, opulence, repose",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frederic%20Leighton%20-%20Flaming%20June%20%281895%29%20-%20Museo%20de%20Arte%20de%20Ponce.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frederic%20Leighton%20-%20Flaming%20June%20%281895%29%20-%20Museo%20de%20Arte%20de%20Ponce.jpg?width=600",
+   "focal_point": [
+    0.45,
+    0.33
+   ],
+   "featured_rank": 85
+  },
+  {
+   "title": "Paris Street; Rainy Day",
+   "agent_name": "Gustave Caillebotte",
+   "agent_role": "Artist",
+   "creation_date": "1877",
+   "cultural_context": "Impressionism, French",
+   "medium": "Oil on canvas",
+   "date_display": "1877",
+   "description_narrative": "Gustave Caillebotte's 'Paris Street; Rainy Day' captures a striking urban scene in 1877 Paris, depicting well-dressed figures strolling under umbrellas on a wet street. The composition offers a unique perspective of modern city life, characterized by its precise realism and distinctive viewpoints.",
+   "tags": "urban life, street scene, rainy day, 19th century, realism, city, umbrellas, french art",
+   "source": "Art Institute of Chicago",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Gustave%20Caillebotte%20-%20Paris%20Street%2C%20Rainy%20Day%20-%201964.336%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Gustave%20Caillebotte%20-%20Paris%20Street%2C%20Rainy%20Day%20-%201964.336%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
+   "focal_point": [
+    0.6,
+    0.45
+   ],
+   "featured_rank": 82
+  },
+  {
+   "title": "Water Lily Pond",
+   "agent_name": "Claude Monet",
+   "agent_role": "Artist",
+   "creation_date": "1900",
+   "cultural_context": "Impressionism, French",
+   "medium": "Oil on canvas",
+   "date_display": "1900",
+   "description_narrative": "Claude Monet's \"Water Lily Pond\" captures the shimmering surface of the artist's garden pond at Giverny, a subject he repeatedly explored. Through vibrant brushstrokes, Monet meticulously renders the interplay of light, water, and vegetation, creating an immersive atmospheric effect.",
+   "tags": "water lilies, pond, garden, impressionism, landscape, nature, serene, painting",
+   "source": "Art Institute of Chicago",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Claude%20Monet%20-%20Water%20Lily%20Pond%20-%201933.441%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Claude%20Monet%20-%20Water%20Lily%20Pond%20-%201933.441%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
+   "focal_point": [
+    0.5,
+    0.3
+   ],
+   "featured_rank": 80
+  },
+  {
+   "title": "The Slave Ship",
+   "agent_name": "J. M. W. Turner",
+   "agent_role": "Artist",
+   "creation_date": "",
+   "cultural_context": "Romanticism, British",
+   "medium": "",
+   "date_display": "1840",
+   "description_narrative": "J. M. W. Turner's 'The Slave Ship' vividly captures the raw power of the sea amidst a tumultuous sky. The painting dramatically illustrates the tragic practice of throwing enslaved individuals overboard, symbolizing the brutality of the slave trade.",
+   "tags": "slavery, maritime, romanticism, sublime, abolition, tragedy, seascape, oil painting",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Slave-ship.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Slave-ship.jpg?width=600",
+   "focal_point": [
+    0.5,
+    0.5
+   ],
+   "featured_rank": 80
+  },
+  {
+   "title": "Breezing Up (A Fair Wind)",
+   "agent_name": "Winslow Homer",
+   "agent_role": "Artist",
+   "creation_date": "",
+   "cultural_context": "American Realism",
+   "medium": "",
+   "date_display": "1876",
+   "description_narrative": "This iconic American painting depicts four figures in a dory battling a choppy sea under a strong breeze. The dynamic composition and realistic portrayal capture the excitement and challenge of maritime life.",
+   "tags": "sailing, marine art, American realism, dory, ocean, seascape",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Winslow%20Homer%20-%20Breezing%20Up%20%28A%20Fair%20Wind%29.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Winslow%20Homer%20-%20Breezing%20Up%20%28A%20Fair%20Wind%29.jpg?width=600",
+   "focal_point": [
+    0.5,
+    0.45
+   ],
+   "featured_rank": 80
+  },
+  {
+   "title": "The Death of Socrates",
+   "agent_name": "Jacques Louis David",
+   "agent_role": "Artist",
+   "creation_date": "1787",
+   "cultural_context": "Paintings",
+   "medium": "Oil on canvas",
+   "date_display": "1787",
+   "description_narrative": "Jacques Louis David's monumental 1787 oil painting depicts the final moments of Socrates as he prepares to drink hemlock. Surrounded by his devoted students, Socrates remains stoic, pointing skyward in a gesture of philosophical defiance.",
+   "tags": "socrates, classical, philosophy, death, neoclassicism, history painting, stoicism, sacrifice",
+   "source": "The Metropolitan Museum of Art",
+   "license": "Public Domain",
+   "source_url": "https://images.metmuseum.org/CRDImages/ep/original/DP-13139-001.jpg",
+   "thumbnail_url": "https://images.metmuseum.org/CRDImages/ep/web-large/DP-13139-001.jpg",
+   "focal_point": [
+    0.5,
+    0.42
+   ],
+   "featured_rank": 78
+  },
+  {
+   "title": "The Monk by the Sea",
+   "agent_name": "Caspar David Friedrich",
+   "agent_role": "Artist",
+   "creation_date": "",
+   "cultural_context": "German Romanticism",
+   "medium": "",
+   "date_display": "c. 1809",
+   "description_narrative": "This iconic painting by Caspar David Friedrich depicts a small, solitary monk gazing out at a vast, turbulent sea under an expansive, dark sky. The stark contrast between the human figure and the overwhelming natural world evokes a profound sense of awe, isolation, and spiritual contemplation.",
+   "tags": "landscape, romanticism, sublime, solitude, sea, contemplation, German art, melancholic",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Caspar%20David%20Friedrich%20-%20Der%20M%C3%B6nch%20am%20Meer%20-%20Google%20Art%20Project.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Caspar%20David%20Friedrich%20-%20Der%20M%C3%B6nch%20am%20Meer%20-%20Google%20Art%20Project.jpg?width=600",
+   "focal_point": [
+    0.35,
+    0.85
+   ],
+   "featured_rank": 78
+  },
+  {
+   "title": "The Supper at Emmaus",
+   "agent_name": "Caravaggio",
+   "agent_role": "Artist",
+   "creation_date": "",
+   "cultural_context": "Baroque, Italian",
+   "medium": "",
+   "date_display": "c. 1601",
+   "description_narrative": "Caravaggio powerfully depicts the dramatic moment Christ reveals himself to two disciples in Emmaus, capturing their astonished reactions. The artist masterfully employs intense chiaroscuro and lifelike figures, drawing the viewer into this profound biblical scene.",
+   "tags": "religious, baroque, chiaroscuro, realism, dramatic, biblical, italian",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Supper%20at%20Emmaus-Caravaggio%20%281606%29.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Supper%20at%20Emmaus-Caravaggio%20%281606%29.jpg?width=600",
+   "focal_point": [
+    0.37,
+    0.4
+   ],
+   "featured_rank": 75
+  },
+  {
+   "title": "Eight Bells",
+   "agent_name": "Winslow Homer",
+   "agent_role": "Artist",
+   "creation_date": "",
+   "cultural_context": "American Realism, Late 19th Century",
+   "medium": "",
+   "date_display": "1886",
+   "description_narrative": "Winslow Homer's 'Eight Bells' depicts two sailors on a ship's deck, with one using a sextant to take an observation at sea. The artwork powerfully captures the forces of nature and the human endeavor against the ocean.",
+   "tags": "marine art, realism, American art, seascape, maritime, sailors, observation, ocean",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/WinslowHomer-Eight%20Bells%201886.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/WinslowHomer-Eight%20Bells%201886.jpg?width=600",
+   "focal_point": [
+    0.5,
+    0.42
+   ],
+   "featured_rank": 75
+  },
+  {
+   "title": "The Icebergs",
+   "agent_name": "Frederic Edwin Church",
+   "agent_role": "Artist",
+   "creation_date": "",
+   "cultural_context": "Hudson River School, American Romanticism",
+   "medium": "",
+   "date_display": "1861",
+   "description_narrative": "Frederic Edwin Church's monumental painting, \"The Icebergs,\" presents a dramatic and detailed depiction of ice formations in the North Atlantic. The artwork captures the raw, sublime beauty and immense scale of nature, reflecting the artist's meticulous observation and grand artistic vision.",
+   "tags": "landscape, arctic, icebergs, hudson river school, romanticism, sublime, american art, nature",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Icebergs%20by%20Frederic%20Edwin%20Church%2C%20detail%2C%201861%2C%20oil%20on%20canvas%20-%20Dallas%20Museum%20of%20Art%20-%20DSC04831.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Icebergs%20by%20Frederic%20Edwin%20Church%2C%20detail%2C%201861%2C%20oil%20on%20canvas%20-%20Dallas%20Museum%20of%20Art%20-%20DSC04831.jpg?width=600",
+   "focal_point": [
+    0.5,
+    0.4
+   ],
+   "featured_rank": 75
+  },
+  {
+   "title": "Hylas and the Nymphs",
+   "agent_name": "John William Waterhouse",
+   "agent_role": "Artist",
+   "creation_date": "",
+   "cultural_context": "Pre-Raphaaelite Brotherhood, English",
+   "medium": "",
+   "date_display": "1896",
+   "description_narrative": "This painting depicts the mythological youth Hylas being enticed by water nymphs, who emerge from a tranquil pool. Their captivating gazes and outstretched arms draw Hylas towards his tragic fate, as he was eventually drowned by them.",
+   "tags": "greek mythology, nymphs, hylas, pre-raphaelite, oil painting, classical, alluring, tragic",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Waterhouse%20Hylas%20and%20the%20Nymphs%20Manchester%20Art%20Gallery%201896.15%20n2.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Waterhouse%20Hylas%20and%20the%20Nymphs%20Manchester%20Art%20Gallery%201896.15%20n2.jpg?width=600",
+   "focal_point": [
+    0.37,
+    0.18
+   ],
+   "featured_rank": 75
+  },
+  {
+   "title": "The Conversion of Saint Paul on the Way to Damascus",
+   "agent_name": "Caravaggio",
+   "agent_role": "Artist",
+   "creation_date": "",
+   "cultural_context": "Baroque, Italian",
+   "medium": "",
+   "date_display": "c. 1601",
+   "description_narrative": "This painting dramatically captures the moment Saul, en route to Damascus, is struck by a blinding light and hears the voice of Christ, leading to his conversion into Saint Paul. Caravaggio employs intense chiaroscuro and a stark composition to heighten the spiritual and physical impact of this divine intervention.",
+   "tags": "religious, biblical, baroque, conversion, Paul, dramatic, chiaroscuro",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Caravaggio-The%20Conversion%20on%20the%20Way%20to%20Damascus.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Caravaggio-The%20Conversion%20on%20the%20Way%20to%20Damascus.jpg?width=600",
+   "focal_point": [
+    0.66,
+    0.82
+   ],
+   "featured_rank": 72
+  },
+  {
+   "title": "Judith Beheading Holofernes",
+   "agent_name": "Caravaggio",
+   "agent_role": "Artist",
+   "creation_date": "",
+   "cultural_context": "Baroque, Italian",
+   "medium": "",
+   "date_display": "c. 1599",
+   "description_narrative": "Caravaggio's painting dramatically captures the biblical story of Judith beheading the Assyrian general Holofernes. The artist employs intense chiaroscuro and stark realism to highlight the gruesome and harrowing nature of the act.",
+   "tags": "biblical, Baroque, chiaroscuro, violence, drama, realism, Old Testament",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Judith%20Beheading%20Holofernes-Caravaggio%20%28c.1598-9%29.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Judith%20Beheading%20Holofernes-Caravaggio%20%28c.1598-9%29.jpg?width=600",
+   "focal_point": [
+    0.68,
+    0.22
+   ],
+   "featured_rank": 72
+  }
+ ]
+}

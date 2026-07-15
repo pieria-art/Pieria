@@ -123,7 +123,7 @@ def pre_seed_from_pack(db: Session) -> bool:
     logger.info(f"[PackSeed] Pre-seeding {len(collections)} collection(s) from pack-manifest.json...")
 
     default_title = None
-    greatest_hits_present = False
+    masterpieces_present = False
 
     for col in collections:
         title = col.get("title") or col.get("id")
@@ -131,8 +131,8 @@ def pre_seed_from_pack(db: Session) -> bool:
             continue
         if default_title is None:
             default_title = title
-        if title == "Greatest Hits":
-            greatest_hits_present = True
+        if title == "Masterpieces":
+            masterpieces_present = True
 
         playlist = db.query(PlaylistModel).filter(PlaylistModel.name == title).first()
         if not playlist:
@@ -188,9 +188,10 @@ def pre_seed_from_pack(db: Session) -> bool:
 
         db.commit()
 
-    # Honor "Greatest Hits" as the canonical default rotation when present; else the first collection —
-    # same setting key routers/settings.py's default-playlist get/set uses, so the Canvas picks it up.
-    chosen_default = "Greatest Hits" if greatest_hits_present else default_title
+    # Honor "Masterpieces" (the paintings-only first-glimpse) as the canonical default rotation when
+    # present; else the first collection — same setting key routers/settings.py's default-playlist
+    # get/set uses, so the Canvas picks it up.
+    chosen_default = "Masterpieces" if masterpieces_present else default_title
     if chosen_default:
         _upsert_setting(db, "default_playlist", chosen_default)
 

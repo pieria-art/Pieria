@@ -38,7 +38,7 @@ import shutil
 from dataclasses import dataclass, field
 from io import BytesIO
 from pathlib import Path
-from urllib.parse import urlparse
+from urllib.parse import parse_qsl, urlencode, urlparse, urlsplit, urlunsplit
 
 import httpx
 from PIL import Image, ImageOps
@@ -47,6 +47,7 @@ import federation
 from config import SD_USER_AGENT
 from core.media import DISPLAY_MAX_EDGE, DISPLAY_QUALITY
 from scout import _wm_throttle
+from tools import aic_tiles
 
 logging.basicConfig(level=logging.INFO, format="%(message)s")
 logger = logging.getLogger("build-pack")
@@ -61,7 +62,7 @@ THUMB_QUALITY = 85
 
 # Placard fields copied verbatim (in this order) from source item -> manifest item.
 _PLACARD_FIELDS = (
-    "title", "agent_name", "agent_role", "creation_date", "cultural_context", "medium",
+    "title", "agent_name", "agent_role", "creation_date", "cultural_context", "medium", "kind",
     "date_display", "description_narrative", "tags", "source", "license",
 )
 
@@ -115,7 +116,8 @@ class BuildState:
     pack_dir: Path
     client: httpx.AsyncClient
     sem: asyncio.Semaphore
-    min_edge: int = 5120   # >4K floor: must exceed 4K so a portrait-crop or Ken Burns zoom still fills 4K
+    min_edge: int = 3840   # true-4K floor (CURATION-v2/ADR-039): native ≥4K fills a 4K panel 1:1 crisp;
+    #                        Ken Burns zoom is capped per-work by native res (adaptive) so nothing softens
     stats: Stats = field(default_factory=Stats)
     url_to_master: dict[str, str] = field(default_factory=dict)
     url_to_thumb: dict[str, str] = field(default_factory=dict)
@@ -154,6 +156,21 @@ def thumb_filename(source_url: str) -> str:
 # --------------------------------------------------------------------------- politeness
 def _is_wikimedia_host(url: str) -> bool:
     return (urlparse(url).hostname or "") in WIKIMEDIA_HOSTS
+
+
+def _pack_fetch_url(url: str) -> str:
+    """The catalog stores Wikimedia `source_url`s capped at width=3840 (a live-serve convenience),
+    which is *below* the pack's 4K floor — fetching them as-is would drop 86% of the catalog. For the
+    pack we want native-max, so drop the width cap and fetch the ORIGINAL file. (Wikimedia caps
+    on-the-fly thumbnail renders at 3840px — requesting width=5120/7680 still returns 3840 — so only
+    the un-parameterised Special:FilePath original yields true native; `_cap_master` then downcaps it
+    to DISPLAY_MAX_EDGE=7680.) Non-Wikimedia URLs (museum full/max originals) are already native-max and
+    returned unchanged. See [[catalog-3840-vs-pack-5120]]."""
+    if not _is_wikimedia_host(url) or "Special:FilePath" not in url:
+        return url
+    parts = urlsplit(url)
+    q = [(k, v) for k, v in parse_qsl(parts.query) if k != "width"]
+    return urlunsplit(parts._replace(query=urlencode(q)))
 
 
 async def _throttle_for(url: str) -> None:
@@ -267,8 +284,12 @@ async def ensure_master(state: BuildState, wi: WorkItem) -> str | None:
             state.url_to_master[su] = filename
             state.stats.master_cached += 1
             return filename
-        async with state.sem:
-            raw = await _fetch_bytes(state.client, su)
+        if aic_tiles.is_aic_iiif(su):
+            # AIC blocks full/max but serves deep-zoom tiles — stitch the native master (self-throttled).
+            raw = await aic_tiles.fetch_native_bytes(state.client, su, quality=DISPLAY_QUALITY)
+        else:
+            async with state.sem:
+                raw = await _fetch_bytes(state.client, _pack_fetch_url(su))
         if raw is None:
             state.stats.master_failed += 1
             return None
@@ -471,9 +492,10 @@ async def main() -> int:
     ap.add_argument("--limit", type=int, default=None, help="cap total items queued (testing)")
     ap.add_argument("--collections", default=None, help="comma list of catalog ids to include")
     ap.add_argument("--concurrency", type=int, default=4, help="bounded concurrent downloads")
-    ap.add_argument("--min-edge", type=int, default=5120,
-                    help="native long-edge floor. Default 5120 (>4K): an image gets orientation-cropped "
-                         "and Ken-Burns-zoomed, so it must exceed 4K to still fill a 4K panel after that.")
+    ap.add_argument("--min-edge", type=int, default=3840,
+                    help="native long-edge floor. Default 3840 (true 4K): fills a 4K panel 1:1 crisp. "
+                         "Ken Burns zoom is capped per-work by native res (adaptive) rather than requiring "
+                         "every work to exceed 4K, which starved the catalog (AIC etc. cap exports at 3000px).")
     ap.add_argument("--created", default=None,
                      help="fixed value written as manifest['created'] (omit for a stable, "
                           "timestamp-free manifest across reruns)")

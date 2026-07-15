@@ -2,7 +2,7 @@
  "id": "portraits",
  "title": "Portraits Through Time",
  "description": "Faces that have held our gaze across the centuries.",
- "source": "Art Institute of Chicago, The Metropolitan Museum of Art",
+ "source": "Art Institute of Chicago, The Metropolitan Museum of Art, Wikimedia Commons",
  "license": "Public Domain",
  "items": [
   {
@@ -37,8 +37,8 @@
    "tags": "self-portrait, post-impressionism, oil painting, expressive, dutch art, portraiture, intense",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Vincent%20van%20Gogh%20-%20Self-Portrait%20-%201954.326%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Vincent%20van%20Gogh%20-%20Self-Portrait%20-%201954.326%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
+   "source_url": "https://www.artic.edu/iiif/2/47c5bcb8-62ef-e5d7-55e7-f5121f409a30/full/2000,/0/default.jpg",
+   "thumbnail_url": "https://www.artic.edu/iiif/2/47c5bcb8-62ef-e5d7-55e7-f5121f409a30/full/400,/0/default.jpg",
    "focal_point": [
     0.45,
     0.34
@@ -57,8 +57,8 @@
    "tags": "portrait, slavery, Ira Aldridge, acting, oil painting, 19th century, dramatic, realism",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/John%20Philip%20Simpson%20-%20The%20Captive%20Slave%20-%202008.188%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/John%20Philip%20Simpson%20-%20The%20Captive%20Slave%20-%202008.188%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
+   "source_url": "https://www.artic.edu/iiif/2/5490fd49-dd52-4fd7-7d41-d871dcffae55/full/2000,/0/default.jpg",
+   "thumbnail_url": "https://www.artic.edu/iiif/2/5490fd49-dd52-4fd7-7d41-d871dcffae55/full/400,/0/default.jpg",
    "focal_point": [
     0.48,
     0.29
@@ -117,8 +117,8 @@
    "tags": "portrait, post-impressionism, oil painting, figure study, domestic scene, structural, modern art",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Paul%20C%C3%A9zanne%20-%20Madame%20C%C3%A9zanne%20in%20a%20Yellow%20Chair%20-%201948.54%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Paul%20C%C3%A9zanne%20-%20Madame%20C%C3%A9zanne%20in%20a%20Yellow%20Chair%20-%201948.54%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
+   "source_url": "https://www.artic.edu/iiif/2/4822cd01-44ac-041a-36b8-c0542377b750/full/2000,/0/default.jpg",
+   "thumbnail_url": "https://www.artic.edu/iiif/2/4822cd01-44ac-041a-36b8-c0542377b750/full/400,/0/default.jpg",
    "focal_point": [
     0.52,
     0.21
@@ -157,8 +157,8 @@
    "tags": "portrait, woman, motherhood, oil painting, post-impressionism, vibrant colors, arles period",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Vincent%20van%20Gogh%20-%20Madame%20Roulin%20Rocking%20the%20Cradle%20%28La%20berceuse%29%20-%201926.200%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Vincent%20van%20Gogh%20-%20Madame%20Roulin%20Rocking%20the%20Cradle%20%28La%20berceuse%29%20-%201926.200%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
+   "source_url": "https://www.artic.edu/iiif/2/6f3ca8b9-fef6-edfc-a71c-3e7b471d5f6c/full/2000,/0/default.jpg",
+   "thumbnail_url": "https://www.artic.edu/iiif/2/6f3ca8b9-fef6-edfc-a71c-3e7b471d5f6c/full/400,/0/default.jpg",
    "focal_point": [
     0.5,
     0.28
@@ -197,8 +197,8 @@
    "tags": "young woman, portrait, doorway, dutch golden age, baroque, figure study, oil painting",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Samuel%20van%20Hoogstraten%20-%20Young%20woman%20at%20an%20open%20half-door%20%281645%29.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Samuel%20van%20Hoogstraten%20-%20Young%20woman%20at%20an%20open%20half-door%20%281645%29.jpg?width=600",
+   "source_url": "https://www.artic.edu/iiif/2/91c51644-871f-cda9-82bb-94f4973ae339/full/2000,/0/default.jpg",
+   "thumbnail_url": "https://www.artic.edu/iiif/2/91c51644-871f-cda9-82bb-94f4973ae339/full/400,/0/default.jpg",
    "focal_point": [
     0.5,
     0.28
@@ -237,8 +237,8 @@
    "tags": "figure study, reading, woman, contemplative, realism, barbizon school, 19th century art, interior scene",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jean%20Baptiste%20Camille%20Corot%20-%20Interrupted%20Reading%20-%201922.410%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jean%20Baptiste%20Camille%20Corot%20-%20Interrupted%20Reading%20-%201922.410%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
+   "source_url": "https://www.artic.edu/iiif/2/1c2d32a7-790c-501a-e124-00f28cf5052d/full/2000,/0/default.jpg",
+   "thumbnail_url": "https://www.artic.edu/iiif/2/1c2d32a7-790c-501a-e124-00f28cf5052d/full/400,/0/default.jpg",
    "focal_point": [
     0.55,
     0.2
@@ -297,8 +297,8 @@
    "tags": "portrait, man, flower, early netherlandish, renaissance, flemish, oil painting, detailed",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Quentin%20Massys%20-%20Portrait%20of%20a%20Man%20with%20a%20Pink%20-%201894.1025%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Quentin%20Massys%20-%20Portrait%20of%20a%20Man%20with%20a%20Pink%20-%201894.1025%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
+   "source_url": "https://www.artic.edu/iiif/2/f731615e-ee25-f8e5-b957-69635e1e2d60/full/2000,/0/default.jpg",
+   "thumbnail_url": "https://www.artic.edu/iiif/2/f731615e-ee25-f8e5-b957-69635e1e2d60/full/400,/0/default.jpg",
    "focal_point": [
     0.52,
     0.38
@@ -317,8 +317,8 @@
    "tags": "portrait, neoclassicism, french art, 19th century, oil painting, male portrait, formality, academic art",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jean%20Auguste%20Dominique%20Ingres%20-%20Am%C3%A9d%C3%A9e-David%2C%20the%20Comte%20de%20Pastoret%20-%201971.452%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jean%20Auguste%20Dominique%20Ingres%20-%20Am%C3%A9d%C3%A9e-David%2C%20the%20Comte%20de%20Pastoret%20-%201971.452%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
+   "source_url": "https://www.artic.edu/iiif/2/8d119fd0-2f57-f20e-a3f5-a573904001e9/full/2000,/0/default.jpg",
+   "thumbnail_url": "https://www.artic.edu/iiif/2/8d119fd0-2f57-f20e-a3f5-a573904001e9/full/400,/0/default.jpg",
    "focal_point": [
     0.46,
     0.22
@@ -377,8 +377,8 @@
    "tags": "portrait, Florentine, noble, Medici, Renaissance, Mannerism, formal, oil painting",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Alessandro%20Allori%20-%20Francesco%20de%27%20Medici%20-%201965.1179%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Alessandro%20Allori%20-%20Francesco%20de%27%20Medici%20-%201965.1179%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
+   "source_url": "https://www.artic.edu/iiif/2/9a29cc5d-3779-c9ab-2aa2-0df7b6c3f391/full/2000,/0/default.jpg",
+   "thumbnail_url": "https://www.artic.edu/iiif/2/9a29cc5d-3779-c9ab-2aa2-0df7b6c3f391/full/400,/0/default.jpg",
    "focal_point": [
     0.45,
     0.21
@@ -457,8 +457,8 @@
    "tags": "portrait, oil painting, 18th century, French, woman, historical, realism",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jean%20Baptiste%20Fran%C3%A7ois%20D%C3%A9soria%20-%20Portrait%20of%20Constance%20Pipelet%20-%201939.533%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jean%20Baptiste%20Fran%C3%A7ois%20D%C3%A9soria%20-%20Portrait%20of%20Constance%20Pipelet%20-%201939.533%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
+   "source_url": "https://www.artic.edu/iiif/2/9ca3be44-a673-2ad9-f0d8-a8e28ee8d397/full/2000,/0/default.jpg",
+   "thumbnail_url": "https://www.artic.edu/iiif/2/9ca3be44-a673-2ad9-f0d8-a8e28ee8d397/full/400,/0/default.jpg",
    "focal_point": [
     0.43,
     0.27
@@ -497,8 +497,8 @@
    "tags": "western art, american west, military, frontier, horses, oil painting, realism, late 19th century",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frederic%20Remington%20-%20The%20Advance-Guard%2C%20or%20The%20Military%20Sacrifice%20%28The%20Ambush%29%20-%201982.802%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frederic%20Remington%20-%20The%20Advance-Guard%2C%20or%20The%20Military%20Sacrifice%20%28The%20Ambush%29%20-%201982.802%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
+   "source_url": "https://www.artic.edu/iiif/2/f1e03813-f9c7-f4f8-fbe8-a5eeae84fda4/full/2000,/0/default.jpg",
+   "thumbnail_url": "https://www.artic.edu/iiif/2/f1e03813-f9c7-f4f8-fbe8-a5eeae84fda4/full/400,/0/default.jpg",
    "focal_point": [
     0.33,
     0.3
@@ -517,8 +517,8 @@
    "tags": "portrait, woman, oil painting, realism, elegant, late 19th century, Swedish art, impressionistic brushwork",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Anders%20Zorn%20-%20Mrs.%20Potter%20Palmer%20-%201922.450%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Anders%20Zorn%20-%20Mrs.%20Potter%20Palmer%20-%201922.450%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
+   "source_url": "https://www.artic.edu/iiif/2/6f3dc71a-683d-7ad6-e24a-a97c4877f30d/full/2000,/0/default.jpg",
+   "thumbnail_url": "https://www.artic.edu/iiif/2/6f3dc71a-683d-7ad6-e24a-a97c4877f30d/full/400,/0/default.jpg",
    "focal_point": [
     0.45,
     0.21
@@ -644,6 +644,283 @@
     0.22
    ],
    "featured_rank": 45
+  },
+  {
+   "title": "Portrait of Doge Leonardo Loredan",
+   "agent_name": "Giovanni Bellini",
+   "agent_role": "Painter",
+   "creation_date": "1501-1502",
+   "cultural_context": "Early Renaissance, Venetian",
+   "medium": "Oil on panel",
+   "date_display": "c. 1501–1502",
+   "description_narrative": "Venice's newly elected Doge is rendered in his gold-brocaded ceremonial cap and mantle with a stillness and precision that recalls Netherlandish portraiture. Bellini's crisp modeling of light on fabric and flesh set a new standard for Venetian state portraiture.",
+   "tags": "renaissance, portrait, venetian, ceremonial, dignified, bellini, doge",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Giovanni%20Bellini%2C%20portrait%20of%20Doge%20Leonardo%20Loredan.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Giovanni%20Bellini%2C%20portrait%20of%20Doge%20Leonardo%20Loredan.jpg?width=600"
+  },
+  {
+   "title": "Portrait of Baldassare Castiglione",
+   "agent_name": "Raphael",
+   "agent_role": "Painter",
+   "creation_date": "1514-1515",
+   "cultural_context": "High Renaissance, Italian",
+   "medium": "Oil on canvas",
+   "date_display": "c. 1514–1515",
+   "description_narrative": "The author of The Book of the Courtier gazes calmly out in soft grays and blacks, his intelligent, composed expression matching the ideal of courtly refinement he wrote about. Raphael's muted palette and psychological restraint influenced generations of portraitists, including Rembrandt.",
+   "tags": "renaissance, portrait, italian, refined, understated, raphael, courtier",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Schule%2C%20Raffael%20%281483%20-%201520%29%20-%20Portrait%20of%20Count%20Baldassare%20Castiglione%20-%20251%20-%20Gem%C3%A4ldegalerie.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Schule%2C%20Raffael%20%281483%20-%201520%29%20-%20Portrait%20of%20Count%20Baldassare%20Castiglione%20-%20251%20-%20Gem%C3%A4ldegalerie.jpg?width=600"
+  },
+  {
+   "title": "The Ambassadors",
+   "agent_name": "Hans Holbein the Younger",
+   "agent_role": "Painter",
+   "creation_date": "1533",
+   "cultural_context": "Northern Renaissance, German",
+   "medium": "Oil on panel",
+   "date_display": "1533",
+   "description_narrative": "Two richly dressed French envoys stand beside a table of scientific and musical instruments, with a wildly distorted skull stretched across the foreground floor as a memento mori visible only from an oblique angle. Holbein's technical virtuosity turns a diplomatic portrait into an elaborate meditation on mortality and knowledge.",
+   "tags": "renaissance, portrait, german, anamorphic, symbolic, holbein, memento mori",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Hans%20Holbein%20the%20Younger%20-%20The%20Ambassadors%20-%20Google%20Art%20Project.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Hans%20Holbein%20the%20Younger%20-%20The%20Ambassadors%20-%20Google%20Art%20Project.jpg?width=600"
+  },
+  {
+   "title": "Portrait of Henry VIII",
+   "agent_name": "Hans Holbein the Younger",
+   "agent_role": "Painter",
+   "creation_date": "c. 1537",
+   "cultural_context": "Northern Renaissance, German",
+   "medium": "Oil on panel",
+   "date_display": "c. 1537",
+   "description_narrative": "The English king stands in a wide, imposing stance, his broad shoulders and jeweled costume filling the panel with an aura of absolute authority. Holbein's court portrait became the definitive visual image of Henry VIII, endlessly copied throughout the Tudor era.",
+   "tags": "renaissance, portrait, royal, german, imposing, holbein, tudor",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Hans%20Holbein%20the%20Younger%20%28attributed%29%2C%20Portrait%20of%20Henry%20VIII%2C%20c.%201537.%20Oil%20on%20panel.%20Palazzo%20Barberini%2C%20Galleria%20Nazionale%20d%E2%80%99Arte%20Antica%2C%20Rome.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Hans%20Holbein%20the%20Younger%20%28attributed%29%2C%20Portrait%20of%20Henry%20VIII%2C%20c.%201537.%20Oil%20on%20panel.%20Palazzo%20Barberini%2C%20Galleria%20Nazionale%20d%E2%80%99Arte%20Antica%2C%20Rome.jpg?width=600"
+  },
+  {
+   "title": "Portrait of a Man in a Red Turban",
+   "agent_name": "Jan van Eyck",
+   "agent_role": "Painter",
+   "creation_date": "1433",
+   "cultural_context": "Northern Renaissance, Flemish",
+   "medium": "Oil on panel",
+   "date_display": "1433",
+   "description_narrative": "A man in an elaborately folded red chaperon meets the viewer's gaze directly against a plain dark ground, possibly a self-portrait of the artist. Van Eyck's precise inscription and virtuoso rendering of cloth and stubble mark one of the earliest true self-portraits in Western painting.",
+   "tags": "renaissance, portrait, flemish, precise, early, van eyck, self-portrait",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Portrait%20of%20a%20Man%20in%20a%20red%20turban%20%28by%20Jan%20van%20Eyck%29.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Portrait%20of%20a%20Man%20in%20a%20red%20turban%20%28by%20Jan%20van%20Eyck%29.jpg?width=600"
+  },
+  {
+   "title": "The Arnolfini Portrait",
+   "agent_name": "Jan van Eyck",
+   "agent_role": "Painter",
+   "creation_date": "1434",
+   "cultural_context": "Northern Renaissance, Flemish",
+   "medium": "Oil on panel",
+   "date_display": "1434",
+   "description_narrative": "A merchant and his wife stand hand in hand in a richly furnished chamber, a convex mirror on the back wall reflecting the room and two additional figures in the doorway. Dense with symbolic detail, from the single candle to the small dog, it remains one of the most scrutinized domestic portraits ever painted.",
+   "tags": "renaissance, portrait, flemish, symbolic, domestic, van eyck, double portrait",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Van%20Eyck%20-%20Arnolfini%20Portrait.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Van%20Eyck%20-%20Arnolfini%20Portrait.jpg?width=600"
+  },
+  {
+   "title": "Infanta Margarita Teresa in a Blue Dress",
+   "agent_name": "Diego Velázquez",
+   "agent_role": "Painter",
+   "creation_date": "1659",
+   "cultural_context": "Baroque, Spanish",
+   "medium": "Oil on canvas",
+   "date_display": "1659",
+   "description_narrative": "The young Spanish princess stands stiffly in an enormous silver-blue gown, her small figure nearly swallowed by court fashion and formal etiquette. Velázquez's loose, atmospheric brushwork on the fabric contrasts with the child's composed, direct gaze.",
+   "tags": "baroque, portrait, spanish, royal, court, velazquez, childhood",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Diego%20Rodriguez%20de%20Silva%20y%20Vel%C3%A1zquez%20-%20Infanta%20Margarita%20Teresa%20in%20a%20Blue%20Dress%20-%20Google%20Art%20Project.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Diego%20Rodriguez%20de%20Silva%20y%20Vel%C3%A1zquez%20-%20Infanta%20Margarita%20Teresa%20in%20a%20Blue%20Dress%20-%20Google%20Art%20Project.jpg?width=600"
+  },
+  {
+   "title": "Charles I at the Hunt",
+   "agent_name": "Anthony van Dyck",
+   "agent_role": "Painter",
+   "creation_date": "1635",
+   "cultural_context": "Flemish Baroque at the English court",
+   "medium": "Oil on canvas",
+   "date_display": "c. 1635",
+   "description_narrative": "Van Dyck presents King Charles I informally at rest during a hunt, one hand on a cane, as a courtier holds his horse. The low viewpoint and elegant pose lend an air of effortless majesty to the notably short monarch.",
+   "tags": [
+    "van dyck",
+    "charles i",
+    "portrait",
+    "royal",
+    "louvre",
+    "hunt",
+    "flemish baroque"
+   ],
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Charles%20I%20of%20England.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Charles%20I%20of%20England.jpg?width=600"
+  },
+  {
+   "title": "Portrait of Pope Innocent X",
+   "agent_name": "Diego Velazquez",
+   "agent_role": "Painter",
+   "creation_date": "1650",
+   "cultural_context": "Spanish Baroque, Rome",
+   "medium": "Oil on canvas",
+   "date_display": "1650",
+   "description_narrative": "Painted during Velazquez's second stay in Italy, this portrait fixes the pope with an unflinching, penetrating realism that the sitter himself reportedly found too truthful. Widely counted among the greatest portraits ever made, it later obsessed the painter Francis Bacon.",
+   "tags": [
+    "velazquez",
+    "pope",
+    "portrait",
+    "spanish baroque",
+    "doria pamphilj",
+    "realism",
+    "papal"
+   ],
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Portrait%20of%20Innocentius%20X%20by%20Diego%20Vel%C3%A1zquez%20in%20Galleria%20Doria%20Pamphilj%20%28Rome%29.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Portrait%20of%20Innocentius%20X%20by%20Diego%20Vel%C3%A1zquez%20in%20Galleria%20Doria%20Pamphilj%20%28Rome%29.jpg?width=600"
+  },
+  {
+   "title": "Portrait of Pope Julius II",
+   "agent_name": "Raphael",
+   "agent_role": "Painter",
+   "creation_date": "1511-1512",
+   "cultural_context": "Italian High Renaissance, Rome",
+   "medium": "Oil on poplar panel",
+   "date_display": "1511-1512",
+   "description_narrative": "Raphael broke with convention by showing the pope seated and inwardly absorbed rather than in rigid formal majesty, setting the template for papal portraiture for two centuries. The unusual beard was grown by Julius as a vow tied to the fortunes of the papal states.",
+   "tags": [
+    "raphael",
+    "pope",
+    "portrait",
+    "high renaissance",
+    "national gallery",
+    "julius ii",
+    "papal"
+   ],
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Raphael%20and%20Workshop%20-%20Portrait%20of%20Pope%20Julius%20II%20-%20Google%20Art%20Project.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Raphael%20and%20Workshop%20-%20Portrait%20of%20Pope%20Julius%20II%20-%20Google%20Art%20Project.jpg?width=600"
+  },
+  {
+   "title": "Self-Portrait in a Straw Hat",
+   "agent_name": "Elisabeth Louise Vigee Le Brun",
+   "agent_role": "Painter",
+   "creation_date": "1782",
+   "cultural_context": "French pre-Revolutionary portraiture",
+   "medium": "Oil on canvas",
+   "date_display": "after 1782",
+   "description_narrative": "The artist depicts herself outdoors with a palette in hand and a feathered straw hat, directly inspired by a Rubens portrait she had admired in Antwerp. Her unpowdered hair and natural presentation were a fresh, informal statement in the years just before the Revolution.",
+   "tags": [
+    "vigee le brun",
+    "self-portrait",
+    "female artist",
+    "straw hat",
+    "national gallery",
+    "rubens",
+    "french"
+   ],
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Self-portrait%20in%20a%20Straw%20Hat%20by%20Elisabeth-Louise%20Vig%C3%A9e-Lebrun%20%282%29.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Self-portrait%20in%20a%20Straw%20Hat%20by%20Elisabeth-Louise%20Vig%C3%A9e-Lebrun%20%282%29.jpg?width=600"
+  },
+  {
+   "title": "Alexander Grant",
+   "agent_name": "Cosmo Alexander",
+   "agent_role": "Painter",
+   "creation_date": "1770",
+   "cultural_context": "Colonial American portraiture",
+   "medium": "Oil on canvas",
+   "date_display": "1770",
+   "description_narrative": "Scottish-born portraitist Cosmo Alexander painted this likeness of Alexander Grant while working as an itinerant painter in Britain's American colonies. Alexander is historically notable as an early teacher of the young Gilbert Stuart, who became America's foremost portraitist.",
+   "tags": [
+    "Cosmo Alexander",
+    "colonial American portrait",
+    "18th century",
+    "Scottish painter"
+   ],
+   "source": "Art Institute of Chicago",
+   "license": "Public Domain",
+   "source_url": "https://www.artic.edu/iiif/2/2d717e79-f94a-83fd-0e18-3e1a82f85310/full/2000,/0/default.jpg",
+   "thumbnail_url": "https://www.artic.edu/iiif/2/2d717e79-f94a-83fd-0e18-3e1a82f85310/full/400,/0/default.jpg"
+  },
+  {
+   "title": "Lucrezia di Lippo di Iacopo Guidi",
+   "agent_name": "Andrea del Sarto",
+   "agent_role": "Painter",
+   "creation_date": "1525",
+   "cultural_context": "Florentine High Renaissance",
+   "medium": "Oil on panel",
+   "date_display": "1525–28",
+   "description_narrative": "Andrea del Sarto, one of the leading painters of the High Renaissance in Florence, painted this pendant portrait of a Florentine woman alongside a companion portrait of her husband. The sitter's identity and social standing are conveyed through the careful rendering of her dress and composed bearing.",
+   "tags": [
+    "Andrea del Sarto",
+    "Florentine Renaissance",
+    "pendant portrait",
+    "16th century"
+   ],
+   "source": "Art Institute of Chicago",
+   "license": "Public Domain",
+   "source_url": "https://www.artic.edu/iiif/2/5d50e0e5-db32-4e02-eef7-6fbbae018d44/full/2000,/0/default.jpg",
+   "thumbnail_url": "https://www.artic.edu/iiif/2/5d50e0e5-db32-4e02-eef7-6fbbae018d44/full/400,/0/default.jpg"
+  },
+  {
+   "title": "Domenico da Gambassi",
+   "agent_name": "Andrea del Sarto",
+   "agent_role": "Painter",
+   "creation_date": "1525",
+   "cultural_context": "Florentine High Renaissance",
+   "medium": "Oil on panel",
+   "date_display": "1525–28",
+   "description_narrative": "This portrait forms a pendant pair with Andrea del Sarto's portrait of Lucrezia di Lippo di Iacopo Guidi, likely painted to commemorate the couple's marriage. Andrea del Sarto was celebrated in his own time as 'the faultless painter' for his technical mastery.",
+   "tags": [
+    "Andrea del Sarto",
+    "Florentine Renaissance",
+    "pendant portrait",
+    "16th century"
+   ],
+   "source": "Art Institute of Chicago",
+   "license": "Public Domain",
+   "source_url": "https://www.artic.edu/iiif/2/d8c733d2-5132-d0e6-c7ba-2f9f35f1a191/full/2000,/0/default.jpg",
+   "thumbnail_url": "https://www.artic.edu/iiif/2/d8c733d2-5132-d0e6-c7ba-2f9f35f1a191/full/400,/0/default.jpg"
+  },
+  {
+   "title": "Portrait of Dr. William McNeill Whistler",
+   "agent_name": "James McNeill Whistler",
+   "agent_role": "Painter",
+   "creation_date": "1871",
+   "cultural_context": "American Aestheticism",
+   "medium": "Oil on panel",
+   "date_display": "1871–73",
+   "description_narrative": "James McNeill Whistler painted this portrait of his half-brother, William McNeill Whistler, a physician who served as a Confederate surgeon during the American Civil War. The restrained palette and tonal harmony reflect Whistler's mature aesthetic philosophy of 'art for art's sake.'",
+   "tags": [
+    "James McNeill Whistler",
+    "family portrait",
+    "American art",
+    "Aestheticism"
+   ],
+   "source": "Art Institute of Chicago",
+   "license": "Public Domain",
+   "source_url": "https://www.artic.edu/iiif/2/f9aacbc6-191c-3725-85bf-198612a51d25/full/2000,/0/default.jpg",
+   "thumbnail_url": "https://www.artic.edu/iiif/2/f9aacbc6-191c-3725-85bf-198612a51d25/full/400,/0/default.jpg"
   }
  ]
 }

@@ -3,13 +3,13 @@
  "generated": "2026-06-21T16:54:11+00:00",
  "collections": [
   {
-   "id": "greatest-hits",
-   "title": "Greatest Hits",
-   "description": "The most recognizable masterpieces across the whole collection — start here.",
+   "id": "masterpieces",
+   "title": "Masterpieces",
+   "description": "The most iconic paintings of all time — start here.",
    "source": "Screen Docent",
    "license": "Public Domain",
    "count": 40,
-   "cover_thumbnail": "https://commons.wikimedia.org/wiki/Special:FilePath/Katsushika%20Hokusai%20-%20The%20Great%20Wave%20off%20the%20Coast%20of%20Kanagawa%20LCCN2008660568.jpg?width=600"
+   "cover_thumbnail": "https://commons.wikimedia.org/wiki/Special:FilePath/Mona%20Lisa%2C%20by%20Leonardo%20da%20Vinci%2C%20from%20C2RMF.jpg?width=600"
   },
   {
    "id": "impressionism",
@@ -17,7 +17,7 @@
    "description": "Light, color, and fleeting moments from the movement that broke with the academy.",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "count": 33,
+   "count": 58,
    "cover_thumbnail": "https://commons.wikimedia.org/wiki/Special:FilePath/Claude%20Monet%20-%20Water%20Lilies%20-%201906%2C%20Ryerson.jpg?width=600"
   },
   {
@@ -26,7 +26,7 @@
    "description": "Bold color and expressive form — the bridge from Impressionism to modern art.",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "count": 22,
+   "count": 42,
    "cover_thumbnail": "https://commons.wikimedia.org/wiki/Special:FilePath/Vincent%20van%20Gogh%20-%20The%20Bedroom%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
@@ -35,7 +35,7 @@
    "description": "Light, intimacy, and virtuosity from the 17th-century Netherlands.",
    "source": "Rijksmuseum, The Metropolitan Museum of Art",
    "license": "Public Domain",
-   "count": 33,
+   "count": 47,
    "cover_thumbnail": "https://images.metmuseum.org/CRDImages/ep/web-large/DP-30758-001.jpg"
   },
   {
@@ -44,7 +44,7 @@
    "description": "Harmony, perspective, and humanism from the rebirth of classical ideals.",
    "source": "Art Institute of Chicago, The Metropolitan Museum of Art",
    "license": "Public Domain",
-   "count": 19,
+   "count": 41,
    "cover_thumbnail": "https://commons.wikimedia.org/wiki/Special:FilePath/Sandro%20Botticelli%20-%20Virgin%20and%20Child%20with%20an%20Angel%20-%201954.283%20-%20Art%20Institute%20of%20Chicago.jpg?width=600"
   },
   {
@@ -53,7 +53,7 @@
    "description": "Woodblock prints of the 'floating world' — landscapes, kabuki, and everyday Edo life.",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "count": 2,
+   "count": 20,
    "cover_thumbnail": "https://commons.wikimedia.org/wiki/Special:FilePath/Katsushika%20Hokusai%20-%20The%20Great%20Wave%20off%20the%20Coast%20of%20Kanagawa%20LCCN2008660568.jpg?width=600"
   },
   {
@@ -62,7 +62,7 @@
    "description": "Nature at its most awe-inspiring, and the human drama set against it.",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "count": 19,
+   "count": 34,
    "cover_thumbnail": "https://commons.wikimedia.org/wiki/Special:FilePath/Distant%20View%20of%20Niagara%20Falls%201830%20Thomas%20Cole.jpg?width=600"
   },
   {
@@ -71,7 +71,7 @@
    "description": "From frontier light to mid-century city scenes — the American eye.",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "count": 25,
+   "count": 41,
    "cover_thumbnail": "https://commons.wikimedia.org/wiki/Special:FilePath/Winslow%20Homer%20-%20The%20Herring%20Net%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
@@ -80,7 +80,7 @@
    "description": "Faces that have held our gaze across the centuries.",
    "source": "Art Institute of Chicago, The Metropolitan Museum of Art",
    "license": "Public Domain",
-   "count": 32,
+   "count": 47,
    "cover_thumbnail": "https://commons.wikimedia.org/wiki/Special:FilePath/Follower%20of%20Frans%20Hals%20-%20Portrait%20of%20an%20Artist%20-%201894.1023%20-%20Art%20Institute%20of%20Chicago.jpg?width=600"
   },
   {
@@ -89,7 +89,7 @@
    "description": "Quiet arrangements of fruit, flowers, and objects — beauty in the everyday.",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "count": 19,
+   "count": 32,
    "cover_thumbnail": "https://commons.wikimedia.org/wiki/Special:FilePath/Odilon%20Redon%20-%20Still%20Life%20with%20Flowers%20-%201988.141.22%20-%20Art%20Institute%20of%20Chicago.jpg?width=600"
   },
   {
@@ -116,7 +116,7 @@
    "description": "The turn into modernism — symbolism and expression at the dawn of the new century.",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "count": 12,
+   "count": 30,
    "cover_thumbnail": "https://commons.wikimedia.org/wiki/Special:FilePath/Gustave%20Caillebotte%20-%20Paris%20Street%2C%20Rainy%20Day%20-%201964.336%20-%20Art%20Institute%20of%20Chicago.jpg?width=600"
   },
   {
@@ -161,7 +161,7 @@
    "description": "The drama, movement, and shadow-pierced chiaroscuro of 17th-century Europe.",
    "source": "Cleveland Museum of Art, Wikimedia Commons",
    "license": "Public Domain",
-   "count": 22,
+   "count": 33,
    "cover_thumbnail": "https://commons.wikimedia.org/wiki/Special:FilePath/Caravaggio%20%E2%80%94%20The%20Calling%20of%20Saint%20Matthew.jpg?width=600"
   },
   {
@@ -170,7 +170,7 @@
    "description": "Dreamlike myth, doomed romance, and veiled mystery from the later 19th century.",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "count": 24,
+   "count": 30,
    "cover_thumbnail": "https://commons.wikimedia.org/wiki/Special:FilePath/John%20Everett%20Millais%20-%20Ophelia%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
@@ -206,7 +206,7 @@
    "description": "Chinese, Korean, Persian, and Indian masterworks of brush, ink, and gold across a thousand years.",
    "source": "Cleveland Museum of Art, The Metropolitan Museum of Art, Wikimedia Commons",
    "license": "Public Domain",
-   "count": 15,
+   "count": 22,
    "cover_thumbnail": "https://images.metmuseum.org/CRDImages/as/web-large/DP151504_CRD.jpg"
   },
   {
@@ -224,7 +224,7 @@
    "description": "Ships, storms, and the sublime power of the ocean across the centuries.",
    "source": "The Metropolitan Museum of Art, Wikimedia Commons",
    "license": "Public Domain",
-   "count": 21,
+   "count": 31,
    "cover_thumbnail": "https://images.metmuseum.org/CRDImages/ep/web-large/DP143157.jpg"
   }
  ]
