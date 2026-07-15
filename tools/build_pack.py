@@ -115,7 +115,8 @@ class BuildState:
     pack_dir: Path
     client: httpx.AsyncClient
     sem: asyncio.Semaphore
-    min_edge: int = 5120   # >4K floor: must exceed 4K so a portrait-crop or Ken Burns zoom still fills 4K
+    min_edge: int = 3840   # true-4K floor (CURATION-v2/ADR-039): native ≥4K fills a 4K panel 1:1 crisp;
+    #                        Ken Burns zoom is capped per-work by native res (adaptive) so nothing softens
     stats: Stats = field(default_factory=Stats)
     url_to_master: dict[str, str] = field(default_factory=dict)
     url_to_thumb: dict[str, str] = field(default_factory=dict)
@@ -486,9 +487,10 @@ async def main() -> int:
     ap.add_argument("--limit", type=int, default=None, help="cap total items queued (testing)")
     ap.add_argument("--collections", default=None, help="comma list of catalog ids to include")
     ap.add_argument("--concurrency", type=int, default=4, help="bounded concurrent downloads")
-    ap.add_argument("--min-edge", type=int, default=5120,
-                    help="native long-edge floor. Default 5120 (>4K): an image gets orientation-cropped "
-                         "and Ken-Burns-zoomed, so it must exceed 4K to still fill a 4K panel after that.")
+    ap.add_argument("--min-edge", type=int, default=3840,
+                    help="native long-edge floor. Default 3840 (true 4K): fills a 4K panel 1:1 crisp. "
+                         "Ken Burns zoom is capped per-work by native res (adaptive) rather than requiring "
+                         "every work to exceed 4K, which starved the catalog (AIC etc. cap exports at 3000px).")
     ap.add_argument("--created", default=None,
                      help="fixed value written as manifest['created'] (omit for a stable, "
                           "timestamp-free manifest across reruns)")
