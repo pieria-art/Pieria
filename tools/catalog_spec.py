@@ -979,6 +979,18 @@ COLLECTIONS = [
         "target": 60,
     },
     {
+        # Greedy-grabbed from Commons "Category:The Birds of America" (PD-Art). The complete folio as its
+        # own showcase; kind=illustration keeps natural-history plates out of the fine-art Masterpieces.
+        "id": "audubon-birds-of-america",
+        "title": "Audubon's Birds of America",
+        "description": "John James Audubon's monumental Birds of America (1827–1838) — every species of "
+                       "the young nation's birds, engraved and hand-colored at life size.",
+        "license": "Public Domain",
+        "sources": ["wikimedia"],
+        "picks": [],
+        "target": 500,
+    },
+    {
         # Curated pre-1931 PD illustrators (Pyle, Wyeth, Parrish, Leyendecker, ...). kind=illustration ->
         # a distinct tradition from fine-art painting, so it stays out of Masterpieces.
         "id": "golden-age-illustration",
@@ -1020,7 +1032,7 @@ COLLECTION_KIND = {
     "asian-art": "painting",
     "marine": "painting",
     "ukiyo-e": "print",           # fine-art woodblock prints (the Great Wave) — painterly, INCLUDED
-    "botanical": "print",         # Audubon/Redouté prints & plates — painterly, low fame
+    "botanical": "illustration",  # natural-history plates — a distinct tradition, kept out of Masterpieces
     "sculpture-antiquity": "sculpture",
     "documentary-photography": "photo",
     "vintage-posters": "poster",
@@ -1032,6 +1044,7 @@ COLLECTION_KIND = {
     "medieval-illuminated": "illumination",
     "cities-architecture": "photo",
     "golden-age-illustration": "illustration",
+    "audubon-birds-of-america": "illustration",
 }
 
 assert set(COLLECTION_KIND) == {c["id"] for c in COLLECTIONS}, \

@@ -107,7 +107,7 @@
    "description": "The art of scientific observation — Audubon's birds and the great botanical plates.",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "count": 81,
+   "count": 14,
    "cover_thumbnail": "https://commons.wikimedia.org/wiki/Special:FilePath/431%20American%20Flamingo.jpg?width=600"
   },
   {
@@ -226,6 +226,15 @@
    "license": "Public Domain",
    "count": 35,
    "cover_thumbnail": "https://images.metmuseum.org/CRDImages/ep/web-large/DP143157.jpg"
+  },
+  {
+   "id": "audubon-birds-of-america",
+   "title": "Audubon's Birds of America",
+   "description": "John James Audubon's monumental Birds of America (1827–1838) — every species of the young nation's birds, engraved and hand-colored at life size.",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "count": 484,
+   "cover_thumbnail": "https://commons.wikimedia.org/wiki/Special:FilePath/19%20Louisiana%20Water%20Thrush.jpg?width=600"
   }
  ]
 }
