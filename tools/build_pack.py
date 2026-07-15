@@ -63,7 +63,7 @@ THUMB_QUALITY = 85
 # Placard fields copied verbatim (in this order) from source item -> manifest item.
 _PLACARD_FIELDS = (
     "title", "agent_name", "agent_role", "creation_date", "cultural_context", "medium", "kind",
-    "date_display", "description_narrative", "tags", "source", "license",
+    "date_display", "description_narrative", "tags", "source", "license", "needs_frame_crop",
 )
 
 

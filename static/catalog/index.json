@@ -26,52 +26,52 @@
    "description": "Bold color and expressive form — the bridge from Impressionism to modern art.",
    "source": "Art Institute of Chicago, Wikimedia Commons",
    "license": "Public Domain",
-   "count": 231,
+   "count": 284,
    "cover_thumbnail": "https://commons.wikimedia.org/wiki/Special:FilePath/Vincent%20van%20Gogh%20-%20The%20Bedroom%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
    "id": "dutch-golden-age",
    "title": "The Dutch Golden Age",
    "description": "Light, intimacy, and virtuosity from the 17th-century Netherlands.",
-   "source": "Rijksmuseum, The Metropolitan Museum of Art",
+   "source": "Rijksmuseum, The Metropolitan Museum of Art, Wikimedia Commons",
    "license": "Public Domain",
-   "count": 32,
+   "count": 118,
    "cover_thumbnail": "https://images.metmuseum.org/CRDImages/ep/web-large/DP-30758-001.jpg"
   },
   {
    "id": "renaissance",
    "title": "The Italian Renaissance",
    "description": "Harmony, perspective, and humanism from the rebirth of classical ideals.",
-   "source": "Art Institute of Chicago, The Metropolitan Museum of Art",
+   "source": "Art Institute of Chicago, The Metropolitan Museum of Art, Wikimedia Commons",
    "license": "Public Domain",
-   "count": 40,
-   "cover_thumbnail": "https://commons.wikimedia.org/wiki/Special:FilePath/Sandro%20Botticelli%20-%20Virgin%20and%20Child%20with%20an%20Angel%20-%201954.283%20-%20Art%20Institute%20of%20Chicago.jpg?width=600"
+   "count": 74,
+   "cover_thumbnail": "https://www.artic.edu/iiif/2/b59cc3e9-a7c0-5aa1-1a22-bb472bb2e6d4/full/400,/0/default.jpg"
   },
   {
    "id": "ukiyo-e",
    "title": "Japanese Ukiyo-e",
    "description": "Woodblock prints of the 'floating world' — landscapes, kabuki, and everyday Edo life.",
-   "source": "Art Institute of Chicago",
+   "source": "Art Institute of Chicago, Wikimedia Commons",
    "license": "Public Domain",
-   "count": 20,
+   "count": 80,
    "cover_thumbnail": "https://commons.wikimedia.org/wiki/Special:FilePath/Katsushika%20Hokusai%20-%20The%20Great%20Wave%20off%20the%20Coast%20of%20Kanagawa%20LCCN2008660568.jpg?width=600"
   },
   {
    "id": "romanticism",
    "title": "Romanticism & the Sublime",
    "description": "Nature at its most awe-inspiring, and the human drama set against it.",
-   "source": "Art Institute of Chicago",
+   "source": "Art Institute of Chicago, The Metropolitan Museum of Art, Wikimedia Commons",
    "license": "Public Domain",
-   "count": 26,
-   "cover_thumbnail": "https://commons.wikimedia.org/wiki/Special:FilePath/Distant%20View%20of%20Niagara%20Falls%201830%20Thomas%20Cole.jpg?width=600"
+   "count": 45,
+   "cover_thumbnail": "https://www.artic.edu/iiif/2/18092196-50ae-3ff1-9205-1b3110e966c3/full/400,/0/default.jpg"
   },
   {
    "id": "american-art",
    "title": "American Art",
    "description": "From frontier light to mid-century city scenes — the American eye.",
-   "source": "Art Institute of Chicago",
+   "source": "Art Institute of Chicago, Wikimedia Commons",
    "license": "Public Domain",
-   "count": 45,
+   "count": 77,
    "cover_thumbnail": "https://commons.wikimedia.org/wiki/Special:FilePath/Winslow%20Homer%20-%20The%20Herring%20Net%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
@@ -114,10 +114,10 @@
    "id": "modern-masters",
    "title": "Modern Masters",
    "description": "The turn into modernism — symbolism and expression at the dawn of the new century.",
-   "source": "Art Institute of Chicago",
+   "source": "Art Institute of Chicago, Wikimedia Commons",
    "license": "Public Domain",
-   "count": 18,
-   "cover_thumbnail": "https://commons.wikimedia.org/wiki/Special:FilePath/Gustave%20Caillebotte%20-%20Paris%20Street%2C%20Rainy%20Day%20-%201964.336%20-%20Art%20Institute%20of%20Chicago.jpg?width=600"
+   "count": 27,
+   "cover_thumbnail": "https://www.artic.edu/iiif/2/2ae64c8a-266d-470a-a25a-c83127564636/full/400,/0/default.jpg"
   },
   {
    "id": "cosmos",
@@ -159,18 +159,18 @@
    "id": "baroque",
    "title": "Baroque & the Dramatic Light",
    "description": "The drama, movement, and shadow-pierced chiaroscuro of 17th-century Europe.",
-   "source": "Cleveland Museum of Art, Wikimedia Commons",
+   "source": "Art Institute of Chicago, Cleveland Museum of Art, The Metropolitan Museum of Art, Wikimedia Commons",
    "license": "Public Domain",
-   "count": 44,
+   "count": 79,
    "cover_thumbnail": "https://commons.wikimedia.org/wiki/Special:FilePath/Caravaggio%20%E2%80%94%20The%20Calling%20of%20Saint%20Matthew.jpg?width=600"
   },
   {
    "id": "symbolism-romance",
    "title": "Symbolism & the Pre-Raphaelites",
    "description": "Dreamlike myth, doomed romance, and veiled mystery from the later 19th century.",
-   "source": "Wikimedia Commons",
+   "source": "Art Institute of Chicago, Wikimedia Commons",
    "license": "Public Domain",
-   "count": 33,
+   "count": 44,
    "cover_thumbnail": "https://commons.wikimedia.org/wiki/Special:FilePath/John%20Everett%20Millais%20-%20Ophelia%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {

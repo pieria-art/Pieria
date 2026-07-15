@@ -752,8 +752,8 @@
    "tags": "manet, realism, nude, picnic, scandal, modernity, paris",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/%C3%89douard%20Manet%20-%20The%20Luncheon%20on%20the%20Grass.jpeg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/%C3%89douard%20Manet%20-%20The%20Luncheon%20on%20the%20Grass.jpeg?width=600"
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Edouard%20Manet%20-%20Luncheon%20on%20the%20Grass%20-%20Google%20Art%20Project.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Edouard%20Manet%20-%20Luncheon%20on%20the%20Grass%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
    "title": "Olympia",
@@ -813,7 +813,8 @@
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/La%20petite%20loge%2C%20Pierre-Auguste%20Renoir%20-%203177.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/La%20petite%20loge%2C%20Pierre-Auguste%20Renoir%20-%203177.jpg?width=600"
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/La%20petite%20loge%2C%20Pierre-Auguste%20Renoir%20-%203177.jpg?width=600",
+   "needs_frame_crop": true
   },
   {
    "title": "The Cradle",
@@ -1426,7 +1427,8 @@
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Monet%2C%20Cottage%20on%20the%20Cliffs%20near%20Varangeville%2C%20c.%201896%2C%20Ny%20Carlsberg%20Glyptotek%2C%20Copenhagen%20%2836251613942%29.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Monet%2C%20Cottage%20on%20the%20Cliffs%20near%20Varangeville%2C%20c.%201896%2C%20Ny%20Carlsberg%20Glyptotek%2C%20Copenhagen%20%2836251613942%29.jpg?width=600"
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Monet%2C%20Cottage%20on%20the%20Cliffs%20near%20Varangeville%2C%20c.%201896%2C%20Ny%20Carlsberg%20Glyptotek%2C%20Copenhagen%20%2836251613942%29.jpg?width=600",
+   "needs_frame_crop": true
   },
   {
    "title": "Garden at Sainte-Adresse",
@@ -1531,7 +1533,8 @@
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Au%20dessus%20de%20V%C3%A9theuil%2C%20effet%20de%20printemps%2C%20Claude%20Monet%3B%20-%203155.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Au%20dessus%20de%20V%C3%A9theuil%2C%20effet%20de%20printemps%2C%20Claude%20Monet%3B%20-%203155.jpg?width=600"
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Au%20dessus%20de%20V%C3%A9theuil%2C%20effet%20de%20printemps%2C%20Claude%20Monet%3B%20-%203155.jpg?width=600",
+   "needs_frame_crop": true
   },
   {
    "title": "Farmyard in Normandy",
@@ -1620,8 +1623,8 @@
    "tags": "impressionism, argenteuil, snow, winter, landscape, seine",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/View%20of%20Argenteuil-Snow%2C%20Claude%20Monet%2C%201874-1875%20-%20Nelson-Atkins%20Museum%20of%20Art%20-%20DSC08986.JPG?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/View%20of%20Argenteuil-Snow%2C%20Claude%20Monet%2C%201874-1875%20-%20Nelson-Atkins%20Museum%20of%20Art%20-%20DSC08986.JPG?width=600"
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Claude%20Monet%20-%20Neige%20%C3%A0%20Argenteuil%20%281874-75%29.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Claude%20Monet%20-%20Neige%20%C3%A0%20Argenteuil%20%281874-75%29.jpg?width=600"
   },
   {
    "title": "Boulevard des Capucines (Nelson-Atkins version)",
@@ -1635,8 +1638,8 @@
    "tags": "impressionism, paris, boulevard, cityscape, street scene, capucines",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Boulevard%20des%20Capucines%2C%20Claude%20Monet%2C%201873-1874%20-%20Nelson-Atkins%20Museum%20of%20Art%20-%20DSC08982.JPG?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Boulevard%20des%20Capucines%2C%20Claude%20Monet%2C%201873-1874%20-%20Nelson-Atkins%20Museum%20of%20Art%20-%20DSC08982.JPG?width=600"
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Claude%20Monet%20-%20Boulevard%20des%20Capucines%20-%20Google%20Art%20Project.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Claude%20Monet%20-%20Boulevard%20des%20Capucines%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
    "title": "Ice Floes at Twilight",
@@ -1665,8 +1668,8 @@
    "tags": "impressionism, water lilies, japanese bridge, giverny, pond, series",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bridge%20over%20a%20Pond%20of%20Water%20Lilies%20by%20Claude%20Monet%20%281899%29.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bridge%20over%20a%20Pond%20of%20Water%20Lilies%20by%20Claude%20Monet%20%281899%29.jpg?width=600"
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Water-Lily%20Pond%201899%20Claude%20Monet%20Metropolitan.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Water-Lily%20Pond%201899%20Claude%20Monet%20Metropolitan.jpg?width=600"
   },
   {
    "title": "Tulip Field in Holland",
@@ -1861,7 +1864,8 @@
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pierre-Auguste%20Renoir%20-%20Roses%20and%20Peonies%20in%20a%20Vase%20-%202019.67.22.McD%20-%20Dallas%20Museum%20of%20Art.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pierre-Auguste%20Renoir%20-%20Roses%20and%20Peonies%20in%20a%20Vase%20-%202019.67.22.McD%20-%20Dallas%20Museum%20of%20Art.jpg?width=600"
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pierre-Auguste%20Renoir%20-%20Roses%20and%20Peonies%20in%20a%20Vase%20-%202019.67.22.McD%20-%20Dallas%20Museum%20of%20Art.jpg?width=600",
+   "needs_frame_crop": true
   },
   {
    "title": "Head of a Young Girl",
@@ -2100,8 +2104,8 @@
    "tags": "portrait, Misia Sert, Parisian society, patron, late work",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pierre-auguste%20renoir%2C%20misia%20sert%2C%201904.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pierre-auguste%20renoir%2C%20misia%20sert%2C%201904.jpg?width=600"
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Misia%20renoir%201903.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Misia%20renoir%201903.jpg?width=600"
   },
   {
    "title": "Dance at Le Moulin de la Galette (Whitney Version)",
@@ -2131,7 +2135,8 @@
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pierre-Auguste%20Renoir%2C%20La%20Loge%2C%20Courtauld%20Gallery%202.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pierre-Auguste%20Renoir%2C%20La%20Loge%2C%20Courtauld%20Gallery%202.jpg?width=600"
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pierre-Auguste%20Renoir%2C%20La%20Loge%2C%20Courtauld%20Gallery%202.jpg?width=600",
+   "needs_frame_crop": true
   },
   {
    "title": "In the Conservatory",
@@ -2536,7 +2541,8 @@
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Manet%20Bouquet%20de%20pivoines.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Manet%20Bouquet%20de%20pivoines.jpg?width=600"
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Manet%20Bouquet%20de%20pivoines.jpg?width=600",
+   "needs_frame_crop": true
   },
   {
    "title": "The Battle of the U.S.S. Kearsarge and the C.S.S. Alabama",
@@ -2626,7 +2632,8 @@
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tournai%20-%20Mus%C3%A9e%20des%20Arts%20-%20Argenteuil%20-%20Edouard%20Manet%20%281832-1883%29.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tournai%20-%20Mus%C3%A9e%20des%20Arts%20-%20Argenteuil%20-%20Edouard%20Manet%20%281832-1883%29.jpg?width=600"
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tournai%20-%20Mus%C3%A9e%20des%20Arts%20-%20Argenteuil%20-%20Edouard%20Manet%20%281832-1883%29.jpg?width=600",
+   "needs_frame_crop": true
   },
   {
    "title": "Flowers in a Crystal Vase",
@@ -3510,8 +3517,8 @@
    "tags": "ballet, dancers, backstage, wings, pastel, Norton Simon",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Dancers%20in%20the%20Wings%20-%20Degas%20-%20Norton%20Simon%20Museum%2001.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Dancers%20in%20the%20Wings%20-%20Degas%20-%20Norton%20Simon%20Museum%2001.jpg?width=600"
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Edgar%20Degas%20-%20Dancers%20in%20the%20Wings%20%28Danseuses%20dans%20la%20coulisse%29%20-%20Google%20Art%20Project.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Edgar%20Degas%20-%20Dancers%20in%20the%20Wings%20%28Danseuses%20dans%20la%20coulisse%29%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
    "title": "The Milliners",
@@ -3541,7 +3548,8 @@
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Mujer%20ba%C3%B1%C3%A1ndose%20Edgar%20Degas.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Mujer%20ba%C3%B1%C3%A1ndose%20Edgar%20Degas.jpg?width=600"
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Mujer%20ba%C3%B1%C3%A1ndose%20Edgar%20Degas.jpg?width=600",
+   "needs_frame_crop": true
   },
   {
    "title": "Bathers",
@@ -3646,7 +3654,8 @@
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Degas%2C%20Village%20Street%2C%20Saint-Valery-sur-Somme%2C%201896-98%2C%20Ny%20Carlsberg%20Glyptotek%2C%20Copenhagen%20%2836420016015%29.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Degas%2C%20Village%20Street%2C%20Saint-Valery-sur-Somme%2C%201896-98%2C%20Ny%20Carlsberg%20Glyptotek%2C%20Copenhagen%20%2836420016015%29.jpg?width=600"
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Degas%2C%20Village%20Street%2C%20Saint-Valery-sur-Somme%2C%201896-98%2C%20Ny%20Carlsberg%20Glyptotek%2C%20Copenhagen%20%2836420016015%29.jpg?width=600",
+   "needs_frame_crop": true
   },
   {
    "title": "Horses in a Meadow",
@@ -4321,7 +4330,8 @@
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Camille%20Pissarro%20-%20Orchards%20at%20Louveciennes%20-%202016.33.41%20-%20Minneapolis%20Institute%20of%20Art.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Camille%20Pissarro%20-%20Orchards%20at%20Louveciennes%20-%202016.33.41%20-%20Minneapolis%20Institute%20of%20Art.jpg?width=600"
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Camille%20Pissarro%20-%20Orchards%20at%20Louveciennes%20-%202016.33.41%20-%20Minneapolis%20Institute%20of%20Art.jpg?width=600",
+   "needs_frame_crop": true
   },
   {
    "title": "Peasant Woman Carrying Two Bundles of Hay",
