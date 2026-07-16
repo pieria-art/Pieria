@@ -4178,7 +4178,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "https://clevelandart.org/art/1966.177",
    "license_verified": "2026-07-16",
-   "featured_rank": 23
+   "featured_rank": 23,
+   "focal_point": [
+    0.5,
+    0.25
+   ]
   },
   {
    "title": "Laundresses (Wash Women)",
@@ -4199,7 +4203,11 @@
    "license_url": "",
    "credit_line": "Dallas Museum of Art",
    "license_verified": "2026-07-16",
-   "featured_rank": 45
+   "featured_rank": 45,
+   "focal_point": [
+    0.63,
+    0.25
+   ]
   },
   {
    "title": "Young Woman Seated in an Armchair",
@@ -4220,7 +4228,11 @@
    "license_url": "",
    "credit_line": "Dorotheum: Info about artwork",
    "license_verified": "2026-07-16",
-   "featured_rank": 25
+   "featured_rank": 25,
+   "focal_point": [
+    0.35,
+    0.22
+   ]
   },
   {
    "title": "Self-Portrait",
@@ -4241,7 +4253,11 @@
    "license_url": "",
    "credit_line": "Clark Art Institute",
    "license_verified": "2026-07-16",
-   "featured_rank": 38
+   "featured_rank": 38,
+   "focal_point": [
+    0.42,
+    0.35
+   ]
   },
   {
    "title": "Ludovic Lepic Holding His Dog",
@@ -4262,7 +4278,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "https://clevelandart.org/art/1988.93",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.5,
+    0.3
+   ]
   },
   {
    "title": "Portrait of a Man",
@@ -4304,7 +4324,11 @@
    "license_url": "",
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
-   "featured_rank": 25
+   "featured_rank": 25,
+   "focal_point": [
+    0.55,
+    0.4
+   ]
   },
   {
    "title": "Woman Drying Herself (1888–1892)",
@@ -4346,7 +4370,11 @@
    "license_url": "",
    "credit_line": "LwH3Qmd571a-Jw at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 40
+   "featured_rank": 40,
+   "focal_point": [
+    0.32,
+    0.22
+   ]
   },
   {
    "title": "After the Bath, Woman Drying Herself (1884–1886)",
@@ -4367,7 +4395,11 @@
    "license_url": "",
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
-   "featured_rank": 56
+   "featured_rank": 56,
+   "focal_point": [
+    0.45,
+    0.4
+   ]
   },
   {
    "title": "Woman Drying Herself",
@@ -4430,7 +4462,11 @@
    "license_url": "",
    "credit_line": "fAG5E-YLY4Q57g at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 55
+   "featured_rank": 55,
+   "focal_point": [
+    0.65,
+    0.55
+   ]
   },
   {
    "title": "Portrait of a Man (Diego Martelli), study",
@@ -4451,7 +4487,11 @@
    "license_url": "",
    "credit_line": "Clark Art Institute",
    "license_verified": "2026-07-16",
-   "featured_rank": 26
+   "featured_rank": 26,
+   "focal_point": [
+    0.45,
+    0.32
+   ]
   },
   {
    "title": "Head of a Man",
@@ -4472,7 +4512,11 @@
    "license_url": "",
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
-   "featured_rank": 24
+   "featured_rank": 24,
+   "focal_point": [
+    0.42,
+    0.48
+   ]
   },
   {
    "title": "Horseman Seen from Behind, with Spurs",
@@ -4493,7 +4537,11 @@
    "license_url": "",
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
-   "featured_rank": 21
+   "featured_rank": 21,
+   "focal_point": [
+    0.42,
+    0.35
+   ]
   },
   {
    "title": "Diego Martelli",
@@ -4556,7 +4604,11 @@
    "license_url": "",
    "credit_line": "1. The Yorck Project (2002) 10.000 Meisterwerke der Malerei (DVD-ROM), distributed by DIRECTMEDIA Publishing GmbH. ISBN: 3936122202. 2. The National Gallery",
    "license_verified": "2026-07-16",
-   "featured_rank": 48
+   "featured_rank": 48,
+   "focal_point": [
+    0.55,
+    0.55
+   ]
   },
   {
    "title": "Promenade Beside the Sea",
@@ -4577,7 +4629,11 @@
    "license_url": "",
    "credit_line": "National Gallery, London - online collection",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.3,
+    0.5
+   ]
   },
   {
    "title": "Ukrainian Dancers",
@@ -4598,7 +4654,11 @@
    "license_url": "",
    "credit_line": "https://www.nationalgallery.org.uk/paintings/hilaire-germain-edgar-degas-ukrainian-dancers",
    "license_verified": "2026-07-16",
-   "featured_rank": 35
+   "featured_rank": 35,
+   "focal_point": [
+    0.45,
+    0.45
+   ]
   },
   {
    "title": "Combing the Hair (La Coiffure)",
@@ -4619,7 +4679,11 @@
    "license_url": "",
    "credit_line": "1. The Yorck Project (2002) 10.000 Meisterwerke der Malerei (DVD-ROM), distributed by DIRECTMEDIA Publishing GmbH. ISBN: 3936122202. 2. National Gallery, London - online collection",
    "license_verified": "2026-07-16",
-   "featured_rank": 65
+   "featured_rank": 65,
+   "focal_point": [
+    0.62,
+    0.35
+   ]
   },
   {
    "title": "Paul Lafond and Alphonse Cherfils Examining a Painting",
@@ -4640,7 +4704,11 @@
    "license_url": "",
    "credit_line": "https://clevelandart.org/art/1958.25",
    "license_verified": "2026-07-16",
-   "featured_rank": 20
+   "featured_rank": 20,
+   "focal_point": [
+    0.32,
+    0.35
+   ]
   },
   {
    "title": "Study for a Portrait of Hélène Rouart",
@@ -4661,7 +4729,11 @@
    "license_url": "",
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.45,
+    0.4
+   ]
   },
   {
    "title": "Madame Jeantaud in the Mirror",
@@ -4703,7 +4775,11 @@
    "license_url": "",
    "credit_line": "uQEaGdRyVjwCfg at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.25,
+    0.35
+   ]
   },
   {
    "title": "Interior (The Rape)",
@@ -4724,7 +4800,11 @@
    "license_url": "",
    "credit_line": "wwFhoXRQJtHYJg at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 58
+   "featured_rank": 58,
+   "focal_point": [
+    0.8,
+    0.32
+   ]
   },
   {
    "title": "Billiard Room at Ménil-Hubert",
@@ -4745,7 +4825,11 @@
    "license_url": "",
    "credit_line": "JAG3ooF4xPp0tg at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.55,
+    0.55
+   ]
   },
   {
    "title": "In a Café (L'Absinthe)",
@@ -4766,7 +4850,11 @@
    "license_url": "",
    "credit_line": "GQH1c-43xR3JtA at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 85
+   "featured_rank": 85,
+   "focal_point": [
+    0.35,
+    0.3
+   ]
   },
   {
    "title": "Portrait of the Art Critic Durand-Gréville",
@@ -4787,7 +4875,11 @@
    "license_url": "",
    "credit_line": "Erik Cornelius / Nationalmuseum",
    "license_verified": "2026-07-16",
-   "featured_rank": 26
+   "featured_rank": 26,
+   "focal_point": [
+    0.48,
+    0.35
+   ]
   },
   {
    "title": "The Star (L'Étoile)",
@@ -4808,7 +4900,11 @@
    "license_url": "",
    "credit_line": "https://www.vogue.fr/fashion-culture/article/edgar-degas-and-the-dancer-the-artists-most-beautiful-representations",
    "license_verified": "2026-07-16",
-   "featured_rank": 72
+   "featured_rank": 72,
+   "focal_point": [
+    0.5,
+    0.55
+   ]
   },
   {
    "title": "Bedtime (Le Coucher)",
@@ -4829,7 +4925,11 @@
    "license_url": "",
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.4,
+    0.45
+   ]
   },
   {
    "title": "Toilette After the Bath",
@@ -4850,7 +4950,11 @@
    "license_url": "",
    "credit_line": "fQEGqK2IxtPRoQ at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.55,
+    0.25
+   ]
   },
   {
    "title": "Woman at Her Dressing Table",
@@ -4892,7 +4996,11 @@
    "license_url": "",
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
-   "featured_rank": 42
+   "featured_rank": 42,
+   "focal_point": [
+    0.45,
+    0.45
+   ]
   },
   {
    "title": "Monsieur and Madame Édouard Manet",
@@ -4913,7 +5021,11 @@
    "license_url": "",
    "credit_line": "Kitakyūshū Municipal Museum of Art",
    "license_verified": "2026-07-16",
-   "featured_rank": 55
+   "featured_rank": 55,
+   "focal_point": [
+    0.3,
+    0.32
+   ]
   },
   {
    "title": "Lorenzo Pagans and Auguste De Gas",
@@ -4934,7 +5046,11 @@
    "license_url": "",
    "credit_line": "Arkult [1]",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.68,
+    0.4
+   ]
   },
   {
    "title": "At the Milliner's",
@@ -4955,7 +5071,11 @@
    "license_url": "",
    "credit_line": "http://www.moma.org/collection/browse_results.php?object_id=34679",
    "license_verified": "2026-07-16",
-   "featured_rank": 42
+   "featured_rank": 42,
+   "focal_point": [
+    0.68,
+    0.35
+   ]
   },
   {
    "title": "Breakfast After the Bath",
@@ -4997,7 +5117,11 @@
    "license_url": "",
    "credit_line": "repro from artbook",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.5,
+    0.55
+   ]
   },
   {
    "title": "Dancer Adjusting Her Shoe",
@@ -5018,7 +5142,11 @@
    "license_url": "",
    "credit_line": "https://bibliotheque-numerique.inha.fr/collection/?refine[Creator][]=Degas%2C+Edgar+%281834-1917%29",
    "license_verified": "2026-07-16",
-   "featured_rank": 48
+   "featured_rank": 48,
+   "focal_point": [
+    0.5,
+    0.5
+   ]
   },
   {
    "title": "The Convalescent",
@@ -5039,7 +5167,11 @@
    "license_url": "",
    "credit_line": "EwEjiva1WNU2RQ at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 34
+   "featured_rank": 34,
+   "focal_point": [
+    0.58,
+    0.3
+   ]
   },
   {
    "title": "Woman at Her Toilette (In Front of the Mirror)",
@@ -5081,7 +5213,11 @@
    "license_url": "",
    "credit_line": "https://masp.org.br/acervo/obra/mulher-enxugando-a-perna-esquerda",
    "license_verified": "2026-07-16",
-   "featured_rank": 40
+   "featured_rank": 40,
+   "focal_point": [
+    0.4,
+    0.5
+   ]
   },
   {
    "title": "Dancers in the Wings",
@@ -5102,7 +5238,11 @@
    "license_url": "",
    "credit_line": "6wGQVgtOKBH9BA at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 50
+   "featured_rank": 50,
+   "focal_point": [
+    0.35,
+    0.55
+   ]
   },
   {
    "title": "The Milliners",
@@ -5123,7 +5263,11 @@
    "license_url": "",
    "credit_line": "qgEZ0WlVeRlyFA at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 42
+   "featured_rank": 42,
+   "focal_point": [
+    0.32,
+    0.3
+   ]
   },
   {
    "title": "Woman Bathing",
@@ -5151,6 +5295,10 @@
     0.36,
     0.86,
     0.79
+   ],
+   "focal_point": [
+    0.42,
+    0.5
    ]
   },
   {
@@ -5172,7 +5320,11 @@
    "license_url": "",
    "credit_line": "https://collection.barnesfoundation.org/objects/5226/details",
    "license_verified": "2026-07-16",
-   "featured_rank": 25
+   "featured_rank": 25,
+   "focal_point": [
+    0.35,
+    0.18
+   ]
   },
   {
    "title": "Woman Drying Herself (1884)",
@@ -5193,7 +5345,11 @@
    "license_url": "",
    "credit_line": "Sotheby's",
    "license_verified": "2026-07-16",
-   "featured_rank": 45
+   "featured_rank": 45,
+   "focal_point": [
+    0.5,
+    0.35
+   ]
   },
   {
    "title": "Sulking (Bouderie)",
@@ -5235,7 +5391,11 @@
    "license_url": "",
    "credit_line": "vgHKz6OV4wcdug at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 45
+   "featured_rank": 45,
+   "focal_point": [
+    0.68,
+    0.55
+   ]
   },
   {
    "title": "Seated Violin Player",
@@ -5277,7 +5437,11 @@
    "license_url": "",
    "credit_line": "NwF5Ztb_H-BT0g at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 48
+   "featured_rank": 48,
+   "focal_point": [
+    0.42,
+    0.4
+   ]
   },
   {
    "title": "Village Street, Saint-Valery-sur-Somme",
@@ -5305,6 +5469,10 @@
     0.17,
     0.82,
     0.8
+   ],
+   "focal_point": [
+    0.45,
+    0.45
    ]
   },
   {
@@ -5326,7 +5494,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the National Gallery of Art. Please see the Gallery's Open Access Policy.",
    "license_verified": "2026-07-16",
-   "featured_rank": 34
+   "featured_rank": 34,
+   "focal_point": [
+    0.68,
+    0.55
+   ]
   },
   {
    "title": "The Riders",
@@ -5368,7 +5540,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the National Gallery of Art. Please see the Gallery's Open Access Policy.",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.28,
+    0.4
+   ]
   },
   {
    "title": "Lady with a Dog",
@@ -5389,7 +5565,11 @@
    "license_url": "",
    "credit_line": "National Museum of Art, Architecture and Design",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.42,
+    0.65
+   ]
   },
   {
    "title": "Achille De Gas in the Uniform of a Cadet",
@@ -5410,7 +5590,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the National Gallery of Art. Please see the Gallery's Open Access Policy.",
    "license_verified": "2026-07-16",
-   "featured_rank": 33
+   "featured_rank": 33,
+   "focal_point": [
+    0.42,
+    0.25
+   ]
   },
   {
    "title": "René De Gas",
@@ -5431,7 +5615,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the National Gallery of Art. Please see the Gallery's Open Access Policy.",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.5,
+    0.35
+   ]
   },
   {
    "title": "Young Woman with Her Hand over Her Mouth",
@@ -5452,7 +5640,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
-   "featured_rank": 27
+   "featured_rank": 27,
+   "focal_point": [
+    0.55,
+    0.35
+   ]
   },
   {
    "title": "Woman at the Bath",
@@ -5494,7 +5686,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the National Gallery of Art. Please see the Gallery's Open Access Policy.",
    "license_verified": "2026-07-16",
-   "featured_rank": 35
+   "featured_rank": 35,
+   "focal_point": [
+    0.45,
+    0.45
+   ]
   },
   {
    "title": "Girl Drying Herself",
@@ -5536,7 +5732,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the National Gallery of Art. Please see the Gallery's Open Access Policy.",
    "license_verified": "2026-07-16",
-   "featured_rank": 38
+   "featured_rank": 38,
+   "focal_point": [
+    0.55,
+    0.35
+   ]
   },
   {
    "title": "Madame Dietz-Monnin",
@@ -5578,7 +5778,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
-   "featured_rank": 20
+   "featured_rank": 20,
+   "focal_point": [
+    0.45,
+    0.3
+   ]
   },
   {
    "title": "Dancers at the Old Opera House",
@@ -5599,7 +5803,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the National Gallery of Art. Please see the Gallery's Open Access Policy.",
    "license_verified": "2026-07-16",
-   "featured_rank": 48
+   "featured_rank": 48,
+   "focal_point": [
+    0.22,
+    0.5
+   ]
   },
   {
    "title": "The Ballet Master (Le Maître de Ballet)",
@@ -5620,7 +5828,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the National Gallery of Art. Please see the Gallery's Open Access Policy.",
    "license_verified": "2026-07-16",
-   "featured_rank": 40
+   "featured_rank": 40,
+   "focal_point": [
+    0.62,
+    0.55
+   ]
   },
   {
    "title": "Woman Drying Her Left Arm",
