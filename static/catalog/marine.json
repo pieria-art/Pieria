@@ -711,7 +711,11 @@
    "license_url": "",
    "credit_line": "Wuselig",
    "license_verified": "2026-07-16",
-   "featured_rank": 62
+   "featured_rank": 62,
+   "focal_point": [
+    0.55,
+    0.5
+   ]
   },
   {
    "title": "Beach Scene, Trouville",
@@ -740,7 +744,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the National Gallery of Art. Please see the Gallery's Open Access Policy.",
    "license_verified": "2026-07-16",
-   "featured_rank": 35
+   "featured_rank": 35,
+   "focal_point": [
+    0.75,
+    0.6
+   ]
   },
   {
    "title": "Perry's Victory on Lake Erie",
@@ -769,7 +777,11 @@
    "license_url": "",
    "credit_line": "Library of Congress Catalog: https://lccn.loc.gov/2004661378 Image download: https://cdn.loc.gov/service/pnp/ppmsca/23100/23121v.jpg Original url: https://www.loc.gov/pictures/item/2004661378/",
    "license_verified": "2026-07-16",
-   "featured_rank": 38
+   "featured_rank": 38,
+   "focal_point": [
+    0.42,
+    0.4
+   ]
   },
   {
    "title": "Lumber Schooners at Evening on Penobscot Bay",

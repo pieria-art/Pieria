@@ -216,7 +216,11 @@
    "license_url": "",
    "credit_line": "Gestaag Klimt",
    "license_verified": "2026-07-16",
-   "featured_rank": 96
+   "featured_rank": 96,
+   "focal_point": [
+    0.42,
+    0.25
+   ]
   },
   {
    "title": "Water Lilies",
@@ -262,7 +266,11 @@
    "license_url": "",
    "credit_line": "DgFVFAJo_30MeQ at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 95
+   "featured_rank": 95,
+   "focal_point": [
+    0.28,
+    0.35
+   ]
   },
   {
    "title": "The Creation of Adam",
@@ -604,7 +612,11 @@
    "license_url": "",
    "credit_line": "Unknown sourceUnknown source",
    "license_verified": "2026-07-16",
-   "featured_rank": 92
+   "featured_rank": 92,
+   "focal_point": [
+    0.45,
+    0.6
+   ]
   },
   {
    "title": "The Bedroom (Amsterdam version, 1888)",
@@ -771,7 +783,11 @@
    "license_url": "",
    "credit_line": "Web site of National Gallery, London",
    "license_verified": "2026-07-16",
-   "featured_rank": 90
+   "featured_rank": 90,
+   "focal_point": [
+    0.48,
+    0.4
+   ]
   },
   {
    "title": "A Sunday on La Grande Jatte — 1884",
@@ -842,7 +858,11 @@
    "license_url": "",
    "credit_line": "http://art-vangogh.com/image/Arles%20(1888-1889)/106%20Starry%20Night%20Over%20the%20Rhone.jpg",
    "license_verified": "2026-07-16",
-   "featured_rank": 90
+   "featured_rank": 90,
+   "focal_point": [
+    0.72,
+    0.85
+   ]
   },
   {
    "title": "Wheatfield with Cypresses",
@@ -871,7 +891,11 @@
    "license_url": "",
    "credit_line": "National Gallery, London - online catalogue.",
    "license_verified": "2026-07-16",
-   "featured_rank": 90
+   "featured_rank": 90,
+   "focal_point": [
+    0.68,
+    0.55
+   ]
   },
   {
    "title": "The School of Athens",

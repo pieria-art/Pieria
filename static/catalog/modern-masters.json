@@ -124,7 +124,11 @@
    "license_url": "",
    "credit_line": "https://collection.barnesfoundation.org/objects/6743/details",
    "license_verified": "2026-07-16",
-   "featured_rank": 62
+   "featured_rank": 62,
+   "focal_point": [
+    0.35,
+    0.25
+   ]
   },
   {
    "title": "Portrait of Adele Bloch-Bauer I",
@@ -145,7 +149,11 @@
    "license_url": "",
    "credit_line": "Gestaag Klimt",
    "license_verified": "2026-07-16",
-   "featured_rank": 96
+   "featured_rank": 96,
+   "focal_point": [
+    0.42,
+    0.25
+   ]
   },
   {
    "title": "The Sick Child",
@@ -194,7 +202,11 @@
    "license_url": "",
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
-   "featured_rank": 89
+   "featured_rank": 89,
+   "focal_point": [
+    0.68,
+    0.3
+   ]
   },
   {
    "title": "Jeanne Hébuterne with Yellow Sweater",
@@ -221,7 +233,11 @@
    "license_url": "",
    "credit_line": "Google Arts &amp; Culture — SQGQa5QXbT4Kwg",
    "license_verified": "2026-07-16",
-   "featured_rank": 55
+   "featured_rank": 55,
+   "focal_point": [
+    0.5,
+    0.3
+   ]
   },
   {
    "title": "The Buddha",
@@ -301,7 +317,11 @@
    "license_url": "",
    "credit_line": "Unknown sourceUnknown source",
    "license_verified": "2026-07-16",
-   "featured_rank": 92
+   "featured_rank": 92,
+   "focal_point": [
+    0.45,
+    0.6
+   ]
   },
   {
    "title": "Woman on Rose Divan",
@@ -330,7 +350,11 @@
    "license_url": "",
    "credit_line": "Collection of Art Institute of Chicago",
    "license_verified": "2026-07-16",
-   "featured_rank": 42
+   "featured_rank": 42,
+   "focal_point": [
+    0.42,
+    0.45
+   ]
   },
   {
    "title": "Landscape: Window Overlooking the Woods",
@@ -359,7 +383,11 @@
    "license_url": "",
    "credit_line": "Collection of Art Institute of Chicago",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.25,
+    0.4
+   ]
   },
   {
    "title": "Te burao (The Hibiscus Tree)",
@@ -388,7 +416,11 @@
    "license_url": "",
    "credit_line": "Collection of Art Institute of Chicago",
    "license_verified": "2026-07-16",
-   "featured_rank": 38
+   "featured_rank": 38,
+   "focal_point": [
+    0.75,
+    0.4
+   ]
   },
   {
    "title": "No te aha oe riri (Why Are You Angry?)",
@@ -417,7 +449,11 @@
    "license_url": "",
    "credit_line": "Collection of Art Institute of Chicago",
    "license_verified": "2026-07-16",
-   "featured_rank": 62
+   "featured_rank": 62,
+   "focal_point": [
+    0.68,
+    0.5
+   ]
   },
   {
    "title": "Sawmill, Outskirts of Paris",
@@ -471,7 +507,11 @@
    "license_url": "",
    "credit_line": "Národní galerie",
    "license_verified": "2026-07-16",
-   "featured_rank": 68
+   "featured_rank": 68,
+   "focal_point": [
+    0.42,
+    0.35
+   ]
   },
   {
    "title": "Lake Attersee",
@@ -517,7 +557,11 @@
    "license_url": "",
    "credit_line": "Copied from an art book",
    "license_verified": "2026-07-16",
-   "featured_rank": 42
+   "featured_rank": 42,
+   "focal_point": [
+    0.5,
+    0.45
+   ]
   },
   {
    "title": "Love (Liebe)",
@@ -538,7 +582,11 @@
    "license_url": "",
    "credit_line": "repro from artbook",
    "license_verified": "2026-07-16",
-   "featured_rank": 42
+   "featured_rank": 42,
+   "focal_point": [
+    0.5,
+    0.42
+   ]
   },
   {
    "title": "Jurisprudence",
@@ -559,7 +607,11 @@
    "license_url": "",
    "credit_line": "repro from artbook",
    "license_verified": "2026-07-16",
-   "featured_rank": 52
+   "featured_rank": 52,
+   "focal_point": [
+    0.45,
+    0.55
+   ]
   },
   {
    "title": "Approaching Thunderstorm (The Large Poplar II)",
@@ -580,7 +632,11 @@
    "license_url": "",
    "credit_line": "4wGCEld8AjPivA at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 55
+   "featured_rank": 55,
+   "focal_point": [
+    0.7,
+    0.5
+   ]
   },
   {
    "title": "Upper Austrian Farmhouse",
@@ -601,7 +657,11 @@
    "license_url": "",
    "credit_line": "repro from artbook",
    "license_verified": "2026-07-16",
-   "featured_rank": 40
+   "featured_rank": 40,
+   "focal_point": [
+    0.5,
+    0.55
+   ]
   },
   {
    "title": "Baby (Cradle)",
@@ -622,7 +682,11 @@
    "license_url": "",
    "credit_line": "http://www.nga.gov/content/ngaweb/Collection/art-object-page.56662.html",
    "license_verified": "2026-07-16",
-   "featured_rank": 48
+   "featured_rank": 48,
+   "focal_point": [
+    0.5,
+    0.15
+   ]
   },
   {
    "title": "Cottage Garden with Sunflowers",
@@ -643,7 +707,11 @@
    "license_url": "",
    "credit_line": "repro from artbook",
    "license_verified": "2026-07-16",
-   "featured_rank": 52
+   "featured_rank": 52,
+   "focal_point": [
+    0.65,
+    0.25
+   ]
   }
  ]
 }

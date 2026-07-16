@@ -624,7 +624,11 @@
    "license_url": "",
    "credit_line": "National Gallery, London",
    "license_verified": "2026-07-16",
-   "featured_rank": 78
+   "featured_rank": 78,
+   "focal_point": [
+    0.5,
+    0.25
+   ]
   },
   {
    "title": "Portrait of Baldassare Castiglione",
@@ -645,7 +649,11 @@
    "license_url": "",
    "credit_line": "Staatliche Museen zu Berlin",
    "license_verified": "2026-07-16",
-   "featured_rank": 85
+   "featured_rank": 85,
+   "focal_point": [
+    0.42,
+    0.32
+   ]
   },
   {
    "title": "The Ambassadors",
@@ -666,7 +674,11 @@
    "license_url": "",
    "credit_line": "Google Arts &amp; Culture — bQEWbLB26MG1LA",
    "license_verified": "2026-07-16",
-   "featured_rank": 82
+   "featured_rank": 82,
+   "focal_point": [
+    0.5,
+    0.28
+   ]
   },
   {
    "title": "Portrait of Henry VIII",
@@ -712,7 +724,11 @@
    "license_url": "",
    "credit_line": "EXTRACTED (AND COMPRESSED) FROM AN OLD VERSION OF THIS FILE File:Portrait of a Man by Jan van Eyck.jpg.",
    "license_verified": "2026-07-16",
-   "featured_rank": 78
+   "featured_rank": 78,
+   "focal_point": [
+    0.45,
+    0.45
+   ]
   },
   {
    "title": "The Arnolfini Portrait",
@@ -733,7 +749,11 @@
    "license_url": "",
    "credit_line": "Web site of National Gallery, London",
    "license_verified": "2026-07-16",
-   "featured_rank": 90
+   "featured_rank": 90,
+   "focal_point": [
+    0.48,
+    0.4
+   ]
   },
   {
    "title": "Infanta Margarita Teresa in a Blue Dress",
@@ -754,7 +774,11 @@
    "license_url": "",
    "credit_line": "pAHSoRgE1VSx2w at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 58
+   "featured_rank": 58,
+   "focal_point": [
+    0.45,
+    0.2
+   ]
   },
   {
    "title": "Charles I at the Hunt",
@@ -812,7 +836,11 @@
    "license_url": "",
    "credit_line": "http://picasaweb.google.com/EnrikeCdC/VelazquezObraCompleta#5297131513290212530",
    "license_verified": "2026-07-16",
-   "featured_rank": 88
+   "featured_rank": 88,
+   "focal_point": [
+    0.45,
+    0.25
+   ]
   },
   {
    "title": "Portrait of Pope Julius II",
@@ -841,7 +869,11 @@
    "license_url": "",
    "credit_line": "Google Arts &amp; Culture — TAEKLWNeHElstQ",
    "license_verified": "2026-07-16",
-   "featured_rank": 80
+   "featured_rank": 80,
+   "focal_point": [
+    0.45,
+    0.25
+   ]
   },
   {
    "title": "Self-Portrait in a Straw Hat",
@@ -870,7 +902,11 @@
    "license_url": "",
    "credit_line": "Selected work 27 from Self Portrait: Renaissance to Contemporary (Anthony Bond, Joanna Woodall, ISBN 978-1855143579).",
    "license_verified": "2026-07-16",
-   "featured_rank": 58
+   "featured_rank": 58,
+   "focal_point": [
+    0.45,
+    0.25
+   ]
   },
   {
    "title": "Alexander Grant",
@@ -896,7 +932,11 @@
    "license_url": "",
    "credit_line": "Collection of Art Institute of Chicago",
    "license_verified": "2026-07-16",
-   "featured_rank": 14
+   "featured_rank": 14,
+   "focal_point": [
+    0.4,
+    0.2
+   ]
   },
   {
    "title": "Lucrezia di Lippo di Iacopo Guidi",
@@ -952,7 +992,11 @@
    "license_url": "",
    "credit_line": "Collection of Art Institute of Chicago",
    "license_verified": "2026-07-16",
-   "featured_rank": 36
+   "featured_rank": 36,
+   "focal_point": [
+    0.35,
+    0.3
+   ]
   },
   {
    "title": "Arrangement in Flesh Color and Brown: Portrait of Arthur Jerome Eddy",

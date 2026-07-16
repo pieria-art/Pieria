@@ -624,7 +624,11 @@
    "license_url": "",
    "credit_line": "http://art-vangogh.com/image/Arles%20(1888-1889)/106%20Starry%20Night%20Over%20the%20Rhone.jpg",
    "license_verified": "2026-07-16",
-   "featured_rank": 90
+   "featured_rank": 90,
+   "focal_point": [
+    0.72,
+    0.85
+   ]
   },
   {
    "title": "Irises",
@@ -645,7 +649,11 @@
    "license_url": "",
    "credit_line": "DgFVFAJo_30MeQ at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 95
+   "featured_rank": 95,
+   "focal_point": [
+    0.28,
+    0.35
+   ]
   },
   {
    "title": "Wheatfield with Crows",
@@ -666,7 +674,11 @@
    "license_url": "",
    "credit_line": "REDIRECTwww.galeriacanvas.pl",
    "license_verified": "2026-07-16",
-   "featured_rank": 88
+   "featured_rank": 88,
+   "focal_point": [
+    0.5,
+    0.55
+   ]
   },
   {
    "title": "Mont Sainte-Victoire",
@@ -687,7 +699,11 @@
    "license_url": "",
    "credit_line": "subscription art database",
    "license_verified": "2026-07-16",
-   "featured_rank": 78
+   "featured_rank": 78,
+   "focal_point": [
+    0.55,
+    0.38
+   ]
   },
   {
    "title": "Where Do We Come From? What Are We? Where Are We Going?",
@@ -729,7 +745,11 @@
    "license_url": "",
    "credit_line": "4. https://www.thetimes.com/magazines/culture-magazine/article/wild-thing-life-paul-gauguin-sue-prideaux-tk55c57wl1. http://www.nationalgalleries.org",
    "license_verified": "2026-07-16",
-   "featured_rank": 80
+   "featured_rank": 80,
+   "focal_point": [
+    0.4,
+    0.55
+   ]
   },
   {
    "title": "The Potato Eaters",
@@ -758,7 +778,11 @@
    "license_url": "",
    "credit_line": "rQE6qmf9oVuKPA at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 85
+   "featured_rank": 85,
+   "focal_point": [
+    0.52,
+    0.4
+   ]
   },
   {
    "title": "Wheatfield with Cypresses",
@@ -787,7 +811,11 @@
    "license_url": "",
    "credit_line": "National Gallery, London - online catalogue.",
    "license_verified": "2026-07-16",
-   "featured_rank": 90
+   "featured_rank": 90,
+   "focal_point": [
+    0.68,
+    0.55
+   ]
   },
   {
    "title": "The Yellow Christ",
@@ -878,7 +906,11 @@
    "license_url": "",
    "credit_line": "Collection of Art Institute of Chicago",
    "license_verified": "2026-07-16",
-   "featured_rank": 55
+   "featured_rank": 55,
+   "focal_point": [
+    0.55,
+    0.35
+   ]
   },
   {
    "title": "At the Circus: The Bareback Rider (Au Cirque: Écuyère)",
@@ -907,7 +939,11 @@
    "license_url": "",
    "credit_line": "Collection of Art Institute of Chicago",
    "license_verified": "2026-07-16",
-   "featured_rank": 45
+   "featured_rank": 45,
+   "focal_point": [
+    0.55,
+    0.45
+   ]
   },
   {
    "title": "Mahana no atua (Day of the God)",
@@ -969,7 +1005,11 @@
    "license_url": "",
    "credit_line": "Collection of Art Institute of Chicago",
    "license_verified": "2026-07-16",
-   "featured_rank": 40
+   "featured_rank": 40,
+   "focal_point": [
+    0.35,
+    0.5
+   ]
   },
   {
    "title": "Woman in Front of a Still Life by Cézanne",
@@ -998,7 +1038,11 @@
    "license_url": "",
    "credit_line": "Collection of Art Institute of Chicago",
    "license_verified": "2026-07-16",
-   "featured_rank": 40
+   "featured_rank": 40,
+   "focal_point": [
+    0.42,
+    0.3
+   ]
   },
   {
    "title": "Bathers at Asnières",
@@ -1019,7 +1063,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the National Gallery of Art. Please see the Gallery's Open Access Policy.",
    "license_verified": "2026-07-16",
-   "featured_rank": 72
+   "featured_rank": 72,
+   "focal_point": [
+    0.35,
+    0.55
+   ]
   },
   {
    "title": "Boy in a Red Waistcoat",
@@ -1040,7 +1088,11 @@
    "license_url": "",
    "credit_line": "National Gallery of Art",
    "license_verified": "2026-07-16",
-   "featured_rank": 62
+   "featured_rank": 62,
+   "focal_point": [
+    0.45,
+    0.25
+   ]
   },
   {
    "title": "Flowing Water in the Woods",
@@ -1061,7 +1113,11 @@
    "license_url": "",
    "credit_line": "https://clevelandart.org/art/1958.20 IA",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.5,
+    0.55
+   ]
   },
   {
    "title": "Still Life with Fruit",
@@ -1149,7 +1205,11 @@
    "license_url": "",
    "credit_line": "MAFz12krbdE_tg at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 35
+   "featured_rank": 35,
+   "focal_point": [
+    0.35,
+    0.28
+   ]
   },
   {
    "title": "Still Life with Apples",
@@ -1170,7 +1230,11 @@
    "license_url": "",
    "credit_line": "WAHFm9iO_SGeQg at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 62
+   "featured_rank": 62,
+   "focal_point": [
+    0.6,
+    0.55
+   ]
   },
   {
    "title": "Abandoned House near Aix-en-Provence",
@@ -1191,7 +1255,11 @@
    "license_url": "",
    "credit_line": "Dallas Museum of Art, online collection",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.4,
+    0.4
+   ]
   },
   {
    "title": "Trees and House, Provence",
@@ -1233,7 +1301,11 @@
    "license_url": "",
    "credit_line": "2QFehjzwoGoRjw at Google Cultural Institute, zoom level maximum",
    "license_verified": "2026-07-16",
-   "featured_rank": 35
+   "featured_rank": 35,
+   "focal_point": [
+    0.45,
+    0.25
+   ]
   },
   {
    "title": "Still Life with Onions",
@@ -1254,7 +1326,11 @@
    "license_url": "",
    "credit_line": "4gHsoRzcJ38BlQ at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 62
+   "featured_rank": 62,
+   "focal_point": [
+    0.4,
+    0.5
+   ]
   },
   {
    "title": "The Big Trees",
@@ -1275,7 +1351,11 @@
    "license_url": "",
    "credit_line": "https://www.nationalgalleries.org/art-and-artists/17490",
    "license_verified": "2026-07-16",
-   "featured_rank": 44
+   "featured_rank": 44,
+   "focal_point": [
+    0.5,
+    0.5
+   ]
   },
   {
    "title": "Landscape near Melun",
@@ -1296,7 +1376,11 @@
    "license_url": "",
    "credit_line": "lgHnZhWcptH7Rg at Google Cultural Institute, zoom level maximum",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.55,
+    0.45
+   ]
   },
   {
    "title": "View of the Château Noir",
@@ -1359,7 +1443,11 @@
    "license_url": "",
    "credit_line": "uAEu57ynKdy6cA at Google Cultural Institute, zoom level maximum",
    "license_verified": "2026-07-16",
-   "featured_rank": 40
+   "featured_rank": 40,
+   "focal_point": [
+    0.5,
+    0.5
+   ]
   },
   {
    "title": "Hollow with Trees",
@@ -1426,7 +1514,11 @@
    "license_url": "",
    "credit_line": "UAEXdcwYwPHV5w at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 65
+   "featured_rank": 65,
+   "focal_point": [
+    0.5,
+    0.45
+   ]
   },
   {
    "title": "The Card Players (multi-figure version)",
@@ -1447,7 +1539,11 @@
    "license_url": "",
    "credit_line": "https://www.sothebys.com/en/videos/from-picasso-to-motherwell-one-collections-vision-of-20th-century-artistic-innovation direct link",
    "license_verified": "2026-07-16",
-   "featured_rank": 72
+   "featured_rank": 72,
+   "focal_point": [
+    0.5,
+    0.32
+   ]
   },
   {
    "title": "Winter Landscape, Giverny",
@@ -1468,7 +1564,11 @@
    "license_url": "",
    "credit_line": "art database",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.55,
+    0.45
+   ]
   },
   {
    "title": "Still Life: Sugar Bowl and Pears",
@@ -1489,7 +1589,11 @@
    "license_url": "",
    "credit_line": "https://www.flickr.com/photos/72746018@N00/51705362524/; dalbera Taken on 8 October 2021",
    "license_verified": "2026-07-16",
-   "featured_rank": 45
+   "featured_rank": 45,
+   "focal_point": [
+    0.45,
+    0.55
+   ]
   },
   {
    "title": "Madame Cézanne in Blue",
@@ -1531,7 +1635,11 @@
    "license_url": "",
    "credit_line": "swHLND9wt1UzlQ at Google Cultural Institute, zoom level maximum",
    "license_verified": "2026-07-16",
-   "featured_rank": 40
+   "featured_rank": 40,
+   "focal_point": [
+    0.55,
+    0.5
+   ]
   },
   {
    "title": "Standing Male Bather; Puget's Atlas",
@@ -1573,7 +1681,11 @@
    "license_url": "",
    "credit_line": "subscription web database",
    "license_verified": "2026-07-16",
-   "featured_rank": 85
+   "featured_rank": 85,
+   "focal_point": [
+    0.45,
+    0.35
+   ]
   },
   {
    "title": "Chestnut Trees at Jas de Bouffan in Winter",
@@ -1594,7 +1706,11 @@
    "license_url": "",
    "credit_line": "IQE2o8CN-L_Hjw at Google Cultural Institute, zoom level maximum",
    "license_verified": "2026-07-16",
-   "featured_rank": 40
+   "featured_rank": 40,
+   "focal_point": [
+    0.5,
+    0.5
+   ]
   },
   {
    "title": "Village Square",
