@@ -5853,7 +5853,11 @@
    "license_url": "",
    "credit_line": "https://masp.org.br/acervo/obra/mulher-enxugando-o-braco-esquerdo-apos-o-banho",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.45,
+    0.45
+   ]
   },
   {
    "title": "Three Seated Women (Brothel Scene)",
@@ -5874,7 +5878,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "http://hdl.handle.net/10934/RM0001.COLLECT.41830",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.5,
+    0.35
+   ]
   },
   {
    "title": "Cotton Merchants in New Orleans",
@@ -5895,7 +5903,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
-   "featured_rank": 55
+   "featured_rank": 55,
+   "focal_point": [
+    0.35,
+    0.35
+   ]
   },
   {
    "title": "Bather Drying Herself",
@@ -5937,7 +5949,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
-   "featured_rank": 35
+   "featured_rank": 35,
+   "focal_point": [
+    0.45,
+    0.35
+   ]
   },
   {
    "title": "Male Nude (Academic Study)",
@@ -5979,7 +5995,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
-   "featured_rank": 25
+   "featured_rank": 25,
+   "focal_point": [
+    0.55,
+    0.5
+   ]
   },
   {
    "title": "Two Dancers, Half-Length",
@@ -6021,7 +6041,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
-   "featured_rank": 35
+   "featured_rank": 35,
+   "focal_point": [
+    0.4,
+    0.25
+   ]
   },
   {
    "title": "The Artist's Cousin, Mathilde Musson (Mrs. William Bell)",
@@ -6042,7 +6066,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.45,
+    0.3
+   ]
   },
   {
    "title": "Woman Having Her Hair Combed",
@@ -6063,7 +6091,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
-   "featured_rank": 35
+   "featured_rank": 35,
+   "focal_point": [
+    0.42,
+    0.22
+   ]
   },
   {
    "title": "Bather Stepping into a Tub",
@@ -6084,7 +6116,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
-   "featured_rank": 45
+   "featured_rank": 45,
+   "focal_point": [
+    0.42,
+    0.45
+   ]
   },
   {
    "title": "Woman with a Towel",
@@ -6105,7 +6141,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
-   "featured_rank": 35
+   "featured_rank": 35,
+   "focal_point": [
+    0.4,
+    0.4
+   ]
   },
   {
    "title": "The Chemin de l'Écluse and the Pontoise Bridge",
@@ -6147,7 +6187,11 @@
    "license_url": "",
    "credit_line": "Own work, anagoria",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.48,
+    0.65
+   ]
   },
   {
    "title": "The Louvre, Afternoon, Rainy Weather",
@@ -6210,7 +6254,11 @@
    "license_url": "",
    "credit_line": "anagoria",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.72,
+    0.35
+   ]
   },
   {
    "title": "Rue de l'Hermitage, Pontoise",
@@ -6231,7 +6279,11 @@
    "license_url": "",
    "credit_line": "anagoria",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.45,
+    0.55
+   ]
   },
   {
    "title": "Landscape, Ile-de-France",
@@ -6252,7 +6304,11 @@
    "license_url": "",
    "credit_line": "www.nga.gov",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.28,
+    0.7
+   ]
   },
   {
    "title": "The Pink House, Knokke",
@@ -6273,7 +6329,11 @@
    "license_url": "",
    "credit_line": "anagoria",
    "license_verified": "2026-07-16",
-   "featured_rank": 24
+   "featured_rank": 24,
+   "focal_point": [
+    0.32,
+    0.65
+   ]
   },
   {
    "title": "The Orchard",
@@ -6294,7 +6354,11 @@
    "license_url": "",
    "credit_line": "National Gallery of Art, Washington, D. C.",
    "license_verified": "2026-07-16",
-   "featured_rank": 32
+   "featured_rank": 32,
+   "focal_point": [
+    0.22,
+    0.35
+   ]
   },
   {
    "title": "In the Vegetable Garden",
@@ -6336,7 +6400,11 @@
    "license_url": "",
    "credit_line": "anagoria",
    "license_verified": "2026-07-16",
-   "featured_rank": 38
+   "featured_rank": 38,
+   "focal_point": [
+    0.42,
+    0.3
+   ]
   },
   {
    "title": "Ploughed Land",
@@ -6378,7 +6446,11 @@
    "license_url": "",
    "credit_line": "National Gallery of Art, Washington, D. C., online collection",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.6,
+    0.35
+   ]
   },
   {
    "title": "Houses at Bougival, Autumn",
@@ -6420,7 +6492,11 @@
    "license_url": "",
    "credit_line": "1. https://purl.org/nga/collection/artobject/46674 2. National Gallery of Art, Washington, D. C., online collection",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.45,
+    0.25
+   ]
   },
   {
    "title": "Orchards at Louveciennes",
@@ -6448,6 +6524,10 @@
     0.18,
     0.86,
     0.82
+   ],
+   "focal_point": [
+    0.35,
+    0.45
    ]
   },
   {
@@ -6469,7 +6549,11 @@
    "license_url": "",
    "credit_line": "Dallas Museum of Art, online collection",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.42,
+    0.3
+   ]
   },
   {
    "title": "Apple Harvest, Éragny",
@@ -6490,7 +6574,11 @@
    "license_url": "",
    "credit_line": "The Dallas Museum of Art, object page",
    "license_verified": "2026-07-16",
-   "featured_rank": 35
+   "featured_rank": 35,
+   "focal_point": [
+    0.45,
+    0.35
+   ]
   },
   {
    "title": "Chestnut Grove, Louveciennes",
@@ -6511,7 +6599,11 @@
    "license_url": "",
    "credit_line": "Google Art Project works from the Nelson-Atkins Museum of Art",
    "license_verified": "2026-07-16",
-   "featured_rank": 31
+   "featured_rank": 31,
+   "focal_point": [
+    0.3,
+    0.55
+   ]
   },
   {
    "title": "Route d'Ennery",
@@ -6532,7 +6624,11 @@
    "license_url": "",
    "credit_line": "ordrupgaard.dk",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.42,
+    0.55
+   ]
   },
   {
    "title": "Lordship Lane Station, Dulwich",
@@ -6553,7 +6649,11 @@
    "license_url": "",
    "credit_line": "2. Courtauld Gallery1. Transferred from en.wikipedia to Commons. Transfer was stated to be made by User:oxyman. Original uploader was Brendanconway at en.wikipedia 2005-02-07 (original upload date)",
    "license_verified": "2026-07-16",
-   "featured_rank": 42
+   "featured_rank": 42,
+   "focal_point": [
+    0.42,
+    0.55
+   ]
   },
   {
    "title": "The Big Walnut Tree, Autumn Morning, Éragny",
@@ -6574,7 +6674,11 @@
    "license_url": "",
    "credit_line": "Pushkin Museum",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.65,
+    0.35
+   ]
   },
   {
    "title": "Banks of the Seine at Port-Marly",
@@ -6595,7 +6699,11 @@
    "license_url": "",
    "credit_line": "Google Art Project works from the Nelson-Atkins Museum of Art",
    "license_verified": "2026-07-16",
-   "featured_rank": 36
+   "featured_rank": 36,
+   "focal_point": [
+    0.42,
+    0.35
+   ]
   },
   {
    "title": "The Hay Harvest, Éragny",
@@ -6616,7 +6724,11 @@
    "license_url": "",
    "credit_line": "Copied from an art book",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.5,
+    0.45
+   ]
   },
   {
    "title": "View from Louveciennes",
@@ -6658,7 +6770,11 @@
    "license_url": "",
    "credit_line": "https://www.sothebys.com/en/auctions/ecatalogue/2019/impressionist-modern-evening-sale-l20002/lot.11.html",
    "license_verified": "2026-07-16",
-   "featured_rank": 45
+   "featured_rank": 45,
+   "focal_point": [
+    0.62,
+    0.3
+   ]
   },
   {
    "title": "Julie Pissarro in the Garden",
@@ -6700,7 +6816,11 @@
    "license_url": "",
    "credit_line": "http://www.mynewsdesk.com/dk/bruun-rasmussen-kunstauktioner/images/camille-pissarro-portraet-af-en-dreng-1305614",
    "license_verified": "2026-07-16",
-   "featured_rank": 25
+   "featured_rank": 25,
+   "focal_point": [
+    0.48,
+    0.35
+   ]
   },
   {
    "title": "Landscape at Saint-Charles, near Gisors, Sunset",
@@ -6721,7 +6841,11 @@
    "license_url": "",
    "credit_line": "Clark Art Institute",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.32,
+    0.35
+   ]
   },
   {
    "title": "June Morning at Pontoise",
@@ -6763,7 +6887,11 @@
    "license_url": "",
    "credit_line": "Metropolitan Museum of Art: entry 437300",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.28,
+    0.65
+   ]
   },
   {
    "title": "Landscape",
@@ -6784,7 +6912,11 @@
    "license_url": "",
    "credit_line": "The Indianapolis Museum of Art",
    "license_verified": "2026-07-16",
-   "featured_rank": 24
+   "featured_rank": 24,
+   "focal_point": [
+    0.18,
+    0.35
+   ]
   },
   {
    "title": "The Little Country Maid",
@@ -6805,7 +6937,11 @@
    "license_url": "",
    "credit_line": "National Gallery, London - online catalogue.",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.4,
+    0.45
+   ]
   },
   {
    "title": "The Pork Butcher",
@@ -6826,7 +6962,11 @@
    "license_url": "",
    "credit_line": "National Gallery, London - online catalogue.",
    "license_verified": "2026-07-16",
-   "featured_rank": 37
+   "featured_rank": 37,
+   "focal_point": [
+    0.45,
+    0.55
+   ]
   },
   {
    "title": "Two Women Chatting by the Sea, St. Thomas",
@@ -6868,7 +7008,11 @@
    "license_url": "",
    "credit_line": "Metropolitan Museum of Art",
    "license_verified": "2026-07-16",
-   "featured_rank": 40
+   "featured_rank": 40,
+   "focal_point": [
+    0.6,
+    0.25
+   ]
   },
   {
    "title": "Portrait of Félix in a Skirt",
@@ -6889,7 +7033,11 @@
    "license_url": "",
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
-   "featured_rank": 26
+   "featured_rank": 26,
+   "focal_point": [
+    0.5,
+    0.25
+   ]
   },
   {
    "title": "In the Garden of Les Mathurins, Pontoise",
@@ -6931,7 +7079,11 @@
    "license_url": "",
    "credit_line": "Unknown sourceUnknown source",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.5,
+    0.35
+   ]
   },
   {
    "title": "Two Women Kneeling at the Wash-House",
@@ -6952,7 +7104,11 @@
    "license_url": "",
    "credit_line": "Sotheby's",
    "license_verified": "2026-07-16",
-   "featured_rank": 22
+   "featured_rank": 22,
+   "focal_point": [
+    0.5,
+    0.35
+   ]
   },
   {
    "title": "The Louvre Under Snow",
@@ -6973,7 +7129,11 @@
    "license_url": "",
    "credit_line": "National Gallery, London - online catalogue.",
    "license_verified": "2026-07-16",
-   "featured_rank": 35
+   "featured_rank": 35,
+   "focal_point": [
+    0.68,
+    0.4
+   ]
   },
   {
    "title": "Still Life",
@@ -7022,6 +7182,10 @@
     0.06,
     0.985,
     0.96
+   ],
+   "focal_point": [
+    0.45,
+    0.3
    ]
   },
   {
@@ -7043,7 +7207,11 @@
    "license_url": "",
    "credit_line": "Google Arts &amp; Culture: Home page – Image",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.48,
+    0.6
+   ]
   },
   {
    "title": "Peasants' Houses, Éragny",
@@ -7064,7 +7232,11 @@
    "license_url": "",
    "credit_line": "QgGHxgs5iZgNnA at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 25
+   "featured_rank": 25,
+   "focal_point": [
+    0.42,
+    0.55
+   ]
   },
   {
    "title": "The Seine at Bougival",
@@ -7085,7 +7257,11 @@
    "license_url": "",
    "credit_line": "Google Arts &amp; Culture: Home page – QQHISYDhTvHr4Q Image",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.5,
+    0.4
+   ]
   },
   {
    "title": "Poultry Market at Gisors",
@@ -7106,7 +7282,11 @@
    "license_url": "",
    "credit_line": "-QFl_G1j8hU_fw at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.4,
+    0.6
+   ]
   },
   {
    "title": "Sunlight on the Road, Pontoise",
@@ -7169,7 +7349,11 @@
    "license_url": "",
    "credit_line": "Unknown sourceUnknown source",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.4,
+    0.4
+   ]
   },
   {
    "title": "Route de Saint-Antoine à L'Hermitage, Pontoise",
@@ -7190,7 +7374,11 @@
    "license_url": "",
    "credit_line": "Unknown sourceUnknown source",
    "license_verified": "2026-07-16",
-   "featured_rank": 26
+   "featured_rank": 26,
+   "focal_point": [
+    0.35,
+    0.4
+   ]
   },
   {
    "title": "View of Pontoise",
@@ -7211,7 +7399,11 @@
    "license_url": "",
    "credit_line": "Unknown sourceUnknown source",
    "license_verified": "2026-07-16",
-   "featured_rank": 35
+   "featured_rank": 35,
+   "focal_point": [
+    0.5,
+    0.35
+   ]
   },
   {
    "title": "The Lock at Pontoise",
@@ -7232,7 +7424,11 @@
    "license_url": "",
    "credit_line": "Unknown sourceUnknown source and library.clevelandart.org",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.5,
+    0.35
+   ]
   },
   {
    "title": "Peasant Woman Digging, the Jardin de Maubuisson, Pontoise",
