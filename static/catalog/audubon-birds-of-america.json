@@ -1124,7 +1124,11 @@
    "license_url": "",
    "credit_line": "University of Pittsburgh",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.55,
+    0.39
+   ]
   },
   {
    "title": "Columbia Jay",
@@ -1145,7 +1149,11 @@
    "license_url": "",
    "credit_line": "University of Pittsburgh",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.38,
+    0.55
+   ]
   },
   {
    "title": "Little Screech Owl",
@@ -1541,7 +1549,11 @@
    "license_url": "",
    "credit_line": "University of Pittsburgh",
    "license_verified": "2026-07-16",
-   "featured_rank": 50
+   "featured_rank": 50,
+   "focal_point": [
+    0.4,
+    0.4
+   ]
   },
   {
    "title": "Black & Yellow Warbler",
@@ -1562,7 +1574,11 @@
    "license_url": "",
    "credit_line": "University of Pittsburgh",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.38,
+    0.48
+   ]
   },
   {
    "title": "Red-tailed Hawk",
@@ -2008,7 +2024,11 @@
    "license_url": "",
    "credit_line": "University of Pittsburgh",
    "license_verified": "2026-07-16",
-   "featured_rank": 26
+   "featured_rank": 26,
+   "focal_point": [
+    0.42,
+    0.55
+   ]
   },
   {
    "title": "Chipping Sparrow",
@@ -2029,7 +2049,11 @@
    "license_url": "",
    "credit_line": "University of Pittsburgh",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.45,
+    0.58
+   ]
   },
   {
    "title": "Large billed Puffin",
@@ -2275,7 +2299,11 @@
    "license_url": "",
    "credit_line": "University of Pittsburgh",
    "license_verified": "2026-07-16",
-   "featured_rank": 35
+   "featured_rank": 35,
+   "focal_point": [
+    0.42,
+    0.6
+   ]
   },
   {
    "title": "Blue Jay",
@@ -2296,7 +2324,11 @@
    "license_url": "",
    "credit_line": "University of Pittsburgh",
    "license_verified": "2026-07-16",
-   "featured_rank": 55
+   "featured_rank": 55,
+   "focal_point": [
+    0.45,
+    0.58
+   ]
   },
   {
    "title": "Canada Warbler",
@@ -2567,7 +2599,11 @@
    "license_url": "",
    "credit_line": "University of Pittsburgh",
    "license_verified": "2026-07-16",
-   "featured_rank": 58
+   "featured_rank": 58,
+   "focal_point": [
+    0.48,
+    0.32
+   ]
   },
   {
    "title": "Wilson's Phalarope",
@@ -2638,7 +2674,11 @@
    "license_url": "",
    "credit_line": "University of Pittsburgh",
    "license_verified": "2026-07-16",
-   "featured_rank": 32
+   "featured_rank": 32,
+   "focal_point": [
+    0.32,
+    0.55
+   ]
   },
   {
    "title": "Fork-tail Petrel",
@@ -2684,7 +2724,11 @@
    "license_url": "",
    "credit_line": "University of Pittsburgh",
    "license_verified": "2026-07-16",
-   "featured_rank": 27
+   "featured_rank": 27,
+   "focal_point": [
+    0.42,
+    0.45
+   ]
   },
   {
    "title": "Harlequin Duck",
@@ -2755,7 +2799,11 @@
    "license_url": "",
    "credit_line": "University of Pittsburgh",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.45,
+    0.5
+   ]
   },
   {
    "title": "Yellow-winged Sparrow",
@@ -3001,7 +3049,11 @@
    "license_url": "",
    "credit_line": "University of Pittsburgh",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.53,
+    0.39
+   ]
   },
   {
    "title": "Ruby crowned Wren",
@@ -3022,7 +3074,11 @@
    "license_url": "",
    "credit_line": "University of Pittsburgh",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.58,
+    0.62
+   ]
   },
   {
    "title": "Brown headed Worm eating Warbler",
@@ -3218,7 +3274,11 @@
    "license_url": "",
    "credit_line": "University of Pittsburgh",
    "license_verified": "2026-07-16",
-   "featured_rank": 24
+   "featured_rank": 24,
+   "focal_point": [
+    0.62,
+    0.53
+   ]
   },
   {
    "title": "Long-billed Curlew",
@@ -3239,7 +3299,11 @@
    "license_url": "",
    "credit_line": "University of Pittsburgh",
    "license_verified": "2026-07-16",
-   "featured_rank": 32
+   "featured_rank": 32,
+   "focal_point": [
+    0.55,
+    0.48
+   ]
   },
   {
    "title": "Common Gallinule",
@@ -3635,7 +3699,11 @@
    "license_url": "",
    "credit_line": "University of Pittsburgh",
    "license_verified": "2026-07-16",
-   "featured_rank": 42
+   "featured_rank": 42,
+   "focal_point": [
+    0.32,
+    0.42
+   ]
   },
   {
    "title": "Red-breasted Nuthatch",
@@ -3731,7 +3799,11 @@
    "license_url": "",
    "credit_line": "University of Pittsburgh",
    "license_verified": "2026-07-16",
-   "featured_rank": 32
+   "featured_rank": 32,
+   "focal_point": [
+    0.45,
+    0.48
+   ]
   },
   {
    "title": "Mississippi Kite",
@@ -3902,7 +3974,11 @@
    "license_url": "",
    "credit_line": "University of Pittsburgh",
    "license_verified": "2026-07-16",
-   "featured_rank": 24
+   "featured_rank": 24,
+   "focal_point": [
+    0.42,
+    0.63
+   ]
   },
   {
    "title": "I. Goshawk - 2. Stanley Hawk",
@@ -4073,7 +4149,11 @@
    "license_url": "",
    "credit_line": "University of Pittsburgh",
    "license_verified": "2026-07-16",
-   "featured_rank": 26
+   "featured_rank": 26,
+   "focal_point": [
+    0.35,
+    0.63
+   ]
   },
   {
    "title": "Pine Finch",
@@ -4240,7 +4320,11 @@
    "license_url": "",
    "credit_line": "University of Pittsburgh",
    "license_verified": "2026-07-16",
-   "featured_rank": 26
+   "featured_rank": 26,
+   "focal_point": [
+    0.45,
+    0.45
+   ]
   },
   {
    "title": "Little Owl",
@@ -4286,7 +4370,11 @@
    "license_url": "",
    "credit_line": "University of Pittsburgh",
    "license_verified": "2026-07-16",
-   "featured_rank": 24
+   "featured_rank": 24,
+   "focal_point": [
+    0.53,
+    0.47
+   ]
   },
   {
    "title": "Black Guillemot",
@@ -4357,7 +4445,11 @@
    "license_url": "",
    "credit_line": "University of Pittsburgh",
    "license_verified": "2026-07-16",
-   "featured_rank": 55
+   "featured_rank": 55,
+   "focal_point": [
+    0.35,
+    0.68
+   ]
   },
   {
    "title": "Pin tailed Duck",
@@ -4603,7 +4695,11 @@
    "license_url": "",
    "credit_line": "University of Pittsburgh",
    "license_verified": "2026-07-16",
-   "featured_rank": 26
+   "featured_rank": 26,
+   "focal_point": [
+    0.28,
+    0.35
+   ]
   },
   {
    "title": "Jager",
@@ -4774,7 +4870,11 @@
    "license_url": "",
    "credit_line": "University of Pittsburgh",
    "license_verified": "2026-07-16",
-   "featured_rank": 25
+   "featured_rank": 25,
+   "focal_point": [
+    0.53,
+    0.54
+   ]
   },
   {
    "title": "Roseate Spoonbill",
@@ -4970,7 +5070,11 @@
    "license_url": "",
    "credit_line": "University of Pittsburgh",
    "license_verified": "2026-07-16",
-   "featured_rank": 32
+   "featured_rank": 32,
+   "focal_point": [
+    0.45,
+    0.72
+   ]
   },
   {
    "title": "White-winged Crossbill",
@@ -5116,7 +5220,11 @@
    "license_url": "",
    "credit_line": "University of Pittsburgh",
    "license_verified": "2026-07-16",
-   "featured_rank": 35
+   "featured_rank": 35,
+   "focal_point": [
+    0.45,
+    0.42
+   ]
   },
   {
    "title": "Columbian Humming Bird",
@@ -5183,7 +5291,11 @@
    "license_url": "",
    "credit_line": "University of Pittsburgh",
    "license_verified": "2026-07-16",
-   "featured_rank": 62
+   "featured_rank": 62,
+   "focal_point": [
+    0.5,
+    0.45
+   ]
   },
   {
    "title": "Fox-coloured Sparrow",
