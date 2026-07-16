@@ -4448,7 +4448,11 @@
    "license_url": "",
    "credit_line": "AwH6dbFHNtopBg at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.68,
+    0.78
+   ]
   },
   {
    "title": "In Front of Yorktown",
@@ -4469,7 +4473,11 @@
    "license_url": "",
    "credit_line": "Yale University Art Gallery",
    "license_verified": "2026-07-16",
-   "featured_rank": 35
+   "featured_rank": 35,
+   "focal_point": [
+    0.62,
+    0.55
+   ]
   },
   {
    "title": "Mink Pond",
@@ -5065,7 +5073,11 @@
    "license_url": "",
    "credit_line": "National Gallery of Art, Washington, D. C., online collection",
    "license_verified": "2026-07-16",
-   "featured_rank": 24
+   "featured_rank": 24,
+   "focal_point": [
+    0.28,
+    0.35
+   ]
   },
   {
    "title": "Indian Camp, Roberval, P.Q",
@@ -6461,7 +6473,11 @@
    "license_url": "",
    "credit_line": "Worcester Art Museum",
    "license_verified": "2026-07-16",
-   "featured_rank": 25
+   "featured_rank": 25,
+   "focal_point": [
+    0.45,
+    0.65
+   ]
   },
   {
    "title": "Wild Geese in Flight",
@@ -6482,7 +6498,11 @@
    "license_url": "",
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
-   "featured_rank": 25
+   "featured_rank": 25,
+   "focal_point": [
+    0.35,
+    0.62
+   ]
   },
   {
    "title": "On the Stile",
