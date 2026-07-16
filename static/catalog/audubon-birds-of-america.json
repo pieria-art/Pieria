@@ -5784,7 +5784,11 @@
    "license_url": "",
    "credit_line": "University of Pittsburgh",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.48,
+    0.4
+   ]
   },
   {
    "title": "Summer or Wood Duck",
@@ -5830,7 +5834,11 @@
    "license_url": "",
    "credit_line": "University of Pittsburgh",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.35,
+    0.22
+   ]
   },
   {
    "title": "Wilson's Plover",
@@ -6189,7 +6197,11 @@
    "license_url": "",
    "credit_line": "University of Pittsburgh",
    "license_verified": "2026-07-16",
-   "featured_rank": 34
+   "featured_rank": 34,
+   "focal_point": [
+    0.35,
+    0.35
+   ]
   },
   {
    "title": "Red-necked Grebe",
@@ -6235,7 +6247,11 @@
    "license_url": "",
    "credit_line": "University of Pittsburgh",
    "license_verified": "2026-07-16",
-   "featured_rank": 22
+   "featured_rank": 22,
+   "focal_point": [
+    0.42,
+    0.45
+   ]
   },
   {
    "title": "Long-tailed Duck",
@@ -6348,7 +6364,11 @@
    "license_url": "",
    "credit_line": "University of Pittsburgh",
    "license_verified": "2026-07-16",
-   "featured_rank": 26
+   "featured_rank": 26,
+   "focal_point": [
+    0.42,
+    0.48
+   ]
   },
   {
    "title": "Ring Plover",
@@ -6394,7 +6414,11 @@
    "license_url": "",
    "credit_line": "University of Pittsburgh",
    "license_verified": "2026-07-16",
-   "featured_rank": 35
+   "featured_rank": 35,
+   "focal_point": [
+    0.35,
+    0.35
+   ]
   },
   {
    "title": "Red-breasted Snipe",
@@ -6761,7 +6785,11 @@
    "license_url": "",
    "credit_line": "University of Pittsburgh",
    "license_verified": "2026-07-16",
-   "featured_rank": 24
+   "featured_rank": 24,
+   "focal_point": [
+    0.6,
+    0.4
+   ]
   },
   {
    "title": "California Partridge",
@@ -6782,7 +6810,11 @@
    "license_url": "",
    "credit_line": "University of Pittsburgh",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.6,
+    0.4
+   ]
   },
   {
    "title": "I. Maria's Woodpecker - 2. Three-toed Woodpecker - 3. Phillips' Woodpecker - 4. Canadian Woodpecker - 5. Harris's Woodpecker - 6. Audubon's Woodpecker",
@@ -7016,7 +7048,11 @@
    "license_url": "",
    "credit_line": "University of Pittsburgh",
    "license_verified": "2026-07-16",
-   "featured_rank": 26
+   "featured_rank": 26,
+   "focal_point": [
+    0.42,
+    0.45
+   ]
   },
   {
    "title": "American Crow",
@@ -7037,7 +7073,11 @@
    "license_url": "",
    "credit_line": "University of Pittsburgh",
    "license_verified": "2026-07-16",
-   "featured_rank": 32
+   "featured_rank": 32,
+   "focal_point": [
+    0.35,
+    0.55
+   ]
   },
   {
    "title": "Black-capped Titmouse",
@@ -7289,7 +7329,11 @@
    "license_url": "",
    "credit_line": "University of Pittsburgh",
    "license_verified": "2026-07-16",
-   "featured_rank": 33
+   "featured_rank": 33,
+   "focal_point": [
+    0.55,
+    0.4
+   ]
   },
   {
    "title": "Smew or White Nun",
@@ -7646,7 +7690,11 @@
    "license_url": "",
    "credit_line": "University of Pittsburgh",
    "license_verified": "2026-07-16",
-   "featured_rank": 26
+   "featured_rank": 26,
+   "focal_point": [
+    0.35,
+    0.48
+   ]
   },
   {
    "title": "Dusky Albatros",
@@ -7667,7 +7715,11 @@
    "license_url": "",
    "credit_line": "University of Pittsburgh",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.32,
+    0.35
+   ]
   },
   {
    "title": "I. Violet-green Cormorant - 2. Townsend's Cormorant",
@@ -7688,7 +7740,11 @@
    "license_url": "",
    "credit_line": "University of Pittsburgh",
    "license_verified": "2026-07-16",
-   "featured_rank": 26
+   "featured_rank": 26,
+   "focal_point": [
+    0.55,
+    0.32
+   ]
   },
   {
    "title": "I. Brown Creeper - 2. Californian Nuthatch",
@@ -7730,7 +7786,11 @@
    "license_url": "",
    "credit_line": "University of Pittsburgh",
    "license_verified": "2026-07-16",
-   "featured_rank": 35
+   "featured_rank": 35,
+   "focal_point": [
+    0.6,
+    0.55
+   ]
   },
   {
    "title": "I. Plumed--Partridge - 2. Thick--legged Partridge",
@@ -7772,7 +7832,11 @@
    "license_url": "",
    "credit_line": "University of Pittsburgh",
    "license_verified": "2026-07-16",
-   "featured_rank": 48
+   "featured_rank": 48,
+   "focal_point": [
+    0.35,
+    0.28
+   ]
   },
   {
    "title": "Townsend's Sandpiper",
@@ -7856,7 +7920,11 @@
    "license_url": "",
    "credit_line": "University of Pittsburgh",
    "license_verified": "2026-07-16",
-   "featured_rank": 26
+   "featured_rank": 26,
+   "focal_point": [
+    0.32,
+    0.35
+   ]
   },
   {
    "title": "Fork-tailed Gull",
@@ -7898,7 +7966,11 @@
    "license_url": "",
    "credit_line": "University of Pittsburgh",
    "license_verified": "2026-07-16",
-   "featured_rank": 29
+   "featured_rank": 29,
+   "focal_point": [
+    0.6,
+    0.35
+   ]
   },
   {
    "title": "Black-bellied Plover",
@@ -7919,7 +7991,11 @@
    "license_url": "",
    "credit_line": "University of Pittsburgh",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.4,
+    0.48
+   ]
   },
   {
    "title": "Yellow-Crowned Heron",
@@ -7940,7 +8016,11 @@
    "license_url": "",
    "credit_line": "University of Pittsburgh",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.38,
+    0.52
+   ]
   },
   {
    "title": "American Bittern",
@@ -7961,7 +8041,11 @@
    "license_url": "",
    "credit_line": "University of Pittsburgh",
    "license_verified": "2026-07-16",
-   "featured_rank": 33
+   "featured_rank": 33,
+   "focal_point": [
+    0.55,
+    0.35
+   ]
   },
   {
    "title": "Great Auk",
@@ -7982,7 +8066,11 @@
    "license_url": "",
    "credit_line": "University of Pittsburgh",
    "license_verified": "2026-07-16",
-   "featured_rank": 48
+   "featured_rank": 48,
+   "focal_point": [
+    0.62,
+    0.35
+   ]
   },
   {
    "title": "I. Lazuli Finch - 2. Crimson-necked Bull-Finch - 3. Gray-crowned Linnet - 4. Cow-pen Bird - 5. Evening Grosbeak - 6. Brown Longspur",
@@ -8003,7 +8091,11 @@
    "license_url": "",
    "credit_line": "University of Pittsburgh",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.5,
+    0.48
+   ]
   },
   {
    "title": "Cardinal Grosbeak",
@@ -8024,7 +8116,11 @@
    "license_url": "",
    "credit_line": "University of Pittsburgh",
    "license_verified": "2026-07-16",
-   "featured_rank": 38
+   "featured_rank": 38,
+   "focal_point": [
+    0.42,
+    0.42
+   ]
   },
   {
    "title": "Barn Owl",
@@ -8045,7 +8141,11 @@
    "license_url": "",
    "credit_line": "University of Pittsburgh",
    "license_verified": "2026-07-16",
-   "featured_rank": 45
+   "featured_rank": 45,
+   "focal_point": [
+    0.42,
+    0.35
+   ]
   },
   {
    "title": "Common Gull",
@@ -8087,7 +8187,11 @@
    "license_url": "",
    "credit_line": "University of Pittsburgh",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.53,
+    0.42
+   ]
   },
   {
    "title": "Snowy Heron or White Egretlabel",
@@ -8129,7 +8233,11 @@
    "license_url": "",
    "credit_line": "University of Pittsburgh",
    "license_verified": "2026-07-16",
-   "featured_rank": 26
+   "featured_rank": 26,
+   "focal_point": [
+    0.35,
+    0.48
+   ]
   },
   {
    "title": "Greenshank",
@@ -8192,7 +8300,11 @@
    "license_url": "",
    "credit_line": "University of Pittsburgh",
    "license_verified": "2026-07-16",
-   "featured_rank": 27
+   "featured_rank": 27,
+   "focal_point": [
+    0.45,
+    0.45
+   ]
   },
   {
    "title": "Red backed Sandpiper",
@@ -8213,7 +8325,11 @@
    "license_url": "",
    "credit_line": "University of Pittsburgh",
    "license_verified": "2026-07-16",
-   "featured_rank": 27
+   "featured_rank": 27,
+   "focal_point": [
+    0.5,
+    0.4
+   ]
   },
   {
    "title": "Canvas backed Duck",
@@ -8234,7 +8350,11 @@
    "license_url": "",
    "credit_line": "University of Pittsburgh",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.45,
+    0.55
+   ]
   },
   {
    "title": "Dusky Duck",
@@ -8255,7 +8375,11 @@
    "license_url": "",
    "credit_line": "University of Pittsburgh",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.55,
+    0.42
+   ]
   },
   {
    "title": "Blue Crane or Heron",
@@ -8276,7 +8400,11 @@
    "license_url": "",
    "credit_line": "University of Pittsburgh",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.35,
+    0.32
+   ]
   },
   {
    "title": "Spotted Sandpiper",
@@ -8297,7 +8425,11 @@
    "license_url": "",
    "credit_line": "University of Pittsburgh",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.47,
+    0.58
+   ]
   },
   {
    "title": "Long-legged Avocet",
@@ -8318,7 +8450,11 @@
    "license_url": "",
    "credit_line": "University of Pittsburgh",
    "license_verified": "2026-07-16",
-   "featured_rank": 26
+   "featured_rank": 26,
+   "focal_point": [
+    0.38,
+    0.35
+   ]
   },
   {
    "title": "Goosander",
@@ -8360,7 +8496,11 @@
    "license_url": "",
    "credit_line": "University of Pittsburgh",
    "license_verified": "2026-07-16",
-   "featured_rank": 18
+   "featured_rank": 18,
+   "focal_point": [
+    0.38,
+    0.3
+   ]
   },
   {
    "title": "Least Stormy-Petrel",
@@ -8381,7 +8521,11 @@
    "license_url": "",
    "credit_line": "University of Pittsburgh",
    "license_verified": "2026-07-16",
-   "featured_rank": 22
+   "featured_rank": 22,
+   "focal_point": [
+    0.5,
+    0.42
+   ]
   },
   {
    "title": "Great Cinereous Owl",
@@ -8402,7 +8546,11 @@
    "license_url": "",
    "credit_line": "University of Pittsburgh",
    "license_verified": "2026-07-16",
-   "featured_rank": 35
+   "featured_rank": 35,
+   "focal_point": [
+    0.32,
+    0.28
+   ]
   },
   {
    "title": "MacGillivray's Finch",
@@ -8444,7 +8592,11 @@
    "license_url": "",
    "credit_line": "University of Pittsburgh",
    "license_verified": "2026-07-16",
-   "featured_rank": 26
+   "featured_rank": 26,
+   "focal_point": [
+    0.35,
+    0.58
+   ]
   },
   {
    "title": "I. Winter Wren - 2. Rock Wren",
@@ -8528,7 +8680,11 @@
    "license_url": "",
    "credit_line": "University of Pittsburgh",
    "license_verified": "2026-07-16",
-   "featured_rank": 27
+   "featured_rank": 27,
+   "focal_point": [
+    0.42,
+    0.5
+   ]
   },
   {
    "title": "American Water Ouzel",
@@ -8570,7 +8726,11 @@
    "license_url": "",
    "credit_line": "University of Pittsburgh",
    "license_verified": "2026-07-16",
-   "featured_rank": 27
+   "featured_rank": 27,
+   "focal_point": [
+    0.45,
+    0.48
+   ]
   },
   {
    "title": "Ruff-necked Humming-bird",
@@ -8591,7 +8751,11 @@
    "license_url": "",
    "credit_line": "University of Pittsburgh",
    "license_verified": "2026-07-16",
-   "featured_rank": 26
+   "featured_rank": 26,
+   "focal_point": [
+    0.47,
+    0.35
+   ]
   },
   {
    "title": "Long-eared Owl",
@@ -8612,7 +8776,11 @@
    "license_url": "",
    "credit_line": "University of Pittsburgh",
    "license_verified": "2026-07-16",
-   "featured_rank": 38
+   "featured_rank": 38,
+   "focal_point": [
+    0.32,
+    0.25
+   ]
   },
   {
    "title": "Brant Goose",
@@ -8633,7 +8801,11 @@
    "license_url": "",
    "credit_line": "University of Pittsburgh",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.6,
+    0.42
+   ]
   },
   {
    "title": "Burgomaster Gull",
@@ -8696,7 +8868,11 @@
    "license_url": "",
    "credit_line": "University of Pittsburgh",
    "license_verified": "2026-07-16",
-   "featured_rank": 26
+   "featured_rank": 26,
+   "focal_point": [
+    0.4,
+    0.62
+   ]
   },
   {
    "title": "I. Little Tyrant Fly-catcher - 2. Small-headed Fly-catcher - 3. Blue Mountain Warbler - 4. Bartran's Vireo - 5. Short-legged Pewee - 6. Rocky Mountain Fly-catcher",
@@ -8738,7 +8914,11 @@
    "license_url": "",
    "credit_line": "University of Pittsburgh",
    "license_verified": "2026-07-16",
-   "featured_rank": 26
+   "featured_rank": 26,
+   "focal_point": [
+    0.35,
+    0.42
+   ]
   },
   {
    "title": "Esquimaux Curlew",
@@ -8759,7 +8939,11 @@
    "license_url": "",
    "credit_line": "University of Pittsburgh",
    "license_verified": "2026-07-16",
-   "featured_rank": 34
+   "featured_rank": 34,
+   "focal_point": [
+    0.4,
+    0.45
+   ]
   },
   {
    "title": "Schinz's Sandpiper",
@@ -8801,7 +8985,11 @@
    "license_url": "",
    "credit_line": "University of Pittsburgh",
    "license_verified": "2026-07-16",
-   "featured_rank": 24
+   "featured_rank": 24,
+   "focal_point": [
+    0.42,
+    0.45
+   ]
   },
   {
    "title": "White-winged silvery Gull",
@@ -8822,7 +9010,11 @@
    "license_url": "",
    "credit_line": "University of Pittsburgh",
    "license_verified": "2026-07-16",
-   "featured_rank": 26
+   "featured_rank": 26,
+   "focal_point": [
+    0.45,
+    0.42
+   ]
   },
   {
    "title": "Wandering Shearwater",
@@ -8843,7 +9035,11 @@
    "license_url": "",
    "credit_line": "University of Pittsburgh",
    "license_verified": "2026-07-16",
-   "featured_rank": 22
+   "featured_rank": 22,
+   "focal_point": [
+    0.42,
+    0.45
+   ]
   },
   {
    "title": "Bartram Sandpiper",
@@ -8864,7 +9060,11 @@
    "license_url": "",
    "credit_line": "University of Pittsburgh",
    "license_verified": "2026-07-16",
-   "featured_rank": 27
+   "featured_rank": 27,
+   "focal_point": [
+    0.42,
+    0.42
+   ]
   },
   {
    "title": "Great Northern Diver or Loon",
@@ -8885,7 +9085,11 @@
    "license_url": "",
    "credit_line": "University of Pittsburgh",
    "license_verified": "2026-07-16",
-   "featured_rank": 32
+   "featured_rank": 32,
+   "focal_point": [
+    0.62,
+    0.3
+   ]
   },
   {
    "title": "Tell-tale Godwit or Snipe",
@@ -8906,7 +9110,11 @@
    "license_url": "",
    "credit_line": "University of Pittsburgh",
    "license_verified": "2026-07-16",
-   "featured_rank": 26
+   "featured_rank": 26,
+   "focal_point": [
+    0.42,
+    0.38
+   ]
   },
   {
    "title": "American White Pelican",
@@ -8927,7 +9135,11 @@
    "license_url": "",
    "credit_line": "University of Pittsburgh",
    "license_verified": "2026-07-16",
-   "featured_rank": 35
+   "featured_rank": 35,
+   "focal_point": [
+    0.42,
+    0.22
+   ]
   },
   {
    "title": "Blue-Winged Teal",
