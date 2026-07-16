@@ -23,7 +23,12 @@
     0.45,
     0.25
    ],
-   "featured_rank": 20
+   "featured_rank": 20,
+   "license_verdict": "pd",
+   "license_basis": "CC0 — Met Open Access",
+   "license_url": "",
+   "credit_line": "Collection of The Metropolitan Museum of Art",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "The Belles Heures of Jean de France, duc de Berry",
@@ -43,7 +48,12 @@
     0.5,
     0.33
    ],
-   "featured_rank": 30
+   "featured_rank": 30,
+   "license_verdict": "pd",
+   "license_basis": "CC0 — Met Open Access",
+   "license_url": "",
+   "credit_line": "Collection of The Metropolitan Museum of Art",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Book of Kells: Chi Rho Page",
@@ -63,7 +73,12 @@
     0.45,
     0.4
    ],
-   "featured_rank": 75
+   "featured_rank": 75,
+   "license_verdict": "pd",
+   "license_basis": "Public domain",
+   "license_url": "",
+   "credit_line": "The Yorck Project (2002) 10.000 Meisterwerke der Malerei (DVD-ROM), distributed by DIRECTMEDIA Publishing GmbH. ISBN: 3936122202.",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Très Riches Heures du Duc de Berry: January",
@@ -83,7 +98,12 @@
     0.78,
     0.45
    ],
-   "featured_rank": 70
+   "featured_rank": 70,
+   "license_verdict": "pd",
+   "license_basis": "Public domain",
+   "license_url": "",
+   "credit_line": "nevsepic",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Très Riches Heures du Duc de Berry: February",
@@ -103,7 +123,12 @@
     0.33,
     0.63
    ],
-   "featured_rank": 70
+   "featured_rank": 70,
+   "license_verdict": "pd",
+   "license_basis": "Public domain",
+   "license_url": "",
+   "credit_line": "Photo. R.M.N. / R.-G. Ojéda",
+   "license_verified": "2026-07-16"
   }
  ]
 }

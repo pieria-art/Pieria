@@ -23,7 +23,12 @@
     0.5,
     0.45
    ],
-   "featured_rank": 92
+   "featured_rank": 92,
+   "license_verdict": "pd",
+   "license_basis": "Public domain",
+   "license_url": "",
+   "credit_line": "https://webbtelescope.org/contents/media/images/2022/052/01GF423GBQSK6ANC89NTFJW8VM",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Webb's First Deep Field",
@@ -43,7 +48,12 @@
     0.72,
     0.5
    ],
-   "featured_rank": 75
+   "featured_rank": 75,
+   "license_verdict": "pd",
+   "license_basis": "Public domain",
+   "license_url": "",
+   "credit_line": "Webb's First Deep Field (MIRI and NIRCam Side-by-Side Compass Image)",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Cosmic Cliffs Carina Nebula",
@@ -63,7 +73,12 @@
     0.4,
     0.45
    ],
-   "featured_rank": 75
+   "featured_rank": 75,
+   "license_verdict": "pd",
+   "license_basis": "Public domain",
+   "license_url": "",
+   "credit_line": "\"Cosmic Cliffs\" in the Carina Nebula (NIRCam Compass Image)",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Hubble Ultra Deep Field",
@@ -83,7 +98,12 @@
     0.5,
     0.5
    ],
-   "featured_rank": 70
+   "featured_rank": 70,
+   "license_verdict": "pd",
+   "license_basis": "Public domain",
+   "license_url": "",
+   "credit_line": "https://hubblesite.org/contents/news-releases/2004/news-2004-07.html",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Sombrero Galaxy",
@@ -103,7 +123,12 @@
     0.5,
     0.52
    ],
-   "featured_rank": 60
+   "featured_rank": 60,
+   "license_verdict": "pd",
+   "license_basis": "Public domain",
+   "license_url": "",
+   "credit_line": "http://www.spacetelescope.org/images/opo0328a/ ([cdn.spacetelescope.org/archives/images/screen/opo0328a.jpg direct link]) http://hubblesite.org/newscenter/newsdesk/archive/releases/2003/28/image/a",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Crab Nebula",
@@ -123,7 +148,12 @@
     0.52,
     0.5
    ],
-   "featured_rank": 65
+   "featured_rank": 65,
+   "license_verdict": "pd",
+   "license_basis": "Public domain",
+   "license_url": "",
+   "credit_line": "HubbleSite: gallery, release.",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Horsehead Nebula",
@@ -143,7 +173,12 @@
     0.56,
     0.46
    ],
-   "featured_rank": 75
+   "featured_rank": 75,
+   "license_verdict": "pd",
+   "license_basis": "CC0",
+   "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "credit_line": "Own work",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Andromeda Galaxy",
@@ -163,7 +198,12 @@
     0.42,
     0.55
    ],
-   "featured_rank": 70
+   "featured_rank": 70,
+   "license_verdict": "pd",
+   "license_basis": "Public domain",
+   "license_url": "",
+   "credit_line": "https://science.nasa.gov/missions/hubble/nasas-hubble-traces-hidden-history-of-andromeda-galaxy/",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Veil Nebula",
@@ -183,7 +223,12 @@
     0.5,
     0.45
    ],
-   "featured_rank": 40
+   "featured_rank": 40,
+   "license_verdict": "pd",
+   "license_basis": "CC0",
+   "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "credit_line": "Own work",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Southern Ring Nebula Webb",
@@ -203,7 +248,12 @@
     0.28,
     0.45
    ],
-   "featured_rank": 45
+   "featured_rank": 45,
+   "license_verdict": "pd",
+   "license_basis": "Public domain",
+   "license_url": "",
+   "credit_line": "The Webb Space Telescope Studies the Southern Ring Nebula",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Stephan's Quintet Webb",
@@ -223,7 +273,12 @@
     0.6,
     0.45
    ],
-   "featured_rank": 55
+   "featured_rank": 55,
+   "license_verdict": "pd",
+   "license_basis": "Public domain",
+   "license_url": "",
+   "credit_line": "https://webbtelescope.org/contents/media/images/2022/034/01G7DA5ADA2WDSK1JJPQ0PTG4A",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Eagle Nebula",
@@ -243,7 +298,12 @@
     0.4,
     0.2
    ],
-   "featured_rank": 55
+   "featured_rank": 55,
+   "license_verdict": "pd",
+   "license_basis": "Public domain",
+   "license_url": "",
+   "credit_line": "http://apod.nasa.gov/apod/ap071209.html http://www.spacetelescope.org/images/heic0506b/",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Tarantula Nebula Webb",
@@ -263,7 +323,12 @@
     0.5,
     0.55
    ],
-   "featured_rank": 50
+   "featured_rank": 50,
+   "license_verdict": "pd",
+   "license_basis": "Public domain",
+   "license_url": "",
+   "credit_line": "https://webbtelescope.org/contents/media/images/2022/041/01GA76MYFN0FMKNRHGCAGGYCVQ",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Helix Nebula",
@@ -283,7 +348,12 @@
     0.47,
     0.5
    ],
-   "featured_rank": 55
+   "featured_rank": 55,
+   "license_verdict": "pd",
+   "license_basis": "Public domain",
+   "license_url": "",
+   "credit_line": "NASA - Comets Kick up Dust in Helix Nebula",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Ring Nebula",
@@ -303,7 +373,12 @@
     0.5,
     0.52
    ],
-   "featured_rank": 60
+   "featured_rank": 60,
+   "license_verdict": "pd",
+   "license_basis": "Public domain",
+   "license_url": "",
+   "credit_line": "HubbleSite Release Image: STScI-2013-13 - NASA's Hubble Space Telescope Reveals the Ring Nebula's True Shape",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Orion Nebula",
@@ -323,7 +398,12 @@
     0.45,
     0.48
    ],
-   "featured_rank": 75
+   "featured_rank": 75,
+   "license_verdict": "pd",
+   "license_basis": "Public domain",
+   "license_url": "",
+   "credit_line": "http://hubblesite.org/newscenter/newsdesk/archive/releases/2006/01/ https://www.spacetelescope.org/news/heic0601/",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Pinwheel Galaxy",
@@ -343,7 +423,12 @@
     0.55,
     0.55
    ],
-   "featured_rank": 45
+   "featured_rank": 45,
+   "license_verdict": "pd",
+   "license_basis": "CC0",
+   "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "credit_line": "Own work",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Antennae Galaxies",
@@ -363,7 +448,12 @@
     0.55,
     0.4
    ],
-   "featured_rank": 50
+   "featured_rank": 50,
+   "license_verdict": "pd",
+   "license_basis": "Public domain",
+   "license_url": "",
+   "credit_line": "http://www.spacetelescope.org/images/heic0615a/ http://hubblesite.org/newscenter/archive/releases/2006/46/image/a/ (direct link)",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Mystic Mountain",
@@ -383,7 +473,12 @@
     0.47,
     0.35
    ],
-   "featured_rank": 55
+   "featured_rank": 55,
+   "license_verdict": "pd",
+   "license_basis": "Public domain",
+   "license_url": "",
+   "credit_line": "http://hubblesite.org/gallery/wall_murals/3-mystic-mt-color/ ([hubblesite.org/gallery/wall_murals/download/3-mystic-mt-color/full/mystic_mt_60x40full.jpg direct link])",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Butterfly Nebula NGC 6302",
@@ -403,7 +498,12 @@
     0.5,
     0.5
    ],
-   "featured_rank": 40
+   "featured_rank": 40,
+   "license_verdict": "pd",
+   "license_basis": "Public domain",
+   "license_url": "",
+   "credit_line": "http://www.hubblesite.org/newscenter/archive/releases/2009/25/image/f/",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Cartwheel Galaxy Webb",
@@ -423,7 +523,12 @@
     0.6,
     0.55
    ],
-   "featured_rank": 48
+   "featured_rank": 48,
+   "license_verdict": "pd",
+   "license_basis": "Public domain",
+   "license_url": "",
+   "credit_line": "Cartwheel Galaxy (NIRCam and MIRI Composite Image)",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Cosmic Reef",
@@ -443,7 +548,12 @@
     0.55,
     0.4
    ],
-   "featured_rank": 35
+   "featured_rank": 35,
+   "license_verdict": "pd",
+   "license_basis": "Public domain",
+   "license_url": "",
+   "credit_line": "Compass Image for Cosmic Reef",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Jupiter's Great Red Spot Juno",
@@ -463,7 +573,12 @@
     0.45,
     0.4
    ],
-   "featured_rank": 45
+   "featured_rank": 45,
+   "license_verdict": "pd",
+   "license_basis": "Public domain",
+   "license_url": "",
+   "credit_line": "https://www.flickr.com/photos/kevinmgill/35491570250/in/photostream/",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Pluto New Horizons",
@@ -483,7 +598,12 @@
     0.5,
     0.5
    ],
-   "featured_rank": 65
+   "featured_rank": 65,
+   "license_verdict": "pd",
+   "license_basis": "Public domain",
+   "license_url": "",
+   "credit_line": "10 Years Ago: NASA’s New Horizons Captures Pluto’s Heart",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Perseverance Selfie with Ingenuity",
@@ -503,7 +623,12 @@
     0.34,
     0.52
    ],
-   "featured_rank": 40
+   "featured_rank": 40,
+   "license_verdict": "pd",
+   "license_basis": "Public domain",
+   "license_url": "",
+   "credit_line": "https://mars.nasa.gov/resources/27262/perseverances-three-forks-sample-depot-selfie/",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Curiosity Self-Portrait at Mars",
@@ -523,7 +648,12 @@
     0.53,
     0.42
    ],
-   "featured_rank": 55
+   "featured_rank": 55,
+   "license_verdict": "pd",
+   "license_basis": "Public domain",
+   "license_url": "",
+   "credit_line": "https://photojournal.jpl.nasa.gov/catalog/PIA19142",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Saturn from Cassini",
@@ -543,7 +673,12 @@
     0.48,
     0.53
    ],
-   "featured_rank": 55
+   "featured_rank": 55,
+   "license_verdict": "pd",
+   "license_basis": "Public domain",
+   "license_url": "",
+   "credit_line": "https://images.nasa.gov/details/PIA05380",
+   "license_verified": "2026-07-16"
   }
  ]
 }

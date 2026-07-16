@@ -23,7 +23,12 @@
     0.5,
     0.48
    ],
-   "featured_rank": 45
+   "featured_rank": 45,
+   "license_verdict": "pd",
+   "license_basis": "Public domain",
+   "license_url": "",
+   "credit_line": "https://nla.gov.au/nla.obj-230711138/view",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Nova et Aucta Orbis Terrae Descriptio",
@@ -43,7 +48,12 @@
     0.5,
     0.4
    ],
-   "featured_rank": 50
+   "featured_rank": 50,
+   "license_verdict": "pd",
+   "license_basis": "Public domain",
+   "license_url": "",
+   "credit_line": "Bibliothèque nationale de France",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Universalis Cosmographia",
@@ -63,7 +73,12 @@
     0.45,
     0.45
    ],
-   "featured_rank": 55
+   "featured_rank": 55,
+   "license_verdict": "pd",
+   "license_basis": "Public domain",
+   "license_url": "",
+   "credit_line": "Museu Paulista",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Nova Totius Terrarum Orbis Geographica",
@@ -83,7 +98,12 @@
     0.5,
     0.5
    ],
-   "featured_rank": 30
+   "featured_rank": 30,
+   "license_verdict": "pd",
+   "license_basis": "Public domain",
+   "license_url": "",
+   "credit_line": "This map is available from Eran Laor Cartographic Collection of the National Library of Israel. link to the source:NOVA TOTIUS TERRARUM ORBIS GEOGRAPHICA AC HYDROGRAPHICA TABULA",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Americae Nova Tabula",
@@ -103,7 +123,12 @@
     0.5,
     0.5
    ],
-   "featured_rank": 28
+   "featured_rank": 28,
+   "license_verdict": "pd",
+   "license_basis": "Public domain",
+   "license_url": "",
+   "credit_line": "https://www.raremaps.com/gallery/detail/81465/nova-et-acurata-totius-americae-tabula-auct-gi-blaeu-am-blaeu-todeschi-longhi",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Fra Mauro map",
@@ -123,7 +148,12 @@
     0.5,
     0.5
    ],
-   "featured_rank": 35
+   "featured_rank": 35,
+   "license_verdict": "pd",
+   "license_basis": "Public domain",
+   "license_url": "",
+   "credit_line": "https://www.highres.factum-arte.org/Fra_Mauro_Map/shared/viewer.html (downloaded with dezoomify-rs and cropped with vips)",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Tabula Rogeriana",
@@ -143,7 +173,12 @@
     0.5,
     0.5
    ],
-   "featured_rank": 35
+   "featured_rank": 35,
+   "license_verdict": "pd",
+   "license_basis": "Public domain",
+   "license_url": "",
+   "credit_line": "http://www.bigmapblog.com/2011/idrisis-tabula-rogeriana-world-map-reproduction/",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Leo Belgicus",
@@ -163,7 +198,12 @@
     0.5,
     0.45
    ],
-   "featured_rank": 15
+   "featured_rank": 15,
+   "license_verdict": "pd",
+   "license_basis": "Public domain",
+   "license_url": "",
+   "credit_line": "http://www.sothebys.com/en/auctions/ecatalogue/2012/travel-atlases-maps-natural-history-l12401/lot.47.html",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Ptolemy world map",
@@ -183,7 +223,12 @@
     0.5,
     0.45
    ],
-   "featured_rank": 40
+   "featured_rank": 40,
+   "license_verdict": "pd",
+   "license_basis": "Public domain",
+   "license_url": "",
+   "credit_line": "https://www.raremaps.com/gallery/detail/67387dc/world-ptolemy-holle",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Harmonia Macrocosmica: Planisphaerium Copernicanum",
@@ -203,7 +248,12 @@
     0.5,
     0.52
    ],
-   "featured_rank": 35
+   "featured_rank": 35,
+   "license_verdict": "pd",
+   "license_basis": "Public domain",
+   "license_url": "",
+   "credit_line": "http://www.phys.uu.nl/~vgent/cellarius/cellarius_plates.htm",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Harmonia Macrocosmica: Planisphaerium Ptolemaicum",
@@ -223,7 +273,12 @@
     0.5,
     0.5
    ],
-   "featured_rank": 32
+   "featured_rank": 32,
+   "license_verdict": "pd",
+   "license_basis": "Public domain",
+   "license_url": "",
+   "credit_line": "https://www.phys.uu.nl/~vgent/cellarius/cellarius_plates.htm",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Harmonia Macrocosmica: Northern Constellations",
@@ -243,7 +298,12 @@
     0.5,
     0.5
    ],
-   "featured_rank": 30
+   "featured_rank": 30,
+   "license_verdict": "pd",
+   "license_basis": "Public domain",
+   "license_url": "",
+   "credit_line": "https://www.phys.uu.nl/~vgent/cellarius/cellarius_plates.htm",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Uranometria: Orion",
@@ -263,7 +323,12 @@
     0.45,
     0.32
    ],
-   "featured_rank": 30
+   "featured_rank": 30,
+   "license_verdict": "pd",
+   "license_basis": "Public domain",
+   "license_url": "",
+   "credit_line": "From WP en, uploaded by en:User:Mouser",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Firmamentum Sobiescianum",
@@ -283,7 +348,12 @@
     0.5,
     0.5
    ],
-   "featured_rank": 22
+   "featured_rank": 22,
+   "license_verdict": "pd",
+   "license_basis": "Public domain",
+   "license_url": "",
+   "credit_line": "http://www.atlascoelestis.com/hev%2060.htm",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Atlas Coelestis",
@@ -303,7 +373,12 @@
     0.78,
     0.25
    ],
-   "featured_rank": 20
+   "featured_rank": 20,
+   "license_verdict": "pd",
+   "license_basis": "Public domain",
+   "license_url": "",
+   "credit_line": "https://www.raremaps.com/gallery/detail/66646/atlas-coelestis-flamsteed",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Civitates Orbis Terrarum: Constantinople",
@@ -323,7 +398,12 @@
     0.42,
     0.42
    ],
-   "featured_rank": 22
+   "featured_rank": 22,
+   "license_verdict": "pd",
+   "license_basis": "Public domain",
+   "license_url": "",
+   "credit_line": "This map is available from Eran Laor Cartographic Collection of the National Library of Israel. link to the source:Byzantium, nunc Constantinopolis",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Carta Marina",
@@ -343,7 +423,12 @@
     0.5,
     0.5
    ],
-   "featured_rank": 35
+   "featured_rank": 35,
+   "license_verdict": "pd",
+   "license_basis": "Public domain",
+   "license_url": "",
+   "credit_line": "https://archive.org/details/annalsofvoyageso00luca/page/247",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "A New and Accurate Map of the World",
@@ -363,7 +448,12 @@
     0.5,
     0.45
    ],
-   "featured_rank": 22
+   "featured_rank": 22,
+   "license_verdict": "pd",
+   "license_basis": "Public domain",
+   "license_url": "",
+   "credit_line": "Self-scanned",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Nova Belgica et Anglia Nova",
@@ -383,7 +473,12 @@
     0.45,
     0.5
    ],
-   "featured_rank": 25
+   "featured_rank": 25,
+   "license_verdict": "pd",
+   "license_basis": "Public domain",
+   "license_url": "",
+   "credit_line": "From: Blaeu, W., Atlas Maior, (Amsterdam: Blaeu) 1643. Geographicus - https://www.geographicus.com/P/AntiqueMap/NovaBelgicaetAngliaNova-blaeu-1634-2",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Asiae Nova Descriptio",
@@ -403,7 +498,12 @@
     0.5,
     0.45
    ],
-   "featured_rank": 18
+   "featured_rank": 18,
+   "license_verdict": "pd",
+   "license_basis": "CC0",
+   "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "credit_line": "NLB Singapore, David Parry Southeast Asian Map Collection. Available on BookSG https://eresources.nlb.gov.sg/printheritage/detail/ff196d9a-e682-456c-ae8b-608e6d74403d.aspx",
+   "license_verified": "2026-07-16"
   }
  ]
 }

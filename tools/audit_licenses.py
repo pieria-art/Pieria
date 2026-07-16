@@ -29,6 +29,7 @@ import re
 import sys
 from collections import Counter
 from dataclasses import dataclass
+from datetime import UTC, datetime
 from pathlib import Path
 from urllib.parse import unquote, urlparse
 
@@ -154,7 +155,10 @@ async def _commons_batch(client: httpx.AsyncClient, titles: list[str]) -> dict[s
     await _wm_throttle()
     params = {"action": "query", "format": "json", "prop": "imageinfo",
               "iiprop": "extmetadata", "redirects": "1", "titles": "|".join(titles)}
-    r = await client.get(COMMONS_API, params=params, timeout=60.0)
+    # POST, not GET: a batch of 50 long filenames (Rijksmuseum/NDL Hiroshige titles run to 200+ chars)
+    # overflows the URL length limit as a GET -> HTTP 414 -> an HTML error page -> JSONDecodeError,
+    # which previously marked the whole batch "error". POST carries the titles in the body.
+    r = await client.post(COMMONS_API, data=params, timeout=60.0)
     data = r.json()
     q = data.get("query", {})
     # Resolve each REQUESTED title -> its final page through normalization + redirects (renamed
@@ -260,12 +264,50 @@ def report(items: list[Item], as_json: bool) -> int:
     return 1 if flagged else 0
 
 
+def bake_catalog(items: list[Item], verified: str) -> int:
+    """Persist the computed redistribution evidence into each served catalog item (ADR-040 #5).
+
+    audit_licenses already COMPUTES verdict / basis / license_url / credit_line per item; this
+    writes them back so a takedown or provenance question is a copy-paste answer from the shipped
+    manifest, not a re-run of the audit. Matches items by (collection, source_url). Only bakes
+    catalog files (not the seed); leaves items whose verdict never resolved untouched.
+    """
+    by_key = {(it.origin, it.source_url): it for it in items}
+    baked, files = 0, 0
+    for f in sorted(CATALOG_DIR.glob("*.json")):
+        if f.name.startswith("_") or "index" in f.name:
+            continue
+        d = json.loads(f.read_text())
+        changed = False
+        for entry in (d.get("items") or []):
+            it = by_key.get((f.stem, entry.get("source_url", "")))
+            # Never bake a transient failure: "error" means the Commons check itself failed (network/
+            # parse), not that the work is un-licensed. Leave those unbaked so a later run resolves them.
+            if not it or not it.verdict or it.verdict == "error":
+                continue
+            entry["license_verdict"] = it.verdict          # pd | cc-by | cc-by-sa | restricted | unknown
+            entry["license_basis"] = it.detail             # the actual Commons LicenseShortName / policy note
+            entry["license_url"] = it.license_url
+            entry["credit_line"] = it.credit_line
+            entry["license_verified"] = verified
+            changed = True
+            baked += 1
+        if changed:
+            f.write_text(json.dumps(d, indent=1, ensure_ascii=False))
+            files += 1
+    print(f"baked license evidence into {baked} items across {files} collection files "
+          f"(verified {verified})", file=sys.stderr)
+    return baked
+
+
 async def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--scope", default="catalog,seed", help="comma list: catalog,seed")
     ap.add_argument("--limit", type=int, default=None, help="cap Wikimedia files checked (sampling)")
     ap.add_argument("--json", action="store_true")
     ap.add_argument("--strict", action="store_true", help="exit non-zero if any item needs review")
+    ap.add_argument("--bake", action="store_true",
+                    help="persist verdict/basis/url/credit_line/verified into the catalog items (ADR-040 #5)")
     args = ap.parse_args()
 
     scopes = {s.strip() for s in args.scope.split(",") if s.strip()}
@@ -278,6 +320,11 @@ async def main() -> int:
     classify_museum(items)
     await audit_wikimedia(items, args.limit)
     rc = report(items, args.json)
+    if args.bake:
+        if args.limit:
+            print("refusing to --bake a sampled run (--limit set); bake the full audit", file=sys.stderr)
+            return 2
+        bake_catalog(items, verified=datetime.now(UTC).date().isoformat())
     return rc if args.strict else 0
 
 

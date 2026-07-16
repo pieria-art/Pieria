@@ -23,7 +23,12 @@
     0.25,
     0.52
    ],
-   "featured_rank": 25
+   "featured_rank": 25,
+   "license_verdict": "pd",
+   "license_basis": "CC0 — AIC public-domain works",
+   "license_url": "",
+   "credit_line": "Collection of Art Institute of Chicago",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "The Girl by the Window",
@@ -43,7 +48,12 @@
     0.55,
     0.22
    ],
-   "featured_rank": 30
+   "featured_rank": 30,
+   "license_verdict": "pd",
+   "license_basis": "CC0 — AIC public-domain works",
+   "license_url": "",
+   "credit_line": "Collection of Art Institute of Chicago",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "The Kiss",
@@ -63,7 +73,12 @@
     0.45,
     0.22
    ],
-   "featured_rank": 92
+   "featured_rank": 92,
+   "license_verdict": "pd",
+   "license_basis": "Public domain",
+   "license_url": "",
+   "credit_line": "Google Art Project",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "The Scream",
@@ -83,7 +98,12 @@
     0.55,
     0.72
    ],
-   "featured_rank": 97
+   "featured_rank": 97,
+   "license_verdict": "pd",
+   "license_basis": "Public domain",
+   "license_url": "",
+   "credit_line": "National Museum of Art, Architecture and Design",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Portrait of Jeanne Hébuterne",
@@ -98,7 +118,12 @@
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Amedeo%20Modigliani%20-%20Portrait%20of%20Jeanne%20H%C3%A9buterne%20%28Portrait%20de%20Jeanne%20H%C3%A9buterne%29%20-%20BF422%20-%20Barnes%20Foundation.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Amedeo%20Modigliani%20-%20Portrait%20of%20Jeanne%20H%C3%A9buterne%20%28Portrait%20de%20Jeanne%20H%C3%A9buterne%29%20-%20BF422%20-%20Barnes%20Foundation.jpg?width=600"
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Amedeo%20Modigliani%20-%20Portrait%20of%20Jeanne%20H%C3%A9buterne%20%28Portrait%20de%20Jeanne%20H%C3%A9buterne%29%20-%20BF422%20-%20Barnes%20Foundation.jpg?width=600",
+   "license_verdict": "pd",
+   "license_basis": "Public domain",
+   "license_url": "",
+   "credit_line": "https://collection.barnesfoundation.org/objects/6743/details",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Portrait of Adele Bloch-Bauer I",
@@ -113,7 +138,12 @@
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Adele%20Bloch-Bauer.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Adele%20Bloch-Bauer.jpg?width=600"
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Adele%20Bloch-Bauer.jpg?width=600",
+   "license_verdict": "pd",
+   "license_basis": "Public domain",
+   "license_url": "",
+   "credit_line": "Gestaag Klimt",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "At the Moulin Rouge",
@@ -128,7 +158,12 @@
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Henri%20de%20Toulouse-Lautrec%2C%20French%20-%20At%20the%20Moulin%20Rouge-%20The%20Dance%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Henri%20de%20Toulouse-Lautrec%2C%20French%20-%20At%20the%20Moulin%20Rouge-%20The%20Dance%20-%20Google%20Art%20Project.jpg?width=600"
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Henri%20de%20Toulouse-Lautrec%2C%20French%20-%20At%20the%20Moulin%20Rouge-%20The%20Dance%20-%20Google%20Art%20Project.jpg?width=600",
+   "license_verdict": "pd",
+   "license_basis": "Public domain",
+   "license_url": "",
+   "credit_line": "FAENd9LSU-ylzQ at Google Cultural Institute maximum zoom level",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "The Sick Child",
@@ -143,7 +178,12 @@
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Edvard%20Munch%20-%20The%20Sick%20Child%20-%20NG.M.00839%20-%20National%20Museum%20of%20Art%2C%20Architecture%20and%20Design.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Edvard%20Munch%20-%20The%20Sick%20Child%20-%20NG.M.00839%20-%20National%20Museum%20of%20Art%2C%20Architecture%20and%20Design.jpg?width=600"
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Edvard%20Munch%20-%20The%20Sick%20Child%20-%20NG.M.00839%20-%20National%20Museum%20of%20Art%2C%20Architecture%20and%20Design.jpg?width=600",
+   "license_verdict": "pd",
+   "license_basis": "Public domain",
+   "license_url": "",
+   "credit_line": "National Museum of Art, Architecture and Design",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Judith I",
@@ -165,7 +205,12 @@
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/%28Venice%29%20Judith%20with%20the%20head%20of%20Holofernes%20by%20Jacopo%20Amigoni.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/%28Venice%29%20Judith%20with%20the%20head%20of%20Holofernes%20by%20Jacopo%20Amigoni.jpg?width=600"
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/%28Venice%29%20Judith%20with%20the%20head%20of%20Holofernes%20by%20Jacopo%20Amigoni.jpg?width=600",
+   "license_verdict": "pd",
+   "license_basis": "Public domain",
+   "license_url": "",
+   "credit_line": "Own work",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Jeanne Hébuterne with Yellow Sweater",
@@ -186,7 +231,12 @@
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Amedeo%20Modigliani%20-%20Portrait%20of%20Jeanne%20H%C3%A9buterne%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Amedeo%20Modigliani%20-%20Portrait%20of%20Jeanne%20H%C3%A9buterne%20-%20Google%20Art%20Project.jpg?width=600"
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Amedeo%20Modigliani%20-%20Portrait%20of%20Jeanne%20H%C3%A9buterne%20-%20Google%20Art%20Project.jpg?width=600",
+   "license_verdict": "pd",
+   "license_basis": "Public domain",
+   "license_url": "",
+   "credit_line": "Google Arts &amp; Culture — SQGQa5QXbT4Kwg",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "The Buddha",
@@ -208,7 +258,12 @@
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Odilon%20Redon%20-%20The%20Buddha%20-%201961.279%20-%20Cleveland%20Museum%20of%20Art.tif?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Odilon%20Redon%20-%20The%20Buddha%20-%201961.279%20-%20Cleveland%20Museum%20of%20Art.tif?width=600"
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Odilon%20Redon%20-%20The%20Buddha%20-%201961.279%20-%20Cleveland%20Museum%20of%20Art.tif?width=600",
+   "license_verdict": "pd",
+   "license_basis": "CC0",
+   "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "credit_line": "https://clevelandart.org/art/1961.279",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Woman in a Striped Dress",
@@ -229,7 +284,12 @@
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Edouard%20Vuillard%20-%20Woman%20in%20a%20Striped%20Dress%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Edouard%20Vuillard%20-%20Woman%20in%20a%20Striped%20Dress%20-%20Google%20Art%20Project.jpg?width=600"
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Edouard%20Vuillard%20-%20Woman%20in%20a%20Striped%20Dress%20-%20Google%20Art%20Project.jpg?width=600",
+   "license_verdict": "pd",
+   "license_basis": "Public domain",
+   "license_url": "",
+   "credit_line": "xwH2YFjMrUMp3g at Google Cultural Institute maximum zoom level",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "The Sleeping Gypsy",
@@ -244,7 +304,12 @@
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Henri%20Rousseau%20-%20La%20zingara%20addormentata.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Henri%20Rousseau%20-%20La%20zingara%20addormentata.jpg?width=600"
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Henri%20Rousseau%20-%20La%20zingara%20addormentata.jpg?width=600",
+   "license_verdict": "pd",
+   "license_basis": "Public domain",
+   "license_url": "",
+   "credit_line": "Unknown sourceUnknown source",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Woman on Rose Divan",
@@ -267,7 +332,12 @@
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
    "source_url": "https://www.artic.edu/iiif/2/65e58fc4-4dd1-7149-b76b-94547745bece/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/65e58fc4-4dd1-7149-b76b-94547745bece/full/400,/0/default.jpg"
+   "thumbnail_url": "https://www.artic.edu/iiif/2/65e58fc4-4dd1-7149-b76b-94547745bece/full/400,/0/default.jpg",
+   "license_verdict": "pd",
+   "license_basis": "CC0 — AIC public-domain works",
+   "license_url": "",
+   "credit_line": "Collection of Art Institute of Chicago",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Landscape: Window Overlooking the Woods",
@@ -290,7 +360,12 @@
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
    "source_url": "https://www.artic.edu/iiif/2/a1dc6109-6e0c-7801-ebe8-8c95fec2c4e4/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/a1dc6109-6e0c-7801-ebe8-8c95fec2c4e4/full/400,/0/default.jpg"
+   "thumbnail_url": "https://www.artic.edu/iiif/2/a1dc6109-6e0c-7801-ebe8-8c95fec2c4e4/full/400,/0/default.jpg",
+   "license_verdict": "pd",
+   "license_basis": "CC0 — AIC public-domain works",
+   "license_url": "",
+   "credit_line": "Collection of Art Institute of Chicago",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Te burao (The Hibiscus Tree)",
@@ -313,7 +388,12 @@
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
    "source_url": "https://www.artic.edu/iiif/2/604fe021-6008-f666-bce8-456b2fdc9bd4/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/604fe021-6008-f666-bce8-456b2fdc9bd4/full/400,/0/default.jpg"
+   "thumbnail_url": "https://www.artic.edu/iiif/2/604fe021-6008-f666-bce8-456b2fdc9bd4/full/400,/0/default.jpg",
+   "license_verdict": "pd",
+   "license_basis": "CC0 — AIC public-domain works",
+   "license_url": "",
+   "credit_line": "Collection of Art Institute of Chicago",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "No te aha oe riri (Why Are You Angry?)",
@@ -336,7 +416,12 @@
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
    "source_url": "https://www.artic.edu/iiif/2/2adb35ce-8e94-cda5-210e-b04d488bbdc8/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/2adb35ce-8e94-cda5-210e-b04d488bbdc8/full/400,/0/default.jpg"
+   "thumbnail_url": "https://www.artic.edu/iiif/2/2adb35ce-8e94-cda5-210e-b04d488bbdc8/full/400,/0/default.jpg",
+   "license_verdict": "pd",
+   "license_basis": "CC0 — AIC public-domain works",
+   "license_url": "",
+   "credit_line": "Collection of Art Institute of Chicago",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Sawmill, Outskirts of Paris",
@@ -359,7 +444,12 @@
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
    "source_url": "https://www.artic.edu/iiif/2/3826e366-e82a-e853-12e4-b303a1618103/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/3826e366-e82a-e853-12e4-b303a1618103/full/400,/0/default.jpg"
+   "thumbnail_url": "https://www.artic.edu/iiif/2/3826e366-e82a-e853-12e4-b303a1618103/full/400,/0/default.jpg",
+   "license_verdict": "pd",
+   "license_basis": "CC0 — AIC public-domain works",
+   "license_url": "",
+   "credit_line": "Collection of Art Institute of Chicago",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "The Virgin (Die Jungfrau)",
@@ -374,7 +464,12 @@
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/KlimtDieJungfrau.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/KlimtDieJungfrau.jpg?width=600"
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/KlimtDieJungfrau.jpg?width=600",
+   "license_verdict": "pd",
+   "license_basis": "Public domain",
+   "license_url": "",
+   "credit_line": "Národní galerie",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Lake Attersee",
@@ -389,7 +484,12 @@
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Gustav%20Klimt%20-%20Attersee%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Gustav%20Klimt%20-%20Attersee%20-%20Google%20Art%20Project.jpg?width=600"
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Gustav%20Klimt%20-%20Attersee%20-%20Google%20Art%20Project.jpg?width=600",
+   "license_verdict": "pd",
+   "license_basis": "Public domain",
+   "license_url": "",
+   "credit_line": "EgGM6j19EteG2A at Google Cultural Institute maximum zoom level",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Cottage Garden",
@@ -404,7 +504,12 @@
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Klimt%20bauerngarten.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Klimt%20bauerngarten.jpg?width=600"
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Klimt%20bauerngarten.jpg?width=600",
+   "license_verdict": "pd",
+   "license_basis": "Public domain",
+   "license_url": "",
+   "credit_line": "Copied from an art book",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Love (Liebe)",
@@ -419,7 +524,12 @@
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Klimt%20-%20Liebe%20-%201895.jpeg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Klimt%20-%20Liebe%20-%201895.jpeg?width=600"
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Klimt%20-%20Liebe%20-%201895.jpeg?width=600",
+   "license_verdict": "pd",
+   "license_basis": "Public domain",
+   "license_url": "",
+   "credit_line": "repro from artbook",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Jurisprudence",
@@ -434,7 +544,12 @@
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Klimt%20-%20Jurisprudenz%201903-1907.jpeg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Klimt%20-%20Jurisprudenz%201903-1907.jpeg?width=600"
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Klimt%20-%20Jurisprudenz%201903-1907.jpeg?width=600",
+   "license_verdict": "pd",
+   "license_basis": "Public domain",
+   "license_url": "",
+   "credit_line": "repro from artbook",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Approaching Thunderstorm (The Large Poplar II)",
@@ -449,7 +564,12 @@
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Gustav%20Klimt%20-%20Approaching%20Thunderstorm%20%28The%20Large%20Poplar%20II%29%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Gustav%20Klimt%20-%20Approaching%20Thunderstorm%20%28The%20Large%20Poplar%20II%29%20-%20Google%20Art%20Project.jpg?width=600"
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Gustav%20Klimt%20-%20Approaching%20Thunderstorm%20%28The%20Large%20Poplar%20II%29%20-%20Google%20Art%20Project.jpg?width=600",
+   "license_verdict": "pd",
+   "license_basis": "Public domain",
+   "license_url": "",
+   "credit_line": "4wGCEld8AjPivA at Google Cultural Institute maximum zoom level",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Upper Austrian Farmhouse",
@@ -464,7 +584,12 @@
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Klimt%20-%20Ober%C3%B6sterreichisches%20Bauernhaus.jpeg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Klimt%20-%20Ober%C3%B6sterreichisches%20Bauernhaus.jpeg?width=600"
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Klimt%20-%20Ober%C3%B6sterreichisches%20Bauernhaus.jpeg?width=600",
+   "license_verdict": "pd",
+   "license_basis": "Public domain",
+   "license_url": "",
+   "credit_line": "repro from artbook",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Baby (Cradle)",
@@ -479,7 +604,12 @@
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Baby%20%28Cradle%29%20A18969.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Baby%20%28Cradle%29%20A18969.jpg?width=600"
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Baby%20%28Cradle%29%20A18969.jpg?width=600",
+   "license_verdict": "pd",
+   "license_basis": "Public domain",
+   "license_url": "",
+   "credit_line": "http://www.nga.gov/content/ngaweb/Collection/art-object-page.56662.html",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Cottage Garden with Sunflowers",
@@ -494,7 +624,12 @@
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Klimt%20-%20Bauerngarten%20mit%20Sonnenblumen%20-%20ca1907.jpeg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Klimt%20-%20Bauerngarten%20mit%20Sonnenblumen%20-%20ca1907.jpeg?width=600"
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Klimt%20-%20Bauerngarten%20mit%20Sonnenblumen%20-%20ca1907.jpeg?width=600",
+   "license_verdict": "pd",
+   "license_basis": "Public domain",
+   "license_url": "",
+   "credit_line": "repro from artbook",
+   "license_verified": "2026-07-16"
   }
  ]
 }

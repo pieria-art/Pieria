@@ -23,7 +23,12 @@
     0.5,
     0.5
    ],
-   "featured_rank": 92
+   "featured_rank": 92,
+   "license_verdict": "pd",
+   "license_basis": "Public domain",
+   "license_url": "",
+   "credit_line": "https://tothemoon.im-ldi.com/gallery/Apollo/17/6#AS17-148-22727",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Earthrise",
@@ -43,7 +48,12 @@
     0.47,
     0.27
    ],
-   "featured_rank": 92
+   "featured_rank": 92,
+   "license_verdict": "pd",
+   "license_basis": "Public domain",
+   "license_url": "",
+   "credit_line": "http://lroc.sese.asu.edu/posts/895",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Pale Blue Dot",
@@ -63,7 +73,12 @@
     0.62,
     0.5
    ],
-   "featured_rank": 85
+   "featured_rank": 85,
+   "license_verdict": "pd",
+   "license_basis": "Public domain",
+   "license_url": "",
+   "credit_line": "https://photojournal.jpl.nasa.gov/catalog/PIA23645",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Buzz Aldrin on the Moon Apollo 11",
@@ -83,7 +98,12 @@
     0.5,
     0.6
    ],
-   "featured_rank": 85
+   "featured_rank": 85,
+   "license_verdict": "pd",
+   "license_basis": "Public domain",
+   "license_url": "",
+   "credit_line": "Project Apollo Archive, AS11-40-5877",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Bruce McCandless spacewalk",
@@ -103,7 +123,12 @@
     0.63,
     0.26
    ],
-   "featured_rank": 75
+   "featured_rank": 75,
+   "license_verdict": "pd",
+   "license_basis": "Public domain",
+   "license_url": "",
+   "credit_line": "JSC Gateway to Astronaut Photography of Earth",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "The Earth seen from Apollo 17",
@@ -123,7 +148,12 @@
     0.5,
     0.47
    ],
-   "featured_rank": 40
+   "featured_rank": 40,
+   "license_verdict": "pd",
+   "license_basis": "Public domain",
+   "license_url": "",
+   "credit_line": "This image or video was catalogued by Lyndon B. Johnson Space Center of the United States National Aeronautics and Space Administration (NASA) under Photo ID: AS17-148-22727.",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Apollo 11 bootprint on the Moon",
@@ -143,7 +173,12 @@
     0.5,
     0.56
    ],
-   "featured_rank": 85
+   "featured_rank": 85,
+   "license_verdict": "pd",
+   "license_basis": "Public domain",
+   "license_url": "",
+   "credit_line": "This image or video was catalogued by NASA Headquarters of the United States National Aeronautics and Space Administration (NASA) under Photo ID: AS11-40-5877.",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "The Day the Earth Smiled",
@@ -163,7 +198,12 @@
     0.5,
     0.5
    ],
-   "featured_rank": 45
+   "featured_rank": 45,
+   "license_verdict": "pd",
+   "license_basis": "Public domain",
+   "license_url": "",
+   "credit_line": "http://www.jpl.nasa.gov/spaceimages/details.php?id=PIA17172",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Apollo 8 Crew Portrait",
@@ -183,7 +223,12 @@
     0.5,
     0.62
    ],
-   "featured_rank": 25
+   "featured_rank": 25,
+   "license_verdict": "pd",
+   "license_basis": "Public domain",
+   "license_url": "",
+   "credit_line": "This image or video was catalogued by Lyndon B. Johnson Space Center of the United States National Aeronautics and Space Administration (NASA) under Photo ID: jsc2008e049010.",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Apollo 11 Lunar Module Eagle",
@@ -203,7 +248,12 @@
     0.4,
     0.71
    ],
-   "featured_rank": 60
+   "featured_rank": 60,
+   "license_verdict": "pd",
+   "license_basis": "Public domain",
+   "license_url": "",
+   "credit_line": "NASA (hi-res)",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Hubble Space Telescope in Orbit",
@@ -223,7 +273,12 @@
     0.4,
     0.42
    ],
-   "featured_rank": 40
+   "featured_rank": 40,
+   "license_verdict": "pd",
+   "license_basis": "Public domain",
+   "license_url": "",
+   "credit_line": "http://www.jwst.nasa.gov/images_mirror45.html",
+   "license_verified": "2026-07-16"
   }
  ]
 }

@@ -18,7 +18,12 @@
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Henry%20Joseph%20Redout%C3%A9%20-%20Cabbage%20Rose%20%28Rosa%20Centifolia%20Simplex%29%20-%201959.14%20-%20Cleveland%20Museum%20of%20Art.tif?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Henry%20Joseph%20Redout%C3%A9%20-%20Cabbage%20Rose%20%28Rosa%20Centifolia%20Simplex%29%20-%201959.14%20-%20Cleveland%20Museum%20of%20Art.tif?width=600"
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Henry%20Joseph%20Redout%C3%A9%20-%20Cabbage%20Rose%20%28Rosa%20Centifolia%20Simplex%29%20-%201959.14%20-%20Cleveland%20Museum%20of%20Art.tif?width=600",
+   "license_verdict": "pd",
+   "license_basis": "CC0",
+   "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "credit_line": "https://clevelandart.org/art/1959.14",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Rosa Gallica",
@@ -33,7 +38,12 @@
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Henry%20Joseph%20Redout%C3%A9%20-%20Les%20Roses-%20Rosa%20Gallica%20-%201955.471%20-%20Cleveland%20Museum%20of%20Art.tif?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Henry%20Joseph%20Redout%C3%A9%20-%20Les%20Roses-%20Rosa%20Gallica%20-%201955.471%20-%20Cleveland%20Museum%20of%20Art.tif?width=600"
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Henry%20Joseph%20Redout%C3%A9%20-%20Les%20Roses-%20Rosa%20Gallica%20-%201955.471%20-%20Cleveland%20Museum%20of%20Art.tif?width=600",
+   "license_verdict": "pd",
+   "license_basis": "CC0",
+   "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "credit_line": "https://clevelandart.org/art/1955.471",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Lilium Candidum (Madonna Lily)",
@@ -48,7 +58,12 @@
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Lilium%20candidum%20in%20Les%20liliacees.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Lilium%20candidum%20in%20Les%20liliacees.jpg?width=600"
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Lilium%20candidum%20in%20Les%20liliacees.jpg?width=600",
+   "license_verdict": "pd",
+   "license_basis": "Public domain",
+   "license_url": "",
+   "credit_line": "Les Liliacées (1802–1816).",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Dalmatian Iris (Iris Pallida)",
@@ -63,7 +78,12 @@
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/De%20Gouy%2C%20after%20Pierre-%20Joseph%20Redout%C3%A9%20-%20Dalmatian%20Iris%20%28Iris%20pallida%29%2C%20plate%20366%2C%20vol.%207%20of%20Pierre-Joseph%20Redout%C3%A9%2C%20%22Les%20Liliac%C3%A9es%22%2C%20Paris%2018...%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/De%20Gouy%2C%20after%20Pierre-%20Joseph%20Redout%C3%A9%20-%20Dalmatian%20Iris%20%28Iris%20pallida%29%2C%20plate%20366%2C%20vol.%207%20of%20Pierre-Joseph%20Redout%C3%A9%2C%20%22Les%20Liliac%C3%A9es%22%2C%20Paris%2018...%20-%20Google%20Art%20Project.jpg?width=600"
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/De%20Gouy%2C%20after%20Pierre-%20Joseph%20Redout%C3%A9%20-%20Dalmatian%20Iris%20%28Iris%20pallida%29%2C%20plate%20366%2C%20vol.%207%20of%20Pierre-Joseph%20Redout%C3%A9%2C%20%22Les%20Liliac%C3%A9es%22%2C%20Paris%2018...%20-%20Google%20Art%20Project.jpg?width=600",
+   "license_verdict": "pd",
+   "license_basis": "Public domain",
+   "license_url": "",
+   "credit_line": "MwG6BpfOcOAlPA at Google Cultural Institute maximum zoom level",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Kunstformen der Natur: Nepenthaceae (Pitcher Plants)",
@@ -78,7 +98,12 @@
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Nepenthaceae.%20-%20Kannenpflanzen%20LCCN2015648944.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Nepenthaceae.%20-%20Kannenpflanzen%20LCCN2015648944.jpg?width=600"
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Nepenthaceae.%20-%20Kannenpflanzen%20LCCN2015648944.jpg?width=600",
+   "license_verdict": "pd",
+   "license_basis": "Public domain",
+   "license_url": "",
+   "credit_line": "Library of Congress Catalog: https://lccn.loc.gov/2015648944 Image download: https://cdn.loc.gov/service/pnp/ds/07500/07594v.jpg Original url: https://www.loc.gov/pictures/item/2015648944/",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Kunstformen der Natur: Trochilidae (Hummingbirds)",
@@ -93,7 +118,12 @@
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Trochilidae.%20-%20Kolibris%20LCCN2015648985.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Trochilidae.%20-%20Kolibris%20LCCN2015648985.jpg?width=600"
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Trochilidae.%20-%20Kolibris%20LCCN2015648985.jpg?width=600",
+   "license_verdict": "pd",
+   "license_basis": "Public domain",
+   "license_url": "",
+   "credit_line": "Library of Congress Catalog: https://lccn.loc.gov/2015648985 Image download: https://cdn.loc.gov/service/pnp/ds/07600/07627v.jpg Original url: https://www.loc.gov/pictures/item/2015648985/",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Kunstformen der Natur: Discomedusae (Jellyfish)",
@@ -108,7 +138,12 @@
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Discomedusae.%20-%20Schweibenquallen%20LCCN2014645034.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Discomedusae.%20-%20Schweibenquallen%20LCCN2014645034.jpg?width=600"
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Discomedusae.%20-%20Schweibenquallen%20LCCN2014645034.jpg?width=600",
+   "license_verdict": "pd",
+   "license_basis": "Public domain",
+   "license_url": "",
+   "credit_line": "Library of Congress Catalog: https://lccn.loc.gov/2014645034 Image download: https://cdn.loc.gov/service/pnp/ds/05300/05316v.jpg Original url: https://www.loc.gov/pictures/item/2014645034/",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Kunstformen der Natur: Chiroptera (Bats)",
@@ -123,7 +158,12 @@
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Kunstformen%20der%20Natur%20%28Tafel%2067%29%20BHL47388315.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Kunstformen%20der%20Natur%20%28Tafel%2067%29%20BHL47388315.jpg?width=600"
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Kunstformen%20der%20Natur%20%28Tafel%2067%29%20BHL47388315.jpg?width=600",
+   "license_verdict": "pd",
+   "license_basis": "Public domain",
+   "license_url": "",
+   "credit_line": "https://www.biodiversitylibrary.org/pageimage/47388315",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Kunstformen der Natur: Actiniae (Sea Anemones)",
@@ -138,7 +178,12 @@
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Actiniae.%20-%20Seeanemonen%20LCCN2014645036.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Actiniae.%20-%20Seeanemonen%20LCCN2014645036.jpg?width=600"
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Actiniae.%20-%20Seeanemonen%20LCCN2014645036.jpg?width=600",
+   "license_verdict": "pd",
+   "license_basis": "Public domain",
+   "license_url": "",
+   "credit_line": "Library of Congress Catalog: https://lccn.loc.gov/2014645036 Image download: https://cdn.loc.gov/service/pnp/ds/05300/05318v.jpg Original url: https://www.loc.gov/pictures/item/2014645036/",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Pineapple with Cockroaches",
@@ -153,7 +198,12 @@
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pineaple%20by%20Merian%20001.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pineaple%20by%20Merian%20001.jpg?width=600"
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pineaple%20by%20Merian%20001.jpg?width=600",
+   "license_verdict": "pd",
+   "license_basis": "Public domain",
+   "license_url": "",
+   "credit_line": "https://www.biodiversitylibrary.org/page/41398747",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Magnolia Grandiflora",
@@ -168,7 +218,12 @@
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Georg%20Dionysius%20Ehret%20-%20Plantae%20Selectae-%20No.%2033%20-%20Magnolia%20-%201955.333%20-%20Cleveland%20Museum%20of%20Art.tif?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Georg%20Dionysius%20Ehret%20-%20Plantae%20Selectae-%20No.%2033%20-%20Magnolia%20-%201955.333%20-%20Cleveland%20Museum%20of%20Art.tif?width=600"
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Georg%20Dionysius%20Ehret%20-%20Plantae%20Selectae-%20No.%2033%20-%20Magnolia%20-%201955.333%20-%20Cleveland%20Museum%20of%20Art.tif?width=600",
+   "license_verdict": "pd",
+   "license_basis": "CC0",
+   "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "credit_line": "https://clevelandart.org/art/1955.333",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Red Poppy",
@@ -183,7 +238,12 @@
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Amgueddfa%20Cymru%20-%20Red%20Poppy%20-%2088236.jpeg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Amgueddfa%20Cymru%20-%20Red%20Poppy%20-%2088236.jpeg?width=600"
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Amgueddfa%20Cymru%20-%20Red%20Poppy%20-%2088236.jpeg?width=600",
+   "license_verdict": "pd",
+   "license_basis": "CC0",
+   "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "credit_line": "This image is uploaded as image number 88236 at Amgueddfa Cymru Images.This tag does not indicate the copyright status of the attached work. A normal copyright tag is still required. See Commons:Licensing.",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Superb Lyrebird",
@@ -198,7 +258,12 @@
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Lyre%20bird.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Lyre%20bird.jpg?width=600"
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Lyre%20bird.jpg?width=600",
+   "license_verdict": "pd",
+   "license_basis": "Public domain",
+   "license_url": "",
+   "credit_line": "The birds of Australia (1840–48). Vol III Plate 14. Artists: J. Gould and E. Gould; Lithographer: E. Gould.",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Ivory-billed Woodpecker",
@@ -213,7 +278,12 @@
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Large-white-billed-woodpecker.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Large-white-billed-woodpecker.jpg?width=600"
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Large-white-billed-woodpecker.jpg?width=600",
+   "license_verdict": "pd",
+   "license_basis": "Public domain",
+   "license_url": "",
+   "credit_line": "The Natural History of Carolina, Florida and Bahamas V. 1 (1754)",
+   "license_verified": "2026-07-16"
   }
  ]
 }
