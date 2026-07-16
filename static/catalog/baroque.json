@@ -574,7 +574,11 @@
    "license_url": "",
    "credit_line": "https://www.flickr.com/photos/mazanto/47058274682",
    "license_verified": "2026-07-16",
-   "featured_rank": 78
+   "featured_rank": 78,
+   "focal_point": [
+    0.4,
+    0.5
+   ]
   },
   {
    "title": "The Descent from the Cross",
@@ -595,7 +599,11 @@
    "license_url": "",
    "credit_line": "1. Web Gallery of Art: Image Info about artworkwga QS:P11807,\"/r/rubens/11religi/07desce\" 2. Lukas VZW Art in Flanders Imagebank",
    "license_verified": "2026-07-16",
-   "featured_rank": 88
+   "featured_rank": 88,
+   "focal_point": [
+    0.5,
+    0.42
+   ]
   },
   {
    "title": "The Massacre of the Innocents",
@@ -637,7 +645,11 @@
    "license_url": "",
    "credit_line": "Web Gallery of Art: Image Info about artworkwga QS:P11807,\"g/gentiles/artemisi/susanna\"",
    "license_verified": "2026-07-16",
-   "featured_rank": 72
+   "featured_rank": 72,
+   "focal_point": [
+    0.35,
+    0.55
+   ]
   },
   {
    "title": "Esther before Ahasuerus",
@@ -666,7 +678,11 @@
    "license_url": "",
    "credit_line": "Google Arts &amp; Culture — esther-before-ahasuerus-franciszek-smuglewicz/sQF6lZyoomGRBA",
    "license_verified": "2026-07-16",
-   "featured_rank": 38
+   "featured_rank": 38,
+   "focal_point": [
+    0.25,
+    0.35
+   ]
   },
   {
    "title": "The Abduction of the Sabine Women",
@@ -695,7 +711,11 @@
    "license_url": "",
    "credit_line": "https://www.metmuseum.org/art/collection/search/437329",
    "license_verified": "2026-07-16",
-   "featured_rank": 68
+   "featured_rank": 68,
+   "focal_point": [
+    0.35,
+    0.35
+   ]
   },
   {
    "title": "Agnus Dei",
@@ -724,7 +744,11 @@
    "license_url": "",
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
-   "featured_rank": 48
+   "featured_rank": 48,
+   "focal_point": [
+    0.22,
+    0.42
+   ]
   },
   {
    "title": "The Holy Family with Saints Elizabeth and John the Baptist",
@@ -751,7 +775,11 @@
    "license_url": "",
    "credit_line": "Collection of Art Institute of Chicago",
    "license_verified": "2026-07-16",
-   "featured_rank": 58
+   "featured_rank": 58,
+   "focal_point": [
+    0.45,
+    0.4
+   ]
   },
   {
    "title": "Salome with the Head of Saint John the Baptist",
@@ -778,7 +806,11 @@
    "license_url": "",
    "credit_line": "Collection of Art Institute of Chicago",
    "license_verified": "2026-07-16",
-   "featured_rank": 52
+   "featured_rank": 52,
+   "focal_point": [
+    0.4,
+    0.35
+   ]
   },
   {
    "title": "Saint Romanus of Antioch and Saint Barulas",
@@ -805,7 +837,11 @@
    "license_url": "",
    "credit_line": "Collection of Art Institute of Chicago",
    "license_verified": "2026-07-16",
-   "featured_rank": 40
+   "featured_rank": 40,
+   "focal_point": [
+    0.5,
+    0.28
+   ]
   },
   {
    "title": "Landscape with Saint John on Patmos",
@@ -857,7 +893,11 @@
    "license_url": "",
    "credit_line": "Collection of Art Institute of Chicago",
    "license_verified": "2026-07-16",
-   "featured_rank": 42
+   "featured_rank": 42,
+   "focal_point": [
+    0.5,
+    0.35
+   ]
   },
   {
    "title": "Saint Martin and the Beggar",
@@ -884,7 +924,11 @@
    "license_url": "",
    "credit_line": "Collection of Art Institute of Chicago",
    "license_verified": "2026-07-16",
-   "featured_rank": 65
+   "featured_rank": 65,
+   "focal_point": [
+    0.62,
+    0.17
+   ]
   },
   {
    "title": "Saint Francis Kneeling in Meditation",
@@ -911,7 +955,11 @@
    "license_url": "",
    "credit_line": "Collection of Art Institute of Chicago",
    "license_verified": "2026-07-16",
-   "featured_rank": 48
+   "featured_rank": 48,
+   "focal_point": [
+    0.42,
+    0.22
+   ]
   },
   {
    "title": "The Assumption of the Virgin",
@@ -938,7 +986,11 @@
    "license_url": "",
    "credit_line": "Collection of Art Institute of Chicago",
    "license_verified": "2026-07-16",
-   "featured_rank": 62
+   "featured_rank": 62,
+   "focal_point": [
+    0.5,
+    0.25
+   ]
   },
   {
    "title": "The Crucifixion",
@@ -1109,7 +1161,11 @@
    "license_url": "",
    "credit_line": "1./2. picasaweb3. gallerix.ru4. National Gallery, London - online collection",
    "license_verified": "2026-07-16",
-   "featured_rank": 40
+   "featured_rank": 40,
+   "focal_point": [
+    0.35,
+    0.35
+   ]
   },
   {
    "title": "The Immaculate Conception",
@@ -1130,7 +1186,11 @@
    "license_url": "",
    "credit_line": "http://www.abengoa.com/corp/web/es/inversores/sala_de_prensa/historico/noticias/2009/02_febrero/20090211_noticias.html",
    "license_verified": "2026-07-16",
-   "featured_rank": 45
+   "featured_rank": 45,
+   "focal_point": [
+    0.5,
+    0.22
+   ]
   },
   {
    "title": "Tavern Scene with Two Men and a Girl (Peasants at the Table)",
@@ -1151,7 +1211,11 @@
    "license_url": "",
    "credit_line": "https://artsandculture.google.com/asset/tavern-scene-with-two-men-and-a-girl-diego-rodríguez-de-silva-y-velázquez/1wH_QdB4p4ALMw",
    "license_verified": "2026-07-16",
-   "featured_rank": 35
+   "featured_rank": 35,
+   "focal_point": [
+    0.45,
+    0.3
+   ]
   },
   {
    "title": "Christ after the Flagellation Contemplated by the Christian Soul",
@@ -1172,7 +1236,11 @@
    "license_url": "",
    "credit_line": "[1] (found automatically by User:Picasa Review Bot) http://picasaweb.google.com/EnrikeCdC/VelazquezObraCompleta#",
    "license_verified": "2026-07-16",
-   "featured_rank": 40
+   "featured_rank": 40,
+   "focal_point": [
+    0.45,
+    0.35
+   ]
   },
   {
    "title": "The Needlewoman",
@@ -1193,7 +1261,11 @@
    "license_url": "",
    "credit_line": "National Gallery of Art.",
    "license_verified": "2026-07-16",
-   "featured_rank": 55
+   "featured_rank": 55,
+   "focal_point": [
+    0.45,
+    0.35
+   ]
   },
   {
    "title": "Saint John the Evangelist on the Island of Patmos",
@@ -1214,7 +1286,11 @@
    "license_url": "",
    "credit_line": "The Yorck Project (2002) 10.000 Meisterwerke der Malerei (DVD-ROM), distributed by DIRECTMEDIA Publishing GmbH. ISBN: 3936122202.",
    "license_verified": "2026-07-16",
-   "featured_rank": 60
+   "featured_rank": 60,
+   "focal_point": [
+    0.48,
+    0.25
+   ]
   },
   {
    "title": "The Luncheon (El Almuerzo)",
@@ -1235,7 +1311,11 @@
    "license_url": "",
    "credit_line": "Google Arts &amp; Culture — fgG-Jg-elmOO9Q",
    "license_verified": "2026-07-16",
-   "featured_rank": 38
+   "featured_rank": 38,
+   "focal_point": [
+    0.5,
+    0.3
+   ]
   },
   {
    "title": "Saint Catherine of Alexandria",
@@ -1256,7 +1336,11 @@
    "license_url": "",
    "credit_line": "https://www.museothyssen.org/en/collection/artists/caravaggio-michelangelo-merisi/saint-catherine-alexandria",
    "license_verified": "2026-07-16",
-   "featured_rank": 68
+   "featured_rank": 68,
+   "focal_point": [
+    0.4,
+    0.25
+   ]
   },
   {
    "title": "The Seven Works of Mercy",
@@ -1277,7 +1361,11 @@
    "license_url": "",
    "credit_line": "Google Arts &amp; Culture — 3QGj4ZNa18VqVQ",
    "license_verified": "2026-07-16",
-   "featured_rank": 82
+   "featured_rank": 82,
+   "focal_point": [
+    0.7,
+    0.55
+   ]
   },
   {
    "title": "Martha and Mary Magdalene",
@@ -1298,7 +1386,11 @@
    "license_url": "",
    "credit_line": "Self-scanned",
    "license_verified": "2026-07-16",
-   "featured_rank": 48
+   "featured_rank": 48,
+   "focal_point": [
+    0.55,
+    0.3
+   ]
   },
   {
    "title": "Amor Vincit Omnia (Cupid as Victor)",
@@ -1319,7 +1411,11 @@
    "license_url": "",
    "credit_line": "Google Arts &amp; Culture — HQEQJRFURFe4qg",
    "license_verified": "2026-07-16",
-   "featured_rank": 82
+   "featured_rank": 82,
+   "focal_point": [
+    0.45,
+    0.32
+   ]
   },
   {
    "title": "Rest on the Flight into Egypt",
@@ -1340,7 +1436,11 @@
    "license_url": "",
    "credit_line": "Self-scanned",
    "license_verified": "2026-07-16",
-   "featured_rank": 62
+   "featured_rank": 62,
+   "focal_point": [
+    0.42,
+    0.3
+   ]
   },
   {
    "title": "The Sacrifice of Isaac",
@@ -1361,7 +1461,11 @@
    "license_url": "",
    "credit_line": "Self-scanned",
    "license_verified": "2026-07-16",
-   "featured_rank": 72
+   "featured_rank": 72,
+   "focal_point": [
+    0.38,
+    0.32
+   ]
   },
   {
    "title": "The Lute Player",
@@ -1382,7 +1486,11 @@
    "license_url": "",
    "credit_line": "Hermitage Torrent (.torrent with info-hash) Hermitage Paintings Государственный Эрмитаж",
    "license_verified": "2026-07-16",
-   "featured_rank": 68
+   "featured_rank": 68,
+   "focal_point": [
+    0.4,
+    0.3
+   ]
   },
   {
    "title": "Saint Francis of Assisi in Ecstasy",
@@ -1403,7 +1511,11 @@
    "license_url": "",
    "credit_line": "Self-scanned",
    "license_verified": "2026-07-16",
-   "featured_rank": 60
+   "featured_rank": 60,
+   "focal_point": [
+    0.45,
+    0.35
+   ]
   },
   {
    "title": "Penitent Magdalene",
@@ -1424,7 +1536,11 @@
    "license_url": "",
    "credit_line": "Self-scanned",
    "license_verified": "2026-07-16",
-   "featured_rank": 65
+   "featured_rank": 65,
+   "focal_point": [
+    0.45,
+    0.3
+   ]
   },
   {
    "title": "The Fortune Teller (Louvre version)",
@@ -1445,7 +1561,11 @@
    "license_url": "",
    "credit_line": "Self-scanned",
    "license_verified": "2026-07-16",
-   "featured_rank": 68
+   "featured_rank": 68,
+   "focal_point": [
+    0.48,
+    0.62
+   ]
   },
   {
    "title": "Madonna of the Rosary",
@@ -1466,7 +1586,11 @@
    "license_url": "",
    "credit_line": "uwFbpzSFs7n4rg at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 75
+   "featured_rank": 75,
+   "focal_point": [
+    0.45,
+    0.28
+   ]
   },
   {
    "title": "The Fortune Teller (Capitoline version)",
@@ -1487,7 +1611,11 @@
    "license_url": "",
    "credit_line": "Wilfredor",
    "license_verified": "2026-07-16",
-   "featured_rank": 62
+   "featured_rank": 62,
+   "focal_point": [
+    0.5,
+    0.35
+   ]
   },
   {
    "title": "Christ Crowned with Thorns",
@@ -1508,7 +1636,11 @@
    "license_url": "",
    "credit_line": "yAGZLO5MaPVjfQ at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 62
+   "featured_rank": 62,
+   "focal_point": [
+    0.55,
+    0.5
+   ]
   },
   {
    "title": "Portrait of a Gentleman (possibly Scipione Borghese)",
@@ -1529,7 +1661,11 @@
    "license_url": "",
    "credit_line": "HwFs76jOWISBWg at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 42
+   "featured_rank": 42,
+   "focal_point": [
+    0.42,
+    0.32
+   ]
   },
   {
    "title": "Narcissus",
@@ -1550,7 +1686,11 @@
    "license_url": "",
    "credit_line": "https://barberinicorsini.org/collezione/opera/?id=WE4286",
    "license_verified": "2026-07-16",
-   "featured_rank": 78
+   "featured_rank": 78,
+   "focal_point": [
+    0.38,
+    0.25
+   ]
   },
   {
    "title": "Boy Bitten by a Lizard",
@@ -1571,7 +1711,11 @@
    "license_url": "",
    "credit_line": "Self-scanned",
    "license_verified": "2026-07-16",
-   "featured_rank": 72
+   "featured_rank": 72,
+   "focal_point": [
+    0.42,
+    0.28
+   ]
   },
   {
    "title": "The Beheading of Saint John the Baptist",
@@ -1592,7 +1736,11 @@
    "license_url": "",
    "credit_line": "Scanned from: Caravaggio, Rossella Vodret, Francesco Buranelli (eds.), Skira-Rizzoli, 2010. ISBN 978-88-572-0458-1",
    "license_verified": "2026-07-16",
-   "featured_rank": 78
+   "featured_rank": 78,
+   "focal_point": [
+    0.25,
+    0.6
+   ]
   },
   {
    "title": "Death of the Virgin",
@@ -1613,7 +1761,11 @@
    "license_url": "",
    "credit_line": "Caravaggio, Rizzoli-Skira",
    "license_verified": "2026-07-16",
-   "featured_rank": 78
+   "featured_rank": 78,
+   "focal_point": [
+    0.35,
+    0.15
+   ]
   },
   {
    "title": "The Incredulity of Saint Thomas",
@@ -1634,7 +1786,11 @@
    "license_url": "",
    "credit_line": "Caravaggio, Rizzoli-Skira",
    "license_verified": "2026-07-16",
-   "featured_rank": 78
+   "featured_rank": 78,
+   "focal_point": [
+    0.55,
+    0.45
+   ]
   },
   {
    "title": "Sick Bacchus",
@@ -1655,7 +1811,11 @@
    "license_url": "",
    "credit_line": "Caravaggio, Rizzoli-Skira",
    "license_verified": "2026-07-16",
-   "featured_rank": 68
+   "featured_rank": 68,
+   "focal_point": [
+    0.35,
+    0.35
+   ]
   },
   {
    "title": "The Martyrdom of Saint Matthew",
@@ -1676,7 +1836,11 @@
    "license_url": "",
    "credit_line": "Caravaggio, Rizzoli-Skira",
    "license_verified": "2026-07-16",
-   "featured_rank": 72
+   "featured_rank": 72,
+   "focal_point": [
+    0.45,
+    0.35
+   ]
   },
   {
    "title": "The Inspiration of Saint Matthew",
@@ -1697,7 +1861,11 @@
    "license_url": "",
    "credit_line": "Caravaggio, Rizzoli-Skira",
    "license_verified": "2026-07-16",
-   "featured_rank": 68
+   "featured_rank": 68,
+   "focal_point": [
+    0.25,
+    0.7
+   ]
   },
   {
    "title": "Ecce Homo",
@@ -1718,7 +1886,11 @@
    "license_url": "",
    "credit_line": "ugH0uYgOidL0bA at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 55
+   "featured_rank": 55,
+   "focal_point": [
+    0.35,
+    0.3
+   ]
   },
   {
    "title": "Saint John the Baptist in the Wilderness",
@@ -1739,7 +1911,11 @@
    "license_url": "",
    "credit_line": "qgFz_54y0Kfktw at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 60
+   "featured_rank": 60,
+   "focal_point": [
+    0.42,
+    0.45
+   ]
   },
   {
    "title": "The Musicians",
@@ -1760,7 +1936,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
-   "featured_rank": 72
+   "featured_rank": 72,
+   "focal_point": [
+    0.35,
+    0.22
+   ]
   },
   {
    "title": "Medusa",
@@ -1781,7 +1961,11 @@
    "license_url": "",
    "credit_line": "Die Erste Medusa / La première Medusa, ed. 5 Continent",
    "license_verified": "2026-07-16",
-   "featured_rank": 78
+   "featured_rank": 78,
+   "focal_point": [
+    0.42,
+    0.45
+   ]
   },
   {
    "title": "The Education of the Virgin",
@@ -1802,7 +1986,11 @@
    "license_url": "",
    "credit_line": "Royal Museum of Fine Arts Antwerp",
    "license_verified": "2026-07-16",
-   "featured_rank": 40
+   "featured_rank": 40,
+   "focal_point": [
+    0.55,
+    0.4
+   ]
   },
   {
    "title": "Saint Teresa of Ávila Interceding for Bernardino de Mendoza",
@@ -1823,7 +2011,11 @@
    "license_url": "",
    "credit_line": "Royal Museum of Fine Arts Antwerp",
    "license_verified": "2026-07-16",
-   "featured_rank": 34
+   "featured_rank": 34,
+   "focal_point": [
+    0.35,
+    0.32
+   ]
   },
   {
    "title": "The Holy Family with a Parrot",
@@ -1844,7 +2036,11 @@
    "license_url": "",
    "credit_line": "Royal Museum of Fine Arts Antwerp",
    "license_verified": "2026-07-16",
-   "featured_rank": 45
+   "featured_rank": 45,
+   "focal_point": [
+    0.42,
+    0.32
+   ]
   },
   {
    "title": "The Holy Trinity (Throne of Grace)",
@@ -1865,7 +2061,11 @@
    "license_url": "",
    "credit_line": "Royal Museum of Fine Arts Antwerp",
    "license_verified": "2026-07-16",
-   "featured_rank": 50
+   "featured_rank": 50,
+   "focal_point": [
+    0.45,
+    0.4
+   ]
   },
   {
    "title": "The Incredulity of Saint Thomas",
@@ -1886,7 +2086,11 @@
    "license_url": "",
    "credit_line": "Royal Museum of Fine Arts Antwerp",
    "license_verified": "2026-07-16",
-   "featured_rank": 48
+   "featured_rank": 48,
+   "focal_point": [
+    0.28,
+    0.25
+   ]
   },
   {
    "title": "The Lamentation of Christ (Christ on the Straw)",
@@ -1907,7 +2111,11 @@
    "license_url": "",
    "credit_line": "Royal Museum of Fine Arts Antwerp",
    "license_verified": "2026-07-16",
-   "featured_rank": 40
+   "featured_rank": 40,
+   "focal_point": [
+    0.35,
+    0.25
+   ]
   },
   {
    "title": "The Arch of the Mint, Front Face",
@@ -1928,7 +2136,11 @@
    "license_url": "",
    "credit_line": "Royal Museum of Fine Arts Antwerp",
    "license_verified": "2026-07-16",
-   "featured_rank": 24
+   "featured_rank": 24,
+   "focal_point": [
+    0.5,
+    0.5
+   ]
   },
   {
    "title": "The Arch of the Mint, Rear Face",
@@ -1949,7 +2161,11 @@
    "license_url": "",
    "credit_line": "Royal Museum of Fine Arts Antwerp",
    "license_verified": "2026-07-16",
-   "featured_rank": 23
+   "featured_rank": 23,
+   "focal_point": [
+    0.5,
+    0.5
+   ]
   },
   {
    "title": "Heads of Two Apostles",
@@ -1970,7 +2186,11 @@
    "license_url": "",
    "credit_line": "anagoria",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.55,
+    0.45
+   ]
   },
   {
    "title": "The Baptism of Christ",
@@ -1991,7 +2211,11 @@
    "license_url": "",
    "credit_line": "Royal Museum of Fine Arts Antwerp",
    "license_verified": "2026-07-16",
-   "featured_rank": 45
+   "featured_rank": 45,
+   "focal_point": [
+    0.28,
+    0.5
+   ]
   },
   {
    "title": "Venus Frigida",
@@ -2012,7 +2236,11 @@
    "license_url": "",
    "credit_line": "Royal Museum of Fine Arts Antwerp",
    "license_verified": "2026-07-16",
-   "featured_rank": 40
+   "featured_rank": 40,
+   "focal_point": [
+    0.65,
+    0.35
+   ]
   },
   {
    "title": "Minerva Victorious over Ignorance",
@@ -2033,7 +2261,11 @@
    "license_url": "",
    "credit_line": "Royal Museum of Fine Arts Antwerp",
    "license_verified": "2026-07-16",
-   "featured_rank": 40
+   "featured_rank": 40,
+   "focal_point": [
+    0.55,
+    0.25
+   ]
   },
   {
    "title": "Kitchen Maid, Butcher and Boy at a Table",
@@ -2054,7 +2286,11 @@
    "license_url": "",
    "credit_line": "Royal Museum of Fine Arts Antwerp",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.28,
+    0.5
+   ]
   },
   {
    "title": "Bellona",
@@ -2075,7 +2311,11 @@
    "license_url": "",
    "credit_line": "Royal Museum of Fine Arts Antwerp",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.5,
+    0.35
+   ]
   },
   {
    "title": "The Adoration of the Magi",
@@ -2096,7 +2336,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "Royal Museum of Fine Arts Antwerp",
    "license_verified": "2026-07-16",
-   "featured_rank": 58
+   "featured_rank": 58,
+   "focal_point": [
+    0.72,
+    0.55
+   ]
   },
   {
    "title": "The Stigmatization of Saint Francis of Assisi",
@@ -2117,7 +2361,11 @@
    "license_url": "",
    "credit_line": "Museum of Fine Arts Ghent (MSK)",
    "license_verified": "2026-07-16",
-   "featured_rank": 36
+   "featured_rank": 36,
+   "focal_point": [
+    0.55,
+    0.35
+   ]
   },
   {
    "title": "Calvary",
@@ -2138,7 +2386,11 @@
    "license_url": "",
    "credit_line": "Royal Museum of Fine Arts Antwerp",
    "license_verified": "2026-07-16",
-   "featured_rank": 32
+   "featured_rank": 32,
+   "focal_point": [
+    0.45,
+    0.3
+   ]
   },
   {
    "title": "Jupiter and Callisto",
@@ -2159,7 +2411,11 @@
    "license_url": "",
    "credit_line": "Web Gallery of Art: Image Info about artworkwga QS:P11807,\"r/rubens/21mythol/13mythol\"",
    "license_verified": "2026-07-16",
-   "featured_rank": 46
+   "featured_rank": 46,
+   "focal_point": [
+    0.32,
+    0.3
+   ]
   },
   {
    "title": "The Deer Hunt",
@@ -2180,7 +2436,11 @@
    "license_url": "",
    "credit_line": "Royal Museum of Fine Arts Antwerp",
    "license_verified": "2026-07-16",
-   "featured_rank": 40
+   "featured_rank": 40,
+   "focal_point": [
+    0.55,
+    0.65
+   ]
   },
   {
    "title": "Hercules and Minerva Expelling Mars",
@@ -2201,7 +2461,11 @@
    "license_url": "",
    "credit_line": "Royal Museum of Fine Arts Antwerp",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.45,
+    0.35
+   ]
   },
   {
    "title": "Christ Expiring on the Cross",
@@ -2222,7 +2486,11 @@
    "license_url": "",
    "credit_line": "Royal Museum of Fine Arts Antwerp",
    "license_verified": "2026-07-16",
-   "featured_rank": 45
+   "featured_rank": 45,
+   "focal_point": [
+    0.52,
+    0.28
+   ]
   },
   {
    "title": "The Lamentation over the Dead Christ",
@@ -2243,7 +2511,11 @@
    "license_url": "",
    "credit_line": "Royal Museum of Fine Arts Antwerp",
    "license_verified": "2026-07-16",
-   "featured_rank": 44
+   "featured_rank": 44,
+   "focal_point": [
+    0.45,
+    0.5
+   ]
   },
   {
    "title": "The Triumphal Car of Kallo",
@@ -2264,7 +2536,11 @@
    "license_url": "",
    "credit_line": "Web Gallery of Art: Image Info about artworkwga QS:P11807,\"/r/rubens/7graphic/16sketch\"",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.5,
+    0.35
+   ]
   },
   {
    "title": "Landscape with a Herd of Cows",
@@ -2285,7 +2561,11 @@
    "license_url": "",
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
-   "featured_rank": 35
+   "featured_rank": 35,
+   "focal_point": [
+    0.3,
+    0.7
+   ]
   },
   {
    "title": "Old Woman and Boy with Candles",
@@ -2306,7 +2586,11 @@
    "license_url": "",
    "credit_line": "Mauritshuis",
    "license_verified": "2026-07-16",
-   "featured_rank": 35
+   "featured_rank": 35,
+   "focal_point": [
+    0.5,
+    0.3
+   ]
   },
   {
    "title": "Bathsheba at the Fountain",
@@ -2327,7 +2611,11 @@
    "license_url": "",
    "credit_line": "https://skd-online-collection.skd.museum/Details/Index/399676",
    "license_verified": "2026-07-16",
-   "featured_rank": 38
+   "featured_rank": 38,
+   "focal_point": [
+    0.42,
+    0.45
+   ]
   },
   {
    "title": "Pan and Syrinx",
@@ -2348,7 +2636,11 @@
    "license_url": "",
    "credit_line": "Google Art Project works from the Staatliches Museum Schwerin",
    "license_verified": "2026-07-16",
-   "featured_rank": 38
+   "featured_rank": 38,
+   "focal_point": [
+    0.45,
+    0.45
+   ]
   },
   {
    "title": "The Flagellation of Christ",
@@ -2369,7 +2661,11 @@
    "license_url": "",
    "credit_line": "Museum of Fine Arts Ghent (MSK)",
    "license_verified": "2026-07-16",
-   "featured_rank": 45
+   "featured_rank": 45,
+   "focal_point": [
+    0.42,
+    0.38
+   ]
   },
   {
    "title": "Quos Ego: Neptune Calming the Tempest",
@@ -2390,7 +2686,11 @@
    "license_url": "",
    "credit_line": "Royal Museum of Fine Arts Antwerp",
    "license_verified": "2026-07-16",
-   "featured_rank": 35
+   "featured_rank": 35,
+   "focal_point": [
+    0.42,
+    0.42
+   ]
   },
   {
    "title": "Venus, Mars and Cupid",
@@ -2411,7 +2711,11 @@
    "license_url": "",
    "credit_line": "sgEGV_FEf7BMWQ at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 50
+   "featured_rank": 50,
+   "focal_point": [
+    0.35,
+    0.4
+   ]
   },
   {
    "title": "Venus and Cupid",
@@ -2432,7 +2736,11 @@
    "license_url": "",
    "credit_line": "User:Jean-Pol GRANDMONT (2013)",
    "license_verified": "2026-07-16",
-   "featured_rank": 42
+   "featured_rank": 42,
+   "focal_point": [
+    0.35,
+    0.35
+   ]
   },
   {
    "title": "Milkmaids with Cattle in a Landscape, 'The Farm at Laken'",
@@ -2453,7 +2761,11 @@
    "license_url": "",
    "credit_line": "9AFIa58vJMeU9Q at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 40
+   "featured_rank": 40,
+   "focal_point": [
+    0.42,
+    0.68
+   ]
   },
   {
    "title": "Agrippina and Germanicus",
@@ -2474,7 +2786,11 @@
    "license_url": "",
    "credit_line": "National Gallery of Art, Washington D.C.",
    "license_verified": "2026-07-16",
-   "featured_rank": 38
+   "featured_rank": 38,
+   "focal_point": [
+    0.47,
+    0.35
+   ]
   },
   {
    "title": "Decius Mus Addressing the Legions",
@@ -2495,7 +2811,11 @@
    "license_url": "",
    "credit_line": "National Gallery of Art, Washington D.C.",
    "license_verified": "2026-07-16",
-   "featured_rank": 44
+   "featured_rank": 44,
+   "focal_point": [
+    0.22,
+    0.2
+   ]
   },
   {
    "title": "Ceres and Two Nymphs with a Cornucopia",
@@ -2516,7 +2836,11 @@
    "license_url": "",
    "credit_line": "GwES4aRw3UeNqg at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 38
+   "featured_rank": 38,
+   "focal_point": [
+    0.5,
+    0.42
+   ]
   },
   {
    "title": "Mars, Venus and Cupid",
@@ -2537,7 +2861,11 @@
    "license_url": "",
    "credit_line": "anagoria",
    "license_verified": "2026-07-16",
-   "featured_rank": 40
+   "featured_rank": 40,
+   "focal_point": [
+    0.62,
+    0.4
+   ]
   },
   {
    "title": "Girl with a Fan (Lady in White)",
@@ -2558,7 +2886,11 @@
    "license_url": "",
    "credit_line": "Kunsthistorisches Museum Wien, Bilddatenbank.",
    "license_verified": "2026-07-16",
-   "featured_rank": 36
+   "featured_rank": 36,
+   "focal_point": [
+    0.4,
+    0.2
+   ]
   },
   {
    "title": "Abundance (Abundantia)",
@@ -2579,7 +2911,11 @@
    "license_url": "",
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
-   "featured_rank": 27
+   "featured_rank": 27,
+   "focal_point": [
+    0.45,
+    0.4
+   ]
   },
   {
    "title": "The Calydonian Boar Hunt",
@@ -2600,7 +2936,11 @@
    "license_url": "",
    "credit_line": "XwEI7aAM8yT8tw at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 40
+   "featured_rank": 40,
+   "focal_point": [
+    0.45,
+    0.55
+   ]
   },
   {
    "title": "Landscape with a Rainbow",
@@ -2621,7 +2961,11 @@
    "license_url": "",
    "credit_line": "Hermitage",
    "license_verified": "2026-07-16",
-   "featured_rank": 38
+   "featured_rank": 38,
+   "focal_point": [
+    0.55,
+    0.4
+   ]
   },
   {
    "title": "The Wild Boar Hunt",
@@ -2642,7 +2986,11 @@
    "license_url": "",
    "credit_line": "https://www.washingtonpost.com/entertainment/museums/rubens-had-it-all--fame-fortune-good-looks-but-you-cant-hate-him/2019/04/09/a689fd1c-57af-11e9-8ef3-fbd41a2ce4d5_story.html",
    "license_verified": "2026-07-16",
-   "featured_rank": 32
+   "featured_rank": 32,
+   "focal_point": [
+    0.45,
+    0.55
+   ]
   },
   {
    "title": "The Adoration of the Magi (Lyon)",
@@ -2663,7 +3011,11 @@
    "license_url": "",
    "credit_line": "Musée des Beaux-Arts de Lyon",
    "license_verified": "2026-07-16",
-   "featured_rank": 42
+   "featured_rank": 42,
+   "focal_point": [
+    0.68,
+    0.55
+   ]
   },
   {
    "title": "Helena Fourment in Her Wedding Dress",
@@ -2684,7 +3036,11 @@
    "license_url": "",
    "credit_line": "Alte Pinakothek",
    "license_verified": "2026-07-16",
-   "featured_rank": 55
+   "featured_rank": 55,
+   "focal_point": [
+    0.45,
+    0.15
+   ]
   },
   {
    "title": "The Reconciliation of the Romans and the Sabines",
@@ -2705,7 +3061,11 @@
    "license_url": "",
    "credit_line": "DAMS Antwerpen",
    "license_verified": "2026-07-16",
-   "featured_rank": 25
+   "featured_rank": 25,
+   "focal_point": [
+    0.45,
+    0.55
+   ]
   },
   {
    "title": "Old Woman with a Basket of Coal",
@@ -2726,7 +3086,11 @@
    "license_url": "",
    "credit_line": "Google Arts &amp; Culture — xwF2xLyfFFUMmQ",
    "license_verified": "2026-07-16",
-   "featured_rank": 35
+   "featured_rank": 35,
+   "focal_point": [
+    0.55,
+    0.3
+   ]
   },
   {
    "title": "Adam and Eve (after Titian)",
@@ -2747,7 +3111,11 @@
    "license_url": "",
    "credit_line": "DAMS Antwerpen",
    "license_verified": "2026-07-16",
-   "featured_rank": 34
+   "featured_rank": 34,
+   "focal_point": [
+    0.65,
+    0.25
+   ]
   },
   {
    "title": "Christ Triumphant over Death and Sin",
@@ -2768,7 +3136,11 @@
    "license_url": "",
    "credit_line": "https://www.flickr.com/photos/57179180@N07/54458203869/",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.45,
+    0.2
+   ]
   },
   {
    "title": "River Landscape with Pan and Syrinx",
@@ -2789,7 +3161,11 @@
    "license_url": "",
    "credit_line": "http://altemeister.museum-kassel.de/44057/0/0/147/s7/0/100/objekt.html",
    "license_verified": "2026-07-16",
-   "featured_rank": 36
+   "featured_rank": 36,
+   "focal_point": [
+    0.55,
+    0.45
+   ]
   },
   {
    "title": "Worship of Venus",
@@ -2810,7 +3186,11 @@
    "license_url": "",
    "credit_line": "IAHuqzg-yAhLtg at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 46
+   "featured_rank": 46,
+   "focal_point": [
+    0.72,
+    0.3
+   ]
   },
   {
    "title": "The Death of Decius Mus",
@@ -2831,7 +3211,11 @@
    "license_url": "",
    "credit_line": "[1]",
    "license_verified": "2026-07-16",
-   "featured_rank": 32
+   "featured_rank": 32,
+   "focal_point": [
+    0.45,
+    0.45
+   ]
   },
   {
    "title": "The Voyage of the Cardinal-Infante Ferdinand: Neptune Calming the Tempest",
@@ -2852,7 +3236,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
-   "featured_rank": 34
+   "featured_rank": 34,
+   "focal_point": [
+    0.28,
+    0.4
+   ]
   },
   {
    "title": "Landscape with Cows and Duck Hunters",
@@ -2873,7 +3261,11 @@
    "license_url": "",
    "credit_line": "Staatliche Museen zu Berlin",
    "license_verified": "2026-07-16",
-   "featured_rank": 34
+   "featured_rank": 34,
+   "focal_point": [
+    0.85,
+    0.78
+   ]
   },
   {
    "title": "Landscape with a Gallows",
@@ -2894,7 +3286,11 @@
    "license_url": "",
    "credit_line": "Staatliche Museen zu Berlin",
    "license_verified": "2026-07-16",
-   "featured_rank": 32
+   "featured_rank": 32,
+   "focal_point": [
+    0.45,
+    0.5
+   ]
   },
   {
    "title": "Fortuna",
@@ -2915,7 +3311,11 @@
    "license_url": "",
    "credit_line": "Staatliche Museen zu Berlin",
    "license_verified": "2026-07-16",
-   "featured_rank": 38
+   "featured_rank": 38,
+   "focal_point": [
+    0.45,
+    0.32
+   ]
   },
   {
    "title": "Landscape with the Shipwreck of Saint Paul",
