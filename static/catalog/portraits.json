@@ -921,32 +921,6 @@
    "featured_rank": 28
   },
   {
-   "title": "Domenico da Gambassi",
-   "agent_name": "Andrea del Sarto",
-   "agent_role": "Painter",
-   "creation_date": "1525",
-   "cultural_context": "Florentine High Renaissance",
-   "medium": "Oil on panel",
-   "date_display": "1525–28",
-   "description_narrative": "This portrait forms a pendant pair with Andrea del Sarto's portrait of Lucrezia di Lippo di Iacopo Guidi, likely painted to commemorate the couple's marriage. Andrea del Sarto was celebrated in his own time as 'the faultless painter' for his technical mastery.",
-   "tags": [
-    "Andrea del Sarto",
-    "Florentine Renaissance",
-    "pendant portrait",
-    "16th century"
-   ],
-   "source": "Art Institute of Chicago",
-   "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/d8c733d2-5132-d0e6-c7ba-2f9f35f1a191/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/d8c733d2-5132-d0e6-c7ba-2f9f35f1a191/full/400,/0/default.jpg",
-   "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
-   "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
-   "featured_rank": 25
-  },
-  {
    "title": "Portrait of Dr. William McNeill Whistler",
    "agent_name": "James McNeill Whistler",
    "agent_role": "Painter",

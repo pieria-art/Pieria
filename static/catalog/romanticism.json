@@ -951,7 +951,8 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "needs_frame_crop": true
   },
   {
    "title": "Poetry and Poets",
@@ -1182,7 +1183,8 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
-   "featured_rank": 45
+   "featured_rank": 45,
+   "needs_frame_crop": true
   },
   {
    "title": "The Red Rigi",
@@ -1259,14 +1261,15 @@
    "tags": "Turner, steamboat, storm, sea, rockets, marine, oil painting, sublime",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Joseph%20Mallord%20William%20Turner%20-%20Rockets%20and%20Blue%20Lights%20%28Close%20at%20Hand%29%20to%20Warn%20Steamboats%20of%20Shoal%20Water%20-%201955.37%20-%20Clark%20Art%20Institute.tiff?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Joseph%20Mallord%20William%20Turner%20-%20Rockets%20and%20Blue%20Lights%20%28Close%20at%20Hand%29%20to%20Warn%20Steamboats%20of%20Shoal%20Water%20-%201955.37%20-%20Clark%20Art%20Institute.tiff?width=600",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/J.M.W.%20Turner%27s%20Rockets%20and%20Blue%20Lights%20(Close%20at%20Hand)%20to%20Warn%20Steamboats%20of%20Shoal%20Water.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/J.M.W.%20Turner%27s%20Rockets%20and%20Blue%20Lights%20(Close%20at%20Hand)%20to%20Warn%20Steamboats%20of%20Shoal%20Water.jpg?width=600",
+   "featured_rank": 52,
+   "width": 6296,
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Clark Art Institute",
-   "license_verified": "2026-07-16",
-   "featured_rank": 52
+   "credit_line": "https://www.clarkart.edu/ArtPiece/Detail/Rockets-and-Blue-Lights-(Close-at-Hand)-to-Warn-St",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Llanthony Abbey, Monmouthshire",
@@ -1455,7 +1458,8 @@
    "license_url": "",
    "credit_line": "Clark Art Institute",
    "license_verified": "2026-07-16",
-   "featured_rank": 25
+   "featured_rank": 25,
+   "needs_frame_crop": true
   },
   {
    "title": "The Château de St. Michael, Bonneville, Savoy",
@@ -1497,7 +1501,8 @@
    "license_url": "",
    "credit_line": "Wuselig",
    "license_verified": "2026-07-16",
-   "featured_rank": 35
+   "featured_rank": 35,
+   "needs_frame_crop": true
   },
   {
    "title": "Tummel Bridge, Perthshire",
@@ -1539,7 +1544,8 @@
    "license_url": "",
    "credit_line": "Wuselig",
    "license_verified": "2026-07-16",
-   "featured_rank": 32
+   "featured_rank": 32,
+   "needs_frame_crop": true
   },
   {
    "title": "The Sun of Venice Going to Sea",
@@ -1623,7 +1629,8 @@
    "license_url": "",
    "credit_line": "Self-photographed, User:Daderot, April 2011",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "needs_frame_crop": true
   },
   {
    "title": "View off Margate, Evening",
@@ -1644,7 +1651,8 @@
    "license_url": "",
    "credit_line": "Clark Art Institute",
    "license_verified": "2026-07-16",
-   "featured_rank": 34
+   "featured_rank": 34,
+   "needs_frame_crop": true
   },
   {
    "title": "The Schöllenen Gorge from the Devil's Bridge, Pass of St Gotthard",
@@ -1665,7 +1673,8 @@
    "license_url": "",
    "credit_line": "Wuselig",
    "license_verified": "2026-07-16",
-   "featured_rank": 34
+   "featured_rank": 34,
+   "needs_frame_crop": true
   },
   {
    "title": "Tours: Sunset, Looking Backwards",
@@ -1773,27 +1782,6 @@
    "featured_rank": 38
   },
   {
-   "title": "Lucerne from the Walls",
-   "agent_name": "J. M. W. Turner",
-   "agent_role": "Painter",
-   "creation_date": "c. 1842",
-   "cultural_context": "English Romanticism, late Swiss tour watercolors, mid-19th century",
-   "medium": "Watercolor on paper",
-   "date_display": "c. 1842",
-   "description_narrative": "Seen from the old town walls, Lucerne and its lake spread out beneath distant snow-capped peaks in soft, glowing color. The watercolor is one of many views Turner made of the city during his repeated Swiss journeys in the 1840s, a favored subject in his final creative decade.",
-   "tags": "Turner, Lucerne, Switzerland, lake, Alps, watercolor, late style",
-   "source": "Wikimedia Commons",
-   "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Lucerne%20from%20the%20Walls.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Lucerne%20from%20the%20Walls.jpg?width=600",
-   "license_verdict": "pd",
-   "license_basis": "CC0",
-   "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
-   "credit_line": "Own work",
-   "license_verified": "2026-07-16",
-   "featured_rank": 42
-  },
-  {
    "title": "The Bass Rock",
    "agent_name": "J. M. W. Turner",
    "agent_role": "Painter",
@@ -1812,7 +1800,8 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "needs_frame_crop": true
   },
   {
    "title": "Ancient Rome: Agrippina Landing with the Ashes of Germanicus",

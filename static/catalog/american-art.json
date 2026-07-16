@@ -1758,27 +1758,6 @@
    "featured_rank": 28
   },
   {
-   "title": "Madonna and Child and Saints (copy after an Italian master)",
-   "agent_name": "John Singer Sargent",
-   "agent_role": "Painter",
-   "creation_date": "c. 1895-1915",
-   "cultural_context": "American, Gilded Age",
-   "medium": "Watercolor",
-   "date_display": "c. 1900",
-   "description_narrative": "A watercolor copy Sargent made after an Italian Old Master altarpiece of the Madonna and Child with saints. Dating from about 1895-1915, it is held by the Metropolitan Museum of Art.",
-   "tags": "copy, Madonna and Child, Old Master, watercolor, religious, study, Metropolitan Museum",
-   "source": "Wikimedia Commons",
-   "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Madonna%20and%20Child%20and%20Saints%20MET%20DP212026.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Madonna%20and%20Child%20and%20Saints%20MET%20DP212026.jpg?width=600",
-   "license_verdict": "pd",
-   "license_basis": "CC0",
-   "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
-   "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
-   "license_verified": "2026-07-16",
-   "featured_rank": 15
-  },
-  {
    "title": "Two Girls with Parasols at Fladbury",
    "agent_name": "John Singer Sargent",
    "agent_role": "Painter",
@@ -6858,7 +6837,8 @@
    "license_url": "",
    "credit_line": "Catalog Photo",
    "license_verified": "2026-07-16",
-   "featured_rank": 25
+   "featured_rank": 25,
+   "needs_frame_crop": true
   },
   {
    "title": "Sunlight and Shadow",
@@ -6872,14 +6852,15 @@
    "tags": "genre,rural life,American Realism,Winslow Homer",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Painting%2C%20Sunlight%20and%20Shadow%2C%201873%20%28CH%2018189327%29.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Painting%2C%20Sunlight%20and%20Shadow%2C%201873%20%28CH%2018189327%29.jpg?width=600",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Painting%2C%20Sunlight%20and%20Shadow%2C%201873%20(CH%2018189327-2).jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Painting%2C%20Sunlight%20and%20Shadow%2C%201873%20(CH%2018189327-2).jpg?width=600",
+   "featured_rank": 22,
+   "width": 4000,
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "Catalog Photo",
-   "license_verified": "2026-07-16",
-   "featured_rank": 22
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Gloucester Harbor",

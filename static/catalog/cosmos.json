@@ -31,31 +31,6 @@
    "license_verified": "2026-07-16"
   },
   {
-   "title": "Webb's First Deep Field",
-   "agent_name": "IMAGE: NASA, ESA, CSA, STScI",
-   "agent_role": "Artist",
-   "creation_date": "",
-   "cultural_context": "21st-century astrophysics, global scientific collaboration",
-   "medium": "Photograph",
-   "date_display": "2022",
-   "description_narrative": "This monumental image, captured by the James Webb Space Telescope, reveals thousands of galaxies in a tiny patch of sky, including the faintest objects ever observed in the infrared. Serving as Webb's inaugural full-color deep field, it offers humanity the deepest and sharpest infrared view of the universe to date.",
-   "tags": "astronomy, galaxies, deep field, space, universe, scientific, celestial",
-   "source": "Wikimedia Commons",
-   "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Webb%27s%20First%20Deep%20Field%20%28MIRI%20and%20NIRCam%20Side-by-Side%20Compass%20Image%29%20%282022-035-01G7DDWW7FSRX0GAP43WFZ9JNH%29.png?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Webb%27s%20First%20Deep%20Field%20%28MIRI%20and%20NIRCam%20Side-by-Side%20Compass%20Image%29%20%282022-035-01G7DDWW7FSRX0GAP43WFZ9JNH%29.png?width=600",
-   "focal_point": [
-    0.72,
-    0.5
-   ],
-   "featured_rank": 75,
-   "license_verdict": "pd",
-   "license_basis": "Public domain",
-   "license_url": "",
-   "credit_line": "Webb's First Deep Field (MIRI and NIRCam Side-by-Side Compass Image)",
-   "license_verified": "2026-07-16"
-  },
-  {
    "title": "Cosmic Cliffs Carina Nebula",
    "agent_name": "IMAGE: NASA, ESA, CSA, STScI",
    "agent_role": "Artist",
@@ -603,31 +578,6 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "10 Years Ago: NASA’s New Horizons Captures Pluto’s Heart",
-   "license_verified": "2026-07-16"
-  },
-  {
-   "title": "Perseverance Selfie with Ingenuity",
-   "agent_name": "NASA/JPL-Caltech/MSSS/Dejasu",
-   "agent_role": "Artist",
-   "creation_date": "",
-   "cultural_context": "Contemporary, Space Exploration",
-   "medium": "Photograph",
-   "date_display": "Early 2020s",
-   "description_narrative": "This image captures the Perseverance rover on the surface of Mars, presenting a self-portrait that includes the Ingenuity helicopter nearby. It serves as a remarkable record of robotic exploration and humanity's venture into understanding the Red Planet.",
-   "tags": "mars, rover, ingenuity, perseverance, space exploration, robotics, scientific photography, self-portrait",
-   "source": "Wikimedia Commons",
-   "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/FnIhdCQXoAAD6-z%20Perseverance%27s%20Three%20Forks%20Sample%20Depot%20Selfie%20containing%20ingenuity.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/FnIhdCQXoAAD6-z%20Perseverance%27s%20Three%20Forks%20Sample%20Depot%20Selfie%20containing%20ingenuity.jpg?width=600",
-   "focal_point": [
-    0.34,
-    0.52
-   ],
-   "featured_rank": 40,
-   "license_verdict": "pd",
-   "license_basis": "Public domain",
-   "license_url": "",
-   "credit_line": "https://mars.nasa.gov/resources/27262/perseverances-three-forks-sample-depot-selfie/",
    "license_verified": "2026-07-16"
   },
   {

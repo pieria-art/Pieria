@@ -1954,15 +1954,15 @@
    "tags": "impressionism, vetheuil, spring, landscape, seine, hillside",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Au%20dessus%20de%20V%C3%A9theuil%2C%20effet%20de%20printemps%2C%20Claude%20Monet%3B%20-%203155.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Au%20dessus%20de%20V%C3%A9theuil%2C%20effet%20de%20printemps%2C%20Claude%20Monet%3B%20-%203155.jpg?width=600",
-   "needs_frame_crop": true,
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Springtime%20near%20V%C3%A9theuil%20-%20Claude%20Monet%20-%20Wallraf-Richartz%20Museum%20-%20Cologne%20-%20Germany%202017.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Springtime%20near%20V%C3%A9theuil%20-%20Claude%20Monet%20-%20Wallraf-Richartz%20Museum%20-%20Cologne%20-%20Germany%202017.jpg?width=600",
+   "featured_rank": 38,
+   "width": 4230,
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Own work",
-   "license_verified": "2026-07-16",
-   "featured_rank": 38
+   "credit_line": "© José Luiz Bernardes Ribeiro",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Farmyard in Normandy",
@@ -2628,14 +2628,15 @@
    "tags": "Lise Tréhot, early work, figure study, Alte Nationalgalerie, Berlin",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Alte%20Nationalgalerie-Renoir-Im%20Sommer%20DSC8342.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Alte%20Nationalgalerie-Renoir-Im%20Sommer%20DSC8342.jpg?width=600",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Auguste%20Renoir%20-%20En%20%C3%A9t%C3%A9%20-%20La%20boh%C3%A9mienne%20-%20Google%20Art%20Project.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Auguste%20Renoir%20-%20En%20%C3%A9t%C3%A9%20-%20La%20boh%C3%A9mienne%20-%20Google%20Art%20Project.jpg?width=600",
+   "featured_rank": 50,
+   "width": 4015,
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Wuselig",
-   "license_verified": "2026-07-16",
-   "featured_rank": 50
+   "credit_line": "Google Arts &amp; Culture — 8AHrE7jXKoFBQw",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "The Umbrellas",
@@ -3120,27 +3121,6 @@
    "credit_line": "https://clevelandart.org/art/1940.534",
    "license_verified": "2026-07-16",
    "featured_rank": 34
-  },
-  {
-   "title": "The Execution of Emperor Maximilian",
-   "agent_name": "Édouard Manet",
-   "agent_role": "Painter",
-   "creation_date": "1867–1868",
-   "cultural_context": "Impressionism / Realism, French",
-   "medium": "Oil on canvas",
-   "date_display": "1867-68",
-   "description_narrative": "Manet depicted the 1867 firing-squad execution of the French-installed Emperor Maximilian of Mexico, reworking the composition several times as more accurate reports of the event reached Paris. This large canvas, now assembled from surviving fragments, is one of four related paintings he made of the subject.",
-   "tags": "history painting, execution, Maximilian, Mexico, political subject, National Gallery London",
-   "source": "Wikimedia Commons",
-   "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/%C3%89douard%20Manet%20-%20L%27execution%20de%20Maximilien%20%28London%29.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/%C3%89douard%20Manet%20-%20L%27execution%20de%20Maximilien%20%28London%29.jpg?width=600",
-   "license_verdict": "pd",
-   "license_basis": "Public domain",
-   "license_url": "",
-   "credit_line": "1.Art UK2. National Gallery, London - online collection",
-   "license_verified": "2026-07-16",
-   "featured_rank": 75
   },
   {
    "title": "View of the 1867 Exposition Universelle",
@@ -4888,27 +4868,6 @@
    "credit_line": "http://www.nga.gov/content/ngaweb/Collection/art-object-page.164915.html",
    "license_verified": "2026-07-16",
    "featured_rank": 28
-  },
-  {
-   "title": "Spanish Dancers and Musicians",
-   "agent_name": "Edgar Degas",
-   "agent_role": "Painter",
-   "creation_date": "1868-1869",
-   "cultural_context": "Realism, French",
-   "medium": "Oil on paper",
-   "date_display": "1868–69",
-   "description_narrative": "Performers dance and play music in Spanish costume, reflecting the vogue for Spanish subjects among French artists of the period following the visit of Spanish dancers to Paris. Held at the National Gallery of Art, Washington.",
-   "tags": "dancers, musicians, Spanish costume, performance, National Gallery of Art",
-   "source": "Wikimedia Commons",
-   "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Edgar%20Degas%2C%20Spanish%20Dancers%20and%20Musicians%2C%201868-1869%2C%20NGA%20111582.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Edgar%20Degas%2C%20Spanish%20Dancers%20and%20Musicians%2C%201868-1869%2C%20NGA%20111582.jpg?width=600",
-   "license_verdict": "pd",
-   "license_basis": "CC0",
-   "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
-   "credit_line": "This file was donated to Wikimedia Commons as part of a project by the National Gallery of Art. Please see the Gallery's Open Access Policy.",
-   "license_verified": "2026-07-16",
-   "featured_rank": 34
   },
   {
    "title": "Two Women",
@@ -7221,7 +7180,8 @@
    "license_url": "",
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
-   "featured_rank": 26
+   "featured_rank": 26,
+   "needs_frame_crop": true
   },
   {
    "title": "Haymaking",

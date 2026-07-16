@@ -1039,7 +1039,8 @@
    "license_url": "",
    "credit_line": "ygFWM4YTEcusUg at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 40
+   "featured_rank": 40,
+   "needs_frame_crop": true
   }
  ]
 }

@@ -3934,7 +3934,8 @@
    "license_url": "",
    "credit_line": "Van Gogh Museum",
    "license_verified": "2026-07-16",
-   "featured_rank": 68
+   "featured_rank": 68,
+   "needs_frame_crop": true
   },
   {
    "title": "Still Life with Basket of Potatoes (I)",
@@ -4347,14 +4348,15 @@
    "tags": "portrait, joseph roulin, postman, arles",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Portrait%20of%20the%20Postman%20Joseph%20Roulin.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Portrait%20of%20the%20Postman%20Joseph%20Roulin.jpg?width=600",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Van%20Gogh%20-%20Bildnis%20Josepf%20Roulin%2C%20an%20einem%20Tisch%20sitzend.jpeg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Van%20Gogh%20-%20Bildnis%20Josepf%20Roulin%2C%20an%20einem%20Tisch%20sitzend.jpeg?width=600",
+   "featured_rank": 68,
+   "width": 3864,
    "license_verdict": "pd",
-   "license_basis": "CC0",
-   "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
-   "credit_line": "Self-photographed",
-   "license_verified": "2026-07-16",
-   "featured_rank": 68
+   "license_basis": "Public domain",
+   "license_url": "",
+   "credit_line": "Copied from an art book",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Shoes",
@@ -4557,14 +4559,15 @@
    "tags": "chestnut blossom, still life, auvers-sur-oise, kunsthaus zurich",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Branches%20de%20marronnier%20en%20fleur%20%281890%29%20-%20Vincent%20van%20Gogh%20%28Kunsthaus%20Z%C3%BCrich%29.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Branches%20de%20marronnier%20en%20fleur%20%281890%29%20-%20Vincent%20van%20Gogh%20%28Kunsthaus%20Z%C3%BCrich%29.jpg?width=600",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Van%20Gogh%20-%20Bl%C3%BChende%20Kastanienbaumzweige.jpeg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Van%20Gogh%20-%20Bl%C3%BChende%20Kastanienbaumzweige.jpeg?width=600",
+   "featured_rank": 38,
+   "width": 3870,
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Own work",
-   "license_verified": "2026-07-16",
-   "featured_rank": 38
+   "credit_line": "repro from artbook",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "The Church at Auvers",
@@ -5783,27 +5786,6 @@
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
    "featured_rank": 26
-  },
-  {
-   "title": "Hussars",
-   "agent_name": "Henri de Toulouse-Lautrec",
-   "agent_role": "Painter",
-   "creation_date": "1878",
-   "cultural_context": "Post-Impressionism, French",
-   "medium": "Oil on canvas",
-   "date_display": "1878",
-   "description_narrative": "One of Toulouse-Lautrec's earliest known paintings, made at about age fourteen, depicting mounted hussars, light cavalry soldiers known for their elaborate uniforms. It demonstrates his precocious skill in rendering horses and military subjects.",
-   "tags": "Toulouse-Lautrec, hussars, military, horse, juvenilia, NGA",
-   "source": "Wikimedia Commons",
-   "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Henri%20de%20Toulouse-Lautrec%2C%20Hussars%2C%201878%2C%20NGA%2089687.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Henri%20de%20Toulouse-Lautrec%2C%20Hussars%2C%201878%2C%20NGA%2089687.jpg?width=600",
-   "license_verdict": "pd",
-   "license_basis": "CC0",
-   "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
-   "credit_line": "This file was donated to Wikimedia Commons as part of a project by the National Gallery of Art. Please see the Gallery's Open Access Policy.",
-   "license_verified": "2026-07-16",
-   "featured_rank": 22
   },
   {
    "title": "At the Bastille: Jeanne Wenz",

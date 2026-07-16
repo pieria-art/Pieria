@@ -730,14 +730,15 @@
    ],
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Belshazzar%E2%80%99s%20Feast%20-%20DPLA%20-%2057628220d480590391afd80a5c66f056.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Belshazzar%E2%80%99s%20Feast%20-%20DPLA%20-%2057628220d480590391afd80a5c66f056.jpg?width=600",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt-BelsazarFXD.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt-BelsazarFXD.jpg?width=600",
+   "featured_rank": 85,
+   "width": 5308,
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "This file was contributed to Wikimedia Commons by Camp Chesterfield as part of a cooperation project. The donation was facilitated by the Digital Public Library of America, via its partner Indiana Memory. Record in source catalog DPLA identifier: 57628220d480590391afd80a5c66f056 Camp Chesterfield identifier: http://indianamemory.contentdm.oclc.org/cdm/ref/collection/CampChesterfield/id/7792",
-   "license_verified": "2026-07-16",
-   "featured_rank": 85
+   "credit_line": "This file was derived from: Rembrandt-Belsazar.jpg:",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "The Courtyard of a House in Delft",
@@ -1258,27 +1259,6 @@
    "credit_line": "Google Arts &amp; Culture — 2gGzDAOK1Yk7xg",
    "license_verified": "2026-07-16",
    "featured_rank": 58
-  },
-  {
-   "title": "Portrait of Haesje Jacobsdr van Cleyburgh",
-   "agent_name": "Rembrandt van Rijn",
-   "agent_role": "Painter",
-   "creation_date": "1634",
-   "cultural_context": "Dutch Golden Age",
-   "medium": "Oil on canvas",
-   "date_display": "c. 1634",
-   "description_narrative": "A young Amsterdam woman is portrayed in fashionable dress with a modest ruff and cap, part of Rembrandt's thriving early practice painting the city's wealthy burghers. The crisp detail and even lighting reflect the polished portrait style of his first successful years in Amsterdam.",
-   "tags": "portrait, Amsterdam burgher, ruff, Rijksmuseum, early period",
-   "source": "Wikimedia Commons",
-   "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Portret%20van%20Haesje%20Jacobsdr%20van%20Cleyburg%20Portret%20van%20Haesje%20Jacobsdr%20van%20Cleyburgh%2C%20SK-A-4833.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Portret%20van%20Haesje%20Jacobsdr%20van%20Cleyburg%20Portret%20van%20Haesje%20Jacobsdr%20van%20Cleyburgh%2C%20SK-A-4833.jpg?width=600",
-   "license_verdict": "pd",
-   "license_basis": "CC0",
-   "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
-   "credit_line": "http://hdl.handle.net/10934/RM0001.COLLECT.5225",
-   "license_verified": "2026-07-16",
-   "featured_rank": 35
   },
   {
    "title": "Young Woman in Fantasy Costume (Saskia)",
@@ -2100,27 +2080,6 @@
    "featured_rank": 28
   },
   {
-   "title": "Portrait of a Married Couple",
-   "agent_name": "Frans Hals",
-   "agent_role": "Painter",
-   "creation_date": "1622",
-   "cultural_context": "Dutch Golden Age",
-   "medium": "Oil on canvas",
-   "date_display": "c. 1622",
-   "description_narrative": "A husband and wife are shown together in fashionable dress, an intimate format Hals used to celebrate marriage with informal warmth rather than rigid pendant portraits. His lively brushwork and relaxed poses broke with the stiffer conventions of earlier Dutch marriage portraiture.",
-   "tags": "marriage portrait, couple, Haarlem, informal pose",
-   "source": "Wikimedia Commons",
-   "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Ehegattenportaits%20%28Frans%20Hals%29-WUS03346.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Ehegattenportaits%20%28Frans%20Hals%29-WUS03346.jpg?width=600",
-   "license_verdict": "pd",
-   "license_basis": "CC0",
-   "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
-   "credit_line": "Wuselig",
-   "license_verified": "2026-07-16",
-   "featured_rank": 55
-  },
-  {
    "title": "Portrait of Pieter Cornelisz van der Morsch",
    "agent_name": "Frans Hals",
    "agent_role": "Painter",
@@ -2216,14 +2175,15 @@
    "tags": "civic guard, group portrait, Amsterdam, collaboration, Rijksmuseum",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Die%20magere%20Kompagnie%20%28Frans%20Hals%20und%20Pieter%20Codde%29-WUS03362.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Die%20magere%20Kompagnie%20%28Frans%20Hals%20und%20Pieter%20Codde%29-WUS03362.jpg?width=600",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frans%20Hals%2C%20De%20magere%20compagnie.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frans%20Hals%2C%20De%20magere%20compagnie.jpg?width=600",
+   "featured_rank": 50,
+   "width": 5446,
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Wuselig",
-   "license_verified": "2026-07-16",
-   "featured_rank": 50
+   "credit_line": "www.rijksmuseum.nl : Home : Info",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Fisherman Playing the Violin",
@@ -2286,7 +2246,8 @@
    "license_url": "",
    "credit_line": "Wuselig",
    "license_verified": "2026-07-16",
-   "featured_rank": 35
+   "featured_rank": 35,
+   "needs_frame_crop": true
   },
   {
    "title": "Saint Luke the Evangelist",
@@ -2307,28 +2268,8 @@
    "license_url": "",
    "credit_line": "Wuselig",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
-  },
-  {
-   "title": "Portrait of Isaac Abrahamsz Massa",
-   "agent_name": "Frans Hals",
-   "agent_role": "Painter",
-   "creation_date": "1635",
-   "cultural_context": "Dutch Golden Age",
-   "medium": "Oil on canvas",
-   "date_display": "c. 1635",
-   "description_narrative": "The Haarlem merchant, diplomat, and explorer Isaac Massa is portrayed with characteristic informality, his figure set against a landscape thought to have been contributed by the painter Pieter de Molijn. Massa was a close friend of Hals and sat for the artist on more than one occasion over the years.",
-   "tags": "portrait, merchant, diplomat, collaboration, Haarlem",
-   "source": "Wikimedia Commons",
-   "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Portrait%20des%20Abrahamasz%20Massa%20%28Frans%20Hals%20and%20Pieter%20de%20Molijn%29-WUS03424.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Portrait%20des%20Abrahamasz%20Massa%20%28Frans%20Hals%20and%20Pieter%20de%20Molijn%29-WUS03424.jpg?width=600",
-   "license_verdict": "pd",
-   "license_basis": "Public domain",
-   "license_url": "",
-   "credit_line": "Wuselig",
-   "license_verified": "2026-07-16",
-   "featured_rank": 36
+   "featured_rank": 30,
+   "needs_frame_crop": true
   },
   {
    "title": "Portrait of Vincent Laurensz van der Vinne",
@@ -2349,7 +2290,8 @@
    "license_url": "",
    "credit_line": "Wuselig",
    "license_verified": "2026-07-16",
-   "featured_rank": 32
+   "featured_rank": 32,
+   "needs_frame_crop": true
   },
   {
    "title": "The Lute Player",
@@ -2363,14 +2305,15 @@
    "tags": "genre painting, musician, lute, Louvre, tronie",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Der%20Lautenspieler%20%28Frans%20Hals%29--WUS03751.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Der%20Lautenspieler%20%28Frans%20Hals%29--WUS03751.jpg?width=600",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Le%20Bouffon%20au%20luth%20-%20Frans%20Hals%20-%20Mus%C3%A9e%20du%20Louvre%20Peintures%20RF%201984%2032.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Le%20Bouffon%20au%20luth%20-%20Frans%20Hals%20-%20Mus%C3%A9e%20du%20Louvre%20Peintures%20RF%201984%2032.jpg?width=600",
+   "featured_rank": 47,
+   "width": 6384,
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Wuselig",
-   "license_verified": "2026-07-16",
-   "featured_rank": 47
+   "credit_line": "photo Shonagon 2025-05-28",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Portrait of a Standing Woman",
@@ -2391,7 +2334,8 @@
    "license_url": "",
    "credit_line": "Wuselig",
    "license_verified": "2026-07-16",
-   "featured_rank": 34
+   "featured_rank": 34,
+   "needs_frame_crop": true
   },
   {
    "title": "Saint John the Evangelist",
@@ -2426,14 +2370,15 @@
    "tags": "genre painting, fisher boy, coastal landscape, childhood",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Fischerjunge%20in%20einer%20Landschaft%20%28Frans%20Hals%29-WUS03754.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Fischerjunge%20in%20einer%20Landschaft%20%28Frans%20Hals%29-WUS03754.jpg?width=600",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frans%20Hals%20-%20Vissersjongen.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frans%20Hals%20-%20Vissersjongen.jpg?width=600",
+   "featured_rank": 33,
+   "width": 4372,
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Wuselig",
-   "license_verified": "2026-07-16",
-   "featured_rank": 33
+   "credit_line": "Lukas - Art in Flanders VZW",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Peeckelhaering",
@@ -2457,27 +2402,6 @@
    "featured_rank": 40
   },
   {
-   "title": "Portrait of a Man (traditionally identified as Jan Miense Molenaer)",
-   "agent_name": "Frans Hals",
-   "agent_role": "Painter",
-   "creation_date": "1637",
-   "cultural_context": "Dutch Golden Age",
-   "medium": "Oil on canvas",
-   "date_display": "c. 1635-1640",
-   "description_narrative": "A confident, informally dressed man is traditionally, though not conclusively, identified as the Haarlem genre painter Jan Miense Molenaer, a younger contemporary of Hals. The loose handling of the lace collar and hat feather typifies Hals's fluent brushwork of the mid-1630s.",
-   "tags": "portrait, Haarlem painter, uncertain identification, mature Hals",
-   "source": "Wikimedia Commons",
-   "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bildnis%20des%20Jan%20Miense%20Molenaer%20%28-%29%20%28Frans%20Hals%29WUS03484.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bildnis%20des%20Jan%20Miense%20Molenaer%20%28-%29%20%28Frans%20Hals%29WUS03484.jpg?width=600",
-   "license_verdict": "pd",
-   "license_basis": "Public domain",
-   "license_url": "",
-   "credit_line": "Wuselig",
-   "license_verified": "2026-07-16",
-   "featured_rank": 28
-  },
-  {
    "title": "Singing Boy with a Flute",
    "agent_name": "Frans Hals",
    "agent_role": "Painter",
@@ -2489,14 +2413,15 @@
    "tags": "genre painting, musician, flute, childhood, Berlin",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Knabe%20mit%20Fl%C3%B6te%20%28Frans%20Hals%29-WUS03441.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Knabe%20mit%20Fl%C3%B6te%20%28Frans%20Hals%29-WUS03441.jpg?width=600",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frans%20Hals%20-%20Singing%20Boy%20with%20Flute%20-%20Google%20Art%20Project.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frans%20Hals%20-%20Singing%20Boy%20with%20Flute%20-%20Google%20Art%20Project.jpg?width=600",
+   "featured_rank": 35,
+   "width": 4000,
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Wuselig",
-   "license_verified": "2026-07-16",
-   "featured_rank": 35
+   "credit_line": "Google Arts &amp; Culture — dQFXOJ-XwZBbcA",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Portrait of Johannes Acronius",
@@ -2539,27 +2464,6 @@
    "credit_line": "Staatliche Museen zu Berlin",
    "license_verified": "2026-07-16",
    "featured_rank": 30
-  },
-  {
-   "title": "Portrait of Tyman Oosdorp",
-   "agent_name": "Frans Hals",
-   "agent_role": "Painter",
-   "creation_date": "1656",
-   "cultural_context": "Dutch Golden Age",
-   "medium": "Oil on canvas",
-   "date_display": "1656",
-   "description_narrative": "The Haarlem cloth merchant Tyman Oosdorp is portrayed in a plain black coat and wide-brimmed hat, a sober fashion typical of mid-century Dutch Calvinist dress. Hals's confident, fluid brushwork animates the otherwise restrained composition.",
-   "tags": "portrait, merchant, Haarlem, Gemäldegalerie Berlin",
-   "source": "Wikimedia Commons",
-   "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frans%20Hals%20%281582-83%20-%201666%29%20-%20Portrait%20of%20Tyman%20Oosdorp%20%281613-1668%29%20-%20801H%20-%20Gem%C3%A4ldegalerie.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frans%20Hals%20%281582-83%20-%201666%29%20-%20Portrait%20of%20Tyman%20Oosdorp%20%281613-1668%29%20-%20801H%20-%20Gem%C3%A4ldegalerie.jpg?width=600",
-   "license_verdict": "pd",
-   "license_basis": "Public domain",
-   "license_url": "",
-   "credit_line": "Staatliche Museen zu Berlin",
-   "license_verified": "2026-07-16",
-   "featured_rank": 28
   },
   {
    "title": "Portrait of a Woman Holding a Book",

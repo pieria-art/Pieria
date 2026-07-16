@@ -306,31 +306,6 @@
    "license_verified": "2026-07-16"
   },
   {
-   "title": "The Adventures of Ulysses",
-   "agent_name": "Apollonio di Giovanni",
-   "agent_role": "Artist",
-   "creation_date": "1435–45",
-   "cultural_context": "Early Renaissance, Italian",
-   "medium": "Tempera on panel",
-   "date_display": "1435–45",
-   "description_narrative": "This tempera on panel painting illustrates scenes from Homer's Odyssey, chronicling the epic journey of the hero Ulysses. Created during the early 15th century, it brings to life tales of ancient mythology.",
-   "tags": "mythology, epic, ancient greece, early renaissance, narrative, italian, tempera",
-   "source": "Art Institute of Chicago",
-   "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Apollonio%20di%20Giovanni%20-%20The%20Adventures%20of%20Ulysses%20-%201933.1006%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Apollonio%20di%20Giovanni%20-%20The%20Adventures%20of%20Ulysses%20-%201933.1006%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
-   "focal_point": [
-    0.42,
-    0.6
-   ],
-   "featured_rank": 18,
-   "license_verdict": "pd",
-   "license_basis": "Public domain",
-   "license_url": "",
-   "credit_line": "https://www.artic.edu/artworks/110760",
-   "license_verified": "2026-07-16"
-  },
-  {
    "title": "The Last Communion of Saint Jerome",
    "agent_name": "Botticelli (Alessandro di Mariano Filipepi)",
    "agent_role": "Artist",
@@ -691,7 +666,8 @@
    "license_url": "",
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
-   "featured_rank": 42
+   "featured_rank": 42,
+   "needs_frame_crop": true
   },
   {
    "title": "The Battle of San Romano",
@@ -803,7 +779,8 @@
    "license_url": "",
    "credit_line": "Collection of Art Institute of Chicago",
    "license_verified": "2026-07-16",
-   "featured_rank": 40
+   "featured_rank": 40,
+   "needs_frame_crop": true
   },
   {
    "title": "Annunciation",
@@ -956,56 +933,6 @@
    "license_verified": "2026-07-16"
   },
   {
-   "title": "Portrait of Alvise Contarini(?); (verso) A Tethered Roebuck",
-   "agent_name": "Jacometto (Jacometto Veneziano)",
-   "agent_role": "Artist",
-   "creation_date": "ca. 1485–95",
-   "cultural_context": "Paintings",
-   "medium": "Oil on wood; verso: oil and gold on wood",
-   "date_display": "ca. 1485–95",
-   "description_narrative": "This painting features a probable portrait of Alvise Contarini on the front, rendered in oil on wood. The reverse side reveals 'A Tethered Roebuck,' executed with oil and gold on wood, showcasing the dual nature of the artwork.",
-   "tags": "portrait, renaissance, italian, oil painting, roebuck, contemplative, venetian, 15th century",
-   "source": "The Metropolitan Museum of Art",
-   "license": "Public Domain",
-   "source_url": "https://images.metmuseum.org/CRDImages/rl/original/DP221485.jpg",
-   "thumbnail_url": "https://images.metmuseum.org/CRDImages/rl/web-large/DP221485.jpg",
-   "focal_point": [
-    0.5,
-    0.38
-   ],
-   "featured_rank": 12,
-   "license_verdict": "pd",
-   "license_basis": "CC0 — Met Open Access",
-   "license_url": "",
-   "credit_line": "Collection of The Metropolitan Museum of Art",
-   "license_verified": "2026-07-16"
-  },
-  {
-   "title": "Tommaso di Folco Portinari (1428–1501); Maria Portinari (Maria Maddalena Baroncelli, born 1456)",
-   "agent_name": "Hans Memling",
-   "agent_role": "Artist",
-   "creation_date": "ca. 1470",
-   "cultural_context": "Paintings",
-   "medium": "Oil on oak",
-   "date_display": "ca. 1470",
-   "description_narrative": "These oil portraits depict Tommaso di Folco Portinari and Maria Maddalena Baroncelli, meticulously rendered by Hans Memling. Created around 1470, these works exemplify the detailed portraiture of the period.",
-   "tags": "portrait, oil painting, Northern Renaissance, 15th century, realism, Flemish art",
-   "source": "The Metropolitan Museum of Art",
-   "license": "Public Domain",
-   "source_url": "https://images.metmuseum.org/CRDImages/ep/original/DP-44362-005.jpg",
-   "thumbnail_url": "https://images.metmuseum.org/CRDImages/ep/web-large/DP-44362-005.jpg",
-   "focal_point": [
-    0.5,
-    0.33
-   ],
-   "featured_rank": 30,
-   "license_verdict": "pd",
-   "license_basis": "CC0 — Met Open Access",
-   "license_url": "",
-   "credit_line": "Collection of The Metropolitan Museum of Art",
-   "license_verified": "2026-07-16"
-  },
-  {
    "title": "Portrait of Giuliano de' Medici",
    "agent_name": "Sandro Botticelli",
    "agent_role": "Painter",
@@ -1111,27 +1038,6 @@
    "featured_rank": 75
   },
   {
-   "title": "Christ on the Cross",
-   "agent_name": "Sandro Botticelli",
-   "agent_role": "Painter",
-   "creation_date": "c. 1500-1501",
-   "cultural_context": "Italian Renaissance",
-   "medium": "Tempera on panel",
-   "date_display": "c. 1500–1501",
-   "description_narrative": "A devotional depiction of the crucified Christ from Botticelli's late religious period, when his work grew increasingly spiritual under the influence of Savonarola's preaching. The painting reflects the artist's intense late devotional style.",
-   "tags": "crucifixion, religious painting, late style, devotional art, Christ",
-   "source": "Wikimedia Commons",
-   "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Botticelli%20-%20Christ%20on%20the%20Cross%2C%20c.%201500%2C%20K591.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Botticelli%20-%20Christ%20on%20the%20Cross%2C%20c.%201500%2C%20K591.jpg?width=600",
-   "license_verdict": "pd",
-   "license_basis": "Public domain",
-   "license_url": "",
-   "credit_line": "http://www.kressfoundation.org/kress-collection/artwork/2278c4b1f8048f2ddb783406ac6a1cae5f88f21b6a37b4b39d712adfe5afaa0c",
-   "license_verified": "2026-07-16",
-   "featured_rank": 35
-  },
-  {
    "title": "The Virgin and Child with Saint John and Two Angels (Studio of Botticelli)",
    "agent_name": "Sandro Botticelli",
    "agent_role": "Painter",
@@ -1206,14 +1112,15 @@
    "tags": "altarpiece, Madonna, Bardi family, Gemäldegalerie Berlin, saints",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Boticelli%2C%20Madonna%20Bardi%2C%201484-85%2C%20Gemaldegalerie%2C%20Berlin%20%282%29%20%2828423617399%29.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Boticelli%2C%20Madonna%20Bardi%2C%201484-85%2C%20Gemaldegalerie%2C%20Berlin%20%282%29%20%2828423617399%29.jpg?width=600",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sandro%20Botticelli%20-%20Madonna%20with%20Saints%20-%20Google%20Art%20ProjectFXD.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sandro%20Botticelli%20-%20Madonna%20with%20Saints%20-%20Google%20Art%20ProjectFXD.jpg?width=600",
+   "featured_rank": 65,
+   "width": 4165,
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Boticelli, Madonna Bardi, 1484-85, Gemaldegalerie, Berlin (2)",
-   "license_verified": "2026-07-16",
-   "featured_rank": 65
+   "credit_line": "This file was derived from: Sandro Botticelli - Madonna with Saints - Google Art Project.jpg:",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Adoration of the Christ Child with Saint John (Botticelli or Workshop)",
@@ -1319,27 +1226,6 @@
    "credit_line": "The Yorck Project (2002) 10.000 Meisterwerke der Malerei (DVD-ROM), distributed by DIRECTMEDIA Publishing GmbH. ISBN: 3936122202. Web Gallery of Art: Image Info about artworkwga QS:P11807,\"b/botticel/5allegor/52lemmi\"",
    "license_verified": "2026-07-16",
    "featured_rank": 45
-  },
-  {
-   "title": "Noli me tangere (Workshop of Botticelli)",
-   "agent_name": "Sandro Botticelli",
-   "agent_role": "Painter",
-   "creation_date": "c. 1490",
-   "cultural_context": "Italian Renaissance",
-   "medium": "Tempera on panel",
-   "date_display": "c. 1490",
-   "description_narrative": "A devotional depiction of the risen Christ appearing to Mary Magdalene, who reaches to touch him in the moment described in the Gospel of John. The panel, produced in Botticelli's workshop, is held at the Musée du Petit Palais in Avignon.",
-   "tags": "Noli me tangere, Mary Magdalene, resurrection, workshop painting, Avignon",
-   "source": "Wikimedia Commons",
-   "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Avignon%2C%20Mus%C3%A9e%20du%20Petit%20Palais%2C%20Noli%20me%20tangere%20%28Atelier%20de%20Boticelli%2C%20Florence%2C%201490%29%20%2828839934108%29.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Avignon%2C%20Mus%C3%A9e%20du%20Petit%20Palais%2C%20Noli%20me%20tangere%20%28Atelier%20de%20Boticelli%2C%20Florence%2C%201490%29%20%2828839934108%29.jpg?width=600",
-   "license_verdict": "pd",
-   "license_basis": "Public domain",
-   "license_url": "",
-   "credit_line": "Avignon, Musée du Petit Palais, Noli me tangere (Atelier de Boticelli, Florence, 1490)",
-   "license_verified": "2026-07-16",
-   "featured_rank": 24
   },
   {
    "title": "Pastoral Concert",
@@ -1563,14 +1449,15 @@
    "tags": "Italian Renaissance, Mary Magdalene, repentance, Bordeaux, religious",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bordeaux%20-%20Madeleine%20p%C3%A9nitente%2001.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bordeaux%20-%20Madeleine%20p%C3%A9nitente%2001.jpg?width=600",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bordeaux%20-%20Madeleine%20p%C3%A9nitente%2002.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bordeaux%20-%20Madeleine%20p%C3%A9nitente%2002.jpg?width=600",
+   "featured_rank": 58,
+   "width": 4849,
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Own work by Tylwyth Eldar. Taken on 30 October 2024, 11:43:25.",
-   "license_verified": "2026-07-16",
-   "featured_rank": 58
+   "credit_line": "Own work by Tylwyth Eldar. Taken on 30 October 2024, 11:43:29.",
+   "license_verified": "2026-07-16"
   },
   {
    "title": "Tarquin and Lucretia",
@@ -1613,27 +1500,6 @@
    "credit_line": "Kunsthistorisches Museum Wien, Bilddatenbank.",
    "license_verified": "2026-07-16",
    "featured_rank": 48
-  },
-  {
-   "title": "Portrait of Nicolo Zen",
-   "agent_name": "Titian",
-   "agent_role": "Painter",
-   "creation_date": "1562",
-   "cultural_context": "Italian Renaissance",
-   "medium": "Oil on canvas",
-   "date_display": "c. 1560-1565",
-   "description_narrative": "Titian portrays the Venetian statesman and scholar Nicolo Zen in a restrained, dignified likeness typical of his late portraiture. The canvas hangs at Kingston Lacy in Dorset, England.",
-   "tags": "Italian Renaissance, portraiture, Venice, Kingston Lacy, statesman",
-   "source": "Wikimedia Commons",
-   "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Nicol%C3%B2%20Zen%20%281515-1565%29%20by%20Titian%2C%201560-1565%2C%20oil%20on%20canvas%20-%20Saloon%20-%20Kingston%20Lacy%20-%20Dorset%2C%20England%20-%20DSC03492.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Nicol%C3%B2%20Zen%20%281515-1565%29%20by%20Titian%2C%201560-1565%2C%20oil%20on%20canvas%20-%20Saloon%20-%20Kingston%20Lacy%20-%20Dorset%2C%20England%20-%20DSC03492.jpg?width=600",
-   "license_verdict": "pd",
-   "license_basis": "Public domain",
-   "license_url": "",
-   "credit_line": "Own work",
-   "license_verified": "2026-07-16",
-   "featured_rank": 35
   },
   {
    "title": "Portrait of a Man",

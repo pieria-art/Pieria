@@ -153,7 +153,8 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "Catalog Photo",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "needs_frame_crop": true
   },
   {
    "title": "Trellis",
@@ -203,7 +204,8 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "Own work",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "needs_frame_crop": true
   },
   {
    "title": "Magnolia and Irises",
