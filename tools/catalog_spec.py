@@ -976,7 +976,7 @@ COLLECTIONS = [
         "license": "Public Domain",
         "sources": ["loc"],
         "picks": [],
-        "target": 60,
+        "target": 100,
     },
     {
         # Greedy-grabbed from Commons "Category:The Birds of America" (PD-Art). The complete folio as its

@@ -235,6 +235,15 @@
    "license": "Public Domain",
    "count": 484,
    "cover_thumbnail": "https://commons.wikimedia.org/wiki/Special:FilePath/19%20Louisiana%20Water%20Thrush.jpg?width=600"
+  },
+  {
+   "id": "cities-architecture",
+   "title": "Cities & Architecture",
+   "description": "The built world in photography — grand skylines, streets, and monuments, from Belle Époque photochroms to Atget's Paris.",
+   "source": "Library of Congress",
+   "license": "Public Domain",
+   "count": 101,
+   "cover_thumbnail": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/18200/18288v.jpg"
   }
  ]
 }

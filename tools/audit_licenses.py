@@ -50,6 +50,9 @@ OPEN_ACCESS_POLICY = {
     "Art Institute of Chicago": "CC0 — AIC public-domain works",
     "Cleveland Museum of Art": "CC0 — CMA Open Access",
     "Rijksmuseum": "Public Domain / CC0 — Rijksstudio",
+    # LoC photochrom / historical prints carry "no known restrictions on publication" — the works are
+    # pre-1929 and the digitized masters are released without restriction (bundle-safe by policy).
+    "Library of Congress": "Public Domain — LoC Prints & Photographs, no known restrictions",
 }
 # host -> canonical source, used when an item lacks an explicit `source` field (e.g. the seed).
 HOST_SOURCE = {
@@ -58,6 +61,7 @@ HOST_SOURCE = {
     "images.metmuseum.org": "The Metropolitan Museum of Art",
     "www.artic.edu": "Art Institute of Chicago",
     "openaccess-cdn.clevelandart.org": "Cleveland Museum of Art",
+    "tile.loc.gov": "Library of Congress",
 }
 BUNDLE_SAFE = {"pd", "cc-by", "cc-by-sa"}   # cc-by/-sa are safe *with* attribution (we carry it)
 
