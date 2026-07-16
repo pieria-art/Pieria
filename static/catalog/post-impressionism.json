@@ -6,31 +6,6 @@
  "license": "Public Domain",
  "items": [
   {
-   "title": "The Bedroom",
-   "agent_name": "Vincent van Gogh",
-   "agent_role": "Artist",
-   "creation_date": "1889",
-   "cultural_context": "Post-Impressionism, Dutch",
-   "medium": "Oil on canvas",
-   "date_display": "1889",
-   "description_narrative": "Vincent van Gogh's 'The Bedroom' depicts his living space in the 'Yellow House' in Arles, France. The painting features vibrant colors and a distinctive perspective, inviting viewers into the artist's personal world.",
-   "tags": "interior, bedroom, post-impressionism, vibrant, personal, arles",
-   "source": "Art Institute of Chicago",
-   "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Vincent%20van%20Gogh%20-%20The%20Bedroom%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Vincent%20van%20Gogh%20-%20The%20Bedroom%20-%20Google%20Art%20Project.jpg?width=600",
-   "focal_point": [
-    0.6,
-    0.5
-   ],
-   "featured_rank": 85,
-   "license_verdict": "pd",
-   "license_basis": "Public domain",
-   "license_url": "",
-   "credit_line": "rgHdFPzCeCfnxQ at Google Cultural Institute maximum zoom level",
-   "license_verified": "2026-07-16"
-  },
-  {
    "title": "Self-Portrait",
    "agent_name": "Vincent van Gogh",
    "agent_role": "Artist",
@@ -715,27 +690,6 @@
    "featured_rank": 78
   },
   {
-   "title": "The Card Players",
-   "agent_name": "Paul Cezanne",
-   "agent_role": "Painter",
-   "creation_date": "c. 1890-1892",
-   "cultural_context": "Post-Impressionism, French",
-   "medium": "Oil on canvas",
-   "date_display": "c. 1890–92",
-   "description_narrative": "Cezanne painted local Provençal farmhands absorbed in a game of cards in at least five versions of this subject, reducing the scene to solid, sculptural forms and a hushed, monumental stillness. The series is now regarded as a landmark of modern figure painting.",
-   "tags": "cezanne, card players, provence, post-impressionism, genre scene",
-   "source": "Wikimedia Commons",
-   "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Cezanne%20The%20Card%20Players%20Metmuseum.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Cezanne%20The%20Card%20Players%20Metmuseum.jpg?width=600",
-   "license_verdict": "pd",
-   "license_basis": "Public domain",
-   "license_url": "",
-   "credit_line": "subscription web database",
-   "license_verified": "2026-07-16",
-   "featured_rank": 85
-  },
-  {
    "title": "Where Do We Come From? What Are We? Where Are We Going?",
    "agent_name": "Paul Gauguin",
    "agent_role": "Painter",
@@ -834,35 +788,6 @@
    "credit_line": "National Gallery, London - online catalogue.",
    "license_verified": "2026-07-16",
    "featured_rank": 90
-  },
-  {
-   "title": "The Large Bathers",
-   "agent_name": "Paul Cezanne",
-   "agent_role": "Painter",
-   "creation_date": "1898–1905",
-   "cultural_context": "French Post-Impressionism",
-   "medium": "Oil on canvas",
-   "date_display": "1898–1905",
-   "description_narrative": "Cezanne worked on this monumental composition of nude bathers arranged beneath a triangular canopy of trees for several years near the end of his life, treating the figures as geometric forms integrated with the landscape. Left unfinished at his death, it is regarded as a bridge to twentieth-century modernism and hangs in the Philadelphia Museum of Art.",
-   "tags": [
-    "cezanne",
-    "post-impressionism",
-    "bathers",
-    "nude",
-    "landscape",
-    "french",
-    "modernism"
-   ],
-   "source": "Wikimedia Commons",
-   "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Paul%20Cezanne%20-%20The%20bathers%20%28large%20plate%29%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Paul%20Cezanne%20-%20The%20bathers%20%28large%20plate%29%20-%20Google%20Art%20Project.jpg?width=600",
-   "license_verdict": "pd",
-   "license_basis": "Public domain",
-   "license_url": "",
-   "credit_line": "xAGaOEFY_zJFGw at Google Cultural Institute maximum zoom level",
-   "license_verified": "2026-07-16",
-   "featured_rank": 70
   },
   {
    "title": "The Yellow Christ",
@@ -1866,27 +1791,6 @@
    "featured_rank": 30
   },
   {
-   "title": "Still Life",
-   "agent_name": "Paul Cézanne",
-   "agent_role": "Painter",
-   "creation_date": "c. 1900",
-   "cultural_context": "Post-Impressionism, French",
-   "medium": "Oil on canvas",
-   "date_display": "c. 1900",
-   "description_narrative": "This late still life arranges household objects and fruit into a tightly structured composition of overlapping planes. It is held by the Nasjonalmuseet in Oslo.",
-   "tags": "still life, fruit, tabletop, nasjonalmuseet, late period",
-   "source": "Wikimedia Commons",
-   "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Paul%20C%C3%A9zanne%20-%20Still%20life%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Paul%20C%C3%A9zanne%20-%20Still%20life%20-%20Google%20Art%20Project.jpg?width=600",
-   "license_verdict": "pd",
-   "license_basis": "Public domain",
-   "license_url": "",
-   "credit_line": "uAEu57ynKdy6cA at Google Cultural Institute, zoom level maximum",
-   "license_verified": "2026-07-16",
-   "featured_rank": 40
-  },
-  {
    "title": "The Village of Gardanne",
    "agent_name": "Paul Cézanne",
    "agent_role": "Painter",
@@ -2475,26 +2379,6 @@
    "featured_rank": 40
   },
   {
-   "title": "The Bay of Marseilles, Seen from L'Estaque",
-   "agent_name": "Paul Cézanne",
-   "agent_role": "Painter",
-   "creation_date": "c. 1885",
-   "cultural_context": "Post-Impressionism, French",
-   "medium": "Oil on canvas",
-   "date_display": "c. 1885",
-   "description_narrative": "This landscape looks out from the hills above L'Estaque across the Bay of Marseilles, with rooftops and chimneys in the foreground giving way to distant water and mountains. Cézanne painted several variations of this elevated coastal view in the mid-1880s.",
-   "tags": "landscape, bay of marseille, l'estaque, coastal view, provence",
-   "source": "Wikimedia Commons",
-   "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Paul%20C%C3%A9zanne%20-%20The%20Bay%20of%20Marseilles%2C%20Seen%20from%20L%27Estaque%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Paul%20C%C3%A9zanne%20-%20The%20Bay%20of%20Marseilles%2C%20Seen%20from%20L%27Estaque%20-%20Google%20Art%20Project.jpg?width=600",
-   "license_verdict": "pd",
-   "license_basis": "Public domain",
-   "license_url": "",
-   "credit_line": "1QFFkcktbe4rAg at Google Cultural Institute maximum zoom level",
-   "license_verified": "2026-07-16"
-  },
-  {
    "title": "Landscape",
    "agent_name": "Paul Cézanne",
    "agent_role": "Painter",
@@ -2937,27 +2821,6 @@
    "credit_line": "xAGaOEFY_zJFGw at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
    "featured_rank": 70
-  },
-  {
-   "title": "Fields at Bellevue",
-   "agent_name": "Paul Cézanne",
-   "agent_role": "Painter",
-   "creation_date": "1892-1895",
-   "cultural_context": "Post-Impressionism, French",
-   "medium": "Oil on canvas",
-   "date_display": "1892-95",
-   "description_narrative": "This landscape depicts the agricultural fields around Bellevue, near Aix-en-Provence, structured through Cézanne's characteristic patchwork brushwork. It is held by the Phillips Collection in Washington, D.C.",
-   "tags": "landscape, bellevue, fields, provence, phillips collection",
-   "source": "Wikimedia Commons",
-   "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Fields%20at%20Bellevue%2C%20Paul%20Cezanne%2C%201892-1895%20-%20Phillips%20Collection%20-%20DSC04790.JPG?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Fields%20at%20Bellevue%2C%20Paul%20Cezanne%2C%201892-1895%20-%20Phillips%20Collection%20-%20DSC04790.JPG?width=600",
-   "license_verdict": "pd",
-   "license_basis": "Public domain",
-   "license_url": "",
-   "credit_line": "Own work",
-   "license_verified": "2026-07-16",
-   "featured_rank": 30
   },
   {
    "title": "Pot and Soup Tureen",
@@ -3864,27 +3727,6 @@
    "featured_rank": 62
   },
   {
-   "title": "Farm in Normandy",
-   "agent_name": "Paul Cézanne",
-   "agent_role": "Painter",
-   "creation_date": "c. 1885-1886",
-   "cultural_context": "Post-Impressionism, French",
-   "medium": "Oil on canvas",
-   "date_display": "c. 1885-86",
-   "description_narrative": "This landscape depicts a farmstead in Normandy, a region Cézanne visited away from his usual Provençal terrain. The composition applies his structural brushwork to the timbered farm buildings and surrounding trees.",
-   "tags": "landscape, farmstead, normandy, rural architecture, trees",
-   "source": "Wikimedia Commons",
-   "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Paul%20C%C3%A9zanne%20-%20Farm%20in%20Normandy%2C%20c.%201885-86%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Paul%20C%C3%A9zanne%20-%20Farm%20in%20Normandy%2C%20c.%201885-86%20-%20Google%20Art%20Project.jpg?width=600",
-   "license_verdict": "pd",
-   "license_basis": "Public domain",
-   "license_url": "",
-   "credit_line": "Google Arts &amp; Culture: Home page – Image",
-   "license_verified": "2026-07-16",
-   "featured_rank": 30
-  },
-  {
    "title": "The Bedroom (Amsterdam version, 1888)",
    "agent_name": "Vincent van Gogh",
    "agent_role": "Painter",
@@ -3925,26 +3767,6 @@
    "credit_line": "C2RMF: Galerie de tableaux en très haute définition: image page",
    "license_verified": "2026-07-16",
    "featured_rank": 92
-  },
-  {
-   "title": "The Bedroom (Art Institute of Chicago version, 1889)",
-   "agent_name": "Vincent van Gogh",
-   "agent_role": "Painter",
-   "creation_date": "1889",
-   "cultural_context": "Post-Impressionism, Dutch",
-   "medium": "Oil on canvas",
-   "date_display": "September 1889",
-   "description_narrative": "The second version of van Gogh's bedroom scene, painted a year after the original and nearly identical in composition and scale. It belongs to the Art Institute of Chicago.",
-   "tags": "bedroom, arles, interior, art institute of chicago, repose",
-   "source": "Wikimedia Commons",
-   "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Vincent%20van%20Gogh%20-%20The%20Bedroom%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Vincent%20van%20Gogh%20-%20The%20Bedroom%20-%20Google%20Art%20Project.jpg?width=600",
-   "license_verdict": "pd",
-   "license_basis": "Public domain",
-   "license_url": "",
-   "credit_line": "rgHdFPzCeCfnxQ at Google Cultural Institute maximum zoom level",
-   "license_verified": "2026-07-16"
   },
   {
    "title": "The Viaduct at Arles (\"The Blue Train\")",
@@ -4386,27 +4208,6 @@
    "credit_line": "Van Gogh Museum",
    "license_verified": "2026-07-16",
    "featured_rank": 28
-  },
-  {
-   "title": "A Pair of Leather Clogs",
-   "agent_name": "Vincent van Gogh",
-   "agent_role": "Painter",
-   "creation_date": "1888",
-   "cultural_context": "Post-Impressionism, Dutch",
-   "medium": "Oil on canvas",
-   "date_display": "1888",
-   "description_narrative": "A still life of worn leather clogs, part of van Gogh's recurring interest in humble footwear as a subject. It is held by the Van Gogh Museum, Amsterdam.",
-   "tags": "clogs, shoes, still life, arles, van gogh museum",
-   "source": "Wikimedia Commons",
-   "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Een%20paar%20leren%20klompen%20-%20s0120V1962%20-%20Van%20Gogh%20Museum.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Een%20paar%20leren%20klompen%20-%20s0120V1962%20-%20Van%20Gogh%20Museum.jpg?width=600",
-   "license_verdict": "pd",
-   "license_basis": "Public domain",
-   "license_url": "",
-   "credit_line": "Van Gogh Museum",
-   "license_verified": "2026-07-16",
-   "featured_rank": 50
   },
   {
    "title": "Sprig of Flowering Almond Blossom in a Glass",
@@ -6150,6 +5951,31 @@
    "credit_line": "http://www.artslife.com/2015/07/06/giornata-mondiale-del-bacio-larte-in-un-bacio-il-bacio-nellarte/",
    "license_verified": "2026-07-16",
    "featured_rank": 52
+  },
+  {
+   "title": "The Bedroom",
+   "agent_name": "Vincent van Gogh",
+   "agent_role": "Artist",
+   "creation_date": "1889",
+   "cultural_context": "Post-Impressionism, Dutch",
+   "medium": "Oil on canvas",
+   "date_display": "1889",
+   "description_narrative": "Vincent van Gogh's 'The Bedroom' depicts his living space in the 'Yellow House' in Arles, France. The painting features vibrant colors and a distinctive perspective, inviting viewers into the artist's personal world.",
+   "tags": "interior, bedroom, post-impressionism, vibrant, personal, arles",
+   "source": "Art Institute of Chicago",
+   "license": "Public Domain",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Vincent%20van%20Gogh%20-%20The%20Bedroom%20-%20Google%20Art%20Project.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Vincent%20van%20Gogh%20-%20The%20Bedroom%20-%20Google%20Art%20Project.jpg?width=600",
+   "focal_point": [
+    0.6,
+    0.5
+   ],
+   "featured_rank": 85,
+   "license_verdict": "pd",
+   "license_basis": "Public domain",
+   "license_url": "",
+   "credit_line": "rgHdFPzCeCfnxQ at Google Cultural Institute maximum zoom level",
+   "license_verified": "2026-07-16"
   }
  ]
 }

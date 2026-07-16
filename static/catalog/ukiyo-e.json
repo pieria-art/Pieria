@@ -31,31 +31,6 @@
    "license_verified": "2026-07-16"
   },
   {
-   "title": "Under the Wave off Kanagawa (Kanagawa oki nami ura), also known as The Great Wave, from the series \"Thirty-Six Views of Mount Fuji (Fugaku sanjurokkei)\"",
-   "agent_name": "Katsushika Hokusai",
-   "agent_role": "Artist",
-   "creation_date": "1830/33",
-   "cultural_context": "Ukiyo-e, Japanese",
-   "medium": "Color woodblock print; oban",
-   "date_display": "1830/33",
-   "description_narrative": "A monumental wave dominates this scene, poised to engulf fishing boats near Kanagawa, with Mount Fuji visible in the distance. This iconic work is part of Hokusai's renowned series \"Thirty-Six Views of Mount Fuji,\" capturing both nature's power and human vulnerability.",
-   "tags": "wave, seascape, mount fuji, ukiyo-e, woodblock print, japanese art, dramatic, nature",
-   "source": "Art Institute of Chicago",
-   "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tsunami%20by%20hokusai%2019th%20century.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tsunami%20by%20hokusai%2019th%20century.jpg?width=600",
-   "focal_point": [
-    0.3,
-    0.4
-   ],
-   "featured_rank": 99,
-   "license_verdict": "pd",
-   "license_basis": "Public domain",
-   "license_url": "",
-   "credit_line": "Metropolitan Museum of Art: entry 45434",
-   "license_verified": "2026-07-16"
-  },
-  {
    "title": "Fine Wind, Clear Morning (Red Fuji)",
    "agent_name": "Katsushika Hokusai",
    "agent_role": "Printmaker",
@@ -2910,27 +2885,6 @@
    "credit_line": "http://hdl.handle.net/10934/RM0001.COLLECT.45979",
    "license_verified": "2026-07-16",
    "featured_rank": 28
-  },
-  {
-   "title": "Cherry Blossom Viewing at Gotenyama (from Famous Places of Edo and Murasaki's Genji)",
-   "agent_name": "Utagawa Hiroshige",
-   "agent_role": "Artist",
-   "creation_date": "c. 1853",
-   "cultural_context": "Ukiyo-e, Edo period, Japanese",
-   "medium": "Color woodblock print",
-   "date_display": "c. 1853",
-   "description_narrative": "Crowds gather beneath blossoming cherry trees on the hill of Gotenyama, a celebrated flower-viewing spot near Shinagawa. This print belongs to a Hiroshige series pairing Edo scenery with episodes evoking The Tale of Genji.",
-   "tags": "ukiyo-e, woodblock print, hiroshige, edo, gotenyama, cherry blossoms, genji",
-   "source": "Wikimedia Commons",
-   "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Cherry%20blossom%20viewing%20at%20Gotenyama%2C%20from%20Famous%20Places%20of%20Edo%20and%20Murasaki%27s%20Genji%2C%20by%20Utagawa%20Hiroshige%2C%20Edo%20period%20-%20Ishikawa%20Prefectural%20Museum%20of%20Traditional%20Arts%20and%20Crafts%20-%20Kanazawa%2C%20Japan%20-%20DSC09579.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Cherry%20blossom%20viewing%20at%20Gotenyama%2C%20from%20Famous%20Places%20of%20Edo%20and%20Murasaki%27s%20Genji%2C%20by%20Utagawa%20Hiroshige%2C%20Edo%20period%20-%20Ishikawa%20Prefectural%20Museum%20of%20Traditional%20Arts%20and%20Crafts%20-%20Kanazawa%2C%20Japan%20-%20DSC09579.jpg?width=600",
-   "license_verdict": "pd",
-   "license_basis": "Public domain",
-   "license_url": "",
-   "credit_line": "Own work",
-   "license_verified": "2026-07-16",
-   "featured_rank": 30
   },
   {
    "title": "Fishing Boats off Tsukuda Island near Eitai Bridge",
