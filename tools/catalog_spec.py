@@ -996,7 +996,7 @@ COLLECTIONS = [
         "id": "golden-age-illustration",
         "title": "The Golden Age of Illustration",
         "description": "The great illustrators of the storybook and magazine age — Pyle, Wyeth, Parrish, "
-                       "Leyendecker, Rackham — in their pre-1931 heyday.",
+                       "Remington, Gibson, and Shippen Green — in their pre-1931 heyday.",
         "license": "Public Domain",
         "sources": ["met", "loc"],
         "picks": [],

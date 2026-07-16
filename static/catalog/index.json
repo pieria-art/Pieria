@@ -244,6 +244,15 @@
    "license": "Public Domain",
    "count": 101,
    "cover_thumbnail": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/18200/18288v.jpg"
+  },
+  {
+   "id": "golden-age-illustration",
+   "title": "The Golden Age of Illustration",
+   "description": "The great illustrators of the storybook and magazine age — Pyle, Wyeth, Parrish, Remington, Gibson, and Shippen Green — in their pre-1931 heyday.",
+   "source": "Wikimedia Commons",
+   "license": "Public Domain",
+   "count": 90,
+   "cover_thumbnail": "https://commons.wikimedia.org/wiki/Special:FilePath/I%20want%20you%20for%20the%20Navy%20promotion%20for%20anyone%20enlisting%2C%20apply%20any%20recruiting%20station%20or%20postmaster%20-%20-%20Howard%20Chandler%20Christy.%20LCCN92510150.jpg?width=600"
   }
  ]
 }
