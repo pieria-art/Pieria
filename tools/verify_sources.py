@@ -101,8 +101,8 @@ def collect_subscriptions(db) -> list[UrlCheck]:
     """Enabled subscriptions: validate the cached manifest, then emit (SSRF-guarded) asset URLs.
     Lazy imports so the seed/catalog scopes don't need the DB / federation modules."""
     from federation import _assert_public_url
+    from manifest_validator import validate_manifest
     from models import SubscriptionModel
-    from tools.manifest_validator import validate_manifest
 
     out: list[UrlCheck] = []
     for s in db.query(SubscriptionModel).filter(SubscriptionModel.enabled == True).all():  # noqa: E712

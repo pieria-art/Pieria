@@ -17,7 +17,7 @@ import base64
 from nacl.signing import SigningKey
 
 from federation import canonical_bytes
-from tools.manifest_validator import MANIFEST_VERSION, validate_manifest
+from manifest_validator import MANIFEST_VERSION, validate_manifest
 
 
 # ---------------------------------------------------------------- keys + signing

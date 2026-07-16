@@ -4,8 +4,8 @@ import json
 
 import federation
 import publisher
+from manifest_validator import validate_manifest
 from tools import build_manifest
-from tools.manifest_validator import validate_manifest
 
 CSV_HEADER = "image_url,title,artist,license,tags,focal_x,focal_y,width,height\n"
 CSV_ROW = "https://cdn.jane.test/a.jpg,Sunrise,Monet,CC0-1.0,sea|dawn,0.3,0.6,2400,1600\n"

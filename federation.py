@@ -25,8 +25,8 @@ import httpx
 from nacl.exceptions import BadSignatureError
 from nacl.signing import VerifyKey
 
+from manifest_validator import validate_manifest
 from models import SubscriptionModel
-from tools.manifest_validator import validate_manifest
 
 logger = logging.getLogger("artwork-display-api.federation")
 

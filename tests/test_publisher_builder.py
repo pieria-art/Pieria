@@ -4,7 +4,7 @@ import base64
 
 import federation
 import publisher
-from tools.manifest_validator import validate_manifest
+from manifest_validator import validate_manifest
 
 
 def _meta():

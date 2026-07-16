@@ -2,7 +2,7 @@
 
 import copy
 
-from tools.manifest_validator import is_valid, validate_manifest
+from manifest_validator import is_valid, validate_manifest
 
 
 def _base():

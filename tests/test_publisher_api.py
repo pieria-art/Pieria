@@ -98,7 +98,7 @@ def test_cover_image_persists_and_exports(client):
     assert col["cover_image"] == cover
     manifest = json.loads(c.post(f"/api/publisher/collections/{col['id']}/export").content)
     assert manifest["cover_image"] == cover
-    from tools.manifest_validator import validate_manifest
+    from manifest_validator import validate_manifest
     assert validate_manifest(manifest) == []
 
 
@@ -137,7 +137,7 @@ def test_export_returns_signed_verifiable_manifest(client):
     assert r.status_code == 200, r.text
     assert r.headers["content-disposition"].endswith(f'"{col["slug"]}.json"')
     manifest = json.loads(r.content)
-    from tools.manifest_validator import validate_manifest
+    from manifest_validator import validate_manifest
     assert validate_manifest(manifest) == []
     assert federation.verify_signature(manifest) is True
     assert manifest["publisher"]["id"] == "jane"
