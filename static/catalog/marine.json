@@ -549,7 +549,11 @@
    "license_url": "",
    "credit_line": "1. The Yorck Project (2002) 10.000 Meisterwerke der Malerei (DVD-ROM), distributed by DIRECTMEDIA Publishing GmbH. ISBN: 3936122202. 2. art database",
    "license_verified": "2026-07-16",
-   "featured_rank": 88
+   "featured_rank": 88,
+   "focal_point": [
+    0.42,
+    0.48
+   ]
   },
   {
    "title": "The Wave (La Vague)",
@@ -570,7 +574,11 @@
    "license_url": "",
    "credit_line": "Dallas Museum of Art",
    "license_verified": "2026-07-16",
-   "featured_rank": 55
+   "featured_rank": 55,
+   "focal_point": [
+    0.5,
+    0.55
+   ]
   },
   {
    "title": "The Battle of Trafalgar",
@@ -591,7 +599,11 @@
    "license_url": "",
    "credit_line": "Library of Congress Catalog: http://lccn.loc.gov/2003681698 Image download: https://cdn.loc.gov/service/pnp/cph/3a10000/3a11000/3a11900/3a11943r.jpg Original url: http://hdl.loc.gov/loc.pnp/pga.0307",
    "license_verified": "2026-07-16",
-   "featured_rank": 70
+   "featured_rank": 70,
+   "focal_point": [
+    0.48,
+    0.35
+   ]
   },
   {
    "title": "Fishermen at Sea",
@@ -633,7 +645,11 @@
    "license_url": "",
    "credit_line": "https://www.clarkart.edu/ArtPiece/Detail/Rockets-and-Blue-Lights-(Close-at-Hand)-to-Warn-St",
    "license_verified": "2026-07-16",
-   "featured_rank": 45
+   "featured_rank": 45,
+   "focal_point": [
+    0.42,
+    0.42
+   ]
   },
   {
    "title": "Calais Pier",
@@ -662,7 +678,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "https://clevelandart.org/art/1921.372",
    "license_verified": "2026-07-16",
-   "featured_rank": 34
+   "featured_rank": 34,
+   "focal_point": [
+    0.45,
+    0.45
+   ]
   },
   {
    "title": "Peace – Burial at Sea",

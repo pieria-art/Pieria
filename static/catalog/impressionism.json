@@ -7449,7 +7449,11 @@
    "license_url": "",
    "credit_line": "Unknown sourceUnknown source",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.42,
+    0.58
+   ]
   },
   {
    "title": "Landscape at Les Pâtis, Pontoise",
@@ -7491,7 +7495,11 @@
    "license_url": "",
    "credit_line": "Unknown sourceUnknown source",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.55,
+    0.55
+   ]
   },
   {
    "title": "The Donkey Ride at La Roche-Guyon",
@@ -7512,7 +7520,11 @@
    "license_url": "",
    "credit_line": "Unknown sourceUnknown source",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.42,
+    0.58
+   ]
   },
   {
    "title": "The Heights of l'Hautil Road to Rouen, Pontoise",
@@ -7533,7 +7545,11 @@
    "license_url": "",
    "credit_line": "Unknown sourceUnknown source",
    "license_verified": "2026-07-16",
-   "featured_rank": 25
+   "featured_rank": 25,
+   "focal_point": [
+    0.32,
+    0.62
+   ]
   },
   {
    "title": "The Orchard at Maubuisson, Pontoise",
@@ -7575,7 +7591,11 @@
    "license_url": "",
    "credit_line": "Unknown sourceUnknown source",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.4,
+    0.55
+   ]
   },
   {
    "title": "The Quarry, Pontoise",
@@ -7596,7 +7616,11 @@
    "license_url": "",
    "credit_line": "Unknown sourceUnknown source",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.35,
+    0.62
+   ]
   },
   {
    "title": "View of the Côte des Gratte-Coqs, Pontoise",
@@ -7617,7 +7641,11 @@
    "license_url": "",
    "credit_line": "Unknown sourceUnknown source",
    "license_verified": "2026-07-16",
-   "featured_rank": 26
+   "featured_rank": 26,
+   "focal_point": [
+    0.45,
+    0.55
+   ]
   },
   {
    "title": "The Quai du Pothuis at Pontoise after Rain",
@@ -7638,7 +7666,11 @@
    "license_url": "",
    "credit_line": "Unknown sourceUnknown source",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.42,
+    0.55
+   ]
   },
   {
    "title": "Banks of the Oise at Pontoise, Effect of Snow",
@@ -7680,7 +7712,11 @@
    "license_url": "",
    "credit_line": "Unknown sourceUnknown source",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.72,
+    0.72
+   ]
   },
   {
    "title": "Factory at Saint-Ouen-l'Aumône",
@@ -7701,7 +7737,11 @@
    "license_url": "",
    "credit_line": "Unknown sourceUnknown source",
    "license_verified": "2026-07-16",
-   "featured_rank": 26
+   "featured_rank": 26,
+   "focal_point": [
+    0.35,
+    0.4
+   ]
   },
   {
    "title": "Le Semeur, Montfoucault",
@@ -7743,7 +7783,11 @@
    "license_url": "",
    "credit_line": "Ashmolean Museum",
    "license_verified": "2026-07-16",
-   "featured_rank": 27
+   "featured_rank": 27,
+   "focal_point": [
+    0.42,
+    0.75
+   ]
   },
   {
    "title": "Corner of the Garden at L'Hermitage, Pontoise",
@@ -7785,7 +7829,11 @@
    "license_url": "",
    "credit_line": "Google Arts &amp; Culture — jAG6nHgL9ERqKg",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.75,
+    0.55
+   ]
   },
   {
    "title": "Morning Sunlight on the Snow, Éragny-sur-Epte",
@@ -7806,7 +7854,11 @@
    "license_url": "",
    "credit_line": "rAHp1qgFEGK2IA at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 33
+   "featured_rank": 33,
+   "focal_point": [
+    0.65,
+    0.78
+   ]
   },
   {
    "title": "Effect of Snow at Montfoucault",
@@ -7827,7 +7879,11 @@
    "license_url": "",
    "credit_line": "Sotheby's, New York, 19 November 2024, lot 355",
    "license_verified": "2026-07-16",
-   "featured_rank": 35
+   "featured_rank": 35,
+   "focal_point": [
+    0.32,
+    0.68
+   ]
   },
   {
    "title": "Landscape, St. Thomas",
@@ -7848,7 +7904,11 @@
    "license_url": "",
    "credit_line": "ordrupgaard.dk",
    "license_verified": "2026-07-16",
-   "featured_rank": 25
+   "featured_rank": 25,
+   "focal_point": [
+    0.35,
+    0.78
+   ]
   },
   {
    "title": "Autumn, Éragny",
@@ -7876,6 +7936,10 @@
     0.17,
     0.87,
     0.75
+   ],
+   "focal_point": [
+    0.4,
+    0.5
    ]
   },
   {
@@ -7897,7 +7961,11 @@
    "license_url": "",
    "credit_line": "Musée des Beaux-Arts de Dijon, 28 September 2019",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.5,
+    0.5
+   ]
   },
   {
    "title": "Jardin des Tuileries, Effect of Snow",
@@ -7918,7 +7986,11 @@
    "license_url": "",
    "credit_line": "Musée des Beaux-Arts de Rouen",
    "license_verified": "2026-07-16",
-   "featured_rank": 32
+   "featured_rank": 32,
+   "focal_point": [
+    0.28,
+    0.3
+   ]
   },
   {
    "title": "Washerwoman, Study",
@@ -7939,7 +8011,11 @@
    "license_url": "",
    "credit_line": "Metropolitan Museum of Art: entry 437303",
    "license_verified": "2026-07-16",
-   "featured_rank": 24
+   "featured_rank": 24,
+   "focal_point": [
+    0.38,
+    0.35
+   ]
   },
   {
    "title": "A Washerwoman at Éragny",
@@ -7960,7 +8036,11 @@
    "license_url": "",
    "credit_line": "Metropolitan Museum of Art",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.42,
+    0.55
+   ]
   },
   {
    "title": "The Haymaker",
@@ -7981,7 +8061,11 @@
    "license_url": "",
    "credit_line": "Colección Pérez Simón [1]",
    "license_verified": "2026-07-16",
-   "featured_rank": 32
+   "featured_rank": 32,
+   "focal_point": [
+    0.35,
+    0.45
+   ]
   },
   {
    "title": "Sunset at Éragny",
@@ -8002,7 +8086,11 @@
    "license_url": "",
    "credit_line": "Google Arts &amp; Culture: Home page – Image",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.42,
+    0.35
+   ]
   },
   {
    "title": "Gardener Standing by a Haystack, Overcast Sky, Éragny",
@@ -8023,7 +8111,11 @@
    "license_url": "",
    "credit_line": "artsupp [1]",
    "license_verified": "2026-07-16",
-   "featured_rank": 24
+   "featured_rank": 24,
+   "focal_point": [
+    0.42,
+    0.55
+   ]
   },
   {
    "title": "Portrait of Eugène Murer",
@@ -8044,7 +8136,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "Daderot Own work",
    "license_verified": "2026-07-16",
-   "featured_rank": 26
+   "featured_rank": 26,
+   "focal_point": [
+    0.42,
+    0.35
+   ]
   },
   {
    "title": "Farm at Montfoucault",
@@ -8093,6 +8189,10 @@
     0.16,
     0.83,
     0.82
+   ],
+   "focal_point": [
+    0.5,
+    0.55
    ]
   },
   {
@@ -8114,7 +8214,11 @@
    "license_url": "",
    "credit_line": "repro from artbook",
    "license_verified": "2026-07-16",
-   "featured_rank": 25
+   "featured_rank": 25,
+   "focal_point": [
+    0.5,
+    0.42
+   ]
   },
   {
    "title": "The Siesta, Éragny",
@@ -8135,7 +8239,11 @@
    "license_url": "",
    "credit_line": "Flickr [1]",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.48,
+    0.72
+   ]
   },
   {
    "title": "Garden in Full Sunlight, Pontoise",
@@ -8156,7 +8264,11 @@
    "license_url": "",
    "credit_line": "https://collection.barnesfoundation.org/objects/5009/details",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.5,
+    0.4
+   ]
   },
   {
    "title": "Peasants in the Fields, Éragny",
@@ -8177,7 +8289,11 @@
    "license_url": "",
    "credit_line": "Buffalo AKG Art Museum",
    "license_verified": "2026-07-16",
-   "featured_rank": 25
+   "featured_rank": 25,
+   "focal_point": [
+    0.4,
+    0.55
+   ]
   },
   {
    "title": "Autumn, Poplars, Éragny",
@@ -8198,7 +8314,11 @@
    "license_url": "",
    "credit_line": "FAGSHZBzEXp4JQ at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.45,
+    0.5
+   ]
   },
   {
    "title": "The Gardener, Old Peasant with Cabbage",
@@ -8219,7 +8339,11 @@
    "license_url": "",
    "credit_line": "www.nga.gov",
    "license_verified": "2026-07-16",
-   "featured_rank": 25
+   "featured_rank": 25,
+   "focal_point": [
+    0.65,
+    0.35
+   ]
   },
   {
    "title": "The Bather",
@@ -8261,7 +8385,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the National Gallery of Art. Please see the Gallery's Open Access Policy.",
    "license_verified": "2026-07-16",
-   "featured_rank": 26
+   "featured_rank": 26,
+   "focal_point": [
+    0.55,
+    0.55
+   ]
   },
   {
    "title": "Peasant Girl with a Straw Hat",
@@ -8303,7 +8431,11 @@
    "license_url": "",
    "credit_line": "Sotheby's Hong Kong, 22 June 2012, Corot to Monet – French Landscape Painting in the Nineteenth and Twentieth Centuries, lot 2",
    "license_verified": "2026-07-16",
-   "featured_rank": 27
+   "featured_rank": 27,
+   "focal_point": [
+    0.68,
+    0.82
+   ]
   },
   {
    "title": "The Artist's Garden at Éragny",
@@ -8324,7 +8456,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the National Gallery of Art. Please see the Gallery's Open Access Policy.",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.58,
+    0.78
+   ]
   },
   {
    "title": "Bridge at Caracas",
@@ -8345,7 +8481,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the National Gallery of Art. Please see the Gallery's Open Access Policy.",
    "license_verified": "2026-07-16",
-   "featured_rank": 24
+   "featured_rank": 24,
+   "focal_point": [
+    0.55,
+    0.42
+   ]
   },
   {
    "title": "The Goose Girl at Montfoucault, White Frost",
@@ -8366,7 +8506,11 @@
    "license_url": "",
    "credit_line": "1. Google Cultural Institute2. Museum of Fine Arts, Houston, online collection",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.32,
+    0.72
+   ]
   },
   {
    "title": "A Creek in St. Thomas, Virgin Islands",
@@ -8408,7 +8552,11 @@
    "license_url": "",
    "credit_line": "Sotheby's Beijing, 22 June 2012, Corot to Monet – French Landscape Painting in the Nineteenth and Twentieth Centuries, lot 17",
    "license_verified": "2026-07-16",
-   "featured_rank": 26
+   "featured_rank": 26,
+   "focal_point": [
+    0.75,
+    0.45
+   ]
   },
   {
    "title": "Sunset, the Port of Rouen, Steamboats",
@@ -8429,7 +8577,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This image is uploaded as image number 210730 at Amgueddfa Cymru Images.This tag does not indicate the copyright status of the attached work. A normal copyright tag is still required. See Commons:Licensing.",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.65,
+    0.55
+   ]
   },
   {
    "title": "Kew Green",
@@ -8457,6 +8609,10 @@
     0.1,
     0.95,
     0.84
+   ],
+   "focal_point": [
+    0.55,
+    0.62
    ]
   },
   {
@@ -8478,7 +8634,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the National Gallery of Art. Please see the Gallery's Open Access Policy.",
    "license_verified": "2026-07-16",
-   "featured_rank": 26
+   "featured_rank": 26,
+   "focal_point": [
+    0.68,
+    0.68
+   ]
   },
   {
    "title": "L'Hermitage in Summer, Pontoise",
@@ -8527,6 +8687,10 @@
     0.18,
     0.83,
     0.82
+   ],
+   "focal_point": [
+    0.5,
+    0.5
    ]
   },
   {
@@ -8555,6 +8719,10 @@
     0.21,
     0.83,
     0.81
+   ],
+   "focal_point": [
+    0.42,
+    0.32
    ]
   },
   {
@@ -8597,7 +8765,11 @@
    "license_url": "",
    "credit_line": "Unknown sourceUnknown source",
    "license_verified": "2026-07-16",
-   "featured_rank": 24
+   "featured_rank": 24,
+   "focal_point": [
+    0.65,
+    0.35
+   ]
   },
   {
    "title": "Ruelle des Poulies, Pontoise",
@@ -8618,7 +8790,11 @@
    "license_url": "",
    "credit_line": "Unknown sourceUnknown source",
    "license_verified": "2026-07-16",
-   "featured_rank": 26
+   "featured_rank": 26,
+   "focal_point": [
+    0.32,
+    0.65
+   ]
   },
   {
    "title": "The Dunes at Knokke, Effect of Sunlight",
@@ -8667,6 +8843,10 @@
     0.14,
     0.83,
     0.85
+   ],
+   "focal_point": [
+    0.45,
+    0.62
    ]
   },
   {
@@ -8688,7 +8868,11 @@
    "license_url": "",
    "credit_line": "Unknown sourceUnknown source",
    "license_verified": "2026-07-16",
-   "featured_rank": 32
+   "featured_rank": 32,
+   "focal_point": [
+    0.62,
+    0.68
+   ]
   },
   {
    "title": "Route de Versailles, Louveciennes",
@@ -8709,7 +8893,11 @@
    "license_url": "",
    "credit_line": "Unknown sourceUnknown source",
    "license_verified": "2026-07-16",
-   "featured_rank": 35
+   "featured_rank": 35,
+   "focal_point": [
+    0.68,
+    0.62
+   ]
   },
   {
    "title": "Charing Cross Bridge, London",
@@ -8730,7 +8918,11 @@
    "license_url": "",
    "credit_line": "www.nga.gov",
    "license_verified": "2026-07-16",
-   "featured_rank": 40
+   "featured_rank": 40,
+   "focal_point": [
+    0.55,
+    0.45
+   ]
   },
   {
    "title": "Banks of the Oise at Pontoise",
@@ -8751,7 +8943,11 @@
    "license_url": "",
    "credit_line": "qQG5087ILoS52Q at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.42,
+    0.35
+   ]
   },
   {
    "title": "Banks of the Oise, the Countryside near Pontoise",
@@ -8793,7 +8989,11 @@
    "license_url": "",
    "credit_line": "Unknown sourceUnknown source",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.68,
+    0.45
+   ]
   },
   {
    "title": "Waterside at Pontoise",
@@ -8814,7 +9014,11 @@
    "license_url": "",
    "credit_line": "Unknown sourceUnknown source",
    "license_verified": "2026-07-16",
-   "featured_rank": 26
+   "featured_rank": 26,
+   "focal_point": [
+    0.55,
+    0.42
+   ]
   },
   {
    "title": "Montfoucault Pond, Winter Effect",
@@ -8835,7 +9039,11 @@
    "license_url": "",
    "credit_line": "Kunstmuseum Basel, Sammlung online",
    "license_verified": "2026-07-16",
-   "featured_rank": 25
+   "featured_rank": 25,
+   "focal_point": [
+    0.5,
+    0.55
+   ]
   },
   {
    "title": "Montfoucault Pond",
@@ -8877,7 +9085,11 @@
    "license_url": "",
    "credit_line": "Unknown sourceUnknown source",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.55,
+    0.55
+   ]
   },
   {
    "title": "Piette's House at Montfoucault, Effect of Snow",
@@ -8898,7 +9110,11 @@
    "license_url": "",
    "credit_line": "The Fitzwilliam Museum. La Maison de la Piette, Montfoucault, effet de neige. The University of Cambridge. Retrieved on 2025-12-17 20:39:46.",
    "license_verified": "2026-07-16",
-   "featured_rank": 25
+   "featured_rank": 25,
+   "focal_point": [
+    0.45,
+    0.45
+   ]
   },
   {
    "title": "Piette's House at Montfoucault",
@@ -8919,7 +9135,11 @@
    "license_url": "",
    "credit_line": "Sotheby's Beijing, 22 June 2012, Corot to Monet – French Landscape Painting in the Nineteenth and Twentieth Centuries, lot 10",
    "license_verified": "2026-07-16",
-   "featured_rank": 24
+   "featured_rank": 24,
+   "focal_point": [
+    0.6,
+    0.45
+   ]
   },
   {
    "title": "Boulevard des Capucines (Nelson-Atkins version)",

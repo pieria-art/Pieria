@@ -845,7 +845,11 @@
    "license_url": "",
    "credit_line": "Collection of Art Institute of Chicago",
    "license_verified": "2026-07-16",
-   "featured_rank": 64
+   "featured_rank": 64,
+   "focal_point": [
+    0.55,
+    0.45
+   ]
   },
   {
    "title": "Moulin de la Galette",
@@ -932,7 +936,11 @@
    "license_url": "",
    "credit_line": "Collection of Art Institute of Chicago",
    "license_verified": "2026-07-16",
-   "featured_rank": 76
+   "featured_rank": 76,
+   "focal_point": [
+    0.42,
+    0.62
+   ]
   },
   {
    "title": "Arlésiennes (Mistral)",
@@ -1074,7 +1082,11 @@
    "license_url": "",
    "credit_line": "anagoria",
    "license_verified": "2026-07-16",
-   "featured_rank": 52
+   "featured_rank": 52,
+   "focal_point": [
+    0.52,
+    0.55
+   ]
   },
   {
    "title": "Still Life with Blue Pot",
@@ -1368,7 +1380,11 @@
    "license_url": "",
    "credit_line": "Staatliche Kunsthalle Karlsruhe, Sammlung online",
    "license_verified": "2026-07-16",
-   "featured_rank": 25
+   "featured_rank": 25,
+   "focal_point": [
+    0.78,
+    0.25
+   ]
   },
   {
    "title": "View of the Sea at L'Estaque",

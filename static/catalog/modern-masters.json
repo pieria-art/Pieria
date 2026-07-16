@@ -276,7 +276,11 @@
    "license_url": "",
    "credit_line": "xwH2YFjMrUMp3g at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 32
+   "featured_rank": 32,
+   "focal_point": [
+    0.35,
+    0.35
+   ]
   },
   {
    "title": "The Sleeping Gypsy",
@@ -442,7 +446,11 @@
    "license_url": "",
    "credit_line": "Collection of Art Institute of Chicago",
    "license_verified": "2026-07-16",
-   "featured_rank": 52
+   "featured_rank": 52,
+   "focal_point": [
+    0.28,
+    0.45
+   ]
   },
   {
    "title": "The Virgin (Die Jungfrau)",
@@ -484,7 +492,11 @@
    "license_url": "",
    "credit_line": "EgGM6j19EteG2A at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 55
+   "featured_rank": 55,
+   "focal_point": [
+    0.82,
+    0.12
+   ]
   },
   {
    "title": "Cottage Garden",
