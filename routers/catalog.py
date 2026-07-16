@@ -15,12 +15,13 @@ from pathlib import Path
 from typing import List, Optional
 
 from fastapi import APIRouter, Depends, HTTPException
+from PIL import Image
 from pydantic import BaseModel
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 import federation
-from config import ARTWORK_ROOT, SUB_PREFIX
+from config import ARTWORK_ROOT, LIBRARY_DIR, SUB_PREFIX
 from core.downloads import _download_image_to_library, _focal_xy
 from core.media import warm_canvas_cache_async
 from core.settings_util import _catalog_remote_base, _fetch_remote_json
@@ -151,17 +152,25 @@ async def _catalog_collection(db: Session, collection_id: str):
 
 async def _download_and_create_artwork(db: Session, *, source_url: str, thumbnail_url: str,
                                        metadata: dict, playlist_id: Optional[int] = None,
-                                       filename_prefix: str = "catalog") -> ArtworkModel:
-    """Download a remote image once and create an *approved* ArtworkModel with prefilled metadata.
-    Uses the shared robust downloader (UA + 429 backoff + validation), then optionally links the
-    artwork into a playlist. Dedups on source_url — returns the existing row if already added."""
+                                       filename_prefix: str = "catalog",
+                                       local_file: Optional[str] = None) -> ArtworkModel:
+    """Create an *approved* ArtworkModel with prefilled metadata, then optionally link it into a
+    playlist. Two asset modes: a remote `source_url` is downloaded once (UA + 429 backoff + validation);
+    a first-party pack item (`local_file` present + already under _Library/) is referenced in place with
+    NO network (ADR-044). Dedups on source_url — returns the existing row if already added."""
     existing = db.query(ArtworkModel).filter(ArtworkModel.source_url == source_url).first()
     if existing:
         return existing
 
-    title = (metadata.get("title") or "art")
-    filename = f"{filename_prefix}_{title.replace(' ', '_').lower()[:18]}"
-    dest_path, safe_name, w, h = await _download_image_to_library(source_url, filename=filename)
+    if local_file and (LIBRARY_DIR / local_file).exists():
+        # Local pack asset: the master is on disk — reference it, don't fetch.
+        dest_path, safe_name = LIBRARY_DIR / local_file, local_file
+        with Image.open(dest_path) as im:
+            w, h = im.size
+    else:
+        title = (metadata.get("title") or "art")
+        filename = f"{filename_prefix}_{title.replace(' ', '_').lower()[:18]}"
+        dest_path, safe_name, w, h = await _download_image_to_library(source_url, filename=filename)
 
     fx, fy = _focal_xy(metadata)   # baked catalog/manifest focal_point [x, y] (normalized); else centered
 
@@ -305,16 +314,17 @@ async def add_catalog_item(payload: CatalogAddPayload, db: Session = Depends(get
     if payload.item_index < 0 or payload.item_index >= len(items):
         raise HTTPException(404, detail="Unknown catalog item")
     item = items[payload.item_index]
-    # Federated items come from a third party — SSRF-guard the image URL before the server fetches it
-    # (a malicious manifest could point image.full_url at an internal/loopback address).
-    if payload.collection_id.startswith(SUB_PREFIX):
+    # Federated REMOTE items come from a third party — SSRF-guard the image URL before the server
+    # fetches it (a malicious manifest could point image.full_url at an internal/loopback address). A
+    # first-party pack item (local_file) ships its bytes on disk: no fetch, so no SSRF check (ADR-044).
+    if payload.collection_id.startswith(SUB_PREFIX) and not item.get("local_file"):
         try:
             await asyncio.to_thread(federation._assert_public_url, item["source_url"])
         except federation.FederationError as e:
             raise HTTPException(400, detail=f"Refused to fetch image: {e}") from e
     art = await _download_and_create_artwork(
         db, source_url=item["source_url"], thumbnail_url=item.get("thumbnail_url"),
-        metadata=item, playlist_id=payload.playlist_id)
+        metadata=item, playlist_id=payload.playlist_id, local_file=item.get("local_file"))
     return {"status": "added", "artwork_id": art.id, "title": art.title}
 
 class CatalogAddBulkPayload(BaseModel):
@@ -337,8 +347,9 @@ async def add_catalog_items_bulk(payload: CatalogAddBulkPayload, db: Session = D
         if it.item_index < 0 or it.item_index >= len(items):
             failed += 1; continue
         item = items[it.item_index]
-        # Federated items are third-party — SSRF-guard the image URL before the server fetches it.
-        if it.collection_id.startswith(SUB_PREFIX):
+        # Remote federated items are third-party — SSRF-guard before fetching. Local pack items
+        # (local_file) ship on disk — no fetch, no SSRF check (ADR-044).
+        if it.collection_id.startswith(SUB_PREFIX) and not item.get("local_file"):
             try:
                 await asyncio.to_thread(federation._assert_public_url, item["source_url"])
             except federation.FederationError:
@@ -346,7 +357,7 @@ async def add_catalog_items_bulk(payload: CatalogAddBulkPayload, db: Session = D
         try:
             await _download_and_create_artwork(
                 db, source_url=item["source_url"], thumbnail_url=item.get("thumbnail_url"),
-                metadata=item, playlist_id=payload.playlist_id)
+                metadata=item, playlist_id=payload.playlist_id, local_file=item.get("local_file"))
             added += 1
         except Exception as e:
             failed += 1

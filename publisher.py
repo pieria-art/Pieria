@@ -95,8 +95,15 @@ def build_item(row: dict) -> dict:
                 return v
         return _clean_str(img_in.get(keys[-1]))
 
-    image: dict = {"full_url": _clean_str(row.get("full_url") or row.get("image_url")
-                                          or img_in.get("full_url"))}
+    # Asset address: a remote `full_url` (third-party feeds) and/or a `local_file` (first-party pack
+    # that ships the bytes). At least one; both omitted-when-empty so the canonical bytes stay clean.
+    image: dict = {}
+    full = _clean_str(row.get("full_url") or row.get("image_url") or img_in.get("full_url"))
+    if full is not None:
+        image["full_url"] = full
+    local = _clean_str(row.get("local_file") or img_in.get("local_file"))
+    if local is not None:
+        image["local_file"] = local
     for dst in ("thumbnail_url", "license", "attribution", "rights_holder"):
         val = pick(dst)
         if val is not None:

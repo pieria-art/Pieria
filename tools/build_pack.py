@@ -44,6 +44,7 @@ import httpx
 from PIL import Image, ImageOps
 
 import federation
+import publisher
 from config import SD_USER_AGENT
 from core.media import DISPLAY_MAX_EDGE, DISPLAY_QUALITY
 from scout import _wm_throttle
@@ -63,6 +64,13 @@ THUMB_QUALITY = 85
 # Per-collection native floor overrides (ADR-042): photochrom/architectural source ceilings sit just
 # under true-4K, so cities-architecture relaxes to 3600. Everything else uses the global --min-edge.
 COLLECTION_MIN_EDGE = {"cities-architecture": 3600}
+
+# First-party publisher identity (ADR-044): the Core pack ships as this publisher's signed Manifest v2
+# feeds — one per collection. Signed at build time with a key that never ships; the PUBLIC key lives in
+# registry/trusted_publishers.json so assess_trust() promotes the pack to 'verified' on the appliance.
+PACK_PUBLISHER = {"id": "screendocent", "name": "Screen Docent"}
+# base64 Ed25519 private key (build secret, NEVER committed): CLI --signing-key or this env var.
+SIGNING_KEY_ENV = "SD_PACK_SIGNING_KEY"
 
 # Placard fields copied verbatim (in this order) from source item -> manifest item.
 _PLACARD_FIELDS = (
@@ -450,6 +458,87 @@ def _manifest_item(item: dict, filename: str, thumbnail: str | None) -> dict:
     return out
 
 
+# --------------------------------------------------------------------------- Manifest v2 emit (ADR-044)
+def _v2_row(mi: dict) -> dict:
+    """Map ONE v1 manifest item (from `_manifest_item`) → a flat row `publisher.build_item` consumes.
+
+    The asset is LOCAL: `local_file` names the pack master (resolved under _Library/ at install), no
+    remote URL. `credit_line` → attribution, `source` → rights_holder. featured_rank is NOT carried —
+    the collection's items are emitted rank-sorted, so install uses array order (per-collection = one
+    manifest = one playlist). needs_frame_crop is NOT carried — the crop is already baked into the master.
+    """
+    focal = mi.get("focal_point") or [0.5, 0.5]
+    return {
+        "id": _slugify_v2(mi.get("title") or mi.get("filename") or "untitled"),
+        "title": mi.get("title") or "Untitled",
+        "artist": mi.get("agent_name") or None,
+        "artist_role": mi.get("agent_role") or None,
+        "date": mi.get("date_display") or None,
+        "creation_date": mi.get("creation_date") or None,
+        "medium": mi.get("medium") or None,
+        "culture": mi.get("cultural_context") or None,
+        "placard": mi.get("description_narrative") or None,
+        "tags": mi.get("tags") or None,
+        "local_file": mi.get("filename"),
+        "thumbnail_url": f"pack:_catalog_thumbs/{mi['thumbnail']}" if mi.get("thumbnail") else None,
+        "license": mi.get("license") or None,
+        "attribution": mi.get("credit_line") or None,
+        "rights_holder": mi.get("source") or None,
+        "focal_x": focal[0], "focal_y": focal[1],
+    }
+
+
+def _slugify_v2(text: str) -> str:
+    s = re.sub(r"[^a-z0-9]+", "-", (text or "").lower()).strip("-")
+    return s or "untitled"
+
+
+def _load_signing_key(cli_path: str | None) -> str | None:
+    """base64 Ed25519 private signing key from --signing-key <file> or $SD_PACK_SIGNING_KEY. Absent →
+    unsigned manifests (valid, but only the 'community' tier until a key + registry entry exist)."""
+    import os
+    if cli_path:
+        return Path(cli_path).read_text().strip()
+    return (os.environ.get(SIGNING_KEY_ENV) or "").strip() or None
+
+
+def _emit_v2_manifests(out: Path, manifest_collections: list[dict], *, signing_key: str | None,
+                        generated_at: str | None) -> dict:
+    """Write one signed Manifest v2 per collection to _manifests/<id>.json + a pack-index.json listing
+    them (with the default rotation). Returns the pack index. Deterministic — NO AI, NO network."""
+    (out / "_manifests").mkdir(parents=True, exist_ok=True)
+    public_key = publisher.public_from_private(signing_key) if signing_key else None
+    index_cols, signed_n, unsigned_n = [], 0, 0
+    have_masterpieces = any(c["id"] == "masterpieces" for c in manifest_collections)
+    for col in manifest_collections:
+        cid = col["id"]
+        # rank-sorted so install (array order) == fame order; stable sort keeps ties' original order.
+        items = sorted(col["items"], key=lambda it: it.get("featured_rank", 50), reverse=True)
+        rows = [_v2_row(mi) for mi in items]
+        meta = {"id": cid, "title": col.get("title") or cid, "description": col.get("description") or "",
+                "publisher": PACK_PUBLISHER}
+        manifest, errors = publisher.assemble_and_validate(meta, rows, generated_at=generated_at)
+        if errors:
+            logger.warning(f"    x v2 manifest for {cid!r} invalid, writing unsigned draft: {errors[:3]}")
+        elif signing_key:
+            manifest = publisher.sign_manifest(manifest, signing_key, public_key)
+        (out / "_manifests" / f"{cid}.json").write_text(json.dumps(manifest, indent=1, ensure_ascii=False))
+        if manifest.get("signature"):
+            signed_n += 1
+        else:
+            unsigned_n += 1
+        index_cols.append({"id": cid, "title": meta["title"], "manifest": f"_manifests/{cid}.json",
+                           "item_count": len(rows),
+                           "default": (cid == "masterpieces") if have_masterpieces else (not index_cols)})
+    pack_index = {"pack_version": "2", "publisher": PACK_PUBLISHER,
+                  "public_key": public_key, "collections": index_cols}
+    if generated_at:
+        pack_index["generated_at"] = generated_at
+    (out / "pack-index.json").write_text(json.dumps(pack_index, indent=1, ensure_ascii=False))
+    logger.info(f"  v2: wrote {len(index_cols)} manifest(s) ({signed_n} signed, {unsigned_n} unsigned) + pack-index.json")
+    return pack_index
+
+
 async def process_item(state: BuildState, wi: WorkItem) -> dict | None:
     """Never raises — a bad item is logged and skipped so one dead source can't abort the run."""
     try:
@@ -484,7 +573,7 @@ def _dir_size(path: Path) -> int:
 
 # --------------------------------------------------------------------------- build
 async def build(out: Path, *, scope: set[str], limit: int | None, collections_filter: set[str] | None,
-                 concurrency: int, created: str | None, min_edge: int) -> int:
+                 concurrency: int, created: str | None, min_edge: int, signing_key: str | None = None) -> int:
     (out / "_Library").mkdir(parents=True, exist_ok=True)
     (out / "_catalog_thumbs").mkdir(parents=True, exist_ok=True)
     (out / "_catalog").mkdir(parents=True, exist_ok=True)
@@ -544,6 +633,10 @@ async def build(out: Path, *, scope: set[str], limit: int | None, collections_fi
         manifest["created"] = created
     (out / "pack-manifest.json").write_text(json.dumps(manifest, indent=1, ensure_ascii=False))
 
+    # ADR-044: also emit signed Manifest v2 feeds (one per collection) + pack-index.json — the unified
+    # ingestion path (first boot installs each as a verified local subscription). v1 kept during transition.
+    _emit_v2_manifests(out, manifest_collections, signing_key=signing_key, generated_at=created)
+
     total_manifest_items = sum(len(c["items"]) for c in manifest_collections)
     st = state.stats
     print("\n=== BUILD PACK SUMMARY ===")
@@ -575,14 +668,20 @@ async def main() -> int:
     ap.add_argument("--created", default=None,
                      help="fixed value written as manifest['created'] (omit for a stable, "
                           "timestamp-free manifest across reruns)")
+    ap.add_argument("--signing-key", default=None,
+                     help=f"path to a base64 Ed25519 private key file to sign the v2 manifests (ADR-044). "
+                          f"Omit to read ${SIGNING_KEY_ENV}, or leave both unset for unsigned "
+                          f"(community-tier) manifests. The verified Core pack needs the first-party key.")
     args = ap.parse_args()
 
     scope = {s.strip() for s in args.scope.split(",") if s.strip()}
     collections_filter = ({c.strip() for c in args.collections.split(",") if c.strip()}
                            if args.collections else None)
+    signing_key = _load_signing_key(args.signing_key)
 
     return await build(args.out, scope=scope, limit=args.limit, collections_filter=collections_filter,
-                        concurrency=args.concurrency, created=args.created, min_edge=args.min_edge)
+                        concurrency=args.concurrency, created=args.created, min_edge=args.min_edge,
+                        signing_key=signing_key)
 
 
 if __name__ == "__main__":

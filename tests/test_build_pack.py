@@ -185,3 +185,72 @@ async def test_ensure_master_cities_floor_override(tmp_path, monkeypatch):
 
 async def _async(value):
     return value
+
+
+# --- Manifest v2 emit (ADR-044: per-collection signed feeds → verified local subscriptions) ------
+import json as _json
+
+import federation
+import publisher
+
+
+def _mi(title, rank, *, filename=None, focal=None):
+    """A v1 manifest item as `_manifest_item` produces it (input to the v2 emit)."""
+    return {"filename": filename or f"{title.lower()}.jpg", "thumbnail": f"{title.lower()}_t.jpg",
+            "source_url": f"https://x/{title}.jpg", "title": title, "agent_name": "A. Painter",
+            "cultural_context": "French", "description_narrative": "A placard.", "kind": "painting",
+            "license": "Public Domain", "needs_frame_crop": "", "focal_point": focal or [0.5, 0.5],
+            "featured_rank": rank, "credit_line": "Some Museum"}
+
+
+def test_v2_row_maps_local_asset_and_omits_carried_fields():
+    row = build_pack._v2_row(_mi("Sunrise", 90, focal=[0.6, 0.4]))
+    assert row["local_file"] == "sunrise.jpg"
+    assert row["artist"] == "A. Painter" and row["culture"] == "French" and row["placard"] == "A placard."
+    assert row["attribution"] == "Some Museum" and row["license"] == "Public Domain"
+    assert (row["focal_x"], row["focal_y"]) == (0.6, 0.4)
+    assert "featured_rank" not in row and "needs_frame_crop" not in row   # not carried into v2
+
+
+def test_emit_v2_manifests_signs_and_verifies(tmp_path):
+    priv, pub = publisher.keygen()
+    cols = [
+        {"id": "masterpieces", "title": "Masterpieces", "description": "Best",
+         "items": [_mi("Low", 10), _mi("High", 95), _mi("Mid", 50)]},
+        {"id": "impressionism", "title": "Impressionism", "description": "", "items": [_mi("Monet", 80)]},
+    ]
+    index = build_pack._emit_v2_manifests(tmp_path, cols, signing_key=priv, generated_at="2026-07-16")
+
+    # one signed, valid, verified-tier manifest per collection
+    for c in cols:
+        m = _json.loads((tmp_path / "_manifests" / f"{c['id']}.json").read_text())
+        assert m["manifest_version"] == 2 and m["publisher"]["id"] == "screendocent"
+        assert federation.verify_signature(m) is True
+        assert federation.assess_trust(m, trusted_keys={"screendocent": pub}) == "verified"
+        # local asset, no remote URL
+        assert m["items"][0]["image"]["local_file"] and "full_url" not in m["items"][0]["image"]
+
+    # items emitted rank-sorted (install uses array order) → High, Mid, Low
+    mp = _json.loads((tmp_path / "_manifests" / "masterpieces.json").read_text())
+    assert [it["title"] for it in mp["items"]] == ["High", "Mid", "Low"]
+
+    # pack-index lists both, masterpieces is the default rotation
+    assert (tmp_path / "pack-index.json").exists()
+    assert {c["id"] for c in index["collections"]} == {"masterpieces", "impressionism"}
+    assert next(c for c in index["collections"] if c["id"] == "masterpieces")["default"] is True
+    assert next(c for c in index["collections"] if c["id"] == "impressionism")["default"] is False
+
+
+def test_emit_v2_manifests_unsigned_is_community(tmp_path):
+    """No signing key → valid but unsigned manifests (community tier), so dev builds still work."""
+    cols = [{"id": "impressionism", "title": "Impressionism", "description": "", "items": [_mi("Monet", 80)]}]
+    build_pack._emit_v2_manifests(tmp_path, cols, signing_key=None, generated_at=None)
+    m = _json.loads((tmp_path / "_manifests" / "impressionism.json").read_text())
+    assert "signature" not in m
+    assert federation.assess_trust(m, trusted_keys={"screendocent": "whatever"}) == "community"
+
+
+def test_build_item_accepts_local_file():
+    """publisher.build_item now carries image.local_file (first-party pack asset), full_url omitted."""
+    it = publisher.build_item({"title": "X", "local_file": "x.jpg", "license": "Public Domain"})
+    assert it["image"]["local_file"] == "x.jpg" and "full_url" not in it["image"]

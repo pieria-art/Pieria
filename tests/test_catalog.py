@@ -21,7 +21,7 @@ import routers.catalog as routers_catalog
 import routers.settings as routers_settings
 from app import app
 from database import Base, get_db
-from models import ArtworkModel, PlaylistModel, playlist_artwork
+from models import ArtworkModel, PlaylistModel, SubscriptionModel, playlist_artwork
 
 ITEM_A = {
     "title": "Test Sunrise", "agent_name": "A. Painter", "agent_role": "Painter",
@@ -78,6 +78,7 @@ def client(monkeypatch, tmp_path):
     # Redirect library/playlist writes
     monkeypatch.setattr(app_module, "LIBRARY_DIR", tmp_path)
     monkeypatch.setattr(core_downloads, "LIBRARY_DIR", tmp_path)
+    monkeypatch.setattr(routers_catalog, "LIBRARY_DIR", tmp_path)   # local-pack asset reference (ADR-044)
     monkeypatch.setattr(app_module, "ARTWORK_ROOT", tmp_path)
     monkeypatch.setattr(routers_catalog, "ARTWORK_ROOT", tmp_path)
 
@@ -147,6 +148,36 @@ def test_add_is_idempotent(client):
     c.post("/api/catalog/add", json={"collection_id": "demo", "item_index": 0})
     c.post("/api/catalog/add", json={"collection_id": "demo", "item_index": 0})
     assert db.query(ArtworkModel).count() == 1
+
+
+def test_add_local_subscription_item_references_master_no_network(client, monkeypatch, tmp_path):
+    """ADR-044: adding a first-party pack item from a local subscription references the on-disk master
+    with NO download and NO SSRF check (the `pack:` source_url is non-http and would fail the guard)."""
+    c, db = client
+    # a verified LOCAL subscription with one local_file item (master already on disk)
+    Image.new("RGB", (50, 40), (5, 6, 7)).save(tmp_path / "core_masterwork.jpg", "JPEG")
+    manifest = {"manifest_version": 2, "id": "core", "title": "Core",
+                "publisher": {"id": "screendocent", "name": "Screen Docent"},
+                "items": [{"id": "mw", "title": "Master Work", "artist": "A. Painter",
+                           "image": {"local_file": "core_masterwork.jpg", "license": "Public Domain",
+                                     "focal_point": [0.4, 0.6]}}]}
+    sub = SubscriptionModel(url="pack:core", collection_id="core", title="Core",
+                            publisher_id="screendocent", publisher_name="Screen Docent", trust="verified",
+                            enabled=True, cached_manifest=json.dumps(manifest), item_count=1, last_status="ok")
+    db.add(sub); db.commit(); db.refresh(sub)
+
+    # any fetch attempt is a hard failure — proves the local branch never touches the network
+    def _boom(*a, **k):
+        raise AssertionError("local pack item must not be downloaded")
+    monkeypatch.setattr(routers_catalog, "_download_image_to_library", _boom)
+
+    r = c.post("/api/catalog/add", json={"collection_id": f"sub_{sub.id}", "item_index": 0})
+    assert r.status_code == 200, r.text
+    art = db.query(ArtworkModel).filter(ArtworkModel.source_url == "pack:core_masterwork.jpg").first()
+    assert art is not None and art.status == "approved"
+    assert art.filename == "core_masterwork.jpg"            # referenced in place, not a downloaded copy
+    assert art.original_width == 50 and art.original_height == 40   # dims read from the local master
+    assert art.focal_x == 0.4 and art.focal_y == 0.6
 
 
 def test_add_with_playlist_links_it(client):

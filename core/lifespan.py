@@ -9,6 +9,7 @@ import logging
 import os
 import shutil
 from contextlib import asynccontextmanager
+from datetime import UTC, datetime
 from pathlib import Path
 
 from fastapi import FastAPI, HTTPException
@@ -17,6 +18,7 @@ from PIL import Image
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
+import federation
 import frame_push
 from config import ARTWORK_ROOT, LIBRARY_DIR
 from core.downloads import _download_image_to_library, _focal_xy
@@ -25,7 +27,8 @@ from core.playback import _frame_select
 from core.settings_util import _upsert_setting
 from database import SessionLocal
 from db_migrate import run_migrations
-from models import ArtworkModel, PlaylistModel, SettingsModel, playlist_artwork
+from manifest_validator import validate_manifest
+from models import ArtworkModel, PlaylistModel, SettingsModel, SubscriptionModel, playlist_artwork
 
 logger = logging.getLogger("artwork-display-api")
 
@@ -33,6 +36,10 @@ logger = logging.getLogger("artwork-display-api")
 # present, boot mints its collections straight from local masters (pre_seed_from_pack) instead of
 # downloading factory_seed.json live (run_factory_seed) — see the leader-only boot section below.
 PACK_MANIFEST = ARTWORK_ROOT / "pack-manifest.json"
+# ADR-044: the unified-ingestion pack layout — a pack-index listing per-collection signed Manifest v2
+# feeds. When present, boot installs each as a VERIFIED LOCAL SUBSCRIPTION (the same path a third-party
+# publisher uses), superseding the v1 pre_seed_from_pack above.
+PACK_INDEX = ARTWORK_ROOT / "pack-index.json"
 
 
 async def warm_all_canvas_cache() -> None:
@@ -202,6 +209,116 @@ def pre_seed_from_pack(db: Session) -> bool:
     return True
 
 
+def install_pack_subscriptions(db: Session) -> bool:
+    """ADR-044 unified ingestion: install the bundled Core pack as VERIFIED LOCAL SUBSCRIPTIONS — the
+    same path a third-party publisher uses — superseding the bespoke pre_seed_from_pack. Reads
+    pack-index.json; for each collection's signed Manifest v2 it (1) validates + assesses trust
+    ('verified' when the publisher key is in registry/trusted_publishers.json), (2) upserts a local
+    SubscriptionModel (browse provenance/trust, url sentinel `pack:<id>`), and (3) mints a playlist +
+    ArtworkModels from the LOCAL masters (rotation) in array order (== fame order). All zero-network.
+
+    Returns False when there's no v2 pack (pack-index.json absent) so the caller falls back to the v1
+    pre_seed_from_pack; True once installed (including 'already installed' on a repeat boot)."""
+    if not PACK_INDEX.exists():
+        return False
+    if db.query(SettingsModel).filter(SettingsModel.setting_key == "pack_seeded").first():
+        return True  # idempotency guard (shared with pre_seed_from_pack — either path seeds once)
+
+    index = json.loads(PACK_INDEX.read_text())
+    collections = index.get("collections", [])
+    logger.info(f"[PackInstall] Installing {len(collections)} collection(s) as verified local subscriptions...")
+
+    default_title = None
+    for col in collections:
+        cid = col.get("id")
+        mpath = ARTWORK_ROOT / col.get("manifest", f"_manifests/{cid}.json")
+        if not mpath.exists():
+            logger.warning(f"[PackInstall] missing manifest {mpath} — skipping {cid!r}")
+            continue
+        manifest = json.loads(mpath.read_text())
+        errors = validate_manifest(manifest)
+        if errors:
+            logger.warning(f"[PackInstall] {cid!r} manifest invalid, skipping: {errors[:3]}")
+            continue
+
+        title = manifest.get("title") or cid
+        pub = manifest.get("publisher") or {}
+
+        # 1) Upsert the local subscription row — provenance/trust live in OUR DB, not the manifest body.
+        sub_url = f"pack:{cid}"
+        sub = db.query(SubscriptionModel).filter(SubscriptionModel.url == sub_url).first()
+        if sub is None:
+            sub = SubscriptionModel(url=sub_url)
+            db.add(sub)
+        sub.collection_id = manifest.get("id")
+        sub.title = title
+        sub.publisher_id = pub.get("id")
+        sub.publisher_name = pub.get("name")
+        sub.publisher_url = pub.get("url")
+        sub.trust = federation.assess_trust(manifest)   # 'verified' iff the key is registry-trusted
+        sub.enabled = True
+        sub.cached_manifest = json.dumps(manifest)
+        sub.item_count = len(manifest.get("items", []))
+        sub.last_status = "ok"
+        sub.last_synced = datetime.now(UTC)
+        db.commit()
+
+        # 2) Mint a playlist + artworks from LOCAL masters (array order == fame order).
+        playlist = db.query(PlaylistModel).filter(PlaylistModel.name == title).first()
+        if not playlist:
+            playlist = PlaylistModel(name=title, is_personal=False)
+            db.add(playlist); db.commit(); db.refresh(playlist)
+        if default_title is None:
+            default_title = title
+        if col.get("default"):
+            default_title = title
+
+        items = manifest.get("items", [])
+        n = len(items)
+        for idx, item in enumerate(items):
+            cat = federation.manifest_item_to_catalog(item)
+            local_file = cat.get("local_file")
+            if not local_file:
+                continue
+            if not (LIBRARY_DIR / local_file).exists():
+                logger.warning(f"[PackInstall] '{title}': missing master {local_file!r} — skipping")
+                continue
+            source_url = cat.get("source_url") or f"pack:{local_file}"
+            artwork = (db.query(ArtworkModel).filter(ArtworkModel.source_url == source_url).first()
+                       or db.query(ArtworkModel).filter(ArtworkModel.filename == local_file).first())
+            if artwork is None:
+                fx, fy = _focal_xy(cat)
+                # position → affinity (array is fame-sorted): first work ~1.0, last ~0.5, mirroring
+                # pre_seed's 0.5+rank/100 weighting now that featured_rank is expressed as order.
+                affinity = round(0.5 + (n - idx) / max(n, 1) * 0.5, 3)
+                artwork = ArtworkModel(
+                    filename=local_file, status="approved",
+                    title=cat.get("title"), agent_name=cat.get("agent_name"),
+                    agent_role=cat.get("agent_role"), creation_date=cat.get("creation_date"),
+                    cultural_context=cat.get("cultural_context"), medium=cat.get("medium"),
+                    date_display=cat.get("date_display"),
+                    description_narrative=cat.get("description_narrative"),
+                    tags=cat.get("tags"), is_seed=True, source_url=source_url,
+                    focal_x=fx, focal_y=fy, affinity_score=affinity,
+                )
+                db.add(artwork); db.commit(); db.refresh(artwork)
+
+            existing_link = db.execute(select(playlist_artwork).where(
+                playlist_artwork.c.playlist_id == playlist.id,
+                playlist_artwork.c.artwork_id == artwork.id)).first()
+            if not existing_link:
+                db.execute(playlist_artwork.insert().values(
+                    playlist_id=playlist.id, artwork_id=artwork.id, display_order=idx))
+        db.commit()
+
+    if default_title:
+        _upsert_setting(db, "default_playlist", default_title)
+    _upsert_setting(db, "pack_seeded", f"v2:{index.get('pack_version', '2')}")
+    db.commit()
+    logger.info("[PackInstall] Install complete.")
+    return True
+
+
 async def run_factory_seed(db: Session):
     """Parses factory_seed.json and injects masterpieces if library is empty."""
     seed_file = Path("static/factory_seed.json")
@@ -317,9 +434,11 @@ async def lifespan(app: FastAPI):
             # fall back to the live-download factory seed when there's no pack to consume. Guarded
             # separately from the tolerant block below — a bad manifest must never block the fallback.
             try:
-                has_pack = pre_seed_from_pack(db)
+                # ADR-044: prefer the unified v2 install (verified local subscriptions); fall back to
+                # the v1 pre_seed for an older pack that ships only pack-manifest.json.
+                has_pack = install_pack_subscriptions(db) or pre_seed_from_pack(db)
             except Exception as e:
-                logger.error(f"[PackSeed] Non-fatal error during pack pre-seed: {e}", exc_info=True)
+                logger.error(f"[PackSeed] Non-fatal error during pack install/pre-seed: {e}", exc_info=True)
                 has_pack = False
             if not has_pack:
                 await run_factory_seed(db)
