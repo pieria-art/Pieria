@@ -624,7 +624,11 @@
    "license_url": "",
    "credit_line": "ZwGeGjQ7_fwYxQ at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 58
+   "featured_rank": 58,
+   "focal_point": [
+    0.32,
+    0.15
+   ]
   },
   {
    "title": "Hope",
@@ -652,6 +656,10 @@
     0.14,
     0.83,
     0.85
+   ],
+   "focal_point": [
+    0.48,
+    0.45
    ]
   },
   {
@@ -673,7 +681,11 @@
    "license_url": "",
    "credit_line": "_AGlYSd0kETwGw at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 58
+   "featured_rank": 58,
+   "focal_point": [
+    0.35,
+    0.3
+   ]
   },
   {
    "title": "The Wheel of Fortune",
@@ -702,7 +714,11 @@
    "license_url": "",
    "credit_line": "xgFTGwg3Eu3-wg at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 55
+   "featured_rank": 55,
+   "focal_point": [
+    0.55,
+    0.45
+   ]
   },
   {
    "title": "Echo and Narcissus",
@@ -731,7 +747,11 @@
    "license_url": "",
    "credit_line": "Walker Art Gallery",
    "license_verified": "2026-07-16",
-   "featured_rank": 68
+   "featured_rank": 68,
+   "focal_point": [
+    0.5,
+    0.55
+   ]
   },
   {
    "title": "Madonna",
@@ -760,7 +780,11 @@
    "license_url": "",
    "credit_line": "National Museum of Art, Architecture and Design",
    "license_verified": "2026-07-16",
-   "featured_rank": 72
+   "featured_rank": 72,
+   "focal_point": [
+    0.45,
+    0.35
+   ]
   },
   {
    "title": "Elaine",
@@ -856,7 +880,11 @@
    "license_url": "",
    "credit_line": "https://digitalcollections.folger.edu/img6203",
    "license_verified": "2026-07-16",
-   "featured_rank": 55
+   "featured_rank": 55,
+   "focal_point": [
+    0.4,
+    0.27
+   ]
   },
   {
    "title": "Saint Cecilia",
@@ -877,7 +905,11 @@
    "license_url": "",
    "credit_line": "Copied from an art book",
    "license_verified": "2026-07-16",
-   "featured_rank": 48
+   "featured_rank": 48,
+   "focal_point": [
+    0.72,
+    0.45
+   ]
   },
   {
    "title": "A Song of Springtime",
@@ -898,7 +930,11 @@
    "license_url": "",
    "credit_line": "2. http://toutelaculture.com/arts/expositions/desirs-et-volupte-a-lepoque-victorienne/ 1. http://www.wikiart.org/en/john-william-waterhouse/a-song-of-springtime-1913",
    "license_verified": "2026-07-16",
-   "featured_rank": 42
+   "featured_rank": 42,
+   "focal_point": [
+    0.35,
+    0.4
+   ]
   },
   {
    "title": "Lamia (1909)",
@@ -919,7 +955,11 @@
    "license_url": "",
    "credit_line": "7QFhMm-f-tY5SA at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 55
+   "featured_rank": 55,
+   "focal_point": [
+    0.55,
+    0.3
+   ]
   },
   {
    "title": "Diogenes",
@@ -965,7 +1005,11 @@
    "license_url": "",
    "credit_line": "https://www.bukowskis.com/en/auctions/621/565-john-william-waterhouse-the-rescue",
    "license_verified": "2026-07-16",
-   "featured_rank": 40
+   "featured_rank": 40,
+   "focal_point": [
+    0.45,
+    0.55
+   ]
   },
   {
    "title": "La Belle Dame Sans Merci",
@@ -986,7 +1030,11 @@
    "license_url": "",
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
-   "featured_rank": 65
+   "featured_rank": 65,
+   "focal_point": [
+    0.38,
+    0.35
+   ]
   },
   {
    "title": "Lady on a Balcony, Capri",
@@ -1007,7 +1055,11 @@
    "license_url": "",
    "credit_line": "Sotheby's, London, 10 May 2012, L12132, Lot 23",
    "license_verified": "2026-07-16",
-   "featured_rank": 40
+   "featured_rank": 40,
+   "focal_point": [
+    0.55,
+    0.25
+   ]
   },
   {
    "title": "A Tale from the Decameron",
@@ -1028,7 +1080,11 @@
    "license_url": "",
    "credit_line": "https://johnwilliamwaterhousehome.files.wordpress.com/2020/11/1916-a-tale-from-the-decameron-.jpg",
    "license_verified": "2026-07-16",
-   "featured_rank": 42
+   "featured_rank": 42,
+   "focal_point": [
+    0.45,
+    0.55
+   ]
   },
   {
    "title": "The Favourites of the Emperor Honorius",
@@ -1056,6 +1112,10 @@
     0.13,
     0.9,
     0.87
+   ],
+   "focal_point": [
+    0.25,
+    0.6
    ]
   }
  ]

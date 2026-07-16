@@ -424,7 +424,11 @@
    "license_url": "",
    "credit_line": "Self-scanned",
    "license_verified": "2026-07-16",
-   "featured_rank": 72
+   "featured_rank": 72,
+   "focal_point": [
+    0.4,
+    0.55
+   ]
   },
   {
    "title": "Still Life with Flowers in a Wan-Li Vase",
@@ -445,7 +449,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "http://hdl.handle.net/10934/RM0001.COLLECT.6190",
    "license_verified": "2026-07-16",
-   "featured_rank": 40
+   "featured_rank": 40,
+   "focal_point": [
+    0.5,
+    0.45
+   ]
   },
   {
    "title": "Vase of Flowers",
@@ -466,7 +474,11 @@
    "license_url": "",
    "credit_line": "JAGWYNtgxRuRiA at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 46
+   "featured_rank": 46,
+   "focal_point": [
+    0.5,
+    0.45
+   ]
   },
   {
    "title": "Still Life with Lobster",
@@ -487,7 +499,11 @@
    "license_url": "",
    "credit_line": "National Gallery, London",
    "license_verified": "2026-07-16",
-   "featured_rank": 40
+   "featured_rank": 40,
+   "focal_point": [
+    0.48,
+    0.5
+   ]
   },
   {
    "title": "Banquet Piece with Mince Pie",
@@ -516,7 +532,11 @@
    "license_url": "",
    "credit_line": "Google Arts &amp; Culture — vwGyjkxzEJ1Z6Q",
    "license_verified": "2026-07-16",
-   "featured_rank": 40
+   "featured_rank": 40,
+   "focal_point": [
+    0.35,
+    0.35
+   ]
   },
   {
    "title": "Still Life with Flowers on a Marble Tabletop",
@@ -545,7 +565,11 @@
    "license_url": "",
    "credit_line": "https://sammlung.staedelmuseum.de/de/werk/blumenstillleben",
    "license_verified": "2026-07-16",
-   "featured_rank": 38
+   "featured_rank": 38,
+   "focal_point": [
+    0.4,
+    0.5
+   ]
   },
   {
    "title": "The Ray",
@@ -574,7 +598,11 @@
    "license_url": "",
    "credit_line": "Google Art Project",
    "license_verified": "2026-07-16",
-   "featured_rank": 82
+   "featured_rank": 82,
+   "focal_point": [
+    0.6,
+    0.3
+   ]
   },
   {
    "title": "Still Life with Cheeses, Almonds and Pretzels",
@@ -603,7 +631,11 @@
    "license_url": "",
    "credit_line": "Mauritshuis",
    "license_verified": "2026-07-16",
-   "featured_rank": 50
+   "featured_rank": 50,
+   "focal_point": [
+    0.35,
+    0.45
+   ]
   },
   {
    "title": "Still Life with Fruit, Fish, and a Nest",
@@ -632,7 +664,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the National Gallery of Art. Please see the Gallery's Open Access Policy.",
    "license_verified": "2026-07-16",
-   "featured_rank": 29
+   "featured_rank": 29,
+   "focal_point": [
+    0.45,
+    0.5
+   ]
   },
   {
    "title": "Fruit Still Life with Shells and Tulip",
@@ -690,7 +726,11 @@
    "license_url": "",
    "credit_line": "Collection of Art Institute of Chicago",
    "license_verified": "2026-07-16",
-   "featured_rank": 35
+   "featured_rank": 35,
+   "focal_point": [
+    0.5,
+    0.45
+   ]
   },
   {
    "title": "Still Life with Geranium",
@@ -719,7 +759,11 @@
    "license_url": "",
    "credit_line": "Collection of Art Institute of Chicago",
    "license_verified": "2026-07-16",
-   "featured_rank": 80
+   "featured_rank": 80,
+   "focal_point": [
+    0.45,
+    0.5
+   ]
   },
   {
    "title": "Still Life with Fruit and Wine Jug",
@@ -748,7 +792,11 @@
    "license_url": "",
    "credit_line": "Collection of Art Institute of Chicago",
    "license_verified": "2026-07-16",
-   "featured_rank": 20
+   "featured_rank": 20,
+   "focal_point": [
+    0.48,
+    0.42
+   ]
   },
   {
    "title": "Calf's Head and Ox Tongue",

@@ -1429,7 +1429,11 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "https://www.clarkart.edu/ArtPiece/Detail/Rockets-and-Blue-Lights-(Close-at-Hand)-to-Warn-St",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "focal_point": [
+    0.4,
+    0.4
+   ]
   },
   {
    "title": "Llanthony Abbey, Monmouthshire",
@@ -1450,7 +1454,11 @@
    "license_url": "",
    "credit_line": "gAEk0hVZ9-6-Sg at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 40
+   "featured_rank": 40,
+   "focal_point": [
+    0.42,
+    0.4
+   ]
   },
   {
    "title": "Caligula's Palace and Bridge",
@@ -1471,7 +1479,11 @@
    "license_url": "",
    "credit_line": "Google Arts &amp; Culture — xQFxUjK0z9Pb_Q Tate Images (http://www.tate-images.com/results.asp?image=N00512&amp;wwwflag=3&amp;imagepos=1)",
    "license_verified": "2026-07-16",
-   "featured_rank": 45
+   "featured_rank": 45,
+   "focal_point": [
+    0.35,
+    0.35
+   ]
   },
   {
    "title": "The Moselle Bridge, Coblenz",
@@ -1492,7 +1504,11 @@
    "license_url": "",
    "credit_line": "RgFwkEDRp7lVFA at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 38
+   "featured_rank": 38,
+   "focal_point": [
+    0.55,
+    0.6
+   ]
   },
   {
    "title": "Dido Building Carthage",
@@ -1513,7 +1529,11 @@
    "license_url": "",
    "credit_line": "J.M.W. Turner, Michael Bockemühl, Taschen (Köln), 1992, ISBN 3-8228-0669-2",
    "license_verified": "2026-07-16",
-   "featured_rank": 62
+   "featured_rank": 62,
+   "focal_point": [
+    0.5,
+    0.25
+   ]
   },
   {
    "title": "Devil's Bridge, St Gotthard's Pass",
@@ -1534,7 +1554,11 @@
    "license_url": "",
    "credit_line": "5AEUOFq9Jrulvg at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 38
+   "featured_rank": 38,
+   "focal_point": [
+    0.75,
+    0.82
+   ]
   },
   {
    "title": "Evening Landscape, with Castle and Bridge in Yorkshire",
@@ -1555,7 +1579,11 @@
    "license_url": "",
    "credit_line": "-gE2GV_i5hzang at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.45,
+    0.55
+   ]
   },
   {
    "title": "Calais Pier, with French Poissards Preparing for Sea: An English Packet Arriving",
@@ -1576,7 +1604,11 @@
    "license_url": "",
    "credit_line": "https://www.nationalgallery.org.uk/paintings/joseph-mallord-william-turner-calais-pier",
    "license_verified": "2026-07-16",
-   "featured_rank": 59
+   "featured_rank": 59,
+   "focal_point": [
+    0.45,
+    0.55
+   ]
   },
   {
    "title": "Sun Rising through Vapour: Fishermen Cleaning and Selling Fish",
@@ -1597,7 +1629,11 @@
    "license_url": "",
    "credit_line": "The Yorck Project (2002) 10.000 Meisterwerke der Malerei (DVD-ROM), distributed by DIRECTMEDIA Publishing GmbH. ISBN: 3936122202.",
    "license_verified": "2026-07-16",
-   "featured_rank": 45
+   "featured_rank": 45,
+   "focal_point": [
+    0.42,
+    0.35
+   ]
   },
   {
    "title": "What You Will!",
@@ -1625,6 +1661,10 @@
     0.0,
     1.0,
     0.9
+   ],
+   "focal_point": [
+    0.6,
+    0.55
    ]
   },
   {
@@ -1646,7 +1686,11 @@
    "license_url": "",
    "credit_line": "XgHfkn4uQCK_Dg at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.35,
+    0.78
+   ]
   },
   {
    "title": "Lausanne: Sunset",
@@ -1674,6 +1718,10 @@
     0.22,
     0.81,
     0.77
+   ],
+   "focal_point": [
+    0.5,
+    0.36
    ]
   },
   {
@@ -1695,7 +1743,11 @@
    "license_url": "",
    "credit_line": "GQHBAgj90T1exA at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.55,
+    0.55
+   ]
   },
   {
    "title": "Geneva, the Jura Mountains and Isle Rousseau, Sunset",
@@ -1723,6 +1775,10 @@
     0.19,
     0.78,
     0.76
+   ],
+   "focal_point": [
+    0.5,
+    0.65
    ]
   },
   {
@@ -1744,7 +1800,11 @@
    "license_url": "",
    "credit_line": "Google Arts &amp; Culture — dwEYd5yKW43wWQ Tate Images (http://www.tate-images.com/results.asp?image=N00535&amp;wwwflag=3&amp;imagepos=5)",
    "license_verified": "2026-07-16",
-   "featured_rank": 50
+   "featured_rank": 50,
+   "focal_point": [
+    0.45,
+    0.5
+   ]
   },
   {
    "title": "Panoramic View of the Thames",
@@ -1765,7 +1825,11 @@
    "license_url": "",
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
-   "featured_rank": 32
+   "featured_rank": 32,
+   "focal_point": [
+    0.6,
+    0.6
+   ]
   },
   {
    "title": "The Rainbow: Osterspai and Filsen",
@@ -1786,7 +1850,11 @@
    "license_url": "",
    "credit_line": "pgEyeMCIVn7Bkg at Google Cultural Institute, zoom level maximum",
    "license_verified": "2026-07-16",
-   "featured_rank": 36
+   "featured_rank": 36,
+   "focal_point": [
+    0.45,
+    0.75
+   ]
   },
   {
    "title": "East Cowes Castle, the Seat of J. Nash, Esq.: The Regatta Beating to Windward",
@@ -1846,6 +1914,10 @@
     0.0,
     1.0,
     0.88
+   ],
+   "focal_point": [
+    0.55,
+    0.4
    ]
   },
   {
@@ -1874,6 +1946,10 @@
     0.18,
     0.77,
     0.81
+   ],
+   "focal_point": [
+    0.5,
+    0.45
    ]
   },
   {
@@ -1895,7 +1971,11 @@
    "license_url": "",
    "credit_line": "SgG4AalnTq8YSQ at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.65,
+    0.65
+   ]
   },
   {
    "title": "Scarborough Town and Castle: Morning, Boys Catching Crabs",
@@ -1916,7 +1996,11 @@
    "license_url": "",
    "credit_line": "MQEVP3xDJnjbeg at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 35
+   "featured_rank": 35,
+   "focal_point": [
+    0.55,
+    0.75
+   ]
   },
   {
    "title": "Kirkby Lonsdale Churchyard",
@@ -1937,7 +2021,11 @@
    "license_url": "",
    "credit_line": "Bonhams London, 25 Jan 2012, lot 12",
    "license_verified": "2026-07-16",
-   "featured_rank": 24
+   "featured_rank": 24,
+   "focal_point": [
+    0.3,
+    0.55
+   ]
   },
   {
    "title": "Bell Rock Lighthouse",
@@ -1958,7 +2046,11 @@
    "license_url": "",
    "credit_line": "LQEZojMomM-PzA at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 35
+   "featured_rank": 35,
+   "focal_point": [
+    0.65,
+    0.35
+   ]
   },
   {
    "title": "The Evening of the Deluge",
@@ -1979,7 +2071,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the National Gallery of Art. Please see the Gallery's Open Access Policy.",
    "license_verified": "2026-07-16",
-   "featured_rank": 38
+   "featured_rank": 38,
+   "focal_point": [
+    0.53,
+    0.35
+   ]
   },
   {
    "title": "The Bass Rock",
@@ -2007,6 +2103,10 @@
     0.09,
     0.87,
     0.82
+   ],
+   "focal_point": [
+    0.55,
+    0.45
    ]
   },
   {
@@ -2028,7 +2128,11 @@
    "license_url": "",
    "credit_line": "Google Arts &amp; Culture — 6QEKBj-jyZHtOQ Tate Images (http://www.tate-images.com/results.asp?image=N00523&amp;wwwflag=3&amp;imagepos=1)",
    "license_verified": "2026-07-16",
-   "featured_rank": 45
+   "featured_rank": 45,
+   "focal_point": [
+    0.55,
+    0.3
+   ]
   },
   {
    "title": "Saint-Maurice, Valais",
@@ -2049,7 +2153,11 @@
    "license_url": "",
    "credit_line": "Unknown sourceUnknown source",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.5,
+    0.45
+   ]
   }
  ]
 }

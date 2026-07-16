@@ -49,7 +49,11 @@
    "license_url": "",
    "credit_line": "JgGlXuCNoGIpzg at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 88
+   "featured_rank": 88,
+   "focal_point": [
+    0.62,
+    0.5
+   ]
   },
   {
    "title": "Ejiri in Suruga Province",
@@ -91,7 +95,11 @@
    "license_url": "",
    "credit_line": "http://visipix.com/index.htm",
    "license_verified": "2026-07-16",
-   "featured_rank": 62
+   "featured_rank": 62,
+   "focal_point": [
+    0.6,
+    0.45
+   ]
   },
   {
    "title": "Sudden Shower over Shin-Ōhashi Bridge and Atake",
@@ -112,7 +120,11 @@
    "license_url": "",
    "credit_line": "This image is available from the United States Library of Congress's Prints and Photographs division under the digital ID jpd.02950.This tag does not indicate the copyright status of the attached work. A normal copyright tag is still required. See Commons:Licensing.",
    "license_verified": "2026-07-16",
-   "featured_rank": 82
+   "featured_rank": 82,
+   "focal_point": [
+    0.55,
+    0.55
+   ]
   },
   {
    "title": "Plum Park in Kameido",
@@ -133,7 +145,11 @@
    "license_url": "",
    "credit_line": "PAFEe4QeeBnqpw at Google Cultural Institute, zoom level maximum",
    "license_verified": "2026-07-16",
-   "featured_rank": 72
+   "featured_rank": 72,
+   "focal_point": [
+    0.55,
+    0.5
+   ]
   },
   {
    "title": "Evening Snow at Kanbara",
@@ -154,7 +170,11 @@
    "license_url": "",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
-   "featured_rank": 78
+   "featured_rank": 78,
+   "focal_point": [
+    0.45,
+    0.65
+   ]
   },
   {
    "title": "Three Beauties of the Present Day",
@@ -196,7 +216,11 @@
    "license_url": "",
    "credit_line": "https://www.britishmuseum.org/collection/object/A_1915-0823-0-915-916",
    "license_verified": "2026-07-16",
-   "featured_rank": 70
+   "featured_rank": 70,
+   "focal_point": [
+    0.55,
+    0.35
+   ]
   },
   {
    "title": "Fuji from Gotenyama at Shinagawa on the Tōkaidō",
@@ -224,7 +248,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
-   "featured_rank": 54
+   "featured_rank": 54,
+   "focal_point": [
+    0.47,
+    0.3
+   ]
   },
   {
    "title": "Watermill at Onden",
@@ -252,7 +280,11 @@
    "license_url": "",
    "credit_line": "Source: http://visipix.com/index.htm",
    "license_verified": "2026-07-16",
-   "featured_rank": 32
+   "featured_rank": 32,
+   "focal_point": [
+    0.28,
+    0.45
+   ]
   },
   {
    "title": "Shōno: Driving Rain",
@@ -280,7 +312,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "https://clevelandart.org/art/1948.306",
    "license_verified": "2026-07-16",
-   "featured_rank": 78
+   "featured_rank": 78,
+   "focal_point": [
+    0.42,
+    0.55
+   ]
   },
   {
    "title": "Yui: Satta Pass",
@@ -336,7 +372,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "https://clevelandart.org/art/1940.986",
    "license_verified": "2026-07-16",
-   "featured_rank": 55
+   "featured_rank": 55,
+   "focal_point": [
+    0.45,
+    0.25
+   ]
   },
   {
    "title": "Kinryūzan Temple, Asakusa",
@@ -364,7 +404,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
-   "featured_rank": 55
+   "featured_rank": 55,
+   "focal_point": [
+    0.5,
+    0.5
+   ]
   },
   {
    "title": "Naniwaya Okita",
@@ -392,7 +436,11 @@
    "license_url": "",
    "credit_line": "http://free-artworks.gatag.net/2013/11/25/200000.html",
    "license_verified": "2026-07-16",
-   "featured_rank": 58
+   "featured_rank": 58,
+   "focal_point": [
+    0.55,
+    0.25
+   ]
   },
   {
    "title": "Zhang Shun, the White Stripe in the Waves",
@@ -448,7 +496,11 @@
    "license_url": "",
    "credit_line": "jAHH0A04avBLOg at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 40
+   "featured_rank": 40,
+   "focal_point": [
+    0.4,
+    0.55
+   ]
   },
   {
    "title": "Tsuchigumo (The Ground Spider)",
@@ -494,7 +546,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "https://clevelandart.org/art/1916.1133",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.47,
+    0.6
+   ]
   },
   {
    "title": "Kamakura no Gengoro Seizing Torinoumi Tasaburo",
@@ -515,7 +571,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "https://clevelandart.org/art/1916.1169",
    "license_verified": "2026-07-16",
-   "featured_rank": 25
+   "featured_rank": 25,
+   "focal_point": [
+    0.25,
+    0.25
+   ]
   },
   {
    "title": "Women and Children Walking Along the Sumida River",
@@ -536,7 +596,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "https://clevelandart.org/art/1943.2",
    "license_verified": "2026-07-16",
-   "featured_rank": 34
+   "featured_rank": 34,
+   "focal_point": [
+    0.52,
+    0.62
+   ]
   },
   {
    "title": "Group of Figures near a Brook",
@@ -557,7 +621,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "https://clevelandart.org/art/1916.937",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.55,
+    0.5
+   ]
   },
   {
    "title": "The Six Immortal Poets (Rokkasen)",
@@ -578,7 +646,11 @@
    "license_url": "",
    "credit_line": "Library of Congress Catalog: https://lccn.loc.gov/2008660770 Image download: https://cdn.loc.gov/service/pnp/jpd/02100/02188v.jpg Original url: https://www.loc.gov/pictures/item/2008660770/",
    "license_verified": "2026-07-16",
-   "featured_rank": 35
+   "featured_rank": 35,
+   "focal_point": [
+    0.38,
+    0.35
+   ]
   },
   {
    "title": "Rice Planters",
@@ -599,7 +671,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "https://hdl.handle.net/10934/RM0001.collect.45676",
    "license_verified": "2026-07-16",
-   "featured_rank": 29
+   "featured_rank": 29,
+   "focal_point": [
+    0.3,
+    0.55
+   ]
   },
   {
    "title": "Sailing on the Sumida River",
@@ -620,7 +696,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "http://hdl.handle.net/10934/RM0001.collect.45680",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.75,
+    0.65
+   ]
   },
   {
    "title": "Balloon Flower and Dragonfly",
@@ -641,7 +721,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "http://hdl.handle.net/10934/RM0001.collect.47668",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.33,
+    0.22
+   ]
   },
   {
    "title": "Battling Warriors",
@@ -662,7 +746,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "http://hdl.handle.net/10934/RM0001.COLLECT.47667",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.3,
+    0.25
+   ]
   },
   {
    "title": "Shishi (Lion-Dog)",
@@ -683,7 +771,11 @@
    "license_url": "",
    "credit_line": "Library of Congress Catalog: https://lccn.loc.gov/2008660600 Image download: https://cdn.loc.gov/service/pnp/jpd/01900/01973v.jpg Original url: https://www.loc.gov/pictures/item/2008660600/",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.35,
+    0.45
+   ]
   },
   {
    "title": "Two Women with a Doll",
@@ -704,7 +796,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "http://hdl.handle.net/10934/RM0001.COLLECT.1710",
    "license_verified": "2026-07-16",
-   "featured_rank": 32
+   "featured_rank": 32,
+   "focal_point": [
+    0.45,
+    0.4
+   ]
   },
   {
    "title": "Playing Sugoroku in the Third Month (Yayoi)",
@@ -725,7 +821,11 @@
    "license_url": "",
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.6,
+    0.65
+   ]
   },
   {
    "title": "Man Lifting a Sake Barrel",
@@ -746,7 +846,11 @@
    "license_url": "",
    "credit_line": "Library of Congress Catalog: https://lccn.loc.gov/2009615559 Image download: https://cdn.loc.gov/service/pnp/jpd/00500/00589v.jpg Original url: https://www.loc.gov/pictures/item/2009615559/",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.45,
+    0.4
+   ]
   },
   {
    "title": "The Mirror Polisher (Kagamitogi)",
@@ -767,7 +871,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "http://hdl.handle.net/10934/RM0001.COLLECT.45670",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.45,
+    0.4
+   ]
   },
   {
    "title": "Chinese Boys Learning to Write and Paint",
@@ -788,7 +896,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
-   "featured_rank": 24
+   "featured_rank": 24,
+   "focal_point": [
+    0.45,
+    0.55
+   ]
   },
   {
    "title": "Nanukayo (The Seventh Night)",
@@ -809,7 +921,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
-   "featured_rank": 22
+   "featured_rank": 22,
+   "focal_point": [
+    0.4,
+    0.55
+   ]
   },
   {
    "title": "Imadogawa",
@@ -830,7 +946,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
-   "featured_rank": 26
+   "featured_rank": 26,
+   "focal_point": [
+    0.68,
+    0.75
+   ]
   },
   {
    "title": "Fukagawa Lumberyards",
@@ -851,7 +971,11 @@
    "license_url": "",
    "credit_line": "Library of Congress Catalog: https://lccn.loc.gov/2009631892 Image download: https://cdn.loc.gov/master/pnp/jpd/02900/02953u.tif Original url: https://www.loc.gov/pictures/item/2009631892/",
    "license_verified": "2026-07-16",
-   "featured_rank": 38
+   "featured_rank": 38,
+   "focal_point": [
+    0.5,
+    0.6
+   ]
   },
   {
    "title": "Nihonbashi Bridge: Clearing Weather after Snow",
@@ -872,7 +996,11 @@
    "license_url": "",
    "credit_line": "Library of Congress Catalog: https://lccn.loc.gov/2009631885 Image download: https://cdn.loc.gov/service/pnp/jpd/02900/02946v.jpg Original url: https://www.loc.gov/pictures/item/2009631885/",
    "license_verified": "2026-07-16",
-   "featured_rank": 40
+   "featured_rank": 40,
+   "focal_point": [
+    0.32,
+    0.2
+   ]
   },
   {
    "title": "Tsukudajima from Eitai Bridge",
@@ -893,7 +1021,11 @@
    "license_url": "",
    "credit_line": "Library of Congress Catalog: https://lccn.loc.gov/2009631878 Image download: https://cdn.loc.gov/service/pnp/jpd/02900/02939v.jpg Original url: https://www.loc.gov/pictures/item/2009631878/",
    "license_verified": "2026-07-16",
-   "featured_rank": 29
+   "featured_rank": 29,
+   "focal_point": [
+    0.55,
+    0.15
+   ]
   },
   {
    "title": "Ueno Yamashita",
@@ -914,7 +1046,11 @@
    "license_url": "",
    "credit_line": "Library of Congress Catalog: https://lccn.loc.gov/2009631894 Image download: https://cdn.loc.gov/service/pnp/jpd/02900/02955v.jpg Original url: https://www.loc.gov/pictures/item/2009631894/",
    "license_verified": "2026-07-16",
-   "featured_rank": 26
+   "featured_rank": 26,
+   "focal_point": [
+    0.6,
+    0.55
+   ]
   },
   {
    "title": "Mount Atago in Shiba",
@@ -935,7 +1071,11 @@
    "license_url": "",
    "credit_line": "Library of Congress Catalog: https://lccn.loc.gov/2009631880 Image download: https://cdn.loc.gov/service/pnp/jpd/02900/02941v.jpg Original url: https://www.loc.gov/pictures/item/2009631880/",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.78,
+    0.6
+   ]
   },
   {
    "title": "Night View of Matsuchiyama and the San'ya Canal",
@@ -956,7 +1096,11 @@
    "license_url": "",
    "credit_line": "Library of Congress Catalog: https://lccn.loc.gov/2009631891 Image download: https://cdn.loc.gov/service/pnp/jpd/02900/02952v.jpg Original url: https://www.loc.gov/pictures/item/2009631891/",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.25,
+    0.35
+   ]
   },
   {
    "title": "View from Massaki of Suijin Grove, the Uchigawa Inlet, and Sekiya Village",
@@ -977,7 +1121,11 @@
    "license_url": "",
    "credit_line": "Library of Congress Catalog: https://lccn.loc.gov/2009631859 Image download: https://cdn.loc.gov/master/pnp/jpd/02900/02920u.tif Original url: https://www.loc.gov/pictures/item/2009631859/",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.45,
+    0.65
+   ]
   },
   {
    "title": "The Armor-Hanging Pine at Hakkei Slope",
@@ -998,7 +1146,11 @@
    "license_url": "",
    "credit_line": "Library of Congress Catalog: https://lccn.loc.gov/2008660268 Image download: https://cdn.loc.gov/service/pnp/jpd/01300/01327v.jpg Original url: https://www.loc.gov/pictures/item/2008660268/",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.45,
+    0.45
+   ]
   },
   {
    "title": "Five Pines, Onagi Canal",
@@ -1019,7 +1171,11 @@
    "license_url": "",
    "credit_line": "This image is available from the United States Library of Congress's Prints and Photographs division under the digital ID jpd.01335.This tag does not indicate the copyright status of the attached work. A normal copyright tag is still required. See Commons:Licensing.",
    "license_verified": "2026-07-16",
-   "featured_rank": 50
+   "featured_rank": 50,
+   "focal_point": [
+    0.5,
+    0.75
+   ]
   },
   {
    "title": "The City Flourishing, the Tanabata Festival",
@@ -1040,7 +1196,11 @@
    "license_url": "",
    "credit_line": "This image is available from the United States Library of Congress's Prints and Photographs division under the digital ID jpd.02925.This tag does not indicate the copyright status of the attached work. A normal copyright tag is still required. See Commons:Licensing.",
    "license_verified": "2026-07-16",
-   "featured_rank": 48
+   "featured_rank": 48,
+   "focal_point": [
+    0.5,
+    0.65
+   ]
   },
   {
    "title": "Sudden Shower over Shin-Ohashi Bridge and Atake",
@@ -1061,7 +1221,11 @@
    "license_url": "",
    "credit_line": "This image has been extracted from another file",
    "license_verified": "2026-07-16",
-   "featured_rank": 82
+   "featured_rank": 82,
+   "focal_point": [
+    0.55,
+    0.55
+   ]
   },
   {
    "title": "Yatsumi Bridge",
@@ -1082,7 +1246,11 @@
    "license_url": "",
    "credit_line": "This image is available from the United States Library of Congress's Prints and Photographs division under the digital ID jpd.02929.This tag does not indicate the copyright status of the attached work. A normal copyright tag is still required. See Commons:Licensing.",
    "license_verified": "2026-07-16",
-   "featured_rank": 40
+   "featured_rank": 40,
+   "focal_point": [
+    0.35,
+    0.45
+   ]
   },
   {
    "title": "Dawn Inside the Yoshiwara",
@@ -1103,7 +1271,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "http://hdl.handle.net/10934/RM0001.COLLECT.349470",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.28,
+    0.75
+   ]
   },
   {
    "title": "New Fuji, Meguro",
@@ -1124,7 +1296,11 @@
    "license_url": "",
    "credit_line": "JQHtQcDy-TDl8w at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 42
+   "featured_rank": 42,
+   "focal_point": [
+    0.35,
+    0.35
+   ]
   },
   {
    "title": "Suruga-cho",
@@ -1145,7 +1321,11 @@
    "license_url": "",
    "credit_line": "This image is available from the United States Library of Congress's Prints and Photographs division under the digital ID jpd.02963.This tag does not indicate the copyright status of the attached work. A normal copyright tag is still required. See Commons:Licensing.",
    "license_verified": "2026-07-16",
-   "featured_rank": 45
+   "featured_rank": 45,
+   "focal_point": [
+    0.5,
+    0.25
+   ]
   },
   {
    "title": "Hibiya and Soto-Sakurada from Yamashita-cho",
@@ -1166,7 +1346,11 @@
    "license_url": "",
    "credit_line": "This image is available from the United States Library of Congress's Prints and Photographs division under the digital ID jpd.02962.This tag does not indicate the copyright status of the attached work. A normal copyright tag is still required. See Commons:Licensing.",
    "license_verified": "2026-07-16",
-   "featured_rank": 34
+   "featured_rank": 34,
+   "focal_point": [
+    0.5,
+    0.5
+   ]
   },
   {
    "title": "Temple Gardens in Nippori",
@@ -1187,7 +1371,11 @@
    "license_url": "",
    "credit_line": "This image is available from the United States Library of Congress's Prints and Photographs division under the digital ID jpd.02921.This tag does not indicate the copyright status of the attached work. A normal copyright tag is still required. See Commons:Licensing.",
    "license_verified": "2026-07-16",
-   "featured_rank": 26
+   "featured_rank": 26,
+   "focal_point": [
+    0.55,
+    0.35
+   ]
   },
   {
    "title": "Suwa Bluff in Nippori",
@@ -1208,7 +1396,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1303219",
    "license_verified": "2026-07-16",
-   "featured_rank": 24
+   "featured_rank": 24,
+   "focal_point": [
+    0.5,
+    0.55
+   ]
   },
   {
    "title": "Shops with Cotton Goods in Odenma-cho",
@@ -1229,7 +1421,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1303211",
    "license_verified": "2026-07-16",
-   "featured_rank": 26
+   "featured_rank": 26,
+   "focal_point": [
+    0.25,
+    0.55
+   ]
   },
   {
    "title": "Suijin Grove and Massaki on the Sumida River",
@@ -1250,7 +1446,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1303239",
    "license_verified": "2026-07-16",
-   "featured_rank": 25
+   "featured_rank": 25,
+   "focal_point": [
+    0.5,
+    0.45
+   ]
   },
   {
    "title": "Flower Park and Dango-zaka Slope in Sendagi",
@@ -1271,7 +1471,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1303220",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.55,
+    0.3
+   ]
   },
   {
    "title": "The Kawaguchi Ferry and Zenkoji Temple",
@@ -1292,7 +1496,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1303224",
    "license_verified": "2026-07-16",
-   "featured_rank": 25
+   "featured_rank": 25,
+   "focal_point": [
+    0.5,
+    0.45
+   ]
   },
   {
    "title": "Kiyomizu Hall and Shinobazu Pond at Ueno",
@@ -1313,7 +1521,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1303215",
    "license_verified": "2026-07-16",
-   "featured_rank": 50
+   "featured_rank": 50,
+   "focal_point": [
+    0.65,
+    0.55
+   ]
   },
   {
    "title": "Chiyogaike Pond in Meguro",
@@ -1334,7 +1546,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1303227",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.62,
+    0.55
+   ]
   },
   {
    "title": "Shitaya Hirokoji",
@@ -1380,7 +1596,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1303206",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.45,
+    0.75
+   ]
   },
   {
    "title": "Plum Orchard in Kamata",
@@ -1401,7 +1621,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
-   "featured_rank": 32
+   "featured_rank": 32,
+   "focal_point": [
+    0.75,
+    0.65
+   ]
   },
   {
    "title": "Azuma Shrine Grove and the Entwined Catalpa Trees",
@@ -1447,7 +1671,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1303237",
    "license_verified": "2026-07-16",
-   "featured_rank": 27
+   "featured_rank": 27,
+   "focal_point": [
+    0.45,
+    0.75
+   ]
   },
   {
    "title": "Moto-Hachiman Shrine in Sunamura",
@@ -1468,7 +1696,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1303233",
    "license_verified": "2026-07-16",
-   "featured_rank": 24
+   "featured_rank": 24,
+   "focal_point": [
+    0.65,
+    0.7
+   ]
   },
   {
    "title": "View to the North from Asukayama",
@@ -1489,7 +1721,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1303221",
    "license_verified": "2026-07-16",
-   "featured_rank": 32
+   "featured_rank": 32,
+   "focal_point": [
+    0.5,
+    0.55
+   ]
   },
   {
    "title": "The Original Fuji in Meguro",
@@ -1510,7 +1746,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1303229",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.55,
+    0.6
+   ]
   },
   {
    "title": "Palace Hill in Shinagawa",
@@ -1531,7 +1771,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1303232",
    "license_verified": "2026-07-16",
-   "featured_rank": 24
+   "featured_rank": 24,
+   "focal_point": [
+    0.45,
+    0.65
+   ]
   },
   {
    "title": "Hiroo on the Furukawa River",
@@ -1552,7 +1796,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1303226",
    "license_verified": "2026-07-16",
-   "featured_rank": 25
+   "featured_rank": 25,
+   "focal_point": [
+    0.5,
+    0.75
+   ]
   },
   {
    "title": "Yatsukoji, Inside Sujikai Gate",
@@ -1573,7 +1821,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1303213",
    "license_verified": "2026-07-16",
-   "featured_rank": 25
+   "featured_rank": 25,
+   "focal_point": [
+    0.6,
+    0.5
+   ]
   },
   {
    "title": "Kilns and the Hashiba Ferry on the Sumida River",
@@ -1594,7 +1846,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1303241",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.4,
+    0.55
+   ]
   },
   {
    "title": "Dam on the Otonashi River at Oji",
@@ -1615,7 +1871,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1303223",
    "license_verified": "2026-07-16",
-   "featured_rank": 25
+   "featured_rank": 25,
+   "focal_point": [
+    0.55,
+    0.4
+   ]
   },
   {
    "title": "Ekoin Temple in Ryogoku and Moto-Yanagi Bridge",
@@ -1636,7 +1896,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1303209",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.5,
+    0.55
+   ]
   },
   {
    "title": "The Oji Inari Shrine",
@@ -1657,7 +1921,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1303222",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.55,
+    0.75
+   ]
   },
   {
    "title": "Sunrise at Kanda Myojin Shrine",
@@ -1678,7 +1946,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1303214",
    "license_verified": "2026-07-16",
-   "featured_rank": 25
+   "featured_rank": 25,
+   "focal_point": [
+    0.7,
+    0.6
+   ]
   },
   {
    "title": "Hatsune Riding Ground in Bakuro-cho",
@@ -1699,7 +1971,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1303210",
    "license_verified": "2026-07-16",
-   "featured_rank": 25
+   "featured_rank": 25,
+   "focal_point": [
+    0.48,
+    0.35
+   ]
   },
   {
    "title": "Yanagishima",
@@ -1745,7 +2021,11 @@
    "license_url": "",
    "credit_line": "Library of Congress Catalog: https://lccn.loc.gov/2009615162 Image download: https://cdn.loc.gov/service/pnp/jpd/00100/00169v.jpg Original url: https://www.loc.gov/pictures/item/2009615162/",
    "license_verified": "2026-07-16",
-   "featured_rank": 26
+   "featured_rank": 26,
+   "focal_point": [
+    0.25,
+    0.85
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -1766,7 +2046,11 @@
    "license_url": "",
    "credit_line": "Chazen Museum of Art, University of Wisconsin – Madison. https://www.edstirner.com/biblioteca-online/cartografia/cerezos-gokacho-yoshiwara/",
    "license_verified": "2026-07-16",
-   "featured_rank": 27
+   "featured_rank": 27,
+   "focal_point": [
+    0.5,
+    0.45
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -1787,7 +2071,11 @@
    "license_url": "",
    "credit_line": "Library of Congress Catalog: https://lccn.loc.gov/2008660837 Image download: https://cdn.loc.gov/service/pnp/jpd/02200/02264v.jpg Original url: https://www.loc.gov/pictures/item/2008660837/",
    "license_verified": "2026-07-16",
-   "featured_rank": 26
+   "featured_rank": 26,
+   "focal_point": [
+    0.5,
+    0.6
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -1808,7 +2096,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.45,
+    0.62
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -1854,7 +2146,11 @@
    "license_url": "",
    "credit_line": "Library of Congress Catalog: https://lccn.loc.gov/2008660111 Image download: https://cdn.loc.gov/service/pnp/jpd/00800/00834v.jpg Original url: https://www.loc.gov/pictures/item/2008660111/",
    "license_verified": "2026-07-16",
-   "featured_rank": 31
+   "featured_rank": 31,
+   "focal_point": [
+    0.3,
+    0.65
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -1875,7 +2171,11 @@
    "license_url": "",
    "credit_line": "https://www.loc.gov/exhibits/ukiyo-e/",
    "license_verified": "2026-07-16",
-   "featured_rank": 32
+   "featured_rank": 32,
+   "focal_point": [
+    0.35,
+    0.65
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -1896,7 +2196,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "http://hdl.handle.net/10934/RM0001.COLLECT.349446",
    "license_verified": "2026-07-16",
-   "featured_rank": 55
+   "featured_rank": 55,
+   "focal_point": [
+    0.3,
+    0.65
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -1917,7 +2221,11 @@
    "license_url": "",
    "credit_line": "Library of Congress Catalog: https://lccn.loc.gov/2008661178 Image download: https://cdn.loc.gov/service/pnp/jpd/02600/02688v.jpg Original url: https://www.loc.gov/pictures/item/2008661178/",
    "license_verified": "2026-07-16",
-   "featured_rank": 27
+   "featured_rank": 27,
+   "focal_point": [
+    0.5,
+    0.6
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -1938,7 +2246,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1301801",
    "license_verified": "2026-07-16",
-   "featured_rank": 24
+   "featured_rank": 24,
+   "focal_point": [
+    0.45,
+    0.15
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -1959,7 +2271,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1302089",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.55,
+    0.25
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -2030,7 +2346,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1303520",
    "license_verified": "2026-07-16",
-   "featured_rank": 25
+   "featured_rank": 25,
+   "focal_point": [
+    0.5,
+    0.35
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -2051,7 +2371,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1303546",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.45,
+    0.55
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -2072,7 +2396,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1303554",
    "license_verified": "2026-07-16",
-   "featured_rank": 24
+   "featured_rank": 24,
+   "focal_point": [
+    0.4,
+    0.35
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -2093,7 +2421,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1303562",
    "license_verified": "2026-07-16",
-   "featured_rank": 25
+   "featured_rank": 25,
+   "focal_point": [
+    0.3,
+    0.6
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -2114,7 +2446,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1304969",
    "license_verified": "2026-07-16",
-   "featured_rank": 24
+   "featured_rank": 24,
+   "focal_point": [
+    0.25,
+    0.45
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -2135,7 +2471,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1305418",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.45,
+    0.55
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -2156,7 +2496,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1305443",
    "license_verified": "2026-07-16",
-   "featured_rank": 26
+   "featured_rank": 26,
+   "focal_point": [
+    0.53,
+    0.15
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -2177,7 +2521,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1306170",
    "license_verified": "2026-07-16",
-   "featured_rank": 21
+   "featured_rank": 21,
+   "focal_point": [
+    0.75,
+    0.65
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -2198,7 +2546,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1307036",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.65,
+    0.3
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -2219,7 +2571,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1307038",
    "license_verified": "2026-07-16",
-   "featured_rank": 22
+   "featured_rank": 22,
+   "focal_point": [
+    0.5,
+    0.3
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -2240,7 +2596,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1307041",
    "license_verified": "2026-07-16",
-   "featured_rank": 35
+   "featured_rank": 35,
+   "focal_point": [
+    0.47,
+    0.4
+   ]
   },
   {
    "title": "Full View of Eitai Bridge (from Famous Places of the Eastern Capital)",
@@ -2261,7 +2621,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1307043",
    "license_verified": "2026-07-16",
-   "featured_rank": 25
+   "featured_rank": 25,
+   "focal_point": [
+    0.5,
+    0.4
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -2282,7 +2646,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1307045",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.5,
+    0.45
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -2303,7 +2671,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1307047",
    "license_verified": "2026-07-16",
-   "featured_rank": 26
+   "featured_rank": 26,
+   "focal_point": [
+    0.5,
+    0.4
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -2324,7 +2696,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1307609",
    "license_verified": "2026-07-16",
-   "featured_rank": 22
+   "featured_rank": 22,
+   "focal_point": [
+    0.7,
+    0.85
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -2345,7 +2721,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1308296",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.65,
+    0.65
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -2366,7 +2746,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1308375",
    "license_verified": "2026-07-16",
-   "featured_rank": 26
+   "featured_rank": 26,
+   "focal_point": [
+    0.25,
+    0.4
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -2387,7 +2771,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1308391",
    "license_verified": "2026-07-16",
-   "featured_rank": 24
+   "featured_rank": 24,
+   "focal_point": [
+    0.5,
+    0.55
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -2408,7 +2796,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1308399",
    "license_verified": "2026-07-16",
-   "featured_rank": 23
+   "featured_rank": 23,
+   "focal_point": [
+    0.75,
+    0.75
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -2429,7 +2821,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1308407",
    "license_verified": "2026-07-16",
-   "featured_rank": 24
+   "featured_rank": 24,
+   "focal_point": [
+    0.75,
+    0.6
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -2450,7 +2846,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections",
    "license_verified": "2026-07-16",
-   "featured_rank": 26
+   "featured_rank": 26,
+   "focal_point": [
+    0.45,
+    0.65
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -2471,7 +2871,11 @@
    "license_url": "",
    "credit_line": "https://www.loc.gov/exhibits/ukiyo-e/",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.5,
+    0.45
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -2492,7 +2896,11 @@
    "license_url": "",
    "credit_line": "https://www.loc.gov/exhibits/ukiyo-e/",
    "license_verified": "2026-07-16",
-   "featured_rank": 34
+   "featured_rank": 34,
+   "focal_point": [
+    0.4,
+    0.65
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -2538,7 +2946,11 @@
    "license_url": "",
    "credit_line": "Library of Congress Catalog: https://lccn.loc.gov/2009615480 Image download: https://cdn.loc.gov/service/pnp/jpd/00500/00510v.jpg Original url: https://www.loc.gov/pictures/item/2009615480/",
    "license_verified": "2026-07-16",
-   "featured_rank": 25
+   "featured_rank": 25,
+   "focal_point": [
+    0.4,
+    0.75
+   ]
   },
   {
    "title": "Autumn Moon on the Tama River (from Eight Views of the Suburbs of Edo)",
@@ -2559,7 +2971,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
-   "featured_rank": 38
+   "featured_rank": 38,
+   "focal_point": [
+    0.5,
+    0.35
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -2580,7 +2996,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
-   "featured_rank": 24
+   "featured_rank": 24,
+   "focal_point": [
+    0.6,
+    0.5
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -2601,7 +3021,11 @@
    "license_url": "",
    "credit_line": "Metropolitan Museum of Art",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.5,
+    0.5
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -2622,7 +3046,11 @@
    "license_url": "",
    "credit_line": "9AH0wV7YI00bvA at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 40
+   "featured_rank": 40,
+   "focal_point": [
+    0.5,
+    0.35
+   ]
   },
   {
    "title": "The Monkey Bridge in Kai Province (Kōyō Saruhashi no Zu)",
@@ -2643,7 +3071,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
-   "featured_rank": 32
+   "featured_rank": 32,
+   "focal_point": [
+    0.5,
+    0.25
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -2664,7 +3096,11 @@
    "license_url": "",
    "credit_line": "Bibliothèque nationale de France",
    "license_verified": "2026-07-16",
-   "featured_rank": 25
+   "featured_rank": 25,
+   "focal_point": [
+    0.55,
+    0.5
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -2685,7 +3121,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.5,
+    0.7
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -2706,7 +3146,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
-   "featured_rank": 24
+   "featured_rank": 24,
+   "focal_point": [
+    0.4,
+    0.35
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -2727,7 +3171,11 @@
    "license_url": "",
    "credit_line": "Bibliothèque nationale de France",
    "license_verified": "2026-07-16",
-   "featured_rank": 45
+   "featured_rank": 45,
+   "focal_point": [
+    0.42,
+    0.25
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -2748,7 +3196,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.35,
+    0.4
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -2769,7 +3221,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.5,
+    0.55
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -2790,7 +3246,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
-   "featured_rank": 24
+   "featured_rank": 24,
+   "focal_point": [
+    0.45,
+    0.75
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -2811,7 +3271,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
-   "featured_rank": 20
+   "featured_rank": 20,
+   "focal_point": [
+    0.45,
+    0.75
+   ]
   },
   {
    "title": "Fuchū: Ferrying across the Abe River (from The Fifty-three Stations of the Tōkaidō)",
@@ -2832,7 +3296,11 @@
    "license_url": "",
    "credit_line": "tQHvlImbNkH-yQ at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 40
+   "featured_rank": 40,
+   "focal_point": [
+    0.5,
+    0.38
+   ]
   },
   {
    "title": "Asakusa Ricefields and Torinomachi Festival (from One Hundred Famous Views of Edo)",
@@ -2853,7 +3321,11 @@
    "license_url": "",
    "credit_line": "https://artsandculture.google.com/asset/the-festival-of-the-cock-procession-across-the-asakusa-rice-fields-asakusa-tanbo-torinomachi-mode-designed-by-utagawa-hiroshige-1797%E2%80%931858/IQE22KSS04N4FQ",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.35,
+    0.4
+   ]
   },
   {
    "title": "Bamboo and Sparrow",
@@ -2874,7 +3346,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "http://hdl.handle.net/10934/RM0001.COLLECT.45979",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.35,
+    0.35
+   ]
   },
   {
    "title": "Fishing Boats off Tsukuda Island near Eitai Bridge",
@@ -2895,7 +3371,11 @@
    "license_url": "",
    "credit_line": "Library of Congress Catalog: https://lccn.loc.gov/2009615482 Image download: https://cdn.loc.gov/service/pnp/jpd/00500/00512v.jpg Original url: https://www.loc.gov/pictures/item/2009615482/",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.35,
+    0.75
+   ]
   },
   {
    "title": "Ichikawa Danjūrō VII as Shibaraku (surimono)",
@@ -2916,7 +3396,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "http://hdl.handle.net/10934/RM0001.COLLECT.45974",
    "license_verified": "2026-07-16",
-   "featured_rank": 22
+   "featured_rank": 22,
+   "focal_point": [
+    0.5,
+    0.35
+   ]
   },
   {
    "title": "Small Bird on a Branch of Kaidozakura",
@@ -2962,7 +3446,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "http://hdl.handle.net/10934/RM0001.COLLECT.46017",
    "license_verified": "2026-07-16",
-   "featured_rank": 34
+   "featured_rank": 34,
+   "focal_point": [
+    0.5,
+    0.4
+   ]
   },
   {
    "title": "Camellia and Finch",
@@ -2983,7 +3471,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
-   "featured_rank": 27
+   "featured_rank": 27,
+   "focal_point": [
+    0.55,
+    0.25
+   ]
   },
   {
    "title": "Morning Glories",
@@ -3004,7 +3496,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
-   "featured_rank": 32
+   "featured_rank": 32,
+   "focal_point": [
+    0.5,
+    0.25
+   ]
   },
   {
    "title": "Mandarin Duck in Snow",
@@ -3025,7 +3521,11 @@
    "license_url": "",
    "credit_line": "Library of Congress[1]",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.5,
+    0.6
+   ]
   },
   {
    "title": "Moonlit View of Hongō (from Famous Views of the Eastern Capital)",
@@ -3071,7 +3571,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1301978",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.65,
+    0.6
+   ]
   },
   {
    "title": "Nihonbashi (from Famous Scenes of Edo)",
@@ -3092,7 +3596,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1302091",
    "license_verified": "2026-07-16",
-   "featured_rank": 38
+   "featured_rank": 38,
+   "focal_point": [
+    0.28,
+    0.38
+   ]
   },
   {
    "title": "Ise Pilgrimage Route: A Simplified Guide (Ise Sangū Ryakuzu)",
@@ -3743,7 +4251,11 @@
    "license_url": "",
    "credit_line": "Minneapolis Institute of Art",
    "license_verified": "2026-07-16",
-   "featured_rank": 24
+   "featured_rank": 24,
+   "focal_point": [
+    0.42,
+    0.72
+   ]
   },
   {
    "title": "Shiraito Waterfall at Hakone",
@@ -4016,7 +4528,11 @@
    "license_url": "",
    "credit_line": "Bibliothèque nationale de France",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.2,
+    0.25
+   ]
   },
   {
    "title": "Full Moon over Takanawa (from Famous Places in the Eastern Capital)",
@@ -6914,7 +7430,11 @@
    "license_url": "",
    "credit_line": "Library of Congress Catalog: https://lccn.loc.gov/2008660678 Image download: https://cdn.loc.gov/service/pnp/jpd/02000/02022v.jpg Original url: https://www.loc.gov/pictures/item/2008660678/",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.58,
+    0.55
+   ]
   },
   {
    "title": "Descending Geese at Haneda",
@@ -7670,7 +8190,11 @@
    "license_url": "",
    "credit_line": "Library of Congress Catalog: https://lccn.loc.gov/2008660284 Image download: https://cdn.loc.gov/service/pnp/jpd/01300/01344v.jpg Original url: https://www.loc.gov/pictures/item/2008660284/",
    "license_verified": "2026-07-16",
-   "featured_rank": 26
+   "featured_rank": 26,
+   "focal_point": [
+    0.58,
+    0.62
+   ]
   },
   {
    "title": "Kameido Plum Garden (early view, distinct from the celebrated 1857 print)",
