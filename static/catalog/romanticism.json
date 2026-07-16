@@ -274,7 +274,11 @@
    "license_url": "",
    "credit_line": "art database",
    "license_verified": "2026-07-16",
-   "featured_rank": 90
+   "featured_rank": 90,
+   "focal_point": [
+    0.68,
+    0.28
+   ]
   },
   {
    "title": "The Nightmare",
@@ -295,7 +299,11 @@
    "license_url": "",
    "credit_line": "https://dia.org/collection/nightmare-45573 https://dia.widen.net/content/ecc0wgpx38/original/55.5.A-d1-2019-04-15.tif?u=u3bnol&amp;download=true",
    "license_verified": "2026-07-16",
-   "featured_rank": 80
+   "featured_rank": 80,
+   "focal_point": [
+    0.55,
+    0.32
+   ]
   },
   {
    "title": "The Hay Wain",
@@ -316,7 +324,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "https://en.gallerix.ru/album/National-Gallery-London-4/pic/glrx-1082704135",
    "license_verified": "2026-07-16",
-   "featured_rank": 92
+   "featured_rank": 92,
+   "focal_point": [
+    0.58,
+    0.55
+   ]
   },
   {
    "title": "Rain, Steam and Speed - The Great Western Railway",
@@ -337,7 +349,11 @@
    "license_url": "",
    "credit_line": "http://www.artrenewal.org/pages/artwork.php?artworkid=14508&amp;size=huge",
    "license_verified": "2026-07-16",
-   "featured_rank": 82
+   "featured_rank": 82,
+   "focal_point": [
+    0.68,
+    0.55
+   ]
   },
   {
    "title": "The Fighting Temeraire",
@@ -358,7 +374,11 @@
    "license_url": "",
    "credit_line": "National Gallery of Art",
    "license_verified": "2026-07-16",
-   "featured_rank": 92
+   "featured_rank": 92,
+   "focal_point": [
+    0.25,
+    0.45
+   ]
   },
   {
    "title": "The Death of Sardanapalus",
@@ -416,7 +436,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the National Gallery of Art. Please see the Gallery's Open Access Policy.",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.38,
+    0.55
+   ]
   },
   {
    "title": "The Cornfield",
@@ -445,7 +469,11 @@
    "license_url": "",
    "credit_line": "http://collection.imamuseum.org/artwork/56263/",
    "license_verified": "2026-07-16",
-   "featured_rank": 70
+   "featured_rank": 70,
+   "focal_point": [
+    0.48,
+    0.5
+   ]
   },
   {
    "title": "The Charging Chasseur",
@@ -474,7 +502,11 @@
    "license_url": "",
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
-   "featured_rank": 55
+   "featured_rank": 55,
+   "focal_point": [
+    0.42,
+    0.3
+   ]
   },
   {
    "title": "The Combat of the Giaour and Hassan",
@@ -501,7 +533,11 @@
    "license_url": "",
    "credit_line": "Collection of Art Institute of Chicago",
    "license_verified": "2026-07-16",
-   "featured_rank": 48
+   "featured_rank": 48,
+   "focal_point": [
+    0.48,
+    0.35
+   ]
   },
   {
    "title": "Lion Hunt",
@@ -528,7 +564,11 @@
    "license_url": "",
    "credit_line": "Collection of Art Institute of Chicago",
    "license_verified": "2026-07-16",
-   "featured_rank": 62
+   "featured_rank": 62,
+   "focal_point": [
+    0.45,
+    0.28
+   ]
   },
   {
    "title": "Friar Pedro Shoots El Maragato as His Horse Runs Off",
@@ -555,7 +595,11 @@
    "license_url": "",
    "credit_line": "Collection of Art Institute of Chicago",
    "license_verified": "2026-07-16",
-   "featured_rank": 38
+   "featured_rank": 38,
+   "focal_point": [
+    0.42,
+    0.4
+   ]
   },
   {
    "title": "Peasants Bringing Home a Calf Born in the Fields",
@@ -582,7 +626,11 @@
    "license_url": "",
    "credit_line": "Collection of Art Institute of Chicago",
    "license_verified": "2026-07-16",
-   "featured_rank": 42
+   "featured_rank": 42,
+   "focal_point": [
+    0.42,
+    0.42
+   ]
   },
   {
    "title": "Stoke-by-Nayland",
@@ -678,7 +726,11 @@
    "license_url": "",
    "credit_line": "This file was derived from: El Tres de Mayo, by Francisco de Goya, from Prado in Google Earth.jpg:",
    "license_verified": "2026-07-16",
-   "featured_rank": 90
+   "featured_rank": 90,
+   "focal_point": [
+    0.33,
+    0.42
+   ]
   },
   {
    "title": "The Burial of the Sardine",
@@ -699,7 +751,11 @@
    "license_url": "",
    "credit_line": "Mirar abajo.",
    "license_verified": "2026-07-16",
-   "featured_rank": 42
+   "featured_rank": 42,
+   "focal_point": [
+    0.48,
+    0.25
+   ]
   },
   {
    "title": "The Doctor",
@@ -720,7 +776,11 @@
    "license_url": "",
    "credit_line": "National Galleries Scotland",
    "license_verified": "2026-07-16",
-   "featured_rank": 34
+   "featured_rank": 34,
+   "focal_point": [
+    0.65,
+    0.28
+   ]
   },
   {
    "title": "Portrait of Doña Isabel de Porcel",
@@ -741,7 +801,11 @@
    "license_url": "",
    "credit_line": "http://www.nationalgallery.org.uk/paintings/francisco-de-goya-dona-isabel-de-porcel",
    "license_verified": "2026-07-16",
-   "featured_rank": 48
+   "featured_rank": 48,
+   "focal_point": [
+    0.48,
+    0.28
+   ]
   },
   {
    "title": "Allegory of Love (Cupid and Psyche)",
@@ -762,7 +826,11 @@
    "license_url": "",
    "credit_line": "WwE9WK44nrJhPg at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 40
+   "featured_rank": 40,
+   "focal_point": [
+    0.52,
+    0.42
+   ]
   },
   {
    "title": "Boy on a Ram",
@@ -783,7 +851,11 @@
    "license_url": "",
    "credit_line": "ogHBX1jkH4Vu1g at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 35
+   "featured_rank": 35,
+   "focal_point": [
+    0.42,
+    0.35
+   ]
   },
   {
    "title": "Students from the Pestalozzian Academy (fragment)",
@@ -804,7 +876,11 @@
    "license_url": "",
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
-   "featured_rank": 22
+   "featured_rank": 22,
+   "focal_point": [
+    0.45,
+    0.42
+   ]
   },
   {
    "title": "Saint Gregory the Great, Pope",
@@ -825,7 +901,11 @@
    "license_url": "",
    "credit_line": "_QGADvU2Iz2-ug at Google Cultural Institute, zoom level maximum",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.45,
+    0.4
+   ]
   },
   {
    "title": "A Woman and Two Children by a Fountain",
@@ -846,7 +926,11 @@
    "license_url": "",
    "credit_line": "Colección Carmen Thyssen Bornemisza",
    "license_verified": "2026-07-16",
-   "featured_rank": 45
+   "featured_rank": 45,
+   "focal_point": [
+    0.42,
+    0.55
+   ]
   },
   {
    "title": "Scene from the Inquisition",
@@ -867,7 +951,11 @@
    "license_url": "",
    "credit_line": "QAHsJoGPh6kFeQ at Google Cultural Institute, zoom level maximum",
    "license_verified": "2026-07-16",
-   "featured_rank": 45
+   "featured_rank": 45,
+   "focal_point": [
+    0.42,
+    0.35
+   ]
   },
   {
    "title": "The Baptism of Christ",
@@ -888,7 +976,11 @@
    "license_url": "",
    "credit_line": "Own work, 2019-03-08",
    "license_verified": "2026-07-16",
-   "featured_rank": 35
+   "featured_rank": 35,
+   "focal_point": [
+    0.65,
+    0.35
+   ]
   },
   {
    "title": "The Madhouse",
@@ -909,7 +1001,11 @@
    "license_url": "",
    "credit_line": "kwEoiMPuMB_17Q at Google Cultural Institute, zoom level maximum",
    "license_verified": "2026-07-16",
-   "featured_rank": 50
+   "featured_rank": 50,
+   "focal_point": [
+    0.48,
+    0.4
+   ]
   },
   {
    "title": "The Bewitched Man",
@@ -930,7 +1026,11 @@
    "license_url": "",
    "credit_line": "Francisco Goya",
    "license_verified": "2026-07-16",
-   "featured_rank": 42
+   "featured_rank": 42,
+   "focal_point": [
+    0.48,
+    0.35
+   ]
   },
   {
    "title": "Portrait of Miguel de Múzquiz y Goyeneche, Count of Gausa",
@@ -958,6 +1058,10 @@
     0.07,
     0.91,
     0.93
+   ],
+   "focal_point": [
+    0.45,
+    0.25
    ]
   },
   {
@@ -979,7 +1083,11 @@
    "license_url": "",
    "credit_line": "Erik Cornelius / Nationalmuseum",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.4,
+    0.28
+   ]
   },
   {
    "title": "Saint Isabel of Portugal Healing the Wounds of a Sick Woman",
@@ -1000,7 +1108,11 @@
    "license_url": "",
    "credit_line": "-wEBwdqdiLnFhg at Google Cultural Institute, zoom level maximum",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.42,
+    0.5
+   ]
   },
   {
    "title": "Saint Hermenegild in Prison",
@@ -1021,7 +1133,11 @@
    "license_url": "",
    "credit_line": "ogE3xqulLmAntQ at Google Cultural Institute, zoom level maximum",
    "license_verified": "2026-07-16",
-   "featured_rank": 24
+   "featured_rank": 24,
+   "focal_point": [
+    0.52,
+    0.35
+   ]
   },
   {
    "title": "Time (Time and the Old Women)",
@@ -1042,7 +1158,11 @@
    "license_url": "",
    "credit_line": "Google Arts &amp; Culture — old-women-or-time-francisco-jose-de-goya-y-lucientes-1746-1828-lille-palais-des-beaux-arts/_wFNMfs3VQECBw",
    "license_verified": "2026-07-16",
-   "featured_rank": 50
+   "featured_rank": 50,
+   "focal_point": [
+    0.58,
+    0.32
+   ]
   },
   {
    "title": "Monk Talking to an Old Woman",
@@ -1084,7 +1204,11 @@
    "license_url": "",
    "credit_line": "https://artsandculture.google.com/asset/nantes-joseph-mallord-william-turner/yAEJ6OXlHp-DyA",
    "license_verified": "2026-07-16",
-   "featured_rank": 35
+   "featured_rank": 35,
+   "focal_point": [
+    0.48,
+    0.35
+   ]
   },
   {
    "title": "The Burning of the Houses of Lords and Commons, 16 October 1834",
@@ -1105,7 +1229,11 @@
    "license_url": "",
    "credit_line": "Cleveland Museum of Art",
    "license_verified": "2026-07-16",
-   "featured_rank": 54
+   "featured_rank": 54,
+   "focal_point": [
+    0.45,
+    0.35
+   ]
   },
   {
    "title": "Whalley Bridge and Abbey, Lancashire: Dyers Washing and Drying Cloth",
@@ -1126,7 +1254,11 @@
    "license_url": "",
    "credit_line": "Dordrechts Museum",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.35,
+    0.5
+   ]
   },
   {
    "title": "Bonneville, Savoy, with Mont Blanc",
@@ -1147,7 +1279,11 @@
    "license_url": "",
    "credit_line": "Dallas Museum of Art",
    "license_verified": "2026-07-16",
-   "featured_rank": 35
+   "featured_rank": 35,
+   "focal_point": [
+    0.5,
+    0.62
+   ]
   },
   {
    "title": "Dort, or Dordrecht: The Dort Packet-Boat from Rotterdam Becalmed",
@@ -1168,7 +1304,11 @@
    "license_url": "",
    "credit_line": "4AFo7BatGeF12Q at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 32
+   "featured_rank": 32,
+   "focal_point": [
+    0.42,
+    0.45
+   ]
   },
   {
    "title": "The Lake, Petworth: Sunset, Fighting Bucks",
@@ -1217,7 +1357,11 @@
    "license_url": "",
    "credit_line": "xwFy8KRlzdzvpw at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 68
+   "featured_rank": 68,
+   "focal_point": [
+    0.48,
+    0.3
+   ]
   },
   {
    "title": "Melrose Abbey",
@@ -1238,7 +1382,11 @@
    "license_url": "",
    "credit_line": "LwHVBTSigNIpIQ at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 35
+   "featured_rank": 35,
+   "focal_point": [
+    0.42,
+    0.32
+   ]
   },
   {
    "title": "Queen Mab's Cave",
@@ -1666,6 +1814,10 @@
     0.06,
     0.95,
     0.93
+   ],
+   "focal_point": [
+    0.62,
+    0.45
    ]
   },
   {

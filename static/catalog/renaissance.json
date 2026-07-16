@@ -474,7 +474,11 @@
    "license_url": "",
    "credit_line": "Online Taken on 23 July 2013",
    "license_verified": "2026-07-16",
-   "featured_rank": 99
+   "featured_rank": 99,
+   "focal_point": [
+    0.5,
+    0.42
+   ]
   },
   {
    "title": "Primavera",
@@ -495,7 +499,11 @@
    "license_url": "",
    "credit_line": "http://www.googleartproject.com/collection/uffizi-gallery/artwork/la-primavera-spring-botticelli-filipepi/331460/",
    "license_verified": "2026-07-16",
-   "featured_rank": 97
+   "featured_rank": 97,
+   "focal_point": [
+    0.5,
+    0.4
+   ]
   },
   {
    "title": "Venus of Urbino",
@@ -516,7 +524,11 @@
    "license_url": "",
    "credit_line": "Source not provided by Bellerophon- (talk)",
    "license_verified": "2026-07-16",
-   "featured_rank": 88
+   "featured_rank": 88,
+   "focal_point": [
+    0.28,
+    0.32
+   ]
   },
   {
    "title": "Bacchus and Ariadne",
@@ -537,7 +549,11 @@
    "license_url": "",
    "credit_line": "Own work Joyofmuseums Taken on 16 July 2018",
    "license_verified": "2026-07-16",
-   "featured_rank": 90
+   "featured_rank": 90,
+   "focal_point": [
+    0.5,
+    0.32
+   ]
   },
   {
    "title": "The Wedding at Cana",
@@ -558,7 +574,11 @@
    "license_url": "",
    "credit_line": "[1]",
    "license_verified": "2026-07-16",
-   "featured_rank": 85
+   "featured_rank": 85,
+   "focal_point": [
+    0.48,
+    0.55
+   ]
   },
   {
    "title": "The Last Judgment",
@@ -579,7 +599,11 @@
    "license_url": "",
    "credit_line": "See below.",
    "license_verified": "2026-07-16",
-   "featured_rank": 93
+   "featured_rank": 93,
+   "focal_point": [
+    0.5,
+    0.28
+   ]
   },
   {
    "title": "Virgin of the Rocks",
@@ -608,7 +632,11 @@
    "license_url": "",
    "credit_line": "National Gallery, London - online catalogue.",
    "license_verified": "2026-07-16",
-   "featured_rank": 90
+   "featured_rank": 90,
+   "focal_point": [
+    0.48,
+    0.3
+   ]
   },
   {
    "title": "The Sistine Madonna",
@@ -637,7 +665,11 @@
    "license_url": "",
    "credit_line": "Google Arts &amp; Culture — CgEiMJRg7ZS6DA (Original text: Google Arts &amp; Culture)",
    "license_verified": "2026-07-16",
-   "featured_rank": 88
+   "featured_rank": 88,
+   "focal_point": [
+    0.48,
+    0.3
+   ]
   },
   {
    "title": "Pallas and the Centaur",
@@ -673,6 +705,10 @@
     0.0,
     1.0,
     1.0
+   ],
+   "focal_point": [
+    0.62,
+    0.32
    ]
   },
   {
@@ -702,7 +738,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
-   "featured_rank": 85
+   "featured_rank": 85,
+   "focal_point": [
+    0.42,
+    0.4
+   ]
   },
   {
    "title": "The Lamentation over the Dead Christ",
@@ -731,7 +771,11 @@
    "license_url": "",
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
-   "featured_rank": 40
+   "featured_rank": 40,
+   "focal_point": [
+    0.45,
+    0.55
+   ]
   },
   {
    "title": "Virgin and Child with the Young Saint John the Baptist",
@@ -758,7 +802,11 @@
    "license_url": "",
    "credit_line": "Collection of Art Institute of Chicago",
    "license_verified": "2026-07-16",
-   "featured_rank": 45
+   "featured_rank": 45,
+   "focal_point": [
+    0.38,
+    0.28
+   ]
   },
   {
    "title": "Tarquin and Lucretia",
@@ -792,6 +840,10 @@
     0.0,
     1.0,
     1.0
+   ],
+   "focal_point": [
+    0.45,
+    0.42
    ]
   },
   {
@@ -963,7 +1015,11 @@
    "license_url": "",
    "credit_line": "National Gallery of Art.",
    "license_verified": "2026-07-16",
-   "featured_rank": 58
+   "featured_rank": 58,
+   "focal_point": [
+    0.42,
+    0.3
+   ]
   },
   {
    "title": "Portrait of a Youth",
@@ -984,7 +1040,11 @@
    "license_url": "",
    "credit_line": "National Gallery of Art, Washington, D. C., online collection",
    "license_verified": "2026-07-16",
-   "featured_rank": 46
+   "featured_rank": 46,
+   "focal_point": [
+    0.45,
+    0.3
+   ]
   },
   {
    "title": "Venus and the Three Graces Presenting Gifts to a Young Woman",
@@ -1005,7 +1065,11 @@
    "license_url": "",
    "credit_line": "photo Shonagon 2024-02-22",
    "license_verified": "2026-07-16",
-   "featured_rank": 48
+   "featured_rank": 48,
+   "focal_point": [
+    0.58,
+    0.3
+   ]
   },
   {
    "title": "Adoration of the Magi (Uffizi)",
@@ -1026,7 +1090,11 @@
    "license_url": "",
    "credit_line": "Google Arts &amp; Culture — wQElBJXyCHfmmA",
    "license_verified": "2026-07-16",
-   "featured_rank": 65
+   "featured_rank": 65,
+   "focal_point": [
+    0.52,
+    0.32
+   ]
   },
   {
    "title": "Mystic Nativity",
@@ -1047,7 +1115,11 @@
    "license_url": "",
    "credit_line": "[1], 2011-06-21",
    "license_verified": "2026-07-16",
-   "featured_rank": 75
+   "featured_rank": 75,
+   "focal_point": [
+    0.45,
+    0.68
+   ]
   },
   {
    "title": "The Virgin and Child with Saint John and Two Angels (Studio of Botticelli)",
@@ -1068,7 +1140,11 @@
    "license_url": "",
    "credit_line": "1. Art UK: entry 1160012. National Gallery, London - online catalogue.",
    "license_verified": "2026-07-16",
-   "featured_rank": 34
+   "featured_rank": 34,
+   "focal_point": [
+    0.42,
+    0.45
+   ]
   },
   {
    "title": "Fortitude",
@@ -1089,7 +1165,11 @@
    "license_url": "",
    "credit_line": "Own work Oursana",
    "license_verified": "2026-07-16",
-   "featured_rank": 42
+   "featured_rank": 42,
+   "focal_point": [
+    0.48,
+    0.35
+   ]
   },
   {
    "title": "Madonna and Child with Five Angels",
@@ -1110,7 +1190,11 @@
    "license_url": "",
    "credit_line": "http://cartelfr.louvre.fr",
    "license_verified": "2026-07-16",
-   "featured_rank": 48
+   "featured_rank": 48,
+   "focal_point": [
+    0.48,
+    0.28
+   ]
   },
   {
    "title": "Bardi Altarpiece (Madonna and Child with Saints John the Baptist and John the Evangelist)",
@@ -1132,7 +1216,11 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "This file was derived from: Sandro Botticelli - Madonna with Saints - Google Art Project.jpg:",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "focal_point": [
+    0.5,
+    0.32
+   ]
   },
   {
    "title": "Adoration of the Christ Child with Saint John (Botticelli or Workshop)",
@@ -1153,7 +1241,11 @@
    "license_url": "",
    "credit_line": "Landesmuseum Hannover",
    "license_verified": "2026-07-16",
-   "featured_rank": 35
+   "featured_rank": 35,
+   "focal_point": [
+    0.62,
+    0.22
+   ]
   },
   {
    "title": "The Calumny of Apelles (detail: Truth)",
@@ -1174,7 +1266,11 @@
    "license_url": "",
    "credit_line": "The Yorck Project (2002) 10.000 Meisterwerke der Malerei (DVD-ROM), distributed by DIRECTMEDIA Publishing GmbH. ISBN: 3936122202.",
    "license_verified": "2026-07-16",
-   "featured_rank": 50
+   "featured_rank": 50,
+   "focal_point": [
+    0.33,
+    0.35
+   ]
   },
   {
    "title": "Virgin and Child with the Young Saint John (School of Botticelli)",
@@ -1195,7 +1291,11 @@
    "license_url": "",
    "credit_line": "Staatliche Museen zu Berlin",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.32,
+    0.2
+   ]
   },
   {
    "title": "The Annunciation (Workshop of Botticelli)",
@@ -1216,7 +1316,11 @@
    "license_url": "",
    "credit_line": "Staatliche Museen zu Berlin",
    "license_verified": "2026-07-16",
-   "featured_rank": 25
+   "featured_rank": 25,
+   "focal_point": [
+    0.65,
+    0.5
+   ]
   },
   {
    "title": "Young Man Before the Seven Liberal Arts",
@@ -1237,7 +1341,11 @@
    "license_url": "",
    "credit_line": "The Yorck Project (2002) 10.000 Meisterwerke der Malerei (DVD-ROM), distributed by DIRECTMEDIA Publishing GmbH. ISBN: 3936122202. Web Gallery of Art: Image Info about artworkwga QS:P11807,\"b/botticel/5allegor/52lemmi\"",
    "license_verified": "2026-07-16",
-   "featured_rank": 45
+   "featured_rank": 45,
+   "focal_point": [
+    0.48,
+    0.35
+   ]
   },
   {
    "title": "Pastoral Concert",
@@ -1258,7 +1366,11 @@
    "license_url": "",
    "credit_line": "Retouched from File:Le Concert champêtre, by Titian, from C2RMF.jpg, originally C2RMF: Galerie de tableaux en très haute définition: image page",
    "license_verified": "2026-07-16",
-   "featured_rank": 65
+   "featured_rank": 65,
+   "focal_point": [
+    0.27,
+    0.42
+   ]
   },
   {
    "title": "Venus with an Organ Player",
@@ -1279,7 +1391,11 @@
    "license_url": "",
    "credit_line": "Google Arts &amp; Culture — 2gFsYP9mMe6fNA",
    "license_verified": "2026-07-16",
-   "featured_rank": 55
+   "featured_rank": 55,
+   "focal_point": [
+    0.65,
+    0.4
+   ]
   },
   {
    "title": "Girl in a Fur",
@@ -1300,7 +1416,11 @@
    "license_url": "",
    "credit_line": "uAFWZO04aJE2SA at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 44
+   "featured_rank": 44,
+   "focal_point": [
+    0.42,
+    0.22
+   ]
   },
   {
    "title": "Portrait of Alfonso I d'Este",
@@ -1321,7 +1441,11 @@
    "license_url": "",
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
-   "featured_rank": 45
+   "featured_rank": 45,
+   "focal_point": [
+    0.42,
+    0.22
+   ]
   },
   {
    "title": "Diana and Actaeon",
@@ -1342,7 +1466,11 @@
    "license_url": "",
    "credit_line": "1. Transferred from de.wikipedia to Commons by Ireas using CommonsHelper. (Original text: National Gallery of Scotland, Edinburgh), Original uploader was Rigo 1963 at de.wikipedia (18 January 2011 (original upload date))2. ArtDaily.com3./4. National Gallery, London",
    "license_verified": "2026-07-16",
-   "featured_rank": 78
+   "featured_rank": 78,
+   "focal_point": [
+    0.25,
+    0.35
+   ]
   },
   {
    "title": "Diana and Callisto",
@@ -1363,7 +1491,11 @@
    "license_url": "",
    "credit_line": "National Gallery, London - online catalogue.",
    "license_verified": "2026-07-16",
-   "featured_rank": 68
+   "featured_rank": 68,
+   "focal_point": [
+    0.55,
+    0.42
+   ]
   },
   {
    "title": "Nymph and Shepherd",
@@ -1384,7 +1516,11 @@
    "license_url": "",
    "credit_line": "Google Arts &amp; Culture — CQH3EE_tKa4zWw",
    "license_verified": "2026-07-16",
-   "featured_rank": 40
+   "featured_rank": 40,
+   "focal_point": [
+    0.55,
+    0.42
+   ]
   },
   {
    "title": "Portrait of Philip II",
@@ -1405,7 +1541,11 @@
    "license_url": "",
    "credit_line": "museodelprado.es",
    "license_verified": "2026-07-16",
-   "featured_rank": 58
+   "featured_rank": 58,
+   "focal_point": [
+    0.42,
+    0.28
+   ]
   },
   {
    "title": "The Bacchanal of the Andrians",
@@ -1426,7 +1566,11 @@
    "license_url": "",
    "credit_line": "Prado",
    "license_verified": "2026-07-16",
-   "featured_rank": 60
+   "featured_rank": 60,
+   "focal_point": [
+    0.42,
+    0.35
+   ]
   },
   {
    "title": "An Idyll: A Mother and a Halberdier in a Wooded Landscape",
@@ -1447,7 +1591,11 @@
    "license_url": "",
    "credit_line": "Google Arts &amp; Culture — JgGChyj9qN7Gcg",
    "license_verified": "2026-07-16",
-   "featured_rank": 42
+   "featured_rank": 42,
+   "focal_point": [
+    0.28,
+    0.65
+   ]
   },
   {
    "title": "Penitent Magdalene",
@@ -1469,7 +1617,11 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "Own work by Tylwyth Eldar. Taken on 30 October 2024, 11:43:29.",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "focal_point": [
+    0.45,
+    0.22
+   ]
   },
   {
    "title": "Tarquin and Lucretia",
@@ -1490,7 +1642,11 @@
    "license_url": "",
    "credit_line": "Own work by Tylwyth Eldar. Taken on 30 October 2024, 11:46:33.",
    "license_verified": "2026-07-16",
-   "featured_rank": 62
+   "featured_rank": 62,
+   "focal_point": [
+    0.62,
+    0.28
+   ]
   },
   {
    "title": "Mars, Venus and Cupid",
@@ -1511,7 +1667,11 @@
    "license_url": "",
    "credit_line": "Kunsthistorisches Museum Wien, Bilddatenbank.",
    "license_verified": "2026-07-16",
-   "featured_rank": 48
+   "featured_rank": 48,
+   "focal_point": [
+    0.4,
+    0.35
+   ]
   },
   {
    "title": "Portrait of a Man",
@@ -1532,7 +1692,11 @@
    "license_url": "",
    "credit_line": "http://collection.imamuseum.org/artwork/43534/",
    "license_verified": "2026-07-16",
-   "featured_rank": 40
+   "featured_rank": 40,
+   "focal_point": [
+    0.48,
+    0.35
+   ]
   },
   {
    "title": "Venus with an Organ Player and a Dog",
@@ -1553,7 +1717,11 @@
    "license_url": "",
    "credit_line": "The Yorck Project (2002) 10.000 Meisterwerke der Malerei (DVD-ROM), distributed by DIRECTMEDIA Publishing GmbH. ISBN: 3936122202.",
    "license_verified": "2026-07-16",
-   "featured_rank": 48
+   "featured_rank": 48,
+   "focal_point": [
+    0.68,
+    0.42
+   ]
   },
   {
    "title": "The Triumph of Love",
@@ -1574,7 +1742,11 @@
    "license_url": "",
    "credit_line": "Ashmolean Museum",
    "license_verified": "2026-07-16",
-   "featured_rank": 34
+   "featured_rank": 34,
+   "focal_point": [
+    0.42,
+    0.35
+   ]
   }
  ]
 }

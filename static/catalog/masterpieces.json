@@ -49,7 +49,11 @@
    "license_url": "",
    "credit_line": "Online Taken on 23 July 2013",
    "license_verified": "2026-07-16",
-   "featured_rank": 99
+   "featured_rank": 99,
+   "focal_point": [
+    0.5,
+    0.42
+   ]
   },
   {
    "title": "Under the Wave off Kanagawa (Kanagawa oki nami ura), also known as The Great Wave, from the series \"Thirty-Six Views of Mount Fuji (Fugaku sanjūrokkei)\"",
@@ -145,7 +149,11 @@
    "license_url": "",
    "credit_line": "http://www.googleartproject.com/collection/uffizi-gallery/artwork/la-primavera-spring-botticelli-filipepi/331460/",
    "license_verified": "2026-07-16",
-   "featured_rank": 97
+   "featured_rank": 97,
+   "focal_point": [
+    0.5,
+    0.4
+   ]
   },
   {
    "title": "The Night Watch",
@@ -416,7 +424,11 @@
    "license_url": "",
    "credit_line": "See below.",
    "license_verified": "2026-07-16",
-   "featured_rank": 93
+   "featured_rank": 93,
+   "focal_point": [
+    0.5,
+    0.28
+   ]
   },
   {
    "title": "Nighthawks",
@@ -662,7 +674,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "https://en.gallerix.ru/album/National-Gallery-London-4/pic/glrx-1082704135",
    "license_verified": "2026-07-16",
-   "featured_rank": 92
+   "featured_rank": 92,
+   "focal_point": [
+    0.58,
+    0.55
+   ]
   },
   {
    "title": "The Fighting Temeraire",
@@ -683,7 +699,11 @@
    "license_url": "",
    "credit_line": "National Gallery of Art",
    "license_verified": "2026-07-16",
-   "featured_rank": 92
+   "featured_rank": 92,
+   "focal_point": [
+    0.25,
+    0.45
+   ]
   },
   {
    "title": "The Anatomy Lesson of Dr. Nicolaes Tulp",
@@ -945,7 +965,11 @@
    "license_url": "",
    "credit_line": "Own work Joyofmuseums Taken on 16 July 2018",
    "license_verified": "2026-07-16",
-   "featured_rank": 90
+   "featured_rank": 90,
+   "focal_point": [
+    0.5,
+    0.32
+   ]
   },
   {
    "title": "Virgin of the Rocks",
@@ -974,7 +998,11 @@
    "license_url": "",
    "credit_line": "National Gallery, London - online catalogue.",
    "license_verified": "2026-07-16",
-   "featured_rank": 90
+   "featured_rank": 90,
+   "focal_point": [
+    0.48,
+    0.3
+   ]
   },
   {
    "title": "The Raft of the Medusa",
@@ -995,7 +1023,11 @@
    "license_url": "",
    "credit_line": "art database",
    "license_verified": "2026-07-16",
-   "featured_rank": 90
+   "featured_rank": 90,
+   "focal_point": [
+    0.68,
+    0.28
+   ]
   }
  ]
 }

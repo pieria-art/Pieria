@@ -940,7 +940,11 @@
    "license_url": "",
    "credit_line": "PQF2Xwtgk0c2tw at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 41
+   "featured_rank": 41,
+   "focal_point": [
+    0.62,
+    0.75
+   ]
   },
   {
    "title": "The Rescue",

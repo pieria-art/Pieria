@@ -469,7 +469,11 @@
    "license_url": "",
    "credit_line": "Library of Congress Catalog: https://lccn.loc.gov/2008660320 Image download: https://cdn.loc.gov/service/pnp/jpd/01500/01505v.jpg Original url: https://www.loc.gov/pictures/item/2008660320/",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.35,
+    0.22
+   ]
   },
   {
    "title": "Woman Passing a Roadside Shop Near Oji",
@@ -1351,7 +1355,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1303217",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.4,
+    0.6
+   ]
   },
   {
    "title": "Kasumigaseki",
@@ -1414,7 +1422,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1303235",
    "license_verified": "2026-07-16",
-   "featured_rank": 26
+   "featured_rank": 26,
+   "focal_point": [
+    0.45,
+    0.55
+   ]
   },
   {
    "title": "Towboats on the Yotsugi-dori Canal",
@@ -1708,7 +1720,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1303236",
    "license_verified": "2026-07-16",
-   "featured_rank": 26
+   "featured_rank": 26,
+   "focal_point": [
+    0.45,
+    0.58
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -1813,7 +1829,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "http://hdl.handle.net/10934/RM0001.COLLECT.46002",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.45,
+    0.3
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -1960,7 +1980,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1302527",
    "license_verified": "2026-07-16",
-   "featured_rank": 25
+   "featured_rank": 25,
+   "focal_point": [
+    0.6,
+    0.75
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -1981,7 +2005,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1303509",
    "license_verified": "2026-07-16",
-   "featured_rank": 25
+   "featured_rank": 25,
+   "focal_point": [
+    0.55,
+    0.62
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -2485,7 +2513,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
-   "featured_rank": 42
+   "featured_rank": 42,
+   "focal_point": [
+    0.55,
+    0.5
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -2905,7 +2937,11 @@
    "license_url": "",
    "credit_line": "https://www.loc.gov/exhibits/ukiyo-e/",
    "license_verified": "2026-07-16",
-   "featured_rank": 25
+   "featured_rank": 25,
+   "focal_point": [
+    0.35,
+    0.75
+   ]
   },
   {
    "title": "Crane and Rising Sun",
@@ -3010,7 +3046,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1301801",
    "license_verified": "2026-07-16",
-   "featured_rank": 22
+   "featured_rank": 22,
+   "focal_point": [
+    0.53,
+    0.22
+   ]
   },
   {
    "title": "Nihonbashi-Nakasu (from Splendid Views of the River Capital)",

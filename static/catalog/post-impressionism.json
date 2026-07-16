@@ -4725,7 +4725,11 @@
    "license_url": "",
    "credit_line": "Van Gogh Museum",
    "license_verified": "2026-07-16",
-   "featured_rank": 35
+   "featured_rank": 35,
+   "focal_point": [
+    0.45,
+    0.45
+   ]
   },
   {
    "title": "Bobbin Winder",
@@ -4746,7 +4750,11 @@
    "license_url": "",
    "credit_line": "Van Gogh Museum",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.48,
+    0.42
+   ]
   },
   {
    "title": "Sprig of Flowering Almond Blossom in a Glass",
@@ -4767,7 +4775,11 @@
    "license_url": "",
    "credit_line": "Van Gogh Museum",
    "license_verified": "2026-07-16",
-   "featured_rank": 42
+   "featured_rank": 42,
+   "focal_point": [
+    0.55,
+    0.32
+   ]
   },
   {
    "title": "Allotment with Sunflower",
@@ -4788,7 +4800,11 @@
    "license_url": "",
    "credit_line": "Van Gogh Museum",
    "license_verified": "2026-07-16",
-   "featured_rank": 32
+   "featured_rank": 32,
+   "focal_point": [
+    0.32,
+    0.15
+   ]
   },
   {
    "title": "Seated Nude",
@@ -4830,7 +4846,11 @@
    "license_url": "",
    "credit_line": "Dallas Museum of Art",
    "license_verified": "2026-07-16",
-   "featured_rank": 48
+   "featured_rank": 48,
+   "focal_point": [
+    0.45,
+    0.5
+   ]
   },
   {
    "title": "A Woman Walking in a Garden",
@@ -4851,7 +4871,11 @@
    "license_url": "",
    "credit_line": "Copied from an art book",
    "license_verified": "2026-07-16",
-   "featured_rank": 35
+   "featured_rank": 35,
+   "focal_point": [
+    0.42,
+    0.35
+   ]
   },
   {
    "title": "Harvest in Provence",
@@ -4894,7 +4918,11 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "Copied from an art book",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "focal_point": [
+    0.42,
+    0.25
+   ]
   },
   {
    "title": "Shoes",
@@ -4915,7 +4943,11 @@
    "license_url": "",
    "credit_line": "art database",
    "license_verified": "2026-07-16",
-   "featured_rank": 62
+   "featured_rank": 62,
+   "focal_point": [
+    0.45,
+    0.5
+   ]
   },
   {
    "title": "Wheat Field with View of Arles",
@@ -4957,7 +4989,11 @@
    "license_url": "",
    "credit_line": "Copied from an art book",
    "license_verified": "2026-07-16",
-   "featured_rank": 55
+   "featured_rank": 55,
+   "focal_point": [
+    0.5,
+    0.62
+   ]
   },
   {
    "title": "At Eternity's Gate (Sorrowing Old Man)",
@@ -4978,7 +5014,11 @@
    "license_url": "",
    "credit_line": "scan by user:Mefusbren69",
    "license_verified": "2026-07-16",
-   "featured_rank": 75
+   "featured_rank": 75,
+   "focal_point": [
+    0.45,
+    0.4
+   ]
   },
   {
    "title": "A Weaver's Cottage",
@@ -4999,7 +5039,11 @@
    "license_url": "",
    "credit_line": "QQFPfLmlSNyRHQ at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 34
+   "featured_rank": 34,
+   "focal_point": [
+    0.55,
+    0.35
+   ]
   },
   {
    "title": "Windmills on Montmartre",
@@ -5020,7 +5064,11 @@
    "license_url": "",
    "credit_line": "Google Arts &amp; Culture: Home page – Image",
    "license_verified": "2026-07-16",
-   "featured_rank": 32
+   "featured_rank": 32,
+   "focal_point": [
+    0.38,
+    0.32
+   ]
   },
   {
    "title": "Daubigny's Garden",
@@ -5041,7 +5089,11 @@
    "license_url": "",
    "credit_line": "repro from artbook",
    "license_verified": "2026-07-16",
-   "featured_rank": 58
+   "featured_rank": 58,
+   "focal_point": [
+    0.45,
+    0.35
+   ]
   },
   {
    "title": "Sunset at Montmajour",
@@ -5062,7 +5114,11 @@
    "license_url": "",
    "credit_line": "1. twitter.com2. nrc.nl, image",
    "license_verified": "2026-07-16",
-   "featured_rank": 55
+   "featured_rank": 55,
+   "focal_point": [
+    0.35,
+    0.28
+   ]
   },
   {
    "title": "Fishing Boats on the Beach at Saintes-Maries-de-la-Mer",
@@ -5083,7 +5139,11 @@
    "license_url": "",
    "credit_line": "Saint Louis Art Museum, online collection",
    "license_verified": "2026-07-16",
-   "featured_rank": 70
+   "featured_rank": 70,
+   "focal_point": [
+    0.35,
+    0.28
+   ]
   },
   {
    "title": "Blossoming Chestnut Branches",
@@ -5105,7 +5165,11 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "repro from artbook",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "focal_point": [
+    0.5,
+    0.5
+   ]
   },
   {
    "title": "The Church at Auvers",
@@ -5126,7 +5190,11 @@
    "license_url": "",
    "credit_line": "Google Arts &amp; Culture: Home page – Image",
    "license_verified": "2026-07-16",
-   "featured_rank": 72
+   "featured_rank": 72,
+   "focal_point": [
+    0.48,
+    0.35
+   ]
   },
   {
    "title": "Acacia in Flower",
@@ -5147,7 +5215,11 @@
    "license_url": "",
    "credit_line": "Nationalmuseum",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.5,
+    0.5
+   ]
   },
   {
    "title": "Sunflowers (Van Gogh Museum version)",
@@ -5168,7 +5240,11 @@
    "license_url": "",
    "credit_line": "http://www.nationalgallery.org.uk/paintings/vincent-van-gogh-sunflowers/50136",
    "license_verified": "2026-07-16",
-   "featured_rank": 88
+   "featured_rank": 88,
+   "focal_point": [
+    0.5,
+    0.55
+   ]
   },
   {
    "title": "A Pair of Shoes (Arles, 1888)",
@@ -5210,7 +5286,11 @@
    "license_url": "",
    "credit_line": "https://collection.barnesfoundation.org/objects/6044/details",
    "license_verified": "2026-07-16",
-   "featured_rank": 42
+   "featured_rank": 42,
+   "focal_point": [
+    0.55,
+    0.45
+   ]
   },
   {
    "title": "Still Life with Basket of Apples (dedicated to Lucien Pissarro)",
@@ -5231,7 +5311,11 @@
    "license_url": "",
    "credit_line": "Copied from an art book",
    "license_verified": "2026-07-16",
-   "featured_rank": 48
+   "featured_rank": 48,
+   "focal_point": [
+    0.5,
+    0.55
+   ]
   },
   {
    "title": "View of Saintes-Maries",
@@ -5252,7 +5336,11 @@
    "license_url": "",
    "credit_line": "Copied from an art book",
    "license_verified": "2026-07-16",
-   "featured_rank": 42
+   "featured_rank": 42,
+   "focal_point": [
+    0.5,
+    0.35
+   ]
   },
   {
    "title": "A Meadow in the Mountains: Le Mas de Saint-Paul",
@@ -5273,7 +5361,11 @@
    "license_url": "",
    "credit_line": "repro from artbook",
    "license_verified": "2026-07-16",
-   "featured_rank": 42
+   "featured_rank": 42,
+   "focal_point": [
+    0.42,
+    0.32
+   ]
   },
   {
    "title": "Avenue of Poplars in Autumn",
@@ -5315,7 +5407,11 @@
    "license_url": "",
    "credit_line": "Copied from an art book",
    "license_verified": "2026-07-16",
-   "featured_rank": 40
+   "featured_rank": 40,
+   "focal_point": [
+    0.45,
+    0.45
+   ]
   },
   {
    "title": "Orchard with Blossoming Apricot Trees",
@@ -5336,7 +5432,11 @@
    "license_url": "",
    "credit_line": "Copied from an art book",
    "license_verified": "2026-07-16",
-   "featured_rank": 55
+   "featured_rank": 55,
+   "focal_point": [
+    0.32,
+    0.4
+   ]
   },
   {
    "title": "Bowl with Peonies and Roses",
@@ -5357,7 +5457,11 @@
    "license_url": "",
    "credit_line": "Copied from an art book",
    "license_verified": "2026-07-16",
-   "featured_rank": 32
+   "featured_rank": 32,
+   "focal_point": [
+    0.55,
+    0.4
+   ]
   },
   {
    "title": "Wheat Field with Cypresses",
@@ -5378,7 +5482,11 @@
    "license_url": "",
    "credit_line": "repro from artbook",
    "license_verified": "2026-07-16",
-   "featured_rank": 75
+   "featured_rank": 75,
+   "focal_point": [
+    0.78,
+    0.35
+   ]
   },
   {
    "title": "At the Salon in the Rue des Moulins",
@@ -5399,7 +5507,11 @@
    "license_url": "",
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
-   "featured_rank": 32
+   "featured_rank": 32,
+   "focal_point": [
+    0.48,
+    0.55
+   ]
   },
   {
    "title": "Horse Behind a Stable Gate",
@@ -5420,7 +5532,11 @@
    "license_url": "",
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
-   "featured_rank": 25
+   "featured_rank": 25,
+   "focal_point": [
+    0.62,
+    0.32
+   ]
   },
   {
    "title": "Count Alphonse de Toulouse-Lautrec as a Falconer",
@@ -5441,7 +5557,11 @@
    "license_url": "",
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
-   "featured_rank": 32
+   "featured_rank": 32,
+   "focal_point": [
+    0.48,
+    0.38
+   ]
   },
   {
    "title": "At the Moulin Rouge: Beginning of the Quadrille",
@@ -5462,7 +5582,11 @@
    "license_url": "",
    "credit_line": "National Gallery of Art, Washington, D. C., online collection",
    "license_verified": "2026-07-16",
-   "featured_rank": 45
+   "featured_rank": 45,
+   "focal_point": [
+    0.65,
+    0.35
+   ]
   },
   {
    "title": "Alfred La Guigne",
@@ -5483,7 +5607,11 @@
    "license_url": "",
    "credit_line": "National Gallery of Art, Washington, D. C., online collection",
    "license_verified": "2026-07-16",
-   "featured_rank": 25
+   "featured_rank": 25,
+   "focal_point": [
+    0.5,
+    0.45
+   ]
   },
   {
    "title": "A Passing Conquest",
@@ -5504,7 +5632,11 @@
    "license_url": "",
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.45,
+    0.45
+   ]
   },
   {
    "title": "Young Horseman Mounting His Horse",
@@ -5525,7 +5657,11 @@
    "license_url": "",
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.48,
+    0.4
+   ]
   },
   {
    "title": "Portrait of François Gauzi",
@@ -5546,7 +5682,11 @@
    "license_url": "",
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
-   "featured_rank": 26
+   "featured_rank": 26,
+   "focal_point": [
+    0.42,
+    0.42
+   ]
   },
   {
    "title": "In Bed",
@@ -5567,7 +5707,11 @@
    "license_url": "",
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
-   "featured_rank": 48
+   "featured_rank": 48,
+   "focal_point": [
+    0.42,
+    0.35
+   ]
   },
   {
    "title": "Carmen the Redhead (Carmen la Rousse)",
@@ -5588,7 +5732,11 @@
    "license_url": "",
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
-   "featured_rank": 32
+   "featured_rank": 32,
+   "focal_point": [
+    0.48,
+    0.32
+   ]
   },
   {
    "title": "Avenue at Céleyran",
@@ -5609,7 +5757,11 @@
    "license_url": "",
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
-   "featured_rank": 24
+   "featured_rank": 24,
+   "focal_point": [
+    0.5,
+    0.45
+   ]
   },
   {
    "title": "The Master of the Hunt",
@@ -5630,7 +5782,11 @@
    "license_url": "",
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
-   "featured_rank": 26
+   "featured_rank": 26,
+   "focal_point": [
+    0.5,
+    0.4
+   ]
   },
   {
    "title": "The White Horse Gazelle",
@@ -5651,7 +5807,11 @@
    "license_url": "",
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
-   "featured_rank": 29
+   "featured_rank": 29,
+   "focal_point": [
+    0.4,
+    0.35
+   ]
   },
   {
    "title": "Artilleryman Saddling His Horse",
@@ -5672,7 +5832,11 @@
    "license_url": "",
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
-   "featured_rank": 25
+   "featured_rank": 25,
+   "focal_point": [
+    0.4,
+    0.4
+   ]
   },
   {
    "title": "Horse in the Stable at Céleyran",
@@ -5693,7 +5857,11 @@
    "license_url": "",
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
-   "featured_rank": 22
+   "featured_rank": 22,
+   "focal_point": [
+    0.55,
+    0.45
+   ]
   },
   {
    "title": "Study of a Woman, Nude from Behind",
@@ -5714,7 +5882,11 @@
    "license_url": "",
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.45,
+    0.4
+   ]
   },
   {
    "title": "At Her Toilette",
@@ -5735,7 +5907,11 @@
    "license_url": "",
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
-   "featured_rank": 42
+   "featured_rank": 42,
+   "focal_point": [
+    0.35,
+    0.35
+   ]
   },
   {
    "title": "Portrait of Émile Bernard",
@@ -5756,7 +5932,11 @@
    "license_url": "",
    "credit_line": "Frey, Julia: Henri de Toulouse-Lautrec, BB art, Praha 1999",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.42,
+    0.3
+   ]
   },
   {
    "title": "At the Moulin Rouge: Portrait of Monsieur Warner",
@@ -5777,7 +5957,11 @@
    "license_url": "",
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
-   "featured_rank": 32
+   "featured_rank": 32,
+   "focal_point": [
+    0.42,
+    0.35
+   ]
   },
   {
    "title": "At the Moulin Rouge: The Dance",
@@ -5798,7 +5982,11 @@
    "license_url": "",
    "credit_line": "FAENd9LSU-ylzQ at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 82
+   "featured_rank": 82,
+   "focal_point": [
+    0.42,
+    0.4
+   ]
   },
   {
    "title": "Portrait of Caudieux",
@@ -5819,7 +6007,11 @@
    "license_url": "",
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
-   "featured_rank": 25
+   "featured_rank": 25,
+   "focal_point": [
+    0.53,
+    0.2
+   ]
   },
   {
    "title": "Crouching Woman (The Laundress)",
@@ -5840,7 +6032,11 @@
    "license_url": "",
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.4,
+    0.45
+   ]
   },
   {
    "title": "The Theatre Box",
@@ -5861,7 +6057,11 @@
    "license_url": "",
    "credit_line": "repro from artbook",
    "license_verified": "2026-07-16",
-   "featured_rank": 36
+   "featured_rank": 36,
+   "focal_point": [
+    0.38,
+    0.35
+   ]
   },
   {
    "title": "At the Racecourse",
@@ -5882,7 +6082,11 @@
    "license_url": "",
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.62,
+    0.55
+   ]
   },
   {
    "title": "Horse Behind a Picket Gate",
@@ -5903,7 +6107,11 @@
    "license_url": "",
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
-   "featured_rank": 24
+   "featured_rank": 24,
+   "focal_point": [
+    0.55,
+    0.42
+   ]
   },
   {
    "title": "The Clowness Cha-U-Kao",
@@ -5924,7 +6132,11 @@
    "license_url": "",
    "credit_line": "tAEZCE0HugJzAQ at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 48
+   "featured_rank": 48,
+   "focal_point": [
+    0.42,
+    0.35
+   ]
   },
   {
    "title": "Allegory: The Springtime of Life",
@@ -5945,7 +6157,11 @@
    "license_url": "",
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
-   "featured_rank": 26
+   "featured_rank": 26,
+   "focal_point": [
+    0.75,
+    0.35
+   ]
   },
   {
    "title": "Horseman in Eighteenth-Century Costume",
@@ -5966,7 +6182,11 @@
    "license_url": "",
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
-   "featured_rank": 26
+   "featured_rank": 26,
+   "focal_point": [
+    0.5,
+    0.28
+   ]
   },
   {
    "title": "The Sofa (Le Divan)",
@@ -5987,7 +6207,11 @@
    "license_url": "",
    "credit_line": "https://masp.org.br/acervo/obra/o-diva",
    "license_verified": "2026-07-16",
-   "featured_rank": 42
+   "featured_rank": 42,
+   "focal_point": [
+    0.42,
+    0.42
+   ]
   },
   {
    "title": "Jane Avril Dancing",
@@ -6008,7 +6232,11 @@
    "license_url": "",
    "credit_line": "awEEswUy3gXkdg at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 50
+   "featured_rank": 50,
+   "focal_point": [
+    0.38,
+    0.45
+   ]
   },
   {
    "title": "At the Cabaret",
@@ -6029,7 +6257,11 @@
    "license_url": "",
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.35,
+    0.35
+   ]
   },
   {
    "title": "English Soldier Smoking a Pipe",
@@ -6050,7 +6282,11 @@
    "license_url": "",
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.42,
+    0.42
+   ]
   },
   {
    "title": "View of the Vineyards at Céleyran",
@@ -6071,7 +6307,11 @@
    "license_url": "",
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
-   "featured_rank": 24
+   "featured_rank": 24,
+   "focal_point": [
+    0.5,
+    0.45
+   ]
   },
   {
    "title": "By the River at Céleyran",
@@ -6092,7 +6332,11 @@
    "license_url": "",
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
-   "featured_rank": 25
+   "featured_rank": 25,
+   "focal_point": [
+    0.5,
+    0.5
+   ]
   },
   {
    "title": "Rolande on the Sofa",
@@ -6113,7 +6357,11 @@
    "license_url": "",
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.32,
+    0.22
+   ]
   },
   {
    "title": "Aristide Bruant on a Bicycle",
@@ -6134,7 +6382,11 @@
    "license_url": "",
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
-   "featured_rank": 40
+   "featured_rank": 40,
+   "focal_point": [
+    0.42,
+    0.22
+   ]
   },
   {
    "title": "Huntsman on Horseback",
@@ -6155,7 +6407,11 @@
    "license_url": "",
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.5,
+    0.35
+   ]
   },
   {
    "title": "Clown",
@@ -6176,7 +6432,11 @@
    "license_url": "",
    "credit_line": "Own work, anagoria",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.38,
+    0.4
+   ]
   },
   {
    "title": "Artist with Green Gloves: The Singer Dolly",
@@ -6197,7 +6457,11 @@
    "license_url": "",
    "credit_line": "https://masp.org.br/acervo/obra/artista-com-luvas-verdes-a-cantora-dolly-do-cafe-star-de-le-havre",
    "license_verified": "2026-07-16",
-   "featured_rank": 40
+   "featured_rank": 40,
+   "focal_point": [
+    0.42,
+    0.35
+   ]
   },
   {
    "title": "The Terrace at Château du Bosc",
@@ -6218,7 +6482,11 @@
    "license_url": "",
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
-   "featured_rank": 24
+   "featured_rank": 24,
+   "focal_point": [
+    0.55,
+    0.4
+   ]
   },
   {
    "title": "Portrait of André Rivoire",
@@ -6239,7 +6507,11 @@
    "license_url": "",
    "credit_line": "Paris Musées",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.4,
+    0.32
+   ]
   },
   {
    "title": "The Nun's Pines at Céleyran",
@@ -6260,7 +6532,11 @@
    "license_url": "",
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
-   "featured_rank": 22
+   "featured_rank": 22,
+   "focal_point": [
+    0.72,
+    0.32
+   ]
   },
   {
    "title": "The Black Countess",
@@ -6281,7 +6557,11 @@
    "license_url": "",
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.65,
+    0.35
+   ]
   },
   {
    "title": "Woman Seated in a Garden",
@@ -6302,7 +6582,11 @@
    "license_url": "",
    "credit_line": "National Gallery, London",
    "license_verified": "2026-07-16",
-   "featured_rank": 29
+   "featured_rank": 29,
+   "focal_point": [
+    0.38,
+    0.28
+   ]
   },
   {
    "title": "The Ballet of Papa Chrysanthème",
@@ -6323,7 +6607,11 @@
    "license_url": "",
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
-   "featured_rank": 26
+   "featured_rank": 26,
+   "focal_point": [
+    0.45,
+    0.4
+   ]
   },
   {
    "title": "At the Bastille: Jeanne Wenz",
@@ -6344,7 +6632,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the National Gallery of Art. Please see the Gallery's Open Access Policy.",
    "license_verified": "2026-07-16",
-   "featured_rank": 68
+   "featured_rank": 68,
+   "focal_point": [
+    0.4,
+    0.22
+   ]
   },
   {
    "title": "La Goulue and Her Sister",
@@ -6365,7 +6657,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the National Gallery of Art. Please see the Gallery's Open Access Policy.",
    "license_verified": "2026-07-16",
-   "featured_rank": 40
+   "featured_rank": 40,
+   "focal_point": [
+    0.45,
+    0.35
+   ]
   },
   {
    "title": "Portrait of Maxime Dethomas",
@@ -6386,7 +6682,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the National Gallery of Art. Please see the Gallery's Open Access Policy.",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.75,
+    0.3
+   ]
   },
   {
    "title": "The Artist's Dog, Flèche",
@@ -6407,7 +6707,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the National Gallery of Art. Please see the Gallery's Open Access Policy.",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.4,
+    0.5
+   ]
   },
   {
    "title": "Horsewoman (Amazone)",
@@ -6428,7 +6732,11 @@
    "license_url": "",
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.32,
+    0.42
+   ]
   },
   {
    "title": "The Jockeys",
@@ -6449,7 +6757,11 @@
    "license_url": "",
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
-   "featured_rank": 35
+   "featured_rank": 35,
+   "focal_point": [
+    0.45,
+    0.45
+   ]
   },
   {
    "title": "In Bed: The Kiss",
@@ -6470,7 +6782,11 @@
    "license_url": "",
    "credit_line": "http://www.artslife.com/2015/07/06/giornata-mondiale-del-bacio-larte-in-un-bacio-il-bacio-nellarte/",
    "license_verified": "2026-07-16",
-   "featured_rank": 52
+   "featured_rank": 52,
+   "focal_point": [
+    0.42,
+    0.35
+   ]
   },
   {
    "title": "The Bedroom",
