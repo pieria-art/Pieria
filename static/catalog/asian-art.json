@@ -349,7 +349,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
-   "featured_rank": 45
+   "featured_rank": 45,
+   "focal_point": [
+    0.55,
+    0.58
+   ]
   },
   {
    "title": "Fish and Rocks",
@@ -377,7 +381,11 @@
    "license_url": "",
    "credit_line": "https://clevelandart.org/art/1953.247",
    "license_verified": "2026-07-16",
-   "featured_rank": 48
+   "featured_rank": 48,
+   "focal_point": [
+    0.55,
+    0.4
+   ]
   },
   {
    "title": "Cypress Trees",
@@ -405,7 +413,11 @@
    "license_url": "",
    "credit_line": "Emuseum",
    "license_verified": "2026-07-16",
-   "featured_rank": 68
+   "featured_rank": 68,
+   "focal_point": [
+    0.6,
+    0.45
+   ]
   },
   {
    "title": "Youth Holding a Pomegranate",
@@ -432,7 +444,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "https://clevelandart.org/art/1947.497",
    "license_verified": "2026-07-16",
-   "featured_rank": 35
+   "featured_rank": 35,
+   "focal_point": [
+    0.4,
+    0.45
+   ]
   },
   {
    "title": "Tobatsu Bishamonten",
