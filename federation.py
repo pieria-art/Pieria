@@ -156,9 +156,16 @@ async def fetch_manifest(url: str) -> dict:
 
 
 def manifest_item_to_catalog(item: dict) -> dict:
-    """Map a Manifest v2 item to the catalog item shape the browse UI + add flow already expect."""
+    """Map a Manifest v2 item to the catalog item shape the browse UI + add flow already expect.
+
+    Two asset modes: a remote item carries `image.full_url` (the app fetches it on add); a first-party
+    pack item carries `image.local_file` (bytes already on disk under _Library/). For a local item the
+    `source_url` is a stable non-http `pack:<file>` sentinel — it dedups + drives the `added` flag like
+    any URL, but never gets fetched: the add path branches on `local_file` to reference it in place."""
     img = item.get("image") or {}
     tags = item.get("tags")
+    local = img.get("local_file")
+    source_url = f"pack:{local}" if local else img.get("full_url")
     return {
         "title": item.get("title"),
         "agent_name": item.get("artist"),
@@ -171,8 +178,9 @@ def manifest_item_to_catalog(item: dict) -> dict:
         "tags": ",".join(tags) if isinstance(tags, list) else (tags or ""),
         "source": img.get("rights_holder") or "",
         "license": img.get("license"),
-        "source_url": img.get("full_url"),
-        "thumbnail_url": img.get("thumbnail_url") or img.get("full_url"),
+        "source_url": source_url,
+        "local_file": local,
+        "thumbnail_url": img.get("thumbnail_url") or (f"pack:{local}" if local else img.get("full_url")),
         "focal_point": img.get("focal_point"),
     }
 

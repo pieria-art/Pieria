@@ -1030,7 +1030,13 @@
    "license_url": "",
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
-   "featured_rank": 55
+   "featured_rank": 55,
+   "crop_box": [
+    0.24,
+    0.2,
+    0.77,
+    0.79
+   ]
   },
   {
    "title": "The Cradle",
@@ -1835,7 +1841,13 @@
    "license_url": "",
    "credit_line": "Monet, Cottage on the Cliffs near Varangeville, c. 1896, Ny Carlsberg Glyptotek, Copenhagen by Richard Mortel from Riyadh, Saudi Arabia",
    "license_verified": "2026-07-16",
-   "featured_rank": 50
+   "featured_rank": 50,
+   "crop_box": [
+    0.1,
+    0.11,
+    0.91,
+    0.87
+   ]
   },
   {
    "title": "Garden at Sainte-Adresse",
@@ -2383,7 +2395,13 @@
    "license_url": "",
    "credit_line": "Dallas Museum of Art",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "crop_box": [
+    0.19,
+    0.18,
+    0.8,
+    0.8
+   ]
   },
   {
    "title": "Head of a Young Girl",
@@ -2763,7 +2781,13 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
-   "featured_rank": 78
+   "featured_rank": 78,
+   "crop_box": [
+    0.24,
+    0.21,
+    0.77,
+    0.79
+   ]
   },
   {
    "title": "In the Conservatory",
@@ -3289,7 +3313,13 @@
    "license_url": "",
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
-   "featured_rank": 40
+   "featured_rank": 40,
+   "crop_box": [
+    0.11,
+    0.09,
+    0.89,
+    0.87
+   ]
   },
   {
    "title": "The Battle of the U.S.S. Kearsarge and the C.S.S. Alabama",
@@ -3416,7 +3446,13 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
-   "featured_rank": 42
+   "featured_rank": 42,
+   "crop_box": [
+    0.12,
+    0.1,
+    0.9,
+    0.9
+   ]
   },
   {
    "title": "Flowers in a Crystal Vase",
@@ -4677,7 +4713,13 @@
    "license_url": "",
    "credit_line": "Taken by Alfonso Miranda",
    "license_verified": "2026-07-16",
-   "featured_rank": 40
+   "featured_rank": 40,
+   "crop_box": [
+    0.17,
+    0.36,
+    0.86,
+    0.79
+   ]
   },
   {
    "title": "Bathers",
@@ -4825,7 +4867,13 @@
    "license_url": "",
    "credit_line": "Degas, Village Street, Saint-Valery-sur-Somme, 1896-98, Ny Carlsberg Glyptotek, Copenhagen by Richard Mortel from Riyadh, Saudi Arabia",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "crop_box": [
+    0.19,
+    0.17,
+    0.82,
+    0.8
+   ]
   },
   {
    "title": "Horses in a Meadow",
@@ -5750,7 +5798,13 @@
    "license_url": "",
    "credit_line": "Minneapolis Institute of Art",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "crop_box": [
+    0.19,
+    0.18,
+    0.86,
+    0.82
+   ]
   },
   {
    "title": "Peasant Woman Carrying Two Bundles of Hay",
@@ -6318,7 +6372,13 @@
    "license_url": "",
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
-   "featured_rank": 25
+   "featured_rank": 25,
+   "crop_box": [
+    0.1,
+    0.06,
+    0.985,
+    0.96
+   ]
   },
   {
    "title": "Vegetable Garden",
@@ -6970,7 +7030,13 @@
    "license_url": "",
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "crop_box": [
+    0.15,
+    0.17,
+    0.87,
+    0.75
+   ]
   },
   {
    "title": "Effect of Snow at Éragny",
@@ -7181,7 +7247,13 @@
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
    "featured_rank": 26,
-   "needs_frame_crop": true
+   "needs_frame_crop": true,
+   "crop_box": [
+    0.17,
+    0.16,
+    0.83,
+    0.82
+   ]
   },
   {
    "title": "Haymaking",
@@ -7539,7 +7611,13 @@
    "license_url": "",
    "credit_line": "Musée des Beaux-Arts de Lyon",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "crop_box": [
+    0.11,
+    0.1,
+    0.95,
+    0.84
+   ]
   },
   {
    "title": "The Fence",
@@ -7603,7 +7681,13 @@
    "license_url": "",
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
-   "featured_rank": 26
+   "featured_rank": 26,
+   "crop_box": [
+    0.18,
+    0.18,
+    0.83,
+    0.82
+   ]
   },
   {
    "title": "View of Bazincourt, Snow, Sunset",
@@ -7625,7 +7709,13 @@
    "license_url": "",
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
-   "featured_rank": 25
+   "featured_rank": 25,
+   "crop_box": [
+    0.18,
+    0.21,
+    0.83,
+    0.81
+   ]
   },
   {
    "title": "Peasant Women Planting Poles",
@@ -7731,7 +7821,13 @@
    "license_url": "",
    "credit_line": "https://www.flickr.com/photos/prof_richard/25308145107/",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "crop_box": [
+    0.17,
+    0.14,
+    0.83,
+    0.85
+   ]
   },
   {
    "title": "The Road, Louveciennes, Effect of Snow",

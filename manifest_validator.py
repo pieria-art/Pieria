@@ -45,8 +45,11 @@ def _validate_image(image, path, errors, *, has_default_license):
     if not isinstance(image, dict):
         errors.append(f"{path} must be an object")
         return
-    if not _is_str(image.get("full_url")):
-        errors.append(f"{path}.full_url is required (non-empty string)")
+    # An image asset is addressed by EITHER a remote `full_url` (third-party feeds the app fetches) OR
+    # a `local_file` naming bytes shipped inside the pack (a first-party pack resolved under _Library/,
+    # zero network). At least one is required. Relaxation only — existing full_url manifests still pass.
+    if not _is_str(image.get("full_url")) and not _is_str(image.get("local_file")):
+        errors.append(f"{path}: one of full_url or local_file is required (non-empty string)")
     for k in ("width", "height"):
         if k in image and not isinstance(image[k], int):
             errors.append(f"{path}.{k} must be an integer")

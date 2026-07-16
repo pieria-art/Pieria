@@ -2524,7 +2524,13 @@
    "license_url": "",
    "credit_line": "Own work, Tylwyth Eldar, 2024-03-09 14:02:56",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "crop_box": [
+    0.07,
+    0.07,
+    0.93,
+    0.93
+   ]
   },
   {
    "title": "Fruit and a Jug on a Table",
@@ -2609,7 +2615,13 @@
    "license_url": "",
    "credit_line": "Own work, Tylwyth Eldar, 2024-03-09 14:04:48",
    "license_verified": "2026-07-16",
-   "featured_rank": 34
+   "featured_rank": 34,
+   "crop_box": [
+    0.13,
+    0.15,
+    0.87,
+    0.85
+   ]
   },
   {
    "title": "The Banks of the Marne",
@@ -2652,7 +2664,13 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "crop_box": [
+    0.2,
+    0.24,
+    0.81,
+    0.78
+   ]
   },
   {
    "title": "Bather at the Seashore",
@@ -2863,7 +2881,13 @@
    "license_url": "",
    "credit_line": "Own work, Tylwyth Eldar, 2024-03-09 14:04:06",
    "license_verified": "2026-07-16",
-   "featured_rank": 34
+   "featured_rank": 34,
+   "crop_box": [
+    0.22,
+    0.24,
+    0.79,
+    0.77
+   ]
   },
   {
    "title": "The Eternal Feminine",
@@ -3935,7 +3959,13 @@
    "credit_line": "Van Gogh Museum",
    "license_verified": "2026-07-16",
    "featured_rank": 68,
-   "needs_frame_crop": true
+   "needs_frame_crop": true,
+   "crop_box": [
+    0.0,
+    0.0,
+    1.0,
+    1.0
+   ]
   },
   {
    "title": "Still Life with Basket of Potatoes (I)",

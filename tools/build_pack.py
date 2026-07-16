@@ -60,6 +60,10 @@ WIKIMEDIA_HOSTS = ("commons.wikimedia.org", "upload.wikimedia.org")
 THUMB_MAX_EDGE = 600
 THUMB_QUALITY = 85
 
+# Per-collection native floor overrides (ADR-042): photochrom/architectural source ceilings sit just
+# under true-4K, so cities-architecture relaxes to 3600. Everything else uses the global --min-edge.
+COLLECTION_MIN_EDGE = {"cities-architecture": 3600}
+
 # Placard fields copied verbatim (in this order) from source item -> manifest item.
 _PLACARD_FIELDS = (
     "title", "agent_name", "agent_role", "creation_date", "cultural_context", "medium", "kind",
@@ -105,6 +109,7 @@ class Stats:
     master_cached: int = 0
     master_failed: int = 0
     master_too_small: int = 0
+    master_cropped: int = 0
     thumb_downloaded: int = 0
     thumb_cached: int = 0
     thumb_derived: int = 0
@@ -265,6 +270,41 @@ def _cap_master(raw: bytes) -> bytes | None:
         return None
 
 
+def _apply_crop_box(raw: bytes, crop_box) -> bytes | None:
+    """Crop the frame/mat/wall away from a master using a pre-baked normalized art rectangle
+    crop_box=[x0,y0,x1,y1] (0..1). AI produces the box against the catalog thumbnail; because it is
+    normalized it maps 1:1 onto the native master here (build_pack stays NO-AI). Returns re-encoded
+    JPEG bytes, or None (caller keeps the uncropped raw) if the box is missing/degenerate/undecodable."""
+    if not (isinstance(crop_box, (list, tuple)) and len(crop_box) == 4):
+        return None
+    try:
+        x0, y0, x1, y1 = (float(v) for v in crop_box)
+    except (TypeError, ValueError):
+        return None
+    if not (0.0 <= x0 < x1 <= 1.0 and 0.0 <= y0 < y1 <= 1.0):
+        return None
+    # a near-full box is a no-op ("already clean" agents return [0,0,1,1]) — skip the re-encode
+    if x0 <= 0.002 and y0 <= 0.002 and x1 >= 0.998 and y1 >= 0.998:
+        return None
+    try:
+        with Image.open(BytesIO(raw)) as img:
+            img = ImageOps.exif_transpose(img)
+            if img.mode != "RGB":
+                img = img.convert("RGB")
+            w, h = img.size
+            left, upper = round(x0 * w), round(y0 * h)
+            right, lower = round(x1 * w), round(y1 * h)
+            if right - left < 1 or lower - upper < 1:
+                return None
+            cropped = img.crop((left, upper, right, lower))
+            buf = BytesIO()
+            cropped.save(buf, format="JPEG", quality=DISPLAY_QUALITY, progressive=True)
+            return buf.getvalue()
+    except Exception as e:
+        logger.info(f"    x could not apply crop_box: {e}")
+        return None
+
+
 def _derive_thumbnail(raw: bytes) -> bytes | None:
     try:
         with Image.open(BytesIO(raw)) as img:
@@ -315,17 +355,30 @@ async def ensure_master(state: BuildState, wi: WorkItem) -> str | None:
         if raw is None:
             state.stats.master_failed += 1
             return None
+        # Frame/mat/wall crop (ADR-043): consume the pre-baked normalized crop_box deterministically.
+        # A cropped, hand-vetted famous work is kept even below the floor (frameless > absent), so the
+        # crop bypasses the floor check below.
+        cropped = False
+        if wi.item.get("needs_frame_crop"):
+            crop_bytes = _apply_crop_box(raw, wi.item.get("crop_box"))
+            if crop_bytes is not None:
+                raw = crop_bytes
+                cropped = True
+                state.stats.master_cropped += 1
         # 4K-friendly floor: a source smaller than this looks soft on a 4K/8K wall (esp. under Ken
         # Burns zoom). We never upscale — below the floor, the work is skipped from the pack.
+        floor = COLLECTION_MIN_EDGE.get(wi.collection_id, state.min_edge)
         try:
             with Image.open(BytesIO(raw)) as probe:
                 native_max = max(probe.size)
         except Exception:
             native_max = 0
-        if native_max < state.min_edge:
+        if native_max < floor and not cropped:
             state.stats.master_too_small += 1
-            logger.info(f"    x below {state.min_edge}px 4K floor ({native_max}px): {su}")
+            logger.info(f"    x below {floor}px 4K floor ({native_max}px): {su}")
             return None
+        if cropped and native_max < floor:
+            logger.info(f"    ~ cropped below {floor}px floor, kept ({native_max}px): {su}")
         capped = _cap_master(raw)
         if capped is None:
             state.stats.master_failed += 1
@@ -496,6 +549,7 @@ async def build(out: Path, *, scope: set[str], limit: int | None, collections_fi
     print("\n=== BUILD PACK SUMMARY ===")
     print(f"masters:     {st.master_downloaded} downloaded, {st.master_cached} cached (skipped), "
           f"{st.master_too_small} below-{min_edge}px, {st.master_failed} failed")
+    print(f"crops:       {st.master_cropped} frame/mat/wall crop(s) applied (needs_frame_crop + crop_box)")
     print(f"thumbnails:  {st.thumb_downloaded} downloaded, {st.thumb_cached} cached, "
           f"{st.thumb_derived} derived, {st.thumb_failed} failed")
     print(f"manifest:    {total_manifest_items} item(s) across {len(manifest_collections)} collection(s)")

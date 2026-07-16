@@ -154,7 +154,13 @@
    "license_url": "",
    "credit_line": "Catalog Photo",
    "license_verified": "2026-07-16",
-   "needs_frame_crop": true
+   "needs_frame_crop": true,
+   "crop_box": [
+    0.04,
+    0.03,
+    0.96,
+    0.95
+   ]
   },
   {
    "title": "Trellis",
@@ -205,7 +211,13 @@
    "license_url": "",
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
-   "needs_frame_crop": true
+   "needs_frame_crop": true,
+   "crop_box": [
+    0.095,
+    0.02,
+    0.935,
+    0.965
+   ]
   },
   {
    "title": "Magnolia and Irises",

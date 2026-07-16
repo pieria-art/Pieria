@@ -91,3 +91,97 @@ async def test_fetch_bytes_follows_redirect_then_streams(monkeypatch):
 async def test_fetch_bytes_rejects_non_image():
     async with _mock_client(lambda r: httpx.Response(200, headers={"content-type": "text/html"}, content=b"<html>")) as c:
         assert await build_pack._fetch_bytes(c, "https://example.org/page") is None
+
+
+# --- frame-crop step (ADR-043: consume the pre-baked crop_box deterministically) -----------------
+import asyncio
+from io import BytesIO
+
+from PIL import Image
+
+
+def _jpeg(w: int, h: int) -> bytes:
+    """A solid-colour JPEG of exact pixel dims (a stand-in native master)."""
+    buf = BytesIO()
+    Image.new("RGB", (w, h), (120, 60, 30)).save(buf, format="JPEG")
+    return buf.getvalue()
+
+
+def _dims(raw: bytes) -> tuple[int, int]:
+    with Image.open(BytesIO(raw)) as im:
+        return im.size
+
+
+def test_apply_crop_box_crops_to_rect():
+    """A normalized box maps 1:1 onto native pixels — a centred half-box halves each edge."""
+    out = build_pack._apply_crop_box(_jpeg(4000, 3000), [0.25, 0.25, 0.75, 0.75])
+    assert out is not None
+    w, h = _dims(out)
+    assert abs(w - 2000) <= 1 and abs(h - 1500) <= 1
+
+
+def test_apply_crop_box_fullframe_is_noop():
+    """An 'already clean' [0,0,1,1] box returns None so the caller keeps the untouched raw."""
+    assert build_pack._apply_crop_box(_jpeg(4000, 3000), [0.0, 0.0, 1.0, 1.0]) is None
+
+
+@pytest.mark.parametrize("box", [None, [0.1, 0.1, 0.2], [0.8, 0.1, 0.2, 0.9], "nope", [0.0, 0.0, 0.0, 1.0]])
+def test_apply_crop_box_rejects_bad_boxes(box):
+    """Missing / wrong-arity / inverted / degenerate boxes are refused (caller keeps raw)."""
+    assert build_pack._apply_crop_box(_jpeg(1000, 1000), box) is None
+
+
+def _build_state(tmp_path):
+    return build_pack.BuildState(
+        pack_dir=tmp_path,
+        client=httpx.AsyncClient(transport=httpx.MockTransport(lambda r: httpx.Response(404))),
+        sem=asyncio.Semaphore(1),
+        min_edge=3840,
+    )
+
+
+@pytest.mark.asyncio
+async def test_ensure_master_crop_bypasses_floor(tmp_path, monkeypatch):
+    """A flagged item cropped below the 3840 floor is KEPT (frameless > absent) and counted cropped."""
+    monkeypatch.setattr(build_pack, "_fetch_bytes", lambda *a, **k: _async(_jpeg(4000, 4000)))
+    state = _build_state(tmp_path)
+    wi = build_pack.WorkItem(kind="catalog", collection_id="impressionism", item={
+        "source_url": "https://example.org/framed.jpg", "title": "Framed Work",
+        "needs_frame_crop": True, "crop_box": [0.3, 0.3, 0.7, 0.7],   # -> ~1600px, below floor
+    })
+    name = await build_pack.ensure_master(state, wi)
+    assert name is not None                         # kept despite being under the floor
+    assert state.stats.master_cropped == 1
+    assert state.stats.master_too_small == 0
+    await state.client.aclose()
+
+
+@pytest.mark.asyncio
+async def test_ensure_master_uncropped_below_floor_skipped(tmp_path, monkeypatch):
+    """Control: an UNflagged sub-floor master is still rejected as too-small."""
+    monkeypatch.setattr(build_pack, "_fetch_bytes", lambda *a, **k: _async(_jpeg(2000, 2000)))
+    state = _build_state(tmp_path)
+    wi = build_pack.WorkItem(kind="catalog", collection_id="impressionism", item={
+        "source_url": "https://example.org/small.jpg", "title": "Small Work",
+    })
+    assert await build_pack.ensure_master(state, wi) is None
+    assert state.stats.master_too_small == 1
+    assert state.stats.master_cropped == 0
+    await state.client.aclose()
+
+
+@pytest.mark.asyncio
+async def test_ensure_master_cities_floor_override(tmp_path, monkeypatch):
+    """cities-architecture relaxes to 3600 (ADR-042): a 3700px native clears there but not elsewhere."""
+    monkeypatch.setattr(build_pack, "_fetch_bytes", lambda *a, **k: _async(_jpeg(3700, 2400)))
+    state = _build_state(tmp_path)
+    wi = build_pack.WorkItem(kind="catalog", collection_id="cities-architecture", item={
+        "source_url": "https://example.org/photochrom.jpg", "title": "A City",
+    })
+    assert await build_pack.ensure_master(state, wi) is not None   # 3700 >= 3600 floor
+    assert state.stats.master_too_small == 0
+    await state.client.aclose()
+
+
+async def _async(value):
+    return value

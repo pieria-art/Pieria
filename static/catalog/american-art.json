@@ -6838,7 +6838,13 @@
    "credit_line": "Catalog Photo",
    "license_verified": "2026-07-16",
    "featured_rank": 25,
-   "needs_frame_crop": true
+   "needs_frame_crop": true,
+   "crop_box": [
+    0.135,
+    0.145,
+    0.865,
+    0.82
+   ]
   },
   {
    "title": "Sunlight and Shadow",

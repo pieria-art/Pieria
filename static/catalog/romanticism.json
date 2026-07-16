@@ -952,7 +952,13 @@
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
    "featured_rank": 30,
-   "needs_frame_crop": true
+   "needs_frame_crop": true,
+   "crop_box": [
+    0.09,
+    0.07,
+    0.91,
+    0.93
+   ]
   },
   {
    "title": "Poetry and Poets",
@@ -1184,7 +1190,13 @@
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
    "featured_rank": 45,
-   "needs_frame_crop": true
+   "needs_frame_crop": true,
+   "crop_box": [
+    0.15,
+    0.25,
+    0.85,
+    0.74
+   ]
   },
   {
    "title": "The Red Rigi",
@@ -1459,7 +1471,13 @@
    "credit_line": "Clark Art Institute",
    "license_verified": "2026-07-16",
    "featured_rank": 25,
-   "needs_frame_crop": true
+   "needs_frame_crop": true,
+   "crop_box": [
+    0.075,
+    0.0,
+    1.0,
+    0.9
+   ]
   },
   {
    "title": "The Château de St. Michael, Bonneville, Savoy",
@@ -1502,7 +1520,13 @@
    "credit_line": "Wuselig",
    "license_verified": "2026-07-16",
    "featured_rank": 35,
-   "needs_frame_crop": true
+   "needs_frame_crop": true,
+   "crop_box": [
+    0.21,
+    0.22,
+    0.81,
+    0.77
+   ]
   },
   {
    "title": "Tummel Bridge, Perthshire",
@@ -1545,7 +1569,13 @@
    "credit_line": "Wuselig",
    "license_verified": "2026-07-16",
    "featured_rank": 32,
-   "needs_frame_crop": true
+   "needs_frame_crop": true,
+   "crop_box": [
+    0.24,
+    0.19,
+    0.78,
+    0.76
+   ]
   },
   {
    "title": "The Sun of Venice Going to Sea",
@@ -1630,7 +1660,13 @@
    "credit_line": "Self-photographed, User:Daderot, April 2011",
    "license_verified": "2026-07-16",
    "featured_rank": 30,
-   "needs_frame_crop": true
+   "needs_frame_crop": true,
+   "crop_box": [
+    0.05,
+    0.06,
+    0.95,
+    0.93
+   ]
   },
   {
    "title": "View off Margate, Evening",
@@ -1652,7 +1688,13 @@
    "credit_line": "Clark Art Institute",
    "license_verified": "2026-07-16",
    "featured_rank": 34,
-   "needs_frame_crop": true
+   "needs_frame_crop": true,
+   "crop_box": [
+    0.06,
+    0.0,
+    1.0,
+    0.88
+   ]
   },
   {
    "title": "The Schöllenen Gorge from the Devil's Bridge, Pass of St Gotthard",
@@ -1674,7 +1716,13 @@
    "credit_line": "Wuselig",
    "license_verified": "2026-07-16",
    "featured_rank": 34,
-   "needs_frame_crop": true
+   "needs_frame_crop": true,
+   "crop_box": [
+    0.22,
+    0.18,
+    0.77,
+    0.81
+   ]
   },
   {
    "title": "Tours: Sunset, Looking Backwards",
@@ -1801,7 +1849,13 @@
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
    "featured_rank": 30,
-   "needs_frame_crop": true
+   "needs_frame_crop": true,
+   "crop_box": [
+    0.15,
+    0.09,
+    0.87,
+    0.82
+   ]
   },
   {
    "title": "Ancient Rome: Agrippina Landing with the Ashes of Germanicus",

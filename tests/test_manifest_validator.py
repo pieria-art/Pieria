@@ -54,8 +54,23 @@ def test_missing_item_essentials_fail():
 def test_image_requires_full_url_and_license():
     m = _base(); m["items"][0]["image"] = {}
     errs = validate_manifest(m)
-    assert any("full_url is required" in e for e in errs)
+    assert any("full_url or local_file is required" in e for e in errs)
     assert any("license is required" in e for e in errs)
+
+
+def test_image_accepts_local_file_instead_of_full_url():
+    """A first-party pack ships bytes: `image.local_file` satisfies the asset requirement with no
+    `full_url` (the offline/local-subscription mode). Relaxation — full_url manifests still pass."""
+    m = _base()
+    m["items"][0]["image"] = {"local_file": "monet-sunrise.jpg", "license": "CC0-1.0"}
+    assert validate_manifest(m) == []
+
+
+def test_image_local_file_still_enforces_license():
+    """local_file doesn't loosen anything else — a CC-BY local asset still needs attribution."""
+    m = _base()
+    m["items"][0]["image"] = {"local_file": "x.jpg", "license": "CC-BY-4.0"}
+    assert any("attribution is required" in e for e in validate_manifest(m))
 
 
 def test_default_license_satisfies_missing_image_license():

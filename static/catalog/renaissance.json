@@ -667,7 +667,13 @@
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
    "featured_rank": 42,
-   "needs_frame_crop": true
+   "needs_frame_crop": true,
+   "crop_box": [
+    0.0,
+    0.0,
+    1.0,
+    1.0
+   ]
   },
   {
    "title": "The Battle of San Romano",
@@ -780,7 +786,13 @@
    "credit_line": "Collection of Art Institute of Chicago",
    "license_verified": "2026-07-16",
    "featured_rank": 40,
-   "needs_frame_crop": true
+   "needs_frame_crop": true,
+   "crop_box": [
+    0.0,
+    0.0,
+    1.0,
+    1.0
+   ]
   },
   {
    "title": "Annunciation",

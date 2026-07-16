@@ -2247,7 +2247,13 @@
    "credit_line": "Wuselig",
    "license_verified": "2026-07-16",
    "featured_rank": 35,
-   "needs_frame_crop": true
+   "needs_frame_crop": true,
+   "crop_box": [
+    0.1,
+    0.07,
+    0.9,
+    0.92
+   ]
   },
   {
    "title": "Saint Luke the Evangelist",
@@ -2269,7 +2275,13 @@
    "credit_line": "Wuselig",
    "license_verified": "2026-07-16",
    "featured_rank": 30,
-   "needs_frame_crop": true
+   "needs_frame_crop": true,
+   "crop_box": [
+    0.17,
+    0.15,
+    0.84,
+    0.87
+   ]
   },
   {
    "title": "Portrait of Vincent Laurensz van der Vinne",
@@ -2291,7 +2303,13 @@
    "credit_line": "Wuselig",
    "license_verified": "2026-07-16",
    "featured_rank": 32,
-   "needs_frame_crop": true
+   "needs_frame_crop": true,
+   "crop_box": [
+    0.26,
+    0.22,
+    0.77,
+    0.79
+   ]
   },
   {
    "title": "The Lute Player",
@@ -2335,7 +2353,13 @@
    "credit_line": "Wuselig",
    "license_verified": "2026-07-16",
    "featured_rank": 34,
-   "needs_frame_crop": true
+   "needs_frame_crop": true,
+   "crop_box": [
+    0.13,
+    0.09,
+    0.87,
+    0.91
+   ]
   },
   {
    "title": "Saint John the Evangelist",
