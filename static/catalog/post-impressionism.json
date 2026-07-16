@@ -3278,7 +3278,11 @@
    "license_url": "",
    "credit_line": "Google Arts &amp; Culture — ygHC-2TxGf_3zA",
    "license_verified": "2026-07-16",
-   "featured_rank": 42
+   "featured_rank": 42,
+   "focal_point": [
+    0.35,
+    0.5
+   ]
   },
   {
    "title": "House in Provence",
@@ -3341,7 +3345,11 @@
    "license_url": "",
    "credit_line": "https://collection.barnesfoundation.org/objects/6061/details",
    "license_verified": "2026-07-16",
-   "featured_rank": 40
+   "featured_rank": 40,
+   "focal_point": [
+    0.48,
+    0.35
+   ]
   },
   {
    "title": "House and Trees",
@@ -3383,7 +3391,11 @@
    "license_url": "",
    "credit_line": "https://collection.barnesfoundation.org/objects/6067/details",
    "license_verified": "2026-07-16",
-   "featured_rank": 25
+   "featured_rank": 25,
+   "focal_point": [
+    0.48,
+    0.55
+   ]
   },
   {
    "title": "Railroad Cut",
@@ -3404,7 +3416,11 @@
    "license_url": "",
    "credit_line": "https://collection.barnesfoundation.org/objects/7006/details",
    "license_verified": "2026-07-16",
-   "featured_rank": 45
+   "featured_rank": 45,
+   "focal_point": [
+    0.4,
+    0.4
+   ]
   },
   {
    "title": "River Bend",
@@ -3425,7 +3441,11 @@
    "license_url": "",
    "credit_line": "https://collection.barnesfoundation.org/objects/5658/details",
    "license_verified": "2026-07-16",
-   "featured_rank": 32
+   "featured_rank": 32,
+   "focal_point": [
+    0.85,
+    0.85
+   ]
   },
   {
    "title": "The Allée at Marines",
@@ -3446,7 +3466,11 @@
    "license_url": "",
    "credit_line": "https://collection.barnesfoundation.org/objects/5207/details",
    "license_verified": "2026-07-16",
-   "featured_rank": 26
+   "featured_rank": 26,
+   "focal_point": [
+    0.5,
+    0.5
+   ]
   },
   {
    "title": "The Bellevue Plain (The Red Earth)",
@@ -3467,7 +3491,11 @@
    "license_url": "",
    "credit_line": "https://collection.barnesfoundation.org/objects/6960/details",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.62,
+    0.5
+   ]
   },
   {
    "title": "The Chaîne de l'Étoile Mountains with the Pilon du Roi",
@@ -3509,7 +3537,11 @@
    "license_url": "",
    "credit_line": "https://collection.barnesfoundation.org/objects/7354/details",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.5,
+    0.5
+   ]
   },
   {
    "title": "A Modern Olympia",
@@ -3551,7 +3583,11 @@
    "license_url": "",
    "credit_line": "https://collection.barnesfoundation.org/objects/6945/details",
    "license_verified": "2026-07-16",
-   "featured_rank": 32
+   "featured_rank": 32,
+   "focal_point": [
+    0.55,
+    0.6
+   ]
   },
   {
    "title": "Fruit on a Table",
@@ -3572,7 +3608,11 @@
    "license_url": "",
    "credit_line": "https://collection.barnesfoundation.org/objects/5077/details",
    "license_verified": "2026-07-16",
-   "featured_rank": 34
+   "featured_rank": 34,
+   "focal_point": [
+    0.38,
+    0.55
+   ]
   },
   {
    "title": "Plate of Fruit on a Chair",
@@ -3593,7 +3633,11 @@
    "license_url": "",
    "credit_line": "https://collection.barnesfoundation.org/objects/4673/details",
    "license_verified": "2026-07-16",
-   "featured_rank": 37
+   "featured_rank": 37,
+   "focal_point": [
+    0.5,
+    0.55
+   ]
   },
   {
    "title": "Bottle and Fruits",
@@ -3614,7 +3658,11 @@
    "license_url": "",
    "credit_line": "https://collection.barnesfoundation.org/objects/6995/details",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.35,
+    0.4
+   ]
   },
   {
    "title": "A Table Corner",
@@ -3635,7 +3683,11 @@
    "license_url": "",
    "credit_line": "https://collection.barnesfoundation.org/objects/5073/details",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.62,
+    0.55
+   ]
   },
   {
    "title": "Gardanne (Horizontal View)",
@@ -3656,7 +3708,11 @@
    "license_url": "",
    "credit_line": "https://collection.barnesfoundation.org/objects/4760/details",
    "license_verified": "2026-07-16",
-   "featured_rank": 35
+   "featured_rank": 35,
+   "focal_point": [
+    0.42,
+    0.3
+   ]
   },
   {
    "title": "Mont Sainte-Victoire (Study I)",
@@ -3698,7 +3754,11 @@
    "license_url": "",
    "credit_line": "sgHnFanUtHKRBQ at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 48
+   "featured_rank": 48,
+   "focal_point": [
+    0.6,
+    0.3
+   ]
   },
   {
    "title": "Bathers (Small Group)",
@@ -3719,7 +3779,11 @@
    "license_url": "",
    "credit_line": "QwHJjmBqKey0yg at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 50
+   "featured_rank": 50,
+   "focal_point": [
+    0.62,
+    0.6
+   ]
   },
   {
    "title": "Fields at Bellevue (second version)",
@@ -3740,7 +3804,11 @@
    "license_url": "",
    "credit_line": "YQGijCcy_62wCQ at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.5,
+    0.55
+   ]
   },
   {
    "title": "Ginger Pot with Pomegranate and Pears",
@@ -3761,7 +3829,11 @@
    "license_url": "",
    "credit_line": "iwEUaDqSZWy7vg at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 35
+   "featured_rank": 35,
+   "focal_point": [
+    0.38,
+    0.4
+   ]
   },
   {
    "title": "Landscape: Road with Trees in Rocky Terrain",
@@ -3803,7 +3875,11 @@
    "license_url": "",
    "credit_line": "kgF8wo7pt6bJsA at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 62
+   "featured_rank": 62,
+   "focal_point": [
+    0.5,
+    0.3
+   ]
   },
   {
    "title": "Seated Woman in Blue",
@@ -3824,7 +3900,11 @@
    "license_url": "",
    "credit_line": "1AG7I2MOyfdjdw at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.38,
+    0.22
+   ]
   },
   {
    "title": "Self-Portrait",
@@ -3866,7 +3946,11 @@
    "license_url": "",
    "credit_line": "SAEhQn_adsPLfg at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 38
+   "featured_rank": 38,
+   "focal_point": [
+    0.45,
+    0.5
+   ]
   },
   {
    "title": "On the Banks of a River",
@@ -3908,7 +3992,11 @@
    "license_url": "",
    "credit_line": "Arts in the city [1]",
    "license_verified": "2026-07-16",
-   "featured_rank": 31
+   "featured_rank": 31,
+   "focal_point": [
+    0.42,
+    0.5
+   ]
   },
   {
    "title": "Riverbank",
@@ -3929,7 +4017,11 @@
    "license_url": "",
    "credit_line": "http://www.nga.gov/content/ngaweb/Collection/art-object-page.52165.html",
    "license_verified": "2026-07-16",
-   "featured_rank": 27
+   "featured_rank": 27,
+   "focal_point": [
+    0.3,
+    0.35
+   ]
   },
   {
    "title": "The Bend in the Road",
@@ -3950,7 +4042,11 @@
    "license_url": "",
    "credit_line": "http://www.nga.gov/content/ngaweb/Collection/art-object-page.66406.html",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.25,
+    0.5
+   ]
   },
   {
    "title": "Still Life with Teapot",
@@ -3971,7 +4067,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This image is uploaded as image number 2368 at Amgueddfa Cymru Images.This tag does not indicate the copyright status of the attached work. A normal copyright tag is still required. See Commons:Licensing.",
    "license_verified": "2026-07-16",
-   "featured_rank": 35
+   "featured_rank": 35,
+   "focal_point": [
+    0.5,
+    0.55
+   ]
   },
   {
    "title": "At the Water's Edge",
@@ -3992,7 +4092,11 @@
    "license_url": "",
    "credit_line": "http://www.nga.gov/content/ngaweb/Collection/art-object-page.53119.html",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.5,
+    0.35
+   ]
   },
   {
    "title": "Portrait of Antoine Valabrègue (alternate version)",
@@ -4013,7 +4117,11 @@
    "license_url": "",
    "credit_line": "1. J. Rewald, The Paintings of Paul Cézanne: A Catalogue Raisonné2. National Gallery of Art, Washington, D.C.",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.45,
+    0.28
+   ]
   },
   {
    "title": "Harlequin",
@@ -4055,7 +4163,11 @@
    "license_url": "",
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
-   "featured_rank": 25
+   "featured_rank": 25,
+   "focal_point": [
+    0.48,
+    0.45
+   ]
   },
   {
    "title": "The Bathers",
@@ -4097,7 +4209,11 @@
    "license_url": "",
    "credit_line": "Google Arts &amp; Culture — KwF-AdF1REQl6w",
    "license_verified": "2026-07-16",
-   "featured_rank": 92
+   "featured_rank": 92,
+   "focal_point": [
+    0.68,
+    0.55
+   ]
   },
   {
    "title": "The Bedroom (Musée d'Orsay version, 1889)",
@@ -4118,7 +4234,11 @@
    "license_url": "",
    "credit_line": "C2RMF: Galerie de tableaux en très haute définition: image page",
    "license_verified": "2026-07-16",
-   "featured_rank": 92
+   "featured_rank": 92,
+   "focal_point": [
+    0.68,
+    0.55
+   ]
   },
   {
    "title": "The Viaduct at Arles (\"The Blue Train\")",
@@ -4139,7 +4259,11 @@
    "license_url": "",
    "credit_line": "Cropped from File:Le Train Bleu, by Vincent van Gogh, from C2RMF.jpg, originally C2RMF: Galerie de tableaux en très haute définition: image page",
    "license_verified": "2026-07-16",
-   "featured_rank": 58
+   "featured_rank": 58,
+   "focal_point": [
+    0.5,
+    0.5
+   ]
   },
   {
    "title": "Farmhouse in Provence",
@@ -4160,7 +4284,11 @@
    "license_url": "",
    "credit_line": "https://www.nga.gov/collection/art-object-page.52178.html",
    "license_verified": "2026-07-16",
-   "featured_rank": 38
+   "featured_rank": 38,
+   "focal_point": [
+    0.28,
+    0.35
+   ]
   },
   {
    "title": "Two Poplars in the Alpilles near Saint-Rémy",
@@ -4181,7 +4309,11 @@
    "license_url": "",
    "credit_line": "https://clevelandart.org/art/1958.32 IA",
    "license_verified": "2026-07-16",
-   "featured_rank": 50
+   "featured_rank": 50,
+   "focal_point": [
+    0.42,
+    0.42
+   ]
   },
   {
    "title": "The White House at Night",
@@ -4244,7 +4376,11 @@
    "license_url": "",
    "credit_line": "The Museum of Modern Western Art, Inv. Nr. GMNZI: 34",
    "license_verified": "2026-07-16",
-   "featured_rank": 48
+   "featured_rank": 48,
+   "focal_point": [
+    0.58,
+    0.8
+   ]
   },
   {
    "title": "Basket of Sprouting Hyacinth Bulbs",
@@ -4265,7 +4401,11 @@
    "license_url": "",
    "credit_line": "Van Gogh Museum",
    "license_verified": "2026-07-16",
-   "featured_rank": 32
+   "featured_rank": 32,
+   "focal_point": [
+    0.48,
+    0.5
+   ]
   },
   {
    "title": "Bridge in the Rain (after Hiroshige)",
@@ -4293,6 +4433,10 @@
     0.0,
     1.0,
     1.0
+   ],
+   "focal_point": [
+    0.45,
+    0.62
    ]
   },
   {
@@ -4335,7 +4479,11 @@
    "license_url": "",
    "credit_line": "Van Gogh Museum",
    "license_verified": "2026-07-16",
-   "featured_rank": 35
+   "featured_rank": 35,
+   "focal_point": [
+    0.42,
+    0.4
+   ]
   },
   {
    "title": "Still Life with Beer Tankards",
@@ -4356,7 +4504,11 @@
    "license_url": "",
    "credit_line": "Van Gogh Museum",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.5,
+    0.55
+   ]
   },
   {
    "title": "Basket of Apples",
@@ -4377,7 +4529,11 @@
    "license_url": "",
    "credit_line": "Van Gogh Museum",
    "license_verified": "2026-07-16",
-   "featured_rank": 55
+   "featured_rank": 55,
+   "focal_point": [
+    0.42,
+    0.35
+   ]
   },
   {
    "title": "Garden with Courting Couples: Square Saint-Pierre",
@@ -4398,7 +4554,11 @@
    "license_url": "",
    "credit_line": "Van Gogh Museum",
    "license_verified": "2026-07-16",
-   "featured_rank": 46
+   "featured_rank": 46,
+   "focal_point": [
+    0.62,
+    0.68
+   ]
   },
   {
    "title": "Almond Blossom",
@@ -4419,7 +4579,11 @@
    "license_url": "",
    "credit_line": "Van Gogh Museum",
    "license_verified": "2026-07-16",
-   "featured_rank": 85
+   "featured_rank": 85,
+   "focal_point": [
+    0.48,
+    0.8
+   ]
   },
   {
    "title": "Basket of Crocus Bulbs",
@@ -4440,7 +4604,11 @@
    "license_url": "",
    "credit_line": "Van Gogh Museum",
    "license_verified": "2026-07-16",
-   "featured_rank": 35
+   "featured_rank": 35,
+   "focal_point": [
+    0.48,
+    0.5
+   ]
   },
   {
    "title": "Terrace in the Luxembourg Gardens",
@@ -4461,7 +4629,11 @@
    "license_url": "",
    "credit_line": "Clark Art Institute",
    "license_verified": "2026-07-16",
-   "featured_rank": 40
+   "featured_rank": 40,
+   "focal_point": [
+    0.17,
+    0.62
+   ]
   },
   {
    "title": "The Yellow House",
@@ -4482,7 +4654,11 @@
    "license_url": "",
    "credit_line": "Van Gogh Museum",
    "license_verified": "2026-07-16",
-   "featured_rank": 85
+   "featured_rank": 85,
+   "focal_point": [
+    0.42,
+    0.42
+   ]
   },
   {
    "title": "Portrait of Dr. Gachet",
@@ -4503,7 +4679,11 @@
    "license_url": "",
    "credit_line": "OQE_w8xp1TtbSw at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 78
+   "featured_rank": 78,
+   "focal_point": [
+    0.42,
+    0.25
+   ]
   },
   {
    "title": "Basket of Pansies",

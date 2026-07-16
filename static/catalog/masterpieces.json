@@ -637,7 +637,11 @@
    "license_url": "",
    "credit_line": "Google Arts &amp; Culture — KwF-AdF1REQl6w",
    "license_verified": "2026-07-16",
-   "featured_rank": 92
+   "featured_rank": 92,
+   "focal_point": [
+    0.68,
+    0.55
+   ]
   },
   {
    "title": "The Hay Wain",
