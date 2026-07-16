@@ -185,41 +185,63 @@ async def _throttle_for(url: str) -> None:
 # does NOT reuse it directly: that helper writes full-res bytes straight to LIBRARY_DIR with no size
 # cap and a collision-rename scheme unrelated to ours. We need the bytes in memory so we can cap +
 # re-encode before writing into the pack dir.
+
+# Size-aware fetch (ADR-040 Step-5 caveat): native masters range from ~2 MB prints to ~100 MB+
+# gigapixel paintings (Starry Night 44567px, The Scream .tif 73171px). A flat total-operation
+# timeout starves the big ones — a legit 100 MB master can't arrive in 45 s. Instead we STREAM the
+# body with a per-read timeout (each chunk must make progress, so a stalled socket still fails fast)
+# and bound the total by BYTES, not seconds. FETCH_MAX_BYTES is the runaway/DoS ceiling; a master
+# larger than this is skipped (logged), not downloaded forever.
+FETCH_MAX_BYTES = 400 * 1024 * 1024  # 400 MB — comfortably above the largest real PD masters
+# read=90s: max wait for the NEXT chunk (server-side render of a huge Wikimedia thumbnail can be slow
+# to first byte); there is deliberately no total deadline — liveness + the byte cap bound the fetch.
+FETCH_TIMEOUT = httpx.Timeout(connect=15.0, read=90.0, write=15.0, pool=15.0)
+
+
 async def _fetch_bytes(client: httpx.AsyncClient, url: str, *, retries: int = 3) -> bytes | None:
     for attempt in range(retries):
         await _throttle_for(url)
         hop_url = url
-        resp: httpx.Response | None = None
         for _hop in range(6):
             try:
-                resp = await client.get(hop_url, timeout=45.0, follow_redirects=False)
+                async with client.stream("GET", hop_url, timeout=FETCH_TIMEOUT,
+                                         follow_redirects=False) as resp:
+                    if resp.status_code in (301, 302, 303, 307, 308):
+                        loc = resp.headers.get("location")
+                        if not loc:
+                            return None
+                        hop_url = str(resp.url.join(loc))
+                        try:
+                            await asyncio.to_thread(federation._assert_public_url, hop_url)
+                        except federation.FederationError as e:
+                            logger.info(f"    x blocked redirect for {url} -> {hop_url}: {e}")
+                            return None
+                        continue  # next hop (context manager releases this connection)
+                    if resp.status_code == 429:
+                        break     # fall through to the 429 backoff below
+                    if resp.status_code != 200:
+                        logger.info(f"    x HTTP {resp.status_code} for {url}")
+                        return None
+                    ct = resp.headers.get("content-type", "").lower()
+                    if not ct.startswith("image/"):
+                        logger.info(f"    x not an image ({ct or 'unknown content-type'}) for {url}")
+                        return None
+                    chunks, total = [], 0
+                    async for chunk in resp.aiter_bytes():
+                        total += len(chunk)
+                        if total > FETCH_MAX_BYTES:
+                            logger.info(f"    x exceeds {FETCH_MAX_BYTES // (1024*1024)}MB cap for {url}")
+                            return None
+                        chunks.append(chunk)
+                    return b"".join(chunks)
             except httpx.HTTPError as e:
                 logger.info(f"    x request failed for {url}: {e}")
                 return None
-            if resp.status_code not in (301, 302, 303, 307, 308):
-                break
-            loc = resp.headers.get("location")
-            if not loc:
-                break
-            hop_url = str(resp.url.join(loc))
-            try:
-                await asyncio.to_thread(federation._assert_public_url, hop_url)
-            except federation.FederationError as e:
-                logger.info(f"    x blocked redirect for {url} -> {hop_url}: {e}")
-                return None
-        if resp is None:
+        else:
+            # ran out of redirect hops without a terminal response
             return None
-        if resp.status_code == 429:
-            await asyncio.sleep(3 * (attempt + 1))
-            continue
-        if resp.status_code != 200:
-            logger.info(f"    x HTTP {resp.status_code} for {url}")
-            return None
-        ct = resp.headers.get("content-type", "").lower()
-        if not ct.startswith("image/"):
-            logger.info(f"    x not an image ({ct or 'unknown content-type'}) for {url}")
-            return None
-        return resp.content
+        # reached only via the 429 `break`
+        await asyncio.sleep(3 * (attempt + 1))
     logger.info(f"    x exhausted 429 retries for {url}")
     return None
 
