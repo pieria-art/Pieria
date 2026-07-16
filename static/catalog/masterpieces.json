@@ -358,7 +358,11 @@
    "license_url": "",
    "credit_line": "Google Arts &amp; Culture — ywFEI4rxgCSO1Q",
    "license_verified": "2026-07-16",
-   "featured_rank": 93
+   "featured_rank": 93,
+   "focal_point": [
+    0.32,
+    0.28
+   ]
   },
   {
    "title": "The Birth of Venus",
@@ -450,7 +454,11 @@
    "license_url": "",
    "credit_line": "The Prado in Google Earth: Home page 7th level of zoom, JPEG compression quality: Photoshop 8.",
    "license_verified": "2026-07-16",
-   "featured_rank": 92
+   "featured_rank": 92,
+   "focal_point": [
+    0.48,
+    0.55
+   ]
   },
   {
    "title": "View of Delft",
@@ -471,7 +479,11 @@
    "license_url": "",
    "credit_line": "Mauritshuis",
    "license_verified": "2026-07-16",
-   "featured_rank": 92
+   "featured_rank": 92,
+   "focal_point": [
+    0.55,
+    0.55
+   ]
   },
   {
    "title": "Luncheon of the Boating Party",
@@ -492,7 +504,11 @@
    "license_url": "",
    "credit_line": "mgHsTKDNJVzPAg at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 92
+   "featured_rank": 92,
+   "focal_point": [
+    0.5,
+    0.35
+   ]
   },
   {
    "title": "Luncheon on the Grass",
@@ -513,7 +529,11 @@
    "license_url": "",
    "credit_line": "twELHYoc3ID_VA at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 92
+   "featured_rank": 92,
+   "focal_point": [
+    0.3,
+    0.38
+   ]
   },
   {
    "title": "Dance at Le Moulin de la Galette",
@@ -534,7 +554,11 @@
    "license_url": "",
    "credit_line": "rQEx7CtGiKE3yg at Google Cultural Institute zoom level scaled down from highest",
    "license_verified": "2026-07-16",
-   "featured_rank": 92
+   "featured_rank": 92,
+   "focal_point": [
+    0.43,
+    0.62
+   ]
   },
   {
    "title": "The Kiss",
@@ -664,7 +688,11 @@
    "license_url": "",
    "credit_line": "Mauritshuis",
    "license_verified": "2026-07-16",
-   "featured_rank": 90
+   "featured_rank": 90,
+   "focal_point": [
+    0.62,
+    0.28
+   ]
   },
   {
    "title": "The Art of Painting",
@@ -693,7 +721,11 @@
    "license_url": "",
    "credit_line": "Google Arts &amp; Culture — lAHeqBoLaePtEA",
    "license_verified": "2026-07-16",
-   "featured_rank": 90
+   "featured_rank": 90,
+   "focal_point": [
+    0.52,
+    0.38
+   ]
   },
   {
    "title": "The Return of the Prodigal Son",
@@ -714,7 +746,11 @@
    "license_url": "",
    "credit_line": "Google Arts &amp; Culture — 5QFIEhic3owZ-A",
    "license_verified": "2026-07-16",
-   "featured_rank": 90
+   "featured_rank": 90,
+   "focal_point": [
+    0.42,
+    0.55
+   ]
   },
   {
    "title": "The Arnolfini Portrait",

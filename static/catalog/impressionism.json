@@ -924,7 +924,11 @@
    "license_url": "",
    "credit_line": "mgHsTKDNJVzPAg at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 92
+   "featured_rank": 92,
+   "focal_point": [
+    0.5,
+    0.35
+   ]
   },
   {
    "title": "Luncheon on the Grass",
@@ -945,7 +949,11 @@
    "license_url": "",
    "credit_line": "twELHYoc3ID_VA at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 92
+   "featured_rank": 92,
+   "focal_point": [
+    0.3,
+    0.38
+   ]
   },
   {
    "title": "Olympia",
@@ -966,7 +974,11 @@
    "license_url": "",
    "credit_line": "Google Arts &amp; Culture — ywFEI4rxgCSO1Q",
    "license_verified": "2026-07-16",
-   "featured_rank": 93
+   "featured_rank": 93,
+   "focal_point": [
+    0.32,
+    0.28
+   ]
   },
   {
    "title": "Woman with a Parasol - Madame Monet and Her Son",
@@ -987,7 +999,11 @@
    "license_url": "",
    "credit_line": "Google Arts &amp; Culture — EwHxeymQQnprMg",
    "license_verified": "2026-07-16",
-   "featured_rank": 88
+   "featured_rank": 88,
+   "focal_point": [
+    0.58,
+    0.32
+   ]
   },
   {
    "title": "The Dance Class",
@@ -1008,7 +1024,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the National Gallery of Art. Please see the Gallery's Open Access Policy.",
    "license_verified": "2026-07-16",
-   "featured_rank": 78
+   "featured_rank": 78,
+   "focal_point": [
+    0.62,
+    0.65
+   ]
   },
   {
    "title": "La Loge",
@@ -1036,6 +1056,10 @@
     0.2,
     0.77,
     0.79
+   ],
+   "focal_point": [
+    0.5,
+    0.42
    ]
   },
   {
@@ -1057,7 +1081,11 @@
    "license_url": "",
    "credit_line": "WAE_4Ek4Dn6EnA at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 78
+   "featured_rank": 78,
+   "focal_point": [
+    0.32,
+    0.3
+   ]
   },
   {
    "title": "The Magpie",
@@ -1086,7 +1114,11 @@
    "license_url": "",
    "credit_line": "rQGnadHwK8lSmg at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 78
+   "featured_rank": 78,
+   "focal_point": [
+    0.22,
+    0.62
+   ]
   },
   {
    "title": "The Japanese Footbridge",
@@ -1115,7 +1147,11 @@
    "license_url": "",
    "credit_line": "Museum of Modern Art Digital Image",
    "license_verified": "2026-07-16",
-   "featured_rank": 82
+   "featured_rank": 82,
+   "focal_point": [
+    0.5,
+    0.55
+   ]
   },
   {
    "title": "Snow at Louveciennes",
@@ -1144,7 +1180,11 @@
    "license_url": "",
    "credit_line": "4gFhg7f2shCzGA at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 40
+   "featured_rank": 40,
+   "focal_point": [
+    0.58,
+    0.68
+   ]
   },
   {
    "title": "Boulevard Montmartre at Night",
@@ -1173,7 +1213,11 @@
    "license_url": "",
    "credit_line": "National Gallery, London",
    "license_verified": "2026-07-16",
-   "featured_rank": 62
+   "featured_rank": 62,
+   "focal_point": [
+    0.5,
+    0.55
+   ]
   },
   {
    "title": "Summer's Day",
@@ -1202,7 +1246,11 @@
    "license_url": "",
    "credit_line": "http://www.soho-art.com/artist-listing.php?artist=Ellen%20Day%20Hale",
    "license_verified": "2026-07-16",
-   "featured_rank": 48
+   "featured_rank": 48,
+   "focal_point": [
+    0.55,
+    0.5
+   ]
   },
   {
    "title": "Girl Arranging Her Hair",
@@ -1231,7 +1279,11 @@
    "license_url": "",
    "credit_line": "qwFIfryHT6qujA at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 38
+   "featured_rank": 38,
+   "focal_point": [
+    0.55,
+    0.25
+   ]
   },
   {
    "title": "The Floor Scrapers",
@@ -1260,7 +1312,11 @@
    "license_url": "",
    "credit_line": "Google Arts &amp; Culture — 0wHXxVpb7UjLNA",
    "license_verified": "2026-07-16",
-   "featured_rank": 68
+   "featured_rank": 68,
+   "focal_point": [
+    0.5,
+    0.45
+   ]
   },
   {
    "title": "Two Sisters (On the Terrace)",
@@ -1289,7 +1345,11 @@
    "license_url": "",
    "credit_line": "Collection of Art Institute of Chicago",
    "license_verified": "2026-07-16",
-   "featured_rank": 78
+   "featured_rank": 78,
+   "focal_point": [
+    0.42,
+    0.35
+   ]
   },
   {
    "title": "Acrobats at the Cirque Fernando (Francisca and Angelina Wartenberg)",
@@ -1318,7 +1378,11 @@
    "license_url": "",
    "credit_line": "Collection of Art Institute of Chicago",
    "license_verified": "2026-07-16",
-   "featured_rank": 45
+   "featured_rank": 45,
+   "focal_point": [
+    0.63,
+    0.5
+   ]
   },
   {
    "title": "Charing Cross Bridge, London",
@@ -1347,7 +1411,11 @@
    "license_url": "",
    "credit_line": "Collection of Art Institute of Chicago",
    "license_verified": "2026-07-16",
-   "featured_rank": 62
+   "featured_rank": 62,
+   "focal_point": [
+    0.62,
+    0.35
+   ]
   },
   {
    "title": "The Races at Longchamp",
@@ -1376,7 +1444,11 @@
    "license_url": "",
    "credit_line": "Collection of Art Institute of Chicago",
    "license_verified": "2026-07-16",
-   "featured_rank": 50
+   "featured_rank": 50,
+   "focal_point": [
+    0.55,
+    0.55
+   ]
   },
   {
    "title": "Woman at Her Toilette",
@@ -1405,7 +1477,11 @@
    "license_url": "",
    "credit_line": "Collection of Art Institute of Chicago",
    "license_verified": "2026-07-16",
-   "featured_rank": 42
+   "featured_rank": 42,
+   "focal_point": [
+    0.42,
+    0.25
+   ]
   },
   {
    "title": "On a Balcony",
@@ -1434,7 +1510,11 @@
    "license_url": "",
    "credit_line": "Collection of Art Institute of Chicago",
    "license_verified": "2026-07-16",
-   "featured_rank": 40
+   "featured_rank": 40,
+   "focal_point": [
+    0.38,
+    0.32
+   ]
   },
   {
    "title": "The Seine at Port-Marly, Piles of Sand",
@@ -1463,7 +1543,11 @@
    "license_url": "",
    "credit_line": "Collection of Art Institute of Chicago",
    "license_verified": "2026-07-16",
-   "featured_rank": 48
+   "featured_rank": 48,
+   "focal_point": [
+    0.55,
+    0.5
+   ]
   },
   {
    "title": "A Turn in the Road",
@@ -1492,7 +1576,11 @@
    "license_url": "",
    "credit_line": "Collection of Art Institute of Chicago",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.5,
+    0.68
+   ]
   },
   {
    "title": "Mill of Pont Maupuit",
@@ -1521,7 +1609,11 @@
    "license_url": "",
    "credit_line": "Collection of Art Institute of Chicago",
    "license_verified": "2026-07-16",
-   "featured_rank": 22
+   "featured_rank": 22,
+   "focal_point": [
+    0.68,
+    0.4
+   ]
   },
   {
    "title": "Paris Street; Rainy Day",
@@ -1567,7 +1659,11 @@
    "license_url": "",
    "credit_line": "National Gallery of Art, Washington, D. C., online collection",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.5,
+    0.35
+   ]
   },
   {
    "title": "Gardener's House at Antibes",
@@ -1588,7 +1684,11 @@
    "license_url": "",
    "credit_line": "https://clevelandart.org/art/1916.1044 IA",
    "license_verified": "2026-07-16",
-   "featured_rank": 38
+   "featured_rank": 38,
+   "focal_point": [
+    0.55,
+    0.4
+   ]
   },
   {
    "title": "Low Tide at Pourville, near Dieppe",
@@ -1609,7 +1709,11 @@
    "license_url": "",
    "credit_line": "https://clevelandart.org/art/1947.196 IA",
    "license_verified": "2026-07-16",
-   "featured_rank": 40
+   "featured_rank": 40,
+   "focal_point": [
+    0.62,
+    0.35
+   ]
   },
   {
    "title": "The Red Kerchief: Portrait of Madame Monet",
@@ -1630,7 +1734,11 @@
    "license_url": "",
    "credit_line": "https://clevelandart.org/art/1958.39 IA",
    "license_verified": "2026-07-16",
-   "featured_rank": 42
+   "featured_rank": 42,
+   "focal_point": [
+    0.52,
+    0.45
+   ]
   },
   {
    "title": "Corner of a Lake at Montgeron",
@@ -1651,7 +1759,11 @@
    "license_url": "",
    "credit_line": "Own work, anagoria",
    "license_verified": "2026-07-16",
-   "featured_rank": 40
+   "featured_rank": 40,
+   "focal_point": [
+    0.5,
+    0.45
+   ]
   },
   {
    "title": "Grainstack at Giverny",
@@ -1672,7 +1784,11 @@
    "license_url": "",
    "credit_line": "anagoria",
    "license_verified": "2026-07-16",
-   "featured_rank": 65
+   "featured_rank": 65,
+   "focal_point": [
+    0.45,
+    0.45
+   ]
   },
   {
    "title": "Rouen Cathedral, Noon",
@@ -1693,7 +1809,11 @@
    "license_url": "",
    "credit_line": "The Museum of Modern Western Art (NWM), GMNZI: 142",
    "license_verified": "2026-07-16",
-   "featured_rank": 80
+   "featured_rank": 80,
+   "focal_point": [
+    0.5,
+    0.4
+   ]
   },
   {
    "title": "Rouen Cathedral, West Façade, Sunlight",
@@ -1714,7 +1834,11 @@
    "license_url": "",
    "credit_line": "1. purl.org2. National Gallery of Art, Washington, D. C., online collection",
    "license_verified": "2026-07-16",
-   "featured_rank": 78
+   "featured_rank": 78,
+   "focal_point": [
+    0.5,
+    0.4
+   ]
   },
   {
    "title": "Rouen Cathedral, West Façade, Overcast Weather",
@@ -1735,7 +1859,11 @@
    "license_url": "",
    "credit_line": "xQGPN6O01y20AA at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 80
+   "featured_rank": 80,
+   "focal_point": [
+    0.5,
+    0.35
+   ]
   },
   {
    "title": "Rouen Cathedral, The Portal, Grey Weather",
@@ -1756,7 +1884,11 @@
    "license_url": "",
    "credit_line": "JQF3hNC2GLQLKQ at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 80
+   "featured_rank": 80,
+   "focal_point": [
+    0.5,
+    0.55
+   ]
   },
   {
    "title": "Poplars, Wind Effect",
@@ -1777,7 +1909,11 @@
    "license_url": "",
    "credit_line": "tgHEOLlXi2OOlg at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 65
+   "featured_rank": 65,
+   "focal_point": [
+    0.55,
+    0.45
+   ]
   },
   {
    "title": "The Water Lily Pond",
@@ -1819,7 +1955,11 @@
    "license_url": "",
    "credit_line": "https://artgallery.yale.edu/collections/objects/76857",
    "license_verified": "2026-07-16",
-   "featured_rank": 42
+   "featured_rank": 42,
+   "focal_point": [
+    0.35,
+    0.42
+   ]
   },
   {
    "title": "Cottage on the Cliffs near Varangeville",
@@ -1847,6 +1987,10 @@
     0.11,
     0.91,
     0.87
+   ],
+   "focal_point": [
+    0.45,
+    0.45
    ]
   },
   {
@@ -1889,7 +2033,11 @@
    "license_url": "",
    "credit_line": "Museum Barberini",
    "license_verified": "2026-07-16",
-   "featured_rank": 40
+   "featured_rank": 40,
+   "focal_point": [
+    0.35,
+    0.35
+   ]
   },
   {
    "title": "Bathers at La Grenouillère",
@@ -1910,7 +2058,11 @@
    "license_url": "",
    "credit_line": "https://www.nationalgallery.org.uk/paintings/claude-monet-bathers-at-la-grenouillere",
    "license_verified": "2026-07-16",
-   "featured_rank": 68
+   "featured_rank": 68,
+   "focal_point": [
+    0.55,
+    0.4
+   ]
   },
   {
    "title": "Camille Monet on Her Deathbed",
@@ -2163,7 +2315,11 @@
    "license_url": "",
    "credit_line": "58044-Paris",
    "license_verified": "2026-07-16",
-   "featured_rank": 55
+   "featured_rank": 55,
+   "focal_point": [
+    0.42,
+    0.35
+   ]
   },
   {
    "title": "Corner of Water Lily Pond",
@@ -2205,7 +2361,11 @@
    "license_url": "",
    "credit_line": "rQEx7CtGiKE3yg at Google Cultural Institute zoom level scaled down from highest",
    "license_verified": "2026-07-16",
-   "featured_rank": 92
+   "featured_rank": 92,
+   "focal_point": [
+    0.43,
+    0.62
+   ]
   },
   {
    "title": "Portrait of Romaine Lacaux",
@@ -2527,7 +2687,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "https://clevelandart.org/art/1961.285",
    "license_verified": "2026-07-16",
-   "featured_rank": 35
+   "featured_rank": 35,
+   "focal_point": [
+    0.55,
+    0.25
+   ]
   },
   {
    "title": "Algerian Girl",
@@ -2548,7 +2712,11 @@
    "license_url": "",
    "credit_line": "Google Arts &amp; Culture — CwE5LbMvIwJ6tg",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.42,
+    0.27
+   ]
   },
   {
    "title": "Portrait of Alphonsine Fournaise",
@@ -2611,7 +2779,11 @@
    "license_url": "",
    "credit_line": "https://masp.org.br/acervo/obra/banhista-enxugando-o-braco-direito-grande-nu-sentado",
    "license_verified": "2026-07-16",
-   "featured_rank": 42
+   "featured_rank": 42,
+   "focal_point": [
+    0.32,
+    0.18
+   ]
   },
   {
    "title": "Bather Drying Her Right Leg",
@@ -2850,7 +3022,11 @@
    "license_url": "",
    "credit_line": "Clark Art Institute",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.52,
+    0.22
+   ]
   },
   {
    "title": "Luncheon in the Studio",
@@ -2934,7 +3110,11 @@
    "license_url": "",
    "credit_line": "ggFK0UgXAd7OCA at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 72
+   "featured_rank": 72,
+   "focal_point": [
+    0.72,
+    0.27
+   ]
   },
   {
    "title": "The Hare (Un Lièvre)",
@@ -3270,7 +3450,11 @@
    "license_url": "",
    "credit_line": "7wEOLcnwTUJzJw at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 35
+   "featured_rank": 35,
+   "focal_point": [
+    0.38,
+    0.38
+   ]
   },
   {
    "title": "The Laundry (Le Linge)",
@@ -3536,7 +3720,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the National Gallery of Art. Please see the Gallery's Open Access Policy.",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.45,
+    0.42
+   ]
   },
   {
    "title": "Peonies",
@@ -3620,7 +3808,11 @@
    "license_url": "",
    "credit_line": "https://collection.barnesfoundation.org/objects/5652/details",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.63,
+    0.6
+   ]
   },
   {
    "title": "Woman Viewed from Behind (Visit to a Museum)",

@@ -24,7 +24,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "https://clevelandart.org/art/1959.14",
    "license_verified": "2026-07-16",
-   "featured_rank": 45
+   "featured_rank": 45,
+   "focal_point": [
+    0.42,
+    0.42
+   ]
   },
   {
    "title": "Rosa Gallica",
@@ -45,7 +49,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "https://clevelandart.org/art/1955.471",
    "license_verified": "2026-07-16",
-   "featured_rank": 35
+   "featured_rank": 35,
+   "focal_point": [
+    0.55,
+    0.35
+   ]
   },
   {
    "title": "Lilium Candidum (Madonna Lily)",
@@ -66,7 +74,11 @@
    "license_url": "",
    "credit_line": "Les Liliacées (1802–1816).",
    "license_verified": "2026-07-16",
-   "featured_rank": 35
+   "featured_rank": 35,
+   "focal_point": [
+    0.55,
+    0.25
+   ]
   },
   {
    "title": "Dalmatian Iris (Iris Pallida)",
@@ -87,7 +99,11 @@
    "license_url": "",
    "credit_line": "MwG6BpfOcOAlPA at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 35
+   "featured_rank": 35,
+   "focal_point": [
+    0.62,
+    0.3
+   ]
   },
   {
    "title": "Kunstformen der Natur: Nepenthaceae (Pitcher Plants)",
@@ -108,7 +124,11 @@
    "license_url": "",
    "credit_line": "Library of Congress Catalog: https://lccn.loc.gov/2015648944 Image download: https://cdn.loc.gov/service/pnp/ds/07500/07594v.jpg Original url: https://www.loc.gov/pictures/item/2015648944/",
    "license_verified": "2026-07-16",
-   "featured_rank": 42
+   "featured_rank": 42,
+   "focal_point": [
+    0.5,
+    0.5
+   ]
   },
   {
    "title": "Kunstformen der Natur: Trochilidae (Hummingbirds)",
@@ -129,7 +149,11 @@
    "license_url": "",
    "credit_line": "Library of Congress Catalog: https://lccn.loc.gov/2015648985 Image download: https://cdn.loc.gov/service/pnp/ds/07600/07627v.jpg Original url: https://www.loc.gov/pictures/item/2015648985/",
    "license_verified": "2026-07-16",
-   "featured_rank": 55
+   "featured_rank": 55,
+   "focal_point": [
+    0.5,
+    0.5
+   ]
   },
   {
    "title": "Kunstformen der Natur: Discomedusae (Jellyfish)",
@@ -150,7 +174,11 @@
    "license_url": "",
    "credit_line": "Library of Congress Catalog: https://lccn.loc.gov/2014645034 Image download: https://cdn.loc.gov/service/pnp/ds/05300/05316v.jpg Original url: https://www.loc.gov/pictures/item/2014645034/",
    "license_verified": "2026-07-16",
-   "featured_rank": 40
+   "featured_rank": 40,
+   "focal_point": [
+    0.5,
+    0.45
+   ]
   },
   {
    "title": "Kunstformen der Natur: Chiroptera (Bats)",
@@ -171,7 +199,11 @@
    "license_url": "",
    "credit_line": "https://www.biodiversitylibrary.org/pageimage/47388315",
    "license_verified": "2026-07-16",
-   "featured_rank": 50
+   "featured_rank": 50,
+   "focal_point": [
+    0.5,
+    0.28
+   ]
   },
   {
    "title": "Kunstformen der Natur: Actiniae (Sea Anemones)",
@@ -192,7 +224,11 @@
    "license_url": "",
    "credit_line": "Library of Congress Catalog: https://lccn.loc.gov/2014645036 Image download: https://cdn.loc.gov/service/pnp/ds/05300/05318v.jpg Original url: https://www.loc.gov/pictures/item/2014645036/",
    "license_verified": "2026-07-16",
-   "featured_rank": 40
+   "featured_rank": 40,
+   "focal_point": [
+    0.5,
+    0.5
+   ]
   },
   {
    "title": "Pineapple with Cockroaches",
@@ -213,7 +249,11 @@
    "license_url": "",
    "credit_line": "https://www.biodiversitylibrary.org/page/41398747",
    "license_verified": "2026-07-16",
-   "featured_rank": 55
+   "featured_rank": 55,
+   "focal_point": [
+    0.4,
+    0.5
+   ]
   },
   {
    "title": "Magnolia Grandiflora",
@@ -234,7 +274,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "https://clevelandart.org/art/1955.333",
    "license_verified": "2026-07-16",
-   "featured_rank": 25
+   "featured_rank": 25,
+   "focal_point": [
+    0.5,
+    0.35
+   ]
   },
   {
    "title": "Red Poppy",
@@ -255,7 +299,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This image is uploaded as image number 88236 at Amgueddfa Cymru Images.This tag does not indicate the copyright status of the attached work. A normal copyright tag is still required. See Commons:Licensing.",
    "license_verified": "2026-07-16",
-   "featured_rank": 16
+   "featured_rank": 16,
+   "focal_point": [
+    0.45,
+    0.25
+   ]
   },
   {
    "title": "Superb Lyrebird",
@@ -297,7 +345,11 @@
    "license_url": "",
    "credit_line": "The Natural History of Carolina, Florida and Bahamas V. 1 (1754)",
    "license_verified": "2026-07-16",
-   "featured_rank": 38
+   "featured_rank": 38,
+   "focal_point": [
+    0.42,
+    0.4
+   ]
   }
  ]
 }

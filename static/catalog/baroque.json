@@ -3336,7 +3336,11 @@
    "license_url": "",
    "credit_line": "Staatliche Museen zu Berlin",
    "license_verified": "2026-07-16",
-   "featured_rank": 35
+   "featured_rank": 35,
+   "focal_point": [
+    0.28,
+    0.22
+   ]
   },
   {
    "title": "The Raising of Lazarus",
@@ -3357,7 +3361,11 @@
    "license_url": "",
    "credit_line": "Staatliche Museen zu Berlin",
    "license_verified": "2026-07-16",
-   "featured_rank": 35
+   "featured_rank": 35,
+   "focal_point": [
+    0.72,
+    0.25
+   ]
   },
   {
    "title": "Saint Cecilia",
@@ -3378,7 +3386,11 @@
    "license_url": "",
    "credit_line": "Staatliche Museen zu Berlin",
    "license_verified": "2026-07-16",
-   "featured_rank": 35
+   "featured_rank": 35,
+   "focal_point": [
+    0.5,
+    0.25
+   ]
   },
   {
    "title": "The Drunken Silenus",
@@ -3399,7 +3411,11 @@
    "license_url": "",
    "credit_line": "Staatliche Museen zu Berlin",
    "license_verified": "2026-07-16",
-   "featured_rank": 55
+   "featured_rank": 55,
+   "focal_point": [
+    0.4,
+    0.45
+   ]
   },
   {
    "title": "The Penitent Magdalene",
@@ -3420,7 +3436,11 @@
    "license_url": "",
    "credit_line": "Staatliche Museen zu Berlin",
    "license_verified": "2026-07-16",
-   "featured_rank": 35
+   "featured_rank": 35,
+   "focal_point": [
+    0.48,
+    0.32
+   ]
   },
   {
    "title": "Madonna and Child",
@@ -3441,7 +3461,11 @@
    "license_url": "",
    "credit_line": "Staatliche Museen zu Berlin",
    "license_verified": "2026-07-16",
-   "featured_rank": 35
+   "featured_rank": 35,
+   "focal_point": [
+    0.42,
+    0.4
+   ]
   },
   {
    "title": "Three Riders in Different Positions",
@@ -3462,7 +3486,11 @@
    "license_url": "",
    "credit_line": "Staatliche Museen zu Berlin",
    "license_verified": "2026-07-16",
-   "featured_rank": 26
+   "featured_rank": 26,
+   "focal_point": [
+    0.48,
+    0.4
+   ]
   },
   {
    "title": "Atalanta and Meleager",
@@ -3483,7 +3511,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
-   "featured_rank": 42
+   "featured_rank": 42,
+   "focal_point": [
+    0.38,
+    0.42
+   ]
   },
   {
    "title": "The Andrians",
@@ -3504,7 +3536,11 @@
    "license_url": "",
    "credit_line": "pQEsnekNNILWPQ at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 42
+   "featured_rank": 42,
+   "focal_point": [
+    0.6,
+    0.45
+   ]
   },
   {
    "title": "The Feast of Herod",
@@ -3525,7 +3561,11 @@
    "license_url": "",
    "credit_line": "Own work 17 August 2013 Ad Meskens.",
    "license_verified": "2026-07-16",
-   "featured_rank": 44
+   "featured_rank": 44,
+   "focal_point": [
+    0.4,
+    0.45
+   ]
   },
   {
    "title": "Evening Landscape with a Timber Wagon",
@@ -3546,7 +3586,11 @@
    "license_url": "",
    "credit_line": "cgFcDUneAqR5KQ at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 40
+   "featured_rank": 40,
+   "focal_point": [
+    0.55,
+    0.7
+   ]
   },
   {
    "title": "Lot and His Daughters",
@@ -3567,7 +3611,11 @@
    "license_url": "",
    "credit_line": "Christie´s",
    "license_verified": "2026-07-16",
-   "featured_rank": 35
+   "featured_rank": 35,
+   "focal_point": [
+    0.45,
+    0.45
+   ]
   },
   {
    "title": "Las Meninas",
@@ -3588,7 +3636,11 @@
    "license_url": "",
    "credit_line": "The Prado in Google Earth: Home page 7th level of zoom, JPEG compression quality: Photoshop 8.",
    "license_verified": "2026-07-16",
-   "featured_rank": 92
+   "featured_rank": 92,
+   "focal_point": [
+    0.48,
+    0.55
+   ]
   }
  ]
 }

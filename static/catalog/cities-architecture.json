@@ -32,7 +32,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 35
+   "featured_rank": 35,
+   "focal_point": [
+    0.45,
+    0.4
+   ]
   },
   {
    "title": "The Albert Memorial, London",
@@ -61,7 +65,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 75
+   "featured_rank": 75,
+   "focal_point": [
+    0.52,
+    0.45
+   ]
   },
   {
    "title": "The Waag, Nieuwmarkt, Amsterdam",
@@ -90,7 +98,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 45
+   "featured_rank": 45,
+   "focal_point": [
+    0.5,
+    0.35
+   ]
   },
   {
    "title": "The Betsy Ross House, Philadelphia",
@@ -118,7 +130,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 50
+   "featured_rank": 50,
+   "focal_point": [
+    0.5,
+    0.55
+   ]
   },
   {
    "title": "The Belfry and Canal, Bruges",
@@ -147,7 +163,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 65
+   "featured_rank": 65,
+   "focal_point": [
+    0.15,
+    0.32
+   ]
   },
   {
    "title": "The National Bank, Bucharest",
@@ -176,7 +196,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 20
+   "featured_rank": 20,
+   "focal_point": [
+    0.48,
+    0.35
+   ]
   },
   {
    "title": "Domnița Bălașa Church, Bucharest",
@@ -205,7 +229,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 18
+   "featured_rank": 18,
+   "focal_point": [
+    0.45,
+    0.3
+   ]
   },
   {
    "title": "The Archway, St. Augustine's Abbey, Canterbury",
@@ -234,7 +262,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 35
+   "featured_rank": 35,
+   "focal_point": [
+    0.6,
+    0.25
+   ]
   },
   {
    "title": "Grain Elevators on the Chicago River",
@@ -263,7 +295,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 22
+   "featured_rank": 22,
+   "focal_point": [
+    0.62,
+    0.5
+   ]
   },
   {
    "title": "Christ Church, Philadelphia",
@@ -292,7 +328,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 40
+   "featured_rank": 40,
+   "focal_point": [
+    0.55,
+    0.4
+   ]
   },
   {
    "title": "Cliveden, the Chew Mansion, Germantown",
@@ -321,7 +361,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 25
+   "featured_rank": 25,
+   "focal_point": [
+    0.5,
+    0.42
+   ]
   },
   {
    "title": "Reichsburg Cochem on the Moselle",
@@ -350,7 +394,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 45
+   "featured_rank": 45,
+   "focal_point": [
+    0.5,
+    0.35
+   ]
   },
   {
    "title": "Detroit Museum of Art",
@@ -379,7 +427,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.45,
+    0.4
+   ]
   },
   {
    "title": "Western Boulevard, Detroit",
@@ -408,7 +460,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 15
+   "featured_rank": 15,
+   "focal_point": [
+    0.5,
+    0.5
+   ]
   },
   {
    "title": "Field Columbian Museum, Jackson Park, Chicago",
@@ -437,7 +493,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 35
+   "featured_rank": 35,
+   "focal_point": [
+    0.55,
+    0.35
+   ]
   },
   {
    "title": "Fort Marion (Castillo de San Marcos), St. Augustine",
@@ -466,7 +526,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 55
+   "featured_rank": 55,
+   "focal_point": [
+    0.55,
+    0.4
+   ]
   },
   {
    "title": "Illinois Trust and Savings Bank, Chicago",
@@ -495,7 +559,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 20
+   "featured_rank": 20,
+   "focal_point": [
+    0.5,
+    0.4
+   ]
   },
   {
    "title": "Independence Hall, Philadelphia",
@@ -524,7 +592,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 88
+   "featured_rank": 88,
+   "focal_point": [
+    0.45,
+    0.35
+   ]
   },
   {
    "title": "Brasov Town Hall (Kronstadt Rathaus)",
@@ -553,7 +625,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 18
+   "featured_rank": 18,
+   "focal_point": [
+    0.48,
+    0.35
+   ]
   },
   {
    "title": "Grant Monument, Lincoln Park, Chicago",
@@ -582,7 +658,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 25
+   "featured_rank": 25,
+   "focal_point": [
+    0.5,
+    0.25
+   ]
   },
   {
    "title": "Lafayette Monument, Lafayette Park, Washington",
@@ -611,7 +691,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.5,
+    0.3
+   ]
   },
   {
    "title": "Trafalgar Square, London",
@@ -639,7 +723,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 85
+   "featured_rank": 85,
+   "focal_point": [
+    0.5,
+    0.35
+   ]
   },
   {
    "title": "Basílica de San Francisco el Grande, Madrid",
@@ -667,7 +755,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 40
+   "featured_rank": 40,
+   "focal_point": [
+    0.5,
+    0.35
+   ]
   },
   {
    "title": "Founder's Hall, Girard College, Philadelphia",
@@ -695,7 +787,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 20
+   "featured_rank": 20,
+   "focal_point": [
+    0.5,
+    0.35
+   ]
   },
   {
    "title": "Masonic Temple, Chicago",
@@ -723,7 +819,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 35
+   "featured_rank": 35,
+   "focal_point": [
+    0.42,
+    0.35
+   ]
   },
   {
    "title": "Mission Dolores, San Francisco",
@@ -751,7 +851,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 45
+   "featured_rank": 45,
+   "focal_point": [
+    0.55,
+    0.45
+   ]
   },
   {
    "title": "Mount Pleasant Mansion, Philadelphia",
@@ -779,7 +883,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 22
+   "featured_rank": 22,
+   "focal_point": [
+    0.45,
+    0.35
+   ]
   },
   {
    "title": "San Francisco Wharf, Havana",
@@ -807,7 +915,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 20
+   "featured_rank": 20,
+   "focal_point": [
+    0.5,
+    0.4
+   ]
   },
   {
    "title": "New Old South Church, Boston",
@@ -835,7 +947,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 38
+   "featured_rank": 38,
+   "focal_point": [
+    0.42,
+    0.4
+   ]
   },
   {
    "title": "Old City Gate, St. Augustine",
@@ -863,7 +979,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.42,
+    0.62
+   ]
   },
   {
    "title": "Grand Foyer, Palais Garnier, Paris",
@@ -891,7 +1011,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 72
+   "featured_rank": 72,
+   "focal_point": [
+    0.5,
+    0.45
+   ]
   },
   {
    "title": "Palais Garnier, Paris",
@@ -919,7 +1043,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 78
+   "featured_rank": 78,
+   "focal_point": [
+    0.5,
+    0.35
+   ]
   },
   {
    "title": "La Madeleine, Paris",
@@ -947,7 +1075,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 68
+   "featured_rank": 68,
+   "focal_point": [
+    0.48,
+    0.35
+   ]
   },
   {
    "title": "The Louvre, Paris",
@@ -975,7 +1107,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 95
+   "featured_rank": 95,
+   "focal_point": [
+    0.35,
+    0.75
+   ]
   },
   {
    "title": "The Panthéon, Paris",
@@ -1003,7 +1139,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 60
+   "featured_rank": 60,
+   "focal_point": [
+    0.5,
+    0.38
+   ]
   },
   {
    "title": "Notre-Dame Cathedral, Paris",
@@ -1031,7 +1171,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 95
+   "featured_rank": 95,
+   "focal_point": [
+    0.55,
+    0.35
+   ]
   },
   {
    "title": "The Palais Royal, Paris",
@@ -1059,7 +1203,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 55
+   "featured_rank": 55,
+   "focal_point": [
+    0.5,
+    0.3
+   ]
   },
   {
    "title": "Porte Saint-Denis, Paris",
@@ -1087,7 +1235,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 40
+   "featured_rank": 40,
+   "focal_point": [
+    0.5,
+    0.35
+   ]
   },
   {
    "title": "Plymouth Church, Brooklyn",
@@ -1115,7 +1267,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 18
+   "featured_rank": 18,
+   "focal_point": [
+    0.58,
+    0.35
+   ]
   },
   {
    "title": "Randolph Street, Chicago",
@@ -1143,7 +1299,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 25
+   "featured_rank": 25,
+   "focal_point": [
+    0.55,
+    0.4
+   ]
   },
   {
    "title": "The Potter Palmer Mansion, Chicago",
@@ -1171,7 +1331,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 22
+   "featured_rank": 22,
+   "focal_point": [
+    0.48,
+    0.35
+   ]
   },
   {
    "title": "United States Soldiers' Home, Washington",
@@ -1199,7 +1363,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 20
+   "featured_rank": 20,
+   "focal_point": [
+    0.4,
+    0.35
+   ]
   },
   {
    "title": "St. Botolph's Church, Boston, England",
@@ -1227,7 +1395,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 20
+   "featured_rank": 20,
+   "focal_point": [
+    0.62,
+    0.35
+   ]
   },
   {
    "title": "State Street, Chicago",
@@ -1255,7 +1427,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 48
+   "featured_rank": 48,
+   "focal_point": [
+    0.5,
+    0.45
+   ]
   },
   {
    "title": "The State, War, and Navy Building, Washington",
@@ -1283,7 +1459,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 55
+   "featured_rank": 55,
+   "focal_point": [
+    0.48,
+    0.4
+   ]
   },
   {
    "title": "The Statue of Liberty, New York Harbor",
@@ -1311,7 +1491,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 98
+   "featured_rank": 98,
+   "focal_point": [
+    0.5,
+    0.4
+   ]
   },
   {
    "title": "Strawberry Mansion, Philadelphia",
@@ -1339,7 +1523,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 18
+   "featured_rank": 18,
+   "focal_point": [
+    0.52,
+    0.5
+   ]
   },
   {
    "title": "The Alcazar Hotel, St. Augustine",
@@ -1367,7 +1555,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.5,
+    0.35
+   ]
   },
   {
    "title": "The Auditorium Building, Chicago",
@@ -1395,7 +1587,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 35
+   "featured_rank": 35,
+   "focal_point": [
+    0.5,
+    0.4
+   ]
   },
   {
    "title": "The U.S. Capitol, Washington D.C.",
@@ -1423,7 +1619,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 96
+   "featured_rank": 96,
+   "focal_point": [
+    0.55,
+    0.35
+   ]
   },
   {
    "title": "Grand Army Plaza, Brooklyn",
@@ -1451,7 +1651,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 45
+   "featured_rank": 45,
+   "focal_point": [
+    0.15,
+    0.55
+   ]
   },
   {
    "title": "The Morris-Jumel Mansion, New York",
@@ -1479,7 +1683,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 20
+   "featured_rank": 20,
+   "focal_point": [
+    0.42,
+    0.4
+   ]
   },
   {
    "title": "The Library of Congress, Washington D.C.",
@@ -1507,7 +1715,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 62
+   "featured_rank": 62,
+   "focal_point": [
+    0.5,
+    0.35
+   ]
   },
   {
    "title": "The Hotel Ponce de Leon, St. Augustine",
@@ -1535,7 +1747,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 32
+   "featured_rank": 32,
+   "focal_point": [
+    0.5,
+    0.45
+   ]
   },
   {
    "title": "The Cliff House and Seal Rocks, San Francisco",
@@ -1563,7 +1779,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 45
+   "featured_rank": 45,
+   "focal_point": [
+    0.4,
+    0.45
+   ]
   },
   {
    "title": "The Boardwalk Casino, Atlantic City",
@@ -1591,7 +1811,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 35
+   "featured_rank": 35,
+   "focal_point": [
+    0.55,
+    0.35
+   ]
   },
   {
    "title": "The Lodge, Golden Gate Park, San Francisco",
@@ -1619,7 +1843,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.45,
+    0.4
+   ]
   },
   {
    "title": "Tremont Street, Boston",
@@ -1647,7 +1875,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 38
+   "featured_rank": 38,
+   "focal_point": [
+    0.17,
+    0.32
+   ]
   },
   {
    "title": "Wabash Avenue, Chicago",
@@ -1675,7 +1907,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 35
+   "featured_rank": 35,
+   "focal_point": [
+    0.45,
+    0.4
+   ]
   },
   {
    "title": "The Washington Monument",
@@ -1703,7 +1939,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 92
+   "featured_rank": 92,
+   "focal_point": [
+    0.5,
+    0.4
+   ]
   },
   {
    "title": "Jackson Monument and the White House, Washington",
@@ -1731,7 +1971,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 85
+   "featured_rank": 85,
+   "focal_point": [
+    0.33,
+    0.42
+   ]
   },
   {
    "title": "The Naval Monument, Washington",
@@ -1759,7 +2003,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 22
+   "featured_rank": 22,
+   "focal_point": [
+    0.35,
+    0.35
+   ]
   },
   {
    "title": "The Smithsonian Institution, Washington",
@@ -1787,7 +2035,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 65
+   "featured_rank": 65,
+   "focal_point": [
+    0.55,
+    0.35
+   ]
   },
   {
    "title": "The Library of Congress, Washington",
@@ -1815,7 +2067,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 62
+   "featured_rank": 62,
+   "focal_point": [
+    0.45,
+    0.4
+   ]
   },
   {
    "title": "A Venetian Street",
@@ -1843,7 +2099,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 42
+   "featured_rank": 42,
+   "focal_point": [
+    0.42,
+    0.55
+   ]
   },
   {
    "title": "Old Paris, Exposition Universelle 1900",
@@ -1871,7 +2131,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 40
+   "featured_rank": 40,
+   "focal_point": [
+    0.42,
+    0.68
+   ]
   },
   {
    "title": "The Arsenale, Venice",
@@ -1899,7 +2163,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 48
+   "featured_rank": 48,
+   "focal_point": [
+    0.35,
+    0.45
+   ]
   },
   {
    "title": "The British Museum, London",
@@ -1927,7 +2195,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 78
+   "featured_rank": 78,
+   "focal_point": [
+    0.5,
+    0.35
+   ]
   },
   {
    "title": "Cheapside, London",
@@ -1955,7 +2227,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 40
+   "featured_rank": 40,
+   "focal_point": [
+    0.48,
+    0.42
+   ]
   },
   {
    "title": "View of Vienna from the Riesenrad",
@@ -1983,7 +2259,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 55
+   "featured_rank": 55,
+   "focal_point": [
+    0.5,
+    0.45
+   ]
   },
   {
    "title": "General View of Miskolc, Hungary",
@@ -2011,7 +2291,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 15
+   "featured_rank": 15,
+   "focal_point": [
+    0.45,
+    0.75
+   ]
   },
   {
    "title": "Venice Harbour",
@@ -2039,7 +2323,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 70
+   "featured_rank": 70,
+   "focal_point": [
+    0.55,
+    0.42
+   ]
   },
   {
    "title": "The Hofburg Palace, Vienna",
@@ -2067,7 +2355,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 65
+   "featured_rank": 65,
+   "focal_point": [
+    0.5,
+    0.4
+   ]
   },
   {
    "title": "Holborn Viaduct, London",
@@ -2095,7 +2387,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 35
+   "featured_rank": 35,
+   "focal_point": [
+    0.62,
+    0.35
+   ]
   },
   {
    "title": "Kahlenberg, Vienna",
@@ -2123,7 +2419,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.52,
+    0.28
+   ]
   },
   {
    "title": "Kossuth Monument, Miskolc",
@@ -2151,7 +2451,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 12
+   "featured_rank": 12,
+   "focal_point": [
+    0.42,
+    0.35
+   ]
   },
   {
    "title": "Lambeth Palace, London",
@@ -2180,7 +2484,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 40
+   "featured_rank": 40,
+   "focal_point": [
+    0.45,
+    0.6
+   ]
   },
   {
    "title": "Leopoldsberg, Vienna",
@@ -2208,7 +2516,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.6,
+    0.78
+   ]
   },
   {
    "title": "London Bridge",
@@ -2237,7 +2549,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 88
+   "featured_rank": 88,
+   "focal_point": [
+    0.5,
+    0.55
+   ]
   },
   {
    "title": "A Vienna Marketplace",
@@ -2265,7 +2581,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 35
+   "featured_rank": 35,
+   "focal_point": [
+    0.68,
+    0.4
+   ]
   },
   {
    "title": "The Market, Bremerhaven",
@@ -2293,7 +2613,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 15
+   "featured_rank": 15,
+   "focal_point": [
+    0.48,
+    0.55
+   ]
   },
   {
    "title": "Church of St. Étienne-du-Mont, Paris",
@@ -2322,7 +2646,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 38
+   "featured_rank": 38,
+   "focal_point": [
+    0.42,
+    0.35
+   ]
   },
   {
    "title": "The Parliament Building, Vienna",
@@ -2351,7 +2679,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 60
+   "featured_rank": 60,
+   "focal_point": [
+    0.5,
+    0.35
+   ]
   },
   {
    "title": "Ca' Pesaro, Venice",
@@ -2380,7 +2712,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 45
+   "featured_rank": 45,
+   "focal_point": [
+    0.45,
+    0.3
+   ]
   },
   {
    "title": "Piccadilly Circus, London",
@@ -2408,7 +2744,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 80
+   "featured_rank": 80,
+   "focal_point": [
+    0.55,
+    0.5
+   ]
   },
   {
    "title": "Ca' Rezzonico, Venice",
@@ -2437,7 +2777,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 45
+   "featured_rank": 45,
+   "focal_point": [
+    0.42,
+    0.35
+   ]
   },
   {
    "title": "The Royal Exchange, London",
@@ -2466,7 +2810,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 42
+   "featured_rank": 42,
+   "focal_point": [
+    0.42,
+    0.35
+   ]
   },
   {
    "title": "Fort Crown Point Ruins, New York",
@@ -2494,7 +2842,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 18
+   "featured_rank": 18,
+   "focal_point": [
+    0.35,
+    0.4
+   ]
   },
   {
    "title": "Church of Saint-Augustin, Paris",
@@ -2523,7 +2875,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 38
+   "featured_rank": 38,
+   "focal_point": [
+    0.45,
+    0.35
+   ]
   },
   {
    "title": "St. Augustine's Bridge, Bristol",
@@ -2552,7 +2908,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 25
+   "featured_rank": 25,
+   "focal_point": [
+    0.68,
+    0.35
+   ]
   },
   {
    "title": "The Thames Embankment, London",
@@ -2581,7 +2941,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 55
+   "featured_rank": 55,
+   "focal_point": [
+    0.58,
+    0.72
+   ]
   },
   {
    "title": "The Paris Opéra (Palais Garnier)",
@@ -2610,7 +2974,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 82
+   "featured_rank": 82,
+   "focal_point": [
+    0.5,
+    0.35
+   ]
   },
   {
    "title": "The Piazzetta, Venice",
@@ -2639,7 +3007,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 68
+   "featured_rank": 68,
+   "focal_point": [
+    0.32,
+    0.35
+   ]
   },
   {
    "title": "The Tower of London",
@@ -2668,7 +3040,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 92
+   "featured_rank": 92,
+   "focal_point": [
+    0.58,
+    0.32
+   ]
   },
   {
    "title": "The University of Vienna",
@@ -2697,7 +3073,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 45
+   "featured_rank": 45,
+   "focal_point": [
+    0.55,
+    0.35
+   ]
   },
   {
    "title": "The Three Bridges, Venice",
@@ -2726,7 +3106,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 55
+   "featured_rank": 55,
+   "focal_point": [
+    0.35,
+    0.65
+   ]
   },
   {
    "title": "Venice Harbour and the Doge's Palace",
@@ -2755,7 +3139,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 85
+   "featured_rank": 85,
+   "focal_point": [
+    0.6,
+    0.35
+   ]
   },
   {
    "title": "The Votivkirche, Vienna",
@@ -2784,7 +3172,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 42
+   "featured_rank": 42,
+   "focal_point": [
+    0.5,
+    0.4
+   ]
   },
   {
    "title": "Westminster Abbey, London",
@@ -2813,7 +3205,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 90
+   "featured_rank": 90,
+   "focal_point": [
+    0.3,
+    0.35
+   ]
   },
   {
    "title": "The Wurstelprater, Vienna",
@@ -2842,7 +3238,11 @@
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
    "license_verified": "2026-07-16",
-   "featured_rank": 40
+   "featured_rank": 40,
+   "focal_point": [
+    0.72,
+    0.35
+   ]
   }
  ]
 }
