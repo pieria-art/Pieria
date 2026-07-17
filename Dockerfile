@@ -17,6 +17,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the rest of the application code
 COPY . .
+RUN chmod +x docker-entrypoint.sh
 
 # Run as a non-root user (C1 hardening: contains any future write-primitive). uid/gid 1000 matches the
 # host owner of the ./Artwork and ./data bind mounts on the Pi and the dev laptop, so the unprivileged
@@ -27,5 +28,5 @@ USER app
 # Expose the port the app runs on
 EXPOSE 8000
 
-# Run the application using Uvicorn
-CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000", "--workers", "4"]
+# Migrate (single process) then run Uvicorn — see docker-entrypoint.sh (ADR-037 multi-worker boot fix).
+CMD ["./docker-entrypoint.sh"]

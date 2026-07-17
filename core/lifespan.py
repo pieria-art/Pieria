@@ -507,9 +507,14 @@ async def lifespan(app: FastAPI):
     # 1) Schema: Alembic is the single source of truth (create_all no longer runs at boot).
     #    A migration failure MUST halt startup — it is caught at deploy, not by a user's
     #    black screen. Deliberately NOT wrapped in a swallowing try/except (see ADR-035).
-    logger.info("Running Alembic migrations...")
-    run_migrations()
-    logger.info("Alembic migrations complete.")
+    #    When the Docker entrypoint already migrated single-process (SD_MIGRATIONS_DONE=1), skip it here:
+    #    re-running run_migrations under 4 live workers deadlocks the SQLite DB (ADR-037).
+    if os.getenv("SD_MIGRATIONS_DONE"):
+        logger.info("Alembic migrations already applied at entrypoint (SD_MIGRATIONS_DONE); skipping.")
+    else:
+        logger.info("Running Alembic migrations...")
+        run_migrations()
+        logger.info("Alembic migrations complete.")
 
     # 2) Best-effort init: a hiccup in filesystem sync / seed / warmers should not wedge the
     #    whole box, so these stay tolerant (unlike migrations above).

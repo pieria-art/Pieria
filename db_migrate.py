@@ -18,7 +18,7 @@ from typing import Optional
 from alembic import command
 from alembic.config import Config
 from alembic.script import ScriptDirectory
-from sqlalchemy import create_engine, inspect, text
+from sqlalchemy import create_engine, event, inspect, text
 
 import models  # noqa: F401  — registers every table on Base.metadata
 from database import Base
@@ -114,7 +114,17 @@ def run_migrations(cfg: Optional[Config] = None) -> None:
     """Bring the schema to head. Raises on any failure (caller halts boot)."""
     cfg = cfg or _alembic_config()
     url = cfg.get_main_option("sqlalchemy.url")
-    engine = create_engine(url)
+    # ADR-037: match database.py — WAL + a generous busy_timeout so the leader's `command.upgrade`
+    # can't deadlock against a follower worker opening the DB during a 4-worker boot (which hangs
+    # run_migrations forever, before the seed ever runs). connect_args["timeout"] is the busy-wait.
+    engine = create_engine(url, connect_args={"timeout": 30} if url.startswith("sqlite") else {})
+    if url.startswith("sqlite"):
+        @event.listens_for(engine, "connect")
+        def _mig_pragmas(dbapi_conn, _rec):
+            cur = dbapi_conn.cursor()
+            cur.execute("PRAGMA journal_mode=WAL")
+            cur.execute("PRAGMA busy_timeout=30000")
+            cur.close()
     try:
         core_present = "artworks" in inspect(engine).get_table_names()
         if core_present:

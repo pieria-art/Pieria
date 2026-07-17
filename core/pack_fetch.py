@@ -66,7 +66,10 @@ def _extract_collection(tar_path: Path, cid: str, artwork_root: Path) -> bool:
     """Extract a collection artifact and MERGE its masters + manifest into ARTWORK_ROOT (what append-install
     reads). Uses tarfile's `data` filter (blocks path traversal / absolute paths). Returns True if the
     collection's manifest landed."""
-    with tempfile.TemporaryDirectory(dir=artwork_root.parent) as tmp:
+    # Stage INSIDE artwork_root so the final renames stay on one filesystem — ARTWORK_ROOT is a bind
+    # mount, so a temp dir on the container's overlay fs would make Path.replace() a cross-device error
+    # (Errno 18). `_`-prefixed so the boot filesystem-sync never mistakes it for a collection dir.
+    with tempfile.TemporaryDirectory(dir=artwork_root, prefix="_dl") as tmp:
         tmpd = Path(tmp)
         with tarfile.open(tar_path) as tf:
             tf.extractall(tmpd, filter="data")
