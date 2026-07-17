@@ -8,13 +8,19 @@ same manifest + download + install flow.
 
 For each collection it writes a self-contained mini-pack (its own `_Library/` + `_catalog_thumbs/` +
 `_manifests/<id>.json` + a single-collection `pack-index.json`), tars it, and records
-`{id, title, category, item_count, bytes, sha256, download, core}` in **`packs.json`** — the registry the
-"browse & download packs" UI reads. Masters shared across collections (a work in Masterpieces *and* its
-home collection) are copied into each artifact so every download is self-contained; the installer dedups
-by source_url on the device, so a re-downloaded master is harmless.
+`{id, title, category, item_count, bytes, sha256, download, cover, core}` in **`packs.json`** — the
+registry the "browse & download packs" UI reads. Masters shared across collections (a work in
+Masterpieces *and* its home collection) are copied into each artifact so every download is
+self-contained; the installer dedups by source_url on the device, so a re-downloaded master is harmless.
+
+Each collection also gets a small **cover** image (`covers/<id>.jpg`) — the #1 fame-ranked work's
+thumbnail (manifests are rank-sorted, so `items[0]`) — so the browse grid shows real art, never a blank
+tile. `--covers-only` regenerates just the covers + `packs.json` cover fields against an existing dist,
+WITHOUT re-taring (a cheap R2 cover refresh: upload `packs.json` + `covers/`, the big tars are untouched).
 
     python -m tools.publish_pack --pack ./art-pack --out ./art-pack-dist
     python -m tools.publish_pack --core masterpieces,impressionism,post-impressionism
+    python -m tools.publish_pack --pack ./art-pack --out ./art-pack-dist --covers-only
 
 Upload to Cloudflare R2 is a separate step (ADR-038 §5: publish-only token → Infisical, device curls a
 public URL). This tool stays offline/deterministic; `--upload` is a documented seam, not implemented here.
@@ -54,6 +60,55 @@ def _thumb_name(thumbnail_url: str | None) -> str | None:
 
 def _category(cid: str) -> str:
     return COLLECTION_KIND.get(cid) or ("featured" if cid == "masterpieces" else "mixed")
+
+
+def _cover_candidates(pack: Path, cid: str) -> list[tuple[str, Path]]:
+    """Ordered (thumb_name, src_path) for a collection's items that have a thumbnail on disk. Manifests
+    are rank-sorted (build_pack `_emit_v2_manifests`), so index 0 is the #1 fame-ranked work."""
+    mpath = pack / "_manifests" / f"{cid}.json"
+    if not mpath.exists():
+        return []
+    manifest = json.loads(mpath.read_text())
+    out = []
+    for item in manifest.get("items", []):
+        tn = _thumb_name((item.get("image") or {}).get("thumbnail_url"))
+        if not tn:
+            continue
+        src = pack / "_catalog_thumbs" / tn
+        if src.exists():
+            out.append((tn, src))
+    return out
+
+
+def _pick_cover(cid: str, candidates: list[tuple[str, Path]],
+                master_thumb: str | None) -> tuple[str, Path] | None:
+    """The cover = the top fame-ranked work's thumbnail, EXCEPT: a non-masterpieces collection whose #1
+    work is Masterpieces' cover too (e.g. Renaissance's Mona Lisa) falls back to its #2 work, so tiles
+    don't all show the same image. Keeps item[0] if there's no alternative."""
+    if not candidates:
+        return None
+    chosen = candidates[0]
+    if cid != "masterpieces" and master_thumb and chosen[0] == master_thumb and len(candidates) > 1:
+        chosen = candidates[1]
+    return chosen
+
+
+def emit_covers(pack: Path, out: Path, rows: list[dict]) -> None:
+    """Copy each collection's cover thumbnail to `out/covers/<id>.jpg` and set `row["cover"]`. Idempotent;
+    tar-free (safe for `--covers-only`). A collection with no on-disk thumbnail gets `cover: None`."""
+    covers_dir = out / "covers"
+    covers_dir.mkdir(parents=True, exist_ok=True)
+    cands = {r["id"]: _cover_candidates(pack, r["id"]) for r in rows}
+    master = cands.get("masterpieces") or []
+    master_thumb = master[0][0] if master else None
+    for r in rows:
+        chosen = _pick_cover(r["id"], cands.get(r["id"]) or [], master_thumb)
+        if chosen is None:
+            r["cover"] = None
+            print(f"  ~ {r['id']}: no cover thumbnail available")
+            continue
+        shutil.copy2(chosen[1], covers_dir / f"{r['id']}.jpg")
+        r["cover"] = f"covers/{r['id']}.jpg"
 
 
 def slice_collection(pack: Path, col: dict, out: Path) -> dict | None:
@@ -138,6 +193,7 @@ def publish(pack: Path, out: Path, core: set[str], only: set[str] | None = None)
         row["core"] = row["id"] in core
         rows.append(row)
 
+    emit_covers(pack, out, rows)  # cover art per collection -> covers/<id>.jpg + row["cover"]
     core_ids = sorted(r["id"] for r in rows if r["core"])
     ids = {r["id"] for r in rows}
     # The OOB first-glimpse: what a fresh install pulls from R2 and sets as the default playlist.
@@ -155,6 +211,18 @@ def publish(pack: Path, out: Path, core: set[str], only: set[str] | None = None)
     return registry
 
 
+def publish_covers_only(pack: Path, out: Path) -> dict:
+    """Regenerate `covers/` + patch `cover` into every row of an EXISTING `packs.json`, without re-taring.
+    A cheap R2 cover refresh: only `packs.json` + `covers/` change; the (large) per-collection tars stand."""
+    reg_path = out / "packs.json"
+    if not reg_path.exists():
+        raise SystemExit(f"--covers-only needs an existing {reg_path}; run a full publish first")
+    registry = json.loads(reg_path.read_text())
+    emit_covers(pack, out, registry.get("collections", []))
+    reg_path.write_text(json.dumps(registry, indent=1, ensure_ascii=False))
+    return registry
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--pack", type=Path, default=Path("./art-pack"), help="built pack dir (has pack-index.json)")
@@ -163,7 +231,19 @@ def main() -> int:
                     help="comma list of collection ids baked into the .img (the rest are on-demand pulls)")
     ap.add_argument("--collections", default=None,
                     help="comma list of collection ids to slice (default: all). Incremental re-publish.")
+    ap.add_argument("--covers-only", action="store_true",
+                    help="regenerate covers/ + patch cover fields into an existing packs.json WITHOUT "
+                         "re-taring (cheap R2 cover refresh: upload packs.json + covers/, tars untouched)")
     args = ap.parse_args()
+
+    if args.covers_only:
+        reg = publish_covers_only(args.pack, args.out)
+        n = sum(1 for r in reg["collections"] if r.get("cover"))
+        print("\n=== COVERS-ONLY ===")
+        print(f"covers refreshed: {n}/{len(reg['collections'])} collections -> {args.out}/covers/ + packs.json")
+        print(f"Next: upload {args.out}/packs.json + {args.out}/covers/ to R2 (the tars are unchanged).")
+        return 0
+
     if not (args.pack / "pack-index.json").exists():
         print(f"FAIL: no pack-index.json under {args.pack}")
         return 1
