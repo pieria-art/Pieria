@@ -814,7 +814,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the National Gallery of Art. Please see the Gallery's Open Access Policy.",
    "license_verified": "2026-07-16",
-   "featured_rank": 38
+   "featured_rank": 38,
+   "focal_point": [
+    0.55,
+    0.55
+   ]
   },
   {
    "title": "Grey and Silver: Old Battersea Reach",

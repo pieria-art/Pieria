@@ -724,7 +724,11 @@
    "license_url": "",
    "credit_line": "Wildenstein Plattner Institute",
    "license_verified": "2026-07-16",
-   "featured_rank": 40
+   "featured_rank": 40,
+   "focal_point": [
+    0.62,
+    0.4
+   ]
   },
   {
    "title": "Vision After the Sermon (Jacob Wrestling with the Angel)",
@@ -1292,7 +1296,11 @@
    "license_url": "",
    "credit_line": "IAFWl3-k88JZ3g at Google Cultural Institute, zoom level maximum",
    "license_verified": "2026-07-16",
-   "featured_rank": 40
+   "featured_rank": 40,
+   "focal_point": [
+    0.45,
+    0.42
+   ]
   },
   {
    "title": "Seated Man",
@@ -2459,7 +2467,11 @@
    "license_url": "",
    "credit_line": "https://collection.barnesfoundation.org/objects/7019/details",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.65,
+    0.5
+   ]
   },
   {
    "title": "The Spring House",
@@ -2969,6 +2981,10 @@
     0.15,
     0.87,
     0.85
+   ],
+   "focal_point": [
+    0.5,
+    0.45
    ]
   },
   {
@@ -3379,7 +3395,11 @@
    "license_url": "",
    "credit_line": "HAEcLEiIhDAl-Q at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.35,
+    0.45
+   ]
   },
   {
    "title": "Portrait of Antoine Valabrègue",
@@ -4246,7 +4266,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the National Gallery of Art. Please see the Gallery's Open Access Policy.",
    "license_verified": "2026-07-16",
-   "featured_rank": 55
+   "featured_rank": 55,
+   "focal_point": [
+    0.45,
+    0.18
+   ]
   },
   {
    "title": "The Road, the Old Wall",
@@ -4442,7 +4466,11 @@
    "license_url": "",
    "credit_line": "Hermitage Torrent (.torrent with info-hash)",
    "license_verified": "2026-07-16",
-   "featured_rank": 54
+   "featured_rank": 54,
+   "focal_point": [
+    0.5,
+    0.42
+   ]
   },
   {
    "title": "Portrait of Adeline Ravoux",
@@ -4820,7 +4848,11 @@
    "license_url": "",
    "credit_line": "Van Gogh Museum",
    "license_verified": "2026-07-16",
-   "featured_rank": 29
+   "featured_rank": 29,
+   "focal_point": [
+    0.5,
+    0.5
+   ]
   },
   {
    "title": "Still Life with Baskets of Potatoes",

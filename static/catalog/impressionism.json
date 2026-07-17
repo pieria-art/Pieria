@@ -2699,7 +2699,11 @@
    "license_url": "",
    "credit_line": "Clark Art Institute",
    "license_verified": "2026-07-16",
-   "featured_rank": 46
+   "featured_rank": 46,
+   "focal_point": [
+    0.45,
+    0.25
+   ]
   },
   {
    "title": "Bather and Maid (La Toilette de la baigneuse)",
@@ -3528,7 +3532,11 @@
    "license_url": "",
    "credit_line": "https://clevelandart.org/art/1940.534",
    "license_verified": "2026-07-16",
-   "featured_rank": 34
+   "featured_rank": 34,
+   "focal_point": [
+    0.35,
+    0.55
+   ]
   },
   {
    "title": "View of the 1867 Exposition Universelle",
@@ -4013,7 +4021,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
-   "featured_rank": 35
+   "featured_rank": 35,
+   "focal_point": [
+    0.5,
+    0.38
+   ]
   },
   {
    "title": "The Brioche",
@@ -4209,7 +4221,11 @@
    "license_url": "",
    "credit_line": "VQEf_9v-hapiwg at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 42
+   "featured_rank": 42,
+   "focal_point": [
+    0.5,
+    0.28
+   ]
   },
   {
    "title": "Estérel Village",
@@ -4830,7 +4846,11 @@
    "license_url": "",
    "credit_line": "BgFg1OUqjIILuA at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 40
+   "featured_rank": 40,
+   "focal_point": [
+    0.65,
+    0.3
+   ]
   },
   {
    "title": "Visit to a Museum",
@@ -5176,7 +5196,11 @@
    "license_url": "",
    "credit_line": "repro from artbook",
    "license_verified": "2026-07-16",
-   "featured_rank": 42
+   "featured_rank": 42,
+   "focal_point": [
+    0.72,
+    0.35
+   ]
   },
   {
    "title": "Seascape with Sandy Beach at Low Tide",
@@ -5504,7 +5528,11 @@
    "license_url": "",
    "credit_line": "VwGyl7msPLDgaA at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.45,
+    0.25
+   ]
   },
   {
    "title": "After the Bath: Seated Woman Drying Herself",
@@ -6032,7 +6060,11 @@
    "license_url": "",
    "credit_line": "https://www.degas-catalogue.com/catalogue.html",
    "license_verified": "2026-07-16",
-   "featured_rank": 38
+   "featured_rank": 38,
+   "focal_point": [
+    0.38,
+    0.28
+   ]
   },
   {
    "title": "Woman Drying Her Arm",
@@ -6278,7 +6310,11 @@
    "license_url": "",
    "credit_line": "Own work, anagoria",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.3,
+    0.75
+   ]
   },
   {
    "title": "Landscape near Pontoise, the Auvers Road",
@@ -6349,7 +6385,11 @@
    "license_url": "",
    "credit_line": "anagoria",
    "license_verified": "2026-07-16",
-   "featured_rank": 29
+   "featured_rank": 29,
+   "focal_point": [
+    0.55,
+    0.4
+   ]
   },
   {
    "title": "Afternoon Break, Girl and Young Peasant Woman Resting",
@@ -7298,7 +7338,11 @@
    "license_url": "",
    "credit_line": "CwGUil8Y-ec2FQ at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 26
+   "featured_rank": 26,
+   "focal_point": [
+    0.62,
+    0.45
+   ]
   },
   {
    "title": "The Village of Knokke",
@@ -7476,7 +7520,11 @@
    "license_url": "",
    "credit_line": "Unknown sourceUnknown source",
    "license_verified": "2026-07-16",
-   "featured_rank": 29
+   "featured_rank": 29,
+   "focal_point": [
+    0.32,
+    0.58
+   ]
   },
   {
    "title": "Factory at Saint-Ouen-l'Aumône, the Flood of the Oise",
@@ -7972,7 +8020,11 @@
    "license_url": "",
    "credit_line": "JackyM59 - Muba de Tourcoing Avril 2024",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.45,
+    0.62
+   ]
   },
   {
    "title": "Louveciennes, Route de Saint-Germain",
@@ -8707,7 +8759,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the National Gallery of Art. Please see the Gallery's Open Access Policy.",
    "license_verified": "2026-07-16",
-   "featured_rank": 24
+   "featured_rank": 24,
+   "focal_point": [
+    0.45,
+    0.55
+   ]
   },
   {
    "title": "Landscape with Houses and Enclosure Wall, Frost and Mist, Éragny",
