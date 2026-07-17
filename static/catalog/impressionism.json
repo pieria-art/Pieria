@@ -7167,7 +7167,11 @@
    "license_url": "",
    "credit_line": "National Gallery of Art, Washington, D. C. – The Collection – Two Women Chatting by the Sea, St. Thomas",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.32,
+    0.55
+   ]
   },
   {
    "title": "Two Young Peasant Women",
@@ -9212,7 +9216,11 @@
    "license_url": "",
    "credit_line": "Unknown sourceUnknown source",
    "license_verified": "2026-07-16",
-   "featured_rank": 25
+   "featured_rank": 25,
+   "focal_point": [
+    0.55,
+    0.45
+   ]
   },
   {
    "title": "Pontoise, Banks of the Oise",

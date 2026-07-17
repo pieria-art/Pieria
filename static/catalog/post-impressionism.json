@@ -1646,7 +1646,11 @@
    "license_url": "",
    "credit_line": "rQHy_QckFYI03A at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 48
+   "featured_rank": 48,
+   "focal_point": [
+    0.45,
+    0.35
+   ]
   },
   {
    "title": "The Terrace at the Garden at Les Lauves",
@@ -3470,7 +3474,11 @@
    "license_url": "",
    "credit_line": "https://collection.barnesfoundation.org/objects/4702/details",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.5,
+    0.45
+   ]
   },
   {
    "title": "Hunting Cabin in Provence",
@@ -5550,7 +5558,11 @@
    "license_url": "",
    "credit_line": "Copied from an art book",
    "license_verified": "2026-07-16",
-   "featured_rank": 42
+   "featured_rank": 42,
+   "focal_point": [
+    0.55,
+    0.55
+   ]
   },
   {
    "title": "Street in Saintes-Maries",
