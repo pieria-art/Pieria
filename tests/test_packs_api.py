@@ -37,9 +37,9 @@ def client(db):
 
 def _fake_registry():
     return {"core": ["masterpieces"], "collections": [
-        {"id": "masterpieces", "title": "Masterpieces", "category": "featured", "item_count": 40, "bytes": 3, "core": True},
-        {"id": "cartography", "title": "Cartography", "category": "map", "item_count": 20, "bytes": 2, "core": False},
-        {"id": "cosmos", "title": "Cosmos", "category": "photo", "item_count": 15, "bytes": 1, "core": False},
+        {"id": "masterpieces", "title": "Masterpieces", "category": "featured", "item_count": 40, "bytes": 3, "core": True, "cover": "covers/masterpieces.jpg"},
+        {"id": "cartography", "title": "Cartography", "category": "map", "item_count": 20, "bytes": 2, "core": False, "cover": "covers/cartography.jpg"},
+        {"id": "cosmos", "title": "Cosmos", "category": "photo", "item_count": 15, "bytes": 1, "core": False, "cover": "covers/cosmos.jpg"},
     ]}
 
 
@@ -56,6 +56,7 @@ def test_list_packs_annotates_installed(client, db, monkeypatch):
     assert by["cartography"]["installed"] is True
     assert by["cosmos"]["installed"] is False
     assert by["masterpieces"]["core"] is True and by["cartography"]["category"] == "map"
+    assert by["masterpieces"]["cover"] == "covers/masterpieces.jpg"  # cover passthrough for the browse grid
 
 
 def test_list_packs_registry_unreachable_degrades(client, monkeypatch):

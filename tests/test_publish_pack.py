@@ -102,12 +102,48 @@ def test_publish_slices_registry_and_valid_artifacts(tmp_path):
         assert len(c["sha256"]) == 64 and c["bytes"] > 0
         assert (out / c["download"]).exists()
 
+    # each collection gets a cover image (its #1 fame-ranked work's thumbnail) + a registry pointer
+    for cid in ("masterpieces", "cartography"):
+        assert by_id[cid]["cover"] == f"covers/{cid}.jpg"
+        assert (out / "covers" / f"{cid}.jpg").exists()
+
     # each tar is a self-contained, valid single-collection pack
     with tarfile.open(out / "cartography.tar") as tf:
         names = tf.getnames()
     assert "cartography/_manifests/cartography.json" in names
     assert "cartography/pack-index.json" in names
     assert any(n.startswith("cartography/_Library/") for n in names)
+
+
+def test_covers_only_patches_registry_without_retar(tmp_path):
+    priv, _pub = publisher.keygen()
+    src = _build_source_pack(tmp_path, priv)
+    out = tmp_path / "dist"
+    publish_pack.publish(src, out, core={"masterpieces"})
+
+    # Record the tars' identity, then blow away the covers to prove --covers-only rebuilds them...
+    tar_sig = {p.name: (p.stat().st_size, p.stat().st_mtime_ns) for p in out.glob("*.tar")}
+    shutil.rmtree(out / "covers")
+
+    reg = publish_pack.publish_covers_only(src, out)
+
+    # ...covers back, registry cover fields present, and NOT ONE tar was rewritten.
+    for cid in ("masterpieces", "cartography"):
+        assert (out / "covers" / f"{cid}.jpg").exists()
+    assert {c["id"]: c["cover"] for c in reg["collections"]} == {
+        "masterpieces": "covers/masterpieces.jpg", "cartography": "covers/cartography.jpg"}
+    assert {p.name: (p.stat().st_size, p.stat().st_mtime_ns) for p in out.glob("*.tar")} == tar_sig
+
+
+def test_pick_cover_dedupes_masterpieces_thumbnail():
+    from pathlib import Path as _P
+    # Renaissance's #1 work is the Mona Lisa (same thumb as Masterpieces) -> fall back to its #2 work.
+    ren = [("mona.jpg", _P("/a")), ("unique.jpg", _P("/b"))]
+    assert publish_pack._pick_cover("renaissance", ren, "mona.jpg")[0] == "unique.jpg"
+    # Masterpieces keeps its own cover; a collection with no alternative keeps item[0]; empty -> None.
+    assert publish_pack._pick_cover("masterpieces", [("mona.jpg", _P("/a"))], "mona.jpg")[0] == "mona.jpg"
+    assert publish_pack._pick_cover("renaissance", [("mona.jpg", _P("/a"))], "mona.jpg")[0] == "mona.jpg"
+    assert publish_pack._pick_cover("x", [], "mona.jpg") is None
 
 
 def test_downloaded_collection_appends_without_reseeding(tmp_path, monkeypatch):
