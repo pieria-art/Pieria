@@ -10,7 +10,7 @@ from sqlalchemy.pool import StaticPool
 from app import app
 from core import pack_fetch
 from database import Base, get_db
-from models import SubscriptionModel
+from models import ArtworkModel, PlaylistModel, SubscriptionModel, playlist_artwork
 from routers import packs as packs_router
 
 
@@ -47,7 +47,7 @@ def test_list_packs_annotates_installed(client, db, monkeypatch):
     async def fake_fetch(_c, _u):
         return _fake_registry()
     monkeypatch.setattr(pack_fetch, "fetch_registry", fake_fetch)
-    db.add(SubscriptionModel(url="pack:cartography", title="Cartography"))
+    db.add(SubscriptionModel(url="pack:cartography", title="Cartography", trust="verified"))
     db.commit()
 
     d = client.get("/api/packs").json()
@@ -57,6 +57,29 @@ def test_list_packs_annotates_installed(client, db, monkeypatch):
     assert by["cosmos"]["installed"] is False
     assert by["masterpieces"]["core"] is True and by["cartography"]["category"] == "map"
     assert by["masterpieces"]["cover"] == "covers/masterpieces.jpg"  # cover passthrough for the browse grid
+    assert by["cartography"]["trust"] == "verified"  # installed -> device-verified trust
+    assert by["cosmos"]["trust"] == "official"       # available -> Official (from the signed registry)
+
+
+def test_uninstall_endpoint_removes_subscription_and_playlist(client, db):
+    pl = PlaylistModel(name="Cartography", is_personal=False)
+    db.add(pl); db.commit(); db.refresh(pl)
+    art = ArtworkModel(filename="c.jpg", status="approved", is_seed=True, title="Map")
+    db.add(art); db.commit(); db.refresh(art)
+    db.execute(playlist_artwork.insert().values(playlist_id=pl.id, artwork_id=art.id))
+    db.add(SubscriptionModel(url="pack:cartography", title="Cartography", trust="verified"))
+    db.commit()
+
+    r = client.delete("/api/packs/cartography")
+    assert r.status_code == 200
+    assert r.json()["state"] == "uninstalled" and r.json()["artworks_removed"] == 1
+    assert db.query(SubscriptionModel).filter(SubscriptionModel.url == "pack:cartography").first() is None
+    assert db.query(PlaylistModel).filter(PlaylistModel.name == "Cartography").first() is None
+    assert db.query(ArtworkModel).filter(ArtworkModel.title == "Map").first() is None
+
+
+def test_uninstall_endpoint_404_when_not_installed(client):
+    assert client.delete("/api/packs/nope").status_code == 404
 
 
 def test_list_packs_registry_unreachable_degrades(client, monkeypatch):

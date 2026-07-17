@@ -188,6 +188,85 @@ def test_downloaded_collection_appends_without_reseeding(tmp_path, monkeypatch):
     assert db.query(ArtworkModel).count() == 3
 
 
+def _build_sharing_pack(tmp_path, priv):
+    """Two collections that SHARE a master (the same work, same local_file): Masterpieces=[Mona-Lisa,
+    Starry], Renaissance=[Mona-Lisa (shared), Fresco (unique)]. Install dedups to one ArtworkModel for the
+    shared work, linked into both playlists — the exact shape uninstall's 'keep shared masters' must honor."""
+    root = tmp_path / "art-pack"
+    lib = root / "_Library"
+    thumbs = root / "_catalog_thumbs"
+    lib.mkdir(parents=True)
+    thumbs.mkdir(parents=True)
+    shared = _mi("Mona-Lisa", 99)
+    cols = [
+        {"id": "masterpieces", "title": "Masterpieces", "description": "Best", "default": True,
+         "items": [dict(shared), _mi("Starry", 98)]},
+        {"id": "renaissance", "title": "Renaissance", "description": "Ren",
+         "items": [dict(shared), _mi("Fresco", 70)]},
+    ]
+    build_pack._emit_v2_manifests(root, cols, signing_key=priv, generated_at="2026-07-17")
+    for cid in ("masterpieces", "renaissance"):
+        manifest = json.loads((root / "_manifests" / f"{cid}.json").read_text())
+        for item in manifest["items"]:
+            img = item["image"]
+            Image.new("RGB", (30, 20), "red").save(lib / img["local_file"], "JPEG")
+            tn = publish_pack._thumb_name(img.get("thumbnail_url"))
+            if tn:
+                Image.new("RGB", (12, 8), "blue").save(thumbs / tn, "JPEG")
+    return root
+
+
+def test_uninstall_keeps_shared_masters_and_removes_unshared(tmp_path, monkeypatch):
+    priv, pub = publisher.keygen()
+    src = _build_sharing_pack(tmp_path, priv)
+    _point_lifespan_at(monkeypatch, pub, src)
+    db = _db()
+    for cid in ("masterpieces", "renaissance"):
+        manifest = json.loads((src / "_manifests" / f"{cid}.json").read_text())
+        assert lifespan_module._install_collection(db, cid, manifest) is not None
+    # dedup: Mona-Lisa is ONE artwork linked into two playlists -> 3 distinct works, not 4.
+    assert db.query(ArtworkModel).count() == 3
+    # a personal photo must survive an uninstall untouched.
+    db.add(ArtworkModel(filename="myphoto.jpg", status="approved", is_personal=True, title="My Photo"))
+    db.commit()
+
+    res = lifespan_module.uninstall_collection(db, "renaissance")
+    assert res is not None and res["artworks_removed"] == 1  # only Fresco; Mona-Lisa is shared -> kept
+
+    assert db.query(SubscriptionModel).filter(SubscriptionModel.url == "pack:renaissance").first() is None
+    assert db.query(PlaylistModel).filter(PlaylistModel.name == "Renaissance").first() is None
+    assert db.query(PlaylistModel).filter(PlaylistModel.name == "Masterpieces").first() is not None
+    assert db.query(ArtworkModel).filter(ArtworkModel.title == "Fresco").first() is None      # unshared -> gone
+    assert db.query(ArtworkModel).filter(ArtworkModel.title == "Mona-Lisa").first() is not None  # shared -> kept
+    assert db.query(ArtworkModel).filter(ArtworkModel.is_personal.is_(True)).count() == 1     # photo untouched
+
+
+def test_uninstall_default_reassigns_to_remaining_collection(tmp_path, monkeypatch):
+    priv, pub = publisher.keygen()
+    src = _build_source_pack(tmp_path, priv)  # masterpieces (default) + cartography
+    dist = tmp_path / "dist"
+    publish_pack.publish(src, dist, core={"masterpieces", "cartography"})
+    device = tmp_path / "device"
+    _extract_into(dist / "masterpieces.tar", device)
+    _extract_into(dist / "cartography.tar", device)
+    (device / "pack-index.json").write_text(json.dumps({
+        "pack_version": "2", "publisher": {"id": "screendocent"}, "collections": [
+            {"id": "masterpieces", "title": "Masterpieces", "manifest": "_manifests/masterpieces.json",
+             "item_count": 2, "default": True},
+            {"id": "cartography", "title": "Cartography", "manifest": "_manifests/cartography.json",
+             "item_count": 1}]}))
+    _point_lifespan_at(monkeypatch, pub, device)
+    db = _db()
+    assert lifespan_module.install_pack_subscriptions(db) is True
+    default = db.query(SettingsModel).filter(SettingsModel.setting_key == "default_playlist").first()
+    assert default.setting_value == "Masterpieces"
+
+    lifespan_module.uninstall_collection(db, "masterpieces")  # remove the DEFAULT collection
+    db.refresh(default)
+    assert default.setting_value == "Cartography"  # default handed to the remaining Museum collection
+    assert db.query(SubscriptionModel).filter(SubscriptionModel.url == "pack:masterpieces").first() is None
+
+
 def test_downloaded_collection_missing_manifest_returns_false(tmp_path, monkeypatch):
     priv, pub = publisher.keygen()
     device = tmp_path / "device"
