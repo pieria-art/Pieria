@@ -28,5 +28,7 @@ USER app
 # Expose the port the app runs on
 EXPOSE 8000
 
-# Migrate (single process) then run Uvicorn — see docker-entrypoint.sh (ADR-037 multi-worker boot fix).
-CMD ["./docker-entrypoint.sh"]
+# ENTRYPOINT migrates once (single process) then exec's the command below — see docker-entrypoint.sh
+# (ADR-037). ENTRYPOINT (not CMD) so the appliance compose's `command:` override still gets migrated-first.
+ENTRYPOINT ["./docker-entrypoint.sh"]
+CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000", "--workers", "4"]
