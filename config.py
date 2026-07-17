@@ -48,6 +48,11 @@ SUB_PREFIX = "sub_"
 # reuse it without importing the FastAPI app.
 SD_USER_AGENT = "ScreenDocent/1.0 (https://github.com/AiwendilInTheWoods/Screen-Docent; art display) httpx"
 
+# Modular-pack registry (ADR-040 #4 / ADR-038 §5): the public packs.json the "browse & download packs"
+# card reads to offer on-demand collections. Default = the official Cloudflare R2 host behind curwe.ai;
+# overridable per-install via the `pack_registry_url` setting (e.g. to point at a staging registry).
+PACK_REGISTRY_URL = os.getenv("SD_PACK_REGISTRY_URL", "https://packs.curwe.ai/packs.json")
+
 # Deployment mode. Only the all-in-one appliance compose override sets SD_APPLIANCE_MODE=all-in-one;
 # the generic/MS-01 server and thin-client (display-only) topologies leave it unset. Gates the
 # host-health console + the GUI update bridge — surfaces that only make sense when the server runs

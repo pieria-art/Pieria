@@ -12,7 +12,7 @@ data/
 # Media & Assets
 Artwork/
 
-# Built art-pack — the bundled distributable (ships via R2 / the .img, per ADR-038); never git.
+# Built art-pack + per-collection slices (distributables; ship via R2/.img, per ADR-038); never git.
 art-pack/
 art-pack-*/
 

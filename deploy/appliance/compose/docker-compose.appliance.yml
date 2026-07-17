@@ -4,10 +4,10 @@
 #   docker compose -f docker-compose.yml \
 #                  -f deploy/appliance/compose/docker-compose.appliance.yml up -d
 #
-# The shipped image's CMD runs Uvicorn with 4 workers (tuned for the MS-01).
-# On a Pi that shares RAM with the Chromium kiosk, override it down to 2 so the
-# server and the display coexist comfortably. Everything else (ports, volumes,
-# env_file, restart policy) is inherited from the base file.
+# The image ENTRYPOINT (docker-entrypoint.sh) runs DB migrations once, then exec's this command —
+# so overriding `command:` here still gets migrated-first (ADR-037). The base CMD is 4 workers (MS-01);
+# on a Pi that shares RAM with the Chromium kiosk, override down to 2 so the server and the display
+# coexist comfortably. Everything else (ports, volumes, env_file, restart policy) inherits from the base.
 services:
   art-curator:
     command: ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000", "--workers", "2"]

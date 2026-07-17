@@ -51,6 +51,7 @@ async function init() {
     initDevicesCapability(); // un-hide the Devices tab only on an all-in-one appliance
     initPublisherCapability(); // un-hide the Publisher tab only once an identity exists
     loadSubscriptions();  // federated collections panel
+    loadPacks();          // browse & download modular packs
     await loadPremiumSettings();
     await handleOAuthCallback();   // catch an OpenRouter OAuth redirect (?code=…)
     await loadAiSettings();
@@ -514,6 +515,74 @@ async function loadSubscriptions() {
             </div>`;
         }).join('');
     } catch (e) { console.error('[Admin] loadSubscriptions failed:', e); }
+}
+
+// --- Art Packs: browse & download modular collections (ADR-040 #4) -----------
+async function loadPacks() {
+    const list = document.getElementById('packs-list');
+    if (!list) return;
+    try {
+        const data = await (await fetch(`${API_BASE}/api/packs`)).json();
+        if (data.error) {
+            list.innerHTML = `<p style="font-size:0.8rem; color:#64748b;">Pack catalog unavailable right now.</p>`;
+            return;
+        }
+        const cols = (data.collections || []).filter(c => !c.installed);  // offer what you don't have yet
+        if (!cols.length) {
+            list.innerHTML = '<p style="font-size:0.8rem; color:#64748b;">No additional packs available.</p>';
+            return;
+        }
+        list.innerHTML = cols.map(c => {
+            const mb = c.bytes ? `${(c.bytes / 1e6).toFixed(0)} MB` : '';
+            let btn;
+            if (c.installed) {
+                btn = `<button class="secondary" disabled style="padding:6px 12px; font-size:0.75rem; opacity:0.6;">Installed ✓</button>`;
+            } else if (c.job === 'in_progress') {
+                btn = `<button class="secondary" disabled style="padding:6px 12px; font-size:0.75rem;">Downloading…</button>`;
+            } else {
+                btn = `<button class="primary" onclick="installPack('${_esc(c.id)}', this)" style="padding:6px 12px; font-size:0.75rem;">Download</button>`;
+            }
+            return `<div data-pack="${_esc(c.id)}" style="border:1px solid var(--border-color); border-radius:8px; padding:12px; background:#0f172a;">
+                <div style="display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap;">
+                    <div>
+                        <strong style="font-size:0.85rem;">${_esc(c.title)}</strong>
+                        <span style="font-size:0.62rem; padding:2px 8px; border-radius:10px; border:1px solid #475569; color:#94a3b8;">${_esc(c.category || '')}</span><br>
+                        <small style="color:#94a3b8;">${c.item_count} works${mb ? ` · ${mb}` : ''}</small>
+                    </div>
+                    <div>${btn}</div>
+                </div>
+            </div>`;
+        }).join('');
+    } catch (e) { console.error('[Admin] loadPacks failed:', e); }
+}
+
+async function installPack(id, btn) {
+    if (btn) { btn.disabled = true; btn.textContent = 'Starting…'; }
+    try {
+        await fetch(`${API_BASE}/api/packs/${encodeURIComponent(id)}/install`, { method: 'POST' });
+        pollPacks();
+    } catch (e) { console.error('[Admin] installPack failed:', e); loadPacks(); }
+}
+
+let _packPoll = null;
+function pollPacks() {
+    if (_packPoll) return;
+    _packPoll = setInterval(async () => {
+        try {
+            const jobs = await (await fetch(`${API_BASE}/api/packs/status`)).json();
+            document.querySelectorAll('#packs-list [data-pack]').forEach(row => {
+                const st = jobs[row.getAttribute('data-pack')]?.state;
+                const btn = row.querySelector('button');
+                if (st === 'in_progress' && btn) { btn.disabled = true; btn.textContent = 'Downloading…'; }
+            });
+            const active = Object.values(jobs).some(j => j.state === 'in_progress');
+            if (!active) {
+                clearInterval(_packPoll); _packPoll = null;
+                loadPacks();          // refresh installed state
+                loadSubscriptions();  // the newly-installed collection now appears as a subscription
+            }
+        } catch (e) { clearInterval(_packPoll); _packPoll = null; }
+    }, 2000);
 }
 
 async function addSubscription() {
