@@ -136,6 +136,8 @@ def _build_state(tmp_path):
         pack_dir=tmp_path,
         client=httpx.AsyncClient(transport=httpx.MockTransport(lambda r: httpx.Response(404))),
         sem=asyncio.Semaphore(1),
+        heavy=asyncio.Semaphore(1),
+        decode=asyncio.Semaphore(1),
         min_edge=3840,
     )
 

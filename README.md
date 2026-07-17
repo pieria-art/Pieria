@@ -40,6 +40,8 @@ it. The same server supports any mix of these at once — it's a versatile setup
 | **e-ink / "dumb" frame** | Low-power frames fetch a server-rendered, dithered image on a schedule (image API — see the e-ink section below). | Battery e-ink, DIY ESP32/Waveshare, TRMNL (BYOS). |
 | **Multi-display** | One server drives many screens via unique `display` IDs. | A docent in every room, each remote-controllable. |
 
+> **Which board, how much RAM, what it costs?** See the **[Hardware Profile](docs/hardware-profile.md)** — validated sizing by output type (TV, e-ink, satellite), soak-tested thermals, and current board prices.
+
 ![A quick tour of the admin dashboard, catalog, and discovery](static/docs/admin-tour.gif)
 
 The full, illustrated guide (with screenshots and walkthroughs for each) lives in the in-app
