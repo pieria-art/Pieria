@@ -527,7 +527,7 @@ async function loadPacks() {
             list.innerHTML = `<p style="font-size:0.8rem; color:#64748b;">Pack catalog unavailable right now.</p>`;
             return;
         }
-        const cols = (data.collections || []).filter(c => !c.core);  // Core is baked in; only offer the pulls
+        const cols = (data.collections || []).filter(c => !c.installed);  // offer what you don't have yet
         if (!cols.length) {
             list.innerHTML = '<p style="font-size:0.8rem; color:#64748b;">No additional packs available.</p>';
             return;

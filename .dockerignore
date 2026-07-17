@@ -17,6 +17,10 @@ artwork.db
 data/
 Artwork/
 
+# Built art-packs + per-collection slices — huge distributables (R2/.img), never the dev image context.
+art-pack/
+art-pack-*/
+
 # Maintainer build pipeline — NOT imported at runtime (ADR-041). The catalog is built here and
 # shipped as static/catalog/*.json; the app imports only top-level scout.py (live museum search),
 # never tools/. Keep it out of the image (dead weight + smaller attack surface).

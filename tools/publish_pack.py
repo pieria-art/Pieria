@@ -138,11 +138,17 @@ def publish(pack: Path, out: Path, core: set[str], only: set[str] | None = None)
         row["core"] = row["id"] in core
         rows.append(row)
 
+    core_ids = sorted(r["id"] for r in rows if r["core"])
+    ids = {r["id"] for r in rows}
+    # The OOB first-glimpse: what a fresh install pulls from R2 and sets as the default playlist.
+    default_id = ("masterpieces" if "masterpieces" in ids
+                  else (core_ids[0] if core_ids else (rows[0]["id"] if rows else None)))
     registry = {
         "registry_version": "1",
         "publisher": index.get("publisher"),
         "public_key": index.get("public_key"),
-        "core": sorted(r["id"] for r in rows if r["core"]),
+        "core": core_ids,
+        "default": default_id,
         "collections": rows,
     }
     (out / "packs.json").write_text(json.dumps(registry, indent=1, ensure_ascii=False))

@@ -421,6 +421,71 @@ async def run_factory_seed(db: Session):
         logger.error(f"[Bootstrapper] Failed to parse factory_seed.json: {e}")
 
 
+async def _seed_default_collection(registry_url: str, cid: str):
+    """Background: download+install the OOB default collection from R2, then set it as the default
+    playlist and mark the pack seeded. Own real, verified art — no live Wikimedia dependency."""
+    from core import pack_fetch  # lazy: avoids the pack_fetch <-> lifespan import cycle
+    db = SessionLocal()
+    client = pack_fetch.new_client()
+    try:
+        res = await pack_fetch.install_collection_from_registry(db, client, registry_url, cid)
+        if not res.get("ok"):
+            logger.error(f"[Seed] OOB install of {cid!r} failed: {res.get('error')}")
+            return
+        # _install_collection already minted the '<title>' playlist + artworks; make it the default.
+        sub = db.query(SubscriptionModel).filter(SubscriptionModel.url == f"pack:{cid}").first()
+        title = sub.title if sub and sub.title else cid
+        _upsert_setting(db, "default_playlist", title)
+        _upsert_setting(db, "pack_seeded", "v2:registry")
+        db.commit()
+        logger.info(f"[Seed] OOB ready — '{title}' installed from R2 + set as default playlist ({res.get('trust')}).")
+    except Exception as e:  # noqa: BLE001 — seeding must never wedge the box
+        logger.error(f"[Seed] OOB default-collection error: {e}", exc_info=True)
+    finally:
+        await client.aclose()
+        db.close()
+
+
+async def seed_from_registry(db: Session) -> bool:
+    """OOB "art on screen in 5 minutes" (ADR-038/040 #4): with NO baked pack, pull the registry's DEFAULT
+    collection (Masterpieces) from R2, install it — which mints the 'Masterpieces' playlist — set it as the
+    default playlist, and mark seeded. So a fresh `docker compose up` owns real, *verified* art instead of
+    live-downloading the Wikimedia factory seed (retires source-rot on first-run too). The download runs in
+    the background so boot stays fast; art appears when it lands. Additional collections come via the card.
+
+    Returns True if seeding was initiated (caller SKIPS the factory-seed fallback); False if the registry is
+    unreachable/empty (caller falls back to run_factory_seed — a purist/offline "works without our infra")."""
+    from config import PACK_REGISTRY_URL
+    from core import pack_fetch  # lazy: import cycle
+    if db.query(SettingsModel).filter(SettingsModel.setting_key == "pack_seeded").first():
+        return True  # already seeded (idempotent)
+
+    row = db.query(SettingsModel).filter(SettingsModel.setting_key == "pack_registry_url").first()
+    registry_url = row.setting_value if row and row.setting_value else PACK_REGISTRY_URL
+
+    client = pack_fetch.new_client()
+    try:
+        registry = await pack_fetch.fetch_registry(client, registry_url)
+    except Exception as e:  # noqa: BLE001 — registry unreachable => fall back to the factory seed
+        logger.warning(f"[Seed] registry {registry_url} unreachable ({type(e).__name__}); using factory seed.")
+        return False
+    finally:
+        await client.aclose()
+
+    cols = registry.get("collections", [])
+    default_id = (registry.get("default")
+                  or ("masterpieces" if any(c.get("id") == "masterpieces" for c in cols) else None)
+                  or (registry.get("core") or [None])[0]
+                  or (cols[0]["id"] if cols else None))
+    if not default_id:
+        logger.warning("[Seed] registry has no installable default collection; using factory seed.")
+        return False
+
+    logger.info(f"[Seed] OOB: pulling default collection {default_id!r} from {registry_url} (background)...")
+    asyncio.create_task(_seed_default_collection(registry_url, default_id))
+    return True
+
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     """Lifecycle events for FastAPI application with multi-worker concurrency locks."""
@@ -459,6 +524,10 @@ async def lifespan(app: FastAPI):
                 # ADR-044: prefer the unified v2 install (verified local subscriptions); fall back to
                 # the v1 pre_seed for an older pack that ships only pack-manifest.json.
                 has_pack = install_pack_subscriptions(db) or pre_seed_from_pack(db)
+                # ADR-040 #4: no baked pack (vanilla `docker compose`)? Own art via R2 — pull the default
+                # collection (Masterpieces) + set it default. Only if that also fails do we live-seed.
+                if not has_pack:
+                    has_pack = await seed_from_registry(db)
             except Exception as e:
                 logger.error(f"[PackSeed] Non-fatal error during pack install/pre-seed: {e}", exc_info=True)
                 has_pack = False
