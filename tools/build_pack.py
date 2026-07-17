@@ -41,7 +41,16 @@ from pathlib import Path
 from urllib.parse import parse_qsl, urlencode, urlparse, urlsplit, urlunsplit
 
 import httpx
-from PIL import Image, ImageOps
+from PIL import Image, ImageFile, ImageOps
+
+# Sources are trusted museum/Commons originals (some are legitimately gigapixel — Starry Night 44567px);
+# disable Pillow's ~178MP decompression-bomb guard so those decode instead of erroring out (and getting
+# silently dropped). Peak memory is instead bounded by draft/DCT decode + the `heavy` semaphore below.
+Image.MAX_IMAGE_PIXELS = None
+# Tolerate real-world museum "raw scan" files whose data is a hair short of the header's declared size
+# (e.g. the Bruce McCandless EVA .tif is a consistent ~29 KB short of 202 MB → a few bottom rows). Without
+# this, Pillow raises "image file is truncated" and the work is dropped; with it, we decode what's there.
+ImageFile.LOAD_TRUNCATED_IMAGES = True
 
 import federation
 import publisher
@@ -135,7 +144,11 @@ class Stats:
 class BuildState:
     pack_dir: Path
     client: httpx.AsyncClient
-    sem: asyncio.Semaphore
+    sem: asyncio.Semaphore        # bounds concurrent HTTP downloads
+    heavy: asyncio.Semaphore      # bounds concurrent AIC tile-stitches — each allocates a full-native RGB
+    #                               canvas (GBs for a gigapixel work); 135 unbounded once OOM-killed the run
+    decode: asyncio.Semaphore     # bounds concurrent decode/cap threads (cheap after draft, but still gated
+    #                               so decodes don't wait behind slow AIC stitches, nor pile up unbounded)
     min_edge: int = 3840   # true-4K floor (CURATION-v2/ADR-039): native ≥4K fills a 4K panel 1:1 crisp;
     #                        Ken Burns zoom is capped per-work by native res (adaptive) so nothing softens
     stats: Stats = field(default_factory=Stats)
@@ -212,7 +225,9 @@ async def _throttle_for(url: str) -> None:
 # body with a per-read timeout (each chunk must make progress, so a stalled socket still fails fast)
 # and bound the total by BYTES, not seconds. FETCH_MAX_BYTES is the runaway/DoS ceiling; a master
 # larger than this is skipped (logged), not downloaded forever.
-FETCH_MAX_BYTES = 400 * 1024 * 1024  # 400 MB — comfortably above the largest real PD masters
+FETCH_MAX_BYTES = 1024 * 1024 * 1024  # 1 GB — real gigapixel PD masters exceed 400 MB (Starry Night 696 MB,
+#   Fish and Rocks 533 MB were silently dropped at the old cap). `_cap_master`'s draft/DCT decode keeps
+#   memory bounded regardless of file size, so the only cost of a big fetch is bandwidth, not RAM.
 # read=90s: max wait for the NEXT chunk (server-side render of a huge Wikimedia thumbnail can be slow
 # to first byte); there is deliberately no total deadline — liveness + the byte cap bound the fetch.
 FETCH_TIMEOUT = httpx.Timeout(connect=15.0, read=90.0, write=15.0, pool=15.0)
@@ -272,6 +287,10 @@ def _cap_master(raw: bytes) -> bytes | None:
     lazily at request time: exif-transpose, RGB, cap to DISPLAY_MAX_EDGE, progressive JPEG."""
     try:
         with Image.open(BytesIO(raw)) as img:
+            # DCT-scale huge JPEGs down AT DECODE TIME (before exif_transpose forces a full load): a
+            # 44567px master decodes at ~1/8 native instead of allocating the full ~1.5-gigapixel bitmap.
+            # No-op for non-JPEG or already-small sources, and never below the display cap (lossless win).
+            img.draft("RGB", (DISPLAY_MAX_EDGE, DISPLAY_MAX_EDGE))
             img = ImageOps.exif_transpose(img)
             if img.mode != "RGB":
                 img = img.convert("RGB")
@@ -342,6 +361,45 @@ def _atomic_write(dest: Path, data: bytes) -> None:
     tmp.rename(dest)
 
 
+@dataclass
+class _MasterResult:
+    """Outcome of the CPU-heavy master preparation (crop → floor probe → cap). Pure data so the work can
+    run in a worker thread; the async caller applies the stats + writes the file from these fields."""
+    data: bytes | None = None      # capped JPEG bytes, or None when skipped/failed
+    cropped: bool = False
+    too_small: bool = False        # below the floor and not rescued by a crop
+    failed: bool = False           # decode/cap error
+    native_max: int = 0
+    floor: int = 0
+
+
+def _prepare_master(raw: bytes, wi: WorkItem, floor: int) -> _MasterResult:
+    """Frame-crop (if flagged) → floor-probe → cap. This is build_pack's memory peak (full-native decode),
+    so the caller runs it in a bounded worker thread. No stats/IO side-effects — the caller owns those."""
+    cropped = False
+    if wi.item.get("needs_frame_crop"):
+        crop_bytes = _apply_crop_box(raw, wi.item.get("crop_box"))
+        if crop_bytes is not None:
+            raw = crop_bytes
+            cropped = True
+    # grandfathered sub-4K work (below_floor_ok): honored down to the standard-HD+buffer hard minimum only
+    if wi.item.get("below_floor_ok"):
+        floor = min(floor, GRANDFATHER_MIN_EDGE)
+    try:
+        with Image.open(BytesIO(raw)) as probe:
+            native_max = max(probe.size)
+    except Exception:
+        native_max = 0
+    # a source below the floor looks soft on a 4K/8K wall (esp. under Ken Burns zoom); never upscale. A
+    # cropped, hand-vetted famous work is kept even below the floor (frameless > absent) — crop bypasses.
+    if native_max < floor and not cropped:
+        return _MasterResult(too_small=True, native_max=native_max, floor=floor)
+    capped = _cap_master(raw)
+    if capped is None:
+        return _MasterResult(failed=True, native_max=native_max, floor=floor)
+    return _MasterResult(data=capped, cropped=cropped, native_max=native_max, floor=floor)
+
+
 # --------------------------------------------------------------------------- per-URL dedup + fetch
 async def ensure_master(state: BuildState, wi: WorkItem) -> str | None:
     """Download (or reuse a cached) capped master for this item's source_url. Dedup key is the
@@ -363,45 +421,33 @@ async def ensure_master(state: BuildState, wi: WorkItem) -> str | None:
             return filename
         if aic_tiles.is_aic_iiif(su):
             # AIC blocks full/max but serves deep-zoom tiles — stitch the native master (self-throttled).
-            raw = await aic_tiles.fetch_native_bytes(state.client, su, quality=DISPLAY_QUALITY)
+            # The stitch allocates a full-native RGB canvas, so hold `heavy`: it caps how many of these
+            # gigapixel bitmaps exist at once (135 AIC works stitching unbounded once OOM-killed the run).
+            async with state.heavy:
+                raw = await aic_tiles.fetch_native_bytes(state.client, su, quality=DISPLAY_QUALITY)
         else:
             async with state.sem:
                 raw = await _fetch_bytes(state.client, _pack_fetch_url(su))
         if raw is None:
             state.stats.master_failed += 1
             return None
-        # Frame/mat/wall crop (ADR-043): consume the pre-baked normalized crop_box deterministically.
-        # A cropped, hand-vetted famous work is kept even below the floor (frameless > absent), so the
-        # crop bypasses the floor check below.
-        cropped = False
-        if wi.item.get("needs_frame_crop"):
-            crop_bytes = _apply_crop_box(raw, wi.item.get("crop_box"))
-            if crop_bytes is not None:
-                raw = crop_bytes
-                cropped = True
-                state.stats.master_cropped += 1
-        # 4K-friendly floor: a source smaller than this looks soft on a 4K/8K wall (esp. under Ken
-        # Burns zoom). We never upscale — below the floor, the work is skipped from the pack.
+        # Frame-crop (ADR-043) → floor probe → cap, in a worker thread so the full-native decode neither
+        # blocks the event loop nor piles up unbounded (its own `decode` gate; draft keeps each cheap).
         floor = COLLECTION_MIN_EDGE.get(wi.collection_id, state.min_edge)
-        if wi.item.get("below_floor_ok"):
-            # grandfathered sub-4K work: honored down to the standard-HD+buffer hard minimum only
-            floor = min(floor, GRANDFATHER_MIN_EDGE)
-        try:
-            with Image.open(BytesIO(raw)) as probe:
-                native_max = max(probe.size)
-        except Exception:
-            native_max = 0
-        if native_max < floor and not cropped:
+        async with state.decode:
+            res = await asyncio.to_thread(_prepare_master, raw, wi, floor)
+        if res.cropped:
+            state.stats.master_cropped += 1
+        if res.too_small:
             state.stats.master_too_small += 1
-            logger.info(f"    x below {floor}px 4K floor ({native_max}px): {su}")
+            logger.info(f"    x below {res.floor}px 4K floor ({res.native_max}px): {su}")
             return None
-        if cropped and native_max < floor:
-            logger.info(f"    ~ cropped below {floor}px floor, kept ({native_max}px): {su}")
-        capped = _cap_master(raw)
-        if capped is None:
+        if res.failed:
             state.stats.master_failed += 1
             return None
-        _atomic_write(dest, capped)
+        if res.cropped and res.native_max < res.floor:
+            logger.info(f"    ~ cropped below {res.floor}px floor, kept ({res.native_max}px): {su}")
+        _atomic_write(dest, res.data)
         state.url_to_master[su] = filename
         state.stats.master_downloaded += 1
         return filename
@@ -583,7 +629,8 @@ def _dir_size(path: Path) -> int:
 
 # --------------------------------------------------------------------------- build
 async def build(out: Path, *, scope: set[str], limit: int | None, collections_filter: set[str] | None,
-                 concurrency: int, created: str | None, min_edge: int, signing_key: str | None = None) -> int:
+                 concurrency: int, created: str | None, min_edge: int, signing_key: str | None = None,
+                 heavy_concurrency: int = 3) -> int:
     (out / "_Library").mkdir(parents=True, exist_ok=True)
     (out / "_catalog_thumbs").mkdir(parents=True, exist_ok=True)
     (out / "_catalog").mkdir(parents=True, exist_ok=True)
@@ -608,7 +655,9 @@ async def build(out: Path, *, scope: set[str], limit: int | None, collections_fi
                 f"{sum(1 for w in queue if w.kind == 'seed')} seed)")
 
     async with httpx.AsyncClient(headers={"User-Agent": SD_USER_AGENT}) as client:
-        state = BuildState(pack_dir=out, client=client, sem=asyncio.Semaphore(concurrency), min_edge=min_edge)
+        state = BuildState(pack_dir=out, client=client, sem=asyncio.Semaphore(concurrency),
+                            heavy=asyncio.Semaphore(heavy_concurrency),
+                            decode=asyncio.Semaphore(max(concurrency, heavy_concurrency)), min_edge=min_edge)
         results = await asyncio.gather(*(process_item(state, wi) for wi in queue))
 
     # Assemble the manifest: one entry per catalog file in scope, items in file-array order,
@@ -671,6 +720,10 @@ async def main() -> int:
     ap.add_argument("--limit", type=int, default=None, help="cap total items queued (testing)")
     ap.add_argument("--collections", default=None, help="comma list of catalog ids to include")
     ap.add_argument("--concurrency", type=int, default=4, help="bounded concurrent downloads")
+    ap.add_argument("--heavy-concurrency", type=int, default=3,
+                    help="max full-native bitmaps in flight at once (AIC stitch + decode/cap). This is the "
+                         "memory governor — lower it (e.g. 2) on a RAM-tight box, raise it for speed if you "
+                         "have headroom. Independent of --concurrency, which only throttles HTTP downloads.")
     ap.add_argument("--min-edge", type=int, default=3840,
                     help="native long-edge floor. Default 3840 (true 4K): fills a 4K panel 1:1 crisp. "
                          "Ken Burns zoom is capped per-work by native res (adaptive) rather than requiring "
@@ -691,7 +744,7 @@ async def main() -> int:
 
     return await build(args.out, scope=scope, limit=args.limit, collections_filter=collections_filter,
                         concurrency=args.concurrency, created=args.created, min_edge=args.min_edge,
-                        signing_key=signing_key)
+                        signing_key=signing_key, heavy_concurrency=args.heavy_concurrency)
 
 
 if __name__ == "__main__":
