@@ -130,5 +130,5 @@ def _installed_sub(db, cid: str):
     return db.query(SubscriptionModel).filter(SubscriptionModel.url == f"pack:{cid}").first()
 
 
-async def new_client() -> httpx.AsyncClient:
+def new_client() -> httpx.AsyncClient:
     return httpx.AsyncClient(headers={"User-Agent": SD_USER_AGENT}, follow_redirects=True)

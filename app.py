@@ -108,6 +108,7 @@ from routers.display import router as display_router
 from routers.federation import router as federation_router
 from routers.health import router as health_router
 from routers.library import router as library_router
+from routers.packs import router as packs_router
 from routers.pages import router as pages_router
 from routers.publisher import router as publisher_router
 from routers.settings import router as settings_router
@@ -122,6 +123,7 @@ app = FastAPI(title="Screen Docent", version="0.4.5", lifespan=lifespan)
 app.include_router(admin_router)
 app.include_router(publisher_router)
 app.include_router(federation_router)
+app.include_router(packs_router)
 app.include_router(health_router)
 app.include_router(pages_router)
 app.include_router(settings_router)
