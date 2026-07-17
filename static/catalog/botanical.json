@@ -324,7 +324,11 @@
    "license_url": "",
    "credit_line": "The birds of Australia (1840–48). Vol III Plate 14. Artists: J. Gould and E. Gould; Lithographer: E. Gould.",
    "license_verified": "2026-07-16",
-   "featured_rank": 35
+   "featured_rank": 35,
+   "focal_point": [
+    0.4,
+    0.55
+   ]
   },
   {
    "title": "Ivory-billed Woodpecker",

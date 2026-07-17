@@ -624,7 +624,11 @@
    "license_url": "",
    "credit_line": "https://www.sothebys.com/en/museums/legion-of-honor/exhibitions/early-rubens",
    "license_verified": "2026-07-16",
-   "featured_rank": 68
+   "featured_rank": 68,
+   "focal_point": [
+    0.55,
+    0.4
+   ]
   },
   {
    "title": "Susanna and the Elders",

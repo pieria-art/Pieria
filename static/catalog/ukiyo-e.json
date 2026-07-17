@@ -3621,7 +3621,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1302527",
    "license_verified": "2026-07-16",
-   "featured_rank": 22
+   "featured_rank": 22,
+   "focal_point": [
+    0.5,
+    0.75
+   ]
   },
   {
    "title": "Kanda Myōjin Shrine (from Famous Places of the Eastern Capital)",
@@ -3642,7 +3646,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1303510",
    "license_verified": "2026-07-16",
-   "featured_rank": 25
+   "featured_rank": 25,
+   "focal_point": [
+    0.25,
+    0.4
+   ]
   },
   {
    "title": "The Sannō Festival Procession at Kasumigaseki (from Famous Places of the Eastern Capital)",
@@ -3663,7 +3671,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1303521",
    "license_verified": "2026-07-16",
-   "featured_rank": 24
+   "featured_rank": 24,
+   "focal_point": [
+    0.5,
+    0.55
+   ]
   },
   {
    "title": "Cherry Blossoms in Full Bloom at Gotenyama (from Famous Places of Edo)",
@@ -3684,7 +3696,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1303547",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.52,
+    0.62
+   ]
   },
   {
    "title": "Yushima Tenjin Shrine (from Famous Places of the Capital)",
@@ -3705,7 +3721,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1303563",
    "license_verified": "2026-07-16",
-   "featured_rank": 24
+   "featured_rank": 24,
+   "focal_point": [
+    0.18,
+    0.45
+   ]
   },
   {
    "title": "The Legend of Azuma Forest (from Famous Old Sites of the Eastern Capital)",
@@ -3726,7 +3746,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1305407",
    "license_verified": "2026-07-16",
-   "featured_rank": 19
+   "featured_rank": 19,
+   "focal_point": [
+    0.55,
+    0.35
+   ]
   },
   {
    "title": "Shell Gathering at Susaki, Likened to Suma (from Edo Purple: Famous Places and the Tale of Genji)",
@@ -3747,7 +3771,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1305423",
    "license_verified": "2026-07-16",
-   "featured_rank": 25
+   "featured_rank": 25,
+   "focal_point": [
+    0.32,
+    0.45
+   ]
   },
   {
    "title": "The Earth of Asukayama (from Famous Places of Edo and the Five Elements)",
@@ -3768,7 +3796,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1305444",
    "license_verified": "2026-07-16",
-   "featured_rank": 20
+   "featured_rank": 20,
+   "focal_point": [
+    0.5,
+    0.25
+   ]
   },
   {
    "title": "Edomizaka Slope (from Hiroshige's Slopes of the Eastern Capital)",
@@ -3789,7 +3821,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1306171",
    "license_verified": "2026-07-16",
-   "featured_rank": 33
+   "featured_rank": 33,
+   "focal_point": [
+    0.6,
+    0.65
+   ]
   },
   {
    "title": "Precincts of Tomioka Hachiman Shrine, Fukagawa (from Famous Places of the Eastern Capital)",
@@ -3810,7 +3846,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1307037",
    "license_verified": "2026-07-16",
-   "featured_rank": 24
+   "featured_rank": 24,
+   "focal_point": [
+    0.5,
+    0.4
+   ]
   },
   {
    "title": "Nishi Hongan-ji Temple at Tsukiji (from Famous Places of the Eastern Capital)",
@@ -3831,7 +3871,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1307041",
    "license_verified": "2026-07-16",
-   "featured_rank": 25
+   "featured_rank": 25,
+   "focal_point": [
+    0.5,
+    0.35
+   ]
   },
   {
    "title": "Panoramic View of Eitai Bridge (from Famous Places of the Eastern Capital)",
@@ -3852,7 +3896,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1307043",
    "license_verified": "2026-07-16",
-   "featured_rank": 26
+   "featured_rank": 26,
+   "focal_point": [
+    0.5,
+    0.45
+   ]
   },
   {
    "title": "Panoramic View of Takanawa (from Famous Places of the Eastern Capital)",
@@ -3873,7 +3921,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1307045",
    "license_verified": "2026-07-16",
-   "featured_rank": 25
+   "featured_rank": 25,
+   "focal_point": [
+    0.5,
+    0.45
+   ]
   },
   {
    "title": "Hanayashiki Flower Garden at Okuyama, Asakusa",
@@ -3894,7 +3946,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1307609",
    "license_verified": "2026-07-16",
-   "featured_rank": 24
+   "featured_rank": 24,
+   "focal_point": [
+    0.72,
+    0.72
+   ]
   },
   {
    "title": "Snowy Dawn at Nihonbashi (from Twelve Views of Edo in a Silver World)",
@@ -3915,7 +3971,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1308289",
    "license_verified": "2026-07-16",
-   "featured_rank": 34
+   "featured_rank": 34,
+   "focal_point": [
+    0.45,
+    0.4
+   ]
   },
   {
    "title": "Full View of the Moon over Both Banks of the Sumida River (from Twelve Views of Edo in a Silver World)",
@@ -3936,7 +3996,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1308297",
    "license_verified": "2026-07-16",
-   "featured_rank": 26
+   "featured_rank": 26,
+   "focal_point": [
+    0.27,
+    0.17
+   ]
   },
   {
    "title": "Enjoying the Cool at Ryōgoku Bridge (from Famous Places of the Capital)",
@@ -3957,7 +4021,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1308384",
    "license_verified": "2026-07-16",
-   "featured_rank": 27
+   "featured_rank": 27,
+   "focal_point": [
+    0.5,
+    0.35
+   ]
   },
   {
    "title": "Harimaya Restaurant at Emon-zaka, Shin-Yoshiwara (from Famous Restaurants of Edo)",
@@ -3978,7 +4046,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1308392",
    "license_verified": "2026-07-16",
-   "featured_rank": 22
+   "featured_rank": 22,
+   "focal_point": [
+    0.55,
+    0.7
+   ]
   },
   {
    "title": "Ogura-an Restaurant at Honjo Koume (from Famous Restaurants of Edo)",
@@ -3999,7 +4071,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1308400",
    "license_verified": "2026-07-16",
-   "featured_rank": 24
+   "featured_rank": 24,
+   "focal_point": [
+    0.55,
+    0.75
+   ]
   },
   {
    "title": "Ō-noshi Restaurant at Ryōgoku Yanagibashi (from Famous Restaurants of Edo)",
@@ -4020,7 +4096,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1308408",
    "license_verified": "2026-07-16",
-   "featured_rank": 22
+   "featured_rank": 22,
+   "focal_point": [
+    0.3,
+    0.7
+   ]
   },
   {
    "title": "Board Game of Palace Women's Service (Oku Kinbōkō Sugoroku)",
@@ -4041,7 +4121,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1310652",
    "license_verified": "2026-07-16",
-   "featured_rank": 16
+   "featured_rank": 16,
+   "focal_point": [
+    0.5,
+    0.5
+   ]
   },
   {
    "title": "Ise Pilgrimage Journey: A Comic Travelogue Board Game (Ise Sangū Hizakurige Dōchū Sugoroku)",
@@ -4062,7 +4146,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1310725",
    "license_verified": "2026-07-16",
-   "featured_rank": 22
+   "featured_rank": 22,
+   "focal_point": [
+    0.5,
+    0.5
+   ]
   },
   {
    "title": "Inside Shiba Myōjin Shrine (from Famous Restaurants of Edo)",
@@ -4083,7 +4171,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections",
    "license_verified": "2026-07-16",
-   "featured_rank": 20
+   "featured_rank": 20,
+   "focal_point": [
+    0.45,
+    0.35
+   ]
   },
   {
    "title": "Crane amid Waves",
@@ -4104,7 +4196,11 @@
    "license_url": "",
    "credit_line": "Library of Congress Catalog: https://lccn.loc.gov/2009615258 Image download: https://cdn.loc.gov/service/pnp/jpd/00200/00268v.jpg Original url: https://www.loc.gov/pictures/item/2009615258/",
    "license_verified": "2026-07-16",
-   "featured_rank": 27
+   "featured_rank": 27,
+   "focal_point": [
+    0.62,
+    0.25
+   ]
   },
   {
    "title": "Monkey and Long-Tailed Tortoise (Minogame) (surimono)",
@@ -4125,7 +4221,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "http://hdl.handle.net/10934/RM0001.collect.45973",
    "license_verified": "2026-07-16",
-   "featured_rank": 22
+   "featured_rank": 22,
+   "focal_point": [
+    0.38,
+    0.42
+   ]
   },
   {
    "title": "Morning Cherry Blossoms at Shin-Yoshiwara (from Famous Places of the Eastern Capital)",
@@ -4146,7 +4246,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.35,
+    0.8
+   ]
   },
   {
    "title": "Souvenir Views of Edo (Ehon Edo Miyage), plate 37",
@@ -4167,7 +4271,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "https://www.parismuseescollections.paris.fr/fr/musee-cernuschi/oeuvres/souvenirs-illustres-d-edo-ehon-edo-miyage-hui-ben-jiang-hu-tu-chan#infos-principales",
    "license_verified": "2026-07-16",
-   "featured_rank": 22
+   "featured_rank": 22,
+   "focal_point": [
+    0.5,
+    0.5
+   ]
   },
   {
    "title": "New Year's Sunrise after Snow at Susaki (from Famous Places of the Eastern Capital)",
@@ -4188,7 +4296,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
-   "featured_rank": 25
+   "featured_rank": 25,
+   "focal_point": [
+    0.62,
+    0.6
+   ]
   },
   {
    "title": "The Prosperity of Ōdenmachō",
@@ -4209,7 +4321,11 @@
    "license_url": "",
    "credit_line": "国会図書館デジタルコレクション",
    "license_verified": "2026-07-16",
-   "featured_rank": 24
+   "featured_rank": 24,
+   "focal_point": [
+    0.5,
+    0.32
+   ]
   },
   {
    "title": "View Outside Sakurada Gate (from Famous Places of the Eastern Capital)",
@@ -4230,7 +4346,11 @@
    "license_url": "",
    "credit_line": "Bibliothèque nationale de France",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.55,
+    0.7
+   ]
   },
   {
    "title": "A Wealthy Merchant",
@@ -4276,7 +4396,11 @@
    "license_url": "",
    "credit_line": "Metropolitan Museum of Art",
    "license_verified": "2026-07-16",
-   "featured_rank": 29
+   "featured_rank": 29,
+   "focal_point": [
+    0.68,
+    0.45
+   ]
   },
   {
    "title": "Horikiri Iris Garden (from One Hundred Famous Views of Edo)",
@@ -4297,7 +4421,11 @@
    "license_url": "",
    "credit_line": "qgFCjAmgF1vaxA at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 50
+   "featured_rank": 50,
+   "focal_point": [
+    0.62,
+    0.28
+   ]
   },
   {
    "title": "Mountains and Rivers Along the Kisokaidō",
@@ -4318,7 +4446,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
-   "featured_rank": 34
+   "featured_rank": 34,
+   "focal_point": [
+    0.5,
+    0.45
+   ]
   },
   {
    "title": "Night Cherry Blossoms at Yoshiwara (from Famous Places of the Eastern Capital)",
@@ -4339,7 +4471,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.5,
+    0.55
+   ]
   },
   {
    "title": "Zōjōji Temple at Shiba in Snow (from Famous Places of the Eastern Capital)",
@@ -4360,7 +4496,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
-   "featured_rank": 29
+   "featured_rank": 29,
+   "focal_point": [
+    0.72,
+    0.4
+   ]
   },
   {
    "title": "Kingfisher and Iris",
@@ -4381,7 +4521,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
-   "featured_rank": 33
+   "featured_rank": 33,
+   "focal_point": [
+    0.6,
+    0.25
+   ]
   },
   {
    "title": "Mallard Ducks and Snow-Covered Reeds",
@@ -4402,7 +4546,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
-   "featured_rank": 25
+   "featured_rank": 25,
+   "focal_point": [
+    0.35,
+    0.55
+   ]
   },
   {
    "title": "Benten-yama Hill at Kinryūzan Temple, Asakusa (from Famous Places of Edo)",
@@ -4423,7 +4571,11 @@
    "license_url": "",
    "credit_line": "Bibliothèque nationale de France",
    "license_verified": "2026-07-16",
-   "featured_rank": 27
+   "featured_rank": 27,
+   "focal_point": [
+    0.58,
+    0.35
+   ]
   },
   {
    "title": "Tama-Shō Restaurant at Imado Bridge (from Famous Restaurants of Edo)",
@@ -4444,7 +4596,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
-   "featured_rank": 23
+   "featured_rank": 23,
+   "focal_point": [
+    0.25,
+    0.75
+   ]
   },
   {
    "title": "Myōga-ya Restaurant at Zōshigaya (from Famous Restaurants of Edo)",
@@ -4465,7 +4621,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
-   "featured_rank": 25
+   "featured_rank": 25,
+   "focal_point": [
+    0.78,
+    0.65
+   ]
   },
   {
    "title": "Cherry Blossom Viewing at Asukayama (from Famous Places in Edo, 1853)",
@@ -4486,7 +4646,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1303545",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.6,
+    0.65
+   ]
   },
   {
    "title": "View of Tago-no-ura Bay",
@@ -4507,7 +4671,11 @@
    "license_url": "",
    "credit_line": "Bibliothèque nationale de France",
    "license_verified": "2026-07-16",
-   "featured_rank": 25
+   "featured_rank": 25,
+   "focal_point": [
+    0.5,
+    0.28
+   ]
   },
   {
    "title": "Carp (from Every Variety of Fish)",
@@ -4553,7 +4721,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "https://clevelandart.org/art/1930.187",
    "license_verified": "2026-07-16",
-   "featured_rank": 26
+   "featured_rank": 26,
+   "focal_point": [
+    0.5,
+    0.3
+   ]
   },
   {
    "title": "Evening Snow at Asukayama (from Eight Views of the Environs of Edo)",
@@ -4574,7 +4746,11 @@
    "license_url": "",
    "credit_line": "Library of Congress Catalog: https://lccn.loc.gov/2008660644 Image download: https://cdn.loc.gov/service/pnp/jpd/02000/02026v.jpg Original url: https://www.loc.gov/pictures/item/2008660644/",
    "license_verified": "2026-07-16",
-   "featured_rank": 32
+   "featured_rank": 32,
+   "focal_point": [
+    0.42,
+    0.75
+   ]
   },
   {
    "title": "Beautiful Chinese Lady (ishizuri-e print)",
@@ -4595,7 +4771,11 @@
    "license_url": "",
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
-   "featured_rank": 21
+   "featured_rank": 21,
+   "focal_point": [
+    0.55,
+    0.28
+   ]
   },
   {
    "title": "Two Mandarin Ducks",
@@ -4616,7 +4796,11 @@
    "license_url": "",
    "credit_line": "Wikipaintings",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.42,
+    0.62
+   ]
   },
   {
    "title": "Quails and Poppies",
@@ -4637,7 +4821,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "http://hdl.handle.net/10934/RM0001.COLLECT.45978",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.5,
+    0.75
+   ]
   },
   {
    "title": "Moonlight over Hongo",
@@ -4658,7 +4846,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1301801",
    "license_verified": "2026-07-16",
-   "featured_rank": 24
+   "featured_rank": 24,
+   "focal_point": [
+    0.5,
+    0.35
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -4679,7 +4871,11 @@
    "license_url": "",
    "credit_line": "https://collections.artsmia.org/art/9178/nihonbashi-bridge-in-snow-utagawa-hiroshige",
    "license_verified": "2026-07-16",
-   "featured_rank": 44
+   "featured_rank": 44,
+   "focal_point": [
+    0.5,
+    0.4
+   ]
   },
   {
    "title": "Abbreviated Guide Map of the Pilgrimage to Ise",
@@ -4700,7 +4896,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1302527",
    "license_verified": "2026-07-16",
-   "featured_rank": 20
+   "featured_rank": 20,
+   "focal_point": [
+    0.4,
+    0.25
+   ]
   },
   {
    "title": "View of Mount Massan (from Famous Places of the Eastern Capital)",
@@ -4721,7 +4921,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1303511",
    "license_verified": "2026-07-16",
-   "featured_rank": 20
+   "featured_rank": 20,
+   "focal_point": [
+    0.42,
+    0.35
+   ]
   },
   {
    "title": "The New Year's Bishamon Procession at Atago Hill, Shiba (from Famous Places of Edo)",
@@ -4742,7 +4946,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1303548",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.55,
+    0.5
+   ]
   },
   {
    "title": "An Ancient View of Kasumigaseki (from Famous Old Sites of the Eastern Capital)",
@@ -4763,7 +4971,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1305408",
    "license_verified": "2026-07-16",
-   "featured_rank": 24
+   "featured_rank": 24,
+   "focal_point": [
+    0.7,
+    0.55
+   ]
   },
   {
    "title": "Autumn Maples at Kaian-ji Temple (from Famous Places of the Four Seasons in the Eastern Capital)",
@@ -4784,7 +4996,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1306164",
    "license_verified": "2026-07-16",
-   "featured_rank": 25
+   "featured_rank": 25,
+   "focal_point": [
+    0.28,
+    0.65
+   ]
   },
   {
    "title": "Kudanzaka Slope at Iidamachi (from Hiroshige's Slopes of the Eastern Capital)",
@@ -4805,7 +5021,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1306172",
    "license_verified": "2026-07-16",
-   "featured_rank": 22
+   "featured_rank": 22,
+   "focal_point": [
+    0.72,
+    0.65
+   ]
   },
   {
    "title": "Full View of the Precincts of Tomioka Hachiman Shrine, Fukagawa",
@@ -4826,7 +5046,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1307037",
    "license_verified": "2026-07-16",
-   "featured_rank": 22
+   "featured_rank": 22,
+   "focal_point": [
+    0.4,
+    0.4
+   ]
   },
   {
    "title": "Full View of the Precincts of Kameido Tenman Shrine (from Famous Places of the Eastern Capital)",
@@ -4847,7 +5071,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1307047",
    "license_verified": "2026-07-16",
-   "featured_rank": 24
+   "featured_rank": 24,
+   "focal_point": [
+    0.5,
+    0.45
+   ]
   },
   {
    "title": "Hanayashiki Garden at Okuyama, Kinryuzan Temple, Asakusa",
@@ -4868,7 +5096,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1307609",
    "license_verified": "2026-07-16",
-   "featured_rank": 23
+   "featured_rank": 23,
+   "focal_point": [
+    0.5,
+    0.5
+   ]
   },
   {
    "title": "Great Snow at Massaki (from Twelve Snow Views of the Eastern Capital)",
@@ -4889,7 +5121,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1308290",
    "license_verified": "2026-07-16",
-   "featured_rank": 24
+   "featured_rank": 24,
+   "focal_point": [
+    0.5,
+    0.7
+   ]
   },
   {
    "title": "Sunrise at Susaki on a Snowy Morning (from Twelve Snow Views of the Eastern Capital)",
@@ -4910,7 +5146,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1308298",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.3,
+    0.6
+   ]
   },
   {
    "title": "Outside Toranomon Gate (from Famous Scenic Views of Edo)",
@@ -4931,7 +5171,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1308377",
    "license_verified": "2026-07-16",
-   "featured_rank": 24
+   "featured_rank": 24,
+   "focal_point": [
+    0.35,
+    0.68
+   ]
   },
   {
    "title": "Myogaya Restaurant at Zoshigaya (from Famous Restaurants of Edo)",
@@ -4952,7 +5196,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1308385",
    "license_verified": "2026-07-16",
-   "featured_rank": 17
+   "featured_rank": 17,
+   "focal_point": [
+    0.5,
+    0.42
+   ]
   },
   {
    "title": "Hashimoto Restaurant at Yanagishima Bridge (from Famous Restaurants of Edo)",
@@ -4973,7 +5221,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1308401",
    "license_verified": "2026-07-16",
-   "featured_rank": 24
+   "featured_rank": 24,
+   "focal_point": [
+    0.4,
+    0.55
+   ]
   },
   {
    "title": "Kawachiya Restaurant at Ryogoku Yanagibashi (from Famous Restaurants of Edo)",
@@ -4994,7 +5246,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1308409",
    "license_verified": "2026-07-16",
-   "featured_rank": 18
+   "featured_rank": 18,
+   "focal_point": [
+    0.28,
+    0.45
+   ]
   },
   {
    "title": "Four Views of Edo: Autumn Maples at Kaian-ji, Dawn at Shibaura, Cherry Blossoms at Gotenyama, and Clear Breeze on the Sumida River",
@@ -5015,7 +5271,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1308830",
    "license_verified": "2026-07-16",
-   "featured_rank": 32
+   "featured_rank": 32,
+   "focal_point": [
+    0.5,
+    0.5
+   ]
   },
   {
    "title": "Peacock and Peonies",
@@ -5036,7 +5296,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "https://hdl.handle.net/10934/RM0001.COLLECT.46003",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.4,
+    0.65
+   ]
   },
   {
    "title": "Sakuragawa Yozaemon's Teahouse and the Riverbank at Joshichi (from Famous Restaurants in the Eastern Capital)",
@@ -5057,7 +5321,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "http://hdl.handle.net/10934/RM0001.COLLECT.46148",
    "license_verified": "2026-07-16",
-   "featured_rank": 22
+   "featured_rank": 22,
+   "focal_point": [
+    0.45,
+    0.45
+   ]
   },
   {
    "title": "Sparrows and Camellias in the Snow",
@@ -5078,7 +5346,11 @@
    "license_url": "",
    "credit_line": "https://www.loc.gov/exhibits/ukiyo-e/",
    "license_verified": "2026-07-16",
-   "featured_rank": 32
+   "featured_rank": 32,
+   "focal_point": [
+    0.65,
+    0.7
+   ]
   },
   {
    "title": "Shinobazu Pond (from Famous Places of the Eastern Capital)",
@@ -5099,7 +5371,11 @@
    "license_url": "",
    "credit_line": "Library of Congress Catalog: https://lccn.loc.gov/2009615475 Image download: https://cdn.loc.gov/service/pnp/jpd/00500/00504v.jpg Original url: https://www.loc.gov/pictures/item/2009615475/",
    "license_verified": "2026-07-16",
-   "featured_rank": 25
+   "featured_rank": 25,
+   "focal_point": [
+    0.5,
+    0.6
+   ]
   },
   {
    "title": "Cherry Blossoms along the Sumida River (from Famous Places of Edo)",
@@ -5120,7 +5396,11 @@
    "license_url": "",
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.35,
+    0.35
+   ]
   },
   {
    "title": "The Rakan Handaka Sonja with a Dragon",
@@ -5141,7 +5421,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
-   "featured_rank": 24
+   "featured_rank": 24,
+   "focal_point": [
+    0.6,
+    0.65
+   ]
   },
   {
    "title": "Suidobashi and Surugadai (from One Hundred Famous Views of Edo)",
@@ -5162,7 +5446,11 @@
    "license_url": "",
    "credit_line": "4wHcySD213IaJw at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 40
+   "featured_rank": 40,
+   "focal_point": [
+    0.42,
+    0.18
+   ]
   },
   {
    "title": "Bats and the Moon",
@@ -5183,7 +5471,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "http://hdl.handle.net/10934/RM0001.collect.46016",
    "license_verified": "2026-07-16",
-   "featured_rank": 25
+   "featured_rank": 25,
+   "focal_point": [
+    0.45,
+    0.35
+   ]
   },
   {
    "title": "Autumn Moon over the Tama River, with Ayu Fishing (from Famous Places: Snow, Moon and Blossoms)",
@@ -5204,7 +5496,11 @@
    "license_url": "",
    "credit_line": "Bibliothèque nationale de France",
    "license_verified": "2026-07-16",
-   "featured_rank": 24
+   "featured_rank": 24,
+   "focal_point": [
+    0.48,
+    0.15
+   ]
   },
   {
    "title": "Mount Akiba in Enshu Province (from Famous Places of Our Country)",
@@ -5225,7 +5521,11 @@
    "license_url": "",
    "credit_line": "Bibliothèque nationale de France",
    "license_verified": "2026-07-16",
-   "featured_rank": 26
+   "featured_rank": 26,
+   "focal_point": [
+    0.5,
+    0.4
+   ]
   },
   {
    "title": "New Yoshiwara (from Famous Places of the Eastern Capital)",
@@ -5246,7 +5546,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1303523",
    "license_verified": "2026-07-16",
-   "featured_rank": 24
+   "featured_rank": 24,
+   "focal_point": [
+    0.4,
+    0.35
+   ]
   },
   {
    "title": "View from the Top of Atago Hill, Shiba (from Famous Places of the Eastern Capital)",
@@ -5267,7 +5571,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
-   "featured_rank": 24
+   "featured_rank": 24,
+   "focal_point": [
+    0.25,
+    0.65
+   ]
   },
   {
    "title": "Evening Glow at Imado (from Eight Views of the Sumida River)",
@@ -5288,7 +5596,11 @@
    "license_url": "",
    "credit_line": "Bibliothèque nationale de France",
    "license_verified": "2026-07-16",
-   "featured_rank": 32
+   "featured_rank": 32,
+   "focal_point": [
+    0.5,
+    0.45
+   ]
   },
   {
    "title": "White Heron Standing among Reeds",
@@ -5309,7 +5621,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
-   "featured_rank": 22
+   "featured_rank": 22,
+   "focal_point": [
+    0.45,
+    0.55
+   ]
   },
   {
    "title": "Mallard and Snow-Covered Reeds",
@@ -5330,7 +5646,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
-   "featured_rank": 26
+   "featured_rank": 26,
+   "focal_point": [
+    0.55,
+    0.55
+   ]
   },
   {
    "title": "Yaozen Restaurant at Sanya (from Famous Restaurants of Edo)",
@@ -5351,7 +5671,11 @@
    "license_url": "",
    "credit_line": "Bibliothèque nationale de France",
    "license_verified": "2026-07-16",
-   "featured_rank": 23
+   "featured_rank": 23,
+   "focal_point": [
+    0.5,
+    0.55
+   ]
   },
   {
    "title": "View of Enoshima Island, Sagami Province",
@@ -5372,7 +5696,11 @@
    "license_url": "",
    "credit_line": "Bibliothèque nationale de France",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.6,
+    0.45
+   ]
   },
   {
    "title": "Kusatsu: Meeting of the Tōkaidō and Nakasendō Highways (from The Fifty-three Stations of the Tōkaidō)",
@@ -5393,7 +5721,11 @@
    "license_url": "",
    "credit_line": "fgGsk7Rs9_KFlA at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 50
+   "featured_rank": 50,
+   "focal_point": [
+    0.45,
+    0.75
+   ]
   },
   {
    "title": "Complete View of Asukayama",
@@ -5414,7 +5746,11 @@
    "license_url": "",
    "credit_line": "Library of Congress Catalog: https://lccn.loc.gov/2008661241 Image download: https://cdn.loc.gov/service/pnp/jpd/02700/02754v.jpg Original url: https://www.loc.gov/pictures/item/2008661241/",
    "license_verified": "2026-07-16",
-   "featured_rank": 22
+   "featured_rank": 22,
+   "focal_point": [
+    0.43,
+    0.22
+   ]
   },
   {
    "title": "The Fox Trap",
@@ -5435,7 +5771,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "http://hdl.handle.net/10934/RM0001.collect.47672",
    "license_verified": "2026-07-16",
-   "featured_rank": 22
+   "featured_rank": 22,
+   "focal_point": [
+    0.35,
+    0.45
+   ]
   },
   {
    "title": "Pheasant and Chrysanthemums",
@@ -5456,7 +5796,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "http://hdl.handle.net/10934/RM0001.COLLECT.46004",
    "license_verified": "2026-07-16",
-   "featured_rank": 32
+   "featured_rank": 32,
+   "focal_point": [
+    0.45,
+    0.45
+   ]
   },
   {
    "title": "Kijin (Demon Deity)",
@@ -5477,7 +5821,11 @@
    "license_url": "",
    "credit_line": "This image is available from the United States Library of Congress's Prints and Photographs division under the digital ID jpd.00495.This tag does not indicate the copyright status of the attached work. A normal copyright tag is still required. See Commons:Licensing.",
    "license_verified": "2026-07-16",
-   "featured_rank": 19
+   "featured_rank": 19,
+   "focal_point": [
+    0.45,
+    0.55
+   ]
   },
   {
    "title": "Cherry Blossom by a Tree Trunk",
@@ -5498,7 +5846,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "http://hdl.handle.net/10934/RM0001.collect.46011",
    "license_verified": "2026-07-16",
-   "featured_rank": 24
+   "featured_rank": 24,
+   "focal_point": [
+    0.35,
+    0.3
+   ]
   },
   {
    "title": "Mandarin Duck",
@@ -5519,7 +5871,11 @@
    "license_url": "",
    "credit_line": "Library of Congress[1]",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.42,
+    0.62
+   ]
   },
   {
    "title": "Abbreviated View of the Pilgrimage Route to Ise Shrine",
@@ -5540,7 +5896,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1302527",
    "license_verified": "2026-07-16",
-   "featured_rank": 20
+   "featured_rank": 20,
+   "focal_point": [
+    0.5,
+    0.65
+   ]
   },
   {
    "title": "Suruga-chō (from Famous Places of the Eastern Capital)",
@@ -5561,7 +5921,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1303512",
    "license_verified": "2026-07-16",
-   "featured_rank": 27
+   "featured_rank": 27,
+   "focal_point": [
+    0.45,
+    0.65
+   ]
   },
   {
    "title": "New Year's Sunrise at Susaki",
@@ -5582,7 +5946,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1303549",
    "license_verified": "2026-07-16",
-   "featured_rank": 26
+   "featured_rank": 26,
+   "focal_point": [
+    0.75,
+    0.65
+   ]
   },
   {
    "title": "The Shinagawa Station Seen from the Sea (from Famous Places in Edo)",
@@ -5603,7 +5971,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1303557",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.45,
+    0.3
+   ]
   },
   {
    "title": "The Origin of Shiba Shinmei Shrine (from Famous Old Sites of the Eastern Capital)",
@@ -5624,7 +5996,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1305409",
    "license_verified": "2026-07-16",
-   "featured_rank": 42
+   "featured_rank": 42,
+   "focal_point": [
+    0.22,
+    0.82
+   ]
   },
   {
    "title": "Returning Sails at Tsukudajima (from Eight Views of the Eastern Capital)",
@@ -5645,7 +6021,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1305433",
    "license_verified": "2026-07-16",
-   "featured_rank": 35
+   "featured_rank": 35,
+   "focal_point": [
+    0.6,
+    0.5
+   ]
   },
   {
    "title": "The Moon over Ryōgoku in Summer (from Famous Places of the Eastern Capital in the Four Seasons)",
@@ -5666,7 +6046,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1306165",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.7,
+    0.75
+   ]
   },
   {
    "title": "Complete View of the Tomioka Hachiman Shrine Precincts in Fukagawa",
@@ -5687,7 +6071,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1307037",
    "license_verified": "2026-07-16",
-   "featured_rank": 22
+   "featured_rank": 22,
+   "focal_point": [
+    0.55,
+    0.5
+   ]
   },
   {
    "title": "Complete View of the Ōji Inari Shrine Precincts (from Famous Places of the Eastern Capital)",
@@ -5708,7 +6096,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1307040",
    "license_verified": "2026-07-16",
-   "featured_rank": 22
+   "featured_rank": 22,
+   "focal_point": [
+    0.35,
+    0.82
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -5729,7 +6121,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1307042",
    "license_verified": "2026-07-16",
-   "featured_rank": 26
+   "featured_rank": 26,
+   "focal_point": [
+    0.5,
+    0.68
+   ]
   },
   {
    "title": "Complete View of the Susaki Benzaiten Shrine Precincts and Shellfish Gathering on the Shore (from Famous Places of the Eastern Capital)",
@@ -5750,7 +6146,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1307044",
    "license_verified": "2026-07-16",
-   "featured_rank": 24
+   "featured_rank": 24,
+   "focal_point": [
+    0.5,
+    0.45
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -5771,7 +6171,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1307046",
    "license_verified": "2026-07-16",
-   "featured_rank": 24
+   "featured_rank": 24,
+   "focal_point": [
+    0.32,
+    0.2
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -5792,7 +6196,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1307610",
    "license_verified": "2026-07-16",
-   "featured_rank": 23
+   "featured_rank": 23,
+   "focal_point": [
+    0.5,
+    0.6
+   ]
   },
   {
    "title": "Wind in the Snow at Inokashira Benten (from Silver World: Twelve Views of the Eastern Capital)",
@@ -5813,7 +6221,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1308291",
    "license_verified": "2026-07-16",
-   "featured_rank": 24
+   "featured_rank": 24,
+   "focal_point": [
+    0.42,
+    0.42
+   ]
   },
   {
    "title": "Morning After Snow Outside Sakurada Gate (from Silver World: Twelve Views of the Eastern Capital)",
@@ -5834,7 +6246,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1308299",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.5,
+    0.5
+   ]
   },
   {
    "title": "Mankin Restaurant at Hakusan Keiseigakubo (from Famous Restaurants of Edo)",
@@ -5855,7 +6271,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1308386",
    "license_verified": "2026-07-16",
-   "featured_rank": 20
+   "featured_rank": 20,
+   "focal_point": [
+    0.55,
+    0.6
+   ]
   },
   {
    "title": "Tamashō Restaurant at Imado Bridge (from Famous Restaurants of Edo)",
@@ -5876,7 +6296,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1308394",
    "license_verified": "2026-07-16",
-   "featured_rank": 16
+   "featured_rank": 16,
+   "focal_point": [
+    0.35,
+    0.85
+   ]
   },
   {
    "title": "Tamaya Restaurant Behind Kameido (from Famous Restaurants of Edo)",
@@ -5897,7 +6321,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1308402",
    "license_verified": "2026-07-16",
-   "featured_rank": 24
+   "featured_rank": 24,
+   "focal_point": [
+    0.55,
+    0.65
+   ]
   },
   {
    "title": "Saruwaka-machi, No. 1",
@@ -5918,7 +6346,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 2590556",
    "license_verified": "2026-07-16",
-   "featured_rank": 27
+   "featured_rank": 27,
+   "focal_point": [
+    0.45,
+    0.25
+   ]
   },
   {
    "title": "Playing Shuttlecock at New Year",
@@ -5939,7 +6371,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "http://hdl.handle.net/10934/RM0001.collect.46032",
    "license_verified": "2026-07-16",
-   "featured_rank": 26
+   "featured_rank": 26,
+   "focal_point": [
+    0.45,
+    0.55
+   ]
   },
   {
    "title": "Cherry Blossom Avenue",
@@ -5960,7 +6396,11 @@
    "license_url": "",
    "credit_line": "Library of Congress Catalog: https://lccn.loc.gov/2009615477 Image download: https://cdn.loc.gov/service/pnp/jpd/00500/00507v.jpg Original url: https://www.loc.gov/pictures/item/2009615477/",
    "license_verified": "2026-07-16",
-   "featured_rank": 25
+   "featured_rank": 25,
+   "focal_point": [
+    0.55,
+    0.35
+   ]
   },
   {
    "title": "The Shrine to Benten at Shinobazu Pond",
@@ -5981,7 +6421,11 @@
    "license_url": "",
    "credit_line": "Library of Congress Catalog: https://lccn.loc.gov/2008660281 Image download: https://cdn.loc.gov/service/pnp/jpd/01300/01341v.jpg Original url: https://www.loc.gov/pictures/item/2008660281/",
    "license_verified": "2026-07-16",
-   "featured_rank": 26
+   "featured_rank": 26,
+   "focal_point": [
+    0.55,
+    0.65
+   ]
   },
   {
    "title": "The Moon over the Sumida River",
@@ -6002,7 +6446,11 @@
    "license_url": "",
    "credit_line": "Library of Congress Catalog: https://lccn.loc.gov/2009615468 Image download: https://cdn.loc.gov/service/pnp/jpd/00400/00497v.jpg Original url: https://www.loc.gov/pictures/item/2009615468/",
    "license_verified": "2026-07-16",
-   "featured_rank": 25
+   "featured_rank": 25,
+   "focal_point": [
+    0.68,
+    0.15
+   ]
   },
   {
    "title": "Tonosawa in Hakone",
@@ -6023,7 +6471,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "http://hdl.handle.net/10934/RM0001.COLLECT.46044",
    "license_verified": "2026-07-16",
-   "featured_rank": 26
+   "featured_rank": 26,
+   "focal_point": [
+    0.3,
+    0.78
+   ]
   },
   {
    "title": "Plum Blossom and Magpie",
@@ -6044,7 +6496,11 @@
    "license_url": "",
    "credit_line": "https://www.loc.gov/exhibits/ukiyo-e/",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.35,
+    0.3
+   ]
   },
   {
    "title": "Blue Magpie on a Maple Branch",
@@ -6065,7 +6521,11 @@
    "license_url": "",
    "credit_line": "2gGrcnPXp6_IpQ at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 29
+   "featured_rank": 29,
+   "focal_point": [
+    0.35,
+    0.3
+   ]
   },
   {
    "title": "Gathering Shellfish at Low Tide at Susaki (from Famous Places in Edo)",
@@ -6086,7 +6546,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "https://clevelandart.org/art/1985.315",
    "license_verified": "2026-07-16",
-   "featured_rank": 24
+   "featured_rank": 24,
+   "focal_point": [
+    0.55,
+    0.6
+   ]
   },
   {
    "title": "Suidō Bridge and Surugadai (from One Hundred Famous Views of Edo)",
@@ -6107,7 +6571,11 @@
    "license_url": "",
    "credit_line": "eAHav3lfNQjJlw at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 38
+   "featured_rank": 38,
+   "focal_point": [
+    0.35,
+    0.18
+   ]
   },
   {
    "title": "Cherry Blossoms at Yoshiwara",
@@ -6128,7 +6596,11 @@
    "license_url": "",
    "credit_line": "Library of Congress Catalog: https://lccn.loc.gov/2009615481 Image download: https://cdn.loc.gov/service/pnp/jpd/00500/00511v.jpg Original url: https://www.loc.gov/pictures/item/2009615481/",
    "license_verified": "2026-07-16",
-   "featured_rank": 24
+   "featured_rank": 24,
+   "focal_point": [
+    0.45,
+    0.55
+   ]
   },
   {
    "title": "Kokanei Embankment in Full Bloom (from Famous Places: Snow, Moon, Flowers)",
@@ -6149,7 +6621,11 @@
    "license_url": "",
    "credit_line": "Bibliothèque nationale de France",
    "license_verified": "2026-07-16",
-   "featured_rank": 25
+   "featured_rank": 25,
+   "focal_point": [
+    0.47,
+    0.32
+   ]
   },
   {
    "title": "Returning Sails at Takanawa",
@@ -6170,7 +6646,11 @@
    "license_url": "",
    "credit_line": "Library of Congress Catalog: https://lccn.loc.gov/2008660326 Image download: https://cdn.loc.gov/service/pnp/jpd/01400/01429v.jpg Original url: https://www.loc.gov/pictures/item/2008660326/",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.6,
+    0.55
+   ]
   },
   {
    "title": "Dawn at Emonzaka Slope, Nihon Embankment, Approaching the New Yoshiwara",
@@ -6191,7 +6671,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.25,
+    0.7
+   ]
   },
   {
    "title": "Snow at Akabane, Shiba (from Famous Places of the Eastern Capital)",
@@ -6212,7 +6696,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
-   "featured_rank": 25
+   "featured_rank": 25,
+   "focal_point": [
+    0.75,
+    0.65
+   ]
   },
   {
    "title": "Bird on a Plum Branch",
@@ -6233,7 +6721,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.4,
+    0.4
+   ]
   },
   {
    "title": "Shrike and Chrysanthemums",
@@ -6254,7 +6746,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
-   "featured_rank": 32
+   "featured_rank": 32,
+   "focal_point": [
+    0.55,
+    0.25
+   ]
   },
   {
    "title": "Morning Glories with a Poem by Gyōkō",
@@ -6275,7 +6771,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
-   "featured_rank": 22
+   "featured_rank": 22,
+   "focal_point": [
+    0.45,
+    0.35
+   ]
   },
   {
    "title": "Clearing Weather at Shibaura (from Eight Views of the Edo Suburbs)",
@@ -6296,7 +6796,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
-   "featured_rank": 26
+   "featured_rank": 26,
+   "focal_point": [
+    0.75,
+    0.55
+   ]
   },
   {
    "title": "View of Yanagishima: the Hashimoto Restaurant (from Famous Restaurants of Edo)",
@@ -6317,7 +6821,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
-   "featured_rank": 22
+   "featured_rank": 22,
+   "focal_point": [
+    0.45,
+    0.65
+   ]
   },
   {
    "title": "In Front of Kaminarimon Gate, Asakusa: the Kameya Restaurant (from Famous Restaurants of Edo)",
@@ -6338,7 +6846,11 @@
    "license_url": "",
    "credit_line": "Bibliothèque nationale de France",
    "license_verified": "2026-07-16",
-   "featured_rank": 24
+   "featured_rank": 24,
+   "focal_point": [
+    0.25,
+    0.35
+   ]
   },
   {
    "title": "Niwaka Festival Scene at the New Yoshiwara (from Famous Places of the Eastern Capital)",
@@ -6359,7 +6871,11 @@
    "license_url": "",
    "credit_line": "Bibliothèque nationale de France",
    "license_verified": "2026-07-16",
-   "featured_rank": 23
+   "featured_rank": 23,
+   "focal_point": [
+    0.5,
+    0.4
+   ]
   },
   {
    "title": "White Heron and Iris",
@@ -6380,7 +6896,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
-   "featured_rank": 26
+   "featured_rank": 26,
+   "focal_point": [
+    0.4,
+    0.3
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -6401,7 +6921,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "https://hdl.handle.net/10934/RM0001.COLLECT.46149",
    "license_verified": "2026-07-16",
-   "featured_rank": 24
+   "featured_rank": 24,
+   "focal_point": [
+    0.42,
+    0.42
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -6422,7 +6946,11 @@
    "license_url": "",
    "credit_line": "xgH5oie6-6-jBQ at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 38
+   "featured_rank": 38,
+   "focal_point": [
+    0.62,
+    0.35
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -6443,7 +6971,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
-   "featured_rank": 21
+   "featured_rank": 21,
+   "focal_point": [
+    0.5,
+    0.4
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -6464,7 +6996,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "http://hdl.handle.net/10934/RM0001.COLLECT.463209",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.35,
+    0.32
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -6485,7 +7021,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "https://hdl.handle.net/10934/RM0001.COLLECT.46030",
    "license_verified": "2026-07-16",
-   "featured_rank": 32
+   "featured_rank": 32,
+   "focal_point": [
+    0.5,
+    0.55
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -6506,7 +7046,11 @@
    "license_url": "",
    "credit_line": "https://www.loc.gov/exhibits/ukiyo-e/",
    "license_verified": "2026-07-16",
-   "featured_rank": 26
+   "featured_rank": 26,
+   "focal_point": [
+    0.45,
+    0.72
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -6527,7 +7071,11 @@
    "license_url": "",
    "credit_line": "Library of Congress Catalog: https://lccn.loc.gov/2008660363 Image download: https://cdn.loc.gov/service/pnp/jpd/01400/01468v.jpg Original url: https://www.loc.gov/pictures/item/2008660363/",
    "license_verified": "2026-07-16",
-   "featured_rank": 27
+   "featured_rank": 27,
+   "focal_point": [
+    0.4,
+    0.55
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -6548,7 +7096,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "http://hdl.handle.net/10934/RM0001.COLLECT.45976",
    "license_verified": "2026-07-16",
-   "featured_rank": 25
+   "featured_rank": 25,
+   "focal_point": [
+    0.75,
+    0.7
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -6569,7 +7121,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
-   "featured_rank": 40
+   "featured_rank": 40,
+   "focal_point": [
+    0.45,
+    0.5
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -6590,7 +7146,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1303513",
    "license_verified": "2026-07-16",
-   "featured_rank": 22
+   "featured_rank": 22,
+   "focal_point": [
+    0.3,
+    0.65
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -6611,7 +7171,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1303524",
    "license_verified": "2026-07-16",
-   "featured_rank": 24
+   "featured_rank": 24,
+   "focal_point": [
+    0.5,
+    0.55
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -6632,7 +7196,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1303550",
    "license_verified": "2026-07-16",
-   "featured_rank": 24
+   "featured_rank": 24,
+   "focal_point": [
+    0.72,
+    0.55
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -6653,7 +7221,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1303558",
    "license_verified": "2026-07-16",
-   "featured_rank": 24
+   "featured_rank": 24,
+   "focal_point": [
+    0.5,
+    0.55
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -6674,7 +7246,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1303566",
    "license_verified": "2026-07-16",
-   "featured_rank": 23
+   "featured_rank": 23,
+   "focal_point": [
+    0.72,
+    0.35
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -6695,7 +7271,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1305411",
    "license_verified": "2026-07-16",
-   "featured_rank": 22
+   "featured_rank": 22,
+   "focal_point": [
+    0.35,
+    0.55
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -6716,7 +7296,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1305434",
    "license_verified": "2026-07-16",
-   "featured_rank": 36
+   "featured_rank": 36,
+   "focal_point": [
+    0.5,
+    0.55
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -6737,7 +7321,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1306174",
    "license_verified": "2026-07-16",
-   "featured_rank": 16
+   "featured_rank": 16,
+   "focal_point": [
+    0.33,
+    0.35
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -6758,7 +7346,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1307037",
    "license_verified": "2026-07-16",
-   "featured_rank": 26
+   "featured_rank": 26,
+   "focal_point": [
+    0.5,
+    0.5
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -6779,7 +7371,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1307040",
    "license_verified": "2026-07-16",
-   "featured_rank": 20
+   "featured_rank": 20,
+   "focal_point": [
+    0.45,
+    0.6
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -6800,7 +7396,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1307044",
    "license_verified": "2026-07-16",
-   "featured_rank": 33
+   "featured_rank": 33,
+   "focal_point": [
+    0.5,
+    0.78
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -6821,7 +7421,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1307047",
    "license_verified": "2026-07-16",
-   "featured_rank": 24
+   "featured_rank": 24,
+   "focal_point": [
+    0.5,
+    0.45
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -6842,7 +7446,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1308292",
    "license_verified": "2026-07-16",
-   "featured_rank": 55
+   "featured_rank": 55,
+   "focal_point": [
+    0.42,
+    0.45
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -6863,7 +7471,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1308300",
    "license_verified": "2026-07-16",
-   "featured_rank": 24
+   "featured_rank": 24,
+   "focal_point": [
+    0.5,
+    0.5
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -6884,7 +7496,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1308379",
    "license_verified": "2026-07-16",
-   "featured_rank": 22
+   "featured_rank": 22,
+   "focal_point": [
+    0.75,
+    0.6
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -6905,7 +7521,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1308387",
    "license_verified": "2026-07-16",
-   "featured_rank": 24
+   "featured_rank": 24,
+   "focal_point": [
+    0.42,
+    0.68
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -6926,7 +7546,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1308395",
    "license_verified": "2026-07-16",
-   "featured_rank": 22
+   "featured_rank": 22,
+   "focal_point": [
+    0.45,
+    0.55
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -6947,7 +7571,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1308403",
    "license_verified": "2026-07-16",
-   "featured_rank": 22
+   "featured_rank": 22,
+   "focal_point": [
+    0.55,
+    0.65
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -6968,7 +7596,11 @@
    "license_url": "",
    "credit_line": "Library of Congress Catalog: https://lccn.loc.gov/2008660631 Image download: https://cdn.loc.gov/service/pnp/jpd/02000/02012v.jpg Original url: https://www.loc.gov/pictures/item/2008660631/",
    "license_verified": "2026-07-16",
-   "featured_rank": 26
+   "featured_rank": 26,
+   "focal_point": [
+    0.35,
+    0.42
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -6989,7 +7621,11 @@
    "license_url": "",
    "credit_line": "Library of Congress Catalog: https://lccn.loc.gov/2008660279 Image download: https://cdn.loc.gov/service/pnp/jpd/01300/01339v.jpg Original url: https://www.loc.gov/pictures/item/2008660279/",
    "license_verified": "2026-07-16",
-   "featured_rank": 22
+   "featured_rank": 22,
+   "focal_point": [
+    0.65,
+    0.4
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -7010,7 +7646,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
-   "featured_rank": 16
+   "featured_rank": 16,
+   "focal_point": [
+    0.4,
+    0.6
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -7031,7 +7671,11 @@
    "license_url": "",
    "credit_line": "Library of Congress Catalog: https://lccn.loc.gov/2009615472 Image download: https://cdn.loc.gov/service/pnp/jpd/00500/00501v.jpg Original url: https://www.loc.gov/pictures/item/2009615472/",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.42,
+    0.62
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -7052,7 +7696,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
-   "featured_rank": 25
+   "featured_rank": 25,
+   "focal_point": [
+    0.55,
+    0.35
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -7073,7 +7721,11 @@
    "license_url": "",
    "credit_line": "https://www.loc.gov/exhibits/ukiyo-e/",
    "license_verified": "2026-07-16",
-   "featured_rank": 33
+   "featured_rank": 33,
+   "focal_point": [
+    0.62,
+    0.35
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -7094,7 +7746,11 @@
    "license_url": "",
    "credit_line": "sgHbeJXdDDlUTA at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.35,
+    0.45
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -7115,7 +7771,11 @@
    "license_url": "",
    "credit_line": "Metropolitan Museum of Art",
    "license_verified": "2026-07-16",
-   "featured_rank": 25
+   "featured_rank": 25,
+   "focal_point": [
+    0.62,
+    0.4
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -7136,7 +7796,11 @@
    "license_url": "",
    "credit_line": "Library of Congress Catalog: https://lccn.loc.gov/2008660112 Image download: https://cdn.loc.gov/service/pnp/jpd/00800/00835v.jpg Original url: https://www.loc.gov/pictures/item/2008660112/",
    "license_verified": "2026-07-16",
-   "featured_rank": 25
+   "featured_rank": 25,
+   "focal_point": [
+    0.55,
+    0.55
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -7157,7 +7821,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
-   "featured_rank": 24
+   "featured_rank": 24,
+   "focal_point": [
+    0.5,
+    0.5
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -7178,7 +7846,11 @@
    "license_url": "",
    "credit_line": "http://dl.ndl.go.jp/info:ndljp/pid/1302539/3",
    "license_verified": "2026-07-16",
-   "featured_rank": 26
+   "featured_rank": 26,
+   "focal_point": [
+    0.62,
+    0.55
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -7199,7 +7871,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
-   "featured_rank": 24
+   "featured_rank": 24,
+   "focal_point": [
+    0.35,
+    0.6
+   ]
   },
   {
    "title": "View of Takanawa",
@@ -7220,7 +7896,11 @@
    "license_url": "",
    "credit_line": "Library of Congress Catalog: https://lccn.loc.gov/2008660282 Image download: https://cdn.loc.gov/service/pnp/jpd/01300/01342v.jpg Original url: https://www.loc.gov/pictures/item/2008660282/",
    "license_verified": "2026-07-16",
-   "featured_rank": 25
+   "featured_rank": 25,
+   "focal_point": [
+    0.4,
+    0.7
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -7241,7 +7921,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
-   "featured_rank": 24
+   "featured_rank": 24,
+   "focal_point": [
+    0.35,
+    0.3
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -7262,7 +7946,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.55,
+    0.4
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -7283,7 +7971,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
-   "featured_rank": 26
+   "featured_rank": 26,
+   "focal_point": [
+    0.45,
+    0.35
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -7304,7 +7996,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
-   "featured_rank": 16
+   "featured_rank": 16,
+   "focal_point": [
+    0.78,
+    0.68
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -7325,7 +8021,11 @@
    "license_url": "",
    "credit_line": "Bibliothèque nationale de France",
    "license_verified": "2026-07-16",
-   "featured_rank": 25
+   "featured_rank": 25,
+   "focal_point": [
+    0.25,
+    0.65
+   ]
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -7346,7 +8046,11 @@
    "license_url": "",
    "credit_line": "Bibliothèque nationale de France",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.5,
+    0.35
+   ]
   },
   {
    "title": "Hydrangea and Kingfisher",
@@ -7367,7 +8071,11 @@
    "license_url": "",
    "credit_line": "https://www.loc.gov/exhibits/ukiyo-e/",
    "license_verified": "2026-07-16",
-   "featured_rank": 26
+   "featured_rank": 26,
+   "focal_point": [
+    0.35,
+    0.2
+   ]
   },
   {
    "title": "Light Rain on the Embankment of the Sumida River (from A New Selection of Famous Places in Edo)",
@@ -7388,7 +8096,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "https://clevelandart.org/art/1940.988",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.65,
+    0.55
+   ]
   },
   {
    "title": "Enjoying the Evening Cool at Ryōgoku Bridge (from Famous Places in the Eastern Capital)",
@@ -7409,7 +8121,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was derived from: Beroemde plekken in de Oostelijke hoofdstad Genietend van een avondbriesje bij de Ryogoku brug Toto meisho Ryogoku no yusuzumi (titel op object), RP-P-2008-208C.jpg:",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.5,
+    0.55
+   ]
   },
   {
    "title": "Swallow under the Moon with Peach Blossoms",
@@ -7455,7 +8171,11 @@
    "license_url": "",
    "credit_line": "Library of Congress Catalog: https://lccn.loc.gov/2008660634 Image download: https://cdn.loc.gov/service/pnp/jpd/02000/02014v.jpg Original url: https://www.loc.gov/pictures/item/2008660634/",
    "license_verified": "2026-07-16",
-   "featured_rank": 22
+   "featured_rank": 22,
+   "focal_point": [
+    0.55,
+    0.55
+   ]
   },
   {
    "title": "Hanaikada (Flower Raft)",
@@ -7476,7 +8196,11 @@
    "license_url": "",
    "credit_line": "This image is available from the United States Library of Congress's Prints and Photographs division under the digital ID jpd.01468.This tag does not indicate the copyright status of the attached work. A normal copyright tag is still required. See Commons:Licensing.",
    "license_verified": "2026-07-16",
-   "featured_rank": 26
+   "featured_rank": 26,
+   "focal_point": [
+    0.45,
+    0.55
+   ]
   },
   {
    "title": "Tenmangū Shrine Grounds at Kameido in Snow",
@@ -7497,7 +8221,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
-   "featured_rank": 32
+   "featured_rank": 32,
+   "focal_point": [
+    0.68,
+    0.5
+   ]
   },
   {
    "title": "The Sanjūsangendō Hall at Fukagawa (from Famous Places in the Eastern Capital)",
@@ -7518,7 +8246,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1303514",
    "license_verified": "2026-07-16",
-   "featured_rank": 22
+   "featured_rank": 22,
+   "focal_point": [
+    0.48,
+    0.45
+   ]
   },
   {
    "title": "Fukagawa Hachiman Shrine (from Famous Places of Edo)",
@@ -7539,7 +8271,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1303551",
    "license_verified": "2026-07-16",
-   "featured_rank": 23
+   "featured_rank": 23,
+   "focal_point": [
+    0.5,
+    0.55
+   ]
   },
   {
    "title": "Inside Shiba Shinmei Shrine (from Famous Places of Edo)",
@@ -7560,7 +8296,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1303559",
    "license_verified": "2026-07-16",
-   "featured_rank": 22
+   "featured_rank": 22,
+   "focal_point": [
+    0.68,
+    0.45
+   ]
   },
   {
    "title": "The Legend of Otamagaike Pond at Kanda (from Famous Old Sites of the Eastern Capital)",
@@ -7581,7 +8321,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1305412",
    "license_verified": "2026-07-16",
-   "featured_rank": 24
+   "featured_rank": 24,
+   "focal_point": [
+    0.42,
+    0.55
+   ]
   },
   {
    "title": "The Waters of Kameido (from Famous Places of Edo)",
@@ -7602,7 +8346,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1305440",
    "license_verified": "2026-07-16",
-   "featured_rank": 22
+   "featured_rank": 22,
+   "focal_point": [
+    0.6,
+    0.25
+   ]
   },
   {
    "title": "Full View of the New Yoshiwara in Full Cherry Blossom (from Famous Places in the Eastern Capital)",
@@ -7623,7 +8371,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1307036",
    "license_verified": "2026-07-16",
-   "featured_rank": 19
+   "featured_rank": 19,
+   "focal_point": [
+    0.45,
+    0.35
+   ]
   },
   {
    "title": "The Prosperity of Ōdenma-chō Street (from Famous Places in the Eastern Capital)",
@@ -7644,7 +8396,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1307610",
    "license_verified": "2026-07-16",
-   "featured_rank": 24
+   "featured_rank": 24,
+   "focal_point": [
+    0.4,
+    0.55
+   ]
   },
   {
    "title": "Snowy Morning at the New Yoshiwara (from Silver World: Twelve Views of the Eastern Capital)",
@@ -7665,7 +8421,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1308293",
    "license_verified": "2026-07-16",
-   "featured_rank": 22
+   "featured_rank": 22,
+   "focal_point": [
+    0.5,
+    0.5
+   ]
   },
   {
    "title": "Inside Yamashita Gate (from Famous Views of Edo)",
@@ -7686,7 +8446,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1308380",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.5,
+    0.4
+   ]
   },
   {
    "title": "Matsukane-ya Restaurant at Yushima (from Famous Restaurants of the Eastern Capital)",
@@ -7707,7 +8471,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1308388",
    "license_verified": "2026-07-16",
-   "featured_rank": 23
+   "featured_rank": 23,
+   "focal_point": [
+    0.55,
+    0.65
+   ]
   },
   {
    "title": "Uekiya Restaurant at Mokuboji in Snow (from Famous Restaurants of the Eastern Capital)",
@@ -7728,7 +8496,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1308396",
    "license_verified": "2026-07-16",
-   "featured_rank": 22
+   "featured_rank": 22,
+   "focal_point": [
+    0.7,
+    0.65
+   ]
   },
   {
    "title": "Heisei Restaurant in Front of Fukagawa Hachiman Shrine (from Famous Restaurants of the Eastern Capital)",
@@ -7749,7 +8521,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1308404",
    "license_verified": "2026-07-16",
-   "featured_rank": 20
+   "featured_rank": 20,
+   "focal_point": [
+    0.45,
+    0.7
+   ]
   },
   {
    "title": "Sugoroku Board Game of the Fifty-three Stations of the Tōkaidō",
@@ -7770,7 +8546,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1310714",
    "license_verified": "2026-07-16",
-   "featured_rank": 25
+   "featured_rank": 25,
+   "focal_point": [
+    0.5,
+    0.5
+   ]
   },
   {
    "title": "Tilefish, Rockfish, and Wasabi (from Uozukushi, A Series of Fish)",
@@ -7791,7 +8571,11 @@
    "license_url": "",
    "credit_line": "National Diet Library",
    "license_verified": "2026-07-16",
-   "featured_rank": 24
+   "featured_rank": 24,
+   "focal_point": [
+    0.6,
+    0.55
+   ]
   },
   {
    "title": "Nihonbashi Bridge in a Sudden Shower",
@@ -7812,7 +8596,11 @@
    "license_url": "",
    "credit_line": "Library of Congress Catalog: https://lccn.loc.gov/2009615473 Image download: https://cdn.loc.gov/service/pnp/jpd/00500/00502v.jpg Original url: https://www.loc.gov/pictures/item/2009615473/",
    "license_verified": "2026-07-16",
-   "featured_rank": 36
+   "featured_rank": 36,
+   "focal_point": [
+    0.55,
+    0.62
+   ]
   },
   {
    "title": "Priest Yoshida Kenkō (Kenkō Hōshi)",
@@ -7833,7 +8621,11 @@
    "license_url": "",
    "credit_line": "Google Arts &amp; Culture — the-priest-yoshida-kenko-utagawa-hiroshige/SgGYDNZb1pY2og",
    "license_verified": "2026-07-16",
-   "featured_rank": 24
+   "featured_rank": 24,
+   "focal_point": [
+    0.42,
+    0.55
+   ]
   },
   {
    "title": "Miyakodori Birds on the Sumida River",
@@ -7854,7 +8646,11 @@
    "license_url": "",
    "credit_line": "Library of Congress Catalog: https://lccn.loc.gov/2009615149 Image download: https://cdn.loc.gov/service/pnp/jpd/00100/00156v.jpg Original url: https://www.loc.gov/pictures/item/2009615149/",
    "license_verified": "2026-07-16",
-   "featured_rank": 24
+   "featured_rank": 24,
+   "focal_point": [
+    0.45,
+    0.55
+   ]
   },
   {
    "title": "Camellia and Bush Warbler",
@@ -7875,7 +8671,11 @@
    "license_url": "",
    "credit_line": "https://www.loc.gov/exhibits/ukiyo-e/",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.55,
+    0.55
+   ]
   },
   {
    "title": "Plum Blossoms and Long-tailed Bird",
@@ -7896,7 +8696,11 @@
    "license_url": "",
    "credit_line": "Library of Congress Catalog: https://lccn.loc.gov/2008660648 Image download: https://cdn.loc.gov/service/pnp/jpd/02000/02030v.jpg Original url: https://www.loc.gov/pictures/item/2008660648/",
    "license_verified": "2026-07-16",
-   "featured_rank": 26
+   "featured_rank": 26,
+   "focal_point": [
+    0.55,
+    0.3
+   ]
   },
   {
    "title": "Kannon Slope on the Kisokaidō (from The Sixty-nine Stations of the Kisokaidō)",
@@ -7917,7 +8721,11 @@
    "license_url": "",
    "credit_line": "Metropolitan Museum of Art",
    "license_verified": "2026-07-16",
-   "featured_rank": 27
+   "featured_rank": 27,
+   "focal_point": [
+    0.55,
+    0.5
+   ]
   },
   {
    "title": "Misaka Pass in Kai Province (from Thirty-six Views of Mount Fuji)",
@@ -7938,7 +8746,11 @@
    "license_url": "",
    "credit_line": "Bibliothèque nationale de France",
    "license_verified": "2026-07-16",
-   "featured_rank": 38
+   "featured_rank": 38,
+   "focal_point": [
+    0.4,
+    0.35
+   ]
   },
   {
    "title": "Autumn Moon at Emon-zaka, New Yoshiwara (from Famous Places in the Eastern Capital)",
@@ -7959,7 +8771,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
-   "featured_rank": 22
+   "featured_rank": 22,
+   "focal_point": [
+    0.6,
+    0.2
+   ]
   },
   {
    "title": "Full Bloom at Asukayama (from Famous Places in the Eastern Capital)",
@@ -7980,7 +8796,11 @@
    "license_url": "",
    "credit_line": "Bibliothèque nationale de France",
    "license_verified": "2026-07-16",
-   "featured_rank": 26
+   "featured_rank": 26,
+   "focal_point": [
+    0.35,
+    0.55
+   ]
   },
   {
    "title": "Japanese White-eye and Titmouse on a Camellia Branch",
@@ -8001,7 +8821,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
-   "featured_rank": 27
+   "featured_rank": 27,
+   "focal_point": [
+    0.5,
+    0.45
+   ]
   },
   {
    "title": "Long-tailed Tit on Autumn Ivy",
@@ -8022,7 +8846,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.45,
+    0.65
+   ]
   },
   {
    "title": "Niken-jaya Teahouse at Fukagawa Hachiman Shrine (from Famous Restaurants of Edo)",
@@ -8043,7 +8871,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
-   "featured_rank": 20
+   "featured_rank": 20,
+   "focal_point": [
+    0.6,
+    0.65
+   ]
   },
   {
    "title": "View of Shiba Shin-zeniza (from Famous Views of the Eastern Capital)",
@@ -8064,7 +8896,11 @@
    "license_url": "",
    "credit_line": "Bibliothèque nationale de France",
    "license_verified": "2026-07-16",
-   "featured_rank": 20
+   "featured_rank": 20,
+   "focal_point": [
+    0.35,
+    0.75
+   ]
   },
   {
    "title": "Hydrangeas and Kingfisher",
@@ -8085,7 +8921,11 @@
    "license_url": "",
    "credit_line": "Library of Congress Catalog: https://lccn.loc.gov/2008660642 Image download: https://cdn.loc.gov/service/pnp/jpd/02000/02023v.jpg Original url: https://www.loc.gov/pictures/item/2008660642/",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.35,
+    0.15
+   ]
   },
   {
    "title": "Matsuchiyama",
@@ -8106,7 +8946,11 @@
    "license_url": "",
    "credit_line": "Library of Congress Catalog: https://lccn.loc.gov/2008660280 Image download: https://cdn.loc.gov/service/pnp/jpd/01300/01340v.jpg Original url: https://www.loc.gov/pictures/item/2008660280/",
    "license_verified": "2026-07-16",
-   "featured_rank": 22
+   "featured_rank": 22,
+   "focal_point": [
+    0.5,
+    0.35
+   ]
   },
   {
    "title": "Evening Rain in Azuma Wood (from Eight Views of the Environs of Edo)",
@@ -8127,7 +8971,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.5,
+    0.55
+   ]
   },
   {
    "title": "Enjoying the Evening Cool at Ryogoku Bridge (from Famous Places in the Eastern Capital)",
@@ -8148,7 +8996,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "http://hdl.handle.net/10934/RM0001.COLLECT.463207",
    "license_verified": "2026-07-16",
-   "featured_rank": 25
+   "featured_rank": 25,
+   "focal_point": [
+    0.42,
+    0.22
+   ]
   },
   {
    "title": "Ducks among Reeds",
@@ -8169,7 +9021,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "http://hdl.handle.net/10934/RM0001.COLLECT.46001",
    "license_verified": "2026-07-16",
-   "featured_rank": 24
+   "featured_rank": 24,
+   "focal_point": [
+    0.35,
+    0.3
+   ]
   },
   {
    "title": "Gotenyama in Full Bloom",
@@ -8215,7 +9071,11 @@
    "license_url": "",
    "credit_line": "Library of Congress Catalog: https://lccn.loc.gov/2008660840 Image download: https://cdn.loc.gov/service/pnp/jpd/02200/02267v.jpg Original url: https://www.loc.gov/pictures/item/2008660840/",
    "license_verified": "2026-07-16",
-   "featured_rank": 22
+   "featured_rank": 22,
+   "focal_point": [
+    0.45,
+    0.6
+   ]
   },
   {
    "title": "A View of Late Spring at Masaki (from Famous Places in the Eastern Capital)",
@@ -8236,7 +9096,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
-   "featured_rank": 16
+   "featured_rank": 16,
+   "focal_point": [
+    0.4,
+    0.65
+   ]
   },
   {
    "title": "Monkey and Cherry Blossoms",
@@ -8257,7 +9121,11 @@
    "license_url": "",
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.4,
+    0.4
+   ]
   },
   {
    "title": "Nihonbashi in a Sudden Shower (from Famous Places in the Eastern Capital)",
@@ -8278,7 +9146,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1302097",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.55,
+    0.65
+   ]
   },
   {
    "title": "Azuma Forest (from Famous Places in the Eastern Capital)",
@@ -8299,7 +9171,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1303507",
    "license_verified": "2026-07-16",
-   "featured_rank": 26
+   "featured_rank": 26,
+   "focal_point": [
+    0.72,
+    0.82
+   ]
   },
   {
    "title": "The Sazai-do Hall at the Temple of Five Hundred Rakan (from Famous Places in the Eastern Capital)",
@@ -8320,7 +9196,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1303515",
    "license_verified": "2026-07-16",
-   "featured_rank": 25
+   "featured_rank": 25,
+   "focal_point": [
+    0.68,
+    0.35
+   ]
   },
   {
    "title": "Site of the East Gate, Asakusa (from Famous Places of Edo)",
@@ -8341,7 +9221,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1303544",
    "license_verified": "2026-07-16",
-   "featured_rank": 25
+   "featured_rank": 25,
+   "focal_point": [
+    0.45,
+    0.68
+   ]
   },
   {
    "title": "Meguro Fudo Temple (from Famous Places of Edo)",
@@ -8362,7 +9246,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1303552",
    "license_verified": "2026-07-16",
-   "featured_rank": 26
+   "featured_rank": 26,
+   "focal_point": [
+    0.65,
+    0.7
+   ]
   },
   {
    "title": "Benten Hill at Kinryuzan Temple, Asakusa (from Famous Places of Edo)",
@@ -8383,7 +9271,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1303560",
    "license_verified": "2026-07-16",
-   "featured_rank": 20
+   "featured_rank": 20,
+   "focal_point": [
+    0.62,
+    0.35
+   ]
   },
   {
    "title": "The Origin of the Name of Musashi Province (from Famous Old Sites of the Eastern Capital)",
@@ -8404,7 +9296,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1305413",
    "license_verified": "2026-07-16",
-   "featured_rank": 24
+   "featured_rank": 24,
+   "focal_point": [
+    0.5,
+    0.45
+   ]
   },
   {
    "title": "Aoi Slope (from Hiroshige's Slopes of the Eastern Capital)",
@@ -8425,7 +9321,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1306168",
    "license_verified": "2026-07-16",
-   "featured_rank": 22
+   "featured_rank": 22,
+   "focal_point": [
+    0.62,
+    0.45
+   ]
   },
   {
    "title": "New Yoshiwara in Full Bloom, Third Month: Panoramic View (from Famous Places in the Eastern Capital)",
@@ -8446,7 +9346,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1307036",
    "license_verified": "2026-07-16",
-   "featured_rank": 24
+   "featured_rank": 24,
+   "focal_point": [
+    0.38,
+    0.3
+   ]
   },
   {
    "title": "Asukayama: Panoramic View (from Famous Places in the Eastern Capital)",
@@ -8467,7 +9371,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1307038",
    "license_verified": "2026-07-16",
-   "featured_rank": 23
+   "featured_rank": 23,
+   "focal_point": [
+    0.28,
+    0.15
+   ]
   },
   {
    "title": "Precincts of the Oji Inari Shrine: Panoramic View (from Famous Places in the Eastern Capital)",
@@ -8488,7 +9396,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1307040",
    "license_verified": "2026-07-16",
-   "featured_rank": 22
+   "featured_rank": 22,
+   "focal_point": [
+    0.5,
+    0.5
+   ]
   },
   {
    "title": "Cherry-Blossom Viewing at Gotenyama, Shinagawa: Panoramic View (from Famous Places in the Eastern Capital)",
@@ -8509,7 +9421,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1307042",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.65,
+    0.45
+   ]
   },
   {
    "title": "Precincts of the Susaki Benten Shrine and Shell-Gathering at Low Tide: Panoramic View (from Famous Places in the Eastern Capital)",
@@ -8530,7 +9446,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1307044",
    "license_verified": "2026-07-16",
-   "featured_rank": 22
+   "featured_rank": 22,
+   "focal_point": [
+    0.5,
+    0.5
+   ]
   },
   {
    "title": "Kasumigaseki: Panoramic View (from Famous Places in the Eastern Capital)",
@@ -8551,7 +9471,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1307046",
    "license_verified": "2026-07-16",
-   "featured_rank": 19
+   "featured_rank": 19,
+   "focal_point": [
+    0.5,
+    0.55
+   ]
   },
   {
    "title": "Precincts of the Kameido Tenjin Shrine: Panoramic View (from Famous Places in the Eastern Capital)",
@@ -8572,7 +9496,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1307047",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.45,
+    0.35
+   ]
   },
   {
    "title": "The Flourishing of Odenma-cho Street, the Eastern Capital",
@@ -8593,7 +9521,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1307610",
    "license_verified": "2026-07-16",
-   "featured_rank": 20
+   "featured_rank": 20,
+   "focal_point": [
+    0.5,
+    0.65
+   ]
   },
   {
    "title": "Akasaka Sanno (from Twelve Views of the Eastern Capital in a Silver World)",
@@ -8614,7 +9546,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1308294",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.72,
+    0.75
+   ]
   },
   {
    "title": "View of Suruga-cho (from Famous Places in the Eastern Capital)",
@@ -8635,7 +9571,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1308381",
    "license_verified": "2026-07-16",
-   "featured_rank": 32
+   "featured_rank": 32,
+   "focal_point": [
+    0.48,
+    0.35
+   ]
   },
   {
    "title": "The Kawachi-ro Restaurant at Shitaya Hirokoji (from Famous Restaurants of Edo)",
@@ -8656,7 +9596,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1308389",
    "license_verified": "2026-07-16",
-   "featured_rank": 22
+   "featured_rank": 22,
+   "focal_point": [
+    0.72,
+    0.65
+   ]
   },
   {
    "title": "The Daishichi Restaurant at Mukojima (from Famous Restaurants of Edo)",
@@ -8677,7 +9621,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1308397",
    "license_verified": "2026-07-16",
-   "featured_rank": 20
+   "featured_rank": 20,
+   "focal_point": [
+    0.45,
+    0.55
+   ]
   },
   {
    "title": "Night View of the Manpachi Restaurant at Yanagibashi (from Famous Restaurants of Edo)",
@@ -8698,7 +9646,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1308405",
    "license_verified": "2026-07-16",
-   "featured_rank": 20
+   "featured_rank": 20,
+   "focal_point": [
+    0.25,
+    0.6
+   ]
   },
   {
    "title": "The Kawachiya Restaurant at Yanagibashi, Ryogoku (from Famous Restaurants of Edo)",
@@ -8719,7 +9671,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "http://hdl.handle.net/10934/RM0001.collect.46018",
    "license_verified": "2026-07-16",
-   "featured_rank": 20
+   "featured_rank": 20,
+   "focal_point": [
+    0.35,
+    0.55
+   ]
   },
   {
    "title": "Clear Weather at Shibaura",
@@ -8740,7 +9696,11 @@
    "license_url": "",
    "credit_line": "Library of Congress Catalog: https://lccn.loc.gov/2008660630 Image download: https://cdn.loc.gov/service/pnp/jpd/02000/02010v.jpg Original url: https://www.loc.gov/pictures/item/2008660630/",
    "license_verified": "2026-07-16",
-   "featured_rank": 23
+   "featured_rank": 23,
+   "focal_point": [
+    0.78,
+    0.55
+   ]
   },
   {
    "title": "View of the Sumida River",
@@ -8761,7 +9721,11 @@
    "license_url": "",
    "credit_line": "Library of Congress Catalog: https://lccn.loc.gov/2008660286 Image download: https://cdn.loc.gov/service/pnp/jpd/01300/01346v.jpg Original url: https://www.loc.gov/pictures/item/2008660286/",
    "license_verified": "2026-07-16",
-   "featured_rank": 24
+   "featured_rank": 24,
+   "focal_point": [
+    0.45,
+    0.5
+   ]
   },
   {
    "title": "Plum Blossoms and Bush Warbler",
@@ -8782,7 +9746,11 @@
    "license_url": "",
    "credit_line": "Library of Congress Catalog: https://lccn.loc.gov/2008660106 Image download: https://cdn.loc.gov/service/pnp/jpd/00800/00829v.jpg Original url: https://www.loc.gov/pictures/item/2008660106/",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.55,
+    0.35
+   ]
   },
   {
    "title": "Koyurugi Beach, Sagami Province",
@@ -8803,7 +9771,11 @@
    "license_url": "",
    "credit_line": "Metropolitan Museum of Art",
    "license_verified": "2026-07-16",
-   "featured_rank": 26
+   "featured_rank": 26,
+   "focal_point": [
+    0.5,
+    0.5
+   ]
   },
   {
    "title": "The Ferry Crossing on the Sumida River (from Famous Views of the Eastern Capital)",
@@ -8824,7 +9796,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "http://hdl.handle.net/10934/RM0001.collect.46024",
    "license_verified": "2026-07-16",
-   "featured_rank": 19
+   "featured_rank": 19,
+   "focal_point": [
+    0.5,
+    0.65
+   ]
   },
   {
    "title": "Yukihira and the Two Sisters (fan print)",
@@ -8845,7 +9821,11 @@
    "license_url": "",
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
-   "featured_rank": 22
+   "featured_rank": 22,
+   "focal_point": [
+    0.68,
+    0.5
+   ]
   },
   {
    "title": "Pheasant and Pine Trees on a Snowy Hillside",
@@ -8866,7 +9846,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
-   "featured_rank": 22
+   "featured_rank": 22,
+   "focal_point": [
+    0.42,
+    0.35
+   ]
   },
   {
    "title": "The First Cuckoo's Call over Tsukudajima (from Famous Places in the Eastern Capital)",
@@ -8887,7 +9871,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
-   "featured_rank": 27
+   "featured_rank": 27,
+   "focal_point": [
+    0.62,
+    0.5
+   ]
   },
   {
    "title": "Fishing Boats off Tsukudajima near Eitai Bridge (from Famous Places in the Eastern Capital)",
@@ -8908,7 +9896,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
-   "featured_rank": 24
+   "featured_rank": 24,
+   "focal_point": [
+    0.35,
+    0.6
+   ]
   },
   {
    "title": "View of the Nichome Theater District (from Famous Places in the Eastern Capital)",
@@ -8929,7 +9921,11 @@
    "license_url": "",
    "credit_line": "Bibliothèque nationale de France",
    "license_verified": "2026-07-16",
-   "featured_rank": 25
+   "featured_rank": 25,
+   "focal_point": [
+    0.5,
+    0.6
+   ]
   },
   {
    "title": "Rooster, Umbrella, and Morning Glories",
@@ -8950,7 +9946,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.38,
+    0.78
+   ]
   },
   {
    "title": "Twilight Snow at Asukayama (from Eight Views of the Environs of Edo)",
@@ -8971,7 +9971,11 @@
    "license_url": "",
    "credit_line": "Bibliothèque nationale de France",
    "license_verified": "2026-07-16",
-   "featured_rank": 26
+   "featured_rank": 26,
+   "focal_point": [
+    0.45,
+    0.75
+   ]
   },
   {
    "title": "The Shokintei Restaurant at Yushima (from Famous Restaurants of Edo)",
@@ -8992,7 +9996,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
-   "featured_rank": 20
+   "featured_rank": 20,
+   "focal_point": [
+    0.5,
+    0.55
+   ]
   },
   {
    "title": "View of Shimbashi (from Famous Places in the Eastern Capital)",
@@ -9013,7 +10021,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
-   "featured_rank": 24
+   "featured_rank": 24,
+   "focal_point": [
+    0.55,
+    0.55
+   ]
   },
   {
    "title": "The Mountain-Opening Festival at Fukagawa Hachiman Shrine (from Famous Places in the Eastern Capital)",
@@ -9034,7 +10046,11 @@
    "license_url": "",
    "credit_line": "Bibliothèque nationale de France",
    "license_verified": "2026-07-16",
-   "featured_rank": 21
+   "featured_rank": 21,
+   "focal_point": [
+    0.5,
+    0.5
+   ]
   },
   {
    "title": "Night Rain at the Azuma Shrine (from Eight Views of the Environs of Edo)",
@@ -9055,7 +10071,11 @@
    "license_url": "",
    "credit_line": "Library of Congress Catalog: https://lccn.loc.gov/2008660643 Image download: https://cdn.loc.gov/service/pnp/jpd/02000/02024v.jpg Original url: https://www.loc.gov/pictures/item/2008660643/",
    "license_verified": "2026-07-16",
-   "featured_rank": 34
+   "featured_rank": 34,
+   "focal_point": [
+    0.55,
+    0.55
+   ]
   },
   {
    "title": "Enjoying the Evening Breeze at Ryōgoku Bridge (from Famous Places in the Eastern Capital)",
@@ -9076,7 +10096,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "http://hdl.handle.net/10934/RM0001.COLLECT.463208",
    "license_verified": "2026-07-16",
-   "featured_rank": 34
+   "featured_rank": 34,
+   "focal_point": [
+    0.45,
+    0.25
+   ]
   },
   {
    "title": "Small Bird on a Flowering Cherry Branch",
@@ -9097,7 +10121,11 @@
    "license_url": "",
    "credit_line": "https://www.loc.gov/exhibits/ukiyo-e/",
    "license_verified": "2026-07-16",
-   "featured_rank": 26
+   "featured_rank": 26,
+   "focal_point": [
+    0.42,
+    0.3
+   ]
   },
   {
    "title": "Cuckoo and Pine Tree",
@@ -9118,7 +10146,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "http://hdl.handle.net/10934/RM0001.COLLECT.46020",
    "license_verified": "2026-07-16",
-   "featured_rank": 29
+   "featured_rank": 29,
+   "focal_point": [
+    0.72,
+    0.35
+   ]
   },
   {
    "title": "The Daikokuya at Mukōjima (from Famous Restaurants of Edo)",
@@ -9139,7 +10171,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
-   "featured_rank": 24
+   "featured_rank": 24,
+   "focal_point": [
+    0.45,
+    0.65
+   ]
   },
   {
    "title": "Eitai Bridge and the Fukagawa Shinchi Reclaimed Land (from Famous Places in the Eastern Capital)",
@@ -9160,7 +10196,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1303508",
    "license_verified": "2026-07-16",
-   "featured_rank": 20
+   "featured_rank": 20,
+   "focal_point": [
+    0.5,
+    0.55
+   ]
   },
   {
    "title": "The Grounds of Zōjō-ji Temple in Shiba (from Famous Places in the Eastern Capital)",
@@ -9181,7 +10221,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1303516",
    "license_verified": "2026-07-16",
-   "featured_rank": 26
+   "featured_rank": 26,
+   "focal_point": [
+    0.45,
+    0.65
+   ]
   },
   {
    "title": "Kameido Tenjin Shrine (from Famous Places in Edo)",
@@ -9202,7 +10246,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1303553",
    "license_verified": "2026-07-16",
-   "featured_rank": 38
+   "featured_rank": 38,
+   "focal_point": [
+    0.5,
+    0.42
+   ]
   },
   {
    "title": "The Kumano Shrine at Twelve-Sō Pond, Tsunohazu in Yotsuya (from Famous Places in Edo)",
@@ -9223,7 +10271,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1303561",
    "license_verified": "2026-07-16",
-   "featured_rank": 22
+   "featured_rank": 22,
+   "focal_point": [
+    0.5,
+    0.45
+   ]
   },
   {
    "title": "Yaohan Restaurant (from Famous Restaurants of the Eastern Capital, 1852)",
@@ -9244,7 +10296,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1303956",
    "license_verified": "2026-07-16",
-   "featured_rank": 18
+   "featured_rank": 18,
+   "focal_point": [
+    0.6,
+    0.45
+   ]
   },
   {
    "title": "Cherry Blossom Viewing at Gotenyama, a Genji Parody (from Fashionable Genji in Famous Places of Edo)",
@@ -9265,7 +10321,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1305417",
    "license_verified": "2026-07-16",
-   "featured_rank": 18
+   "featured_rank": 18,
+   "focal_point": [
+    0.55,
+    0.35
+   ]
   },
   {
    "title": "Cherry Trees on the Sumida River Embankment (from Famous Places in Edo)",
@@ -9286,7 +10346,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1305442",
    "license_verified": "2026-07-16",
-   "featured_rank": 26
+   "featured_rank": 26,
+   "focal_point": [
+    0.5,
+    0.3
+   ]
   },
   {
    "title": "Kagurazaka Slope, Ushigome (from Hiroshige's Famous Slopes of the Eastern Capital)",
@@ -9307,7 +10371,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1306169",
    "license_verified": "2026-07-16",
-   "featured_rank": 22
+   "featured_rank": 22,
+   "focal_point": [
+    0.5,
+    0.35
+   ]
   },
   {
    "title": "Cherry Blossoms in Full Bloom at Shin-Yoshiwara's Five Blocks (from Famous Places in the Eastern Capital)",
@@ -9328,7 +10396,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1307036",
    "license_verified": "2026-07-16",
-   "featured_rank": 24
+   "featured_rank": 24,
+   "focal_point": [
+    0.5,
+    0.65
+   ]
   },
   {
    "title": "The Nishi Hongan-ji Temple at Tsukiji (from Famous Places in the Eastern Capital)",
@@ -9349,7 +10421,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1307041",
    "license_verified": "2026-07-16",
-   "featured_rank": 21
+   "featured_rank": 21,
+   "focal_point": [
+    0.5,
+    0.45
+   ]
   },
   {
    "title": "Cherry Blossom Viewing at Kiyomizu Hall, Ueno, with Shinobazu Pond and Benzaiten Shrine (from Famous Places in the Eastern Capital)",
@@ -9370,7 +10446,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1307047",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.5,
+    0.5
+   ]
   },
   {
    "title": "The Flower Garden at Okuyama, Behind Kinryūzan Temple in Asakusa (1853)",
@@ -9391,7 +10471,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1307609",
    "license_verified": "2026-07-16",
-   "featured_rank": 24
+   "featured_rank": 24,
+   "focal_point": [
+    0.4,
+    0.75
+   ]
   },
   {
    "title": "The Day after Snow at Yushima Tenjin (from Twelve Views of the Eastern Capital in a Silver World)",
@@ -9412,7 +10496,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1308295",
    "license_verified": "2026-07-16",
-   "featured_rank": 22
+   "featured_rank": 22,
+   "focal_point": [
+    0.28,
+    0.65
+   ]
   },
   {
    "title": "Akabane Bridge in Shiba (from Famous Places in the Eastern Capital)",
@@ -9433,7 +10521,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1308374",
    "license_verified": "2026-07-16",
-   "featured_rank": 16
+   "featured_rank": 16,
+   "focal_point": [
+    0.35,
+    0.75
+   ]
   },
   {
    "title": "Crowds at the Year-End Fair, Kinryūzan Temple, Asakusa (from Famous Places in the Eastern Capital)",
@@ -9454,7 +10546,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1308382",
    "license_verified": "2026-07-16",
-   "featured_rank": 27
+   "featured_rank": 27,
+   "focal_point": [
+    0.6,
+    0.45
+   ]
   },
   {
    "title": "Hōraiya at Ikenohata: A Rest during Cherry Blossom Viewing (from Famous Restaurants of Edo)",
@@ -9475,7 +10571,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1308390",
    "license_verified": "2026-07-16",
-   "featured_rank": 18
+   "featured_rank": 18,
+   "focal_point": [
+    0.65,
+    0.6
+   ]
   },
   {
    "title": "View of Mimeguri: The Dewaya (from Famous Restaurants of Edo)",
@@ -9496,7 +10596,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1308398",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.35,
+    0.55
+   ]
   },
   {
    "title": "Ryōgoku: The Aoyagi (from Famous Restaurants of Edo)",
@@ -9517,7 +10621,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1308406",
    "license_verified": "2026-07-16",
-   "featured_rank": 23
+   "featured_rank": 23,
+   "focal_point": [
+    0.45,
+    0.6
+   ]
   },
   {
    "title": "View from the Yaozen Restaurant toward Nihonzutsumi (from Kōmei Kaiseki Zukushi, 1852)",
@@ -9538,7 +10646,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1308508",
    "license_verified": "2026-07-16",
-   "featured_rank": 20
+   "featured_rank": 20,
+   "focal_point": [
+    0.65,
+    0.4
+   ]
   },
   {
    "title": "Uehan Restaurant (from Kōmei Kaiseki Zukushi, 1852)",
@@ -9559,7 +10671,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1308516",
    "license_verified": "2026-07-16",
-   "featured_rank": 18
+   "featured_rank": 18,
+   "focal_point": [
+    0.62,
+    0.42
+   ]
   },
   {
    "title": "Kusakaro Restaurant (from Kōmei Kaiseki Zukushi)",
@@ -9580,7 +10696,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1308524",
    "license_verified": "2026-07-16",
-   "featured_rank": 20
+   "featured_rank": 20,
+   "focal_point": [
+    0.35,
+    0.65
+   ]
   },
   {
    "title": "The Riverbank at Daishichi (from Kōmei Kaiseki Zukushi, 1852)",
@@ -9601,7 +10721,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1308533",
    "license_verified": "2026-07-16",
-   "featured_rank": 22
+   "featured_rank": 22,
+   "focal_point": [
+    0.42,
+    0.55
+   ]
   },
   {
    "title": "Honjo Tatekawa (from Kōmei Kaiseki Zukushi)",
@@ -9622,7 +10746,11 @@
    "license_url": "",
    "credit_line": "National Diet Library Digital Collections: Persistent ID 1308542",
    "license_verified": "2026-07-16",
-   "featured_rank": 20
+   "featured_rank": 20,
+   "focal_point": [
+    0.5,
+    0.45
+   ]
   },
   {
    "title": "Mandarin Ducks in Snow",
@@ -9643,7 +10771,11 @@
    "license_url": "",
    "credit_line": "Library of Congress Catalog: https://lccn.loc.gov/2008660639 Image download: https://cdn.loc.gov/service/pnp/jpd/02000/02020v.jpg Original url: https://www.loc.gov/pictures/item/2008660639/",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.4,
+    0.65
+   ]
   },
   {
    "title": "The Umegawa at Ryōgoku Yanagibashi (from Famous Restaurants of Edo)",
@@ -9664,7 +10796,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
-   "featured_rank": 21
+   "featured_rank": 21,
+   "focal_point": [
+    0.58,
+    0.65
+   ]
   },
   {
    "title": "Shell Gathering at Shibaura (from Famous Places in the Eastern Capital)",
@@ -9685,7 +10821,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
-   "featured_rank": 22
+   "featured_rank": 22,
+   "focal_point": [
+    0.5,
+    0.4
+   ]
   },
   {
    "title": "Moonlit Scene at Takanawa",
@@ -9706,7 +10846,11 @@
    "license_url": "",
    "credit_line": "Library of Congress Catalog: https://lccn.loc.gov/2009615469 Image download: https://cdn.loc.gov/service/pnp/jpd/00400/00498v.jpg Original url: https://www.loc.gov/pictures/item/2009615469/",
    "license_verified": "2026-07-16",
-   "featured_rank": 26
+   "featured_rank": 26,
+   "focal_point": [
+    0.42,
+    0.16
+   ]
   },
   {
    "title": "Riverbank at Sukiya in Edo (from Thirty-six Views of Mount Fuji)",
@@ -9727,7 +10871,11 @@
    "license_url": "",
    "credit_line": "DQGU1Pea5oDlyg at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 38
+   "featured_rank": 38,
+   "focal_point": [
+    0.5,
+    0.35
+   ]
   },
   {
    "title": "Snow at Kanda Myōjin Shrine",
@@ -9748,7 +10896,11 @@
    "license_url": "",
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
-   "featured_rank": 19
+   "featured_rank": 19,
+   "focal_point": [
+    0.3,
+    0.5
+   ]
   },
   {
    "title": "Winter: Snow on the Sumida River (from Famous Places in Edo through the Four Seasons)",
@@ -9769,7 +10921,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "http://hdl.handle.net/10934/RM0001.COLLECT.46005",
    "license_verified": "2026-07-16",
-   "featured_rank": 32
+   "featured_rank": 32,
+   "focal_point": [
+    0.4,
+    0.75
+   ]
   },
   {
    "title": "Sunset at Shibaura (from Eight Views of the Environs of Edo)",
@@ -9790,7 +10946,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "http://hdl.handle.net/10934/RM0001.COLLECT.46012",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.7,
+    0.6
+   ]
   },
   {
    "title": "Act Four (from The Treasury of Loyal Retainers, Chūshingura)",
@@ -9811,7 +10971,11 @@
    "license_url": "",
    "credit_line": "Bibliothèque nationale de France",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.42,
+    0.62
+   ]
   },
   {
    "title": "Misty Moon over Tsukudajima (from Famous Places in the Eastern Capital)",
@@ -9832,7 +10996,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
-   "featured_rank": 24
+   "featured_rank": 24,
+   "focal_point": [
+    0.35,
+    0.75
+   ]
   },
   {
    "title": "Dawn at Emonzaka on the Nihon Embankment, Shin-Yoshiwara (from Famous Places in the Eastern Capital)",
@@ -9853,7 +11021,11 @@
    "license_url": "",
    "credit_line": "Bibliothèque nationale de France",
    "license_verified": "2026-07-16",
-   "featured_rank": 25
+   "featured_rank": 25,
+   "focal_point": [
+    0.45,
+    0.65
+   ]
   },
   {
    "title": "Warbler on a Plum Branch",
@@ -9874,7 +11046,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
-   "featured_rank": 38
+   "featured_rank": 38,
+   "focal_point": [
+    0.42,
+    0.55
+   ]
   },
   {
    "title": "Golden Pheasant and Pine Shoots in Snow",
@@ -9895,7 +11071,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.65,
+    0.2
+   ]
   },
   {
    "title": "Shiba Shinmei Shrine (from Famous Places in Edo)",
@@ -9916,7 +11096,11 @@
    "license_url": "",
    "credit_line": "Bibliothèque nationale de France",
    "license_verified": "2026-07-16",
-   "featured_rank": 24
+   "featured_rank": 24,
+   "focal_point": [
+    0.42,
+    0.62
+   ]
   },
   {
    "title": "The Ōnoya at Ryōgoku Yanagibashi (from Famous Restaurants of Edo)",
@@ -9937,7 +11121,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
-   "featured_rank": 20
+   "featured_rank": 20,
+   "focal_point": [
+    0.3,
+    0.65
+   ]
   },
   {
    "title": "The Musashiya at Ushijima (from Famous Restaurants of Edo)",
@@ -9958,7 +11146,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
-   "featured_rank": 22
+   "featured_rank": 22,
+   "focal_point": [
+    0.25,
+    0.55
+   ]
   },
   {
    "title": "The Ōji Inari Shrine (from Famous Places in the Eastern Capital)",
@@ -9979,7 +11171,11 @@
    "license_url": "",
    "credit_line": "Bibliothèque nationale de France",
    "license_verified": "2026-07-16",
-   "featured_rank": 23
+   "featured_rank": 23,
+   "focal_point": [
+    0.15,
+    0.6
+   ]
   },
   {
    "title": "Enjoying the Evening Cool under Ryōgoku Bridge, Musashi Province (from Views of Famous Places in the Various Provinces)",
@@ -10000,7 +11196,11 @@
    "license_url": "",
    "credit_line": "Bibliothèque nationale de France",
    "license_verified": "2026-07-16",
-   "featured_rank": 24
+   "featured_rank": 24,
+   "focal_point": [
+    0.75,
+    0.55
+   ]
   }
  ]
 }

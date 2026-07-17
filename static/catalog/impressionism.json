@@ -1934,7 +1934,11 @@
    "license_url": "",
    "credit_line": "Google Arts &amp; Culture: Home page – Image",
    "license_verified": "2026-07-16",
-   "featured_rank": 88
+   "featured_rank": 88,
+   "focal_point": [
+    0.68,
+    0.55
+   ]
   },
   {
    "title": "Camille on the Beach in Trouville",
@@ -2012,7 +2016,11 @@
    "license_url": "",
    "credit_line": "The Metropolitan Museum of Art",
    "license_verified": "2026-07-16",
-   "featured_rank": 80
+   "featured_rank": 80,
+   "focal_point": [
+    0.35,
+    0.45
+   ]
   },
   {
    "title": "The Harbor at Le Havre, Evening",
@@ -2159,7 +2167,11 @@
    "license_url": "",
    "credit_line": "JackyM59 - Muba de Tourcoing Avril 2024",
    "license_verified": "2026-07-16",
-   "featured_rank": 35
+   "featured_rank": 35,
+   "focal_point": [
+    0.25,
+    0.75
+   ]
   },
   {
    "title": "The Seine at Vétheuil",
@@ -2255,7 +2267,11 @@
    "license_url": "",
    "credit_line": "The AMICA Library",
    "license_verified": "2026-07-16",
-   "featured_rank": 40
+   "featured_rank": 40,
+   "focal_point": [
+    0.5,
+    0.45
+   ]
   },
   {
    "title": "View of Argenteuil, Snow",
@@ -2476,7 +2492,11 @@
    "license_url": "",
    "credit_line": "Hermitage Torrent (.torrent with info-hash)",
    "license_verified": "2026-07-16",
-   "featured_rank": 65
+   "featured_rank": 65,
+   "focal_point": [
+    0.45,
+    0.28
+   ]
   },
   {
    "title": "Gabrielle et Jean",
@@ -2597,7 +2617,11 @@
    "license_url": "",
    "credit_line": "http://www.clarkart.edu",
    "license_verified": "2026-07-16",
-   "featured_rank": 46
+   "featured_rank": 46,
+   "focal_point": [
+    0.35,
+    0.35
+   ]
   },
   {
    "title": "Roses and Peonies in a Vase",
@@ -2721,7 +2745,11 @@
    "license_url": "",
    "credit_line": "Google Arts &amp; Culture — qwGQtIGEcuxkCQ?ms",
    "license_verified": "2026-07-16",
-   "featured_rank": 45
+   "featured_rank": 45,
+   "focal_point": [
+    0.4,
+    0.28
+   ]
   },
   {
    "title": "The First Outing (Le Café-Concert)",
@@ -3100,7 +3128,11 @@
    "license_url": "",
    "credit_line": "Google Arts &amp; Culture — QwGnAJGHf7dMBQ",
    "license_verified": "2026-07-16",
-   "featured_rank": 65
+   "featured_rank": 65,
+   "focal_point": [
+    0.35,
+    0.35
+   ]
   },
   {
    "title": "The Railway",
@@ -3221,7 +3253,11 @@
    "license_url": "",
    "credit_line": "The Getty Center, Object 825 This image was taken from the Getty Research Institute's Open Content Program, which states the following regarding their assessment that no known copyright restrictions exist: Open content images are digital surrogates of works of art that are in the Getty's collections and in the public domain, for which we hold all rights, or for which we are not aware of any rights restrictions. While the Getty Research Institute cannot make an absolute statement on the copyright status of a given image, \"Open content images can be used for any purpose without first seeking permission from the Getty.\" More information can be found at http://www.getty.edu/about/opencontent.html.No known copyright restrictionsNo restrictionshttp://www.getty.edu/about/opencontent.htmlfalse",
    "license_verified": "2026-07-16",
-   "featured_rank": 48
+   "featured_rank": 48,
+   "focal_point": [
+    0.12,
+    0.75
+   ]
   },
   {
    "title": "The Balcony",
@@ -3292,7 +3328,11 @@
    "license_url": "",
    "credit_line": "Dallas Museum of Art",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.45,
+    0.6
+   ]
   },
   {
    "title": "The Toilers of the Sea",
@@ -3609,7 +3649,11 @@
    "license_url": "",
    "credit_line": "zwG8nxV1nz8icQ at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 50
+   "featured_rank": 50,
+   "focal_point": [
+    0.55,
+    0.25
+   ]
   },
   {
    "title": "Basket of Fruit",
@@ -3737,7 +3781,11 @@
    "license_url": "",
    "credit_line": "This image has been extracted from another file",
    "license_verified": "2026-07-16",
-   "featured_rank": 34
+   "featured_rank": 34,
+   "focal_point": [
+    0.4,
+    0.35
+   ]
   },
   {
    "title": "La Parisienne (A Parisian Lady)",
@@ -4086,7 +4134,11 @@
    "license_url": "",
    "credit_line": "Google Arts &amp; Culture: Home page – Image",
    "license_verified": "2026-07-16",
-   "featured_rank": 55
+   "featured_rank": 55,
+   "focal_point": [
+    0.68,
+    0.22
+   ]
   },
   {
    "title": "Alexander and Bucephalus",
@@ -4303,7 +4355,11 @@
    "license_url": "",
    "credit_line": "Clark Art Institute",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.35,
+    0.3
+   ]
   },
   {
    "title": "Two Horses Facing Left",
@@ -4349,7 +4405,11 @@
    "license_url": "",
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
-   "featured_rank": 38
+   "featured_rank": 38,
+   "focal_point": [
+    0.45,
+    0.25
+   ]
   },
   {
    "title": "Young Woman in Blue",
@@ -4420,7 +4480,11 @@
    "license_url": "",
    "credit_line": "cgGZJZP5DWJbdg at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 45
+   "featured_rank": 45,
+   "focal_point": [
+    0.5,
+    0.25
+   ]
   },
   {
    "title": "Nude Woman Seated on the Ground, Combing Her Hair",
@@ -4441,7 +4505,11 @@
    "license_url": "",
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
-   "featured_rank": 42
+   "featured_rank": 42,
+   "focal_point": [
+    0.55,
+    0.25
+   ]
   },
   {
    "title": "At the Races in the Countryside",
@@ -4562,7 +4630,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "https://clevelandart.org/art/1953.268",
    "license_verified": "2026-07-16",
-   "featured_rank": 32
+   "featured_rank": 32,
+   "focal_point": [
+    0.45,
+    0.3
+   ]
   },
   {
    "title": "After the Bath: Woman Drying Herself",
@@ -4583,7 +4655,11 @@
    "license_url": "",
    "credit_line": "National Gallery",
    "license_verified": "2026-07-16",
-   "featured_rank": 55
+   "featured_rank": 55,
+   "focal_point": [
+    0.4,
+    0.18
+   ]
   },
   {
    "title": "Beach Scene",
@@ -4975,7 +5051,11 @@
    "license_url": "",
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
-   "featured_rank": 35
+   "featured_rank": 35,
+   "focal_point": [
+    0.5,
+    0.25
+   ]
   },
   {
    "title": "After the Bath",
@@ -5192,7 +5272,11 @@
    "license_url": "",
    "credit_line": "Own work, anagoria",
    "license_verified": "2026-07-16",
-   "featured_rank": 42
+   "featured_rank": 42,
+   "focal_point": [
+    0.35,
+    0.3
+   ]
   },
   {
    "title": "Woman Drying Her Left Leg",
@@ -5370,7 +5454,11 @@
    "license_url": "",
    "credit_line": "Metropolitan Museum of Art",
    "license_verified": "2026-07-16",
-   "featured_rank": 40
+   "featured_rank": 40,
+   "focal_point": [
+    0.35,
+    0.35
+   ]
   },
   {
    "title": "Women Combing Their Hair",
@@ -5519,7 +5607,11 @@
    "license_url": "",
    "credit_line": "http://www.nga.gov/content/ngaweb/Collection/art-object-page.164915.html",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.18,
+    0.55
+   ]
   },
   {
    "title": "Two Women",
@@ -5665,7 +5757,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This image is uploaded as image number 29908 at Amgueddfa Cymru Images.This tag does not indicate the copyright status of the attached work. A normal copyright tag is still required. See Commons:Licensing.",
    "license_verified": "2026-07-16",
-   "featured_rank": 25
+   "featured_rank": 25,
+   "focal_point": [
+    0.55,
+    0.35
+   ]
   },
   {
    "title": "Young Woman Dressing Herself",
@@ -5711,7 +5807,11 @@
    "license_url": "",
    "credit_line": "http://www.nga.gov/content/ngaweb/Collection/art-object-page.53127.html",
    "license_verified": "2026-07-16",
-   "featured_rank": 35
+   "featured_rank": 35,
+   "focal_point": [
+    0.3,
+    0.15
+   ]
   },
   {
    "title": "Café-Concert",
@@ -5757,7 +5857,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the National Gallery of Art. Please see the Gallery's Open Access Policy.",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.42,
+    0.3
+   ]
   },
   {
    "title": "Portrait of Madame Dietz-Monnin (study)",
@@ -5974,7 +6078,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "http://images.metmuseum.org/CRDImages/ap/web-large/DT6731.jpg",
    "license_verified": "2026-07-16",
-   "featured_rank": 19
+   "featured_rank": 19,
+   "focal_point": [
+    0.25,
+    0.55
+   ]
   },
   {
    "title": "Landscape",
@@ -6020,7 +6128,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
-   "featured_rank": 35
+   "featured_rank": 35,
+   "focal_point": [
+    0.55,
+    0.25
+   ]
   },
   {
    "title": "Woman Drying Her Foot",
@@ -6212,7 +6324,11 @@
    "license_url": "",
    "credit_line": "National Gallery of Art, Washington, D. C., online collection",
    "license_verified": "2026-07-16",
-   "featured_rank": 32
+   "featured_rank": 32,
+   "focal_point": [
+    0.55,
+    0.62
+   ]
   },
   {
    "title": "The Old Mill in Knokke",
@@ -6379,7 +6495,11 @@
    "license_url": "",
    "credit_line": "anagoria",
    "license_verified": "2026-07-16",
-   "featured_rank": 25
+   "featured_rank": 25,
+   "focal_point": [
+    0.5,
+    0.45
+   ]
   },
   {
    "title": "The Hermitage Gardens, Pontoise",
@@ -6425,7 +6545,11 @@
    "license_url": "",
    "credit_line": "Pushkin Museum",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.3,
+    0.4
+   ]
   },
   {
    "title": "Young Peasant Girls Resting in the Fields near Pontoise",
@@ -6471,7 +6595,11 @@
    "license_url": "",
    "credit_line": "www.getty.edu",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.35,
+    0.75
+   ]
   },
   {
    "title": "Peasant Woman",
@@ -6749,7 +6877,11 @@
    "license_url": "",
    "credit_line": "2. National Gallery, London - online catalogue. 1. The Yorck Project (2002) 10.000 Meisterwerke der Malerei (DVD-ROM), distributed by DIRECTMEDIA Publishing GmbH. ISBN: 3936122202.",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.25,
+    0.68
+   ]
   },
   {
    "title": "Hoar-Frost, Peasant Girl Making a Fire",
@@ -6795,7 +6927,11 @@
    "license_url": "",
    "credit_line": "Paris Musées",
    "license_verified": "2026-07-16",
-   "featured_rank": 25
+   "featured_rank": 25,
+   "focal_point": [
+    0.4,
+    0.25
+   ]
   },
   {
    "title": "Portrait of a Boy",
@@ -6866,7 +7002,11 @@
    "license_url": "",
    "credit_line": "Google Art Project",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.45,
+    0.55
+   ]
   },
   {
    "title": "A Cowherd at Valhermeil, Auvers-sur-Oise",
@@ -7058,7 +7198,11 @@
    "license_url": "",
    "credit_line": "[1], Picture prepared for Wikipedia by Adrian Pingstone in April 2003.",
    "license_verified": "2026-07-16",
-   "featured_rank": 27
+   "featured_rank": 27,
+   "focal_point": [
+    0.55,
+    0.65
+   ]
   },
   {
    "title": "The Poultry Market, Pontoise",
@@ -7307,7 +7451,11 @@
    "license_url": "",
    "credit_line": "-AGrVa_YXRnPkw at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.18,
+    0.5
+   ]
   },
   {
    "title": "The Railway Crossing at Les Pâtis, near Pontoise",
@@ -7474,7 +7622,11 @@
    "license_url": "",
    "credit_line": "Unknown sourceUnknown source",
    "license_verified": "2026-07-16",
-   "featured_rank": 25
+   "featured_rank": 25,
+   "focal_point": [
+    0.15,
+    0.68
+   ]
   },
   {
    "title": "The Little Bridge",
@@ -7570,7 +7722,11 @@
    "license_url": "",
    "credit_line": "Unknown sourceUnknown source",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.35,
+    0.68
+   ]
   },
   {
    "title": "Harvesting Potatoes, Pontoise",
@@ -7691,7 +7847,11 @@
    "license_url": "",
    "credit_line": "Unknown sourceUnknown source",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.3,
+    0.48
+   ]
   },
   {
    "title": "Landscape at Pontoise",
@@ -7762,7 +7922,11 @@
    "license_url": "",
    "credit_line": "Unknown sourceUnknown source",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.32,
+    0.45
+   ]
   },
   {
    "title": "Farm at Montfoucault, Effect of Snow",
@@ -8161,7 +8325,11 @@
    "license_url": "",
    "credit_line": "Self-photographed, Villy Fink Isaksen",
    "license_verified": "2026-07-16",
-   "featured_rank": 24
+   "featured_rank": 24,
+   "focal_point": [
+    0.22,
+    0.82
+   ]
   },
   {
    "title": "Garden and Chicken Coop of Octave Mirbeau, Les Damps",
@@ -8364,7 +8532,11 @@
    "license_url": "",
    "credit_line": "www.nga.gov",
    "license_verified": "2026-07-16",
-   "featured_rank": 25
+   "featured_rank": 25,
+   "focal_point": [
+    0.62,
+    0.45
+   ]
   },
   {
    "title": "The Children",
@@ -8410,7 +8582,11 @@
    "license_url": "",
    "credit_line": "National Gallery of Art – The Collection – Peasant Girl with a Straw Hat",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.42,
+    0.35
+   ]
   },
   {
    "title": "Path in a Forest",
@@ -8659,7 +8835,11 @@
    "license_url": "",
    "credit_line": "Sotheby's New York, 03 May 2011, N08741 lot 36",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.4,
+    0.62
+   ]
   },
   {
    "title": "The Hills of Le Chou, Pontoise",
@@ -8744,7 +8924,11 @@
    "license_url": "",
    "credit_line": "Arts in the city [1]",
    "license_verified": "2026-07-16",
-   "featured_rank": 25
+   "featured_rank": 25,
+   "focal_point": [
+    0.5,
+    0.4
+   ]
   },
   {
    "title": "La Sente de Justice, Pontoise",
@@ -8815,7 +8999,11 @@
    "license_url": "",
    "credit_line": "https://www.christies.com/lot/lot-camille-pissarro-les-dunes-a-knokke-effet-6202621/",
    "license_verified": "2026-07-16",
-   "featured_rank": 27
+   "featured_rank": 27,
+   "focal_point": [
+    0.78,
+    0.38
+   ]
   },
   {
    "title": "Louveciennes with Mont Valérien in the Background",
@@ -9064,7 +9252,11 @@
    "license_url": "",
    "credit_line": "Sotheby's, New York, 19 November 2024, lot 315",
    "license_verified": "2026-07-16",
-   "featured_rank": 26
+   "featured_rank": 26,
+   "focal_point": [
+    0.5,
+    0.72
+   ]
   },
   {
    "title": "A Street in L'Hermitage, Pontoise",

@@ -8149,7 +8149,11 @@
    "license_url": "",
    "credit_line": "University of Pittsburgh",
    "license_verified": "2026-07-16",
-   "featured_rank": 24
+   "featured_rank": 24,
+   "focal_point": [
+    0.42,
+    0.52
+   ]
   },
   {
    "title": "White-fronted Goose",
@@ -9070,7 +9074,11 @@
    "license_url": "",
    "credit_line": "University of Pittsburgh",
    "license_verified": "2026-07-16",
-   "featured_rank": 20
+   "featured_rank": 20,
+   "focal_point": [
+    0.4,
+    0.55
+   ]
   },
   {
    "title": "Marsh Tern",
