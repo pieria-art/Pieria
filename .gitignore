@@ -12,6 +12,10 @@ data/
 # Media & Assets
 Artwork/
 
+# Built art-pack + per-collection slices (distributables; ship via R2/.img, per ADR-038); never git.
+art-pack/
+art-pack-*/
+
 # Python
 __pycache__/
 *.py[cod]
