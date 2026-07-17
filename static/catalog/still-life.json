@@ -278,7 +278,8 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "https://www.artic.edu/artworks/145807",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "below_floor_ok": true
   },
   {
    "title": "Apples",
@@ -328,7 +329,8 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "https://www.artic.edu/artworks/20534",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "below_floor_ok": true
   },
   {
    "title": "Wine, Cheese, and Fruit",
@@ -378,7 +380,8 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "https://www.artic.edu/artworks/2156",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "below_floor_ok": true
   },
   {
    "title": "A Vanitas Still Life with a Flag, Candlestick, Musical Instruments, Books, Writing Paraphernalia, Globes, and Hourglass",
@@ -825,7 +828,8 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "https://www.artic.edu/artworks/154121",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "below_floor_ok": true
   }
  ]
 }

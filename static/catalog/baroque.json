@@ -328,7 +328,8 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "Museo del Prado, Madrid",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "below_floor_ok": true
   },
   {
    "title": "The Toilet of Venus (Rokeby Venus)",
@@ -428,7 +429,8 @@
    "license_basis": "CC0",
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "below_floor_ok": true
   },
   {
    "title": "Saint Francis in Meditation",
@@ -528,7 +530,8 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "http://www.museodelprado.es/coleccion/galeria-on-line/galeria-on-line/obra/martirio-de-san-felipe/",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "below_floor_ok": true
   },
   {
    "title": "The Immaculate Conception",
@@ -1119,7 +1122,8 @@
    "license_basis": "CC0 — Met Open Access",
    "license_url": "",
    "credit_line": "Collection of The Metropolitan Museum of Art",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "below_floor_ok": true
   },
   {
    "title": "Self-Portrait",

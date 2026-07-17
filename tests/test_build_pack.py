@@ -171,6 +171,35 @@ async def test_ensure_master_uncropped_below_floor_skipped(tmp_path, monkeypatch
 
 
 @pytest.mark.asyncio
+async def test_ensure_master_below_floor_ok_grandfathers_sub4k(tmp_path, monkeypatch):
+    """A `below_floor_ok` work (2500px) is kept despite the 3840 floor (grandfathered), while an
+    identical UNflagged work is culled — so future discovery stays ≥4K."""
+    monkeypatch.setattr(build_pack, "_fetch_bytes", lambda *a, **k: _async(_jpeg(2500, 1900)))
+    state = _build_state(tmp_path)
+    flagged = build_pack.WorkItem(kind="catalog", collection_id="impressionism", item={
+        "source_url": "https://example.org/grandfathered.jpg", "title": "Famous Sub4K", "below_floor_ok": True})
+    assert await build_pack.ensure_master(state, flagged) is not None      # kept
+    assert state.stats.master_too_small == 0
+    unflagged = build_pack.WorkItem(kind="catalog", collection_id="impressionism", item={
+        "source_url": "https://example.org/normal2500.jpg", "title": "Normal Sub4K"})
+    assert await build_pack.ensure_master(state, unflagged) is None         # culled at 3840
+    assert state.stats.master_too_small == 1
+    await state.client.aclose()
+
+
+@pytest.mark.asyncio
+async def test_ensure_master_below_floor_ok_still_enforces_hard_min(tmp_path, monkeypatch):
+    """Even grandfathered, a work below the 2160 hard minimum (standard-HD+buffer) is still culled."""
+    monkeypatch.setattr(build_pack, "_fetch_bytes", lambda *a, **k: _async(_jpeg(2000, 1500)))
+    state = _build_state(tmp_path)
+    wi = build_pack.WorkItem(kind="catalog", collection_id="impressionism", item={
+        "source_url": "https://example.org/tiny.jpg", "title": "Too Small", "below_floor_ok": True})
+    assert await build_pack.ensure_master(state, wi) is None
+    assert state.stats.master_too_small == 1
+    await state.client.aclose()
+
+
+@pytest.mark.asyncio
 async def test_ensure_master_cities_floor_override(tmp_path, monkeypatch):
     """cities-architecture relaxes to 3600 (ADR-042): a 3700px native clears there but not elsewhere."""
     monkeypatch.setattr(build_pack, "_fetch_bytes", lambda *a, **k: _async(_jpeg(3700, 2400)))

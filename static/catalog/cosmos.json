@@ -203,7 +203,8 @@
    "license_basis": "CC0",
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "Own work",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "below_floor_ok": true
   },
   {
    "title": "Southern Ring Nebula Webb",
@@ -553,7 +554,8 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "https://www.flickr.com/photos/kevinmgill/35491570250/in/photostream/",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "below_floor_ok": true
   },
   {
    "title": "Pluto New Horizons",

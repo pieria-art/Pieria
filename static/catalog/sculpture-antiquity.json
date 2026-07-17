@@ -303,7 +303,8 @@
    "license_basis": "CC0",
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "Own work",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "below_floor_ok": true
   },
   {
    "title": "Moses",
@@ -353,7 +354,8 @@
    "license_basis": "CC0",
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "Own work",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "below_floor_ok": true
   },
   {
    "title": "The Thinker",

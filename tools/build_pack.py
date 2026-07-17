@@ -65,6 +65,13 @@ THUMB_QUALITY = 85
 # under true-4K, so cities-architecture relaxes to 3600. Everything else uses the global --min-edge.
 COLLECTION_MIN_EDGE = {"cities-architecture": 3600}
 
+# Grandfather floor: existing catalog works flagged `below_floor_ok` (famous pieces with no open ≥3840
+# scan anywhere) are kept below the true-4K floor, down to this hard minimum — "standard HD (1920) +
+# Ken Burns / screen-orientation buffer" (= the 4K panel's short/portrait edge). Anything softer than
+# this was trashed from the catalog. New (unflagged) works still face the full --min-edge floor, so
+# FUTURE discovery stays at ≥4K. (Resolution-policy decision, 2026-07-17.)
+GRANDFATHER_MIN_EDGE = 2160
+
 # First-party publisher identity (ADR-044): the Core pack ships as this publisher's signed Manifest v2
 # feeds — one per collection. Signed at build time with a key that never ships; the PUBLIC key lives in
 # registry/trusted_publishers.json so assess_trust() promotes the pack to 'verified' on the appliance.
@@ -376,6 +383,9 @@ async def ensure_master(state: BuildState, wi: WorkItem) -> str | None:
         # 4K-friendly floor: a source smaller than this looks soft on a 4K/8K wall (esp. under Ken
         # Burns zoom). We never upscale — below the floor, the work is skipped from the pack.
         floor = COLLECTION_MIN_EDGE.get(wi.collection_id, state.min_edge)
+        if wi.item.get("below_floor_ok"):
+            # grandfathered sub-4K work: honored down to the standard-HD+buffer hard minimum only
+            floor = min(floor, GRANDFATHER_MIN_EDGE)
         try:
             with Image.open(BytesIO(raw)) as probe:
                 native_max = max(probe.size)

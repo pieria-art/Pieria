@@ -28,32 +28,8 @@
    "license_basis": "CC0 — Met Open Access",
    "license_url": "",
    "credit_line": "Collection of The Metropolitan Museum of Art",
-   "license_verified": "2026-07-16"
-  },
-  {
-   "title": "The Slave Ship",
-   "agent_name": "J. M. W. Turner",
-   "agent_role": "Artist",
-   "creation_date": "",
-   "cultural_context": "Romanticism, British",
-   "medium": "Oil on canvas",
-   "date_display": "1840",
-   "description_narrative": "J. M. W. Turner's 'The Slave Ship' vividly captures the raw power of the sea amidst a tumultuous sky. The painting dramatically illustrates the tragic practice of throwing enslaved individuals overboard, symbolizing the brutality of the slave trade.",
-   "tags": "slavery, maritime, romanticism, sublime, abolition, tragedy, seascape, oil painting",
-   "source": "Wikimedia Commons",
-   "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Slave-ship.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Slave-ship.jpg?width=600",
-   "focal_point": [
-    0.5,
-    0.5
-   ],
-   "featured_rank": 80,
-   "license_verdict": "pd",
-   "license_basis": "Public domain",
-   "license_url": "",
-   "credit_line": "Museum of Fine Arts, Boston",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "below_floor_ok": true
   },
   {
    "title": "Snow Storm: Steam-Boat off a Harbour's Mouth",
@@ -128,7 +104,8 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "The Yorck Project (2002) 10.000 Meisterwerke der Malerei (DVD-ROM), distributed by DIRECTMEDIA Publishing GmbH. ISBN: 3936122202.",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "below_floor_ok": true
   },
   {
    "title": "Breezing Up (A Fair Wind)",
@@ -203,7 +180,8 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "Metropolitan Museum of Art, online collection (The Met object ID 20011487)",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "below_floor_ok": true
   },
   {
    "title": "Eight Bells",
@@ -278,32 +256,8 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "http://lj.rossia.org/users/john_petrov/500773.html",
-   "license_verified": "2026-07-16"
-  },
-  {
-   "title": "Among the Waves",
-   "agent_name": "Ivan Aivazovsky",
-   "agent_role": "Artist",
-   "creation_date": "",
-   "cultural_context": "Russian Romanticism",
-   "medium": "Oil on canvas",
-   "date_display": "1898",
-   "description_narrative": "Ivan Aivazovsky's 'Among the Waves' dramatically captures the raw power of the ocean. A lone ship battles against towering, tempestuous waves, showcasing the artist's masterful depiction of maritime scenes.",
-   "tags": "seascape, marine art, romanticism, storm, ocean, dramatic, russian art",
-   "source": "Wikimedia Commons",
-   "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Breaking%20Wave%20%28by%20Ivan%20Aivazovsky%29.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Breaking%20Wave%20%28by%20Ivan%20Aivazovsky%29.jpg?width=600",
-   "focal_point": [
-    0.7,
-    0.62
-   ],
-   "featured_rank": 45,
-   "license_verdict": "pd",
-   "license_basis": "Public domain",
-   "license_url": "",
-   "credit_line": "https://www.sothebys.com/en/buy/auction/2023/old-master-and-19th-century-paintings-day-auction-part-i/breaking-wave",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "below_floor_ok": true
   },
   {
    "title": "A Dutch Ship in a Strong Breeze",
@@ -353,7 +307,8 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "Google Arts &amp; Culture: Home page – Image",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "below_floor_ok": true
   },
   {
    "title": "Ships in Distress off a Rocky Coast",
@@ -428,7 +383,8 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "Photo taken by Jaime Villate on 2009-08-04 at Orsay Museum.",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "below_floor_ok": true
   },
   {
    "title": "Calm Sea",
@@ -478,31 +434,6 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "dwEJBbTOxE61pQ at Google Cultural Institute maximum zoom level",
-   "license_verified": "2026-07-16"
-  },
-  {
-   "title": "The Great Wave, Sète",
-   "agent_name": "Gustave Le Gray",
-   "agent_role": "Artist",
-   "creation_date": "",
-   "cultural_context": "Early Photography, French",
-   "medium": "Albumen silver print from a glass negative",
-   "date_display": "1857",
-   "description_narrative": "This artwork by Gustave Le Gray depicts a powerful wave at Sète. It captures the dynamic movement and grandeur of the sea.",
-   "tags": "wave, sea, Sète, nature, powerful, marine, landscape",
-   "source": "Wikimedia Commons",
-   "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Gustave%20Le%20Gray-The%20Great%20Wave.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Gustave%20Le%20Gray-The%20Great%20Wave.jpg?width=600",
-   "focal_point": [
-    0.45,
-    0.47
-   ],
-   "featured_rank": 60,
-   "license_verdict": "pd",
-   "license_basis": "Public domain",
-   "license_url": "",
-   "credit_line": "The metropolitan Museum of Art",
    "license_verified": "2026-07-16"
   },
   {
@@ -918,7 +849,8 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "https://www.artic.edu/artworks/120163",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "below_floor_ok": true
   }
  ]
 }

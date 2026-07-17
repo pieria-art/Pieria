@@ -56,31 +56,6 @@
    "license_verified": "2026-07-16"
   },
   {
-   "title": "Canopic jar with falcon head",
-   "agent_name": "Ancient Egyptian",
-   "agent_role": "Artist",
-   "creation_date": "ca. 712–664 B.C.",
-   "cultural_context": "Ancient Egyptian, Late Period",
-   "medium": "Limestone",
-   "date_display": "ca. 712–664 B.C.",
-   "description_narrative": "This limestone canopic jar was created by ancient Egyptians to hold the internal organs of the deceased during mummification. Its falcon head represents Qebehsenuef, one of the Four Sons of Horus, who traditionally protected the intestines.",
-   "tags": "ancient Egypt, funerary art, canopic jar, sculpture, religious artifact, falcon, limestone, mummification",
-   "source": "The Metropolitan Museum of Art",
-   "license": "Public Domain",
-   "source_url": "https://images.metmuseum.org/CRDImages/eg/original/28.3.59a-b_EGDP013259.jpg",
-   "thumbnail_url": "https://images.metmuseum.org/CRDImages/eg/web-large/28.3.59a-b_EGDP013259.jpg",
-   "focal_point": [
-    0.48,
-    0.27
-   ],
-   "featured_rank": 30,
-   "license_verdict": "pd",
-   "license_basis": "CC0 — Met Open Access",
-   "license_url": "",
-   "credit_line": "Collection of The Metropolitan Museum of Art",
-   "license_verified": "2026-07-16"
-  },
-  {
    "title": "Statuette of Amun",
    "agent_name": "Ancient Egyptian",
    "agent_role": "Artist",
@@ -153,7 +128,8 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "British Museum free image service",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "below_floor_ok": true
   },
   {
    "title": "Papyrus of Ani",
@@ -178,7 +154,8 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "https://www.britishmuseum.org/collection/image/685280001",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "below_floor_ok": true
   },
   {
    "title": "Seated Scribe",
@@ -228,7 +205,8 @@
    "license_basis": "CC0",
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "below_floor_ok": true
   },
   {
    "title": "Wall Painting from the Tomb of Nebamun",
@@ -253,7 +231,8 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "The Open University",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "below_floor_ok": true
   },
   {
    "title": "Code of Hammurabi Stele",
@@ -278,32 +257,8 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "Own work",
-   "license_verified": "2026-07-16"
-  },
-  {
-   "title": "Human-Headed Winged Lion (Lamassu)",
-   "agent_name": "Assyrian",
-   "agent_role": "Artist",
-   "creation_date": "",
-   "cultural_context": "Ancient Assyrian, Mesopotamia",
-   "medium": "Alabaster (gypsum)",
-   "date_display": "c. 9th–7th century BCE",
-   "description_narrative": "This monumental sculpture depicts a lamassu, an ancient Assyrian protective deity, combining the head of a human, the body of a lion, and the wings of an eagle. Such figures served as guardians at the entrances of important buildings, symbolizing strength and protection against evil.",
-   "tags": "ancient, Assyrian, lamassu, sculpture, mythological creature, protective deity, monumental, ancient Near East",
-   "source": "Wikimedia Commons",
-   "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Human-headed%20winged%20lion%20%28lamassu%29%20MET%20DP252320.jpeg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Human-headed%20winged%20lion%20%28lamassu%29%20MET%20DP252320.jpeg?width=600",
-   "focal_point": [
-    0.35,
-    0.5
-   ],
-   "featured_rank": 55,
-   "license_verdict": "pd",
-   "license_basis": "CC0",
-   "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
-   "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "below_floor_ok": true
   },
   {
    "title": "Relief of a Winged Genius",
@@ -328,31 +283,6 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "Neo-Assyrian Bas Relief of Winged Genius, from North Palace at Nimrud, c. 883-859 BC",
-   "license_verified": "2026-07-16"
-  },
-  {
-   "title": "Uraeus fitting from shrine",
-   "agent_name": "Unknown Artist",
-   "agent_role": "Artist",
-   "creation_date": "664–30 B.C.",
-   "cultural_context": "Ancient Egypt",
-   "medium": "Cupreous metal",
-   "date_display": "664–30 B.C.",
-   "description_narrative": "This uraeus fitting, crafted from cupreous metal, once adorned a shrine, symbolizing divine protection and royal authority. The cobra, a powerful emblem in ancient Egypt, represented sovereignty and was often associated with deities and pharaohs.",
-   "tags": "ancient egypt, uraeus, cobra, metalwork, shrine fitting, religious object, symbolism",
-   "source": "The Metropolitan Museum of Art",
-   "license": "Public Domain",
-   "source_url": "https://images.metmuseum.org/CRDImages/eg/original/41.160.110_EGDP014920.jpg",
-   "thumbnail_url": "https://images.metmuseum.org/CRDImages/eg/web-large/41.160.110_EGDP014920.jpg",
-   "focal_point": [
-    0.45,
-    0.2
-   ],
-   "featured_rank": 8,
-   "license_verdict": "pd",
-   "license_basis": "CC0 — Met Open Access",
-   "license_url": "",
-   "credit_line": "Collection of The Metropolitan Museum of Art",
    "license_verified": "2026-07-16"
   }
  ]

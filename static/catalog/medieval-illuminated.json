@@ -28,7 +28,8 @@
    "license_basis": "CC0 — Met Open Access",
    "license_url": "",
    "credit_line": "Collection of The Metropolitan Museum of Art",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "below_floor_ok": true
   },
   {
    "title": "The Belles Heures of Jean de France, duc de Berry",
@@ -53,32 +54,8 @@
    "license_basis": "CC0 — Met Open Access",
    "license_url": "",
    "credit_line": "Collection of The Metropolitan Museum of Art",
-   "license_verified": "2026-07-16"
-  },
-  {
-   "title": "Book of Kells: Chi Rho Page",
-   "agent_name": "Insular",
-   "agent_role": "Artist",
-   "creation_date": "",
-   "cultural_context": "Insular art, Early Medieval, Irish",
-   "medium": "Illuminated manuscript (tempera and gold on parchment)",
-   "date_display": "c. 800 CE",
-   "description_narrative": "This page from the Book of Kells showcases the opening of the Gospel of Matthew, dominated by the highly ornamented Greek letters Chi and Rho, an abbreviation for Christ. Known for its extraordinary detail, the design incorporates spirals, interlace patterns, and animal motifs, exemplifying the peak of Insular illumination.",
-   "tags": "insular art, medieval manuscript, illumination, chi rho, christian, gospels, intricate, celtic",
-   "source": "Wikimedia Commons",
-   "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Meister%20des%20Book%20of%20Kells%20001.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Meister%20des%20Book%20of%20Kells%20001.jpg?width=600",
-   "focal_point": [
-    0.45,
-    0.4
-   ],
-   "featured_rank": 75,
-   "license_verdict": "pd",
-   "license_basis": "Public domain",
-   "license_url": "",
-   "credit_line": "The Yorck Project (2002) 10.000 Meisterwerke der Malerei (DVD-ROM), distributed by DIRECTMEDIA Publishing GmbH. ISBN: 3936122202.",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "below_floor_ok": true
   },
   {
    "title": "Très Riches Heures du Duc de Berry: January",
@@ -103,7 +80,8 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "nevsepic",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "below_floor_ok": true
   },
   {
    "title": "Très Riches Heures du Duc de Berry: February",
@@ -128,7 +106,8 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "Photo. R.M.N. / R.-G. Ojéda",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "below_floor_ok": true
   }
  ]
 }

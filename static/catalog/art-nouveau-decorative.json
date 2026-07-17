@@ -78,7 +78,8 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "repro from artbook",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "below_floor_ok": true
   },
   {
    "title": "The Beethoven Frieze",
@@ -128,7 +129,8 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "http://www.reflex.cz/galerie/kultura/10414/?foto=12",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "below_floor_ok": true
   },
   {
    "title": "Strawberry Thief",
@@ -292,7 +294,8 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "Aubrey Beardsley",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "below_floor_ok": true
   },
   {
    "title": "Neptune's Horses",

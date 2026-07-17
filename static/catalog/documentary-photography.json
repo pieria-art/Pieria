@@ -203,7 +203,8 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "https://web.archive.org/web/20221204115953/https://www.archives.gov/exhibits/picturing_the_century/portfolios/port_hine.html links to hi-res image) Image is not currently (as of 2007-03-22) in the ARC catalog. File 69-RH is available under ARC identifier 518289 (search at https://arcweb.archives.gov/arc/basic_search.jsp), but it currently only contains a single photo (ARC identifier 518290, item 69-RH-4K-1).",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "below_floor_ok": true
   },
   {
    "title": "Breaker Boys, Pennsylvania",
@@ -353,7 +354,8 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "Scanned from The Photography Book, Phaidon Press, London, 1997.",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "below_floor_ok": true
   },
   {
    "title": "The Open Door",
@@ -403,7 +405,8 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "Rebecca A. Moss,Director of Visual Resources and Digital Content Lab, via email. College of Liberal Arts Office of Information Technology University of Minnesota http://www.arthist.umn.edu/vrcinfo/",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "below_floor_ok": true
   },
   {
    "title": "Geronimo",
@@ -428,7 +431,8 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "Bonhams",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "below_floor_ok": true
   }
  ]
 }
