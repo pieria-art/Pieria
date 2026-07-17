@@ -174,7 +174,11 @@
    "license_url": "",
    "credit_line": "National Museum of Art, Architecture and Design",
    "license_verified": "2026-07-16",
-   "featured_rank": 62
+   "featured_rank": 62,
+   "focal_point": [
+    0.35,
+    0.3
+   ]
   },
   {
    "title": "Judith I",
@@ -265,7 +269,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "https://clevelandart.org/art/1961.279",
    "license_verified": "2026-07-16",
-   "featured_rank": 35
+   "featured_rank": 35,
+   "focal_point": [
+    0.35,
+    0.35
+   ]
   },
   {
    "title": "Woman in a Striped Dress",

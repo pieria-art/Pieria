@@ -74,7 +74,11 @@
    "license_url": "",
    "credit_line": "http://visipix.com/index.htm",
    "license_verified": "2026-07-16",
-   "featured_rank": 58
+   "featured_rank": 58,
+   "focal_point": [
+    0.55,
+    0.62
+   ]
   },
   {
    "title": "Kajikazawa in Kai Province",
@@ -195,7 +199,11 @@
    "license_url": "",
    "credit_line": "cgH3Mn22MIBngA at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 62
+   "featured_rank": 62,
+   "focal_point": [
+    0.52,
+    0.25
+   ]
   },
   {
    "title": "Takiyasha the Witch and the Skeleton Spectre",
@@ -344,7 +352,11 @@
    "license_url": "",
    "credit_line": "Hood Museum of Art, Dartmouth College",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.35,
+    0.35
+   ]
   },
   {
    "title": "Fireworks at Ryōgoku",
@@ -468,7 +480,11 @@
    "license_url": "",
    "credit_line": "NQGOOR5RX6IlWg at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 38
+   "featured_rank": 38,
+   "focal_point": [
+    0.55,
+    0.28
+   ]
   },
   {
    "title": "The Moon on Musashi Plain",

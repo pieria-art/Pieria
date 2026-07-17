@@ -407,7 +407,11 @@
    "license_url": "",
    "credit_line": "GQEXB6lJVIn9wA at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 75
+   "featured_rank": 75,
+   "focal_point": [
+    0.35,
+    0.3
+   ]
   },
   {
    "title": "Women of Algiers in their Apartment",
@@ -1183,7 +1187,11 @@
    "license_url": "",
    "credit_line": "UwE-wr-m1D0h8Q at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.63,
+    0.35
+   ]
   },
   {
    "title": "Nantes, from the Île Feydeau",
@@ -1407,7 +1415,11 @@
    "license_url": "",
    "credit_line": "https://clevelandart.org/art/1916.1036 IA",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.48,
+    0.5
+   ]
   },
   {
    "title": "Rockets and Blue Lights (Close at Hand) to Warn Steamboats of Shoal Water",

@@ -9352,7 +9352,11 @@
    "license_url": "",
    "credit_line": "JQF8ZdIG2etsxw at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 68
+   "featured_rank": 68,
+   "focal_point": [
+    0.55,
+    0.5
+   ]
   }
  ]
 }

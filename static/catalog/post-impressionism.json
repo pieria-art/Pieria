@@ -844,7 +844,11 @@
    "license_url": "",
    "credit_line": "Buffalo AKG Art Museum",
    "license_verified": "2026-07-16",
-   "featured_rank": 68
+   "featured_rank": 68,
+   "focal_point": [
+    0.45,
+    0.3
+   ]
   },
   {
    "title": "Equestrienne (At the Cirque Fernando)",
@@ -1163,7 +1167,11 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "The Getty Center, Object 103QVS This image was taken from the Getty Research Institute's Open Content Program, which states the following regarding their assessment that no known copyright restrictions exist: Open content images are digital surrogates of works of art that are in the Getty's collections and in the public domain, for which we hold all rights, or for which we are not aware of any rights restrictions. While the Getty Research Institute cannot make an absolute statement on the copyright status of a given image, \"Open content images can be used for any purpose without first seeking permission from the Getty.\" More information can be found at http://www.getty.edu/about/opencontent.html.No known copyright restrictionsNo restrictionshttp://www.getty.edu/about/opencontent.htmlfalse",
    "license_verified": "2026-07-16",
-   "featured_rank": 38
+   "featured_rank": 38,
+   "focal_point": [
+    0.4,
+    0.35
+   ]
   },
   {
    "title": "Bibémus Quarry (1898-99)",
@@ -1184,7 +1192,11 @@
    "license_url": "",
    "credit_line": "Google Art Project works from the Nelson-Atkins Museum of Art",
    "license_verified": "2026-07-16",
-   "featured_rank": 40
+   "featured_rank": 40,
+   "focal_point": [
+    0.45,
+    0.35
+   ]
   },
   {
    "title": "Young Italian Woman at a Table",
@@ -1401,7 +1413,11 @@
    "license_url": "",
    "credit_line": "DQGY1JtjyPvAyQ at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 40
+   "featured_rank": 40,
+   "focal_point": [
+    0.45,
+    0.35
+   ]
   },
   {
    "title": "The Large Bathers",
@@ -1422,7 +1438,11 @@
    "license_url": "",
    "credit_line": "owGszazN_Evyvw at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 78
+   "featured_rank": 78,
+   "focal_point": [
+    0.5,
+    0.45
+   ]
   },
   {
    "title": "Still Life: Milk Jug and Fruit on a Table",
@@ -1493,7 +1513,11 @@
    "license_url": "",
    "credit_line": "1. freundederkuenste.de2. Google Art Project",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.55,
+    0.5
+   ]
   },
   {
    "title": "Bathers",
@@ -1660,7 +1684,11 @@
    "license_url": "",
    "credit_line": "UAFdNolZp0zsCw at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.65,
+    0.5
+   ]
   },
   {
    "title": "The Card Players (The Metropolitan Museum of Art)",
@@ -1731,7 +1759,11 @@
    "license_url": "",
    "credit_line": "https://collection.barnesfoundation.org/objects/5314/details",
    "license_verified": "2026-07-16",
-   "featured_rank": 34
+   "featured_rank": 34,
+   "focal_point": [
+    0.3,
+    0.3
+   ]
   },
   {
    "title": "Gardanne",
@@ -1902,7 +1934,11 @@
    "license_url": "",
    "credit_line": "sQEIYLkU0bt2GQ at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 55
+   "featured_rank": 55,
+   "focal_point": [
+    0.4,
+    0.25
+   ]
   },
   {
    "title": "Mont Sainte-Victoire Seen from the Bibémus Quarry",
@@ -1948,7 +1984,11 @@
    "license_url": "",
    "credit_line": "https://collection.barnesfoundation.org/objects/6949/details",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.3,
+    0.3
+   ]
   },
   {
    "title": "The Village of Gardanne",
@@ -1994,7 +2034,11 @@
    "license_url": "",
    "credit_line": "4gEUmvREVP4r8Q at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.5,
+    0.55
+   ]
   },
   {
    "title": "Still Life with a Dessert",
@@ -2115,7 +2159,11 @@
    "license_url": "",
    "credit_line": "National Gallery of Art, Washington D.C.",
    "license_verified": "2026-07-16",
-   "featured_rank": 40
+   "featured_rank": 40,
+   "focal_point": [
+    0.55,
+    0.5
+   ]
   },
   {
    "title": "Church at Montigny-sur-Loing",
@@ -2336,7 +2384,11 @@
    "license_url": "",
    "credit_line": "Google Arts &amp; Culture: Home page – Image",
    "license_verified": "2026-07-16",
-   "featured_rank": 45
+   "featured_rank": 45,
+   "focal_point": [
+    0.35,
+    0.35
+   ]
   },
   {
    "title": "Banks of the Marne",
@@ -2528,7 +2580,11 @@
    "license_url": "",
    "credit_line": "9AHLNI1V7mkxNg at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 45
+   "featured_rank": 45,
+   "focal_point": [
+    0.45,
+    0.45
+   ]
   },
   {
    "title": "Portrait of a Peasant",
@@ -2599,7 +2655,11 @@
    "license_url": "",
    "credit_line": "lwGKeFh4730wfA at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 38
+   "featured_rank": 38,
+   "focal_point": [
+    0.4,
+    0.55
+   ]
   },
   {
    "title": "Still Life with Cherries and Peaches",
@@ -2645,7 +2705,11 @@
    "license_url": "",
    "credit_line": "SAEaiIw2vE7PKA at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 25
+   "featured_rank": 25,
+   "focal_point": [
+    0.55,
+    0.45
+   ]
   },
   {
    "title": "Studies of Three Figures, Including a Self-Portrait",
@@ -2848,7 +2912,11 @@
    "license_url": "",
    "credit_line": "Copied from an art book",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.5,
+    0.55
+   ]
   },
   {
    "title": "Portrait of Ambroise Vollard",
@@ -3054,7 +3122,11 @@
    "license_url": "",
    "credit_line": "National Gallery, London",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.45,
+    0.55
+   ]
   },
   {
    "title": "The Card Player",
@@ -3125,7 +3197,11 @@
    "license_url": "",
    "credit_line": "Google Arts &amp; Culture — RAHRYVzqFQmM1A",
    "license_verified": "2026-07-16",
-   "featured_rank": 38
+   "featured_rank": 38,
+   "focal_point": [
+    0.4,
+    0.4
+   ]
   },
   {
    "title": "The Bathers (Large Plate)",
@@ -3324,7 +3400,11 @@
    "license_url": "",
    "credit_line": "YQGJT09pbLPLTQ at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 25
+   "featured_rank": 25,
+   "focal_point": [
+    0.45,
+    0.3
+   ]
   },
   {
    "title": "Autumn Landscape",
@@ -3516,7 +3596,11 @@
    "license_url": "",
    "credit_line": "https://collection.barnesfoundation.org/objects/6906/details",
    "license_verified": "2026-07-16",
-   "featured_rank": 30
+   "featured_rank": 30,
+   "focal_point": [
+    0.5,
+    0.45
+   ]
   },
   {
    "title": "Trees",
@@ -3562,7 +3646,11 @@
    "license_url": "",
    "credit_line": "https://philamuseum.org/collection/object/59487",
    "license_verified": "2026-07-16",
-   "featured_rank": 52
+   "featured_rank": 52,
+   "focal_point": [
+    0.35,
+    0.6
+   ]
   },
   {
    "title": "Four Peaches on a Plate",
@@ -3733,7 +3821,11 @@
    "license_url": "",
    "credit_line": "dgFm740uqOu5Cw at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 72
+   "featured_rank": 72,
+   "focal_point": [
+    0.4,
+    0.25
+   ]
   },
   {
    "title": "Mont Sainte-Victoire (Study II)",
@@ -3854,7 +3946,11 @@
    "license_url": "",
    "credit_line": "1QHHYmLBFgOI7w at Google Cultural Institute, zoom level maximum",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.5,
+    0.55
+   ]
   },
   {
    "title": "Mont Sainte-Victoire (Study III)",
@@ -3925,7 +4021,11 @@
    "license_url": "",
    "credit_line": "7wF4HYRiej54YQ at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
-   "featured_rank": 48
+   "featured_rank": 48,
+   "focal_point": [
+    0.5,
+    0.3
+   ]
   },
   {
    "title": "The Garden at Les Lauves",
@@ -3971,7 +4071,11 @@
    "license_url": "",
    "credit_line": "Google Arts &amp; Culture — 7QHrqf6sIGO6bQ",
    "license_verified": "2026-07-16",
-   "featured_rank": 26
+   "featured_rank": 26,
+   "focal_point": [
+    0.4,
+    0.4
+   ]
   },
   {
    "title": "Melting Snow, Fontainebleau",
@@ -4188,7 +4292,11 @@
    "license_url": "",
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
-   "featured_rank": 62
+   "featured_rank": 62,
+   "focal_point": [
+    0.5,
+    0.5
+   ]
   },
   {
    "title": "The Bedroom (Amsterdam version, 1888)",
@@ -4355,7 +4463,11 @@
    "license_url": "",
    "credit_line": "https://clevelandart.org/art/1958.31 IA",
    "license_verified": "2026-07-16",
-   "featured_rank": 48
+   "featured_rank": 48,
+   "focal_point": [
+    0.35,
+    0.35
+   ]
   },
   {
    "title": "Spectators in the Arena at Arles",
@@ -4458,7 +4570,11 @@
    "license_url": "",
    "credit_line": "Van Gogh Museum",
    "license_verified": "2026-07-16",
-   "featured_rank": 40
+   "featured_rank": 40,
+   "focal_point": [
+    0.5,
+    0.4
+   ]
   },
   {
    "title": "Still Life with Basket of Potatoes (II)",
@@ -4825,7 +4941,11 @@
    "license_url": "",
    "credit_line": "Van Gogh Museum",
    "license_verified": "2026-07-16",
-   "featured_rank": 28
+   "featured_rank": 28,
+   "focal_point": [
+    0.55,
+    0.2
+   ]
   },
   {
    "title": "Banks of the Seine with the Pont de Clichy in Spring",
@@ -4896,7 +5016,11 @@
    "license_url": "",
    "credit_line": "Anonymous post on www.4chan.org/hr",
    "license_verified": "2026-07-16",
-   "featured_rank": 44
+   "featured_rank": 44,
+   "focal_point": [
+    0.55,
+    0.4
+   ]
   },
   {
    "title": "Portrait of the Postman Joseph Roulin",
@@ -4968,7 +5092,11 @@
    "license_url": "",
    "credit_line": "Copied from an art book",
    "license_verified": "2026-07-16",
-   "featured_rank": 52
+   "featured_rank": 52,
+   "focal_point": [
+    0.45,
+    0.4
+   ]
   },
   {
    "title": "Les Alyscamps",
@@ -5265,7 +5393,11 @@
    "license_url": "",
    "credit_line": "Van Gogh Museum",
    "license_verified": "2026-07-16",
-   "featured_rank": 50
+   "featured_rank": 50,
+   "focal_point": [
+    0.5,
+    0.55
+   ]
   },
   {
    "title": "The Brothel (Le Lupanar)",

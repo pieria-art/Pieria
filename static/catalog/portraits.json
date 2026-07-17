@@ -807,7 +807,11 @@
    "license_url": "",
    "credit_line": "https://www.picassozx.com/content/?11905.html",
    "license_verified": "2026-07-16",
-   "featured_rank": 78
+   "featured_rank": 78,
+   "focal_point": [
+    0.3,
+    0.2
+   ]
   },
   {
    "title": "Portrait of Pope Innocent X",

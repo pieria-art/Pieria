@@ -624,7 +624,11 @@
    "license_url": "",
    "credit_line": "Wuselig",
    "license_verified": "2026-07-16",
-   "featured_rank": 68
+   "featured_rank": 68,
+   "focal_point": [
+    0.45,
+    0.55
+   ]
   },
   {
    "title": "Rockets and Blue Lights (Close at Hand) to Warn Steamboats of Shoal Water",
