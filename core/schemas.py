@@ -21,6 +21,7 @@ class ArtworkSchema(BaseModel):
     creation_date: Optional[str] = None; cultural_context: Optional[str] = None
     medium: Optional[str] = None; date_display: Optional[str] = None
     description_narrative: Optional[str] = None; tags: Optional[str] = None
+    series: Optional[str] = None; resolution_tier: Optional[str] = None
     status: str
     crop_x: float
     crop_y: float

@@ -63,6 +63,21 @@ def test_next_image_records_now_playing(client):
     assert row.current_playlist == "Summer"
 
 
+def test_next_image_metadata_carries_series(client):
+    """The kiosk placard payload exposes `series` (rendered as the title subtitle in app.js)."""
+    c, db = client
+    pl = PlaylistModel(name="Ukiyo", shuffle=False)
+    db.add(pl); db.commit(); db.refresh(pl)
+    art = ArtworkModel(filename="wave.jpg", status="approved", title="The Great Wave",
+                       agent_name="Hokusai", series="Thirty-six Views of Mount Fuji")
+    db.add(art); db.commit(); db.refresh(art)
+    db.execute(playlist_artwork.insert().values(playlist_id=pl.id, artwork_id=art.id, display_order=0))
+    db.commit()
+
+    served = c.get("/next-image", params={"playlist_name": "Ukiyo", "display_id": "wall"}).json()
+    assert served["metadata"]["series"] == "Thirty-six Views of Mount Fuji"
+
+
 def test_now_playing_endpoint_returns_artwork_card(client):
     c, db = client
     _playlist_with_art(db, "Summer", 1)

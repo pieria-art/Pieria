@@ -183,7 +183,8 @@ def pre_seed_from_pack(db: Session) -> bool:
                     cultural_context=item.get("cultural_context"), medium=item.get("medium"),
                     date_display=item.get("date_display"),
                     description_narrative=item.get("description_narrative"),
-                    tags=item.get("tags"), is_seed=True, source_url=source_url,
+                    tags=item.get("tags"), series=item.get("series"),
+                    resolution_tier=item.get("resolution_tier"), is_seed=True, source_url=source_url,
                     focal_x=fx, focal_y=fy,
                     affinity_score=round(0.5 + rank / 100.0, 3),
                 )
@@ -284,7 +285,8 @@ def _install_collection(db: Session, cid: str, manifest: dict) -> str | None:
                 cultural_context=cat.get("cultural_context"), medium=cat.get("medium"),
                 date_display=cat.get("date_display"),
                 description_narrative=cat.get("description_narrative"),
-                tags=cat.get("tags"), is_seed=True, source_url=source_url,
+                tags=cat.get("tags"), series=cat.get("series"),
+                resolution_tier=cat.get("resolution_tier"), is_seed=True, source_url=source_url,
                 focal_x=fx, focal_y=fy, affinity_score=affinity,
             )
             db.add(artwork); db.commit(); db.refresh(artwork)
@@ -528,7 +530,8 @@ async def run_factory_seed(db: Session):
                             agent_role=item.get("agent_role"), creation_date=item.get("creation_date"),
                             cultural_context=item.get("cultural_context"), medium=item.get("medium"),
                             date_display=item.get("date_display"), description_narrative=item.get("description_narrative"),
-                            tags=item.get("tags"), is_seed=True,
+                            tags=item.get("tags"), series=item.get("series"),
+                            resolution_tier=item.get("resolution_tier"), is_seed=True,
                             focal_x=sfx, focal_y=sfy,
                         )
                         db_local.add(artwork); db_local.commit(); db_local.refresh(artwork)

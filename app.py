@@ -4,10 +4,13 @@ FastAPI Backend for Screen Docent.
 Phase 4: Targeted WebSocket Routing for Multiple Displays.
 """
 
-# asyncio: no longer called directly here, but tests/test_download.py patches
-# `app_module.asyncio.sleep` — since it's the same stdlib singleton module object core/downloads.py
-# imports, that patch only works while `app` still binds the name `asyncio` at module scope.
-import asyncio  # noqa: F401
+# NOTE — "kept-bound" imports (the dual-patch pattern). Several names in this file look unused *here*
+# but MUST stay imported at module scope. Their call sites moved into core/* and routers/* during the
+# app-split, yet tests still reach them via `app` (a.k.a. `app_module`): either monkeypatching
+# `app_module.X` — which only works when `app` and the real call site share the *same* module object,
+# so the name must remain bound here — or importing a helper/constant straight off `app`. Each such
+# import is tagged with the test(s) that depend on it; don't drop one without checking them first.
+import asyncio  # noqa: F401 — tests/test_download.py patches app_module.asyncio.sleep
 import logging
 
 import pillow_heif
@@ -36,65 +39,47 @@ logging.basicConfig(
 )
 logger = logging.getLogger("artwork-display-api")
 
-# Local imports
-# httpx: no longer called directly here (its call sites moved to routers/settings.py + core/downloads.py),
-# but tests/test_download.py + tests/test_catalog.py patch `app_module.httpx.AsyncClient` — since it's
-# the same singleton module object core.downloads imports, that patch only works while `app` still
-# binds the name `httpx` at module scope. Keep the import.
-import httpx  # noqa: F401
+# Local imports (see the dual-patch NOTE above for why several look unused).
+import httpx  # noqa: F401 — tests/test_download.py + tests/test_catalog.py patch app_module.httpx.AsyncClient
 
-# federation: no longer called directly here (its call sites moved to routers/catalog.py +
-# routers/publisher.py + routers/federation.py), but tests/test_federation.py + tests/test_publisher_api.py
-# patch `app_module.federation.*` — since it's the same singleton module object those routers import,
-# that patch only works while `app` still binds the name `federation` at module scope. Keep the import.
-import federation  # noqa: F401
+import federation  # noqa: F401 — tests/test_federation.py + tests/test_publisher_api.py patch app_module.federation.*
 
-# config: ARTWORK_ROOT is used below (static /media mount); LIBRARY_DIR and STATIC_DIR are no
-# longer read internally here (their call sites moved to core/lifespan.py + routers/*), but several
-# tests (e.g. tests/test_display_image.py, tests/test_factory_reset.py, tests/test_playlist_resume.py)
-# monkeypatch `app_module.LIBRARY_DIR` as part of the established dual-patch pattern — keep the names
-# bound at module scope so those patches have an attribute to set. STATIC_DIR is used below (static mount).
+# ARTWORK_ROOT + STATIC_DIR are used below (static mounts); LIBRARY_DIR is kept bound because
+# tests/test_display_image.py, test_factory_reset.py + test_playlist_resume.py monkeypatch it.
 from config import ARTWORK_ROOT, LIBRARY_DIR, STATIC_DIR  # noqa: F401
 
 # Targeted WebSocket connection registry (shared by the ws + remote push paths).
 from core.connections import ConnectionManager, manager  # noqa: F401
 
-# SSRF-safe downloader (see core/downloads.py): no longer called directly here (its call site moved
-# to core/lifespan.py), but tests/test_download.py imports `_download_image_to_library` off `app`.
+# SSRF-safe downloader (see core/downloads.py); tests/test_download.py imports it off `app`.
 from core.downloads import _download_image_to_library  # noqa: F401,E402
 
 # Boot machinery (leader election, migrations, filesystem sync, factory seed, Canvas warmer) — see
-# core/lifespan.py (Phase 4 of the app-split refactor). `lifespan` is passed to FastAPI() below;
-# `sync_db_with_filesystem` is re-exported because tests/test_playlist_resume.py imports it off `app`.
+# core/lifespan.py. `lifespan` is passed to FastAPI() below.
 from core.lifespan import (
     lifespan,
-    sync_db_with_filesystem,  # noqa: F401  — re-exported for tests/test_playlist_resume.py
+    sync_db_with_filesystem,  # noqa: F401 — re-exported for tests/test_playlist_resume.py
 )
 
-# Derivative-image rendering primitives (see core/media.py). DERIVATIVES_DIR/DISPLAY_MAX_EDGE are no
-# longer read internally here (call sites moved to routers/admin.py + core/media.py), but
-# tests/test_factory_reset.py + tests/test_display_image.py monkeypatch `app_module.DERIVATIVES_DIR`
-# (dual-patch pattern) and tests/test_display_image.py imports DISPLAY_MAX_EDGE off `app`.
+# Derivative-image primitives (see core/media.py); tests/test_factory_reset.py + test_display_image.py
+# monkeypatch DERIVATIVES_DIR and import DISPLAY_MAX_EDGE off `app`.
 from core.media import DERIVATIVES_DIR, DISPLAY_MAX_EDGE  # noqa: F401,E402
 
 # Origin/CORS trust checks used by the middleware below (see core/security.py).
 from core.security import (  # noqa: E402
     _PUBLIC_FEED_GET_PREFIXES,
     _origin_allowed,
-    _same_origin,  # noqa: F401  — re-exported; used only by the middleware below
 )
 
-# Settings-table read/write + schedule helpers (see core/settings_util.py). The resolver + its
-# minute-math helpers are only called from routers/display.py now; kept here (unused internally)
-# because tests/test_schedule.py imports both directly off `app`.
+# Settings-table + schedule helpers (see core/settings_util.py); tests/test_schedule.py imports
+# DEFAULT_SCHEDULE + resolve_schedule_state off `app`.
 from core.settings_util import (  # noqa: E402
-    DEFAULT_SCHEDULE,  # noqa: F401  — re-exported for tests/test_schedule.py
-    resolve_schedule_state,  # noqa: F401  — re-exported for tests/test_schedule.py
+    DEFAULT_SCHEDULE,  # noqa: F401
+    resolve_schedule_state,  # noqa: F401
 )
 
-# SessionLocal: no longer called directly here (its call sites moved to core/lifespan.py), but
-# tests/test_connection_manager.py monkeypatches `app_module.SessionLocal` (established dual-patch
-# pattern — the route it drives, /ws/{display_id}, reads its own SessionLocal binding in routers/ws.py).
+# SessionLocal: tests/test_connection_manager.py monkeypatches app_module.SessionLocal (the /ws route
+# reads its own binding in routers/ws.py).
 from database import SessionLocal  # noqa: F401,E402
 
 # Leaf domain routers extracted from app.py (Phase 1 + Phase 2 + Phase 3 of the app-split refactor).
@@ -120,18 +105,20 @@ app = FastAPI(title="Screen Docent", version="0.4.5", lifespan=lifespan)
 
 # Leaf domain routers (Phase 1 + Phase 2 + Phase 3 + Phase 4 of the app-split refactor — see
 # .ai/refactor_app_split_plan.md).
+# Order matches the (alphabetical) import block above; these are leaf domain routers with distinct
+# path prefixes, so registration order carries no route-matching significance.
 app.include_router(admin_router)
-app.include_router(publisher_router)
-app.include_router(federation_router)
-app.include_router(packs_router)
-app.include_router(health_router)
-app.include_router(pages_router)
-app.include_router(settings_router)
-app.include_router(library_router)
-app.include_router(curation_router)
 app.include_router(catalog_router)
-app.include_router(studio_router)
+app.include_router(curation_router)
 app.include_router(display_router)
+app.include_router(federation_router)
+app.include_router(health_router)
+app.include_router(library_router)
+app.include_router(packs_router)
+app.include_router(pages_router)
+app.include_router(publisher_router)
+app.include_router(settings_router)
+app.include_router(studio_router)
 app.include_router(ws_router)
 
 @app.middleware("http")
@@ -175,7 +162,7 @@ async def inject_aggressive_cache_headers(request: Request, call_next):
 #   * The read-only public FEED (what integrations consume) stays cross-origin readable.
 #   * Admin/library GETs are NOT cross-origin readable (no ACAO) — a hostile tab can't exfiltrate them.
 #   * Same-origin (the kiosk's own page) and explicitly configured SD_ALLOWED_ORIGINS always pass.
-# _same_origin, _origin_allowed, _PUBLIC_FEED_GET_PREFIXES now live in core/security.py (imported above).
+# _origin_allowed, _PUBLIC_FEED_GET_PREFIXES now live in core/security.py (imported above).
 _MUTATING_METHODS = frozenset({"POST", "PUT", "PATCH", "DELETE"})
 
 

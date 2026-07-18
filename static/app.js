@@ -502,6 +502,7 @@ function updatePlacard(metadata) {
     placard.classList.toggle('personal', isPersonal);
 
     document.getElementById('art-title').textContent = stripMd(metadata.title);
+    const seriesEl = document.getElementById('art-series');
     const agentDate = document.getElementById('art-agent-date');
     const museumDetails = document.getElementById('art-museum-details');
     const description = document.getElementById('art-description');
@@ -513,7 +514,8 @@ function updatePlacard(metadata) {
 
     if (isPersonal) {
         // Personal photo: just the caption + an optional date. No artist/medium/culture/museum
-        // jargon, no tags, and no "Learn More" QR (there's nothing to look up).
+        // jargon, no series/tags, and no "Learn More" QR (there's nothing to look up).
+        seriesEl.style.display = 'none';
         agentDate.textContent = metadata.date_display || metadata.creation_date || '';
         museumDetails.textContent = '';
         description.textContent = '';
@@ -522,6 +524,9 @@ function updatePlacard(metadata) {
     }
 
     qrContainer.style.display = '';
+    // Series/set subtitle (e.g. a ukiyo-e "Famous Places…"), shown under the title only when present.
+    seriesEl.style.display = metadata.series ? '' : 'none';
+    seriesEl.textContent = stripMd(metadata.series || '');
     agentDate.textContent = `${metadata.agent_name || 'Unknown Artist'} ${metadata.agent_role && metadata.agent_role !== 'Artist' ? '(' + metadata.agent_role + ')' : ''} ${metadata.creation_date ? '• ' + metadata.creation_date : ''}`;
 
     // C2: drop date_display from the details row when it just repeats the byline's creation_date

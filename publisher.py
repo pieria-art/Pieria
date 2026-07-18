@@ -121,7 +121,8 @@ def build_item(row: dict) -> dict:
 
     item: dict = {"id": _slugify(row.get("id") or row.get("title") or ""),
                   "title": _clean_str(row.get("title")), "image": image}
-    for k in ("artist", "artist_role", "date", "creation_date", "medium", "culture", "placard"):
+    for k in ("artist", "artist_role", "date", "creation_date", "medium", "culture", "placard",
+              "series", "resolution_tier"):
         val = _clean_str(row.get(k))
         if val is not None:
             item[k] = val

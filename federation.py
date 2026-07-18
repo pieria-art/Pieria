@@ -175,6 +175,8 @@ def manifest_item_to_catalog(item: dict) -> dict:
         "medium": item.get("medium"),
         "cultural_context": item.get("culture"),
         "description_narrative": item.get("placard"),
+        "series": item.get("series"),
+        "resolution_tier": item.get("resolution_tier"),
         "tags": ",".join(tags) if isinstance(tags, list) else (tags or ""),
         "source": img.get("rights_holder") or "",
         "license": img.get("license"),
