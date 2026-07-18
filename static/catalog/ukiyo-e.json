@@ -6,7 +6,8 @@
  "license": "Public Domain",
  "items": [
   {
-   "title": "Under the Wave off Kanagawa (Kanagawa oki nami ura), also known as The Great Wave, from the series \"Thirty-Six Views of Mount Fuji (Fugaku sanjūrokkei)\"",
+   "title": "Under the Wave off Kanagawa",
+   "series": "Thirty-Six Views of Mount Fuji (Fugaku sanjūrokkei)",
    "agent_name": "Katsushika Hokusai",
    "agent_role": "Artist",
    "creation_date": "1830/33",
@@ -2025,7 +2026,8 @@
    "medium": "Color woodblock print",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "title": "Night Rain at Azuma Shrine Grove (from Eight Views of the Environs of Edo)",
+   "title": "Night Rain at Azuma Shrine Grove",
+   "series": "Eight Views of the Environs of Edo",
    "creation_date": "c. 1827",
    "date_display": "1827",
    "description_narrative": "One of Hiroshige's early experiments with the 'eight views' format borrowed from Chinese landscape painting, this print imagines a rain-swept night at the wooded grove surrounding Azuma Shrine on the outskirts of Edo. Diagonal rain lines and muted color convey the hush of a storm passing over sacred ground.",
@@ -2100,7 +2102,8 @@
    "medium": "Color woodblock print",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "title": "Evening Cherry Blossoms at Gotenyama (from Famous Places in the Eastern Capital)",
+   "title": "Evening Cherry Blossoms at Gotenyama",
+   "series": "Famous Places in the Eastern Capital",
    "creation_date": "c. 1831",
    "date_display": "c. 1831",
    "description_narrative": "Gotenyama, a hillside in Shinagawa, was one of Edo's premier cherry-blossom viewing spots, and Hiroshige shows revelers lingering beneath the trees as dusk settles over Edo Bay in the distance. The scene pairs the fleeting beauty of the blossoms with the day's fading light.",
@@ -2200,7 +2203,8 @@
    "medium": "Color woodblock print",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "title": "Nihonbashi: Morning Scene (from The Fifty-three Stations of the Tōkaidō)",
+   "title": "Nihonbashi: Morning Scene",
+   "series": "The Fifty-three Stations of the Tōkaidō",
    "creation_date": "1833/34",
    "date_display": "1833",
    "description_narrative": "The starting point of the Tōkaidō road, Nihonbashi bridge in the heart of Edo appears here at dawn, its planks crossed by fish merchants and a daimyo's procession setting out on the long journey to Kyoto. It is the celebrated opening scene of Hiroshige's Hoeidō Tōkaidō series.",
@@ -2250,7 +2254,8 @@
    "medium": "Color woodblock print",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "title": "Moonlit Scene at Hongō (from Famous Places of the Eastern Capital)",
+   "title": "Moonlit Scene at Hongō",
+   "series": "Famous Places of the Eastern Capital",
    "creation_date": "Edo period",
    "date_display": "19th century",
    "description_narrative": "The Hongō district of Edo is bathed in cool moonlight in this nocturnal view, part of Hiroshige's ongoing exploration of the capital's neighborhoods under changing light and season. Quiet rooftops and a pale moon replace the bustle of daytime scenes elsewhere in his oeuvre.",
@@ -2275,7 +2280,8 @@
    "medium": "Color woodblock print",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "title": "View of the Three Evenings (from Famous Places of Edo)",
+   "title": "View of the Three Evenings",
+   "series": "Famous Places of Edo",
    "creation_date": "Edo period",
    "date_display": "19th century",
    "description_narrative": "Drawing on the classical poetic theme of the 'three evenings' of autumn melancholy, Hiroshige adapts the conceit to contemporary Edo scenery, pairing literary allusion with recognizable city views. The result is a meditation on autumn dusk filtered through both poetry and place.",
@@ -2325,7 +2331,8 @@
    "medium": "Color woodblock print",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "title": "Takinogawa at Ōji (from Famous Places of the Eastern Capital)",
+   "title": "Takinogawa at Ōji",
+   "series": "Famous Places of the Eastern Capital",
    "creation_date": "Edo period",
    "date_display": "19th century",
    "description_narrative": "The Takinogawa, a stream running through Ōji on Edo's northern outskirts, was known for its wooded banks and cascades, a popular excursion spot for city dwellers. Hiroshige renders the rushing water and greenery as a rustic escape from the capital's crowded streets.",
@@ -2350,7 +2357,8 @@
    "medium": "Color woodblock print",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "title": "New Year's Greetings at Yoshiwara (from Famous Places of the Eastern Capital)",
+   "title": "New Year's Greetings at Yoshiwara",
+   "series": "Famous Places of the Eastern Capital",
    "creation_date": "Edo period",
    "date_display": "19th century",
    "description_narrative": "Hiroshige depicts the Yoshiwara pleasure quarter during the New Year season, when courtesans and attendants in formal dress exchanged ceremonial visits along the district's main street. The print captures a rare moment of civic ritual within the licensed quarter's usual round of entertainment.",
@@ -2375,7 +2383,8 @@
    "medium": "Color woodblock print",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "title": "Grounds of Tōeizan Temple at Ueno (from Famous Places of Edo)",
+   "title": "Grounds of Tōeizan Temple at Ueno",
+   "series": "Famous Places of Edo",
    "creation_date": "Edo period",
    "date_display": "19th century",
    "description_narrative": "Tōeizan, the temple complex on Ueno hill, was among Edo's grandest religious sites and a popular gathering place during cherry-blossom season. Hiroshige's view takes in the temple precincts themselves rather than the hill's famous blossoms, emphasizing the site's architectural presence.",
@@ -2400,7 +2409,8 @@
    "medium": "Color woodblock print",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "title": "Benkei Moat at Soto-Sakurada (from Famous Places of Edo)",
+   "title": "Benkei Moat at Soto-Sakurada",
+   "series": "Famous Places of Edo",
    "creation_date": "Edo period",
    "date_display": "19th century",
    "description_narrative": "The moat encircling Edo Castle at Soto-Sakurada, named for the legendary warrior-monk Benkei, appears here as a study in still water and fortified stone. Hiroshige frequently returned to the castle's outer defenses as subjects for their striking geometry.",
@@ -2425,7 +2435,8 @@
    "medium": "Color woodblock print",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "title": "Grounds of Benten Shrine at Susaki (from Famous Places of the Eastern Capital)",
+   "title": "Grounds of Benten Shrine at Susaki",
+   "series": "Famous Places of the Eastern Capital",
    "creation_date": "Edo period",
    "date_display": "19th century",
    "description_narrative": "Susaki, a spit of reclaimed land at the mouth of the Sumida River, was home to a shrine dedicated to the goddess Benten and a favorite spot for viewing the open bay. Hiroshige shows the shrine's torii framing a view out toward the water.",
@@ -2450,7 +2461,8 @@
    "medium": "Color woodblock print",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "title": "Kameya, in Front of Kaminarimon Gate, Asakusa (from Famous Restaurants of Edo)",
+   "title": "Kameya, in Front of Kaminarimon Gate, Asakusa",
+   "series": "Famous Restaurants of Edo",
    "creation_date": "Edo period",
    "date_display": "19th century",
    "description_narrative": "This print belongs to Hiroshige's series celebrating Edo's most fashionable restaurants, here showing the Kameya establishment beside the great Thunder Gate of Sensōji Temple in Asakusa. The series combined advertisement with landscape, situating each eatery within its neighborhood's character.",
@@ -2475,7 +2487,8 @@
    "medium": "Color woodblock print",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "title": "Evening Moon at Takanawa, Likened to Akashi (from Edo Purple: Famous Places and the Tale of Genji)",
+   "title": "Evening Moon at Takanawa, Likened to Akashi",
+   "series": "Edo Purple: Famous Places and the Tale of Genji",
    "creation_date": "Edo period",
    "date_display": "19th century",
    "description_narrative": "This series pairs Edo cityscapes with episodes from The Tale of Genji, here likening the moonlit shore at Takanawa to the Akashi chapter's famous seaside exile. Hiroshige's evening view of the bay carries the literary allusion through mood and atmosphere alone.",
@@ -2500,7 +2513,8 @@
    "medium": "Color woodblock print",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "title": "The Time Bell at Ueno (from Five Elements, Famous Places of Edo)",
+   "title": "The Time Bell at Ueno",
+   "series": "Five Elements, Famous Places of Edo",
    "creation_date": "Edo period",
    "date_display": "19th century",
    "description_narrative": "The bronze bell at Ueno tolled the hours for much of eastern Edo, and Hiroshige gives it pride of place in this design from a series organizing the city's landmarks according to the five classical elements. The bell tower rises above rooftops under a wide sky.",
@@ -2525,7 +2539,8 @@
    "medium": "Color woodblock print",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "title": "View of Shiomizaka Slope at Isarago (from Hiroshige's Slopes of the Eastern Capital)",
+   "title": "View of Shiomizaka Slope at Isarago",
+   "series": "Hiroshige's Slopes of the Eastern Capital",
    "creation_date": "Edo period",
    "date_display": "19th century",
    "description_narrative": "Edo's hilly terrain produced numerous named slopes, and this series devoted individual prints to them; Shiomizaka, or 'tide-viewing slope,' offered a glimpse of the bay from its crest. Figures climb the grade as the harbor opens up beyond.",
@@ -2550,7 +2565,8 @@
    "medium": "Color woodblock print",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "title": "Full View of Cherry Blossoms in Bloom at the Five Blocks of New Yoshiwara (from Famous Places of the Eastern Capital)",
+   "title": "Full View of Cherry Blossoms in Bloom at the Five Blocks of New Yoshiwara",
+   "series": "Famous Places of the Eastern Capital",
    "creation_date": "Edo period",
    "date_display": "19th century",
    "description_narrative": "A panoramic, multi-sheet view of New Yoshiwara's main street at the height of cherry-blossom season, when the pleasure quarter briefly rivaled the city's parks for beauty. The wide format allowed Hiroshige to capture the full sweep of the district's seasonal transformation.",
@@ -2575,7 +2591,8 @@
    "medium": "Color woodblock print",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "title": "Full View of Asukayama (from Famous Places of the Eastern Capital)",
+   "title": "Full View of Asukayama",
+   "series": "Famous Places of the Eastern Capital",
    "creation_date": "Edo period",
    "date_display": "19th century",
    "description_narrative": "Asukayama, a hillside park planted with cherry trees by shogunal decree, was one of Edo's most popular public excursion spots. This wide panoramic print surveys the crowded hill in full, its trees and picnicking visitors spread across the multi-sheet composition.",
@@ -2600,7 +2617,8 @@
    "medium": "Color woodblock print",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "title": "View of the West Hall of Tsukiji Temple (from Famous Places of the Eastern Capital)",
+   "title": "View of the West Hall of Tsukiji Temple",
+   "series": "Famous Places of the Eastern Capital",
    "creation_date": "Edo period",
    "date_display": "19th century",
    "description_narrative": "The Tsukiji Hongan-ji temple complex, rebuilt after repeated fires, anchored the reclaimed land of Tsukiji along Edo Bay. Hiroshige captures the temple's imposing halls set against the flat waterside district.",
@@ -2619,7 +2637,8 @@
    ]
   },
   {
-   "title": "Full View of Eitai Bridge (from Famous Places of the Eastern Capital)",
+   "title": "Full View of Eitai Bridge",
+   "series": "Famous Places of the Eastern Capital",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1830s",
@@ -2650,7 +2669,8 @@
    "medium": "Color woodblock print",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "title": "Full View of Takanawa (from Famous Places of the Eastern Capital)",
+   "title": "Full View of Takanawa",
+   "series": "Famous Places of the Eastern Capital",
    "creation_date": "Edo period",
    "date_display": "19th century",
    "description_narrative": "Takanawa's shoreline road, lined with inns and offering open views of Edo Bay, was a favored gateway into the city from the south. This panoramic sheet takes in the full stretch of the coast road and its passing travelers.",
@@ -2675,7 +2695,8 @@
    "medium": "Color woodblock print",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "title": "Full View of the Grounds of Kameido Tenmangū Shrine (from Famous Places of the Eastern Capital)",
+   "title": "Full View of the Grounds of Kameido Tenmangū Shrine",
+   "series": "Famous Places of the Eastern Capital",
    "creation_date": "Edo period",
    "date_display": "19th century",
    "description_narrative": "Kameido Tenmangū, dedicated to the deified scholar Sugawara no Michizane, drew crowds for its arched drum bridge and, in season, its wisteria. Hiroshige surveys the full shrine precinct in this panoramic composition.",
@@ -2725,7 +2746,8 @@
    "medium": "Color woodblock print",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "title": "Beauty in the Snow at Ochanomizu (from Twelve Snow Views of the Eastern Capital, A Silver World)",
+   "title": "Beauty in the Snow at Ochanomizu",
+   "series": "Twelve Snow Views of the Eastern Capital, A Silver World",
    "creation_date": "Edo period",
    "date_display": "19th century",
    "description_narrative": "An elegantly dressed woman pauses amid falling snow above the Ochanomizu waterway in this print from a series pairing wintry Edo landscapes with single figures. The silvered rooftops and quiet figure evoke the hush of a snow-covered city.",
@@ -2750,7 +2772,8 @@
    "medium": "Color woodblock print",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "title": "Zōjōji Temple at Shiba (from Famous Places of the Eastern Capital)",
+   "title": "Zōjōji Temple at Shiba",
+   "series": "Famous Places of the Eastern Capital",
    "creation_date": "Edo period",
    "date_display": "19th century",
    "description_narrative": "Zōjōji, the Tokugawa family's funerary temple in Shiba, was among the largest and most richly appointed religious complexes in Edo. Hiroshige's view emphasizes the temple's grand gate and grounds against the surrounding district.",
@@ -2775,7 +2798,8 @@
    "medium": "Color woodblock print",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "title": "Tagawaya, in Front of Ōonshi (from Famous Restaurants of Edo)",
+   "title": "Tagawaya, in Front of Ōonshi",
+   "series": "Famous Restaurants of Edo",
    "creation_date": "Edo period",
    "date_display": "19th century",
    "description_narrative": "Another entry in Hiroshige's series of Edo's celebrated eating houses, this print situates the Tagawaya restaurant within its riverside neighborhood, blending advertisement with topographical detail.",
@@ -2800,7 +2824,8 @@
    "medium": "Color woodblock print",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "title": "Hiraiwa, View of Mukōjima (from Famous Restaurants of Edo)",
+   "title": "Hiraiwa, View of Mukōjima",
+   "series": "Famous Restaurants of Edo",
    "creation_date": "Edo period",
    "date_display": "19th century",
    "description_narrative": "Mukōjima, on the eastern bank of the Sumida River, was known for its riverside restaurants and cherry-lined embankments. Hiroshige depicts the Hiraiwa establishment within this scenic riverside setting.",
@@ -2825,7 +2850,8 @@
    "medium": "Color woodblock print",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "title": "Umekawa, at Ryōgoku Yanagibashi (from Famous Restaurants of Edo)",
+   "title": "Umekawa, at Ryōgoku Yanagibashi",
+   "series": "Famous Restaurants of Edo",
    "creation_date": "Edo period",
    "date_display": "19th century",
    "description_narrative": "Near the Ryōgoku bridge and the willow-lined Yanagibashi canal, the Umekawa restaurant catered to revelers drawn by the area's famous fireworks and river traffic. Hiroshige's print situates the house amid this lively waterside quarter.",
@@ -2850,7 +2876,8 @@
    "medium": "Color woodblock print",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "title": "Mukōjima (from Famous Restaurants of Edo)",
+   "title": "Mukōjima",
+   "series": "Famous Restaurants of Edo",
    "creation_date": "Edo period",
    "date_display": "19th century",
    "description_narrative": "A further view of the Mukōjima riverbank, celebrated for its restaurants and seasonal cherry blossoms, from Hiroshige's series pairing Edo's dining establishments with their picturesque surroundings.",
@@ -2925,7 +2952,8 @@
    "medium": "Color woodblock print",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "title": "Twilight Moon at Ryōgoku Bridge (from Famous Places in the Eastern Capital)",
+   "title": "Twilight Moon at Ryōgoku Bridge",
+   "series": "Famous Places in the Eastern Capital",
    "creation_date": "Edo period",
    "date_display": "19th century",
    "description_narrative": "Ryōgoku Bridge, famed for its summer fireworks and river pleasure boats, appears here in a quieter register, its silhouette rising beneath a pale early moon. Hiroshige contrasts the bridge's daytime bustle, depicted elsewhere in his work, with this hushed evening mood.",
@@ -2969,7 +2997,8 @@
    ]
   },
   {
-   "title": "Autumn Moon on the Tama River (from Eight Views of the Suburbs of Edo)",
+   "title": "Autumn Moon on the Tama River",
+   "series": "Eight Views of the Suburbs of Edo",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1838",
@@ -3000,7 +3029,8 @@
    "medium": "Color woodblock print",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "title": "The Year's First Song of the Cuckoo at Tsukudajima (from Famous Places in the Eastern Capital)",
+   "title": "The Year's First Song of the Cuckoo at Tsukudajima",
+   "series": "Famous Places in the Eastern Capital",
    "creation_date": "1831",
    "date_display": "1831",
    "description_narrative": "Tsukudajima, an island fishing village at the mouth of the Sumida River, is shown at dawn as a cuckoo's call, prized in Japanese poetry as a herald of early summer, breaks the stillness. Hiroshige pairs the settlement's low rooftops with the wide expanse of the bay.",
@@ -3050,7 +3080,8 @@
    "medium": "Color woodblock print",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "title": "Ōtsuki Plain in Kai Province (from Thirty-six Views of Mount Fuji)",
+   "title": "Ōtsuki Plain in Kai Province",
+   "series": "Thirty-six Views of Mount Fuji",
    "creation_date": "1858",
    "date_display": "1858",
    "description_narrative": "Produced in the final year of his life, this print shows travelers and packhorses crossing the open plain of Ōtsuki in Kai Province, Mount Fuji looming behind them. It belongs to Hiroshige's late series reimagining Hokusai's earlier thematic conceit of Fuji seen from varied vantage points.",
@@ -3100,7 +3131,8 @@
    "medium": "Color woodblock print",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "title": "Mouth of the Aji River, Osaka (from Every Port in Japan)",
+   "title": "Mouth of the Aji River, Osaka",
+   "series": "Every Port in Japan",
    "creation_date": "c. 1840s",
    "date_display": "1840s",
    "description_narrative": "Part of a series surveying the nation's major harbors, this print shows the mouth of the Aji River at Osaka, crowded with cargo boats unloading goods bound for the city's merchant warehouses. Hiroshige extends his interest in Edo's waterways to the commercial heart of western Japan.",
@@ -3125,7 +3157,8 @@
    "medium": "Color woodblock print",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "title": "Hazy Moon over the Shore at Tsukudajima (from Famous Places in the Eastern Capital)",
+   "title": "Hazy Moon over the Shore at Tsukudajima",
+   "series": "Famous Places in the Eastern Capital",
    "creation_date": "Edo period",
    "date_display": "19th century",
    "description_narrative": "A soft haze wraps the moon over the fishing settlement of Tsukudajima in this atmospheric nocturne, the island's boats resting quietly along the shore. Hiroshige's treatment of misted moonlight became one of his signature devices for evoking mood.",
@@ -3150,7 +3183,8 @@
    "medium": "Color woodblock print",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "title": "Gyōninzaka Slope at Meguro (from Famous Places in the Eastern Capital)",
+   "title": "Gyōninzaka Slope at Meguro",
+   "series": "Famous Places in the Eastern Capital",
    "creation_date": "Edo period",
    "date_display": "19th century",
    "description_narrative": "Meguro, on Edo's southwestern edge, was known for its steep, tree-lined slopes such as Gyōninzaka, a favored subject for artists drawn to the district's rural, hilly character just beyond the city proper.",
@@ -3175,7 +3209,8 @@
    "medium": "Color woodblock print",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "title": "Nihonbashi Bridge in Falling Snow (from Famous Places in the Eastern Capital)",
+   "title": "Nihonbashi Bridge in Falling Snow",
+   "series": "Famous Places in the Eastern Capital",
    "creation_date": "c. 1843-47",
    "date_display": "c. 1845",
    "description_narrative": "Snow falls thickly over Nihonbashi bridge in this wintry view of Edo's commercial center, merchants and porters pressing on despite the weather. Hiroshige returned repeatedly to this landmark bridge across different seasons and series, each time finding a new atmospheric register.",
@@ -3250,7 +3285,8 @@
    "medium": "Color woodblock print",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "title": "Tamaya, Behind the Rear Gate of Kameido (from Famous Restaurants of Edo)",
+   "title": "Tamaya, Behind the Rear Gate of Kameido",
+   "series": "Famous Restaurants of Edo",
    "creation_date": "c. 1840",
    "date_display": "c. 1840",
    "description_narrative": "Situated near the rear approach to Kameido Tenmangū Shrine, the Tamaya restaurant catered to visitors making the pilgrimage to see the shrine's wisteria and drum bridge. Hiroshige's print situates the establishment within this well-loved corner of Edo's outskirts.",
@@ -3275,7 +3311,8 @@
    "medium": "Color woodblock print",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "title": "Yanagiya, at the Hashiba Ferry Crossing on the Sumida River (from Famous Restaurants of Edo)",
+   "title": "Yanagiya, at the Hashiba Ferry Crossing on the Sumida River",
+   "series": "Famous Restaurants of Edo",
    "creation_date": "c. 1835-42",
    "date_display": "c. 1838",
    "description_narrative": "The Yanagiya restaurant overlooked the Hashiba ferry crossing on the Sumida River, a scenic spot popular with boat travelers heading to and from Edo's northern outskirts. Hiroshige frames the house against the river traffic it served.",
@@ -3294,7 +3331,8 @@
    ]
   },
   {
-   "title": "Fuchū: Ferrying across the Abe River (from The Fifty-three Stations of the Tōkaidō)",
+   "title": "Fuchū: Ferrying across the Abe River",
+   "series": "The Fifty-three Stations of the Tōkaidō",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "1833/34",
@@ -3319,7 +3357,8 @@
    ]
   },
   {
-   "title": "Asakusa Ricefields and Torinomachi Festival (from One Hundred Famous Views of Edo)",
+   "title": "Asakusa Ricefields and Torinomachi Festival",
+   "series": "One Hundred Famous Views of Edo",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "1857",
@@ -3544,7 +3583,8 @@
    ]
   },
   {
-   "title": "Moonlit View of Hongō (from Famous Views of the Eastern Capital)",
+   "title": "Moonlit View of Hongō",
+   "series": "Famous Views of the Eastern Capital",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1830s",
@@ -3569,7 +3609,8 @@
    ]
   },
   {
-   "title": "Nihonbashi-Nakasu (from Splendid Views of the River Capital)",
+   "title": "Nihonbashi-Nakasu",
+   "series": "Splendid Views of the River Capital",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1830s",
@@ -3594,7 +3635,8 @@
    ]
   },
   {
-   "title": "Nihonbashi (from Famous Scenes of Edo)",
+   "title": "Nihonbashi",
+   "series": "Famous Scenes of Edo",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1830s",
@@ -3644,7 +3686,8 @@
    ]
   },
   {
-   "title": "Kanda Myōjin Shrine (from Famous Places of the Eastern Capital)",
+   "title": "Kanda Myōjin Shrine",
+   "series": "Famous Places of the Eastern Capital",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1830s-40s",
@@ -3669,7 +3712,8 @@
    ]
   },
   {
-   "title": "The Sannō Festival Procession at Kasumigaseki (from Famous Places of the Eastern Capital)",
+   "title": "The Sannō Festival Procession at Kasumigaseki",
+   "series": "Famous Places of the Eastern Capital",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1830s-40s",
@@ -3694,7 +3738,8 @@
    ]
   },
   {
-   "title": "Cherry Blossoms in Full Bloom at Gotenyama (from Famous Places of Edo)",
+   "title": "Cherry Blossoms in Full Bloom at Gotenyama",
+   "series": "Famous Places of Edo",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1830s-40s",
@@ -3719,7 +3764,8 @@
    ]
   },
   {
-   "title": "Yushima Tenjin Shrine (from Famous Places of the Capital)",
+   "title": "Yushima Tenjin Shrine",
+   "series": "Famous Places of the Capital",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1830s-40s",
@@ -3744,7 +3790,8 @@
    ]
   },
   {
-   "title": "The Legend of Azuma Forest (from Famous Old Sites of the Eastern Capital)",
+   "title": "The Legend of Azuma Forest",
+   "series": "Famous Old Sites of the Eastern Capital",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1830s-40s",
@@ -3769,7 +3816,8 @@
    ]
   },
   {
-   "title": "Shell Gathering at Susaki, Likened to Suma (from Edo Purple: Famous Places and the Tale of Genji)",
+   "title": "Shell Gathering at Susaki, Likened to Suma",
+   "series": "Edo Purple: Famous Places and the Tale of Genji",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1840s",
@@ -3794,7 +3842,8 @@
    ]
   },
   {
-   "title": "The Earth of Asukayama (from Famous Places of Edo and the Five Elements)",
+   "title": "The Earth of Asukayama",
+   "series": "Famous Places of Edo and the Five Elements",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1840s",
@@ -3819,7 +3868,8 @@
    ]
   },
   {
-   "title": "Edomizaka Slope (from Hiroshige's Slopes of the Eastern Capital)",
+   "title": "Edomizaka Slope",
+   "series": "Hiroshige's Slopes of the Eastern Capital",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1840s",
@@ -3844,7 +3894,8 @@
    ]
   },
   {
-   "title": "Precincts of Tomioka Hachiman Shrine, Fukagawa (from Famous Places of the Eastern Capital)",
+   "title": "Precincts of Tomioka Hachiman Shrine, Fukagawa",
+   "series": "Famous Places of the Eastern Capital",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1840s",
@@ -3869,7 +3920,8 @@
    ]
   },
   {
-   "title": "Nishi Hongan-ji Temple at Tsukiji (from Famous Places of the Eastern Capital)",
+   "title": "Nishi Hongan-ji Temple at Tsukiji",
+   "series": "Famous Places of the Eastern Capital",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1840s",
@@ -3894,7 +3946,8 @@
    ]
   },
   {
-   "title": "Panoramic View of Eitai Bridge (from Famous Places of the Eastern Capital)",
+   "title": "Panoramic View of Eitai Bridge",
+   "series": "Famous Places of the Eastern Capital",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1840s",
@@ -3919,7 +3972,8 @@
    ]
   },
   {
-   "title": "Panoramic View of Takanawa (from Famous Places of the Eastern Capital)",
+   "title": "Panoramic View of Takanawa",
+   "series": "Famous Places of the Eastern Capital",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1840s",
@@ -3969,7 +4023,8 @@
    ]
   },
   {
-   "title": "Snowy Dawn at Nihonbashi (from Twelve Views of Edo in a Silver World)",
+   "title": "Snowy Dawn at Nihonbashi",
+   "series": "Twelve Views of Edo in a Silver World",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1840s",
@@ -3994,7 +4049,8 @@
    ]
   },
   {
-   "title": "Full View of the Moon over Both Banks of the Sumida River (from Twelve Views of Edo in a Silver World)",
+   "title": "Full View of the Moon over Both Banks of the Sumida River",
+   "series": "Twelve Views of Edo in a Silver World",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1840s",
@@ -4019,7 +4075,8 @@
    ]
   },
   {
-   "title": "Enjoying the Cool at Ryōgoku Bridge (from Famous Places of the Capital)",
+   "title": "Enjoying the Cool at Ryōgoku Bridge",
+   "series": "Famous Places of the Capital",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1830s-40s",
@@ -4044,7 +4101,8 @@
    ]
   },
   {
-   "title": "Harimaya Restaurant at Emon-zaka, Shin-Yoshiwara (from Famous Restaurants of Edo)",
+   "title": "Harimaya Restaurant at Emon-zaka, Shin-Yoshiwara",
+   "series": "Famous Restaurants of Edo",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1852-53",
@@ -4069,7 +4127,8 @@
    ]
   },
   {
-   "title": "Ogura-an Restaurant at Honjo Koume (from Famous Restaurants of Edo)",
+   "title": "Ogura-an Restaurant at Honjo Koume",
+   "series": "Famous Restaurants of Edo",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1852-53",
@@ -4094,7 +4153,8 @@
    ]
   },
   {
-   "title": "Ō-noshi Restaurant at Ryōgoku Yanagibashi (from Famous Restaurants of Edo)",
+   "title": "Ō-noshi Restaurant at Ryōgoku Yanagibashi",
+   "series": "Famous Restaurants of Edo",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1852-53",
@@ -4169,7 +4229,8 @@
    ]
   },
   {
-   "title": "Inside Shiba Myōjin Shrine (from Famous Restaurants of Edo)",
+   "title": "Inside Shiba Myōjin Shrine",
+   "series": "Famous Restaurants of Edo",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1852-53",
@@ -4244,7 +4305,8 @@
    ]
   },
   {
-   "title": "Morning Cherry Blossoms at Shin-Yoshiwara (from Famous Places of the Eastern Capital)",
+   "title": "Morning Cherry Blossoms at Shin-Yoshiwara",
+   "series": "Famous Places of the Eastern Capital",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1830s-40s",
@@ -4294,7 +4356,8 @@
    ]
   },
   {
-   "title": "New Year's Sunrise after Snow at Susaki (from Famous Places of the Eastern Capital)",
+   "title": "New Year's Sunrise after Snow at Susaki",
+   "series": "Famous Places of the Eastern Capital",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1831",
@@ -4344,7 +4407,8 @@
    ]
   },
   {
-   "title": "View Outside Sakurada Gate (from Famous Places of the Eastern Capital)",
+   "title": "View Outside Sakurada Gate",
+   "series": "Famous Places of the Eastern Capital",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1830s",
@@ -4419,7 +4483,8 @@
    ]
   },
   {
-   "title": "Horikiri Iris Garden (from One Hundred Famous Views of Edo)",
+   "title": "Horikiri Iris Garden",
+   "series": "One Hundred Famous Views of Edo",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "1857",
@@ -4469,7 +4534,8 @@
    ]
   },
   {
-   "title": "Night Cherry Blossoms at Yoshiwara (from Famous Places of the Eastern Capital)",
+   "title": "Night Cherry Blossoms at Yoshiwara",
+   "series": "Famous Places of the Eastern Capital",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1841",
@@ -4494,7 +4560,8 @@
    ]
   },
   {
-   "title": "Zōjōji Temple at Shiba in Snow (from Famous Places of the Eastern Capital)",
+   "title": "Zōjōji Temple at Shiba in Snow",
+   "series": "Famous Places of the Eastern Capital",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "19th century",
@@ -4569,7 +4636,8 @@
    ]
   },
   {
-   "title": "Benten-yama Hill at Kinryūzan Temple, Asakusa (from Famous Places of Edo)",
+   "title": "Benten-yama Hill at Kinryūzan Temple, Asakusa",
+   "series": "Famous Places of Edo",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1843-47",
@@ -4594,7 +4662,8 @@
    ]
   },
   {
-   "title": "Tama-Shō Restaurant at Imado Bridge (from Famous Restaurants of Edo)",
+   "title": "Tama-Shō Restaurant at Imado Bridge",
+   "series": "Famous Restaurants of Edo",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1840",
@@ -4619,7 +4688,8 @@
    ]
   },
   {
-   "title": "Myōga-ya Restaurant at Zōshigaya (from Famous Restaurants of Edo)",
+   "title": "Myōga-ya Restaurant at Zōshigaya",
+   "series": "Famous Restaurants of Edo",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1840",
@@ -4644,7 +4714,8 @@
    ]
   },
   {
-   "title": "Cherry Blossom Viewing at Asukayama (from Famous Places in Edo, 1853)",
+   "title": "Cherry Blossom Viewing at Asukayama",
+   "series": "Famous Places in Edo, 1853",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "1853",
@@ -4694,7 +4765,8 @@
    ]
   },
   {
-   "title": "Carp (from Every Variety of Fish)",
+   "title": "Carp",
+   "series": "Every Variety of Fish",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "1832",
@@ -4719,7 +4791,8 @@
    ]
   },
   {
-   "title": "Full Moon over Takanawa (from Famous Places in the Eastern Capital)",
+   "title": "Full Moon over Takanawa",
+   "series": "Famous Places in the Eastern Capital",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1831",
@@ -4744,7 +4817,8 @@
    ]
   },
   {
-   "title": "Evening Snow at Asukayama (from Eight Views of the Environs of Edo)",
+   "title": "Evening Snow at Asukayama",
+   "series": "Eight Views of the Environs of Edo",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1837/38",
@@ -4919,7 +4993,8 @@
    ]
   },
   {
-   "title": "View of Mount Massan (from Famous Places of the Eastern Capital)",
+   "title": "View of Mount Massan",
+   "series": "Famous Places of the Eastern Capital",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1830s",
@@ -4944,7 +5019,8 @@
    ]
   },
   {
-   "title": "The New Year's Bishamon Procession at Atago Hill, Shiba (from Famous Places of Edo)",
+   "title": "The New Year's Bishamon Procession at Atago Hill, Shiba",
+   "series": "Famous Places of Edo",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1830s-40s",
@@ -4969,7 +5045,8 @@
    ]
   },
   {
-   "title": "An Ancient View of Kasumigaseki (from Famous Old Sites of the Eastern Capital)",
+   "title": "An Ancient View of Kasumigaseki",
+   "series": "Famous Old Sites of the Eastern Capital",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1830s-40s",
@@ -4994,7 +5071,8 @@
    ]
   },
   {
-   "title": "Autumn Maples at Kaian-ji Temple (from Famous Places of the Four Seasons in the Eastern Capital)",
+   "title": "Autumn Maples at Kaian-ji Temple",
+   "series": "Famous Places of the Four Seasons in the Eastern Capital",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1830s-40s",
@@ -5019,7 +5097,8 @@
    ]
   },
   {
-   "title": "Kudanzaka Slope at Iidamachi (from Hiroshige's Slopes of the Eastern Capital)",
+   "title": "Kudanzaka Slope at Iidamachi",
+   "series": "Hiroshige's Slopes of the Eastern Capital",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1830s-40s",
@@ -5069,7 +5148,8 @@
    ]
   },
   {
-   "title": "Full View of the Precincts of Kameido Tenman Shrine (from Famous Places of the Eastern Capital)",
+   "title": "Full View of the Precincts of Kameido Tenman Shrine",
+   "series": "Famous Places of the Eastern Capital",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1830s",
@@ -5119,7 +5199,8 @@
    ]
   },
   {
-   "title": "Great Snow at Massaki (from Twelve Snow Views of the Eastern Capital)",
+   "title": "Great Snow at Massaki",
+   "series": "Twelve Snow Views of the Eastern Capital",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1840s-50s",
@@ -5144,7 +5225,8 @@
    ]
   },
   {
-   "title": "Sunrise at Susaki on a Snowy Morning (from Twelve Snow Views of the Eastern Capital)",
+   "title": "Sunrise at Susaki on a Snowy Morning",
+   "series": "Twelve Snow Views of the Eastern Capital",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1840s-50s",
@@ -5169,7 +5251,8 @@
    ]
   },
   {
-   "title": "Outside Toranomon Gate (from Famous Scenic Views of Edo)",
+   "title": "Outside Toranomon Gate",
+   "series": "Famous Scenic Views of Edo",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1840s-50s",
@@ -5194,7 +5277,8 @@
    ]
   },
   {
-   "title": "Myogaya Restaurant at Zoshigaya (from Famous Restaurants of Edo)",
+   "title": "Myogaya Restaurant at Zoshigaya",
+   "series": "Famous Restaurants of Edo",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1852-53",
@@ -5219,7 +5303,8 @@
    ]
   },
   {
-   "title": "Hashimoto Restaurant at Yanagishima Bridge (from Famous Restaurants of Edo)",
+   "title": "Hashimoto Restaurant at Yanagishima Bridge",
+   "series": "Famous Restaurants of Edo",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1852-53",
@@ -5244,7 +5329,8 @@
    ]
   },
   {
-   "title": "Kawachiya Restaurant at Ryogoku Yanagibashi (from Famous Restaurants of Edo)",
+   "title": "Kawachiya Restaurant at Ryogoku Yanagibashi",
+   "series": "Famous Restaurants of Edo",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1852-53",
@@ -5319,7 +5405,8 @@
    ]
   },
   {
-   "title": "Sakuragawa Yozaemon's Teahouse and the Riverbank at Joshichi (from Famous Restaurants in the Eastern Capital)",
+   "title": "Sakuragawa Yozaemon's Teahouse and the Riverbank at Joshichi",
+   "series": "Famous Restaurants in the Eastern Capital",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1852",
@@ -5369,7 +5456,8 @@
    ]
   },
   {
-   "title": "Shinobazu Pond (from Famous Places of the Eastern Capital)",
+   "title": "Shinobazu Pond",
+   "series": "Famous Places of the Eastern Capital",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1831",
@@ -5394,7 +5482,8 @@
    ]
   },
   {
-   "title": "Cherry Blossoms along the Sumida River (from Famous Places of Edo)",
+   "title": "Cherry Blossoms along the Sumida River",
+   "series": "Famous Places of Edo",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1830s-40s",
@@ -5444,7 +5533,8 @@
    ]
   },
   {
-   "title": "Suidobashi and Surugadai (from One Hundred Famous Views of Edo)",
+   "title": "Suidobashi and Surugadai",
+   "series": "One Hundred Famous Views of Edo",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "1857",
@@ -5494,7 +5584,8 @@
    ]
   },
   {
-   "title": "Autumn Moon over the Tama River, with Ayu Fishing (from Famous Places: Snow, Moon and Blossoms)",
+   "title": "Autumn Moon over the Tama River, with Ayu Fishing",
+   "series": "Famous Places: Snow, Moon and Blossoms",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1840s",
@@ -5519,7 +5610,8 @@
    ]
   },
   {
-   "title": "Mount Akiba in Enshu Province (from Famous Places of Our Country)",
+   "title": "Mount Akiba in Enshu Province",
+   "series": "Famous Places of Our Country",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1837-39",
@@ -5544,7 +5636,8 @@
    ]
   },
   {
-   "title": "New Yoshiwara (from Famous Places of the Eastern Capital)",
+   "title": "New Yoshiwara",
+   "series": "Famous Places of the Eastern Capital",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1840s",
@@ -5569,7 +5662,8 @@
    ]
   },
   {
-   "title": "View from the Top of Atago Hill, Shiba (from Famous Places of the Eastern Capital)",
+   "title": "View from the Top of Atago Hill, Shiba",
+   "series": "Famous Places of the Eastern Capital",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1833/34",
@@ -5594,7 +5688,8 @@
    ]
   },
   {
-   "title": "Evening Glow at Imado (from Eight Views of the Sumida River)",
+   "title": "Evening Glow at Imado",
+   "series": "Eight Views of the Sumida River",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1830s-40s",
@@ -5669,7 +5764,8 @@
    ]
   },
   {
-   "title": "Yaozen Restaurant at Sanya (from Famous Restaurants of Edo)",
+   "title": "Yaozen Restaurant at Sanya",
+   "series": "Famous Restaurants of Edo",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1852-53",
@@ -5719,7 +5815,8 @@
    ]
   },
   {
-   "title": "Kusatsu: Meeting of the Tōkaidō and Nakasendō Highways (from The Fifty-three Stations of the Tōkaidō)",
+   "title": "Kusatsu: Meeting of the Tōkaidō and Nakasendō Highways",
+   "series": "The Fifty-three Stations of the Tōkaidō",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "1831",
@@ -5919,7 +6016,8 @@
    ]
   },
   {
-   "title": "Suruga-chō (from Famous Places of the Eastern Capital)",
+   "title": "Suruga-chō",
+   "series": "Famous Places of the Eastern Capital",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1840s",
@@ -5969,7 +6067,8 @@
    ]
   },
   {
-   "title": "The Shinagawa Station Seen from the Sea (from Famous Places in Edo)",
+   "title": "The Shinagawa Station Seen from the Sea",
+   "series": "Famous Places in Edo",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "1853",
@@ -5994,7 +6093,8 @@
    ]
   },
   {
-   "title": "The Origin of Shiba Shinmei Shrine (from Famous Old Sites of the Eastern Capital)",
+   "title": "The Origin of Shiba Shinmei Shrine",
+   "series": "Famous Old Sites of the Eastern Capital",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1840s/50s",
@@ -6019,7 +6119,8 @@
    ]
   },
   {
-   "title": "Returning Sails at Tsukudajima (from Eight Views of the Eastern Capital)",
+   "title": "Returning Sails at Tsukudajima",
+   "series": "Eight Views of the Eastern Capital",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1830s/40s",
@@ -6044,7 +6145,8 @@
    ]
   },
   {
-   "title": "The Moon over Ryōgoku in Summer (from Famous Places of the Eastern Capital in the Four Seasons)",
+   "title": "The Moon over Ryōgoku in Summer",
+   "series": "Famous Places of the Eastern Capital in the Four Seasons",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1830s/40s",
@@ -6094,7 +6196,8 @@
    ]
   },
   {
-   "title": "Complete View of the Ōji Inari Shrine Precincts (from Famous Places of the Eastern Capital)",
+   "title": "Complete View of the Ōji Inari Shrine Precincts",
+   "series": "Famous Places of the Eastern Capital",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1840s/50s",
@@ -6125,7 +6228,8 @@
    "medium": "Color woodblock print",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "title": "Complete View of Cherry Blossom Viewing at Goten-yama, Shinagawa (from Famous Places in the Eastern Capital)",
+   "title": "Complete View of Cherry Blossom Viewing at Goten-yama, Shinagawa",
+   "series": "Famous Places in the Eastern Capital",
    "creation_date": "c. 1830s–40s",
    "date_display": "c. 1830s",
    "description_narrative": "Crowds picnic beneath blossoming cherry trees on the heights of Goten-yama overlooking Shinagawa and the bay, one of Edo's most popular spring destinations. The panoramic view captures the festive scale of the season.",
@@ -6144,7 +6248,8 @@
    ]
   },
   {
-   "title": "Complete View of the Susaki Benzaiten Shrine Precincts and Shellfish Gathering on the Shore (from Famous Places of the Eastern Capital)",
+   "title": "Complete View of the Susaki Benzaiten Shrine Precincts and Shellfish Gathering on the Shore",
+   "series": "Famous Places of the Eastern Capital",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1840s/50s",
@@ -6175,7 +6280,8 @@
    "medium": "Color woodblock print",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "title": "Complete View of Kasumigaseki (from Famous Places in the Eastern Capital)",
+   "title": "Complete View of Kasumigaseki",
+   "series": "Famous Places in the Eastern Capital",
    "creation_date": "c. 1830s–40s",
    "date_display": "c. 1830s",
    "description_narrative": "The sloping street of Kasumigaseki, lined with the residences of feudal lords, descends toward the bay in this panoramic early view of the district. The composition predates Hiroshige's later, more famous treatment of the same site in One Hundred Famous Views of Edo.",
@@ -6219,7 +6325,8 @@
    ]
   },
   {
-   "title": "Wind in the Snow at Inokashira Benten (from Silver World: Twelve Views of the Eastern Capital)",
+   "title": "Wind in the Snow at Inokashira Benten",
+   "series": "Silver World: Twelve Views of the Eastern Capital",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1840s/50s",
@@ -6244,7 +6351,8 @@
    ]
   },
   {
-   "title": "Morning After Snow Outside Sakurada Gate (from Silver World: Twelve Views of the Eastern Capital)",
+   "title": "Morning After Snow Outside Sakurada Gate",
+   "series": "Silver World: Twelve Views of the Eastern Capital",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1840s/50s",
@@ -6269,7 +6377,8 @@
    ]
   },
   {
-   "title": "Mankin Restaurant at Hakusan Keiseigakubo (from Famous Restaurants of Edo)",
+   "title": "Mankin Restaurant at Hakusan Keiseigakubo",
+   "series": "Famous Restaurants of Edo",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1840s/50s",
@@ -6294,7 +6403,8 @@
    ]
   },
   {
-   "title": "Tamashō Restaurant at Imado Bridge (from Famous Restaurants of Edo)",
+   "title": "Tamashō Restaurant at Imado Bridge",
+   "series": "Famous Restaurants of Edo",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1840s/50s",
@@ -6319,7 +6429,8 @@
    ]
   },
   {
-   "title": "Tamaya Restaurant Behind Kameido (from Famous Restaurants of Edo)",
+   "title": "Tamaya Restaurant Behind Kameido",
+   "series": "Famous Restaurants of Edo",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1840s/50s",
@@ -6544,7 +6655,8 @@
    ]
   },
   {
-   "title": "Gathering Shellfish at Low Tide at Susaki (from Famous Places in Edo)",
+   "title": "Gathering Shellfish at Low Tide at Susaki",
+   "series": "Famous Places in Edo",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "mid-1830s",
@@ -6569,7 +6681,8 @@
    ]
   },
   {
-   "title": "Suidō Bridge and Surugadai (from One Hundred Famous Views of Edo)",
+   "title": "Suidō Bridge and Surugadai",
+   "series": "One Hundred Famous Views of Edo",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "1857",
@@ -6619,7 +6732,8 @@
    ]
   },
   {
-   "title": "Kokanei Embankment in Full Bloom (from Famous Places: Snow, Moon, Flowers)",
+   "title": "Kokanei Embankment in Full Bloom",
+   "series": "Famous Places: Snow, Moon, Flowers",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1839/47",
@@ -6694,7 +6808,8 @@
    ]
   },
   {
-   "title": "Snow at Akabane, Shiba (from Famous Places of the Eastern Capital)",
+   "title": "Snow at Akabane, Shiba",
+   "series": "Famous Places of the Eastern Capital",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1837",
@@ -6794,7 +6909,8 @@
    ]
   },
   {
-   "title": "Clearing Weather at Shibaura (from Eight Views of the Edo Suburbs)",
+   "title": "Clearing Weather at Shibaura",
+   "series": "Eight Views of the Edo Suburbs",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1838",
@@ -6819,7 +6935,8 @@
    ]
   },
   {
-   "title": "View of Yanagishima: the Hashimoto Restaurant (from Famous Restaurants of Edo)",
+   "title": "View of Yanagishima: the Hashimoto Restaurant",
+   "series": "Famous Restaurants of Edo",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1835/42",
@@ -6844,7 +6961,8 @@
    ]
   },
   {
-   "title": "In Front of Kaminarimon Gate, Asakusa: the Kameya Restaurant (from Famous Restaurants of Edo)",
+   "title": "In Front of Kaminarimon Gate, Asakusa: the Kameya Restaurant",
+   "series": "Famous Restaurants of Edo",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1839/42",
@@ -6869,7 +6987,8 @@
    ]
   },
   {
-   "title": "Niwaka Festival Scene at the New Yoshiwara (from Famous Places of the Eastern Capital)",
+   "title": "Niwaka Festival Scene at the New Yoshiwara",
+   "series": "Famous Places of the Eastern Capital",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1840/42",
@@ -6925,7 +7044,8 @@
    "medium": "Color woodblock print",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "title": "Actor as a Workman (from Famous Restaurants of the Eastern Capital)",
+   "title": "Actor as a Workman",
+   "series": "Famous Restaurants of the Eastern Capital",
    "creation_date": "c. 1852",
    "date_display": "1852",
    "description_narrative": "A single actor, dressed as a tradesman, poses before a Hiroshige-designed landscape vignette advertising a well-known Edo restaurant. The series paired Hiroshige's topographic backgrounds with actor portraits to promote fashionable eating houses of the day.",
@@ -6950,7 +7070,8 @@
    "medium": "Color woodblock print",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "title": "Mannen Bridge, Fukagawa (from One Hundred Famous Views of Edo)",
+   "title": "Mannen Bridge, Fukagawa",
+   "series": "One Hundred Famous Views of Edo",
    "creation_date": "1857",
    "date_display": "1857",
    "description_narrative": "Fishermen's boats pass beneath the great arc of Mannen Bridge in Fukagawa, framed so that the timber trestle dominates the foreground while Mount Fuji floats in the distance. The dramatic bridge silhouette is one of the series' most striking compositions.",
@@ -6975,7 +7096,8 @@
    "medium": "Color woodblock print",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "title": "Snow at Shiba Akabane, Atagoshita and Yabu Lane (from Famous Places in the Eastern Capital)",
+   "title": "Snow at Shiba Akabane, Atagoshita and Yabu Lane",
+   "series": "Famous Places in the Eastern Capital",
    "creation_date": "c. 1846",
    "date_display": "1846",
    "description_narrative": "A hush of falling snow settles over the Atagoshita district near Atago Shrine, with the Yabu Lane rooftops receding into a pale, muffled distance. Hiroshige's early winter views of Edo established the quiet, atmospheric snowscapes he would return to throughout his career.",
@@ -7000,7 +7122,8 @@
    "medium": "Color woodblock print",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "title": "Enjoying an Evening Breeze at Ryōgoku Bridge (from Famous Places in the Eastern Capital)",
+   "title": "Enjoying an Evening Breeze at Ryōgoku Bridge",
+   "series": "Famous Places in the Eastern Capital",
    "creation_date": "c. 1847/48",
    "date_display": "1847",
    "description_narrative": "Crowds gather on boats and along the riverbank at Ryōgoku Bridge to cool off in the evening air, a popular Edo summer pastime. The print captures the bustling festivity of the Sumida River during the hot months.",
@@ -7100,7 +7223,8 @@
    "medium": "Color woodblock print",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "title": "Cherry Trees in Leaf along the Sumida River (from Famous Places in the Eastern Capital)",
+   "title": "Cherry Trees in Leaf along the Sumida River",
+   "series": "Famous Places in the Eastern Capital",
    "creation_date": "c. 1830s",
    "date_display": "c. 1830s",
    "description_narrative": "Boats drift beneath the leafy canopy of cherry trees lining the Sumida River banks, past the peak bloom of spring. Hiroshige favored the Sumida as a recurring subject, capturing its changing moods across the seasons.",
@@ -7150,7 +7274,8 @@
    "medium": "Color woodblock print",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "title": "Insect-Listening at Dōkanyama (from Famous Places in the Eastern Capital)",
+   "title": "Insect-Listening at Dōkanyama",
+   "series": "Famous Places in the Eastern Capital",
    "creation_date": "c. 1830s–40s",
    "date_display": "c. 1830s",
    "description_narrative": "Visitors gather on a hillside at dusk at Dōkanyama to listen to the autumn chorus of insects, a popular seasonal pastime in Edo. Hiroshige captures the gentle social ritual against a sweeping view of the surrounding countryside.",
@@ -7175,7 +7300,8 @@
    "medium": "Color woodblock print",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "title": "Soto-Sakurada, Benkei Moat and the Cherry Blossom Well (from Famous Places in the Eastern Capital)",
+   "title": "Soto-Sakurada, Benkei Moat and the Cherry Blossom Well",
+   "series": "Famous Places in the Eastern Capital",
    "creation_date": "c. 1830s–40s",
    "date_display": "c. 1830s",
    "description_narrative": "The Benkei Moat curves past the Soto-Sakurada district beneath blooming cherry trees, with the well known as 'Sakura-no-i' marking the spot. The print pairs Edo's castle-adjacent waterways with the seasonal spectacle of spring blossoms.",
@@ -7200,7 +7326,8 @@
    "medium": "Color woodblock print",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "title": "Takanawa in Autumn (from Fine Views of Edo)",
+   "title": "Takanawa in Autumn",
+   "series": "Fine Views of Edo",
    "creation_date": "c. 1830s–40s",
    "date_display": "c. 1830s",
    "description_narrative": "Sailboats dot Edo Bay off the Takanawa shore beneath an autumn sky, a favored spot for moon-viewing and seaside strolls. The composition captures the coastal edge of the city where Edo met the bay.",
@@ -7225,7 +7352,8 @@
    "medium": "Color woodblock print",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "title": "Autumn Leaves at Takinogawa, Ōji (from Famous Places in Edo)",
+   "title": "Autumn Leaves at Takinogawa, Ōji",
+   "series": "Famous Places in Edo",
    "creation_date": "c. 1830s–40s",
    "date_display": "c. 1830s",
    "description_narrative": "Maple leaves blaze red along the Takinogawa (Falling-Water River) at Ōji, a celebrated autumn excursion spot on the northern edge of Edo. Visitors picnic and stroll beneath the canopy in this seasonal view.",
@@ -7250,7 +7378,8 @@
    "medium": "Color woodblock print",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "title": "Yushima Tenmangu Shrine (from Famous Places in the Eastern Capital)",
+   "title": "Yushima Tenmangu Shrine",
+   "series": "Famous Places in the Eastern Capital",
    "creation_date": "c. 1830s–40s",
    "date_display": "c. 1830s",
    "description_narrative": "Worshippers climb the grounds of Yushima Tenmangu, the Edo shrine dedicated to the scholar-deity Sugawara no Michizane, renowned for its plum blossoms. Hiroshige frames the hillside shrine within the wider fabric of the city.",
@@ -7275,7 +7404,8 @@
    "medium": "Color woodblock print",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "title": "The Legend of Umewaka at Mokubo-ji Temple (from Famous Old Sites of the Eastern Capital)",
+   "title": "The Legend of Umewaka at Mokubo-ji Temple",
+   "series": "Famous Old Sites of the Eastern Capital",
    "creation_date": "c. 1830s–40s",
    "date_display": "c. 1830s",
    "description_narrative": "Mokubo-ji Temple on the Sumida River banks marks the legendary grave of the boy Umewaka, subject of a well-known Noh play. Hiroshige's view situates the temple within the quiet riverside landscape associated with the tale.",
@@ -7300,7 +7430,8 @@
    "medium": "Color woodblock print",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "title": "Evening Bell at Ueno (from Eight Views of the Eastern Capital)",
+   "title": "Evening Bell at Ueno",
+   "series": "Eight Views of the Eastern Capital",
    "creation_date": "c. 1838–40",
    "date_display": "c. 1840",
    "description_narrative": "The temple bell of Ueno tolls at dusk over the wooded grounds of Kan'ei-ji, part of a series pairing Edo landmarks with the classical 'eight views' theme borrowed from Chinese and Japanese poetic tradition.",
@@ -7325,7 +7456,8 @@
    "medium": "Color woodblock print",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "title": "Gyōninzaka Slope, Meguro (from Hiroshige's Slopes of the Eastern Capital)",
+   "title": "Gyōninzaka Slope, Meguro",
+   "series": "Hiroshige's Slopes of the Eastern Capital",
    "creation_date": "c. 1830s–40s",
    "date_display": "c. 1830s",
    "description_narrative": "Travelers climb the steep Gyōninzaka slope in Meguro, part of a series devoted to the hilly topography of Edo's outskirts. The print highlights the physical texture of the city's terrain, a recurring interest of Hiroshige's.",
@@ -7375,7 +7507,8 @@
    "medium": "Color woodblock print",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "title": "Complete View of Ōji Inari Shrine Precincts (from Famous Places in the Eastern Capital)",
+   "title": "Complete View of Ōji Inari Shrine Precincts",
+   "series": "Famous Places in the Eastern Capital",
    "creation_date": "c. 1830s–40s",
    "date_display": "c. 1830s",
    "description_narrative": "The fox-guarded precincts of Ōji Inari Shrine spread across this panoramic view, a site famed in Edo folklore as the gathering place of foxes on New Year's Eve. Hiroshige documents the shrine's full layout within its wooded setting.",
@@ -7400,7 +7533,8 @@
    "medium": "Color woodblock print",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "title": "Complete View of Susaki Benzaiten Shrine Precincts and the Shore at Low Tide (from Famous Places in the Eastern Capital)",
+   "title": "Complete View of Susaki Benzaiten Shrine Precincts and the Shore at Low Tide",
+   "series": "Famous Places in the Eastern Capital",
    "creation_date": "c. 1830s–40s",
    "date_display": "c. 1830s",
    "description_narrative": "The shrine to Benzaiten at Susaki is shown alongside the exposed mudflats of the bay at low tide, where Edo residents gathered shellfish. The pairing of sacred precinct and working shoreline reflects the everyday rhythms of the city's edge.",
@@ -7425,7 +7559,8 @@
    "medium": "Color woodblock print",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "title": "Complete View of Kameido Tenmangu Shrine Precincts (from Famous Places in the Eastern Capital)",
+   "title": "Complete View of Kameido Tenmangu Shrine Precincts",
+   "series": "Famous Places in the Eastern Capital",
    "creation_date": "c. 1830s–40s",
    "date_display": "c. 1830s",
    "description_narrative": "The grounds of Kameido Tenmangu, famous for its arched wisteria bridge and plum blossoms, are surveyed in full in this panoramic view. The shrine was one of Edo's most visited pilgrimage and pleasure destinations.",
@@ -7450,7 +7585,8 @@
    "medium": "Color woodblock print",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "title": "Morning Snow at Asakusa Kinryūzan (from Twelve Snow Views of the Eastern Capital)",
+   "title": "Morning Snow at Asakusa Kinryūzan",
+   "series": "Twelve Snow Views of the Eastern Capital",
    "creation_date": "c. 1840s",
    "date_display": "c. 1840s",
    "description_narrative": "Fresh snow blankets the grounds of Sensō-ji (Kinryūzan) at Asakusa as early morning visitors make their way through the temple precinct. Part of a series devoted entirely to Edo's snowy vistas, it showcases Hiroshige's mastery of winter atmosphere.",
@@ -7475,7 +7611,8 @@
    "medium": "Color woodblock print",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "title": "View of Kameido Tenmangu Shrine Precincts (from Twelve Snow Views of the Eastern Capital)",
+   "title": "View of Kameido Tenmangu Shrine Precincts",
+   "series": "Twelve Snow Views of the Eastern Capital",
    "creation_date": "c. 1840s",
    "date_display": "c. 1840s",
    "description_narrative": "Snow blankets the wisteria trellises and shrine buildings of Kameido Tenmangu in this view from a series devoted to Edo's winter scenery. The stark white ground sets off the shrine's distinctive arched bridge.",
@@ -7500,7 +7637,8 @@
    "medium": "Color woodblock print",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "title": "Outside Hibiya (from Fine Views of Edo)",
+   "title": "Outside Hibiya",
+   "series": "Fine Views of Edo",
    "creation_date": "c. 1830s–40s",
    "date_display": "c. 1830s",
    "description_narrative": "The moat and embankment outside the Hibiya gate stretch beneath an open sky in this view of one of Edo Castle's outer approaches. The print reflects Hiroshige's ongoing documentation of the capital's fortified geography.",
@@ -7525,7 +7663,8 @@
    "medium": "Color woodblock print",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "title": "Ōji: The Ōgiya (from Famous Restaurants of Edo)",
+   "title": "Ōji: The Ōgiya",
+   "series": "Famous Restaurants of Edo",
    "creation_date": "c. 1852–53",
    "date_display": "c. 1852",
    "description_narrative": "The Ōgiya restaurant at Ōji, a favored destination for visitors to the nearby shrine and waterfalls, is shown nestled in its garden setting. Hiroshige designed the series' landscape backgrounds for a set of prints celebrating Edo's noted eating houses.",
@@ -7550,7 +7689,8 @@
    "medium": "Color woodblock print",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "title": "The Yanagiya at the Hashiba Ferry, Sumida River (from Famous Restaurants of Edo)",
+   "title": "The Yanagiya at the Hashiba Ferry, Sumida River",
+   "series": "Famous Restaurants of Edo",
    "creation_date": "c. 1852–53",
    "date_display": "c. 1852",
    "description_narrative": "The Yanagiya restaurant overlooks the Hashiba ferry crossing on the Sumida River, a scenic riverside spot popular with Edo diners. The print combines Hiroshige's landscape artistry with the promotional purpose of the series.",
@@ -7575,7 +7715,8 @@
    "medium": "Color woodblock print",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "title": "Two Teahouses within the Fukagawa Hachiman Precincts (from Famous Restaurants of Edo)",
+   "title": "Two Teahouses within the Fukagawa Hachiman Precincts",
+   "series": "Famous Restaurants of Edo",
    "creation_date": "c. 1852–53",
    "date_display": "c. 1852",
    "description_narrative": "Two teahouses stand within the grounds of the Fukagawa Hachiman shrine, a lively precinct combining worship and leisure. Hiroshige's landscape setting anchors the series' celebration of Edo's dining culture.",
@@ -7650,7 +7791,8 @@
    "medium": "Color woodblock print",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "title": "The Harimaya at Shin-Yoshiwara's Emonzaka and Nihonzutsumi (from Famous Restaurants of Edo)",
+   "title": "The Harimaya at Shin-Yoshiwara's Emonzaka and Nihonzutsumi",
+   "series": "Famous Restaurants of Edo",
    "creation_date": "c. 1840s",
    "date_display": "c. 1840s",
    "description_narrative": "The Harimaya restaurant stands along the Emonzaka slope and Nihonzutsumi embankment leading to the Shin-Yoshiwara pleasure district, a route famous in its own right. Hiroshige's landscape setting situates the eating house within its evocative approach.",
@@ -7700,7 +7842,8 @@
    "medium": "Color woodblock print",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "title": "Full Moon at Takanawa (from Famous Places in the Eastern Capital)",
+   "title": "Full Moon at Takanawa",
+   "series": "Famous Places in the Eastern Capital",
    "creation_date": "c. 1831",
    "date_display": "c. 1831",
    "description_narrative": "A full moon rises over the shore at Takanawa, its light spreading across Edo Bay as sailboats pass in silhouette. The moonlit coastal view captures one of Hiroshige's favored nocturnal themes.",
@@ -7850,7 +7993,8 @@
    "medium": "Color woodblock print",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "title": "Complete View of Shinobazu Pond: Nakajima Benzaiten Shrine (from Famous Places in the Eastern Capital)",
+   "title": "Complete View of Shinobazu Pond: Nakajima Benzaiten Shrine",
+   "series": "Famous Places in the Eastern Capital",
    "creation_date": "c. 1830s–40s",
    "date_display": "c. 1830s",
    "description_narrative": "The island shrine to Benzaiten rises from the center of Shinobazu Pond at Ueno, connected to shore by a causeway and ringed by lotus. Hiroshige surveys the full pond in this panoramic view of one of Edo's most picturesque temple grounds.",
@@ -7875,7 +8019,8 @@
    "medium": "Color woodblock print",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "title": "Morning Cherries at Shin-Yoshiwara (from Famous Places in the Eastern Capital)",
+   "title": "Morning Cherries at Shin-Yoshiwara",
+   "series": "Famous Places in the Eastern Capital",
    "creation_date": "c. 1830s–40s",
    "date_display": "c. 1830s",
    "description_narrative": "Cherry trees planted along the main avenue of the Shin-Yoshiwara pleasure quarter bloom in the early morning light, drawing visitors before the district's evening activity begins. The seasonal spectacle briefly transformed the quarter's public face.",
@@ -7975,7 +8120,8 @@
    "medium": "Color woodblock print",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "title": "Boats Returning to Gyōtoku (from Eight Views of the Edo Suburbs)",
+   "title": "Boats Returning to Gyōtoku",
+   "series": "Eight Views of the Edo Suburbs",
    "creation_date": "c. 1838",
    "date_display": "c. 1838",
    "description_narrative": "Sailboats return to harbor at Gyōtoku on the outskirts of Edo, part of a series applying the classical 'eight views' theme to the city's rural fringes. The quiet working waterfront contrasts with Hiroshige's more famous views of the city center.",
@@ -8000,7 +8146,8 @@
    "medium": "Color woodblock print",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "title": "Ikenohata: The Hōraitei, a Rest during Blossom Viewing at the Pleasure Quarters (from Famous Restaurants of Edo)",
+   "title": "Ikenohata: The Hōraitei, a Rest during Blossom Viewing at the Pleasure Quarters",
+   "series": "Famous Restaurants of Edo",
    "creation_date": "c. 1840",
    "date_display": "c. 1840",
    "description_narrative": "Diners pause at the Hōraitei restaurant at Ikenohata during a spring outing to view cherry blossoms near the pleasure quarters. Hiroshige's landscape setting frames the restaurant within Edo's broader culture of seasonal leisure.",
@@ -8025,7 +8172,8 @@
    "medium": "Color woodblock print",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "title": "The Yoroi Ferry (from Fine Views of the Capital)",
+   "title": "The Yoroi Ferry",
+   "series": "Fine Views of the Capital",
    "creation_date": "c. 1835–38",
    "date_display": "c. 1836",
    "description_narrative": "A ferry carries passengers across the Yoroi crossing, one of the working river crossings that linked Edo's districts before its many bridges were built. Hiroshige documents the everyday infrastructure of the growing city.",
@@ -8050,7 +8198,8 @@
    "medium": "Color woodblock print",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "title": "Nihonbashi: Snow Morning (from Famous Places in Edo)",
+   "title": "Nihonbashi: Snow Morning",
+   "series": "Famous Places in Edo",
    "creation_date": "c. 1835–38",
    "date_display": "c. 1836",
    "description_narrative": "Snow blankets Nihonbashi Bridge and its surrounding rooftops in the early morning quiet, predating Hiroshige's later, more famous treatment of the same bridge under clearing snow. Merchants and porters begin to stir along the city's symbolic center.",
@@ -8094,7 +8243,8 @@
    ]
   },
   {
-   "title": "Light Rain on the Embankment of the Sumida River (from A New Selection of Famous Places in Edo)",
+   "title": "Light Rain on the Embankment of the Sumida River",
+   "series": "A New Selection of Famous Places in Edo",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1838/1842",
@@ -8119,7 +8269,8 @@
    ]
   },
   {
-   "title": "Enjoying the Evening Cool at Ryōgoku Bridge (from Famous Places in the Eastern Capital)",
+   "title": "Enjoying the Evening Cool at Ryōgoku Bridge",
+   "series": "Famous Places in the Eastern Capital",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1847/48",
@@ -8244,7 +8395,8 @@
    ]
   },
   {
-   "title": "The Sanjūsangendō Hall at Fukagawa (from Famous Places in the Eastern Capital)",
+   "title": "The Sanjūsangendō Hall at Fukagawa",
+   "series": "Famous Places in the Eastern Capital",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1830s/40s",
@@ -8269,7 +8421,8 @@
    ]
   },
   {
-   "title": "Fukagawa Hachiman Shrine (from Famous Places of Edo)",
+   "title": "Fukagawa Hachiman Shrine",
+   "series": "Famous Places of Edo",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1830s/40s",
@@ -8294,7 +8447,8 @@
    ]
   },
   {
-   "title": "Inside Shiba Shinmei Shrine (from Famous Places of Edo)",
+   "title": "Inside Shiba Shinmei Shrine",
+   "series": "Famous Places of Edo",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1830s/40s",
@@ -8319,7 +8473,8 @@
    ]
   },
   {
-   "title": "The Legend of Otamagaike Pond at Kanda (from Famous Old Sites of the Eastern Capital)",
+   "title": "The Legend of Otamagaike Pond at Kanda",
+   "series": "Famous Old Sites of the Eastern Capital",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1830s/40s",
@@ -8344,7 +8499,8 @@
    ]
   },
   {
-   "title": "The Waters of Kameido (from Famous Places of Edo)",
+   "title": "The Waters of Kameido",
+   "series": "Famous Places of Edo",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1830s/40s",
@@ -8369,7 +8525,8 @@
    ]
   },
   {
-   "title": "Full View of the New Yoshiwara in Full Cherry Blossom (from Famous Places in the Eastern Capital)",
+   "title": "Full View of the New Yoshiwara in Full Cherry Blossom",
+   "series": "Famous Places in the Eastern Capital",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1830s/40s",
@@ -8394,7 +8551,8 @@
    ]
   },
   {
-   "title": "The Prosperity of Ōdenma-chō Street (from Famous Places in the Eastern Capital)",
+   "title": "The Prosperity of Ōdenma-chō Street",
+   "series": "Famous Places in the Eastern Capital",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1830s/40s",
@@ -8419,7 +8577,8 @@
    ]
   },
   {
-   "title": "Snowy Morning at the New Yoshiwara (from Silver World: Twelve Views of the Eastern Capital)",
+   "title": "Snowy Morning at the New Yoshiwara",
+   "series": "Silver World: Twelve Views of the Eastern Capital",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1830s/40s",
@@ -8444,7 +8603,8 @@
    ]
   },
   {
-   "title": "Inside Yamashita Gate (from Famous Views of Edo)",
+   "title": "Inside Yamashita Gate",
+   "series": "Famous Views of Edo",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1830s/40s",
@@ -8469,7 +8629,8 @@
    ]
   },
   {
-   "title": "Matsukane-ya Restaurant at Yushima (from Famous Restaurants of the Eastern Capital)",
+   "title": "Matsukane-ya Restaurant at Yushima",
+   "series": "Famous Restaurants of the Eastern Capital",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1830s/40s",
@@ -8494,7 +8655,8 @@
    ]
   },
   {
-   "title": "Uekiya Restaurant at Mokuboji in Snow (from Famous Restaurants of the Eastern Capital)",
+   "title": "Uekiya Restaurant at Mokuboji in Snow",
+   "series": "Famous Restaurants of the Eastern Capital",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1830s/40s",
@@ -8519,7 +8681,8 @@
    ]
   },
   {
-   "title": "Heisei Restaurant in Front of Fukagawa Hachiman Shrine (from Famous Restaurants of the Eastern Capital)",
+   "title": "Heisei Restaurant in Front of Fukagawa Hachiman Shrine",
+   "series": "Famous Restaurants of the Eastern Capital",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1830s/40s",
@@ -8569,7 +8732,8 @@
    ]
   },
   {
-   "title": "Tilefish, Rockfish, and Wasabi (from Uozukushi, A Series of Fish)",
+   "title": "Tilefish, Rockfish, and Wasabi",
+   "series": "Uozukushi, A Series of Fish",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1830s/40s",
@@ -8719,7 +8883,8 @@
    ]
   },
   {
-   "title": "Kannon Slope on the Kisokaidō (from The Sixty-nine Stations of the Kisokaidō)",
+   "title": "Kannon Slope on the Kisokaidō",
+   "series": "The Sixty-nine Stations of the Kisokaidō",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "1830s/40s",
@@ -8744,7 +8909,8 @@
    ]
   },
   {
-   "title": "Misaka Pass in Kai Province (from Thirty-six Views of Mount Fuji)",
+   "title": "Misaka Pass in Kai Province",
+   "series": "Thirty-six Views of Mount Fuji",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "1858/59",
@@ -8769,7 +8935,8 @@
    ]
   },
   {
-   "title": "Autumn Moon at Emon-zaka, New Yoshiwara (from Famous Places in the Eastern Capital)",
+   "title": "Autumn Moon at Emon-zaka, New Yoshiwara",
+   "series": "Famous Places in the Eastern Capital",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1836",
@@ -8794,7 +8961,8 @@
    ]
   },
   {
-   "title": "Full Bloom at Asukayama (from Famous Places in the Eastern Capital)",
+   "title": "Full Bloom at Asukayama",
+   "series": "Famous Places in the Eastern Capital",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1839/42",
@@ -8869,7 +9037,8 @@
    ]
   },
   {
-   "title": "Niken-jaya Teahouse at Fukagawa Hachiman Shrine (from Famous Restaurants of Edo)",
+   "title": "Niken-jaya Teahouse at Fukagawa Hachiman Shrine",
+   "series": "Famous Restaurants of Edo",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1840",
@@ -8894,7 +9063,8 @@
    ]
   },
   {
-   "title": "View of Shiba Shin-zeniza (from Famous Views of the Eastern Capital)",
+   "title": "View of Shiba Shin-zeniza",
+   "series": "Famous Views of the Eastern Capital",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1835/38",
@@ -8969,7 +9139,8 @@
    ]
   },
   {
-   "title": "Evening Rain in Azuma Wood (from Eight Views of the Environs of Edo)",
+   "title": "Evening Rain in Azuma Wood",
+   "series": "Eight Views of the Environs of Edo",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1838",
@@ -8994,7 +9165,8 @@
    ]
   },
   {
-   "title": "Enjoying the Evening Cool at Ryogoku Bridge (from Famous Places in the Eastern Capital)",
+   "title": "Enjoying the Evening Cool at Ryogoku Bridge",
+   "series": "Famous Places in the Eastern Capital",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1847/48",
@@ -9094,7 +9266,8 @@
    ]
   },
   {
-   "title": "A View of Late Spring at Masaki (from Famous Places in the Eastern Capital)",
+   "title": "A View of Late Spring at Masaki",
+   "series": "Famous Places in the Eastern Capital",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "1831",
@@ -9144,7 +9317,8 @@
    ]
   },
   {
-   "title": "Nihonbashi in a Sudden Shower (from Famous Places in the Eastern Capital)",
+   "title": "Nihonbashi in a Sudden Shower",
+   "series": "Famous Places in the Eastern Capital",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1830s",
@@ -9169,7 +9343,8 @@
    ]
   },
   {
-   "title": "Azuma Forest (from Famous Places in the Eastern Capital)",
+   "title": "Azuma Forest",
+   "series": "Famous Places in the Eastern Capital",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1830s",
@@ -9194,7 +9369,8 @@
    ]
   },
   {
-   "title": "The Sazai-do Hall at the Temple of Five Hundred Rakan (from Famous Places in the Eastern Capital)",
+   "title": "The Sazai-do Hall at the Temple of Five Hundred Rakan",
+   "series": "Famous Places in the Eastern Capital",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1830s",
@@ -9219,7 +9395,8 @@
    ]
   },
   {
-   "title": "Site of the East Gate, Asakusa (from Famous Places of Edo)",
+   "title": "Site of the East Gate, Asakusa",
+   "series": "Famous Places of Edo",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1830s",
@@ -9244,7 +9421,8 @@
    ]
   },
   {
-   "title": "Meguro Fudo Temple (from Famous Places of Edo)",
+   "title": "Meguro Fudo Temple",
+   "series": "Famous Places of Edo",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1830s",
@@ -9269,7 +9447,8 @@
    ]
   },
   {
-   "title": "Benten Hill at Kinryuzan Temple, Asakusa (from Famous Places of Edo)",
+   "title": "Benten Hill at Kinryuzan Temple, Asakusa",
+   "series": "Famous Places of Edo",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1830s",
@@ -9294,7 +9473,8 @@
    ]
   },
   {
-   "title": "The Origin of the Name of Musashi Province (from Famous Old Sites of the Eastern Capital)",
+   "title": "The Origin of the Name of Musashi Province",
+   "series": "Famous Old Sites of the Eastern Capital",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1830s-40s",
@@ -9319,7 +9499,8 @@
    ]
   },
   {
-   "title": "Aoi Slope (from Hiroshige's Slopes of the Eastern Capital)",
+   "title": "Aoi Slope",
+   "series": "Hiroshige's Slopes of the Eastern Capital",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1830s-40s",
@@ -9344,7 +9525,8 @@
    ]
   },
   {
-   "title": "New Yoshiwara in Full Bloom, Third Month: Panoramic View (from Famous Places in the Eastern Capital)",
+   "title": "New Yoshiwara in Full Bloom, Third Month: Panoramic View",
+   "series": "Famous Places in the Eastern Capital",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1830s",
@@ -9369,7 +9551,8 @@
    ]
   },
   {
-   "title": "Asukayama: Panoramic View (from Famous Places in the Eastern Capital)",
+   "title": "Asukayama: Panoramic View",
+   "series": "Famous Places in the Eastern Capital",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1830s",
@@ -9394,7 +9577,8 @@
    ]
   },
   {
-   "title": "Precincts of the Oji Inari Shrine: Panoramic View (from Famous Places in the Eastern Capital)",
+   "title": "Precincts of the Oji Inari Shrine: Panoramic View",
+   "series": "Famous Places in the Eastern Capital",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1830s",
@@ -9419,7 +9603,8 @@
    ]
   },
   {
-   "title": "Cherry-Blossom Viewing at Gotenyama, Shinagawa: Panoramic View (from Famous Places in the Eastern Capital)",
+   "title": "Cherry-Blossom Viewing at Gotenyama, Shinagawa: Panoramic View",
+   "series": "Famous Places in the Eastern Capital",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1830s",
@@ -9444,7 +9629,8 @@
    ]
   },
   {
-   "title": "Precincts of the Susaki Benten Shrine and Shell-Gathering at Low Tide: Panoramic View (from Famous Places in the Eastern Capital)",
+   "title": "Precincts of the Susaki Benten Shrine and Shell-Gathering at Low Tide: Panoramic View",
+   "series": "Famous Places in the Eastern Capital",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1830s",
@@ -9469,7 +9655,8 @@
    ]
   },
   {
-   "title": "Kasumigaseki: Panoramic View (from Famous Places in the Eastern Capital)",
+   "title": "Kasumigaseki: Panoramic View",
+   "series": "Famous Places in the Eastern Capital",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1830s",
@@ -9494,7 +9681,8 @@
    ]
   },
   {
-   "title": "Precincts of the Kameido Tenjin Shrine: Panoramic View (from Famous Places in the Eastern Capital)",
+   "title": "Precincts of the Kameido Tenjin Shrine: Panoramic View",
+   "series": "Famous Places in the Eastern Capital",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1830s",
@@ -9544,7 +9732,8 @@
    ]
   },
   {
-   "title": "Akasaka Sanno (from Twelve Views of the Eastern Capital in a Silver World)",
+   "title": "Akasaka Sanno",
+   "series": "Twelve Views of the Eastern Capital in a Silver World",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1830s",
@@ -9569,7 +9758,8 @@
    ]
   },
   {
-   "title": "View of Suruga-cho (from Famous Places in the Eastern Capital)",
+   "title": "View of Suruga-cho",
+   "series": "Famous Places in the Eastern Capital",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1830s",
@@ -9594,7 +9784,8 @@
    ]
   },
   {
-   "title": "The Kawachi-ro Restaurant at Shitaya Hirokoji (from Famous Restaurants of Edo)",
+   "title": "The Kawachi-ro Restaurant at Shitaya Hirokoji",
+   "series": "Famous Restaurants of Edo",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1852/53",
@@ -9619,7 +9810,8 @@
    ]
   },
   {
-   "title": "The Daishichi Restaurant at Mukojima (from Famous Restaurants of Edo)",
+   "title": "The Daishichi Restaurant at Mukojima",
+   "series": "Famous Restaurants of Edo",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1852/53",
@@ -9644,7 +9836,8 @@
    ]
   },
   {
-   "title": "Night View of the Manpachi Restaurant at Yanagibashi (from Famous Restaurants of Edo)",
+   "title": "Night View of the Manpachi Restaurant at Yanagibashi",
+   "series": "Famous Restaurants of Edo",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1852/53",
@@ -9669,7 +9862,8 @@
    ]
   },
   {
-   "title": "The Kawachiya Restaurant at Yanagibashi, Ryogoku (from Famous Restaurants of Edo)",
+   "title": "The Kawachiya Restaurant at Yanagibashi, Ryogoku",
+   "series": "Famous Restaurants of Edo",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1835/40",
@@ -9794,7 +9988,8 @@
    ]
   },
   {
-   "title": "The Ferry Crossing on the Sumida River (from Famous Views of the Eastern Capital)",
+   "title": "The Ferry Crossing on the Sumida River",
+   "series": "Famous Views of the Eastern Capital",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1843/44",
@@ -9869,7 +10064,8 @@
    ]
   },
   {
-   "title": "The First Cuckoo's Call over Tsukudajima (from Famous Places in the Eastern Capital)",
+   "title": "The First Cuckoo's Call over Tsukudajima",
+   "series": "Famous Places in the Eastern Capital",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "probably 1830",
@@ -9894,7 +10090,8 @@
    ]
   },
   {
-   "title": "Fishing Boats off Tsukudajima near Eitai Bridge (from Famous Places in the Eastern Capital)",
+   "title": "Fishing Boats off Tsukudajima near Eitai Bridge",
+   "series": "Famous Places in the Eastern Capital",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1835",
@@ -9919,7 +10116,8 @@
    ]
   },
   {
-   "title": "View of the Nichome Theater District (from Famous Places in the Eastern Capital)",
+   "title": "View of the Nichome Theater District",
+   "series": "Famous Places in the Eastern Capital",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1832/34",
@@ -9969,7 +10167,8 @@
    ]
   },
   {
-   "title": "Twilight Snow at Asukayama (from Eight Views of the Environs of Edo)",
+   "title": "Twilight Snow at Asukayama",
+   "series": "Eight Views of the Environs of Edo",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1838",
@@ -9994,7 +10193,8 @@
    ]
   },
   {
-   "title": "The Shokintei Restaurant at Yushima (from Famous Restaurants of Edo)",
+   "title": "The Shokintei Restaurant at Yushima",
+   "series": "Famous Restaurants of Edo",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1840",
@@ -10019,7 +10219,8 @@
    ]
   },
   {
-   "title": "View of Shimbashi (from Famous Places in the Eastern Capital)",
+   "title": "View of Shimbashi",
+   "series": "Famous Places in the Eastern Capital",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1837",
@@ -10044,7 +10245,8 @@
    ]
   },
   {
-   "title": "The Mountain-Opening Festival at Fukagawa Hachiman Shrine (from Famous Places in the Eastern Capital)",
+   "title": "The Mountain-Opening Festival at Fukagawa Hachiman Shrine",
+   "series": "Famous Places in the Eastern Capital",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1843/47",
@@ -10069,7 +10271,8 @@
    ]
   },
   {
-   "title": "Night Rain at the Azuma Shrine (from Eight Views of the Environs of Edo)",
+   "title": "Night Rain at the Azuma Shrine",
+   "series": "Eight Views of the Environs of Edo",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1837/38",
@@ -10094,7 +10297,8 @@
    ]
   },
   {
-   "title": "Enjoying the Evening Breeze at Ryōgoku Bridge (from Famous Places in the Eastern Capital)",
+   "title": "Enjoying the Evening Breeze at Ryōgoku Bridge",
+   "series": "Famous Places in the Eastern Capital",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1847/48",
@@ -10169,7 +10373,8 @@
    ]
   },
   {
-   "title": "The Daikokuya at Mukōjima (from Famous Restaurants of Edo)",
+   "title": "The Daikokuya at Mukōjima",
+   "series": "Famous Restaurants of Edo",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1835/42",
@@ -10194,7 +10399,8 @@
    ]
   },
   {
-   "title": "Eitai Bridge and the Fukagawa Shinchi Reclaimed Land (from Famous Places in the Eastern Capital)",
+   "title": "Eitai Bridge and the Fukagawa Shinchi Reclaimed Land",
+   "series": "Famous Places in the Eastern Capital",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1840s",
@@ -10219,7 +10425,8 @@
    ]
   },
   {
-   "title": "The Grounds of Zōjō-ji Temple in Shiba (from Famous Places in the Eastern Capital)",
+   "title": "The Grounds of Zōjō-ji Temple in Shiba",
+   "series": "Famous Places in the Eastern Capital",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1840s",
@@ -10244,7 +10451,8 @@
    ]
   },
   {
-   "title": "Kameido Tenjin Shrine (from Famous Places in Edo)",
+   "title": "Kameido Tenjin Shrine",
+   "series": "Famous Places in Edo",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1840s",
@@ -10269,7 +10477,8 @@
    ]
   },
   {
-   "title": "The Kumano Shrine at Twelve-Sō Pond, Tsunohazu in Yotsuya (from Famous Places in Edo)",
+   "title": "The Kumano Shrine at Twelve-Sō Pond, Tsunohazu in Yotsuya",
+   "series": "Famous Places in Edo",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1840s",
@@ -10294,7 +10503,8 @@
    ]
   },
   {
-   "title": "Yaohan Restaurant (from Famous Restaurants of the Eastern Capital, 1852)",
+   "title": "Yaohan Restaurant",
+   "series": "Famous Restaurants of the Eastern Capital, 1852",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "1852",
@@ -10319,7 +10529,8 @@
    ]
   },
   {
-   "title": "Cherry Blossom Viewing at Gotenyama, a Genji Parody (from Fashionable Genji in Famous Places of Edo)",
+   "title": "Cherry Blossom Viewing at Gotenyama, a Genji Parody",
+   "series": "Fashionable Genji in Famous Places of Edo",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1853",
@@ -10344,7 +10555,8 @@
    ]
   },
   {
-   "title": "Cherry Trees on the Sumida River Embankment (from Famous Places in Edo)",
+   "title": "Cherry Trees on the Sumida River Embankment",
+   "series": "Famous Places in Edo",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1840s",
@@ -10369,7 +10581,8 @@
    ]
   },
   {
-   "title": "Kagurazaka Slope, Ushigome (from Hiroshige's Famous Slopes of the Eastern Capital)",
+   "title": "Kagurazaka Slope, Ushigome",
+   "series": "Hiroshige's Famous Slopes of the Eastern Capital",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1830s-40s",
@@ -10394,7 +10607,8 @@
    ]
   },
   {
-   "title": "Cherry Blossoms in Full Bloom at Shin-Yoshiwara's Five Blocks (from Famous Places in the Eastern Capital)",
+   "title": "Cherry Blossoms in Full Bloom at Shin-Yoshiwara's Five Blocks",
+   "series": "Famous Places in the Eastern Capital",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1840s",
@@ -10419,7 +10633,8 @@
    ]
   },
   {
-   "title": "The Nishi Hongan-ji Temple at Tsukiji (from Famous Places in the Eastern Capital)",
+   "title": "The Nishi Hongan-ji Temple at Tsukiji",
+   "series": "Famous Places in the Eastern Capital",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1830s-40s",
@@ -10444,7 +10659,8 @@
    ]
   },
   {
-   "title": "Cherry Blossom Viewing at Kiyomizu Hall, Ueno, with Shinobazu Pond and Benzaiten Shrine (from Famous Places in the Eastern Capital)",
+   "title": "Cherry Blossom Viewing at Kiyomizu Hall, Ueno, with Shinobazu Pond and Benzaiten Shrine",
+   "series": "Famous Places in the Eastern Capital",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1830s-40s",
@@ -10494,7 +10710,8 @@
    ]
   },
   {
-   "title": "The Day after Snow at Yushima Tenjin (from Twelve Views of the Eastern Capital in a Silver World)",
+   "title": "The Day after Snow at Yushima Tenjin",
+   "series": "Twelve Views of the Eastern Capital in a Silver World",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1840s",
@@ -10519,7 +10736,8 @@
    ]
   },
   {
-   "title": "Akabane Bridge in Shiba (from Famous Places in the Eastern Capital)",
+   "title": "Akabane Bridge in Shiba",
+   "series": "Famous Places in the Eastern Capital",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1830s-40s",
@@ -10544,7 +10762,8 @@
    ]
   },
   {
-   "title": "Crowds at the Year-End Fair, Kinryūzan Temple, Asakusa (from Famous Places in the Eastern Capital)",
+   "title": "Crowds at the Year-End Fair, Kinryūzan Temple, Asakusa",
+   "series": "Famous Places in the Eastern Capital",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1830s-40s",
@@ -10569,7 +10788,8 @@
    ]
   },
   {
-   "title": "Hōraiya at Ikenohata: A Rest during Cherry Blossom Viewing (from Famous Restaurants of Edo)",
+   "title": "Hōraiya at Ikenohata: A Rest during Cherry Blossom Viewing",
+   "series": "Famous Restaurants of Edo",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1852/53",
@@ -10594,7 +10814,8 @@
    ]
   },
   {
-   "title": "View of Mimeguri: The Dewaya (from Famous Restaurants of Edo)",
+   "title": "View of Mimeguri: The Dewaya",
+   "series": "Famous Restaurants of Edo",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1852/53",
@@ -10619,7 +10840,8 @@
    ]
   },
   {
-   "title": "Ryōgoku: The Aoyagi (from Famous Restaurants of Edo)",
+   "title": "Ryōgoku: The Aoyagi",
+   "series": "Famous Restaurants of Edo",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1852/53",
@@ -10644,7 +10866,8 @@
    ]
   },
   {
-   "title": "View from the Yaozen Restaurant toward Nihonzutsumi (from Kōmei Kaiseki Zukushi, 1852)",
+   "title": "View from the Yaozen Restaurant toward Nihonzutsumi",
+   "series": "Kōmei Kaiseki Zukushi, 1852",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "1852",
@@ -10669,7 +10892,8 @@
    ]
   },
   {
-   "title": "Uehan Restaurant (from Kōmei Kaiseki Zukushi, 1852)",
+   "title": "Uehan Restaurant",
+   "series": "Kōmei Kaiseki Zukushi, 1852",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "1852",
@@ -10694,7 +10918,8 @@
    ]
   },
   {
-   "title": "Kusakaro Restaurant (from Kōmei Kaiseki Zukushi)",
+   "title": "Kusakaro Restaurant",
+   "series": "Kōmei Kaiseki Zukushi",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1852/53",
@@ -10719,7 +10944,8 @@
    ]
   },
   {
-   "title": "The Riverbank at Daishichi (from Kōmei Kaiseki Zukushi, 1852)",
+   "title": "The Riverbank at Daishichi",
+   "series": "Kōmei Kaiseki Zukushi, 1852",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "1852",
@@ -10744,7 +10970,8 @@
    ]
   },
   {
-   "title": "Honjo Tatekawa (from Kōmei Kaiseki Zukushi)",
+   "title": "Honjo Tatekawa",
+   "series": "Kōmei Kaiseki Zukushi",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1852/53",
@@ -10794,7 +11021,8 @@
    ]
   },
   {
-   "title": "The Umegawa at Ryōgoku Yanagibashi (from Famous Restaurants of Edo)",
+   "title": "The Umegawa at Ryōgoku Yanagibashi",
+   "series": "Famous Restaurants of Edo",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1835/42",
@@ -10819,7 +11047,8 @@
    ]
   },
   {
-   "title": "Shell Gathering at Shibaura (from Famous Places in the Eastern Capital)",
+   "title": "Shell Gathering at Shibaura",
+   "series": "Famous Places in the Eastern Capital",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1830s",
@@ -10869,7 +11098,8 @@
    ]
   },
   {
-   "title": "Riverbank at Sukiya in Edo (from Thirty-six Views of Mount Fuji)",
+   "title": "Riverbank at Sukiya in Edo",
+   "series": "Thirty-six Views of Mount Fuji",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "1858, 4th month",
@@ -10919,7 +11149,8 @@
    ]
   },
   {
-   "title": "Winter: Snow on the Sumida River (from Famous Places in Edo through the Four Seasons)",
+   "title": "Winter: Snow on the Sumida River",
+   "series": "Famous Places in Edo through the Four Seasons",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1833/38",
@@ -10944,7 +11175,8 @@
    ]
   },
   {
-   "title": "Sunset at Shibaura (from Eight Views of the Environs of Edo)",
+   "title": "Sunset at Shibaura",
+   "series": "Eight Views of the Environs of Edo",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1837/38",
@@ -10969,7 +11201,8 @@
    ]
   },
   {
-   "title": "Act Four (from The Treasury of Loyal Retainers, Chūshingura)",
+   "title": "Act Four",
+   "series": "The Treasury of Loyal Retainers, Chūshingura",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1830s/40s",
@@ -10994,7 +11227,8 @@
    ]
   },
   {
-   "title": "Misty Moon over Tsukudajima (from Famous Places in the Eastern Capital)",
+   "title": "Misty Moon over Tsukudajima",
+   "series": "Famous Places in the Eastern Capital",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1836",
@@ -11019,7 +11253,8 @@
    ]
   },
   {
-   "title": "Dawn at Emonzaka on the Nihon Embankment, Shin-Yoshiwara (from Famous Places in the Eastern Capital)",
+   "title": "Dawn at Emonzaka on the Nihon Embankment, Shin-Yoshiwara",
+   "series": "Famous Places in the Eastern Capital",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1839/42",
@@ -11094,7 +11329,8 @@
    ]
   },
   {
-   "title": "Shiba Shinmei Shrine (from Famous Places in Edo)",
+   "title": "Shiba Shinmei Shrine",
+   "series": "Famous Places in Edo",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "1858",
@@ -11119,7 +11355,8 @@
    ]
   },
   {
-   "title": "The Ōnoya at Ryōgoku Yanagibashi (from Famous Restaurants of Edo)",
+   "title": "The Ōnoya at Ryōgoku Yanagibashi",
+   "series": "Famous Restaurants of Edo",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1835/42",
@@ -11144,7 +11381,8 @@
    ]
   },
   {
-   "title": "The Musashiya at Ushijima (from Famous Restaurants of Edo)",
+   "title": "The Musashiya at Ushijima",
+   "series": "Famous Restaurants of Edo",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1840",
@@ -11169,7 +11407,8 @@
    ]
   },
   {
-   "title": "The Ōji Inari Shrine (from Famous Places in the Eastern Capital)",
+   "title": "The Ōji Inari Shrine",
+   "series": "Famous Places in the Eastern Capital",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1832/34",
@@ -11194,7 +11433,8 @@
    ]
   },
   {
-   "title": "Enjoying the Evening Cool under Ryōgoku Bridge, Musashi Province (from Views of Famous Places in the Various Provinces)",
+   "title": "Enjoying the Evening Cool under Ryōgoku Bridge, Musashi Province",
+   "series": "Views of Famous Places in the Various Provinces",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "c. 1840s",

@@ -29,37 +29,68 @@ from core import lifespan
 MAX_ARTIFACT_BYTES = 4 * 1024 * 1024 * 1024  # 4 GB
 _CHUNK = 1024 * 1024
 
+# The R2 pack host sits behind a Cloudflare rate-limit (ADR-038: a burst of `.tar` requests per IP →
+# HTTP 429 + a ~10s block). A device mid-install must back off and retry, not fail the whole collection
+# on a transient throttle — so 429/503 are retried with escalating backoff (matches core.downloads).
+_RETRY_STATUS = {429, 503}
+_MAX_ATTEMPTS = 4
+_MAX_BACKOFF = 30.0  # cap so a hostile Retry-After can't stall an install indefinitely
+
 
 async def _guard(url: str) -> None:
     """Block private/loopback/link-local targets before fetching (reuses federation's SSRF guard)."""
     await asyncio.to_thread(federation._assert_public_url, url)
 
 
+def _backoff(resp: httpx.Response, attempt: int) -> float:
+    """Seconds to wait before the next attempt: honor a `Retry-After` header (Cloudflare sends one with
+    the rate-limit block) when present and sane, else escalating backoff. Capped at _MAX_BACKOFF."""
+    hdr = resp.headers.get("Retry-After")
+    if hdr:
+        try:
+            return min(_MAX_BACKOFF, max(0.0, float(hdr)))
+        except ValueError:
+            pass  # HTTP-date form (rare from CF) — fall through to backoff
+    return min(_MAX_BACKOFF, 3.0 * attempt)
+
+
 async def fetch_registry(client: httpx.AsyncClient, registry_url: str) -> dict:
-    """GET the packs.json registry (the list of downloadable collections + their categories/sizes/sha256)."""
+    """GET the packs.json registry (the list of downloadable collections + their categories/sizes/sha256).
+    Retries a rate-limited (429/503) host with backoff before giving up."""
     await _guard(registry_url)
-    r = await client.get(registry_url, timeout=30)
-    r.raise_for_status()
-    return r.json()
+    for attempt in range(1, _MAX_ATTEMPTS + 1):
+        r = await client.get(registry_url, timeout=30)
+        if r.status_code in _RETRY_STATUS and attempt < _MAX_ATTEMPTS:
+            await asyncio.sleep(_backoff(r, attempt))
+            continue
+        r.raise_for_status()
+        return r.json()
 
 
 async def _download_verified(client: httpx.AsyncClient, url: str, dest: Path, sha256: str | None) -> None:
     """Stream `url` → `dest`, enforcing the size cap and (if given) the expected sha256. Raises on mismatch
-    so a corrupt/tampered artifact is never installed."""
+    so a corrupt/tampered artifact is never installed. A rate-limited (429/503) host is retried with
+    backoff — the throttle is detected on the response status before any bytes hit disk, so a retry
+    restarts the download cleanly (fresh hash, truncated file)."""
     await _guard(url)
-    h = hashlib.sha256()
-    total = 0
-    async with client.stream("GET", url, timeout=httpx.Timeout(30.0, read=90.0)) as r:
-        r.raise_for_status()
-        with dest.open("wb") as f:
-            async for chunk in r.aiter_bytes(_CHUNK):
-                total += len(chunk)
-                if total > MAX_ARTIFACT_BYTES:
-                    raise ValueError(f"artifact exceeds {MAX_ARTIFACT_BYTES} byte cap")
-                h.update(chunk)
-                f.write(chunk)
-    if sha256 and h.hexdigest() != sha256:
-        raise ValueError(f"sha256 mismatch: expected {sha256[:12]}…, got {h.hexdigest()[:12]}…")
+    for attempt in range(1, _MAX_ATTEMPTS + 1):
+        h = hashlib.sha256()
+        total = 0
+        async with client.stream("GET", url, timeout=httpx.Timeout(30.0, read=90.0)) as r:
+            if r.status_code in _RETRY_STATUS and attempt < _MAX_ATTEMPTS:
+                await asyncio.sleep(_backoff(r, attempt))
+                continue
+            r.raise_for_status()
+            with dest.open("wb") as f:
+                async for chunk in r.aiter_bytes(_CHUNK):
+                    total += len(chunk)
+                    if total > MAX_ARTIFACT_BYTES:
+                        raise ValueError(f"artifact exceeds {MAX_ARTIFACT_BYTES} byte cap")
+                    h.update(chunk)
+                    f.write(chunk)
+        if sha256 and h.hexdigest() != sha256:
+            raise ValueError(f"sha256 mismatch: expected {sha256[:12]}…, got {h.hexdigest()[:12]}…")
+        return
 
 
 def _extract_collection(tar_path: Path, cid: str, artwork_root: Path) -> bool:

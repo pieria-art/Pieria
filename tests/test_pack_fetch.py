@@ -153,6 +153,48 @@ async def test_fetch_rejects_sha256_mismatch(tmp_path, monkeypatch):
 
 
 @pytest.mark.asyncio
+async def test_fetch_retries_rate_limited_download(tmp_path, monkeypatch):
+    """A Cloudflare 429 on the .tar (then a Retry-After) is backed off and retried, not fatal (ADR-038)."""
+    priv, pub = publisher.keygen()
+    src = _build_source_pack(tmp_path, priv)
+    dist = tmp_path / "dist"
+    publish_pack.publish(src, dist, core={"masterpieces"})
+    device = _bake_core(tmp_path, dist)
+    _point_lifespan_at(monkeypatch, pub, device)
+
+    slept = []
+    monkeypatch.setattr(pack_fetch.asyncio, "sleep", lambda s: slept.append(s) or _noop())
+
+    # 429 (with Retry-After) on the first tar request, then serve the real bytes.
+    hits = {"cartography.tar": 0}
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        name = request.url.path.rsplit("/", 1)[-1]
+        if name == "cartography.tar":
+            hits[name] += 1
+            if hits[name] == 1:
+                return httpx.Response(429, headers={"Retry-After": "2"})
+        p = dist / name
+        return httpx.Response(200, content=p.read_bytes()) if p.exists() else httpx.Response(404)
+
+    db = _db()
+    lifespan_module.install_pack_subscriptions(db)
+    client = httpx.AsyncClient(transport=httpx.MockTransport(handler))
+    res = await pack_fetch.install_collection_from_registry(
+        db, client, "https://packs.test/packs.json", "cartography")
+    await client.aclose()
+
+    assert res["ok"] and res["installed"], res
+    assert hits["cartography.tar"] == 2          # retried once after the 429
+    assert slept == [2.0]                         # honored the Retry-After header
+    assert db.query(ArtworkModel).count() == 3
+
+
+async def _noop():
+    return None
+
+
+@pytest.mark.asyncio
 async def test_fetch_unknown_collection(tmp_path, monkeypatch):
     priv, pub = publisher.keygen()
     src = _build_source_pack(tmp_path, priv)
