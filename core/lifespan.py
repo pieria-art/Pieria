@@ -15,7 +15,7 @@ from pathlib import Path
 from fastapi import FastAPI, HTTPException
 from fastapi.concurrency import run_in_threadpool
 from PIL import Image
-from sqlalchemy import select
+from sqlalchemy import delete, select
 from sqlalchemy.orm import Session
 
 import federation
@@ -28,7 +28,14 @@ from core.settings_util import _upsert_setting
 from database import SessionLocal
 from db_migrate import run_migrations
 from manifest_validator import validate_manifest
-from models import ArtworkModel, PlaylistModel, SettingsModel, SubscriptionModel, playlist_artwork
+from models import (
+    ArtworkModel,
+    DisplayPlaybackSessionModel,
+    PlaylistModel,
+    SettingsModel,
+    SubscriptionModel,
+    playlist_artwork,
+)
 
 logger = logging.getLogger("artwork-display-api")
 
@@ -339,6 +346,68 @@ def install_downloaded_collection(db: Session, cid: str) -> bool:
     title = _install_collection(db, cid, json.loads(mpath.read_text()))
     db.commit()
     return title is not None
+
+
+def uninstall_collection(db: Session, cid: str) -> dict | None:
+    """Tier-2 'Remove collection' (Curated Art): fully UNINSTALL a pack — the inverse of
+    `_install_collection`. Drops the `pack:<cid>` subscription + its playlist, and deletes ONLY the
+    artworks that become unlinked (a master shared into Masterpieces or a user's custom playlist stays;
+    dedup means one ArtworkModel can back several collections). Never touches personal photos. Frees the
+    masters' disk. If the collection was the default playlist, the default is reassigned to another
+    Museum collection (or cleared). Returns a summary, or None if `pack:<cid>` isn't installed.
+
+    NOT the same as deleting the collection's playlist (Tier 1, `DELETE /playlists/{id}`), which keeps
+    every work in the library — this reclaims the art."""
+    sub = db.query(SubscriptionModel).filter(SubscriptionModel.url == f"pack:{cid}").first()
+    if sub is None:
+        return None
+    title = sub.title or cid
+    playlist = db.query(PlaylistModel).filter(
+        PlaylistModel.name == title, PlaylistModel.is_personal.is_(False)).first()
+
+    artworks_removed = 0
+    if playlist is not None:
+        # The artworks this playlist links, captured BEFORE we drop the links.
+        art_ids = [row[0] for row in db.execute(select(playlist_artwork.c.artwork_id).where(
+            playlist_artwork.c.playlist_id == playlist.id)).all()]
+        db.execute(delete(playlist_artwork).where(playlist_artwork.c.playlist_id == playlist.id))
+        db.commit()
+
+        for aid in art_ids:
+            art = db.query(ArtworkModel).filter(ArtworkModel.id == aid).first()
+            if art is None or art.is_personal:
+                continue  # a user photo could never belong to a pack, but never delete one regardless
+            still_linked = db.execute(select(playlist_artwork.c.playlist_id).where(
+                playlist_artwork.c.artwork_id == aid).limit(1)).first()
+            if still_linked is None:  # orphaned by this uninstall -> reclaim file + row
+                f_path = LIBRARY_DIR / art.filename
+                if f_path.is_symlink() or f_path.exists():
+                    try:
+                        f_path.unlink()
+                    except OSError as e:
+                        logger.warning(f"[PackUninstall] could not unlink {f_path}: {e}")
+                db.delete(art)
+                artworks_removed += 1
+        db.commit()
+
+        # Drop any per-display playback bags for this playlist (no FK cascade) before removing it.
+        db.execute(delete(DisplayPlaybackSessionModel).where(
+            DisplayPlaybackSessionModel.playlist_id == playlist.id))
+        db.delete(playlist)
+        db.commit()
+
+    # If this was the default collection, hand the default to another Museum collection (or clear it).
+    default = db.query(SettingsModel).filter(SettingsModel.setting_key == "default_playlist").first()
+    if default is not None and default.setting_value == title:
+        nxt = db.query(PlaylistModel).filter(PlaylistModel.is_personal.is_(False)).order_by(
+            PlaylistModel.id).first()
+        default.setting_value = nxt.name if nxt else ""
+        db.commit()
+
+    db.delete(sub)
+    db.commit()
+    logger.info(f"[PackUninstall] removed {cid!r} ({title!r}): {artworks_removed} artwork(s) reclaimed.")
+    return {"cid": cid, "title": title, "artworks_removed": artworks_removed}
 
 
 async def run_factory_seed(db: Session):

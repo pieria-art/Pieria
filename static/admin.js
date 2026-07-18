@@ -50,8 +50,7 @@ async function init() {
     initServerAddress();  // show the address to point displays/Pi/e-ink/Frame at
     initDevicesCapability(); // un-hide the Devices tab only on an all-in-one appliance
     initPublisherCapability(); // un-hide the Publisher tab only once an identity exists
-    loadSubscriptions();  // federated collections panel
-    loadPacks();          // browse & download modular packs
+    loadSubscriptions();  // federated collections panel (Settings management list)
     await loadPremiumSettings();
     await handleOAuthCallback();   // catch an OpenRouter OAuth redirect (?code=…)
     await loadAiSettings();
@@ -517,43 +516,101 @@ async function loadSubscriptions() {
     } catch (e) { console.error('[Admin] loadSubscriptions failed:', e); }
 }
 
-// --- Art Packs: browse & download modular collections (ADR-040 #4) -----------
-async function loadPacks() {
-    const list = document.getElementById('packs-list');
-    if (!list) return;
-    try {
-        const data = await (await fetch(`${API_BASE}/api/packs`)).json();
-        if (data.error) {
-            list.innerHTML = `<p style="font-size:0.8rem; color:#64748b;">Pack catalog unavailable right now.</p>`;
-            return;
-        }
-        const cols = (data.collections || []).filter(c => !c.installed);  // offer what you don't have yet
-        if (!cols.length) {
-            list.innerHTML = '<p style="font-size:0.8rem; color:#64748b;">No additional packs available.</p>';
-            return;
-        }
-        list.innerHTML = cols.map(c => {
-            const mb = c.bytes ? `${(c.bytes / 1e6).toFixed(0)} MB` : '';
-            let btn;
-            if (c.installed) {
-                btn = `<button class="secondary" disabled style="padding:6px 12px; font-size:0.75rem; opacity:0.6;">Installed ✓</button>`;
-            } else if (c.job === 'in_progress') {
-                btn = `<button class="secondary" disabled style="padding:6px 12px; font-size:0.75rem;">Downloading…</button>`;
-            } else {
-                btn = `<button class="primary" onclick="installPack('${_esc(c.id)}', this)" style="padding:6px 12px; font-size:0.75rem;">Download</button>`;
-            }
-            return `<div data-pack="${_esc(c.id)}" style="border:1px solid var(--border-color); border-radius:8px; padding:12px; background:#0f172a;">
-                <div style="display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap;">
-                    <div>
-                        <strong style="font-size:0.85rem;">${_esc(c.title)}</strong>
-                        <span style="font-size:0.62rem; padding:2px 8px; border-radius:10px; border:1px solid #475569; color:#94a3b8;">${_esc(c.category || '')}</span><br>
-                        <small style="color:#94a3b8;">${c.item_count} works${mb ? ` · ${mb}` : ''}</small>
-                    </div>
-                    <div>${btn}</div>
-                </div>
-            </div>`;
-        }).join('');
-    } catch (e) { console.error('[Admin] loadPacks failed:', e); }
+// --- Curated Art: the unified collections grid (owned + available + subscribe; ADR-040 #4) -------
+// Covers are stored relative to packs.json (`cover: "covers/<id>.jpg"`); derive the registry dir.
+function _coverBase(registryUrl) { return (registryUrl || '').replace(/[^/]*$/, ''); }
+
+// Trust badge for a collection tile. /api/packs `trust`: 'official' (available, from the signed
+// registry) | 'verified' | 'community' (installed, what the device verified at install).
+function _collTrustBadge(trust) {
+    const key = trust === 'official' ? 'bundled' : (trust === 'verified' ? 'verified' : 'community');
+    const b = _TRUST[key];
+    return `<span class="trust-badge" style="font-size:0.62rem; padding:2px 8px; border-radius:10px; border:1px solid ${b.color}; color:${b.color}; white-space:nowrap;">${b.label}</span>`;
+}
+
+function _collectionTile(c, coverBase) {
+    const mb = c.bytes ? `${(c.bytes / 1e6).toFixed(0)} MB` : '';
+    const cover = c.cover ? _esc(coverBase + c.cover) : '';
+    let action, dim = '';
+    if (c.installed) {
+        action = `<button class="secondary" onclick="uninstallPack('${_esc(c.id)}', '${_esc((c.title || '').replace(/'/g, ''))}', this)" style="border-color:#ef4444; color:#ef4444;">Remove</button>`;
+    } else if (c.job === 'in_progress') {
+        action = `<button class="secondary" disabled>Downloading…</button>`; dim = 'opacity:0.55;';
+    } else {
+        action = `<button class="primary" onclick="installPack('${_esc(c.id)}', this)">Download</button>`; dim = 'opacity:0.72;';
+    }
+    const img = cover
+        ? `<img loading="lazy" src="${cover}" alt="${_esc(c.title)}" style="background:#0f172a; ${dim}" onerror="this.style.visibility='hidden'">`
+        : `<div style="aspect-ratio:1; background:linear-gradient(135deg,#1e293b,#0f172a); ${dim}"></div>`;
+    return `<div class="artwork-card" data-pack="${_esc(c.id)}">
+        ${img}
+        <div class="info">
+            <strong>${_esc(c.title)}</strong> ${_collTrustBadge(c.trust)}<br>
+            <small style="opacity:0.7;">${_esc(c.category || '')}</small><br>
+            <small>${c.item_count} works${mb ? ` · ${mb}` : ''}</small>
+        </div>
+        <div class="actions">${action}</div>
+    </div>`;
+}
+
+// An external (URL-added) subscription — v1 is index-only: browse/sync/remove, no download-to-own yet.
+function _communityTile(s) {
+    const pub = (s.publisher && s.publisher.name) || 'Community';
+    return `<div class="artwork-card" data-sub="${s.id}">
+        <div style="aspect-ratio:1; background:linear-gradient(135deg,#1e293b,#0f172a); display:flex; align-items:center; justify-content:center; font-size:2rem;">🌐</div>
+        <div class="info">
+            <strong>${_esc(s.title || s.url)}</strong> ${_collTrustBadge(s.trust || 'community')}<br>
+            <small style="opacity:0.7;">${_esc(pub)}</small><br>
+            <small>${s.item_count} works</small>
+        </div>
+        <div class="actions">
+            <button class="secondary" onclick="syncSubscription(${s.id})">Sync</button>
+            <button class="secondary" onclick="removeSubscription(${s.id}, '${_esc((s.title || s.url).replace(/'/g, ''))}')" style="border-color:#ef4444; color:#ef4444;">Remove</button>
+        </div>
+    </div>`;
+}
+
+function _subscribeTile() {
+    // A bespoke tile (not the .artwork-card overlay layout) so the URL input + button stack cleanly.
+    return `<div class="artwork-card" style="border-style:dashed; display:flex; flex-direction:column; overflow:hidden;">
+        <div style="flex:1; min-height:130px; background:#0f172a; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; padding:18px; text-align:center;">
+            <div style="font-size:2rem; opacity:0.55;">➕</div>
+            <strong style="font-size:0.9rem;">Subscribe to a collection</strong>
+            <small style="opacity:0.65; line-height:1.4;">Paste a publisher's manifest URL to index it here.</small>
+        </div>
+        <div style="padding:12px; display:flex; flex-direction:column; gap:8px;">
+            <input type="url" id="subscription-url" placeholder="https://…/collection.json" onkeydown="if(event.key==='Enter') addSubscription()" style="width:100%; box-sizing:border-box; background:#0f172a; border:1px solid var(--border-color); color:var(--text-color); padding:9px 11px; border-radius:6px; font-size:0.78rem;">
+            <button class="primary" onclick="addSubscription()" style="width:100%;">Subscribe</button>
+        </div>
+    </div>`;
+}
+
+async function renderCollectionsGrid() {
+    const grid = document.getElementById('collections-grid');
+    if (!grid) return;
+    grid.innerHTML = '<p style="color:#94a3b8; grid-column:1/-1;">Loading collections…</p>';
+    let packs = { collections: [] }, subs = [];
+    try { packs = await (await fetch(`${API_BASE}/api/packs`)).json(); }
+    catch (e) { console.error('[Curated] packs load failed:', e); }
+    try { subs = await (await fetch(`${API_BASE}/api/subscriptions`)).json(); }
+    catch (e) { /* subscriptions are optional here */ }
+
+    const coverBase = _coverBase(packs.registry_url);
+    const cols = packs.collections || [];
+    const owned = cols.filter(c => c.installed);
+    const available = cols.filter(c => !c.installed);
+    // pack:<id> installs already surface via `cols`; only URL-added feeds are community tiles.
+    const community = (subs || []).filter(s => s.url && !s.url.startsWith('pack:'));
+
+    let html = '';
+    if (packs.error) {
+        html += `<p style="color:#64748b; grid-column:1/-1;">Official pack catalog is unavailable right now — your downloaded collections are unaffected.</p>`;
+    }
+    html += owned.map(c => _collectionTile(c, coverBase)).join('');
+    html += community.map(_communityTile).join('');
+    html += available.map(c => _collectionTile(c, coverBase)).join('');
+    html += _subscribeTile();
+    grid.innerHTML = html;
 }
 
 async function installPack(id, btn) {
@@ -561,7 +618,21 @@ async function installPack(id, btn) {
     try {
         await fetch(`${API_BASE}/api/packs/${encodeURIComponent(id)}/install`, { method: 'POST' });
         pollPacks();
-    } catch (e) { console.error('[Admin] installPack failed:', e); loadPacks(); }
+    } catch (e) { console.error('[Curated] installPack failed:', e); renderCollectionsGrid(); }
+}
+
+async function uninstallPack(id, title, btn) {
+    if (!confirm(`Remove “${title || id}” and reclaim its disk space?\n\nWorks shared with other collections (and your photos) are kept.`)) return;
+    if (btn) { btn.disabled = true; btn.textContent = 'Removing…'; }
+    try {
+        const res = await fetch(`${API_BASE}/api/packs/${encodeURIComponent(id)}`, { method: 'DELETE' });
+        if (!res.ok) { showToast('Could not remove collection.', 'error'); renderCollectionsGrid(); return; }
+        const d = await res.json();
+        showToast(`Removed ${title || id}${d.artworks_removed ? ` · ${d.artworks_removed} work(s) reclaimed` : ''} ✓`, 'success');
+        renderCollectionsGrid();
+        loadSubscriptions();
+        refreshData();  // library / collection counts changed
+    } catch (e) { showToast('Network error removing collection.', 'error'); renderCollectionsGrid(); }
 }
 
 let _packPoll = null;
@@ -570,16 +641,16 @@ function pollPacks() {
     _packPoll = setInterval(async () => {
         try {
             const jobs = await (await fetch(`${API_BASE}/api/packs/status`)).json();
-            document.querySelectorAll('#packs-list [data-pack]').forEach(row => {
+            document.querySelectorAll('#collections-grid [data-pack]').forEach(row => {
                 const st = jobs[row.getAttribute('data-pack')]?.state;
-                const btn = row.querySelector('button');
+                const btn = row.querySelector('.actions button');
                 if (st === 'in_progress' && btn) { btn.disabled = true; btn.textContent = 'Downloading…'; }
             });
             const active = Object.values(jobs).some(j => j.state === 'in_progress');
             if (!active) {
                 clearInterval(_packPoll); _packPoll = null;
-                loadPacks();          // refresh installed state
-                loadSubscriptions();  // the newly-installed collection now appears as a subscription
+                renderCollectionsGrid();  // refresh owned/available state
+                loadSubscriptions();      // the newly-installed collection also appears as a subscription
             }
         } catch (e) { clearInterval(_packPoll); _packPoll = null; }
     }, 2000);
@@ -2507,8 +2578,18 @@ function _esc(s) {
 let museumScope = 'curated';
 
 function enterMuseum() {
-    // Entering or returning to the view: render whichever scope is active.
+    // The unified collections grid (owned + available + subscribe) is the front door...
+    renderCollectionsGrid();
+    // ...and the search bar below still finds a specific piece (curated search or live Scouts).
     setMuseumScope(museumScope, true);
+}
+
+// Curated scope with no active query: the collections grid above IS the browse now, so the search
+// pane stays empty (the old per-collection catalog browse is retired from the user surface).
+function showCuratedIdle() {
+    if (catalogSelectMode) exitCatalogSelect();
+    const c = document.getElementById('catalog-container');
+    if (c) c.innerHTML = '';
 }
 
 function setMuseumScope(scope, forceRerender) {
@@ -2528,7 +2609,7 @@ function setMuseumScope(scope, forceRerender) {
     if (!changed) return;
     if (scope === 'curated') {
         const q = (document.getElementById('scout-search').value || '').trim();
-        if (q) renderCuratedSearch(q); else renderCatalog();
+        if (q) renderCuratedSearch(q); else showCuratedIdle();
     } else {
         renderDiscoveryGrid();  // show whatever's already queued; new hits arrive via refreshData()
     }
@@ -2556,7 +2637,7 @@ function museumSearch() {
         if (!q) { showToast('Type something to search the live museums.', 'error'); return; }
         dispatchScouts();
     } else {
-        if (q) renderCuratedSearch(q); else renderCatalog();
+        if (q) renderCuratedSearch(q); else showCuratedIdle();
     }
 }
 
@@ -2642,7 +2723,7 @@ async function renderCuratedSearch(q) {
 
 function clearMuseumSearch() {
     document.getElementById('scout-search').value = '';
-    renderCatalog();
+    showCuratedIdle();
 }
 
 // Populate the Museum Art (catalog) badge. Shared by renderCatalog and the init-time loader so the

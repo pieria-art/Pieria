@@ -8,10 +8,11 @@ the registry URL is public (ADR-038 §5). The baked Core is untouched; a pull on
 import asyncio
 import logging
 
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
 from config import PACK_REGISTRY_URL
+from core import lifespan as lifespan_module
 from core import pack_fetch
 from database import SessionLocal, get_db
 from models import SettingsModel, SubscriptionModel
@@ -34,7 +35,8 @@ async def list_packs(db: Session = Depends(get_db)):
     """The registry annotated with per-collection install state (for the browse card). Degrades to an
     `error` field + empty list when the registry can't be reached, so the card shows a friendly message."""
     url = _registry_url(db)
-    installed = {s.url.split("pack:", 1)[1]
+    # cid -> trust for installed packs; every registry pack is Official (this is the signed screendocent registry).
+    installed = {s.url.split("pack:", 1)[1]: s.trust
                  for s in db.query(SubscriptionModel).filter(SubscriptionModel.url.like("pack:%")).all()}
     client = pack_fetch.new_client()
     try:
@@ -47,8 +49,12 @@ async def list_packs(db: Session = Depends(get_db)):
     cols = []
     for c in reg.get("collections", []):
         row = {k: c.get(k) for k in _FIELDS}
-        row["installed"] = c.get("id") in installed
-        row["job"] = _JOBS.get(c.get("id"), {}).get("state")
+        cid = c.get("id")
+        row["installed"] = cid in installed
+        # Trust badge: an installed pack shows what the device verified (verified/community); an available
+        # one shows Official (it's from the signed screendocent registry, verified for real at install).
+        row["trust"] = installed.get(cid) or "official"
+        row["job"] = _JOBS.get(cid, {}).get("state")
         cols.append(row)
     return {"registry_url": url, "core": reg.get("core", []), "collections": cols}
 
@@ -82,3 +88,15 @@ async def install_pack(collection_id: str, db: Session = Depends(get_db)):
 async def packs_status():
     """In-flight/finished install jobs (collection_id -> {state, trust?, error?}) for the card to poll."""
     return _JOBS
+
+
+@router.delete("/api/packs/{collection_id}")
+async def uninstall_pack(collection_id: str, db: Session = Depends(get_db)):
+    """Tier-2 'Remove collection': fully uninstall a downloaded pack — drop its subscription + playlist and
+    reclaim the disk of any artworks left unlinked (shared masters + personal photos are kept). Distinct
+    from Tier-1 `DELETE /playlists/{id}`, which keeps every work in the library. 404 if not installed."""
+    res = lifespan_module.uninstall_collection(db, collection_id)
+    if res is None:
+        raise HTTPException(404, detail=f"collection {collection_id!r} is not installed")
+    _JOBS.pop(collection_id, None)  # clear any stale install-job state so it re-shows as available
+    return {"state": "uninstalled", **res}

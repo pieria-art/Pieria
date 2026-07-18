@@ -44,6 +44,11 @@ CATALOG_DIR = Path("static/catalog")
 _local_json_cache: dict = {}
 
 
+def _norm(s) -> str:
+    """Normalize a title/artist for owned-work matching across the bundled catalog and pack sentinels."""
+    return (s or "").strip().lower()
+
+
 def _read_local_json(path: Path):
     if not path.exists():
         return None
@@ -58,9 +63,14 @@ def _read_local_json(path: Path):
 
 
 def _subscribed_summaries(db: Session) -> list:
-    """Index summaries for enabled subscriptions, each stamped with its origin/trust/publisher."""
+    """Index summaries for enabled EXTERNAL subscriptions, each stamped with its origin/trust/publisher.
+    `pack:` rows are installed local packs (ADR-044 "packs are subscriptions"), surfaced via /api/packs +
+    the owned library — NOT here: their `pack:_catalog_thumbs/…` thumbnails don't resolve in a browser and
+    would duplicate the bundled catalog's copy of the same works."""
     out = []
-    for sub in db.query(SubscriptionModel).filter(SubscriptionModel.enabled.is_(True)).all():
+    for sub in db.query(SubscriptionModel).filter(
+            SubscriptionModel.enabled.is_(True),
+            SubscriptionModel.url.notlike("pack:%")).all():
         if not sub.cached_manifest:
             continue
         try:
@@ -226,9 +236,15 @@ async def search_catalog(q: str = "", db: Session = Depends(get_db)):
     tokens = [t for t in q.lower().split() if t]
     if not tokens:
         return {"query": q, "results": []}
-    added = {row[0] for row in db.query(ArtworkModel.source_url).filter(ArtworkModel.source_url.isnot(None)).all()}
+    # A work already in the library is "added" — matched by source_url, OR by (title, artist) so a bundled
+    # catalog work owned via a pack (whose ArtworkModel.source_url is a `pack:<file>` sentinel, not the
+    # museum URL) still shows the Added tag instead of a duplicate "Add to Library" button.
+    lib = db.query(ArtworkModel.source_url, ArtworkModel.title, ArtworkModel.agent_name).all()
+    added_urls = {r[0] for r in lib if r[0]}
+    added_keys = {(_norm(r[1]), _norm(r[2])) for r in lib if r[1]}
     index = await _catalog_index(db)
     results = []
+    seen = set()  # dedup the same work across collections (e.g. Mona Lisa in Masterpieces AND Renaissance)
     CAP = 200
     for c in index.get("collections", []):
         cid = c.get("id")
@@ -240,8 +256,13 @@ async def search_catalog(q: str = "", db: Session = Depends(get_db)):
             hay = " ".join(str(it.get(k, "") or "") for k in ("title", "agent_name", "date_display"))
             hay = (hay + " " + ctitle).lower()
             if all(t in hay for t in tokens):
+                key = (_norm(it.get("title")), _norm(it.get("agent_name")))
+                if key in seen:
+                    continue  # one card per unique work; first collection wins the attribution
+                seen.add(key)
+                owned = (it.get("source_url") in added_urls or key in added_keys)
                 results.append({**it, "collection_id": cid, "collection_title": ctitle,
-                                "item_index": idx, "added": it.get("source_url") in added})
+                                "item_index": idx, "added": owned})
                 if len(results) >= CAP:
                     break
         if len(results) >= CAP:
