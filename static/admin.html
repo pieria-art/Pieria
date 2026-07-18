@@ -438,23 +438,15 @@
 
         <!-- Museum Art View — Browse Catalog + live Discover, unified behind one search box. -->
         <div id="view-museum" class="hidden">
-            <!-- Curated Art: the unified collections grid — owned + available (download) + subscribe.
-                 Covers + trust badges come from /api/packs (ADR-040 #4); this is the front door for
-                 acquiring whole collections, replacing the old per-piece catalog browse. -->
-            <div style="margin: 30px 0 10px;">
+            <div style="margin: 30px 0 14px;">
                 <h2 style="margin: 0 0 4px; font-size: 1.15rem; color: var(--text-color);">Curated Art</h2>
                 <p style="margin: 0; font-size: 0.82rem; color: #94a3b8;">
-                    Your collections, and official packs you can add. Downloading owns the art —
-                    signature-verified, then plays fully offline.
+                    Search for a specific piece across your collections and the world's museums —
+                    or add whole official packs from the collections below.
                 </p>
             </div>
-            <div id="collections-grid" class="artwork-grid" style="margin-bottom: 26px;"></div>
 
             <div class="museum-bar" style="position: sticky; top: 0; z-index: 20; background: var(--sidebar-bg); padding: 22px 25px; border-radius: 12px; border: 1px solid var(--border-color); margin: 0 0 20px;">
-                <p style="margin: 0 0 12px; font-size: 0.82rem; color: #94a3b8;">
-                    <strong style="color: var(--text-color);">Looking for one specific piece?</strong>
-                    Search your collections, or send Scouts across the world's live museums.
-                </p>
                 <div style="display: flex; gap: 10px; flex-wrap: wrap; align-items: center;">
                     <input type="text" id="scout-search" placeholder="Search your collections — or anything across the world's museums…"
                            list="catalog-suggest" autocomplete="off"
@@ -545,6 +537,17 @@
             <button id="load-more-btn" class="secondary" onclick="loadMoreDiscoveries()" style="display:none; width:100%; margin-top:20px; padding: 14px; font-size: 0.9rem; border-color: var(--accent-color); color: var(--accent-color);">
                 Load More Results
             </button>
+
+            <!-- The unified collections grid — owned + available (download) + community + subscribe
+                 (ADR-040 #4). Below the search per UAT: search + its results sit above the pack tiles. -->
+            <div style="margin: 34px 0 12px;">
+                <h2 style="margin: 0 0 4px; font-size: 1.15rem; color: var(--text-color);">Your Collections</h2>
+                <p style="margin: 0; font-size: 0.82rem; color: #94a3b8;">
+                    Collections you own, and official packs you can add. Downloading owns the art —
+                    signature-verified, then plays fully offline.
+                </p>
+            </div>
+            <div id="collections-grid" class="artwork-grid"></div>
         </div>
 
         <!-- Devices View (all-in-one appliance only) -->

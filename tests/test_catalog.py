@@ -519,3 +519,58 @@ def test_crop_patch_unknown_artwork_404(client):
     c, _ = client
     r = c.patch("/artworks/9999/crop", json={"crop_x": 0, "crop_y": 0, "crop_width": 1, "crop_height": 1})
     assert r.status_code == 404
+
+
+# --- Curated Art UAT fixes: pack subs stay out of the federated catalog/subscription surfaces ---
+
+def test_search_excludes_pack_subscriptions(client):
+    """A `pack:` install must NOT appear as a separate search hit — its `pack:_catalog_thumbs/…`
+    thumbnail doesn't resolve in a browser and would duplicate the bundled catalog's copy."""
+    c, db = client
+    manifest = {"title": "Core", "items": [{"title": "Test Sunrise", "artist": "A. Painter",
+                "image": {"local_file": "sun.jpg", "thumbnail_url": "pack:_catalog_thumbs/x.jpg"}}]}
+    db.add(SubscriptionModel(url="pack:core", collection_id="core", title="Core", enabled=True,
+                             cached_manifest=json.dumps(manifest), item_count=1, last_status="ok"))
+    db.commit()
+    hits = c.get("/api/catalog/search", params={"q": "sunrise"}).json()["results"]
+    assert len(hits) == 1  # only the bundled Test Sunrise, no broken-thumb pack duplicate
+    assert all(not (h.get("thumbnail_url") or "").startswith("pack:") for h in hits)
+
+
+def test_search_added_flag_bridges_pack_owned_by_title_artist(client):
+    """A bundled catalog work owned via a pack (ArtworkModel.source_url is a `pack:` sentinel, not the
+    museum URL) still shows `added` — matched by (title, artist) — so it's not offered as a re-add."""
+    c, db = client
+    db.add(ArtworkModel(filename="sun.jpg", status="approved", is_seed=True,
+                        title="Test Sunrise", agent_name="A. Painter", source_url="pack:sun.jpg"))
+    db.commit()
+    hits = c.get("/api/catalog/search", params={"q": "sunrise"}).json()["results"]
+    assert len(hits) == 1 and hits[0]["added"] is True
+
+
+def test_list_subscriptions_excludes_pack_installs(client):
+    """/api/subscriptions returns external feeds only — `pack:` installs are managed under Curated Art,
+    and syncing one would try to HTTP-fetch a `pack:<id>` URL (the reported UAT bug)."""
+    c, db = client
+    db.add(SubscriptionModel(url="pack:core", title="Core", enabled=True))
+    db.add(SubscriptionModel(url="https://ext.test/m.json", title="External", enabled=True))
+    db.commit()
+    urls = [s["url"] for s in c.get("/api/subscriptions").json()]
+    assert "https://ext.test/m.json" in urls and "pack:core" not in urls
+
+
+def test_search_dedupes_same_work_across_collections(client):
+    """The same work in two collections (e.g. Mona Lisa in Masterpieces AND Renaissance) collapses to a
+    single search card — the reported UAT double-image."""
+    import routers.catalog as rc
+    c, _ = client
+    cat = rc.CATALOG_DIR
+    (cat / "overlay.json").write_text(json.dumps({"id": "overlay", "title": "Overlay",
+        "description": "o", "source": "Test Museum", "license": "Public Domain", "items": [dict(ITEM_A)]}))
+    idx = json.loads((cat / "index.json").read_text())
+    idx["collections"].append({"id": "overlay", "title": "Overlay", "count": 1,
+                               "cover_thumbnail": ITEM_A["thumbnail_url"]})
+    (cat / "index.json").write_text(json.dumps(idx))
+    rc._local_json_cache.clear()  # bust the mtime-keyed cache so the new files are read
+    hits = c.get("/api/catalog/search", params={"q": "sunrise"}).json()["results"]
+    assert len(hits) == 1  # Test Sunrise is now in demo AND overlay, deduped to one

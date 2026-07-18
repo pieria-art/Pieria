@@ -39,7 +39,11 @@ class SubscriptionPayload(BaseModel):
 
 @router.get("/api/subscriptions")
 async def list_subscriptions(db: Session = Depends(get_db)):
-    return [_sub_summary(s) for s in db.query(SubscriptionModel).order_by(SubscriptionModel.id).all()]
+    """External (URL-added) collections only. `pack:` rows are installed local packs (ADR-044) — they're
+    managed under Curated Art (owned tiles), and syncing one would try to HTTP-fetch a `pack:<id>` URL."""
+    subs = db.query(SubscriptionModel).filter(
+        SubscriptionModel.url.notlike("pack:%")).order_by(SubscriptionModel.id).all()
+    return [_sub_summary(s) for s in subs]
 
 
 @router.post("/api/subscriptions")
