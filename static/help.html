@@ -209,37 +209,39 @@ docker compose up -d --build</code></pre>
 
         <section id="adding-art">
             <h2>Adding Art</h2>
-            <p>Three ways to fill your walls. <strong>Museum Art</strong> needs <strong>no AI key at all</strong> —
+            <p>Three ways to fill your walls. <strong>Curated Art</strong> needs <strong>no AI key at all</strong> —
                only auto-analysis of your own uploads does.</p>
 
-            <h3>1. Museum Art — one place for the world's art</h3>
-            <p>The <strong>🏛️ Museum Art</strong> tab is a single front door with one search box and a
-               <strong>source toggle</strong> that decides where the grid looks. As you type, the box
-               <strong>suggests matching artists and titles</strong> from the catalog.</p>
+            <h3>1. Curated Art — your collections + official packs</h3>
+            <p>The <strong>🏛️ Curated Art</strong> tab is the home for the art on your walls. At the top, a
+               <strong>search box</strong> (with title/artist <strong>autocomplete</strong>) finds a specific
+               piece; below it, <strong>Your Collections</strong> is a grid of collection tiles for adding whole
+               collections at once.</p>
             <ul>
-                <li><strong>🏛️ Curated catalog</strong> — a hand-picked, collection-first library of public-domain
-                   art (museums, NASA, the Library of Congress) with ready-made museum placards. Browse the
-                   collections, or type to search across all of them. Click <strong>Add to Library</strong> on any
-                   piece and <em>only then</em> does its full-resolution image download — browsing itself is instant
-                   (just text + thumbnails), and curated pieces add <strong>straight to your library</strong>. To add
-                   several at once, hit <strong>☑ Select</strong>, tap the pieces you want, and
-                   <strong>Add selected</strong> (optionally into a collection).</li>
-                <li><strong>🌐 Live museum search</strong> — the same box, pointed at world-class open collections for
-                   a specific artist, subject, or era: the Met, Art Institute of Chicago, Cleveland, Rijksmuseum, SMK,
-                   <strong>NASA</strong> (space photography), and <strong>Wikimedia Commons</strong> (the broadest
-                   public-domain pool). Pick which repositories to search under <em>Advanced sources</em>. Click
-                   <strong>Review</strong> on a find and its card <strong>expands right there</strong> into an editable
-                   placard — the AI writes the details in as you watch, and you <strong>Approve &amp; Publish</strong>
-                   (or <strong>Discard</strong>) without ever leaving the page. (Anything you'd rather batch still
-                   collects in the <strong>Review Queue</strong> tab.) NASA and Wikimedia need no key; Wikimedia
-                   results are filtered to public-domain works at display-grade resolution (≥2000px). A model just
-                   makes the search smarter for ambiguous queries.</li>
+                <li><strong>Collections you own</strong> — each is a downloaded, signature-verified pack that plays
+                   fully <strong>offline</strong>. A tile shows its cover, work count, size, and a
+                   <strong>Verified</strong> badge; <strong>Remove</strong> uninstalls it and reclaims the disk
+                   (works shared with another collection, and your own photos, are kept).</li>
+                <li><strong>Official packs you can add</strong> — dimmed tiles tagged <strong>Official</strong>. Click
+                   <strong>Download</strong> and the whole collection downloads once, verifies against its signature,
+                   and becomes yours — no per-piece hunting, and owning the art means it never rots or disappears.</li>
+                <li><strong>➕ Subscribe</strong> — paste a publisher's collection URL to index it as a
+                   <strong>Community</strong> tile alongside the official packs.</li>
             </ul>
-            <p>Searching the curated catalog and coming up short? When there are few or no matches, a clear
-               <em>“Search live museums →”</em> prompt offers to widen the very same query to the live scope.</p>
+            <p><strong>Looking for one specific piece?</strong> Use the search box up top. The
+               <strong>🏛️ Curated catalog</strong> scope searches instantly across your collections — an
+               already-owned work shows an <strong>Added ✓</strong> tag instead of a duplicate. Come up short and a
+               clear <em>“Search live museums →”</em> prompt widens the very same query to
+               <strong>🌐 Live museum search</strong>: the Met, Art Institute of Chicago, Cleveland, Rijksmuseum,
+               SMK, <strong>NASA</strong> (space photography), and <strong>Wikimedia Commons</strong> (the broadest
+               public-domain pool). Pick which repositories to search under <em>Advanced sources</em>. Click
+               <strong>Review</strong> on a live find and its card <strong>expands right there</strong> into an
+               editable placard — the AI writes the details in as you watch, and you
+               <strong>Approve &amp; Publish</strong> (or <strong>Discard</strong>) without ever leaving the page.
+               NASA and Wikimedia need no key; Wikimedia results are filtered to public-domain works ≥2000px.</p>
             <figure>
-                <img class="shot" src="/docs/catalog-add.gif" alt="Browsing the catalog: collections grid, opening a collection, and adding a piece">
-                <figcaption>Curated scope: browse collections → open one → Add to Library. The high-res image downloads only on Add.</figcaption>
+                <img class="shot" src="/docs/catalog-add.gif" alt="The Curated Art grid: owned collections, available official packs to download, and the search box on top">
+                <figcaption>Curated Art: search a piece up top, and add whole official packs from the collections grid below — each downloads once, verifies, and plays offline.</figcaption>
             </figure>
 
             <h3>2. Upload your own</h3>
@@ -271,13 +273,13 @@ docker compose up -d --build</code></pre>
             </div>
 
             <h3>3. Subscribe to a collection <span style="font-weight:normal; color:#94a3b8;">(beta)</span></h3>
-            <p>In <strong>Settings → 🌐 Subscriptions</strong>, paste a publisher's collection URL to browse
-               their art alongside your catalog. Each feed is tagged <strong>Community</strong> (added by
-               URL) or <strong>Verified</strong> (a signed feed whose publisher is in our registry); the
-               bundled catalog shows as <strong>Official</strong>. We index pointers only — images stay on
-               the publisher's server — and every feed is safety-checked and validated before it's added.
-               Use <em>Sync</em> to refresh a feed, <em>Remove</em> to unsubscribe (already-added artworks
-               stay in your library).</p>
+            <p>Under <strong>🏛️ Curated Art</strong>, the <strong>➕ Subscribe</strong> tile takes a publisher's
+               collection URL and indexes their art alongside the official packs, tagged
+               <strong>Community</strong> (added by URL) or <strong>Verified</strong> (a signed feed whose
+               publisher is in our registry); official packs show as <strong>Official</strong>. We index pointers
+               only — images stay on the publisher's server — and every feed is safety-checked and validated
+               before it's added. Manage your feeds (<em>Sync</em> to refresh, <em>Remove</em> to unsubscribe)
+               under <strong>Settings → 🌐 Subscriptions</strong>; already-added artworks stay in your library.</p>
             <div class="tip" id="publishing">
                 <strong>Publishing your own?</strong> Open <a href="/admin?view=publisher" style="color:var(--accent-color);">Publisher&nbsp;Studio</a>
                 to author and sign a collection of your own hosted images, then host the exported
