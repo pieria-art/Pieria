@@ -35,7 +35,9 @@
    "focal_point": [
     0.35,
     0.4
-   ]
+   ],
+   "delivered_edge": 4232,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Fair Nihilist (companion plate)",
@@ -67,7 +69,9 @@
    "focal_point": [
     0.6,
     0.55
-   ]
+   ],
+   "delivered_edge": 4216,
+   "resolution_tier": "4K"
   },
   {
    "title": "They Took Their Wives with Them on Their Cruises",
@@ -100,7 +104,9 @@
    "focal_point": [
     0.35,
     0.45
-   ]
+   ],
+   "delivered_edge": 4788,
+   "resolution_tier": "4K"
   },
   {
    "title": "Arizona Nights",
@@ -132,7 +138,9 @@
    "focal_point": [
     0.55,
     0.35
-   ]
+   ],
+   "delivered_edge": 4509,
+   "resolution_tier": "4K"
   },
   {
    "title": "Arizona Nights (companion plate)",
@@ -164,7 +172,9 @@
    "focal_point": [
     0.62,
     0.45
-   ]
+   ],
+   "delivered_edge": 4484,
+   "resolution_tier": "4K"
   },
   {
    "title": "Where the Mail Goes, Cream-of-Wheat Goes",
@@ -196,7 +206,9 @@
    "focal_point": [
     0.4,
     0.4
-   ]
+   ],
+   "delivered_edge": 4359,
+   "resolution_tier": "4K"
   },
   {
    "title": "Advertisement for a Smoking Substitute",
@@ -229,7 +241,9 @@
    "focal_point": [
     0.5,
     0.4
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Harper's Weekly, Bicycling Number",
@@ -262,7 +276,9 @@
    "focal_point": [
     0.5,
     0.45
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Scribner's for April",
@@ -295,7 +311,9 @@
    "focal_point": [
     0.5,
     0.42
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "The Christmas Scribner's",
@@ -328,7 +346,9 @@
    "focal_point": [
     0.28,
     0.22
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Poster for Scribner's Magazine",
@@ -361,7 +381,9 @@
    "focal_point": [
     0.4,
     0.4
-   ]
+   ],
+   "delivered_edge": 5991,
+   "resolution_tier": "4K"
   },
   {
    "title": "Harper's Weekly for Christmas",
@@ -394,7 +416,9 @@
    "focal_point": [
     0.5,
     0.3
-   ]
+   ],
+   "delivered_edge": 5640,
+   "resolution_tier": "4K"
   },
   {
    "title": "Dancer with Cymbals",
@@ -426,7 +450,9 @@
    "focal_point": [
     0.45,
     0.45
-   ]
+   ],
+   "delivered_edge": 7042,
+   "resolution_tier": "4K"
   },
   {
    "title": "Reaper Death",
@@ -459,7 +485,9 @@
    "focal_point": [
     0.45,
     0.35
-   ]
+   ],
+   "delivered_edge": 6900,
+   "resolution_tier": "4K"
   },
   {
    "title": "A Dream (Voyage de Rêve)",
@@ -492,7 +520,9 @@
    "focal_point": [
     0.45,
     0.55
-   ]
+   ],
+   "delivered_edge": 6454,
+   "resolution_tier": "4K"
   },
   {
    "title": "Day of Labour",
@@ -525,7 +555,9 @@
    "focal_point": [
     0.5,
     0.45
-   ]
+   ],
+   "delivered_edge": 5860,
+   "resolution_tier": "4K"
   },
   {
    "title": "His Word of Honor",
@@ -557,7 +589,9 @@
    "focal_point": [
     0.42,
     0.35
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Scribner's for June",
@@ -589,7 +623,9 @@
    "focal_point": [
     0.45,
     0.35
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "The Weaker Sex II",
@@ -622,7 +658,9 @@
    "focal_point": [
     0.55,
     0.35
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "The Reason Dinner Was Late",
@@ -653,7 +691,9 @@
    "focal_point": [
     0.82,
     0.32
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Life Was Made for Love and Cheer",
@@ -685,7 +725,9 @@
    "focal_point": [
     0.42,
     0.45
-   ]
+   ],
+   "delivered_edge": 5194,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Navarrese (Plate I)",
@@ -717,7 +759,9 @@
    "focal_point": [
     0.42,
     0.28
-   ]
+   ],
+   "delivered_edge": 4504,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Navarrese (Plate II)",
@@ -749,7 +793,9 @@
    "focal_point": [
     0.42,
     0.35
-   ]
+   ],
+   "delivered_edge": 4512,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Navarrese (Plate III)",
@@ -781,7 +827,9 @@
    "focal_point": [
     0.35,
     0.35
-   ]
+   ],
+   "delivered_edge": 4416,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Navarrese (Plate IV)",
@@ -813,7 +861,9 @@
    "focal_point": [
     0.35,
     0.42
-   ]
+   ],
+   "delivered_edge": 4424,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Journey",
@@ -845,7 +895,9 @@
    "focal_point": [
     0.32,
     0.4
-   ]
+   ],
+   "delivered_edge": 4480,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Flowers",
@@ -877,7 +929,9 @@
    "focal_point": [
     0.4,
     0.45
-   ]
+   ],
+   "delivered_edge": 4376,
+   "resolution_tier": "4K"
   },
   {
    "title": "King Lear, Act I, Scene I",
@@ -909,7 +963,9 @@
    "focal_point": [
     0.5,
     0.4
-   ]
+   ],
+   "delivered_edge": 6498,
+   "resolution_tier": "4K"
   },
   {
    "title": "Two Gentlemen in Eighteenth-Century Dress",
@@ -941,7 +997,9 @@
    "focal_point": [
     0.25,
     0.42
-   ]
+   ],
+   "delivered_edge": 4959,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Right of the Road",
@@ -973,7 +1031,9 @@
    "focal_point": [
     0.4,
     0.68
-   ]
+   ],
+   "delivered_edge": 4500,
+   "resolution_tier": "4K"
   },
   {
    "title": "Toro, Toro!",
@@ -1006,7 +1066,9 @@
    "focal_point": [
     0.45,
     0.4
-   ]
+   ],
+   "delivered_edge": 4096,
+   "resolution_tier": "4K"
   },
   {
    "title": "A Quarrel Over Cards",
@@ -1039,7 +1101,9 @@
    "focal_point": [
     0.42,
     0.38
-   ]
+   ],
+   "delivered_edge": 4096,
+   "resolution_tier": "4K"
   },
   {
    "title": "An Indian Dance",
@@ -1071,7 +1135,9 @@
    "focal_point": [
     0.5,
     0.5
-   ]
+   ],
+   "delivered_edge": 4096,
+   "resolution_tier": "4K"
   },
   {
    "title": "Cowboy on a Bucking Bronco",
@@ -1104,7 +1170,9 @@
    "focal_point": [
     0.45,
     0.45
-   ]
+   ],
+   "delivered_edge": 4096,
+   "resolution_tier": "4K"
   },
   {
    "title": "Frontispiece, Stories from the Pentamerone",
@@ -1137,7 +1205,9 @@
    "focal_point": [
     0.5,
     0.4
-   ]
+   ],
+   "delivered_edge": 5946,
+   "resolution_tier": "4K"
   },
   {
    "title": "Mission Building",
@@ -1169,7 +1239,9 @@
    "focal_point": [
     0.48,
     0.42
-   ]
+   ],
+   "delivered_edge": 7001,
+   "resolution_tier": "4K"
   },
   {
    "title": "I Want You for the Navy",
@@ -1201,7 +1273,9 @@
    "focal_point": [
     0.32,
     0.42
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Virginia Harned as Alice of Old Vincennes",
@@ -1233,7 +1307,9 @@
    "focal_point": [
     0.45,
     0.18
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Clear the Way",
@@ -1265,7 +1341,9 @@
    "focal_point": [
     0.55,
     0.35
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Americans All!",
@@ -1297,7 +1375,9 @@
    "focal_point": [
     0.4,
     0.35
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "The New Generation",
@@ -1329,7 +1409,9 @@
    "focal_point": [
     0.45,
     0.45
-   ]
+   ],
+   "delivered_edge": 4160,
+   "resolution_tier": "4K"
   },
   {
    "title": "The New Generation (Plate II)",
@@ -1361,7 +1443,9 @@
    "focal_point": [
     0.42,
     0.62
-   ]
+   ],
+   "delivered_edge": 4016,
+   "resolution_tier": "4K"
   },
   {
    "title": "Give Mother the Vote, We Need It",
@@ -1393,7 +1477,9 @@
    "focal_point": [
     0.68,
     0.55
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Christmas Eve Memories",
@@ -1425,7 +1511,9 @@
    "focal_point": [
     0.5,
     0.45
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "The Sunday-School Picnic",
@@ -1457,7 +1545,9 @@
    "focal_point": [
     0.45,
     0.4
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "The Bachelor's Last Christmas Eve",
@@ -1490,7 +1580,9 @@
    "focal_point": [
     0.68,
     0.45
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "When We All Believe",
@@ -1523,7 +1615,9 @@
    "focal_point": [
     0.35,
     0.4
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "The Next Candidate for Statehood",
@@ -1556,7 +1650,9 @@
    "focal_point": [
     0.65,
     0.45
-   ]
+   ],
+   "delivered_edge": 5530,
+   "resolution_tier": "4K"
   },
   {
    "title": "A Puritan's Wife",
@@ -1589,7 +1685,9 @@
    "focal_point": [
     0.35,
     0.28
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "The Two Distilleries on the Same Hill",
@@ -1622,7 +1720,9 @@
    "focal_point": [
     0.5,
     0.5
-   ]
+   ],
+   "delivered_edge": 5520,
+   "resolution_tier": "4K"
   },
   {
    "title": "Huntord's Fair Nihilist",
@@ -1655,7 +1755,9 @@
    "focal_point": [
     0.4,
     0.42
-   ]
+   ],
+   "delivered_edge": 4200,
+   "resolution_tier": "4K"
   },
   {
    "title": "Lincoln's Last Day",
@@ -1688,7 +1790,9 @@
    "focal_point": [
     0.55,
     0.5
-   ]
+   ],
+   "delivered_edge": 4072,
+   "resolution_tier": "4K"
   },
   {
    "title": "Peire Vidal Chante à la Belle Azalais",
@@ -1721,7 +1825,9 @@
    "focal_point": [
     0.38,
     0.55
-   ]
+   ],
+   "delivered_edge": 3965,
+   "resolution_tier": "4K"
   },
   {
    "title": "In the Train of King Alfonso",
@@ -1754,7 +1860,9 @@
    "focal_point": [
     0.28,
     0.35
-   ]
+   ],
+   "delivered_edge": 3946,
+   "resolution_tier": "4K"
   },
   {
    "title": "They Questioned Him with Malevolent Persistence",
@@ -1787,7 +1895,9 @@
    "focal_point": [
     0.42,
     0.55
-   ]
+   ],
+   "delivered_edge": 3938,
+   "resolution_tier": "4K"
   },
   {
    "title": "'And See That You Watch Well,' He Snarled",
@@ -1820,7 +1930,9 @@
    "focal_point": [
     0.35,
     0.4
-   ]
+   ],
+   "delivered_edge": 3916,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Apparition",
@@ -1853,7 +1965,9 @@
    "focal_point": [
     0.35,
     0.45
-   ]
+   ],
+   "delivered_edge": 3856,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Rescue at Sea",
@@ -1886,7 +2000,9 @@
    "focal_point": [
     0.35,
     0.62
-   ]
+   ],
+   "delivered_edge": 5640,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Marketplace",
@@ -1919,7 +2035,9 @@
    "focal_point": [
     0.45,
     0.55
-   ]
+   ],
+   "delivered_edge": 5640,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Bride in Green",
@@ -1952,7 +2070,9 @@
    "focal_point": [
     0.42,
     0.4
-   ]
+   ],
+   "delivered_edge": 5640,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Death of Amfortas",
@@ -1985,7 +2105,9 @@
    "focal_point": [
     0.48,
     0.5
-   ]
+   ],
+   "delivered_edge": 4096,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Loathly Damsel",
@@ -2018,7 +2140,9 @@
    "focal_point": [
     0.35,
     0.55
-   ]
+   ],
+   "delivered_edge": 4096,
+   "resolution_tier": "4K"
   },
   {
    "title": "Baron Steuben Drilling Troops at Valley Forge",
@@ -2051,7 +2175,9 @@
    "focal_point": [
     0.85,
     0.5
-   ]
+   ],
+   "delivered_edge": 4000,
+   "resolution_tier": "4K"
   },
   {
    "title": "Who Is Sylvia? What Is She, That All the Swains Commend Her?",
@@ -2084,7 +2210,9 @@
    "focal_point": [
     0.42,
     0.5
-   ]
+   ],
+   "delivered_edge": 4000,
+   "resolution_tier": "4K"
   },
   {
    "title": "And the Fool, He Called Her His Lady Fair",
@@ -2116,7 +2244,9 @@
    "focal_point": [
     0.62,
     0.32
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Will Rogers Memorial Fund Poster",
@@ -2148,7 +2278,9 @@
    "focal_point": [
     0.45,
     0.55
-   ]
+   ],
+   "delivered_edge": 4597,
+   "resolution_tier": "4K"
   },
   {
    "title": "Roping Horses in the Corral",
@@ -2180,7 +2312,9 @@
    "focal_point": [
     0.32,
     0.5
-   ]
+   ],
+   "delivered_edge": 4140,
+   "resolution_tier": "4K"
   },
   {
    "title": "Fourth of July",
@@ -2212,7 +2346,9 @@
    "focal_point": [
     0.5,
     0.28
-   ]
+   ],
+   "delivered_edge": 4960,
+   "resolution_tier": "4K"
   },
   {
    "title": "Drifting Before the Storm",
@@ -2245,7 +2381,9 @@
    "focal_point": [
     0.42,
     0.4
-   ]
+   ],
+   "delivered_edge": 4096,
+   "resolution_tier": "4K"
   },
   {
    "title": "Gathering of the Trappers",
@@ -2278,7 +2416,9 @@
    "focal_point": [
     0.45,
     0.35
-   ]
+   ],
+   "delivered_edge": 4096,
+   "resolution_tier": "4K"
   },
   {
    "title": "On the White Man's Road",
@@ -2311,7 +2451,9 @@
    "focal_point": [
     0.45,
     0.35
-   ]
+   ],
+   "delivered_edge": 4096,
+   "resolution_tier": "4K"
   },
   {
    "title": "On the March to the Yalu",
@@ -2344,7 +2486,9 @@
    "focal_point": [
     0.48,
     0.45
-   ]
+   ],
+   "delivered_edge": 4096,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Flowers",
@@ -2377,7 +2521,9 @@
    "focal_point": [
     0.55,
     0.4
-   ]
+   ],
+   "delivered_edge": 4336,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Flowers",
@@ -2410,7 +2556,9 @@
    "focal_point": [
     0.4,
     0.45
-   ]
+   ],
+   "delivered_edge": 4312,
+   "resolution_tier": "4K"
   },
   {
    "title": "Her Eyes Are Doves",
@@ -2442,7 +2590,9 @@
    "focal_point": [
     0.6,
     0.42
-   ]
+   ],
+   "delivered_edge": 4304,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Little Silver Heart",
@@ -2474,7 +2624,9 @@
    "focal_point": [
     0.35,
     0.45
-   ]
+   ],
+   "delivered_edge": 4288,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Little Silver Heart",
@@ -2506,7 +2658,9 @@
    "focal_point": [
     0.58,
     0.3
-   ]
+   ],
+   "delivered_edge": 4280,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Little Silver Heart",
@@ -2538,7 +2692,9 @@
    "focal_point": [
     0.45,
     0.35
-   ]
+   ],
+   "delivered_edge": 4264,
+   "resolution_tier": "4K"
   },
   {
    "title": "June Flowers",
@@ -2570,7 +2726,9 @@
    "focal_point": [
     0.35,
     0.45
-   ]
+   ],
+   "delivered_edge": 5522,
+   "resolution_tier": "4K"
   },
   {
    "title": "Sure to Enjoy It",
@@ -2602,7 +2760,9 @@
    "focal_point": [
     0.3,
     0.68
-   ]
+   ],
+   "delivered_edge": 5462,
+   "resolution_tier": "4K"
   },
   {
    "title": "In Georgia",
@@ -2634,7 +2794,9 @@
    "focal_point": [
     0.45,
     0.7
-   ]
+   ],
+   "delivered_edge": 5432,
+   "resolution_tier": "4K"
   },
   {
    "title": "Immaterial",
@@ -2666,7 +2828,9 @@
    "focal_point": [
     0.28,
     0.35
-   ]
+   ],
+   "delivered_edge": 5425,
+   "resolution_tier": "4K"
   }
  ]
 }

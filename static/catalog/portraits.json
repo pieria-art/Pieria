@@ -29,7 +29,9 @@
    "license_url": "",
    "credit_line": "https://www.artic.edu/artworks/862",
    "license_verified": "2026-07-16",
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "delivered_edge": 2250,
+   "resolution_tier": "HD"
   },
   {
    "title": "The Captive Slave (Ira Aldridge)",
@@ -54,7 +56,9 @@
    "license_basis": "CC0 — AIC public-domain works",
    "license_url": "",
    "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Portrait of a Man with Gray Hair",
@@ -80,7 +84,9 @@
    "license_url": "",
    "credit_line": "https://www.artic.edu/artworks/15708",
    "license_verified": "2026-07-16",
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "delivered_edge": 2250,
+   "resolution_tier": "HD"
   },
   {
    "title": "Édouard Manet",
@@ -106,7 +112,9 @@
    "license_url": "",
    "credit_line": "https://www.artic.edu/artworks/87467",
    "license_verified": "2026-07-16",
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "delivered_edge": 3000,
+   "resolution_tier": "HD"
   },
   {
    "title": "Madame de Pastoret and Her Son",
@@ -132,7 +140,9 @@
    "license_url": "",
    "credit_line": "https://www.artic.edu/artworks/27307",
    "license_verified": "2026-07-16",
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "delivered_edge": 3000,
+   "resolution_tier": "HD"
   },
   {
    "title": "Old Man with a Gold Chain",
@@ -157,7 +167,9 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "FAEStDTOypM-CQ at Google Cultural Institute maximum zoom level",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 4184,
+   "resolution_tier": "4K"
   },
   {
    "title": "Young Woman at an Open Half-Door",
@@ -182,7 +194,9 @@
    "license_basis": "CC0 — AIC public-domain works",
    "license_url": "",
    "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "The Child's Bath",
@@ -207,7 +221,9 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "Google Arts &amp; Culture: Home page – Image",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 4912,
+   "resolution_tier": "4K"
   },
   {
    "title": "Interrupted Reading",
@@ -232,7 +248,9 @@
    "license_basis": "CC0 — AIC public-domain works",
    "license_url": "",
    "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 7384,
+   "resolution_tier": "4K"
   },
   {
    "title": "Madame François Buron",
@@ -258,7 +276,9 @@
    "license_url": "",
    "credit_line": "https://www.artic.edu/artworks/88632",
    "license_verified": "2026-07-16",
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "delivered_edge": 2250,
+   "resolution_tier": "HD"
   },
   {
    "title": "Portrait of a Man with a Pink",
@@ -283,7 +303,9 @@
    "license_basis": "CC0 — AIC public-domain works",
    "license_url": "",
    "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 6688,
+   "resolution_tier": "4K"
   },
   {
    "title": "Amédée-David, the Comte de Pastoret",
@@ -308,7 +330,9 @@
    "license_basis": "CC0 — AIC public-domain works",
    "license_url": "",
    "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 6633,
+   "resolution_tier": "4K"
   },
   {
    "title": "Merahi metua no Tehamana (Tehamana Has Many Parents or The Ancestors of Tehamana)",
@@ -333,7 +357,9 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "sAFwO-4unkAuvw at Google Cultural Institute maximum zoom level",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Francesco de' Medici",
@@ -358,7 +384,9 @@
    "license_basis": "CC0 — AIC public-domain works",
    "license_url": "",
    "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Beggar with Oysters (Philosopher)",
@@ -384,7 +412,9 @@
    "license_url": "",
    "credit_line": "https://www.artic.edu/artworks/8969",
    "license_verified": "2026-07-16",
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "delivered_edge": 3000,
+   "resolution_tier": "HD"
   },
   {
    "title": "Polynesian Woman with Children",
@@ -410,7 +440,9 @@
    "license_url": "",
    "credit_line": "Art Institute of Chicago",
    "license_verified": "2026-07-16",
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "delivered_edge": 3000,
+   "resolution_tier": "HD"
   },
   {
    "title": "Portrait of General José Manuel Romero",
@@ -436,7 +468,9 @@
    "license_url": "",
    "credit_line": "https://www.artic.edu/artworks/89043",
    "license_verified": "2026-07-16",
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "delivered_edge": 2250,
+   "resolution_tier": "HD"
   },
   {
    "title": "Portrait of Constance Pipelet",
@@ -461,7 +495,9 @@
    "license_basis": "CC0 — AIC public-domain works",
    "license_url": "",
    "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 6000,
+   "resolution_tier": "4K"
   },
   {
    "title": "Mrs. Potter Palmer",
@@ -486,7 +522,9 @@
    "license_basis": "CC0 — AIC public-domain works",
    "license_url": "",
    "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "John Thomlinson and His Family",
@@ -512,7 +550,9 @@
    "license_url": "",
    "credit_line": "https://www.artic.edu/artworks/2169",
    "license_verified": "2026-07-16",
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "delivered_edge": 3000,
+   "resolution_tier": "HD"
   },
   {
    "title": "Portrait of a Noblewoman Dressed in Mourning",
@@ -538,7 +578,9 @@
    "license_url": "",
    "credit_line": "https://www.artic.edu/artworks/11390",
    "license_verified": "2026-07-16",
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "delivered_edge": 2250,
+   "resolution_tier": "HD"
   },
   {
    "title": "Helena Tromper Du Bois",
@@ -564,7 +606,9 @@
    "license_url": "",
    "credit_line": "https://www.artic.edu/artworks/866",
    "license_verified": "2026-07-16",
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "delivered_edge": 3000,
+   "resolution_tier": "HD"
   },
   {
    "title": "Self-Portrait",
@@ -590,7 +634,9 @@
    "license_url": "",
    "credit_line": "https://www.artic.edu/artworks/110661",
    "license_verified": "2026-07-16",
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "delivered_edge": 2250,
+   "resolution_tier": "HD"
   },
   {
    "title": "Portrait of a Woman with a Man at a Casement",
@@ -615,7 +661,9 @@
    "license_basis": "CC0 — Met Open Access",
    "license_url": "",
    "credit_line": "Collection of The Metropolitan Museum of Art",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 3875,
+   "resolution_tier": "4K"
   },
   {
    "title": "Portrait of Doge Leonardo Loredan",
@@ -640,7 +688,9 @@
    "focal_point": [
     0.5,
     0.25
-   ]
+   ],
+   "delivered_edge": 6000,
+   "resolution_tier": "4K"
   },
   {
    "title": "Portrait of Baldassare Castiglione",
@@ -665,7 +715,9 @@
    "focal_point": [
     0.42,
     0.32
-   ]
+   ],
+   "delivered_edge": 4000,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Ambassadors",
@@ -690,7 +742,9 @@
    "focal_point": [
     0.5,
     0.28
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Portrait of Henry VIII",
@@ -715,7 +769,9 @@
    "focal_point": [
     0.5,
     0.22
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Portrait of a Man in a Red Turban",
@@ -740,7 +796,9 @@
    "focal_point": [
     0.45,
     0.45
-   ]
+   ],
+   "delivered_edge": 6021,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Arnolfini Portrait",
@@ -765,7 +823,9 @@
    "focal_point": [
     0.48,
     0.4
-   ]
+   ],
+   "delivered_edge": 6000,
+   "resolution_tier": "4K"
   },
   {
    "title": "Infanta Margarita Teresa in a Blue Dress",
@@ -790,7 +850,9 @@
    "focal_point": [
     0.45,
     0.2
-   ]
+   ],
+   "delivered_edge": 6374,
+   "resolution_tier": "4K"
   },
   {
    "title": "Charles I at the Hunt",
@@ -823,7 +885,9 @@
    "focal_point": [
     0.3,
     0.2
-   ]
+   ],
+   "delivered_edge": 4214,
+   "resolution_tier": "4K"
   },
   {
    "title": "Portrait of Pope Innocent X",
@@ -856,7 +920,9 @@
    "focal_point": [
     0.45,
     0.25
-   ]
+   ],
+   "delivered_edge": 5799,
+   "resolution_tier": "4K"
   },
   {
    "title": "Portrait of Pope Julius II",
@@ -889,7 +955,9 @@
    "focal_point": [
     0.45,
     0.25
-   ]
+   ],
+   "delivered_edge": 5434,
+   "resolution_tier": "4K"
   },
   {
    "title": "Self-Portrait in a Straw Hat",
@@ -922,7 +990,9 @@
    "focal_point": [
     0.45,
     0.25
-   ]
+   ],
+   "delivered_edge": 6022,
+   "resolution_tier": "4K"
   },
   {
    "title": "Alexander Grant",
@@ -952,7 +1022,9 @@
    "focal_point": [
     0.4,
     0.2
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Lucrezia di Lippo di Iacopo Guidi",
@@ -982,7 +1054,9 @@
    "focal_point": [
     0.48,
     0.4
-   ]
+   ],
+   "delivered_edge": 5416,
+   "resolution_tier": "4K"
   },
   {
    "title": "Portrait of Dr. William McNeill Whistler",
@@ -1012,7 +1086,9 @@
    "focal_point": [
     0.35,
     0.3
-   ]
+   ],
+   "delivered_edge": 6579,
+   "resolution_tier": "4K"
   },
   {
    "title": "Arrangement in Flesh Color and Brown: Portrait of Arthur Jerome Eddy",
@@ -1037,7 +1113,9 @@
    "license_basis": "CC0 — AIC public-domain works",
    "license_url": "",
    "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Mrs. John Nicholson (Hannah Duncan) and John Nicholson, Jr.",
@@ -1063,7 +1141,9 @@
    "license_url": "",
    "credit_line": "https://www.artic.edu/artworks/78507",
    "license_verified": "2026-07-16",
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "delivered_edge": 2250,
+   "resolution_tier": "HD"
   },
   {
    "title": "James Vibert, Sculptor",
@@ -1089,7 +1169,9 @@
    "license_url": "",
    "credit_line": "https://www.artic.edu/artworks/27962",
    "license_verified": "2026-07-16",
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "delivered_edge": 3000,
+   "resolution_tier": "HD"
   },
   {
    "title": "James William Wallack",
@@ -1115,7 +1197,9 @@
    "license_url": "",
    "credit_line": "https://www.artic.edu/artworks/8475",
    "license_verified": "2026-07-16",
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "delivered_edge": 3000,
+   "resolution_tier": "HD"
   },
   {
    "title": "Isabella Wolff",
@@ -1140,7 +1224,9 @@
    "license_basis": "CC0 — AIC public-domain works",
    "license_url": "",
    "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 7185,
+   "resolution_tier": "4K"
   },
   {
    "title": "Dr. Joseph Klapp",
@@ -1166,7 +1252,9 @@
    "license_url": "",
    "credit_line": "https://www.artic.edu/artworks/96621",
    "license_verified": "2026-07-16",
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "delivered_edge": 2250,
+   "resolution_tier": "HD"
   },
   {
    "title": "Mrs. Klapp (Anna Milnor)",
@@ -1192,7 +1280,9 @@
    "license_url": "",
    "credit_line": "https://www.artic.edu/artworks/72375",
    "license_verified": "2026-07-16",
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "delivered_edge": 2250,
+   "resolution_tier": "HD"
   },
   {
    "title": "Sarah Dupont",
@@ -1217,7 +1307,9 @@
    "license_basis": "CC0 — AIC public-domain works",
    "license_url": "",
    "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Riter Fitzgerald",
@@ -1242,7 +1334,9 @@
    "license_basis": "CC0 — AIC public-domain works",
    "license_url": "",
    "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Portrait of Mary Adeline Williams",
@@ -1267,7 +1361,9 @@
    "license_basis": "CC0 — AIC public-domain works",
    "license_url": "",
    "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 4845,
+   "resolution_tier": "4K"
   },
   {
    "title": "Rêverie (Portrait of Gabrielle Borreau)",
@@ -1292,7 +1388,9 @@
    "license_basis": "CC0 — AIC public-domain works",
    "license_url": "",
    "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Mère Grégoire",
@@ -1317,7 +1415,9 @@
    "license_basis": "CC0 — AIC public-domain works",
    "license_url": "",
    "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   }
  ]
 }

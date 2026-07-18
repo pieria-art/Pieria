@@ -28,7 +28,9 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "C2RMF: Galerie de tableaux en très haute définition: image page",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "The Last Supper",
@@ -53,7 +55,9 @@
    "focal_point": [
     0.5,
     0.42
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Under the Wave off Kanagawa",
@@ -79,7 +83,9 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "Library of Congress Catalog: https://lccn.loc.gov/2008660568 Image download: https://cdn.loc.gov/service/pnp/jpd/02000/02018v.jpg Original url: https://www.loc.gov/pictures/item/2008660568/",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "The Starry Night",
@@ -104,7 +110,9 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "Google Arts &amp; Culture — bgEuwDxel93-Pg",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "The Scream",
@@ -129,7 +137,9 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "National Museum of Art, Architecture and Design",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 4000,
+   "resolution_tier": "4K"
   },
   {
    "title": "Primavera",
@@ -154,7 +164,9 @@
    "focal_point": [
     0.5,
     0.4
-   ]
+   ],
+   "delivered_edge": 4926,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Night Watch",
@@ -179,7 +191,9 @@
    "license_basis": "Public Domain / CC0 — Rijksstudio",
    "license_url": "",
    "credit_line": "Collection of Rijksmuseum",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 7133,
+   "resolution_tier": "4K"
   },
   {
    "title": "Girl with a Pearl Earring",
@@ -204,7 +218,9 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "Mauritshuis",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 6000,
+   "resolution_tier": "4K"
   },
   {
    "title": "Portrait of Adele Bloch-Bauer I",
@@ -229,7 +245,9 @@
    "focal_point": [
     0.42,
     0.25
-   ]
+   ],
+   "delivered_edge": 4128,
+   "resolution_tier": "4K"
   },
   {
    "title": "Water Lilies",
@@ -254,7 +272,9 @@
    "license_basis": "CC0 — AIC public-domain works",
    "license_url": "",
    "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Irises",
@@ -279,7 +299,9 @@
    "focal_point": [
     0.28,
     0.35
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "The Creation of Adam",
@@ -304,7 +326,9 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "Own work Burkhard Mücke Taken on 18 October 2017",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 6720,
+   "resolution_tier": "4K"
   },
   {
    "title": "American Gothic",
@@ -329,7 +353,9 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "Art Institute of Chicago: online database: entry 6565",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Sunflowers",
@@ -354,7 +380,9 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "National Gallery, London - online catalogue.",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 6000,
+   "resolution_tier": "4K"
   },
   {
    "title": "Olympia",
@@ -379,7 +407,9 @@
    "focal_point": [
     0.32,
     0.28
-   ]
+   ],
+   "delivered_edge": 5876,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Birth of Venus",
@@ -404,7 +434,9 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "Own work",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "The Last Judgment",
@@ -429,7 +461,9 @@
    "focal_point": [
     0.5,
     0.28
-   ]
+   ],
+   "delivered_edge": 4395,
+   "resolution_tier": "4K"
   },
   {
    "title": "Nighthawks",
@@ -454,7 +488,9 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "http://www.artic.edu/aic/collections/artwork/111628 (Manual stitch by Petar Milošević)",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Las Meninas",
@@ -479,7 +515,9 @@
    "focal_point": [
     0.48,
     0.55
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "View of Delft",
@@ -504,7 +542,9 @@
    "focal_point": [
     0.55,
     0.55
-   ]
+   ],
+   "delivered_edge": 6000,
+   "resolution_tier": "4K"
   },
   {
    "title": "Luncheon of the Boating Party",
@@ -529,7 +569,9 @@
    "focal_point": [
     0.5,
     0.35
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Luncheon on the Grass",
@@ -554,7 +596,9 @@
    "focal_point": [
     0.3,
     0.38
-   ]
+   ],
+   "delivered_edge": 5649,
+   "resolution_tier": "4K"
   },
   {
    "title": "Dance at Le Moulin de la Galette",
@@ -579,7 +623,9 @@
    "focal_point": [
     0.43,
     0.62
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "The Kiss",
@@ -604,7 +650,9 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "Google Art Project",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 7401,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Sleeping Gypsy",
@@ -629,7 +677,9 @@
    "focal_point": [
     0.45,
     0.6
-   ]
+   ],
+   "delivered_edge": 4490,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Bedroom (Amsterdam version, 1888)",
@@ -654,7 +704,9 @@
    "focal_point": [
     0.68,
     0.55
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "The Hay Wain",
@@ -679,7 +731,9 @@
    "focal_point": [
     0.58,
     0.55
-   ]
+   ],
+   "delivered_edge": 6128,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Fighting Temeraire",
@@ -704,7 +758,9 @@
    "focal_point": [
     0.25,
     0.45
-   ]
+   ],
+   "delivered_edge": 5684,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Anatomy Lesson of Dr. Nicolaes Tulp",
@@ -729,7 +785,9 @@
    "focal_point": [
     0.62,
     0.28
-   ]
+   ],
+   "delivered_edge": 6000,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Art of Painting",
@@ -762,7 +820,9 @@
    "focal_point": [
     0.52,
     0.38
-   ]
+   ],
+   "delivered_edge": 7377,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Return of the Prodigal Son",
@@ -787,7 +847,9 @@
    "focal_point": [
     0.42,
     0.55
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "The Arnolfini Portrait",
@@ -812,7 +874,9 @@
    "focal_point": [
     0.48,
     0.4
-   ]
+   ],
+   "delivered_edge": 6000,
+   "resolution_tier": "4K"
   },
   {
    "title": "A Sunday on La Grande Jatte — 1884",
@@ -837,7 +901,9 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "https://www.bostonglobe.com/arts/theater-dance/2016/09/01/huntington-two-georges-one-sondheim/OR1D4DPM8GsME67aXEjWiP/story.html",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Café Terrace at Night",
@@ -862,7 +928,9 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "https://data.collectienederland.nl/page/aggregation/kroller-muller/44529",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Starry Night Over the Rhône",
@@ -887,7 +955,9 @@
    "focal_point": [
     0.72,
     0.85
-   ]
+   ],
+   "delivered_edge": 5407,
+   "resolution_tier": "4K"
   },
   {
    "title": "Wheatfield with Cypresses",
@@ -920,7 +990,9 @@
    "focal_point": [
     0.68,
     0.55
-   ]
+   ],
+   "delivered_edge": 6000,
+   "resolution_tier": "4K"
   },
   {
    "title": "The School of Athens",
@@ -945,7 +1017,9 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "\"School of Athens\" by Raphael, Raphael Rooms, Vatican Museum Complete indexed photo collection at WorldHistoryPics.com.",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 6000,
+   "resolution_tier": "4K"
   },
   {
    "title": "Bacchus and Ariadne",
@@ -970,7 +1044,9 @@
    "focal_point": [
     0.5,
     0.32
-   ]
+   ],
+   "delivered_edge": 5529,
+   "resolution_tier": "4K"
   },
   {
    "title": "Virgin of the Rocks",
@@ -1003,7 +1079,9 @@
    "focal_point": [
     0.48,
     0.3
-   ]
+   ],
+   "delivered_edge": 4226,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Raft of the Medusa",
@@ -1028,7 +1106,9 @@
    "focal_point": [
     0.68,
     0.28
-   ]
+   ],
+   "delivered_edge": 5907,
+   "resolution_tier": "4K"
   }
  ]
 }

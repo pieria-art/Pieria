@@ -28,7 +28,9 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "https://artsandculture.google.com/asset/wd/IwE6G8n5wsoEjg",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Pallas Athene",
@@ -53,7 +55,9 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "https://www.gustav-klimt.com/images/paintings/Pallas-Athena.jpg",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 3966,
+   "resolution_tier": "4K"
   },
   {
    "title": "Danaë",
@@ -79,7 +83,9 @@
    "license_url": "",
    "credit_line": "repro from artbook",
    "license_verified": "2026-07-16",
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "delivered_edge": 2694,
+   "resolution_tier": "HD"
   },
   {
    "title": "The Beethoven Frieze",
@@ -104,7 +110,9 @@
    "license_basis": "CC0",
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "http://allpaintingsstore.com/ADC/Art-ImgScreen-3.nsf/O/A-8XY64V/$FILE/Gustav-klimt-the-beethoven-frieze-the-hostile-powers.-far-wall.Jpg",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "The Slav Epic: The Apotheosis of the Slavs",
@@ -130,7 +138,9 @@
    "license_url": "",
    "credit_line": "http://www.reflex.cz/galerie/kultura/10414/?foto=12",
    "license_verified": "2026-07-16",
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "delivered_edge": 2882,
+   "resolution_tier": "HD"
   },
   {
    "title": "Strawberry Thief",
@@ -162,7 +172,9 @@
     0.03,
     0.96,
     0.95
-   ]
+   ],
+   "delivered_edge": 3768,
+   "resolution_tier": "HD"
   },
   {
    "title": "Trellis",
@@ -187,7 +199,9 @@
    "license_basis": "CC0",
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 4000,
+   "resolution_tier": "4K"
   },
   {
    "title": "Acanthus",
@@ -219,7 +233,9 @@
     0.02,
     0.935,
     0.965
-   ]
+   ],
+   "delivered_edge": 4044,
+   "resolution_tier": "4K"
   },
   {
    "title": "Magnolia and Irises",
@@ -244,7 +260,9 @@
    "license_basis": "CC0",
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 3850,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Peacock Skirt",
@@ -269,7 +287,9 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "[1]",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 4941,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Dancer's Reward",
@@ -295,7 +315,9 @@
    "license_url": "",
    "credit_line": "Aubrey Beardsley",
    "license_verified": "2026-07-16",
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "delivered_edge": 2454,
+   "resolution_tier": "HD"
   },
   {
    "title": "Neptune's Horses",
@@ -320,7 +342,9 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "Sotheby's London, 10 May 2012, lot 14",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 4000,
+   "resolution_tier": "4K"
   },
   {
    "title": "Ver Sacrum",
@@ -345,7 +369,9 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "repro from artbook",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 5460,
+   "resolution_tier": "4K"
   }
  ]
 }

@@ -28,7 +28,9 @@
    "license_basis": "CC0 — Met Open Access",
    "license_url": "",
    "credit_line": "Collection of The Metropolitan Museum of Art",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 4000,
+   "resolution_tier": "4K"
   },
   {
    "title": "Portrait of a Man (\"The Auctioneer\")",
@@ -54,7 +56,9 @@
    "license_url": "",
    "credit_line": "Collection of The Metropolitan Museum of Art",
    "license_verified": "2026-07-16",
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "delivered_edge": 3722,
+   "resolution_tier": "HD"
   },
   {
    "title": "Herman Doomer (ca. 1595–1650)",
@@ -80,7 +84,9 @@
    "license_url": "",
    "credit_line": "Collection of The Metropolitan Museum of Art",
    "license_verified": "2026-07-16",
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "delivered_edge": 3722,
+   "resolution_tier": "HD"
   },
   {
    "title": "Portrait of Gerard de Lairesse",
@@ -106,7 +112,9 @@
    "license_url": "",
    "credit_line": "Collection of The Metropolitan Museum of Art",
    "license_verified": "2026-07-16",
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "delivered_edge": 3814,
+   "resolution_tier": "HD"
   },
   {
    "title": "Self-Portrait",
@@ -131,7 +139,9 @@
    "license_basis": "CC0 — Met Open Access",
    "license_url": "",
    "credit_line": "Collection of The Metropolitan Museum of Art",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 4000,
+   "resolution_tier": "4K"
   },
   {
    "title": "Hendrickje Stoffels (1626–1663)",
@@ -157,7 +167,9 @@
    "license_url": "",
    "credit_line": "Collection of The Metropolitan Museum of Art",
    "license_verified": "2026-07-16",
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "delivered_edge": 3695,
+   "resolution_tier": "HD"
   },
   {
    "title": "Bellona",
@@ -182,7 +194,9 @@
    "license_basis": "CC0 — Met Open Access",
    "license_url": "",
    "credit_line": "Collection of The Metropolitan Museum of Art",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 3861,
+   "resolution_tier": "4K"
   },
   {
    "title": "Man in a Turban",
@@ -207,7 +221,9 @@
    "license_basis": "CC0 — Met Open Access",
    "license_url": "",
    "credit_line": "Collection of The Metropolitan Museum of Art",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 3857,
+   "resolution_tier": "4K"
   },
   {
    "title": "Lucas van Uffel (died 1637)",
@@ -232,7 +248,9 @@
    "license_basis": "CC0 — Met Open Access",
    "license_url": "",
    "credit_line": "Collection of The Metropolitan Museum of Art",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 4000,
+   "resolution_tier": "4K"
   },
   {
    "title": "A Maid Asleep",
@@ -257,7 +275,9 @@
    "license_basis": "CC0 — Met Open Access",
    "license_url": "",
    "credit_line": "Collection of The Metropolitan Museum of Art",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 3861,
+   "resolution_tier": "4K"
   },
   {
    "title": "Study of a Young Woman",
@@ -282,7 +302,9 @@
    "license_basis": "CC0 — Met Open Access",
    "license_url": "",
    "credit_line": "Collection of The Metropolitan Museum of Art",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 3866,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Crucifixion with the Virgin and Saint John",
@@ -307,7 +329,9 @@
    "license_basis": "CC0 — Met Open Access",
    "license_url": "",
    "credit_line": "Collection of The Metropolitan Museum of Art",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 5943,
+   "resolution_tier": "4K"
   },
   {
    "title": "Young Man and Woman in an Inn",
@@ -333,7 +357,9 @@
    "license_url": "",
    "credit_line": "Collection of The Metropolitan Museum of Art",
    "license_verified": "2026-07-16",
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "delivered_edge": 3722,
+   "resolution_tier": "HD"
   },
   {
    "title": "Boy with a Lute",
@@ -358,7 +384,9 @@
    "license_basis": "CC0 — Met Open Access",
    "license_url": "",
    "credit_line": "Collection of The Metropolitan Museum of Art",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 5992,
+   "resolution_tier": "4K"
   },
   {
    "title": "Petrus Scriverius (1576–1660)",
@@ -383,7 +411,9 @@
    "license_basis": "CC0 — Met Open Access",
    "license_url": "",
    "credit_line": "Collection of The Metropolitan Museum of Art",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 3852,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Smokers",
@@ -408,7 +438,9 @@
    "license_basis": "CC0 — Met Open Access",
    "license_url": "",
    "credit_line": "Collection of The Metropolitan Museum of Art",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 4000,
+   "resolution_tier": "4K"
   },
   {
    "title": "Landschap met stenen brug",
@@ -433,7 +465,9 @@
    "license_basis": "Public Domain / CC0 — Rijksstudio",
    "license_url": "",
    "credit_line": "Collection of Rijksmuseum",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 6108,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Night Watch",
@@ -458,7 +492,9 @@
    "license_basis": "Public Domain / CC0 — Rijksstudio",
    "license_url": "",
    "credit_line": "Collection of Rijksmuseum",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 7133,
+   "resolution_tier": "4K"
   },
   {
    "title": "Girl with a Pearl Earring",
@@ -483,7 +519,9 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "Mauritshuis",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 6000,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Milkmaid",
@@ -508,7 +546,9 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "Google Arts &amp; Culture — AHrw. Z3. Av6. Zhjg 9. AHrw. Z3. Av6. Zhjg",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 4485,
+   "resolution_tier": "4K"
   },
   {
    "title": "View of Delft",
@@ -533,7 +573,9 @@
    "focal_point": [
     0.55,
     0.55
-   ]
+   ],
+   "delivered_edge": 6000,
+   "resolution_tier": "4K"
   },
   {
    "title": "Woman Holding a Balance",
@@ -558,7 +600,9 @@
    "focal_point": [
     0.62,
     0.28
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "The Anatomy Lesson of Dr. Nicolaes Tulp",
@@ -583,7 +627,9 @@
    "focal_point": [
     0.62,
     0.28
-   ]
+   ],
+   "delivered_edge": 6000,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Jewish Bride",
@@ -608,7 +654,9 @@
    "focal_point": [
     0.55,
     0.3
-   ]
+   ],
+   "delivered_edge": 4872,
+   "resolution_tier": "4K"
   },
   {
    "title": "Winter Landscape with Skaters",
@@ -633,7 +681,9 @@
    "focal_point": [
     0.62,
     0.38
-   ]
+   ],
+   "delivered_edge": 4000,
+   "resolution_tier": "4K"
   },
   {
    "title": "Malle Babbe",
@@ -658,7 +708,9 @@
    "focal_point": [
     0.4,
     0.42
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "The Goldfinch",
@@ -683,7 +735,9 @@
    "focal_point": [
     0.55,
     0.35
-   ]
+   ],
+   "delivered_edge": 6000,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Art of Painting",
@@ -716,7 +770,9 @@
    "focal_point": [
     0.52,
     0.38
-   ]
+   ],
+   "delivered_edge": 7377,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Laughing Cavalier",
@@ -749,7 +805,9 @@
    "focal_point": [
     0.45,
     0.28
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Belshazzar's Feast",
@@ -783,7 +841,9 @@
    "focal_point": [
     0.42,
     0.35
-   ]
+   ],
+   "delivered_edge": 5308,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Courtyard of a House in Delft",
@@ -816,7 +876,9 @@
    "focal_point": [
     0.62,
     0.55
-   ]
+   ],
+   "delivered_edge": 4134,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Young Bull",
@@ -849,7 +911,9 @@
    "focal_point": [
     0.62,
     0.55
-   ]
+   ],
+   "delivered_edge": 6000,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Abduction of Europa",
@@ -874,7 +938,9 @@
    "focal_point": [
     0.18,
     0.72
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Judith at the Banquet of Holofernes (Artemisia)",
@@ -899,7 +965,9 @@
    "focal_point": [
     0.55,
     0.25
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "The Return of the Prodigal Son",
@@ -924,7 +992,9 @@
    "focal_point": [
     0.42,
     0.55
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Self-Portrait (c. 1659)",
@@ -949,7 +1019,9 @@
    "focal_point": [
     0.42,
     0.35
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Landscape with the Good Samaritan",
@@ -974,7 +1046,9 @@
    "focal_point": [
     0.52,
     0.4
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Portrait of a Seated Woman with Spectacles and a Book",
@@ -999,7 +1073,9 @@
    "focal_point": [
     0.45,
     0.25
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Man in Oriental Costume",
@@ -1024,7 +1100,9 @@
    "focal_point": [
     0.42,
     0.32
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "An Old Woman Reading, Probably the Prophetess Hannah",
@@ -1049,7 +1127,9 @@
    "focal_point": [
     0.5,
     0.35
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Self-Portrait in Oriental Dress",
@@ -1074,7 +1154,9 @@
    "focal_point": [
     0.42,
     0.28
-   ]
+   ],
+   "delivered_edge": 7112,
+   "resolution_tier": "4K"
   },
   {
    "title": "Jacob Blessing the Children of Joseph",
@@ -1099,7 +1181,9 @@
    "focal_point": [
     0.45,
     0.4
-   ]
+   ],
+   "delivered_edge": 7000,
+   "resolution_tier": "4K"
   },
   {
    "title": "Young Woman in Profile, with a Fan",
@@ -1124,7 +1208,9 @@
    "focal_point": [
     0.35,
     0.3
-   ]
+   ],
+   "delivered_edge": 6839,
+   "resolution_tier": "4K"
   },
   {
    "title": "Portrait of a Clergyman",
@@ -1149,7 +1235,9 @@
    "focal_point": [
     0.42,
     0.28
-   ]
+   ],
+   "delivered_edge": 6395,
+   "resolution_tier": "4K"
   },
   {
    "title": "Bust of an Old Bearded Man Wearing a Golden Chain with a Cross",
@@ -1174,7 +1262,9 @@
    "focal_point": [
     0.42,
     0.35
-   ]
+   ],
+   "delivered_edge": 6321,
+   "resolution_tier": "4K"
   },
   {
    "title": "Self-Portrait (early)",
@@ -1199,7 +1289,9 @@
    "focal_point": [
     0.46,
     0.33
-   ]
+   ],
+   "delivered_edge": 6249,
+   "resolution_tier": "4K"
   },
   {
    "title": "Bellona",
@@ -1224,7 +1316,9 @@
    "focal_point": [
     0.45,
     0.35
-   ]
+   ],
+   "delivered_edge": 6140,
+   "resolution_tier": "4K"
   },
   {
    "title": "Man in a Fur-Lined Coat",
@@ -1249,7 +1343,9 @@
    "focal_point": [
     0.5,
     0.28
-   ]
+   ],
+   "delivered_edge": 6001,
+   "resolution_tier": "4K"
   },
   {
    "title": "Saint Paul",
@@ -1274,7 +1370,9 @@
    "focal_point": [
     0.45,
     0.35
-   ]
+   ],
+   "delivered_edge": 6000,
+   "resolution_tier": "4K"
   },
   {
    "title": "Portrait of Margaretha de Geer, Wife of Jacob Trip",
@@ -1299,7 +1397,9 @@
    "focal_point": [
     0.45,
     0.3
-   ]
+   ],
+   "delivered_edge": 6000,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Laughing Man",
@@ -1324,7 +1424,9 @@
    "focal_point": [
     0.48,
     0.42
-   ]
+   ],
+   "delivered_edge": 6000,
+   "resolution_tier": "4K"
   },
   {
    "title": "Two African Men",
@@ -1349,7 +1451,9 @@
    "focal_point": [
     0.62,
     0.32
-   ]
+   ],
+   "delivered_edge": 6000,
+   "resolution_tier": "4K"
   },
   {
    "title": "Andromeda Chained to the Rocks",
@@ -1374,7 +1478,9 @@
    "focal_point": [
     0.42,
     0.35
-   ]
+   ],
+   "delivered_edge": 6000,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Abduction of Ganymede",
@@ -1399,7 +1505,9 @@
    "focal_point": [
     0.45,
     0.45
-   ]
+   ],
+   "delivered_edge": 5820,
+   "resolution_tier": "4K"
   },
   {
    "title": "Young Woman in Fantasy Costume (Saskia)",
@@ -1424,7 +1532,9 @@
    "focal_point": [
     0.48,
     0.32
-   ]
+   ],
+   "delivered_edge": 5644,
+   "resolution_tier": "4K"
   },
   {
    "title": "Portrait of Marten Looten",
@@ -1449,7 +1559,9 @@
    "focal_point": [
     0.42,
     0.3
-   ]
+   ],
+   "delivered_edge": 5010,
+   "resolution_tier": "4K"
   },
   {
    "title": "Minerva",
@@ -1474,7 +1586,9 @@
    "focal_point": [
     0.5,
     0.28
-   ]
+   ],
+   "delivered_edge": 4938,
+   "resolution_tier": "4K"
   },
   {
    "title": "Flora (Saskia van Uylenburgh in Arcadian Costume)",
@@ -1499,7 +1613,9 @@
    "focal_point": [
     0.55,
     0.22
-   ]
+   ],
+   "delivered_edge": 4733,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Rape of Proserpina",
@@ -1524,7 +1640,9 @@
    "focal_point": [
     0.35,
     0.3
-   ]
+   ],
+   "delivered_edge": 4326,
+   "resolution_tier": "4K"
   },
   {
    "title": "Portrait of Aechje Claesdr.",
@@ -1549,7 +1667,9 @@
    "focal_point": [
     0.48,
     0.35
-   ]
+   ],
+   "delivered_edge": 4182,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Apostle Paul",
@@ -1574,7 +1694,9 @@
    "focal_point": [
     0.35,
     0.28
-   ]
+   ],
+   "delivered_edge": 4096,
+   "resolution_tier": "4K"
   },
   {
    "title": "A Woman in Bed",
@@ -1599,7 +1721,9 @@
    "focal_point": [
     0.35,
     0.35
-   ]
+   ],
+   "delivered_edge": 4001,
+   "resolution_tier": "4K"
   },
   {
    "title": "Philosopher in Meditation",
@@ -1624,7 +1748,9 @@
    "focal_point": [
     0.5,
     0.35
-   ]
+   ],
+   "delivered_edge": 4000,
+   "resolution_tier": "4K"
   },
   {
    "title": "Aristotle with a Bust of Homer",
@@ -1649,7 +1775,9 @@
    "focal_point": [
     0.58,
     0.25
-   ]
+   ],
+   "delivered_edge": 4000,
+   "resolution_tier": "4K"
   },
   {
    "title": "Saint Bartholomew",
@@ -1674,7 +1802,9 @@
    "focal_point": [
     0.42,
     0.3
-   ]
+   ],
+   "delivered_edge": 3900,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Girl with the Wine Glass",
@@ -1699,7 +1829,9 @@
    "focal_point": [
     0.55,
     0.45
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Lady Seated at a Virginal",
@@ -1724,7 +1856,9 @@
    "focal_point": [
     0.62,
     0.35
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Lady Standing at a Virginal",
@@ -1749,7 +1883,9 @@
    "focal_point": [
     0.42,
     0.32
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "The Glass of Wine",
@@ -1774,7 +1910,9 @@
    "focal_point": [
     0.55,
     0.4
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Girl with the Red Hat",
@@ -1799,7 +1937,9 @@
    "focal_point": [
     0.45,
     0.35
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "The Geographer",
@@ -1824,7 +1964,9 @@
    "focal_point": [
     0.45,
     0.3
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "The Guitar Player",
@@ -1849,7 +1991,9 @@
    "focal_point": [
     0.35,
     0.35
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Mistress and Maid",
@@ -1874,7 +2018,9 @@
    "focal_point": [
     0.62,
     0.55
-   ]
+   ],
+   "delivered_edge": 7486,
+   "resolution_tier": "4K"
   },
   {
    "title": "Allegory of the Catholic Faith",
@@ -1899,7 +2045,9 @@
    "focal_point": [
     0.55,
     0.4
-   ]
+   ],
+   "delivered_edge": 7224,
+   "resolution_tier": "4K"
   },
   {
    "title": "Woman with a Lute",
@@ -1924,7 +2072,9 @@
    "focal_point": [
     0.32,
     0.35
-   ]
+   ],
+   "delivered_edge": 6723,
+   "resolution_tier": "4K"
   },
   {
    "title": "Woman in Blue Reading a Letter",
@@ -1949,7 +2099,9 @@
    "focal_point": [
     0.42,
     0.4
-   ]
+   ],
+   "delivered_edge": 6400,
+   "resolution_tier": "4K"
   },
   {
    "title": "Diana and her Nymphs",
@@ -1974,7 +2126,9 @@
    "focal_point": [
     0.32,
     0.35
-   ]
+   ],
+   "delivered_edge": 6000,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Little Street (View of Houses in Delft)",
@@ -1999,7 +2153,9 @@
    "focal_point": [
     0.45,
     0.6
-   ]
+   ],
+   "delivered_edge": 5254,
+   "resolution_tier": "4K"
   },
   {
    "title": "Woman with a Pearl Necklace",
@@ -2024,7 +2180,9 @@
    "focal_point": [
     0.7,
     0.2
-   ]
+   ],
+   "delivered_edge": 5236,
+   "resolution_tier": "4K"
   },
   {
    "title": "Officer and Laughing Girl",
@@ -2049,7 +2207,9 @@
    "focal_point": [
     0.62,
     0.4
-   ]
+   ],
+   "delivered_edge": 5213,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Music Lesson",
@@ -2074,7 +2234,9 @@
    "focal_point": [
     0.45,
     0.32
-   ]
+   ],
+   "delivered_edge": 5014,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Love Letter",
@@ -2099,7 +2261,9 @@
    "focal_point": [
     0.42,
     0.58
-   ]
+   ],
+   "delivered_edge": 5008,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Astronomer",
@@ -2124,7 +2288,9 @@
    "focal_point": [
     0.62,
     0.35
-   ]
+   ],
+   "delivered_edge": 5000,
+   "resolution_tier": "4K"
   },
   {
    "title": "Lady Writing a Letter with her Maid",
@@ -2149,7 +2315,9 @@
    "focal_point": [
     0.62,
     0.5
-   ]
+   ],
+   "delivered_edge": 4554,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Procuress",
@@ -2174,7 +2342,9 @@
    "focal_point": [
     0.5,
     0.45
-   ]
+   ],
+   "delivered_edge": 4278,
+   "resolution_tier": "4K"
   },
   {
    "title": "Girl Reading a Letter at an Open Window",
@@ -2199,7 +2369,9 @@
    "focal_point": [
     0.42,
     0.3
-   ]
+   ],
+   "delivered_edge": 4271,
+   "resolution_tier": "4K"
   },
   {
    "title": "A Lady Writing",
@@ -2224,7 +2396,9 @@
    "focal_point": [
     0.48,
     0.28
-   ]
+   ],
+   "delivered_edge": 4051,
+   "resolution_tier": "4K"
   },
   {
    "title": "Christ in the House of Martha and Mary",
@@ -2249,7 +2423,9 @@
    "focal_point": [
     0.62,
     0.32
-   ]
+   ],
+   "delivered_edge": 4001,
+   "resolution_tier": "4K"
   },
   {
    "title": "Portrait of Jacobus Zaffius",
@@ -2274,7 +2450,9 @@
    "focal_point": [
     0.45,
     0.3
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Portrait of Maritge Claesdr Vooght",
@@ -2299,7 +2477,9 @@
    "focal_point": [
     0.38,
     0.28
-   ]
+   ],
+   "delivered_edge": 6262,
+   "resolution_tier": "4K"
   },
   {
    "title": "Portrait of Jacob Olycan",
@@ -2324,7 +2504,9 @@
    "focal_point": [
     0.42,
     0.22
-   ]
+   ],
+   "delivered_edge": 6000,
+   "resolution_tier": "4K"
   },
   {
    "title": "Catharina Hooft and her Nurse",
@@ -2349,7 +2531,9 @@
    "focal_point": [
     0.62,
     0.28
-   ]
+   ],
+   "delivered_edge": 5903,
+   "resolution_tier": "4K"
   },
   {
    "title": "Family Portrait in a Landscape",
@@ -2374,7 +2558,9 @@
    "focal_point": [
     0.4,
     0.35
-   ]
+   ],
+   "delivered_edge": 5815,
+   "resolution_tier": "4K"
   },
   {
    "title": "Portrait of Pieter Cornelisz van der Morsch",
@@ -2399,7 +2585,9 @@
    "focal_point": [
     0.42,
     0.3
-   ]
+   ],
+   "delivered_edge": 5514,
+   "resolution_tier": "4K"
   },
   {
    "title": "Banquet of the Officers of the St. George Civic Guard",
@@ -2424,7 +2612,9 @@
    "focal_point": [
     0.35,
     0.25
-   ]
+   ],
+   "delivered_edge": 5472,
+   "resolution_tier": "4K"
   },
   {
    "title": "Officers and Sergeants of the St. George Civic Guard",
@@ -2449,7 +2639,9 @@
    "focal_point": [
     0.35,
     0.28
-   ]
+   ],
+   "delivered_edge": 5472,
+   "resolution_tier": "4K"
   },
   {
    "title": "Portrait of an Elderly Lady",
@@ -2474,7 +2666,9 @@
    "focal_point": [
     0.42,
     0.27
-   ]
+   ],
+   "delivered_edge": 5301,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Meagre Company",
@@ -2500,7 +2694,9 @@
    "focal_point": [
     0.42,
     0.45
-   ]
+   ],
+   "delivered_edge": 5446,
+   "resolution_tier": "4K"
   },
   {
    "title": "Fisherman Playing the Violin",
@@ -2525,7 +2721,9 @@
    "focal_point": [
     0.45,
     0.35
-   ]
+   ],
+   "delivered_edge": 4936,
+   "resolution_tier": "4K"
   },
   {
    "title": "Two Singing Boys",
@@ -2550,7 +2748,9 @@
    "focal_point": [
     0.42,
     0.35
-   ]
+   ],
+   "delivered_edge": 4631,
+   "resolution_tier": "4K"
   },
   {
    "title": "Portrait of a Man with a Skull",
@@ -2582,7 +2782,9 @@
    "focal_point": [
     0.4,
     0.28
-   ]
+   ],
+   "delivered_edge": 3880,
+   "resolution_tier": "4K"
   },
   {
    "title": "Saint Luke the Evangelist",
@@ -2614,7 +2816,9 @@
    "focal_point": [
     0.42,
     0.32
-   ]
+   ],
+   "delivered_edge": 3177,
+   "resolution_tier": "HD"
   },
   {
    "title": "Portrait of Vincent Laurensz van der Vinne",
@@ -2646,7 +2850,9 @@
    "focal_point": [
     0.48,
     0.35
-   ]
+   ],
+   "delivered_edge": 2510,
+   "resolution_tier": "HD"
   },
   {
    "title": "The Lute Player",
@@ -2672,7 +2878,9 @@
    "focal_point": [
     0.45,
     0.3
-   ]
+   ],
+   "delivered_edge": 7290,
+   "resolution_tier": "4K"
   },
   {
    "title": "Portrait of a Standing Woman",
@@ -2704,7 +2912,9 @@
    "focal_point": [
     0.48,
     0.24
-   ]
+   ],
+   "delivered_edge": 3520,
+   "resolution_tier": "HD"
   },
   {
    "title": "Saint John the Evangelist",
@@ -2729,7 +2939,9 @@
    "focal_point": [
     0.47,
     0.22
-   ]
+   ],
+   "delivered_edge": 4232,
+   "resolution_tier": "4K"
   },
   {
    "title": "Fisher Boy in a Landscape",
@@ -2755,7 +2967,9 @@
    "focal_point": [
     0.38,
     0.35
-   ]
+   ],
+   "delivered_edge": 4372,
+   "resolution_tier": "4K"
   },
   {
    "title": "Peeckelhaering",
@@ -2780,7 +2994,9 @@
    "focal_point": [
     0.42,
     0.3
-   ]
+   ],
+   "delivered_edge": 4112,
+   "resolution_tier": "4K"
   },
   {
    "title": "Singing Boy with a Flute",
@@ -2806,7 +3022,9 @@
    "focal_point": [
     0.4,
     0.35
-   ]
+   ],
+   "delivered_edge": 5053,
+   "resolution_tier": "4K"
   },
   {
    "title": "Portrait of Johannes Acronius",
@@ -2831,7 +3049,9 @@
    "focal_point": [
     0.38,
     0.28
-   ]
+   ],
+   "delivered_edge": 4000,
+   "resolution_tier": "4K"
   },
   {
    "title": "Portrait of a Man",
@@ -2856,7 +3076,9 @@
    "focal_point": [
     0.45,
     0.28
-   ]
+   ],
+   "delivered_edge": 4000,
+   "resolution_tier": "4K"
   },
   {
    "title": "Portrait of a Woman Holding a Book",
@@ -2881,7 +3103,9 @@
    "focal_point": [
     0.42,
     0.28
-   ]
+   ],
+   "delivered_edge": 4000,
+   "resolution_tier": "4K"
   }
  ]
 }

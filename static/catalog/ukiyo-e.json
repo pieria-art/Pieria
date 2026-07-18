@@ -29,7 +29,9 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "Library of Congress Catalog: https://lccn.loc.gov/2008660568 Image download: https://cdn.loc.gov/service/pnp/jpd/02000/02018v.jpg Original url: https://www.loc.gov/pictures/item/2008660568/",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Fine Wind, Clear Morning (Red Fuji)",
@@ -54,7 +56,9 @@
    "focal_point": [
     0.62,
     0.5
-   ]
+   ],
+   "delivered_edge": 5341,
+   "resolution_tier": "4K"
   },
   {
    "title": "Ejiri in Suruga Province",
@@ -79,7 +83,9 @@
    "focal_point": [
     0.55,
     0.62
-   ]
+   ],
+   "delivered_edge": 4374,
+   "resolution_tier": "4K"
   },
   {
    "title": "Kajikazawa in Kai Province",
@@ -104,7 +110,9 @@
    "focal_point": [
     0.6,
     0.45
-   ]
+   ],
+   "delivered_edge": 4486,
+   "resolution_tier": "4K"
   },
   {
    "title": "Sudden Shower over Shin-Ōhashi Bridge and Atake",
@@ -129,7 +137,9 @@
    "focal_point": [
     0.55,
     0.55
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Plum Park in Kameido",
@@ -154,7 +164,9 @@
    "focal_point": [
     0.55,
     0.5
-   ]
+   ],
+   "delivered_edge": 4313,
+   "resolution_tier": "4K"
   },
   {
    "title": "Evening Snow at Kanbara",
@@ -179,7 +191,9 @@
    "focal_point": [
     0.45,
     0.65
-   ]
+   ],
+   "delivered_edge": 3926,
+   "resolution_tier": "4K"
   },
   {
    "title": "Three Beauties of the Present Day",
@@ -204,7 +218,9 @@
    "focal_point": [
     0.52,
     0.25
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Takiyasha the Witch and the Skeleton Spectre",
@@ -229,7 +245,9 @@
    "focal_point": [
     0.55,
     0.35
-   ]
+   ],
+   "delivered_edge": 7139,
+   "resolution_tier": "4K"
   },
   {
    "title": "Fuji from Gotenyama at Shinagawa on the Tōkaidō",
@@ -261,7 +279,9 @@
    "focal_point": [
     0.47,
     0.3
-   ]
+   ],
+   "delivered_edge": 3869,
+   "resolution_tier": "4K"
   },
   {
    "title": "Watermill at Onden",
@@ -293,7 +313,9 @@
    "focal_point": [
     0.28,
     0.45
-   ]
+   ],
+   "delivered_edge": 4428,
+   "resolution_tier": "4K"
   },
   {
    "title": "Shōno: Driving Rain",
@@ -325,7 +347,9 @@
    "focal_point": [
     0.42,
     0.55
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Yui: Satta Pass",
@@ -357,7 +381,9 @@
    "focal_point": [
     0.35,
     0.35
-   ]
+   ],
+   "delivered_edge": 4350,
+   "resolution_tier": "4K"
   },
   {
    "title": "Fireworks at Ryōgoku",
@@ -389,7 +415,9 @@
    "focal_point": [
     0.45,
     0.25
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Kinryūzan Temple, Asakusa",
@@ -421,7 +449,9 @@
    "focal_point": [
     0.5,
     0.5
-   ]
+   ],
+   "delivered_edge": 4000,
+   "resolution_tier": "4K"
   },
   {
    "title": "Naniwaya Okita",
@@ -453,7 +483,9 @@
    "focal_point": [
     0.55,
     0.25
-   ]
+   ],
+   "delivered_edge": 7000,
+   "resolution_tier": "4K"
   },
   {
    "title": "Zhang Shun, the White Stripe in the Waves",
@@ -485,7 +517,9 @@
    "focal_point": [
     0.55,
     0.28
-   ]
+   ],
+   "delivered_edge": 3949,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Moon on Musashi Plain",
@@ -517,7 +551,9 @@
    "focal_point": [
     0.4,
     0.55
-   ]
+   ],
+   "delivered_edge": 4992,
+   "resolution_tier": "4K"
   },
   {
    "title": "Tsuchigumo (The Ground Spider)",
@@ -542,7 +578,9 @@
    "focal_point": [
     0.35,
     0.22
-   ]
+   ],
+   "delivered_edge": 7510,
+   "resolution_tier": "4K"
   },
   {
    "title": "Woman Passing a Roadside Shop Near Oji",
@@ -567,7 +605,9 @@
    "focal_point": [
     0.47,
     0.6
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Kamakura no Gengoro Seizing Torinoumi Tasaburo",
@@ -592,7 +632,9 @@
    "focal_point": [
     0.25,
     0.25
-   ]
+   ],
+   "delivered_edge": 7656,
+   "resolution_tier": "4K"
   },
   {
    "title": "Women and Children Walking Along the Sumida River",
@@ -617,7 +659,9 @@
    "focal_point": [
     0.52,
     0.62
-   ]
+   ],
+   "delivered_edge": 7324,
+   "resolution_tier": "4K"
   },
   {
    "title": "Group of Figures near a Brook",
@@ -642,7 +686,9 @@
    "focal_point": [
     0.55,
     0.5
-   ]
+   ],
+   "delivered_edge": 7201,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Six Immortal Poets (Rokkasen)",
@@ -667,7 +713,9 @@
    "focal_point": [
     0.38,
     0.35
-   ]
+   ],
+   "delivered_edge": 6804,
+   "resolution_tier": "4K"
   },
   {
    "title": "Rice Planters",
@@ -692,7 +740,9 @@
    "focal_point": [
     0.3,
     0.55
-   ]
+   ],
+   "delivered_edge": 6318,
+   "resolution_tier": "4K"
   },
   {
    "title": "Sailing on the Sumida River",
@@ -717,7 +767,9 @@
    "focal_point": [
     0.75,
     0.65
-   ]
+   ],
+   "delivered_edge": 6232,
+   "resolution_tier": "4K"
   },
   {
    "title": "Balloon Flower and Dragonfly",
@@ -742,7 +794,9 @@
    "focal_point": [
     0.33,
     0.22
-   ]
+   ],
+   "delivered_edge": 6140,
+   "resolution_tier": "4K"
   },
   {
    "title": "Battling Warriors",
@@ -767,7 +821,9 @@
    "focal_point": [
     0.3,
     0.25
-   ]
+   ],
+   "delivered_edge": 6060,
+   "resolution_tier": "4K"
   },
   {
    "title": "Shishi (Lion-Dog)",
@@ -792,7 +848,9 @@
    "focal_point": [
     0.35,
     0.45
-   ]
+   ],
+   "delivered_edge": 5276,
+   "resolution_tier": "4K"
   },
   {
    "title": "Two Women with a Doll",
@@ -817,7 +875,9 @@
    "focal_point": [
     0.45,
     0.4
-   ]
+   ],
+   "delivered_edge": 5072,
+   "resolution_tier": "4K"
   },
   {
    "title": "Playing Sugoroku in the Third Month (Yayoi)",
@@ -842,7 +902,9 @@
    "focal_point": [
     0.6,
     0.65
-   ]
+   ],
+   "delivered_edge": 4572,
+   "resolution_tier": "4K"
   },
   {
    "title": "Man Lifting a Sake Barrel",
@@ -867,7 +929,9 @@
    "focal_point": [
     0.45,
     0.4
-   ]
+   ],
+   "delivered_edge": 4390,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Mirror Polisher (Kagamitogi)",
@@ -892,7 +956,9 @@
    "focal_point": [
     0.45,
     0.4
-   ]
+   ],
+   "delivered_edge": 4338,
+   "resolution_tier": "4K"
   },
   {
    "title": "Chinese Boys Learning to Write and Paint",
@@ -917,7 +983,9 @@
    "focal_point": [
     0.45,
     0.55
-   ]
+   ],
+   "delivered_edge": 3925,
+   "resolution_tier": "4K"
   },
   {
    "title": "Nanukayo (The Seventh Night)",
@@ -942,7 +1010,9 @@
    "focal_point": [
     0.4,
     0.55
-   ]
+   ],
+   "delivered_edge": 3857,
+   "resolution_tier": "4K"
   },
   {
    "title": "Imadogawa",
@@ -967,7 +1037,9 @@
    "focal_point": [
     0.68,
     0.75
-   ]
+   ],
+   "delivered_edge": 3848,
+   "resolution_tier": "4K"
   },
   {
    "title": "Fukagawa Lumberyards",
@@ -992,7 +1064,9 @@
    "focal_point": [
     0.5,
     0.6
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Nihonbashi Bridge: Clearing Weather after Snow",
@@ -1017,7 +1091,9 @@
    "focal_point": [
     0.32,
     0.2
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Tsukudajima from Eitai Bridge",
@@ -1042,7 +1118,9 @@
    "focal_point": [
     0.55,
     0.15
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Ueno Yamashita",
@@ -1067,7 +1145,9 @@
    "focal_point": [
     0.6,
     0.55
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Mount Atago in Shiba",
@@ -1092,7 +1172,9 @@
    "focal_point": [
     0.78,
     0.6
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Night View of Matsuchiyama and the San'ya Canal",
@@ -1117,7 +1199,9 @@
    "focal_point": [
     0.25,
     0.35
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "View from Massaki of Suijin Grove, the Uchigawa Inlet, and Sekiya Village",
@@ -1142,7 +1226,9 @@
    "focal_point": [
     0.45,
     0.65
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "The Armor-Hanging Pine at Hakkei Slope",
@@ -1167,7 +1253,9 @@
    "focal_point": [
     0.45,
     0.45
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Five Pines, Onagi Canal",
@@ -1192,7 +1280,9 @@
    "focal_point": [
     0.5,
     0.75
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "The City Flourishing, the Tanabata Festival",
@@ -1217,7 +1307,9 @@
    "focal_point": [
     0.5,
     0.65
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Sudden Shower over Shin-Ohashi Bridge and Atake",
@@ -1242,7 +1334,9 @@
    "focal_point": [
     0.55,
     0.55
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Yatsumi Bridge",
@@ -1267,7 +1361,9 @@
    "focal_point": [
     0.35,
     0.45
-   ]
+   ],
+   "delivered_edge": 7461,
+   "resolution_tier": "4K"
   },
   {
    "title": "Dawn Inside the Yoshiwara",
@@ -1292,7 +1388,9 @@
    "focal_point": [
     0.28,
     0.75
-   ]
+   ],
+   "delivered_edge": 6436,
+   "resolution_tier": "4K"
   },
   {
    "title": "New Fuji, Meguro",
@@ -1317,7 +1415,9 @@
    "focal_point": [
     0.35,
     0.35
-   ]
+   ],
+   "delivered_edge": 6061,
+   "resolution_tier": "4K"
   },
   {
    "title": "Suruga-cho",
@@ -1342,7 +1442,9 @@
    "focal_point": [
     0.5,
     0.25
-   ]
+   ],
+   "delivered_edge": 4115,
+   "resolution_tier": "4K"
   },
   {
    "title": "Hibiya and Soto-Sakurada from Yamashita-cho",
@@ -1367,7 +1469,9 @@
    "focal_point": [
     0.5,
     0.5
-   ]
+   ],
+   "delivered_edge": 4100,
+   "resolution_tier": "4K"
   },
   {
    "title": "Temple Gardens in Nippori",
@@ -1392,7 +1496,9 @@
    "focal_point": [
     0.55,
     0.35
-   ]
+   ],
+   "delivered_edge": 4082,
+   "resolution_tier": "4K"
   },
   {
    "title": "Suwa Bluff in Nippori",
@@ -1417,7 +1523,9 @@
    "focal_point": [
     0.5,
     0.55
-   ]
+   ],
+   "delivered_edge": 3917,
+   "resolution_tier": "4K"
   },
   {
    "title": "Shops with Cotton Goods in Odenma-cho",
@@ -1442,7 +1550,9 @@
    "focal_point": [
     0.25,
     0.55
-   ]
+   ],
+   "delivered_edge": 3915,
+   "resolution_tier": "4K"
   },
   {
    "title": "Suijin Grove and Massaki on the Sumida River",
@@ -1467,7 +1577,9 @@
    "focal_point": [
     0.5,
     0.45
-   ]
+   ],
+   "delivered_edge": 3913,
+   "resolution_tier": "4K"
   },
   {
    "title": "Flower Park and Dango-zaka Slope in Sendagi",
@@ -1492,7 +1604,9 @@
    "focal_point": [
     0.55,
     0.3
-   ]
+   ],
+   "delivered_edge": 3904,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Kawaguchi Ferry and Zenkoji Temple",
@@ -1517,7 +1631,9 @@
    "focal_point": [
     0.5,
     0.45
-   ]
+   ],
+   "delivered_edge": 3898,
+   "resolution_tier": "4K"
   },
   {
    "title": "Kiyomizu Hall and Shinobazu Pond at Ueno",
@@ -1542,7 +1658,9 @@
    "focal_point": [
     0.65,
     0.55
-   ]
+   ],
+   "delivered_edge": 3897,
+   "resolution_tier": "4K"
   },
   {
    "title": "Chiyogaike Pond in Meguro",
@@ -1567,7 +1685,9 @@
    "focal_point": [
     0.62,
     0.55
-   ]
+   ],
+   "delivered_edge": 3897,
+   "resolution_tier": "4K"
   },
   {
    "title": "Shitaya Hirokoji",
@@ -1592,7 +1712,9 @@
    "focal_point": [
     0.4,
     0.6
-   ]
+   ],
+   "delivered_edge": 3894,
+   "resolution_tier": "4K"
   },
   {
    "title": "Kasumigaseki",
@@ -1617,7 +1739,9 @@
    "focal_point": [
     0.45,
     0.75
-   ]
+   ],
+   "delivered_edge": 3892,
+   "resolution_tier": "4K"
   },
   {
    "title": "Plum Orchard in Kamata",
@@ -1642,7 +1766,9 @@
    "focal_point": [
     0.75,
     0.65
-   ]
+   ],
+   "delivered_edge": 3891,
+   "resolution_tier": "4K"
   },
   {
    "title": "Azuma Shrine Grove and the Entwined Catalpa Trees",
@@ -1667,7 +1793,9 @@
    "focal_point": [
     0.45,
     0.55
-   ]
+   ],
+   "delivered_edge": 3883,
+   "resolution_tier": "4K"
   },
   {
    "title": "Towboats on the Yotsugi-dori Canal",
@@ -1692,7 +1820,9 @@
    "focal_point": [
     0.45,
     0.75
-   ]
+   ],
+   "delivered_edge": 3881,
+   "resolution_tier": "4K"
   },
   {
    "title": "Moto-Hachiman Shrine in Sunamura",
@@ -1717,7 +1847,9 @@
    "focal_point": [
     0.65,
     0.7
-   ]
+   ],
+   "delivered_edge": 3880,
+   "resolution_tier": "4K"
   },
   {
    "title": "View to the North from Asukayama",
@@ -1742,7 +1874,9 @@
    "focal_point": [
     0.5,
     0.55
-   ]
+   ],
+   "delivered_edge": 3878,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Original Fuji in Meguro",
@@ -1767,7 +1901,9 @@
    "focal_point": [
     0.55,
     0.6
-   ]
+   ],
+   "delivered_edge": 3877,
+   "resolution_tier": "4K"
   },
   {
    "title": "Palace Hill in Shinagawa",
@@ -1792,7 +1928,9 @@
    "focal_point": [
     0.45,
     0.65
-   ]
+   ],
+   "delivered_edge": 3875,
+   "resolution_tier": "4K"
   },
   {
    "title": "Hiroo on the Furukawa River",
@@ -1817,7 +1955,9 @@
    "focal_point": [
     0.5,
     0.75
-   ]
+   ],
+   "delivered_edge": 3874,
+   "resolution_tier": "4K"
   },
   {
    "title": "Yatsukoji, Inside Sujikai Gate",
@@ -1842,7 +1982,9 @@
    "focal_point": [
     0.6,
     0.5
-   ]
+   ],
+   "delivered_edge": 3868,
+   "resolution_tier": "4K"
   },
   {
    "title": "Kilns and the Hashiba Ferry on the Sumida River",
@@ -1867,7 +2009,9 @@
    "focal_point": [
     0.4,
     0.55
-   ]
+   ],
+   "delivered_edge": 3867,
+   "resolution_tier": "4K"
   },
   {
    "title": "Dam on the Otonashi River at Oji",
@@ -1892,7 +2036,9 @@
    "focal_point": [
     0.55,
     0.4
-   ]
+   ],
+   "delivered_edge": 3860,
+   "resolution_tier": "4K"
   },
   {
    "title": "Ekoin Temple in Ryogoku and Moto-Yanagi Bridge",
@@ -1917,7 +2063,9 @@
    "focal_point": [
     0.5,
     0.55
-   ]
+   ],
+   "delivered_edge": 3856,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Oji Inari Shrine",
@@ -1942,7 +2090,9 @@
    "focal_point": [
     0.55,
     0.75
-   ]
+   ],
+   "delivered_edge": 3850,
+   "resolution_tier": "4K"
   },
   {
    "title": "Sunrise at Kanda Myojin Shrine",
@@ -1967,7 +2117,9 @@
    "focal_point": [
     0.7,
     0.6
-   ]
+   ],
+   "delivered_edge": 3849,
+   "resolution_tier": "4K"
   },
   {
    "title": "Hatsune Riding Ground in Bakuro-cho",
@@ -1992,7 +2144,9 @@
    "focal_point": [
     0.48,
     0.35
-   ]
+   ],
+   "delivered_edge": 3847,
+   "resolution_tier": "4K"
   },
   {
    "title": "Yanagishima",
@@ -2017,7 +2171,9 @@
    "focal_point": [
     0.45,
     0.58
-   ]
+   ],
+   "delivered_edge": 3847,
+   "resolution_tier": "4K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -2043,7 +2199,9 @@
    "focal_point": [
     0.25,
     0.85
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -2068,7 +2226,9 @@
    "focal_point": [
     0.5,
     0.45
-   ]
+   ],
+   "delivered_edge": 4096,
+   "resolution_tier": "4K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -2093,7 +2253,9 @@
    "focal_point": [
     0.5,
     0.6
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -2119,7 +2281,9 @@
    "focal_point": [
     0.45,
     0.62
-   ]
+   ],
+   "delivered_edge": 3874,
+   "resolution_tier": "4K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -2144,7 +2308,9 @@
    "focal_point": [
     0.45,
     0.3
-   ]
+   ],
+   "delivered_edge": 6486,
+   "resolution_tier": "4K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -2169,7 +2335,9 @@
    "focal_point": [
     0.3,
     0.65
-   ]
+   ],
+   "delivered_edge": 4799,
+   "resolution_tier": "4K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -2194,7 +2362,9 @@
    "focal_point": [
     0.35,
     0.65
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -2220,7 +2390,9 @@
    "focal_point": [
     0.3,
     0.65
-   ]
+   ],
+   "delivered_edge": 6451,
+   "resolution_tier": "4K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -2245,7 +2417,9 @@
    "focal_point": [
     0.5,
     0.6
-   ]
+   ],
+   "delivered_edge": 7082,
+   "resolution_tier": "4K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -2271,7 +2445,9 @@
    "focal_point": [
     0.45,
     0.15
-   ]
+   ],
+   "delivered_edge": 4661,
+   "resolution_tier": "4K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -2297,7 +2473,9 @@
    "focal_point": [
     0.55,
     0.25
-   ]
+   ],
+   "delivered_edge": 4689,
+   "resolution_tier": "4K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -2322,7 +2500,9 @@
    "focal_point": [
     0.6,
     0.75
-   ]
+   ],
+   "delivered_edge": 4791,
+   "resolution_tier": "4K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -2348,7 +2528,9 @@
    "focal_point": [
     0.55,
     0.62
-   ]
+   ],
+   "delivered_edge": 4782,
+   "resolution_tier": "4K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -2374,7 +2556,9 @@
    "focal_point": [
     0.5,
     0.35
-   ]
+   ],
+   "delivered_edge": 4332,
+   "resolution_tier": "4K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -2400,7 +2584,9 @@
    "focal_point": [
     0.45,
     0.55
-   ]
+   ],
+   "delivered_edge": 4632,
+   "resolution_tier": "4K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -2426,7 +2612,9 @@
    "focal_point": [
     0.4,
     0.35
-   ]
+   ],
+   "delivered_edge": 4670,
+   "resolution_tier": "4K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -2452,7 +2640,9 @@
    "focal_point": [
     0.3,
     0.6
-   ]
+   ],
+   "delivered_edge": 4986,
+   "resolution_tier": "4K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -2478,7 +2668,9 @@
    "focal_point": [
     0.25,
     0.45
-   ]
+   ],
+   "delivered_edge": 4699,
+   "resolution_tier": "4K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -2504,7 +2696,9 @@
    "focal_point": [
     0.45,
     0.55
-   ]
+   ],
+   "delivered_edge": 4782,
+   "resolution_tier": "4K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -2530,7 +2724,9 @@
    "focal_point": [
     0.53,
     0.15
-   ]
+   ],
+   "delivered_edge": 4695,
+   "resolution_tier": "4K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -2556,7 +2752,9 @@
    "focal_point": [
     0.75,
     0.65
-   ]
+   ],
+   "delivered_edge": 4269,
+   "resolution_tier": "4K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -2582,7 +2780,9 @@
    "focal_point": [
     0.65,
     0.3
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -2608,7 +2808,9 @@
    "focal_point": [
     0.5,
     0.3
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -2634,7 +2836,9 @@
    "focal_point": [
     0.47,
     0.4
-   ]
+   ],
+   "delivered_edge": 4362,
+   "resolution_tier": "4K"
   },
   {
    "title": "Full View of Eitai Bridge",
@@ -2660,7 +2864,9 @@
    "focal_point": [
     0.5,
     0.4
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -2686,7 +2892,9 @@
    "focal_point": [
     0.5,
     0.45
-   ]
+   ],
+   "delivered_edge": 4377,
+   "resolution_tier": "4K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -2712,7 +2920,9 @@
    "focal_point": [
     0.5,
     0.4
-   ]
+   ],
+   "delivered_edge": 4374,
+   "resolution_tier": "4K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -2737,7 +2947,9 @@
    "focal_point": [
     0.7,
     0.85
-   ]
+   ],
+   "delivered_edge": 4693,
+   "resolution_tier": "4K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -2763,7 +2975,9 @@
    "focal_point": [
     0.65,
     0.65
-   ]
+   ],
+   "delivered_edge": 4372,
+   "resolution_tier": "4K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -2789,7 +3003,9 @@
    "focal_point": [
     0.25,
     0.4
-   ]
+   ],
+   "delivered_edge": 4847,
+   "resolution_tier": "4K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -2815,7 +3031,9 @@
    "focal_point": [
     0.5,
     0.55
-   ]
+   ],
+   "delivered_edge": 4856,
+   "resolution_tier": "4K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -2841,7 +3059,9 @@
    "focal_point": [
     0.75,
     0.75
-   ]
+   ],
+   "delivered_edge": 4768,
+   "resolution_tier": "4K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -2867,7 +3087,9 @@
    "focal_point": [
     0.75,
     0.6
-   ]
+   ],
+   "delivered_edge": 4755,
+   "resolution_tier": "4K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -2893,7 +3115,9 @@
    "focal_point": [
     0.45,
     0.65
-   ]
+   ],
+   "delivered_edge": 4800,
+   "resolution_tier": "4K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -2918,7 +3142,9 @@
    "focal_point": [
     0.5,
     0.45
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -2943,7 +3169,9 @@
    "focal_point": [
     0.4,
     0.65
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -2969,7 +3197,9 @@
    "focal_point": [
     0.55,
     0.5
-   ]
+   ],
+   "delivered_edge": 3863,
+   "resolution_tier": "4K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -2994,7 +3224,9 @@
    "focal_point": [
     0.4,
     0.75
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Autumn Moon on the Tama River",
@@ -3020,7 +3252,9 @@
    "focal_point": [
     0.5,
     0.35
-   ]
+   ],
+   "delivered_edge": 4000,
+   "resolution_tier": "4K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -3046,7 +3280,9 @@
    "focal_point": [
     0.6,
     0.5
-   ]
+   ],
+   "delivered_edge": 3884,
+   "resolution_tier": "4K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -3071,7 +3307,9 @@
    "focal_point": [
     0.5,
     0.5
-   ]
+   ],
+   "delivered_edge": 4000,
+   "resolution_tier": "4K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -3097,7 +3335,9 @@
    "focal_point": [
     0.5,
     0.35
-   ]
+   ],
+   "delivered_edge": 5305,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Monkey Bridge in Kai Province (Kōyō Saruhashi no Zu)",
@@ -3122,7 +3362,9 @@
    "focal_point": [
     0.5,
     0.25
-   ]
+   ],
+   "delivered_edge": 4000,
+   "resolution_tier": "4K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -3148,7 +3390,9 @@
    "focal_point": [
     0.55,
     0.5
-   ]
+   ],
+   "delivered_edge": 5662,
+   "resolution_tier": "4K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -3174,7 +3418,9 @@
    "focal_point": [
     0.5,
     0.7
-   ]
+   ],
+   "delivered_edge": 3849,
+   "resolution_tier": "4K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -3200,7 +3446,9 @@
    "focal_point": [
     0.4,
     0.35
-   ]
+   ],
+   "delivered_edge": 3855,
+   "resolution_tier": "4K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -3226,7 +3474,9 @@
    "focal_point": [
     0.42,
     0.25
-   ]
+   ],
+   "delivered_edge": 5679,
+   "resolution_tier": "4K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -3251,7 +3501,9 @@
    "focal_point": [
     0.35,
     0.4
-   ]
+   ],
+   "delivered_edge": 3887,
+   "resolution_tier": "4K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -3276,7 +3528,9 @@
    "focal_point": [
     0.5,
     0.55
-   ]
+   ],
+   "delivered_edge": 4000,
+   "resolution_tier": "4K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -3302,7 +3556,9 @@
    "focal_point": [
     0.45,
     0.75
-   ]
+   ],
+   "delivered_edge": 3843,
+   "resolution_tier": "4K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -3328,7 +3584,9 @@
    "focal_point": [
     0.45,
     0.75
-   ]
+   ],
+   "delivered_edge": 3888,
+   "resolution_tier": "4K"
   },
   {
    "title": "Fuchū: Ferrying across the Abe River",
@@ -3354,7 +3612,9 @@
    "focal_point": [
     0.5,
     0.38
-   ]
+   ],
+   "delivered_edge": 4599,
+   "resolution_tier": "4K"
   },
   {
    "title": "Asakusa Ricefields and Torinomachi Festival",
@@ -3380,7 +3640,9 @@
    "focal_point": [
     0.35,
     0.4
-   ]
+   ],
+   "delivered_edge": 6862,
+   "resolution_tier": "4K"
   },
   {
    "title": "Bamboo and Sparrow",
@@ -3405,7 +3667,9 @@
    "focal_point": [
     0.35,
     0.35
-   ]
+   ],
+   "delivered_edge": 6660,
+   "resolution_tier": "4K"
   },
   {
    "title": "Fishing Boats off Tsukuda Island near Eitai Bridge",
@@ -3430,7 +3694,9 @@
    "focal_point": [
     0.35,
     0.75
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Ichikawa Danjūrō VII as Shibaraku (surimono)",
@@ -3455,7 +3721,9 @@
    "focal_point": [
     0.5,
     0.35
-   ]
+   ],
+   "delivered_edge": 4678,
+   "resolution_tier": "4K"
   },
   {
    "title": "Small Bird on a Branch of Kaidozakura",
@@ -3480,7 +3748,9 @@
    "focal_point": [
     0.35,
     0.75
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Crane and Rising Sun",
@@ -3505,7 +3775,9 @@
    "focal_point": [
     0.5,
     0.4
-   ]
+   ],
+   "delivered_edge": 6664,
+   "resolution_tier": "4K"
   },
   {
    "title": "Camellia and Finch",
@@ -3530,7 +3802,9 @@
    "focal_point": [
     0.55,
     0.25
-   ]
+   ],
+   "delivered_edge": 3854,
+   "resolution_tier": "4K"
   },
   {
    "title": "Morning Glories",
@@ -3555,7 +3829,9 @@
    "focal_point": [
     0.5,
     0.25
-   ]
+   ],
+   "delivered_edge": 4000,
+   "resolution_tier": "4K"
   },
   {
    "title": "Mandarin Duck in Snow",
@@ -3580,7 +3856,9 @@
    "focal_point": [
     0.5,
     0.6
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Moonlit View of Hongō",
@@ -3606,7 +3884,9 @@
    "focal_point": [
     0.53,
     0.22
-   ]
+   ],
+   "delivered_edge": 4663,
+   "resolution_tier": "4K"
   },
   {
    "title": "Nihonbashi-Nakasu",
@@ -3632,7 +3912,9 @@
    "focal_point": [
     0.65,
     0.6
-   ]
+   ],
+   "delivered_edge": 4822,
+   "resolution_tier": "4K"
   },
   {
    "title": "Nihonbashi",
@@ -3658,7 +3940,9 @@
    "focal_point": [
     0.28,
     0.38
-   ]
+   ],
+   "delivered_edge": 4695,
+   "resolution_tier": "4K"
   },
   {
    "title": "Ise Pilgrimage Route: A Simplified Guide (Ise Sangū Ryakuzu)",
@@ -3683,7 +3967,9 @@
    "focal_point": [
     0.5,
     0.75
-   ]
+   ],
+   "delivered_edge": 4765,
+   "resolution_tier": "4K"
   },
   {
    "title": "Kanda Myōjin Shrine",
@@ -3709,7 +3995,9 @@
    "focal_point": [
     0.25,
     0.4
-   ]
+   ],
+   "delivered_edge": 4960,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Sannō Festival Procession at Kasumigaseki",
@@ -3735,7 +4023,9 @@
    "focal_point": [
     0.5,
     0.55
-   ]
+   ],
+   "delivered_edge": 4769,
+   "resolution_tier": "4K"
   },
   {
    "title": "Cherry Blossoms in Full Bloom at Gotenyama",
@@ -3761,7 +4051,9 @@
    "focal_point": [
     0.52,
     0.62
-   ]
+   ],
+   "delivered_edge": 4803,
+   "resolution_tier": "4K"
   },
   {
    "title": "Yushima Tenjin Shrine",
@@ -3787,7 +4079,9 @@
    "focal_point": [
     0.18,
     0.45
-   ]
+   ],
+   "delivered_edge": 4822,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Legend of Azuma Forest",
@@ -3813,7 +4107,9 @@
    "focal_point": [
     0.55,
     0.35
-   ]
+   ],
+   "delivered_edge": 4795,
+   "resolution_tier": "4K"
   },
   {
    "title": "Shell Gathering at Susaki, Likened to Suma",
@@ -3839,7 +4135,9 @@
    "focal_point": [
     0.32,
     0.45
-   ]
+   ],
+   "delivered_edge": 4826,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Earth of Asukayama",
@@ -3865,7 +4163,9 @@
    "focal_point": [
     0.5,
     0.25
-   ]
+   ],
+   "delivered_edge": 4683,
+   "resolution_tier": "4K"
   },
   {
    "title": "Edomizaka Slope",
@@ -3891,7 +4191,9 @@
    "focal_point": [
     0.6,
     0.65
-   ]
+   ],
+   "delivered_edge": 4284,
+   "resolution_tier": "4K"
   },
   {
    "title": "Precincts of Tomioka Hachiman Shrine, Fukagawa",
@@ -3917,7 +4219,9 @@
    "focal_point": [
     0.5,
     0.4
-   ]
+   ],
+   "delivered_edge": 4382,
+   "resolution_tier": "4K"
   },
   {
    "title": "Nishi Hongan-ji Temple at Tsukiji",
@@ -3943,7 +4247,9 @@
    "focal_point": [
     0.5,
     0.35
-   ]
+   ],
+   "delivered_edge": 4382,
+   "resolution_tier": "4K"
   },
   {
    "title": "Panoramic View of Eitai Bridge",
@@ -3969,7 +4275,9 @@
    "focal_point": [
     0.5,
     0.45
-   ]
+   ],
+   "delivered_edge": 4325,
+   "resolution_tier": "4K"
   },
   {
    "title": "Panoramic View of Takanawa",
@@ -3995,7 +4303,9 @@
    "focal_point": [
     0.5,
     0.45
-   ]
+   ],
+   "delivered_edge": 4389,
+   "resolution_tier": "4K"
   },
   {
    "title": "Hanayashiki Flower Garden at Okuyama, Asakusa",
@@ -4020,7 +4330,9 @@
    "focal_point": [
     0.72,
     0.72
-   ]
+   ],
+   "delivered_edge": 4742,
+   "resolution_tier": "4K"
   },
   {
    "title": "Snowy Dawn at Nihonbashi",
@@ -4046,7 +4358,9 @@
    "focal_point": [
     0.45,
     0.4
-   ]
+   ],
+   "delivered_edge": 4337,
+   "resolution_tier": "4K"
   },
   {
    "title": "Full View of the Moon over Both Banks of the Sumida River",
@@ -4072,7 +4386,9 @@
    "focal_point": [
     0.27,
     0.17
-   ]
+   ],
+   "delivered_edge": 4332,
+   "resolution_tier": "4K"
   },
   {
    "title": "Enjoying the Cool at Ryōgoku Bridge",
@@ -4098,7 +4414,9 @@
    "focal_point": [
     0.5,
     0.35
-   ]
+   ],
+   "delivered_edge": 4810,
+   "resolution_tier": "4K"
   },
   {
    "title": "Harimaya Restaurant at Emon-zaka, Shin-Yoshiwara",
@@ -4124,7 +4442,9 @@
    "focal_point": [
     0.55,
     0.7
-   ]
+   ],
+   "delivered_edge": 4815,
+   "resolution_tier": "4K"
   },
   {
    "title": "Ogura-an Restaurant at Honjo Koume",
@@ -4150,7 +4470,9 @@
    "focal_point": [
     0.55,
     0.75
-   ]
+   ],
+   "delivered_edge": 4721,
+   "resolution_tier": "4K"
   },
   {
    "title": "Ō-noshi Restaurant at Ryōgoku Yanagibashi",
@@ -4176,7 +4498,9 @@
    "focal_point": [
     0.3,
     0.7
-   ]
+   ],
+   "delivered_edge": 4778,
+   "resolution_tier": "4K"
   },
   {
    "title": "Board Game of Palace Women's Service (Oku Kinbōkō Sugoroku)",
@@ -4201,7 +4525,9 @@
    "focal_point": [
     0.5,
     0.5
-   ]
+   ],
+   "delivered_edge": 4442,
+   "resolution_tier": "4K"
   },
   {
    "title": "Ise Pilgrimage Journey: A Comic Travelogue Board Game (Ise Sangū Hizakurige Dōchū Sugoroku)",
@@ -4226,7 +4552,9 @@
    "focal_point": [
     0.5,
     0.5
-   ]
+   ],
+   "delivered_edge": 4626,
+   "resolution_tier": "4K"
   },
   {
    "title": "Inside Shiba Myōjin Shrine",
@@ -4252,7 +4580,9 @@
    "focal_point": [
     0.45,
     0.35
-   ]
+   ],
+   "delivered_edge": 4811,
+   "resolution_tier": "4K"
   },
   {
    "title": "Crane amid Waves",
@@ -4277,7 +4607,9 @@
    "focal_point": [
     0.62,
     0.25
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Monkey and Long-Tailed Tortoise (Minogame) (surimono)",
@@ -4302,7 +4634,9 @@
    "focal_point": [
     0.38,
     0.42
-   ]
+   ],
+   "delivered_edge": 4882,
+   "resolution_tier": "4K"
   },
   {
    "title": "Morning Cherry Blossoms at Shin-Yoshiwara",
@@ -4328,7 +4662,9 @@
    "focal_point": [
     0.35,
     0.8
-   ]
+   ],
+   "delivered_edge": 3845,
+   "resolution_tier": "4K"
   },
   {
    "title": "Souvenir Views of Edo (Ehon Edo Miyage), plate 37",
@@ -4353,7 +4689,9 @@
    "focal_point": [
     0.5,
     0.5
-   ]
+   ],
+   "delivered_edge": 5262,
+   "resolution_tier": "4K"
   },
   {
    "title": "New Year's Sunrise after Snow at Susaki",
@@ -4379,7 +4717,9 @@
    "focal_point": [
     0.62,
     0.6
-   ]
+   ],
+   "delivered_edge": 3874,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Prosperity of Ōdenmachō",
@@ -4404,7 +4744,9 @@
    "focal_point": [
     0.5,
     0.32
-   ]
+   ],
+   "delivered_edge": 3913,
+   "resolution_tier": "4K"
   },
   {
    "title": "View Outside Sakurada Gate",
@@ -4430,7 +4772,9 @@
    "focal_point": [
     0.55,
     0.7
-   ]
+   ],
+   "delivered_edge": 4766,
+   "resolution_tier": "4K"
   },
   {
    "title": "A Wealthy Merchant",
@@ -4455,7 +4799,9 @@
    "focal_point": [
     0.42,
     0.72
-   ]
+   ],
+   "delivered_edge": 7034,
+   "resolution_tier": "4K"
   },
   {
    "title": "Shiraito Waterfall at Hakone",
@@ -4480,7 +4826,9 @@
    "focal_point": [
     0.68,
     0.45
-   ]
+   ],
+   "delivered_edge": 4000,
+   "resolution_tier": "4K"
   },
   {
    "title": "Horikiri Iris Garden",
@@ -4506,7 +4854,9 @@
    "focal_point": [
     0.62,
     0.28
-   ]
+   ],
+   "delivered_edge": 5487,
+   "resolution_tier": "4K"
   },
   {
    "title": "Mountains and Rivers Along the Kisokaidō",
@@ -4531,7 +4881,9 @@
    "focal_point": [
     0.5,
     0.45
-   ]
+   ],
+   "delivered_edge": 4000,
+   "resolution_tier": "4K"
   },
   {
    "title": "Night Cherry Blossoms at Yoshiwara",
@@ -4557,7 +4909,9 @@
    "focal_point": [
     0.5,
     0.55
-   ]
+   ],
+   "delivered_edge": 3886,
+   "resolution_tier": "4K"
   },
   {
    "title": "Zōjōji Temple at Shiba in Snow",
@@ -4583,7 +4937,9 @@
    "focal_point": [
     0.72,
     0.4
-   ]
+   ],
+   "delivered_edge": 3890,
+   "resolution_tier": "4K"
   },
   {
    "title": "Kingfisher and Iris",
@@ -4608,7 +4964,9 @@
    "focal_point": [
     0.6,
     0.25
-   ]
+   ],
+   "delivered_edge": 3893,
+   "resolution_tier": "4K"
   },
   {
    "title": "Mallard Ducks and Snow-Covered Reeds",
@@ -4633,7 +4991,9 @@
    "focal_point": [
     0.35,
     0.55
-   ]
+   ],
+   "delivered_edge": 3870,
+   "resolution_tier": "4K"
   },
   {
    "title": "Benten-yama Hill at Kinryūzan Temple, Asakusa",
@@ -4659,7 +5019,9 @@
    "focal_point": [
     0.58,
     0.35
-   ]
+   ],
+   "delivered_edge": 5560,
+   "resolution_tier": "4K"
   },
   {
    "title": "Tama-Shō Restaurant at Imado Bridge",
@@ -4685,7 +5047,9 @@
    "focal_point": [
     0.25,
     0.75
-   ]
+   ],
+   "delivered_edge": 3864,
+   "resolution_tier": "4K"
   },
   {
    "title": "Myōga-ya Restaurant at Zōshigaya",
@@ -4711,7 +5075,9 @@
    "focal_point": [
     0.78,
     0.65
-   ]
+   ],
+   "delivered_edge": 3866,
+   "resolution_tier": "4K"
   },
   {
    "title": "Cherry Blossom Viewing at Asukayama",
@@ -4737,7 +5103,9 @@
    "focal_point": [
     0.6,
     0.65
-   ]
+   ],
+   "delivered_edge": 4614,
+   "resolution_tier": "4K"
   },
   {
    "title": "View of Tago-no-ura Bay",
@@ -4762,7 +5130,9 @@
    "focal_point": [
     0.5,
     0.28
-   ]
+   ],
+   "delivered_edge": 5743,
+   "resolution_tier": "4K"
   },
   {
    "title": "Carp",
@@ -4788,7 +5158,9 @@
    "focal_point": [
     0.2,
     0.25
-   ]
+   ],
+   "delivered_edge": 5850,
+   "resolution_tier": "4K"
   },
   {
    "title": "Full Moon over Takanawa",
@@ -4814,7 +5186,9 @@
    "focal_point": [
     0.5,
     0.3
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Evening Snow at Asukayama",
@@ -4840,7 +5214,9 @@
    "focal_point": [
     0.42,
     0.75
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Beautiful Chinese Lady (ishizuri-e print)",
@@ -4865,7 +5241,9 @@
    "focal_point": [
     0.55,
     0.28
-   ]
+   ],
+   "delivered_edge": 4531,
+   "resolution_tier": "4K"
   },
   {
    "title": "Two Mandarin Ducks",
@@ -4890,7 +5268,9 @@
    "focal_point": [
     0.42,
     0.62
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Quails and Poppies",
@@ -4915,7 +5295,9 @@
    "focal_point": [
     0.5,
     0.75
-   ]
+   ],
+   "delivered_edge": 5685,
+   "resolution_tier": "4K"
   },
   {
    "title": "Moonlight over Hongo",
@@ -4940,7 +5322,9 @@
    "focal_point": [
     0.5,
     0.35
-   ]
+   ],
+   "delivered_edge": 6327,
+   "resolution_tier": "4K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -4965,7 +5349,9 @@
    "focal_point": [
     0.5,
     0.4
-   ]
+   ],
+   "delivered_edge": 4849,
+   "resolution_tier": "4K"
   },
   {
    "title": "Abbreviated Guide Map of the Pilgrimage to Ise",
@@ -4990,7 +5376,9 @@
    "focal_point": [
     0.4,
     0.25
-   ]
+   ],
+   "delivered_edge": 4802,
+   "resolution_tier": "4K"
   },
   {
    "title": "View of Mount Massan",
@@ -5016,7 +5404,9 @@
    "focal_point": [
     0.42,
     0.35
-   ]
+   ],
+   "delivered_edge": 4995,
+   "resolution_tier": "4K"
   },
   {
    "title": "The New Year's Bishamon Procession at Atago Hill, Shiba",
@@ -5042,7 +5432,9 @@
    "focal_point": [
     0.55,
     0.5
-   ]
+   ],
+   "delivered_edge": 4860,
+   "resolution_tier": "4K"
   },
   {
    "title": "An Ancient View of Kasumigaseki",
@@ -5068,7 +5460,9 @@
    "focal_point": [
     0.7,
     0.55
-   ]
+   ],
+   "delivered_edge": 4778,
+   "resolution_tier": "4K"
   },
   {
    "title": "Autumn Maples at Kaian-ji Temple",
@@ -5094,7 +5488,9 @@
    "focal_point": [
     0.28,
     0.65
-   ]
+   ],
+   "delivered_edge": 3960,
+   "resolution_tier": "4K"
   },
   {
    "title": "Kudanzaka Slope at Iidamachi",
@@ -5120,7 +5516,9 @@
    "focal_point": [
     0.72,
     0.65
-   ]
+   ],
+   "delivered_edge": 4292,
+   "resolution_tier": "4K"
   },
   {
    "title": "Full View of the Precincts of Tomioka Hachiman Shrine, Fukagawa",
@@ -5145,7 +5543,9 @@
    "focal_point": [
     0.4,
     0.4
-   ]
+   ],
+   "delivered_edge": 4387,
+   "resolution_tier": "4K"
   },
   {
    "title": "Full View of the Precincts of Kameido Tenman Shrine",
@@ -5171,7 +5571,9 @@
    "focal_point": [
     0.5,
     0.45
-   ]
+   ],
+   "delivered_edge": 4389,
+   "resolution_tier": "4K"
   },
   {
    "title": "Hanayashiki Garden at Okuyama, Kinryuzan Temple, Asakusa",
@@ -5196,7 +5598,9 @@
    "focal_point": [
     0.5,
     0.5
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Great Snow at Massaki",
@@ -5222,7 +5626,9 @@
    "focal_point": [
     0.5,
     0.7
-   ]
+   ],
+   "delivered_edge": 4299,
+   "resolution_tier": "4K"
   },
   {
    "title": "Sunrise at Susaki on a Snowy Morning",
@@ -5248,7 +5654,9 @@
    "focal_point": [
     0.3,
     0.6
-   ]
+   ],
+   "delivered_edge": 4337,
+   "resolution_tier": "4K"
   },
   {
    "title": "Outside Toranomon Gate",
@@ -5274,7 +5682,9 @@
    "focal_point": [
     0.35,
     0.68
-   ]
+   ],
+   "delivered_edge": 4825,
+   "resolution_tier": "4K"
   },
   {
    "title": "Myogaya Restaurant at Zoshigaya",
@@ -5300,7 +5710,9 @@
    "focal_point": [
     0.5,
     0.42
-   ]
+   ],
+   "delivered_edge": 4833,
+   "resolution_tier": "4K"
   },
   {
    "title": "Hashimoto Restaurant at Yanagishima Bridge",
@@ -5326,7 +5738,9 @@
    "focal_point": [
     0.4,
     0.55
-   ]
+   ],
+   "delivered_edge": 4765,
+   "resolution_tier": "4K"
   },
   {
    "title": "Kawachiya Restaurant at Ryogoku Yanagibashi",
@@ -5352,7 +5766,9 @@
    "focal_point": [
     0.28,
     0.45
-   ]
+   ],
+   "delivered_edge": 4810,
+   "resolution_tier": "4K"
   },
   {
    "title": "Four Views of Edo: Autumn Maples at Kaian-ji, Dawn at Shibaura, Cherry Blossoms at Gotenyama, and Clear Breeze on the Sumida River",
@@ -5377,7 +5793,9 @@
    "focal_point": [
     0.5,
     0.5
-   ]
+   ],
+   "delivered_edge": 4252,
+   "resolution_tier": "4K"
   },
   {
    "title": "Peacock and Peonies",
@@ -5402,7 +5820,9 @@
    "focal_point": [
     0.4,
     0.65
-   ]
+   ],
+   "delivered_edge": 6458,
+   "resolution_tier": "4K"
   },
   {
    "title": "Sakuragawa Yozaemon's Teahouse and the Riverbank at Joshichi",
@@ -5428,7 +5848,9 @@
    "focal_point": [
     0.45,
     0.45
-   ]
+   ],
+   "delivered_edge": 6370,
+   "resolution_tier": "4K"
   },
   {
    "title": "Sparrows and Camellias in the Snow",
@@ -5453,7 +5875,9 @@
    "focal_point": [
     0.65,
     0.7
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Shinobazu Pond",
@@ -5479,7 +5903,9 @@
    "focal_point": [
     0.5,
     0.6
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Cherry Blossoms along the Sumida River",
@@ -5505,7 +5931,9 @@
    "focal_point": [
     0.35,
     0.35
-   ]
+   ],
+   "delivered_edge": 4797,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Rakan Handaka Sonja with a Dragon",
@@ -5530,7 +5958,9 @@
    "focal_point": [
     0.6,
     0.65
-   ]
+   ],
+   "delivered_edge": 4000,
+   "resolution_tier": "4K"
   },
   {
    "title": "Suidobashi and Surugadai",
@@ -5556,7 +5986,9 @@
    "focal_point": [
     0.42,
     0.18
-   ]
+   ],
+   "delivered_edge": 4201,
+   "resolution_tier": "4K"
   },
   {
    "title": "Bats and the Moon",
@@ -5581,7 +6013,9 @@
    "focal_point": [
     0.45,
     0.35
-   ]
+   ],
+   "delivered_edge": 6344,
+   "resolution_tier": "4K"
   },
   {
    "title": "Autumn Moon over the Tama River, with Ayu Fishing",
@@ -5607,7 +6041,9 @@
    "focal_point": [
     0.48,
     0.15
-   ]
+   ],
+   "delivered_edge": 5594,
+   "resolution_tier": "4K"
   },
   {
    "title": "Mount Akiba in Enshu Province",
@@ -5633,7 +6069,9 @@
    "focal_point": [
     0.5,
     0.4
-   ]
+   ],
+   "delivered_edge": 5644,
+   "resolution_tier": "4K"
   },
   {
    "title": "New Yoshiwara",
@@ -5659,7 +6097,9 @@
    "focal_point": [
     0.4,
     0.35
-   ]
+   ],
+   "delivered_edge": 4771,
+   "resolution_tier": "4K"
   },
   {
    "title": "View from the Top of Atago Hill, Shiba",
@@ -5685,7 +6125,9 @@
    "focal_point": [
     0.25,
     0.65
-   ]
+   ],
+   "delivered_edge": 3876,
+   "resolution_tier": "4K"
   },
   {
    "title": "Evening Glow at Imado",
@@ -5711,7 +6153,9 @@
    "focal_point": [
     0.5,
     0.45
-   ]
+   ],
+   "delivered_edge": 5166,
+   "resolution_tier": "4K"
   },
   {
    "title": "White Heron Standing among Reeds",
@@ -5736,7 +6180,9 @@
    "focal_point": [
     0.45,
     0.55
-   ]
+   ],
+   "delivered_edge": 4000,
+   "resolution_tier": "4K"
   },
   {
    "title": "Mallard and Snow-Covered Reeds",
@@ -5761,7 +6207,9 @@
    "focal_point": [
     0.55,
     0.55
-   ]
+   ],
+   "delivered_edge": 4000,
+   "resolution_tier": "4K"
   },
   {
    "title": "Yaozen Restaurant at Sanya",
@@ -5787,7 +6235,9 @@
    "focal_point": [
     0.5,
     0.55
-   ]
+   ],
+   "delivered_edge": 5914,
+   "resolution_tier": "4K"
   },
   {
    "title": "View of Enoshima Island, Sagami Province",
@@ -5812,7 +6262,9 @@
    "focal_point": [
     0.6,
     0.45
-   ]
+   ],
+   "delivered_edge": 5493,
+   "resolution_tier": "4K"
   },
   {
    "title": "Kusatsu: Meeting of the Tōkaidō and Nakasendō Highways",
@@ -5838,7 +6290,9 @@
    "focal_point": [
     0.45,
     0.75
-   ]
+   ],
+   "delivered_edge": 4582,
+   "resolution_tier": "4K"
   },
   {
    "title": "Complete View of Asukayama",
@@ -5863,7 +6317,9 @@
    "focal_point": [
     0.43,
     0.22
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "The Fox Trap",
@@ -5888,7 +6344,9 @@
    "focal_point": [
     0.35,
     0.45
-   ]
+   ],
+   "delivered_edge": 5210,
+   "resolution_tier": "4K"
   },
   {
    "title": "Pheasant and Chrysanthemums",
@@ -5913,7 +6371,9 @@
    "focal_point": [
     0.45,
     0.45
-   ]
+   ],
+   "delivered_edge": 6534,
+   "resolution_tier": "4K"
   },
   {
    "title": "Kijin (Demon Deity)",
@@ -5938,7 +6398,9 @@
    "focal_point": [
     0.45,
     0.55
-   ]
+   ],
+   "delivered_edge": 5176,
+   "resolution_tier": "4K"
   },
   {
    "title": "Cherry Blossom by a Tree Trunk",
@@ -5963,7 +6425,9 @@
    "focal_point": [
     0.35,
     0.3
-   ]
+   ],
+   "delivered_edge": 5992,
+   "resolution_tier": "4K"
   },
   {
    "title": "Mandarin Duck",
@@ -5988,7 +6452,9 @@
    "focal_point": [
     0.42,
     0.62
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Abbreviated View of the Pilgrimage Route to Ise Shrine",
@@ -6013,7 +6479,9 @@
    "focal_point": [
     0.5,
     0.65
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Suruga-chō",
@@ -6039,7 +6507,9 @@
    "focal_point": [
     0.45,
     0.65
-   ]
+   ],
+   "delivered_edge": 4881,
+   "resolution_tier": "4K"
   },
   {
    "title": "New Year's Sunrise at Susaki",
@@ -6064,7 +6534,9 @@
    "focal_point": [
     0.75,
     0.65
-   ]
+   ],
+   "delivered_edge": 4975,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Shinagawa Station Seen from the Sea",
@@ -6090,7 +6562,9 @@
    "focal_point": [
     0.45,
     0.3
-   ]
+   ],
+   "delivered_edge": 4843,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Origin of Shiba Shinmei Shrine",
@@ -6116,7 +6590,9 @@
    "focal_point": [
     0.22,
     0.82
-   ]
+   ],
+   "delivered_edge": 4711,
+   "resolution_tier": "4K"
   },
   {
    "title": "Returning Sails at Tsukudajima",
@@ -6142,7 +6618,9 @@
    "focal_point": [
     0.6,
     0.5
-   ]
+   ],
+   "delivered_edge": 4868,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Moon over Ryōgoku in Summer",
@@ -6168,7 +6646,9 @@
    "focal_point": [
     0.7,
     0.75
-   ]
+   ],
+   "delivered_edge": 3911,
+   "resolution_tier": "4K"
   },
   {
    "title": "Complete View of the Tomioka Hachiman Shrine Precincts in Fukagawa",
@@ -6193,7 +6673,9 @@
    "focal_point": [
     0.55,
     0.5
-   ]
+   ],
+   "delivered_edge": 4392,
+   "resolution_tier": "4K"
   },
   {
    "title": "Complete View of the Ōji Inari Shrine Precincts",
@@ -6219,7 +6701,9 @@
    "focal_point": [
     0.35,
     0.82
-   ]
+   ],
+   "delivered_edge": 4363,
+   "resolution_tier": "4K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -6245,7 +6729,9 @@
    "focal_point": [
     0.5,
     0.68
-   ]
+   ],
+   "delivered_edge": 4391,
+   "resolution_tier": "4K"
   },
   {
    "title": "Complete View of the Susaki Benzaiten Shrine Precincts and Shellfish Gathering on the Shore",
@@ -6271,7 +6757,9 @@
    "focal_point": [
     0.5,
     0.45
-   ]
+   ],
+   "delivered_edge": 4305,
+   "resolution_tier": "4K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -6297,7 +6785,9 @@
    "focal_point": [
     0.32,
     0.2
-   ]
+   ],
+   "delivered_edge": 4402,
+   "resolution_tier": "4K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -6322,7 +6812,9 @@
    "focal_point": [
     0.5,
     0.6
-   ]
+   ],
+   "delivered_edge": 4714,
+   "resolution_tier": "4K"
   },
   {
    "title": "Wind in the Snow at Inokashira Benten",
@@ -6348,7 +6840,9 @@
    "focal_point": [
     0.42,
     0.42
-   ]
+   ],
+   "delivered_edge": 4289,
+   "resolution_tier": "4K"
   },
   {
    "title": "Morning After Snow Outside Sakurada Gate",
@@ -6374,7 +6868,9 @@
    "focal_point": [
     0.5,
     0.5
-   ]
+   ],
+   "delivered_edge": 4364,
+   "resolution_tier": "4K"
   },
   {
    "title": "Mankin Restaurant at Hakusan Keiseigakubo",
@@ -6400,7 +6896,9 @@
    "focal_point": [
     0.55,
     0.6
-   ]
+   ],
+   "delivered_edge": 4751,
+   "resolution_tier": "4K"
   },
   {
    "title": "Tamashō Restaurant at Imado Bridge",
@@ -6426,7 +6924,9 @@
    "focal_point": [
     0.35,
     0.85
-   ]
+   ],
+   "delivered_edge": 4819,
+   "resolution_tier": "4K"
   },
   {
    "title": "Tamaya Restaurant Behind Kameido",
@@ -6452,7 +6952,9 @@
    "focal_point": [
     0.55,
     0.65
-   ]
+   ],
+   "delivered_edge": 4775,
+   "resolution_tier": "4K"
   },
   {
    "title": "Saruwaka-machi, No. 1",
@@ -6477,7 +6979,9 @@
    "focal_point": [
     0.45,
     0.25
-   ]
+   ],
+   "delivered_edge": 6362,
+   "resolution_tier": "4K"
   },
   {
    "title": "Playing Shuttlecock at New Year",
@@ -6502,7 +7006,9 @@
    "focal_point": [
     0.45,
     0.55
-   ]
+   ],
+   "delivered_edge": 5232,
+   "resolution_tier": "4K"
   },
   {
    "title": "Cherry Blossom Avenue",
@@ -6527,7 +7033,9 @@
    "focal_point": [
     0.55,
     0.35
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "The Shrine to Benten at Shinobazu Pond",
@@ -6552,7 +7060,9 @@
    "focal_point": [
     0.55,
     0.65
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "The Moon over the Sumida River",
@@ -6577,7 +7087,9 @@
    "focal_point": [
     0.68,
     0.15
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Tonosawa in Hakone",
@@ -6602,7 +7114,9 @@
    "focal_point": [
     0.3,
     0.78
-   ]
+   ],
+   "delivered_edge": 6664,
+   "resolution_tier": "4K"
   },
   {
    "title": "Plum Blossom and Magpie",
@@ -6627,7 +7141,9 @@
    "focal_point": [
     0.35,
     0.3
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Blue Magpie on a Maple Branch",
@@ -6652,7 +7168,9 @@
    "focal_point": [
     0.35,
     0.3
-   ]
+   ],
+   "delivered_edge": 4201,
+   "resolution_tier": "4K"
   },
   {
    "title": "Gathering Shellfish at Low Tide at Susaki",
@@ -6678,7 +7196,9 @@
    "focal_point": [
     0.55,
     0.6
-   ]
+   ],
+   "delivered_edge": 7557,
+   "resolution_tier": "4K"
   },
   {
    "title": "Suidō Bridge and Surugadai",
@@ -6704,7 +7224,9 @@
    "focal_point": [
     0.35,
     0.18
-   ]
+   ],
+   "delivered_edge": 5077,
+   "resolution_tier": "4K"
   },
   {
    "title": "Cherry Blossoms at Yoshiwara",
@@ -6729,7 +7251,9 @@
    "focal_point": [
     0.45,
     0.55
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Kokanei Embankment in Full Bloom",
@@ -6755,7 +7279,9 @@
    "focal_point": [
     0.47,
     0.32
-   ]
+   ],
+   "delivered_edge": 5644,
+   "resolution_tier": "4K"
   },
   {
    "title": "Returning Sails at Takanawa",
@@ -6780,7 +7306,9 @@
    "focal_point": [
     0.6,
     0.55
-   ]
+   ],
+   "delivered_edge": 5569,
+   "resolution_tier": "4K"
   },
   {
    "title": "Dawn at Emonzaka Slope, Nihon Embankment, Approaching the New Yoshiwara",
@@ -6805,7 +7333,9 @@
    "focal_point": [
     0.25,
     0.7
-   ]
+   ],
+   "delivered_edge": 3857,
+   "resolution_tier": "4K"
   },
   {
    "title": "Snow at Akabane, Shiba",
@@ -6831,7 +7361,9 @@
    "focal_point": [
     0.75,
     0.65
-   ]
+   ],
+   "delivered_edge": 3851,
+   "resolution_tier": "4K"
   },
   {
    "title": "Bird on a Plum Branch",
@@ -6856,7 +7388,9 @@
    "focal_point": [
     0.4,
     0.4
-   ]
+   ],
+   "delivered_edge": 3881,
+   "resolution_tier": "4K"
   },
   {
    "title": "Shrike and Chrysanthemums",
@@ -6881,7 +7415,9 @@
    "focal_point": [
     0.55,
     0.25
-   ]
+   ],
+   "delivered_edge": 3899,
+   "resolution_tier": "4K"
   },
   {
    "title": "Morning Glories with a Poem by Gyōkō",
@@ -6906,7 +7442,9 @@
    "focal_point": [
     0.45,
     0.35
-   ]
+   ],
+   "delivered_edge": 4000,
+   "resolution_tier": "4K"
   },
   {
    "title": "Clearing Weather at Shibaura",
@@ -6932,7 +7470,9 @@
    "focal_point": [
     0.75,
     0.55
-   ]
+   ],
+   "delivered_edge": 3858,
+   "resolution_tier": "4K"
   },
   {
    "title": "View of Yanagishima: the Hashimoto Restaurant",
@@ -6958,7 +7498,9 @@
    "focal_point": [
     0.45,
     0.65
-   ]
+   ],
+   "delivered_edge": 3898,
+   "resolution_tier": "4K"
   },
   {
    "title": "In Front of Kaminarimon Gate, Asakusa: the Kameya Restaurant",
@@ -6984,7 +7526,9 @@
    "focal_point": [
     0.25,
     0.35
-   ]
+   ],
+   "delivered_edge": 5660,
+   "resolution_tier": "4K"
   },
   {
    "title": "Niwaka Festival Scene at the New Yoshiwara",
@@ -7010,7 +7554,9 @@
    "focal_point": [
     0.5,
     0.4
-   ]
+   ],
+   "delivered_edge": 5517,
+   "resolution_tier": "4K"
   },
   {
    "title": "White Heron and Iris",
@@ -7035,7 +7581,9 @@
    "focal_point": [
     0.4,
     0.3
-   ]
+   ],
+   "delivered_edge": 3886,
+   "resolution_tier": "4K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -7061,7 +7609,9 @@
    "focal_point": [
     0.42,
     0.42
-   ]
+   ],
+   "delivered_edge": 6440,
+   "resolution_tier": "4K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -7087,7 +7637,9 @@
    "focal_point": [
     0.62,
     0.35
-   ]
+   ],
+   "delivered_edge": 4277,
+   "resolution_tier": "4K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -7113,7 +7665,9 @@
    "focal_point": [
     0.5,
     0.4
-   ]
+   ],
+   "delivered_edge": 3860,
+   "resolution_tier": "4K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -7139,7 +7693,9 @@
    "focal_point": [
     0.35,
     0.32
-   ]
+   ],
+   "delivered_edge": 6134,
+   "resolution_tier": "4K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -7164,7 +7720,9 @@
    "focal_point": [
     0.5,
     0.55
-   ]
+   ],
+   "delivered_edge": 6626,
+   "resolution_tier": "4K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -7189,7 +7747,9 @@
    "focal_point": [
     0.45,
     0.72
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -7214,7 +7774,9 @@
    "focal_point": [
     0.4,
     0.55
-   ]
+   ],
+   "delivered_edge": 4500,
+   "resolution_tier": "4K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -7240,7 +7802,9 @@
    "focal_point": [
     0.75,
     0.7
-   ]
+   ],
+   "delivered_edge": 6452,
+   "resolution_tier": "4K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -7265,7 +7829,9 @@
    "focal_point": [
     0.45,
     0.5
-   ]
+   ],
+   "delivered_edge": 4000,
+   "resolution_tier": "4K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -7291,7 +7857,9 @@
    "focal_point": [
     0.3,
     0.65
-   ]
+   ],
+   "delivered_edge": 4961,
+   "resolution_tier": "4K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -7317,7 +7885,9 @@
    "focal_point": [
     0.5,
     0.55
-   ]
+   ],
+   "delivered_edge": 4846,
+   "resolution_tier": "4K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -7343,7 +7913,9 @@
    "focal_point": [
     0.72,
     0.55
-   ]
+   ],
+   "delivered_edge": 4825,
+   "resolution_tier": "4K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -7369,7 +7941,9 @@
    "focal_point": [
     0.5,
     0.55
-   ]
+   ],
+   "delivered_edge": 4770,
+   "resolution_tier": "4K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -7395,7 +7969,9 @@
    "focal_point": [
     0.72,
     0.35
-   ]
+   ],
+   "delivered_edge": 4899,
+   "resolution_tier": "4K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -7421,7 +7997,9 @@
    "focal_point": [
     0.35,
     0.55
-   ]
+   ],
+   "delivered_edge": 4752,
+   "resolution_tier": "4K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -7447,7 +8025,9 @@
    "focal_point": [
     0.5,
     0.55
-   ]
+   ],
+   "delivered_edge": 4879,
+   "resolution_tier": "4K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -7473,7 +8053,9 @@
    "focal_point": [
     0.33,
     0.35
-   ]
+   ],
+   "delivered_edge": 4277,
+   "resolution_tier": "4K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -7498,7 +8080,9 @@
    "focal_point": [
     0.5,
     0.5
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -7524,7 +8108,9 @@
    "focal_point": [
     0.45,
     0.6
-   ]
+   ],
+   "delivered_edge": 4357,
+   "resolution_tier": "4K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -7550,7 +8136,9 @@
    "focal_point": [
     0.5,
     0.78
-   ]
+   ],
+   "delivered_edge": 4309,
+   "resolution_tier": "4K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -7576,7 +8164,9 @@
    "focal_point": [
     0.5,
     0.45
-   ]
+   ],
+   "delivered_edge": 4387,
+   "resolution_tier": "4K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -7602,7 +8192,9 @@
    "focal_point": [
     0.42,
     0.45
-   ]
+   ],
+   "delivered_edge": 4386,
+   "resolution_tier": "4K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -7628,7 +8220,9 @@
    "focal_point": [
     0.5,
     0.5
-   ]
+   ],
+   "delivered_edge": 4418,
+   "resolution_tier": "4K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -7654,7 +8248,9 @@
    "focal_point": [
     0.75,
     0.6
-   ]
+   ],
+   "delivered_edge": 4824,
+   "resolution_tier": "4K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -7680,7 +8276,9 @@
    "focal_point": [
     0.42,
     0.68
-   ]
+   ],
+   "delivered_edge": 4827,
+   "resolution_tier": "4K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -7706,7 +8304,9 @@
    "focal_point": [
     0.45,
     0.55
-   ]
+   ],
+   "delivered_edge": 4814,
+   "resolution_tier": "4K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -7732,7 +8332,9 @@
    "focal_point": [
     0.55,
     0.65
-   ]
+   ],
+   "delivered_edge": 4524,
+   "resolution_tier": "4K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -7757,7 +8359,9 @@
    "focal_point": [
     0.35,
     0.42
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -7782,7 +8386,9 @@
    "focal_point": [
     0.65,
     0.4
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -7808,7 +8414,9 @@
    "focal_point": [
     0.4,
     0.6
-   ]
+   ],
+   "delivered_edge": 3876,
+   "resolution_tier": "4K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -7833,7 +8441,9 @@
    "focal_point": [
     0.42,
     0.62
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -7859,7 +8469,9 @@
    "focal_point": [
     0.55,
     0.35
-   ]
+   ],
+   "delivered_edge": 3846,
+   "resolution_tier": "4K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -7884,7 +8496,9 @@
    "focal_point": [
     0.62,
     0.35
-   ]
+   ],
+   "delivered_edge": 5031,
+   "resolution_tier": "4K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -7909,7 +8523,9 @@
    "focal_point": [
     0.35,
     0.45
-   ]
+   ],
+   "delivered_edge": 4201,
+   "resolution_tier": "4K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -7934,7 +8550,9 @@
    "focal_point": [
     0.62,
     0.4
-   ]
+   ],
+   "delivered_edge": 4000,
+   "resolution_tier": "4K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -7959,7 +8577,9 @@
    "focal_point": [
     0.55,
     0.55
-   ]
+   ],
+   "delivered_edge": 6944,
+   "resolution_tier": "4K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -7984,7 +8604,9 @@
    "focal_point": [
     0.5,
     0.5
-   ]
+   ],
+   "delivered_edge": 3979,
+   "resolution_tier": "4K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -8010,7 +8632,9 @@
    "focal_point": [
     0.62,
     0.55
-   ]
+   ],
+   "delivered_edge": 4796,
+   "resolution_tier": "4K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -8036,7 +8660,9 @@
    "focal_point": [
     0.35,
     0.6
-   ]
+   ],
+   "delivered_edge": 3890,
+   "resolution_tier": "4K"
   },
   {
    "title": "View of Takanawa",
@@ -8061,7 +8687,9 @@
    "focal_point": [
     0.4,
     0.7
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -8086,7 +8714,9 @@
    "focal_point": [
     0.35,
     0.3
-   ]
+   ],
+   "delivered_edge": 3922,
+   "resolution_tier": "4K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -8111,7 +8741,9 @@
    "focal_point": [
     0.55,
     0.4
-   ]
+   ],
+   "delivered_edge": 3901,
+   "resolution_tier": "4K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -8137,7 +8769,9 @@
    "focal_point": [
     0.45,
     0.35
-   ]
+   ],
+   "delivered_edge": 3875,
+   "resolution_tier": "4K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -8163,7 +8797,9 @@
    "focal_point": [
     0.78,
     0.68
-   ]
+   ],
+   "delivered_edge": 3915,
+   "resolution_tier": "4K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -8189,7 +8825,9 @@
    "focal_point": [
     0.25,
     0.65
-   ]
+   ],
+   "delivered_edge": 5686,
+   "resolution_tier": "4K"
   },
   {
    "agent_name": "Utagawa Hiroshige",
@@ -8215,7 +8853,9 @@
    "focal_point": [
     0.5,
     0.35
-   ]
+   ],
+   "delivered_edge": 3855,
+   "resolution_tier": "4K"
   },
   {
    "title": "Hydrangea and Kingfisher",
@@ -8240,7 +8880,9 @@
    "focal_point": [
     0.35,
     0.2
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Light Rain on the Embankment of the Sumida River",
@@ -8266,7 +8908,9 @@
    "focal_point": [
     0.65,
     0.55
-   ]
+   ],
+   "delivered_edge": 7123,
+   "resolution_tier": "4K"
   },
   {
    "title": "Enjoying the Evening Cool at Ryōgoku Bridge",
@@ -8292,7 +8936,9 @@
    "focal_point": [
     0.5,
     0.55
-   ]
+   ],
+   "delivered_edge": 6134,
+   "resolution_tier": "4K"
   },
   {
    "title": "Swallow under the Moon with Peach Blossoms",
@@ -8317,7 +8963,9 @@
    "focal_point": [
     0.58,
     0.55
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Descending Geese at Haneda",
@@ -8342,7 +8990,9 @@
    "focal_point": [
     0.55,
     0.55
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Hanaikada (Flower Raft)",
@@ -8367,7 +9017,9 @@
    "focal_point": [
     0.45,
     0.55
-   ]
+   ],
+   "delivered_edge": 4391,
+   "resolution_tier": "4K"
   },
   {
    "title": "Tenmangū Shrine Grounds at Kameido in Snow",
@@ -8392,7 +9044,9 @@
    "focal_point": [
     0.68,
     0.5
-   ]
+   ],
+   "delivered_edge": 3861,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Sanjūsangendō Hall at Fukagawa",
@@ -8418,7 +9072,9 @@
    "focal_point": [
     0.48,
     0.45
-   ]
+   ],
+   "delivered_edge": 4873,
+   "resolution_tier": "4K"
   },
   {
    "title": "Fukagawa Hachiman Shrine",
@@ -8444,7 +9100,9 @@
    "focal_point": [
     0.5,
     0.55
-   ]
+   ],
+   "delivered_edge": 4830,
+   "resolution_tier": "4K"
   },
   {
    "title": "Inside Shiba Shinmei Shrine",
@@ -8470,7 +9128,9 @@
    "focal_point": [
     0.68,
     0.45
-   ]
+   ],
+   "delivered_edge": 4783,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Legend of Otamagaike Pond at Kanda",
@@ -8496,7 +9156,9 @@
    "focal_point": [
     0.42,
     0.55
-   ]
+   ],
+   "delivered_edge": 4824,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Waters of Kameido",
@@ -8522,7 +9184,9 @@
    "focal_point": [
     0.6,
     0.25
-   ]
+   ],
+   "delivered_edge": 4733,
+   "resolution_tier": "4K"
   },
   {
    "title": "Full View of the New Yoshiwara in Full Cherry Blossom",
@@ -8548,7 +9212,9 @@
    "focal_point": [
     0.45,
     0.35
-   ]
+   ],
+   "delivered_edge": 4389,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Prosperity of Ōdenma-chō Street",
@@ -8574,7 +9240,9 @@
    "focal_point": [
     0.4,
     0.55
-   ]
+   ],
+   "delivered_edge": 4721,
+   "resolution_tier": "4K"
   },
   {
    "title": "Snowy Morning at the New Yoshiwara",
@@ -8600,7 +9268,9 @@
    "focal_point": [
     0.5,
     0.5
-   ]
+   ],
+   "delivered_edge": 4363,
+   "resolution_tier": "4K"
   },
   {
    "title": "Inside Yamashita Gate",
@@ -8626,7 +9296,9 @@
    "focal_point": [
     0.5,
     0.4
-   ]
+   ],
+   "delivered_edge": 4824,
+   "resolution_tier": "4K"
   },
   {
    "title": "Matsukane-ya Restaurant at Yushima",
@@ -8652,7 +9324,9 @@
    "focal_point": [
     0.55,
     0.65
-   ]
+   ],
+   "delivered_edge": 4778,
+   "resolution_tier": "4K"
   },
   {
    "title": "Uekiya Restaurant at Mokuboji in Snow",
@@ -8678,7 +9352,9 @@
    "focal_point": [
     0.7,
     0.65
-   ]
+   ],
+   "delivered_edge": 4767,
+   "resolution_tier": "4K"
   },
   {
    "title": "Heisei Restaurant in Front of Fukagawa Hachiman Shrine",
@@ -8704,7 +9380,9 @@
    "focal_point": [
     0.45,
     0.7
-   ]
+   ],
+   "delivered_edge": 4815,
+   "resolution_tier": "4K"
   },
   {
    "title": "Sugoroku Board Game of the Fifty-three Stations of the Tōkaidō",
@@ -8729,7 +9407,9 @@
    "focal_point": [
     0.5,
     0.5
-   ]
+   ],
+   "delivered_edge": 4603,
+   "resolution_tier": "4K"
   },
   {
    "title": "Tilefish, Rockfish, and Wasabi",
@@ -8755,7 +9435,9 @@
    "focal_point": [
     0.6,
     0.55
-   ]
+   ],
+   "delivered_edge": 6144,
+   "resolution_tier": "4K"
   },
   {
    "title": "Nihonbashi Bridge in a Sudden Shower",
@@ -8780,7 +9462,9 @@
    "focal_point": [
     0.55,
     0.62
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Priest Yoshida Kenkō (Kenkō Hōshi)",
@@ -8805,7 +9489,9 @@
    "focal_point": [
     0.42,
     0.55
-   ]
+   ],
+   "delivered_edge": 5968,
+   "resolution_tier": "4K"
   },
   {
    "title": "Miyakodori Birds on the Sumida River",
@@ -8830,7 +9516,9 @@
    "focal_point": [
     0.45,
     0.55
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Camellia and Bush Warbler",
@@ -8855,7 +9543,9 @@
    "focal_point": [
     0.55,
     0.55
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Plum Blossoms and Long-tailed Bird",
@@ -8880,7 +9570,9 @@
    "focal_point": [
     0.55,
     0.3
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Kannon Slope on the Kisokaidō",
@@ -8906,7 +9598,9 @@
    "focal_point": [
     0.55,
     0.5
-   ]
+   ],
+   "delivered_edge": 4000,
+   "resolution_tier": "4K"
   },
   {
    "title": "Misaka Pass in Kai Province",
@@ -8932,7 +9626,9 @@
    "focal_point": [
     0.4,
     0.35
-   ]
+   ],
+   "delivered_edge": 5446,
+   "resolution_tier": "4K"
   },
   {
    "title": "Autumn Moon at Emon-zaka, New Yoshiwara",
@@ -8958,7 +9654,9 @@
    "focal_point": [
     0.6,
     0.2
-   ]
+   ],
+   "delivered_edge": 3886,
+   "resolution_tier": "4K"
   },
   {
    "title": "Full Bloom at Asukayama",
@@ -8984,7 +9682,9 @@
    "focal_point": [
     0.35,
     0.55
-   ]
+   ],
+   "delivered_edge": 5539,
+   "resolution_tier": "4K"
   },
   {
    "title": "Japanese White-eye and Titmouse on a Camellia Branch",
@@ -9009,7 +9709,9 @@
    "focal_point": [
     0.5,
     0.45
-   ]
+   ],
+   "delivered_edge": 3902,
+   "resolution_tier": "4K"
   },
   {
    "title": "Long-tailed Tit on Autumn Ivy",
@@ -9034,7 +9736,9 @@
    "focal_point": [
     0.45,
     0.65
-   ]
+   ],
+   "delivered_edge": 3877,
+   "resolution_tier": "4K"
   },
   {
    "title": "Niken-jaya Teahouse at Fukagawa Hachiman Shrine",
@@ -9060,7 +9764,9 @@
    "focal_point": [
     0.6,
     0.65
-   ]
+   ],
+   "delivered_edge": 3871,
+   "resolution_tier": "4K"
   },
   {
    "title": "View of Shiba Shin-zeniza",
@@ -9086,7 +9792,9 @@
    "focal_point": [
     0.35,
     0.75
-   ]
+   ],
+   "delivered_edge": 5857,
+   "resolution_tier": "4K"
   },
   {
    "title": "Hydrangeas and Kingfisher",
@@ -9111,7 +9819,9 @@
    "focal_point": [
     0.35,
     0.15
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Matsuchiyama",
@@ -9136,7 +9846,9 @@
    "focal_point": [
     0.5,
     0.35
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Evening Rain in Azuma Wood",
@@ -9162,7 +9874,9 @@
    "focal_point": [
     0.5,
     0.55
-   ]
+   ],
+   "delivered_edge": 3853,
+   "resolution_tier": "4K"
   },
   {
    "title": "Enjoying the Evening Cool at Ryogoku Bridge",
@@ -9188,7 +9902,9 @@
    "focal_point": [
     0.42,
     0.22
-   ]
+   ],
+   "delivered_edge": 6014,
+   "resolution_tier": "4K"
   },
   {
    "title": "Ducks among Reeds",
@@ -9213,7 +9929,9 @@
    "focal_point": [
     0.35,
     0.3
-   ]
+   ],
+   "delivered_edge": 6664,
+   "resolution_tier": "4K"
   },
   {
    "title": "Gotenyama in Full Bloom",
@@ -9238,7 +9956,9 @@
    "focal_point": [
     0.58,
     0.62
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Kameido Plum Garden (early view, distinct from the celebrated 1857 print)",
@@ -9263,7 +9983,9 @@
    "focal_point": [
     0.45,
     0.6
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "A View of Late Spring at Masaki",
@@ -9289,7 +10011,9 @@
    "focal_point": [
     0.4,
     0.65
-   ]
+   ],
+   "delivered_edge": 3868,
+   "resolution_tier": "4K"
   },
   {
    "title": "Monkey and Cherry Blossoms",
@@ -9314,7 +10038,9 @@
    "focal_point": [
     0.4,
     0.4
-   ]
+   ],
+   "delivered_edge": 4752,
+   "resolution_tier": "4K"
   },
   {
    "title": "Nihonbashi in a Sudden Shower",
@@ -9340,7 +10066,9 @@
    "focal_point": [
     0.55,
     0.65
-   ]
+   ],
+   "delivered_edge": 4681,
+   "resolution_tier": "4K"
   },
   {
    "title": "Azuma Forest",
@@ -9366,7 +10094,9 @@
    "focal_point": [
     0.72,
     0.82
-   ]
+   ],
+   "delivered_edge": 4917,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Sazai-do Hall at the Temple of Five Hundred Rakan",
@@ -9392,7 +10122,9 @@
    "focal_point": [
     0.68,
     0.35
-   ]
+   ],
+   "delivered_edge": 4870,
+   "resolution_tier": "4K"
   },
   {
    "title": "Site of the East Gate, Asakusa",
@@ -9418,7 +10150,9 @@
    "focal_point": [
     0.45,
     0.68
-   ]
+   ],
+   "delivered_edge": 4907,
+   "resolution_tier": "4K"
   },
   {
    "title": "Meguro Fudo Temple",
@@ -9444,7 +10178,9 @@
    "focal_point": [
     0.65,
     0.7
-   ]
+   ],
+   "delivered_edge": 4925,
+   "resolution_tier": "4K"
   },
   {
    "title": "Benten Hill at Kinryuzan Temple, Asakusa",
@@ -9470,7 +10206,9 @@
    "focal_point": [
     0.62,
     0.35
-   ]
+   ],
+   "delivered_edge": 4918,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Origin of the Name of Musashi Province",
@@ -9496,7 +10234,9 @@
    "focal_point": [
     0.5,
     0.45
-   ]
+   ],
+   "delivered_edge": 4787,
+   "resolution_tier": "4K"
   },
   {
    "title": "Aoi Slope",
@@ -9522,7 +10262,9 @@
    "focal_point": [
     0.62,
     0.45
-   ]
+   ],
+   "delivered_edge": 4345,
+   "resolution_tier": "4K"
   },
   {
    "title": "New Yoshiwara in Full Bloom, Third Month: Panoramic View",
@@ -9548,7 +10290,9 @@
    "focal_point": [
     0.38,
     0.3
-   ]
+   ],
+   "delivered_edge": 4307,
+   "resolution_tier": "4K"
   },
   {
    "title": "Asukayama: Panoramic View",
@@ -9574,7 +10318,9 @@
    "focal_point": [
     0.28,
     0.15
-   ]
+   ],
+   "delivered_edge": 4318,
+   "resolution_tier": "4K"
   },
   {
    "title": "Precincts of the Oji Inari Shrine: Panoramic View",
@@ -9600,7 +10346,9 @@
    "focal_point": [
     0.5,
     0.5
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Cherry-Blossom Viewing at Gotenyama, Shinagawa: Panoramic View",
@@ -9626,7 +10374,9 @@
    "focal_point": [
     0.65,
     0.45
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Precincts of the Susaki Benten Shrine and Shell-Gathering at Low Tide: Panoramic View",
@@ -9652,7 +10402,9 @@
    "focal_point": [
     0.5,
     0.5
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Kasumigaseki: Panoramic View",
@@ -9678,7 +10430,9 @@
    "focal_point": [
     0.5,
     0.55
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Precincts of the Kameido Tenjin Shrine: Panoramic View",
@@ -9704,7 +10458,9 @@
    "focal_point": [
     0.45,
     0.35
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "The Flourishing of Odenma-cho Street, the Eastern Capital",
@@ -9729,7 +10485,9 @@
    "focal_point": [
     0.5,
     0.65
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Akasaka Sanno",
@@ -9755,7 +10513,9 @@
    "focal_point": [
     0.72,
     0.75
-   ]
+   ],
+   "delivered_edge": 4337,
+   "resolution_tier": "4K"
   },
   {
    "title": "View of Suruga-cho",
@@ -9781,7 +10541,9 @@
    "focal_point": [
     0.48,
     0.35
-   ]
+   ],
+   "delivered_edge": 4739,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Kawachi-ro Restaurant at Shitaya Hirokoji",
@@ -9807,7 +10569,9 @@
    "focal_point": [
     0.72,
     0.65
-   ]
+   ],
+   "delivered_edge": 4789,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Daishichi Restaurant at Mukojima",
@@ -9833,7 +10597,9 @@
    "focal_point": [
     0.45,
     0.55
-   ]
+   ],
+   "delivered_edge": 4761,
+   "resolution_tier": "4K"
   },
   {
    "title": "Night View of the Manpachi Restaurant at Yanagibashi",
@@ -9859,7 +10625,9 @@
    "focal_point": [
     0.25,
     0.6
-   ]
+   ],
+   "delivered_edge": 4795,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Kawachiya Restaurant at Yanagibashi, Ryogoku",
@@ -9885,7 +10653,9 @@
    "focal_point": [
     0.35,
     0.55
-   ]
+   ],
+   "delivered_edge": 6168,
+   "resolution_tier": "4K"
   },
   {
    "title": "Clear Weather at Shibaura",
@@ -9910,7 +10680,9 @@
    "focal_point": [
     0.78,
     0.55
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "View of the Sumida River",
@@ -9935,7 +10707,9 @@
    "focal_point": [
     0.45,
     0.5
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Plum Blossoms and Bush Warbler",
@@ -9960,7 +10734,9 @@
    "focal_point": [
     0.55,
     0.35
-   ]
+   ],
+   "delivered_edge": 5031,
+   "resolution_tier": "4K"
   },
   {
    "title": "Koyurugi Beach, Sagami Province",
@@ -9985,7 +10761,9 @@
    "focal_point": [
     0.5,
     0.5
-   ]
+   ],
+   "delivered_edge": 4000,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Ferry Crossing on the Sumida River",
@@ -10011,7 +10789,9 @@
    "focal_point": [
     0.5,
     0.65
-   ]
+   ],
+   "delivered_edge": 6458,
+   "resolution_tier": "4K"
   },
   {
    "title": "Yukihira and the Two Sisters (fan print)",
@@ -10036,7 +10816,9 @@
    "focal_point": [
     0.68,
     0.5
-   ]
+   ],
+   "delivered_edge": 4115,
+   "resolution_tier": "4K"
   },
   {
    "title": "Pheasant and Pine Trees on a Snowy Hillside",
@@ -10061,7 +10843,9 @@
    "focal_point": [
     0.42,
     0.35
-   ]
+   ],
+   "delivered_edge": 3926,
+   "resolution_tier": "4K"
   },
   {
    "title": "The First Cuckoo's Call over Tsukudajima",
@@ -10087,7 +10871,9 @@
    "focal_point": [
     0.62,
     0.5
-   ]
+   ],
+   "delivered_edge": 3871,
+   "resolution_tier": "4K"
   },
   {
    "title": "Fishing Boats off Tsukudajima near Eitai Bridge",
@@ -10113,7 +10899,9 @@
    "focal_point": [
     0.35,
     0.6
-   ]
+   ],
+   "delivered_edge": 3869,
+   "resolution_tier": "4K"
   },
   {
    "title": "View of the Nichome Theater District",
@@ -10139,7 +10927,9 @@
    "focal_point": [
     0.5,
     0.6
-   ]
+   ],
+   "delivered_edge": 5588,
+   "resolution_tier": "4K"
   },
   {
    "title": "Rooster, Umbrella, and Morning Glories",
@@ -10164,7 +10954,9 @@
    "focal_point": [
     0.38,
     0.78
-   ]
+   ],
+   "delivered_edge": 3856,
+   "resolution_tier": "4K"
   },
   {
    "title": "Twilight Snow at Asukayama",
@@ -10190,7 +10982,9 @@
    "focal_point": [
     0.45,
     0.75
-   ]
+   ],
+   "delivered_edge": 5746,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Shokintei Restaurant at Yushima",
@@ -10216,7 +11010,9 @@
    "focal_point": [
     0.5,
     0.55
-   ]
+   ],
+   "delivered_edge": 3858,
+   "resolution_tier": "4K"
   },
   {
    "title": "View of Shimbashi",
@@ -10242,7 +11038,9 @@
    "focal_point": [
     0.55,
     0.55
-   ]
+   ],
+   "delivered_edge": 3899,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Mountain-Opening Festival at Fukagawa Hachiman Shrine",
@@ -10268,7 +11066,9 @@
    "focal_point": [
     0.5,
     0.5
-   ]
+   ],
+   "delivered_edge": 5456,
+   "resolution_tier": "4K"
   },
   {
    "title": "Night Rain at the Azuma Shrine",
@@ -10294,7 +11094,9 @@
    "focal_point": [
     0.55,
     0.55
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Enjoying the Evening Breeze at Ryōgoku Bridge",
@@ -10320,7 +11122,9 @@
    "focal_point": [
     0.45,
     0.25
-   ]
+   ],
+   "delivered_edge": 6078,
+   "resolution_tier": "4K"
   },
   {
    "title": "Small Bird on a Flowering Cherry Branch",
@@ -10345,7 +11149,9 @@
    "focal_point": [
     0.42,
     0.3
-   ]
+   ],
+   "delivered_edge": 7095,
+   "resolution_tier": "4K"
   },
   {
    "title": "Cuckoo and Pine Tree",
@@ -10370,7 +11176,9 @@
    "focal_point": [
     0.72,
     0.35
-   ]
+   ],
+   "delivered_edge": 5536,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Daikokuya at Mukōjima",
@@ -10396,7 +11204,9 @@
    "focal_point": [
     0.45,
     0.65
-   ]
+   ],
+   "delivered_edge": 3873,
+   "resolution_tier": "4K"
   },
   {
    "title": "Eitai Bridge and the Fukagawa Shinchi Reclaimed Land",
@@ -10422,7 +11232,9 @@
    "focal_point": [
     0.5,
     0.55
-   ]
+   ],
+   "delivered_edge": 4888,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Grounds of Zōjō-ji Temple in Shiba",
@@ -10448,7 +11260,9 @@
    "focal_point": [
     0.45,
     0.65
-   ]
+   ],
+   "delivered_edge": 5080,
+   "resolution_tier": "4K"
   },
   {
    "title": "Kameido Tenjin Shrine",
@@ -10474,7 +11288,9 @@
    "focal_point": [
     0.5,
     0.42
-   ]
+   ],
+   "delivered_edge": 4934,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Kumano Shrine at Twelve-Sō Pond, Tsunohazu in Yotsuya",
@@ -10500,7 +11316,9 @@
    "focal_point": [
     0.5,
     0.45
-   ]
+   ],
+   "delivered_edge": 4947,
+   "resolution_tier": "4K"
   },
   {
    "title": "Yaohan Restaurant",
@@ -10526,7 +11344,9 @@
    "focal_point": [
     0.6,
     0.45
-   ]
+   ],
+   "delivered_edge": 4785,
+   "resolution_tier": "4K"
   },
   {
    "title": "Cherry Blossom Viewing at Gotenyama, a Genji Parody",
@@ -10552,7 +11372,9 @@
    "focal_point": [
     0.55,
     0.35
-   ]
+   ],
+   "delivered_edge": 4731,
+   "resolution_tier": "4K"
   },
   {
    "title": "Cherry Trees on the Sumida River Embankment",
@@ -10578,7 +11400,9 @@
    "focal_point": [
     0.5,
     0.3
-   ]
+   ],
+   "delivered_edge": 4663,
+   "resolution_tier": "4K"
   },
   {
    "title": "Kagurazaka Slope, Ushigome",
@@ -10604,7 +11428,9 @@
    "focal_point": [
     0.5,
     0.35
-   ]
+   ],
+   "delivered_edge": 4309,
+   "resolution_tier": "4K"
   },
   {
    "title": "Cherry Blossoms in Full Bloom at Shin-Yoshiwara's Five Blocks",
@@ -10630,7 +11456,9 @@
    "focal_point": [
     0.5,
     0.65
-   ]
+   ],
+   "delivered_edge": 4409,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Nishi Hongan-ji Temple at Tsukiji",
@@ -10656,7 +11484,9 @@
    "focal_point": [
     0.5,
     0.45
-   ]
+   ],
+   "delivered_edge": 4396,
+   "resolution_tier": "4K"
   },
   {
    "title": "Cherry Blossom Viewing at Kiyomizu Hall, Ueno, with Shinobazu Pond and Benzaiten Shrine",
@@ -10682,7 +11512,9 @@
    "focal_point": [
     0.5,
     0.5
-   ]
+   ],
+   "delivered_edge": 4397,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Flower Garden at Okuyama, Behind Kinryūzan Temple in Asakusa (1853)",
@@ -10707,7 +11539,9 @@
    "focal_point": [
     0.4,
     0.75
-   ]
+   ],
+   "delivered_edge": 4747,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Day after Snow at Yushima Tenjin",
@@ -10733,7 +11567,9 @@
    "focal_point": [
     0.28,
     0.65
-   ]
+   ],
+   "delivered_edge": 4348,
+   "resolution_tier": "4K"
   },
   {
    "title": "Akabane Bridge in Shiba",
@@ -10759,7 +11595,9 @@
    "focal_point": [
     0.35,
     0.75
-   ]
+   ],
+   "delivered_edge": 4761,
+   "resolution_tier": "4K"
   },
   {
    "title": "Crowds at the Year-End Fair, Kinryūzan Temple, Asakusa",
@@ -10785,7 +11623,9 @@
    "focal_point": [
     0.6,
     0.45
-   ]
+   ],
+   "delivered_edge": 4817,
+   "resolution_tier": "4K"
   },
   {
    "title": "Hōraiya at Ikenohata: A Rest during Cherry Blossom Viewing",
@@ -10811,7 +11651,9 @@
    "focal_point": [
     0.65,
     0.6
-   ]
+   ],
+   "delivered_edge": 4804,
+   "resolution_tier": "4K"
   },
   {
    "title": "View of Mimeguri: The Dewaya",
@@ -10837,7 +11679,9 @@
    "focal_point": [
     0.35,
     0.55
-   ]
+   ],
+   "delivered_edge": 4737,
+   "resolution_tier": "4K"
   },
   {
    "title": "Ryōgoku: The Aoyagi",
@@ -10863,7 +11707,9 @@
    "focal_point": [
     0.45,
     0.6
-   ]
+   ],
+   "delivered_edge": 4786,
+   "resolution_tier": "4K"
   },
   {
    "title": "View from the Yaozen Restaurant toward Nihonzutsumi",
@@ -10889,7 +11735,9 @@
    "focal_point": [
     0.65,
     0.4
-   ]
+   ],
+   "delivered_edge": 4347,
+   "resolution_tier": "4K"
   },
   {
    "title": "Uehan Restaurant",
@@ -10915,7 +11763,9 @@
    "focal_point": [
     0.62,
     0.42
-   ]
+   ],
+   "delivered_edge": 4306,
+   "resolution_tier": "4K"
   },
   {
    "title": "Kusakaro Restaurant",
@@ -10941,7 +11791,9 @@
    "focal_point": [
     0.35,
     0.65
-   ]
+   ],
+   "delivered_edge": 4333,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Riverbank at Daishichi",
@@ -10967,7 +11819,9 @@
    "focal_point": [
     0.42,
     0.55
-   ]
+   ],
+   "delivered_edge": 4340,
+   "resolution_tier": "4K"
   },
   {
    "title": "Honjo Tatekawa",
@@ -10993,7 +11847,9 @@
    "focal_point": [
     0.5,
     0.45
-   ]
+   ],
+   "delivered_edge": 4383,
+   "resolution_tier": "4K"
   },
   {
    "title": "Mandarin Ducks in Snow",
@@ -11018,7 +11874,9 @@
    "focal_point": [
     0.4,
     0.65
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "The Umegawa at Ryōgoku Yanagibashi",
@@ -11044,7 +11902,9 @@
    "focal_point": [
     0.58,
     0.65
-   ]
+   ],
+   "delivered_edge": 3864,
+   "resolution_tier": "4K"
   },
   {
    "title": "Shell Gathering at Shibaura",
@@ -11070,7 +11930,9 @@
    "focal_point": [
     0.5,
     0.4
-   ]
+   ],
+   "delivered_edge": 3849,
+   "resolution_tier": "4K"
   },
   {
    "title": "Moonlit Scene at Takanawa",
@@ -11095,7 +11957,9 @@
    "focal_point": [
     0.42,
     0.16
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Riverbank at Sukiya in Edo",
@@ -11121,7 +11985,9 @@
    "focal_point": [
     0.5,
     0.35
-   ]
+   ],
+   "delivered_edge": 5401,
+   "resolution_tier": "4K"
   },
   {
    "title": "Snow at Kanda Myōjin Shrine",
@@ -11146,7 +12012,9 @@
    "focal_point": [
     0.3,
     0.5
-   ]
+   ],
+   "delivered_edge": 4574,
+   "resolution_tier": "4K"
   },
   {
    "title": "Winter: Snow on the Sumida River",
@@ -11172,7 +12040,9 @@
    "focal_point": [
     0.4,
     0.75
-   ]
+   ],
+   "delivered_edge": 6666,
+   "resolution_tier": "4K"
   },
   {
    "title": "Sunset at Shibaura",
@@ -11198,7 +12068,9 @@
    "focal_point": [
     0.7,
     0.6
-   ]
+   ],
+   "delivered_edge": 6212,
+   "resolution_tier": "4K"
   },
   {
    "title": "Act Four",
@@ -11224,7 +12096,9 @@
    "focal_point": [
     0.42,
     0.62
-   ]
+   ],
+   "delivered_edge": 5340,
+   "resolution_tier": "4K"
   },
   {
    "title": "Misty Moon over Tsukudajima",
@@ -11250,7 +12124,9 @@
    "focal_point": [
     0.35,
     0.75
-   ]
+   ],
+   "delivered_edge": 3866,
+   "resolution_tier": "4K"
   },
   {
    "title": "Dawn at Emonzaka on the Nihon Embankment, Shin-Yoshiwara",
@@ -11276,7 +12152,9 @@
    "focal_point": [
     0.45,
     0.65
-   ]
+   ],
+   "delivered_edge": 5607,
+   "resolution_tier": "4K"
   },
   {
    "title": "Warbler on a Plum Branch",
@@ -11301,7 +12179,9 @@
    "focal_point": [
     0.42,
     0.55
-   ]
+   ],
+   "delivered_edge": 3842,
+   "resolution_tier": "4K"
   },
   {
    "title": "Golden Pheasant and Pine Shoots in Snow",
@@ -11326,7 +12206,9 @@
    "focal_point": [
     0.65,
     0.2
-   ]
+   ],
+   "delivered_edge": 4000,
+   "resolution_tier": "4K"
   },
   {
    "title": "Shiba Shinmei Shrine",
@@ -11352,7 +12234,9 @@
    "focal_point": [
     0.42,
     0.62
-   ]
+   ],
+   "delivered_edge": 5567,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Ōnoya at Ryōgoku Yanagibashi",
@@ -11378,7 +12262,9 @@
    "focal_point": [
     0.3,
     0.65
-   ]
+   ],
+   "delivered_edge": 3878,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Musashiya at Ushijima",
@@ -11404,7 +12290,9 @@
    "focal_point": [
     0.25,
     0.55
-   ]
+   ],
+   "delivered_edge": 3840,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Ōji Inari Shrine",
@@ -11430,7 +12318,9 @@
    "focal_point": [
     0.15,
     0.6
-   ]
+   ],
+   "delivered_edge": 5562,
+   "resolution_tier": "4K"
   },
   {
    "title": "Enjoying the Evening Cool under Ryōgoku Bridge, Musashi Province",
@@ -11456,7 +12346,9 @@
    "focal_point": [
     0.75,
     0.55
-   ]
+   ],
+   "delivered_edge": 5568,
+   "resolution_tier": "4K"
   }
  ]
 }

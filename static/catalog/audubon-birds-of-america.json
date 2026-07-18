@@ -28,7 +28,9 @@
    "focal_point": [
     0.6,
     0.4
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Roscoe's Yellow-throat",
@@ -53,7 +55,9 @@
    "focal_point": [
     0.53,
     0.42
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Song Sparrow",
@@ -78,7 +82,9 @@
    "focal_point": [
     0.45,
     0.4
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Orchard Oriole",
@@ -103,7 +109,9 @@
    "focal_point": [
     0.5,
     0.45
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Hermit Thrush",
@@ -128,7 +136,9 @@
    "focal_point": [
     0.35,
     0.3
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "1. Columbian Water Ouzel - 2. Arctic Water Ouzel",
@@ -153,7 +163,9 @@
    "focal_point": [
     0.48,
     0.42
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Bird of Washington",
@@ -178,7 +190,9 @@
    "focal_point": [
     0.42,
     0.45
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Great-footed Hawk",
@@ -203,7 +217,9 @@
    "focal_point": [
     0.5,
     0.52
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Carolina Parrot",
@@ -228,7 +244,9 @@
    "focal_point": [
     0.5,
     0.4
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Black-billed Cuckoo",
@@ -253,7 +271,9 @@
    "focal_point": [
     0.45,
     0.4
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "American Goldfinch",
@@ -278,7 +298,9 @@
    "focal_point": [
     0.5,
     0.42
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Children's Warbler",
@@ -303,7 +325,9 @@
    "focal_point": [
     0.47,
     0.45
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Stanley Hawk",
@@ -328,7 +352,9 @@
    "focal_point": [
     0.42,
     0.65
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Blue-green Warbler",
@@ -353,7 +379,9 @@
    "focal_point": [
     0.4,
     0.55
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Cuvier's Regulus",
@@ -378,7 +406,9 @@
    "focal_point": [
     0.48,
     0.35
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Loggerhead Shrike",
@@ -403,7 +433,9 @@
    "focal_point": [
     0.45,
     0.42
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Carbonated Warbler",
@@ -428,7 +460,9 @@
    "focal_point": [
     0.45,
     0.5
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Swallow-tailed Hawk",
@@ -453,7 +487,9 @@
    "focal_point": [
     0.45,
     0.4
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Marsh Wren",
@@ -478,7 +514,9 @@
    "focal_point": [
     0.42,
     0.35
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Yellow-billed Cuckoo",
@@ -503,7 +541,9 @@
    "focal_point": [
     0.4,
     0.4
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Snow Bird",
@@ -528,7 +568,9 @@
    "focal_point": [
     0.42,
     0.35
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Carolina Turtle Dove",
@@ -553,7 +595,9 @@
    "focal_point": [
     0.5,
     0.28
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Mocking Bird",
@@ -578,7 +622,9 @@
    "focal_point": [
     0.48,
     0.45
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Red headed Woodpecker",
@@ -603,7 +649,9 @@
    "focal_point": [
     0.42,
     0.42
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "White-headed Eagle",
@@ -628,7 +676,9 @@
    "focal_point": [
     0.42,
     0.42
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Golden-winged Woodpecker",
@@ -653,7 +703,9 @@
    "focal_point": [
     0.5,
     0.42
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "American Redstart",
@@ -678,7 +730,9 @@
    "focal_point": [
     0.45,
     0.4
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Red-shouldered Hawk",
@@ -703,7 +757,9 @@
    "focal_point": [
     0.35,
     0.3
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Great Horned Owl",
@@ -728,7 +784,9 @@
    "focal_point": [
     0.35,
     0.28
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Passenger Pigeon",
@@ -753,7 +811,9 @@
    "focal_point": [
     0.47,
     0.55
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "White-eyed Flycatcher or Vireo",
@@ -778,7 +838,9 @@
    "focal_point": [
     0.55,
     0.62
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Rathbone Warbler",
@@ -803,7 +865,9 @@
    "focal_point": [
     0.45,
     0.45
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Ivory-billed Woodpecker",
@@ -828,7 +892,9 @@
    "focal_point": [
     0.28,
     0.55
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Red-winged Starling or Marsh Blackbird",
@@ -853,7 +919,9 @@
    "focal_point": [
     0.6,
     0.25
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Republican or Cliff Swallow",
@@ -878,7 +946,9 @@
    "focal_point": [
     0.45,
     0.42
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Winter Hawk",
@@ -903,7 +973,9 @@
    "focal_point": [
     0.4,
     0.32
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Wood Thrush",
@@ -928,7 +1000,9 @@
    "focal_point": [
     0.42,
     0.3
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Indigo Bird",
@@ -953,7 +1027,9 @@
    "focal_point": [
     0.42,
     0.55
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Virginian Partridge",
@@ -978,7 +1054,9 @@
    "focal_point": [
     0.48,
     0.28
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Belted Kingfisher",
@@ -1003,7 +1081,9 @@
    "focal_point": [
     0.58,
     0.42
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Great Carolina Wren",
@@ -1028,7 +1108,9 @@
    "focal_point": [
     0.52,
     0.3
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Prairie Titlark",
@@ -1053,7 +1135,9 @@
    "focal_point": [
     0.48,
     0.4
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Fish Hawk or Osprey",
@@ -1078,7 +1162,9 @@
    "focal_point": [
     0.5,
     0.55
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Whip-poor-will",
@@ -1103,7 +1189,9 @@
    "focal_point": [
     0.55,
     0.3
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Blue-Grey Fly-catcher",
@@ -1128,7 +1216,9 @@
    "focal_point": [
     0.55,
     0.39
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Columbia Jay",
@@ -1153,7 +1243,9 @@
    "focal_point": [
     0.38,
     0.55
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Little Screech Owl",
@@ -1178,7 +1270,9 @@
    "focal_point": [
     0.48,
     0.55
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Purple Finch",
@@ -1203,7 +1297,9 @@
    "focal_point": [
     0.5,
     0.48
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Purple Grakle or Common Crow Blackbird",
@@ -1228,7 +1324,9 @@
    "focal_point": [
     0.42,
     0.38
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "White throated Sparrow",
@@ -1253,7 +1351,9 @@
    "focal_point": [
     0.42,
     0.45
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Selby's Flycatcher",
@@ -1278,7 +1378,9 @@
    "focal_point": [
     0.42,
     0.55
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Baltimore Oriole",
@@ -1303,7 +1405,9 @@
    "focal_point": [
     0.3,
     0.58
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Purple Martin",
@@ -1328,7 +1432,9 @@
    "focal_point": [
     0.35,
     0.28
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Solitary Flycatcher or Vireo",
@@ -1353,7 +1459,9 @@
    "focal_point": [
     0.45,
     0.55
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Towhe Bunting",
@@ -1378,7 +1486,9 @@
    "focal_point": [
     0.45,
     0.42
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Vigor's Warbler",
@@ -1403,7 +1513,9 @@
    "focal_point": [
     0.45,
     0.48
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Worm eating Warbler",
@@ -1428,7 +1540,9 @@
    "focal_point": [
     0.35,
     0.62
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Ruffed Grouse",
@@ -1453,7 +1567,9 @@
    "focal_point": [
     0.5,
     0.58
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Summer Red Bird",
@@ -1478,7 +1594,9 @@
    "focal_point": [
     0.42,
     0.25
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Traill's Flycatcher",
@@ -1503,7 +1621,9 @@
    "focal_point": [
     0.45,
     0.35
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Barred Owl",
@@ -1528,7 +1648,9 @@
    "focal_point": [
     0.48,
     0.42
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Ruby-throated Humming Bird",
@@ -1553,7 +1675,9 @@
    "focal_point": [
     0.4,
     0.4
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Black & Yellow Warbler",
@@ -1578,7 +1702,9 @@
    "focal_point": [
     0.38,
     0.48
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Red-tailed Hawk",
@@ -1603,7 +1729,9 @@
    "focal_point": [
     0.35,
     0.25
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Painted Finch",
@@ -1628,7 +1756,9 @@
    "focal_point": [
     0.48,
     0.62
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Rice Bird",
@@ -1653,7 +1783,9 @@
    "focal_point": [
     0.42,
     0.33
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Le Petit Caporal",
@@ -1678,7 +1810,9 @@
    "focal_point": [
     0.42,
     0.32
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Tyrant Fly-catcher",
@@ -1703,7 +1837,9 @@
    "focal_point": [
     0.42,
     0.35
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "House Wren",
@@ -1728,7 +1864,9 @@
    "focal_point": [
     0.55,
     0.35
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Florida Jay",
@@ -1753,7 +1891,9 @@
    "focal_point": [
     0.42,
     0.32
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Autumnal Warbler",
@@ -1778,7 +1918,9 @@
    "focal_point": [
     0.45,
     0.45
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Broad-winged Hawk",
@@ -1803,7 +1945,9 @@
    "focal_point": [
     0.63,
     0.28
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Pigeon Hawk",
@@ -1828,7 +1972,9 @@
    "focal_point": [
     0.5,
     0.32
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Sea-side Finch",
@@ -1853,7 +1999,9 @@
    "focal_point": [
     0.48,
     0.35
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Grass Finch or Bay-winged Bunting",
@@ -1878,7 +2026,9 @@
    "focal_point": [
     0.4,
     0.68
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "White-bellied Swallow",
@@ -1903,7 +2053,9 @@
    "focal_point": [
     0.48,
     0.45
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Cow-pen Bird",
@@ -1928,7 +2080,9 @@
    "focal_point": [
     0.62,
     0.36
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Shore Lark",
@@ -1953,7 +2107,9 @@
    "focal_point": [
     0.35,
     0.45
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Canada Goose",
@@ -1978,7 +2134,9 @@
    "focal_point": [
     0.55,
     0.2
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Night Heron or Qua bird",
@@ -2003,7 +2161,9 @@
    "focal_point": [
     0.68,
     0.35
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Bonaparte's Flycatcher",
@@ -2028,7 +2188,9 @@
    "focal_point": [
     0.42,
     0.55
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Chipping Sparrow",
@@ -2053,7 +2215,9 @@
    "focal_point": [
     0.45,
     0.58
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Large billed Puffin",
@@ -2078,7 +2242,9 @@
    "focal_point": [
     0.35,
     0.35
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Scaup Duck",
@@ -2103,7 +2269,9 @@
    "focal_point": [
     0.51,
     0.56
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Crested Grebe",
@@ -2128,7 +2296,9 @@
    "focal_point": [
     0.42,
     0.35
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Golden Plover",
@@ -2153,7 +2323,9 @@
    "focal_point": [
     0.5,
     0.35
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Brown Titlark",
@@ -2178,7 +2350,9 @@
    "focal_point": [
     0.38,
     0.4
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Crested Titmouse",
@@ -2203,7 +2377,9 @@
    "focal_point": [
     0.42,
     0.42
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Cedar Bird",
@@ -2228,7 +2404,9 @@
    "focal_point": [
     0.42,
     0.45
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Chuck-will's Widow",
@@ -2253,7 +2431,9 @@
    "focal_point": [
     0.55,
     0.3
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Swamp Sparrow",
@@ -2278,7 +2458,9 @@
    "focal_point": [
     0.42,
     0.52
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Black Warrior",
@@ -2303,7 +2485,9 @@
    "focal_point": [
     0.42,
     0.6
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Blue Jay",
@@ -2328,7 +2512,9 @@
    "focal_point": [
     0.45,
     0.58
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Canada Warbler",
@@ -2353,7 +2539,9 @@
    "focal_point": [
     0.42,
     0.52
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Pine Swamp Warbler",
@@ -2378,7 +2566,9 @@
    "focal_point": [
     0.42,
     0.62
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Sharp-tailed Finch",
@@ -2403,7 +2593,9 @@
    "focal_point": [
     0.38,
     0.32
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Bachmans Finch",
@@ -2428,7 +2620,9 @@
    "focal_point": [
     0.45,
     0.5
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Rough-legged Falcon",
@@ -2453,7 +2647,9 @@
    "focal_point": [
     0.6,
     0.28
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Fork-tailed Flycatcher",
@@ -2478,7 +2674,9 @@
    "focal_point": [
     0.52,
     0.28
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Goldon Eagle",
@@ -2503,7 +2701,9 @@
    "focal_point": [
     0.32,
     0.18
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Spotted Grous",
@@ -2528,7 +2728,9 @@
    "focal_point": [
     0.68,
     0.42
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Fresh Water Marsh Hen",
@@ -2553,7 +2755,9 @@
    "focal_point": [
     0.45,
     0.55
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Hooded Merganser",
@@ -2578,7 +2782,9 @@
    "focal_point": [
     0.32,
     0.22
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Brown Pelican",
@@ -2603,7 +2809,9 @@
    "focal_point": [
     0.48,
     0.32
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Wilson's Phalarope",
@@ -2628,7 +2836,9 @@
    "focal_point": [
     0.62,
     0.35
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Purple Heron",
@@ -2653,7 +2863,9 @@
    "focal_point": [
     0.62,
     0.28
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Horned Grebe",
@@ -2678,7 +2890,9 @@
    "focal_point": [
     0.32,
     0.55
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Fork-tail Petrel",
@@ -2703,7 +2917,9 @@
    "focal_point": [
     0.5,
     0.45
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Manks Shearwater",
@@ -2728,7 +2944,9 @@
    "focal_point": [
     0.42,
     0.45
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Harlequin Duck",
@@ -2753,7 +2971,9 @@
    "focal_point": [
     0.32,
     0.48
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Azure Warbler",
@@ -2778,7 +2998,9 @@
    "focal_point": [
     0.52,
     0.62
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Great Crested Flycatcher",
@@ -2803,7 +3025,9 @@
    "focal_point": [
     0.45,
     0.5
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Yellow-winged Sparrow",
@@ -2828,7 +3052,9 @@
    "focal_point": [
     0.42,
     0.62
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "American Robin",
@@ -2853,7 +3079,9 @@
    "focal_point": [
     0.65,
     0.28
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Night Hawk",
@@ -2878,7 +3106,9 @@
    "focal_point": [
     0.55,
     0.35
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Tawny Thrush",
@@ -2903,7 +3133,9 @@
    "focal_point": [
     0.32,
     0.62
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Key-west Dove",
@@ -2928,7 +3160,9 @@
    "focal_point": [
     0.45,
     0.55
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Blue-headed Pigeon",
@@ -2953,7 +3187,9 @@
    "focal_point": [
     0.6,
     0.45
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Yellow bellied Woodpecker",
@@ -2978,7 +3214,9 @@
    "focal_point": [
     0.48,
     0.35
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Great American Shrike or Butcher Bird",
@@ -3003,7 +3241,9 @@
    "focal_point": [
     0.42,
     0.24
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Lincoln Finch",
@@ -3028,7 +3268,9 @@
    "focal_point": [
     0.38,
     0.3
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Canadian Titmouse",
@@ -3053,7 +3295,9 @@
    "focal_point": [
     0.53,
     0.39
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Ruby crowned Wren",
@@ -3078,7 +3322,9 @@
    "focal_point": [
     0.58,
     0.62
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Brown headed Worm eating Warbler",
@@ -3103,7 +3349,9 @@
    "focal_point": [
     0.38,
     0.55
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Double-crested Cormorant",
@@ -3128,7 +3376,9 @@
    "focal_point": [
     0.32,
     0.28
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "American Scoter Duck",
@@ -3153,7 +3403,9 @@
    "focal_point": [
     0.55,
     0.45
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "American Scoter Duc",
@@ -3178,7 +3430,9 @@
    "focal_point": [
     0.55,
     0.45
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Mallard Duck",
@@ -3203,7 +3457,9 @@
    "focal_point": [
     0.28,
     0.3
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Kittiwake Gull",
@@ -3228,7 +3484,9 @@
    "focal_point": [
     0.35,
     0.42
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Kildeer Plover",
@@ -3253,7 +3511,9 @@
    "focal_point": [
     0.32,
     0.42
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Ruddy Plover",
@@ -3278,7 +3538,9 @@
    "focal_point": [
     0.62,
     0.53
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Long-billed Curlew",
@@ -3303,7 +3565,9 @@
    "focal_point": [
     0.55,
     0.48
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Common Gallinule",
@@ -3328,7 +3592,9 @@
    "focal_point": [
     0.27,
     0.52
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Thick-billed Murre",
@@ -3353,7 +3619,9 @@
    "focal_point": [
     0.32,
     0.42
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Eider Duck",
@@ -3378,7 +3646,9 @@
    "focal_point": [
     0.42,
     0.45
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Tufted Auk",
@@ -3403,7 +3673,9 @@
    "focal_point": [
     0.6,
     0.42
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Red Phalarope",
@@ -3428,7 +3700,9 @@
    "focal_point": [
     0.68,
     0.48
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Tropic Bird",
@@ -3453,7 +3727,9 @@
    "focal_point": [
     0.46,
     0.56
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Pigmy Curlew",
@@ -3478,7 +3754,9 @@
    "focal_point": [
     0.6,
     0.45
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Fulmar Petrel",
@@ -3503,7 +3781,9 @@
    "focal_point": [
     0.55,
     0.3
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Great White Heron",
@@ -3528,7 +3808,9 @@
    "focal_point": [
     0.28,
     0.22
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Pectoral Sandpiper",
@@ -3553,7 +3835,9 @@
    "focal_point": [
     0.48,
     0.5
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Buffel-headed Duck",
@@ -3578,7 +3862,9 @@
    "focal_point": [
     0.62,
     0.32
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Ruddy Duck",
@@ -3603,7 +3889,9 @@
    "focal_point": [
     0.32,
     0.28
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "American Widgeon",
@@ -3628,7 +3916,9 @@
    "focal_point": [
     0.62,
     0.28
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Cock of the Plains",
@@ -3653,7 +3943,9 @@
    "focal_point": [
     0.62,
     0.35
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "American Green winged Teal",
@@ -3678,7 +3970,9 @@
    "focal_point": [
     0.55,
     0.45
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Raven",
@@ -3703,7 +3997,9 @@
    "focal_point": [
     0.32,
     0.42
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Red-breasted Nuthatch",
@@ -3728,7 +4024,9 @@
    "focal_point": [
     0.42,
     0.28
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Black Vulture or Carrion Crow",
@@ -3753,7 +4051,9 @@
    "focal_point": [
     0.42,
     0.55
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Canada Jay",
@@ -3778,7 +4078,9 @@
    "focal_point": [
     0.4,
     0.55
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "White-crowned Sparrow",
@@ -3803,7 +4105,9 @@
    "focal_point": [
     0.45,
     0.48
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Mississippi Kite",
@@ -3828,7 +4132,9 @@
    "focal_point": [
     0.55,
     0.28
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Warbling Flycatcher",
@@ -3853,7 +4159,9 @@
    "focal_point": [
     0.4,
     0.35
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Snowy Owl",
@@ -3878,7 +4186,9 @@
    "focal_point": [
     0.4,
     0.62
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Rose-breasted Grosbeak",
@@ -3903,7 +4213,9 @@
    "focal_point": [
     0.35,
     0.62
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Cat Bird",
@@ -3928,7 +4240,9 @@
    "focal_point": [
     0.42,
     0.3
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Hemlock Warbler",
@@ -3953,7 +4267,9 @@
    "focal_point": [
     0.42,
     0.48
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Field Sparrow",
@@ -3978,7 +4294,9 @@
    "focal_point": [
     0.42,
     0.63
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "1. Goshawk - 2. Stanley Hawk",
@@ -4003,7 +4321,9 @@
    "focal_point": [
     0.45,
     0.22
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Red-eyed Vireo",
@@ -4028,7 +4348,9 @@
    "focal_point": [
     0.53,
     0.45
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Turkey Buzzard",
@@ -4053,7 +4375,9 @@
    "focal_point": [
     0.25,
     0.2
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "White-breasted Black-capped Nuthatch",
@@ -4078,7 +4402,9 @@
    "focal_point": [
     0.42,
     0.45
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Mangrove Cuckoo",
@@ -4103,7 +4429,9 @@
    "focal_point": [
     0.42,
     0.55
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Barn Swallow",
@@ -4128,7 +4456,9 @@
    "focal_point": [
     0.32,
     0.35
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Wood Wren",
@@ -4153,7 +4483,9 @@
    "focal_point": [
     0.35,
     0.63
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Pine Finch",
@@ -4178,7 +4510,9 @@
    "focal_point": [
     0.45,
     0.4
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Ground Dove",
@@ -4203,7 +4537,9 @@
    "focal_point": [
     0.55,
     0.4
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Goldon-crested-Wren",
@@ -4228,7 +4564,9 @@
    "focal_point": [
     0.42,
     0.35
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Mangrove Humming Bird",
@@ -4253,7 +4591,9 @@
    "focal_point": [
     0.48,
     0.45
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Snow Bunting",
@@ -4278,7 +4618,9 @@
    "focal_point": [
     0.55,
     0.32
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Labrador Falcon",
@@ -4303,7 +4645,9 @@
    "focal_point": [
     0.45,
     0.45
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "American Crossbill",
@@ -4328,7 +4672,9 @@
    "focal_point": [
     0.45,
     0.45
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Little Owl",
@@ -4353,7 +4699,9 @@
    "focal_point": [
     0.42,
     0.55
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Least Bittern",
@@ -4378,7 +4726,9 @@
    "focal_point": [
     0.53,
     0.47
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Black Guillemot",
@@ -4403,7 +4753,9 @@
    "focal_point": [
     0.45,
     0.32
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Piping Plover",
@@ -4428,7 +4780,9 @@
    "focal_point": [
     0.42,
     0.55
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Hooping Crane",
@@ -4453,7 +4807,9 @@
    "focal_point": [
     0.35,
     0.68
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Pin tailed Duck",
@@ -4478,7 +4834,9 @@
    "focal_point": [
     0.55,
     0.3
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Tufted Duck",
@@ -4503,7 +4861,9 @@
    "focal_point": [
     0.6,
     0.35
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Sooty Tern",
@@ -4528,7 +4888,9 @@
    "focal_point": [
     0.32,
     0.45
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Great Esquimaux Curlew",
@@ -4553,7 +4915,9 @@
    "focal_point": [
     0.45,
     0.45
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Great Marbled Godwit",
@@ -4578,7 +4942,9 @@
    "focal_point": [
     0.55,
     0.5
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "American Coot",
@@ -4603,7 +4969,9 @@
    "focal_point": [
     0.55,
     0.52
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Roseate Tern",
@@ -4628,7 +4996,9 @@
    "focal_point": [
     0.5,
     0.28
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "American Snipe",
@@ -4653,7 +5023,9 @@
    "focal_point": [
     0.66,
     0.66
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "American Pied-bill Dobchick",
@@ -4678,7 +5050,9 @@
    "focal_point": [
     0.62,
     0.55
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Florida Cormorant",
@@ -4703,7 +5077,9 @@
    "focal_point": [
     0.28,
     0.35
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Jager",
@@ -4728,7 +5104,9 @@
    "focal_point": [
     0.32,
     0.42
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Hudsonian Godwit",
@@ -4753,7 +5131,9 @@
    "focal_point": [
     0.62,
     0.42
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Common Cormorant",
@@ -4778,7 +5158,9 @@
    "focal_point": [
     0.65,
     0.38
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Arctic Yager",
@@ -4803,7 +5185,9 @@
    "focal_point": [
     0.38,
     0.35
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Frigate Pelican",
@@ -4828,7 +5212,9 @@
    "focal_point": [
     0.35,
     0.65
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Richardson's Jager",
@@ -4853,7 +5239,9 @@
    "focal_point": [
     0.62,
     0.42
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Yellow Shank",
@@ -4878,7 +5266,9 @@
    "focal_point": [
     0.53,
     0.54
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Roseate Spoonbill",
@@ -4903,7 +5293,9 @@
    "focal_point": [
     0.4,
     0.62
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Red-headed Duck",
@@ -4928,7 +5320,9 @@
    "focal_point": [
     0.58,
     0.35
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Little Auk",
@@ -4953,7 +5347,9 @@
    "focal_point": [
     0.62,
     0.42
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Long-legged Sandpiper",
@@ -4978,7 +5374,9 @@
    "focal_point": [
     0.4,
     0.5
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Black-Throated Diver",
@@ -5003,7 +5401,9 @@
    "focal_point": [
     0.5,
     0.5
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Gadwall Duck",
@@ -5028,7 +5428,9 @@
    "focal_point": [
     0.6,
     0.38
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Rocky Mountain Plover",
@@ -5053,7 +5455,9 @@
    "focal_point": [
     0.5,
     0.55
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Marsh Hawk",
@@ -5078,7 +5482,9 @@
    "focal_point": [
     0.45,
     0.72
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "White-winged Crossbill",
@@ -5103,7 +5509,9 @@
    "focal_point": [
     0.48,
     0.48
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Lapland Long-spur",
@@ -5128,7 +5536,9 @@
    "focal_point": [
     0.62,
     0.35
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Band-tailed Pigeon",
@@ -5153,7 +5563,9 @@
    "focal_point": [
     0.45,
     0.42
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "1. Evening Grosbeak - 2. Spotted Grosbeak",
@@ -5178,7 +5590,9 @@
    "focal_point": [
     0.46,
     0.44
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Trumpeter Swan",
@@ -5203,7 +5617,9 @@
    "focal_point": [
     0.42,
     0.5
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Common American Swan",
@@ -5228,7 +5644,9 @@
    "focal_point": [
     0.45,
     0.42
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Columbian Humming Bird",
@@ -5253,7 +5671,9 @@
    "focal_point": [
     0.5,
     0.5
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Slender-billed Guillemot",
@@ -5278,7 +5698,9 @@
    "focal_point": [
     0.5,
     0.42
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "American Flamingo",
@@ -5303,7 +5725,9 @@
    "focal_point": [
     0.5,
     0.45
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Fox-coloured Sparrow",
@@ -5328,7 +5752,9 @@
    "focal_point": [
     0.48,
     0.55
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Downy Woodpecker",
@@ -5353,7 +5779,9 @@
    "focal_point": [
     0.5,
     0.35
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Blue-bird",
@@ -5378,7 +5806,9 @@
    "focal_point": [
     0.42,
     0.25
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Ferruginous Thrush",
@@ -5403,7 +5833,9 @@
    "focal_point": [
     0.52,
     0.5
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Yellow-throated Vireo",
@@ -5428,7 +5860,9 @@
    "focal_point": [
     0.45,
     0.6
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Pewit Flycatcher",
@@ -5453,7 +5887,9 @@
    "focal_point": [
     0.48,
     0.5
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Blue Grosbeak",
@@ -5478,7 +5914,9 @@
    "focal_point": [
     0.42,
     0.22
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Brown-headed Nuthatch",
@@ -5503,7 +5941,9 @@
    "focal_point": [
     0.45,
     0.45
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Three-toed Woodpecker",
@@ -5528,7 +5968,9 @@
    "focal_point": [
     0.45,
     0.42
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Meadow Lark",
@@ -5553,7 +5995,9 @@
    "focal_point": [
     0.28,
     0.78
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Fish Crow",
@@ -5578,7 +6022,9 @@
    "focal_point": [
     0.4,
     0.5
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Rusty Grakle",
@@ -5603,7 +6049,9 @@
    "focal_point": [
     0.48,
     0.48
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "American Swift",
@@ -5628,7 +6076,9 @@
    "focal_point": [
     0.42,
     0.32
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Brasilian Caracara Eagle",
@@ -5653,7 +6103,9 @@
    "focal_point": [
     0.45,
     0.45
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Nuttall's lesser-marsh Wren",
@@ -5678,7 +6130,9 @@
    "focal_point": [
     0.4,
     0.35
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "White-crowned Pigeon",
@@ -5703,7 +6157,9 @@
    "focal_point": [
     0.45,
     0.55
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Boat-tailed Grackle",
@@ -5728,7 +6184,9 @@
    "focal_point": [
     0.4,
     0.48
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Tree Sparrow",
@@ -5753,7 +6211,9 @@
    "focal_point": [
     0.42,
     0.42
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Willow Grous or Large Ptarmigan",
@@ -5778,7 +6238,9 @@
    "focal_point": [
     0.5,
     0.45
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Salt Water Marsh Hen",
@@ -5803,7 +6265,9 @@
    "focal_point": [
     0.55,
     0.35
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Virginia Rail",
@@ -5828,7 +6292,9 @@
    "focal_point": [
     0.48,
     0.4
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Summer or Wood Duck",
@@ -5853,7 +6319,9 @@
    "focal_point": [
     0.38,
     0.3
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Booby Gannet",
@@ -5878,7 +6346,9 @@
    "focal_point": [
     0.35,
     0.22
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Wilson's Plover",
@@ -5903,7 +6373,9 @@
    "focal_point": [
     0.42,
     0.6
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Puffin",
@@ -5928,7 +6400,9 @@
    "focal_point": [
     0.62,
     0.4
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Louisiana Heron",
@@ -5953,7 +6427,9 @@
    "focal_point": [
     0.32,
     0.25
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Foolish Guillemot",
@@ -5978,7 +6454,9 @@
    "focal_point": [
     0.6,
     0.38
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "White Ibis",
@@ -6003,7 +6481,9 @@
    "focal_point": [
     0.5,
     0.4
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Sora or Rail",
@@ -6028,7 +6508,9 @@
    "focal_point": [
     0.5,
     0.48
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Arctic Tern",
@@ -6053,7 +6535,9 @@
    "focal_point": [
     0.48,
     0.42
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "American Woodcock",
@@ -6078,7 +6562,9 @@
    "focal_point": [
     0.55,
     0.45
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Stormy Petrel",
@@ -6103,7 +6589,9 @@
    "focal_point": [
     0.5,
     0.45
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Cayenne Tern",
@@ -6128,7 +6616,9 @@
    "focal_point": [
     0.55,
     0.42
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Noddy Tern",
@@ -6153,7 +6643,9 @@
    "focal_point": [
     0.45,
     0.45
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Hutchins's Barnacle Goose",
@@ -6178,7 +6670,9 @@
    "focal_point": [
     0.38,
     0.15
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Purple Sandpiper",
@@ -6203,7 +6697,9 @@
    "focal_point": [
     0.48,
     0.48
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Solitary Sandpiper",
@@ -6228,7 +6724,9 @@
    "focal_point": [
     0.45,
     0.5
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Barnacle Goose",
@@ -6253,7 +6751,9 @@
    "focal_point": [
     0.35,
     0.35
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Red-necked Grebe",
@@ -6278,7 +6778,9 @@
    "focal_point": [
     0.5,
     0.42
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Dusky Petrel",
@@ -6303,7 +6805,9 @@
    "focal_point": [
     0.42,
     0.45
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Long-tailed Duck",
@@ -6328,7 +6832,9 @@
    "focal_point": [
     0.4,
     0.35
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Little Sandpiper",
@@ -6353,7 +6859,9 @@
    "focal_point": [
     0.45,
     0.62
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Bonapartian Gull",
@@ -6378,7 +6886,9 @@
    "focal_point": [
     0.38,
     0.34
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Gannet",
@@ -6403,7 +6913,9 @@
    "focal_point": [
     0.68,
     0.22
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Yellow-breasted Rail",
@@ -6428,7 +6940,9 @@
    "focal_point": [
     0.42,
     0.48
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Ring Plover",
@@ -6453,7 +6967,9 @@
    "focal_point": [
     0.45,
     0.45
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Green Heron",
@@ -6478,7 +6994,9 @@
    "focal_point": [
     0.35,
     0.35
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Red-breasted Snipe",
@@ -6503,7 +7021,9 @@
    "focal_point": [
     0.58,
     0.45
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Golden-Eye Duck",
@@ -6528,7 +7048,9 @@
    "focal_point": [
     0.35,
     0.62
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Least Water-hen",
@@ -6553,7 +7075,9 @@
    "focal_point": [
     0.4,
     0.5
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "1. Louisiana Tanager - 2. Scarlet Tanager",
@@ -6578,7 +7102,9 @@
    "focal_point": [
     0.48,
     0.42
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "American Magpie",
@@ -6603,7 +7129,9 @@
    "focal_point": [
     0.42,
     0.35
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "1. Arkansaw Flycatcher - 2. Swallow-Tailed Flycatcher - 3. Says Flycatcher",
@@ -6628,7 +7156,9 @@
    "focal_point": [
     0.55,
     0.48
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Sharp-tailed Grous",
@@ -6653,7 +7183,9 @@
    "focal_point": [
     0.55,
     0.48
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Black-Throated Bunting",
@@ -6678,7 +7210,9 @@
    "focal_point": [
     0.55,
     0.55
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "1. Bank Swallow - 2. Violet-green Swallow",
@@ -6703,7 +7237,9 @@
    "focal_point": [
     0.44,
     0.24
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Glossy Ibis",
@@ -6728,7 +7264,9 @@
    "focal_point": [
     0.55,
     0.45
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Louisiana Hawk",
@@ -6753,7 +7291,9 @@
    "focal_point": [
     0.42,
     0.48
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "1. Lazuli Finch - 2. Clay-coloured Finch - 3. Oregon Snow Finch",
@@ -6778,7 +7318,9 @@
    "focal_point": [
     0.45,
     0.48
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Red-breasted Merganser",
@@ -6803,7 +7345,9 @@
    "focal_point": [
     0.34,
     0.63
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Semipalmated Sandpiper",
@@ -6828,7 +7372,9 @@
    "focal_point": [
     0.55,
     0.55
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "1. Havell's Tern - 2. Trudeau's Tern",
@@ -6853,7 +7399,9 @@
    "focal_point": [
     0.6,
     0.4
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "California Partridge",
@@ -6878,7 +7426,9 @@
    "focal_point": [
     0.6,
     0.4
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "1. Maria's Woodpecker - 2. Three-toed Woodpecker - 3. Phillips' Woodpecker - 4. Canadian Woodpecker - 5. Harris's Woodpecker - 6. Audubon's Woodpecker",
@@ -6903,7 +7453,9 @@
    "focal_point": [
     0.45,
     0.45
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "1. White-legged Oyster-catcher - 2. Slender-billed Oyster-catcher",
@@ -6928,7 +7480,9 @@
    "focal_point": [
     0.58,
     0.35
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Western Duck",
@@ -6953,7 +7507,9 @@
    "focal_point": [
     0.38,
     0.55
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "1. Burrowing Owl - 2. Large-headed Burrowing Owl - 3. Little night Owl - 4. Columbian Owl - 5. Short-eared Owl",
@@ -6978,7 +7534,9 @@
    "focal_point": [
     0.55,
     0.6
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "1. Bullock's Oriole - 2. Baltimore Oriole - 3. Mexican Goldfinch - 4. Varied Thrush - 5. Common Water Thrush",
@@ -7003,7 +7561,9 @@
    "focal_point": [
     0.35,
     0.68
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Savannah Finch",
@@ -7028,7 +7588,9 @@
    "focal_point": [
     0.42,
     0.42
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Pileated Woodpecker",
@@ -7053,7 +7615,9 @@
    "focal_point": [
     0.42,
     0.42
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "American Sparrow Hawk",
@@ -7078,7 +7642,9 @@
    "focal_point": [
     0.42,
     0.45
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Small Green Crested Flycatcher",
@@ -7103,7 +7669,9 @@
    "focal_point": [
     0.35,
     0.35
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Yellow Red-poll Warbler",
@@ -7128,7 +7696,9 @@
    "focal_point": [
     0.42,
     0.45
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "American Crow",
@@ -7153,7 +7723,9 @@
    "focal_point": [
     0.35,
     0.55
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Black-capped Titmouse",
@@ -7178,7 +7750,9 @@
    "focal_point": [
     0.4,
     0.45
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Great blue Heron",
@@ -7203,7 +7777,9 @@
    "focal_point": [
     0.62,
     0.68
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Wood Ibiss",
@@ -7228,7 +7804,9 @@
    "focal_point": [
     0.65,
     0.7
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Pied oyster-catcher",
@@ -7253,7 +7831,9 @@
    "focal_point": [
     0.4,
     0.55
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Black Backed Gull",
@@ -7278,7 +7858,9 @@
    "focal_point": [
     0.28,
     0.62
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Velvet Duck",
@@ -7303,7 +7885,9 @@
    "focal_point": [
     0.68,
     0.28
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Semipalmated Snipe, or Willet",
@@ -7328,7 +7912,9 @@
    "focal_point": [
     0.65,
     0.48
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Herring Gull",
@@ -7353,7 +7939,9 @@
    "focal_point": [
     0.45,
     0.35
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Great Tern",
@@ -7378,7 +7966,9 @@
    "focal_point": [
     0.45,
     0.4
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Black-bellied Darter",
@@ -7403,7 +7993,9 @@
    "focal_point": [
     0.42,
     0.2
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Black Skimmer or Shearwater",
@@ -7428,7 +8020,9 @@
    "focal_point": [
     0.4,
     0.6
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Pied Duck",
@@ -7453,7 +8047,9 @@
    "focal_point": [
     0.55,
     0.4
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Smew or White Nun",
@@ -7478,7 +8074,9 @@
    "focal_point": [
     0.55,
     0.62
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Iceland or Jer Falcon",
@@ -7503,7 +8101,9 @@
    "focal_point": [
     0.45,
     0.35
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Rock Grous",
@@ -7528,7 +8128,9 @@
    "focal_point": [
     0.6,
     0.45
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "1. Mountain Mocking bird - 2. Varied Thrush",
@@ -7553,7 +8155,9 @@
    "focal_point": [
     0.45,
     0.55
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Common Buzzard",
@@ -7578,7 +8182,9 @@
    "focal_point": [
     0.55,
     0.35
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Sharp-shinned Hawk",
@@ -7603,7 +8209,9 @@
    "focal_point": [
     0.48,
     0.6
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Scolopaceus Courlan",
@@ -7628,7 +8236,9 @@
    "focal_point": [
     0.45,
     0.35
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Hawk Owl",
@@ -7653,7 +8263,9 @@
    "focal_point": [
     0.55,
     0.35
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Tengmalm's Owl",
@@ -7678,7 +8290,9 @@
    "focal_point": [
     0.68,
     0.3
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "White Heron",
@@ -7703,7 +8317,9 @@
    "focal_point": [
     0.35,
     0.68
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "1. Nuttall's Starling - 2. Yellow-headed Troopial - 3. Bullock's Oriole",
@@ -7728,7 +8344,9 @@
    "focal_point": [
     0.45,
     0.6
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Red-Cockaded Woodpecker",
@@ -7753,7 +8371,9 @@
    "focal_point": [
     0.48,
     0.55
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "1. Lark Finch - 2. Prairie Finch - 3. Brown Song Sparrow",
@@ -7778,7 +8398,9 @@
    "focal_point": [
     0.45,
     0.45
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "1. Chestnut-coloured Finch - 2. Black-headed Siskin - 3. Black crown Bunting - 4. Arctic Ground Finch",
@@ -7803,7 +8425,9 @@
    "focal_point": [
     0.5,
     0.5
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Scarlet Ibis",
@@ -7828,7 +8452,9 @@
    "focal_point": [
     0.32,
     0.35
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "1. Arkansaw Siskin - 2. Mealy Red-poll - 3. Louisiana Tanager - 4.Townsend's Finch - 5. Buff-breasted Finch",
@@ -7853,7 +8479,9 @@
    "focal_point": [
     0.5,
     0.5
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Eared Grebe",
@@ -7878,7 +8506,9 @@
    "focal_point": [
     0.35,
     0.48
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Dusky Albatros",
@@ -7903,7 +8533,9 @@
    "focal_point": [
     0.32,
     0.35
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "1. Violet-green Cormorant - 2. Townsend's Cormorant",
@@ -7928,7 +8560,9 @@
    "focal_point": [
     0.55,
     0.32
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "1. Brown Creeper - 2. Californian Nuthatch",
@@ -7953,7 +8587,9 @@
    "focal_point": [
     0.45,
     0.4
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "1. Hairy Woodpecker - 2. Red-bellied Woodpecker - 3. Red-shafted Woodpecker - 4. Lewis' Woodpecker - 5. Red-breasted Woodpecker",
@@ -7978,7 +8614,9 @@
    "focal_point": [
     0.6,
     0.55
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "1. Plumed--Partridge - 2. Thick--legged Partridge",
@@ -8003,7 +8641,9 @@
    "focal_point": [
     0.45,
     0.55
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Californian Vulture",
@@ -8028,7 +8668,9 @@
    "focal_point": [
     0.35,
     0.28
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Townsend's Sandpiper",
@@ -8053,7 +8695,9 @@
    "focal_point": [
     0.5,
     0.42
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Red-Throated Diver",
@@ -8078,7 +8722,9 @@
    "focal_point": [
     0.28,
     0.45
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Hyperborean phalarope",
@@ -8103,7 +8749,9 @@
    "focal_point": [
     0.55,
     0.28
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "King Duck",
@@ -8128,7 +8776,9 @@
    "focal_point": [
     0.32,
     0.35
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Fork-tailed Gull",
@@ -8153,7 +8803,9 @@
    "focal_point": [
     0.42,
     0.52
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "White-fronted Goose",
@@ -8178,7 +8830,9 @@
    "focal_point": [
     0.6,
     0.35
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Black-bellied Plover",
@@ -8203,7 +8857,9 @@
    "focal_point": [
     0.4,
     0.48
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Yellow-Crowned Heron",
@@ -8228,7 +8884,9 @@
    "focal_point": [
     0.38,
     0.52
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "American Bittern",
@@ -8253,7 +8911,9 @@
    "focal_point": [
     0.55,
     0.35
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Great Auk",
@@ -8278,7 +8938,9 @@
    "focal_point": [
     0.62,
     0.35
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "1. Lazuli Finch - 2. Crimson-necked Bull-Finch - 3. Gray-crowned Linnet - 4. Cow-pen Bird - 5. Evening Grosbeak - 6. Brown Longspur",
@@ -8303,7 +8965,9 @@
    "focal_point": [
     0.5,
     0.48
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Cardinal Grosbeak",
@@ -8328,7 +8992,9 @@
    "focal_point": [
     0.42,
     0.42
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Barn Owl",
@@ -8353,7 +9019,9 @@
    "focal_point": [
     0.42,
     0.35
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Common Gull",
@@ -8378,7 +9046,9 @@
    "focal_point": [
     0.4,
     0.5
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Razor Bill",
@@ -8403,7 +9073,9 @@
    "focal_point": [
     0.53,
     0.42
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Snowy Heron or White Egretlabel",
@@ -8428,7 +9100,9 @@
    "focal_point": [
     0.42,
     0.25
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Buff breasted Sandpiper",
@@ -8453,7 +9127,9 @@
    "focal_point": [
     0.35,
     0.48
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Greenshank",
@@ -8478,7 +9154,9 @@
    "focal_point": [
     0.35,
     0.42
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Black Tern",
@@ -8503,7 +9181,9 @@
    "focal_point": [
     0.42,
     0.65
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Ivory Gull",
@@ -8528,7 +9208,9 @@
    "focal_point": [
     0.45,
     0.45
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Red backed Sandpiper",
@@ -8553,7 +9235,9 @@
    "focal_point": [
     0.5,
     0.4
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Canvas backed Duck",
@@ -8578,7 +9262,9 @@
    "focal_point": [
     0.45,
     0.55
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Dusky Duck",
@@ -8603,7 +9289,9 @@
    "focal_point": [
     0.55,
     0.42
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Blue Crane or Heron",
@@ -8628,7 +9316,9 @@
    "focal_point": [
     0.35,
     0.32
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Spotted Sandpiper",
@@ -8653,7 +9343,9 @@
    "focal_point": [
     0.47,
     0.58
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Long-legged Avocet",
@@ -8678,7 +9370,9 @@
    "focal_point": [
     0.38,
     0.35
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Goosander",
@@ -8703,7 +9397,9 @@
    "focal_point": [
     0.72,
     0.4
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Bemaculated Duck",
@@ -8728,7 +9424,9 @@
    "focal_point": [
     0.38,
     0.3
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Least Stormy-Petrel",
@@ -8753,7 +9451,9 @@
    "focal_point": [
     0.5,
     0.42
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Great Cinereous Owl",
@@ -8778,7 +9478,9 @@
    "focal_point": [
     0.32,
     0.28
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "MacGillivray's Finch",
@@ -8803,7 +9505,9 @@
    "focal_point": [
     0.58,
     0.42
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Pine Grosbeak",
@@ -8828,7 +9532,9 @@
    "focal_point": [
     0.35,
     0.58
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "1. Winter Wren - 2. Rock Wren",
@@ -8853,7 +9559,9 @@
    "focal_point": [
     0.3,
     0.55
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Long-tailed or Dusky Grous",
@@ -8878,7 +9586,9 @@
    "focal_point": [
     0.33,
     0.5
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "1. Yellow billed Magpie - 2. Stellers Jay - 3. Ultramarine Jay - 4. Clark's Crow",
@@ -8903,7 +9613,9 @@
    "focal_point": [
     0.5,
     0.45
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Bohemian Chatterer",
@@ -8928,7 +9640,9 @@
    "focal_point": [
     0.42,
     0.5
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "American Water Ouzel",
@@ -8953,7 +9667,9 @@
    "focal_point": [
     0.45,
     0.55
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Lesser Red-Poll",
@@ -8978,7 +9694,9 @@
    "focal_point": [
     0.45,
     0.48
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Ruff-necked Humming-bird",
@@ -9003,7 +9721,9 @@
    "focal_point": [
     0.47,
     0.35
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Long-eared Owl",
@@ -9028,7 +9748,9 @@
    "focal_point": [
     0.32,
     0.25
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Brant Goose",
@@ -9053,7 +9775,9 @@
    "focal_point": [
     0.6,
     0.42
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Burgomaster Gull",
@@ -9078,7 +9802,9 @@
    "focal_point": [
     0.4,
     0.55
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Marsh Tern",
@@ -9103,7 +9829,9 @@
    "focal_point": [
     0.5,
     0.4
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Prairie Starling",
@@ -9128,7 +9856,9 @@
    "focal_point": [
     0.4,
     0.62
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "1. Little Tyrant Fly-catcher - 2. Small-headed Fly-catcher - 3. Blue Mountain Warbler - 4. Bartran's Vireo - 5. Short-legged Pewee - 6. Rocky Mountain Fly-catcher",
@@ -9153,7 +9883,9 @@
    "focal_point": [
     0.45,
     0.55
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Shoveller Duck",
@@ -9178,7 +9910,9 @@
    "focal_point": [
     0.35,
     0.42
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Esquimaux Curlew",
@@ -9203,7 +9937,9 @@
    "focal_point": [
     0.4,
     0.45
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Schinz's Sandpiper",
@@ -9228,7 +9964,9 @@
    "focal_point": [
     0.42,
     0.5
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Cabot's Tern",
@@ -9253,7 +9991,9 @@
    "focal_point": [
     0.42,
     0.45
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "White-winged silvery Gull",
@@ -9278,7 +10018,9 @@
    "focal_point": [
     0.45,
     0.42
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Wandering Shearwater",
@@ -9303,7 +10045,9 @@
    "focal_point": [
     0.42,
     0.45
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Bartram Sandpiper",
@@ -9328,7 +10072,9 @@
    "focal_point": [
     0.42,
     0.42
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Great Northern Diver or Loon",
@@ -9353,7 +10099,9 @@
    "focal_point": [
     0.62,
     0.3
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Tell-tale Godwit or Snipe",
@@ -9378,7 +10126,9 @@
    "focal_point": [
     0.42,
     0.38
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "American White Pelican",
@@ -9403,7 +10153,9 @@
    "focal_point": [
     0.42,
     0.22
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Blue-Winged Teal",
@@ -9428,7 +10180,9 @@
    "focal_point": [
     0.45,
     0.5
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Black-headed Gull",
@@ -9453,7 +10207,9 @@
    "focal_point": [
     0.62,
     0.28
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Red-breasted Sandpiper",
@@ -9478,7 +10234,9 @@
    "focal_point": [
     0.35,
     0.45
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Black, or Surf Duck",
@@ -9503,7 +10261,9 @@
    "focal_point": [
     0.4,
     0.4
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Lesser Tern",
@@ -9528,7 +10288,9 @@
    "focal_point": [
     0.4,
     0.65
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Black-Winged Hawk",
@@ -9553,7 +10315,9 @@
    "focal_point": [
     0.4,
     0.55
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "1. Black-throated Guillemot - 2. Nobbed-billed Auk - 3. Curled-crested Auk - 4. Horned-billed Guillemot",
@@ -9578,7 +10342,9 @@
    "focal_point": [
     0.55,
     0.55
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "1. American Ptarmigan - 2. White-tailed Grous",
@@ -9603,7 +10369,9 @@
    "focal_point": [
     0.68,
     0.45
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "1. Little Tawny Thrush - 2. Ptiliogony's Townsendi - 3. Canada Jay",
@@ -9628,7 +10396,9 @@
    "focal_point": [
     0.42,
     0.72
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Turn-stone",
@@ -9653,7 +10423,9 @@
    "focal_point": [
     0.72,
     0.55
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "American Avocet",
@@ -9678,7 +10450,9 @@
    "focal_point": [
     0.48,
     0.55
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Snow Goose",
@@ -9703,7 +10477,9 @@
    "focal_point": [
     0.45,
     0.55
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Pinnated Grous",
@@ -9728,7 +10504,9 @@
    "focal_point": [
     0.3,
     0.25
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Goldon Eagle cropped",
@@ -9753,7 +10531,9 @@
    "focal_point": [
     0.22,
     0.15
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "PinguinusImpennus",
@@ -9778,7 +10558,9 @@
    "focal_point": [
     0.68,
     0.4
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Snowy Owl",
@@ -9803,7 +10585,9 @@
    "focal_point": [
     0.5,
     0.3
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Barred Owl",
@@ -9828,7 +10612,9 @@
    "focal_point": [
     0.42,
     0.42
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Great Horned Owl",
@@ -9853,7 +10639,9 @@
    "focal_point": [
     0.35,
     0.45
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Eastern Screech-Owl",
@@ -9878,7 +10666,9 @@
    "focal_point": [
     0.45,
     0.45
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Wild Turkey",
@@ -9903,7 +10693,9 @@
    "focal_point": [
     0.6,
     0.2
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Caracara cheriway by Audubon",
@@ -9928,7 +10720,9 @@
    "focal_point": [
     0.45,
     0.5
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "White-crowned Pigeon crop",
@@ -9953,7 +10747,9 @@
    "focal_point": [
     0.4,
     0.45
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Camptorhynchus labradoriusAWP332AA",
@@ -9978,7 +10774,9 @@
    "focal_point": [
     0.68,
     0.38
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Zenaida Dove",
@@ -10003,7 +10801,9 @@
    "focal_point": [
     0.5,
     0.45
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Yellow-breasted Chat",
@@ -10028,7 +10828,9 @@
    "focal_point": [
     0.55,
     0.3
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Bachman's Warbler",
@@ -10053,7 +10855,9 @@
    "focal_point": [
     0.32,
     0.45
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Prothonotary Warbler",
@@ -10078,7 +10882,9 @@
    "focal_point": [
     0.38,
     0.55
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Prothonotary Warbler restored",
@@ -10103,7 +10909,9 @@
    "focal_point": [
     0.4,
     0.35
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Golden-crowned Thrush",
@@ -10128,7 +10936,9 @@
    "focal_point": [
     0.45,
     0.62
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "AudubonCarolinaParakeet2",
@@ -10153,7 +10963,9 @@
    "focal_point": [
     0.45,
     0.45
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Bewick's Wren",
@@ -10178,7 +10990,9 @@
    "focal_point": [
     0.35,
     0.55
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Blue-winged Yellow Warbler",
@@ -10203,7 +11017,9 @@
    "focal_point": [
     0.42,
     0.35
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "1. Townsend's Warbler - 2. Arctic Blue-bird - 3. Western Blue-bird",
@@ -10228,7 +11044,9 @@
    "focal_point": [
     0.5,
     0.5
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Orange-crowned Warbler",
@@ -10253,7 +11071,9 @@
    "focal_point": [
     0.62,
     0.35
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Blue Yellow-backed Warbler",
@@ -10278,7 +11098,9 @@
    "focal_point": [
     0.35,
     0.55
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Olive sided Flycatcher",
@@ -10303,7 +11125,9 @@
    "focal_point": [
     0.62,
     0.72
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Tennessee Warbler",
@@ -10328,7 +11152,9 @@
    "focal_point": [
     0.35,
     0.5
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Black & White Creeper",
@@ -10353,7 +11179,9 @@
    "focal_point": [
     0.55,
     0.55
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Wood Pewee",
@@ -10378,7 +11206,9 @@
    "focal_point": [
     0.32,
     0.42
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Palm Warbler",
@@ -10403,7 +11233,9 @@
    "focal_point": [
     0.45,
     0.4
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "1. Audubon's Warbler - 2. Hermit Warbler - 3. Black-throated gray Warbler",
@@ -10428,7 +11260,9 @@
    "focal_point": [
     0.5,
     0.45
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Henslow's Bunting",
@@ -10453,7 +11287,9 @@
    "focal_point": [
     0.42,
     0.75
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Green Black-capt Flycatcher",
@@ -10478,7 +11314,9 @@
    "focal_point": [
     0.32,
     0.68
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "1. Golden-winged Warbler - 2. Cape May Warbler",
@@ -10503,7 +11341,9 @@
    "focal_point": [
     0.5,
     0.45
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Nashville Warbler",
@@ -10528,7 +11368,9 @@
    "focal_point": [
     0.42,
     0.68
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Black & Yellow Warblers",
@@ -10553,7 +11395,9 @@
    "focal_point": [
     0.4,
     0.4
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Yellow-poll Warbler",
@@ -10578,7 +11422,9 @@
    "focal_point": [
     0.35,
     0.45
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Black-throated Blue Warbler",
@@ -10603,7 +11449,9 @@
    "focal_point": [
     0.35,
     0.35
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Kentucky Warbler",
@@ -10628,7 +11476,9 @@
    "focal_point": [
     0.35,
     0.75
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "House Wren cropped-to-the-plate-only",
@@ -10653,7 +11503,9 @@
    "focal_point": [
     0.25,
     0.35
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Hooded Warbler",
@@ -10678,7 +11530,9 @@
    "focal_point": [
     0.28,
     0.78
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Chestnut-sided Warbler",
@@ -10703,7 +11557,9 @@
    "focal_point": [
     0.45,
     0.5
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Yellow-crown Warbler",
@@ -10728,7 +11584,9 @@
    "focal_point": [
     0.4,
     0.62
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "1. Black-throated green Warbler - 2. Blackburnian - 3. Mourning Warbler",
@@ -10753,7 +11611,9 @@
    "focal_point": [
     0.5,
     0.5
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Gray Tyrant",
@@ -10778,7 +11638,9 @@
    "focal_point": [
     0.38,
     0.52
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Bay-breasted Warbler",
@@ -10803,7 +11665,9 @@
    "focal_point": [
     0.4,
     0.35
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Prairie Warbler",
@@ -10828,7 +11692,9 @@
    "focal_point": [
     0.4,
     0.6
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Connecticut Warbler",
@@ -10853,7 +11719,9 @@
    "focal_point": [
     0.4,
     0.45
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Yellow Throated Warbler",
@@ -10878,7 +11746,9 @@
    "focal_point": [
     0.32,
     0.48
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Yellow-breasted Warbler",
@@ -10903,7 +11773,9 @@
    "focal_point": [
     0.4,
     0.45
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Blackburnian Warbler",
@@ -10928,7 +11800,9 @@
    "focal_point": [
     0.35,
     0.45
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Black-poll Warbler",
@@ -10953,7 +11827,9 @@
    "focal_point": [
     0.45,
     0.45
-   ]
+   ],
+   "delivered_edge": 7675,
+   "resolution_tier": "4K"
   },
   {
    "title": "Pine Creeping Warbler",
@@ -10978,7 +11854,9 @@
    "focal_point": [
     0.35,
     0.45
-   ]
+   ],
+   "delivered_edge": 7655,
+   "resolution_tier": "4K"
   },
   {
    "title": "Arctic Tern restored",
@@ -11003,7 +11881,9 @@
    "focal_point": [
     0.38,
     0.72
-   ]
+   ],
+   "delivered_edge": 7606,
+   "resolution_tier": "4K"
   },
   {
    "title": "Purple Gallinule",
@@ -11028,7 +11908,9 @@
    "focal_point": [
     0.4,
     0.45
-   ]
+   ],
+   "delivered_edge": 7306,
+   "resolution_tier": "4K"
   },
   {
    "title": "1. Chesnut-backed Titmouse - 2. Black-capt Titmouse - 3. Chesnut-crowned Titmouse",
@@ -11053,7 +11935,9 @@
    "focal_point": [
     0.5,
     0.35
-   ]
+   ],
+   "delivered_edge": 7230,
+   "resolution_tier": "4K"
   },
   {
    "title": "Schinz's Sandpiper restored",
@@ -11078,7 +11962,9 @@
    "focal_point": [
     0.62,
     0.58
-   ]
+   ],
+   "delivered_edge": 7117,
+   "resolution_tier": "4K"
   },
   {
    "title": "\"Azure Warbler\" in Audubon's Birds of America",
@@ -11103,7 +11989,9 @@
    "focal_point": [
     0.55,
     0.6
-   ]
+   ],
+   "delivered_edge": 6114,
+   "resolution_tier": "4K"
   },
   {
    "title": "I. Mourning Warbler",
@@ -11128,7 +12016,9 @@
    "focal_point": [
     0.4,
     0.45
-   ]
+   ],
+   "delivered_edge": 5837,
+   "resolution_tier": "4K"
   },
   {
    "title": "Megascops asioAWP097AAAA",
@@ -11153,7 +12043,9 @@
    "focal_point": [
     0.45,
     0.45
-   ]
+   ],
+   "delivered_edge": 3892,
+   "resolution_tier": "4K"
   }
  ]
 }

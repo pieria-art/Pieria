@@ -28,7 +28,9 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "https://tothemoon.im-ldi.com/gallery/Apollo/17/6#AS17-148-22727",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 6750,
+   "resolution_tier": "4K"
   },
   {
    "title": "Earthrise",
@@ -53,7 +55,9 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "http://lroc.sese.asu.edu/posts/895",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Pale Blue Dot",
@@ -78,7 +82,9 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "https://photojournal.jpl.nasa.gov/catalog/PIA23645",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 5230,
+   "resolution_tier": "4K"
   },
   {
    "title": "Buzz Aldrin on the Moon Apollo 11",
@@ -103,7 +109,9 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "Project Apollo Archive, AS11-40-5877",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 3949,
+   "resolution_tier": "4K"
   },
   {
    "title": "Bruce McCandless spacewalk",
@@ -128,7 +136,9 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "JSC Gateway to Astronaut Photography of Earth",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 5900,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Earth seen from Apollo 17",
@@ -153,7 +163,9 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "This image or video was catalogued by Lyndon B. Johnson Space Center of the United States National Aeronautics and Space Administration (NASA) under Photo ID: AS17-148-22727.",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 4463,
+   "resolution_tier": "4K"
   },
   {
    "title": "Apollo 11 bootprint on the Moon",
@@ -178,7 +190,9 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "This image or video was catalogued by NASA Headquarters of the United States National Aeronautics and Space Administration (NASA) under Photo ID: AS11-40-5877.",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "The Day the Earth Smiled",
@@ -203,7 +217,9 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "http://www.jpl.nasa.gov/spaceimages/details.php?id=PIA17172",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Apollo 8 Crew Portrait",
@@ -229,7 +245,9 @@
    "license_url": "",
    "credit_line": "This image or video was catalogued by Lyndon B. Johnson Space Center of the United States National Aeronautics and Space Administration (NASA) under Photo ID: jsc2008e049010.",
    "license_verified": "2026-07-16",
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "delivered_edge": 3041,
+   "resolution_tier": "HD"
   },
   {
    "title": "Apollo 11 Lunar Module Eagle",
@@ -254,7 +272,9 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "NASA (hi-res)",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 4275,
+   "resolution_tier": "4K"
   },
   {
    "title": "Hubble Space Telescope in Orbit",
@@ -279,7 +299,9 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "http://www.jwst.nasa.gov/images_mirror45.html",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 4256,
+   "resolution_tier": "4K"
   }
  ]
 }

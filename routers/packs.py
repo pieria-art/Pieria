@@ -22,7 +22,7 @@ logger = logging.getLogger("artwork-display-api.packs")
 
 # In-flight/finished install jobs by collection id -> {state: 'in_progress'|'done'|'error', trust?, error?}.
 _JOBS: dict[str, dict] = {}
-_FIELDS = ("id", "title", "category", "item_count", "bytes", "core", "cover")
+_FIELDS = ("id", "title", "category", "item_count", "bytes", "core", "cover", "min_tier")
 
 
 def _registry_url(db: Session) -> str:

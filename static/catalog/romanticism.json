@@ -28,7 +28,9 @@
    "license_basis": "CC0 — AIC public-domain works",
    "license_url": "",
    "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "New England Scenery",
@@ -53,7 +55,9 @@
    "license_basis": "CC0 — AIC public-domain works",
    "license_url": "",
    "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Pergola with Oranges",
@@ -78,7 +82,9 @@
    "license_basis": "CC0 — AIC public-domain works",
    "license_url": "",
    "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 6483,
+   "resolution_tier": "4K"
   },
   {
    "title": "Coming Squall (Nahant Beach with a Summer Shower)",
@@ -104,7 +110,9 @@
    "license_url": "",
    "credit_line": "https://www.artic.edu/artworks/185185",
    "license_verified": "2026-07-16",
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "delivered_edge": 3000,
+   "resolution_tier": "HD"
   },
   {
    "title": "Summit of the Sierras",
@@ -130,7 +138,9 @@
    "license_url": "",
    "credit_line": "Art Institute of Chicago",
    "license_verified": "2026-07-16",
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "delivered_edge": 3000,
+   "resolution_tier": "HD"
   },
   {
    "title": "Landscape with Dog",
@@ -156,7 +166,9 @@
    "license_url": "",
    "credit_line": "https://www.artic.edu/artworks/120081",
    "license_verified": "2026-07-16",
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "delivered_edge": 2721,
+   "resolution_tier": "HD"
   },
   {
    "title": "Fishing Boats with Hucksters Bargaining for Fish",
@@ -181,7 +193,9 @@
    "license_basis": "CC0 — AIC public-domain works",
    "license_url": "",
    "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Valley of Aosta: Snowstorm, Avalanche, and Thunderstorm",
@@ -206,7 +220,9 @@
    "license_basis": "CC0 — AIC public-domain works",
    "license_url": "",
    "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 4914,
+   "resolution_tier": "4K"
   },
   {
    "title": "Wanderer above the Sea of Fog",
@@ -231,7 +247,9 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "https://www.tiqets.com/ja/hamburg-attractions-c64886/tickets-for-hamburger-kunsthalle-skip-the-line-p976728/",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 6742,
+   "resolution_tier": "4K"
   },
   {
    "title": "Liberty Leading the People",
@@ -256,7 +274,9 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "Erich Lessing Culture and Fine Arts Archives via artsy.net",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 5946,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Raft of the Medusa",
@@ -281,7 +301,9 @@
    "focal_point": [
     0.68,
     0.28
-   ]
+   ],
+   "delivered_edge": 5907,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Nightmare",
@@ -306,7 +328,9 @@
    "focal_point": [
     0.55,
     0.32
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "The Hay Wain",
@@ -331,7 +355,9 @@
    "focal_point": [
     0.58,
     0.55
-   ]
+   ],
+   "delivered_edge": 6128,
+   "resolution_tier": "4K"
   },
   {
    "title": "Rain, Steam and Speed - The Great Western Railway",
@@ -356,7 +382,9 @@
    "focal_point": [
     0.68,
     0.55
-   ]
+   ],
+   "delivered_edge": 5661,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Fighting Temeraire",
@@ -381,7 +409,9 @@
    "focal_point": [
     0.25,
     0.45
-   ]
+   ],
+   "delivered_edge": 5684,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Death of Sardanapalus",
@@ -414,7 +444,9 @@
    "focal_point": [
     0.35,
     0.3
-   ]
+   ],
+   "delivered_edge": 5593,
+   "resolution_tier": "4K"
   },
   {
    "title": "Women of Algiers in their Apartment",
@@ -447,7 +479,9 @@
    "focal_point": [
     0.38,
     0.55
-   ]
+   ],
+   "delivered_edge": 4000,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Cornfield",
@@ -480,7 +514,9 @@
    "focal_point": [
     0.48,
     0.5
-   ]
+   ],
+   "delivered_edge": 5260,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Charging Chasseur",
@@ -513,7 +549,9 @@
    "focal_point": [
     0.42,
     0.3
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "The Combat of the Giaour and Hassan",
@@ -544,7 +582,9 @@
    "focal_point": [
     0.48,
     0.35
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Lion Hunt",
@@ -575,7 +615,9 @@
    "focal_point": [
     0.45,
     0.28
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Friar Pedro Shoots El Maragato as His Horse Runs Off",
@@ -606,7 +648,9 @@
    "focal_point": [
     0.42,
     0.4
-   ]
+   ],
+   "delivered_edge": 5623,
+   "resolution_tier": "4K"
   },
   {
    "title": "Peasants Bringing Home a Calf Born in the Fields",
@@ -637,7 +681,9 @@
    "focal_point": [
     0.42,
     0.42
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Stoke-by-Nayland",
@@ -662,7 +708,9 @@
    "license_basis": "CC0 — AIC public-domain works",
    "license_url": "",
    "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Alpine Scene",
@@ -688,7 +736,9 @@
    "license_url": "",
    "credit_line": "https://www.artic.edu/artworks/28146",
    "license_verified": "2026-07-16",
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "delivered_edge": 2250,
+   "resolution_tier": "HD"
   },
   {
    "title": "The Storm",
@@ -713,7 +763,9 @@
    "license_basis": "CC0 — Met Open Access",
    "license_url": "",
    "credit_line": "Collection of The Metropolitan Museum of Art",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 4585,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Third of May 1808",
@@ -738,7 +790,9 @@
    "focal_point": [
     0.33,
     0.42
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "The Burial of the Sardine",
@@ -763,7 +817,9 @@
    "focal_point": [
     0.48,
     0.25
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "The Doctor",
@@ -788,7 +844,9 @@
    "focal_point": [
     0.65,
     0.28
-   ]
+   ],
+   "delivered_edge": 6662,
+   "resolution_tier": "4K"
   },
   {
    "title": "Portrait of Doña Isabel de Porcel",
@@ -813,7 +871,9 @@
    "focal_point": [
     0.48,
     0.28
-   ]
+   ],
+   "delivered_edge": 6000,
+   "resolution_tier": "4K"
   },
   {
    "title": "Allegory of Love (Cupid and Psyche)",
@@ -838,7 +898,9 @@
    "focal_point": [
     0.52,
     0.42
-   ]
+   ],
+   "delivered_edge": 5387,
+   "resolution_tier": "4K"
   },
   {
    "title": "Boy on a Ram",
@@ -863,7 +925,9 @@
    "focal_point": [
     0.42,
     0.35
-   ]
+   ],
+   "delivered_edge": 5227,
+   "resolution_tier": "4K"
   },
   {
    "title": "Students from the Pestalozzian Academy (fragment)",
@@ -888,7 +952,9 @@
    "focal_point": [
     0.45,
     0.42
-   ]
+   ],
+   "delivered_edge": 5095,
+   "resolution_tier": "4K"
   },
   {
    "title": "Saint Gregory the Great, Pope",
@@ -913,7 +979,9 @@
    "focal_point": [
     0.45,
     0.4
-   ]
+   ],
+   "delivered_edge": 4974,
+   "resolution_tier": "4K"
   },
   {
    "title": "A Woman and Two Children by a Fountain",
@@ -938,7 +1006,9 @@
    "focal_point": [
     0.42,
     0.55
-   ]
+   ],
+   "delivered_edge": 4848,
+   "resolution_tier": "4K"
   },
   {
    "title": "Scene from the Inquisition",
@@ -963,7 +1033,9 @@
    "focal_point": [
     0.42,
     0.35
-   ]
+   ],
+   "delivered_edge": 4597,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Baptism of Christ",
@@ -988,7 +1060,9 @@
    "focal_point": [
     0.65,
     0.35
-   ]
+   ],
+   "delivered_edge": 4491,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Madhouse",
@@ -1013,7 +1087,9 @@
    "focal_point": [
     0.48,
     0.4
-   ]
+   ],
+   "delivered_edge": 4480,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Bewitched Man",
@@ -1038,7 +1114,9 @@
    "focal_point": [
     0.48,
     0.35
-   ]
+   ],
+   "delivered_edge": 4226,
+   "resolution_tier": "4K"
   },
   {
    "title": "Portrait of Miguel de Múzquiz y Goyeneche, Count of Gausa",
@@ -1070,7 +1148,9 @@
    "focal_point": [
     0.45,
     0.25
-   ]
+   ],
+   "delivered_edge": 3581,
+   "resolution_tier": "HD"
   },
   {
    "title": "Poetry and Poets",
@@ -1095,7 +1175,9 @@
    "focal_point": [
     0.4,
     0.28
-   ]
+   ],
+   "delivered_edge": 4118,
+   "resolution_tier": "4K"
   },
   {
    "title": "Saint Isabel of Portugal Healing the Wounds of a Sick Woman",
@@ -1120,7 +1202,9 @@
    "focal_point": [
     0.42,
     0.5
-   ]
+   ],
+   "delivered_edge": 4001,
+   "resolution_tier": "4K"
   },
   {
    "title": "Saint Hermenegild in Prison",
@@ -1145,7 +1229,9 @@
    "focal_point": [
     0.52,
     0.35
-   ]
+   ],
+   "delivered_edge": 4001,
+   "resolution_tier": "4K"
   },
   {
    "title": "Time (Time and the Old Women)",
@@ -1170,7 +1256,9 @@
    "focal_point": [
     0.58,
     0.32
-   ]
+   ],
+   "delivered_edge": 4000,
+   "resolution_tier": "4K"
   },
   {
    "title": "Monk Talking to an Old Woman",
@@ -1195,7 +1283,9 @@
    "focal_point": [
     0.63,
     0.35
-   ]
+   ],
+   "delivered_edge": 3871,
+   "resolution_tier": "4K"
   },
   {
    "title": "Nantes, from the Île Feydeau",
@@ -1220,7 +1310,9 @@
    "focal_point": [
     0.48,
     0.35
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "The Burning of the Houses of Lords and Commons, 16 October 1834",
@@ -1245,7 +1337,9 @@
    "focal_point": [
     0.45,
     0.35
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Whalley Bridge and Abbey, Lancashire: Dyers Washing and Drying Cloth",
@@ -1270,7 +1364,9 @@
    "focal_point": [
     0.35,
     0.5
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Bonneville, Savoy, with Mont Blanc",
@@ -1295,7 +1391,9 @@
    "focal_point": [
     0.5,
     0.62
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Dort, or Dordrecht: The Dort Packet-Boat from Rotterdam Becalmed",
@@ -1320,7 +1418,9 @@
    "focal_point": [
     0.42,
     0.45
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "The Lake, Petworth: Sunset, Fighting Bucks",
@@ -1352,7 +1452,9 @@
    "focal_point": [
     0.5,
     0.45
-   ]
+   ],
+   "delivered_edge": 5712,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Red Rigi",
@@ -1377,7 +1479,9 @@
    "focal_point": [
     0.48,
     0.3
-   ]
+   ],
+   "delivered_edge": 7480,
+   "resolution_tier": "4K"
   },
   {
    "title": "Melrose Abbey",
@@ -1402,7 +1506,9 @@
    "focal_point": [
     0.42,
     0.32
-   ]
+   ],
+   "delivered_edge": 7124,
+   "resolution_tier": "4K"
   },
   {
    "title": "Queen Mab's Cave",
@@ -1427,7 +1533,9 @@
    "focal_point": [
     0.48,
     0.5
-   ]
+   ],
+   "delivered_edge": 6957,
+   "resolution_tier": "4K"
   },
   {
    "title": "Rockets and Blue Lights (Close at Hand) to Warn Steamboats of Shoal Water",
@@ -1453,7 +1561,9 @@
    "focal_point": [
     0.4,
     0.4
-   ]
+   ],
+   "delivered_edge": 6296,
+   "resolution_tier": "4K"
   },
   {
    "title": "Llanthony Abbey, Monmouthshire",
@@ -1478,7 +1588,9 @@
    "focal_point": [
     0.42,
     0.4
-   ]
+   ],
+   "delivered_edge": 6728,
+   "resolution_tier": "4K"
   },
   {
    "title": "Caligula's Palace and Bridge",
@@ -1503,7 +1615,9 @@
    "focal_point": [
     0.35,
     0.35
-   ]
+   ],
+   "delivered_edge": 6633,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Moselle Bridge, Coblenz",
@@ -1528,7 +1642,9 @@
    "focal_point": [
     0.55,
     0.6
-   ]
+   ],
+   "delivered_edge": 6482,
+   "resolution_tier": "4K"
   },
   {
    "title": "Dido Building Carthage",
@@ -1553,7 +1669,9 @@
    "focal_point": [
     0.5,
     0.25
-   ]
+   ],
+   "delivered_edge": 6288,
+   "resolution_tier": "4K"
   },
   {
    "title": "Devil's Bridge, St Gotthard's Pass",
@@ -1578,7 +1696,9 @@
    "focal_point": [
     0.75,
     0.82
-   ]
+   ],
+   "delivered_edge": 5999,
+   "resolution_tier": "4K"
   },
   {
    "title": "Evening Landscape, with Castle and Bridge in Yorkshire",
@@ -1603,7 +1723,9 @@
    "focal_point": [
     0.45,
     0.55
-   ]
+   ],
+   "delivered_edge": 5943,
+   "resolution_tier": "4K"
   },
   {
    "title": "Calais Pier, with French Poissards Preparing for Sea: An English Packet Arriving",
@@ -1628,7 +1750,9 @@
    "focal_point": [
     0.45,
     0.55
-   ]
+   ],
+   "delivered_edge": 5878,
+   "resolution_tier": "4K"
   },
   {
    "title": "Sun Rising through Vapour: Fishermen Cleaning and Selling Fish",
@@ -1653,7 +1777,9 @@
    "focal_point": [
     0.42,
     0.35
-   ]
+   ],
+   "delivered_edge": 5729,
+   "resolution_tier": "4K"
   },
   {
    "title": "What You Will!",
@@ -1685,7 +1811,9 @@
    "focal_point": [
     0.6,
     0.55
-   ]
+   ],
+   "delivered_edge": 5291,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Château de St. Michael, Bonneville, Savoy",
@@ -1710,7 +1838,9 @@
    "focal_point": [
     0.35,
     0.78
-   ]
+   ],
+   "delivered_edge": 5716,
+   "resolution_tier": "4K"
   },
   {
    "title": "Lausanne: Sunset",
@@ -1742,7 +1872,9 @@
    "focal_point": [
     0.5,
     0.36
-   ]
+   ],
+   "delivered_edge": 2830,
+   "resolution_tier": "HD"
   },
   {
    "title": "Tummel Bridge, Perthshire",
@@ -1767,7 +1899,9 @@
    "focal_point": [
     0.55,
     0.55
-   ]
+   ],
+   "delivered_edge": 4713,
+   "resolution_tier": "4K"
   },
   {
    "title": "Geneva, the Jura Mountains and Isle Rousseau, Sunset",
@@ -1799,7 +1933,9 @@
    "focal_point": [
     0.5,
     0.65
-   ]
+   ],
+   "delivered_edge": 2522,
+   "resolution_tier": "HD"
   },
   {
    "title": "The Sun of Venice Going to Sea",
@@ -1824,7 +1960,9 @@
    "focal_point": [
     0.45,
     0.5
-   ]
+   ],
+   "delivered_edge": 4512,
+   "resolution_tier": "4K"
   },
   {
    "title": "Panoramic View of the Thames",
@@ -1849,7 +1987,9 @@
    "focal_point": [
     0.6,
     0.6
-   ]
+   ],
+   "delivered_edge": 4504,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Rainbow: Osterspai and Filsen",
@@ -1874,7 +2014,9 @@
    "focal_point": [
     0.45,
     0.75
-   ]
+   ],
+   "delivered_edge": 4501,
+   "resolution_tier": "4K"
   },
   {
    "title": "East Cowes Castle, the Seat of J. Nash, Esq.: The Regatta Beating to Windward",
@@ -1906,7 +2048,9 @@
    "focal_point": [
     0.62,
     0.45
-   ]
+   ],
+   "delivered_edge": 3888,
+   "resolution_tier": "4K"
   },
   {
    "title": "View off Margate, Evening",
@@ -1938,7 +2082,9 @@
    "focal_point": [
     0.55,
     0.4
-   ]
+   ],
+   "delivered_edge": 4059,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Schöllenen Gorge from the Devil's Bridge, Pass of St Gotthard",
@@ -1970,7 +2116,9 @@
    "focal_point": [
     0.5,
     0.45
-   ]
+   ],
+   "delivered_edge": 2665,
+   "resolution_tier": "HD"
   },
   {
    "title": "Tours: Sunset, Looking Backwards",
@@ -1995,7 +2143,9 @@
    "focal_point": [
     0.65,
     0.65
-   ]
+   ],
+   "delivered_edge": 4202,
+   "resolution_tier": "4K"
   },
   {
    "title": "Scarborough Town and Castle: Morning, Boys Catching Crabs",
@@ -2020,7 +2170,9 @@
    "focal_point": [
     0.55,
     0.75
-   ]
+   ],
+   "delivered_edge": 4135,
+   "resolution_tier": "4K"
   },
   {
    "title": "Kirkby Lonsdale Churchyard",
@@ -2045,7 +2197,9 @@
    "focal_point": [
     0.3,
     0.55
-   ]
+   ],
+   "delivered_edge": 4025,
+   "resolution_tier": "4K"
   },
   {
    "title": "Bell Rock Lighthouse",
@@ -2070,7 +2224,9 @@
    "focal_point": [
     0.65,
     0.35
-   ]
+   ],
+   "delivered_edge": 4001,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Evening of the Deluge",
@@ -2095,7 +2251,9 @@
    "focal_point": [
     0.53,
     0.35
-   ]
+   ],
+   "delivered_edge": 4000,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Bass Rock",
@@ -2127,7 +2285,9 @@
    "focal_point": [
     0.55,
     0.45
-   ]
+   ],
+   "delivered_edge": 2880,
+   "resolution_tier": "HD"
   },
   {
    "title": "Ancient Rome: Agrippina Landing with the Ashes of Germanicus",
@@ -2152,7 +2312,9 @@
    "focal_point": [
     0.55,
     0.3
-   ]
+   ],
+   "delivered_edge": 4000,
+   "resolution_tier": "4K"
   },
   {
    "title": "Saint-Maurice, Valais",
@@ -2177,7 +2339,9 @@
    "focal_point": [
     0.5,
     0.45
-   ]
+   ],
+   "delivered_edge": 3902,
+   "resolution_tier": "4K"
   }
  ]
 }

@@ -36,7 +36,9 @@
    "focal_point": [
     0.45,
     0.4
-   ]
+   ],
+   "delivered_edge": 7451,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Albert Memorial, London",
@@ -69,7 +71,9 @@
    "focal_point": [
     0.52,
     0.45
-   ]
+   ],
+   "delivered_edge": 7244,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Waag, Nieuwmarkt, Amsterdam",
@@ -102,7 +106,9 @@
    "focal_point": [
     0.5,
     0.35
-   ]
+   ],
+   "delivered_edge": 7306,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Betsy Ross House, Philadelphia",
@@ -134,7 +140,9 @@
    "focal_point": [
     0.5,
     0.55
-   ]
+   ],
+   "delivered_edge": 5885,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Belfry and Canal, Bruges",
@@ -167,7 +175,9 @@
    "focal_point": [
     0.15,
     0.32
-   ]
+   ],
+   "delivered_edge": 7235,
+   "resolution_tier": "4K"
   },
   {
    "title": "The National Bank, Bucharest",
@@ -200,7 +210,9 @@
    "focal_point": [
     0.48,
     0.35
-   ]
+   ],
+   "delivered_edge": 7351,
+   "resolution_tier": "4K"
   },
   {
    "title": "Domnița Bălașa Church, Bucharest",
@@ -233,7 +245,9 @@
    "focal_point": [
     0.45,
     0.3
-   ]
+   ],
+   "delivered_edge": 7315,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Archway, St. Augustine's Abbey, Canterbury",
@@ -266,7 +280,9 @@
    "focal_point": [
     0.6,
     0.25
-   ]
+   ],
+   "delivered_edge": 7262,
+   "resolution_tier": "4K"
   },
   {
    "title": "Grain Elevators on the Chicago River",
@@ -299,7 +315,9 @@
    "focal_point": [
     0.62,
     0.5
-   ]
+   ],
+   "delivered_edge": 7353,
+   "resolution_tier": "4K"
   },
   {
    "title": "Christ Church, Philadelphia",
@@ -332,7 +350,9 @@
    "focal_point": [
     0.55,
     0.4
-   ]
+   ],
+   "delivered_edge": 7481,
+   "resolution_tier": "4K"
   },
   {
    "title": "Cliveden, the Chew Mansion, Germantown",
@@ -365,7 +385,9 @@
    "focal_point": [
     0.5,
     0.42
-   ]
+   ],
+   "delivered_edge": 7437,
+   "resolution_tier": "4K"
   },
   {
    "title": "Reichsburg Cochem on the Moselle",
@@ -398,7 +420,9 @@
    "focal_point": [
     0.5,
     0.35
-   ]
+   ],
+   "delivered_edge": 7351,
+   "resolution_tier": "4K"
   },
   {
    "title": "Detroit Museum of Art",
@@ -431,7 +455,9 @@
    "focal_point": [
     0.45,
     0.4
-   ]
+   ],
+   "delivered_edge": 7367,
+   "resolution_tier": "4K"
   },
   {
    "title": "Western Boulevard, Detroit",
@@ -464,7 +490,9 @@
    "focal_point": [
     0.5,
     0.5
-   ]
+   ],
+   "delivered_edge": 7112,
+   "resolution_tier": "4K"
   },
   {
    "title": "Field Columbian Museum, Jackson Park, Chicago",
@@ -497,7 +525,9 @@
    "focal_point": [
     0.55,
     0.35
-   ]
+   ],
+   "delivered_edge": 7481,
+   "resolution_tier": "4K"
   },
   {
    "title": "Fort Marion (Castillo de San Marcos), St. Augustine",
@@ -530,7 +560,9 @@
    "focal_point": [
     0.55,
     0.4
-   ]
+   ],
+   "delivered_edge": 7333,
+   "resolution_tier": "4K"
   },
   {
    "title": "Illinois Trust and Savings Bank, Chicago",
@@ -563,7 +595,9 @@
    "focal_point": [
     0.5,
     0.4
-   ]
+   ],
+   "delivered_edge": 7329,
+   "resolution_tier": "4K"
   },
   {
    "title": "Independence Hall, Philadelphia",
@@ -596,7 +630,9 @@
    "focal_point": [
     0.45,
     0.35
-   ]
+   ],
+   "delivered_edge": 7436,
+   "resolution_tier": "4K"
   },
   {
    "title": "Brasov Town Hall (Kronstadt Rathaus)",
@@ -629,7 +665,9 @@
    "focal_point": [
     0.48,
     0.35
-   ]
+   ],
+   "delivered_edge": 7315,
+   "resolution_tier": "4K"
   },
   {
    "title": "Grant Monument, Lincoln Park, Chicago",
@@ -662,7 +700,9 @@
    "focal_point": [
     0.5,
     0.25
-   ]
+   ],
+   "delivered_edge": 5841,
+   "resolution_tier": "4K"
   },
   {
    "title": "Lafayette Monument, Lafayette Park, Washington",
@@ -695,7 +735,9 @@
    "focal_point": [
     0.5,
     0.3
-   ]
+   ],
+   "delivered_edge": 7374,
+   "resolution_tier": "4K"
   },
   {
    "title": "Trafalgar Square, London",
@@ -727,7 +769,9 @@
    "focal_point": [
     0.5,
     0.35
-   ]
+   ],
+   "delivered_edge": 7244,
+   "resolution_tier": "4K"
   },
   {
    "title": "Basílica de San Francisco el Grande, Madrid",
@@ -759,7 +803,9 @@
    "focal_point": [
     0.5,
     0.35
-   ]
+   ],
+   "delivered_edge": 7280,
+   "resolution_tier": "4K"
   },
   {
    "title": "Founder's Hall, Girard College, Philadelphia",
@@ -791,7 +837,9 @@
    "focal_point": [
     0.5,
     0.35
-   ]
+   ],
+   "delivered_edge": 7422,
+   "resolution_tier": "4K"
   },
   {
    "title": "Masonic Temple, Chicago",
@@ -823,7 +871,9 @@
    "focal_point": [
     0.42,
     0.35
-   ]
+   ],
+   "delivered_edge": 7273,
+   "resolution_tier": "4K"
   },
   {
    "title": "Mission Dolores, San Francisco",
@@ -855,7 +905,9 @@
    "focal_point": [
     0.55,
     0.45
-   ]
+   ],
+   "delivered_edge": 7392,
+   "resolution_tier": "4K"
   },
   {
    "title": "Mount Pleasant Mansion, Philadelphia",
@@ -887,7 +939,9 @@
    "focal_point": [
     0.45,
     0.35
-   ]
+   ],
+   "delivered_edge": 5809,
+   "resolution_tier": "4K"
   },
   {
    "title": "San Francisco Wharf, Havana",
@@ -919,7 +973,9 @@
    "focal_point": [
     0.5,
     0.4
-   ]
+   ],
+   "delivered_edge": 7436,
+   "resolution_tier": "4K"
   },
   {
    "title": "New Old South Church, Boston",
@@ -951,7 +1007,9 @@
    "focal_point": [
     0.42,
     0.4
-   ]
+   ],
+   "delivered_edge": 7437,
+   "resolution_tier": "4K"
   },
   {
    "title": "Old City Gate, St. Augustine",
@@ -983,7 +1041,9 @@
    "focal_point": [
     0.42,
     0.62
-   ]
+   ],
+   "delivered_edge": 7367,
+   "resolution_tier": "4K"
   },
   {
    "title": "Grand Foyer, Palais Garnier, Paris",
@@ -1015,7 +1075,9 @@
    "focal_point": [
     0.5,
     0.45
-   ]
+   ],
+   "delivered_edge": 7297,
+   "resolution_tier": "4K"
   },
   {
    "title": "Palais Garnier, Paris",
@@ -1047,7 +1109,9 @@
    "focal_point": [
     0.5,
     0.35
-   ]
+   ],
+   "delivered_edge": 7244,
+   "resolution_tier": "4K"
   },
   {
    "title": "La Madeleine, Paris",
@@ -1079,7 +1143,9 @@
    "focal_point": [
     0.48,
     0.35
-   ]
+   ],
+   "delivered_edge": 7253,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Louvre, Paris",
@@ -1111,7 +1177,9 @@
    "focal_point": [
     0.35,
     0.75
-   ]
+   ],
+   "delivered_edge": 7289,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Panthéon, Paris",
@@ -1143,7 +1211,9 @@
    "focal_point": [
     0.5,
     0.38
-   ]
+   ],
+   "delivered_edge": 7297,
+   "resolution_tier": "4K"
   },
   {
    "title": "Notre-Dame Cathedral, Paris",
@@ -1175,7 +1245,9 @@
    "focal_point": [
     0.55,
     0.35
-   ]
+   ],
+   "delivered_edge": 7324,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Palais Royal, Paris",
@@ -1207,7 +1279,9 @@
    "focal_point": [
     0.5,
     0.3
-   ]
+   ],
+   "delivered_edge": 7271,
+   "resolution_tier": "4K"
   },
   {
    "title": "Porte Saint-Denis, Paris",
@@ -1239,7 +1313,9 @@
    "focal_point": [
     0.5,
     0.35
-   ]
+   ],
+   "delivered_edge": 7226,
+   "resolution_tier": "4K"
   },
   {
    "title": "Plymouth Church, Brooklyn",
@@ -1271,7 +1347,9 @@
    "focal_point": [
     0.58,
     0.35
-   ]
+   ],
+   "delivered_edge": 7454,
+   "resolution_tier": "4K"
   },
   {
    "title": "Randolph Street, Chicago",
@@ -1303,7 +1381,9 @@
    "focal_point": [
     0.55,
     0.4
-   ]
+   ],
+   "delivered_edge": 7047,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Potter Palmer Mansion, Chicago",
@@ -1335,7 +1415,9 @@
    "focal_point": [
     0.48,
     0.35
-   ]
+   ],
+   "delivered_edge": 7353,
+   "resolution_tier": "4K"
   },
   {
    "title": "United States Soldiers' Home, Washington",
@@ -1367,7 +1449,9 @@
    "focal_point": [
     0.4,
     0.35
-   ]
+   ],
+   "delivered_edge": 7373,
+   "resolution_tier": "4K"
   },
   {
    "title": "St. Botolph's Church, Boston, England",
@@ -1399,7 +1483,9 @@
    "focal_point": [
     0.62,
     0.35
-   ]
+   ],
+   "delivered_edge": 7324,
+   "resolution_tier": "4K"
   },
   {
    "title": "State Street, Chicago",
@@ -1431,7 +1517,9 @@
    "focal_point": [
     0.5,
     0.45
-   ]
+   ],
+   "delivered_edge": 7360,
+   "resolution_tier": "4K"
   },
   {
    "title": "The State, War, and Navy Building, Washington",
@@ -1463,7 +1551,9 @@
    "focal_point": [
     0.48,
     0.4
-   ]
+   ],
+   "delivered_edge": 7340,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Statue of Liberty, New York Harbor",
@@ -1495,7 +1585,9 @@
    "focal_point": [
     0.5,
     0.4
-   ]
+   ],
+   "delivered_edge": 7408,
+   "resolution_tier": "4K"
   },
   {
    "title": "Strawberry Mansion, Philadelphia",
@@ -1527,7 +1619,9 @@
    "focal_point": [
     0.52,
     0.5
-   ]
+   ],
+   "delivered_edge": 7452,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Alcazar Hotel, St. Augustine",
@@ -1559,7 +1653,9 @@
    "focal_point": [
     0.5,
     0.35
-   ]
+   ],
+   "delivered_edge": 7381,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Auditorium Building, Chicago",
@@ -1591,7 +1687,9 @@
    "focal_point": [
     0.5,
     0.4
-   ]
+   ],
+   "delivered_edge": 7401,
+   "resolution_tier": "4K"
   },
   {
    "title": "The U.S. Capitol, Washington D.C.",
@@ -1623,7 +1721,9 @@
    "focal_point": [
     0.55,
     0.35
-   ]
+   ],
+   "delivered_edge": 5803,
+   "resolution_tier": "4K"
   },
   {
    "title": "Grand Army Plaza, Brooklyn",
@@ -1655,7 +1755,9 @@
    "focal_point": [
     0.15,
     0.55
-   ]
+   ],
+   "delivered_edge": 7442,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Morris-Jumel Mansion, New York",
@@ -1687,7 +1789,9 @@
    "focal_point": [
     0.42,
     0.4
-   ]
+   ],
+   "delivered_edge": 7444,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Library of Congress, Washington D.C.",
@@ -1719,7 +1823,9 @@
    "focal_point": [
     0.5,
     0.35
-   ]
+   ],
+   "delivered_edge": 7374,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Hotel Ponce de Leon, St. Augustine",
@@ -1751,7 +1857,9 @@
    "focal_point": [
     0.5,
     0.45
-   ]
+   ],
+   "delivered_edge": 7399,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Cliff House and Seal Rocks, San Francisco",
@@ -1783,7 +1891,9 @@
    "focal_point": [
     0.4,
     0.45
-   ]
+   ],
+   "delivered_edge": 5815,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Boardwalk Casino, Atlantic City",
@@ -1815,7 +1925,9 @@
    "focal_point": [
     0.55,
     0.35
-   ]
+   ],
+   "delivered_edge": 5866,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Lodge, Golden Gate Park, San Francisco",
@@ -1847,7 +1959,9 @@
    "focal_point": [
     0.45,
     0.4
-   ]
+   ],
+   "delivered_edge": 5921,
+   "resolution_tier": "4K"
   },
   {
    "title": "Tremont Street, Boston",
@@ -1879,7 +1993,9 @@
    "focal_point": [
     0.17,
     0.32
-   ]
+   ],
+   "delivered_edge": 7442,
+   "resolution_tier": "4K"
   },
   {
    "title": "Wabash Avenue, Chicago",
@@ -1911,7 +2027,9 @@
    "focal_point": [
     0.45,
     0.4
-   ]
+   ],
+   "delivered_edge": 7394,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Washington Monument",
@@ -1943,7 +2061,9 @@
    "focal_point": [
     0.5,
     0.4
-   ]
+   ],
+   "delivered_edge": 7437,
+   "resolution_tier": "4K"
   },
   {
    "title": "Jackson Monument and the White House, Washington",
@@ -1975,7 +2095,9 @@
    "focal_point": [
     0.33,
     0.42
-   ]
+   ],
+   "delivered_edge": 7401,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Naval Monument, Washington",
@@ -2007,7 +2129,9 @@
    "focal_point": [
     0.35,
     0.35
-   ]
+   ],
+   "delivered_edge": 7354,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Smithsonian Institution, Washington",
@@ -2039,7 +2163,9 @@
    "focal_point": [
     0.55,
     0.35
-   ]
+   ],
+   "delivered_edge": 7367,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Library of Congress, Washington",
@@ -2071,7 +2197,9 @@
    "focal_point": [
     0.45,
     0.4
-   ]
+   ],
+   "delivered_edge": 7360,
+   "resolution_tier": "4K"
   },
   {
    "title": "A Venetian Street",
@@ -2103,7 +2231,9 @@
    "focal_point": [
     0.42,
     0.55
-   ]
+   ],
+   "delivered_edge": 3679,
+   "resolution_tier": "HD"
   },
   {
    "title": "Old Paris, Exposition Universelle 1900",
@@ -2135,7 +2265,9 @@
    "focal_point": [
     0.42,
     0.68
-   ]
+   ],
+   "delivered_edge": 3680,
+   "resolution_tier": "HD"
   },
   {
    "title": "The Arsenale, Venice",
@@ -2167,7 +2299,9 @@
    "focal_point": [
     0.35,
     0.45
-   ]
+   ],
+   "delivered_edge": 3656,
+   "resolution_tier": "HD"
   },
   {
    "title": "The British Museum, London",
@@ -2199,7 +2333,9 @@
    "focal_point": [
     0.5,
     0.35
-   ]
+   ],
+   "delivered_edge": 3700,
+   "resolution_tier": "HD"
   },
   {
    "title": "Cheapside, London",
@@ -2231,7 +2367,9 @@
    "focal_point": [
     0.48,
     0.42
-   ]
+   ],
+   "delivered_edge": 3670,
+   "resolution_tier": "HD"
   },
   {
    "title": "View of Vienna from the Riesenrad",
@@ -2263,7 +2401,9 @@
    "focal_point": [
     0.5,
     0.45
-   ]
+   ],
+   "delivered_edge": 3679,
+   "resolution_tier": "HD"
   },
   {
    "title": "General View of Miskolc, Hungary",
@@ -2295,7 +2435,9 @@
    "focal_point": [
     0.45,
     0.75
-   ]
+   ],
+   "delivered_edge": 3627,
+   "resolution_tier": "HD"
   },
   {
    "title": "Venice Harbour",
@@ -2327,7 +2469,9 @@
    "focal_point": [
     0.55,
     0.42
-   ]
+   ],
+   "delivered_edge": 3602,
+   "resolution_tier": "HD"
   },
   {
    "title": "The Hofburg Palace, Vienna",
@@ -2359,7 +2503,9 @@
    "focal_point": [
     0.5,
     0.4
-   ]
+   ],
+   "delivered_edge": 3678,
+   "resolution_tier": "HD"
   },
   {
    "title": "Holborn Viaduct, London",
@@ -2391,7 +2537,9 @@
    "focal_point": [
     0.62,
     0.35
-   ]
+   ],
+   "delivered_edge": 3659,
+   "resolution_tier": "HD"
   },
   {
    "title": "Kahlenberg, Vienna",
@@ -2423,7 +2571,9 @@
    "focal_point": [
     0.52,
     0.28
-   ]
+   ],
+   "delivered_edge": 3602,
+   "resolution_tier": "HD"
   },
   {
    "title": "Kossuth Monument, Miskolc",
@@ -2455,7 +2605,9 @@
    "focal_point": [
     0.42,
     0.35
-   ]
+   ],
+   "delivered_edge": 3658,
+   "resolution_tier": "HD"
   },
   {
    "title": "Lambeth Palace, London",
@@ -2488,7 +2640,9 @@
    "focal_point": [
     0.45,
     0.6
-   ]
+   ],
+   "delivered_edge": 3690,
+   "resolution_tier": "HD"
   },
   {
    "title": "Leopoldsberg, Vienna",
@@ -2520,7 +2674,9 @@
    "focal_point": [
     0.6,
     0.78
-   ]
+   ],
+   "delivered_edge": 3646,
+   "resolution_tier": "HD"
   },
   {
    "title": "London Bridge",
@@ -2553,7 +2709,9 @@
    "focal_point": [
     0.5,
     0.55
-   ]
+   ],
+   "delivered_edge": 3670,
+   "resolution_tier": "HD"
   },
   {
    "title": "A Vienna Marketplace",
@@ -2585,7 +2743,9 @@
    "focal_point": [
     0.68,
     0.4
-   ]
+   ],
+   "delivered_edge": 3635,
+   "resolution_tier": "HD"
   },
   {
    "title": "The Market, Bremerhaven",
@@ -2617,7 +2777,9 @@
    "focal_point": [
     0.48,
     0.55
-   ]
+   ],
+   "delivered_edge": 3675,
+   "resolution_tier": "HD"
   },
   {
    "title": "Church of St. Étienne-du-Mont, Paris",
@@ -2650,7 +2812,9 @@
    "focal_point": [
     0.42,
     0.35
-   ]
+   ],
+   "delivered_edge": 7360,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Parliament Building, Vienna",
@@ -2683,7 +2847,9 @@
    "focal_point": [
     0.5,
     0.35
-   ]
+   ],
+   "delivered_edge": 3667,
+   "resolution_tier": "HD"
   },
   {
    "title": "Ca' Pesaro, Venice",
@@ -2716,7 +2882,9 @@
    "focal_point": [
     0.45,
     0.3
-   ]
+   ],
+   "delivered_edge": 3658,
+   "resolution_tier": "HD"
   },
   {
    "title": "Piccadilly Circus, London",
@@ -2748,7 +2916,9 @@
    "focal_point": [
     0.55,
     0.5
-   ]
+   ],
+   "delivered_edge": 3659,
+   "resolution_tier": "HD"
   },
   {
    "title": "Ca' Rezzonico, Venice",
@@ -2781,7 +2951,9 @@
    "focal_point": [
     0.42,
     0.35
-   ]
+   ],
+   "delivered_edge": 3646,
+   "resolution_tier": "HD"
   },
   {
    "title": "The Royal Exchange, London",
@@ -2814,7 +2986,9 @@
    "focal_point": [
     0.42,
     0.35
-   ]
+   ],
+   "delivered_edge": 3627,
+   "resolution_tier": "HD"
   },
   {
    "title": "Fort Crown Point Ruins, New York",
@@ -2846,7 +3020,9 @@
    "focal_point": [
     0.35,
     0.4
-   ]
+   ],
+   "delivered_edge": 7414,
+   "resolution_tier": "4K"
   },
   {
    "title": "Church of Saint-Augustin, Paris",
@@ -2879,7 +3055,9 @@
    "focal_point": [
     0.45,
     0.35
-   ]
+   ],
+   "delivered_edge": 3744,
+   "resolution_tier": "HD"
   },
   {
    "title": "St. Augustine's Bridge, Bristol",
@@ -2912,7 +3090,9 @@
    "focal_point": [
     0.68,
     0.35
-   ]
+   ],
+   "delivered_edge": 3670,
+   "resolution_tier": "HD"
   },
   {
    "title": "The Thames Embankment, London",
@@ -2945,7 +3125,9 @@
    "focal_point": [
     0.58,
     0.72
-   ]
+   ],
+   "delivered_edge": 3668,
+   "resolution_tier": "HD"
   },
   {
    "title": "The Paris Opéra (Palais Garnier)",
@@ -2978,7 +3160,9 @@
    "focal_point": [
     0.5,
     0.35
-   ]
+   ],
+   "delivered_edge": 3744,
+   "resolution_tier": "HD"
   },
   {
    "title": "The Piazzetta, Venice",
@@ -3011,7 +3195,9 @@
    "focal_point": [
     0.32,
     0.35
-   ]
+   ],
+   "delivered_edge": 3602,
+   "resolution_tier": "HD"
   },
   {
    "title": "The Tower of London",
@@ -3044,7 +3230,9 @@
    "focal_point": [
     0.58,
     0.32
-   ]
+   ],
+   "delivered_edge": 3702,
+   "resolution_tier": "HD"
   },
   {
    "title": "The University of Vienna",
@@ -3077,7 +3265,9 @@
    "focal_point": [
     0.55,
     0.35
-   ]
+   ],
+   "delivered_edge": 3624,
+   "resolution_tier": "HD"
   },
   {
    "title": "The Three Bridges, Venice",
@@ -3110,7 +3300,9 @@
    "focal_point": [
     0.35,
     0.65
-   ]
+   ],
+   "delivered_edge": 3624,
+   "resolution_tier": "HD"
   },
   {
    "title": "Venice Harbour and the Doge's Palace",
@@ -3143,7 +3335,9 @@
    "focal_point": [
     0.6,
     0.35
-   ]
+   ],
+   "delivered_edge": 3658,
+   "resolution_tier": "HD"
   },
   {
    "title": "The Votivkirche, Vienna",
@@ -3176,7 +3370,9 @@
    "focal_point": [
     0.5,
     0.4
-   ]
+   ],
+   "delivered_edge": 3612,
+   "resolution_tier": "HD"
   },
   {
    "title": "Westminster Abbey, London",
@@ -3209,7 +3405,9 @@
    "focal_point": [
     0.3,
     0.35
-   ]
+   ],
+   "delivered_edge": 3607,
+   "resolution_tier": "HD"
   },
   {
    "title": "The Wurstelprater, Vienna",
@@ -3242,7 +3440,9 @@
    "focal_point": [
     0.72,
     0.35
-   ]
+   ],
+   "delivered_edge": 3646,
+   "resolution_tier": "HD"
   }
  ]
 }

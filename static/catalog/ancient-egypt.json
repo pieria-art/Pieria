@@ -28,7 +28,9 @@
    "license_basis": "CC0 — Met Open Access",
    "license_url": "",
    "credit_line": "Collection of The Metropolitan Museum of Art",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 3870,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Temple of Dendur",
@@ -53,7 +55,9 @@
    "license_basis": "CC0 — Met Open Access",
    "license_url": "",
    "credit_line": "Collection of The Metropolitan Museum of Art",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 4000,
+   "resolution_tier": "4K"
   },
   {
    "title": "Statuette of Amun",
@@ -78,7 +82,9 @@
    "license_basis": "CC0 — Met Open Access",
    "license_url": "",
    "credit_line": "Collection of The Metropolitan Museum of Art",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 4000,
+   "resolution_tier": "4K"
   },
   {
    "title": "Head of a ruler",
@@ -103,7 +109,9 @@
    "license_basis": "CC0 — Met Open Access",
    "license_url": "",
    "credit_line": "Collection of The Metropolitan Museum of Art",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 4000,
+   "resolution_tier": "4K"
   },
   {
    "title": "Book of the Dead of Hunefer",
@@ -129,7 +137,9 @@
    "license_url": "",
    "credit_line": "British Museum free image service",
    "license_verified": "2026-07-16",
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "delivered_edge": 2240,
+   "resolution_tier": "HD"
   },
   {
    "title": "Papyrus of Ani",
@@ -155,7 +165,9 @@
    "license_url": "",
    "credit_line": "https://www.britishmuseum.org/collection/image/685280001",
    "license_verified": "2026-07-16",
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "delivered_edge": 2414,
+   "resolution_tier": "HD"
   },
   {
    "title": "Seated Scribe",
@@ -180,7 +192,9 @@
    "license_basis": "CC0",
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 4000,
+   "resolution_tier": "4K"
   },
   {
    "title": "Faience Sphinx of Amenhotep III",
@@ -206,7 +220,9 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "delivered_edge": 3811,
+   "resolution_tier": "HD"
   },
   {
    "title": "Wall Painting from the Tomb of Nebamun",
@@ -232,7 +248,9 @@
    "license_url": "",
    "credit_line": "The Open University",
    "license_verified": "2026-07-16",
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "delivered_edge": 2200,
+   "resolution_tier": "HD"
   },
   {
    "title": "Code of Hammurabi Stele",
@@ -257,7 +275,9 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "Own work",
-   "license_verified": "2026-07-17"
+   "license_verified": "2026-07-17",
+   "delivered_edge": 3888,
+   "resolution_tier": "4K"
   },
   {
    "title": "Relief of a Winged Genius",
@@ -282,7 +302,9 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "Neo-Assyrian Bas Relief of Winged Genius, from North Palace at Nimrud, c. 883-859 BC",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 6000,
+   "resolution_tier": "4K"
   }
  ]
 }

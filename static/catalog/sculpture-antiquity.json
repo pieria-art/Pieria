@@ -28,7 +28,9 @@
    "license_basis": "CC0 — Met Open Access",
    "license_url": "",
    "credit_line": "Collection of The Metropolitan Museum of Art",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 4000,
+   "resolution_tier": "4K"
   },
   {
    "title": "Standing Figure with Jeweled Headdress",
@@ -53,7 +55,9 @@
    "license_basis": "CC0 — Met Open Access",
    "license_url": "",
    "credit_line": "Collection of The Metropolitan Museum of Art",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 3869,
+   "resolution_tier": "4K"
   },
   {
    "title": "Bronze figure of a boy in Eastern dress",
@@ -78,7 +82,9 @@
    "license_basis": "CC0 — Met Open Access",
    "license_url": "",
    "credit_line": "Collection of The Metropolitan Museum of Art",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 4000,
+   "resolution_tier": "4K"
   },
   {
    "title": "Bronze statuette of a philosopher on a lamp stand",
@@ -103,7 +109,9 @@
    "license_basis": "CC0 — Met Open Access",
    "license_url": "",
    "credit_line": "Collection of The Metropolitan Museum of Art",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 3880,
+   "resolution_tier": "4K"
   },
   {
    "title": "Marble torso of a boy",
@@ -128,7 +136,9 @@
    "license_basis": "CC0 — Met Open Access",
    "license_url": "",
    "credit_line": "Collection of The Metropolitan Museum of Art",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 4000,
+   "resolution_tier": "4K"
   },
   {
    "title": "Limestone statue of Aphrodite holding winged Eros",
@@ -153,7 +163,9 @@
    "license_basis": "CC0 — Met Open Access",
    "license_url": "",
    "credit_line": "Collection of The Metropolitan Museum of Art",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 4000,
+   "resolution_tier": "4K"
   },
   {
    "title": "Marble portrait of the co-emperor Lucius Verus",
@@ -178,7 +190,9 @@
    "license_basis": "CC0 — Met Open Access",
    "license_url": "",
    "credit_line": "Collection of The Metropolitan Museum of Art",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 3880,
+   "resolution_tier": "4K"
   },
   {
    "title": "Marble portrait bust of a woman",
@@ -203,7 +217,9 @@
    "license_basis": "CC0 — Met Open Access",
    "license_url": "",
    "credit_line": "Collection of The Metropolitan Museum of Art",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 3880,
+   "resolution_tier": "4K"
   },
   {
    "title": "Venus de Milo",
@@ -228,7 +244,9 @@
    "license_basis": "CC0",
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "Ancient Greek Marble Aphrodite of Milos (Venus de Milo), 130-100 BC",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 5184,
+   "resolution_tier": "4K"
   },
   {
    "title": "Winged Victory of Samothrace",
@@ -253,7 +271,9 @@
    "license_basis": "CC0",
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "Own work",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Laocoön and His Sons",
@@ -278,7 +298,9 @@
    "license_basis": "CC0",
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "Own work",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Pietà",
@@ -304,7 +326,9 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "delivered_edge": 2936,
+   "resolution_tier": "HD"
   },
   {
    "title": "Moses",
@@ -329,7 +353,9 @@
    "license_basis": "CC0",
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "Own work",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 5184,
+   "resolution_tier": "4K"
   },
   {
    "title": "Discobolus",
@@ -355,7 +381,9 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "delivered_edge": 3264,
+   "resolution_tier": "HD"
   },
   {
    "title": "The Thinker",
@@ -380,7 +408,9 @@
    "license_basis": "CC0",
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "https://clevelandart.org/art/1917.42",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 6977,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Kiss",
@@ -405,7 +435,9 @@
    "license_basis": "CC0",
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "Own work",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 4456,
+   "resolution_tier": "4K"
   }
  ]
 }
