@@ -267,6 +267,20 @@ def test_uninstall_default_reassigns_to_remaining_collection(tmp_path, monkeypat
     assert db.query(SubscriptionModel).filter(SubscriptionModel.url == "pack:masterpieces").first() is None
 
 
+def test_installed_gallery_links_back_to_its_collection(tmp_path, monkeypatch):
+    """A Gallery minted on install carries source_subscription_id -> its Collection (pack sub), the
+    explicit pairing behind the 'from your <name> Collection' source line."""
+    priv, pub = publisher.keygen()
+    src = _build_source_pack(tmp_path, priv)
+    _point_lifespan_at(monkeypatch, pub, src)
+    db = _db()
+    manifest = json.loads((src / "_manifests" / "masterpieces.json").read_text())
+    assert lifespan_module._install_collection(db, "masterpieces", manifest) is not None
+    sub = db.query(SubscriptionModel).filter(SubscriptionModel.url == "pack:masterpieces").first()
+    pl = db.query(PlaylistModel).filter(PlaylistModel.name == "Masterpieces").first()
+    assert pl.source_subscription_id == sub.id
+
+
 def test_downloaded_collection_missing_manifest_returns_false(tmp_path, monkeypatch):
     priv, pub = publisher.keygen()
     device = tmp_path / "device"

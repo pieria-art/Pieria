@@ -249,11 +249,15 @@ def _install_collection(db: Session, cid: str, manifest: dict) -> str | None:
     sub.last_synced = datetime.now(UTC)
     db.commit()
 
-    # 2) Mint a playlist + artworks from LOCAL masters (array order == fame order).
+    # 2) Mint a Gallery (playlist) + artworks from LOCAL masters (array order == fame order). Link the
+    #    Gallery back to this Collection (subscription) so the UI can show "from your <name> Collection".
     playlist = db.query(PlaylistModel).filter(PlaylistModel.name == title).first()
     if not playlist:
         playlist = PlaylistModel(name=title, is_personal=False)
         db.add(playlist); db.commit(); db.refresh(playlist)
+    if playlist.source_subscription_id != sub.id:
+        playlist.source_subscription_id = sub.id
+        db.commit()
 
     items = manifest.get("items", [])
     n = len(items)

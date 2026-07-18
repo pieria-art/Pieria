@@ -531,13 +531,16 @@ function _collTrustBadge(trust) {
 function _collectionTile(c, coverBase) {
     const mb = c.bytes ? `${(c.bytes / 1e6).toFixed(0)} MB` : '';
     const cover = c.cover ? _esc(coverBase + c.cover) : '';
-    let action, dim = '';
+    const escTitle = _esc((c.title || '').replace(/'/g, ''));
+    let action, dim = '', galleryLink = '';
     if (c.installed) {
-        action = `<button class="secondary" onclick="uninstallPack('${_esc(c.id)}', '${_esc((c.title || '').replace(/'/g, ''))}', this)" style="border-color:#ef4444; color:#ef4444;">Remove</button>`;
+        action = `<button class="secondary" onclick="uninstallPack('${_esc(c.id)}', '${escTitle}', this)" style="border-color:#ef4444; color:#ef4444;">Remove</button>`;
+        // Cross-link: an owned Collection seeded a Gallery of the same name — jump to it.
+        galleryLink = `<br><small><a href="#" onclick="viewGallery('${escTitle}'); return false;" style="color:var(--accent-color); text-decoration:none;">🖼️ In your Galleries ↗</a></small>`;
     } else if (c.job === 'in_progress') {
         action = `<button class="secondary" disabled>Downloading…</button>`; dim = 'opacity:0.55;';
     } else {
-        action = `<button class="primary" onclick="installPack('${_esc(c.id)}', this)">Download</button>`; dim = 'opacity:0.72;';
+        action = `<button class="primary" onclick="installPack('${_esc(c.id)}', '${escTitle}', this)">Download</button>`; dim = 'opacity:0.72;';
     }
     const img = cover
         ? `<img loading="lazy" src="${cover}" alt="${_esc(c.title)}" style="background:#0f172a; ${dim}" onerror="this.style.visibility='hidden'">`
@@ -547,10 +550,19 @@ function _collectionTile(c, coverBase) {
         <div class="info">
             <strong>${_esc(c.title)}</strong> ${_collTrustBadge(c.trust)}<br>
             <small style="opacity:0.7;">${_esc(c.category || '')}</small><br>
-            <small>${c.item_count} works${mb ? ` · ${mb}` : ''}</small>
+            <small>${c.item_count} works${mb ? ` · ${mb}` : ''}</small>${galleryLink}
         </div>
         <div class="actions">${action}</div>
     </div>`;
+}
+
+// Cross-link from an owned Collection tile to its Gallery: switch to Galleries and select the matching one.
+function viewGallery(collectionTitle) {
+    switchView('playlists');
+    const match = (currentPlaylists || []).find(
+        p => p.source_collection === collectionTitle || p.name === collectionTitle);
+    if (match) selectPlaylist(match.id);
+    else showToast(`No gallery for “${collectionTitle}” — it may have been deleted.`, 'info');
 }
 
 // An external (URL-added) subscription — v1 is index-only: browse/sync/remove, no download-to-own yet.
@@ -613,7 +625,9 @@ async function renderCollectionsGrid() {
     grid.innerHTML = html;
 }
 
-async function installPack(id, btn) {
+const _installTitles = {};  // collection id -> title, so the teach-the-link toast can name the new Gallery
+async function installPack(id, title, btn) {
+    if (title) _installTitles[id] = title;
     if (btn) { btn.disabled = true; btn.textContent = 'Starting…'; }
     try {
         await fetch(`${API_BASE}/api/packs/${encodeURIComponent(id)}/install`, { method: 'POST' });
@@ -646,11 +660,19 @@ function pollPacks() {
                 const btn = row.querySelector('.actions button');
                 if (st === 'in_progress' && btn) { btn.disabled = true; btn.textContent = 'Downloading…'; }
             });
+            // Teach-the-link: when a download finishes, tell the user a Gallery was created.
+            Object.entries(jobs).forEach(([cid, j]) => {
+                if (j.state === 'done' && _installTitles[cid]) {
+                    const title = _installTitles[cid]; delete _installTitles[cid];
+                    showToast(`Added “${title}” — a matching Gallery was created. Arrange it under 🖼️ Galleries.`, 'success');
+                }
+            });
             const active = Object.values(jobs).some(j => j.state === 'in_progress');
             if (!active) {
                 clearInterval(_packPoll); _packPoll = null;
                 renderCollectionsGrid();  // refresh owned/available state
                 loadSubscriptions();      // the newly-installed collection also appears as a subscription
+                refreshData();            // the new Gallery shows in the sidebar
             }
         } catch (e) { clearInterval(_packPoll); _packPoll = null; }
     }, 2000);
@@ -1263,7 +1285,7 @@ async function addSelectedToPlaylist() {
             method: 'POST', headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ artwork_ids: [...pickerSelected] }) });
         closeLibraryPicker();
-        showToast(`Added ${n} to the collection ✓`, 'success');
+        showToast(`Added ${n} to the gallery ✓`, 'success');
         await refreshData();
     } catch (error) { console.error('[Admin] bulk add failed:', error); showToast('Add failed.', 'error'); }
 }
@@ -1494,7 +1516,7 @@ function renderSidebar() {
                 e.stopPropagation();
                 const id = parseInt(ren.dataset.id, 10);
                 const cur = (currentPlaylists.find(p => p.id === id) || {}).name || '';
-                const name = await promptModal('Rename collection', { placeholder: cur, confirmText: 'Rename' });
+                const name = await promptModal('Rename gallery', { placeholder: cur, confirmText: 'Rename' });
                 if (name === null || !name.trim()) return;
                 const r = await fetch(`${API_BASE}/playlists/${id}`, {
                     method: 'PATCH', headers: { 'Content-Type': 'application/json' },
@@ -1515,11 +1537,12 @@ function renderSidebar() {
             <div style="display:flex; justify-content:space-between; align-items:center; gap:6px;">
                 <strong>${_esc(p.name)}</strong>
                 <span style="display:flex; gap:8px; flex-shrink:0;">
-                    <button class="pl-rename" data-id="${p.id}" title="Rename collection" aria-label="Rename collection" style="background:none; border:none; color:#94a3b8; cursor:pointer;">✎</button>
-                    <button class="pl-delete" data-id="${p.id}" title="Delete collection" aria-label="Delete collection" style="background:none; border:none; color:#ef4444; cursor:pointer;">×</button>
+                    <button class="pl-rename" data-id="${p.id}" title="Rename gallery" aria-label="Rename gallery" style="background:none; border:none; color:#94a3b8; cursor:pointer;">✎</button>
+                    <button class="pl-delete" data-id="${p.id}" title="Delete gallery" aria-label="Delete gallery" style="background:none; border:none; color:#ef4444; cursor:pointer;">×</button>
                 </span>
             </div>
             <div style="font-size:0.75rem; color:#94a3b8; margin-top:5px;">${p.artworks?.length || 0} images</div>
+            ${p.source_collection ? `<div style="font-size:0.72rem; color:#64748b; margin-top:3px;">🏛️ from your <a href="#" onclick="event.stopPropagation(); switchView('museum'); return false;" style="color:#94a3b8; text-decoration:none;"><strong>${_esc(p.source_collection)}</strong></a> Collection</div>` : ''}
             <div class="playlist-meta" onclick="event.stopPropagation()" style="display: grid; grid-template-columns: 1fr 1fr; gap: 5px; margin-top: 10px;">
                 <div style="grid-column: span 2; margin-bottom: 5px;">
                     <label style="display:block;">Default Mode:</label>
@@ -1564,8 +1587,8 @@ function renderSidebar() {
 }
 
 async function deletePlaylist(id) {
-    const name = (currentPlaylists.find(p => p.id === id) || {}).name || 'this collection';
-    if (!(await confirmModal(`Delete collection "${name}"? Library images will remain.`, { confirmText: 'Delete', danger: true }))) return;
+    const name = (currentPlaylists.find(p => p.id === id) || {}).name || 'this gallery';
+    if (!(await confirmModal(`Delete gallery "${name}"? The art stays in your library and Collections — only this show is removed.`, { confirmText: 'Delete', danger: true }))) return;
     try {
         await fetch(`${API_BASE}/playlists/${id}`, { method: 'DELETE' });
         if (currentPlaylistId === id) currentPlaylistId = null;

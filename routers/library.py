@@ -31,7 +31,7 @@ from core.media import get_optimized_image
 from core.playlists import _link_artwork_to_playlist
 from core.schemas import ArtworkSchema
 from database import SessionLocal, get_db
-from models import ArtworkModel, PlaylistModel, playlist_artwork
+from models import ArtworkModel, PlaylistModel, SubscriptionModel, playlist_artwork
 
 logger = logging.getLogger("artwork-display-api")
 
@@ -48,6 +48,9 @@ class PlaylistSchema(BaseModel):
     placard_initial_show_sec: int
     placard_interaction_show_sec: int
     artworks: List[ArtworkSchema] = []
+    # The Collection (pack/sub) this Gallery was minted from, resolved to its title by list_playlists;
+    # None for a user-built gallery. Drives the "from your <name> Collection" source line + cross-link.
+    source_collection: Optional[str] = None
     @property
     def image_count(self) -> int:
         return len(self.artworks)
@@ -96,7 +99,16 @@ async def list_playlists(db: Session = Depends(get_db)):
     # the UI. Mirrors the sync-time skip of "_"-prefixed dirs; this is the matching display-layer guard,
     # so even a stale "_" playlist (created before that skip existed) stays hidden everywhere /playlists
     # feeds: the admin sidebar, the "Add to" picker, and the Canvas first-non-empty fallback.
-    return [p for p in db.query(PlaylistModel).all() if not p.name.startswith("_")]
+    playlists = [p for p in db.query(PlaylistModel).all() if not p.name.startswith("_")]
+    # Resolve each auto-minted Gallery's source Collection title in one query (for the source line).
+    linked = {p.source_subscription_id for p in playlists if p.source_subscription_id}
+    titles = {}
+    if linked:
+        titles = {s.id: (s.title or s.collection_id or "")
+                  for s in db.query(SubscriptionModel).filter(SubscriptionModel.id.in_(linked)).all()}
+    for p in playlists:
+        p.source_collection = titles.get(p.source_subscription_id)  # attribute read by PlaylistSchema
+    return playlists
 
 @router.post("/playlists", response_model=PlaylistSchema)
 async def create_playlist(name: str = Form(...), db: Session = Depends(get_db)):

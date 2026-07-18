@@ -159,3 +159,24 @@ def test_playback_session_rejects_duplicate(db_path):
         s.add(DisplayPlaybackSessionModel(display_id="wall", playlist_id=1))
         with pytest.raises(IntegrityError):
             s.commit()
+
+
+def test_0004_backfills_existing_gallery_links(db_path):
+    """A Gallery installed BEFORE the source-collection link existed gets linked to its Collection on
+    upgrade (matched by name -> pack subscription). Guards the real deploy path (populated 0003 -> head)."""
+    cfg = _cfg(db_path)
+    command.upgrade(cfg, "0003_display_now_playing")  # pre-link schema
+    eng = create_engine(f"sqlite:///{db_path}")
+    with eng.begin() as c:
+        c.execute(text("INSERT INTO subscriptions (url,title,enabled,trust,item_count,created_at) "
+                       "VALUES ('pack:masterpieces','Masterpieces',1,'verified',40,'2026-07-18')"))
+        for name in ("Masterpieces", "My Faves"):  # one auto-seeded from the pack, one custom
+            c.execute(text("INSERT INTO playlists (name,display_time,default_mode,shuffle,is_personal,"
+                           "placard_initial_wait_sec,placard_initial_show_sec,placard_interaction_show_sec) "
+                           f"VALUES ('{name}',30,'ken-burns',0,0,5,15,10)"))
+    command.upgrade(cfg, "head")  # 0004 upgrade() incl. backfill
+    with eng.connect() as c:
+        rows = dict(c.execute(text("SELECT name, source_subscription_id FROM playlists")).fetchall())
+    eng.dispose()
+    assert rows["Masterpieces"] == 1   # seeded from the pack -> linked
+    assert rows["My Faves"] is None    # user-built -> untouched

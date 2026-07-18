@@ -574,3 +574,16 @@ def test_search_dedupes_same_work_across_collections(client):
     rc._local_json_cache.clear()  # bust the mtime-keyed cache so the new files are read
     hits = c.get("/api/catalog/search", params={"q": "sunrise"}).json()["results"]
     assert len(hits) == 1  # Test Sunrise is now in demo AND overlay, deduped to one
+
+
+def test_playlists_expose_source_collection(client):
+    """/playlists resolves an auto-minted Gallery's source Collection title; custom galleries have none."""
+    c, db = client
+    sub = SubscriptionModel(url="pack:masterpieces", title="Masterpieces", enabled=True)
+    db.add(sub); db.commit(); db.refresh(sub)
+    db.add(PlaylistModel(name="Masterpieces", source_subscription_id=sub.id))
+    db.add(PlaylistModel(name="Josh's Favorites"))  # user-built -> no source
+    db.commit()
+    pls = {p["name"]: p for p in c.get("/playlists").json()}
+    assert pls["Masterpieces"]["source_collection"] == "Masterpieces"
+    assert pls["Josh's Favorites"]["source_collection"] is None
