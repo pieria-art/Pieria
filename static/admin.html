@@ -347,7 +347,7 @@
         <div class="nav-tabs">
             <div class="nav-section">Get Art</div>
             <button id="nav-museum" class="nav-btn" onclick="switchView('museum')">
-                🏛️ Museum Art <span id="catalog-count" class="badge">0</span>
+                🏛️ Curated Art <span id="catalog-count" class="badge">0</span>
             </button>
             <a href="/studio" class="nav-btn" style="text-decoration: none;">
                 📸 My Photos <span id="photos-count" class="badge">0</span>
@@ -438,9 +438,25 @@
 
         <!-- Museum Art View — Browse Catalog + live Discover, unified behind one search box. -->
         <div id="view-museum" class="hidden">
-            <div class="museum-bar" style="position: sticky; top: 0; z-index: 20; background: var(--sidebar-bg); padding: 22px 25px; border-radius: 12px; border: 1px solid var(--border-color); margin: 30px 0 20px;">
+            <!-- Curated Art: the unified collections grid — owned + available (download) + subscribe.
+                 Covers + trust badges come from /api/packs (ADR-040 #4); this is the front door for
+                 acquiring whole collections, replacing the old per-piece catalog browse. -->
+            <div style="margin: 30px 0 10px;">
+                <h2 style="margin: 0 0 4px; font-size: 1.15rem; color: var(--text-color);">Curated Art</h2>
+                <p style="margin: 0; font-size: 0.82rem; color: #94a3b8;">
+                    Your collections, and official packs you can add. Downloading owns the art —
+                    signature-verified, then plays fully offline.
+                </p>
+            </div>
+            <div id="collections-grid" class="artwork-grid" style="margin-bottom: 26px;"></div>
+
+            <div class="museum-bar" style="position: sticky; top: 0; z-index: 20; background: var(--sidebar-bg); padding: 22px 25px; border-radius: 12px; border: 1px solid var(--border-color); margin: 0 0 20px;">
+                <p style="margin: 0 0 12px; font-size: 0.82rem; color: #94a3b8;">
+                    <strong style="color: var(--text-color);">Looking for one specific piece?</strong>
+                    Search your collections, or send Scouts across the world's live museums.
+                </p>
                 <div style="display: flex; gap: 10px; flex-wrap: wrap; align-items: center;">
-                    <input type="text" id="scout-search" placeholder="Search the catalog — or anything across the world's museums…"
+                    <input type="text" id="scout-search" placeholder="Search your collections — or anything across the world's museums…"
                            list="catalog-suggest" autocomplete="off"
                            onkeydown="if (event.key === 'Enter') museumSearch();" oninput="museumSuggest(this.value)"
                            style="flex: 1 1 280px; box-sizing: border-box; padding: 12px 14px;">
@@ -597,27 +613,17 @@
                 <div style="background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 25px;">
                     <h3 style="margin-top: 0; font-size: 0.9rem; color: var(--text-color);">🌐 Subscriptions <span style="font-weight:normal; color:#94a3b8;">— federated collections</span></h3>
                     <p style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 14px;">
-                        Subscribe to a publisher's collection by URL. We index pointers — images stay on the
-                        publisher's server, and a feed is checked and validated before it's added. Browse it
-                        alongside your catalog, tagged <strong>Community</strong> (or <strong>Verified</strong>).
-                        <span style="display:block; margin-top:8px;">This <em>adds</em> collections alongside the bundled set. To <em>replace</em> the whole catalog with one you host yourself, use <strong>📚 Catalog Source</strong> below.</span>
+                        Manage the publisher collections you've subscribed to — sync or remove them here.
+                        Add a new one from the <strong>➕ Subscribe</strong> tile under <strong>🏛️ Curated Art</strong>.
+                        We index pointers — images stay on the publisher's server, tagged <strong>Community</strong>
+                        (or <strong>Verified</strong>). To <em>replace</em> the whole catalog with one you host
+                        yourself, use <strong>📚 Catalog Source</strong> below.
                     </p>
-                    <div style="display:flex; gap:10px; flex-wrap:wrap;">
-                        <input type="url" id="subscription-url" placeholder="https://publisher.example/collection.json"
-                               style="flex:1; min-width:240px; background:#0f172a; border:1px solid var(--border-color); color:var(--text-color); padding:10px 12px; border-radius:8px; font-size:0.85rem;">
-                        <button class="primary" onclick="addSubscription()" style="padding:10px 18px;">Subscribe</button>
-                    </div>
                     <div id="subscriptions-list" style="margin-top:16px; display:flex; flex-direction:column; gap:10px;"></div>
-                </div>
-                <!-- Art Packs (modular, official collections downloaded by category) -->
-                <div style="background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 25px; margin-top: 20px;">
-                    <h3 style="margin-top: 0; font-size: 0.9rem; color: var(--text-color);">📦 Art Packs <span style="font-weight:normal; color:#94a3b8;">— download more collections</span></h3>
-                    <p style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 14px;">
-                        Your device ships with a <strong>Core</strong> set of masterpieces. Add more official
-                        collections on demand — each downloads once, is signature-verified, then plays fully
-                        offline. Nothing is removed; a download only <em>adds</em> to your library.
+                    <p style="font-size: 0.78rem; color: #64748b; margin: 14px 0 0;">
+                        📦 Official <strong>Art Packs</strong> now live under <strong>🏛️ Curated Art</strong> — browse,
+                        download, and remove collections there.
                     </p>
-                    <div id="packs-list" style="margin-top:4px; display:flex; flex-direction:column; gap:10px;"></div>
                 </div>
                 <!-- AI Engine -->
                 <div id="ai-engine-card" style="background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 25px;">
