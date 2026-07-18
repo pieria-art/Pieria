@@ -28,7 +28,9 @@
    "license_basis": "CC0 — AIC public-domain works",
    "license_url": "",
    "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "The Girl by the Window",
@@ -53,7 +55,9 @@
    "license_basis": "CC0 — AIC public-domain works",
    "license_url": "",
    "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 7097,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Kiss",
@@ -78,7 +82,9 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "Google Art Project",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 7401,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Scream",
@@ -103,7 +109,9 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "National Museum of Art, Architecture and Design",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 4000,
+   "resolution_tier": "4K"
   },
   {
    "title": "Portrait of Jeanne Hébuterne",
@@ -128,7 +136,9 @@
    "focal_point": [
     0.35,
     0.25
-   ]
+   ],
+   "delivered_edge": 6280,
+   "resolution_tier": "4K"
   },
   {
    "title": "Portrait of Adele Bloch-Bauer I",
@@ -153,7 +163,9 @@
    "focal_point": [
     0.42,
     0.25
-   ]
+   ],
+   "delivered_edge": 4128,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Sick Child",
@@ -178,7 +190,9 @@
    "focal_point": [
     0.35,
     0.3
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Judith I",
@@ -210,7 +224,9 @@
    "focal_point": [
     0.68,
     0.3
-   ]
+   ],
+   "delivered_edge": 5600,
+   "resolution_tier": "4K"
   },
   {
    "title": "Jeanne Hébuterne with Yellow Sweater",
@@ -241,7 +257,9 @@
    "focal_point": [
     0.5,
     0.3
-   ]
+   ],
+   "delivered_edge": 4901,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Buddha",
@@ -273,7 +291,9 @@
    "focal_point": [
     0.35,
     0.35
-   ]
+   ],
+   "delivered_edge": 4276,
+   "resolution_tier": "4K"
   },
   {
    "title": "Woman in a Striped Dress",
@@ -304,7 +324,9 @@
    "focal_point": [
     0.35,
     0.35
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "The Sleeping Gypsy",
@@ -329,7 +351,9 @@
    "focal_point": [
     0.45,
     0.6
-   ]
+   ],
+   "delivered_edge": 4490,
+   "resolution_tier": "4K"
   },
   {
    "title": "Woman on Rose Divan",
@@ -362,7 +386,9 @@
    "focal_point": [
     0.42,
     0.45
-   ]
+   ],
+   "delivered_edge": 6143,
+   "resolution_tier": "4K"
   },
   {
    "title": "Landscape: Window Overlooking the Woods",
@@ -395,7 +421,9 @@
    "focal_point": [
     0.25,
     0.4
-   ]
+   ],
+   "delivered_edge": 4000,
+   "resolution_tier": "4K"
   },
   {
    "title": "Te burao (The Hibiscus Tree)",
@@ -428,7 +456,9 @@
    "focal_point": [
     0.75,
     0.4
-   ]
+   ],
+   "delivered_edge": 6883,
+   "resolution_tier": "4K"
   },
   {
    "title": "No te aha oe riri (Why Are You Angry?)",
@@ -461,7 +491,9 @@
    "focal_point": [
     0.68,
     0.5
-   ]
+   ],
+   "delivered_edge": 6727,
+   "resolution_tier": "4K"
   },
   {
    "title": "Sawmill, Outskirts of Paris",
@@ -494,7 +526,9 @@
    "focal_point": [
     0.28,
     0.45
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "The Virgin (Die Jungfrau)",
@@ -519,7 +553,9 @@
    "focal_point": [
     0.42,
     0.35
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Lake Attersee",
@@ -544,7 +580,9 @@
    "focal_point": [
     0.82,
     0.12
-   ]
+   ],
+   "delivered_edge": 5701,
+   "resolution_tier": "4K"
   },
   {
    "title": "Cottage Garden",
@@ -569,7 +607,9 @@
    "focal_point": [
     0.5,
     0.45
-   ]
+   ],
+   "delivered_edge": 5603,
+   "resolution_tier": "4K"
   },
   {
    "title": "Love (Liebe)",
@@ -594,7 +634,9 @@
    "focal_point": [
     0.5,
     0.42
-   ]
+   ],
+   "delivered_edge": 5316,
+   "resolution_tier": "4K"
   },
   {
    "title": "Jurisprudence",
@@ -619,7 +661,9 @@
    "focal_point": [
     0.45,
     0.55
-   ]
+   ],
+   "delivered_edge": 4968,
+   "resolution_tier": "4K"
   },
   {
    "title": "Approaching Thunderstorm (The Large Poplar II)",
@@ -644,7 +688,9 @@
    "focal_point": [
     0.7,
     0.5
-   ]
+   ],
+   "delivered_edge": 4144,
+   "resolution_tier": "4K"
   },
   {
    "title": "Upper Austrian Farmhouse",
@@ -669,7 +715,9 @@
    "focal_point": [
     0.5,
     0.55
-   ]
+   ],
+   "delivered_edge": 4020,
+   "resolution_tier": "4K"
   },
   {
    "title": "Baby (Cradle)",
@@ -694,7 +742,9 @@
    "focal_point": [
     0.5,
     0.15
-   ]
+   ],
+   "delivered_edge": 4000,
+   "resolution_tier": "4K"
   },
   {
    "title": "Cottage Garden with Sunflowers",
@@ -719,7 +769,9 @@
    "focal_point": [
     0.65,
     0.25
-   ]
+   ],
+   "delivered_edge": 3930,
+   "resolution_tier": "4K"
   }
  ]
 }

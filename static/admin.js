@@ -528,6 +528,16 @@ function _collTrustBadge(trust) {
     return `<span class="trust-badge" style="font-size:0.62rem; padding:2px 8px; border-radius:10px; border:1px solid ${b.color}; color:${b.color}; white-space:nowrap;">${b.label}</span>`;
 }
 
+// Resolution-tier badge (HD/4K/8K, spec_resolution_tags). Neutral/monochrome so it never competes with
+// the colored trust badge. `plus=true` renders the collection roll-up form ("4K+" = every member is ≥4K).
+// Absent tier (e.g. an available pack whose packs.json predates min_tier) → nothing, so it degrades cleanly.
+function _resBadge(tier, plus) {
+    if (!tier) return '';
+    const label = plus ? `${tier}+` : tier;
+    const tip = plus ? `Every work here is at least ${tier}` : `Delivered at ${tier} resolution`;
+    return `<span class="res-badge" title="${tip}" style="font-size:0.6rem; font-weight:600; letter-spacing:0.3px; padding:2px 7px; border-radius:10px; border:1px solid #64748b; color:#94a3b8; white-space:nowrap;">${label}</span>`;
+}
+
 function _collectionTile(c, coverBase) {
     const mb = c.bytes ? `${(c.bytes / 1e6).toFixed(0)} MB` : '';
     const cover = c.cover ? _esc(coverBase + c.cover) : '';
@@ -548,7 +558,7 @@ function _collectionTile(c, coverBase) {
     return `<div class="artwork-card" data-pack="${_esc(c.id)}">
         ${img}
         <div class="info">
-            <strong>${_esc(c.title)}</strong> ${_collTrustBadge(c.trust)}<br>
+            <strong>${_esc(c.title)}</strong> ${_collTrustBadge(c.trust)} ${_resBadge(c.min_tier, true)}<br>
             <small style="opacity:0.7;">${_esc(c.category || '')}</small><br>
             <small>${c.item_count} works${mb ? ` · ${mb}` : ''}</small>${galleryLink}
         </div>
@@ -2730,7 +2740,7 @@ async function renderCuratedSearch(q) {
                 card.innerHTML = `
                     <img loading="lazy" src="${_esc(it.thumbnail_url)}" alt="${_esc(it.title)}" style="background:#0f172a;">
                     <div class="info">
-                        <strong>${_esc(it.title || 'Untitled')}</strong><br>
+                        <strong>${_esc(it.title || 'Untitled')}</strong> ${_resBadge(it.resolution_tier)}<br>
                         <small>${_esc(it.agent_name || 'Unknown')}</small><br>
                         <small style="opacity:0.6">${_esc(it.collection_title || '')}</small>
                     </div>

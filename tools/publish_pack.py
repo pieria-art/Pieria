@@ -111,6 +111,21 @@ def emit_covers(pack: Path, out: Path, rows: list[dict]) -> None:
         r["cover"] = f"covers/{r['id']}.jpg"
 
 
+# The '4K+' pack-card roll-up (spec_resolution_tags): a collection promises its WEAKEST member's tier.
+# Read from the tagged `_catalog` copy (tools.tag_resolution); None until the catalog is tagged.
+_TIER_RANK = {"HD": 0, "4K": 1, "8K": 2}
+
+
+def _min_tier(pack: Path, cid: str) -> str | None:
+    cat = pack / "_catalog" / f"{cid}.json"
+    if not cat.exists():
+        return None
+    doc = json.loads(cat.read_text())
+    items = doc if isinstance(doc, list) else doc.get("items", [])
+    tiers = [it.get("resolution_tier") for it in items if it.get("resolution_tier")]
+    return min(tiers, key=lambda t: _TIER_RANK[t]) if tiers else None
+
+
 def slice_collection(pack: Path, col: dict, out: Path) -> dict | None:
     """Write one collection's self-contained mini-pack under `out/<id>/`, tar it, and return its registry
     row. Returns None (skips) if the manifest is missing/unreadable."""
@@ -175,6 +190,7 @@ def slice_collection(pack: Path, col: dict, out: Path) -> dict | None:
         "sha256": _sha256(tar_path),
         "download": tar_path.name,
         "trust": None,  # set by the device from the signed manifest at install (assess_trust); informational here
+        "min_tier": _min_tier(pack, cid),  # '4K+' roll-up (spec_resolution_tags)
     }
     print(f"  ✓ {cid:<26} {row['item_count']:>4} works  {row['bytes']/1e6:7.1f} MB  [{row['category']}]")
     return row
@@ -219,6 +235,8 @@ def publish_covers_only(pack: Path, out: Path) -> dict:
         raise SystemExit(f"--covers-only needs an existing {reg_path}; run a full publish first")
     registry = json.loads(reg_path.read_text())
     emit_covers(pack, out, registry.get("collections", []))
+    for row in registry.get("collections", []):  # patch min_tier too, so a covers-only refresh activates the '4K+' badge
+        row["min_tier"] = _min_tier(pack, row["id"])
     reg_path.write_text(json.dumps(registry, indent=1, ensure_ascii=False))
     return registry
 

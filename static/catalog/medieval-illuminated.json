@@ -29,7 +29,9 @@
    "license_url": "",
    "credit_line": "Collection of The Metropolitan Museum of Art",
    "license_verified": "2026-07-16",
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "delivered_edge": 3487,
+   "resolution_tier": "HD"
   },
   {
    "title": "The Belles Heures of Jean de France, duc de Berry",
@@ -55,7 +57,9 @@
    "license_url": "",
    "credit_line": "Collection of The Metropolitan Museum of Art",
    "license_verified": "2026-07-16",
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "delivered_edge": 3792,
+   "resolution_tier": "HD"
   },
   {
    "title": "Très Riches Heures du Duc de Berry: January",
@@ -81,7 +85,9 @@
    "license_url": "",
    "credit_line": "nevsepic",
    "license_verified": "2026-07-16",
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "delivered_edge": 2880,
+   "resolution_tier": "HD"
   },
   {
    "title": "Très Riches Heures du Duc de Berry: February",
@@ -107,7 +113,9 @@
    "license_url": "",
    "credit_line": "Photo. R.M.N. / R.-G. Ojéda",
    "license_verified": "2026-07-16",
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "delivered_edge": 2400,
+   "resolution_tier": "HD"
   }
  ]
 }

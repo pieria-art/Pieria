@@ -28,7 +28,9 @@
    "license_basis": "CC0 — AIC public-domain works",
    "license_url": "",
    "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "The Poet's Garden",
@@ -53,7 +55,9 @@
    "license_basis": "CC0 — AIC public-domain works",
    "license_url": "",
    "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "A Peasant Woman Digging in Front of Her Cottage",
@@ -78,7 +82,9 @@
    "license_basis": "CC0 — AIC public-domain works",
    "license_url": "",
    "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 6255,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Drinkers",
@@ -103,7 +109,9 @@
    "license_basis": "CC0 — AIC public-domain works",
    "license_url": "",
    "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 5922,
+   "resolution_tier": "4K"
   },
   {
    "title": "Fishing in Spring, the Pont de Clichy (Asnières)",
@@ -128,7 +136,9 @@
    "license_basis": "CC0 — AIC public-domain works",
    "license_url": "",
    "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Madame Roulin Rocking the Cradle (La berceuse)",
@@ -153,7 +163,9 @@
    "license_basis": "CC0 — AIC public-domain works",
    "license_url": "",
    "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Terrace and Observation Deck at the Moulin de Blute-Fin, Montmartre",
@@ -178,7 +190,9 @@
    "license_basis": "CC0 — AIC public-domain works",
    "license_url": "",
    "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Grapes, Lemons, Pears, and Apples",
@@ -203,7 +217,9 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "https://www.artic.edu/artworks/64957",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 4379,
+   "resolution_tier": "4K"
   },
   {
    "title": "Weeping Tree",
@@ -228,7 +244,9 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "Copied from an art book",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 6536,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Basket of Apples",
@@ -253,7 +271,9 @@
    "license_basis": "CC0 — AIC public-domain works",
    "license_url": "",
    "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "The Bay of Marseille, Seen from L'Estaque",
@@ -278,7 +298,9 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "1QFFkcktbe4rAg at Google Cultural Institute maximum zoom level",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 4748,
+   "resolution_tier": "4K"
   },
   {
    "title": "Auvers, Panoramic View",
@@ -303,7 +325,9 @@
    "license_basis": "CC0 — AIC public-domain works",
    "license_url": "",
    "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Madame Cezanne in a Yellow Chair",
@@ -328,7 +352,9 @@
    "license_basis": "CC0 — AIC public-domain works",
    "license_url": "",
    "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "The Vase of Tulips",
@@ -353,7 +379,9 @@
    "license_basis": "CC0 — AIC public-domain works",
    "license_url": "",
    "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "The Bathers",
@@ -379,7 +407,9 @@
    "license_url": "",
    "credit_line": "https://www.artic.edu/artworks/45240",
    "license_verified": "2026-07-16",
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "delivered_edge": 2746,
+   "resolution_tier": "HD"
   },
   {
    "title": "The Plate of Apples",
@@ -404,7 +434,9 @@
    "license_basis": "CC0 — AIC public-domain works",
    "license_url": "",
    "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Bathers",
@@ -430,7 +462,9 @@
    "license_url": "",
    "credit_line": "https://www.artic.edu/artworks/109418",
    "license_verified": "2026-07-16",
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "delivered_edge": 3000,
+   "resolution_tier": "HD"
   },
   {
    "title": "Standing Bather, Seen from the Back",
@@ -455,7 +489,9 @@
    "license_basis": "CC0 — AIC public-domain works",
    "license_url": "",
    "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 7319,
+   "resolution_tier": "4K"
   },
   {
    "title": "A Sunday on La Grande Jatte — 1884",
@@ -480,7 +516,9 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "https://www.bostonglobe.com/arts/theater-dance/2016/09/01/huntington-two-georges-one-sondheim/OR1D4DPM8GsME67aXEjWiP/story.html",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Oil Sketch for \"A Sunday on La Grande Jatte — 1884\"",
@@ -505,7 +543,9 @@
    "license_basis": "CC0 — AIC public-domain works",
    "license_url": "",
    "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Final Study for \"Bathers at Asnières\"",
@@ -530,7 +570,9 @@
    "license_basis": "CC0 — AIC public-domain works",
    "license_url": "",
    "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "The Starry Night",
@@ -555,7 +597,9 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "Google Arts &amp; Culture — bgEuwDxel93-Pg",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Sunflowers",
@@ -580,7 +624,9 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "National Gallery, London - online catalogue.",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 6000,
+   "resolution_tier": "4K"
   },
   {
    "title": "Café Terrace at Night",
@@ -605,7 +651,9 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "https://data.collectienederland.nl/page/aggregation/kroller-muller/44529",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Starry Night Over the Rhône",
@@ -630,7 +678,9 @@
    "focal_point": [
     0.72,
     0.85
-   ]
+   ],
+   "delivered_edge": 5407,
+   "resolution_tier": "4K"
   },
   {
    "title": "Irises",
@@ -655,7 +705,9 @@
    "focal_point": [
     0.28,
     0.35
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Wheatfield with Crows",
@@ -680,7 +732,9 @@
    "focal_point": [
     0.5,
     0.55
-   ]
+   ],
+   "delivered_edge": 4921,
+   "resolution_tier": "4K"
   },
   {
    "title": "Mont Sainte-Victoire",
@@ -705,7 +759,9 @@
    "focal_point": [
     0.55,
     0.38
-   ]
+   ],
+   "delivered_edge": 6000,
+   "resolution_tier": "4K"
   },
   {
    "title": "Where Do We Come From? What Are We? Where Are We Going?",
@@ -730,7 +786,9 @@
    "focal_point": [
     0.62,
     0.4
-   ]
+   ],
+   "delivered_edge": 5400,
+   "resolution_tier": "4K"
   },
   {
    "title": "Vision After the Sermon (Jacob Wrestling with the Angel)",
@@ -755,7 +813,9 @@
    "focal_point": [
     0.4,
     0.55
-   ]
+   ],
+   "delivered_edge": 5000,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Potato Eaters",
@@ -788,7 +848,9 @@
    "focal_point": [
     0.52,
     0.4
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Wheatfield with Cypresses",
@@ -821,7 +883,9 @@
    "focal_point": [
     0.68,
     0.55
-   ]
+   ],
+   "delivered_edge": 6000,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Yellow Christ",
@@ -854,7 +918,9 @@
    "focal_point": [
     0.45,
     0.3
-   ]
+   ],
+   "delivered_edge": 3965,
+   "resolution_tier": "4K"
   },
   {
    "title": "Equestrienne (At the Cirque Fernando)",
@@ -887,7 +953,9 @@
    "focal_point": [
     0.55,
     0.45
-   ]
+   ],
+   "delivered_edge": 4984,
+   "resolution_tier": "4K"
   },
   {
    "title": "Moulin de la Galette",
@@ -920,7 +988,9 @@
    "focal_point": [
     0.55,
     0.35
-   ]
+   ],
+   "delivered_edge": 7198,
+   "resolution_tier": "4K"
   },
   {
    "title": "At the Circus: The Bareback Rider (Au Cirque: Écuyère)",
@@ -953,7 +1023,9 @@
    "focal_point": [
     0.55,
     0.45
-   ]
+   ],
+   "delivered_edge": 5134,
+   "resolution_tier": "4K"
   },
   {
    "title": "Mahana no atua (Day of the God)",
@@ -986,7 +1058,9 @@
    "focal_point": [
     0.42,
     0.62
-   ]
+   ],
+   "delivered_edge": 6609,
+   "resolution_tier": "4K"
   },
   {
    "title": "Arlésiennes (Mistral)",
@@ -1019,7 +1093,9 @@
    "focal_point": [
     0.35,
     0.5
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Woman in Front of a Still Life by Cézanne",
@@ -1052,7 +1128,9 @@
    "focal_point": [
     0.42,
     0.3
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Bathers at Asnières",
@@ -1077,7 +1155,9 @@
    "focal_point": [
     0.35,
     0.55
-   ]
+   ],
+   "delivered_edge": 4000,
+   "resolution_tier": "4K"
   },
   {
    "title": "Boy in a Red Waistcoat",
@@ -1102,7 +1182,9 @@
    "focal_point": [
     0.45,
     0.25
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Flowing Water in the Woods",
@@ -1127,7 +1209,9 @@
    "focal_point": [
     0.5,
     0.55
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Still Life with Fruit",
@@ -1152,7 +1236,9 @@
    "focal_point": [
     0.52,
     0.55
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Still Life with Blue Pot",
@@ -1177,7 +1263,9 @@
    "focal_point": [
     0.4,
     0.35
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Bibémus Quarry (1898-99)",
@@ -1202,7 +1290,9 @@
    "focal_point": [
     0.45,
     0.35
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Young Italian Woman at a Table",
@@ -1227,7 +1317,9 @@
    "focal_point": [
     0.35,
     0.28
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Still Life with Apples",
@@ -1252,7 +1344,9 @@
    "focal_point": [
     0.6,
     0.55
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Abandoned House near Aix-en-Provence",
@@ -1277,7 +1371,9 @@
    "focal_point": [
     0.4,
     0.4
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Trees and House, Provence",
@@ -1302,7 +1398,9 @@
    "focal_point": [
     0.45,
     0.42
-   ]
+   ],
+   "delivered_edge": 7499,
+   "resolution_tier": "4K"
   },
   {
    "title": "Seated Man",
@@ -1327,7 +1425,9 @@
    "focal_point": [
     0.45,
     0.25
-   ]
+   ],
+   "delivered_edge": 7075,
+   "resolution_tier": "4K"
   },
   {
    "title": "Still Life with Onions",
@@ -1352,7 +1452,9 @@
    "focal_point": [
     0.4,
     0.5
-   ]
+   ],
+   "delivered_edge": 6862,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Big Trees",
@@ -1377,7 +1479,9 @@
    "focal_point": [
     0.5,
     0.5
-   ]
+   ],
+   "delivered_edge": 6620,
+   "resolution_tier": "4K"
   },
   {
    "title": "Landscape near Melun",
@@ -1402,7 +1506,9 @@
    "focal_point": [
     0.55,
     0.45
-   ]
+   ],
+   "delivered_edge": 6543,
+   "resolution_tier": "4K"
   },
   {
    "title": "View of the Château Noir",
@@ -1427,7 +1533,9 @@
    "focal_point": [
     0.45,
     0.35
-   ]
+   ],
+   "delivered_edge": 6450,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Large Bathers",
@@ -1452,7 +1560,9 @@
    "focal_point": [
     0.5,
     0.45
-   ]
+   ],
+   "delivered_edge": 6385,
+   "resolution_tier": "4K"
   },
   {
    "title": "Still Life: Milk Jug and Fruit on a Table",
@@ -1477,7 +1587,9 @@
    "focal_point": [
     0.5,
     0.5
-   ]
+   ],
+   "delivered_edge": 6305,
+   "resolution_tier": "4K"
   },
   {
    "title": "Hollow with Trees",
@@ -1502,7 +1614,9 @@
    "focal_point": [
     0.78,
     0.25
-   ]
+   ],
+   "delivered_edge": 6299,
+   "resolution_tier": "4K"
   },
   {
    "title": "View of the Sea at L'Estaque",
@@ -1527,7 +1641,9 @@
    "focal_point": [
     0.55,
     0.5
-   ]
+   ],
+   "delivered_edge": 6140,
+   "resolution_tier": "4K"
   },
   {
    "title": "Bathers",
@@ -1552,7 +1668,9 @@
    "focal_point": [
     0.5,
     0.45
-   ]
+   ],
+   "delivered_edge": 6057,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Card Players (multi-figure version)",
@@ -1577,7 +1695,9 @@
    "focal_point": [
     0.5,
     0.32
-   ]
+   ],
+   "delivered_edge": 6048,
+   "resolution_tier": "4K"
   },
   {
    "title": "Winter Landscape, Giverny",
@@ -1602,7 +1722,9 @@
    "focal_point": [
     0.55,
     0.45
-   ]
+   ],
+   "delivered_edge": 5994,
+   "resolution_tier": "4K"
   },
   {
    "title": "Still Life: Sugar Bowl and Pears",
@@ -1627,7 +1749,9 @@
    "focal_point": [
     0.45,
     0.55
-   ]
+   ],
+   "delivered_edge": 5993,
+   "resolution_tier": "4K"
   },
   {
    "title": "Madame Cézanne in Blue",
@@ -1652,7 +1776,9 @@
    "focal_point": [
     0.45,
     0.35
-   ]
+   ],
+   "delivered_edge": 5903,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Terrace at the Garden at Les Lauves",
@@ -1677,7 +1803,9 @@
    "focal_point": [
     0.55,
     0.5
-   ]
+   ],
+   "delivered_edge": 5873,
+   "resolution_tier": "4K"
   },
   {
    "title": "Standing Male Bather; Puget's Atlas",
@@ -1702,7 +1830,9 @@
    "focal_point": [
     0.65,
     0.5
-   ]
+   ],
+   "delivered_edge": 5801,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Card Players (The Metropolitan Museum of Art)",
@@ -1727,7 +1857,9 @@
    "focal_point": [
     0.45,
     0.35
-   ]
+   ],
+   "delivered_edge": 5789,
+   "resolution_tier": "4K"
   },
   {
    "title": "Chestnut Trees at Jas de Bouffan in Winter",
@@ -1752,7 +1884,9 @@
    "focal_point": [
     0.5,
     0.5
-   ]
+   ],
+   "delivered_edge": 5751,
+   "resolution_tier": "4K"
   },
   {
    "title": "Village Square",
@@ -1777,7 +1911,9 @@
    "focal_point": [
     0.3,
     0.3
-   ]
+   ],
+   "delivered_edge": 5751,
+   "resolution_tier": "4K"
   },
   {
    "title": "Gardanne",
@@ -1802,7 +1938,9 @@
    "focal_point": [
     0.48,
     0.3
-   ]
+   ],
+   "delivered_edge": 5748,
+   "resolution_tier": "4K"
   },
   {
    "title": "Landscape in Provence",
@@ -1827,7 +1965,9 @@
    "focal_point": [
     0.5,
     0.5
-   ]
+   ],
+   "delivered_edge": 5736,
+   "resolution_tier": "4K"
   },
   {
    "title": "Turn in the Road",
@@ -1852,7 +1992,9 @@
    "focal_point": [
     0.5,
     0.35
-   ]
+   ],
+   "delivered_edge": 5701,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Bather",
@@ -1877,7 +2019,9 @@
    "focal_point": [
     0.5,
     0.22
-   ]
+   ],
+   "delivered_edge": 5641,
+   "resolution_tier": "4K"
   },
   {
    "title": "View of the Bay of Marseille with the Village of Saint-Henri",
@@ -1902,7 +2046,9 @@
    "focal_point": [
     0.5,
     0.42
-   ]
+   ],
+   "delivered_edge": 5630,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Pond",
@@ -1927,7 +2073,9 @@
    "focal_point": [
     0.35,
     0.45
-   ]
+   ],
+   "delivered_edge": 5626,
+   "resolution_tier": "4K"
   },
   {
    "title": "Woman with a Coffeepot",
@@ -1952,7 +2100,9 @@
    "focal_point": [
     0.4,
     0.25
-   ]
+   ],
+   "delivered_edge": 5592,
+   "resolution_tier": "4K"
   },
   {
    "title": "Mont Sainte-Victoire Seen from the Bibémus Quarry",
@@ -1977,7 +2127,9 @@
    "focal_point": [
     0.45,
     0.3
-   ]
+   ],
+   "delivered_edge": 5508,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Toilette",
@@ -2002,7 +2154,9 @@
    "focal_point": [
     0.3,
     0.3
-   ]
+   ],
+   "delivered_edge": 5483,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Village of Gardanne",
@@ -2027,7 +2181,9 @@
    "focal_point": [
     0.55,
     0.25
-   ]
+   ],
+   "delivered_edge": 5466,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Buffet",
@@ -2052,7 +2208,9 @@
    "focal_point": [
     0.5,
     0.55
-   ]
+   ],
+   "delivered_edge": 5435,
+   "resolution_tier": "4K"
   },
   {
    "title": "Still Life with a Dessert",
@@ -2077,7 +2235,9 @@
    "focal_point": [
     0.5,
     0.45
-   ]
+   ],
+   "delivered_edge": 5433,
+   "resolution_tier": "4K"
   },
   {
    "title": "Achille Emperaire",
@@ -2102,7 +2262,9 @@
    "focal_point": [
     0.42,
     0.22
-   ]
+   ],
+   "delivered_edge": 5388,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Red Rock",
@@ -2127,7 +2289,9 @@
    "focal_point": [
     0.45,
     0.55
-   ]
+   ],
+   "delivered_edge": 5387,
+   "resolution_tier": "4K"
   },
   {
    "title": "Bibémus Quarry",
@@ -2152,7 +2316,9 @@
    "focal_point": [
     0.55,
     0.45
-   ]
+   ],
+   "delivered_edge": 5164,
+   "resolution_tier": "4K"
   },
   {
    "title": "Still Life with Milk Jug and Fruit",
@@ -2177,7 +2343,9 @@
    "focal_point": [
     0.55,
     0.5
-   ]
+   ],
+   "delivered_edge": 5152,
+   "resolution_tier": "4K"
   },
   {
    "title": "Church at Montigny-sur-Loing",
@@ -2202,7 +2370,9 @@
    "focal_point": [
     0.45,
     0.35
-   ]
+   ],
+   "delivered_edge": 5132,
+   "resolution_tier": "4K"
   },
   {
    "title": "Straw-Trimmed Vase, Sugar Bowl and Apples",
@@ -2227,7 +2397,9 @@
    "focal_point": [
     0.4,
     0.45
-   ]
+   ],
+   "delivered_edge": 5104,
+   "resolution_tier": "4K"
   },
   {
    "title": "Ginger Jar",
@@ -2252,7 +2424,9 @@
    "focal_point": [
     0.45,
     0.45
-   ]
+   ],
+   "delivered_edge": 5079,
+   "resolution_tier": "4K"
   },
   {
    "title": "Madame Cézanne in a Red Armchair",
@@ -2277,7 +2451,9 @@
    "focal_point": [
     0.48,
     0.22
-   ]
+   ],
+   "delivered_edge": 5068,
+   "resolution_tier": "4K"
   },
   {
    "title": "Cistern in the Grounds of Château Noir",
@@ -2302,7 +2478,9 @@
    "focal_point": [
     0.48,
     0.5
-   ]
+   ],
+   "delivered_edge": 5030,
+   "resolution_tier": "4K"
   },
   {
    "title": "Portrait of Madame Cézanne",
@@ -2327,7 +2505,9 @@
    "focal_point": [
     0.45,
     0.25
-   ]
+   ],
+   "delivered_edge": 5005,
+   "resolution_tier": "4K"
   },
   {
    "title": "Bowl and Milk-Jug",
@@ -2352,7 +2532,9 @@
    "focal_point": [
     0.5,
     0.5
-   ]
+   ],
+   "delivered_edge": 5001,
+   "resolution_tier": "4K"
   },
   {
    "title": "Mont Sainte-Victoire and Château Noir",
@@ -2377,7 +2559,9 @@
    "focal_point": [
     0.38,
     0.4
-   ]
+   ],
+   "delivered_edge": 5001,
+   "resolution_tier": "4K"
   },
   {
    "title": "Self-Portrait in a Soft Hat",
@@ -2402,7 +2586,9 @@
    "focal_point": [
     0.35,
     0.35
-   ]
+   ],
+   "delivered_edge": 5001,
+   "resolution_tier": "4K"
   },
   {
    "title": "Banks of the Marne",
@@ -2427,7 +2613,9 @@
    "focal_point": [
     0.5,
     0.4
-   ]
+   ],
+   "delivered_edge": 5001,
+   "resolution_tier": "4K"
   },
   {
    "title": "Country House by a River",
@@ -2452,7 +2640,9 @@
    "focal_point": [
     0.48,
     0.35
-   ]
+   ],
+   "delivered_edge": 4993,
+   "resolution_tier": "4K"
   },
   {
    "title": "Trees and Road",
@@ -2477,7 +2667,9 @@
    "focal_point": [
     0.65,
     0.5
-   ]
+   ],
+   "delivered_edge": 4952,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Spring House",
@@ -2502,7 +2694,9 @@
    "focal_point": [
     0.45,
     0.65
-   ]
+   ],
+   "delivered_edge": 4952,
+   "resolution_tier": "4K"
   },
   {
    "title": "Seven Bathers",
@@ -2527,7 +2721,9 @@
    "focal_point": [
     0.5,
     0.45
-   ]
+   ],
+   "delivered_edge": 4902,
+   "resolution_tier": "4K"
   },
   {
    "title": "Château Noir",
@@ -2552,7 +2748,9 @@
    "focal_point": [
     0.45,
     0.3
-   ]
+   ],
+   "delivered_edge": 4869,
+   "resolution_tier": "4K"
   },
   {
    "title": "Farmyard",
@@ -2577,7 +2775,9 @@
    "focal_point": [
     0.5,
     0.4
-   ]
+   ],
+   "delivered_edge": 4810,
+   "resolution_tier": "4K"
   },
   {
    "title": "Morning View of L'Estaque Against the Sunlight",
@@ -2602,7 +2802,9 @@
    "focal_point": [
     0.45,
     0.45
-   ]
+   ],
+   "delivered_edge": 4801,
+   "resolution_tier": "4K"
   },
   {
    "title": "Portrait of a Peasant",
@@ -2627,7 +2829,9 @@
    "focal_point": [
     0.48,
     0.25
-   ]
+   ],
+   "delivered_edge": 4793,
+   "resolution_tier": "4K"
   },
   {
    "title": "Pines and Rocks (Fontainebleau?)",
@@ -2652,7 +2856,9 @@
    "focal_point": [
     0.5,
     0.45
-   ]
+   ],
+   "delivered_edge": 4790,
+   "resolution_tier": "4K"
   },
   {
    "title": "Road Leading to the Lake",
@@ -2677,7 +2883,9 @@
    "focal_point": [
     0.4,
     0.55
-   ]
+   ],
+   "delivered_edge": 4787,
+   "resolution_tier": "4K"
   },
   {
    "title": "Still Life with Cherries and Peaches",
@@ -2702,7 +2910,9 @@
    "focal_point": [
     0.35,
     0.45
-   ]
+   ],
+   "delivered_edge": 4760,
+   "resolution_tier": "4K"
   },
   {
    "title": "Landscape",
@@ -2727,7 +2937,9 @@
    "focal_point": [
     0.55,
     0.45
-   ]
+   ],
+   "delivered_edge": 4697,
+   "resolution_tier": "4K"
   },
   {
    "title": "Studies of Three Figures, Including a Self-Portrait",
@@ -2752,7 +2964,9 @@
    "focal_point": [
     0.3,
     0.4
-   ]
+   ],
+   "delivered_edge": 4615,
+   "resolution_tier": "4K"
   },
   {
    "title": "Afternoon in Naples",
@@ -2777,7 +2991,9 @@
    "focal_point": [
     0.45,
     0.4
-   ]
+   ],
+   "delivered_edge": 4568,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Peppermint Bottle",
@@ -2802,7 +3018,9 @@
    "focal_point": [
     0.42,
     0.4
-   ]
+   ],
+   "delivered_edge": 4556,
+   "resolution_tier": "4K"
   },
   {
    "title": "Portrait of Hortense Cézanne-Fiquet, the Artist's Wife",
@@ -2827,7 +3045,9 @@
    "focal_point": [
     0.45,
     0.3
-   ]
+   ],
+   "delivered_edge": 4535,
+   "resolution_tier": "4K"
   },
   {
    "title": "Houses in Provence: The Riaux Valley near L'Estaque",
@@ -2852,7 +3072,9 @@
    "focal_point": [
     0.5,
     0.35
-   ]
+   ],
+   "delivered_edge": 4525,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Kiss of the Muse",
@@ -2884,7 +3106,9 @@
    "focal_point": [
     0.45,
     0.28
-   ]
+   ],
+   "delivered_edge": 3889,
+   "resolution_tier": "4K"
   },
   {
    "title": "Fruit and a Jug on a Table",
@@ -2909,7 +3133,9 @@
    "focal_point": [
     0.55,
     0.4
-   ]
+   ],
+   "delivered_edge": 4495,
+   "resolution_tier": "4K"
   },
   {
    "title": "Farm in Normandy (Le Clos Normand, Hattenville)",
@@ -2934,7 +3160,9 @@
    "focal_point": [
     0.5,
     0.55
-   ]
+   ],
+   "delivered_edge": 4482,
+   "resolution_tier": "4K"
   },
   {
    "title": "Portrait of Ambroise Vollard",
@@ -2959,7 +3187,9 @@
    "focal_point": [
     0.42,
     0.22
-   ]
+   ],
+   "delivered_edge": 4451,
+   "resolution_tier": "4K"
   },
   {
    "title": "Apotheosis of Delacroix",
@@ -2991,7 +3221,9 @@
    "focal_point": [
     0.5,
     0.45
-   ]
+   ],
+   "delivered_edge": 3249,
+   "resolution_tier": "HD"
   },
   {
    "title": "The Banks of the Marne",
@@ -3016,7 +3248,9 @@
    "focal_point": [
     0.62,
     0.35
-   ]
+   ],
+   "delivered_edge": 4348,
+   "resolution_tier": "4K"
   },
   {
    "title": "Turn in the Road in the Woods",
@@ -3048,7 +3282,9 @@
    "focal_point": [
     0.4,
     0.4
-   ]
+   ],
+   "delivered_edge": 2333,
+   "resolution_tier": "HD"
   },
   {
    "title": "Bather at the Seashore",
@@ -3073,7 +3309,9 @@
    "focal_point": [
     0.4,
     0.45
-   ]
+   ],
+   "delivered_edge": 4263,
+   "resolution_tier": "4K"
   },
   {
    "title": "Avenue at Chantilly",
@@ -3098,7 +3336,9 @@
    "focal_point": [
     0.5,
     0.35
-   ]
+   ],
+   "delivered_edge": 4231,
+   "resolution_tier": "4K"
   },
   {
    "title": "Landscape with Poplars",
@@ -3123,7 +3363,9 @@
    "focal_point": [
     0.5,
     0.45
-   ]
+   ],
+   "delivered_edge": 4231,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Stove in the Studio",
@@ -3148,7 +3390,9 @@
    "focal_point": [
     0.45,
     0.55
-   ]
+   ],
+   "delivered_edge": 4226,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Card Player",
@@ -3173,7 +3417,9 @@
    "focal_point": [
     0.38,
     0.25
-   ]
+   ],
+   "delivered_edge": 4215,
+   "resolution_tier": "4K"
   },
   {
    "title": "Maison Maria with a View of Château Noir",
@@ -3198,7 +3444,9 @@
    "focal_point": [
     0.4,
     0.35
-   ]
+   ],
+   "delivered_edge": 4201,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Turning Road at Montgeroult",
@@ -3223,7 +3471,9 @@
    "focal_point": [
     0.4,
     0.4
-   ]
+   ],
+   "delivered_edge": 4200,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Bathers (Large Plate)",
@@ -3248,7 +3498,9 @@
    "focal_point": [
     0.45,
     0.45
-   ]
+   ],
+   "delivered_edge": 4190,
+   "resolution_tier": "4K"
   },
   {
    "title": "Pot and Soup Tureen",
@@ -3273,7 +3525,9 @@
    "focal_point": [
     0.5,
     0.45
-   ]
+   ],
+   "delivered_edge": 4180,
+   "resolution_tier": "4K"
   },
   {
    "title": "Woman at a Mirror",
@@ -3305,7 +3559,9 @@
    "focal_point": [
     0.52,
     0.45
-   ]
+   ],
+   "delivered_edge": 2379,
+   "resolution_tier": "HD"
   },
   {
    "title": "The Eternal Feminine",
@@ -3330,7 +3586,9 @@
    "focal_point": [
     0.42,
     0.35
-   ]
+   ],
+   "delivered_edge": 4136,
+   "resolution_tier": "4K"
   },
   {
    "title": "Self-Portrait with a Straw Hat",
@@ -3355,7 +3613,9 @@
    "focal_point": [
     0.45,
     0.35
-   ]
+   ],
+   "delivered_edge": 4133,
+   "resolution_tier": "4K"
   },
   {
    "title": "Milk Can and Apples",
@@ -3380,7 +3640,9 @@
    "focal_point": [
     0.35,
     0.5
-   ]
+   ],
+   "delivered_edge": 4126,
+   "resolution_tier": "4K"
   },
   {
    "title": "House in Provence",
@@ -3405,7 +3667,9 @@
    "focal_point": [
     0.35,
     0.45
-   ]
+   ],
+   "delivered_edge": 4113,
+   "resolution_tier": "4K"
   },
   {
    "title": "Portrait of Antoine Valabrègue",
@@ -3430,7 +3694,9 @@
    "focal_point": [
     0.45,
     0.3
-   ]
+   ],
+   "delivered_edge": 4101,
+   "resolution_tier": "4K"
   },
   {
    "title": "Autumn Landscape",
@@ -3455,7 +3721,9 @@
    "focal_point": [
     0.48,
     0.35
-   ]
+   ],
+   "delivered_edge": 4096,
+   "resolution_tier": "4K"
   },
   {
    "title": "House and Trees",
@@ -3480,7 +3748,9 @@
    "focal_point": [
     0.5,
     0.45
-   ]
+   ],
+   "delivered_edge": 4096,
+   "resolution_tier": "4K"
   },
   {
    "title": "Hunting Cabin in Provence",
@@ -3505,7 +3775,9 @@
    "focal_point": [
     0.48,
     0.55
-   ]
+   ],
+   "delivered_edge": 4096,
+   "resolution_tier": "4K"
   },
   {
    "title": "Railroad Cut",
@@ -3530,7 +3802,9 @@
    "focal_point": [
     0.4,
     0.4
-   ]
+   ],
+   "delivered_edge": 4096,
+   "resolution_tier": "4K"
   },
   {
    "title": "River Bend",
@@ -3555,7 +3829,9 @@
    "focal_point": [
     0.85,
     0.85
-   ]
+   ],
+   "delivered_edge": 4096,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Allée at Marines",
@@ -3580,7 +3856,9 @@
    "focal_point": [
     0.5,
     0.5
-   ]
+   ],
+   "delivered_edge": 4096,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Bellevue Plain (The Red Earth)",
@@ -3605,7 +3883,9 @@
    "focal_point": [
     0.62,
     0.5
-   ]
+   ],
+   "delivered_edge": 4096,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Chaîne de l'Étoile Mountains with the Pilon du Roi",
@@ -3630,7 +3910,9 @@
    "focal_point": [
     0.5,
     0.45
-   ]
+   ],
+   "delivered_edge": 4096,
+   "resolution_tier": "4K"
   },
   {
    "title": "Trees",
@@ -3655,7 +3937,9 @@
    "focal_point": [
     0.5,
     0.5
-   ]
+   ],
+   "delivered_edge": 4096,
+   "resolution_tier": "4K"
   },
   {
    "title": "A Modern Olympia",
@@ -3680,7 +3964,9 @@
    "focal_point": [
     0.35,
     0.6
-   ]
+   ],
+   "delivered_edge": 4096,
+   "resolution_tier": "4K"
   },
   {
    "title": "Four Peaches on a Plate",
@@ -3705,7 +3991,9 @@
    "focal_point": [
     0.55,
     0.6
-   ]
+   ],
+   "delivered_edge": 4096,
+   "resolution_tier": "4K"
   },
   {
    "title": "Fruit on a Table",
@@ -3730,7 +4018,9 @@
    "focal_point": [
     0.38,
     0.55
-   ]
+   ],
+   "delivered_edge": 4096,
+   "resolution_tier": "4K"
   },
   {
    "title": "Plate of Fruit on a Chair",
@@ -3755,7 +4045,9 @@
    "focal_point": [
     0.5,
     0.55
-   ]
+   ],
+   "delivered_edge": 4096,
+   "resolution_tier": "4K"
   },
   {
    "title": "Bottle and Fruits",
@@ -3780,7 +4072,9 @@
    "focal_point": [
     0.35,
     0.4
-   ]
+   ],
+   "delivered_edge": 4096,
+   "resolution_tier": "4K"
   },
   {
    "title": "A Table Corner",
@@ -3805,7 +4099,9 @@
    "focal_point": [
     0.62,
     0.55
-   ]
+   ],
+   "delivered_edge": 4096,
+   "resolution_tier": "4K"
   },
   {
    "title": "Gardanne (Horizontal View)",
@@ -3830,7 +4126,9 @@
    "focal_point": [
     0.42,
     0.3
-   ]
+   ],
+   "delivered_edge": 4096,
+   "resolution_tier": "4K"
   },
   {
    "title": "Mont Sainte-Victoire (Study I)",
@@ -3855,7 +4153,9 @@
    "focal_point": [
     0.4,
     0.25
-   ]
+   ],
+   "delivered_edge": 4001,
+   "resolution_tier": "4K"
   },
   {
    "title": "Mont Sainte-Victoire (Study II)",
@@ -3880,7 +4180,9 @@
    "focal_point": [
     0.6,
     0.3
-   ]
+   ],
+   "delivered_edge": 4001,
+   "resolution_tier": "4K"
   },
   {
    "title": "Bathers (Small Group)",
@@ -3905,7 +4207,9 @@
    "focal_point": [
     0.62,
     0.6
-   ]
+   ],
+   "delivered_edge": 4001,
+   "resolution_tier": "4K"
   },
   {
    "title": "Fields at Bellevue (second version)",
@@ -3930,7 +4234,9 @@
    "focal_point": [
     0.5,
     0.55
-   ]
+   ],
+   "delivered_edge": 4001,
+   "resolution_tier": "4K"
   },
   {
    "title": "Ginger Pot with Pomegranate and Pears",
@@ -3955,7 +4261,9 @@
    "focal_point": [
     0.38,
     0.4
-   ]
+   ],
+   "delivered_edge": 4001,
+   "resolution_tier": "4K"
   },
   {
    "title": "Landscape: Road with Trees in Rocky Terrain",
@@ -3980,7 +4288,9 @@
    "focal_point": [
     0.5,
     0.55
-   ]
+   ],
+   "delivered_edge": 4001,
+   "resolution_tier": "4K"
   },
   {
    "title": "Mont Sainte-Victoire (Study III)",
@@ -4005,7 +4315,9 @@
    "focal_point": [
     0.5,
     0.3
-   ]
+   ],
+   "delivered_edge": 4001,
+   "resolution_tier": "4K"
   },
   {
    "title": "Seated Woman in Blue",
@@ -4030,7 +4342,9 @@
    "focal_point": [
     0.38,
     0.22
-   ]
+   ],
+   "delivered_edge": 4001,
+   "resolution_tier": "4K"
   },
   {
    "title": "Self-Portrait",
@@ -4055,7 +4369,9 @@
    "focal_point": [
     0.5,
     0.3
-   ]
+   ],
+   "delivered_edge": 4001,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Garden at Les Lauves",
@@ -4080,7 +4396,9 @@
    "focal_point": [
     0.45,
     0.5
-   ]
+   ],
+   "delivered_edge": 4001,
+   "resolution_tier": "4K"
   },
   {
    "title": "On the Banks of a River",
@@ -4105,7 +4423,9 @@
    "focal_point": [
     0.4,
     0.4
-   ]
+   ],
+   "delivered_edge": 4000,
+   "resolution_tier": "4K"
   },
   {
    "title": "Melting Snow, Fontainebleau",
@@ -4130,7 +4450,9 @@
    "focal_point": [
     0.42,
     0.5
-   ]
+   ],
+   "delivered_edge": 4000,
+   "resolution_tier": "4K"
   },
   {
    "title": "Riverbank",
@@ -4155,7 +4477,9 @@
    "focal_point": [
     0.3,
     0.35
-   ]
+   ],
+   "delivered_edge": 4000,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Bend in the Road",
@@ -4180,7 +4504,9 @@
    "focal_point": [
     0.25,
     0.5
-   ]
+   ],
+   "delivered_edge": 4000,
+   "resolution_tier": "4K"
   },
   {
    "title": "Still Life with Teapot",
@@ -4205,7 +4531,9 @@
    "focal_point": [
     0.5,
     0.55
-   ]
+   ],
+   "delivered_edge": 4000,
+   "resolution_tier": "4K"
   },
   {
    "title": "At the Water's Edge",
@@ -4230,7 +4558,9 @@
    "focal_point": [
     0.5,
     0.35
-   ]
+   ],
+   "delivered_edge": 4000,
+   "resolution_tier": "4K"
   },
   {
    "title": "Portrait of Antoine Valabrègue (alternate version)",
@@ -4255,7 +4585,9 @@
    "focal_point": [
     0.45,
     0.28
-   ]
+   ],
+   "delivered_edge": 4000,
+   "resolution_tier": "4K"
   },
   {
    "title": "Harlequin",
@@ -4280,7 +4612,9 @@
    "focal_point": [
     0.45,
     0.18
-   ]
+   ],
+   "delivered_edge": 4000,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Road, the Old Wall",
@@ -4305,7 +4639,9 @@
    "focal_point": [
     0.48,
     0.45
-   ]
+   ],
+   "delivered_edge": 3994,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Bathers",
@@ -4330,7 +4666,9 @@
    "focal_point": [
     0.5,
     0.5
-   ]
+   ],
+   "delivered_edge": 3951,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Bedroom (Amsterdam version, 1888)",
@@ -4355,7 +4693,9 @@
    "focal_point": [
     0.68,
     0.55
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "The Bedroom (Musée d'Orsay version, 1889)",
@@ -4380,7 +4720,9 @@
    "focal_point": [
     0.68,
     0.55
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "The Viaduct at Arles (\"The Blue Train\")",
@@ -4405,7 +4747,9 @@
    "focal_point": [
     0.5,
     0.5
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Farmhouse in Provence",
@@ -4430,7 +4774,9 @@
    "focal_point": [
     0.28,
     0.35
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Two Poplars in the Alpilles near Saint-Rémy",
@@ -4455,7 +4801,9 @@
    "focal_point": [
     0.42,
     0.42
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "The White House at Night",
@@ -4480,7 +4828,9 @@
    "focal_point": [
     0.5,
     0.42
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Portrait of Adeline Ravoux",
@@ -4505,7 +4855,9 @@
    "focal_point": [
     0.35,
     0.35
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Spectators in the Arena at Arles",
@@ -4530,7 +4882,9 @@
    "focal_point": [
     0.58,
     0.8
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Basket of Sprouting Hyacinth Bulbs",
@@ -4555,7 +4909,9 @@
    "focal_point": [
     0.48,
     0.5
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Bridge in the Rain (after Hiroshige)",
@@ -4587,7 +4943,9 @@
    "focal_point": [
     0.45,
     0.62
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Still Life with Basket of Potatoes (I)",
@@ -4612,7 +4970,9 @@
    "focal_point": [
     0.5,
     0.4
-   ]
+   ],
+   "delivered_edge": 7349,
+   "resolution_tier": "4K"
   },
   {
    "title": "Still Life with Basket of Potatoes (II)",
@@ -4637,7 +4997,9 @@
    "focal_point": [
     0.42,
     0.4
-   ]
+   ],
+   "delivered_edge": 7320,
+   "resolution_tier": "4K"
   },
   {
    "title": "Still Life with Beer Tankards",
@@ -4662,7 +5024,9 @@
    "focal_point": [
     0.5,
     0.55
-   ]
+   ],
+   "delivered_edge": 7264,
+   "resolution_tier": "4K"
   },
   {
    "title": "Basket of Apples",
@@ -4687,7 +5051,9 @@
    "focal_point": [
     0.42,
     0.35
-   ]
+   ],
+   "delivered_edge": 7210,
+   "resolution_tier": "4K"
   },
   {
    "title": "Garden with Courting Couples: Square Saint-Pierre",
@@ -4712,7 +5078,9 @@
    "focal_point": [
     0.62,
     0.68
-   ]
+   ],
+   "delivered_edge": 7613,
+   "resolution_tier": "4K"
   },
   {
    "title": "Almond Blossom",
@@ -4737,7 +5105,9 @@
    "focal_point": [
     0.48,
     0.8
-   ]
+   ],
+   "delivered_edge": 7149,
+   "resolution_tier": "4K"
   },
   {
    "title": "Basket of Crocus Bulbs",
@@ -4762,7 +5132,9 @@
    "focal_point": [
     0.48,
     0.5
-   ]
+   ],
+   "delivered_edge": 7006,
+   "resolution_tier": "4K"
   },
   {
    "title": "Terrace in the Luxembourg Gardens",
@@ -4787,7 +5159,9 @@
    "focal_point": [
     0.17,
     0.62
-   ]
+   ],
+   "delivered_edge": 6955,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Yellow House",
@@ -4812,7 +5186,9 @@
    "focal_point": [
     0.42,
     0.42
-   ]
+   ],
+   "delivered_edge": 6917,
+   "resolution_tier": "4K"
   },
   {
    "title": "Portrait of Dr. Gachet",
@@ -4837,7 +5213,9 @@
    "focal_point": [
     0.42,
     0.25
-   ]
+   ],
+   "delivered_edge": 6748,
+   "resolution_tier": "4K"
   },
   {
    "title": "Basket of Pansies",
@@ -4862,7 +5240,9 @@
    "focal_point": [
     0.5,
     0.5
-   ]
+   ],
+   "delivered_edge": 6591,
+   "resolution_tier": "4K"
   },
   {
    "title": "Still Life with Baskets of Potatoes",
@@ -4887,7 +5267,9 @@
    "focal_point": [
     0.45,
     0.45
-   ]
+   ],
+   "delivered_edge": 6536,
+   "resolution_tier": "4K"
   },
   {
    "title": "Bobbin Winder",
@@ -4912,7 +5294,9 @@
    "focal_point": [
     0.48,
     0.42
-   ]
+   ],
+   "delivered_edge": 6472,
+   "resolution_tier": "4K"
   },
   {
    "title": "Sprig of Flowering Almond Blossom in a Glass",
@@ -4937,7 +5321,9 @@
    "focal_point": [
     0.55,
     0.32
-   ]
+   ],
+   "delivered_edge": 6321,
+   "resolution_tier": "4K"
   },
   {
    "title": "Allotment with Sunflower",
@@ -4962,7 +5348,9 @@
    "focal_point": [
     0.32,
     0.15
-   ]
+   ],
+   "delivered_edge": 6245,
+   "resolution_tier": "4K"
   },
   {
    "title": "Seated Nude",
@@ -4987,7 +5375,9 @@
    "focal_point": [
     0.55,
     0.2
-   ]
+   ],
+   "delivered_edge": 6160,
+   "resolution_tier": "4K"
   },
   {
    "title": "Banks of the Seine with the Pont de Clichy in Spring",
@@ -5012,7 +5402,9 @@
    "focal_point": [
     0.45,
     0.5
-   ]
+   ],
+   "delivered_edge": 6038,
+   "resolution_tier": "4K"
   },
   {
    "title": "A Woman Walking in a Garden",
@@ -5037,7 +5429,9 @@
    "focal_point": [
     0.42,
     0.35
-   ]
+   ],
+   "delivered_edge": 5914,
+   "resolution_tier": "4K"
   },
   {
    "title": "Harvest in Provence",
@@ -5062,7 +5456,9 @@
    "focal_point": [
     0.55,
     0.4
-   ]
+   ],
+   "delivered_edge": 5720,
+   "resolution_tier": "4K"
   },
   {
    "title": "Portrait of the Postman Joseph Roulin",
@@ -5088,7 +5484,9 @@
    "focal_point": [
     0.42,
     0.25
-   ]
+   ],
+   "delivered_edge": 5076,
+   "resolution_tier": "4K"
   },
   {
    "title": "Shoes",
@@ -5113,7 +5511,9 @@
    "focal_point": [
     0.45,
     0.5
-   ]
+   ],
+   "delivered_edge": 5615,
+   "resolution_tier": "4K"
   },
   {
    "title": "Wheat Field with View of Arles",
@@ -5138,7 +5538,9 @@
    "focal_point": [
     0.45,
     0.4
-   ]
+   ],
+   "delivered_edge": 5076,
+   "resolution_tier": "4K"
   },
   {
    "title": "Les Alyscamps",
@@ -5163,7 +5565,9 @@
    "focal_point": [
     0.5,
     0.62
-   ]
+   ],
+   "delivered_edge": 5070,
+   "resolution_tier": "4K"
   },
   {
    "title": "At Eternity's Gate (Sorrowing Old Man)",
@@ -5188,7 +5592,9 @@
    "focal_point": [
     0.45,
     0.4
-   ]
+   ],
+   "delivered_edge": 5057,
+   "resolution_tier": "4K"
   },
   {
    "title": "A Weaver's Cottage",
@@ -5213,7 +5619,9 @@
    "focal_point": [
     0.55,
     0.35
-   ]
+   ],
+   "delivered_edge": 5023,
+   "resolution_tier": "4K"
   },
   {
    "title": "Windmills on Montmartre",
@@ -5238,7 +5646,9 @@
    "focal_point": [
     0.38,
     0.32
-   ]
+   ],
+   "delivered_edge": 5001,
+   "resolution_tier": "4K"
   },
   {
    "title": "Daubigny's Garden",
@@ -5263,7 +5673,9 @@
    "focal_point": [
     0.45,
     0.35
-   ]
+   ],
+   "delivered_edge": 3870,
+   "resolution_tier": "4K"
   },
   {
    "title": "Sunset at Montmajour",
@@ -5288,7 +5700,9 @@
    "focal_point": [
     0.35,
     0.28
-   ]
+   ],
+   "delivered_edge": 4823,
+   "resolution_tier": "4K"
   },
   {
    "title": "Fishing Boats on the Beach at Saintes-Maries-de-la-Mer",
@@ -5313,7 +5727,9 @@
    "focal_point": [
     0.35,
     0.28
-   ]
+   ],
+   "delivered_edge": 4584,
+   "resolution_tier": "4K"
   },
   {
    "title": "Blossoming Chestnut Branches",
@@ -5339,7 +5755,9 @@
    "focal_point": [
     0.5,
     0.5
-   ]
+   ],
+   "delivered_edge": 3870,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Church at Auvers",
@@ -5364,7 +5782,9 @@
    "focal_point": [
     0.48,
     0.35
-   ]
+   ],
+   "delivered_edge": 4433,
+   "resolution_tier": "4K"
   },
   {
    "title": "Acacia in Flower",
@@ -5389,7 +5809,9 @@
    "focal_point": [
     0.5,
     0.5
-   ]
+   ],
+   "delivered_edge": 4235,
+   "resolution_tier": "4K"
   },
   {
    "title": "Sunflowers (Van Gogh Museum version)",
@@ -5414,7 +5836,9 @@
    "focal_point": [
     0.5,
     0.55
-   ]
+   ],
+   "delivered_edge": 4226,
+   "resolution_tier": "4K"
   },
   {
    "title": "A Pair of Shoes (Arles, 1888)",
@@ -5439,7 +5863,9 @@
    "focal_point": [
     0.5,
     0.55
-   ]
+   ],
+   "delivered_edge": 6351,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Brothel (Le Lupanar)",
@@ -5464,7 +5890,9 @@
    "focal_point": [
     0.55,
     0.45
-   ]
+   ],
+   "delivered_edge": 4096,
+   "resolution_tier": "4K"
   },
   {
    "title": "Still Life with Basket of Apples (dedicated to Lucien Pissarro)",
@@ -5489,7 +5917,9 @@
    "focal_point": [
     0.5,
     0.55
-   ]
+   ],
+   "delivered_edge": 3882,
+   "resolution_tier": "4K"
   },
   {
    "title": "View of Saintes-Maries",
@@ -5514,7 +5944,9 @@
    "focal_point": [
     0.5,
     0.35
-   ]
+   ],
+   "delivered_edge": 3870,
+   "resolution_tier": "4K"
   },
   {
    "title": "A Meadow in the Mountains: Le Mas de Saint-Paul",
@@ -5539,7 +5971,9 @@
    "focal_point": [
     0.42,
     0.32
-   ]
+   ],
+   "delivered_edge": 3870,
+   "resolution_tier": "4K"
   },
   {
    "title": "Avenue of Poplars in Autumn",
@@ -5564,7 +5998,9 @@
    "focal_point": [
     0.55,
     0.55
-   ]
+   ],
+   "delivered_edge": 3870,
+   "resolution_tier": "4K"
   },
   {
    "title": "Street in Saintes-Maries",
@@ -5589,7 +6025,9 @@
    "focal_point": [
     0.45,
     0.45
-   ]
+   ],
+   "delivered_edge": 3864,
+   "resolution_tier": "4K"
   },
   {
    "title": "Orchard with Blossoming Apricot Trees",
@@ -5614,7 +6052,9 @@
    "focal_point": [
     0.32,
     0.4
-   ]
+   ],
+   "delivered_edge": 3864,
+   "resolution_tier": "4K"
   },
   {
    "title": "Bowl with Peonies and Roses",
@@ -5639,7 +6079,9 @@
    "focal_point": [
     0.55,
     0.4
-   ]
+   ],
+   "delivered_edge": 3846,
+   "resolution_tier": "4K"
   },
   {
    "title": "Wheat Field with Cypresses",
@@ -5664,7 +6106,9 @@
    "focal_point": [
     0.78,
     0.35
-   ]
+   ],
+   "delivered_edge": 3840,
+   "resolution_tier": "4K"
   },
   {
    "title": "At the Salon in the Rue des Moulins",
@@ -5689,7 +6133,9 @@
    "focal_point": [
     0.48,
     0.55
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Horse Behind a Stable Gate",
@@ -5714,7 +6160,9 @@
    "focal_point": [
     0.62,
     0.32
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Count Alphonse de Toulouse-Lautrec as a Falconer",
@@ -5739,7 +6187,9 @@
    "focal_point": [
     0.48,
     0.38
-   ]
+   ],
+   "delivered_edge": 7625,
+   "resolution_tier": "4K"
   },
   {
    "title": "At the Moulin Rouge: Beginning of the Quadrille",
@@ -5764,7 +6214,9 @@
    "focal_point": [
     0.65,
     0.35
-   ]
+   ],
+   "delivered_edge": 7394,
+   "resolution_tier": "4K"
   },
   {
    "title": "Alfred La Guigne",
@@ -5789,7 +6241,9 @@
    "focal_point": [
     0.5,
     0.45
-   ]
+   ],
+   "delivered_edge": 7299,
+   "resolution_tier": "4K"
   },
   {
    "title": "A Passing Conquest",
@@ -5814,7 +6268,9 @@
    "focal_point": [
     0.45,
     0.45
-   ]
+   ],
+   "delivered_edge": 7012,
+   "resolution_tier": "4K"
   },
   {
    "title": "Young Horseman Mounting His Horse",
@@ -5839,7 +6295,9 @@
    "focal_point": [
     0.48,
     0.4
-   ]
+   ],
+   "delivered_edge": 6954,
+   "resolution_tier": "4K"
   },
   {
    "title": "Portrait of François Gauzi",
@@ -5864,7 +6322,9 @@
    "focal_point": [
     0.42,
     0.42
-   ]
+   ],
+   "delivered_edge": 6864,
+   "resolution_tier": "4K"
   },
   {
    "title": "In Bed",
@@ -5889,7 +6349,9 @@
    "focal_point": [
     0.42,
     0.35
-   ]
+   ],
+   "delivered_edge": 6812,
+   "resolution_tier": "4K"
   },
   {
    "title": "Carmen the Redhead (Carmen la Rousse)",
@@ -5914,7 +6376,9 @@
    "focal_point": [
     0.48,
     0.32
-   ]
+   ],
+   "delivered_edge": 6712,
+   "resolution_tier": "4K"
   },
   {
    "title": "Avenue at Céleyran",
@@ -5939,7 +6403,9 @@
    "focal_point": [
     0.5,
     0.45
-   ]
+   ],
+   "delivered_edge": 6598,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Master of the Hunt",
@@ -5964,7 +6430,9 @@
    "focal_point": [
     0.5,
     0.4
-   ]
+   ],
+   "delivered_edge": 6392,
+   "resolution_tier": "4K"
   },
   {
    "title": "The White Horse Gazelle",
@@ -5989,7 +6457,9 @@
    "focal_point": [
     0.4,
     0.35
-   ]
+   ],
+   "delivered_edge": 6346,
+   "resolution_tier": "4K"
   },
   {
    "title": "Artilleryman Saddling His Horse",
@@ -6014,7 +6484,9 @@
    "focal_point": [
     0.4,
     0.4
-   ]
+   ],
+   "delivered_edge": 6329,
+   "resolution_tier": "4K"
   },
   {
    "title": "Horse in the Stable at Céleyran",
@@ -6039,7 +6511,9 @@
    "focal_point": [
     0.55,
     0.45
-   ]
+   ],
+   "delivered_edge": 6275,
+   "resolution_tier": "4K"
   },
   {
    "title": "Study of a Woman, Nude from Behind",
@@ -6064,7 +6538,9 @@
    "focal_point": [
     0.45,
     0.4
-   ]
+   ],
+   "delivered_edge": 6140,
+   "resolution_tier": "4K"
   },
   {
    "title": "At Her Toilette",
@@ -6089,7 +6565,9 @@
    "focal_point": [
     0.35,
     0.35
-   ]
+   ],
+   "delivered_edge": 6079,
+   "resolution_tier": "4K"
   },
   {
    "title": "Portrait of Émile Bernard",
@@ -6114,7 +6592,9 @@
    "focal_point": [
     0.42,
     0.3
-   ]
+   ],
+   "delivered_edge": 6000,
+   "resolution_tier": "4K"
   },
   {
    "title": "At the Moulin Rouge: Portrait of Monsieur Warner",
@@ -6139,7 +6619,9 @@
    "focal_point": [
     0.42,
     0.35
-   ]
+   ],
+   "delivered_edge": 5959,
+   "resolution_tier": "4K"
   },
   {
    "title": "At the Moulin Rouge: The Dance",
@@ -6164,7 +6646,9 @@
    "focal_point": [
     0.42,
     0.4
-   ]
+   ],
+   "delivered_edge": 5889,
+   "resolution_tier": "4K"
   },
   {
    "title": "Portrait of Caudieux",
@@ -6189,7 +6673,9 @@
    "focal_point": [
     0.53,
     0.2
-   ]
+   ],
+   "delivered_edge": 5878,
+   "resolution_tier": "4K"
   },
   {
    "title": "Crouching Woman (The Laundress)",
@@ -6214,7 +6700,9 @@
    "focal_point": [
     0.4,
     0.45
-   ]
+   ],
+   "delivered_edge": 5688,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Theatre Box",
@@ -6239,7 +6727,9 @@
    "focal_point": [
     0.38,
     0.35
-   ]
+   ],
+   "delivered_edge": 5622,
+   "resolution_tier": "4K"
   },
   {
    "title": "At the Racecourse",
@@ -6264,7 +6754,9 @@
    "focal_point": [
     0.62,
     0.55
-   ]
+   ],
+   "delivered_edge": 5609,
+   "resolution_tier": "4K"
   },
   {
    "title": "Horse Behind a Picket Gate",
@@ -6289,7 +6781,9 @@
    "focal_point": [
     0.55,
     0.42
-   ]
+   ],
+   "delivered_edge": 5467,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Clowness Cha-U-Kao",
@@ -6314,7 +6808,9 @@
    "focal_point": [
     0.42,
     0.35
-   ]
+   ],
+   "delivered_edge": 5455,
+   "resolution_tier": "4K"
   },
   {
    "title": "Allegory: The Springtime of Life",
@@ -6339,7 +6835,9 @@
    "focal_point": [
     0.75,
     0.35
-   ]
+   ],
+   "delivered_edge": 5433,
+   "resolution_tier": "4K"
   },
   {
    "title": "Horseman in Eighteenth-Century Costume",
@@ -6364,7 +6862,9 @@
    "focal_point": [
     0.5,
     0.28
-   ]
+   ],
+   "delivered_edge": 5405,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Sofa (Le Divan)",
@@ -6389,7 +6889,9 @@
    "focal_point": [
     0.42,
     0.42
-   ]
+   ],
+   "delivered_edge": 5170,
+   "resolution_tier": "4K"
   },
   {
    "title": "Jane Avril Dancing",
@@ -6414,7 +6916,9 @@
    "focal_point": [
     0.38,
     0.45
-   ]
+   ],
+   "delivered_edge": 5109,
+   "resolution_tier": "4K"
   },
   {
    "title": "At the Cabaret",
@@ -6439,7 +6943,9 @@
    "focal_point": [
     0.35,
     0.35
-   ]
+   ],
+   "delivered_edge": 5101,
+   "resolution_tier": "4K"
   },
   {
    "title": "English Soldier Smoking a Pipe",
@@ -6464,7 +6970,9 @@
    "focal_point": [
     0.42,
     0.42
-   ]
+   ],
+   "delivered_edge": 4969,
+   "resolution_tier": "4K"
   },
   {
    "title": "View of the Vineyards at Céleyran",
@@ -6489,7 +6997,9 @@
    "focal_point": [
     0.5,
     0.45
-   ]
+   ],
+   "delivered_edge": 4965,
+   "resolution_tier": "4K"
   },
   {
    "title": "By the River at Céleyran",
@@ -6514,7 +7024,9 @@
    "focal_point": [
     0.5,
     0.5
-   ]
+   ],
+   "delivered_edge": 4961,
+   "resolution_tier": "4K"
   },
   {
    "title": "Rolande on the Sofa",
@@ -6539,7 +7051,9 @@
    "focal_point": [
     0.32,
     0.22
-   ]
+   ],
+   "delivered_edge": 4956,
+   "resolution_tier": "4K"
   },
   {
    "title": "Aristide Bruant on a Bicycle",
@@ -6564,7 +7078,9 @@
    "focal_point": [
     0.42,
     0.22
-   ]
+   ],
+   "delivered_edge": 4924,
+   "resolution_tier": "4K"
   },
   {
    "title": "Huntsman on Horseback",
@@ -6589,7 +7105,9 @@
    "focal_point": [
     0.5,
     0.35
-   ]
+   ],
+   "delivered_edge": 4776,
+   "resolution_tier": "4K"
   },
   {
    "title": "Clown",
@@ -6614,7 +7132,9 @@
    "focal_point": [
     0.38,
     0.4
-   ]
+   ],
+   "delivered_edge": 4752,
+   "resolution_tier": "4K"
   },
   {
    "title": "Artist with Green Gloves: The Singer Dolly",
@@ -6639,7 +7159,9 @@
    "focal_point": [
     0.42,
     0.35
-   ]
+   ],
+   "delivered_edge": 4578,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Terrace at Château du Bosc",
@@ -6664,7 +7186,9 @@
    "focal_point": [
     0.55,
     0.4
-   ]
+   ],
+   "delivered_edge": 4513,
+   "resolution_tier": "4K"
   },
   {
    "title": "Portrait of André Rivoire",
@@ -6689,7 +7213,9 @@
    "focal_point": [
     0.4,
     0.32
-   ]
+   ],
+   "delivered_edge": 4363,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Nun's Pines at Céleyran",
@@ -6714,7 +7240,9 @@
    "focal_point": [
     0.72,
     0.32
-   ]
+   ],
+   "delivered_edge": 4332,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Black Countess",
@@ -6739,7 +7267,9 @@
    "focal_point": [
     0.65,
     0.35
-   ]
+   ],
+   "delivered_edge": 4272,
+   "resolution_tier": "4K"
   },
   {
    "title": "Woman Seated in a Garden",
@@ -6764,7 +7294,9 @@
    "focal_point": [
     0.38,
     0.28
-   ]
+   ],
+   "delivered_edge": 4226,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Ballet of Papa Chrysanthème",
@@ -6789,7 +7321,9 @@
    "focal_point": [
     0.45,
     0.4
-   ]
+   ],
+   "delivered_edge": 4147,
+   "resolution_tier": "4K"
   },
   {
    "title": "At the Bastille: Jeanne Wenz",
@@ -6814,7 +7348,9 @@
    "focal_point": [
     0.4,
     0.22
-   ]
+   ],
+   "delivered_edge": 4000,
+   "resolution_tier": "4K"
   },
   {
    "title": "La Goulue and Her Sister",
@@ -6839,7 +7375,9 @@
    "focal_point": [
     0.45,
     0.35
-   ]
+   ],
+   "delivered_edge": 4000,
+   "resolution_tier": "4K"
   },
   {
    "title": "Portrait of Maxime Dethomas",
@@ -6864,7 +7402,9 @@
    "focal_point": [
     0.75,
     0.3
-   ]
+   ],
+   "delivered_edge": 4000,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Artist's Dog, Flèche",
@@ -6889,7 +7429,9 @@
    "focal_point": [
     0.4,
     0.5
-   ]
+   ],
+   "delivered_edge": 4000,
+   "resolution_tier": "4K"
   },
   {
    "title": "Horsewoman (Amazone)",
@@ -6914,7 +7456,9 @@
    "focal_point": [
     0.32,
     0.42
-   ]
+   ],
+   "delivered_edge": 3992,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Jockeys",
@@ -6939,7 +7483,9 @@
    "focal_point": [
     0.45,
     0.45
-   ]
+   ],
+   "delivered_edge": 3963,
+   "resolution_tier": "4K"
   },
   {
    "title": "In Bed: The Kiss",
@@ -6964,7 +7510,9 @@
    "focal_point": [
     0.42,
     0.35
-   ]
+   ],
+   "delivered_edge": 3917,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Bedroom",
@@ -6989,7 +7537,9 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "rgHdFPzCeCfnxQ at Google Cultural Institute maximum zoom level",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 7171,
+   "resolution_tier": "4K"
   }
  ]
 }

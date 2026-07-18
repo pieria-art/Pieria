@@ -28,7 +28,9 @@
    "license_basis": "CC0 — Met Open Access",
    "license_url": "",
    "credit_line": "Collection of The Metropolitan Museum of Art",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 3919,
+   "resolution_tier": "4K"
   },
   {
    "title": "Travelers Among Mountains and Streams",
@@ -53,7 +55,9 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "WAHwkSr8lMK0uA at Google Cultural Institute maximum zoom level",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 5633,
+   "resolution_tier": "4K"
   },
   {
    "title": "Early Spring",
@@ -78,7 +82,9 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "http://www.comuseum.com/wp-content/uploads/2016/11/guo-xi_early-spring.jpg",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 6240,
+   "resolution_tier": "4K"
   },
   {
    "title": "Night Revels of Han Xizai",
@@ -103,7 +109,9 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "http://depts.washington.edu/chinaciv/painting/4literat.htm#hanxizai, Zhongguo lidai huihua: Gugong bowuyuan canghua ji, vol. 1 (Beijing: Renmin meishu chubanshe, 1978), p. 89.",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 4720,
+   "resolution_tier": "4K"
   },
   {
    "title": "Summer Mountains",
@@ -128,7 +136,9 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "Metmuseum",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 5551,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Court of Gayumars",
@@ -153,7 +163,9 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "Transferred from ru.wikipedia to Commons. Original uploader was Евгений Ардаев at ru.wikipedia (28 August 2008 (first version); 28 August 2008 (last version))",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Folio from the Shahnameh of Shah Tahmasp",
@@ -178,7 +190,9 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "Sotheby,s",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 4000,
+   "resolution_tier": "4K"
   },
   {
    "title": "Folio from the Hamzanama",
@@ -203,7 +217,9 @@
    "license_basis": "CC0",
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 4000,
+   "resolution_tier": "4K"
   },
   {
    "title": "Krishna Lifting Mount Govardhan",
@@ -228,7 +244,9 @@
    "license_basis": "CC0 — CMA Open Access",
    "license_url": "",
    "credit_line": "Collection of Cleveland Museum of Art",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 5964,
+   "resolution_tier": "4K"
   },
   {
    "title": "Pine Trees Screen",
@@ -253,7 +271,9 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "Emuseum",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Wind God and Thunder God",
@@ -278,7 +298,9 @@
    "license_basis": "CC0",
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "https://clevelandart.org/art/2004.86",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Red and White Plum Blossoms",
@@ -303,7 +325,9 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "https://www.at-s.com/news/article/shizuoka/1032532.html",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 4001,
+   "resolution_tier": "4K"
   },
   {
    "title": "Irises Screen",
@@ -328,7 +352,9 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "Nezu Art Museum",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 3904,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Concourse of the Birds",
@@ -353,7 +379,9 @@
    "focal_point": [
     0.55,
     0.58
-   ]
+   ],
+   "delivered_edge": 3876,
+   "resolution_tier": "4K"
   },
   {
    "title": "Fish and Rocks",
@@ -385,7 +413,9 @@
    "focal_point": [
     0.55,
     0.4
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Cypress Trees",
@@ -417,7 +447,9 @@
    "focal_point": [
     0.6,
     0.45
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Youth Holding a Pomegranate",
@@ -448,7 +480,9 @@
    "focal_point": [
     0.4,
     0.45
-   ]
+   ],
+   "delivered_edge": 6588,
+   "resolution_tier": "4K"
   },
   {
    "title": "Tobatsu Bishamonten",
@@ -473,7 +507,9 @@
    "license_basis": "CC0 — Met Open Access",
    "license_url": "",
    "credit_line": "Collection of The Metropolitan Museum of Art",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 4000,
+   "resolution_tier": "4K"
   }
  ]
 }

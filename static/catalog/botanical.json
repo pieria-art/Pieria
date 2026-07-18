@@ -28,7 +28,9 @@
    "focal_point": [
     0.42,
     0.42
-   ]
+   ],
+   "delivered_edge": 5765,
+   "resolution_tier": "4K"
   },
   {
    "title": "Rosa Gallica",
@@ -53,7 +55,9 @@
    "focal_point": [
     0.55,
     0.35
-   ]
+   ],
+   "delivered_edge": 5118,
+   "resolution_tier": "4K"
   },
   {
    "title": "Lilium Candidum (Madonna Lily)",
@@ -78,7 +82,9 @@
    "focal_point": [
     0.55,
     0.25
-   ]
+   ],
+   "delivered_edge": 5755,
+   "resolution_tier": "4K"
   },
   {
    "title": "Dalmatian Iris (Iris Pallida)",
@@ -103,7 +109,9 @@
    "focal_point": [
     0.62,
     0.3
-   ]
+   ],
+   "delivered_edge": 5603,
+   "resolution_tier": "4K"
   },
   {
    "title": "Kunstformen der Natur: Nepenthaceae (Pitcher Plants)",
@@ -128,7 +136,9 @@
    "focal_point": [
     0.5,
     0.5
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Kunstformen der Natur: Trochilidae (Hummingbirds)",
@@ -153,7 +163,9 @@
    "focal_point": [
     0.5,
     0.5
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Kunstformen der Natur: Discomedusae (Jellyfish)",
@@ -178,7 +190,9 @@
    "focal_point": [
     0.5,
     0.45
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Kunstformen der Natur: Chiroptera (Bats)",
@@ -203,7 +217,9 @@
    "focal_point": [
     0.5,
     0.28
-   ]
+   ],
+   "delivered_edge": 5267,
+   "resolution_tier": "4K"
   },
   {
    "title": "Kunstformen der Natur: Actiniae (Sea Anemones)",
@@ -228,7 +244,9 @@
    "focal_point": [
     0.5,
     0.5
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Pineapple with Cockroaches",
@@ -253,7 +271,9 @@
    "focal_point": [
     0.4,
     0.5
-   ]
+   ],
+   "delivered_edge": 6128,
+   "resolution_tier": "4K"
   },
   {
    "title": "Magnolia Grandiflora",
@@ -278,7 +298,9 @@
    "focal_point": [
     0.5,
     0.35
-   ]
+   ],
+   "delivered_edge": 5065,
+   "resolution_tier": "4K"
   },
   {
    "title": "Red Poppy",
@@ -303,7 +325,9 @@
    "focal_point": [
     0.45,
     0.25
-   ]
+   ],
+   "delivered_edge": 4000,
+   "resolution_tier": "4K"
   },
   {
    "title": "Superb Lyrebird",
@@ -328,7 +352,9 @@
    "focal_point": [
     0.4,
     0.55
-   ]
+   ],
+   "delivered_edge": 5742,
+   "resolution_tier": "4K"
   },
   {
    "title": "Ivory-billed Woodpecker",
@@ -353,7 +379,9 @@
    "focal_point": [
     0.42,
     0.4
-   ]
+   ],
+   "delivered_edge": 6592,
+   "resolution_tier": "4K"
   }
  ]
 }

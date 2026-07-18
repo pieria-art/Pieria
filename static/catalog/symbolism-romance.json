@@ -28,7 +28,9 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "Google Arts &amp; Culture — -wGU6cT4JixtPA Tate Images (http://www.tate-images.com/results.asp?image=N01506&amp;wwwflag=3&amp;imagepos=2)",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 7087,
+   "resolution_tier": "4K"
   },
   {
    "title": "Christ in the House of His Parents",
@@ -53,7 +55,9 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "Google Arts &amp; Culture — KgHTjZxC7spFMQ Tate Images (http://www.tate-images.com/results.asp?image=N03584&amp;wwwflag=3&amp;imagepos=1)",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 4500,
+   "resolution_tier": "4K"
   },
   {
    "title": "Proserpine",
@@ -78,7 +82,9 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "JQFW5c2ZLfpmbw at Google Cultural Institute, zoom level maximum",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 6497,
+   "resolution_tier": "4K"
   },
   {
    "title": "Beata Beatrix",
@@ -103,7 +109,9 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "Google Arts &amp; Culture — GgHmtzXziFIlnQ Tate Images (http://www.tate-images.com/results.asp?image=N01279&amp;wwwflag=3&amp;imagepos=1)",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 6118,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Day Dream",
@@ -128,7 +136,9 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "cAH3bOzjJ3e7Dg at Google Cultural Institute maximum zoom level",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 6634,
+   "resolution_tier": "4K"
   },
   {
    "title": "Lady Lilith",
@@ -154,7 +164,9 @@
    "license_url": "",
    "credit_line": "Delaware Art Museum",
    "license_verified": "2026-07-16",
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "delivered_edge": 2656,
+   "resolution_tier": "HD"
   },
   {
    "title": "The Awakening Conscience",
@@ -179,7 +191,9 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "Google Arts &amp; Culture — eAEe8oI1HIMufA Tate Images (http://www.tate-images.com/results.asp?image=T02075&amp;wwwflag=3&amp;imagepos=1)",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 6040,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Golden Stairs",
@@ -204,7 +218,9 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "repro from artbook",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 4914,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Beguiling of Merlin",
@@ -230,7 +246,9 @@
    "license_url": "",
    "credit_line": "Scanned from Wildman, Stephen: Edward Burne-Jones: Victorian Artist-Dreamer, Metropolitan Museum of Art, 1998, ISBN 0870998595",
    "license_verified": "2026-07-16",
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "delivered_edge": 3019,
+   "resolution_tier": "HD"
   },
   {
    "title": "King Cophetua and the Beggar Maid",
@@ -256,7 +274,9 @@
    "license_url": "",
    "credit_line": "Google Arts &amp; Culture — _wF2vdPVJvC-1Q",
    "license_verified": "2026-07-16",
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "delivered_edge": 2316,
+   "resolution_tier": "HD"
   },
   {
    "title": "The Lady of Shalott",
@@ -281,7 +301,9 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "Google Arts &amp; Culture — RQHFwa4u2LTw0g Tate Images (http://www.tate-images.com/results.asp?image=N01543&amp;wwwflag=3&amp;imagepos=2)",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 4180,
+   "resolution_tier": "4K"
   },
   {
    "title": "Hylas and the Nymphs",
@@ -307,7 +329,9 @@
    "license_url": "",
    "credit_line": "http://cgfa.sunsite.dk/index.html",
    "license_verified": "2026-07-16",
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "delivered_edge": 2666,
+   "resolution_tier": "HD"
   },
   {
    "title": "Ophelia",
@@ -333,7 +357,9 @@
    "license_url": "",
    "credit_line": "http://en.wikipedia.org/wiki/Image:OPHELIA_WATERHOUSE.jpg",
    "license_verified": "2026-07-16",
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "delivered_edge": 2800,
+   "resolution_tier": "HD"
   },
   {
    "title": "The Magic Circle",
@@ -359,7 +385,9 @@
    "license_url": "",
    "credit_line": "https://i.imgur.com/5cczvyQ.jpg",
    "license_verified": "2026-07-16",
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "delivered_edge": 2942,
+   "resolution_tier": "HD"
   },
   {
    "title": "Work",
@@ -384,7 +412,9 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "1QG5Dp3Ti29BxA at Google Cultural Institute, zoom level maximum",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 7644,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Last of England",
@@ -409,7 +439,9 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "Google Arts &amp; Culture — cgENwnusEE2jEw",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "The Apparition",
@@ -434,7 +466,9 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "8wHHpSOCxyjnIg at Google Cultural Institute maximum zoom level",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 5747,
+   "resolution_tier": "4K"
   },
   {
    "title": "Jupiter and Semele",
@@ -459,7 +493,9 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "Fashionone",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 6144,
+   "resolution_tier": "4K"
   },
   {
    "title": "Oedipus and the Sphinx",
@@ -484,7 +520,9 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "https://www.metmuseum.org/collection/the-collection-online/search/437153?=&amp;imgNo=0&amp;tabName=gallery-label",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 5593,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Cyclops",
@@ -510,7 +548,9 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the National Gallery of Art. Please see the Gallery's Open Access Policy.",
    "license_verified": "2026-07-16",
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "delivered_edge": 3621,
+   "resolution_tier": "HD"
   },
   {
    "title": "Isle of the Dead",
@@ -535,7 +575,9 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "1. Unknown sourceUnknown source2. Bridgeman Art Library: Object 838233. Kunstmuseum Basel, online collection",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 6784,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Poor Fisherman",
@@ -560,7 +602,9 @@
    "license_basis": "CC0",
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "https://clevelandart.org/art/1925.802",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 5952,
+   "resolution_tier": "4K"
   },
   {
    "title": "Flaming June",
@@ -585,7 +629,9 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "Google Arts &amp; Culture",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "The Roses of Heliogabalus",
@@ -610,7 +656,9 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "https://i.pinimg.com/originals/e5/24/9d/e5249d23e407a0c32d6f7b567e07143f.jpg",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Circe Invidiosa",
@@ -635,7 +683,9 @@
    "focal_point": [
     0.32,
     0.15
-   ]
+   ],
+   "delivered_edge": 5001,
+   "resolution_tier": "4K"
   },
   {
    "title": "Hope",
@@ -667,7 +717,9 @@
    "focal_point": [
     0.48,
     0.45
-   ]
+   ],
+   "delivered_edge": 4968,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Caress (Les Caresses)",
@@ -692,7 +744,9 @@
    "focal_point": [
     0.35,
     0.3
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "The Wheel of Fortune",
@@ -725,7 +779,9 @@
    "focal_point": [
     0.55,
     0.45
-   ]
+   ],
+   "delivered_edge": 6059,
+   "resolution_tier": "4K"
   },
   {
    "title": "Echo and Narcissus",
@@ -758,7 +814,9 @@
    "focal_point": [
     0.5,
     0.55
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Madonna",
@@ -791,7 +849,9 @@
    "focal_point": [
     0.45,
     0.35
-   ]
+   ],
+   "delivered_edge": 6919,
+   "resolution_tier": "4K"
   },
   {
    "title": "Elaine",
@@ -817,7 +877,9 @@
    "license_url": "",
    "credit_line": "https://www.artic.edu/artworks/72320",
    "license_verified": "2026-07-16",
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "delivered_edge": 3000,
+   "resolution_tier": "HD"
   },
   {
    "title": "Winged Figure",
@@ -843,7 +905,9 @@
    "license_url": "",
    "credit_line": "https://www.artic.edu/artworks/59798",
    "license_verified": "2026-07-16",
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "delivered_edge": 2250,
+   "resolution_tier": "HD"
   },
   {
    "title": "Apollo and Marsyas",
@@ -868,7 +932,9 @@
    "license_basis": "CC0 — AIC public-domain works",
    "license_url": "",
    "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16"
+   "license_verified": "2026-07-16",
+   "delivered_edge": 6105,
+   "resolution_tier": "4K"
   },
   {
    "title": "Cleopatra",
@@ -893,7 +959,9 @@
    "focal_point": [
     0.4,
     0.27
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Saint Cecilia",
@@ -918,7 +986,9 @@
    "focal_point": [
     0.72,
     0.45
-   ]
+   ],
+   "delivered_edge": 7450,
+   "resolution_tier": "4K"
   },
   {
    "title": "A Song of Springtime",
@@ -943,7 +1013,9 @@
    "focal_point": [
     0.35,
     0.4
-   ]
+   ],
+   "delivered_edge": 6000,
+   "resolution_tier": "4K"
   },
   {
    "title": "Lamia (1909)",
@@ -968,7 +1040,9 @@
    "focal_point": [
     0.55,
     0.3
-   ]
+   ],
+   "delivered_edge": 5686,
+   "resolution_tier": "4K"
   },
   {
    "title": "Diogenes",
@@ -993,7 +1067,9 @@
    "focal_point": [
     0.62,
     0.75
-   ]
+   ],
+   "delivered_edge": 5000,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Rescue",
@@ -1018,7 +1094,9 @@
    "focal_point": [
     0.45,
     0.55
-   ]
+   ],
+   "delivered_edge": 4724,
+   "resolution_tier": "4K"
   },
   {
    "title": "La Belle Dame Sans Merci",
@@ -1043,7 +1121,9 @@
    "focal_point": [
     0.38,
     0.35
-   ]
+   ],
+   "delivered_edge": 4533,
+   "resolution_tier": "4K"
   },
   {
    "title": "Lady on a Balcony, Capri",
@@ -1068,7 +1148,9 @@
    "focal_point": [
     0.55,
     0.25
-   ]
+   ],
+   "delivered_edge": 4000,
+   "resolution_tier": "4K"
   },
   {
    "title": "A Tale from the Decameron",
@@ -1093,7 +1175,9 @@
    "focal_point": [
     0.45,
     0.55
-   ]
+   ],
+   "delivered_edge": 4000,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Favourites of the Emperor Honorius",
@@ -1125,7 +1209,9 @@
    "focal_point": [
     0.25,
     0.6
-   ]
+   ],
+   "delivered_edge": 3187,
+   "resolution_tier": "HD"
   }
  ]
 }
