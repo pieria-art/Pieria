@@ -15,7 +15,7 @@ from pathlib import Path
 from fastapi import FastAPI, HTTPException
 from fastapi.concurrency import run_in_threadpool
 from PIL import Image
-from sqlalchemy import delete, select
+from sqlalchemy import delete, func, select
 from sqlalchemy.orm import Session
 
 import federation
@@ -366,8 +366,23 @@ def uninstall_collection(db: Session, cid: str) -> dict | None:
     if sub is None:
         return None
     title = sub.title or cid
-    playlist = db.query(PlaylistModel).filter(
-        PlaylistModel.name == title, PlaylistModel.is_personal.is_(False)).first()
+    # Prefer the explicit Gallery->Collection link (survives a rename); fall back to name for safety.
+    playlist = db.query(PlaylistModel).filter(PlaylistModel.source_subscription_id == sub.id).first()
+    if playlist is None:
+        playlist = db.query(PlaylistModel).filter(
+            PlaylistModel.name == title, PlaylistModel.is_personal.is_(False)).first()
+
+    # The Collection's OWN works (the `pack:<file>` sentinels from its manifest). Uninstall reclaims only
+    # these — anything the user added to the gallery (a photo, a search-added piece) stays in the library.
+    own_urls: set = set()
+    if sub.cached_manifest:
+        try:
+            m = json.loads(sub.cached_manifest)
+            own_urls = {(federation.manifest_item_to_catalog(it) or {}).get("source_url")
+                        for it in m.get("items", [])}
+            own_urls.discard(None)
+        except Exception:  # noqa: BLE001 — a bad manifest means "reclaim nothing", never crash uninstall
+            own_urls = set()
 
     artworks_removed = 0
     if playlist is not None:
@@ -381,6 +396,8 @@ def uninstall_collection(db: Session, cid: str) -> dict | None:
             art = db.query(ArtworkModel).filter(ArtworkModel.id == aid).first()
             if art is None or art.is_personal:
                 continue  # a user photo could never belong to a pack, but never delete one regardless
+            if art.source_url not in own_urls:
+                continue  # a work you added yourself — keep it in your library
             still_linked = db.execute(select(playlist_artwork.c.playlist_id).where(
                 playlist_artwork.c.artwork_id == aid).limit(1)).first()
             if still_linked is None:  # orphaned by this uninstall -> reclaim file + row
@@ -400,9 +417,11 @@ def uninstall_collection(db: Session, cid: str) -> dict | None:
         db.delete(playlist)
         db.commit()
 
-    # If this was the default collection, hand the default to another Museum collection (or clear it).
+    # If this gallery was the default, hand the default to another Museum gallery (or clear it). Match on
+    # the gallery's actual name (which may differ from the Collection title if it was renamed).
+    removed_name = playlist.name if playlist is not None else title
     default = db.query(SettingsModel).filter(SettingsModel.setting_key == "default_playlist").first()
-    if default is not None and default.setting_value == title:
+    if default is not None and default.setting_value == removed_name:
         nxt = db.query(PlaylistModel).filter(PlaylistModel.is_personal.is_(False)).order_by(
             PlaylistModel.id).first()
         default.setting_value = nxt.name if nxt else ""
@@ -412,6 +431,45 @@ def uninstall_collection(db: Session, cid: str) -> dict | None:
     db.commit()
     logger.info(f"[PackUninstall] removed {cid!r} ({title!r}): {artworks_removed} artwork(s) reclaimed.")
     return {"cid": cid, "title": title, "artworks_removed": artworks_removed}
+
+
+def restore_gallery_from_collection(db: Session, playlist_id: int) -> dict | None:
+    """'Restore from Collection': re-link every work of the source Collection that's currently MISSING from
+    this Gallery (the ones you removed come back), appended in fame order. Non-destructive — your order and
+    any extra works you added stay. A work deleted from the LIBRARY can't be restored here (that needs
+    re-downloading the Collection). Returns a summary, or None if this isn't a Collection-linked gallery."""
+    pl = db.query(PlaylistModel).filter(PlaylistModel.id == playlist_id).first()
+    if pl is None or pl.source_subscription_id is None:
+        return None
+    sub = db.query(SubscriptionModel).filter(SubscriptionModel.id == pl.source_subscription_id).first()
+    if sub is None or not sub.cached_manifest:
+        return None
+    manifest = json.loads(sub.cached_manifest)
+
+    existing = {row[0] for row in db.execute(select(playlist_artwork.c.artwork_id).where(
+        playlist_artwork.c.playlist_id == playlist_id)).all()}
+    max_order = db.execute(select(func.max(playlist_artwork.c.display_order)).where(
+        playlist_artwork.c.playlist_id == playlist_id)).scalar()
+    order = (max_order if max_order is not None else -1) + 1
+
+    restored, missing_masters = 0, 0
+    for it in manifest.get("items", []):
+        source_url = (federation.manifest_item_to_catalog(it) or {}).get("source_url")
+        if not source_url:
+            continue
+        art = db.query(ArtworkModel).filter(ArtworkModel.source_url == source_url).first()
+        if art is None:
+            missing_masters += 1  # deleted from the library -> needs a re-download, not a restore
+            continue
+        if art.id in existing:
+            continue
+        db.execute(playlist_artwork.insert().values(
+            playlist_id=playlist_id, artwork_id=art.id, display_order=order))
+        order += 1
+        restored += 1
+    db.commit()
+    logger.info(f"[GalleryRestore] {pl.name!r}: restored {restored}, {missing_masters} need re-download.")
+    return {"restored": restored, "missing_masters": missing_masters, "title": pl.name}
 
 
 async def run_factory_seed(db: Session):

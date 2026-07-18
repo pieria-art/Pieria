@@ -16,7 +16,7 @@ import core.lifespan as lifespan_module
 import federation
 import publisher
 from database import Base
-from models import ArtworkModel, PlaylistModel, SettingsModel, SubscriptionModel
+from models import ArtworkModel, PlaylistModel, SettingsModel, SubscriptionModel, playlist_artwork
 from tools import build_pack, publish_pack
 
 
@@ -279,6 +279,55 @@ def test_installed_gallery_links_back_to_its_collection(tmp_path, monkeypatch):
     sub = db.query(SubscriptionModel).filter(SubscriptionModel.url == "pack:masterpieces").first()
     pl = db.query(PlaylistModel).filter(PlaylistModel.name == "Masterpieces").first()
     assert pl.source_subscription_id == sub.id
+
+
+def test_uninstall_keeps_user_added_outside_work(tmp_path, monkeypatch):
+    """Uninstall reclaims only the Collection's OWN works — a non-personal piece the user added to the
+    gallery (a search-added painting) stays in the library."""
+    priv, pub = publisher.keygen()
+    src = _build_source_pack(tmp_path, priv)
+    _point_lifespan_at(monkeypatch, pub, src)
+    db = _db()
+    manifest = json.loads((src / "_manifests" / "masterpieces.json").read_text())
+    lifespan_module._install_collection(db, "masterpieces", manifest)
+    pl = db.query(PlaylistModel).filter(PlaylistModel.name == "Masterpieces").first()
+    outside = ArtworkModel(filename="outside.jpg", status="approved", is_seed=False,
+                           title="My Find", source_url="https://museum.example/find.jpg")
+    db.add(outside); db.commit(); db.refresh(outside)
+    db.execute(playlist_artwork.insert().values(
+        playlist_id=pl.id, artwork_id=outside.id, display_order=99))
+    db.commit()
+
+    lifespan_module.uninstall_collection(db, "masterpieces")
+    assert db.query(ArtworkModel).filter(ArtworkModel.id == outside.id).first() is not None  # kept
+    assert db.query(ArtworkModel).filter(ArtworkModel.title == "Mona-Lisa").first() is None   # reclaimed
+
+
+def test_restore_gallery_re_adds_removed_collection_works(tmp_path, monkeypatch):
+    """Restore re-links a Collection work removed from the gallery (non-destructive)."""
+    priv, pub = publisher.keygen()
+    src = _build_source_pack(tmp_path, priv)
+    _point_lifespan_at(monkeypatch, pub, src)
+    db = _db()
+    manifest = json.loads((src / "_manifests" / "masterpieces.json").read_text())
+    lifespan_module._install_collection(db, "masterpieces", manifest)
+    pl = db.query(PlaylistModel).filter(PlaylistModel.name == "Masterpieces").first()
+
+    removed_id = db.execute(playlist_artwork.select().where(
+        playlist_artwork.c.playlist_id == pl.id)).first()[1]
+    db.execute(playlist_artwork.delete().where(
+        playlist_artwork.c.playlist_id == pl.id, playlist_artwork.c.artwork_id == removed_id))
+    db.commit()
+
+    def _linked(aid):
+        return db.execute(playlist_artwork.select().where(
+            playlist_artwork.c.playlist_id == pl.id, playlist_artwork.c.artwork_id == aid)).first()
+
+    assert _linked(removed_id) is None
+    res = lifespan_module.restore_gallery_from_collection(db, pl.id)
+    assert res["restored"] == 1 and _linked(removed_id) is not None
+    # idempotent: nothing left to restore
+    assert lifespan_module.restore_gallery_from_collection(db, pl.id)["restored"] == 0
 
 
 def test_downloaded_collection_missing_manifest_returns_false(tmp_path, monkeypatch):

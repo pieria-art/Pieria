@@ -587,3 +587,40 @@ def test_playlists_expose_source_collection(client):
     pls = {p["name"]: p for p in c.get("/playlists").json()}
     assert pls["Masterpieces"]["source_collection"] == "Masterpieces"
     assert pls["Josh's Favorites"]["source_collection"] is None
+
+
+def test_playlist_collection_modified_flag(client):
+    """A linked Gallery reports collection_modified once it diverges from its Collection (a work removed)."""
+    c, db = client
+    manifest = {"title": "Core", "items": [
+        {"title": "A", "image": {"local_file": "a.jpg"}},
+        {"title": "B", "image": {"local_file": "b.jpg"}}]}
+    sub = SubscriptionModel(url="pack:core", title="Core", enabled=True, cached_manifest=json.dumps(manifest))
+    db.add(sub); db.commit(); db.refresh(sub)
+    a = ArtworkModel(filename="a.jpg", status="approved", source_url="pack:a.jpg", title="A")
+    b = ArtworkModel(filename="b.jpg", status="approved", source_url="pack:b.jpg", title="B")
+    db.add_all([a, b]); db.commit(); db.refresh(a); db.refresh(b)
+    pl = PlaylistModel(name="Core", source_subscription_id=sub.id)
+    db.add(pl); db.commit(); db.refresh(pl)
+    for art in (a, b):
+        db.execute(playlist_artwork.insert().values(playlist_id=pl.id, artwork_id=art.id))
+    db.commit()
+
+    by = {p["name"]: p for p in c.get("/playlists").json()}
+    assert by["Core"]["collection_modified"] is False and by["Core"]["collection_missing"] == 0
+
+    # Remove a Collection work -> modified + restorable.
+    db.execute(playlist_artwork.delete().where(
+        playlist_artwork.c.playlist_id == pl.id, playlist_artwork.c.artwork_id == b.id))
+    db.commit()
+    core = {p["name"]: p for p in c.get("/playlists").json()}["Core"]
+    assert core["collection_modified"] is True and core["collection_missing"] == 1
+
+    # Re-add B, then add an OUTSIDE work -> modified but nothing to restore (added-only).
+    db.execute(playlist_artwork.insert().values(playlist_id=pl.id, artwork_id=b.id))
+    outside = ArtworkModel(filename="z.jpg", status="approved", source_url="https://ext/z.jpg", title="Z")
+    db.add(outside); db.commit(); db.refresh(outside)
+    db.execute(playlist_artwork.insert().values(playlist_id=pl.id, artwork_id=outside.id))
+    db.commit()
+    core = {p["name"]: p for p in c.get("/playlists").json()}["Core"]
+    assert core["collection_modified"] is True and core["collection_missing"] == 0

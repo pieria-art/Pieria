@@ -1183,7 +1183,7 @@ function reconcileGrid(container, items, keyFn, cardClass, cardHTML, opts = {}) 
 
 function artworkCardHTML(art, view) {
     const removeBtn = view === 'collection'
-        ? `<button onclick="removeArtworkFromPlaylist(${art.id})" title="Remove from this collection" aria-label="Remove from this collection" style="color: #f59e0b;">✕</button>`
+        ? `<button onclick="removeArtworkFromPlaylist(${art.id})" title="Remove from this gallery" aria-label="Remove from this gallery" style="color: #f59e0b;">✕</button>`
         : `<button onclick="deleteArtworkPermanently(${art.id})" title="Delete from library" aria-label="Delete from library" style="color: #ef4444;">✕</button>`;
     return `
                 <img src="${API_BASE}/artworks/${art.id}/thumbnail?f=${encodeURIComponent(art.filename)}" alt="${_esc(art.filename)}" onclick="openEdit(${art.id})" style="cursor: pointer;">
@@ -1542,7 +1542,7 @@ function renderSidebar() {
                 </span>
             </div>
             <div style="font-size:0.75rem; color:#94a3b8; margin-top:5px;">${p.artworks?.length || 0} images</div>
-            ${p.source_collection ? `<div style="font-size:0.72rem; color:#64748b; margin-top:3px;">🏛️ from your <a href="#" onclick="event.stopPropagation(); switchView('museum'); return false;" style="color:#94a3b8; text-decoration:none;"><strong>${_esc(p.source_collection)}</strong></a> Collection</div>` : ''}
+            ${p.source_collection ? `<div style="font-size:0.72rem; color:#64748b; margin-top:3px;">🏛️ from your <a href="#" onclick="event.stopPropagation(); switchView('museum'); return false;" style="color:#94a3b8; text-decoration:none;"><strong>${_esc(p.source_collection)}</strong></a> Collection${p.collection_modified ? ` · <span style="color:#f59e0b;">edited</span>` : ''}${p.collection_missing ? ` · <a href="#" onclick="event.stopPropagation(); restoreGallery(${p.id}); return false;" title="Re-add ${p.collection_missing} Collection work(s) you removed" style="color:var(--accent-color); text-decoration:none;">↻ Restore ${p.collection_missing}</a>` : ''}</div>` : ''}
             <div class="playlist-meta" onclick="event.stopPropagation()" style="display: grid; grid-template-columns: 1fr 1fr; gap: 5px; margin-top: 10px;">
                 <div style="grid-column: span 2; margin-bottom: 5px;">
                     <label style="display:block;">Default Mode:</label>
@@ -1584,6 +1584,19 @@ function renderSidebar() {
         li.onclick = () => selectPlaylist(p.id);
         list.appendChild(li);
     });
+}
+
+async function restoreGallery(id) {
+    try {
+        const res = await fetch(`${API_BASE}/playlists/${id}/restore-from-collection`, { method: 'POST' });
+        const d = await res.json();
+        if (!res.ok) { showToast(d.detail || 'Could not restore.', 'error'); return; }
+        let msg = d.restored ? `Restored ${d.restored} work(s) from the Collection ✓`
+                             : 'This gallery already has all its Collection works.';
+        if (d.missing_masters) msg += ` · ${d.missing_masters} need a Collection re-download`;
+        showToast(msg, d.restored ? 'success' : 'info');
+        await refreshData();
+    } catch (e) { showToast('Network error restoring.', 'error'); }
 }
 
 async function deletePlaylist(id) {
