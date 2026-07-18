@@ -92,6 +92,12 @@ class PlaylistModel(Base):
     placard_initial_show_sec: Mapped[int] = mapped_column(Integer, default=15)
     placard_interaction_show_sec: Mapped[int] = mapped_column(Integer, default=10)
 
+    # A Gallery (playlist) auto-minted from a downloaded Collection (pack/sub) links back to that
+    # subscription — the explicit "from your <name> Collection" pairing (survives a gallery rename;
+    # name-matching wouldn't). NULL for a user-built gallery. (ADR: Collections=own vs Galleries=show.)
+    source_subscription_id: Mapped[Optional[int]] = mapped_column(
+        ForeignKey("subscriptions.id"), nullable=True, index=True)
+
     # Many-to-Many relationship
     artworks: Mapped[List["ArtworkModel"]] = relationship(
         secondary=playlist_artwork,

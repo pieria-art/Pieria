@@ -5,6 +5,7 @@
 
 import html
 import io
+import json
 import logging
 from pathlib import Path
 from typing import List, Optional
@@ -25,13 +26,14 @@ from pydantic import BaseModel
 from sqlalchemy import delete, update
 from sqlalchemy.orm import Session
 
+import federation
 from agents import process_artwork
 from config import LIBRARY_DIR, strip_markdown
 from core.media import get_optimized_image
 from core.playlists import _link_artwork_to_playlist
 from core.schemas import ArtworkSchema
 from database import SessionLocal, get_db
-from models import ArtworkModel, PlaylistModel, playlist_artwork
+from models import ArtworkModel, PlaylistModel, SubscriptionModel, playlist_artwork
 
 logger = logging.getLogger("artwork-display-api")
 
@@ -48,6 +50,14 @@ class PlaylistSchema(BaseModel):
     placard_initial_show_sec: int
     placard_interaction_show_sec: int
     artworks: List[ArtworkSchema] = []
+    # The Collection (pack/sub) this Gallery was minted from, resolved to its title by list_playlists;
+    # None for a user-built gallery. Drives the "from your <name> Collection" source line + cross-link.
+    source_collection: Optional[str] = None
+    # True once this Gallery diverges from its Collection (a Collection work removed, or an outside work
+    # added) — the UI shows a "· edited" tag. `collection_missing` is how many of the Collection's works
+    # were removed (still in the library) — the UI offers Restore only when this is > 0.
+    collection_modified: bool = False
+    collection_missing: int = 0
     @property
     def image_count(self) -> int:
         return len(self.artworks)
@@ -96,7 +106,41 @@ async def list_playlists(db: Session = Depends(get_db)):
     # the UI. Mirrors the sync-time skip of "_"-prefixed dirs; this is the matching display-layer guard,
     # so even a stale "_" playlist (created before that skip existed) stays hidden everywhere /playlists
     # feeds: the admin sidebar, the "Add to" picker, and the Canvas first-non-empty fallback.
-    return [p for p in db.query(PlaylistModel).all() if not p.name.startswith("_")]
+    playlists = [p for p in db.query(PlaylistModel).all() if not p.name.startswith("_")]
+    # For each auto-minted Gallery: resolve its Collection title (source line) + whether it has diverged
+    # from that Collection (the "· edited" tag). Parse each linked Collection's manifest once.
+    linked_ids = {p.source_subscription_id for p in playlists if p.source_subscription_id}
+    subs, manifests = {}, {}  # sub_id -> SubscriptionModel ; sub_id -> set(source_urls)
+    if linked_ids:
+        for s in db.query(SubscriptionModel).filter(SubscriptionModel.id.in_(linked_ids)).all():
+            subs[s.id] = s
+            urls = set()
+            if s.cached_manifest:
+                try:
+                    m = json.loads(s.cached_manifest)
+                    urls = {(federation.manifest_item_to_catalog(it) or {}).get("source_url")
+                            for it in m.get("items", [])}
+                    urls.discard(None)
+                except (ValueError, TypeError):
+                    urls = set()
+            manifests[s.id] = urls
+    # Which of those Collection works actually exist in the library (installed) — one query.
+    all_urls = set().union(*manifests.values()) if manifests else set()
+    installed_urls = ({u for (u,) in db.query(ArtworkModel.source_url).filter(
+        ArtworkModel.source_url.in_(all_urls)).all() if u} if all_urls else set())
+    for p in playlists:
+        s = subs.get(p.source_subscription_id)
+        p.source_collection = (s.title or s.collection_id or "") if s else None
+        p.collection_modified = False
+        p.collection_missing = 0
+        if s is not None:
+            coll = manifests.get(s.id, set())
+            gallery_urls = {a.source_url for a in p.artworks if a.source_url}
+            missing = (coll & installed_urls) - gallery_urls  # Collection works removed (still restorable)
+            added = bool(gallery_urls - coll)                 # a work not from the Collection
+            p.collection_missing = len(missing)
+            p.collection_modified = bool(missing) or added
+    return playlists
 
 @router.post("/playlists", response_model=PlaylistSchema)
 async def create_playlist(name: str = Form(...), db: Session = Depends(get_db)):
@@ -131,6 +175,16 @@ async def delete_playlist(playlist_id: int, db: Session = Depends(get_db)):
     p = db.query(PlaylistModel).filter(PlaylistModel.id == playlist_id).first()
     if not p: raise HTTPException(404)
     db.delete(p); db.commit(); return {"status": "ok"}
+
+@router.post("/playlists/{playlist_id}/restore-from-collection")
+async def restore_gallery(playlist_id: int, db: Session = Depends(get_db)):
+    """Re-add the source Collection's works that were removed from this Gallery (non-destructive). 400 if
+    the gallery isn't Collection-linked. Works deleted from the library need a Collection re-download."""
+    from core import lifespan as lifespan_module  # lazy import — avoids import-time coupling
+    res = lifespan_module.restore_gallery_from_collection(db, playlist_id)
+    if res is None:
+        raise HTTPException(400, detail="This gallery isn't linked to a Collection.")
+    return res
 
 @router.post("/playlists/{playlist_id}/artworks/{artwork_id}")
 async def link_artwork_to_playlist(playlist_id: int, artwork_id: int, db: Session = Depends(get_db)):

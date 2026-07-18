@@ -62,12 +62,18 @@ def test_list_packs_annotates_installed(client, db, monkeypatch):
 
 
 def test_uninstall_endpoint_removes_subscription_and_playlist(client, db):
-    pl = PlaylistModel(name="Cartography", is_personal=False)
+    import json
+    # The Collection's manifest lists the work (own_urls) so uninstall reclaims it; the gallery links back.
+    manifest = {"title": "Cartography", "items": [{"title": "Map", "image": {"local_file": "c.jpg"}}]}
+    sub = SubscriptionModel(url="pack:cartography", title="Cartography", trust="verified",
+                            cached_manifest=json.dumps(manifest))
+    db.add(sub); db.commit(); db.refresh(sub)
+    pl = PlaylistModel(name="Cartography", is_personal=False, source_subscription_id=sub.id)
     db.add(pl); db.commit(); db.refresh(pl)
-    art = ArtworkModel(filename="c.jpg", status="approved", is_seed=True, title="Map")
+    art = ArtworkModel(filename="c.jpg", status="approved", is_seed=True, title="Map",
+                       source_url="pack:c.jpg")
     db.add(art); db.commit(); db.refresh(art)
     db.execute(playlist_artwork.insert().values(playlist_id=pl.id, artwork_id=art.id))
-    db.add(SubscriptionModel(url="pack:cartography", title="Cartography", trust="verified"))
     db.commit()
 
     r = client.delete("/api/packs/cartography")

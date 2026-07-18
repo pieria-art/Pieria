@@ -355,7 +355,7 @@
 
             <div class="nav-section">My Library</div>
             <button id="nav-playlists" class="nav-btn active" onclick="switchView('playlists')">
-                Collections <span id="playlist-count" class="badge">0</span>
+                🖼️ Galleries <span id="playlist-count" class="badge">0</span>
             </button>
             <button id="nav-library" class="nav-btn" onclick="switchView('library')">
                 Full Library <span id="library-count" class="badge">0</span>
@@ -386,10 +386,11 @@
 
         <div id="sidebar-playlists">
             <button id="batch-enrich-btn" data-ai-action="1" class="secondary" style="width:100%; margin-bottom:20px; font-size:0.7rem;" onclick="batchEnrich()">Batch Enrich Library (RAG)</button>
-            <h2>Collections</h2>
+            <h2>Galleries</h2>
+            <p style="font-size:0.72rem; color:#64748b; margin:-6px 0 10px;">Shows that play on your screens. Build one from any works in your Collections.</p>
             <ul id="playlist-list" class="playlist-list"></ul>
             <div class="new-playlist">
-                <input type="text" id="new-playlist-name" placeholder="New Collection Name...">
+                <input type="text" id="new-playlist-name" placeholder="New gallery name…">
                 <button onclick="createPlaylist()">+</button>
             </div>
         </div>
@@ -413,7 +414,7 @@
         <div id="view-playlists">
             <div class="action-bar">
                 <div id="upload-zone" class="upload-zone">
-                    Upload New <span id="target-playlist-name">to a collection</span>
+                    Upload New <span id="target-playlist-name">to a gallery</span>
                     <input type="file" id="file-input" hidden multiple>
                 </div>
                 <div style="display:flex; gap:12px; margin-left:20px;">
