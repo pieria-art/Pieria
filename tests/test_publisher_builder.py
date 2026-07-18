@@ -28,6 +28,15 @@ def test_build_item_shape_and_omits_empties():
     assert "artist" not in it and "attribution" not in it["image"]
 
 
+def test_build_item_carries_series_and_resolution_tier():
+    # Present values pass through as top-level item keys...
+    it = publisher.build_item({**_row(), "series": "Eastern Capital", "resolution_tier": "8K"})
+    assert it["series"] == "Eastern Capital" and it["resolution_tier"] == "8K"
+    # ...and empties are omitted entirely, keeping the canonical (to-be-signed) bytes clean.
+    bare = publisher.build_item(_row())
+    assert "series" not in bare and "resolution_tier" not in bare
+
+
 def test_build_item_accepts_image_url_alias_and_list_tags():
     it = publisher.build_item({"title": "X", "image_url": "https://x/y.jpg", "tags": ["a", "b"]})
     assert it["image"]["full_url"] == "https://x/y.jpg" and it["tags"] == ["a", "b"]

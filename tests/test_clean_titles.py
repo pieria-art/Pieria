@@ -27,6 +27,10 @@ from tools.clean_titles import clean_title, process_file
     # numbered-plate OCR fix (Roman I → Arabic 1), multi-species list preserved
     ("I. Townsend's Warbler - 2. Arctic Blue-bird - 3. Western Blue-bird (cropped)",
      "1. Townsend's Warbler - 2. Arctic Blue-bird - 3. Western Blue-bird", None),
+    # …and a SOLITARY plate (no numbered list) still gets the Roman I → Arabic 1 fix
+    ("I. Mourning Warbler", "1. Mourning Warbler", None),
+    # …but a genuine Roman-numeral outline (a later "II.") is left intact
+    ("I. Prologue II. Finale", "I. Prologue II. Finale", None),
     # fully-quoted title unwrapped; a lone internal quote is NOT stripped
     ('"Snap-the-Whip"', "Snap-the-Whip", None),
     # untouched titles pass through unchanged (no false positives)

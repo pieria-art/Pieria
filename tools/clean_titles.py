@@ -89,7 +89,10 @@ def clean_title(raw: str) -> tuple[str, str | None]:
                     series = m.group("series").strip()
                     t = _SERIES_TAIL.sub("", t).strip()
 
-    if _PLATE_ROMAN_I.match(t) and " - 2." in t:  # OCR'd Roman "I." heading an Arabic-numbered list
+    # OCR'd Roman "I." plate number → Arabic "1." — fires both for a multi-species list ("I. X - 2. Y")
+    # and a solitary plate ("I. Mourning Warbler"). Skip when a later "II." is present, i.e. a genuine
+    # Roman-numeral outline where the leading "I." is intentional, not an OCR'd "1.".
+    if _PLATE_ROMAN_I.match(t) and "II." not in t:
         t = "1. " + t[3:]
 
     t = re.sub(r'\s+', ' ', t).strip()

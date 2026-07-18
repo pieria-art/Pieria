@@ -129,6 +129,15 @@ def test_manifest_item_to_catalog_maps_fields():
     assert c["license"] == "CC0-1.0"
 
 
+def test_manifest_item_to_catalog_maps_series_and_resolution_tier():
+    item = {**_valid_manifest()["items"][0], "series": "Eastern Capital", "resolution_tier": "8K"}
+    c = manifest_item_to_catalog(item)
+    assert c["series"] == "Eastern Capital" and c["resolution_tier"] == "8K"
+    # absent → None (install stores NULL, not "")
+    bare = manifest_item_to_catalog(_valid_manifest()["items"][0])
+    assert bare["series"] is None and bare["resolution_tier"] is None
+
+
 # --- endpoints + catalog merge ----------------------------------------------
 
 @pytest.fixture

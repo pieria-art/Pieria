@@ -89,9 +89,12 @@ PACK_PUBLISHER = {"id": "screendocent", "name": "Screen Docent"}
 SIGNING_KEY_ENV = "SD_PACK_SIGNING_KEY"
 
 # Placard fields copied verbatim (in this order) from source item -> manifest item.
+# `series` (clean_titles) + `resolution_tier` (tag_resolution) are additive owned-art metadata carried
+# through to the device (both NULL-safe: absent in the source item => "" in the manifest).
 _PLACARD_FIELDS = (
     "title", "agent_name", "agent_role", "creation_date", "cultural_context", "medium", "kind",
     "date_display", "description_narrative", "tags", "source", "license", "needs_frame_crop",
+    "series", "resolution_tier",
 )
 
 
@@ -534,6 +537,8 @@ def _v2_row(mi: dict) -> dict:
         "medium": mi.get("medium") or None,
         "culture": mi.get("cultural_context") or None,
         "placard": mi.get("description_narrative") or None,
+        "series": mi.get("series") or None,
+        "resolution_tier": mi.get("resolution_tier") or None,
         "tags": mi.get("tags") or None,
         "local_file": mi.get("filename"),
         "thumbnail_url": f"pack:_catalog_thumbs/{mi['thumbnail']}" if mi.get("thumbnail") else None,

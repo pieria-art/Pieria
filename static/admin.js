@@ -16,9 +16,6 @@ let currentView = 'playlists';
 let pollInterval = null;
 let sortableInstance = null;
 let currentSessionId = null;
-// Set only during page load when a catalog collection was open at refresh time; renderCatalog()
-// consumes it once (re-opening that collection instead of drawing the grid) then clears it.
-let pendingCatalogRestore = null;
 
 // Serialization Queue for API Actions
 let actionQueue = [];
@@ -65,10 +62,6 @@ async function init() {
     let savedView = (() => { try { return localStorage.getItem('sd_admin_view'); } catch (e) { return null; } })();
     // Migrate the old split Discover/Browse-Catalog views to the merged Museum Art view.
     if (savedView === 'catalog' || savedView === 'discover') savedView = 'museum';
-    // Restore the catalog collection that was open, so refresh returns to it (not the collections
-    // grid). Must be read before switchView() below — switching to 'museum' synchronously renders
-    // the grid via enterMuseum(), and renderCatalog() consumes this to redirect into the collection.
-    try { pendingCatalogRestore = localStorage.getItem('sd_admin_catalog_collection'); } catch (e) { pendingCatalogRestore = null; }
     const validViews = ['playlists', 'library', 'review', 'museum', 'devices', 'publisher', 'settings'];
     if (savedView && validViews.includes(savedView)) {
         switchView(savedView);
@@ -1198,7 +1191,7 @@ function artworkCardHTML(art, view) {
     return `
                 <img src="${API_BASE}/artworks/${art.id}/thumbnail?f=${encodeURIComponent(art.filename)}" alt="${_esc(art.filename)}" onclick="openEdit(${art.id})" style="cursor: pointer;">
                 <div class="info">
-                    <strong>${_esc(art.title || art.filename)}</strong><br>
+                    <strong>${_esc(art.title || art.filename)}</strong> ${_resBadge(art.resolution_tier)}<br>
                     <small>${_esc(cardSubtitle(art))}</small>${art.is_seed ? '<br><span style="color: #10b981; font-weight: bold; font-size: 0.75rem;">🌱 Built-In</span>' : ''}
                 </div>
                 <div class="actions" style="grid-template-columns: 1fr auto;">
@@ -2772,20 +2765,15 @@ function clearMuseumSearch() {
     showCuratedIdle();
 }
 
-// Populate the Museum Art (catalog) badge. Shared by renderCatalog and the init-time loader so the
-// count is correct on first paint, not only after the user opens the Museum view.
-function _setCatalogCount(collections) {
-    const total = (collections || []).reduce((n, c) => n + (c.count || 0), 0);
-    const el = document.getElementById('catalog-count');
-    if (el) el.textContent = total;
-}
-
-// Fetch just enough to show the Museum Art count on a fresh admin load (the badge otherwise sat at 0
-// until the user clicked into the Museum view, which is what populated it).
+// Populate the "Curated Art" nav badge with the number of works you actually OWN — the sum of your
+// installed collections' item counts (was the legacy bundled-catalog total before the browse retired).
 async function loadCatalogCount() {
+    const el = document.getElementById('catalog-count');
+    if (!el) return;
     try {
-        const index = await (await fetch(`${API_BASE}/api/catalog`)).json();
-        _setCatalogCount(index.collections || []);
+        const packs = await (await fetch(`${API_BASE}/api/packs`)).json();
+        const owned = (packs.collections || []).filter(c => c.installed);
+        el.textContent = owned.reduce((n, c) => n + (c.item_count || 0), 0);
     } catch (e) { /* leave the placeholder 0 */ }
 }
 
@@ -2798,135 +2786,6 @@ async function loadPhotosCount() {
         const data = await (await fetch(`${API_BASE}/api/studio/photos`)).json();
         el.textContent = data.count || 0;
     } catch (e) { /* leave the placeholder 0 */ }
-}
-
-async function renderCatalog() {
-    if (catalogSelectMode) exitCatalogSelect();  // clean slate when navigating between catalog views
-    // Page-load restore: re-open the collection that was open at refresh time instead of drawing
-    // the grid. Consumed once so later calls to renderCatalog() (e.g. the "All collections" back
-    // button) behave normally.
-    if (pendingCatalogRestore) {
-        const restoreId = pendingCatalogRestore;
-        pendingCatalogRestore = null;
-        return openCatalogCollection(restoreId);
-    }
-    // Showing the collections grid means we're no longer inside a specific collection.
-    try { localStorage.removeItem('sd_admin_catalog_collection'); } catch (e) {}
-    const container = document.getElementById('catalog-container');
-    if (!container) return;
-    container.innerHTML = '<p style="color:#94a3b8;">Loading catalog…</p>';
-    try {
-        const index = await (await fetch(`${API_BASE}/api/catalog`)).json();
-        const collections = index.collections || [];
-        _setCatalogCount(collections);
-
-        if (!collections.length) {
-            container.innerHTML = '<p style="color:#94a3b8;">No catalog collections are loaded. Screen Docent normally ships with a curated catalog — meanwhile, the <strong>Discover</strong> tab can search the world\'s museums directly.</p>';
-            return;
-        }
-        const grid = document.createElement('div');
-        grid.className = 'artwork-grid';
-        collections.forEach(col => {
-            const card = document.createElement('div');
-            card.className = 'artwork-card';
-            card.style.cursor = 'pointer';
-            // "Start Here" — the curated Masterpieces collection is the paintings-only fame-sorted
-            // on-ramp into the catalog; index.json already lists it first, this just makes that visible.
-            const isStartHere = col.id === 'masterpieces';
-            // A tiny collection (e.g. 2-item Ukiyo-e) reads as broken next to 30-work neighbors —
-            // de-emphasize, never hide, so it doesn't look like a UI bug.
-            const isSmall = (col.count || 0) > 0 && col.count < 5;
-            if (isStartHere) card.classList.add('catalog-start-here');
-            card.onclick = () => openCatalogCollection(col.id);
-            card.innerHTML = `
-                <img loading="lazy" src="${_esc(col.cover_thumbnail)}" alt="${_esc(col.title)}" style="background:#0f172a;">
-                <div class="info">
-                    ${isStartHere ? '<span class="badge start-here-badge">★ Start Here</span><br>' : ''}
-                    <strong>${_esc(col.title)}</strong> ${trustBadge(col.origin, col.trust)}<br>
-                    <small style="opacity:0.7">${_esc(col.description || '')}</small><br>
-                    <small style="color:var(--accent-color)">${col.count} works →</small>
-                    ${isSmall ? ' <span class="badge few-works-badge">small set</span>' : ''}
-                </div>`;
-            grid.appendChild(card);
-        });
-        container.innerHTML = '';
-        container.appendChild(grid);
-    } catch (e) {
-        console.error('[Catalog] index load failed:', e);
-        container.innerHTML = '<p style="color:#ef4444;">Failed to load catalog.</p>';
-    }
-}
-
-// Level 2: one collection's items (lazy — only this collection's thumbnails load).
-async function openCatalogCollection(collectionId) {
-    if (catalogSelectMode) exitCatalogSelect();  // clean slate when navigating between catalog views
-    // Remember the open collection so a browser refresh returns to it instead of resetting to the
-    // collections grid (mirrors sd_admin_playlist for the LIBRARY playlist sidebar).
-    try { localStorage.setItem('sd_admin_catalog_collection', String(collectionId)); } catch (e) {}
-    const container = document.getElementById('catalog-container');
-    if (!container) return;
-    container.innerHTML = '<p style="color:#94a3b8;">Loading…</p>';
-    try {
-        const resp = await fetch(`${API_BASE}/api/catalog/${encodeURIComponent(collectionId)}`);
-        if (!resp.ok) {
-            // Stale/deleted collection id — self-heal so a refresh doesn't keep retrying it.
-            try { localStorage.removeItem('sd_admin_catalog_collection'); } catch (e) {}
-            container.innerHTML = '<p style="color:#ef4444;">Collection not found.</p>';
-            return;
-        }
-        const col = await resp.json();
-        const items = col.items || [];
-
-        const head = document.createElement('div');
-        head.style.cssText = 'margin-bottom:16px;';
-        head.innerHTML = `
-            <button class="secondary" onclick="renderCatalog()" style="font-size:0.75rem; padding:6px 12px; margin-bottom:10px;">← All collections</button>
-            <h3 style="margin:6px 0 2px; color:var(--text-color); font-size:1.05rem;">${_esc(col.title)} ${trustBadge(col.origin, col.trust)}</h3>
-            <span style="font-size:0.78rem; color:#94a3b8;">${_esc(col.description || '')}</span>
-            <span style="display:block; font-size:0.68rem; color:#64748b; margin-top:4px;">${_esc(col.source || '')}${col.license ? ' · ' + _esc(col.license) : ''}</span>
-            <div style="margin-top:12px; display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
-                <label style="font-size:0.78rem; color:#94a3b8;">Add to:</label>
-                <select id="catalog-target" style="background:#0f172a; border:1px solid var(--border-color); color:var(--text-color); padding:6px 10px; border-radius:6px; font-size:0.8rem;">
-                    <option value="">Library only</option>
-                    ${(currentPlaylists || []).map(p => `<option value="${p.id}">${_esc(p.name)}</option>`).join('')}
-                </select>
-                ${items.length ? `<button class="secondary catalog-select-btn" onclick="toggleCatalogSelect()" style="font-size:0.75rem; padding:6px 12px; margin-left:auto;">☑ Select</button>` : ''}
-            </div>`;
-
-        const grid = document.createElement('div');
-        grid.className = 'artwork-grid';
-        items.forEach((it, idx) => {
-            const card = document.createElement('div');
-            card.className = 'artwork-card';
-            const added = !!it.added;
-            // Items arrive fame-sorted (featured_rank desc), so the array position `idx` is NOT the
-            // index /api/catalog/add expects — the server stamps the original position as
-            // `item_index` on every item for exactly this reason. Fall back to `idx` only if it's
-            // ever missing (e.g. an older cached response).
-            const itemIdx = it.item_index ?? idx;
-            card.dataset.cid = col.id;
-            card.dataset.idx = itemIdx;
-            card.dataset.cidx = `${col.id}:${itemIdx}`;
-            if (added) card.dataset.added = '1';
-            card.innerHTML = `
-                <img loading="lazy" src="${_esc(it.thumbnail_url)}" alt="${_esc(it.title)}" style="background:#0f172a;">
-                <div class="info">
-                    <strong>${_esc(it.title || 'Untitled')}</strong><br>
-                    <small>${_esc(it.agent_name || 'Unknown')}</small><br>
-                    <small style="opacity:0.6">${_esc(it.date_display || '')}</small>
-                </div>
-                <div class="actions">
-                    <button class="success" ${added ? 'disabled' : ''} onclick="addCatalogItem('${_esc(col.id)}', ${itemIdx}, this)">${added ? 'Added ✓' : 'Add to Library'}</button>
-                </div>`;
-            grid.appendChild(card);
-        });
-        container.innerHTML = '';
-        container.appendChild(head);
-        container.appendChild(grid);
-    } catch (e) {
-        console.error('[Catalog] collection load failed:', e);
-        container.innerHTML = '<p style="color:#ef4444;">Failed to load collection.</p>';
-    }
 }
 
 async function addCatalogItem(collectionId, itemIndex, btn) {

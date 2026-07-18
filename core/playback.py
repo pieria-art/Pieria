@@ -164,6 +164,7 @@ async def select_next_image(
             "title": selected_art.title, "agent_name": selected_art.agent_name, "agent_role": selected_art.agent_role,
             "creation_date": selected_art.creation_date, "cultural_context": selected_art.cultural_context,
             "medium": selected_art.medium, "date_display": selected_art.date_display,
+            "series": selected_art.series,
             "description": selected_art.description_narrative, "tags": selected_art.tags
         }
     }

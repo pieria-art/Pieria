@@ -17,11 +17,14 @@ from models import ArtworkModel, PlaylistModel, SettingsModel, SubscriptionModel
 from tools import build_pack
 
 
-def _mi(title, rank, focal=None):
+def _mi(title, rank, focal=None, series=None, resolution_tier=None):
     return {"filename": f"{title.lower()}.jpg", "thumbnail": f"{title.lower()}_t.jpg",
             "source_url": f"https://x/{title}.jpg", "title": title, "agent_name": "A. Painter",
             "agent_role": "Artist", "cultural_context": "French", "description_narrative": "A placard.",
             "kind": "painting", "license": "Public Domain", "date_display": "1890",
+            # Additive owned-art metadata (ADR resolution-tags / clean_titles) — carried through the
+            # signed v2 manifest to the device. Empty when omitted, to prove the NULL path propagates.
+            "series": series or "", "resolution_tier": resolution_tier or "",
             "focal_point": focal or [0.5, 0.5], "featured_rank": rank, "credit_line": "Some Museum",
             "source": "Some Museum"}
 
@@ -35,7 +38,9 @@ def _make_v2_pack(tmp_path, priv):
         Image.new("RGB", (20, 20), color="red").save(library_dir / name, "JPEG")
     cols = [
         {"id": "masterpieces", "title": "Masterpieces", "description": "Best",
-         "items": [_mi("Low", 10), _mi("High", 95, focal=[0.6, 0.4]), _mi("Mid", 50)]},
+         "items": [_mi("Low", 10),
+                   _mi("High", 95, focal=[0.6, 0.4], series="Eastern Capital", resolution_tier="8K"),
+                   _mi("Mid", 50, resolution_tier="4K")]},
         {"id": "impressionism", "title": "Impressionism", "description": "", "items": [_mi("Monet", 80)]},
     ]
     build_pack._emit_v2_manifests(artwork_root, cols, signing_key=priv, generated_at="2026-07-16")
@@ -93,6 +98,14 @@ def test_install_creates_verified_subscriptions_and_playlists(tmp_path, monkeypa
             assert a.source_url.startswith("pack:")        # local sentinel, never fetchable
         # focal survived the round-trip
         assert (artworks["high.jpg"].focal_x, artworks["high.jpg"].focal_y) == (0.6, 0.4)
+
+        # series + resolution_tier propagate end-to-end (v1 item → _v2_row → signed build_item →
+        # manifest_item_to_catalog → ArtworkModel); absent values arrive as None, not "".
+        assert artworks["high.jpg"].series == "Eastern Capital"
+        assert artworks["high.jpg"].resolution_tier == "8K"
+        assert artworks["mid.jpg"].series is None
+        assert artworks["mid.jpg"].resolution_tier == "4K"
+        assert artworks["low.jpg"].series is None and artworks["low.jpg"].resolution_tier is None
 
         # display_order follows the manifest's array (fame) order: High, Mid, Low
         mp_id = playlists["Masterpieces"].id

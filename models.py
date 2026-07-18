@@ -144,6 +144,12 @@ class ArtworkModel(Base):
     date_display: Mapped[Optional[str]] = mapped_column(String)
     description_narrative: Mapped[Optional[str]] = mapped_column(Text)
     tags: Mapped[Optional[str]] = mapped_column(String)   # comma-separated
+    # The series/set a print belongs to (e.g. a ukiyo-e "Famous Places…"), lifted from the source
+    # title by tools/clean_titles.py. Additive placard subtitle; NULL for works with no series.
+    series: Mapped[Optional[str]] = mapped_column(String)
+    # Honest resolution tag ("HD"|"4K"|"8K") authored offline by tools/tag_resolution.py and carried
+    # through the pack manifest (ADR resolution-tags §6). Surfaces the delivered quality on owned art.
+    resolution_tier: Mapped[Optional[str]] = mapped_column(String)
     is_seed: Mapped[bool] = mapped_column(Boolean, default=False)
     # A personal photo (Studio → My Photos), not museum/catalog art: gates the jargon-free placard,
     # skips the museum AI pipeline, and keeps it out of Discover/publish.
