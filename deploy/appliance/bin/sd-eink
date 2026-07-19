@@ -23,6 +23,7 @@ from __future__ import annotations
 
 import logging
 import os
+import signal
 import sys
 from pathlib import Path
 
@@ -74,8 +75,22 @@ def _make_dry_run_client():
     return _LoggingFakeInkyClient()
 
 
+def _install_signal_handlers() -> None:
+    """Exit the poll loop cleanly on SIGTERM (systemctl stop) / SIGINT (Ctrl-C). A killed-but-still-alive
+    process keeps the inky SPI/CS GPIO lines claimed and blocks the next start ("pins in use, claimed by
+    inky"); a prompt clean exit lets the kernel release them. SystemExit interrupts time.sleep() so we
+    stop within the current tick instead of waiting out the cadence."""
+    def _stop(signum, _frame):
+        logger.info(f"[sd-eink] signal {signum} received — shutting down")
+        raise SystemExit(0)
+
+    signal.signal(signal.SIGTERM, _stop)
+    signal.signal(signal.SIGINT, _stop)
+
+
 def main() -> None:
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(name)s %(levelname)s %(message)s")
+    _install_signal_handlers()
 
     conf_path = None
     dry_run_flag = False
@@ -97,7 +112,10 @@ def main() -> None:
         logger.info("[sd-eink] --dry-run: using FakeInkyClient — no hardware will be touched")
         client = _make_dry_run_client()
 
-    run_loop(cfg, client=client)
+    try:
+        run_loop(cfg, client=client)
+    except (KeyboardInterrupt, SystemExit):
+        logger.info("[sd-eink] stopped")
 
 
 if __name__ == "__main__":

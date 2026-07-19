@@ -18,6 +18,11 @@ Type=simple
 ExecStart=/usr/local/bin/sd-eink __BOOT_CONF__
 Restart=always
 RestartSec=10
+# Managed /run/sd-eink (auto-created, auto-cleaned) for the watchdog-friendly heartbeat file, so it
+# doesn't rely on a writable /run root. sd-eink handles SIGTERM to release the panel GPIO cleanly.
+RuntimeDirectory=sd-eink
+Environment=EINK_HEARTBEAT_FILE=/run/sd-eink/heartbeat
+TimeoutStopSec=15
 
 [Install]
 WantedBy=multi-user.target
