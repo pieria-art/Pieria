@@ -40,11 +40,16 @@ echo "sd-setup-boot: no configuration found — starting the Docent-Setup wizard
 # --- Bring up the AP + captive portal -------------------------------------------------------------
 start_ap() {
   rfkill unblock wlan 2>/dev/null || true
+  # Take wlan0 away from NetworkManager FIRST — this unit is ordered After=NetworkManager, so NM is up
+  # and these stick. NM may have already auto-connected saved Wi-Fi; disconnect drops that, and
+  # "managed no" stops NM re-grabbing the radio and stomping the AP (bench-day finding 2026-07-19).
+  nmcli device disconnect wlan0 2>/dev/null || true
+  nmcli device set wlan0 managed no 2>/dev/null || true
+  # Now configure the interface + AP address (NM won't flush it out from under us).
   ip link set wlan0 up 2>/dev/null || true
   ip addr flush dev wlan0 2>/dev/null || true
   ip addr add "$AP_ADDR" dev wlan0 2>/dev/null || true
-  # NetworkManager would fight hostapd for wlan0 — hand the interface to us for the setup window.
-  nmcli device set wlan0 managed no 2>/dev/null || true
+  # hostapd.service ships MASKED on Bookworm — run the binary directly (the service start is a no-op fallback).
   systemctl start hostapd 2>/dev/null || hostapd -B "$SETUP_DIR/hostapd.conf" 2>/dev/null || true
   dnsmasq --conf-file="$SETUP_DIR/dnsmasq.conf" 2>/dev/null || true
 }

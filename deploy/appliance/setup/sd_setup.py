@@ -252,6 +252,9 @@ def make_handler(cfg: SetupConfig):
             # --- live path (Pi-gated; runs on a real first boot) ---
             try:
                 cfg.boot_conf.write_text(conf)
+                # World-readable by design (FAT boot partition, read from any computer). Set it
+                # explicitly so the mode is deterministic rather than inherited from the process umask.
+                os.chmod(cfg.boot_conf, 0o644)
                 if ssid:
                     _join_wifi(ssid, fields.get("wifi_pass", ""))
                 _schedule_reboot()
@@ -265,11 +268,21 @@ def make_handler(cfg: SetupConfig):
 
 
 def _join_wifi(ssid: str, password: str) -> None:
-    """Join Wi-Fi via NetworkManager (Bookworm default). Live-mode only."""
-    cmd = ["nmcli", "device", "wifi", "connect", ssid]
+    """Persist the chosen Wi-Fi to NetworkManager so the post-commit reboot auto-joins it. We SAVE the
+    profile (autoconnect) rather than activate it now: wlan0 is currently held by the setup AP (hostapd,
+    NM-unmanaged), and activating would tear the AP down mid-commit — killing the phone's connection
+    before it ever sees the success page. Leaving setup mode on reboot lets NM auto-connect the saved
+    profile. Live-mode only. (bench-day finding 2026-07-19)"""
+    con = f"docent-{ssid}"
+    # Idempotent: drop any stale profile of the same name from a prior run.
+    subprocess.run(["nmcli", "connection", "delete", con], check=False, capture_output=True, timeout=15)
+    subprocess.run(["nmcli", "connection", "add", "type", "wifi", "con-name", con,
+                    "ifname", "wlan0", "ssid", ssid, "autoconnect", "yes"],
+                   check=True, capture_output=True, timeout=30)
     if password:
-        cmd += ["password", password]
-    subprocess.run(cmd, check=True, capture_output=True, timeout=45)
+        subprocess.run(["nmcli", "connection", "modify", con,
+                        "wifi-sec.key-mgmt", "wpa-psk", "wifi-sec.psk", password],
+                       check=True, capture_output=True, timeout=30)
 
 
 def _schedule_reboot() -> None:

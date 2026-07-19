@@ -1,0 +1,115 @@
+#!/usr/bin/env bash
+# sd-image-prep — turn a provisioned appliance into a "golden master" that boots into the first-run
+# setup wizard. This is the sysprep step the .img bake needs (install.sh installs sd-setup.service but
+# leaves it DISABLED); it is also how the captive-portal wizard tail gets validated in place on a bench
+# box with no spare SD card.
+#
+# Two modes:
+#   --enable-setup  (light, reversible, NON-destructive) — enable sd-setup.service + reset the boot conf
+#                   to the shipped placeholder so sd-setup-boot::is_configured() returns false and the
+#                   NEXT boot enters the wizard exactly once. Keeps SSH host keys, NetworkManager
+#                   connections, and the app database, so you can reconnect and reconcile afterward.
+#   --full          (DESTRUCTIVE — for a distributable image capture only) — everything --enable-setup
+#                   does, PLUS wipe machine identity (SSH host keys, /etc/machine-id), saved Wi-Fi
+#                   (NetworkManager system-connections), and logs, so the captured .img is clean and
+#                   every flashed unit regenerates its own identity. Run this only right before you
+#                   power down and capture the card. (The app DB reset, if wanted, is a separate manual
+#                   capture-time step — this script never touches Artwork/ or data/.)
+#
+# Usage:  sudo sd-image-prep --enable-setup
+#         sudo sd-image-prep --full
+set -euo pipefail
+
+# --- resolve the boot-partition conf path (same rule as sd-setup-boot / install.sh) ---------------
+if [ -d /boot/firmware ]; then BOOT_CONF="/boot/firmware/screen-docent.conf"; else BOOT_CONF="/boot/screen-docent.conf"; fi
+
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+# The shipped placeholder conf, if we can find it (repo layout: ../config/…; installed layout: none).
+CONF_EXAMPLE=""
+for c in "$SCRIPT_DIR/../config/screen-docent.conf.example" \
+         "/usr/local/share/screen-docent/screen-docent.conf.example"; do
+  [ -r "$c" ] && { CONF_EXAMPLE="$c"; break; }
+done
+
+require_root() {
+  if [ "$(id -u)" -ne 0 ]; then echo "Please run as root:  sudo $0 $*" >&2; exit 1; fi
+}
+
+# --- reset the boot conf to the shipped placeholder (is_configured() -> false) --------------------
+reset_conf_to_placeholder() {
+  if [ -n "$CONF_EXAMPLE" ]; then
+    install -m 0644 "$CONF_EXAMPLE" "$BOOT_CONF"
+    echo "  reset $BOOT_CONF from $CONF_EXAMPLE"
+  else
+    # No example on disk (installed-only layout) — write the minimal placeholder the gate keys on.
+    cat > "$BOOT_CONF" <<'EOF'
+# Screen Docent — Appliance configuration (placeholder; the first-run wizard rewrites this).
+SERVER_URL=http://192.168.1.50:8000
+DISPLAY_ID=living_room
+EOF
+    chmod 0644 "$BOOT_CONF"
+    echo "  wrote placeholder $BOOT_CONF"
+  fi
+}
+
+enable_setup_service() {
+  if ! systemctl list-unit-files sd-setup.service >/dev/null 2>&1; then
+    echo "  ERROR: sd-setup.service is not installed — run install.sh first." >&2
+    exit 1
+  fi
+  systemctl enable sd-setup.service
+  echo "  enabled sd-setup.service (fires on next boot, then no-ops once configured)"
+}
+
+# --- DESTRUCTIVE identity/network/log wipe (--full only) ------------------------------------------
+wipe_identity() {
+  rm -f /etc/ssh/ssh_host_* 2>/dev/null || true
+  # Regenerate host keys on next boot (Bookworm ships regenerate-ssh-host-keys.service; belt-and-braces).
+  systemctl enable regenerate-ssh-host-keys.service 2>/dev/null || true
+  : > /etc/machine-id
+  rm -f /var/lib/dbus/machine-id 2>/dev/null || true
+  echo "  wiped SSH host keys + machine-id (regenerate on first boot)"
+}
+
+wipe_network() {
+  rm -f /etc/NetworkManager/system-connections/* 2>/dev/null || true
+  echo "  wiped saved Wi-Fi (NetworkManager system-connections)"
+}
+
+clean_logs() {
+  journalctl --rotate 2>/dev/null || true
+  journalctl --vacuum-time=1s 2>/dev/null || true
+  find /var/log -type f -exec truncate -s 0 {} + 2>/dev/null || true
+  rm -f /home/*/.bash_history /root/.bash_history 2>/dev/null || true
+  echo "  cleaned logs + shell history"
+}
+
+case "${1:-}" in
+  --enable-setup)
+    require_root "$@"
+    echo "==> sd-image-prep: enable-setup (light, reversible)"
+    reset_conf_to_placeholder
+    enable_setup_service
+    echo "Done. Reboot to enter the Docent-Setup wizard. (Undo: write a real conf, or"
+    echo "'systemctl disable sd-setup.service'.)"
+    ;;
+  --full)
+    require_root "$@"
+    echo "==> sd-image-prep: FULL (destructive — for a distributable image capture)"
+    reset_conf_to_placeholder
+    enable_setup_service
+    wipe_network
+    wipe_identity
+    clean_logs
+    echo "Done. Power down now and capture the card (dd -> pishrink -> xz). Do NOT reboot this box"
+    echo "on the bench — it would regenerate identity here instead of on the flashed units."
+    ;;
+  --help|-h|"")
+    sed -n '2,30p' "$0" | sed 's/^# \{0,1\}//'
+    ;;
+  *)
+    echo "Unknown option: $1" >&2
+    echo "Usage: sudo $0 --enable-setup | --full   (see --help)" >&2
+    exit 2
+    ;;
+esac
