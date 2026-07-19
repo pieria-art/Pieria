@@ -163,6 +163,31 @@ anyone with the SD card can read it.
 
 ---
 
+## E-ink panel (Track B, optional)
+
+For a Pimoroni **Inky Impression 13.3" (Spectra 6)** panel wired to this box's GPIO header, set in
+`screen-docent.conf`:
+
+```ini
+EINK_ENABLED=1
+EINK_MIN_INTERVAL=900     # cadence floor (s) — e-ink art is contemplative
+EINK_SATURATION=0.5       # Inky saturation 0-1 (bench-tune against the real panel)
+EINK_ORIENTATION=         # blank = landscape 1600x1200 | portrait = 1200x1600
+```
+
+then re-run `sudo install.sh`. This works in **either** topology: all-in-one (`SERVER_URL=http://localhost:8000`,
+alongside the server container on this same box) or **satellite/client-only** — no local container at
+all, `SERVER_URL` pointed at a remote hub (another Screen Docent box on the LAN). `sd-eink` runs
+host-side (not in Docker) because GPIO/SPI aren't reachable from the non-root app container; it polls
+`GET /display/<DISPLAY_ID>/current.png`, change-detects on the response's `ETag` so an unchanged frame
+never triggers a panel refresh, and never repaints during Night/Quiet Hours (e-ink holds its image at
+zero power, so "quiet" means *stop refreshing*, not blank the panel).
+
+Smoke-test with no panel attached: `EINK_DRY_RUN=1 sd-eink /path/to/screen-docent.conf` (or `--dry-run`)
+swaps in an in-memory fake and logs "would paint" instead of touching hardware.
+
+---
+
 ## GUI maintenance & updates (all-in-one)
 
 In all-in-one mode the admin gains a **🩺 Devices** tab (host health) and an **Appliance Maintenance**
@@ -214,6 +239,7 @@ like Fire TV / bring-your-own-browser; it's simply inert here.)
 | `bin/sd-setup-boot` | First-boot gate: if unconfigured, brings up the `Docent-Setup` AP + captive portal and runs the wizard; else no-ops. Run by `sd-setup.service` (enabled on the `.img` only). |
 | `setup/{hostapd,dnsmasq}.conf` | The `Docent-Setup` access point + DNS catch-all that make the captive portal fire. Used only while `sd-setup-boot` runs. |
 | `bin/sd-update` | (all-in-one) Root host helper for GUI updates — whitelisted update-app / update-scripts / reboot; triggered by `sd-update.path`. |
+| `bin/sd-eink` | (optional, `EINK_ENABLED=1`) Track B e-ink client: polls `/display/<id>/current.png` and blits it to a Pimoroni Inky Impression Spectra 6 panel over SPI. Long-running (not timer-driven); works all-in-one or as a satellite pointed at a remote hub. `--dry-run`/`EINK_DRY_RUN=1` smoke-tests it with no panel attached. |
 | `share/sd-splash.html` | Boot splash shown while the server starts, displaying the admin URL / `<hostname>.local` / IP; self-redirects to the canvas once the server answers. |
 | `systemd/autologin.conf` | `getty@tty1` drop-in enabling kiosk-user autologin. |
 | `systemd/sd-metrics.{service,timer}` | (all-in-one) Periodic host-metrics writer for Device Health. |
@@ -221,6 +247,7 @@ like Fire TV / bring-your-own-browser; it's simply inert here.)
 | `systemd/sd-watchdog.{service,timer}` | (all-in-one) Runs the self-heal watchdog every 60 s (observe mode by default). |
 | `systemd/sd-setup.service` | Runs `sd-setup-boot` on first boot. Installed disabled; enabled only on the pre-baked `.img`. |
 | `systemd/sd-update.{path,service}` | (all-in-one) Watches for GUI update requests and runs `sd-update`. |
+| `systemd/sd-eink.service` | (optional, `EINK_ENABLED=1`) Long-running unit running `sd-eink` (`Restart=always`; the poll/sleep cadence lives inside the client, not a timer). |
 | `udev/99-screen-docent-no-cec-pointer.rules` | Ignores the HDMI-CEC phantom pointer so no stray cursor shows on the display. |
 | `avahi/screen-docent.service` | (all-in-one) Advertises the server over mDNS with a friendly name. |
 | `config/screen-docent.conf.example` | Template seeded to the boot partition. |

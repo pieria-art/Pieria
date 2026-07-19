@@ -22,11 +22,13 @@ BIN_SRC="$HERE/bin"
 UNIT_SRC="$HERE/systemd"
 SETUP_SRC="$HERE/setup"
 CONF_EXAMPLE="$HERE/config/screen-docent.conf.example"
+REPO_ROOT="$(cd "$HERE/../.." && pwd)"
 
 # Read an existing appliance config if one is already present (e.g. placed on
-# the boot partition before first boot) so we honor ALL_IN_ONE / GEMINI_API_KEY.
+# the boot partition before first boot) so we honor ALL_IN_ONE / GEMINI_API_KEY / EINK_ENABLED.
 ALL_IN_ONE=0
 GEMINI_API_KEY=""
+EINK_ENABLED=0
 for d in /boot/firmware /boot /etc; do
   if [ -r "$d/screen-docent.conf" ]; then
     # shellcheck disable=SC1090
@@ -76,6 +78,7 @@ install -m 0755 "$BIN_SRC/sd-watchdog"       /usr/local/bin/sd-watchdog
 install -m 0755 "$BIN_SRC/sd-setup-boot"     /usr/local/bin/sd-setup-boot
 install -m 0755 "$SETUP_SRC/sd_setup.py"     /usr/local/bin/sd-setup
 install -m 0755 "$BIN_SRC/sd-update"         /usr/local/bin/sd-update
+install -m 0755 "$BIN_SRC/sd-eink"           /usr/local/bin/sd-eink
 
 echo "==> Installing boot splash (shows the admin URL while the server starts)"
 install -d /usr/local/share/screen-docent
@@ -143,7 +146,6 @@ done
 
 if [ "${ALL_IN_ONE:-0}" = "1" ]; then
   echo "==> All-in-one mode: provisioning the Screen Docent server on this box"
-  REPO_ROOT="$(cd "$HERE/../.." && pwd)"
   OVERRIDE="$HERE/compose/docker-compose.appliance.yml"
 
   if ! command -v docker >/dev/null 2>&1; then
@@ -202,6 +204,26 @@ if [ "${ALL_IN_ONE:-0}" = "1" ]; then
   sed "s#__REPO_ROOT__#$REPO_ROOT#g" "$UNIT_SRC/sd-update.service" > /etc/systemd/system/sd-update.service
   systemctl daemon-reload
   systemctl enable --now sd-update.path || true
+fi
+
+if [ "${EINK_ENABLED:-0}" = "1" ]; then
+  echo "==> E-ink panel enabled (Track B): installing sd-eink host client + deps"
+  # eink_client.py is stdlib+Pillow+httpx only (no app import) and runs host-side even with no local
+  # container (satellite mode) — install it ALONGSIDE sd-eink so its own-directory sys.path trick finds
+  # it (see the script's header comment). Works whether or not ALL_IN_ONE is set.
+  install -m 0644 "$REPO_ROOT/eink_client.py" /usr/local/bin/eink_client.py
+
+  echo "    Installing host Python deps (python3-pil via apt; httpx + inky[rpi] via pip)"
+  apt-get install -y --no-install-recommends python3-pip python3-pil \
+    || echo "    WARNING: python3-pip/python3-pil install failed — sd-eink may not run" >&2
+  # Bookworm's system Python is externally-managed (PEP 668); --break-system-packages is the
+  # documented escape hatch for a host-level script install like this one (not a packaged app venv).
+  pip3 install --break-system-packages --no-cache-dir httpx "inky[rpi]" \
+    || echo "    WARNING: pip install of httpx/inky failed — sd-eink may not run (Pi-gated: verify on the bench Pi)" >&2
+
+  sed "s#__BOOT_CONF__#$BOOT_CONF#g" "$UNIT_SRC/sd-eink.service" > /etc/systemd/system/sd-eink.service
+  systemctl daemon-reload
+  systemctl enable --now sd-eink || true
 fi
 
 echo "==> Finalizing"

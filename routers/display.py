@@ -6,6 +6,7 @@ schedule-state resolvers all live here. Selection itself stays in core.playback 
 so both the Canvas and e-ink paths advance the same bag-shuffle state.
 """
 
+import hashlib
 import logging
 from datetime import datetime
 from typing import Optional
@@ -148,6 +149,10 @@ async def get_display_image(
         media_type=media_type_for(ext),
         headers={
             "X-Refresh-After": str(info["display_time"]),
+            # Content hash so the e-ink pull client can change-detect a repaint without a
+            # ~30s panel refresh on an unchanged frame (eink_client dedupes on this; it falls
+            # back to hashing the body if the header is ever absent).
+            "ETag": '"' + hashlib.sha256(data).hexdigest()[:16] + '"',
             "Cache-Control": "no-store, no-cache, must-revalidate",
         },
     )

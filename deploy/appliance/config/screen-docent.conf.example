@@ -55,3 +55,12 @@ ALL_IN_ONE=0
 # Get one at https://aistudio.google.com/. NOTE: this file sits on a FAT boot
 # partition, so anyone with the SD card can read this key.
 GEMINI_API_KEY=
+
+# --- E-ink panel (Track B, optional; Pimoroni Inky Impression Spectra 6) ---
+# Set EINK_ENABLED=1 to run the e-ink pull client (sd-eink) on this box. It polls
+# SERVER_URL for DISPLAY_ID's current image and blits it to the panel over SPI.
+# Works all-in-one (SERVER_URL=localhost) OR satellite (SERVER_URL=a remote hub).
+EINK_ENABLED=0
+EINK_MIN_INTERVAL=900     # cadence floor (s) — e-ink art is contemplative; refresh is ~30s
+EINK_SATURATION=0.5       # Inky saturation 0-1 (bench-tune against the real panel)
+EINK_ORIENTATION=         # blank = landscape 1600x1200 | portrait = 1200x1600
