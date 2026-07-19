@@ -1,0 +1,28 @@
+# Installed by install.sh (only when EINK_ENABLED=1) as:
+#   /etc/systemd/system/sd-eink.service
+#
+# Long-running poll-and-sleep client (Track B) that pulls this display's current image and blits it to
+# a Pimoroni Inky Impression Spectra 6 panel over SPI. Unlike the oneshot host units driven by a timer
+# (sd-quiet-hours, sd-watchdog), this one just runs forever — the poll/sleep cadence lives INSIDE
+# sd-eink's own loop (floored by EINK_MIN_INTERVAL), so no systemd timer is involved; Restart=always
+# is the resilience story (SPI hiccup / transient network blip -> systemd relaunches it).
+# __BOOT_CONF__ is substituted by install.sh with the appliance config path (SERVER_URL, DISPLAY_ID,
+# EINK_MIN_INTERVAL, EINK_SATURATION, EINK_ORIENTATION).
+[Unit]
+Description=Screen Docent e-ink panel client (Track B)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/sd-eink __BOOT_CONF__
+Restart=always
+RestartSec=10
+# Managed /run/sd-eink (auto-created, auto-cleaned) for the watchdog-friendly heartbeat file, so it
+# doesn't rely on a writable /run root. sd-eink handles SIGTERM to release the panel GPIO cleanly.
+RuntimeDirectory=sd-eink
+Environment=EINK_HEARTBEAT_FILE=/run/sd-eink/heartbeat
+TimeoutStopSec=15
+
+[Install]
+WantedBy=multi-user.target

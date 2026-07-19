@@ -6,7 +6,7 @@ from pathlib import Path
 import pytest
 from PIL import Image
 
-from epaper import PALETTES, render_for_epaper
+from epaper import PALETTES, SPECTRA6_OUTPUT_PALETTE, _adaptive_gamma, render_for_epaper
 
 
 def _make_image(tmp_path: Path, name="src.jpg", mode="RGB", size=(240, 160)) -> Path:
@@ -73,8 +73,29 @@ def test_cover_exact_size_png(tmp_path):
 
 
 def test_output_colors_are_subset_of_palette(tmp_path):
+    # spectra6 dithers toward the panel's real primaries but RE-ENCODES to pure primaries on output
+    # (so any client — incl. an inky re-quantize — maps each colour unambiguously). See epaper.SPECTRA6_*.
     data = render_for_epaper(_make_image(tmp_path, "a.png"), 300, 200, palette="spectra6", fmt="png")
-    assert _colors(data).issubset(set(PALETTES["spectra6"]))
+    assert _colors(data).issubset(set(SPECTRA6_OUTPUT_PALETTE))
+
+
+def test_spectra6_adaptive_gamma_keys_on_wash(tmp_path):
+    # Highlight pulldown is driven by flat low-chroma near-white ("wash") content, not brightness:
+    # a woodblock-print-like pale neutral -> 1.5; a bright but CHROMATIC fill or a mid tone -> 1.4.
+    washy = Image.new("RGB", (256, 256), (235, 236, 234))       # bright + near-neutral
+    bright_colour = Image.new("RGB", (256, 256), (255, 255, 120))  # bright but high-chroma (yellow)
+    midtone = Image.new("RGB", (256, 256), (120, 120, 120))     # not bright
+    assert _adaptive_gamma(washy) == pytest.approx(1.5, abs=0.01)
+    assert _adaptive_gamma(bright_colour) == pytest.approx(1.4, abs=0.01)
+    assert _adaptive_gamma(midtone) == pytest.approx(1.4, abs=0.01)
+
+
+def test_spectra6_enhance_false_skips_gamma(tmp_path):
+    # enhance gates the adaptive gamma pulldown on the spectra6 path.
+    src = _make_image(tmp_path, "e.png")
+    with_gamma = render_for_epaper(src, 120, 120, palette="spectra6", fmt="png", enhance=True)
+    no_gamma = render_for_epaper(src, 120, 120, palette="spectra6", fmt="png", enhance=False)
+    assert with_gamma != no_gamma
 
 
 def test_grayscale_palette_is_only_gray(tmp_path):

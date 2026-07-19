@@ -1,0 +1,122 @@
+#!/usr/bin/env python3
+"""sd-eink — appliance e-ink panel client (Track B), driven by `eink_client.py`.
+
+Long-running host process (contrast the oneshot `sd-quiet-hours`/`sd-watchdog` bash units): polls
+`SERVER_URL`'s `/display/<DISPLAY_ID>/current.png` for the current now-playing artwork, change-detects
+on ETag, and blits it to a Pimoroni Inky Impression Spectra 6 panel over SPI. Runs HOST-SIDE (not in the
+Docker container — GPIO/SPI isn't reachable from the non-root app container, ADR-037) and works in
+BOTH topologies: all-in-one (SERVER_URL=http://localhost:8000, alongside the local container) and
+client-only/satellite (SERVER_URL points at a remote hub; no local container needed at all).
+
+Sources the appliance config the same way sd-quiet-hours does: the conf path is argv[1] (the
+`screen-docent.conf` on the boot partition), parsed as KEY=VALUE lines into os.environ, then
+`EinkConfig.from_env()` reads SERVER_URL / DISPLAY_ID / EINK_MIN_INTERVAL / EINK_SATURATION /
+EINK_ORIENTATION from there.
+
+Usage:  sd-eink <CONFIG_FILE> [--dry-run]
+        EINK_DRY_RUN=1 sd-eink <CONFIG_FILE>
+
+--dry-run / EINK_DRY_RUN=1 swaps in a FakeInkyClient (no hardware, no `inky` import) and logs
+"would paint" on every simulated blit, so this can be smoke-tested on a laptop with no panel attached.
+"""
+from __future__ import annotations
+
+import logging
+import os
+import signal
+import sys
+from pathlib import Path
+
+logger = logging.getLogger("sd-eink")
+
+# eink_client.py is stdlib+Pillow+httpx only (no app/database imports) so it can run host-side with
+# no local Screen Docent checkout at all in satellite mode. It's installed ALONGSIDE this script in
+# /usr/local/bin by install.sh; running Python auto-adds the script's own directory to sys.path, so
+# that layout "just works". Fall back to the repo-root copy for in-place dev/testing (this file lives
+# at deploy/appliance/bin/sd-eink, three directories below the repo root).
+_SCRIPT_DIR = Path(__file__).resolve().parent
+_REPO_ROOT_CANDIDATE = _SCRIPT_DIR.parent.parent.parent
+for _candidate in (_SCRIPT_DIR, _REPO_ROOT_CANDIDATE):
+    if (_candidate / "eink_client.py").exists() and str(_candidate) not in sys.path:
+        sys.path.insert(0, str(_candidate))
+        break
+
+
+def _load_conf(path: str | None) -> None:
+    """Parse KEY=VALUE lines from the appliance conf into os.environ (mirrors sd-quiet-hours'
+    `. "$CONF"` bash sourcing, minus real shell semantics — good enough for this flat conf format)."""
+    if not path or not os.path.isfile(path):
+        return
+    with open(path) as f:
+        for raw in f:
+            line = raw.strip()
+            if not line or line.startswith("#") or "=" not in line:
+                continue
+            key, _, val = line.partition("=")
+            key = key.strip()
+            val = val.strip()
+            if len(val) >= 2 and val[0] == val[-1] and val[0] in ("'", '"'):
+                val = val[1:-1]
+            if key:
+                os.environ[key] = val
+
+
+def _make_dry_run_client():
+    from eink_client import FakeInkyClient
+
+    class _LoggingFakeInkyClient(FakeInkyClient):
+        def show(self, image, saturation):
+            logger.info(
+                f"[sd-eink] DRY RUN: would paint {image.size[0]}x{image.size[1]} "
+                f"image (saturation={saturation})"
+            )
+            super().show(image, saturation)
+
+    return _LoggingFakeInkyClient()
+
+
+def _install_signal_handlers() -> None:
+    """Exit the poll loop cleanly on SIGTERM (systemctl stop) / SIGINT (Ctrl-C). A killed-but-still-alive
+    process keeps the inky SPI/CS GPIO lines claimed and blocks the next start ("pins in use, claimed by
+    inky"); a prompt clean exit lets the kernel release them. SystemExit interrupts time.sleep() so we
+    stop within the current tick instead of waiting out the cadence."""
+    def _stop(signum, _frame):
+        logger.info(f"[sd-eink] signal {signum} received — shutting down")
+        raise SystemExit(0)
+
+    signal.signal(signal.SIGTERM, _stop)
+    signal.signal(signal.SIGINT, _stop)
+
+
+def main() -> None:
+    logging.basicConfig(level=logging.INFO, format="%(asctime)s %(name)s %(levelname)s %(message)s")
+    _install_signal_handlers()
+
+    conf_path = None
+    dry_run_flag = False
+    for arg in sys.argv[1:]:
+        if arg == "--dry-run":
+            dry_run_flag = True
+        elif not arg.startswith("-"):
+            conf_path = arg
+
+    _load_conf(conf_path)
+
+    from eink_client import EinkConfig, run_loop
+
+    cfg = EinkConfig.from_env()
+    dry_run = dry_run_flag or os.environ.get("EINK_DRY_RUN", "").strip().lower() in ("1", "true", "yes", "on")
+
+    client = None
+    if dry_run:
+        logger.info("[sd-eink] --dry-run: using FakeInkyClient — no hardware will be touched")
+        client = _make_dry_run_client()
+
+    try:
+        run_loop(cfg, client=client)
+    except (KeyboardInterrupt, SystemExit):
+        logger.info("[sd-eink] stopped")
+
+
+if __name__ == "__main__":
+    main()

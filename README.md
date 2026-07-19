@@ -103,6 +103,9 @@ frame how long (seconds) to deep-sleep before the next fetch; each GET advances 
 - **Palettes:** `spectra6` (E Ink Spectra 6), `acep7` (7-colour ACeP/Gallery), `gray4`, `gray16`.
 - **Formats:** `.png` (default) or `.bmp` (firmware without a PNG decoder).
 - **Fit:** `fit=cover` (fill, default) or `fit=contain` (letterbox on white).
+- **Pimoroni Inky Impression Spectra 6:** a ready-made poll-and-sleep host client (`sd-eink`) drives the
+  panel over SPI — change-detects on the response's `ETag`, floors refresh cadence, and never repaints
+  during Night/Quiet Hours. See [`deploy/appliance/`](deploy/appliance/README.md#e-ink-panel-track-b-optional).
 
 ## 🔌 Integrations
 
