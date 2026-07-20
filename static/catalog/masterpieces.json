@@ -381,7 +381,33 @@
    "credit_line": "Art Institute of Chicago: online database: entry 6565",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0199,
+     1.0,
+     0.4853
+    ],
+    "9:16": [
+     0.16,
+     0.0,
+     0.84,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0199,
+     1.0,
+     0.6404
+    ],
+    "3:4": [
+     0.0467,
+     0.0,
+     0.9534,
+     1.0
+    ]
+   }
   },
   {
    "title": "Sunflowers",
@@ -516,7 +542,33 @@
    "credit_line": "http://www.artic.edu/aic/collections/artwork/111628 (Manual stitch by Petar Milošević)",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0144,
+     0.0,
+     0.9856,
+     1.0
+    ],
+    "9:16": [
+     0.5498,
+     0.0,
+     0.8572,
+     1.0
+    ],
+    "4:3": [
+     0.2713,
+     0.0,
+     0.9997,
+     1.0
+    ],
+    "3:4": [
+     0.5151,
+     0.0,
+     0.9249,
+     1.0
+    ]
+   }
   },
   {
    "title": "Las Meninas",
