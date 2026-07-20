@@ -193,7 +193,33 @@
    "credit_line": "Collection of Rijksmuseum",
    "license_verified": "2026-07-16",
    "delivered_edge": 7133,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1597,
+     1.0,
+     0.8373
+    ],
+    "9:16": [
+     0.28,
+     0.0,
+     0.747,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0298,
+     1.0,
+     0.9332
+    ],
+    "3:4": [
+     0.1902,
+     0.0,
+     0.8128,
+     1.0
+    ]
+   }
   },
   {
    "title": "Girl with a Pearl Earring",
@@ -220,7 +246,33 @@
    "credit_line": "Mauritshuis",
    "license_verified": "2026-07-16",
    "delivered_edge": 6000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0299,
+     1.0,
+     0.5051
+    ],
+    "9:16": [
+     0.17,
+     0.0,
+     0.836,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0202,
+     1.0,
+     0.6538
+    ],
+    "3:4": [
+     0.056,
+     0.0,
+     0.944,
+     1.0
+    ]
+   }
   },
   {
    "title": "Portrait of Adele Bloch-Bauer I",
@@ -648,7 +700,33 @@
     0.55
    ],
    "delivered_edge": 6000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.2001,
+     1.0,
+     0.8749
+    ],
+    "9:16": [
+     0.27,
+     0.0,
+     0.739,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0502,
+     1.0,
+     0.9498
+    ],
+    "3:4": [
+     0.1899,
+     0.0,
+     0.8151,
+     1.0
+    ]
+   }
   },
   {
    "title": "Luncheon of the Boating Party",
@@ -891,7 +969,33 @@
     0.28
    ],
    "delivered_edge": 6000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0997,
+     1.0,
+     0.8463
+    ],
+    "9:16": [
+     0.3301,
+     0.0,
+     0.7539,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0,
+     1.0,
+     0.9956
+    ],
+    "3:4": [
+     0.268,
+     0.0,
+     0.833,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Art of Painting",
@@ -926,7 +1030,33 @@
     0.38
    ],
    "delivered_edge": 7377,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1203,
+     1.0,
+     0.5937
+    ],
+    "9:16": [
+     0.0498,
+     0.0,
+     0.7182,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0804,
+     1.0,
+     0.7116
+    ],
+    "3:4": [
+     0.03,
+     0.0,
+     0.921,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Return of the Prodigal Son",
@@ -953,7 +1083,27 @@
     0.55
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "9:16": [
+     0.08,
+     0.0,
+     0.814,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0601,
+     1.0,
+     0.6349
+    ],
+    "3:4": [
+     0.0102,
+     0.0,
+     0.9888,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Arnolfini Portrait",

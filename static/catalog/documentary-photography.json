@@ -30,7 +30,33 @@
    "credit_line": "This image is available from the United States Library of Congress's Prints and Photographs division under the digital ID fsa.8b29516.This tag does not indicate the copyright status of the attached work. A normal copyright tag is still required. See Commons:Licensing.",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0199,
+     1.0,
+     0.4711
+    ],
+    "9:16": [
+     0.1289,
+     0.0,
+     0.8301,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0497,
+     1.0,
+     0.6513
+    ],
+    "3:4": [
+     0.012,
+     0.0,
+     0.947,
+     1.0
+    ]
+   }
   },
   {
    "title": "Toward Los Angeles",
@@ -57,7 +83,33 @@
    "credit_line": "This image is available from the United States Library of Congress's Prints and Photographs division under the digital ID fsa.8b31801.This tag does not indicate the copyright status of the attached work. A normal copyright tag is still required. See Commons:Licensing.",
    "license_verified": "2026-07-16",
    "delivered_edge": 4849,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1759,
+     1.0,
+     0.7241
+    ],
+    "9:16": [
+     0.2114,
+     0.0,
+     0.7886,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0846,
+     1.0,
+     0.8154
+    ],
+    "3:4": [
+     0.1152,
+     0.0,
+     0.8848,
+     1.0
+    ]
+   }
   },
   {
    "title": "Tractored Out, Childress County Texas",
@@ -84,7 +136,33 @@
    "credit_line": "This image is available from the United States Library of Congress's Prints and Photographs division under the digital ID ppmsc.00232.This tag does not indicate the copyright status of the attached work. A normal copyright tag is still required. See Commons:Licensing.",
    "license_verified": "2026-07-16",
    "delivered_edge": 4000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0586,
+     1.0,
+     0.8444
+    ],
+    "9:16": [
+     0.4192,
+     0.0,
+     0.8218,
+     1.0
+    ],
+    "4:3": [
+     0.0453,
+     0.0,
+     0.9997,
+     1.0
+    ],
+    "3:4": [
+     0.3521,
+     0.0,
+     0.8889,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Steerage",
@@ -111,7 +189,33 @@
    "credit_line": "DwGsXk0l3l7fkw at Google Cultural Institute, zoom level maximum",
    "license_verified": "2026-07-16",
    "delivered_edge": 5203,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1762,
+     1.0,
+     0.6248
+    ],
+    "9:16": [
+     0.0979,
+     0.0,
+     0.8031,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1214,
+     1.0,
+     0.7196
+    ],
+    "3:4": [
+     0.0098,
+     0.0,
+     0.9502,
+     1.0
+    ]
+   }
   },
   {
    "title": "Floyd Burroughs, cotton sharecropper",
@@ -138,7 +242,33 @@
    "credit_line": "https://www.loc.gov/item/2017762300/",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.125,
+     1.0,
+     0.575
+    ],
+    "9:16": [
+     0.1484,
+     0.0,
+     0.8516,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.05,
+     1.0,
+     0.65
+    ],
+    "3:4": [
+     0.0312,
+     0.0,
+     0.9688,
+     1.0
+    ]
+   }
   },
   {
    "title": "Allie Mae Burroughs",
@@ -165,7 +295,33 @@
    "credit_line": "This image is available from the United States Library of Congress's Prints and Photographs division under the digital ID fsa.8c52248.This tag does not indicate the copyright status of the attached work. A normal copyright tag is still required. See Commons:Licensing.",
    "license_verified": "2026-07-16",
    "delivered_edge": 5878,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1243,
+     1.0,
+     0.5757
+    ],
+    "9:16": [
+     0.1495,
+     0.0,
+     0.8505,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0991,
+     1.0,
+     0.7009
+    ],
+    "3:4": [
+     0.0327,
+     0.0,
+     0.9673,
+     1.0
+    ]
+   }
   },
   {
    "title": "American Gothic, Washington, D.C.",
@@ -192,7 +348,33 @@
    "credit_line": "This image is available from the United States Library of Congress's Prints and Photographs division under the digital ID fsa.8b14845.This tag does not indicate the copyright status of the attached work. A normal copyright tag is still required. See Commons:Licensing.",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1262,
+     1.0,
+     0.5738
+    ],
+    "9:16": [
+     0.1465,
+     0.0,
+     0.8535,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1021,
+     1.0,
+     0.6989
+    ],
+    "3:4": [
+     0.0287,
+     0.0,
+     0.9713,
+     1.0
+    ]
+   }
   },
   {
    "title": "Power house mechanic working on steam pump",
@@ -220,7 +402,33 @@
    "license_verified": "2026-07-16",
    "below_floor_ok": true,
    "delivered_edge": 3000,
-   "resolution_tier": "HD"
+   "resolution_tier": "HD",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.198,
+     1.0,
+     0.602
+    ],
+    "9:16": [
+     0.0585,
+     0.0,
+     0.8415,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1506,
+     1.0,
+     0.6894
+    ],
+    "3:4": [
+     0.0,
+     0.0006,
+     1.0,
+     0.9584
+    ]
+   }
   },
   {
    "title": "Breaker Boys, Pennsylvania",
@@ -247,7 +455,33 @@
    "credit_line": "This image is available from the United States Library of Congress's Prints and Photographs division under the digital ID nclc.05473.This tag does not indicate the copyright status of the attached work. A normal copyright tag is still required. See Commons:Licensing.",
    "license_verified": "2026-07-16",
    "delivered_edge": 4661,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1479,
+     1.0,
+     0.9521
+    ],
+    "9:16": [
+     0.1528,
+     0.0,
+     0.5462,
+     1.0
+    ],
+    "4:3": [
+     0.0337,
+     0.0,
+     0.9663,
+     1.0
+    ],
+    "3:4": [
+     0.1377,
+     0.0,
+     0.6623,
+     1.0
+    ]
+   }
   },
   {
    "title": "Spinner in a Cotton Mill",
@@ -274,7 +508,33 @@
    "credit_line": "This image is available from the United States Library of Congress's Prints and Photographs division under the digital ID nclc.01641.This tag does not indicate the copyright status of the attached work. A normal copyright tag is still required. See Commons:Licensing.",
    "license_verified": "2026-07-16",
    "delivered_edge": 4807,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1522,
+     1.0,
+     0.9488
+    ],
+    "9:16": [
+     0.2709,
+     0.0,
+     0.6681,
+     1.0
+    ],
+    "4:3": [
+     0.0003,
+     0.0,
+     0.9417,
+     1.0
+    ],
+    "3:4": [
+     0.2052,
+     0.0,
+     0.7348,
+     1.0
+    ]
+   }
   },
   {
    "title": "Bandit's Roost",
@@ -301,7 +561,27 @@
    "credit_line": "http://www.zeno.org/Fotografien/B/Riis,+Jacob+A.:+%C2%BBBandits%27+Roost%C2%AB+59+1-2+Mulberry+Stra%C3%9Fe",
    "license_verified": "2026-07-16",
    "delivered_edge": 5587,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "9:16": [
+     0.1013,
+     0.0,
+     0.7997,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.248,
+     1.0,
+     0.852
+    ],
+    "3:4": [
+     0.0144,
+     0.0,
+     0.9456,
+     1.0
+    ]
+   }
   },
   {
    "title": "Ancient Ruins in the Canyon de Chelly",
@@ -328,7 +608,33 @@
    "credit_line": "This image is available from the United States Library of Congress's Prints and Photographs division under the digital ID ppmsca.10055.This tag does not indicate the copyright status of the attached work. A normal copyright tag is still required. See Commons:Licensing.",
    "license_verified": "2026-07-16",
    "delivered_edge": 4254,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.4749,
+     1.0,
+     0.8851
+    ],
+    "9:16": [
+     0.0643,
+     0.0,
+     0.8357,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.3471,
+     1.0,
+     0.8939
+    ],
+    "3:4": [
+     0.0,
+     0.0139,
+     1.0,
+     0.9861
+    ]
+   }
   },
   {
    "title": "Yosemite Valley from Inspiration Point",
@@ -355,7 +661,27 @@
    "credit_line": "6wHjXKTSmvR6Hg at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
    "delivered_edge": 4217,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.11,
+     1.0,
+     0.851
+    ],
+    "4:3": [
+     0.0,
+     0.006,
+     1.0,
+     0.994
+    ],
+    "3:4": [
+     0.2153,
+     0.0,
+     0.7847,
+     1.0
+    ]
+   }
   },
   {
    "title": "Boulevard du Temple",
@@ -383,7 +709,33 @@
    "license_verified": "2026-07-16",
    "below_floor_ok": true,
    "delivered_edge": 3441,
-   "resolution_tier": "HD"
+   "resolution_tier": "HD",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.06,
+     1.0,
+     0.843
+    ],
+    "9:16": [
+     0.0,
+     0.0,
+     0.4041,
+     1.0
+    ],
+    "4:3": [
+     0.0201,
+     0.0,
+     0.9779,
+     1.0
+    ],
+    "3:4": [
+     0.0501,
+     0.0,
+     0.5889,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Open Door",
@@ -410,7 +762,33 @@
    "credit_line": "Bibliothèque nationale de France",
    "license_verified": "2026-07-16",
    "delivered_edge": 4694,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0801,
+     1.0,
+     0.8469
+    ],
+    "9:16": [
+     0.2937,
+     0.0,
+     0.7063,
+     1.0
+    ],
+    "4:3": [
+     0.011,
+     0.0,
+     0.989,
+     1.0
+    ],
+    "3:4": [
+     0.2249,
+     0.0,
+     0.7751,
+     1.0
+    ]
+   }
   },
   {
    "title": "View from the Window at Le Gras",
@@ -438,7 +816,33 @@
    "license_verified": "2026-07-16",
    "below_floor_ok": true,
    "delivered_edge": 2597,
-   "resolution_tier": "HD"
+   "resolution_tier": "HD",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0898,
+     1.0,
+     0.8992
+    ],
+    "9:16": [
+     0.304,
+     0.0,
+     0.695,
+     1.0
+    ],
+    "4:3": [
+     0.0366,
+     0.0,
+     0.9634,
+     1.0
+    ],
+    "3:4": [
+     0.2394,
+     0.0,
+     0.7606,
+     1.0
+    ]
+   }
   },
   {
    "title": "Geronimo",
@@ -466,7 +870,33 @@
    "license_verified": "2026-07-16",
    "below_floor_ok": true,
    "delivered_edge": 2925,
-   "resolution_tier": "HD"
+   "resolution_tier": "HD",
+   "aspect_crops": {
+    "3:4": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ],
+    "16:9": [
+     0.0,
+     0.0499,
+     1.0,
+     0.4709
+    ],
+    "9:16": [
+     0.1242,
+     0.0,
+     0.8758,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0299,
+     1.0,
+     0.5911
+    ]
+   }
   }
  ]
 }
