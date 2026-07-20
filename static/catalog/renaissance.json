@@ -413,7 +413,33 @@
    "credit_line": "C2RMF: Galerie de tableaux en très haute définition: image page",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0299,
+     1.0,
+     0.4141
+    ],
+    "9:16": [
+     0.0883,
+     0.0,
+     0.9117,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0298,
+     1.0,
+     0.5422
+    ],
+    "3:4": [
+     0.0,
+     0.0201,
+     1.0,
+     0.9309
+    ]
+   }
   },
   {
    "title": "The Birth of Venus",
@@ -440,7 +466,33 @@
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0283,
+     1.0,
+     0.9718
+    ],
+    "9:16": [
+     0.3,
+     0.0,
+     0.6354,
+     1.0
+    ],
+    "4:3": [
+     0.1025,
+     0.0,
+     0.8975,
+     1.0
+    ],
+    "3:4": [
+     0.28,
+     0.0,
+     0.7272,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Creation of Adam",
@@ -467,7 +519,33 @@
    "credit_line": "Own work Burkhard Mücke Taken on 18 October 2017",
    "license_verified": "2026-07-16",
    "delivered_edge": 6720,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0781,
+     1.0,
+     0.9219
+    ],
+    "9:16": [
+     0.28,
+     0.0,
+     0.655,
+     1.0
+    ],
+    "4:3": [
+     0.0556,
+     0.0,
+     0.9444,
+     1.0
+    ],
+    "3:4": [
+     0.22,
+     0.0,
+     0.72,
+     1.0
+    ]
+   }
   },
   {
    "title": "The School of Athens",
@@ -494,7 +572,33 @@
    "credit_line": "\"School of Athens\" by Raphael, Raphael Rooms, Vatican Museum Complete indexed photo collection at WorldHistoryPics.com.",
    "license_verified": "2026-07-16",
    "delivered_edge": 6000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0781,
+     1.0,
+     0.9219
+    ],
+    "9:16": [
+     0.3125,
+     0.0,
+     0.6875,
+     1.0
+    ],
+    "4:3": [
+     0.0556,
+     0.0,
+     0.9444,
+     1.0
+    ],
+    "3:4": [
+     0.25,
+     0.0,
+     0.75,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Last Supper",
@@ -521,7 +625,33 @@
     0.42
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0556,
+     0.0,
+     0.9444,
+     1.0
+    ],
+    "9:16": [
+     0.3594,
+     0.0,
+     0.6406,
+     1.0
+    ],
+    "4:3": [
+     0.1667,
+     0.0,
+     0.8333,
+     1.0
+    ],
+    "3:4": [
+     0.3125,
+     0.0,
+     0.6875,
+     1.0
+    ]
+   }
   },
   {
    "title": "Primavera",
@@ -548,7 +678,33 @@
     0.4
    ],
    "delivered_edge": 4926,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0719,
+     1.0,
+     0.9281
+    ],
+    "9:16": [
+     0.2952,
+     0.0,
+     0.6648,
+     1.0
+    ],
+    "4:3": [
+     0.0621,
+     0.0,
+     0.9379,
+     1.0
+    ],
+    "3:4": [
+     0.2337,
+     0.0,
+     0.7263,
+     1.0
+    ]
+   }
   },
   {
    "title": "Venus of Urbino",
@@ -602,7 +758,33 @@
     0.32
    ],
    "delivered_edge": 5529,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0897,
+     1.0,
+     0.8673
+    ],
+    "9:16": [
+     0.416,
+     0.0,
+     0.823,
+     1.0
+    ],
+    "4:3": [
+     0.0177,
+     0.0,
+     0.9823,
+     1.0
+    ],
+    "3:4": [
+     0.3902,
+     0.0,
+     0.9328,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Wedding at Cana",
@@ -656,7 +838,33 @@
     0.28
    ],
    "delivered_edge": 4395,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.15,
+     1.0,
+     0.6608
+    ],
+    "9:16": [
+     0.1903,
+     0.0,
+     0.8098,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1,
+     1.0,
+     0.781
+    ],
+    "3:4": [
+     0.0871,
+     0.0,
+     0.9131,
+     1.0
+    ]
+   }
   },
   {
    "title": "Virgin of the Rocks",
@@ -691,7 +899,33 @@
     0.3
    ],
    "delivered_edge": 4226,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.2103,
+     1.0,
+     0.5847
+    ],
+    "9:16": [
+     0.0775,
+     0.0,
+     0.9225,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1704,
+     1.0,
+     0.6696
+    ],
+    "3:4": [
+     0.0,
+     0.0562,
+     1.0,
+     0.9438
+    ]
+   }
   },
   {
    "title": "The Sistine Madonna",

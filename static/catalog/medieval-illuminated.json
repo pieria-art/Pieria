@@ -31,7 +31,33 @@
    "license_verified": "2026-07-16",
    "below_floor_ok": true,
    "delivered_edge": 3487,
-   "resolution_tier": "HD"
+   "resolution_tier": "HD",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0798,
+     1.0,
+     0.5202
+    ],
+    "9:16": [
+     0.0598,
+     0.0,
+     0.7782,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0399,
+     1.0,
+     0.6271
+    ],
+    "3:4": [
+     0.017,
+     0.0,
+     0.975,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Belles Heures of Jean de France, duc de Berry",
@@ -59,7 +85,33 @@
    "license_verified": "2026-07-16",
    "below_floor_ok": true,
    "delivered_edge": 3792,
-   "resolution_tier": "HD"
+   "resolution_tier": "HD",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1,
+     1.0,
+     0.505
+    ],
+    "9:16": [
+     0.1093,
+     0.0,
+     0.8907,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.06,
+     1.0,
+     0.6
+    ],
+    "3:4": [
+     0.0,
+     0.02,
+     1.0,
+     0.98
+    ]
+   }
   },
   {
    "title": "Très Riches Heures du Duc de Berry: January",
@@ -87,7 +139,27 @@
    "license_verified": "2026-07-16",
    "below_floor_ok": true,
    "delivered_edge": 2880,
-   "resolution_tier": "HD"
+   "resolution_tier": "HD",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.3801,
+     1.0,
+     0.8384
+    ],
+    "4:3": [
+     0.0,
+     0.2203,
+     1.0,
+     0.8312
+    ],
+    "3:4": [
+     0.0396,
+     0.0,
+     0.9604,
+     1.0
+    ]
+   }
   },
   {
    "title": "Très Riches Heures du Duc de Berry: February",
@@ -115,7 +187,33 @@
    "license_verified": "2026-07-16",
    "below_floor_ok": true,
    "delivered_edge": 2400,
-   "resolution_tier": "HD"
+   "resolution_tier": "HD",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.4401,
+     1.0,
+     0.8347
+    ],
+    "9:16": [
+     0.0987,
+     0.0,
+     0.9003,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.3002,
+     1.0,
+     0.8264
+    ],
+    "3:4": [
+     0.0,
+     0.0302,
+     1.0,
+     0.9658
+    ]
+   }
   }
  ]
 }

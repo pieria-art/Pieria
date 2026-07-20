@@ -31,7 +31,33 @@
    "credit_line": "Library of Congress Catalog: https://lccn.loc.gov/2008660568 Image download: https://cdn.loc.gov/service/pnp/jpd/02000/02018v.jpg Original url: https://www.loc.gov/pictures/item/2008660568/",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.09,
+     1.0,
+     0.8876
+    ],
+    "9:16": [
+     0.03,
+     0.0,
+     0.4267,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0,
+     0.9403,
+     1.0
+    ],
+    "3:4": [
+     0.03,
+     0.0,
+     0.5589,
+     1.0
+    ]
+   }
   },
   {
    "title": "Fine Wind, Clear Morning (Red Fuji)",

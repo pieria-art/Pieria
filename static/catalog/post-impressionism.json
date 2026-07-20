@@ -518,7 +518,27 @@
    "credit_line": "https://www.bostonglobe.com/arts/theater-dance/2016/09/01/huntington-two-georges-one-sondheim/OR1D4DPM8GsME67aXEjWiP/story.html",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0775,
+     1.0,
+     0.9226
+    ],
+    "9:16": [
+     0.58,
+     0.0,
+     0.9545,
+     1.0
+    ],
+    "4:3": [
+     0.0801,
+     0.0,
+     0.9676,
+     1.0
+    ]
+   }
   },
   {
    "title": "Oil Sketch for \"A Sunday on La Grande Jatte — 1884\"",
@@ -599,7 +619,27 @@
    "credit_line": "Google Arts &amp; Culture — bgEuwDxel93-Pg",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0701,
+     1.0,
+     0.7803
+    ],
+    "4:3": [
+     0.0,
+     0.0265,
+     1.0,
+     0.9736
+    ],
+    "3:4": [
+     0.0199,
+     0.0,
+     0.6139,
+     1.0
+    ]
+   }
   },
   {
    "title": "Sunflowers",
@@ -626,7 +666,33 @@
    "credit_line": "National Gallery, London - online catalogue.",
    "license_verified": "2026-07-16",
    "delivered_edge": 6000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1798,
+     1.0,
+     0.6223
+    ],
+    "9:16": [
+     0.1424,
+     0.0,
+     0.8576,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1198,
+     1.0,
+     0.7096
+    ],
+    "3:4": [
+     0.0232,
+     0.0,
+     0.9768,
+     1.0
+    ]
+   }
   },
   {
    "title": "Café Terrace at Night",
@@ -653,7 +719,33 @@
    "credit_line": "https://data.collectienederland.nl/page/aggregation/kroller-muller/44529",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.3,
+     1.0,
+     0.7511
+    ],
+    "9:16": [
+     0.0499,
+     0.0,
+     0.7515,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.2001,
+     1.0,
+     0.8014
+    ],
+    "3:4": [
+     0.0323,
+     0.0,
+     0.9677,
+     1.0
+    ]
+   }
   },
   {
    "title": "Starry Night Over the Rhône",
@@ -680,7 +772,27 @@
     0.85
    ],
    "delivered_edge": 5407,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "9:16": [
+     0.564,
+     0.0,
+     1.0,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0162,
+     1.0,
+     0.9839
+    ],
+    "3:4": [
+     0.4,
+     0.0,
+     0.9814,
+     1.0
+    ]
+   }
   },
   {
    "title": "Irises",
@@ -707,7 +819,33 @@
     0.35
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.132,
+     1.0,
+     0.8681
+    ],
+    "9:16": [
+     0.0299,
+     0.0,
+     0.4598,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0093,
+     1.0,
+     0.9907
+    ],
+    "3:4": [
+     0.0201,
+     0.0,
+     0.5932,
+     1.0
+    ]
+   }
   },
   {
    "title": "Wheatfield with Crows",
@@ -885,7 +1023,33 @@
     0.55
    ],
    "delivered_edge": 6000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1001,
+     1.0,
+     0.807
+    ],
+    "9:16": [
+     0.4763,
+     0.0,
+     0.9238,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0287,
+     1.0,
+     0.9713
+    ],
+    "3:4": [
+     0.4017,
+     0.0,
+     0.9984,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Yellow Christ",
@@ -4721,7 +4885,33 @@
     0.55
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1599,
+     1.0,
+     0.8688
+    ],
+    "9:16": [
+     0.5,
+     0.0,
+     0.9464,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0274,
+     1.0,
+     0.9726
+    ],
+    "3:4": [
+     0.4,
+     0.0,
+     0.9952,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Bedroom (Musée d'Orsay version, 1889)",
