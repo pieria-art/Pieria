@@ -21,7 +21,7 @@ from sqlalchemy.orm import Session
 import federation
 import frame_push
 from config import ARTWORK_ROOT, LIBRARY_DIR
-from core.downloads import _download_image_to_library, _focal_xy
+from core.downloads import _aspect_crops, _download_image_to_library, _focal_xy
 from core.media import render_canvas_image
 from core.playback import _frame_select
 from core.settings_util import _upsert_setting
@@ -174,6 +174,7 @@ def pre_seed_from_pack(db: Session) -> bool:
 
             if artwork is None:
                 fx, fy = _focal_xy(item)
+                crops = _aspect_crops(item)
                 rank = item.get("featured_rank", 50)
                 artwork = ArtworkModel(
                     filename=filename,
@@ -186,6 +187,7 @@ def pre_seed_from_pack(db: Session) -> bool:
                     tags=item.get("tags"), series=item.get("series"),
                     resolution_tier=item.get("resolution_tier"), is_seed=True, source_url=source_url,
                     focal_x=fx, focal_y=fy,
+                    aspect_crops_json=json.dumps(crops) if crops else None,
                     affinity_score=round(0.5 + rank / 100.0, 3),
                 )
                 db.add(artwork); db.commit(); db.refresh(artwork)
@@ -275,6 +277,7 @@ def _install_collection(db: Session, cid: str, manifest: dict) -> str | None:
                    or db.query(ArtworkModel).filter(ArtworkModel.filename == local_file).first())
         if artwork is None:
             fx, fy = _focal_xy(cat)
+            crops = _aspect_crops(cat)
             # position → affinity (array is fame-sorted): first work ~1.0, last ~0.5, mirroring
             # pre_seed's 0.5+rank/100 weighting now that featured_rank is expressed as order.
             affinity = round(0.5 + (n - idx) / max(n, 1) * 0.5, 3)
@@ -287,7 +290,9 @@ def _install_collection(db: Session, cid: str, manifest: dict) -> str | None:
                 description_narrative=cat.get("description_narrative"),
                 tags=cat.get("tags"), series=cat.get("series"),
                 resolution_tier=cat.get("resolution_tier"), is_seed=True, source_url=source_url,
-                focal_x=fx, focal_y=fy, affinity_score=affinity,
+                focal_x=fx, focal_y=fy,
+                aspect_crops_json=json.dumps(crops) if crops else None,
+                affinity_score=affinity,
             )
             db.add(artwork); db.commit(); db.refresh(artwork)
 
@@ -522,6 +527,7 @@ async def run_factory_seed(db: Session):
                         except OSError: shutil.copy(dest_path, pl_path)
 
                         sfx, sfy = _focal_xy(item)
+                        scrops = _aspect_crops(item)
                         artwork = ArtworkModel(
                             filename=safe_name, original_width=w, original_height=h,
                             crop_width=float(w), crop_height=float(h),
@@ -533,6 +539,7 @@ async def run_factory_seed(db: Session):
                             tags=item.get("tags"), series=item.get("series"),
                             resolution_tier=item.get("resolution_tier"), is_seed=True,
                             focal_x=sfx, focal_y=sfy,
+                            aspect_crops_json=json.dumps(scrops) if scrops else None,
                         )
                         db_local.add(artwork); db_local.commit(); db_local.refresh(artwork)
 

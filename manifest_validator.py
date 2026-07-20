@@ -57,6 +57,16 @@ def _validate_image(image, path, errors, *, has_default_license):
     if fp is not None and not (isinstance(fp, (list, tuple)) and len(fp) == 2
                               and all(isinstance(n, (int, float)) and 0.0 <= n <= 1.0 for n in fp)):
         errors.append(f"{path}.focal_point must be [x, y] with each value a number in 0..1")
+    ac = image.get("aspect_crops")
+    if ac is not None:
+        if not isinstance(ac, dict):
+            errors.append(f"{path}.aspect_crops must be an object")
+        else:
+            for k, box in ac.items():
+                if not (isinstance(box, (list, tuple)) and len(box) == 4
+                        and all(isinstance(n, (int, float)) and 0.0 <= n <= 1.0 for n in box)):
+                    errors.append(f"{path}.aspect_crops[{k!r}] must be [x0,y0,x1,y1] with each value "
+                                  "a number in 0..1")
     _check_asset_license(image, path, errors, license_required=not has_default_license)
 
 

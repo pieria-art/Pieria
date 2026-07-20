@@ -11,6 +11,7 @@ from PIL import Image
 
 import federation
 from config import LIBRARY_DIR, SD_USER_AGENT
+from epaper import ASPECT_CROP_KEYS, normalize_crop_box
 
 
 async def _download_image_to_library(source_url: str, *, filename: str,
@@ -80,3 +81,35 @@ def _focal_xy(item: dict, default: tuple = (0.5, 0.5)) -> tuple:
         except (TypeError, ValueError):
             pass
     return default
+
+
+def _aspect_crops(item: dict) -> dict | None:
+    """Parse 'aspect_crops': {"16:9":[x0,y0,x1,y1], ...} (normalized 0..1) from a catalog/manifest
+    item — the per-shape "how do I best fill THIS screen" boxes (epaper.ASPECT_CROP_KEYS), a twin to
+    _focal_xy for a different question. Absent/not-a-dict/no valid boxes ⇒ None (renderer falls back
+    to the focal cover). Unlike the offline derivation tool, this is the read path: one malformed box
+    must not void the others, so each key is validated independently and only good ones kept.
+
+    epaper.normalize_crop_box() deliberately returns None for BOTH a malformed box and a valid
+    near-full-frame one (its "already fills the frame, no-op" convention) — those two cases must be
+    told apart here, since a full-frame crop is a meaningful "no crop, use it all" answer for this
+    key, not something to silently drop."""
+    raw = item.get("aspect_crops")
+    if not isinstance(raw, dict):
+        return None
+    out: dict = {}
+    for key, box in raw.items():
+        if key not in ASPECT_CROP_KEYS:
+            continue
+        normalized = normalize_crop_box(box)
+        if normalized is not None:
+            out[key] = list(normalized)
+            continue
+        if isinstance(box, (list, tuple)) and len(box) == 4:
+            try:
+                x0, y0, x1, y1 = (float(v) for v in box)
+            except (TypeError, ValueError):
+                continue
+            if 0.0 <= x0 < x1 <= 1.0 and 0.0 <= y0 < y1 <= 1.0:
+                out[key] = [0.0, 0.0, 1.0, 1.0]   # near-full-frame: "use the whole thing", not invalid
+    return out or None

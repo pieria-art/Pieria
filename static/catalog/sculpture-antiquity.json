@@ -355,7 +355,33 @@
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
    "delivered_edge": 5184,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.078,
+     1.0,
+     0.9217
+    ],
+    "9:16": [
+     0.3125,
+     0.0,
+     0.6875,
+     1.0
+    ],
+    "4:3": [
+     0.0556,
+     0.0,
+     0.9444,
+     1.0
+    ],
+    "3:4": [
+     0.25,
+     0.0,
+     0.75,
+     1.0
+    ]
+   }
   },
   {
    "title": "Discobolus",

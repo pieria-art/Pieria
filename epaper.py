@@ -10,6 +10,7 @@ No dithering existed in the app before this; see ROADMAP.md (Track B).
 """
 
 import io
+import math
 from functools import lru_cache
 from pathlib import Path
 
@@ -64,21 +65,84 @@ VALID_FORMATS = {
 }
 VALID_FITS = ("cover", "contain")
 
+# Per-aspect crop presets: "how do I best fill THIS screen shape with this work?" Authored per work
+# (one normalized box per common panel shape) because a focal point can only SLIDE a fixed-size
+# window — it can't CHOOSE one. Museum art clusters near-square, so cropping to a 9:16 panel discards
+# ~53% of the median work; an explicit box lets the composition be picked instead of computed.
+#
+# NOT to be confused with build_pack's Tier-1 `crop_box`/`needs_frame_crop`, which answers a different
+# question one level up — "what IS the artwork" (trim the photographed frame/mat/wall) — and is baked
+# into the master bytes at pack build. By the time we render here, Tier 1 is already resolved.
+ASPECT_CROP_KEYS = ("16:9", "9:16", "4:3", "3:4")
+
+
+def normalize_crop_box(crop_box) -> tuple | None:
+    """Validate a normalized art rectangle [x0,y0,x1,y1] in 0..1 -> tuple, else None.
+
+    Shared by the renderer and build_pack's Tier-1 frame-crop so the two can't drift on what counts
+    as a valid box. A near-full-frame box is deliberately None ("already fills the frame" — agents
+    return [0,0,1,1] to mean that), which keeps it a true no-op rather than a pointless re-encode.
+    """
+    if not (isinstance(crop_box, (list, tuple)) and len(crop_box) == 4):
+        return None
+    try:
+        x0, y0, x1, y1 = (float(v) for v in crop_box)
+    except (TypeError, ValueError):
+        return None
+    if not (0.0 <= x0 < x1 <= 1.0 and 0.0 <= y0 < y1 <= 1.0):
+        return None
+    if x0 <= 0.002 and y0 <= 0.002 and x1 >= 0.998 and y1 >= 0.998:
+        return None
+    return (x0, y0, x1, y1)
+
+
+def pick_crop_for_aspect(crops, w: int, h: int) -> tuple | None:
+    """Choose the authored crop whose key ratio is nearest the requested w:h, or None.
+
+    Nearest-by-ratio (not exact-match) so an odd panel — an 1872x1404 e-ink, a 5:4 monitor — still
+    gets the closest sensible preset instead of silently falling back to a focal cover. Compared in
+    log space so 16:9-vs-4:3 and 9:16-vs-3:4 are judged by proportional, not absolute, distance.
+    """
+    if not isinstance(crops, dict) or not crops or w <= 0 or h <= 0:
+        return None
+    target = w / h
+    best, best_dist = None, None
+    for key, box in crops.items():
+        try:
+            kw, kh = (float(v) for v in str(key).split(":"))
+            ratio = kw / kh
+        except (TypeError, ValueError, ZeroDivisionError):
+            continue
+        if ratio <= 0:
+            continue
+        dist = abs(math.log(target / ratio))
+        if best_dist is None or dist < best_dist:
+            box = normalize_crop_box(box)
+            if box is not None:
+                best, best_dist = box, dist
+    return best
+
+
 _PALETTE_IMAGE_CACHE: dict = {}
 
 
 def _fit_rgb(image_path: Path, w: int, h: int, fit: str = "cover",
-             focal: tuple = (0.5, 0.5)) -> Image.Image:
+             focal: tuple = (0.5, 0.5), crop_box=None) -> Image.Image:
     """Open a source image, honour EXIF orientation, normalise ANY input mode
     (JPEG/PNG/WebP, incl. CMYK / RGBA / palette / greyscale) to RGB, and fit it to
     exactly w x h — cover-crop (anchored on the normalized focal point, default
     centered) or contain (letterbox onto white).
+
+    An optional normalized `crop_box` pre-crops to an authored region first; since that box is
+    authored AT the target aspect the subsequent fit is near-lossless, and focal stops mattering.
+    Absent/invalid box -> the focal path below, unchanged, so zero crop data is a true no-op.
 
     Shared by the e-ink renderer and the full-colour (Frame TV) renderer so the
     orient/crop behaviour can't drift between outputs.
     """
     if fit not in VALID_FITS:
         fit = "cover"
+    box = normalize_crop_box(crop_box)
     with Image.open(image_path) as src:
         img = ImageOps.exif_transpose(src)
         # C5: composite any transparency onto white "paper" BEFORE flattening. A plain convert("RGB")
@@ -89,6 +153,13 @@ def _fit_rgb(image_path: Path, w: int, h: int, fit: str = "cover",
             img = Image.alpha_composite(bg, img).convert("RGB")
         else:
             img = img.convert("RGB")
+        if box is not None:
+            iw, ih = img.size
+            left, upper = round(box[0] * iw), round(box[1] * ih)
+            right, lower = round(box[2] * iw), round(box[3] * ih)
+            # a degenerate box on a tiny source would crop to nothing — keep the full frame instead
+            if right - left >= 1 and lower - upper >= 1:
+                img = img.crop((left, upper, right, lower))
         if fit == "cover":
             return ImageOps.fit(
                 img, (w, h), method=Image.Resampling.LANCZOS, centering=focal
@@ -161,11 +232,13 @@ def render_for_epaper(
     focal: tuple = (0.5, 0.5),
     fmt: str = "png",
     enhance: bool = True,
+    crop_box: tuple | None = None,
 ) -> bytes:
     """Render a source image to a palette-dithered bitmap sized exactly w x h.
 
     Cached on its arguments like get_optimized_image(); images in _Library are
-    content-stable so path is a sufficient key.
+    content-stable so path is a sufficient key. NOTE: because of that cache every argument must be
+    hashable — pass `crop_box` as a TUPLE, never the list it arrives as from JSON.
     """
     if palette not in PALETTES:
         raise ValueError(f"Unknown palette '{palette}'. Options: {', '.join(PALETTES)}")
@@ -175,7 +248,7 @@ def render_for_epaper(
     if fit not in VALID_FITS:
         fit = "cover"
 
-    fitted = _fit_rgb(image_path, w, h, fit, focal)
+    fitted = _fit_rgb(image_path, w, h, fit, focal, crop_box)
 
     if palette == "spectra6":
         # Bench-calibrated path (2026-07-19): adaptive highlight pulldown, then Floyd-Steinberg dither
@@ -218,12 +291,14 @@ def render_fullcolor(
     fit: str = "cover",
     focal: tuple = (0.5, 0.5),
     quality: int = 90,
+    crop_box: tuple | None = None,
 ) -> bytes:
     """Render a source image to a full-colour JPEG sized exactly w x h, for displays
     that want a normal image (e.g. a Samsung Frame TV's Art Mode at 3840x2160) — same
     EXIF-orient + cover/contain framing as the e-ink path, but no palette quantization
-    or dithering. Cached on its arguments like render_for_epaper()."""
-    fitted = _fit_rgb(image_path, w, h, fit, focal)
+    or dithering. Cached on its arguments like render_for_epaper() — so `crop_box` must
+    be a hashable TUPLE."""
+    fitted = _fit_rgb(image_path, w, h, fit, focal, crop_box)
     buf = io.BytesIO()
     fitted.save(buf, format="JPEG", quality=quality)
     return buf.getvalue()

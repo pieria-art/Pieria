@@ -57,7 +57,33 @@
    "credit_line": "https://www.gustav-klimt.com/images/paintings/Pallas-Athena.jpg",
    "license_verified": "2026-07-16",
    "delivered_edge": 3966,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0601,
+     1.0,
+     0.6286
+    ],
+    "9:16": [
+     0.0999,
+     0.0,
+     0.6565,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0601,
+     1.0,
+     0.8182
+    ],
+    "3:4": [
+     0.0799,
+     0.0,
+     0.822,
+     1.0
+    ]
+   }
   },
   {
    "title": "Danaë",
@@ -112,7 +138,21 @@
    "credit_line": "http://allpaintingsstore.com/ADC/Art-ImgScreen-3.nsf/O/A-8XY64V/$FILE/Gustav-klimt-the-beethoven-frieze-the-hostile-powers.-far-wall.Jpg",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0,
+     0.5808,
+     1.0
+    ],
+    "4:3": [
+     0.03,
+     0.0,
+     0.4656,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Slav Epic: The Apotheosis of the Slavs",
@@ -174,7 +214,33 @@
     0.95
    ],
    "delivered_edge": 3768,
-   "resolution_tier": "HD"
+   "resolution_tier": "HD",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1139,
+     0.93,
+     0.8871
+    ],
+    "9:16": [
+     0.3097,
+     0.0,
+     0.6903,
+     1.0
+    ],
+    "4:3": [
+     0.028,
+     0.0,
+     0.93,
+     1.0
+    ],
+    "3:4": [
+     0.2463,
+     0.0,
+     0.7537,
+     1.0
+    ]
+   }
   },
   {
    "title": "Trellis",
@@ -235,7 +301,33 @@
     0.965
    ],
    "delivered_edge": 4044,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1595,
+     1.0,
+     0.8405
+    ],
+    "9:16": [
+     0.2678,
+     0.0,
+     0.7323,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.046,
+     1.0,
+     0.9541
+    ],
+    "3:4": [
+     0.1903,
+     0.0,
+     0.8098,
+     1.0
+    ]
+   }
   },
   {
    "title": "Magnolia and Irises",
@@ -344,7 +436,33 @@
    "credit_line": "Sotheby's London, 10 May 2012, lot 14",
    "license_verified": "2026-07-16",
    "delivered_edge": 4000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ],
+    "9:16": [
+     0.3501,
+     0.0,
+     0.6679,
+     1.0
+    ],
+    "4:3": [
+     0.0498,
+     0.0,
+     0.8032,
+     1.0
+    ],
+    "3:4": [
+     0.3001,
+     0.0,
+     0.7239,
+     1.0
+    ]
+   }
   },
   {
    "title": "Ver Sacrum",
@@ -371,7 +489,33 @@
    "credit_line": "repro from artbook",
    "license_verified": "2026-07-16",
    "delivered_edge": 5460,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.2001,
+     1.0,
+     0.4221
+    ],
+    "9:16": [
+     0.0,
+     0.0204,
+     1.0,
+     0.7218
+    ],
+    "4:3": [
+     0.0,
+     0.1802,
+     1.0,
+     0.4761
+    ],
+    "3:4": [
+     0.0,
+     0.0303,
+     1.0,
+     0.5564
+    ]
+   }
   }
  ]
 }

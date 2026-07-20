@@ -184,6 +184,7 @@ def manifest_item_to_catalog(item: dict) -> dict:
         "local_file": local,
         "thumbnail_url": img.get("thumbnail_url") or (f"pack:{local}" if local else img.get("full_url")),
         "focal_point": img.get("focal_point"),
+        "aspect_crops": img.get("aspect_crops"),
     }
 
 

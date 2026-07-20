@@ -878,7 +878,33 @@
    "credit_line": "Collection of Art Institute of Chicago",
    "license_verified": "2026-07-16",
    "delivered_edge": 6153,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.2499,
+     1.0,
+     0.9411
+    ],
+    "9:16": [
+     0.5421,
+     0.0,
+     0.9999,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0782,
+     1.0,
+     0.9998
+    ],
+    "3:4": [
+     0.3498,
+     0.0,
+     0.9602,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Banks of the Marne in Winter",
@@ -2290,7 +2316,33 @@
     0.65
    ],
    "delivered_edge": 4683,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.3,
+     1.0,
+     1.0
+    ],
+    "9:16": [
+     0.5,
+     0.0,
+     0.952,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0666,
+     1.0,
+     1.0
+    ],
+    "3:4": [
+     0.3002,
+     0.0,
+     0.9028,
+     1.0
+    ]
+   }
   },
   {
    "title": "Above Vétheuil, Spring Effect",
@@ -3190,7 +3242,33 @@
     0.3
    ],
    "delivered_edge": 4015,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0301,
+     1.0,
+     0.4135
+    ],
+    "9:16": [
+     0.0874,
+     0.0,
+     0.9126,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0302,
+     1.0,
+     0.5414
+    ],
+    "3:4": [
+     0.0,
+     0.0202,
+     1.0,
+     0.9291
+    ]
+   }
   },
   {
    "title": "The Umbrellas",
@@ -5533,7 +5611,33 @@
     0.32
    ],
    "delivered_edge": 4570,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.04,
+     1.0,
+     0.654
+    ],
+    "9:16": [
+     0.0303,
+     0.0,
+     0.5457,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0602,
+     1.0,
+     0.8788
+    ],
+    "3:4": [
+     0.0604,
+     0.0,
+     0.7476,
+     1.0
+    ]
+   }
   },
   {
    "title": "Lorenzo Pagans and Auguste De Gas",
@@ -8045,7 +8149,33 @@
     0.4
    ],
    "delivered_edge": 5001,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0982,
+     1.0,
+     0.9998
+    ],
+    "9:16": [
+     0.649,
+     0.0,
+     1.0,
+     1.0
+    ],
+    "4:3": [
+     0.1681,
+     0.0,
+     0.9999,
+     1.0
+    ],
+    "3:4": [
+     0.532,
+     0.0,
+     1.0,
+     1.0
+    ]
+   }
   },
   {
    "title": "Poultry Market at Gisors",

@@ -105,19 +105,33 @@ def test_push_once_refresh_after_header_is_read():
     assert res["refresh_after"] == 45
 
 
-def test_push_once_orientation_portrait_rotates_image():
-    content = _png_bytes(size=(1600, 1200))
+def test_portrait_requests_a_portrait_composition():
+    """A portrait-hung panel must ASK the server for a portrait frame.
+
+    Regression: pull_url used to hardcode w=1600&h=1200, so the server composed for a LANDSCAPE
+    window and the client just rotated the result — a portrait frame never received a portrait
+    composition, and the per-aspect crop presets would have been picked for the wrong shape.
+    """
+    assert "w=1600&h=1200" in _cfg(orientation="").pull_url
+    assert "w=1200&h=1600" in _cfg(orientation="portrait").pull_url
+
+
+def test_push_once_portrait_paints_the_panels_native_buffer():
+    """After rotation the panel must get its NATIVE landscape buffer, not a transposed one.
+
+    Regression: portrait mode used to hand a 1200x1600 image to a 1600x1200 panel.
+    """
     landscape_client = ec.FakeInkyClient()
     portrait_client = ec.FakeInkyClient()
-    fetch_fn = _fetch_fn_for(content, {"ETag": '"e1"'})
 
-    ec.push_once(_cfg(orientation=""), fetch_fn, landscape_client, last_etag=None)
-    ec.push_once(_cfg(orientation="portrait"), fetch_fn, portrait_client, last_etag=None)
+    ec.push_once(_cfg(orientation=""), _fetch_fn_for(_png_bytes(size=(1600, 1200)),
+                 {"ETag": '"e1"'}), landscape_client, last_etag=None)
+    # the server now answers a portrait request with a portrait-composed frame
+    ec.push_once(_cfg(orientation="portrait"), _fetch_fn_for(_png_bytes(size=(1200, 1600)),
+                 {"ETag": '"e1"'}), portrait_client, last_etag=None)
 
-    landscape_size = landscape_client.shown[0][0]
-    portrait_size = portrait_client.shown[0][0]
-    assert landscape_size == (1600, 1200)
-    assert portrait_size == (1200, 1600)  # swapped
+    assert landscape_client.shown[0][0] == (1600, 1200)
+    assert portrait_client.shown[0][0] == (1600, 1200)  # rotated back onto the native buffer
 
 
 # ------------------------------------------------------------------ run_tick

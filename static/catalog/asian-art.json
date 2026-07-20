@@ -111,7 +111,21 @@
    "credit_line": "http://depts.washington.edu/chinaciv/painting/4literat.htm#hanxizai, Zhongguo lidai huihua: Gugong bowuyuan canghua ji, vol. 1 (Beijing: Renmin meishu chubanshe, 1978), p. 89.",
    "license_verified": "2026-07-16",
    "delivered_edge": 4720,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0554,
+     0.0,
+     0.2046,
+     1.0
+    ],
+    "4:3": [
+     0.0741,
+     0.0,
+     0.1859,
+     1.0
+    ]
+   }
   },
   {
    "title": "Summer Mountains",
@@ -138,7 +152,33 @@
    "credit_line": "Metmuseum",
    "license_verified": "2026-07-16",
    "delivered_edge": 5551,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0669,
+     0.0,
+     0.6331,
+     1.0
+    ],
+    "9:16": [
+     0.2604,
+     0.0,
+     0.4396,
+     1.0
+    ],
+    "4:3": [
+     0.1377,
+     0.0,
+     0.5623,
+     1.0
+    ],
+    "3:4": [
+     0.2306,
+     0.0,
+     0.4695,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Court of Gayumars",

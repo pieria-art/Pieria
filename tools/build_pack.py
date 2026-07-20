@@ -56,6 +56,7 @@ import federation
 import publisher
 from config import SD_USER_AGENT
 from core.media import DISPLAY_MAX_EDGE, DISPLAY_QUALITY
+from epaper import normalize_crop_box
 from scout import _wm_throttle
 from tools import aic_tiles
 
@@ -94,7 +95,7 @@ SIGNING_KEY_ENV = "SD_PACK_SIGNING_KEY"
 _PLACARD_FIELDS = (
     "title", "agent_name", "agent_role", "creation_date", "cultural_context", "medium", "kind",
     "date_display", "description_narrative", "tags", "source", "license", "needs_frame_crop",
-    "series", "resolution_tier",
+    "series", "resolution_tier", "aspect_crops",
 )
 
 
@@ -312,17 +313,10 @@ def _apply_crop_box(raw: bytes, crop_box) -> bytes | None:
     crop_box=[x0,y0,x1,y1] (0..1). AI produces the box against the catalog thumbnail; because it is
     normalized it maps 1:1 onto the native master here (build_pack stays NO-AI). Returns re-encoded
     JPEG bytes, or None (caller keeps the uncropped raw) if the box is missing/degenerate/undecodable."""
-    if not (isinstance(crop_box, (list, tuple)) and len(crop_box) == 4):
+    box = normalize_crop_box(crop_box)  # shared with the renderer so "valid box" can't drift
+    if box is None:                     # missing/degenerate, or a near-full no-op ([0,0,1,1])
         return None
-    try:
-        x0, y0, x1, y1 = (float(v) for v in crop_box)
-    except (TypeError, ValueError):
-        return None
-    if not (0.0 <= x0 < x1 <= 1.0 and 0.0 <= y0 < y1 <= 1.0):
-        return None
-    # a near-full box is a no-op ("already clean" agents return [0,0,1,1]) — skip the re-encode
-    if x0 <= 0.002 and y0 <= 0.002 and x1 >= 0.998 and y1 >= 0.998:
-        return None
+    x0, y0, x1, y1 = box
     try:
         with Image.open(BytesIO(raw)) as img:
             img = ImageOps.exif_transpose(img)
@@ -539,6 +533,7 @@ def _v2_row(mi: dict) -> dict:
         "placard": mi.get("description_narrative") or None,
         "series": mi.get("series") or None,
         "resolution_tier": mi.get("resolution_tier") or None,
+        "aspect_crops": mi.get("aspect_crops") or None,
         "tags": mi.get("tags") or None,
         "local_file": mi.get("filename"),
         "thumbnail_url": f"pack:_catalog_thumbs/{mi['thumbnail']}" if mi.get("thumbnail") else None,

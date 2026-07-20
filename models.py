@@ -3,6 +3,7 @@ SQLAlchemy models for Screen Docent.
 Phase 3: Many-to-Many relationship between Playlists and Artworks.
 """
 
+import json
 from datetime import UTC, datetime
 from typing import List, Optional
 
@@ -173,6 +174,27 @@ class ArtworkModel(Base):
     # Default (0.5, 0.5) = image center = prior behavior (no regression for un-derived art).
     focal_x: Mapped[float] = mapped_column(Float, default=0.5)
     focal_y: Mapped[float] = mapped_column(Float, default=0.5)
+
+    # Up to four per-shape crop boxes ({"16:9":[x0,y0,x1,y1], "9:16":[...], "4:3":[...], "3:4":[...]},
+    # normalized 0..1), authored per work to answer "how do I best fill THIS screen shape with this
+    # work" at render time (epaper.ASPECT_CROP_KEYS / pick_crop_for_aspect). Stored as JSON text, the
+    # repo's JSON-in-Text convention (see unplayed_artworks_json/items_json). NULL means "not
+    # derived" -> the renderer falls back to the focal cover. Not the Tier-1 crop_box/needs_frame_crop
+    # (baked into the master at pack build) nor the LCD-only crop_x/crop_y/crop_width/crop_height.
+    aspect_crops_json: Mapped[Optional[str]] = mapped_column(Text)
+
+    @property
+    def aspect_crops(self) -> Optional[dict]:
+        """The parsed crop presets, or None. Every renderer reads them through here so the
+        JSON-decode + tolerate-garbage behaviour can't drift between the e-ink, Frame and Canvas
+        paths (a corrupt value must degrade to the focal cover, never break playback)."""
+        if not self.aspect_crops_json:
+            return None
+        try:
+            data = json.loads(self.aspect_crops_json)
+        except (TypeError, ValueError):
+            return None
+        return data if isinstance(data, dict) and data else None
 
     def __repr__(self) -> str:
         return f"<Artwork(filename='{self.filename}', status='{self.status}')>"

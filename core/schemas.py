@@ -29,5 +29,9 @@ class ArtworkSchema(BaseModel):
     crop_height: float
     focal_x: float = 0.5
     focal_y: float = 0.5
+    # Parsed dict, not the raw aspect_crops_json text — reads through ArtworkModel.aspect_crops
+    # (from_attributes), the model's own JSON-decode + tolerate-garbage property, so this can't drift
+    # from what the e-ink/Frame/Canvas renderers see. NULL/malformed -> None (focal-cover fallback).
+    aspect_crops: Optional[dict] = None
     is_personal: bool = False
     model_config = {"from_attributes": True}
