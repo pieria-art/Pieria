@@ -30,7 +30,33 @@
    "credit_line": "https://artsandculture.google.com/asset/wd/IwE6G8n5wsoEjg",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.4199,
+     1.0,
+     0.7165
+    ],
+    "9:16": [
+     0.0,
+     0.0312,
+     1.0,
+     0.9688
+    ],
+    "4:3": [
+     0.0,
+     0.3798,
+     1.0,
+     0.7754
+    ],
+    "3:4": [
+     0.0,
+     0.1497,
+     1.0,
+     0.8529
+    ]
+   }
   },
   {
    "title": "Pallas Athene",
@@ -111,7 +137,33 @@
    "license_verified": "2026-07-16",
    "below_floor_ok": true,
    "delivered_edge": 2694,
-   "resolution_tier": "HD"
+   "resolution_tier": "HD",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0999,
+     1.0,
+     0.7056
+    ],
+    "9:16": [
+     0.2799,
+     0.0,
+     0.8024,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0301,
+     1.0,
+     0.8376
+    ],
+    "3:4": [
+     0.18,
+     0.0,
+     0.8765,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Beethoven Frieze",
@@ -141,15 +193,15 @@
    "resolution_tier": "8K",
    "aspect_crops": {
     "16:9": [
-     0.0,
+     0.0001,
      0.0,
      0.5808,
      1.0
     ],
     "4:3": [
-     0.03,
      0.0,
-     0.4656,
+     0.0,
+     0.4356,
      1.0
     ]
    }
@@ -180,7 +232,33 @@
    "license_verified": "2026-07-16",
    "below_floor_ok": true,
    "delivered_edge": 2882,
-   "resolution_tier": "HD"
+   "resolution_tier": "HD",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0,
+     1.0,
+     0.465
+    ],
+    "9:16": [
+     0.1597,
+     0.0,
+     0.8403,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0001,
+     1.0,
+     0.6199
+    ],
+    "3:4": [
+     0.0463,
+     0.0,
+     0.9537,
+     1.0
+    ]
+   }
   },
   {
    "title": "Strawberry Thief",
@@ -267,7 +345,33 @@
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
    "delivered_edge": 4000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.2001,
+     1.0,
+     0.6555
+    ],
+    "9:16": [
+     0.0,
+     0.0,
+     0.6947,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1501,
+     1.0,
+     0.7575
+    ],
+    "3:4": [
+     0.0298,
+     0.0,
+     0.9561,
+     1.0
+    ]
+   }
   },
   {
    "title": "Acanthus",
@@ -354,7 +458,27 @@
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
    "delivered_edge": 3850,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "9:16": [
+     0.0497,
+     0.0,
+     0.8447,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1502,
+     1.0,
+     0.6808
+    ],
+    "3:4": [
+     0.0,
+     0.0298,
+     1.0,
+     0.9732
+    ]
+   }
   },
   {
    "title": "The Peacock Skirt",
@@ -381,7 +505,33 @@
    "credit_line": "[1]",
    "license_verified": "2026-07-16",
    "delivered_edge": 4941,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0,
+     1.0,
+     0.4036
+    ],
+    "9:16": [
+     0.0802,
+     0.0,
+     0.8643,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0,
+     1.0,
+     0.5381
+    ],
+    "3:4": [
+     0.0,
+     0.0098,
+     1.0,
+     0.9664
+    ]
+   }
   },
   {
    "title": "The Dancer's Reward",
@@ -409,7 +559,33 @@
    "license_verified": "2026-07-16",
    "below_floor_ok": true,
    "delivered_edge": 2454,
-   "resolution_tier": "HD"
+   "resolution_tier": "HD",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0198,
+     1.0,
+     0.4324
+    ],
+    "9:16": [
+     0.1003,
+     0.0,
+     0.8671,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0,
+     1.0,
+     0.5501
+    ],
+    "3:4": [
+     0.0,
+     0.0098,
+     1.0,
+     0.9877
+    ]
+   }
   },
   {
    "title": "Neptune's Horses",
