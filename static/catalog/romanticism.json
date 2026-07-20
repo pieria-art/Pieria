@@ -3290,7 +3290,27 @@
     0.55
    ],
    "delivered_edge": 5878,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0501,
+     1.0,
+     0.8324
+    ],
+    "4:3": [
+     0.0207,
+     0.0,
+     0.9793,
+     1.0
+    ],
+    "3:4": [
+     0.3,
+     0.0,
+     0.8392,
+     1.0
+    ]
+   }
   },
   {
    "title": "Sun Rising through Vapour: Fishermen Cleaning and Selling Fish",
@@ -3317,7 +3337,27 @@
     0.35
    ],
    "delivered_edge": 5729,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0801,
+     1.0,
+     0.8426
+    ],
+    "4:3": [
+     0.0082,
+     0.0,
+     0.9918,
+     1.0
+    ],
+    "3:4": [
+     0.2499,
+     0.0,
+     0.8032,
+     1.0
+    ]
+   }
   },
   {
    "title": "What You Will!",
@@ -3351,7 +3391,33 @@
     0.55
    ],
    "delivered_edge": 5291,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.2399,
+     1.0,
+     0.9162
+    ],
+    "9:16": [
+     0.5001,
+     0.0,
+     0.9679,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.049,
+     1.0,
+     0.9507
+    ],
+    "3:4": [
+     0.3001,
+     0.0,
+     0.9239,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Château de St. Michael, Bonneville, Savoy",
@@ -3378,7 +3444,33 @@
     0.78
    ],
    "delivered_edge": 5716,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1001,
+     1.0,
+     0.8537
+    ],
+    "9:16": [
+     0.1499,
+     0.0,
+     0.5698,
+     1.0
+    ],
+    "4:3": [
+     0.0023,
+     0.0,
+     0.9977,
+     1.0
+    ],
+    "3:4": [
+     0.1199,
+     0.0,
+     0.6798,
+     1.0
+    ]
+   }
   },
   {
    "title": "Lausanne: Sunset",
@@ -3412,7 +3504,33 @@
     0.36
    ],
    "delivered_edge": 2830,
-   "resolution_tier": "HD"
+   "resolution_tier": "HD",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0199,
+     1.0,
+     0.8429
+    ],
+    "9:16": [
+     0.31,
+     0.0,
+     0.6945,
+     1.0
+    ],
+    "4:3": [
+     0.0444,
+     0.0,
+     0.9556,
+     1.0
+    ],
+    "3:4": [
+     0.2801,
+     0.0,
+     0.7926,
+     1.0
+    ]
+   }
   },
   {
    "title": "Tummel Bridge, Perthshire",
@@ -3439,7 +3557,33 @@
     0.55
    ],
    "delivered_edge": 4713,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.02,
+     1.0,
+     0.9542
+    ],
+    "9:16": [
+     0.32,
+     0.0,
+     0.6587,
+     1.0
+    ],
+    "4:3": [
+     0.0998,
+     0.0,
+     0.9027,
+     1.0
+    ],
+    "3:4": [
+     0.2699,
+     0.0,
+     0.7216,
+     1.0
+    ]
+   }
   },
   {
    "title": "Geneva, the Jura Mountains and Isle Rousseau, Sunset",
@@ -3473,7 +3617,33 @@
     0.65
    ],
    "delivered_edge": 2522,
-   "resolution_tier": "HD"
+   "resolution_tier": "HD",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1398,
+     1.0,
+     0.8432
+    ],
+    "9:16": [
+     0.4501,
+     0.0,
+     0.8999,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.031,
+     1.0,
+     0.9687
+    ],
+    "3:4": [
+     0.2001,
+     0.0,
+     0.7999,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Sun of Venice Going to Sea",
@@ -3500,7 +3670,33 @@
     0.5
    ],
    "delivered_edge": 4512,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0199,
+     1.0,
+     0.8609
+    ],
+    "9:16": [
+     0.28,
+     0.0,
+     0.6563,
+     1.0
+    ],
+    "4:3": [
+     0.0539,
+     0.0,
+     0.9458,
+     1.0
+    ],
+    "3:4": [
+     0.22,
+     0.0,
+     0.7217,
+     1.0
+    ]
+   }
   },
   {
    "title": "Panoramic View of the Thames",
@@ -3527,7 +3723,27 @@
     0.6
    ],
    "delivered_edge": 4504,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.03,
+     1.0,
+     0.8602
+    ],
+    "4:3": [
+     0.0483,
+     0.0,
+     0.9517,
+     1.0
+    ],
+    "3:4": [
+     0.3999,
+     0.0,
+     0.9082,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Rainbow: Osterspai and Filsen",
@@ -3554,7 +3770,33 @@
     0.75
    ],
    "delivered_edge": 4501,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.05,
+     1.0,
+     0.9027
+    ],
+    "9:16": [
+     0.32,
+     0.0,
+     0.691,
+     1.0
+    ],
+    "4:3": [
+     0.0603,
+     0.0,
+     0.9398,
+     1.0
+    ],
+    "3:4": [
+     0.26,
+     0.0,
+     0.7547,
+     1.0
+    ]
+   }
   },
   {
    "title": "East Cowes Castle, the Seat of J. Nash, Esq.: The Regatta Beating to Windward",
@@ -3588,7 +3830,33 @@
     0.45
    ],
    "delivered_edge": 3888,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0799,
+     1.0,
+     0.8558
+    ],
+    "9:16": [
+     0.48,
+     0.0,
+     0.8879,
+     1.0
+    ],
+    "4:3": [
+     0.0166,
+     0.0,
+     0.9834,
+     1.0
+    ],
+    "3:4": [
+     0.3501,
+     0.0,
+     0.8938,
+     1.0
+    ]
+   }
   },
   {
    "title": "View off Margate, Evening",
@@ -3622,7 +3890,21 @@
     0.4
    ],
    "delivered_edge": 4059,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0081,
+     1.0,
+     0.9922
+    ],
+    "4:3": [
+     0.2379,
+     0.0,
+     1.0,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Schöllenen Gorge from the Devil's Bridge, Pass of St Gotthard",
@@ -3656,7 +3938,27 @@
     0.45
    ],
    "delivered_edge": 2665,
-   "resolution_tier": "HD"
+   "resolution_tier": "HD",
+   "aspect_crops": {
+    "9:16": [
+     0.1,
+     0.0,
+     0.8991,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.3501,
+     1.0,
+     0.878
+    ],
+    "3:4": [
+     0.0,
+     0.0301,
+     1.0,
+     0.9686
+    ]
+   }
   },
   {
    "title": "Tours: Sunset, Looking Backwards",
@@ -3683,7 +3985,21 @@
     0.65
    ],
    "delivered_edge": 4202,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0499,
+     1.0,
+     0.923
+    ],
+    "4:3": [
+     0.0705,
+     0.0,
+     0.9295,
+     1.0
+    ]
+   }
   },
   {
    "title": "Scarborough Town and Castle: Morning, Boys Catching Crabs",
@@ -3710,7 +4026,27 @@
     0.75
    ],
    "delivered_edge": 4135,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.05,
+     1.0,
+     0.8897
+    ],
+    "4:3": [
+     0.0534,
+     0.0,
+     0.9466,
+     1.0
+    ],
+    "3:4": [
+     0.2999,
+     0.0,
+     0.8024,
+     1.0
+    ]
+   }
   },
   {
    "title": "Kirkby Lonsdale Churchyard",
@@ -3737,7 +4073,33 @@
     0.55
    ],
    "delivered_edge": 4025,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.09,
+     1.0,
+     0.9033
+    ],
+    "9:16": [
+     0.05,
+     0.0,
+     0.4391,
+     1.0
+    ],
+    "4:3": [
+     0.0389,
+     0.0,
+     0.9611,
+     1.0
+    ],
+    "3:4": [
+     0.03,
+     0.0,
+     0.5487,
+     1.0
+    ]
+   }
   },
   {
    "title": "Bell Rock Lighthouse",
@@ -3764,7 +4126,33 @@
     0.35
    ],
    "delivered_edge": 4001,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0301,
+     1.0,
+     0.8826
+    ],
+    "9:16": [
+     0.4499,
+     0.0,
+     0.8211,
+     1.0
+    ],
+    "4:3": [
+     0.0602,
+     0.0,
+     0.9399,
+     1.0
+    ],
+    "3:4": [
+     0.3999,
+     0.0,
+     0.8948,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Evening of the Deluge",
@@ -3791,7 +4179,33 @@
     0.35
    ],
    "delivered_edge": 4000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.08,
+     1.0,
+     0.6396
+    ],
+    "9:16": [
+     0.22,
+     0.0,
+     0.7853,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1001,
+     1.0,
+     0.8463
+    ],
+    "3:4": [
+     0.12,
+     0.0,
+     0.8738,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Bass Rock",
@@ -3825,7 +4239,33 @@
     0.45
    ],
    "delivered_edge": 2880,
-   "resolution_tier": "HD"
+   "resolution_tier": "HD",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0799,
+     1.0,
+     0.8197
+    ],
+    "9:16": [
+     0.35,
+     0.0,
+     0.7778,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0069,
+     1.0,
+     0.9932
+    ],
+    "3:4": [
+     0.2,
+     0.0,
+     0.7703,
+     1.0
+    ]
+   }
   },
   {
    "title": "Ancient Rome: Agrippina Landing with the Ashes of Germanicus",
@@ -3852,7 +4292,33 @@
     0.3
    ],
    "delivered_edge": 4000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0601,
+     1.0,
+     0.8137
+    ],
+    "9:16": [
+     0.2999,
+     0.0,
+     0.7198,
+     1.0
+    ],
+    "4:3": [
+     0.0023,
+     0.0,
+     0.9977,
+     1.0
+    ],
+    "3:4": [
+     0.2199,
+     0.0,
+     0.7798,
+     1.0
+    ]
+   }
   },
   {
    "title": "Saint-Maurice, Valais",
@@ -3879,7 +4345,33 @@
     0.45
    ],
    "delivered_edge": 3902,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.08,
+     1.0,
+     0.8709
+    ],
+    "9:16": [
+     0.14,
+     0.0,
+     0.5401,
+     1.0
+    ],
+    "4:3": [
+     0.026,
+     0.0,
+     0.9743,
+     1.0
+    ],
+    "3:4": [
+     0.1,
+     0.0,
+     0.6334,
+     1.0
+    ]
+   }
   }
  ]
 }

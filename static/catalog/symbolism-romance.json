@@ -30,7 +30,33 @@
    "credit_line": "Google Arts &amp; Culture — -wGU6cT4JixtPA Tate Images (http://www.tate-images.com/results.asp?image=N01506&amp;wwwflag=3&amp;imagepos=2)",
    "license_verified": "2026-07-16",
    "delivered_edge": 7087,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.08,
+     1.0,
+     0.907
+    ],
+    "9:16": [
+     0.0592,
+     0.0,
+     0.4418,
+     1.0
+    ],
+    "4:3": [
+     0.0466,
+     0.0,
+     0.9534,
+     1.0
+    ],
+    "3:4": [
+     0.075,
+     0.0,
+     0.585,
+     1.0
+    ]
+   }
   },
   {
    "title": "Christ in the House of His Parents",
@@ -57,7 +83,33 @@
    "credit_line": "Google Arts &amp; Culture — KgHTjZxC7spFMQ Tate Images (http://www.tate-images.com/results.asp?image=N03584&amp;wwwflag=3&amp;imagepos=1)",
    "license_verified": "2026-07-16",
    "delivered_edge": 4500,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0501,
+     1.0,
+     0.9769
+    ],
+    "9:16": [
+     0.2498,
+     0.0,
+     0.5912,
+     1.0
+    ],
+    "4:3": [
+     0.0949,
+     0.0,
+     0.9041,
+     1.0
+    ],
+    "3:4": [
+     0.2224,
+     0.0,
+     0.6776,
+     1.0
+    ]
+   }
   },
   {
    "title": "Proserpine",
@@ -84,7 +136,33 @@
    "credit_line": "JQFW5c2ZLfpmbw at Google Cultural Institute, zoom level maximum",
    "license_verified": "2026-07-16",
    "delivered_edge": 6497,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0499,
+     1.0,
+     0.3351
+    ],
+    "9:16": [
+     0.0,
+     0.031,
+     1.0,
+     0.932
+    ],
+    "4:3": [
+     0.0,
+     0.0399,
+     1.0,
+     0.4201
+    ],
+    "3:4": [
+     0.0,
+     0.0201,
+     1.0,
+     0.6959
+    ]
+   }
   },
   {
    "title": "Beata Beatrix",
@@ -111,7 +189,33 @@
    "credit_line": "Google Arts &amp; Culture — GgHmtzXziFIlnQ Tate Images (http://www.tate-images.com/results.asp?image=N01279&amp;wwwflag=3&amp;imagepos=1)",
    "license_verified": "2026-07-16",
    "delivered_edge": 6118,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1497,
+     1.0,
+     0.5853
+    ],
+    "9:16": [
+     0.1003,
+     0.0,
+     0.8267,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1001,
+     1.0,
+     0.6809
+    ],
+    "3:4": [
+     0.0122,
+     0.0,
+     0.9808,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Day Dream",
@@ -138,7 +242,33 @@
    "credit_line": "cAH3bOzjJ3e7Dg at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
    "delivered_edge": 6634,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0501,
+     1.0,
+     0.3739
+    ],
+    "9:16": [
+     0.0099,
+     0.0,
+     0.9871,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0301,
+     1.0,
+     0.4619
+    ],
+    "3:4": [
+     0.0,
+     0.0402,
+     1.0,
+     0.8078
+    ]
+   }
   },
   {
    "title": "Lady Lilith",
@@ -166,7 +296,33 @@
    "license_verified": "2026-07-16",
    "below_floor_ok": true,
    "delivered_edge": 2656,
-   "resolution_tier": "HD"
+   "resolution_tier": "HD",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0797,
+     1.0,
+     0.5653
+    ],
+    "9:16": [
+     0.1902,
+     0.0,
+     0.8418,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0498,
+     1.0,
+     0.6972
+    ],
+    "3:4": [
+     0.0451,
+     0.0,
+     0.9139,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Awakening Conscience",
@@ -193,7 +349,33 @@
    "credit_line": "Google Arts &amp; Culture — eAEe8oI1HIMufA Tate Images (http://www.tate-images.com/results.asp?image=T02075&amp;wwwflag=3&amp;imagepos=1)",
    "license_verified": "2026-07-16",
    "delivered_edge": 6040,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.14,
+     1.0,
+     0.55
+    ],
+    "9:16": [
+     0.0901,
+     0.0,
+     0.8619,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1202,
+     1.0,
+     0.6668
+    ],
+    "3:4": [
+     0.0,
+     0.0141,
+     1.0,
+     0.9859
+    ]
+   }
   },
   {
    "title": "The Golden Stairs",
@@ -220,7 +402,27 @@
    "credit_line": "repro from artbook",
    "license_verified": "2026-07-16",
    "delivered_edge": 4914,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "9:16": [
+     0.0,
+     0.06,
+     1.0,
+     0.798
+    ],
+    "4:3": [
+     0.0,
+     0.3798,
+     1.0,
+     0.6912
+    ],
+    "3:4": [
+     0.0,
+     0.1997,
+     1.0,
+     0.7533
+    ]
+   }
   },
   {
    "title": "The Beguiling of Merlin",
@@ -248,7 +450,33 @@
    "license_verified": "2026-07-16",
    "below_floor_ok": true,
    "delivered_edge": 3019,
-   "resolution_tier": "HD"
+   "resolution_tier": "HD",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0997,
+     1.0,
+     0.4203
+    ],
+    "9:16": [
+     0.0071,
+     0.0,
+     0.9939,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0802,
+     1.0,
+     0.5078
+    ],
+    "3:4": [
+     0.0,
+     0.05,
+     1.0,
+     0.81
+    ]
+   }
   },
   {
    "title": "King Cophetua and the Beggar Maid",
@@ -276,7 +504,27 @@
    "license_verified": "2026-07-16",
    "below_floor_ok": true,
    "delivered_edge": 2316,
-   "resolution_tier": "HD"
+   "resolution_tier": "HD",
+   "aspect_crops": {
+    "9:16": [
+     0.0,
+     0.17,
+     1.0,
+     0.979
+    ],
+    "4:3": [
+     0.0,
+     0.2998,
+     1.0,
+     0.6412
+    ],
+    "3:4": [
+     0.0,
+     0.1501,
+     1.0,
+     0.7569
+    ]
+   }
   },
   {
    "title": "The Lady of Shalott",
@@ -303,7 +551,33 @@
    "credit_line": "Google Arts &amp; Culture — RQHFwa4u2LTw0g Tate Images (http://www.tate-images.com/results.asp?image=N01543&amp;wwwflag=3&amp;imagepos=2)",
    "license_verified": "2026-07-16",
    "delivered_edge": 4180,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.13,
+     1.0,
+     0.863
+    ],
+    "9:16": [
+     0.1842,
+     0.0,
+     0.6158,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0114,
+     1.0,
+     0.9886
+    ],
+    "3:4": [
+     0.1602,
+     0.0,
+     0.7358,
+     1.0
+    ]
+   }
   },
   {
    "title": "Hylas and the Nymphs",
@@ -331,7 +605,33 @@
    "license_verified": "2026-07-16",
    "below_floor_ok": true,
    "delivered_edge": 2666,
-   "resolution_tier": "HD"
+   "resolution_tier": "HD",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0199,
+     1.0,
+     0.9571
+    ],
+    "9:16": [
+     0.1322,
+     0.0,
+     0.4698,
+     1.0
+    ],
+    "4:3": [
+     0.0499,
+     0.0,
+     0.8501,
+     1.0
+    ],
+    "3:4": [
+     0.0999,
+     0.0,
+     0.5501,
+     1.0
+    ]
+   }
   },
   {
    "title": "Ophelia",
@@ -359,7 +659,33 @@
    "license_verified": "2026-07-16",
    "below_floor_ok": true,
    "delivered_edge": 2800,
-   "resolution_tier": "HD"
+   "resolution_tier": "HD",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0499,
+     1.0,
+     0.3801
+    ],
+    "9:16": [
+     0.02,
+     0.0,
+     0.978,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0398,
+     1.0,
+     0.4802
+    ],
+    "3:4": [
+     0.0,
+     0.0301,
+     1.0,
+     0.8129
+    ]
+   }
   },
   {
    "title": "The Magic Circle",
@@ -387,7 +713,27 @@
    "license_verified": "2026-07-16",
    "below_floor_ok": true,
    "delivered_edge": 2942,
-   "resolution_tier": "HD"
+   "resolution_tier": "HD",
+   "aspect_crops": {
+    "9:16": [
+     0.0363,
+     0.0,
+     0.8637,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0501,
+     1.0,
+     0.5599
+    ],
+    "3:4": [
+     0.0,
+     0.0303,
+     1.0,
+     0.9367
+    ]
+   }
   },
   {
    "title": "Work",
@@ -414,7 +760,33 @@
    "credit_line": "1QG5Dp3Ti29BxA at Google Cultural Institute, zoom level maximum",
    "license_verified": "2026-07-16",
    "delivered_edge": 7644,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0897,
+     1.0,
+     0.9163
+    ],
+    "9:16": [
+     0.3301,
+     0.0,
+     0.7129,
+     1.0
+    ],
+    "4:3": [
+     0.0463,
+     0.0,
+     0.9537,
+     1.0
+    ],
+    "3:4": [
+     0.2798,
+     0.0,
+     0.7902,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Last of England",
@@ -441,7 +813,33 @@
    "credit_line": "Google Arts &amp; Culture — cgENwnusEE2jEw",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1497,
+     1.0,
+     0.6523
+    ],
+    "9:16": [
+     0.1852,
+     0.0,
+     0.8148,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.08,
+     1.0,
+     0.75
+    ],
+    "3:4": [
+     0.0802,
+     0.0,
+     0.9198,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Apparition",
@@ -468,7 +866,33 @@
    "credit_line": "8wHHpSOCxyjnIg at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
    "delivered_edge": 5747,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1999,
+     1.0,
+     0.5811
+    ],
+    "9:16": [
+     0.0849,
+     0.0,
+     0.9151,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1004,
+     1.0,
+     0.6086
+    ],
+    "3:4": [
+     0.0,
+     0.0203,
+     1.0,
+     0.9237
+    ]
+   }
   },
   {
    "title": "Jupiter and Semele",
@@ -495,7 +919,33 @@
    "credit_line": "Fashionone",
    "license_verified": "2026-07-16",
    "delivered_edge": 6144,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1499,
+     1.0,
+     0.4611
+    ],
+    "9:16": [
+     0.0,
+     0.0097,
+     1.0,
+     0.9933
+    ],
+    "4:3": [
+     0.0,
+     0.12,
+     1.0,
+     0.535
+    ],
+    "3:4": [
+     0.0,
+     0.0202,
+     1.0,
+     0.7578
+    ]
+   }
   },
   {
    "title": "Oedipus and the Sphinx",
@@ -522,7 +972,33 @@
    "credit_line": "https://www.metmuseum.org/collection/the-collection-online/search/437153?=&amp;imgNo=0&amp;tabName=gallery-label",
    "license_verified": "2026-07-16",
    "delivered_edge": 5593,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1,
+     1.0,
+     0.387
+    ],
+    "9:16": [
+     0.0,
+     0.0299,
+     1.0,
+     0.9371
+    ],
+    "4:3": [
+     0.0,
+     0.0801,
+     1.0,
+     0.4629
+    ],
+    "3:4": [
+     0.0,
+     0.0498,
+     1.0,
+     0.7302
+    ]
+   }
   },
   {
    "title": "The Cyclops",
@@ -550,7 +1026,33 @@
    "license_verified": "2026-07-16",
    "below_floor_ok": true,
    "delivered_edge": 3621,
-   "resolution_tier": "HD"
+   "resolution_tier": "HD",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.3001,
+     1.0,
+     0.8109
+    ],
+    "9:16": [
+     0.1403,
+     0.0,
+     0.7597,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.16,
+     1.0,
+     0.841
+    ],
+    "3:4": [
+     0.087,
+     0.0,
+     0.913,
+     1.0
+    ]
+   }
   },
   {
    "title": "Isle of the Dead",
@@ -577,7 +1079,33 @@
    "credit_line": "1. Unknown sourceUnknown source2. Bridgeman Art Library: Object 838233. Kunstmuseum Basel, online collection",
    "license_verified": "2026-07-16",
    "delivered_edge": 6784,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.08,
+     1.0,
+     0.869
+    ],
+    "9:16": [
+     0.275,
+     0.0,
+     0.676,
+     1.0
+    ],
+    "4:3": [
+     0.0247,
+     0.0,
+     0.9753,
+     1.0
+    ],
+    "3:4": [
+     0.2101,
+     0.0,
+     0.7449,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Poor Fisherman",
@@ -604,7 +1132,33 @@
    "credit_line": "https://clevelandart.org/art/1925.802",
    "license_verified": "2026-07-16",
    "delivered_edge": 5952,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1001,
+     1.0,
+     0.8399
+    ],
+    "9:16": [
+     0.0611,
+     0.0,
+     0.4889,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0068,
+     1.0,
+     0.9932
+    ],
+    "3:4": [
+     0.0998,
+     0.0,
+     0.6702,
+     1.0
+    ]
+   }
   },
   {
    "title": "Flaming June",
@@ -631,7 +1185,33 @@
    "credit_line": "Google Arts &amp; Culture",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0799,
+     1.0,
+     0.6371
+    ],
+    "9:16": [
+     0.1601,
+     0.0,
+     0.7279,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0301,
+     1.0,
+     0.7729
+    ],
+    "3:4": [
+     0.1204,
+     0.0,
+     0.8776,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Roses of Heliogabalus",
@@ -658,7 +1238,33 @@
    "credit_line": "https://i.pinimg.com/originals/e5/24/9d/e5249d23e407a0c32d6f7b567e07143f.jpg",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0396,
+     1.0,
+     0.9534
+    ],
+    "9:16": [
+     0.3199,
+     0.0,
+     0.6661,
+     1.0
+    ],
+    "4:3": [
+     0.0901,
+     0.0,
+     0.9109,
+     1.0
+    ],
+    "3:4": [
+     0.2701,
+     0.0,
+     0.7319,
+     1.0
+    ]
+   }
   },
   {
    "title": "Circe Invidiosa",
@@ -685,7 +1291,33 @@
     0.15
    ],
    "delivered_edge": 5001,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0798,
+     1.0,
+     0.3442
+    ],
+    "9:16": [
+     0.0,
+     0.0498,
+     1.0,
+     0.8852
+    ],
+    "4:3": [
+     0.0,
+     0.0603,
+     1.0,
+     0.4127
+    ],
+    "3:4": [
+     0.0,
+     0.0502,
+     1.0,
+     0.6768
+    ]
+   }
   },
   {
    "title": "Hope",
@@ -719,7 +1351,33 @@
     0.45
    ],
    "delivered_edge": 4968,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0999,
+     1.0,
+     0.5196
+    ],
+    "9:16": [
+     0.09,
+     0.0,
+     0.844,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.08,
+     1.0,
+     0.6395
+    ],
+    "3:4": [
+     0.0,
+     0.0027,
+     1.0,
+     0.9973
+    ]
+   }
   },
   {
    "title": "The Caress (Les Caresses)",
@@ -746,7 +1404,33 @@
     0.3
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0201,
+     0.0,
+     0.5985,
+     1.0
+    ],
+    "9:16": [
+     0.25,
+     0.0,
+     0.433,
+     1.0
+    ],
+    "4:3": [
+     0.03,
+     0.0,
+     0.4638,
+     1.0
+    ],
+    "3:4": [
+     0.18,
+     0.0,
+     0.4241,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Wheel of Fortune",
@@ -781,7 +1465,21 @@
     0.45
    ],
    "delivered_edge": 6059,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "9:16": [
+     0.0,
+     0.0002,
+     1.0,
+     0.8708
+    ],
+    "3:4": [
+     0.0,
+     0.0202,
+     1.0,
+     0.6732
+    ]
+   }
   },
   {
    "title": "Echo and Narcissus",
@@ -816,7 +1514,33 @@
     0.55
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0051,
+     1.0,
+     0.9911
+    ],
+    "9:16": [
+     0.4401,
+     0.0,
+     0.7609,
+     1.0
+    ],
+    "4:3": [
+     0.0599,
+     0.0,
+     0.8205,
+     1.0
+    ],
+    "3:4": [
+     0.3801,
+     0.0,
+     0.8079,
+     1.0
+    ]
+   }
   },
   {
    "title": "Madonna",
@@ -851,7 +1575,33 @@
     0.35
    ],
    "delivered_edge": 6919,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0801,
+     1.0,
+     0.5147
+    ],
+    "9:16": [
+     0.1299,
+     0.0,
+     0.8581,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0502,
+     1.0,
+     0.6295
+    ],
+    "3:4": [
+     0.0146,
+     0.0,
+     0.9854,
+     1.0
+    ]
+   }
   },
   {
    "title": "Elaine",
@@ -879,7 +1629,33 @@
    "license_verified": "2026-07-16",
    "below_floor_ok": true,
    "delivered_edge": 3000,
-   "resolution_tier": "HD"
+   "resolution_tier": "HD",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.03,
+     1.0,
+     0.9541
+    ],
+    "9:16": [
+     0.3,
+     0.0,
+     0.6424,
+     1.0
+    ],
+    "4:3": [
+     0.0599,
+     0.0,
+     0.8714,
+     1.0
+    ],
+    "3:4": [
+     0.2,
+     0.0,
+     0.6565,
+     1.0
+    ]
+   }
   },
   {
    "title": "Winged Figure",
@@ -907,7 +1683,33 @@
    "license_verified": "2026-07-16",
    "below_floor_ok": true,
    "delivered_edge": 2250,
-   "resolution_tier": "HD"
+   "resolution_tier": "HD",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0798,
+     1.0,
+     0.4788
+    ],
+    "9:16": [
+     0.0602,
+     0.0,
+     0.8532,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0499,
+     1.0,
+     0.5819
+    ],
+    "3:4": [
+     0.0,
+     0.0198,
+     1.0,
+     0.9656
+    ]
+   }
   },
   {
    "title": "Apollo and Marsyas",
@@ -934,7 +1736,33 @@
    "credit_line": "Collection of Art Institute of Chicago",
    "license_verified": "2026-07-16",
    "delivered_edge": 6105,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.5201,
+     1.0,
+     0.9299
+    ],
+    "9:16": [
+     0.0998,
+     0.0,
+     0.8718,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.4202,
+     1.0,
+     0.9667
+    ],
+    "3:4": [
+     0.0,
+     0.0103,
+     1.0,
+     0.9817
+    ]
+   }
   },
   {
    "title": "Cleopatra",
@@ -961,7 +1789,33 @@
     0.27
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0999,
+     1.0,
+     0.5468
+    ],
+    "9:16": [
+     0.1,
+     0.0,
+     0.808,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0599,
+     1.0,
+     0.6557
+    ],
+    "3:4": [
+     0.0282,
+     0.0,
+     0.9724,
+     1.0
+    ]
+   }
   },
   {
    "title": "Saint Cecilia",
@@ -988,7 +1842,33 @@
     0.45
    ],
    "delivered_edge": 7450,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0701,
+     1.0,
+     0.8979
+    ],
+    "9:16": [
+     0.6,
+     0.0,
+     0.9821,
+     1.0
+    ],
+    "4:3": [
+     0.094,
+     0.0,
+     1.0,
+     1.0
+    ],
+    "3:4": [
+     0.47,
+     0.0,
+     0.9795,
+     1.0
+    ]
+   }
   },
   {
    "title": "A Song of Springtime",
@@ -1015,7 +1895,33 @@
     0.4
    ],
    "delivered_edge": 6000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0901,
+     1.0,
+     0.8025
+    ],
+    "9:16": [
+     0.24,
+     0.0,
+     0.684,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0251,
+     1.0,
+     0.9751
+    ],
+    "3:4": [
+     0.0999,
+     0.0,
+     0.6921,
+     1.0
+    ]
+   }
   },
   {
    "title": "Lamia (1909)",
@@ -1042,7 +1948,33 @@
     0.3
    ],
    "delivered_edge": 5686,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1299,
+     1.0,
+     0.4716
+    ],
+    "9:16": [
+     0.037,
+     0.0,
+     0.963,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0999,
+     1.0,
+     0.5554
+    ],
+    "3:4": [
+     0.0,
+     0.0497,
+     1.0,
+     0.8596
+    ]
+   }
   },
   {
    "title": "Diogenes",
@@ -1069,7 +2001,21 @@
     0.75
    ],
    "delivered_edge": 5000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "9:16": [
+     0.0609,
+     0.0,
+     0.9392,
+     1.0
+    ],
+    "3:4": [
+     0.0,
+     0.0498,
+     1.0,
+     0.9036
+    ]
+   }
   },
   {
    "title": "The Rescue",
@@ -1096,7 +2042,33 @@
     0.55
    ],
    "delivered_edge": 4724,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.4499,
+     1.0,
+     0.8146
+    ],
+    "9:16": [
+     0.0661,
+     0.0,
+     0.934,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.2499,
+     1.0,
+     0.7361
+    ],
+    "3:4": [
+     0.0,
+     0.0499,
+     1.0,
+     0.9141
+    ]
+   }
   },
   {
    "title": "La Belle Dame Sans Merci",
@@ -1123,7 +2095,33 @@
     0.35
    ],
    "delivered_edge": 4533,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "3:4": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ],
+    "16:9": [
+     0.0,
+     0.13,
+     1.0,
+     0.5536
+    ],
+    "9:16": [
+     0.045,
+     0.0,
+     0.792,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.08,
+     1.0,
+     0.6447
+    ]
+   }
   },
   {
    "title": "Lady on a Balcony, Capri",
@@ -1150,7 +2148,33 @@
     0.25
    ],
    "delivered_edge": 4000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.2,
+     1.0,
+     0.5262
+    ],
+    "9:16": [
+     0.0148,
+     0.0,
+     0.985,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1501,
+     1.0,
+     0.5849
+    ],
+    "3:4": [
+     0.0,
+     0.1102,
+     1.0,
+     0.8831
+    ]
+   }
   },
   {
    "title": "A Tale from the Decameron",
@@ -1177,7 +2201,33 @@
     0.55
    ],
    "delivered_edge": 4000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.056,
+     1.0,
+     0.9442
+    ],
+    "9:16": [
+     0.16,
+     0.0,
+     0.5163,
+     1.0
+    ],
+    "4:3": [
+     0.0778,
+     0.0,
+     0.9222,
+     1.0
+    ],
+    "3:4": [
+     0.13,
+     0.0,
+     0.605,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Favourites of the Emperor Honorius",
@@ -1211,7 +2261,33 @@
     0.6
    ],
    "delivered_edge": 3187,
-   "resolution_tier": "HD"
+   "resolution_tier": "HD",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0331,
+     1.0,
+     0.9672
+    ],
+    "9:16": [
+     0.0,
+     0.0,
+     0.3387,
+     1.0
+    ],
+    "4:3": [
+     0.0986,
+     0.0,
+     0.9014,
+     1.0
+    ],
+    "3:4": [
+     0.0,
+     0.0,
+     0.4516,
+     1.0
+    ]
+   }
   }
  ]
 }
