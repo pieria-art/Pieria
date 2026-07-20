@@ -30,7 +30,33 @@
    "credit_line": "https://nla.gov.au/nla.obj-230711138/view",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "4:3": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ],
+    "16:9": [
+     0.0,
+     0.0799,
+     1.0,
+     0.8354
+    ],
+    "9:16": [
+     0.2906,
+     0.0,
+     0.7094,
+     1.0
+    ],
+    "3:4": [
+     0.2208,
+     0.0,
+     0.7792,
+     1.0
+    ]
+   }
   },
   {
    "title": "Nova et Aucta Orbis Terrae Descriptio",
@@ -57,7 +83,33 @@
    "credit_line": "Bibliothèque nationale de France",
    "license_verified": "2026-07-16",
    "delivered_edge": 7209,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "3:4": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ],
+    "16:9": [
+     0.0,
+     0.3,
+     1.0,
+     0.7241
+    ],
+    "9:16": [
+     0.1269,
+     0.0,
+     0.8731,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.2001,
+     1.0,
+     0.7656
+    ]
+   }
   },
   {
    "title": "Universalis Cosmographia",
@@ -84,7 +136,33 @@
    "credit_line": "Museu Paulista",
    "license_verified": "2026-07-16",
    "delivered_edge": 7216,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "3:4": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ],
+    "16:9": [
+     0.0,
+     0.15,
+     1.0,
+     0.5718
+    ],
+    "9:16": [
+     0.0,
+     0.0,
+     0.75,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.12,
+     1.0,
+     0.6825
+    ]
+   }
   },
   {
    "title": "Nova Totius Terrarum Orbis Geographica",
@@ -111,7 +189,33 @@
    "credit_line": "This map is available from Eran Laor Cartographic Collection of the National Library of Israel. link to the source:NOVA TOTIUS TERRARUM ORBIS GEOGRAPHICA AC HYDROGRAPHICA TABULA",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1349,
+     1.0,
+     0.8106
+    ],
+    "9:16": [
+     0.2659,
+     0.0,
+     0.7341,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.049,
+     1.0,
+     0.95
+    ],
+    "3:4": [
+     0.1879,
+     0.0,
+     0.8122,
+     1.0
+    ]
+   }
   },
   {
    "title": "Americae Nova Tabula",
@@ -138,7 +242,33 @@
    "credit_line": "https://www.raremaps.com/gallery/detail/81465/nova-et-acurata-totius-americae-tabula-auct-gi-blaeu-am-blaeu-todeschi-longhi",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "4:3": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ],
+    "16:9": [
+     0.0,
+     0.1201,
+     1.0,
+     0.88
+    ],
+    "9:16": [
+     0.28,
+     0.0,
+     0.6963,
+     1.0
+    ],
+    "3:4": [
+     0.2224,
+     0.0,
+     0.7776,
+     1.0
+    ]
+   }
   },
   {
    "title": "Fra Mauro map",
@@ -165,7 +295,33 @@
    "credit_line": "https://www.highres.factum-arte.org/Fra_Mauro_Map/shared/viewer.html (downloaded with dezoomify-rs and cropped with vips)",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.2188,
+     1.0,
+     0.7813
+    ],
+    "9:16": [
+     0.2188,
+     0.0,
+     0.7813,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.125,
+     1.0,
+     0.875
+    ],
+    "3:4": [
+     0.125,
+     0.0,
+     0.875,
+     1.0
+    ]
+   }
   },
   {
    "title": "Tabula Rogeriana",
@@ -192,7 +348,33 @@
    "credit_line": "http://www.bigmapblog.com/2011/idrisis-tabula-rogeriana-world-map-reproduction/",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0926,
+     0.0,
+     0.9075,
+     1.0
+    ],
+    "9:16": [
+     0.3711,
+     0.0,
+     0.6289,
+     1.0
+    ],
+    "4:3": [
+     0.1944,
+     0.0,
+     0.8056,
+     1.0
+    ],
+    "3:4": [
+     0.3282,
+     0.0,
+     0.6719,
+     1.0
+    ]
+   }
   },
   {
    "title": "Leo Belgicus",
@@ -219,7 +401,33 @@
    "credit_line": "http://www.sothebys.com/en/auctions/ecatalogue/2012/travel-atlases-maps-natural-history-l12401/lot.47.html",
    "license_verified": "2026-07-16",
    "delivered_edge": 4004,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0298,
+     1.0,
+     0.7231
+    ],
+    "9:16": [
+     0.2718,
+     0.0,
+     0.7282,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0379,
+     1.0,
+     0.9621
+    ],
+    "3:4": [
+     0.1957,
+     0.0,
+     0.8043,
+     1.0
+    ]
+   }
   },
   {
    "title": "Ptolemy world map",
@@ -246,7 +454,33 @@
    "credit_line": "https://www.raremaps.com/gallery/detail/67387dc/world-ptolemy-holle",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1066,
+     1.0,
+     0.8935
+    ],
+    "9:16": [
+     0.299,
+     0.0,
+     0.701,
+     1.0
+    ],
+    "4:3": [
+     0.0234,
+     0.0,
+     0.9766,
+     1.0
+    ],
+    "3:4": [
+     0.2319,
+     0.0,
+     0.7681,
+     1.0
+    ]
+   }
   },
   {
    "title": "Harmonia Macrocosmica: Planisphaerium Copernicanum",
@@ -273,7 +507,33 @@
    "credit_line": "http://www.phys.uu.nl/~vgent/cellarius/cellarius_plates.htm",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1801,
+     1.0,
+     0.8194
+    ],
+    "9:16": [
+     0.2526,
+     0.0,
+     0.7474,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0738,
+     1.0,
+     0.9262
+    ],
+    "3:4": [
+     0.1701,
+     0.0,
+     0.8299,
+     1.0
+    ]
+   }
   },
   {
    "title": "Harmonia Macrocosmica: Planisphaerium Ptolemaicum",
@@ -300,7 +560,33 @@
    "credit_line": "https://www.phys.uu.nl/~vgent/cellarius/cellarius_plates.htm",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1798,
+     1.0,
+     0.8208
+    ],
+    "9:16": [
+     0.2532,
+     0.0,
+     0.7468,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0728,
+     1.0,
+     0.9273
+    ],
+    "3:4": [
+     0.1709,
+     0.0,
+     0.8292,
+     1.0
+    ]
+   }
   },
   {
    "title": "Harmonia Macrocosmica: Northern Constellations",
@@ -327,7 +613,33 @@
    "credit_line": "https://www.phys.uu.nl/~vgent/cellarius/cellarius_plates.htm",
    "license_verified": "2026-07-16",
    "delivered_edge": 5704,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1599,
+     1.0,
+     0.8356
+    ],
+    "9:16": [
+     0.2658,
+     0.0,
+     0.7342,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0496,
+     1.0,
+     0.9504
+    ],
+    "3:4": [
+     0.1878,
+     0.0,
+     0.8123,
+     1.0
+    ]
+   }
   },
   {
    "title": "Uranometria: Orion",
@@ -354,7 +666,33 @@
    "credit_line": "From WP en, uploaded by en:User:Mouser",
    "license_verified": "2026-07-16",
    "delivered_edge": 7153,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "3:4": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ],
+    "16:9": [
+     0.0,
+     0.0499,
+     1.0,
+     0.464
+    ],
+    "9:16": [
+     0.1181,
+     0.0,
+     0.882,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0499,
+     1.0,
+     0.6022
+    ]
+   }
   },
   {
    "title": "Firmamentum Sobiescianum",
@@ -381,7 +719,33 @@
    "credit_line": "http://www.atlascoelestis.com/hev%2060.htm",
    "license_verified": "2026-07-16",
    "delivered_edge": 6859,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.2052,
+     1.0,
+     0.7949
+    ],
+    "9:16": [
+     0.2317,
+     0.0,
+     0.7683,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1068,
+     1.0,
+     0.8932
+    ],
+    "3:4": [
+     0.1423,
+     0.0,
+     0.8577,
+     1.0
+    ]
+   }
   },
   {
    "title": "Atlas Coelestis",
@@ -408,7 +772,33 @@
    "credit_line": "https://www.raremaps.com/gallery/detail/66646/atlas-coelestis-flamsteed",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0901,
+     0.0,
+     0.9749,
+     1.0
+    ],
+    "9:16": [
+     0.585,
+     0.0,
+     0.865,
+     1.0
+    ],
+    "4:3": [
+     0.2183,
+     0.0,
+     0.8818,
+     1.0
+    ],
+    "3:4": [
+     0.5384,
+     0.0,
+     0.9117,
+     1.0
+    ]
+   }
   },
   {
    "title": "Civitates Orbis Terrarum: Constantinople",
@@ -435,7 +825,33 @@
    "credit_line": "This map is available from Eran Laor Cartographic Collection of the National Library of Israel. link to the source:Byzantium, nunc Constantinopolis",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.08,
+     1.0,
+     0.8669
+    ],
+    "9:16": [
+     0.299,
+     0.0,
+     0.701,
+     1.0
+    ],
+    "4:3": [
+     0.0234,
+     0.0,
+     0.9766,
+     1.0
+    ],
+    "3:4": [
+     0.2319,
+     0.0,
+     0.7681,
+     1.0
+    ]
+   }
   },
   {
    "title": "Carta Marina",
@@ -462,7 +878,33 @@
    "credit_line": "https://archive.org/details/annalsofvoyageso00luca/page/247",
    "license_verified": "2026-07-16",
    "delivered_edge": 4553,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.2309,
+     1.0,
+     0.7691
+    ],
+    "9:16": [
+     0.2061,
+     0.0,
+     0.7939,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1412,
+     1.0,
+     0.8589
+    ],
+    "3:4": [
+     0.1081,
+     0.0,
+     0.8919,
+     1.0
+    ]
+   }
   },
   {
    "title": "A New and Accurate Map of the World",
@@ -489,7 +931,33 @@
    "credit_line": "Self-scanned",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0748,
+     1.0,
+     0.9252
+    ],
+    "9:16": [
+     0.314,
+     0.0,
+     0.686,
+     1.0
+    ],
+    "4:3": [
+     0.059,
+     0.0,
+     0.941,
+     1.0
+    ],
+    "3:4": [
+     0.252,
+     0.0,
+     0.748,
+     1.0
+    ]
+   }
   },
   {
    "title": "Nova Belgica et Anglia Nova",
@@ -516,7 +984,33 @@
    "credit_line": "From: Blaeu, W., Atlas Maior, (Amsterdam: Blaeu) 1643. Geographicus - https://www.geographicus.com/P/AntiqueMap/NovaBelgicaetAngliaNova-blaeu-1634-2",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1689,
+     1.0,
+     0.8311
+    ],
+    "9:16": [
+     0.1501,
+     0.0,
+     0.6279,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0585,
+     1.0,
+     0.9415
+    ],
+    "3:4": [
+     0.1,
+     0.0,
+     0.737,
+     1.0
+    ]
+   }
   },
   {
    "title": "Asiae Nova Descriptio",
@@ -543,7 +1037,33 @@
    "credit_line": "NLB Singapore, David Parry Southeast Asian Map Collection. Available on BookSG https://eresources.nlb.gov.sg/printheritage/detail/ff196d9a-e682-456c-ae8b-608e6d74403d.aspx",
    "license_verified": "2026-07-16",
    "delivered_edge": 5488,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1404,
+     1.0,
+     0.8596
+    ],
+    "9:16": [
+     0.28,
+     0.0,
+     0.72,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.021,
+     1.0,
+     0.98
+    ],
+    "3:4": [
+     0.2067,
+     0.0,
+     0.7933,
+     1.0
+    ]
+   }
   }
  ]
 }
