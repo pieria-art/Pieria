@@ -54,6 +54,11 @@ trap stop_ap EXIT
 
 start_ap
 
+# Tell the HDMI screen it needs setting up. sd-kiosk-launch prefers this file over the normal splash,
+# which would otherwise show an admin URL built from the PLACEHOLDER SERVER_URL — a confident, wrong
+# address (ADR-058). Written for every box: HDMI is the default surface, e-ink the opt-in one.
+/usr/local/bin/sd-setup-card --ssid Docent-Setup --html /run/sd-setup/setup-splash.html >>"$AP_LOG" 2>&1 || true
+
 # Tell the E-INK panel it needs setting up. Without this a dumb panel keeps holding its last frame at
 # zero power, so an unconfigured box looks finished and working rather than waiting (ADR-058).
 # Backgrounded: a full Spectra 6 refresh takes ~9s and must never delay the wizard coming up.

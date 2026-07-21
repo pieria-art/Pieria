@@ -100,6 +100,8 @@ while true; do
   RECOVER_PROFILE="$(nmcli -t -f NAME,TYPE con show 2>/dev/null | awk -F: '$2 ~ /wireless/ {print $1; exit}')"
 
   if sd_start_ap "$LOG"; then
+    /usr/local/bin/sd-setup-card --ssid Docent-Setup --recovery \
+      --html /run/sd-setup/setup-splash.html >>"$LOG" 2>&1 || true
     # Same reasoning as first-run setup: the panel is holding art and looks fine, so say what's wrong
     # ON THE GLASS. The recovery variant is red and leads with "Couldn't join your Wi-Fi" (ADR-058).
     if [ "${EINK_ENABLED:-0}" = "1" ]; then

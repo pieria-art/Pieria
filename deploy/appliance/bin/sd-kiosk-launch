@@ -59,8 +59,18 @@ CHROME_FLAGS=(
 # staring at black. If it's NOT installed (older image), fall back to the original
 # behavior: block until the server is reachable, then open the canvas directly.
 TARGET="$URL"
+# Setup mode wins outright. sd-setup-boot / sd-net-recover drop this file while the Docent-Setup AP is
+# up; the normal splash below would render an admin URL from the PLACEHOLDER SERVER_URL and tell the
+# owner to visit an address that does not exist (ADR-058). It is on /run, so it vanishes on reboot —
+# a configured box can never be stuck showing it.
+SETUP_SPLASH="/run/sd-setup/setup-splash.html"
+if [ -r "$SETUP_SPLASH" ]; then
+  exec_kiosk_target="file://$SETUP_SPLASH"
+fi
 SPLASH_SRC="/usr/local/share/screen-docent/sd-splash.html"
-if [ -r "$SPLASH_SRC" ]; then
+if [ -n "${exec_kiosk_target:-}" ]; then
+  TARGET="$exec_kiosk_target"
+elif [ -r "$SPLASH_SRC" ]; then
   IP="$(hostname -I 2>/dev/null | awk '{print $1}')"
   HOSTL="$(hostname 2>/dev/null).local"
   ADMIN_URL="${SERVER_URL%/}/admin"

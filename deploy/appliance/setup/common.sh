@@ -126,6 +126,11 @@ sd_stop_ap() {
   if ! pgrep -f "hostapd.*$SD_SETUP_DIR" >/dev/null 2>&1 && [ ! -e "$SD_DROPIN" ]; then
     return 0
   fi
+  # Drop the HDMI setup splash. sd-kiosk-launch shows it purely because the file EXISTS, so a stale one
+  # would tell the owner of a perfectly working display to go join Docent-Setup. A commit reboots (and
+  # /run is tmpfs, so it clears itself) — but the recovery path can hand the radio back WITHOUT a
+  # reboot, and that case has to clean up after itself.
+  rm -f /run/sd-setup/setup-splash.html
   # Match only OUR processes — a bare `pkill dnsmasq` would kill an unrelated system resolver.
   pkill -f "dnsmasq.*$SD_SETUP_DIR" 2>/dev/null || true
   pkill -f "hostapd.*$SD_SETUP_DIR" 2>/dev/null || true

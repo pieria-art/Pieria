@@ -23,6 +23,8 @@ Usage:
 from __future__ import annotations
 
 import argparse
+import base64
+import io
 import sys
 from pathlib import Path
 
@@ -207,6 +209,87 @@ def render_card(width: int, height: int, ssid: str, recovery: bool = False) -> I
     return img
 
 
+SPLASH_HTML = """<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Set up your Screen Docent</title>
+<style>
+  /* Sized in vmin, NOT vw. A portrait panel (Josh's own rig is a portrait 55") makes vw the SHORT axis,
+     so vw-based type collapsed to unreadable and floated in a sea of empty dark. vmin is identical in
+     both orientations for the same panel, so one set of numbers works landscape and portrait, 1080p
+     through 4K. */
+  :root {{ --bg:#0f172a; --card:#1e293b; --border:#334155; --accent:{accent}; --text:#f1f5f9; --muted:#94a3b8; }}
+  * {{ box-sizing:border-box; }}
+  html,body {{ height:100%; margin:0; }}
+  body {{ background:var(--bg); color:var(--text); font-family:'Inter',-apple-system,'Segoe UI',sans-serif;
+         display:flex; align-items:center; justify-content:center; padding:5vmin 6vmin; }}
+  .wrap {{ width:100%; max-width:150vmin; }}
+  .eyebrow {{ color:var(--accent); font-weight:700; letter-spacing:.18em; font-size:2.7vmin; margin-bottom:1.6vmin; }}
+  h1 {{ font-size:9.2vmin; line-height:1.04; margin:0 0 2vmin; font-weight:800; letter-spacing:-.02em; }}
+  .sub {{ color:var(--muted); font-size:3.8vmin; margin:0 0 5vmin; }}
+  .cols {{ display:flex; gap:9vmin; align-items:flex-start; }}
+  .steps {{ flex:1 1 auto; list-style:none; margin:0; padding:0; }}
+  .steps li {{ display:flex; align-items:flex-start; gap:2.8vmin; margin-bottom:4vmin; font-size:4.1vmin; line-height:1.35; }}
+  .n {{ flex:0 0 auto; width:6vmin; height:6vmin; border-radius:50%; background:var(--accent); color:#fff;
+        font-weight:700; font-size:3.2vmin; display:flex; align-items:center; justify-content:center; }}
+  .ssid {{ color:var(--accent); font-weight:700; }}
+  .qr {{ flex:0 0 auto; background:#fff; border-radius:2.1vmin; padding:2.8vmin; text-align:center; }}
+  .qr img {{ display:block; width:34vmin; height:34vmin; image-rendering:pixelated; }}
+  .qr span {{ display:block; margin-top:1.4vmin; color:#0f172a; font-size:2.05vmin; font-weight:600; }}
+  .foot {{ margin-top:6vmin; color:var(--muted); font-size:2.7vmin; border-top:1px solid var(--border); padding-top:3vmin; }}
+  /* Portrait: side-by-side wastes the height and squeezes both columns. Stack, and centre the QR. */
+  @media (orientation: portrait) {{
+    .cols {{ flex-direction:column; gap:6vmin; }}
+    .qr {{ align-self:center; }}
+    .qr img {{ width:44vmin; height:44vmin; }}
+  }}
+</style></head>
+<body><div class="wrap">
+  <div class="eyebrow">SCREEN DOCENT</div>
+  <h1>{title}</h1>
+  <p class="sub">{sub}</p>
+  <div class="cols">
+    <ol class="steps">
+      <li><span class="n">1</span><span>Join the Wi-Fi network <span class="ssid">{ssid}</span></span></li>
+      <li><span class="n">2</span><span>Your phone opens the setup page by itself.</span></li>
+      <li><span class="n">3</span><span>Pick your Wi-Fi, name the display, done.</span></li>
+    </ol>
+    {qr_block}
+  </div>
+  <div class="foot">No app. No account. Nothing to install. &nbsp;\u00b7&nbsp; This screen disappears once setup finishes.</div>
+</div></body></html>
+"""
+
+
+def render_splash(ssid: str, recovery: bool = False) -> str:
+    """The HDMI twin of the e-ink card (ADR-058).
+
+    HDMI had the same hole in a different disguise: sd-kiosk-launch paints sd-splash.html, which builds
+    an admin URL from SERVER_URL — during setup that's the PLACEHOLDER, so the screen showed a
+    confident, entirely wrong address. This page replaces it while setup mode is running.
+
+    Dark, unlike the e-ink card: this is an emissive panel and should match the app's own styling, where
+    the reflective e-ink one wants bare-paper white. Sizes are in vw/vh because it lands on anything
+    from a 1080p desktop monitor to a 55" 4K TV, always fullscreen.
+    """
+    if recovery:
+        title, sub = "Couldn&rsquo;t join your Wi-Fi", "Let&rsquo;s try again &mdash; it&rsquo;s almost always the password."
+        accent = "#ef4444"
+    else:
+        title, sub = "Set up your Screen Docent", "This display isn&rsquo;t connected yet."
+        accent = "#3b82f6"
+
+    qr_block = ""
+    qr = _wifi_qr(ssid, 640)
+    if qr:
+        buf = io.BytesIO()
+        qr.save(buf, format="PNG")
+        b64 = base64.b64encode(buf.getvalue()).decode()
+        qr_block = ('<div class="qr"><img alt="Scan to join" src="data:image/png;base64,'
+                    + b64 + '"><span>Scan to join the network</span></div>')
+    return SPLASH_HTML.format(accent=accent, title=title, sub=sub, ssid=ssid, qr_block=qr_block)
+
+
 def _quantize_to_panel(img: Image.Image) -> Image.Image:
     """Snap to the panel's pure primaries with NO dithering, so text stays crisp."""
     try:
@@ -226,8 +309,16 @@ def main(argv=None):
     ap.add_argument("--height", type=int, default=0)
     ap.add_argument("--recovery", action="store_true", help="The 'couldn't join your Wi-Fi' variant.")
     ap.add_argument("--out", default="", help="Write a PNG instead of painting (no hardware needed).")
+    ap.add_argument("--html", default="",
+                    help="Write the HDMI setup splash (self-contained HTML) instead of painting.")
     ap.add_argument("--saturation", type=float, default=0.5)
     args = ap.parse_args(argv)
+
+    if args.html:
+        Path(args.html).parent.mkdir(parents=True, exist_ok=True)
+        Path(args.html).write_text(render_splash(args.ssid, args.recovery))
+        print(f"sd-setup-card: wrote {args.html} (HDMI setup splash)")
+        return 0
 
     w, h = args.width, args.height
     client = None
