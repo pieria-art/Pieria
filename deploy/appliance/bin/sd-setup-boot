@@ -23,14 +23,22 @@ CONF="$(sd_resolve_conf "${1:-}")"
 AP_ADDR="10.0.0.1/24"
 # Everything the AP bring-up says goes here — hostapd's own log included. Never /dev/null (ADR-056).
 AP_LOG="/var/log/sd-setup-ap.log"
-: > "$AP_LOG" 2>/dev/null || AP_LOG=/dev/stderr
 
 if sd_is_configured "$CONF"; then
   echo "sd-setup-boot: already configured ($CONF) — skipping setup, continuing to kiosk."
+  # NOTE: deliberately do NOT touch $AP_LOG here. This unit stays enabled and runs on EVERY boot, so
+  # truncating before this check wiped the previous setup attempt's hostapd trace the moment the box
+  # rebooted into its configured state — destroying exactly the evidence we need to debug a FAILED
+  # setup (caught 2026-07-21, ADR-056). The log is only ever reset when setup actually runs.
   exit 0
 fi
 
 echo "sd-setup-boot: no configuration found — starting the Docent-Setup wizard."
+# Setup is genuinely running: start a fresh log, but keep the prior attempt alongside it so a gramps
+# box that failed setup twice still shows both stories.
+[ -s "$AP_LOG" ] && mv -f "$AP_LOG" "$AP_LOG.1" 2>/dev/null
+: > "$AP_LOG" 2>/dev/null || AP_LOG=/dev/stderr
+echo "sd-setup-boot: $(date -Is) — setup run starting" >>"$AP_LOG"
 
 # --- Bring up the AP + captive portal -------------------------------------------------------------
 start_ap() {

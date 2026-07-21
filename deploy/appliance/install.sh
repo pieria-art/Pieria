@@ -82,6 +82,26 @@ install -m 0755 "$BIN_SRC/sd-update"         /usr/local/bin/sd-update
 install -m 0755 "$BIN_SRC/sd-eink"           /usr/local/bin/sd-eink
 install -m 0755 "$BIN_SRC/sd-image-prep"     /usr/local/bin/sd-image-prep
 
+echo "==> Enabling a persistent (but size-capped) journal"
+# An appliance that fails at a customer's house is debugged from its PREVIOUS boot — a first-run setup
+# that failed, a kiosk that crashed and rebooted. Raspberry Pi OS ships a volatile journal, so all of
+# that vanishes on reboot: after the 2026-07-21 setup-mode test the failing boot's logs were simply
+# gone (ADR-056). Cap it hard — this is an SD card, and unbounded logging is how you wear one out.
+install -d /etc/systemd/journald.conf.d
+cat > /etc/systemd/journald.conf.d/screen-docent.conf <<'EOF'
+# Screen Docent — keep logs across reboots so a failed boot can be diagnosed after the fact,
+# but bound the size: this is flash, not a server disk.
+[Journal]
+Storage=persistent
+SystemMaxUse=64M
+SystemMaxFileSize=8M
+MaxRetentionSec=1month
+EOF
+install -d -m 2755 -g systemd-journal /var/log/journal 2>/dev/null || install -d /var/log/journal
+systemd-tmpfiles --create --prefix /var/log/journal 2>/dev/null || true
+systemctl restart systemd-journald 2>/dev/null || true
+echo "    journal is persistent, capped at 64M."
+
 echo "==> Installing boot splash (shows the admin URL while the server starts)"
 install -d /usr/local/share/screen-docent
 install -m 0644 "$HERE/share/sd-splash.html" /usr/local/share/screen-docent/sd-splash.html
