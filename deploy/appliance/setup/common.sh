@@ -102,6 +102,21 @@ sd_stop_ap() {
   systemctl start wpa_supplicant.service 2>/dev/null || true
   nmcli general reload 2>/dev/null || true
   nmcli device set wlan0 managed yes 2>/dev/null || true
-  [ -n "$PROFILE" ] && nmcli con up "$PROFILE" 2>/dev/null || true
+  # Reactivate the saved Wi-Fi — but WAIT for NM to actually take wlan0 back first, and pin the
+  # interface. Firing immediately after `managed yes` failed outright: the device was still
+  # transitioning, so nmcli picked eth0 and reported "mismatching interface name". The box recovered
+  # anyway, but only because NM's own autoconnect fired 3s later — meaning this call was decorative and
+  # would have silently done nothing for a profile without autoconnect (observed 2026-07-21, ADR-057).
+  if [ -n "$PROFILE" ]; then
+    local i state
+    for i in $(seq 1 20); do
+      state="$(nmcli -t -f DEVICE,STATE device status 2>/dev/null | awk -F: '$1=="wlan0"{print $2}')"
+      case "$state" in
+        disconnected|connected|connecting*) break ;;
+      esac
+      sleep 1
+    done
+    nmcli con up "$PROFILE" ifname wlan0 2>/dev/null || true
+  fi
   return 0
 }
