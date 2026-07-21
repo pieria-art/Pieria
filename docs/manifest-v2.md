@@ -76,7 +76,8 @@ public-domain image.
 | `thumbnail_url` | | string | |
 | `width` / `height` | | int | pixels; the app prefers ≥2000px long-edge for 4K displays |
 | `format` | | string | MIME, e.g. `image/jpeg` |
-| `focal_point` | | `[x, y]` | normalized 0–1 — the "most important point" the renderer keeps in frame when cropping to any panel aspect (16:9 TV, portrait e-ink, Frame). A `crops` map (explicit per-aspect bboxes) can extend this additively. |
+| `focal_point` | | `[x, y]` | normalized 0–1 — the "most important point" the renderer keeps in frame when cropping to any panel aspect (16:9 TV, portrait e-ink, Frame). |
+| `aspect_crops` | | object | OPTIONAL explicit per-shape crop presets — up to four normalized boxes `[x0, y0, x1, y1]` (0–1), keyed by screen shape: `"16:9"`, `"9:16"`, `"4:3"`, `"3:4"`. A focal point can only *slide* a fixed-size crop window; it can't *choose* one, and museum art clusters near-square, so an uncomposed portrait crop of a square painting can discard over half the work. When present, the renderer picks the preset nearest the target panel's ratio instead of computing a focal-point cover crop (`epaper.pick_crop_for_aspect`). Any subset of the four keys may be present; absent keys fall back to the focal-point crop. Example: `{"16:9": [0.0, 0.1, 1.0, 0.66], "9:16": [0.28, 0.0, 0.72, 1.0]}`. |
 | `attribution` | ✓ when license is `CC-BY*`/`CC-BY-SA*` | string | |
 | `rights_holder` | | string | |
 

@@ -30,7 +30,33 @@
    "credit_line": "This file comes from Gallica Digital Library and is available under the digital ID btv1b53140689b/f1",
    "license_verified": "2026-07-16",
    "delivered_edge": 4794,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0801,
+     1.0,
+     0.4894
+    ],
+    "9:16": [
+     0.1098,
+     0.0,
+     0.8829,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0503,
+     1.0,
+     0.5959
+    ],
+    "3:4": [
+     0.0,
+     0.0149,
+     1.0,
+     0.9851
+    ]
+   }
   },
   {
    "title": "Moulin Rouge: La Goulue",
@@ -57,7 +83,33 @@
    "credit_line": "HwHWsv1o7adJ3A at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
    "delivered_edge": 5727,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1999,
+     1.0,
+     0.5966
+    ],
+    "9:16": [
+     0.1002,
+     0.0,
+     0.8977,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1199,
+     1.0,
+     0.6489
+    ],
+    "3:4": [
+     0.0,
+     0.0298,
+     1.0,
+     0.9702
+    ]
+   }
   },
   {
    "title": "Divan Japonais",
@@ -84,7 +136,33 @@
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
    "delivered_edge": 5598,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1201,
+     1.0,
+     0.544
+    ],
+    "9:16": [
+     0.1298,
+     0.0,
+     0.8762,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0502,
+     1.0,
+     0.6155
+    ],
+    "3:4": [
+     0.0024,
+     0.0,
+     0.9976,
+     1.0
+    ]
+   }
   },
   {
    "title": "Aristide Bruant dans son cabaret",
@@ -112,7 +190,33 @@
    "license_verified": "2026-07-16",
    "below_floor_ok": true,
    "delivered_edge": 3000,
-   "resolution_tier": "HD"
+   "resolution_tier": "HD",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0299,
+     1.0,
+     0.4149
+    ],
+    "9:16": [
+     0.089,
+     0.0,
+     0.911,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0499,
+     1.0,
+     0.5632
+    ],
+    "3:4": [
+     0.0,
+     0.0398,
+     1.0,
+     0.9522
+    ]
+   }
   },
   {
    "title": "Jane Avril",
@@ -139,7 +243,33 @@
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
    "delivered_edge": 6966,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.2,
+     1.0,
+     0.7259
+    ],
+    "9:16": [
+     0.2799,
+     0.0,
+     0.8817,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0801,
+     1.0,
+     0.7813
+    ],
+    "3:4": [
+     0.0999,
+     0.0,
+     0.9022,
+     1.0
+    ]
+   }
   },
   {
    "title": "Reine de Joie",
@@ -166,7 +296,33 @@
    "credit_line": "kollerauktionen.ch",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.05,
+     1.0,
+     0.4416
+    ],
+    "9:16": [
+     0.0961,
+     0.0,
+     0.9039,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0299,
+     1.0,
+     0.5522
+    ],
+    "3:4": [
+     0.0,
+     0.0298,
+     1.0,
+     0.9582
+    ]
+   }
   },
   {
    "title": "La Revue Blanche",
@@ -193,7 +349,33 @@
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
    "delivered_edge": 4000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "3:4": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ],
+    "16:9": [
+     0.0,
+     0.0499,
+     1.0,
+     0.4724
+    ],
+    "9:16": [
+     0.1255,
+     0.0,
+     0.8745,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0301,
+     1.0,
+     0.5933
+    ]
+   }
   },
   {
    "title": "May Belfort",
@@ -220,7 +402,33 @@
    "credit_line": "https://www.ngv.vic.gov.au/explore/collection/work/40513/",
    "license_verified": "2026-07-16",
    "delivered_edge": 5000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.08,
+     1.0,
+     0.512
+    ],
+    "9:16": [
+     0.1338,
+     0.0,
+     0.8662,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.05,
+     1.0,
+     0.626
+    ],
+    "3:4": [
+     0.0117,
+     0.0,
+     0.9883,
+     1.0
+    ]
+   }
   },
   {
    "title": "Job",
@@ -247,7 +455,33 @@
    "credit_line": "Bibliothèque nationale de France",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1001,
+     1.0,
+     0.4915
+    ],
+    "9:16": [
+     0.0958,
+     0.0,
+     0.9042,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0801,
+     1.0,
+     0.602
+    ],
+    "3:4": [
+     0.0,
+     0.0301,
+     1.0,
+     0.9579
+    ]
+   }
   },
   {
    "title": "Bières de la Meuse",
@@ -274,7 +508,33 @@
    "credit_line": "Bibliothèque nationale de France",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0598,
+     1.0,
+     0.4492
+    ],
+    "9:16": [
+     0.0938,
+     0.0,
+     0.9062,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0299,
+     1.0,
+     0.5491
+    ],
+    "3:4": [
+     0.0,
+     0.0298,
+     1.0,
+     0.9529
+    ]
+   }
   },
   {
    "title": "F. Champenois Imprimeur-Éditeur",
@@ -301,7 +561,33 @@
    "credit_line": "Bibliothèque nationale de France",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1401,
+     1.0,
+     0.5579
+    ],
+    "9:16": [
+     0.1213,
+     0.0,
+     0.8787,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1001,
+     1.0,
+     0.6572
+    ],
+    "3:4": [
+     0.0,
+     0.0052,
+     1.0,
+     0.9955
+    ]
+   }
   },
   {
    "title": "Zodiac",
@@ -329,7 +615,33 @@
    "license_verified": "2026-07-16",
    "below_floor_ok": true,
    "delivered_edge": 2717,
-   "resolution_tier": "HD"
+   "resolution_tier": "HD",
+   "aspect_crops": {
+    "3:4": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ],
+    "16:9": [
+     0.0,
+     0.1,
+     1.0,
+     0.5236
+    ],
+    "9:16": [
+     0.1265,
+     0.0,
+     0.8735,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.06,
+     1.0,
+     0.6248
+    ]
+   }
   },
   {
    "title": "Rêverie",
@@ -356,7 +668,33 @@
    "credit_line": "[1][2]",
    "license_verified": "2026-07-16",
    "delivered_edge": 3938,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1201,
+     1.0,
+     0.5452
+    ],
+    "9:16": [
+     0.1278,
+     0.0,
+     0.8722,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0801,
+     1.0,
+     0.6469
+    ],
+    "3:4": [
+     0.0038,
+     0.0,
+     0.9962,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Seasons: Spring",
@@ -383,7 +721,33 @@
    "credit_line": "[1][2]",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0699,
+     1.0,
+     0.3688
+    ],
+    "9:16": [
+     0.0,
+     0.0297,
+     1.0,
+     0.9743
+    ],
+    "4:3": [
+     0.0,
+     0.0499,
+     1.0,
+     0.4484
+    ],
+    "3:4": [
+     0.0,
+     0.0597,
+     1.0,
+     0.7683
+    ]
+   }
   },
   {
    "title": "The Seasons: Autumn",
@@ -410,7 +774,33 @@
    "credit_line": "[1][2]",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0601,
+     1.0,
+     0.3743
+    ],
+    "9:16": [
+     0.0,
+     0.0034,
+     1.0,
+     0.9964
+    ],
+    "4:3": [
+     0.0,
+     0.0402,
+     1.0,
+     0.4591
+    ],
+    "3:4": [
+     0.0,
+     0.0503,
+     1.0,
+     0.795
+    ]
+   }
   },
   {
    "title": "La Dame aux Camélias",
@@ -437,7 +827,33 @@
    "credit_line": "Original file from Library of Congress",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1199,
+     1.0,
+     0.331
+    ],
+    "9:16": [
+     0.0,
+     0.0899,
+     1.0,
+     0.7568
+    ],
+    "4:3": [
+     0.0,
+     0.1,
+     1.0,
+     0.3813
+    ],
+    "3:4": [
+     0.0,
+     0.0899,
+     1.0,
+     0.5901
+    ]
+   }
   },
   {
    "title": "Monaco Monte-Carlo",
@@ -464,7 +880,33 @@
    "credit_line": "Bibliothèque nationale de France",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1301,
+     1.0,
+     0.5259
+    ],
+    "9:16": [
+     0.1003,
+     0.0,
+     0.8997,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0901,
+     1.0,
+     0.6179
+    ],
+    "3:4": [
+     0.0,
+     0.0303,
+     1.0,
+     0.9684
+    ]
+   }
   },
   {
    "title": "Le Chat Noir",
@@ -491,7 +933,33 @@
    "credit_line": "Bibliothèque nationale de France",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.02,
+     1.0,
+     0.438
+    ],
+    "9:16": [
+     0.0201,
+     0.0,
+     0.777,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0,
+     1.0,
+     0.5574
+    ],
+    "3:4": [
+     0.0,
+     0.0049,
+     1.0,
+     0.9958
+    ]
+   }
   },
   {
    "title": "Folies Bergère",
@@ -518,7 +986,33 @@
    "credit_line": "Bibliothèque nationale de France",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.15,
+     1.0,
+     0.5691
+    ],
+    "9:16": [
+     0.1225,
+     0.0,
+     0.8775,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1,
+     1.0,
+     0.6588
+    ],
+    "3:4": [
+     0.0,
+     0.0029,
+     1.0,
+     0.9964
+    ]
+   }
   },
   {
    "title": "Folies-Bergère, La Loïe Fuller",
@@ -545,7 +1039,33 @@
    "credit_line": "Bibliothèque nationale de France",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.13,
+     1.0,
+     0.5614
+    ],
+    "9:16": [
+     0.1333,
+     0.0,
+     0.8667,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0801,
+     1.0,
+     0.6552
+    ],
+    "3:4": [
+     0.011,
+     0.0,
+     0.989,
+     1.0
+    ]
+   }
   },
   {
    "title": "Bal du Moulin Rouge",
@@ -572,7 +1092,33 @@
    "credit_line": "Bibliothèque nationale de France",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.2801,
+     1.0,
+     0.6928
+    ],
+    "9:16": [
+     0.1699,
+     0.0,
+     0.9365,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.2001,
+     1.0,
+     0.7504
+    ],
+    "3:4": [
+     0.0,
+     0.0101,
+     1.0,
+     0.9886
+    ]
+   }
   },
   {
    "title": "Salon des Cent",
@@ -599,7 +1145,33 @@
    "credit_line": "Bibliothèque nationale de France",
    "license_verified": "2026-07-16",
    "delivered_edge": 7477,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1001,
+     1.0,
+     0.524
+    ],
+    "9:16": [
+     0.1267,
+     0.0,
+     0.8733,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0602,
+     1.0,
+     0.6253
+    ],
+    "3:4": [
+     0.0023,
+     0.0,
+     0.9977,
+     1.0
+    ]
+   }
   },
   {
    "title": "Absinthe Robette",
@@ -626,7 +1198,33 @@
    "credit_line": "Bibliothèque nationale de France",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0299,
+     1.0,
+     0.4705
+    ],
+    "9:16": [
+     0.141,
+     0.0,
+     0.859,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0199,
+     1.0,
+     0.6074
+    ],
+    "3:4": [
+     0.0213,
+     0.0,
+     0.9787,
+     1.0
+    ]
+   }
   },
   {
    "title": "Bitter Campari",
@@ -653,7 +1251,33 @@
    "credit_line": "Bibliothèque nationale de France",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1601,
+     1.0,
+     0.5722
+    ],
+    "9:16": [
+     0.1161,
+     0.0,
+     0.8839,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1201,
+     1.0,
+     0.6697
+    ],
+    "3:4": [
+     0.0,
+     0.0102,
+     1.0,
+     0.9871
+    ]
+   }
   },
   {
    "title": "Maurin Quina",
@@ -680,7 +1304,33 @@
    "credit_line": "Bibliothèque nationale de France",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.08,
+     1.0,
+     0.4704
+    ],
+    "9:16": [
+     0.0947,
+     0.0,
+     0.9053,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.05,
+     1.0,
+     0.5705
+    ],
+    "3:4": [
+     0.0,
+     0.02,
+     1.0,
+     0.9453
+    ]
+   }
   },
   {
    "title": "See America Welcome to Montana",
@@ -707,7 +1357,33 @@
    "credit_line": "This image is available from the United States Library of Congress's Prints and Photographs division under the digital ID cph.3g04240.This tag does not indicate the copyright status of the attached work. A normal copyright tag is still required. See Commons:Licensing.",
    "license_verified": "2026-07-16",
    "delivered_edge": 3921,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0999,
+     1.0,
+     0.5389
+    ],
+    "9:16": [
+     0.1396,
+     0.0,
+     0.8604,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0498,
+     1.0,
+     0.6352
+    ],
+    "3:4": [
+     0.0195,
+     0.0,
+     0.9805,
+     1.0
+    ]
+   }
   },
   {
    "title": "I Want You for U.S. Army",
@@ -734,7 +1410,33 @@
    "credit_line": "This image is available from the United States Library of Congress's Prints and Photographs division under the digital ID ppmsc.03521.This tag does not indicate the copyright status of the attached work. A normal copyright tag is still required. See Commons:Licensing.",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0499,
+     1.0,
+     0.4686
+    ],
+    "9:16": [
+     0.1222,
+     0.0,
+     0.8778,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0298,
+     1.0,
+     0.5882
+    ],
+    "3:4": [
+     0.0,
+     0.0037,
+     1.0,
+     0.9963
+    ]
+   }
   },
   {
    "title": "Destroy This Mad Brute",
@@ -761,7 +1463,33 @@
    "credit_line": "This image is available from the United States Library of Congress's Prints and Photographs division under the digital ID ds.03216.This tag does not indicate the copyright status of the attached work. A normal copyright tag is still required. See Commons:Licensing.",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.16,
+     1.0,
+     0.5442
+    ],
+    "9:16": [
+     0.0882,
+     0.0,
+     0.9118,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.12,
+     1.0,
+     0.6323
+    ],
+    "3:4": [
+     0.0,
+     0.0301,
+     1.0,
+     0.9406
+    ]
+   }
   },
   {
    "title": "When Hearts are Trumps",
@@ -788,7 +1516,33 @@
    "credit_line": "Picture Posters by Charles Hiatt",
    "license_verified": "2026-07-16",
    "delivered_edge": 7545,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0799,
+     1.0,
+     0.484
+    ],
+    "9:16": [
+     0.1085,
+     0.0,
+     0.8915,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0499,
+     1.0,
+     0.5886
+    ],
+    "3:4": [
+     0.0,
+     0.0197,
+     1.0,
+     0.9776
+    ]
+   }
   },
   {
    "title": "Harper's March",
@@ -815,7 +1569,33 @@
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
    "delivered_edge": 3994,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0299,
+     1.0,
+     0.3676
+    ],
+    "9:16": [
+     0.0303,
+     0.0,
+     0.9672,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0298,
+     1.0,
+     0.4802
+    ],
+    "3:4": [
+     0.0,
+     0.0497,
+     1.0,
+     0.8503
+    ]
+   }
   },
   {
    "title": "The Boston Sunday Herald",
@@ -842,7 +1622,33 @@
    "credit_line": "Library of Congress Catalog: http://lccn.loc.gov/2014645307 Image download: http://cdn.loc.gov/service/pnp/ppmsca/38200/38275v.jpg Original url: https://www.loc.gov/pictures/item/2014645307/",
    "license_verified": "2026-07-16",
    "delivered_edge": 7532,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.07,
+     1.0,
+     0.428
+    ],
+    "9:16": [
+     0.058,
+     0.0,
+     0.942,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0499,
+     1.0,
+     0.5271
+    ],
+    "3:4": [
+     0.0,
+     0.0298,
+     1.0,
+     0.8782
+    ]
+   }
   }
  ]
 }

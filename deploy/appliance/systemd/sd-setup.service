@@ -4,8 +4,14 @@
 # __BOOT_CONF__ is substituted by install.sh with the boot-partition conf path.
 [Unit]
 Description=Screen Docent first-run setup wizard (captive portal)
-# Run before the kiosk; a fresh box has no network yet, so no network deps.
+# Run before the kiosk.
 Before=getty@tty1.service
+# MUST start AFTER NetworkManager, not before it. NM owns wlan0; if we bring up the setup AP first, NM
+# starts a moment later, ignores our earlier "managed no", and auto-connects any saved Wi-Fi — stomping
+# the AP dead (bench-day finding 2026-07-19). Ordering after NM lets sd-setup-boot authoritatively
+# disconnect + unmanage wlan0 with NM already up, and the wizard needs NM anyway to save Wi-Fi at commit.
+Wants=NetworkManager.service
+After=NetworkManager.service
 
 [Service]
 Type=simple

@@ -79,10 +79,13 @@ install -m 0755 "$BIN_SRC/sd-setup-boot"     /usr/local/bin/sd-setup-boot
 install -m 0755 "$SETUP_SRC/sd_setup.py"     /usr/local/bin/sd-setup
 install -m 0755 "$BIN_SRC/sd-update"         /usr/local/bin/sd-update
 install -m 0755 "$BIN_SRC/sd-eink"           /usr/local/bin/sd-eink
+install -m 0755 "$BIN_SRC/sd-image-prep"     /usr/local/bin/sd-image-prep
 
 echo "==> Installing boot splash (shows the admin URL while the server starts)"
 install -d /usr/local/share/screen-docent
 install -m 0644 "$HERE/share/sd-splash.html" /usr/local/share/screen-docent/sd-splash.html
+# The shipped placeholder conf — sd-image-prep falls back to this when resetting a box to setup mode.
+install -m 0644 "$CONF_EXAMPLE" /usr/local/share/screen-docent/screen-docent.conf.example
 
 echo "==> Installing udev rule (suppress the HDMI-CEC phantom pointer / stray cursor)"
 install -m 0644 "$HERE/udev/99-screen-docent-no-cec-pointer.rules" \

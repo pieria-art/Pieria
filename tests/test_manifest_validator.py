@@ -109,6 +109,35 @@ def test_focal_point_validation():
     assert any("focal_point" in e for e in validate_manifest(m))
 
 
+def test_aspect_crops_accepts_good_map():
+    m = _base()
+    m["items"][0]["image"]["aspect_crops"] = {
+        "16:9": [0.0, 0.1, 1.0, 0.66], "9:16": [0.28, 0.0, 0.72, 1.0],
+    }
+    assert validate_manifest(m) == []
+
+
+def test_aspect_crops_absent_is_fine():
+    m = _base()
+    assert "aspect_crops" not in m["items"][0]["image"]
+    assert validate_manifest(m) == []
+
+
+def test_aspect_crops_rejects_non_dict():
+    m = _base(); m["items"][0]["image"]["aspect_crops"] = ["16:9", [0.0, 0.0, 1.0, 1.0]]
+    assert any("aspect_crops" in e for e in validate_manifest(m))
+
+
+def test_aspect_crops_rejects_wrong_arity():
+    m = _base(); m["items"][0]["image"]["aspect_crops"] = {"16:9": [0.0, 0.1, 1.0]}  # only 3 values
+    assert any("aspect_crops" in e for e in validate_manifest(m))
+
+
+def test_aspect_crops_rejects_out_of_range_number():
+    m = _base(); m["items"][0]["image"]["aspect_crops"] = {"16:9": [0.0, 0.1, 1.0, 1.5]}
+    assert any("aspect_crops" in e for e in validate_manifest(m))
+
+
 def test_access_pattern():
     m = _base(); m["items"][0]["access"] = "entitlement:gumroad:prod_123"
     assert validate_manifest(m) == []

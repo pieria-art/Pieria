@@ -6,7 +6,14 @@ from pathlib import Path
 import pytest
 from PIL import Image
 
-from epaper import PALETTES, SPECTRA6_OUTPUT_PALETTE, _adaptive_gamma, render_for_epaper
+from epaper import (
+    PALETTES,
+    SPECTRA6_OUTPUT_PALETTE,
+    _adaptive_gamma,
+    normalize_crop_box,
+    pick_crop_for_aspect,
+    render_for_epaper,
+)
 
 
 def _make_image(tmp_path: Path, name="src.jpg", mode="RGB", size=(240, 160)) -> Path:
@@ -138,3 +145,89 @@ def test_invalid_palette_raises(tmp_path):
 def test_invalid_format_raises(tmp_path):
     with pytest.raises(ValueError):
         render_for_epaper(_make_image(tmp_path, "f.png"), 100, 100, palette="spectra6", fmt="gif")
+
+
+# --- per-aspect crop presets -------------------------------------------------
+# Tier 2 framing: an authored box per screen shape, because a focal point can only SLIDE a
+# fixed-size window, never CHOOSE one. Not to be confused with build_pack's Tier-1 crop_box
+# (de-bordering "what IS the artwork"), which is baked into the master well before we render.
+
+
+def _quadrant_src(tmp_path) -> Path:
+    """400x400, four solid quadrants — a crop box selects an identifiable one."""
+    img = Image.new("RGB", (400, 400))
+    px = img.load()
+    for y in range(400):
+        for x in range(400):
+            px[x, y] = ((220, 20, 20) if x < 200 else (20, 220, 20)) if y < 200 else \
+                       ((20, 20, 220) if x < 200 else (230, 230, 20))
+    src = tmp_path / "quad.png"
+    img.save(src)
+    return src
+
+
+def test_crop_box_selects_region(tmp_path):
+    src = _quadrant_src(tmp_path)
+    tl = render_for_epaper(src, 100, 100, palette="spectra6", fmt="png", crop_box=(0.0, 0.0, 0.5, 0.5))
+    br = render_for_epaper(src, 100, 100, palette="spectra6", fmt="png", crop_box=(0.5, 0.5, 1.0, 1.0))
+    assert tl != br
+    assert _colors(tl) == {(255, 0, 0)}      # top-left quadrant is solid red
+    assert _colors(br) == {(255, 255, 0)}    # bottom-right is solid yellow
+
+
+def test_no_crop_box_is_byte_identical(tmp_path):
+    """The whole feature must be inert until crop data exists — no silent reframing on upgrade."""
+    src = _quadrant_src(tmp_path)
+    base = render_for_epaper(src, 120, 90, palette="spectra6", fmt="png", focal=(0.4, 0.3))
+    assert render_for_epaper(src, 120, 90, palette="spectra6", fmt="png", focal=(0.4, 0.3),
+                             crop_box=None) == base
+
+
+def test_full_frame_crop_box_is_noop(tmp_path):
+    """[0,0,1,1] means 'the whole frame already is the crop' — must not perturb the render."""
+    src = _quadrant_src(tmp_path)
+    base = render_for_epaper(src, 120, 90, palette="spectra6", fmt="png", focal=(0.4, 0.3))
+    assert render_for_epaper(src, 120, 90, palette="spectra6", fmt="png", focal=(0.4, 0.3),
+                             crop_box=(0.0, 0.0, 1.0, 1.0)) == base
+
+
+@pytest.mark.parametrize("bad", [
+    (0.5, 0.0, 0.2, 1.0),    # x1 <= x0
+    (0.0, 0.9, 1.0, 0.4),    # y1 <= y0
+    (-0.1, 0.0, 1.0, 1.0),   # out of range
+    (0.0, 0.0, 1.5, 1.0),    # out of range
+    (0.0, 0.0, 1.0),         # wrong arity
+    ("a", "b", "c", "d"),    # non-numeric
+])
+def test_invalid_crop_box_falls_back_to_focal(tmp_path, bad):
+    """A bad box must degrade to today's behaviour, never raise — device art keeps painting."""
+    src = _quadrant_src(tmp_path)
+    base = render_for_epaper(src, 120, 90, palette="spectra6", fmt="png", focal=(0.4, 0.3))
+    assert render_for_epaper(src, 120, 90, palette="spectra6", fmt="png", focal=(0.4, 0.3),
+                             crop_box=bad) == base
+
+
+def test_normalize_crop_box_accepts_and_rejects():
+    assert normalize_crop_box([0.1, 0.2, 0.9, 0.8]) == (0.1, 0.2, 0.9, 0.8)
+    assert normalize_crop_box((0.0, 0.0, 1.0, 1.0)) is None      # near-full == no-op
+    assert normalize_crop_box([0.0, 0.0, 0.999, 0.999]) is None  # within the 0.002 tolerance
+    assert normalize_crop_box(None) is None
+    assert normalize_crop_box([0.5, 0.5, 0.5, 0.9]) is None      # zero width
+
+
+def test_pick_crop_for_aspect_picks_nearest_ratio():
+    crops = {"16:9": [0, 0, 1, 0.5], "9:16": [0.2, 0, 0.6, 1],
+             "4:3": [0, 0, 1, 0.75], "3:4": [0.1, 0, 0.8, 1]}
+    assert pick_crop_for_aspect(crops, 3840, 2160) == (0.0, 0.0, 1.0, 0.5)     # exact 16:9
+    assert pick_crop_for_aspect(crops, 1080, 1920) == (0.2, 0.0, 0.6, 1.0)     # exact 9:16
+    assert pick_crop_for_aspect(crops, 1600, 1200) == (0.0, 0.0, 1.0, 0.75)    # exact 4:3
+    # an odd panel still gets the closest preset rather than falling back to a focal cover
+    assert pick_crop_for_aspect(crops, 1872, 1404) == (0.0, 0.0, 1.0, 0.75)
+
+
+def test_pick_crop_for_aspect_degrades_quietly():
+    assert pick_crop_for_aspect({}, 1600, 1200) is None
+    assert pick_crop_for_aspect(None, 1600, 1200) is None
+    assert pick_crop_for_aspect({"bogus": [0, 0, 1, 1]}, 1600, 1200) is None
+    assert pick_crop_for_aspect({"4:3": "nonsense"}, 1600, 1200) is None
+    assert pick_crop_for_aspect({"4:3": [0, 0, 1, 0.75]}, 1600, 0) is None     # no divide-by-zero

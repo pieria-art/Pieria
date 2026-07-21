@@ -30,7 +30,33 @@
    "credit_line": "Collection of The Metropolitan Museum of Art",
    "license_verified": "2026-07-16",
    "delivered_edge": 3870,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "3:4": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ],
+    "16:9": [
+     0.0,
+     0.32,
+     1.0,
+     0.7413
+    ],
+    "9:16": [
+     0.1245,
+     0.0,
+     0.8755,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.2,
+     1.0,
+     0.7618
+    ]
+   }
   },
   {
    "title": "The Temple of Dendur",
@@ -57,7 +83,33 @@
    "credit_line": "Collection of The Metropolitan Museum of Art",
    "license_verified": "2026-07-16",
    "delivered_edge": 4000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "3:4": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ],
+    "16:9": [
+     0.0,
+     0.2001,
+     1.0,
+     0.6212
+    ],
+    "9:16": [
+     0.1244,
+     0.0,
+     0.8756,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1301,
+     1.0,
+     0.6917
+    ]
+   }
   },
   {
    "title": "Statuette of Amun",
@@ -84,7 +136,33 @@
    "credit_line": "Collection of The Metropolitan Museum of Art",
    "license_verified": "2026-07-16",
    "delivered_edge": 4000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.06,
+     1.0,
+     0.4644
+    ],
+    "9:16": [
+     0.1088,
+     0.0,
+     0.8912,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.06,
+     1.0,
+     0.5993
+    ],
+    "3:4": [
+     0.0,
+     0.02,
+     1.0,
+     0.9787
+    ]
+   }
   },
   {
    "title": "Head of a ruler",
@@ -111,7 +189,33 @@
    "credit_line": "Collection of The Metropolitan Museum of Art",
    "license_verified": "2026-07-16",
    "delivered_edge": 4000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.2001,
+     1.0,
+     0.669
+    ],
+    "9:16": [
+     0.1627,
+     0.0,
+     0.8374,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1001,
+     1.0,
+     0.7254
+    ],
+    "3:4": [
+     0.0503,
+     0.0,
+     0.9498,
+     1.0
+    ]
+   }
   },
   {
    "title": "Book of the Dead of Hunefer",
@@ -139,7 +243,21 @@
    "license_verified": "2026-07-16",
    "below_floor_ok": true,
    "delivered_edge": 2240,
-   "resolution_tier": "HD"
+   "resolution_tier": "HD",
+   "aspect_crops": {
+    "16:9": [
+     0.0001,
+     0.0,
+     0.7929,
+     1.0
+    ],
+    "4:3": [
+     0.0001,
+     0.0,
+     0.5947,
+     1.0
+    ]
+   }
   },
   {
    "title": "Papyrus of Ani",
@@ -167,7 +285,21 @@
    "license_verified": "2026-07-16",
    "below_floor_ok": true,
    "delivered_edge": 2414,
-   "resolution_tier": "HD"
+   "resolution_tier": "HD",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0468,
+     1.0,
+     0.9533
+    ],
+    "4:3": [
+     0.0861,
+     0.0,
+     0.9135,
+     1.0
+    ]
+   }
   },
   {
    "title": "Seated Scribe",
@@ -194,7 +326,33 @@
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
    "delivered_edge": 4000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "4:3": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ],
+    "16:9": [
+     0.0,
+     0.1251,
+     1.0,
+     0.8748
+    ],
+    "9:16": [
+     0.289,
+     0.0,
+     0.711,
+     1.0
+    ],
+    "3:4": [
+     0.2187,
+     0.0,
+     0.7813,
+     1.0
+    ]
+   }
   },
   {
    "title": "Faience Sphinx of Amenhotep III",
@@ -222,7 +380,33 @@
    "license_verified": "2026-07-16",
    "below_floor_ok": true,
    "delivered_edge": 3811,
-   "resolution_tier": "HD"
+   "resolution_tier": "HD",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.08,
+     1.0,
+     0.7831
+    ],
+    "9:16": [
+     0.275,
+     0.0,
+     0.725,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.03,
+     1.0,
+     0.9675
+    ],
+    "3:4": [
+     0.2,
+     0.0,
+     0.8,
+     1.0
+    ]
+   }
   },
   {
    "title": "Wall Painting from the Tomb of Nebamun",
@@ -250,7 +434,33 @@
    "license_verified": "2026-07-16",
    "below_floor_ok": true,
    "delivered_edge": 2200,
-   "resolution_tier": "HD"
+   "resolution_tier": "HD",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.12,
+     1.0,
+     0.7804
+    ],
+    "9:16": [
+     0.26,
+     0.0,
+     0.7392,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.06,
+     1.0,
+     0.9404
+    ],
+    "3:4": [
+     0.1806,
+     0.0,
+     0.8194,
+     1.0
+    ]
+   }
   },
   {
    "title": "Code of Hammurabi Stele",
@@ -277,7 +487,33 @@
    "credit_line": "Own work",
    "license_verified": "2026-07-17",
    "delivered_edge": 3888,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0001,
+     1.0,
+     0.3751
+    ],
+    "9:16": [
+     0.0783,
+     0.0,
+     0.922,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0001,
+     1.0,
+     0.5001
+    ],
+    "3:4": [
+     0.0,
+     0.0003,
+     1.0,
+     0.8891
+    ]
+   }
   },
   {
    "title": "Relief of a Winged Genius",
@@ -304,7 +540,33 @@
    "credit_line": "Neo-Assyrian Bas Relief of Winged Genius, from North Palace at Nimrud, c. 883-859 BC",
    "license_verified": "2026-07-16",
    "delivered_edge": 6000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0301,
+     1.0,
+     0.4051
+    ],
+    "9:16": [
+     0.0783,
+     0.0,
+     0.922,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0202,
+     1.0,
+     0.5202
+    ],
+    "3:4": [
+     0.0,
+     0.0003,
+     1.0,
+     0.8891
+    ]
+   }
   }
  ]
 }

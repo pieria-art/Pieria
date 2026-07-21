@@ -30,7 +30,33 @@
    "credit_line": "C2RMF: Galerie de tableaux en très haute définition: image page",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0299,
+     1.0,
+     0.4141
+    ],
+    "9:16": [
+     0.0883,
+     0.0,
+     0.9117,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0298,
+     1.0,
+     0.5422
+    ],
+    "3:4": [
+     0.0,
+     0.0201,
+     1.0,
+     0.9309
+    ]
+   }
   },
   {
    "title": "The Last Supper",
@@ -57,7 +83,33 @@
     0.42
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0556,
+     0.0,
+     0.9444,
+     1.0
+    ],
+    "9:16": [
+     0.3594,
+     0.0,
+     0.6406,
+     1.0
+    ],
+    "4:3": [
+     0.1667,
+     0.0,
+     0.8333,
+     1.0
+    ],
+    "3:4": [
+     0.3125,
+     0.0,
+     0.6875,
+     1.0
+    ]
+   }
   },
   {
    "title": "Under the Wave off Kanagawa",
@@ -85,7 +137,33 @@
    "credit_line": "Library of Congress Catalog: https://lccn.loc.gov/2008660568 Image download: https://cdn.loc.gov/service/pnp/jpd/02000/02018v.jpg Original url: https://www.loc.gov/pictures/item/2008660568/",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.09,
+     1.0,
+     0.8876
+    ],
+    "9:16": [
+     0.03,
+     0.0,
+     0.4267,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0,
+     0.9403,
+     1.0
+    ],
+    "3:4": [
+     0.03,
+     0.0,
+     0.5589,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Starry Night",
@@ -112,7 +190,27 @@
    "credit_line": "Google Arts &amp; Culture — bgEuwDxel93-Pg",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0701,
+     1.0,
+     0.7803
+    ],
+    "4:3": [
+     0.0,
+     0.0265,
+     1.0,
+     0.9736
+    ],
+    "3:4": [
+     0.0199,
+     0.0,
+     0.6139,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Scream",
@@ -139,7 +237,33 @@
    "credit_line": "National Museum of Art, Architecture and Design",
    "license_verified": "2026-07-16",
    "delivered_edge": 4000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.3801,
+     1.0,
+     0.8333
+    ],
+    "9:16": [
+     0.1509,
+     0.0,
+     0.849,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.3001,
+     1.0,
+     0.9044
+    ],
+    "3:4": [
+     0.0346,
+     0.0,
+     0.9655,
+     1.0
+    ]
+   }
   },
   {
    "title": "Primavera",
@@ -166,7 +290,33 @@
     0.4
    ],
    "delivered_edge": 4926,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0719,
+     1.0,
+     0.9281
+    ],
+    "9:16": [
+     0.2952,
+     0.0,
+     0.6648,
+     1.0
+    ],
+    "4:3": [
+     0.0621,
+     0.0,
+     0.9379,
+     1.0
+    ],
+    "3:4": [
+     0.2337,
+     0.0,
+     0.7263,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Night Watch",
@@ -193,7 +343,33 @@
    "credit_line": "Collection of Rijksmuseum",
    "license_verified": "2026-07-16",
    "delivered_edge": 7133,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1597,
+     1.0,
+     0.8373
+    ],
+    "9:16": [
+     0.28,
+     0.0,
+     0.747,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0298,
+     1.0,
+     0.9332
+    ],
+    "3:4": [
+     0.1902,
+     0.0,
+     0.8128,
+     1.0
+    ]
+   }
   },
   {
    "title": "Girl with a Pearl Earring",
@@ -220,7 +396,33 @@
    "credit_line": "Mauritshuis",
    "license_verified": "2026-07-16",
    "delivered_edge": 6000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0299,
+     1.0,
+     0.5051
+    ],
+    "9:16": [
+     0.17,
+     0.0,
+     0.836,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0202,
+     1.0,
+     0.6538
+    ],
+    "3:4": [
+     0.056,
+     0.0,
+     0.944,
+     1.0
+    ]
+   }
   },
   {
    "title": "Portrait of Adele Bloch-Bauer I",
@@ -247,7 +449,33 @@
     0.25
    ],
    "delivered_edge": 4128,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "3:4": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ],
+    "16:9": [
+     0.0,
+     0.0001,
+     1.0,
+     0.4219
+    ],
+    "9:16": [
+     0.125,
+     0.0,
+     0.875,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0002,
+     1.0,
+     0.5627
+    ]
+   }
   },
   {
    "title": "Water Lilies",
@@ -274,7 +502,33 @@
    "credit_line": "Collection of Art Institute of Chicago",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.32,
+     1.0,
+     0.9056
+    ],
+    "9:16": [
+     0.15,
+     0.0,
+     0.6903,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.15,
+     1.0,
+     0.9308
+    ],
+    "3:4": [
+     0.14,
+     0.0,
+     0.8605,
+     1.0
+    ]
+   }
   },
   {
    "title": "Irises",
@@ -301,7 +555,33 @@
     0.35
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.132,
+     1.0,
+     0.8681
+    ],
+    "9:16": [
+     0.0299,
+     0.0,
+     0.4598,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0093,
+     1.0,
+     0.9907
+    ],
+    "3:4": [
+     0.0201,
+     0.0,
+     0.5932,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Creation of Adam",
@@ -328,7 +608,33 @@
    "credit_line": "Own work Burkhard Mücke Taken on 18 October 2017",
    "license_verified": "2026-07-16",
    "delivered_edge": 6720,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0781,
+     1.0,
+     0.9219
+    ],
+    "9:16": [
+     0.28,
+     0.0,
+     0.655,
+     1.0
+    ],
+    "4:3": [
+     0.0556,
+     0.0,
+     0.9444,
+     1.0
+    ],
+    "3:4": [
+     0.22,
+     0.0,
+     0.72,
+     1.0
+    ]
+   }
   },
   {
    "title": "American Gothic",
@@ -355,7 +661,33 @@
    "credit_line": "Art Institute of Chicago: online database: entry 6565",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0199,
+     1.0,
+     0.4853
+    ],
+    "9:16": [
+     0.16,
+     0.0,
+     0.84,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0199,
+     1.0,
+     0.6404
+    ],
+    "3:4": [
+     0.0467,
+     0.0,
+     0.9534,
+     1.0
+    ]
+   }
   },
   {
    "title": "Sunflowers",
@@ -382,7 +714,33 @@
    "credit_line": "National Gallery, London - online catalogue.",
    "license_verified": "2026-07-16",
    "delivered_edge": 6000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1798,
+     1.0,
+     0.6223
+    ],
+    "9:16": [
+     0.1424,
+     0.0,
+     0.8576,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1198,
+     1.0,
+     0.7096
+    ],
+    "3:4": [
+     0.0232,
+     0.0,
+     0.9768,
+     1.0
+    ]
+   }
   },
   {
    "title": "Olympia",
@@ -409,7 +767,33 @@
     0.28
    ],
    "delivered_edge": 5876,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0698,
+     1.0,
+     0.9012
+    ],
+    "9:16": [
+     0.0902,
+     0.0,
+     0.4708,
+     1.0
+    ],
+    "4:3": [
+     0.0499,
+     0.0,
+     0.9521,
+     1.0
+    ],
+    "3:4": [
+     0.0663,
+     0.0,
+     0.5737,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Birth of Venus",
@@ -436,7 +820,33 @@
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0283,
+     1.0,
+     0.9718
+    ],
+    "9:16": [
+     0.3,
+     0.0,
+     0.6354,
+     1.0
+    ],
+    "4:3": [
+     0.1025,
+     0.0,
+     0.8975,
+     1.0
+    ],
+    "3:4": [
+     0.28,
+     0.0,
+     0.7272,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Last Judgment",
@@ -463,7 +873,33 @@
     0.28
    ],
    "delivered_edge": 4395,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.15,
+     1.0,
+     0.6608
+    ],
+    "9:16": [
+     0.1903,
+     0.0,
+     0.8098,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1,
+     1.0,
+     0.781
+    ],
+    "3:4": [
+     0.0871,
+     0.0,
+     0.9131,
+     1.0
+    ]
+   }
   },
   {
    "title": "Nighthawks",
@@ -490,7 +926,33 @@
    "credit_line": "http://www.artic.edu/aic/collections/artwork/111628 (Manual stitch by Petar Milošević)",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0144,
+     0.0,
+     0.9856,
+     1.0
+    ],
+    "9:16": [
+     0.5498,
+     0.0,
+     0.8572,
+     1.0
+    ],
+    "4:3": [
+     0.2713,
+     0.0,
+     0.9997,
+     1.0
+    ],
+    "3:4": [
+     0.5151,
+     0.0,
+     0.9249,
+     1.0
+    ]
+   }
   },
   {
    "title": "Las Meninas",
@@ -517,7 +979,33 @@
     0.55
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1201,
+     1.0,
+     0.6089
+    ],
+    "9:16": [
+     0.1468,
+     0.0,
+     0.7942,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0802,
+     1.0,
+     0.7318
+    ],
+    "3:4": [
+     0.0599,
+     0.0,
+     0.9231,
+     1.0
+    ]
+   }
   },
   {
    "title": "View of Delft",
@@ -544,7 +1032,33 @@
     0.55
    ],
    "delivered_edge": 6000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.2001,
+     1.0,
+     0.8749
+    ],
+    "9:16": [
+     0.27,
+     0.0,
+     0.739,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0502,
+     1.0,
+     0.9498
+    ],
+    "3:4": [
+     0.1899,
+     0.0,
+     0.8151,
+     1.0
+    ]
+   }
   },
   {
    "title": "Luncheon of the Boating Party",
@@ -571,7 +1085,33 @@
     0.35
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0599,
+     1.0,
+     0.8194
+    ],
+    "9:16": [
+     0.05,
+     0.0,
+     0.4667,
+     1.0
+    ],
+    "4:3": [
+     0.006,
+     0.0,
+     0.9934,
+     1.0
+    ],
+    "3:4": [
+     0.1501,
+     0.0,
+     0.7055,
+     1.0
+    ]
+   }
   },
   {
    "title": "Luncheon on the Grass",
@@ -598,7 +1138,33 @@
     0.38
    ],
    "delivered_edge": 5649,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.15,
+     1.0,
+     0.874
+    ],
+    "9:16": [
+     0.06,
+     0.0,
+     0.497,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0168,
+     1.0,
+     0.9822
+    ],
+    "3:4": [
+     0.0601,
+     0.0,
+     0.6429,
+     1.0
+    ]
+   }
   },
   {
    "title": "Dance at Le Moulin de la Galette",
@@ -625,7 +1191,33 @@
     0.62
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1499,
+     1.0,
+     0.9066
+    ],
+    "9:16": [
+     0.28,
+     0.0,
+     0.6982,
+     1.0
+    ],
+    "4:3": [
+     0.0045,
+     0.0,
+     0.9956,
+     1.0
+    ],
+    "3:4": [
+     0.191,
+     0.0,
+     0.7486,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Kiss",
@@ -652,7 +1244,33 @@
    "credit_line": "Google Art Project",
    "license_verified": "2026-07-16",
    "delivered_edge": 7401,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0202,
+     1.0,
+     0.5807
+    ],
+    "9:16": [
+     0.2178,
+     0.0,
+     0.7822,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1263,
+     1.0,
+     0.8737
+    ],
+    "3:4": [
+     0.1238,
+     0.0,
+     0.8763,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Sleeping Gypsy",
@@ -679,7 +1297,33 @@
     0.6
    ],
    "delivered_edge": 4490,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0648,
+     1.0,
+     0.9351
+    ],
+    "9:16": [
+     0.3,
+     0.0,
+     0.6636,
+     1.0
+    ],
+    "4:3": [
+     0.0691,
+     0.0,
+     0.9308,
+     1.0
+    ],
+    "3:4": [
+     0.24,
+     0.0,
+     0.7248,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Bedroom (Amsterdam version, 1888)",
@@ -706,7 +1350,33 @@
     0.55
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1599,
+     1.0,
+     0.8688
+    ],
+    "9:16": [
+     0.5,
+     0.0,
+     0.9464,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0274,
+     1.0,
+     0.9726
+    ],
+    "3:4": [
+     0.4,
+     0.0,
+     0.9952,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Hay Wain",
@@ -733,7 +1403,27 @@
     0.55
    ],
    "delivered_edge": 6128,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0922,
+     1.0,
+     0.9078
+    ],
+    "9:16": [
+     0.3,
+     0.0,
+     0.6879,
+     1.0
+    ],
+    "4:3": [
+     0.0403,
+     0.0,
+     0.9598,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Fighting Temeraire",
@@ -760,7 +1450,33 @@
     0.45
    ],
    "delivered_edge": 5684,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.08,
+     1.0,
+     0.8371
+    ],
+    "9:16": [
+     0.091,
+     0.0,
+     0.5089,
+     1.0
+    ],
+    "4:3": [
+     0.0047,
+     0.0,
+     0.9953,
+     1.0
+    ],
+    "3:4": [
+     0.05,
+     0.0,
+     0.6072,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Anatomy Lesson of Dr. Nicolaes Tulp",
@@ -787,7 +1503,33 @@
     0.28
    ],
    "delivered_edge": 6000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0997,
+     1.0,
+     0.8463
+    ],
+    "9:16": [
+     0.3301,
+     0.0,
+     0.7539,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0,
+     1.0,
+     0.9956
+    ],
+    "3:4": [
+     0.268,
+     0.0,
+     0.833,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Art of Painting",
@@ -822,7 +1564,33 @@
     0.38
    ],
    "delivered_edge": 7377,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1203,
+     1.0,
+     0.5937
+    ],
+    "9:16": [
+     0.0498,
+     0.0,
+     0.7182,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0804,
+     1.0,
+     0.7116
+    ],
+    "3:4": [
+     0.03,
+     0.0,
+     0.921,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Return of the Prodigal Son",
@@ -849,7 +1617,27 @@
     0.55
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "9:16": [
+     0.08,
+     0.0,
+     0.814,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0601,
+     1.0,
+     0.6349
+    ],
+    "3:4": [
+     0.0102,
+     0.0,
+     0.9888,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Arnolfini Portrait",
@@ -876,7 +1664,33 @@
     0.4
    ],
    "delivered_edge": 6000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.02,
+     1.0,
+     0.4312
+    ],
+    "9:16": [
+     0.1153,
+     0.0,
+     0.8848,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.03,
+     1.0,
+     0.5783
+    ],
+    "3:4": [
+     0.0,
+     0.0127,
+     1.0,
+     0.9874
+    ]
+   }
   },
   {
    "title": "A Sunday on La Grande Jatte — 1884",
@@ -903,7 +1717,27 @@
    "credit_line": "https://www.bostonglobe.com/arts/theater-dance/2016/09/01/huntington-two-georges-one-sondheim/OR1D4DPM8GsME67aXEjWiP/story.html",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0775,
+     1.0,
+     0.9226
+    ],
+    "9:16": [
+     0.58,
+     0.0,
+     0.9545,
+     1.0
+    ],
+    "4:3": [
+     0.0801,
+     0.0,
+     0.9676,
+     1.0
+    ]
+   }
   },
   {
    "title": "Café Terrace at Night",
@@ -930,7 +1764,33 @@
    "credit_line": "https://data.collectienederland.nl/page/aggregation/kroller-muller/44529",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.3,
+     1.0,
+     0.7511
+    ],
+    "9:16": [
+     0.0499,
+     0.0,
+     0.7515,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.2001,
+     1.0,
+     0.8014
+    ],
+    "3:4": [
+     0.0323,
+     0.0,
+     0.9677,
+     1.0
+    ]
+   }
   },
   {
    "title": "Starry Night Over the Rhône",
@@ -957,7 +1817,27 @@
     0.85
    ],
    "delivered_edge": 5407,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "9:16": [
+     0.564,
+     0.0,
+     1.0,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0162,
+     1.0,
+     0.9839
+    ],
+    "3:4": [
+     0.4,
+     0.0,
+     0.9814,
+     1.0
+    ]
+   }
   },
   {
    "title": "Wheatfield with Cypresses",
@@ -992,7 +1872,33 @@
     0.55
    ],
    "delivered_edge": 6000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1001,
+     1.0,
+     0.807
+    ],
+    "9:16": [
+     0.4763,
+     0.0,
+     0.9238,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0287,
+     1.0,
+     0.9713
+    ],
+    "3:4": [
+     0.4017,
+     0.0,
+     0.9984,
+     1.0
+    ]
+   }
   },
   {
    "title": "The School of Athens",
@@ -1019,7 +1925,33 @@
    "credit_line": "\"School of Athens\" by Raphael, Raphael Rooms, Vatican Museum Complete indexed photo collection at WorldHistoryPics.com.",
    "license_verified": "2026-07-16",
    "delivered_edge": 6000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0781,
+     1.0,
+     0.9219
+    ],
+    "9:16": [
+     0.3125,
+     0.0,
+     0.6875,
+     1.0
+    ],
+    "4:3": [
+     0.0556,
+     0.0,
+     0.9444,
+     1.0
+    ],
+    "3:4": [
+     0.25,
+     0.0,
+     0.75,
+     1.0
+    ]
+   }
   },
   {
    "title": "Bacchus and Ariadne",
@@ -1046,7 +1978,33 @@
     0.32
    ],
    "delivered_edge": 5529,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0897,
+     1.0,
+     0.8673
+    ],
+    "9:16": [
+     0.416,
+     0.0,
+     0.823,
+     1.0
+    ],
+    "4:3": [
+     0.0177,
+     0.0,
+     0.9823,
+     1.0
+    ],
+    "3:4": [
+     0.3902,
+     0.0,
+     0.9328,
+     1.0
+    ]
+   }
   },
   {
    "title": "Virgin of the Rocks",
@@ -1081,7 +2039,33 @@
     0.3
    ],
    "delivered_edge": 4226,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.2103,
+     1.0,
+     0.5847
+    ],
+    "9:16": [
+     0.0775,
+     0.0,
+     0.9225,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1704,
+     1.0,
+     0.6696
+    ],
+    "3:4": [
+     0.0,
+     0.0562,
+     1.0,
+     0.9438
+    ]
+   }
   },
   {
    "title": "The Raft of the Medusa",
@@ -1108,7 +2092,33 @@
     0.28
    ],
    "delivered_edge": 5907,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0401,
+     1.0,
+     0.8679
+    ],
+    "9:16": [
+     0.5899,
+     0.0,
+     0.9721,
+     1.0
+    ],
+    "4:3": [
+     0.047,
+     0.0,
+     0.953,
+     1.0
+    ],
+    "3:4": [
+     0.4402,
+     0.0,
+     0.9498,
+     1.0
+    ]
+   }
   }
  ]
 }

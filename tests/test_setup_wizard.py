@@ -125,6 +125,36 @@ def test_dry_run_commit_writes_preview_only_never_boot_conf(server):
     assert not cfg.boot_conf.exists()
 
 
+def test_live_commit_writes_boot_conf_0644(tmp_path, monkeypatch):
+    """The live commit path writes the boot conf world-readable (0644), deterministically — the FAT
+    boot partition is read from any computer, so the mode must not depend on the process umask. Wi-Fi
+    join + reboot are stubbed so no hardware is touched. Pre-create the conf 0600 to prove the explicit
+    chmod overrides an existing restrictive mode (write_text alone would leave 0600)."""
+    import stat
+
+    monkeypatch.setattr(sd_setup, "_join_wifi", lambda *a, **k: None)
+    monkeypatch.setattr(sd_setup, "_schedule_reboot", lambda: None)
+    boot_conf = tmp_path / "boot" / "screen-docent.conf"
+    boot_conf.parent.mkdir(parents=True)
+    boot_conf.write_text("stale")            # pre-existing file...
+    boot_conf.chmod(0o600)                    # ...with restrictive perms the commit must override
+
+    cfg = sd_setup.SetupConfig(dry_run=False, all_in_one=True, boot_conf=boot_conf, output="HDMI-A-1")
+    httpd = ThreadingHTTPServer(("127.0.0.1", 0), sd_setup.make_handler(cfg))
+    t = threading.Thread(target=httpd.serve_forever, daemon=True)
+    t.start()
+    try:
+        status, data = _post(f"http://127.0.0.1:{httpd.server_address[1]}", "/api/commit", {
+            "server_url": "http://localhost:8000", "display_id": "wall", "orientation": "landscape",
+        })
+    finally:
+        httpd.shutdown()
+
+    assert status == 200 and data["committed"] is True
+    assert "DISPLAY_ID=wall" in boot_conf.read_text()
+    assert stat.S_IMODE(boot_conf.stat().st_mode) == 0o644
+
+
 def test_commit_rejects_invalid_fields(server):
     base, _ = server
     req = urllib.request.Request(base + "/api/commit",

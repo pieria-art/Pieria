@@ -91,6 +91,10 @@ let currentImageUrl = '';
 let currentDisplayTime = 30000; 
 let currentCropData = null;
 let currentFocal = null;
+// Per-shape crop presets for the current work ({"16:9":[x0,y0,x1,y1], ...} normalized) or null.
+// Read straight out of module state by applyModeStyles, like currentCropData/currentFocal, so a
+// mode toggle re-applies them without re-plumbing every call site.
+let currentAspectCrops = null;
 let cycleTimeout = null;
 let currentPlaylists = [];
 let socket = null;
@@ -438,6 +442,7 @@ async function fetchAndTransition(direction = 1, isSkipped = false) {
         currentImageUrl = `${API_BASE}${data.image_url}`;
         currentCropData = data.crop;
         currentFocal = data.focal_point || { x: 0.5, y: 0.5 };
+        currentAspectCrops = data.aspect_crops || null;
         
         // Update Telemetry state for the newly fetched image
         activeArtworkId = data.metadata.id;
@@ -580,25 +585,86 @@ function performCrossfade(imageUrl, cropData, focal) {
     };
 }
 
+// Pick the authored crop whose key ratio is nearest this screen's ratio. Mirrors
+// epaper.pick_crop_for_aspect (same log-space nearest-match) so the Canvas, the e-ink pull and the
+// Frame push all frame a given work the same way. Returns [x0,y0,x1,y1] or null.
+function pickCropForAspect(crops, w, h) {
+    if (!crops || typeof crops !== 'object' || !(w > 0) || !(h > 0)) return null;
+    const target = w / h;
+    let best = null, bestDist = Infinity;
+    for (const [key, box] of Object.entries(crops)) {
+        const parts = String(key).split(':');
+        const ratio = parseFloat(parts[0]) / parseFloat(parts[1]);
+        if (!isFinite(ratio) || ratio <= 0) continue;
+        if (!Array.isArray(box) || box.length !== 4) continue;
+        const [x0, y0, x1, y1] = box.map(Number);
+        if (!(x0 >= 0 && x1 <= 1 && x0 < x1 && y0 >= 0 && y1 <= 1 && y0 < y1)) continue;
+        // a near-full box means "the whole frame already is the crop" — nothing to apply
+        if (x0 <= 0.002 && y0 <= 0.002 && x1 >= 0.998 && y1 >= 0.998) continue;
+        const dist = Math.abs(Math.log(target / ratio));
+        if (dist < bestDist) { best = [x0, y0, x1, y1]; bestDist = dist; }
+    }
+    return best;
+}
+
+// Paint `box` (normalized, in image space) so it FILLS the element without distortion.
+//
+// Deliberately not the two-percentage background-size trick used by the legacy static-crop path:
+// that scales X and Y independently, which stretches the art whenever the crop's aspect doesn't
+// exactly match the viewport — and since we pick the NEAREST preset, it never exactly matches.
+// Uniform scale + a pixel offset that centres the crop keeps the geometry honest and just lets the
+// overflow spill past the edges, which is what "cover" should mean.
+function applyCropBox(element, img, box) {
+    const [x0, y0, x1, y1] = box;
+    const W = img.naturalWidth, H = img.naturalHeight;
+    const EW = element.clientWidth, EH = element.clientHeight;
+    if (!(W > 0 && H > 0 && EW > 0 && EH > 0)) return false;
+
+    const cw = (x1 - x0) * W, ch = (y1 - y0) * H;
+    const scale = Math.max(EW / cw, EH / ch);
+    const offX = EW / 2 - ((x0 + x1) / 2) * W * scale;
+    const offY = EH / 2 - ((y0 + y1) / 2) * H * scale;
+
+    element.style.backgroundSize = `${(W * scale).toFixed(2)}px ${(H * scale).toFixed(2)}px`;
+    element.style.backgroundPosition = `${offX.toFixed(2)}px ${offY.toFixed(2)}px`;
+    return true;
+}
+
 function applyModeStyles(element, img, cropData, focal) {
     const fx = (focal && typeof focal.x === 'number') ? focal.x : 0.5;
     const fy = (focal && typeof focal.y === 'number') ? focal.y : 0.5;
     const hasValidCrop = cropData && cropData.width > 1;
+    // Did the USER actually crop this, or is it just the full-image rect that catalog install and
+    // upload write by default? Every installed work has crop_* set to the whole image, so "width > 1"
+    // alone can't tell those apart — compare against the natural size. This matters because a crop a
+    // human set by hand must always beat a preset we generated: our boxes are a good default, not an
+    // override of intent.
+    const userCropped = hasValidCrop && img.naturalWidth > 0 && (
+        cropData.width < img.naturalWidth * 0.995 || cropData.height < img.naturalHeight * 0.995
+    );
+    // contain-matte deliberately opts out: its whole job is showing the piece WHOLE.
+    const box = (displayMode === 'contain-matte' || userCropped)
+        ? null
+        : pickCropForAspect(currentAspectCrops, element.clientWidth, element.clientHeight);
 
     // Stop any Ken Burns animation left running on this layer from a previous render.
     if (element._kbAnim) { element._kbAnim.cancel(); element._kbAnim = null; }
 
     if (displayMode === 'ken-burns') {
-        startKenBurns(element, fx, fy);
+        startKenBurns(element, fx, fy, img, box);
         return;
     }
-    if (displayMode === 'static-crop' && hasValidCrop) {
+    if (displayMode === 'static-crop' && hasValidCrop && userCropped) {
         const zoomX = (img.naturalWidth / cropData.width) * 100;
         const zoomY = (img.naturalHeight / cropData.height) * 100;
         const posX = (cropData.x / (img.naturalWidth - cropData.width)) * 100 || 0;
         const posY = (cropData.y / (img.naturalHeight - cropData.height)) * 100 || 0;
         element.style.backgroundSize = `${zoomX}% ${zoomY}%`;
         element.style.backgroundPosition = `${posX}% ${posY}%`;
+        element.style.transform = 'none';
+        element.style.transformOrigin = '';
+    } else if (displayMode === 'static-crop' && box && applyCropBox(element, img, box)) {
+        // No hand-set crop, but we have a preset composed for THIS screen shape — use it.
         element.style.transform = 'none';
         element.style.transformOrigin = '';
     } else {
@@ -618,14 +684,26 @@ function applyModeStyles(element, img, cropData, focal) {
 // central that point is — full cinematic drift for centered subjects, near-pure zoom for edge
 // subjects, so a portrait's head is never panned out of frame. Default focal (0.5, 0.5) ⇒ the
 // prior centered zoom-and-drift.
-function startKenBurns(element, fx, fy) {
+function startKenBurns(element, fx, fy, img, box) {
     const SCALE = 1.12, BASE_DRIFT = 4;           // zoom depth + max drift (% of layer)
-    const cx = 1 - 2 * Math.abs(fx - 0.5);        // centrality: 1 at center → 0 at the edge
-    const cy = 1 - 2 * Math.abs(fy - 0.5);
-    const ox = (fx * 100).toFixed(1), oy = (fy * 100).toFixed(1);
+    // With an authored crop the composition is already chosen, so Ken Burns pans WITHIN it: the
+    // background is laid out to the crop and the focal point is remapped into crop space so the
+    // zoom still anchors on the subject. Without one, this is byte-for-byte the previous behaviour.
+    let ax = fx, ay = fy;
+    const cropped = box && img && applyCropBox(element, img, box);
+    if (cropped) {
+        const [x0, y0, x1, y1] = box;
+        ax = Math.min(Math.max((fx - x0) / (x1 - x0), 0), 1);
+        ay = Math.min(Math.max((fy - y0) / (y1 - y0), 0), 1);
+    }
+    const cx = 1 - 2 * Math.abs(ax - 0.5);        // centrality: 1 at center → 0 at the edge
+    const cy = 1 - 2 * Math.abs(ay - 0.5);
+    const ox = (ax * 100).toFixed(1), oy = (ay * 100).toFixed(1);
     const dx = (-BASE_DRIFT * cx).toFixed(2), dy = (-BASE_DRIFT * cy).toFixed(2);
-    element.style.backgroundSize = 'cover';
-    element.style.backgroundPosition = `${ox}% ${oy}%`;
+    if (!cropped) {
+        element.style.backgroundSize = 'cover';
+        element.style.backgroundPosition = `${ox}% ${oy}%`;
+    }
     element.style.transformOrigin = `${ox}% ${oy}%`;
     element.style.transform = 'none';
     element._kbAnim = element.animate(

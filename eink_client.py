@@ -62,10 +62,24 @@ class EinkConfig:
         )
 
     @property
+    def render_size(self) -> tuple[int, int]:
+        """The w,h to ASK the server for — swapped when the panel hangs portrait.
+
+        The panel's buffer is always landscape (w x h native); `orientation=portrait` means it is
+        physically rotated 90 degrees, so what the viewer sees is a h x w portrait canvas. The art must
+        therefore be COMPOSED at h x w and rotated back to the native buffer at paint time — not
+        composed landscape and rotated, which is what happened before this: the server framed for a
+        1600x1200 landscape window and the client handed the 1200x1600 result to a 1600x1200 panel,
+        so a portrait frame got both the wrong composition and a buffer the panel couldn't take.
+        """
+        return (self.h, self.w) if self.orientation == "portrait" else (self.w, self.h)
+
+    @property
     def pull_url(self) -> str:
+        w, h = self.render_size
         return (
             f"{self.server_url}/display/{self.display_id}/current.png"
-            f"?w={self.w}&h={self.h}&palette={self.palette}&fit={self.fit}"
+            f"?w={w}&h={h}&palette={self.palette}&fit={self.fit}"
         )
 
     @property
@@ -194,6 +208,8 @@ def push_once(
     image = Image.open(io.BytesIO(content))
     image.load()
     if cfg.orientation == "portrait":
+        # The server composed this at (h, w) portrait; rotate it back onto the panel's native
+        # landscape buffer. Net effect: the panel gets its normal w x h, the viewer sees portrait art.
         image = image.rotate(90, expand=True)
 
     client.show(image, cfg.saturation)

@@ -30,7 +30,33 @@
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.2002,
+     1.0,
+     0.7958
+    ],
+    "9:16": [
+     0.25,
+     0.0,
+     0.7812,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0805,
+     1.0,
+     0.8745
+    ],
+    "3:4": [
+     0.0998,
+     0.0,
+     0.8082,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Supper at Emmaus",
@@ -57,7 +83,33 @@
    "credit_line": "Self-scanned",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1198,
+     1.0,
+     0.8202
+    ],
+    "9:16": [
+     0.23,
+     0.0,
+     0.6818,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0401,
+     1.0,
+     0.9739
+    ],
+    "3:4": [
+     0.12,
+     0.0,
+     0.7224,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Conversion of Saint Paul on the Way to Damascus",
@@ -84,7 +136,33 @@
    "credit_line": "Web Gallery of Art: Image Info about artworkwga QS:P11807,\"c/caravagg/05/29ceras\"",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.4199,
+     1.0,
+     0.8481
+    ],
+    "9:16": [
+     0.09,
+     0.0,
+     0.829,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.2801,
+     1.0,
+     0.8509
+    ],
+    "3:4": [
+     0.0074,
+     0.0,
+     0.9926,
+     1.0
+    ]
+   }
   },
   {
    "title": "Bacchus",
@@ -111,7 +189,33 @@
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
    "delivered_edge": 6648,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0499,
+     1.0,
+     0.5321
+    ],
+    "9:16": [
+     0.12,
+     0.0,
+     0.776,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.05,
+     1.0,
+     0.693
+    ],
+    "3:4": [
+     0.0626,
+     0.0,
+     0.9374,
+     1.0
+    ]
+   }
   },
   {
    "title": "Judith Beheading Holofernes",
@@ -138,7 +242,27 @@
    "credit_line": "Self-scanned",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0799,
+     1.0,
+     0.8381
+    ],
+    "9:16": [
+     0.35,
+     0.0,
+     0.7673,
+     1.0
+    ],
+    "4:3": [
+     0.0055,
+     0.0,
+     0.9945,
+     1.0
+    ]
+   }
   },
   {
    "title": "David with the Head of Goliath",
@@ -165,7 +289,33 @@
    "credit_line": "Self-scanned",
    "license_verified": "2026-07-16",
    "delivered_edge": 7329,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0797,
+     1.0,
+     0.5343
+    ],
+    "9:16": [
+     0.2399,
+     0.0,
+     0.9361,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0,
+     1.0,
+     0.606
+    ],
+    "3:4": [
+     0.0359,
+     0.0,
+     0.9641,
+     1.0
+    ]
+   }
   },
   {
    "title": "Boy with a Basket of Fruit",
@@ -192,7 +342,33 @@
    "credit_line": "Self-scanned",
    "license_verified": "2026-07-16",
    "delivered_edge": 4134,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0298,
+     1.0,
+     0.5682
+    ],
+    "9:16": [
+     0.1502,
+     0.0,
+     0.7378,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0301,
+     1.0,
+     0.7479
+    ],
+    "3:4": [
+     0.0902,
+     0.0,
+     0.8738,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Cardsharps",
@@ -219,7 +395,33 @@
    "credit_line": "nAFtN9HI0FxbaQ at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
    "delivered_edge": 4501,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0502,
+     1.0,
+     0.8318
+    ],
+    "9:16": [
+     0.1301,
+     0.0,
+     0.5349,
+     1.0
+    ],
+    "4:3": [
+     0.0203,
+     0.0,
+     0.9797,
+     1.0
+    ],
+    "3:4": [
+     0.1499,
+     0.0,
+     0.6897,
+     1.0
+    ]
+   }
   },
   {
    "title": "Self-Portrait as the Allegory of Painting",
@@ -246,7 +448,33 @@
    "credit_line": "Google Arts &amp; Culture — self-portrait-as-the-allegory-of-painting-la-pittura-artemisia-gentileschi/wwENmp3dXLo4kg",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.02,
+     1.0,
+     0.446
+    ],
+    "9:16": [
+     0.0501,
+     0.0,
+     0.7929,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.02,
+     1.0,
+     0.588
+    ],
+    "3:4": [
+     0.0048,
+     0.0,
+     0.9952,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Garden of Love",
@@ -273,7 +501,33 @@
    "credit_line": "Collection Waddesdon",
    "license_verified": "2026-07-16",
    "delivered_edge": 3880,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0798,
+     1.0,
+     0.8152
+    ],
+    "9:16": [
+     0.4401,
+     0.0,
+     0.8703,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0103,
+     1.0,
+     0.9907
+    ],
+    "3:4": [
+     0.2801,
+     0.0,
+     0.8538,
+     1.0
+    ]
+   }
   },
   {
    "title": "Samson and Delilah",
@@ -300,7 +554,33 @@
    "credit_line": "http://www.nationalgallery.org.uk/paintings/peter-paul-rubens-samson-and-delilah",
    "license_verified": "2026-07-16",
    "delivered_edge": 6000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1003,
+     1.0,
+     0.7217
+    ],
+    "9:16": [
+     0.0799,
+     0.0,
+     0.5891,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0502,
+     1.0,
+     0.8788
+    ],
+    "3:4": [
+     0.0501,
+     0.0,
+     0.7289,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Three Graces",
@@ -327,7 +607,33 @@
    "credit_line": "The Prado in Google Earth: Home page 7th level of zoom, JPEG compression quality: Photoshop 10.",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0602,
+     1.0,
+     0.5218
+    ],
+    "9:16": [
+     0.1198,
+     0.0,
+     0.8052,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0402,
+     1.0,
+     0.6558
+    ],
+    "3:4": [
+     0.0431,
+     0.0,
+     0.9569,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Surrender of Breda",
@@ -355,7 +661,33 @@
    "license_verified": "2026-07-16",
    "below_floor_ok": true,
    "delivered_edge": 3051,
-   "resolution_tier": "HD"
+   "resolution_tier": "HD",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0999,
+     1.0,
+     0.7821
+    ],
+    "9:16": [
+     0.2001,
+     0.0,
+     0.6639,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0303,
+     1.0,
+     0.9397
+    ],
+    "3:4": [
+     0.1498,
+     0.0,
+     0.7682,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Toilet of Venus (Rokeby Venus)",
@@ -382,7 +714,21 @@
    "credit_line": "Key facts. The National Gallery, London. Retrieved on 25 June 2013.",
    "license_verified": "2026-07-16",
    "delivered_edge": 6162,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0499,
+     1.0,
+     0.8701
+    ],
+    "4:3": [
+     0.0428,
+     0.0,
+     0.9572,
+     1.0
+    ]
+   }
   },
   {
    "title": "Old Woman Frying Eggs",
@@ -409,7 +755,33 @@
    "credit_line": "Google Art Project: Home - pic Maximum resolution.",
    "license_verified": "2026-07-16",
    "delivered_edge": 3998,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.06,
+     1.0,
+     0.72
+    ],
+    "9:16": [
+     0.3203,
+     0.0,
+     0.7997,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.06,
+     1.0,
+     0.94
+    ],
+    "3:4": [
+     0.0604,
+     0.0,
+     0.6996,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Storm on the Sea of Galilee",
@@ -436,7 +808,33 @@
    "credit_line": "Isabella Stewart Gardner Museum",
    "license_verified": "2026-07-16",
    "delivered_edge": 5315,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.4598,
+     1.0,
+     0.9122
+    ],
+    "9:16": [
+     0.1002,
+     0.0,
+     0.7998,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.2799,
+     1.0,
+     0.8831
+    ],
+    "3:4": [
+     0.0302,
+     0.0,
+     0.9628,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Penitent Magdalene",
@@ -464,7 +862,33 @@
    "license_verified": "2026-07-16",
    "below_floor_ok": true,
    "delivered_edge": 3633,
-   "resolution_tier": "HD"
+   "resolution_tier": "HD",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1198,
+     1.0,
+     0.5092
+    ],
+    "9:16": [
+     0.0902,
+     0.0,
+     0.9028,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0999,
+     1.0,
+     0.6191
+    ],
+    "3:4": [
+     0.0,
+     0.04,
+     1.0,
+     0.963
+    ]
+   }
   },
   {
    "title": "Saint Francis in Meditation",
@@ -491,7 +915,21 @@
    "credit_line": "http://www.nationalgallery.org.uk/paintings/francisco-de-zurbaran-saint-francis-in-meditation/27646",
    "license_verified": "2026-07-16",
    "delivered_edge": 4226,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "9:16": [
+     0.0695,
+     0.0,
+     0.9355,
+     1.0
+    ],
+    "3:4": [
+     0.0,
+     0.0603,
+     1.0,
+     0.9264
+    ]
+   }
   },
   {
    "title": "Et in Arcadia ego",
@@ -518,7 +956,33 @@
    "credit_line": "Nicolas Poussin",
    "license_verified": "2026-07-16",
    "delivered_edge": 5966,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.08,
+     1.0,
+     0.869
+    ],
+    "9:16": [
+     0.32,
+     0.0,
+     0.721,
+     1.0
+    ],
+    "4:3": [
+     0.0248,
+     0.0,
+     0.9753,
+     1.0
+    ],
+    "3:4": [
+     0.2702,
+     0.0,
+     0.8048,
+     1.0
+    ]
+   }
   },
   {
    "title": "Seaport with the Embarkation of the Queen of Sheba",
@@ -545,7 +1009,33 @@
    "credit_line": "Web Gallery of Art: Image Info about artworkwga QS:P11807,\"c/claude/2/10sheba\"",
    "license_verified": "2026-07-16",
    "delivered_edge": 5559,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0998,
+     1.0,
+     0.8398
+    ],
+    "9:16": [
+     0.3402,
+     0.0,
+     0.7678,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0067,
+     1.0,
+     0.9933
+    ],
+    "3:4": [
+     0.2399,
+     0.0,
+     0.8101,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Martyrdom of Saint Philip",
@@ -573,7 +1063,33 @@
    "license_verified": "2026-07-16",
    "below_floor_ok": true,
    "delivered_edge": 2370,
-   "resolution_tier": "HD"
+   "resolution_tier": "HD",
+   "aspect_crops": {
+    "3:4": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ],
+    "16:9": [
+     0.0,
+     0.1802,
+     1.0,
+     0.7408
+    ],
+    "9:16": [
+     0.2398,
+     0.0,
+     0.8042,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1003,
+     1.0,
+     0.8477
+    ]
+   }
   },
   {
    "title": "The Immaculate Conception",
@@ -600,7 +1116,27 @@
    "credit_line": "Collection of Cleveland Museum of Art",
    "license_verified": "2026-07-16",
    "delivered_edge": 6099,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1,
+     1.0,
+     0.4228
+    ],
+    "9:16": [
+     0.0149,
+     0.0,
+     0.9951,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0801,
+     1.0,
+     0.5105
+    ]
+   }
   },
   {
    "title": "Judith Slaying Holofernes",
@@ -627,7 +1163,33 @@
     0.5
    ],
    "delivered_edge": 4116,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1498,
+     1.0,
+     0.6592
+    ],
+    "9:16": [
+     0.1502,
+     0.0,
+     0.7714,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0999,
+     1.0,
+     0.779
+    ],
+    "3:4": [
+     0.0602,
+     0.0,
+     0.8885,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Descent from the Cross",
@@ -654,7 +1216,33 @@
     0.42
    ],
    "delivered_edge": 7484,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.02,
+     1.0,
+     0.9806
+    ],
+    "9:16": [
+     0.3648,
+     0.0,
+     0.6942,
+     1.0
+    ],
+    "4:3": [
+     0.1199,
+     0.0,
+     0.9006,
+     1.0
+    ],
+    "3:4": [
+     0.2799,
+     0.0,
+     0.7191,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Massacre of the Innocents",
@@ -681,7 +1269,33 @@
     0.4
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0601,
+     1.0,
+     0.7838
+    ],
+    "9:16": [
+     0.3999,
+     0.0,
+     0.8371,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0175,
+     1.0,
+     0.9825
+    ],
+    "3:4": [
+     0.21,
+     0.0,
+     0.793,
+     1.0
+    ]
+   }
   },
   {
    "title": "Susanna and the Elders",
@@ -708,7 +1322,21 @@
     0.55
    ],
    "delivered_edge": 5814,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "9:16": [
+     0.0999,
+     0.0,
+     0.8992,
+     1.0
+    ],
+    "3:4": [
+     0.0,
+     0.0301,
+     1.0,
+     0.9686
+    ]
+   }
   },
   {
    "title": "Esther before Ahasuerus",
@@ -743,7 +1371,33 @@
     0.35
    ],
    "delivered_edge": 6295,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "4:3": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ],
+    "16:9": [
+     0.0,
+     0.1001,
+     1.0,
+     0.8496
+    ],
+    "9:16": [
+     0.0299,
+     0.0,
+     0.4521,
+     1.0
+    ],
+    "3:4": [
+     0.0201,
+     0.0,
+     0.5829,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Abduction of the Sabine Women",
@@ -778,7 +1432,33 @@
     0.35
    ],
    "delivered_edge": 4000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0598,
+     1.0,
+     0.8166
+    ],
+    "9:16": [
+     0.27,
+     0.0,
+     0.688,
+     1.0
+    ],
+    "4:3": [
+     0.0045,
+     0.0,
+     0.9955,
+     1.0
+    ],
+    "3:4": [
+     0.1803,
+     0.0,
+     0.7377,
+     1.0
+    ]
+   }
   },
   {
    "title": "Agnus Dei",
@@ -813,7 +1493,33 @@
     0.42
    ],
    "delivered_edge": 3977,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.06,
+     1.0,
+     0.8963
+    ],
+    "9:16": [
+     0.0298,
+     0.0,
+     0.4082,
+     1.0
+    ],
+    "4:3": [
+     0.0299,
+     0.0,
+     0.9267,
+     1.0
+    ],
+    "3:4": [
+     0.03,
+     0.0,
+     0.5344,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Holy Family with Saints Elizabeth and John the Baptist",
@@ -846,7 +1552,33 @@
     0.4
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0498,
+     1.0,
+     0.4982
+    ],
+    "9:16": [
+     0.1201,
+     0.0,
+     0.8257,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0401,
+     1.0,
+     0.6379
+    ],
+    "3:4": [
+     0.0301,
+     0.0,
+     0.9709,
+     1.0
+    ]
+   }
   },
   {
    "title": "Salome with the Head of Saint John the Baptist",
@@ -879,7 +1611,33 @@
     0.35
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.06,
+     1.0,
+     0.4498
+    ],
+    "9:16": [
+     0.0799,
+     0.0,
+     0.8918,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0202,
+     1.0,
+     0.5398
+    ],
+    "3:4": [
+     0.0,
+     0.0301,
+     1.0,
+     0.9539
+    ]
+   }
   },
   {
    "title": "Saint Romanus of Antioch and Saint Barulas",
@@ -912,7 +1670,33 @@
     0.28
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "3:4": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ],
+    "16:9": [
+     0.0,
+     0.08,
+     1.0,
+     0.5007
+    ],
+    "9:16": [
+     0.12,
+     0.0,
+     0.872,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0601,
+     1.0,
+     0.6211
+    ]
+   }
   },
   {
    "title": "Landscape with Saint John on Patmos",
@@ -939,7 +1723,27 @@
    "credit_line": "Collection of Art Institute of Chicago",
    "license_verified": "2026-07-16",
    "delivered_edge": 6092,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "9:16": [
+     0.2999,
+     0.0,
+     0.7161,
+     1.0
+    ],
+    "4:3": [
+     0.0067,
+     0.0,
+     0.9933,
+     1.0
+    ],
+    "3:4": [
+     0.2,
+     0.0,
+     0.755,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Feast in the House of Simon",
@@ -972,7 +1776,33 @@
     0.35
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.2699,
+     1.0,
+     0.6638
+    ],
+    "9:16": [
+     0.0984,
+     0.0,
+     0.9016,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1899,
+     1.0,
+     0.7151
+    ],
+    "3:4": [
+     0.0,
+     0.0298,
+     1.0,
+     0.9635
+    ]
+   }
   },
   {
    "title": "Saint Martin and the Beggar",
@@ -1005,7 +1835,33 @@
     0.17
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0899,
+     1.0,
+     0.4113
+    ],
+    "9:16": [
+     0.0079,
+     0.0,
+     0.9921,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0698,
+     1.0,
+     0.4984
+    ],
+    "3:4": [
+     0.0,
+     0.0497,
+     1.0,
+     0.8117
+    ]
+   }
   },
   {
    "title": "Saint Francis Kneeling in Meditation",
@@ -1038,7 +1894,27 @@
     0.22
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "9:16": [
+     0.1479,
+     0.0,
+     0.8521,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1401,
+     1.0,
+     0.7391
+    ],
+    "3:4": [
+     0.0308,
+     0.0,
+     0.9698,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Assumption of the Virgin",
@@ -1071,7 +1947,21 @@
     0.25
    ],
    "delivered_edge": 7631,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "9:16": [
+     0.0,
+     0.0201,
+     1.0,
+     0.9497
+    ],
+    "3:4": [
+     0.0,
+     0.1501,
+     1.0,
+     0.8472
+    ]
+   }
   },
   {
    "title": "The Crucifixion",
@@ -1098,7 +1988,33 @@
    "credit_line": "Collection of Art Institute of Chicago",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1401,
+     1.0,
+     0.4589
+    ],
+    "9:16": [
+     0.0038,
+     0.0,
+     0.9962,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1101,
+     1.0,
+     0.5352
+    ],
+    "3:4": [
+     0.0,
+     0.0701,
+     1.0,
+     0.8259
+    ]
+   }
   },
   {
    "title": "Cupid Chastised",
@@ -1125,7 +2041,33 @@
    "credit_line": "Collection of Art Institute of Chicago",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.17,
+     1.0,
+     0.5716
+    ],
+    "9:16": [
+     0.1061,
+     0.0,
+     0.8939,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.11,
+     1.0,
+     0.6455
+    ],
+    "3:4": [
+     0.0,
+     0.024,
+     1.0,
+     0.976
+    ]
+   }
   },
   {
    "title": "Don Gaspar de Guzmán (1587–1645), Count-Duke of Olivares",
@@ -1152,7 +2094,33 @@
    "credit_line": "Collection of The Metropolitan Museum of Art",
    "license_verified": "2026-07-16",
    "delivered_edge": 4000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0699,
+     1.0,
+     0.5336
+    ],
+    "9:16": [
+     0.1588,
+     0.0,
+     0.8412,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0399,
+     1.0,
+     0.6581
+    ],
+    "3:4": [
+     0.045,
+     0.0,
+     0.955,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Jabach Family",
@@ -1179,7 +2147,27 @@
    "credit_line": "Collection of The Metropolitan Museum of Art",
    "license_verified": "2026-07-16",
    "delivered_edge": 3923,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0599,
+     1.0,
+     0.7222
+    ],
+    "4:3": [
+     0.0,
+     0.0349,
+     1.0,
+     0.9179
+    ],
+    "3:4": [
+     0.2701,
+     0.0,
+     0.9071,
+     1.0
+    ]
+   }
   },
   {
    "title": "Charity",
@@ -1207,7 +2195,33 @@
    "license_verified": "2026-07-16",
    "below_floor_ok": true,
    "delivered_edge": 3722,
-   "resolution_tier": "HD"
+   "resolution_tier": "HD",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1201,
+     1.0,
+     0.5513
+    ],
+    "9:16": [
+     0.1331,
+     0.0,
+     0.8669,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0802,
+     1.0,
+     0.6551
+    ],
+    "3:4": [
+     0.0108,
+     0.0,
+     0.9892,
+     1.0
+    ]
+   }
   },
   {
    "title": "Self-Portrait",
@@ -1234,7 +2248,33 @@
    "credit_line": "Collection of The Metropolitan Museum of Art",
    "license_verified": "2026-07-16",
    "delivered_edge": 3878,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.2001,
+     1.0,
+     0.6505
+    ],
+    "9:16": [
+     0.1487,
+     0.0,
+     0.8513,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1001,
+     1.0,
+     0.7006
+    ],
+    "3:4": [
+     0.0316,
+     0.0,
+     0.9684,
+     1.0
+    ]
+   }
   },
   {
    "title": "Christ in the House of Martha and Mary",
@@ -1261,7 +2301,33 @@
     0.35
    ],
    "delivered_edge": 7290,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.015,
+     1.0,
+     0.9853
+    ],
+    "9:16": [
+     0.09,
+     0.0,
+     0.4161,
+     1.0
+    ],
+    "4:3": [
+     0.04,
+     0.0,
+     0.8129,
+     1.0
+    ],
+    "3:4": [
+     0.08,
+     0.0,
+     0.5148,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Immaculate Conception",
@@ -1288,7 +2354,33 @@
     0.22
    ],
    "delivered_edge": 6851,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1499,
+     1.0,
+     0.5354
+    ],
+    "9:16": [
+     0.0896,
+     0.0,
+     0.9104,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0999,
+     1.0,
+     0.6139
+    ],
+    "3:4": [
+     0.0,
+     0.0398,
+     1.0,
+     0.9535
+    ]
+   }
   },
   {
    "title": "Tavern Scene with Two Men and a Girl (Peasants at the Table)",
@@ -1315,7 +2407,33 @@
     0.3
    ],
    "delivered_edge": 5260,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0901,
+     1.0,
+     0.7598
+    ],
+    "9:16": [
+     0.2799,
+     0.0,
+     0.7524,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0302,
+     1.0,
+     0.9231
+    ],
+    "3:4": [
+     0.0799,
+     0.0,
+     0.7098,
+     1.0
+    ]
+   }
   },
   {
    "title": "Christ after the Flagellation Contemplated by the Christian Soul",
@@ -1342,7 +2460,27 @@
     0.35
    ],
    "delivered_edge": 5251,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1001,
+     1.0,
+     0.7991
+    ],
+    "4:3": [
+     0.0,
+     0.0302,
+     1.0,
+     0.9621
+    ],
+    "3:4": [
+     0.0499,
+     0.0,
+     0.6535,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Needlewoman",
@@ -1369,7 +2507,33 @@
     0.35
    ],
    "delivered_edge": 4473,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.12,
+     1.0,
+     0.579
+    ],
+    "9:16": [
+     0.09,
+     0.0,
+     0.7793,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.06,
+     1.0,
+     0.672
+    ],
+    "3:4": [
+     0.0404,
+     0.0,
+     0.9596,
+     1.0
+    ]
+   }
   },
   {
    "title": "Saint John the Evangelist on the Island of Patmos",
@@ -1396,7 +2560,33 @@
     0.25
    ],
    "delivered_edge": 4226,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "3:4": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ],
+    "16:9": [
+     0.0,
+     0.12,
+     1.0,
+     0.543
+    ],
+    "9:16": [
+     0.126,
+     0.0,
+     0.874,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.08,
+     1.0,
+     0.644
+    ]
+   }
   },
   {
    "title": "The Luncheon (El Almuerzo)",
@@ -1423,7 +2613,33 @@
     0.3
    ],
    "delivered_edge": 4000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0799,
+     1.0,
+     0.6004
+    ],
+    "9:16": [
+     0.2001,
+     0.0,
+     0.808,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0337,
+     1.0,
+     0.7276
+    ],
+    "3:4": [
+     0.0947,
+     0.0,
+     0.9053,
+     1.0
+    ]
+   }
   },
   {
    "title": "Saint Catherine of Alexandria",
@@ -1450,7 +2666,33 @@
     0.25
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1199,
+     1.0,
+     0.5526
+    ],
+    "9:16": [
+     0.1344,
+     0.0,
+     0.8656,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0799,
+     1.0,
+     0.6569
+    ],
+    "3:4": [
+     0.0125,
+     0.0,
+     0.9875,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Seven Works of Mercy",
@@ -1477,7 +2719,33 @@
     0.55
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.3199,
+     1.0,
+     0.7009
+    ],
+    "9:16": [
+     0.0849,
+     0.0,
+     0.9152,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.2198,
+     1.0,
+     0.7279
+    ],
+    "3:4": [
+     0.0,
+     0.0497,
+     1.0,
+     0.953
+    ]
+   }
   },
   {
    "title": "Martha and Mary Magdalene",
@@ -1504,7 +2772,33 @@
     0.3
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.05,
+     1.0,
+     0.8156
+    ],
+    "9:16": [
+     0.35,
+     0.0,
+     0.7633,
+     1.0
+    ],
+    "4:3": [
+     0.0102,
+     0.0,
+     0.9898,
+     1.0
+    ],
+    "3:4": [
+     0.18,
+     0.0,
+     0.7311,
+     1.0
+    ]
+   }
   },
   {
    "title": "Amor Vincit Omnia (Cupid as Victor)",
@@ -1531,7 +2825,33 @@
     0.32
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0799,
+     1.0,
+     0.4867
+    ],
+    "9:16": [
+     0.1112,
+     0.0,
+     0.8889,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.05,
+     1.0,
+     0.5924
+    ],
+    "3:4": [
+     0.0,
+     0.0198,
+     1.0,
+     0.9842
+    ]
+   }
   },
   {
    "title": "Rest on the Flight into Egypt",
@@ -1558,7 +2878,33 @@
     0.3
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0301,
+     1.0,
+     0.7274
+    ],
+    "9:16": [
+     0.2799,
+     0.0,
+     0.7337,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0202,
+     1.0,
+     0.9498
+    ],
+    "3:4": [
+     0.2199,
+     0.0,
+     0.8249,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Sacrifice of Isaac",
@@ -1585,7 +2931,27 @@
     0.32
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0601,
+     1.0,
+     0.8783
+    ],
+    "4:3": [
+     0.0599,
+     0.0,
+     0.9766,
+     1.0
+    ],
+    "3:4": [
+     0.3199,
+     0.0,
+     0.8356,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Lute Player",
@@ -1612,7 +2978,27 @@
     0.3
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0501,
+     1.0,
+     0.7637
+    ],
+    "4:3": [
+     0.0,
+     0.0202,
+     1.0,
+     0.9716
+    ],
+    "3:4": [
+     0.2799,
+     0.0,
+     0.8711,
+     1.0
+    ]
+   }
   },
   {
    "title": "Saint Francis of Assisi in Ecstasy",
@@ -1639,7 +3025,33 @@
     0.35
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0801,
+     1.0,
+     0.8612
+    ],
+    "9:16": [
+     0.3799,
+     0.0,
+     0.785,
+     1.0
+    ],
+    "4:3": [
+     0.0198,
+     0.0,
+     0.9801,
+     1.0
+    ],
+    "3:4": [
+     0.2199,
+     0.0,
+     0.7601,
+     1.0
+    ]
+   }
   },
   {
    "title": "Penitent Magdalene",
@@ -1666,7 +3078,33 @@
     0.3
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1298,
+     1.0,
+     0.5903
+    ],
+    "9:16": [
+     0.1064,
+     0.0,
+     0.7936,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0998,
+     1.0,
+     0.7137
+    ],
+    "3:4": [
+     0.0419,
+     0.0,
+     0.9582,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Fortune Teller (Louvre version)",
@@ -1693,7 +3131,33 @@
     0.62
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.08,
+     1.0,
+     0.8243
+    ],
+    "9:16": [
+     0.2901,
+     0.0,
+     0.7151,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0038,
+     1.0,
+     0.9963
+    ],
+    "3:4": [
+     0.2201,
+     0.0,
+     0.7868,
+     1.0
+    ]
+   }
   },
   {
    "title": "Madonna of the Rosary",
@@ -1720,7 +3184,33 @@
     0.28
    ],
    "delivered_edge": 7093,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1199,
+     1.0,
+     0.5071
+    ],
+    "9:16": [
+     0.0914,
+     0.0,
+     0.9087,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0799,
+     1.0,
+     0.5961
+    ],
+    "3:4": [
+     0.0,
+     0.0198,
+     1.0,
+     0.9375
+    ]
+   }
   },
   {
    "title": "The Fortune Teller (Capitoline version)",
@@ -1747,7 +3237,33 @@
     0.35
    ],
    "delivered_edge": 6654,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0799,
+     1.0,
+     0.8254
+    ],
+    "9:16": [
+     0.29,
+     0.0,
+     0.7145,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0031,
+     1.0,
+     0.997
+    ],
+    "3:4": [
+     0.22,
+     0.0,
+     0.786,
+     1.0
+    ]
+   }
   },
   {
    "title": "Christ Crowned with Thorns",
@@ -1774,7 +3290,33 @@
     0.5
    ],
    "delivered_edge": 5256,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0999,
+     1.0,
+     0.8414
+    ],
+    "9:16": [
+     0.3801,
+     0.0,
+     0.8067,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0057,
+     1.0,
+     0.9944
+    ],
+    "3:4": [
+     0.2201,
+     0.0,
+     0.789,
+     1.0
+    ]
+   }
   },
   {
    "title": "Portrait of a Gentleman (possibly Scipione Borghese)",
@@ -1801,7 +3343,33 @@
     0.32
    ],
    "delivered_edge": 5225,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0799,
+     1.0,
+     0.5768
+    ],
+    "9:16": [
+     0.1016,
+     0.0,
+     0.7384,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0499,
+     1.0,
+     0.7124
+    ],
+    "3:4": [
+     0.0755,
+     0.0,
+     0.9245,
+     1.0
+    ]
+   }
   },
   {
    "title": "Narcissus",
@@ -1828,7 +3396,33 @@
     0.25
    ],
    "delivered_edge": 5209,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.15,
+     1.0,
+     0.6298
+    ],
+    "9:16": [
+     0.05,
+     0.0,
+     0.7095,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.08,
+     1.0,
+     0.7198
+    ],
+    "3:4": [
+     0.04,
+     0.0,
+     0.9193,
+     1.0
+    ]
+   }
   },
   {
    "title": "Boy Bitten by a Lizard",
@@ -1855,7 +3449,33 @@
     0.28
    ],
    "delivered_edge": 5175,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0801,
+     1.0,
+     0.4933
+    ],
+    "9:16": [
+     0.0998,
+     0.0,
+     0.8655,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0501,
+     1.0,
+     0.6012
+    ],
+    "3:4": [
+     0.0,
+     0.0102,
+     1.0,
+     0.9898
+    ]
+   }
   },
   {
    "title": "The Beheading of Saint John the Baptist",
@@ -1882,7 +3502,33 @@
     0.6
    ],
    "delivered_edge": 4994,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "3:4": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ],
+    "16:9": [
+     0.0,
+     0.2199,
+     1.0,
+     0.6403
+    ],
+    "9:16": [
+     0.0302,
+     0.0,
+     0.7828,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1498,
+     1.0,
+     0.7104
+    ]
+   }
   },
   {
    "title": "Death of the Virgin",
@@ -1909,7 +3555,33 @@
     0.15
    ],
    "delivered_edge": 4935,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.03,
+     1.0,
+     0.4609
+    ],
+    "9:16": [
+     0.05,
+     0.0,
+     0.7843,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.02,
+     1.0,
+     0.5945
+    ],
+    "3:4": [
+     0.01,
+     0.0,
+     0.9891,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Incredulity of Saint Thomas",
@@ -1936,7 +3608,33 @@
     0.45
    ],
    "delivered_edge": 4923,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1001,
+     1.0,
+     0.5454
+    ],
+    "9:16": [
+     0.0699,
+     0.0,
+     0.7803,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0501,
+     1.0,
+     0.6439
+    ],
+    "3:4": [
+     0.0199,
+     0.0,
+     0.9671,
+     1.0
+    ]
+   }
   },
   {
    "title": "Sick Bacchus",
@@ -1963,7 +3661,33 @@
     0.35
    ],
    "delivered_edge": 4920,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1499,
+     1.0,
+     0.604
+    ],
+    "9:16": [
+     0.0802,
+     0.0,
+     0.7769,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0799,
+     1.0,
+     0.6854
+    ],
+    "3:4": [
+     0.0302,
+     0.0,
+     0.9592,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Martyrdom of Saint Matthew",
@@ -1990,7 +3714,33 @@
     0.35
    ],
    "delivered_edge": 4899,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0201,
+     1.0,
+     0.4637
+    ],
+    "9:16": [
+     0.0998,
+     0.0,
+     0.8132,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0202,
+     1.0,
+     0.6116
+    ],
+    "3:4": [
+     0.0197,
+     0.0,
+     0.9709,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Inspiration of Saint Matthew",
@@ -2017,7 +3767,21 @@
     0.7
    ],
    "delivered_edge": 4899,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "9:16": [
+     0.12,
+     0.0,
+     0.8422,
+     1.0
+    ],
+    "3:4": [
+     0.015,
+     0.0,
+     0.9779,
+     1.0
+    ]
+   }
   },
   {
    "title": "Ecce Homo",
@@ -2044,7 +3808,33 @@
     0.3
    ],
    "delivered_edge": 4087,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.03,
+     1.0,
+     0.4794
+    ],
+    "9:16": [
+     0.0299,
+     0.0,
+     0.7341,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0201,
+     1.0,
+     0.6192
+    ],
+    "3:4": [
+     0.0299,
+     0.0,
+     0.9688,
+     1.0
+    ]
+   }
   },
   {
    "title": "Saint John the Baptist in the Wilderness",
@@ -2071,7 +3861,33 @@
     0.45
    ],
    "delivered_edge": 4001,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0799,
+     1.0,
+     0.5065
+    ],
+    "9:16": [
+     0.1002,
+     0.0,
+     0.842,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0499,
+     1.0,
+     0.6187
+    ],
+    "3:4": [
+     0.0052,
+     0.0,
+     0.9942,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Musicians",
@@ -2098,7 +3914,33 @@
     0.22
    ],
    "delivered_edge": 4000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0197,
+     1.0,
+     0.7443
+    ],
+    "9:16": [
+     0.3002,
+     0.0,
+     0.7368,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0169,
+     1.0,
+     0.9831
+    ],
+    "3:4": [
+     0.1999,
+     0.0,
+     0.7821,
+     1.0
+    ]
+   }
   },
   {
    "title": "Medusa",
@@ -2125,7 +3967,33 @@
     0.45
    ],
    "delivered_edge": 3844,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1801,
+     1.0,
+     0.7239
+    ],
+    "9:16": [
+     0.2091,
+     0.0,
+     0.7909,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.14,
+     1.0,
+     0.865
+    ],
+    "3:4": [
+     0.1121,
+     0.0,
+     0.8879,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Education of the Virgin",
@@ -2152,7 +4020,33 @@
     0.4
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.13,
+     1.0,
+     0.539
+    ],
+    "9:16": [
+     0.1131,
+     0.0,
+     0.8869,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0999,
+     1.0,
+     0.6451
+    ],
+    "3:4": [
+     0.0,
+     0.0074,
+     1.0,
+     0.9766
+    ]
+   }
   },
   {
    "title": "Saint Teresa of Ávila Interceding for Bernardino de Mendoza",
@@ -2179,7 +4073,33 @@
     0.32
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0801,
+     1.0,
+     0.4839
+    ],
+    "9:16": [
+     0.1083,
+     0.0,
+     0.8917,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0503,
+     1.0,
+     0.5887
+    ],
+    "3:4": [
+     0.0,
+     0.0099,
+     1.0,
+     0.9671
+    ]
+   }
   },
   {
    "title": "The Holy Family with a Parrot",
@@ -2206,7 +4126,33 @@
     0.32
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0802,
+     1.0,
+     0.7228
+    ],
+    "9:16": [
+     0.1198,
+     0.0,
+     0.6122,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0401,
+     1.0,
+     0.8969
+    ],
+    "3:4": [
+     0.1398,
+     0.0,
+     0.7962,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Holy Trinity (Throne of Grace)",
@@ -2233,7 +4179,33 @@
     0.4
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.05,
+     1.0,
+     0.597
+    ],
+    "9:16": [
+     0.2203,
+     0.0,
+     0.7987,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0299,
+     1.0,
+     0.7591
+    ],
+    "3:4": [
+     0.1144,
+     0.0,
+     0.8856,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Incredulity of Saint Thomas",
@@ -2260,7 +4232,33 @@
     0.25
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1,
+     1.0,
+     0.588
+    ],
+    "9:16": [
+     0.0498,
+     0.0,
+     0.6982,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0602,
+     1.0,
+     0.7108
+    ],
+    "3:4": [
+     0.0598,
+     0.0,
+     0.9242,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Lamentation of Christ (Christ on the Straw)",
@@ -2287,7 +4285,33 @@
     0.25
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0297,
+     1.0,
+     0.4293
+    ],
+    "9:16": [
+     0.1041,
+     0.0,
+     0.8959,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0301,
+     1.0,
+     0.5629
+    ],
+    "3:4": [
+     0.0,
+     0.0124,
+     1.0,
+     0.9596
+    ]
+   }
   },
   {
    "title": "The Arch of the Mint, Front Face",
@@ -2314,7 +4338,33 @@
     0.5
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0199,
+     1.0,
+     0.4121
+    ],
+    "9:16": [
+     0.0962,
+     0.0,
+     0.9028,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.03,
+     1.0,
+     0.553
+    ],
+    "3:4": [
+     0.0,
+     0.0146,
+     1.0,
+     0.9444
+    ]
+   }
   },
   {
    "title": "The Arch of the Mint, Rear Face",
@@ -2341,7 +4391,33 @@
     0.5
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0198,
+     1.0,
+     0.4102
+    ],
+    "9:16": [
+     0.0947,
+     0.0,
+     0.9053,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0303,
+     1.0,
+     0.5507
+    ],
+    "3:4": [
+     0.0,
+     0.0174,
+     1.0,
+     0.9426
+    ]
+   }
   },
   {
    "title": "Heads of Two Apostles",
@@ -2368,7 +4444,33 @@
     0.45
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0499,
+     1.0,
+     0.5561
+    ],
+    "9:16": [
+     0.28,
+     0.0,
+     0.905,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.03,
+     1.0,
+     0.705
+    ],
+    "3:4": [
+     0.0833,
+     0.0,
+     0.9167,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Baptism of Christ",
@@ -2395,7 +4497,33 @@
     0.5
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.03,
+     1.0,
+     0.959
+    ],
+    "9:16": [
+     0.1302,
+     0.0,
+     0.4708,
+     1.0
+    ],
+    "4:3": [
+     0.0969,
+     0.0,
+     0.9041,
+     1.0
+    ],
+    "3:4": [
+     0.0999,
+     0.0,
+     0.5541,
+     1.0
+    ]
+   }
   },
   {
    "title": "Venus Frigida",
@@ -2422,7 +4550,33 @@
     0.35
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.06,
+     1.0,
+     0.784
+    ],
+    "9:16": [
+     0.4,
+     0.0,
+     0.837,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0148,
+     1.0,
+     0.9802
+    ],
+    "3:4": [
+     0.3501,
+     0.0,
+     0.9329,
+     1.0
+    ]
+   }
   },
   {
    "title": "Minerva Victorious over Ignorance",
@@ -2449,7 +4603,33 @@
     0.25
    ],
    "delivered_edge": 7326,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.05,
+     1.0,
+     0.487
+    ],
+    "9:16": [
+     0.1379,
+     0.0,
+     0.8621,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0502,
+     1.0,
+     0.6328
+    ],
+    "3:4": [
+     0.0175,
+     0.0,
+     0.983,
+     1.0
+    ]
+   }
   },
   {
    "title": "Kitchen Maid, Butcher and Boy at a Table",
@@ -2476,7 +4656,33 @@
     0.5
    ],
    "delivered_edge": 7131,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0499,
+     1.0,
+     0.8631
+    ],
+    "9:16": [
+     0.0299,
+     0.0,
+     0.4191,
+     1.0
+    ],
+    "4:3": [
+     0.0388,
+     0.0,
+     0.9612,
+     1.0
+    ],
+    "3:4": [
+     0.0501,
+     0.0,
+     0.5689,
+     1.0
+    ]
+   }
   },
   {
    "title": "Bellona",
@@ -2503,7 +4709,33 @@
     0.35
    ],
    "delivered_edge": 7073,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.032,
+     0.0,
+     0.968,
+     1.0
+    ],
+    "9:16": [
+     0.3499,
+     0.0,
+     0.6461,
+     1.0
+    ],
+    "4:3": [
+     0.149,
+     0.0,
+     0.851,
+     1.0
+    ],
+    "3:4": [
+     0.3001,
+     0.0,
+     0.6949,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Adoration of the Magi",
@@ -2530,7 +4762,33 @@
     0.55
    ],
    "delivered_edge": 7052,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1803,
+     1.0,
+     0.5957
+    ],
+    "9:16": [
+     0.1192,
+     0.0,
+     0.8808,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1201,
+     1.0,
+     0.6739
+    ],
+    "3:4": [
+     0.0,
+     0.0042,
+     1.0,
+     0.9888
+    ]
+   }
   },
   {
    "title": "The Stigmatization of Saint Francis of Assisi",
@@ -2557,7 +4815,33 @@
     0.35
    ],
    "delivered_edge": 7028,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0499,
+     1.0,
+     0.4581
+    ],
+    "9:16": [
+     0.1123,
+     0.0,
+     0.8873,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0503,
+     1.0,
+     0.5947
+    ],
+    "3:4": [
+     0.0,
+     0.0081,
+     1.0,
+     0.9759
+    ]
+   }
   },
   {
    "title": "Calvary",
@@ -2584,7 +4868,33 @@
     0.3
    ],
    "delivered_edge": 7023,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0198,
+     1.0,
+     0.3692
+    ],
+    "9:16": [
+     0.0472,
+     0.0,
+     0.9528,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0301,
+     1.0,
+     0.4959
+    ],
+    "3:4": [
+     0.0,
+     0.0249,
+     1.0,
+     0.8531
+    ]
+   }
   },
   {
    "title": "Jupiter and Callisto",
@@ -2611,7 +4921,33 @@
     0.3
    ],
    "delivered_edge": 7000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0601,
+     1.0,
+     0.8949
+    ],
+    "9:16": [
+     0.08,
+     0.0,
+     0.459,
+     1.0
+    ],
+    "4:3": [
+     0.0508,
+     0.0,
+     0.9492,
+     1.0
+    ],
+    "3:4": [
+     0.0598,
+     0.0,
+     0.5652,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Deer Hunt",
@@ -2638,7 +4974,33 @@
     0.65
    ],
    "delivered_edge": 6962,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0902,
+     1.0,
+     0.9468
+    ],
+    "9:16": [
+     0.4498,
+     0.0,
+     0.8192,
+     1.0
+    ],
+    "4:3": [
+     0.0897,
+     0.0,
+     0.9653,
+     1.0
+    ],
+    "3:4": [
+     0.4202,
+     0.0,
+     0.9128,
+     1.0
+    ]
+   }
   },
   {
    "title": "Hercules and Minerva Expelling Mars",
@@ -2665,7 +5027,33 @@
     0.35
    ],
    "delivered_edge": 6903,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0599,
+     1.0,
+     0.9311
+    ],
+    "9:16": [
+     0.2799,
+     0.0,
+     0.6431,
+     1.0
+    ],
+    "4:3": [
+     0.0201,
+     0.0,
+     0.8809,
+     1.0
+    ],
+    "3:4": [
+     0.1499,
+     0.0,
+     0.6341,
+     1.0
+    ]
+   }
   },
   {
    "title": "Christ Expiring on the Cross",
@@ -2692,7 +5080,33 @@
     0.28
    ],
    "delivered_edge": 6834,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0299,
+     1.0,
+     0.3371
+    ],
+    "9:16": [
+     0.0,
+     0.0101,
+     1.0,
+     0.9809
+    ],
+    "4:3": [
+     0.0,
+     0.0302,
+     1.0,
+     0.4398
+    ],
+    "3:4": [
+     0.0,
+     0.0199,
+     1.0,
+     0.7481
+    ]
+   }
   },
   {
    "title": "The Lamentation over the Dead Christ",
@@ -2719,7 +5133,33 @@
     0.5
    ],
    "delivered_edge": 6824,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1501,
+     1.0,
+     0.8909
+    ],
+    "9:16": [
+     0.1799,
+     0.0,
+     0.6071,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0062,
+     1.0,
+     0.9938
+    ],
+    "3:4": [
+     0.1202,
+     0.0,
+     0.6898,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Triumphal Car of Kallo",
@@ -2746,7 +5186,33 @@
     0.35
    ],
    "delivered_edge": 6707,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.3002,
+     1.0,
+     0.6888
+    ],
+    "9:16": [
+     0.0799,
+     0.0,
+     0.8941,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1799,
+     1.0,
+     0.6981
+    ],
+    "3:4": [
+     0.0,
+     0.0399,
+     1.0,
+     0.9611
+    ]
+   }
   },
   {
    "title": "Landscape with a Herd of Cows",
@@ -2773,7 +5239,33 @@
     0.7
    ],
    "delivered_edge": 6592,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0898,
+     1.0,
+     0.9102
+    ],
+    "9:16": [
+     0.1802,
+     0.0,
+     0.5658,
+     1.0
+    ],
+    "4:3": [
+     0.0404,
+     0.0,
+     0.9546,
+     1.0
+    ],
+    "3:4": [
+     0.1199,
+     0.0,
+     0.6341,
+     1.0
+    ]
+   }
   },
   {
    "title": "Old Woman and Boy with Candles",
@@ -2800,7 +5292,33 @@
     0.3
    ],
    "delivered_edge": 6000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.2,
+     1.0,
+     0.656
+    ],
+    "9:16": [
+     0.1201,
+     0.0,
+     0.8139,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1,
+     1.0,
+     0.708
+    ],
+    "3:4": [
+     0.0299,
+     0.0,
+     0.9551,
+     1.0
+    ]
+   }
   },
   {
    "title": "Bathsheba at the Fountain",
@@ -2827,7 +5345,33 @@
     0.45
    ],
    "delivered_edge": 5942,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.15,
+     1.0,
+     0.559
+    ],
+    "9:16": [
+     0.1002,
+     0.0,
+     0.8738,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0799,
+     1.0,
+     0.6251
+    ],
+    "3:4": [
+     0.0,
+     0.0153,
+     1.0,
+     0.9847
+    ]
+   }
   },
   {
    "title": "Pan and Syrinx",
@@ -2854,7 +5398,33 @@
     0.45
    ],
    "delivered_edge": 5721,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0299,
+     1.0,
+     0.9761
+    ],
+    "9:16": [
+     0.3303,
+     0.0,
+     0.6647,
+     1.0
+    ],
+    "4:3": [
+     0.0802,
+     0.0,
+     0.8728,
+     1.0
+    ],
+    "3:4": [
+     0.2801,
+     0.0,
+     0.7259,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Flagellation of Christ",
@@ -2881,7 +5451,33 @@
     0.38
    ],
    "delivered_edge": 5497,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1497,
+     1.0,
+     0.6663
+    ],
+    "9:16": [
+     0.1902,
+     0.0,
+     0.8028,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0801,
+     1.0,
+     0.7689
+    ],
+    "3:4": [
+     0.0901,
+     0.0,
+     0.9069,
+     1.0
+    ]
+   }
   },
   {
    "title": "Quos Ego: Neptune Calming the Tempest",
@@ -2908,7 +5504,33 @@
     0.42
    ],
    "delivered_edge": 5367,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.08,
+     1.0,
+     0.616
+    ],
+    "9:16": [
+     0.1499,
+     0.0,
+     0.7401,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0401,
+     1.0,
+     0.7549
+    ],
+    "3:4": [
+     0.08,
+     0.0,
+     0.867,
+     1.0
+    ]
+   }
   },
   {
    "title": "Venus, Mars and Cupid",
@@ -2935,7 +5557,33 @@
     0.4
    ],
    "delivered_edge": 5308,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1502,
+     1.0,
+     0.5118
+    ],
+    "9:16": [
+     0.06,
+     0.0,
+     0.935,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0999,
+     1.0,
+     0.5821
+    ],
+    "3:4": [
+     0.0,
+     0.0715,
+     1.0,
+     0.9285
+    ]
+   }
   },
   {
    "title": "Venus and Cupid",
@@ -2962,7 +5610,33 @@
     0.35
    ],
    "delivered_edge": 5184,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0501,
+     1.0,
+     0.8939
+    ],
+    "9:16": [
+     0.05,
+     0.0,
+     0.425,
+     1.0
+    ],
+    "4:3": [
+     0.0401,
+     0.0,
+     0.9289,
+     1.0
+    ],
+    "3:4": [
+     0.05,
+     0.0,
+     0.55,
+     1.0
+    ]
+   }
   },
   {
    "title": "Milkmaids with Cattle in a Landscape, 'The Farm at Laken'",
@@ -2989,7 +5663,33 @@
     0.68
    ],
    "delivered_edge": 5130,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0699,
+     1.0,
+     0.9181
+    ],
+    "9:16": [
+     0.1,
+     0.0,
+     0.473,
+     1.0
+    ],
+    "4:3": [
+     0.0299,
+     0.0,
+     0.9141,
+     1.0
+    ],
+    "3:4": [
+     0.0798,
+     0.0,
+     0.5772,
+     1.0
+    ]
+   }
   },
   {
    "title": "Agrippina and Germanicus",
@@ -3016,7 +5716,33 @@
     0.35
    ],
    "delivered_edge": 5000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0799,
+     1.0,
+     0.5601
+    ],
+    "9:16": [
+     0.1701,
+     0.0,
+     0.8289,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0503,
+     1.0,
+     0.6907
+    ],
+    "3:4": [
+     0.0598,
+     0.0,
+     0.9382,
+     1.0
+    ]
+   }
   },
   {
    "title": "Decius Mus Addressing the Legions",
@@ -3043,7 +5769,33 @@
     0.2
    ],
    "delivered_edge": 4999,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1503,
+     1.0,
+     0.7397
+    ],
+    "9:16": [
+     0.1501,
+     0.0,
+     0.6869,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0801,
+     1.0,
+     0.8659
+    ],
+    "3:4": [
+     0.1001,
+     0.0,
+     0.8159,
+     1.0
+    ]
+   }
   },
   {
    "title": "Ceres and Two Nymphs with a Cornucopia",
@@ -3070,7 +5822,33 @@
     0.42
    ],
    "delivered_edge": 4970,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1197,
+     1.0,
+     0.5643
+    ],
+    "9:16": [
+     0.1401,
+     0.0,
+     0.8519,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0801,
+     1.0,
+     0.6729
+    ],
+    "3:4": [
+     0.03,
+     0.0,
+     0.979,
+     1.0
+    ]
+   }
   },
   {
    "title": "Mars, Venus and Cupid",
@@ -3097,7 +5875,33 @@
     0.4
    ],
    "delivered_edge": 4864,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.2001,
+     1.0,
+     0.6049
+    ],
+    "9:16": [
+     0.0796,
+     0.0,
+     0.8614,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1202,
+     1.0,
+     0.6598
+    ],
+    "3:4": [
+     0.0,
+     0.0203,
+     1.0,
+     0.9797
+    ]
+   }
   },
   {
    "title": "Girl with a Fan (Lady in White)",
@@ -3124,7 +5928,33 @@
     0.2
    ],
    "delivered_edge": 4846,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.05,
+     1.0,
+     0.469
+    ],
+    "9:16": [
+     0.0799,
+     0.0,
+     0.8351,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0302,
+     1.0,
+     0.5888
+    ],
+    "3:4": [
+     0.0,
+     0.005,
+     1.0,
+     0.998
+    ]
+   }
   },
   {
    "title": "Abundance (Abundantia)",
@@ -3151,7 +5981,33 @@
     0.4
    ],
    "delivered_edge": 4785,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1502,
+     1.0,
+     0.5388
+    ],
+    "9:16": [
+     0.0898,
+     0.0,
+     0.9042,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1,
+     1.0,
+     0.618
+    ],
+    "3:4": [
+     0.0,
+     0.03,
+     1.0,
+     0.951
+    ]
+   }
   },
   {
    "title": "The Calydonian Boar Hunt",
@@ -3178,7 +6034,33 @@
     0.55
    ],
    "delivered_edge": 4647,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0699,
+     1.0,
+     0.9371
+    ],
+    "9:16": [
+     0.3001,
+     0.0,
+     0.6649,
+     1.0
+    ],
+    "4:3": [
+     0.0676,
+     0.0,
+     0.9324,
+     1.0
+    ],
+    "3:4": [
+     0.27,
+     0.0,
+     0.7564,
+     1.0
+    ]
+   }
   },
   {
    "title": "Landscape with a Rainbow",
@@ -3205,7 +6087,33 @@
     0.4
    ],
    "delivered_edge": 4570,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0299,
+     1.0,
+     0.8867
+    ],
+    "9:16": [
+     0.32,
+     0.0,
+     0.6893,
+     1.0
+    ],
+    "4:3": [
+     0.0624,
+     0.0,
+     0.9376,
+     1.0
+    ],
+    "3:4": [
+     0.2801,
+     0.0,
+     0.7724,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Wild Boar Hunt",
@@ -3232,7 +6140,33 @@
     0.55
    ],
    "delivered_edge": 4526,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1401,
+     1.0,
+     0.8605
+    ],
+    "9:16": [
+     0.12,
+     0.0,
+     0.5592,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0201,
+     1.0,
+     0.9806
+    ],
+    "3:4": [
+     0.0799,
+     0.0,
+     0.6656,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Adoration of the Magi (Lyon)",
@@ -3259,7 +6193,33 @@
     0.55
    ],
    "delivered_edge": 4500,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.15,
+     1.0,
+     0.8908
+    ],
+    "9:16": [
+     0.53,
+     0.0,
+     0.9571,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.006,
+     1.0,
+     0.9937
+    ],
+    "3:4": [
+     0.4,
+     0.0,
+     0.9695,
+     1.0
+    ]
+   }
   },
   {
    "title": "Helena Fourment in Her Wedding Dress",
@@ -3286,7 +6246,33 @@
     0.15
    ],
    "delivered_edge": 4499,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1001,
+     1.0,
+     0.569
+    ],
+    "9:16": [
+     0.1129,
+     0.0,
+     0.7876,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0501,
+     1.0,
+     0.6754
+    ],
+    "3:4": [
+     0.0499,
+     0.0,
+     0.9494,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Reconciliation of the Romans and the Sabines",
@@ -3313,7 +6299,33 @@
     0.55
    ],
    "delivered_edge": 4456,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0499,
+     1.0,
+     0.8933
+    ],
+    "9:16": [
+     0.2801,
+     0.0,
+     0.6552,
+     1.0
+    ],
+    "4:3": [
+     0.0554,
+     0.0,
+     0.9446,
+     1.0
+    ],
+    "3:4": [
+     0.22,
+     0.0,
+     0.7203,
+     1.0
+    ]
+   }
   },
   {
    "title": "Old Woman with a Basket of Coal",
@@ -3340,7 +6352,33 @@
     0.3
    ],
    "delivered_edge": 4416,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.2699,
+     1.0,
+     0.7201
+    ],
+    "9:16": [
+     0.1002,
+     0.0,
+     0.8029,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1798,
+     1.0,
+     0.7802
+    ],
+    "3:4": [
+     0.0303,
+     0.0,
+     0.9672,
+     1.0
+    ]
+   }
   },
   {
    "title": "Adam and Eve (after Titian)",
@@ -3367,7 +6405,33 @@
     0.25
    ],
    "delivered_edge": 4347,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1,
+     1.0,
+     0.5303
+    ],
+    "9:16": [
+     0.08,
+     0.0,
+     0.8153,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0801,
+     1.0,
+     0.6537
+    ],
+    "3:4": [
+     0.0099,
+     0.0,
+     0.9905,
+     1.0
+    ]
+   }
   },
   {
    "title": "Christ Triumphant over Death and Sin",
@@ -3394,7 +6458,33 @@
     0.2
    ],
    "delivered_edge": 4340,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0399,
+     1.0,
+     0.4732
+    ],
+    "9:16": [
+     0.0801,
+     0.0,
+     0.8104,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0299,
+     1.0,
+     0.6077
+    ],
+    "3:4": [
+     0.0102,
+     0.0,
+     0.9838,
+     1.0
+    ]
+   }
   },
   {
    "title": "River Landscape with Pan and Syrinx",
@@ -3421,7 +6511,21 @@
     0.45
    ],
    "delivered_edge": 4134,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.06,
+     1.0,
+     0.9133
+    ],
+    "4:3": [
+     0.0606,
+     0.0,
+     0.9394,
+     1.0
+    ]
+   }
   },
   {
    "title": "Worship of Venus",
@@ -3448,7 +6552,27 @@
     0.3
    ],
    "delivered_edge": 4123,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1501,
+     1.0,
+     0.7518
+    ],
+    "4:3": [
+     0.0,
+     0.0602,
+     1.0,
+     0.8623
+    ],
+    "3:4": [
+     0.0998,
+     0.0,
+     0.8011,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Death of Decius Mus",
@@ -3475,7 +6599,33 @@
     0.45
    ],
    "delivered_edge": 4099,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1,
+     1.0,
+     0.8808
+    ],
+    "9:16": [
+     0.27,
+     0.0,
+     0.6753,
+     1.0
+    ],
+    "4:3": [
+     0.0197,
+     0.0,
+     0.9803,
+     1.0
+    ],
+    "3:4": [
+     0.18,
+     0.0,
+     0.7204,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Voyage of the Cardinal-Infante Ferdinand: Neptune Calming the Tempest",
@@ -3502,7 +6652,33 @@
     0.4
    ],
    "delivered_edge": 4009,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1001,
+     1.0,
+     0.8334
+    ],
+    "9:16": [
+     0.1399,
+     0.0,
+     0.5714,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0101,
+     1.0,
+     0.988
+    ],
+    "3:4": [
+     0.08,
+     0.0,
+     0.6552,
+     1.0
+    ]
+   }
   },
   {
    "title": "Landscape with Cows and Duck Hunters",
@@ -3529,7 +6705,21 @@
     0.78
    ],
    "delivered_edge": 4000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0299,
+     1.0,
+     0.9161
+    ],
+    "4:3": [
+     0.0768,
+     0.0,
+     0.9232,
+     1.0
+    ]
+   }
   },
   {
    "title": "Landscape with a Gallows",
@@ -3556,7 +6746,33 @@
     0.5
    ],
    "delivered_edge": 4000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.08,
+     1.0,
+     0.8146
+    ],
+    "9:16": [
+     0.05,
+     0.0,
+     0.4807,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.01,
+     1.0,
+     0.9894
+    ],
+    "3:4": [
+     0.03,
+     0.0,
+     0.6043,
+     1.0
+    ]
+   }
   },
   {
    "title": "Fortuna",
@@ -3583,7 +6799,33 @@
     0.32
    ],
    "delivered_edge": 4000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.12,
+     1.0,
+     0.5183
+    ],
+    "9:16": [
+     0.05,
+     0.0,
+     0.8445,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.08,
+     1.0,
+     0.611
+    ],
+    "3:4": [
+     0.0,
+     0.028,
+     1.0,
+     0.972
+    ]
+   }
   },
   {
    "title": "Landscape with the Shipwreck of Saint Paul",
@@ -3610,7 +6852,21 @@
     0.22
    ],
    "delivered_edge": 4000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0299,
+     1.0,
+     0.9554
+    ],
+    "4:3": [
+     0.0948,
+     0.0,
+     0.9052,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Raising of Lazarus",
@@ -3637,7 +6893,33 @@
     0.25
    ],
    "delivered_edge": 4000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.2001,
+     1.0,
+     0.6156
+    ],
+    "9:16": [
+     0.0598,
+     0.0,
+     0.8213,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1201,
+     1.0,
+     0.6741
+    ],
+    "3:4": [
+     0.0,
+     0.0075,
+     1.0,
+     0.9925
+    ]
+   }
   },
   {
    "title": "Saint Cecilia",
@@ -3664,7 +6946,33 @@
     0.25
    ],
    "delivered_edge": 4000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.06,
+     1.0,
+     0.4965
+    ],
+    "9:16": [
+     0.08,
+     0.0,
+     0.8049,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.04,
+     1.0,
+     0.622
+    ],
+    "3:4": [
+     0.015,
+     0.0,
+     0.9815,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Drunken Silenus",
@@ -3691,7 +6999,33 @@
     0.45
    ],
    "delivered_edge": 4000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0801,
+     1.0,
+     0.7976
+    ],
+    "9:16": [
+     0.2799,
+     0.0,
+     0.7209,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0202,
+     1.0,
+     0.9769
+    ],
+    "3:4": [
+     0.1799,
+     0.0,
+     0.7679,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Penitent Magdalene",
@@ -3718,7 +7052,33 @@
     0.32
    ],
    "delivered_edge": 4000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "4:3": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ],
+    "16:9": [
+     0.0,
+     0.0999,
+     1.0,
+     0.8491
+    ],
+    "9:16": [
+     0.3399,
+     0.0,
+     0.7621,
+     1.0
+    ],
+    "3:4": [
+     0.2685,
+     0.0,
+     0.8315,
+     1.0
+    ]
+   }
   },
   {
    "title": "Madonna and Child",
@@ -3745,7 +7105,33 @@
     0.4
    ],
    "delivered_edge": 4000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1301,
+     1.0,
+     0.5339
+    ],
+    "9:16": [
+     0.1103,
+     0.0,
+     0.8937,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0802,
+     1.0,
+     0.6187
+    ],
+    "3:4": [
+     0.0,
+     0.0148,
+     1.0,
+     0.9722
+    ]
+   }
   },
   {
    "title": "Three Riders in Different Positions",
@@ -3772,7 +7158,33 @@
     0.4
    ],
    "delivered_edge": 4000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0497,
+     1.0,
+     0.9443
+    ],
+    "9:16": [
+     0.2232,
+     0.0,
+     0.5768,
+     1.0
+    ],
+    "4:3": [
+     0.0598,
+     0.0,
+     0.8982,
+     1.0
+    ],
+    "3:4": [
+     0.1642,
+     0.0,
+     0.6358,
+     1.0
+    ]
+   }
   },
   {
    "title": "Atalanta and Meleager",
@@ -3799,7 +7211,33 @@
     0.42
    ],
    "delivered_edge": 4000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.28,
+     1.0,
+     0.715
+    ],
+    "9:16": [
+     0.1363,
+     0.0,
+     0.8637,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.18,
+     1.0,
+     0.76
+    ],
+    "3:4": [
+     0.0225,
+     0.0,
+     0.9925,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Andrians",
@@ -3826,7 +7264,33 @@
     0.45
    ],
    "delivered_edge": 3985,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.2802,
+     1.0,
+     0.8848
+    ],
+    "9:16": [
+     0.3499,
+     0.0,
+     0.8731,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0999,
+     1.0,
+     0.9061
+    ],
+    "3:4": [
+     0.1802,
+     0.0,
+     0.8778,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Feast of Herod",
@@ -3853,7 +7317,33 @@
     0.45
    ],
    "delivered_edge": 3982,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0998,
+     1.0,
+     0.9032
+    ],
+    "9:16": [
+     0.1261,
+     0.0,
+     0.5199,
+     1.0
+    ],
+    "4:3": [
+     0.0302,
+     0.0,
+     0.9638,
+     1.0
+    ],
+    "3:4": [
+     0.1399,
+     0.0,
+     0.6651,
+     1.0
+    ]
+   }
   },
   {
    "title": "Evening Landscape with a Timber Wagon",
@@ -3880,7 +7370,33 @@
     0.7
    ],
    "delivered_edge": 3902,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1998,
+     1.0,
+     0.8082
+    ],
+    "9:16": [
+     0.4699,
+     0.0,
+     0.9901,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0899,
+     1.0,
+     0.9011
+    ],
+    "3:4": [
+     0.2833,
+     0.0,
+     0.9767,
+     1.0
+    ]
+   }
   },
   {
    "title": "Lot and His Daughters",
@@ -3907,7 +7423,33 @@
     0.45
    ],
    "delivered_edge": 3843,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1601,
+     1.0,
+     0.8349
+    ],
+    "9:16": [
+     0.2161,
+     0.0,
+     0.6849,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0401,
+     1.0,
+     0.9399
+    ],
+    "3:4": [
+     0.15,
+     0.0,
+     0.775,
+     1.0
+    ]
+   }
   },
   {
    "title": "Las Meninas",
@@ -3934,7 +7476,33 @@
     0.55
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1201,
+     1.0,
+     0.6089
+    ],
+    "9:16": [
+     0.1468,
+     0.0,
+     0.7942,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0802,
+     1.0,
+     0.7318
+    ],
+    "3:4": [
+     0.0599,
+     0.0,
+     0.9231,
+     1.0
+    ]
+   }
   }
  ]
 }

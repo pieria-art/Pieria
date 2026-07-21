@@ -30,7 +30,33 @@
    "credit_line": "ygF9ozok7GQIvA at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
    "delivered_edge": 7001,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0599,
+     1.0,
+     0.9775
+    ],
+    "9:16": [
+     0.33,
+     0.0,
+     0.6749,
+     1.0
+    ],
+    "4:3": [
+     0.0913,
+     0.0,
+     0.9088,
+     1.0
+    ],
+    "3:4": [
+     0.2701,
+     0.0,
+     0.7298,
+     1.0
+    ]
+   }
   },
   {
    "title": "After the Hurricane, Bahamas",
@@ -57,7 +83,33 @@
    "credit_line": "Art Institute of Chicago: online database: entry 16776",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.15,
+     1.0,
+     0.9538
+    ],
+    "9:16": [
+     0.0,
+     0.0,
+     0.3936,
+     1.0
+    ],
+    "4:3": [
+     0.0335,
+     0.0,
+     0.9665,
+     1.0
+    ],
+    "3:4": [
+     0.05,
+     0.0,
+     0.5748,
+     1.0
+    ]
+   }
   },
   {
    "title": "Croquet Scene",
@@ -84,7 +136,27 @@
    "credit_line": "xgGjRZZn3Qn5nA at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
    "delivered_edge": 6001,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0399,
+     1.0,
+     0.9609
+    ],
+    "4:3": [
+     0.0801,
+     0.0,
+     0.8944,
+     1.0
+    ],
+    "3:4": [
+     0.2801,
+     0.0,
+     0.7381,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Water Fan",
@@ -111,7 +183,33 @@
    "credit_line": "Collection of Art Institute of Chicago",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0999,
+     1.0,
+     0.9077
+    ],
+    "9:16": [
+     0.2801,
+     0.0,
+     0.6717,
+     1.0
+    ],
+    "4:3": [
+     0.0361,
+     0.0,
+     0.9645,
+     1.0
+    ],
+    "3:4": [
+     0.2,
+     0.0,
+     0.7223,
+     1.0
+    ]
+   }
   },
   {
    "title": "Life-Size Black Bass",
@@ -138,7 +236,27 @@
    "credit_line": "The Art Institute of Chicago",
    "license_verified": "2026-07-16",
    "delivered_edge": 3900,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1558,
+     1.0,
+     0.9999
+    ],
+    "4:3": [
+     0.0559,
+     0.0,
+     0.9444,
+     1.0
+    ],
+    "3:4": [
+     0.4199,
+     0.0,
+     0.9198,
+     1.0
+    ]
+   }
   },
   {
    "title": "Stowing Sail",
@@ -165,7 +283,33 @@
    "credit_line": "Art Institute of Chicago: online database: entry 16831",
    "license_verified": "2026-07-16",
    "delivered_edge": 3933,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.06,
+     1.0,
+     0.9352
+    ],
+    "9:16": [
+     0.42,
+     0.0,
+     0.7815,
+     1.0
+    ],
+    "4:3": [
+     0.0715,
+     0.0,
+     0.9285,
+     1.0
+    ],
+    "3:4": [
+     0.32,
+     0.0,
+     0.802,
+     1.0
+    ]
+   }
   },
   {
    "title": "North Woods Club, Adirondacks (The Interrupted Tete-a-Tete)",
@@ -192,7 +336,33 @@
    "credit_line": "The Art Institute of Chicago",
    "license_verified": "2026-07-16",
    "delivered_edge": 3868,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.15,
+     1.0,
+     0.9482
+    ],
+    "9:16": [
+     0.5,
+     0.0,
+     0.8964,
+     1.0
+    ],
+    "4:3": [
+     0.03,
+     0.0,
+     0.9696,
+     1.0
+    ],
+    "3:4": [
+     0.38,
+     0.0,
+     0.9085,
+     1.0
+    ]
+   }
   },
   {
    "title": "Mount Washington",
@@ -219,7 +389,33 @@
    "credit_line": "The Art Institute of Chicago",
    "license_verified": "2026-07-16",
    "delivered_edge": 5927,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.12,
+     1.0,
+     0.9638
+    ],
+    "9:16": [
+     0.03,
+     0.0,
+     0.405,
+     1.0
+    ],
+    "4:3": [
+     0.0555,
+     0.0,
+     0.9444,
+     1.0
+    ],
+    "3:4": [
+     0.08,
+     0.0,
+     0.58,
+     1.0
+    ]
+   }
   },
   {
    "title": "Peach Blossoms",
@@ -246,7 +442,33 @@
    "credit_line": "1. The Athenaeum: Home page – Source – Image2. Art Institute of Chicago",
    "license_verified": "2026-07-16",
    "delivered_edge": 6134,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0799,
+     1.0,
+     0.9244
+    ],
+    "9:16": [
+     0.3127,
+     0.0,
+     0.6873,
+     1.0
+    ],
+    "4:3": [
+     0.0561,
+     0.0,
+     0.9442,
+     1.0
+    ],
+    "3:4": [
+     0.2701,
+     0.0,
+     0.7696,
+     1.0
+    ]
+   }
   },
   {
    "title": "Coast of Maine",
@@ -274,7 +496,33 @@
    "license_verified": "2026-07-16",
    "below_floor_ok": true,
    "delivered_edge": 3000,
-   "resolution_tier": "HD"
+   "resolution_tier": "HD",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.2001,
+     1.0,
+     0.9058
+    ],
+    "9:16": [
+     0.2499,
+     0.0,
+     0.6983,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0301,
+     1.0,
+     0.9712
+    ],
+    "3:4": [
+     0.1999,
+     0.0,
+     0.7977,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Rapids, Hudson River, Adirondacks",
@@ -302,7 +550,33 @@
    "license_verified": "2026-07-16",
    "below_floor_ok": true,
    "delivered_edge": 3832,
-   "resolution_tier": "HD"
+   "resolution_tier": "HD",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1501,
+     1.0,
+     0.9469
+    ],
+    "9:16": [
+     0.3,
+     0.0,
+     0.697,
+     1.0
+    ],
+    "4:3": [
+     0.0295,
+     0.0,
+     0.9706,
+     1.0
+    ],
+    "3:4": [
+     0.2349,
+     0.0,
+     0.7644,
+     1.0
+    ]
+   }
   },
   {
    "title": "Fishing off Scarborough",
@@ -329,7 +603,33 @@
    "credit_line": "Collection of Art Institute of Chicago",
    "license_verified": "2026-07-16",
    "delivered_edge": 4063,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "4:3": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ],
+    "16:9": [
+     0.0,
+     0.2001,
+     1.0,
+     0.9469
+    ],
+    "9:16": [
+     0.05,
+     0.0,
+     0.4736,
+     1.0
+    ],
+    "3:4": [
+     0.05,
+     0.0,
+     0.6148,
+     1.0
+    ]
+   }
   },
   {
    "title": "Adirondacks Guide",
@@ -356,7 +656,33 @@
    "credit_line": "Art Institute of Chicago: online database: entry 16772",
    "license_verified": "2026-07-16",
    "delivered_edge": 4103,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0399,
+     1.0,
+     0.9653
+    ],
+    "9:16": [
+     0.17,
+     0.0,
+     0.5119,
+     1.0
+    ],
+    "4:3": [
+     0.06,
+     0.0,
+     0.8705,
+     1.0
+    ],
+    "3:4": [
+     0.13,
+     0.0,
+     0.5859,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Watcher, Tynemouth",
@@ -383,7 +709,33 @@
    "credit_line": "Art Institute of Chicago: online database: entry 16840",
    "license_verified": "2026-07-16",
    "delivered_edge": 4230,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ],
+    "9:16": [
+     0.1118,
+     0.0,
+     0.4282,
+     1.0
+    ],
+    "4:3": [
+     0.03,
+     0.0,
+     0.7799,
+     1.0
+    ],
+    "3:4": [
+     0.1,
+     0.0,
+     0.5218,
+     1.0
+    ]
+   }
   },
   {
    "title": "Boy in Boat, Gloucester",
@@ -410,7 +762,33 @@
    "credit_line": "Art Institute of Chicago: online database: entry 16800",
    "license_verified": "2026-07-16",
    "delivered_edge": 3981,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1001,
+     1.0,
+     0.9425
+    ],
+    "9:16": [
+     0.32,
+     0.0,
+     0.6956,
+     1.0
+    ],
+    "4:3": [
+     0.0549,
+     0.0,
+     0.9452,
+     1.0
+    ],
+    "3:4": [
+     0.22,
+     0.0,
+     0.7207,
+     1.0
+    ]
+   }
   },
   {
    "title": "Campfire, Adirondacks",
@@ -437,7 +815,33 @@
    "credit_line": "Art Institute of Chicago: online database: entry 16782",
    "license_verified": "2026-07-16",
    "delivered_edge": 3853,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1501,
+     1.0,
+     0.9425
+    ],
+    "9:16": [
+     0.2,
+     0.0,
+     0.5992,
+     1.0
+    ],
+    "4:3": [
+     0.0268,
+     0.0,
+     0.9733,
+     1.0
+    ],
+    "3:4": [
+     0.15,
+     0.0,
+     0.6823,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Fountain, Villa Torlonia, Frascati, Italy",
@@ -464,7 +868,33 @@
    "credit_line": "ygHTOAs5deONKw at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
    "delivered_edge": 5677,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0601,
+     1.0,
+     0.5015
+    ],
+    "9:16": [
+     0.0499,
+     0.0,
+     0.7667,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0301,
+     1.0,
+     0.6186
+    ],
+    "3:4": [
+     0.0248,
+     0.0,
+     0.9806,
+     1.0
+    ]
+   }
   },
   {
    "title": "Mrs. George Swinton (Elizabeth Ebsworth)",
@@ -491,7 +921,33 @@
    "credit_line": "Collection of Art Institute of Chicago",
    "license_verified": "2026-07-16",
    "delivered_edge": 6269,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0001,
+     1.0,
+     0.2989
+    ],
+    "9:16": [
+     0.0,
+     0.0278,
+     1.0,
+     0.9722
+    ],
+    "4:3": [
+     0.0,
+     0.0,
+     1.0,
+     0.3984
+    ],
+    "3:4": [
+     0.0,
+     0.0299,
+     1.0,
+     0.7381
+    ]
+   }
   },
   {
    "title": "Madame Paul Escudier (Louise Lefevre)",
@@ -518,7 +974,33 @@
    "credit_line": "Collection of Art Institute of Chicago",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1102,
+     1.0,
+     0.5028
+    ],
+    "9:16": [
+     0.0969,
+     0.0,
+     0.9031,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0503,
+     1.0,
+     0.5737
+    ],
+    "3:4": [
+     0.0,
+     0.0203,
+     1.0,
+     0.9507
+    ]
+   }
   },
   {
    "title": "Life Study (Study of an Egyptian Girl)",
@@ -545,7 +1027,33 @@
    "credit_line": "https://www.artic.edu/iiif/2/e6dd6199-c245-d1b4-a997-ce89eafb48ca/info.json",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0,
+     1.0,
+     0.1761
+    ],
+    "9:16": [
+     0.0,
+     0.0001,
+     1.0,
+     0.5563
+    ],
+    "4:3": [
+     0.0,
+     0.0001,
+     1.0,
+     0.2347
+    ],
+    "3:4": [
+     0.0,
+     0.0001,
+     1.0,
+     0.4172
+    ]
+   }
   },
   {
    "title": "Venetian Glass Workers",
@@ -572,7 +1080,33 @@
    "credit_line": "Collection of Art Institute of Chicago",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0599,
+     1.0,
+     0.9359
+    ],
+    "9:16": [
+     0.6201,
+     0.0,
+     0.9812,
+     1.0
+    ],
+    "4:3": [
+     0.0721,
+     0.0,
+     0.9282,
+     1.0
+    ],
+    "3:4": [
+     0.5001,
+     0.0,
+     0.9816,
+     1.0
+    ]
+   }
   },
   {
    "title": "Mrs. Charles Gifford Dyer (Mary Anthony)",
@@ -599,7 +1133,33 @@
    "credit_line": "Collection of Art Institute of Chicago",
    "license_verified": "2026-07-16",
    "delivered_edge": 5934,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0399,
+     1.0,
+     0.4291
+    ],
+    "9:16": [
+     0.0929,
+     0.0,
+     0.9061,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0001,
+     1.0,
+     0.5189
+    ],
+    "3:4": [
+     0.0,
+     0.0203,
+     1.0,
+     0.9427
+    ]
+   }
   },
   {
    "title": "Rehearsal of the Pasdeloup Orchestra at the Cirque d'Hiver",
@@ -626,7 +1186,33 @@
    "credit_line": "Collection of Art Institute of Chicago",
    "license_verified": "2026-07-16",
    "delivered_edge": 5617,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.4999,
+     1.0,
+     0.9466
+    ],
+    "9:16": [
+     0.28,
+     0.0,
+     0.9885,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.3,
+     1.0,
+     0.8956
+    ],
+    "3:4": [
+     0.0277,
+     0.0,
+     0.9723,
+     1.0
+    ]
+   }
   },
   {
    "title": "Mrs. Charles Deering (Marion Denison Whipple)",
@@ -653,7 +1239,33 @@
    "credit_line": "Collection of Art Institute of Chicago",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0499,
+     1.0,
+     0.5159
+    ],
+    "9:16": [
+     0.1605,
+     0.0,
+     0.8396,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0299,
+     1.0,
+     0.6511
+    ],
+    "3:4": [
+     0.0472,
+     0.0,
+     0.9526,
+     1.0
+    ]
+   }
   },
   {
    "title": "American Gothic",
@@ -680,7 +1292,33 @@
    "credit_line": "Art Institute of Chicago: online database: entry 6565",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0199,
+     1.0,
+     0.4853
+    ],
+    "9:16": [
+     0.16,
+     0.0,
+     0.84,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0199,
+     1.0,
+     0.6404
+    ],
+    "3:4": [
+     0.0467,
+     0.0,
+     0.9534,
+     1.0
+    ]
+   }
   },
   {
    "title": "Whistler's Mother",
@@ -707,7 +1345,33 @@
    "credit_line": "Musée d'Orsay",
    "license_verified": "2026-07-16",
    "delivered_edge": 5897,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.05,
+     1.0,
+     0.6822
+    ],
+    "9:16": [
+     0.4,
+     0.0,
+     0.9005,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.05,
+     1.0,
+     0.893
+    ],
+    "3:4": [
+     0.3164,
+     0.0,
+     0.9837,
+     1.0
+    ]
+   }
   },
   {
    "title": "Nighthawks",
@@ -734,7 +1398,33 @@
    "credit_line": "http://www.artic.edu/aic/collections/artwork/111628 (Manual stitch by Petar Milošević)",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0144,
+     0.0,
+     0.9856,
+     1.0
+    ],
+    "9:16": [
+     0.5498,
+     0.0,
+     0.8572,
+     1.0
+    ],
+    "4:3": [
+     0.2713,
+     0.0,
+     0.9997,
+     1.0
+    ],
+    "3:4": [
+     0.5151,
+     0.0,
+     0.9249,
+     1.0
+    ]
+   }
   },
   {
    "title": "Watson and the Shark",
@@ -761,7 +1451,33 @@
     0.65
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0898,
+     1.0,
+     0.7992
+    ],
+    "9:16": [
+     0.277,
+     0.0,
+     0.723,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0271,
+     1.0,
+     0.9729
+    ],
+    "3:4": [
+     0.2026,
+     0.0,
+     0.7974,
+     1.0
+    ]
+   }
   },
   {
    "title": "Kindred Spirits",
@@ -788,7 +1504,33 @@
     0.35
    ],
    "delivered_edge": 4409,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0999,
+     1.0,
+     0.4971
+    ],
+    "9:16": [
+     0.1018,
+     0.0,
+     0.8982,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1299,
+     1.0,
+     0.6596
+    ],
+    "3:4": [
+     0.0,
+     0.0291,
+     1.0,
+     0.9709
+    ]
+   }
   },
   {
    "title": "The Gross Clinic",
@@ -815,7 +1557,27 @@
     0.22
    ],
    "delivered_edge": 5627,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "9:16": [
+     0.1012,
+     0.0,
+     0.7988,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1501,
+     1.0,
+     0.7549
+    ],
+    "3:4": [
+     0.0349,
+     0.0,
+     0.9651,
+     1.0
+    ]
+   }
   },
   {
    "title": "Among the Sierra Nevada, California",
@@ -842,7 +1604,33 @@
     0.3
    ],
    "delivered_edge": 3993,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0295,
+     1.0,
+     0.9705
+    ],
+    "9:16": [
+     0.3319,
+     0.0,
+     0.6681,
+     1.0
+    ],
+    "4:3": [
+     0.1015,
+     0.0,
+     0.8985,
+     1.0
+    ],
+    "3:4": [
+     0.2758,
+     0.0,
+     0.7242,
+     1.0
+    ]
+   }
   },
   {
    "title": "Twilight in the Wilderness",
@@ -869,7 +1657,33 @@
     0.6
    ],
    "delivered_edge": 5000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0486,
+     1.0,
+     0.9514
+    ],
+    "9:16": [
+     0.3748,
+     0.0,
+     0.7252,
+     1.0
+    ],
+    "4:3": [
+     0.0847,
+     0.0,
+     0.9153,
+     1.0
+    ],
+    "3:4": [
+     0.3164,
+     0.0,
+     0.7837,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Veteran in a New Field",
@@ -903,7 +1717,33 @@
     0.45
    ],
    "delivered_edge": 5892,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0522,
+     1.0,
+     0.9478
+    ],
+    "9:16": [
+     0.4035,
+     0.0,
+     0.7568,
+     1.0
+    ],
+    "4:3": [
+     0.0812,
+     0.0,
+     0.9188,
+     1.0
+    ],
+    "3:4": [
+     0.3445,
+     0.0,
+     0.8156,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Heart of the Andes",
@@ -936,7 +1776,21 @@
     0.25
    ],
    "delivered_edge": 6400,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0135,
+     0.0,
+     0.9865,
+     1.0
+    ],
+    "4:3": [
+     0.1351,
+     0.0,
+     0.8649,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Rocky Mountains, Lander's Peak",
@@ -969,7 +1823,33 @@
     0.3
    ],
    "delivered_edge": 4006,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.02,
+     1.0,
+     0.484
+    ],
+    "9:16": [
+     0.159,
+     0.0,
+     0.841,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0302,
+     1.0,
+     0.6488
+    ],
+    "3:4": [
+     0.0453,
+     0.0,
+     0.9547,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Boating Party",
@@ -1002,7 +1882,33 @@
     0.45
    ],
    "delivered_edge": 4861,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.05,
+     1.0,
+     0.7835
+    ],
+    "9:16": [
+     0.2045,
+     0.0,
+     0.6358,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.011,
+     1.0,
+     0.989
+    ],
+    "3:4": [
+     0.1624,
+     0.0,
+     0.7376,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Fall of the Cowboy",
@@ -1035,7 +1941,33 @@
     0.45
    ],
    "delivered_edge": 4500,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0949,
+     1.0,
+     0.9051
+    ],
+    "9:16": [
+     0.4248,
+     0.0,
+     0.8153,
+     1.0
+    ],
+    "4:3": [
+     0.0372,
+     0.0,
+     0.9628,
+     1.0
+    ],
+    "3:4": [
+     0.3397,
+     0.0,
+     0.8603,
+     1.0
+    ]
+   }
   },
   {
    "title": "Symphony in White, No. 1: The White Girl",
@@ -1068,7 +2000,33 @@
     0.22
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0501,
+     1.0,
+     0.3306
+    ],
+    "9:16": [
+     0.0,
+     0.0202,
+     1.0,
+     0.9068
+    ],
+    "4:3": [
+     0.0,
+     0.0401,
+     1.0,
+     0.4141
+    ],
+    "3:4": [
+     0.0,
+     0.0302,
+     1.0,
+     0.6952
+    ]
+   }
   },
   {
    "title": "After the Bullfight",
@@ -1101,7 +2059,33 @@
     0.25
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.05,
+     1.0,
+     0.4904
+    ],
+    "9:16": [
+     0.1408,
+     0.0,
+     0.8592,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.05,
+     1.0,
+     0.6373
+    ],
+    "3:4": [
+     0.0211,
+     0.0,
+     0.9789,
+     1.0
+    ]
+   }
   },
   {
    "title": "Love of Winter",
@@ -1134,7 +2118,33 @@
     0.58
    ],
    "delivered_edge": 5767,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1456,
+     1.0,
+     0.8544
+    ],
+    "9:16": [
+     0.2468,
+     0.0,
+     0.6932,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0275,
+     1.0,
+     0.9725
+    ],
+    "3:4": [
+     0.1724,
+     0.0,
+     0.7676,
+     1.0
+    ]
+   }
   },
   {
    "title": "Icebound",
@@ -1161,7 +2171,33 @@
    "credit_line": "Collection of Art Institute of Chicago",
    "license_verified": "2026-07-16",
    "delivered_edge": 4707,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1638,
+     1.0,
+     0.8362
+    ],
+    "9:16": [
+     0.3147,
+     0.0,
+     0.7853,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0518,
+     1.0,
+     0.9482
+    ],
+    "3:4": [
+     0.1863,
+     0.0,
+     0.8137,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Artist in His Studio",
@@ -1188,7 +2224,33 @@
    "credit_line": "Collection of Art Institute of Chicago",
    "license_verified": "2026-07-16",
    "delivered_edge": 6679,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "3:4": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ],
+    "16:9": [
+     0.0,
+     0.3,
+     1.0,
+     0.723
+    ],
+    "9:16": [
+     0.126,
+     0.0,
+     0.874,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.25,
+     1.0,
+     0.814
+    ]
+   }
   },
   {
    "title": "Rip Van Winkle",
@@ -1216,7 +2278,33 @@
    "license_verified": "2026-07-16",
    "below_floor_ok": true,
    "delivered_edge": 2864,
-   "resolution_tier": "HD"
+   "resolution_tier": "HD",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.142,
+     1.0,
+     0.858
+    ],
+    "9:16": [
+     0.129,
+     0.0,
+     0.571,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0227,
+     1.0,
+     0.9773
+    ],
+    "3:4": [
+     0.0554,
+     0.0,
+     0.6446,
+     1.0
+    ]
+   }
   },
   {
    "title": "At Mouquin's",
@@ -1243,7 +2331,33 @@
    "credit_line": "Collection of Art Institute of Chicago",
    "license_verified": "2026-07-16",
    "delivered_edge": 5835,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "3:4": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ],
+    "16:9": [
+     0.0,
+     0.0599,
+     1.0,
+     0.4841
+    ],
+    "9:16": [
+     0.127,
+     0.0,
+     0.873,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.06,
+     1.0,
+     0.6256
+    ]
+   }
   },
   {
    "title": "The Advance-Guard, or The Military Sacrifice (The Ambush)",
@@ -1270,7 +2384,33 @@
    "credit_line": "Collection of Art Institute of Chicago",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1013,
+     1.0,
+     0.8987
+    ],
+    "9:16": [
+     0.1216,
+     0.0,
+     0.5184,
+     1.0
+    ],
+    "4:3": [
+     0.0297,
+     0.0,
+     0.9703,
+     1.0
+    ],
+    "3:4": [
+     0.0555,
+     0.0,
+     0.5846,
+     1.0
+    ]
+   }
   },
   {
    "title": "A Parisian Beggar Girl",
@@ -1297,7 +2437,33 @@
     0.2
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.04,
+     1.0,
+     0.4265
+    ],
+    "9:16": [
+     0.0907,
+     0.0,
+     0.9093,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.04,
+     1.0,
+     0.5553
+    ],
+    "3:4": [
+     0.0,
+     0.0419,
+     1.0,
+     0.9581
+    ]
+   }
   },
   {
    "title": "Rio dei Mendicanti, Venice",
@@ -1324,7 +2490,33 @@
     0.35
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1001,
+     1.0,
+     0.8989
+    ],
+    "9:16": [
+     0.42,
+     0.0,
+     0.816,
+     1.0
+    ],
+    "4:3": [
+     0.0301,
+     0.0,
+     0.9689,
+     1.0
+    ],
+    "3:4": [
+     0.2799,
+     0.0,
+     0.8081,
+     1.0
+    ]
+   }
   },
   {
    "title": "On His Holidays, Norway",
@@ -1351,7 +2543,33 @@
     0.45
    ],
    "delivered_edge": 6987,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ],
+    "9:16": [
+     0.3799,
+     0.0,
+     0.6971,
+     1.0
+    ],
+    "4:3": [
+     0.1997,
+     0.0,
+     0.9513,
+     1.0
+    ],
+    "3:4": [
+     0.3301,
+     0.0,
+     0.7529,
+     1.0
+    ]
+   }
   },
   {
    "title": "Under the Willows",
@@ -1378,7 +2596,33 @@
     0.65
    ],
    "delivered_edge": 6385,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.55,
+     1.0,
+     0.927
+    ],
+    "9:16": [
+     0.0804,
+     0.0,
+     0.9196,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.4201,
+     1.0,
+     0.9229
+    ],
+    "3:4": [
+     0.0,
+     0.0796,
+     1.0,
+     0.9734
+    ]
+   }
   },
   {
    "title": "A Venetian Interior",
@@ -1405,7 +2649,33 @@
     0.55
    ],
    "delivered_edge": 5890,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1195,
+     1.0,
+     0.8285
+    ],
+    "9:16": [
+     0.2799,
+     0.0,
+     0.7261,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0398,
+     1.0,
+     0.9852
+    ],
+    "3:4": [
+     0.18,
+     0.0,
+     0.775,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Patio",
@@ -1432,7 +2702,33 @@
     0.55
    ],
    "delivered_edge": 5888,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.2799,
+     1.0,
+     0.6511
+    ],
+    "9:16": [
+     0.0497,
+     0.0,
+     0.9023,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.2001,
+     1.0,
+     0.6949
+    ],
+    "3:4": [
+     0.0,
+     0.0601,
+     1.0,
+     0.9399
+    ]
+   }
   },
   {
    "title": "Simplon Pass: The Tease",
@@ -1459,7 +2755,33 @@
     0.45
    ],
    "delivered_edge": 5701,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1299,
+     1.0,
+     0.8601
+    ],
+    "9:16": [
+     0.2353,
+     0.0,
+     0.6687,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0102,
+     1.0,
+     0.9838
+    ],
+    "3:4": [
+     0.1801,
+     0.0,
+     0.7579,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Garden Wall",
@@ -1486,7 +2808,33 @@
     0.42
    ],
    "delivered_edge": 5701,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1299,
+     1.0,
+     0.8661
+    ],
+    "9:16": [
+     0.2851,
+     0.0,
+     0.7149,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0092,
+     1.0,
+     0.9908
+    ],
+    "3:4": [
+     0.21,
+     0.0,
+     0.783,
+     1.0
+    ]
+   }
   },
   {
    "title": "An Artist in His Studio",
@@ -1513,7 +2861,33 @@
     0.45
    ],
    "delivered_edge": 5701,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1298,
+     1.0,
+     0.8612
+    ],
+    "9:16": [
+     0.0197,
+     0.0,
+     0.4523,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0123,
+     1.0,
+     0.9877
+    ],
+    "3:4": [
+     0.0001,
+     0.0,
+     0.5769,
+     1.0
+    ]
+   }
   },
   {
    "title": "Lake O'Hara",
@@ -1540,7 +2914,33 @@
     0.4
    ],
    "delivered_edge": 5613,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1198,
+     1.0,
+     0.7962
+    ],
+    "9:16": [
+     0.2701,
+     0.0,
+     0.7379,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0501,
+     1.0,
+     0.9519
+    ],
+    "3:4": [
+     0.1901,
+     0.0,
+     0.8139,
+     1.0
+    ]
+   }
   },
   {
    "title": "Village Children",
@@ -1567,7 +2967,33 @@
     0.35
    ],
    "delivered_edge": 5605,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0503,
+     1.0,
+     0.7217
+    ],
+    "9:16": [
+     0.1649,
+     0.0,
+     0.6361,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0304,
+     1.0,
+     0.9256
+    ],
+    "3:4": [
+     0.1298,
+     0.0,
+     0.7582,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Interior of a Hospital Tent",
@@ -1594,7 +3020,33 @@
     0.4
    ],
    "delivered_edge": 5304,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.15,
+     1.0,
+     0.7125
+    ],
+    "9:16": [
+     0.25,
+     0.0,
+     0.8125,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.06,
+     1.0,
+     0.81
+    ],
+    "3:4": [
+     0.09,
+     0.0,
+     0.84,
+     1.0
+    ]
+   }
   },
   {
    "title": "A Spanish Madonna",
@@ -1621,7 +3073,33 @@
     0.45
    ],
    "delivered_edge": 4938,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.2802,
+     1.0,
+     0.6098
+    ],
+    "9:16": [
+     0.0199,
+     0.0,
+     0.9801,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.2201,
+     1.0,
+     0.6594
+    ],
+    "3:4": [
+     0.0,
+     0.0799,
+     1.0,
+     0.8611
+    ]
+   }
   },
   {
    "title": "An Out-of-Doors Study",
@@ -1648,7 +3126,33 @@
     0.35
    ],
    "delivered_edge": 4849,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0799,
+     1.0,
+     0.7661
+    ],
+    "9:16": [
+     0.3399,
+     0.0,
+     0.8011,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.04,
+     1.0,
+     0.955
+    ],
+    "3:4": [
+     0.2201,
+     0.0,
+     0.8349,
+     1.0
+    ]
+   }
   },
   {
    "title": "Prince Baltasar Carlos on Horseback (after Velázquez)",
@@ -1675,7 +3179,33 @@
     0.4
    ],
    "delivered_edge": 4800,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.06,
+     1.0,
+     0.507
+    ],
+    "9:16": [
+     0.1001,
+     0.0,
+     0.8079,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.06,
+     1.0,
+     0.656
+    ],
+    "3:4": [
+     0.0297,
+     0.0,
+     0.9733,
+     1.0
+    ]
+   }
   },
   {
    "title": "I Gesuati (The Church of the Gesuati, Venice)",
@@ -1702,7 +3232,27 @@
     0.45
    ],
    "delivered_edge": 4359,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "9:16": [
+     0.0598,
+     0.0,
+     0.9112,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.3002,
+     1.0,
+     0.7958
+    ],
+    "3:4": [
+     0.0,
+     0.05,
+     1.0,
+     0.931
+    ]
+   }
   },
   {
    "title": "The Mosquito Net",
@@ -1729,7 +3279,33 @@
     0.28
    ],
    "delivered_edge": 4260,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0497,
+     1.0,
+     0.7513
+    ],
+    "9:16": [
+     0.02,
+     0.0,
+     0.471,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0197,
+     1.0,
+     0.9553
+    ],
+    "3:4": [
+     0.0299,
+     0.0,
+     0.6311,
+     1.0
+    ]
+   }
   },
   {
    "title": "Landscape with Goats",
@@ -1756,7 +3332,33 @@
     0.78
    ],
    "delivered_edge": 4209,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1399,
+     1.0,
+     0.8641
+    ],
+    "9:16": [
+     0.0801,
+     0.0,
+     0.5169,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0172,
+     1.0,
+     0.9828
+    ],
+    "3:4": [
+     0.1397,
+     0.0,
+     0.7223,
+     1.0
+    ]
+   }
   },
   {
    "title": "Franciscan Monk in the Garden of Gethsemane",
@@ -1783,7 +3385,33 @@
     0.25
    ],
    "delivered_edge": 4136,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0799,
+     1.0,
+     0.5171
+    ],
+    "9:16": [
+     0.1402,
+     0.0,
+     0.8638,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1,
+     1.0,
+     0.683
+    ],
+    "3:4": [
+     0.0101,
+     0.0,
+     0.9749,
+     1.0
+    ]
+   }
   },
   {
    "title": "Simplon Pass",
@@ -1810,7 +3438,33 @@
     0.25
    ],
    "delivered_edge": 4096,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1002,
+     1.0,
+     0.8258
+    ],
+    "9:16": [
+     0.2,
+     0.0,
+     0.636,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0162,
+     1.0,
+     0.9838
+    ],
+    "3:4": [
+     0.1598,
+     0.0,
+     0.7412,
+     1.0
+    ]
+   }
   },
   {
    "title": "Trees",
@@ -1837,7 +3491,33 @@
     0.3
    ],
    "delivered_edge": 4020,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1,
+     1.0,
+     0.892
+    ],
+    "9:16": [
+     0.3,
+     0.0,
+     0.6995,
+     1.0
+    ],
+    "4:3": [
+     0.0199,
+     0.0,
+     0.9668,
+     1.0
+    ],
+    "3:4": [
+     0.2,
+     0.0,
+     0.7327,
+     1.0
+    ]
+   }
   },
   {
    "title": "Simplon Pass: Mrs Barnard and Her Daughter Dorothy",
@@ -1864,7 +3544,33 @@
     0.3
    ],
    "delivered_edge": 4000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0001,
+     1.0,
+     0.8089
+    ],
+    "9:16": [
+     0.1999,
+     0.0,
+     0.5911,
+     1.0
+    ],
+    "4:3": [
+     0.0363,
+     0.0,
+     0.9637,
+     1.0
+    ],
+    "3:4": [
+     0.1502,
+     0.0,
+     0.6718,
+     1.0
+    ]
+   }
   },
   {
    "title": "Angels, Mosaic, Palatine Chapel, Palermo",
@@ -1891,7 +3597,33 @@
     0.55
    ],
    "delivered_edge": 4000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0899,
+     1.0,
+     0.8591
+    ],
+    "9:16": [
+     0.3498,
+     0.0,
+     0.7612,
+     1.0
+    ],
+    "4:3": [
+     0.0125,
+     0.0,
+     0.9875,
+     1.0
+    ],
+    "3:4": [
+     0.2258,
+     0.0,
+     0.7742,
+     1.0
+    ]
+   }
   },
   {
    "title": "Two Figures in a Boat, Isola Bella",
@@ -1918,7 +3650,33 @@
     0.38
    ],
    "delivered_edge": 3999,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1001,
+     1.0,
+     0.9439
+    ],
+    "9:16": [
+     0.2,
+     0.0,
+     0.575,
+     1.0
+    ],
+    "4:3": [
+     0.0561,
+     0.0,
+     0.9449,
+     1.0
+    ],
+    "3:4": [
+     0.2,
+     0.0,
+     0.7,
+     1.0
+    ]
+   }
   },
   {
    "title": "Glacier Streams, The Simplon",
@@ -1945,7 +3703,33 @@
     0.55
    ],
    "delivered_edge": 3984,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.13,
+     1.0,
+     0.864
+    ],
+    "9:16": [
+     0.3,
+     0.0,
+     0.731,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0106,
+     1.0,
+     0.9894
+    ],
+    "3:4": [
+     0.2126,
+     0.0,
+     0.7874,
+     1.0
+    ]
+   }
   },
   {
    "title": "A Tarpaulin over a Dug-out, Ransart",
@@ -1972,7 +3756,33 @@
     0.5
    ],
    "delivered_edge": 3980,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.2328,
+     1.0,
+     0.8702
+    ],
+    "9:16": [
+     0.2498,
+     0.0,
+     0.7462,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.02,
+     1.0,
+     0.87
+    ],
+    "3:4": [
+     0.1691,
+     0.0,
+     0.8309,
+     1.0
+    ]
+   }
   },
   {
    "title": "A Street in Arras",
@@ -1999,7 +3809,33 @@
     0.65
    ],
    "delivered_edge": 3888,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.2406,
+     1.0,
+     0.8704
+    ],
+    "9:16": [
+     0.4503,
+     0.0,
+     0.9527,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0307,
+     1.0,
+     0.8703
+    ],
+    "3:4": [
+     0.33,
+     0.0,
+     1.0,
+     1.0
+    ]
+   }
   },
   {
    "title": "Ada Rehan",
@@ -2026,7 +3862,33 @@
     0.25
    ],
    "delivered_edge": 3885,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0307,
+     1.0,
+     0.3333
+    ],
+    "9:16": [
+     0.0,
+     0.0218,
+     1.0,
+     0.9782
+    ],
+    "4:3": [
+     0.0,
+     0.0303,
+     1.0,
+     0.4337
+    ],
+    "3:4": [
+     0.0,
+     0.0004,
+     1.0,
+     0.7176
+    ]
+   }
   },
   {
    "title": "Boats",
@@ -2053,7 +3915,27 @@
     0.45
    ],
    "delivered_edge": 3873,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0599,
+     1.0,
+     0.7981
+    ],
+    "4:3": [
+     0.0,
+     0.0078,
+     1.0,
+     0.9922
+    ],
+    "3:4": [
+     0.3003,
+     0.0,
+     0.8717,
+     1.0
+    ]
+   }
   },
   {
    "title": "Alhambra, Granada",
@@ -2080,7 +3962,33 @@
     0.5
    ],
    "delivered_edge": 3867,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.2999,
+     1.0,
+     0.6991
+    ],
+    "9:16": [
+     0.1043,
+     0.0,
+     0.8967,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.2803,
+     1.0,
+     0.8127
+    ],
+    "3:4": [
+     0.0,
+     0.0268,
+     1.0,
+     0.9732
+    ]
+   }
   },
   {
    "title": "Two Girls with Parasols at Fladbury",
@@ -2107,7 +4015,33 @@
     0.35
    ],
    "delivered_edge": 3848,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1502,
+     1.0,
+     0.6198
+    ],
+    "9:16": [
+     0.1501,
+     0.0,
+     0.8239,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1005,
+     1.0,
+     0.7265
+    ],
+    "3:4": [
+     0.0507,
+     0.0,
+     0.9493,
+     1.0
+    ]
+   }
   },
   {
    "title": "School Time",
@@ -2134,7 +4068,33 @@
     0.55
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0498,
+     1.0,
+     0.9042
+    ],
+    "9:16": [
+     0.4198,
+     0.0,
+     0.7902,
+     1.0
+    ],
+    "4:3": [
+     0.0611,
+     0.0,
+     0.9389,
+     1.0
+    ],
+    "3:4": [
+     0.3301,
+     0.0,
+     0.8239,
+     1.0
+    ]
+   }
   },
   {
    "title": "Crossing the Pasture",
@@ -2161,7 +4121,33 @@
     0.45
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.09,
+     1.0,
+     0.912
+    ],
+    "9:16": [
+     0.2001,
+     0.0,
+     0.5849,
+     1.0
+    ],
+    "4:3": [
+     0.0438,
+     0.0,
+     0.9562,
+     1.0
+    ],
+    "3:4": [
+     0.1999,
+     0.0,
+     0.7131,
+     1.0
+    ]
+   }
   },
   {
    "title": "Schooner, Nassau",
@@ -2188,7 +4174,33 @@
     0.45
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0001,
+     1.0,
+     0.8009
+    ],
+    "9:16": [
+     0.12,
+     0.0,
+     0.515,
+     1.0
+    ],
+    "4:3": [
+     0.0318,
+     0.0,
+     0.9682,
+     1.0
+    ],
+    "3:4": [
+     0.1001,
+     0.0,
+     0.6269,
+     1.0
+    ]
+   }
   },
   {
    "title": "The End of the Day, Adirondacks",
@@ -2215,7 +4227,33 @@
     0.5
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0998,
+     1.0,
+     0.9072
+    ],
+    "9:16": [
+     0.24,
+     0.0,
+     0.632,
+     1.0
+    ],
+    "4:3": [
+     0.036,
+     0.0,
+     0.965,
+     1.0
+    ],
+    "3:4": [
+     0.1902,
+     0.0,
+     0.7128,
+     1.0
+    ]
+   }
   },
   {
    "title": "Right and Left",
@@ -2242,7 +4280,33 @@
     0.4
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0141,
+     1.0,
+     0.9859
+    ],
+    "9:16": [
+     0.0002,
+     0.0,
+     0.3258,
+     1.0
+    ],
+    "4:3": [
+     0.0501,
+     0.0,
+     0.8219,
+     1.0
+    ],
+    "3:4": [
+     0.0,
+     0.0,
+     0.4341,
+     1.0
+    ]
+   }
   },
   {
    "title": "A Light on the Sea",
@@ -2269,7 +4333,33 @@
     0.45
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0163,
+     1.0,
+     0.9837
+    ],
+    "9:16": [
+     0.22,
+     0.0,
+     0.547,
+     1.0
+    ],
+    "4:3": [
+     0.0998,
+     0.0,
+     0.8752,
+     1.0
+    ],
+    "3:4": [
+     0.1899,
+     0.0,
+     0.6261,
+     1.0
+    ]
+   }
   },
   {
    "title": "Undertow",
@@ -2296,7 +4386,33 @@
     0.5
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.048,
+     1.0,
+     0.952
+    ],
+    "9:16": [
+     0.33,
+     0.0,
+     0.68,
+     1.0
+    ],
+    "4:3": [
+     0.0602,
+     0.0,
+     0.8898,
+     1.0
+    ],
+    "3:4": [
+     0.2802,
+     0.0,
+     0.7468,
+     1.0
+    ]
+   }
   },
   {
    "title": "Saco Bay",
@@ -2323,7 +4439,27 @@
     0.4
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0498,
+     1.0,
+     0.9472
+    ],
+    "4:3": [
+     0.0821,
+     0.0,
+     0.9179,
+     1.0
+    ],
+    "3:4": [
+     0.1899,
+     0.0,
+     0.6601,
+     1.0
+    ]
+   }
   },
   {
    "title": "Eastern Point",
@@ -2350,7 +4486,33 @@
     0.4
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0492,
+     1.0,
+     0.9508
+    ],
+    "9:16": [
+     0.32,
+     0.0,
+     0.671,
+     1.0
+    ],
+    "4:3": [
+     0.084,
+     0.0,
+     0.916,
+     1.0
+    ],
+    "3:4": [
+     0.266,
+     0.0,
+     0.734,
+     1.0
+    ]
+   }
   },
   {
    "title": "Sleigh Ride",
@@ -2377,7 +4539,33 @@
     0.35
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0,
+     1.0,
+     0.8085
+    ],
+    "9:16": [
+     0.1003,
+     0.0,
+     0.4917,
+     1.0
+    ],
+    "4:3": [
+     0.0362,
+     0.0,
+     0.9638,
+     1.0
+    ],
+    "3:4": [
+     0.0801,
+     0.0,
+     0.6019,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Bridle Path, White Mountains",
@@ -2404,7 +4592,33 @@
     0.4
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0518,
+     1.0,
+     0.9472
+    ],
+    "9:16": [
+     0.3598,
+     0.0,
+     0.7132,
+     1.0
+    ],
+    "4:3": [
+     0.0812,
+     0.0,
+     0.9188,
+     1.0
+    ],
+    "3:4": [
+     0.2949,
+     0.0,
+     0.7661,
+     1.0
+    ]
+   }
   },
   {
    "title": "West Point, Prout's Neck",
@@ -2431,7 +4645,33 @@
     0.35
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0476,
+     1.0,
+     0.9524
+    ],
+    "9:16": [
+     0.1001,
+     0.0,
+     0.4499,
+     1.0
+    ],
+    "4:3": [
+     0.06,
+     0.0,
+     0.889,
+     1.0
+    ],
+    "3:4": [
+     0.0898,
+     0.0,
+     0.5562,
+     1.0
+    ]
+   }
   },
   {
    "title": "Two guides",
@@ -2458,7 +4698,33 @@
     0.45
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0538,
+     1.0,
+     0.9472
+    ],
+    "9:16": [
+     0.2429,
+     0.0,
+     0.5971,
+     1.0
+    ],
+    "4:3": [
+     0.0202,
+     0.0,
+     0.8598,
+     1.0
+    ],
+    "3:4": [
+     0.1839,
+     0.0,
+     0.6561,
+     1.0
+    ]
+   }
   },
   {
    "title": "Shepherdess of Houghton Farm",
@@ -2485,7 +4751,33 @@
     0.65
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.015,
+     1.0,
+     0.984
+    ],
+    "9:16": [
+     0.2567,
+     0.0,
+     0.5833,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0,
+     0.774,
+     1.0
+    ],
+    "3:4": [
+     0.2018,
+     0.0,
+     0.6372,
+     1.0
+    ]
+   }
   },
   {
    "title": "Fishing Boats, Key West",
@@ -2512,7 +4804,33 @@
     0.45
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0502,
+     1.0,
+     0.9298
+    ],
+    "9:16": [
+     0.3702,
+     0.0,
+     0.7298,
+     1.0
+    ],
+    "4:3": [
+     0.0742,
+     0.0,
+     0.9268,
+     1.0
+    ],
+    "3:4": [
+     0.2602,
+     0.0,
+     0.7398,
+     1.0
+    ]
+   }
   },
   {
    "title": "A Good Pool, Saguenay River",
@@ -2539,7 +4857,21 @@
     0.35
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0362,
+     0.0,
+     0.9638,
+     1.0
+    ],
+    "4:3": [
+     0.0517,
+     0.0,
+     0.7473,
+     1.0
+    ]
+   }
   },
   {
    "title": "Fish and Butterflies",
@@ -2566,7 +4898,33 @@
     0.45
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0297,
+     1.0,
+     0.8343
+    ],
+    "9:16": [
+     0.2039,
+     0.0,
+     0.5971,
+     1.0
+    ],
+    "4:3": [
+     0.0339,
+     0.0,
+     0.9661,
+     1.0
+    ],
+    "3:4": [
+     0.1078,
+     0.0,
+     0.6322,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Red School House",
@@ -2593,7 +4951,33 @@
     0.17
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0801,
+     1.0,
+     0.4739
+    ],
+    "9:16": [
+     0.0983,
+     0.0,
+     0.9017,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.06,
+     1.0,
+     0.585
+    ],
+    "3:4": [
+     0.0,
+     0.0297,
+     1.0,
+     0.9633
+    ]
+   }
   },
   {
    "title": "Farmyard Scene",
@@ -2620,7 +5004,33 @@
     0.55
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.09,
+     1.0,
+     0.935
+    ],
+    "9:16": [
+     0.1325,
+     0.0,
+     0.507,
+     1.0
+    ],
+    "4:3": [
+     0.0103,
+     0.0,
+     0.8978,
+     1.0
+    ],
+    "3:4": [
+     0.1704,
+     0.0,
+     0.6696,
+     1.0
+    ]
+   }
   },
   {
    "title": "Kissing the Moon",
@@ -2647,7 +5057,33 @@
     0.6
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0702,
+     1.0,
+     0.8278
+    ],
+    "9:16": [
+     0.3712,
+     0.0,
+     0.7888,
+     1.0
+    ],
+    "4:3": [
+     0.005,
+     0.0,
+     0.995,
+     1.0
+    ],
+    "3:4": [
+     0.2714,
+     0.0,
+     0.8282,
+     1.0
+    ]
+   }
   },
   {
    "title": "Hunting for Eggs",
@@ -2674,7 +5110,33 @@
     0.19
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1201,
+     1.0,
+     0.4389
+    ],
+    "9:16": [
+     0.0037,
+     0.0,
+     0.9963,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.14,
+     1.0,
+     0.565
+    ],
+    "3:4": [
+     0.0,
+     0.0602,
+     1.0,
+     0.8158
+    ]
+   }
   },
   {
    "title": "Osprey's Nest",
@@ -2701,7 +5163,21 @@
     0.72
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "9:16": [
+     0.0496,
+     0.0,
+     0.9414,
+     1.0
+    ],
+    "3:4": [
+     0.0,
+     0.05,
+     1.0,
+     0.891
+    ]
+   }
   },
   {
    "title": "Summer Squall",
@@ -2728,7 +5204,33 @@
     0.68
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1796,
+     1.0,
+     0.8824
+    ],
+    "9:16": [
+     0.2749,
+     0.0,
+     0.7251,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.03,
+     1.0,
+     0.967
+    ],
+    "3:4": [
+     0.1999,
+     0.0,
+     0.8001,
+     1.0
+    ]
+   }
   },
   {
    "title": "Hound and Hunter",
@@ -2755,7 +5257,27 @@
     0.55
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0039,
+     1.0,
+     0.9961
+    ],
+    "4:3": [
+     0.172,
+     0.0,
+     0.928,
+     1.0
+    ],
+    "3:4": [
+     0.3674,
+     0.0,
+     0.7926,
+     1.0
+    ]
+   }
   },
   {
    "title": "Perils of the Sea",
@@ -2782,7 +5304,33 @@
     0.42
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1002,
+     1.0,
+     0.9028
+    ],
+    "9:16": [
+     0.1229,
+     0.0,
+     0.5171,
+     1.0
+    ],
+    "4:3": [
+     0.0327,
+     0.0,
+     0.9673,
+     1.0
+    ],
+    "3:4": [
+     0.0572,
+     0.0,
+     0.5828,
+     1.0
+    ]
+   }
   },
   {
    "title": "An October Day",
@@ -2809,7 +5357,33 @@
     0.68
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0801,
+     1.0,
+     0.8819
+    ],
+    "9:16": [
+     0.3727,
+     0.0,
+     0.7673,
+     1.0
+    ],
+    "4:3": [
+     0.0323,
+     0.0,
+     0.9677,
+     1.0
+    ],
+    "3:4": [
+     0.2869,
+     0.0,
+     0.8131,
+     1.0
+    ]
+   }
   },
   {
    "title": "Beach Scene, Cullercoats",
@@ -2836,7 +5410,21 @@
     0.55
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0291,
+     1.0,
+     0.9709
+    ],
+    "4:3": [
+     0.0518,
+     0.0,
+     0.8482,
+     1.0
+    ]
+   }
   },
   {
    "title": "Feeding Time",
@@ -2863,7 +5451,33 @@
     0.45
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1201,
+     1.0,
+     0.8369
+    ],
+    "9:16": [
+     0.1793,
+     0.0,
+     0.6207,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0201,
+     1.0,
+     0.9759
+    ],
+    "3:4": [
+     0.1068,
+     0.0,
+     0.6952,
+     1.0
+    ]
+   }
   },
   {
    "title": "Fisherman in Quebec, Canada",
@@ -2890,7 +5504,33 @@
     0.55
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.05,
+     1.0,
+     0.955
+    ],
+    "9:16": [
+     0.0452,
+     0.0,
+     0.3948,
+     1.0
+    ],
+    "4:3": [
+     0.0302,
+     0.0,
+     0.8588,
+     1.0
+    ],
+    "3:4": [
+     0.0,
+     0.0,
+     0.4661,
+     1.0
+    ]
+   }
   },
   {
    "title": "Spring",
@@ -2917,7 +5557,33 @@
     0.45
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.05,
+     1.0,
+     0.491
+    ],
+    "9:16": [
+     0.1213,
+     0.0,
+     0.8387,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.04,
+     1.0,
+     0.628
+    ],
+    "3:4": [
+     0.0217,
+     0.0,
+     0.9783,
+     1.0
+    ]
+   }
   },
   {
    "title": "Summer",
@@ -2944,7 +5610,27 @@
     0.42
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "9:16": [
+     0.0,
+     0.0298,
+     1.0,
+     0.9562
+    ],
+    "4:3": [
+     0.0,
+     0.1001,
+     1.0,
+     0.4909
+    ],
+    "3:4": [
+     0.0,
+     0.0501,
+     1.0,
+     0.7449
+    ]
+   }
   },
   {
    "title": "Song of the Lark",
@@ -2971,7 +5657,33 @@
     0.3
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.2002,
+     1.0,
+     0.5498
+    ],
+    "9:16": [
+     0.0395,
+     0.0,
+     0.9445,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1804,
+     1.0,
+     0.6466
+    ],
+    "3:4": [
+     0.0,
+     0.0856,
+     1.0,
+     0.9144
+    ]
+   }
   },
   {
    "title": "The Boat Builders",
@@ -2998,7 +5710,33 @@
     0.55
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0201,
+     1.0,
+     0.9859
+    ],
+    "9:16": [
+     0.2202,
+     0.0,
+     0.5478,
+     1.0
+    ],
+    "4:3": [
+     0.0802,
+     0.0,
+     0.8568,
+     1.0
+    ],
+    "3:4": [
+     0.1401,
+     0.0,
+     0.5769,
+     1.0
+    ]
+   }
   },
   {
    "title": "Autumn",
@@ -3025,7 +5763,33 @@
     0.4
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1802,
+     1.0,
+     0.5288
+    ],
+    "9:16": [
+     0.0446,
+     0.0,
+     0.9524,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1501,
+     1.0,
+     0.6149
+    ],
+    "3:4": [
+     0.0,
+     0.0604,
+     1.0,
+     0.8866
+    ]
+   }
   },
   {
    "title": "Bermuda Settlers",
@@ -3052,7 +5816,27 @@
     0.6
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0801,
+     1.0,
+     0.9249
+    ],
+    "4:3": [
+     0.0601,
+     0.0,
+     0.9479,
+     1.0
+    ],
+    "3:4": [
+     0.2698,
+     0.0,
+     0.7692,
+     1.0
+    ]
+   }
   },
   {
    "title": "Sunlight on the Coast",
@@ -3079,7 +5863,33 @@
     0.45
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0597,
+     1.0,
+     0.9803
+    ],
+    "9:16": [
+     0.3301,
+     0.0,
+     0.6739,
+     1.0
+    ],
+    "4:3": [
+     0.1001,
+     0.0,
+     0.9149,
+     1.0
+    ],
+    "3:4": [
+     0.2703,
+     0.0,
+     0.7287,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Rise",
@@ -3106,7 +5916,33 @@
     0.55
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.07,
+     1.0,
+     0.914
+    ],
+    "9:16": [
+     0.3101,
+     0.0,
+     0.6849,
+     1.0
+    ],
+    "4:3": [
+     0.0597,
+     0.0,
+     0.9483,
+     1.0
+    ],
+    "3:4": [
+     0.2501,
+     0.0,
+     0.7499,
+     1.0
+    ]
+   }
   },
   {
    "title": "Casting in the Falls",
@@ -3133,7 +5969,33 @@
     0.25
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0299,
+     1.0,
+     0.8371
+    ],
+    "9:16": [
+     0.484,
+     0.0,
+     0.876,
+     1.0
+    ],
+    "4:3": [
+     0.0349,
+     0.0,
+     0.9641,
+     1.0
+    ],
+    "3:4": [
+     0.3502,
+     0.0,
+     0.8728,
+     1.0
+    ]
+   }
   },
   {
    "title": "Mending the Nets",
@@ -3160,7 +6022,33 @@
     0.55
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.3,
+     1.0,
+     0.697
+    ],
+    "9:16": [
+     0.1,
+     0.0,
+     0.897,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.2803,
+     1.0,
+     0.8097
+    ],
+    "3:4": [
+     0.0,
+     0.0499,
+     1.0,
+     0.9911
+    ]
+   }
   },
   {
    "title": "Woodland Stream",
@@ -3187,7 +6075,33 @@
     0.55
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0058,
+     0.0,
+     0.9942,
+     1.0
+    ],
+    "9:16": [
+     0.1001,
+     0.0,
+     0.4129,
+     1.0
+    ],
+    "4:3": [
+     0.1298,
+     0.0,
+     0.8712,
+     1.0
+    ],
+    "3:4": [
+     0.1,
+     0.0,
+     0.517,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Conch Divers",
@@ -3214,7 +6128,33 @@
     0.45
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0999,
+     1.0,
+     0.9091
+    ],
+    "9:16": [
+     0.16,
+     0.0,
+     0.551,
+     1.0
+    ],
+    "4:3": [
+     0.04,
+     0.0,
+     0.967,
+     1.0
+    ],
+    "3:4": [
+     0.0803,
+     0.0,
+     0.6017,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Four Leaf Clover",
@@ -3241,7 +6181,33 @@
     0.55
    ],
    "delivered_edge": 7679,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0998,
+     1.0,
+     0.9002
+    ],
+    "9:16": [
+     0.5769,
+     0.0,
+     0.9721,
+     1.0
+    ],
+    "4:3": [
+     0.05,
+     0.0,
+     0.987,
+     1.0
+    ],
+    "3:4": [
+     0.4,
+     0.0,
+     0.927,
+     1.0
+    ]
+   }
   },
   {
    "title": "Young Girl",
@@ -3268,7 +6234,33 @@
     0.35
    ],
    "delivered_edge": 7656,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1497,
+     1.0,
+     0.5323
+    ],
+    "9:16": [
+     0.086,
+     0.0,
+     0.913,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.12,
+     1.0,
+     0.63
+    ],
+    "3:4": [
+     0.0,
+     0.0201,
+     1.0,
+     0.9269
+    ]
+   }
   },
   {
    "title": "Hudson River, Logging",
@@ -3295,7 +6287,33 @@
     0.55
    ],
    "delivered_edge": 7587,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0897,
+     1.0,
+     0.9143
+    ],
+    "9:16": [
+     0.2582,
+     0.0,
+     0.6418,
+     1.0
+    ],
+    "4:3": [
+     0.0448,
+     0.0,
+     0.9542,
+     1.0
+    ],
+    "3:4": [
+     0.2202,
+     0.0,
+     0.7318,
+     1.0
+    ]
+   }
   },
   {
    "title": "View of Santiago de Cuba",
@@ -3322,7 +6340,33 @@
     0.5
    ],
    "delivered_edge": 7556,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0153,
+     0.0,
+     0.9887,
+     1.0
+    ],
+    "9:16": [
+     0.496,
+     0.0,
+     0.804,
+     1.0
+    ],
+    "4:3": [
+     0.18,
+     0.0,
+     0.91,
+     1.0
+    ],
+    "3:4": [
+     0.4502,
+     0.0,
+     0.8608,
+     1.0
+    ]
+   }
   },
   {
    "title": "Sailboats at Gloucester",
@@ -3349,7 +6393,33 @@
     0.45
    ],
    "delivered_edge": 7520,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0399,
+     1.0,
+     0.9781
+    ],
+    "9:16": [
+     0.3999,
+     0.0,
+     0.7371,
+     1.0
+    ],
+    "4:3": [
+     0.0998,
+     0.0,
+     0.8992,
+     1.0
+    ],
+    "3:4": [
+     0.3001,
+     0.0,
+     0.7499,
+     1.0
+    ]
+   }
   },
   {
    "title": "Old Friends",
@@ -3376,7 +6446,33 @@
     0.5
    ],
    "delivered_edge": 7519,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.2999,
+     1.0,
+     0.6971
+    ],
+    "9:16": [
+     0.1002,
+     0.0,
+     0.8968,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.2502,
+     1.0,
+     0.7798
+    ],
+    "3:4": [
+     0.0,
+     0.0398,
+     1.0,
+     0.9812
+    ]
+   }
   },
   {
    "title": "Snap-the-Whip",
@@ -3403,7 +6499,33 @@
     0.55
    ],
    "delivered_edge": 7366,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1401,
+     1.0,
+     0.9169
+    ],
+    "9:16": [
+     0.3498,
+     0.0,
+     0.7572,
+     1.0
+    ],
+    "4:3": [
+     0.0167,
+     0.0,
+     0.9823,
+     1.0
+    ],
+    "3:4": [
+     0.0999,
+     0.0,
+     0.6431,
+     1.0
+    ]
+   }
   },
   {
    "title": "Sketch of a Cottage Yard",
@@ -3430,7 +6552,33 @@
     0.6
    ],
    "delivered_edge": 7317,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0698,
+     1.0,
+     0.9322
+    ],
+    "9:16": [
+     0.166,
+     0.0,
+     0.533,
+     1.0
+    ],
+    "4:3": [
+     0.0651,
+     0.0,
+     0.9349,
+     1.0
+    ],
+    "3:4": [
+     0.1999,
+     0.0,
+     0.6891,
+     1.0
+    ]
+   }
   },
   {
    "title": "Storm Coming",
@@ -3457,7 +6605,21 @@
     0.87
    ],
    "delivered_edge": 7306,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "9:16": [
+     0.0998,
+     0.0,
+     0.4982,
+     1.0
+    ],
+    "4:3": [
+     0.0279,
+     0.0,
+     0.9721,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Berry Pickers",
@@ -3484,7 +6646,33 @@
     0.62
    ],
    "delivered_edge": 7275,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0901,
+     1.0,
+     0.8919
+    ],
+    "9:16": [
+     0.1,
+     0.0,
+     0.4947,
+     1.0
+    ],
+    "4:3": [
+     0.0301,
+     0.0,
+     0.9656,
+     1.0
+    ],
+    "3:4": [
+     0.0801,
+     0.0,
+     0.6062,
+     1.0
+    ]
+   }
   },
   {
    "title": "Lobster Cove, Manchester, Massachusetts",
@@ -3511,7 +6699,33 @@
     0.72
    ],
    "delivered_edge": 7234,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0101,
+     1.0,
+     0.992
+    ],
+    "9:16": [
+     0.4,
+     0.0,
+     0.7222,
+     1.0
+    ],
+    "4:3": [
+     0.1181,
+     0.0,
+     0.8819,
+     1.0
+    ],
+    "3:4": [
+     0.2852,
+     0.0,
+     0.7148,
+     1.0
+    ]
+   }
   },
   {
    "title": "Boy on a Raft",
@@ -3538,7 +6752,33 @@
     0.55
    ],
    "delivered_edge": 7221,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0302,
+     1.0,
+     0.9665
+    ],
+    "9:16": [
+     0.1999,
+     0.0,
+     0.5379,
+     1.0
+    ],
+    "4:3": [
+     0.0999,
+     0.0,
+     0.9008,
+     1.0
+    ],
+    "3:4": [
+     0.17,
+     0.0,
+     0.6205,
+     1.0
+    ]
+   }
   },
   {
    "title": "Summer Night",
@@ -3565,7 +6805,33 @@
     0.55
    ],
    "delivered_edge": 7221,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "4:3": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ],
+    "16:9": [
+     0.0,
+     0.1001,
+     1.0,
+     0.8486
+    ],
+    "9:16": [
+     0.18,
+     0.0,
+     0.6026,
+     1.0
+    ],
+    "3:4": [
+     0.15,
+     0.0,
+     0.7135,
+     1.0
+    ]
+   }
   },
   {
    "title": "Boys wading",
@@ -3592,7 +6858,33 @@
     0.45
    ],
    "delivered_edge": 7182,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0999,
+     1.0,
+     0.8932
+    ],
+    "9:16": [
+     0.28,
+     0.0,
+     0.6789,
+     1.0
+    ],
+    "4:3": [
+     0.0273,
+     0.0,
+     0.9727,
+     1.0
+    ],
+    "3:4": [
+     0.2201,
+     0.0,
+     0.7518,
+     1.0
+    ]
+   }
   },
   {
    "title": "Four Fishwives on the Beach",
@@ -3619,7 +6911,33 @@
     0.5
    ],
    "delivered_edge": 7151,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.05,
+     1.0,
+     0.932
+    ],
+    "9:16": [
+     0.32,
+     0.0,
+     0.6787,
+     1.0
+    ],
+    "4:3": [
+     0.0799,
+     0.0,
+     0.9304,
+     1.0
+    ],
+    "3:4": [
+     0.28,
+     0.0,
+     0.7583,
+     1.0
+    ]
+   }
   },
   {
    "title": "Charles Prentice Howland",
@@ -3646,7 +6964,33 @@
     0.25
    ],
    "delivered_edge": 7058,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.08,
+     1.0,
+     0.4293
+    ],
+    "9:16": [
+     0.047,
+     0.0,
+     0.953,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1001,
+     1.0,
+     0.5657
+    ],
+    "3:4": [
+     0.0,
+     0.0701,
+     1.0,
+     0.8979
+    ]
+   }
   },
   {
    "title": "The Dinner Horn (Blowing the Horn at Seaside)",
@@ -3673,7 +7017,33 @@
     0.2
    ],
    "delivered_edge": 7019,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0799,
+     1.0,
+     0.4755
+    ],
+    "9:16": [
+     0.1001,
+     0.0,
+     0.9,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0499,
+     1.0,
+     0.5774
+    ],
+    "3:4": [
+     0.0,
+     0.0298,
+     1.0,
+     0.9675
+    ]
+   }
   },
   {
    "title": "The North Woods (Playing Him)",
@@ -3700,7 +7070,33 @@
     0.4
    ],
    "delivered_edge": 7000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1199,
+     1.0,
+     0.9171
+    ],
+    "9:16": [
+     0.3001,
+     0.0,
+     0.6969,
+     1.0
+    ],
+    "4:3": [
+     0.0296,
+     0.0,
+     0.9704,
+     1.0
+    ],
+    "3:4": [
+     0.2201,
+     0.0,
+     0.7492,
+     1.0
+    ]
+   }
   },
   {
    "title": "Girl and Laurel",
@@ -3727,7 +7123,33 @@
     0.5
    ],
    "delivered_edge": 6904,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0799,
+     1.0,
+     0.462
+    ],
+    "9:16": [
+     0.0861,
+     0.0,
+     0.9139,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0599,
+     1.0,
+     0.5694
+    ],
+    "3:4": [
+     0.0,
+     0.0397,
+     1.0,
+     0.9456
+    ]
+   }
   },
   {
    "title": "Boy with Anchor",
@@ -3754,7 +7176,27 @@
     0.55
    ],
    "delivered_edge": 6828,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0027,
+     0.0,
+     0.9973,
+     1.0
+    ],
+    "4:3": [
+     0.12,
+     0.0,
+     0.866,
+     1.0
+    ],
+    "3:4": [
+     0.3201,
+     0.0,
+     0.7396,
+     1.0
+    ]
+   }
   },
   {
    "title": "Sunset",
@@ -3781,7 +7223,33 @@
     0.6
    ],
    "delivered_edge": 6700,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1202,
+     1.0,
+     0.9484
+    ],
+    "9:16": [
+     0.3499,
+     0.0,
+     0.7319,
+     1.0
+    ],
+    "4:3": [
+     0.0473,
+     0.0,
+     0.9527,
+     1.0
+    ],
+    "3:4": [
+     0.2799,
+     0.0,
+     0.7893,
+     1.0
+    ]
+   }
   },
   {
    "title": "Rustic Courtship, or In the Garden",
@@ -3808,7 +7276,33 @@
     0.5
    ],
    "delivered_edge": 6675,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0601,
+     1.0,
+     0.8788
+    ],
+    "9:16": [
+     0.31,
+     0.0,
+     0.6964,
+     1.0
+    ],
+    "4:3": [
+     0.042,
+     0.0,
+     0.958,
+     1.0
+    ],
+    "3:4": [
+     0.2699,
+     0.0,
+     0.7852,
+     1.0
+    ]
+   }
   },
   {
    "title": "Two Girls in a Rowboat",
@@ -3835,7 +7329,33 @@
     0.5
    ],
    "delivered_edge": 6671,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1299,
+     1.0,
+     0.8906
+    ],
+    "9:16": [
+     0.2201,
+     0.0,
+     0.636,
+     1.0
+    ],
+    "4:3": [
+     0.007,
+     0.0,
+     0.993,
+     1.0
+    ],
+    "3:4": [
+     0.2,
+     0.0,
+     0.7547,
+     1.0
+    ]
+   }
   },
   {
    "title": "Defiance: „Inviting a Shot before Petersburg“",
@@ -3862,7 +7382,33 @@
     0.35
    ],
    "delivered_edge": 6667,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.06,
+     1.0,
+     0.9088
+    ],
+    "9:16": [
+     0.28,
+     0.0,
+     0.6528,
+     1.0
+    ],
+    "4:3": [
+     0.058,
+     0.0,
+     0.9416,
+     1.0
+    ],
+    "3:4": [
+     0.25,
+     0.0,
+     0.747,
+     1.0
+    ]
+   }
   },
   {
    "title": "On The Cliff, Cullercoats",
@@ -3889,7 +7435,33 @@
     0.42
    ],
    "delivered_edge": 6631,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1,
+     1.0,
+     0.8937
+    ],
+    "9:16": [
+     0.1,
+     0.0,
+     0.4987,
+     1.0
+    ],
+    "4:3": [
+     0.0276,
+     0.0,
+     0.9724,
+     1.0
+    ],
+    "3:4": [
+     0.0801,
+     0.0,
+     0.6115,
+     1.0
+    ]
+   }
   },
   {
    "title": "A Fisherman's Day",
@@ -3916,7 +7488,33 @@
     0.78
    ],
    "delivered_edge": 6600,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0898,
+     1.0,
+     0.9581
+    ],
+    "9:16": [
+     0.3201,
+     0.0,
+     0.6845,
+     1.0
+    ],
+    "4:3": [
+     0.0681,
+     0.0,
+     0.9319,
+     1.0
+    ],
+    "3:4": [
+     0.2501,
+     0.0,
+     0.7361,
+     1.0
+    ]
+   }
   },
   {
    "title": "Sun and Clouds",
@@ -3943,7 +7541,33 @@
     0.5
    ],
    "delivered_edge": 6600,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0201,
+     1.0,
+     0.9756
+    ],
+    "9:16": [
+     0.25,
+     0.0,
+     0.5811,
+     1.0
+    ],
+    "4:3": [
+     0.1076,
+     0.0,
+     0.8924,
+     1.0
+    ],
+    "3:4": [
+     0.2,
+     0.0,
+     0.6414,
+     1.0
+    ]
+   }
   },
   {
    "title": "Red Shirt, Homosassa, Florida",
@@ -3970,7 +7594,33 @@
     0.35
    ],
    "delivered_edge": 6574,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1,
+     1.0,
+     0.9005
+    ],
+    "9:16": [
+     0.3,
+     0.0,
+     0.6953,
+     1.0
+    ],
+    "4:3": [
+     0.0315,
+     0.0,
+     0.9685,
+     1.0
+    ],
+    "3:4": [
+     0.24,
+     0.0,
+     0.767,
+     1.0
+    ]
+   }
   },
   {
    "title": "Blackboard",
@@ -3997,7 +7647,27 @@
     0.55
    ],
    "delivered_edge": 6566,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "9:16": [
+     0.0746,
+     0.0,
+     0.9254,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.08,
+     1.0,
+     0.5758
+    ],
+    "3:4": [
+     0.0,
+     0.0499,
+     1.0,
+     0.9314
+    ]
+   }
   },
   {
    "title": "Blyth Sands",
@@ -4024,7 +7694,33 @@
     0.55
    ],
    "delivered_edge": 6558,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "4:3": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ],
+    "16:9": [
+     0.0,
+     0.0399,
+     1.0,
+     0.7882
+    ],
+    "9:16": [
+     0.2086,
+     0.0,
+     0.6315,
+     1.0
+    ],
+    "3:4": [
+     0.1381,
+     0.0,
+     0.702,
+     1.0
+    ]
+   }
   },
   {
    "title": "Waterfall in the Adirondacks",
@@ -4051,7 +7747,33 @@
     0.6
    ],
    "delivered_edge": 6541,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0599,
+     1.0,
+     0.8617
+    ],
+    "9:16": [
+     0.1726,
+     0.0,
+     0.5673,
+     1.0
+    ],
+    "4:3": [
+     0.0323,
+     0.0,
+     0.9677,
+     1.0
+    ],
+    "3:4": [
+     0.1069,
+     0.0,
+     0.633,
+     1.0
+    ]
+   }
   },
   {
    "title": "Landscape with Deer in a Morning Haze",
@@ -4078,7 +7800,33 @@
     0.78
    ],
    "delivered_edge": 6532,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1499,
+     1.0,
+     0.9618
+    ],
+    "9:16": [
+     0.0,
+     0.0,
+     0.3898,
+     1.0
+    ],
+    "4:3": [
+     0.0381,
+     0.0,
+     0.9619,
+     1.0
+    ],
+    "3:4": [
+     0.0,
+     0.0,
+     0.5197,
+     1.0
+    ]
+   }
   },
   {
    "title": "Mountain River or Lake",
@@ -4105,7 +7853,33 @@
     0.68
    ],
    "delivered_edge": 6532,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1001,
+     1.0,
+     0.9341
+    ],
+    "9:16": [
+     0.2102,
+     0.0,
+     0.5897,
+     1.0
+    ],
+    "4:3": [
+     0.0503,
+     0.0,
+     0.9497,
+     1.0
+    ],
+    "3:4": [
+     0.1471,
+     0.0,
+     0.6529,
+     1.0
+    ]
+   }
   },
   {
    "title": "Robert Junkins' Garrison House, York, Maine",
@@ -4132,7 +7906,33 @@
     0.32
    ],
    "delivered_edge": 6522,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0799,
+     1.0,
+     0.8996
+    ],
+    "9:16": [
+     0.2569,
+     0.0,
+     0.643,
+     1.0
+    ],
+    "4:3": [
+     0.0425,
+     0.0,
+     0.9575,
+     1.0
+    ],
+    "3:4": [
+     0.1926,
+     0.0,
+     0.7074,
+     1.0
+    ]
+   }
   },
   {
    "title": "Three Fisher Girls, Tynemouth",
@@ -4159,7 +7959,33 @@
     0.55
    ],
    "delivered_edge": 6517,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0399,
+     1.0,
+     0.9559
+    ],
+    "9:16": [
+     0.3772,
+     0.0,
+     0.7227,
+     1.0
+    ],
+    "4:3": [
+     0.0906,
+     0.0,
+     0.9094,
+     1.0
+    ],
+    "3:4": [
+     0.3197,
+     0.0,
+     0.7802,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Flirt",
@@ -4186,7 +8012,33 @@
     0.42
    ],
    "delivered_edge": 6429,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0499,
+     1.0,
+     0.9152
+    ],
+    "9:16": [
+     0.4671,
+     0.0,
+     0.8328,
+     1.0
+    ],
+    "4:3": [
+     0.0667,
+     0.0,
+     0.9333,
+     1.0
+    ],
+    "3:4": [
+     0.4062,
+     0.0,
+     0.8937,
+     1.0
+    ]
+   }
   },
   {
    "title": "Playing a Fish",
@@ -4213,7 +8065,33 @@
     0.5
    ],
    "delivered_edge": 6354,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0401,
+     1.0,
+     0.9607
+    ],
+    "9:16": [
+     0.2282,
+     0.0,
+     0.5718,
+     1.0
+    ],
+    "4:3": [
+     0.0927,
+     0.0,
+     0.9073,
+     1.0
+    ],
+    "3:4": [
+     0.1709,
+     0.0,
+     0.6291,
+     1.0
+    ]
+   }
   },
   {
    "title": "Casting",
@@ -4240,7 +8118,33 @@
     0.5
    ],
    "delivered_edge": 6287,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0799,
+     1.0,
+     0.9165
+    ],
+    "9:16": [
+     0.2809,
+     0.0,
+     0.659,
+     1.0
+    ],
+    "4:3": [
+     0.0518,
+     0.0,
+     0.9482,
+     1.0
+    ],
+    "3:4": [
+     0.2179,
+     0.0,
+     0.7221,
+     1.0
+    ]
+   }
   },
   {
    "title": "Woman Sewing",
@@ -4267,7 +8171,33 @@
     0.5
    ],
    "delivered_edge": 6230,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.13,
+     1.0,
+     0.5845
+    ],
+    "9:16": [
+     0.1518,
+     0.0,
+     0.8481,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0801,
+     1.0,
+     0.6859
+    ],
+    "3:4": [
+     0.0358,
+     0.0,
+     0.9642,
+     1.0
+    ]
+   }
   },
   {
    "title": "Valley and Hillside",
@@ -4294,7 +8224,33 @@
     0.7
    ],
    "delivered_edge": 6228,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0901,
+     1.0,
+     0.901
+    ],
+    "9:16": [
+     0.4749,
+     0.0,
+     0.865,
+     1.0
+    ],
+    "4:3": [
+     0.0376,
+     0.0,
+     0.9625,
+     1.0
+    ],
+    "3:4": [
+     0.4098,
+     0.0,
+     0.9301,
+     1.0
+    ]
+   }
   },
   {
    "title": "Sunday Morning in Virginia",
@@ -4321,7 +8277,33 @@
     0.55
    ],
    "delivered_edge": 6162,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "4:3": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ],
+    "16:9": [
+     0.0,
+     0.0999,
+     1.0,
+     0.8544
+    ],
+    "9:16": [
+     0.1403,
+     0.0,
+     0.5597,
+     1.0
+    ],
+    "3:4": [
+     0.1404,
+     0.0,
+     0.6996,
+     1.0
+    ]
+   }
   },
   {
    "title": "Rocky Shore, Bermuda",
@@ -4348,7 +8330,21 @@
     0.65
    ],
    "delivered_edge": 6145,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0601,
+     1.0,
+     0.898
+    ],
+    "4:3": [
+     0.0525,
+     0.0,
+     0.9475,
+     1.0
+    ]
+   }
   },
   {
    "title": "Early Morning After a Storm at Sea",
@@ -4375,7 +8371,33 @@
     0.4
    ],
    "delivered_edge": 6000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0299,
+     1.0,
+     0.9627
+    ],
+    "9:16": [
+     0.3804,
+     0.0,
+     0.7195,
+     1.0
+    ],
+    "4:3": [
+     0.0981,
+     0.0,
+     0.9021,
+     1.0
+    ],
+    "3:4": [
+     0.3239,
+     0.0,
+     0.7761,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Garden Wall",
@@ -4402,7 +8424,33 @@
     0.55
    ],
    "delivered_edge": 6000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0601,
+     1.0,
+     0.9222
+    ],
+    "9:16": [
+     0.1665,
+     0.0,
+     0.5335,
+     1.0
+    ],
+    "4:3": [
+     0.065,
+     0.0,
+     0.935,
+     1.0
+    ],
+    "3:4": [
+     0.1053,
+     0.0,
+     0.5946,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Life Line",
@@ -4429,7 +8477,33 @@
     0.45
    ],
    "delivered_edge": 5987,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0599,
+     1.0,
+     0.8375
+    ],
+    "9:16": [
+     0.2965,
+     0.0,
+     0.7035,
+     1.0
+    ],
+    "4:3": [
+     0.0177,
+     0.0,
+     0.9823,
+     1.0
+    ],
+    "3:4": [
+     0.2287,
+     0.0,
+     0.7713,
+     1.0
+    ]
+   }
   },
   {
    "title": "Leaping Trout",
@@ -4456,7 +8530,33 @@
     0.45
    ],
    "delivered_edge": 5924,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1,
+     1.0,
+     0.9044
+    ],
+    "9:16": [
+     0.2533,
+     0.0,
+     0.6466,
+     1.0
+    ],
+    "4:3": [
+     0.0338,
+     0.0,
+     0.9662,
+     1.0
+    ],
+    "3:4": [
+     0.1877,
+     0.0,
+     0.7123,
+     1.0
+    ]
+   }
   },
   {
    "title": "Prisoners from the Front",
@@ -4483,7 +8583,33 @@
     0.42
    ],
    "delivered_edge": 5892,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.04,
+     1.0,
+     0.9406
+    ],
+    "9:16": [
+     0.1543,
+     0.0,
+     0.5057,
+     1.0
+    ],
+    "4:3": [
+     0.0836,
+     0.0,
+     0.9164,
+     1.0
+    ],
+    "3:4": [
+     0.0957,
+     0.0,
+     0.5642,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Brush Harrow / Harrowing, Spring Time",
@@ -4510,7 +8636,33 @@
     0.42
    ],
    "delivered_edge": 5870,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0501,
+     1.0,
+     0.9415
+    ],
+    "9:16": [
+     0.0725,
+     0.0,
+     0.4274,
+     1.0
+    ],
+    "4:3": [
+     0.0794,
+     0.0,
+     0.9207,
+     1.0
+    ],
+    "3:4": [
+     0.0134,
+     0.0,
+     0.4866,
+     1.0
+    ]
+   }
   },
   {
    "title": "A Rainy Day in Camp",
@@ -4537,7 +8689,21 @@
     0.5
    ],
    "delivered_edge": 5862,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0092,
+     0.0,
+     0.9909,
+     1.0
+    ],
+    "4:3": [
+     0.0499,
+     0.0,
+     0.7862,
+     1.0
+    ]
+   }
   },
   {
    "title": "Sunset at Gloucester",
@@ -4564,7 +8730,33 @@
     0.55
    ],
    "delivered_edge": 5812,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0155,
+     0.0,
+     0.9845,
+     1.0
+    ],
+    "9:16": [
+     0.2802,
+     0.0,
+     0.5868,
+     1.0
+    ],
+    "4:3": [
+     0.1301,
+     0.0,
+     0.8569,
+     1.0
+    ],
+    "3:4": [
+     0.2501,
+     0.0,
+     0.6589,
+     1.0
+    ]
+   }
   },
   {
    "title": "In the Mountains",
@@ -4591,7 +8783,33 @@
     0.5
    ],
    "delivered_edge": 5737,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0582,
+     1.0,
+     0.9428
+    ],
+    "9:16": [
+     0.3462,
+     0.0,
+     0.7038,
+     1.0
+    ],
+    "4:3": [
+     0.1011,
+     0.0,
+     0.9489,
+     1.0
+    ],
+    "3:4": [
+     0.287,
+     0.0,
+     0.764,
+     1.0
+    ]
+   }
   },
   {
    "title": "Under the Cliff, Cullercoats",
@@ -4618,7 +8836,33 @@
     0.55
    ],
    "delivered_edge": 5732,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0638,
+     1.0,
+     0.9362
+    ],
+    "9:16": [
+     0.5001,
+     0.0,
+     0.8629,
+     1.0
+    ],
+    "4:3": [
+     0.1401,
+     0.0,
+     0.9999,
+     1.0
+    ],
+    "3:4": [
+     0.5162,
+     0.0,
+     0.9998,
+     1.0
+    ]
+   }
   },
   {
    "title": "Old Mill (The Morning Bell)",
@@ -4645,7 +8889,33 @@
     0.42
    ],
    "delivered_edge": 5697,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0512,
+     1.0,
+     0.9488
+    ],
+    "9:16": [
+     0.4238,
+     0.0,
+     0.7762,
+     1.0
+    ],
+    "4:3": [
+     0.0822,
+     0.0,
+     0.9178,
+     1.0
+    ],
+    "3:4": [
+     0.365,
+     0.0,
+     0.835,
+     1.0
+    ]
+   }
   },
   {
    "title": "At the Window",
@@ -4672,7 +8942,33 @@
     0.3
    ],
    "delivered_edge": 5691,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0502,
+     1.0,
+     0.4298
+    ],
+    "9:16": [
+     0.0833,
+     0.0,
+     0.9167,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0199,
+     1.0,
+     0.5261
+    ],
+    "3:4": [
+     0.0,
+     0.0,
+     1.0,
+     0.9
+    ]
+   }
   },
   {
    "title": "Fisherfolk on the Beach at Cullercoats",
@@ -4699,7 +8995,33 @@
     0.55
    ],
    "delivered_edge": 5688,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0902,
+     1.0,
+     0.9008
+    ],
+    "9:16": [
+     0.2248,
+     0.0,
+     0.6152,
+     1.0
+    ],
+    "4:3": [
+     0.0374,
+     0.0,
+     0.9626,
+     1.0
+    ],
+    "3:4": [
+     0.1603,
+     0.0,
+     0.6807,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Cotton Pickers",
@@ -4726,7 +9048,33 @@
     0.45
    ],
    "delivered_edge": 5680,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0533,
+     1.0,
+     0.9467
+    ],
+    "9:16": [
+     0.2729,
+     0.0,
+     0.6271,
+     1.0
+    ],
+    "4:3": [
+     0.0303,
+     0.0,
+     0.8697,
+     1.0
+    ],
+    "3:4": [
+     0.2139,
+     0.0,
+     0.6861,
+     1.0
+    ]
+   }
   },
   {
    "title": "Returning Fishing Boats",
@@ -4753,7 +9101,33 @@
     0.55
    ],
    "delivered_edge": 5640,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0799,
+     1.0,
+     0.9501
+    ],
+    "9:16": [
+     0.3182,
+     0.0,
+     0.6818,
+     1.0
+    ],
+    "4:3": [
+     0.069,
+     0.0,
+     0.931,
+     1.0
+    ],
+    "3:4": [
+     0.2581,
+     0.0,
+     0.7429,
+     1.0
+    ]
+   }
   },
   {
    "title": "A Tropical Breeze, Nassau",
@@ -4780,7 +9154,33 @@
     0.45
    ],
    "delivered_edge": 5605,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1,
+     1.0,
+     0.6715
+    ],
+    "9:16": [
+     0.1,
+     0.0,
+     0.6537,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.05,
+     1.0,
+     0.8119
+    ],
+    "3:4": [
+     0.03,
+     0.0,
+     0.7682,
+     1.0
+    ]
+   }
   },
   {
    "title": "Old Settlers",
@@ -4807,7 +9207,33 @@
     0.78
    ],
    "delivered_edge": 5604,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.5499,
+     1.0,
+     0.9461
+    ],
+    "9:16": [
+     0.1007,
+     0.0,
+     0.8993,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.4199,
+     1.0,
+     0.9481
+    ],
+    "3:4": [
+     0.0,
+     0.0305,
+     1.0,
+     0.9695
+    ]
+   }
   },
   {
    "title": "In Front of Yorktown",
@@ -4834,7 +9260,27 @@
     0.55
    ],
    "delivered_edge": 5577,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1,
+     1.0,
+     0.942
+    ],
+    "4:3": [
+     0.0546,
+     0.0,
+     0.9454,
+     1.0
+    ],
+    "3:4": [
+     0.45,
+     0.0,
+     0.951,
+     1.0
+    ]
+   }
   },
   {
    "title": "Mink Pond",
@@ -4861,7 +9307,33 @@
     0.5
    ],
    "delivered_edge": 5560,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0601,
+     1.0,
+     0.8659
+    ],
+    "9:16": [
+     0.2037,
+     0.0,
+     0.5963,
+     1.0
+    ],
+    "4:3": [
+     0.0347,
+     0.0,
+     0.9653,
+     1.0
+    ],
+    "3:4": [
+     0.0377,
+     0.0,
+     0.5613,
+     1.0
+    ]
+   }
   },
   {
    "title": "A Garden in Nassau",
@@ -4888,7 +9360,33 @@
     0.78
    ],
    "delivered_edge": 5546,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1,
+     1.0,
+     0.919
+    ],
+    "9:16": [
+     0.0568,
+     0.0,
+     0.4432,
+     1.0
+    ],
+    "4:3": [
+     0.0421,
+     0.0,
+     0.9579,
+     1.0
+    ],
+    "3:4": [
+     0.0,
+     0.0,
+     0.5151,
+     1.0
+    ]
+   }
   },
   {
    "title": "Three Boys on the Shore",
@@ -4915,7 +9413,27 @@
     0.5
    ],
    "delivered_edge": 5437,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0081,
+     0.0,
+     0.9919,
+     1.0
+    ],
+    "4:3": [
+     0.08,
+     0.0,
+     0.818,
+     1.0
+    ],
+    "3:4": [
+     0.0925,
+     0.0,
+     0.5075,
+     1.0
+    ]
+   }
   },
   {
    "title": "Country School",
@@ -4942,7 +9460,33 @@
     0.5
    ],
    "delivered_edge": 5428,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0653,
+     1.0,
+     0.9307
+    ],
+    "9:16": [
+     0.2667,
+     0.0,
+     0.6323,
+     1.0
+    ],
+    "4:3": [
+     0.0664,
+     0.0,
+     0.9331,
+     1.0
+    ],
+    "3:4": [
+     0.2063,
+     0.0,
+     0.6937,
+     1.0
+    ]
+   }
   },
   {
    "title": "Blue Spring, Florida",
@@ -4969,7 +9513,33 @@
     0.5
    ],
    "delivered_edge": 5426,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0227,
+     1.0,
+     0.9773
+    ],
+    "9:16": [
+     0.3003,
+     0.0,
+     0.6317,
+     1.0
+    ],
+    "4:3": [
+     0.1072,
+     0.0,
+     0.8928,
+     1.0
+    ],
+    "3:4": [
+     0.279,
+     0.0,
+     0.721,
+     1.0
+    ]
+   }
   },
   {
    "title": "Bass Fishing, Florida",
@@ -4996,7 +9566,33 @@
     0.55
    ],
    "delivered_edge": 5424,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0349,
+     0.0,
+     0.9651,
+     1.0
+    ],
+    "9:16": [
+     0.4828,
+     0.0,
+     0.7772,
+     1.0
+    ],
+    "4:3": [
+     0.2812,
+     0.0,
+     0.9788,
+     1.0
+    ],
+    "3:4": [
+     0.4343,
+     0.0,
+     0.8267,
+     1.0
+    ]
+   }
   },
   {
    "title": "Burnt Mountain",
@@ -5023,7 +9619,33 @@
     0.42
    ],
    "delivered_edge": 5420,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0902,
+     1.0,
+     0.9138
+    ],
+    "9:16": [
+     0.2079,
+     0.0,
+     0.5921,
+     1.0
+    ],
+    "4:3": [
+     0.0446,
+     0.0,
+     0.9554,
+     1.0
+    ],
+    "3:4": [
+     0.1439,
+     0.0,
+     0.6561,
+     1.0
+    ]
+   }
   },
   {
    "title": "Below Zero",
@@ -5050,7 +9672,33 @@
     0.55
    ],
    "delivered_edge": 5418,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1899,
+     1.0,
+     0.8491
+    ],
+    "9:16": [
+     0.22,
+     0.0,
+     0.7,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.06,
+     1.0,
+     0.939
+    ],
+    "3:4": [
+     0.14,
+     0.0,
+     0.78,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Nurse",
@@ -5077,7 +9725,27 @@
     0.35
    ],
    "delivered_edge": 5418,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "9:16": [
+     0.0053,
+     0.0,
+     0.9947,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0198,
+     1.0,
+     0.4462
+    ],
+    "3:4": [
+     0.0,
+     0.0095,
+     1.0,
+     0.7675
+    ]
+   }
   },
   {
    "title": "Schooner at Sunset",
@@ -5104,7 +9772,33 @@
     0.55
    ],
    "delivered_edge": 5416,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0901,
+     1.0,
+     0.8779
+    ],
+    "9:16": [
+     0.2192,
+     0.0,
+     0.6208,
+     1.0
+    ],
+    "4:3": [
+     0.024,
+     0.0,
+     0.976,
+     1.0
+    ],
+    "3:4": [
+     0.1518,
+     0.0,
+     0.6872,
+     1.0
+    ]
+   }
   },
   {
    "title": "White Mare",
@@ -5131,7 +9825,33 @@
     0.55
    ],
    "delivered_edge": 5376,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0298,
+     1.0,
+     0.9572
+    ],
+    "9:16": [
+     0.5989,
+     0.0,
+     0.9401,
+     1.0
+    ],
+    "4:3": [
+     0.1414,
+     0.0,
+     0.9501,
+     1.0
+    ],
+    "3:4": [
+     0.505,
+     0.0,
+     0.96,
+     1.0
+    ]
+   }
   },
   {
    "title": "Mink Lake, Adirondacks",
@@ -5158,7 +9878,27 @@
     0.68
    ],
    "delivered_edge": 5354,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0664,
+     1.0,
+     0.9336
+    ],
+    "4:3": [
+     0.0699,
+     0.0,
+     0.9347,
+     1.0
+    ],
+    "3:4": [
+     0.3632,
+     0.0,
+     0.8498,
+     1.0
+    ]
+   }
   },
   {
    "title": "Salt Kettle, Bermuda",
@@ -5185,7 +9925,33 @@
     0.42
    ],
    "delivered_edge": 5341,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1,
+     1.0,
+     0.946
+    ],
+    "9:16": [
+     0.163,
+     0.0,
+     0.537,
+     1.0
+    ],
+    "4:3": [
+     0.0198,
+     0.0,
+     0.9062,
+     1.0
+    ],
+    "3:4": [
+     0.1212,
+     0.0,
+     0.6198,
+     1.0
+    ]
+   }
   },
   {
    "title": "Native Huts, Nassau",
@@ -5212,7 +9978,33 @@
     0.45
    ],
    "delivered_edge": 5313,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0996,
+     1.0,
+     0.8964
+    ],
+    "9:16": [
+     0.3014,
+     0.0,
+     0.6986,
+     1.0
+    ],
+    "4:3": [
+     0.03,
+     0.0,
+     0.9714,
+     1.0
+    ],
+    "3:4": [
+     0.2252,
+     0.0,
+     0.7548,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Watermelon Boys",
@@ -5239,7 +10031,33 @@
     0.62
    ],
    "delivered_edge": 5312,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1097,
+     1.0,
+     1.0
+    ],
+    "9:16": [
+     0.2998,
+     0.0,
+     0.6552,
+     1.0
+    ],
+    "4:3": [
+     0.0598,
+     0.0,
+     0.9022,
+     1.0
+    ],
+    "3:4": [
+     0.1831,
+     0.0,
+     0.6569,
+     1.0
+    ]
+   }
   },
   {
    "title": "Key West, Hauling Anchor",
@@ -5266,7 +10084,33 @@
     0.5
    ],
    "delivered_edge": 5300,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.03,
+     1.0,
+     0.904
+    ],
+    "9:16": [
+     0.369,
+     0.0,
+     0.731,
+     1.0
+    ],
+    "4:3": [
+     0.0999,
+     0.0,
+     0.9581,
+     1.0
+    ],
+    "3:4": [
+     0.3087,
+     0.0,
+     0.7913,
+     1.0
+    ]
+   }
   },
   {
    "title": "Hunter in the Adirondacks",
@@ -5293,7 +10137,33 @@
     0.42
    ],
    "delivered_edge": 5278,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.13,
+     1.0,
+     0.9406
+    ],
+    "9:16": [
+     0.0848,
+     0.0,
+     0.4752,
+     1.0
+    ],
+    "4:3": [
+     0.0199,
+     0.0,
+     0.9452,
+     1.0
+    ],
+    "3:4": [
+     0.03,
+     0.0,
+     0.5505,
+     1.0
+    ]
+   }
   },
   {
    "title": "Bahama Boatmen",
@@ -5320,7 +10190,33 @@
     0.42
    ],
    "delivered_edge": 5266,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0598,
+     1.0,
+     0.8552
+    ],
+    "9:16": [
+     0.3011,
+     0.0,
+     0.6989,
+     1.0
+    ],
+    "4:3": [
+     0.0299,
+     0.0,
+     0.9728,
+     1.0
+    ],
+    "3:4": [
+     0.2148,
+     0.0,
+     0.7452,
+     1.0
+    ]
+   }
   },
   {
    "title": "Incoming Tide, Scarboro, Maine",
@@ -5347,7 +10243,33 @@
     0.35
    ],
    "delivered_edge": 5258,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.02,
+     1.0,
+     0.822
+    ],
+    "9:16": [
+     0.2032,
+     0.0,
+     0.5978,
+     1.0
+    ],
+    "4:3": [
+     0.0198,
+     0.0,
+     0.955,
+     1.0
+    ],
+    "3:4": [
+     0.117,
+     0.0,
+     0.643,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Blue Boat",
@@ -5374,7 +10296,33 @@
     0.68
    ],
    "delivered_edge": 5251,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.15,
+     1.0,
+     0.9402
+    ],
+    "9:16": [
+     0.2998,
+     0.0,
+     0.7002,
+     1.0
+    ],
+    "4:3": [
+     0.0248,
+     0.0,
+     0.974,
+     1.0
+    ],
+    "3:4": [
+     0.2331,
+     0.0,
+     0.7669,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Wrecked Schooner",
@@ -5401,7 +10349,33 @@
     0.45
    ],
    "delivered_edge": 5236,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.02,
+     1.0,
+     0.822
+    ],
+    "9:16": [
+     0.3528,
+     0.0,
+     0.7472,
+     1.0
+    ],
+    "4:3": [
+     0.0299,
+     0.0,
+     0.9649,
+     1.0
+    ],
+    "3:4": [
+     0.237,
+     0.0,
+     0.763,
+     1.0
+    ]
+   }
   },
   {
    "title": "Gallows Island",
@@ -5428,7 +10402,21 @@
     0.35
    ],
    "delivered_edge": 5234,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0199,
+     1.0,
+     0.8501
+    ],
+    "4:3": [
+     0.0299,
+     0.0,
+     0.9332,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Coming Storm",
@@ -5455,7 +10443,27 @@
     0.55
    ],
    "delivered_edge": 5229,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.02,
+     1.0,
+     0.8316
+    ],
+    "4:3": [
+     0.0599,
+     0.0,
+     0.9839,
+     1.0
+    ],
+    "3:4": [
+     0.4802,
+     0.0,
+     1.0,
+     1.0
+    ]
+   }
   },
   {
    "title": "Girl Carrying a Basket",
@@ -5482,7 +10490,33 @@
     0.35
    ],
    "delivered_edge": 5226,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1001,
+     1.0,
+     0.934
+    ],
+    "9:16": [
+     0.1203,
+     0.0,
+     0.4997,
+     1.0
+    ],
+    "4:3": [
+     0.0297,
+     0.0,
+     0.9291,
+     1.0
+    ],
+    "3:4": [
+     0.0471,
+     0.0,
+     0.5529,
+     1.0
+    ]
+   }
   },
   {
    "title": "Indian Camp, Roberval, P.Q",
@@ -5509,7 +10543,33 @@
     0.62
    ],
    "delivered_edge": 5205,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0199,
+     1.0,
+     0.8188
+    ],
+    "9:16": [
+     0.182,
+     0.0,
+     0.578,
+     1.0
+    ],
+    "4:3": [
+     0.0299,
+     0.0,
+     0.9688,
+     1.0
+    ],
+    "3:4": [
+     0.116,
+     0.0,
+     0.644,
+     1.0
+    ]
+   }
   },
   {
    "title": "On the Trail",
@@ -5536,7 +10596,33 @@
     0.58
    ],
    "delivered_edge": 5188,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0698,
+     1.0,
+     0.9459
+    ],
+    "9:16": [
+     0.3194,
+     0.0,
+     0.6806,
+     1.0
+    ],
+    "4:3": [
+     0.0721,
+     0.0,
+     0.9281,
+     1.0
+    ],
+    "3:4": [
+     0.2592,
+     0.0,
+     0.7408,
+     1.0
+    ]
+   }
   },
   {
    "title": "On the Sands",
@@ -5563,7 +10649,33 @@
     0.55
    ],
    "delivered_edge": 5157,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.05,
+     1.0,
+     0.8481
+    ],
+    "9:16": [
+     0.3518,
+     0.0,
+     0.7482,
+     1.0
+    ],
+    "4:3": [
+     0.0298,
+     0.0,
+     0.9696,
+     1.0
+    ],
+    "3:4": [
+     0.2857,
+     0.0,
+     0.8143,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Gale",
@@ -5590,7 +10702,33 @@
     0.4
    ],
    "delivered_edge": 5149,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0501,
+     1.0,
+     0.9482
+    ],
+    "9:16": [
+     0.3038,
+     0.0,
+     0.6562,
+     1.0
+    ],
+    "4:3": [
+     0.0498,
+     0.0,
+     0.8849,
+     1.0
+    ],
+    "3:4": [
+     0.2451,
+     0.0,
+     0.7149,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Lone Fisherman",
@@ -5617,7 +10755,33 @@
     0.58
    ],
    "delivered_edge": 5147,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1299,
+     1.0,
+     0.931
+    ],
+    "9:16": [
+     0.2725,
+     0.0,
+     0.6675,
+     1.0
+    ],
+    "4:3": [
+     0.0319,
+     0.0,
+     0.9681,
+     1.0
+    ],
+    "3:4": [
+     0.2067,
+     0.0,
+     0.7333,
+     1.0
+    ]
+   }
   },
   {
    "title": "Two Scouts",
@@ -5644,7 +10808,33 @@
     0.5
    ],
    "delivered_edge": 5147,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.4702,
+     1.0,
+     0.8638
+    ],
+    "9:16": [
+     0.0981,
+     0.0,
+     0.9019,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.4401,
+     1.0,
+     0.9649
+    ],
+    "3:4": [
+     0.0,
+     0.0669,
+     1.0,
+     1.0
+    ]
+   }
   },
   {
    "title": "A Country Lad",
@@ -5671,7 +10861,33 @@
     0.25
    ],
    "delivered_edge": 5144,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.02,
+     1.0,
+     0.4025
+    ],
+    "9:16": [
+     0.0299,
+     0.0,
+     0.8571,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0,
+     1.0,
+     0.51
+    ],
+    "3:4": [
+     0.0,
+     0.0,
+     1.0,
+     0.9067
+    ]
+   }
   },
   {
    "title": "Hauling in the Nets",
@@ -5698,7 +10914,33 @@
     0.42
    ],
    "delivered_edge": 5125,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0999,
+     1.0,
+     0.9001
+    ],
+    "9:16": [
+     0.2523,
+     0.0,
+     0.6477,
+     1.0
+    ],
+    "4:3": [
+     0.0313,
+     0.0,
+     0.9687,
+     1.0
+    ],
+    "3:4": [
+     0.1864,
+     0.0,
+     0.7136,
+     1.0
+    ]
+   }
   },
   {
    "title": "The West Wind",
@@ -5725,7 +10967,33 @@
     0.45
    ],
    "delivered_edge": 5122,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0497,
+     1.0,
+     0.8823
+    ],
+    "9:16": [
+     0.54,
+     0.0,
+     0.92,
+     1.0
+    ],
+    "4:3": [
+     0.0502,
+     0.0,
+     0.9508,
+     1.0
+    ],
+    "3:4": [
+     0.3702,
+     0.0,
+     0.8768,
+     1.0
+    ]
+   }
   },
   {
    "title": "Danger",
@@ -5752,7 +11020,33 @@
     0.4
    ],
    "delivered_edge": 5114,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1199,
+     1.0,
+     0.9141
+    ],
+    "9:16": [
+     0.0908,
+     0.0,
+     0.4892,
+     1.0
+    ],
+    "4:3": [
+     0.0278,
+     0.0,
+     0.9722,
+     1.0
+    ],
+    "3:4": [
+     0.0239,
+     0.0,
+     0.5551,
+     1.0
+    ]
+   }
   },
   {
    "title": "Casting, Number Two",
@@ -5779,7 +11073,33 @@
     0.62
    ],
    "delivered_edge": 5105,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.13,
+     1.0,
+     0.9275
+    ],
+    "9:16": [
+     0.1521,
+     0.0,
+     0.5489,
+     1.0
+    ],
+    "4:3": [
+     0.0297,
+     0.0,
+     0.9703,
+     1.0
+    ],
+    "3:4": [
+     0.07,
+     0.0,
+     0.599,
+     1.0
+    ]
+   }
   },
   {
    "title": "In the Hammock",
@@ -5806,7 +11126,33 @@
     0.5
    ],
    "delivered_edge": 5094,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0801,
+     1.0,
+     0.8943
+    ],
+    "9:16": [
+     0.4557,
+     0.0,
+     0.8443,
+     1.0
+    ],
+    "4:3": [
+     0.0395,
+     0.0,
+     0.9605,
+     1.0
+    ],
+    "3:4": [
+     0.3609,
+     0.0,
+     0.8791,
+     1.0
+    ]
+   }
   },
   {
    "title": "Blossom Time in Virginia",
@@ -5833,7 +11179,21 @@
     0.62
    ],
    "delivered_edge": 5087,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0599,
+     1.0,
+     0.8587
+    ],
+    "4:3": [
+     0.0306,
+     0.0,
+     0.9694,
+     1.0
+    ]
+   }
   },
   {
    "title": "A Good Shot, Adirondacks",
@@ -5860,7 +11220,33 @@
     0.5
    ],
    "delivered_edge": 5086,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1201,
+     1.0,
+     0.9174
+    ],
+    "9:16": [
+     0.3721,
+     0.0,
+     0.7689,
+     1.0
+    ],
+    "4:3": [
+     0.0297,
+     0.0,
+     0.9703,
+     1.0
+    ],
+    "3:4": [
+     0.306,
+     0.0,
+     0.835,
+     1.0
+    ]
+   }
   },
   {
    "title": "Grace Hoops",
@@ -5887,7 +11273,27 @@
     0.45
    ],
    "delivered_edge": 5066,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "9:16": [
+     0.0711,
+     0.0,
+     0.8989,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0499,
+     1.0,
+     0.5594
+    ],
+    "3:4": [
+     0.0,
+     0.0,
+     1.0,
+     0.9059
+    ]
+   }
   },
   {
    "title": "Summer Afternoon",
@@ -5914,7 +11320,33 @@
     0.35
    ],
    "delivered_edge": 5065,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0899,
+     1.0,
+     0.9
+    ],
+    "9:16": [
+     0.28,
+     0.0,
+     0.6705,
+     1.0
+    ],
+    "4:3": [
+     0.0371,
+     0.0,
+     0.9629,
+     1.0
+    ],
+    "3:4": [
+     0.1896,
+     0.0,
+     0.7104,
+     1.0
+    ]
+   }
   },
   {
    "title": "Shark fishing",
@@ -5941,7 +11373,33 @@
     0.45
    ],
    "delivered_edge": 5051,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0999,
+     1.0,
+     0.9193
+    ],
+    "9:16": [
+     0.357,
+     0.0,
+     0.743,
+     1.0
+    ],
+    "4:3": [
+     0.0199,
+     0.0,
+     0.9351,
+     1.0
+    ],
+    "3:4": [
+     0.2426,
+     0.0,
+     0.7574,
+     1.0
+    ]
+   }
   },
   {
    "title": "Weary",
@@ -5968,7 +11426,21 @@
     0.45
    ],
    "delivered_edge": 5034,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0799,
+     1.0,
+     0.8174
+    ],
+    "4:3": [
+     0.0,
+     0.0,
+     1.0,
+     0.9833
+    ]
+   }
   },
   {
    "title": "The Yellow Jacket",
@@ -5995,7 +11467,33 @@
     0.42
    ],
    "delivered_edge": 5001,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0499,
+     1.0,
+     0.4522
+    ],
+    "9:16": [
+     0.0767,
+     0.0,
+     0.8633,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.03,
+     1.0,
+     0.5663
+    ],
+    "3:4": [
+     0.0,
+     0.0,
+     1.0,
+     0.9534
+    ]
+   }
   },
   {
    "title": "Army Teamsters",
@@ -6022,7 +11520,27 @@
     0.62
    ],
    "delivered_edge": 5000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0431,
+     1.0,
+     0.9569
+    ],
+    "4:3": [
+     0.1396,
+     0.0,
+     0.9604,
+     1.0
+    ],
+    "3:4": [
+     0.3891,
+     0.0,
+     0.8508,
+     1.0
+    ]
+   }
   },
   {
    "title": "Coursing the Hare",
@@ -6049,7 +11567,21 @@
     0.55
    ],
    "delivered_edge": 5000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0223,
+     0.0,
+     0.9777,
+     1.0
+    ],
+    "4:3": [
+     0.0417,
+     0.0,
+     0.7583,
+     1.0
+    ]
+   }
   },
   {
    "title": "Fox Hunt",
@@ -6076,7 +11608,33 @@
     0.62
    ],
    "delivered_edge": 5000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0044,
+     0.0,
+     0.9956,
+     1.0
+    ],
+    "9:16": [
+     0.2632,
+     0.0,
+     0.5768,
+     1.0
+    ],
+    "4:3": [
+     0.0783,
+     0.0,
+     0.8217,
+     1.0
+    ],
+    "3:4": [
+     0.2109,
+     0.0,
+     0.6291,
+     1.0
+    ]
+   }
   },
   {
    "title": "Girl Seated in a Garden",
@@ -6103,7 +11661,33 @@
     0.35
    ],
    "delivered_edge": 5000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.08,
+     1.0,
+     0.4636
+    ],
+    "9:16": [
+     0.0576,
+     0.0,
+     0.8824,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.05,
+     1.0,
+     0.5615
+    ],
+    "3:4": [
+     0.0,
+     0.0,
+     1.0,
+     0.9093
+    ]
+   }
   },
   {
    "title": "Saddle Horse",
@@ -6130,7 +11714,33 @@
     0.45
    ],
    "delivered_edge": 5000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1298,
+     1.0,
+     0.8442
+    ],
+    "9:16": [
+     0.5285,
+     0.0,
+     0.9715,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0237,
+     1.0,
+     0.9763
+    ],
+    "3:4": [
+     0.2547,
+     0.0,
+     0.8453,
+     1.0
+    ]
+   }
   },
   {
    "title": "A Clam-Bake",
@@ -6157,7 +11767,33 @@
     0.55
    ],
    "delivered_edge": 5000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0086,
+     1.0,
+     0.9914
+    ],
+    "9:16": [
+     0.289,
+     0.0,
+     0.611,
+     1.0
+    ],
+    "4:3": [
+     0.0684,
+     0.0,
+     0.8316,
+     1.0
+    ],
+    "3:4": [
+     0.2354,
+     0.0,
+     0.6646,
+     1.0
+    ]
+   }
   },
   {
    "title": "A Fisherman's Daughter",
@@ -6184,7 +11820,33 @@
     0.42
    ],
    "delivered_edge": 5000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1,
+     1.0,
+     0.86
+    ],
+    "9:16": [
+     0.3418,
+     0.0,
+     0.7582,
+     1.0
+    ],
+    "4:3": [
+     0.0065,
+     0.0,
+     0.9935,
+     1.0
+    ],
+    "3:4": [
+     0.2724,
+     0.0,
+     0.8276,
+     1.0
+    ]
+   }
   },
   {
    "title": "On Guard",
@@ -6211,7 +11873,33 @@
     0.42
    ],
    "delivered_edge": 4985,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "3:4": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ],
+    "16:9": [
+     0.0,
+     0.0999,
+     1.0,
+     0.5231
+    ],
+    "9:16": [
+     0.1202,
+     0.0,
+     0.8678,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1198,
+     1.0,
+     0.6842
+    ]
+   }
   },
   {
    "title": "The Buccaneers",
@@ -6238,7 +11926,21 @@
     0.3
    ],
    "delivered_edge": 4973,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "9:16": [
+     0.0802,
+     0.0,
+     0.7968,
+     1.0
+    ],
+    "3:4": [
+     0.0218,
+     0.0,
+     0.9772,
+     1.0
+    ]
+   }
   },
   {
    "title": "Winter Coast",
@@ -6265,7 +11967,33 @@
     0.62
    ],
    "delivered_edge": 4968,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.3,
+     1.0,
+     0.792
+    ],
+    "9:16": [
+     0.0499,
+     0.0,
+     0.6931,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.2,
+     1.0,
+     0.856
+    ],
+    "3:4": [
+     0.0697,
+     0.0,
+     0.9273,
+     1.0
+    ]
+   }
   },
   {
    "title": "The whittling Boy",
@@ -6292,7 +12020,33 @@
     0.5
    ],
    "delivered_edge": 4949,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0501,
+     1.0,
+     0.8659
+    ],
+    "9:16": [
+     0.2801,
+     0.0,
+     0.6679,
+     1.0
+    ],
+    "4:3": [
+     0.0399,
+     0.0,
+     0.9591,
+     1.0
+    ],
+    "3:4": [
+     0.24,
+     0.0,
+     0.757,
+     1.0
+    ]
+   }
   },
   {
    "title": "Boy and Girl in a Field with Sheep",
@@ -6319,7 +12073,33 @@
     0.65
    ],
    "delivered_edge": 4942,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0899,
+     1.0,
+     0.9101
+    ],
+    "9:16": [
+     0.1601,
+     0.0,
+     0.5459,
+     1.0
+    ],
+    "4:3": [
+     0.0298,
+     0.0,
+     0.9442,
+     1.0
+    ],
+    "3:4": [
+     0.1298,
+     0.0,
+     0.6442,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Milk Maid",
@@ -6346,7 +12126,33 @@
     0.42
    ],
    "delivered_edge": 4862,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0601,
+     1.0,
+     0.4669
+    ],
+    "9:16": [
+     0.0601,
+     0.0,
+     0.8379,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0998,
+     1.0,
+     0.6422
+    ],
+    "3:4": [
+     0.0,
+     0.0179,
+     1.0,
+     0.9821
+    ]
+   }
   },
   {
    "title": "Canoe in Rapids",
@@ -6373,7 +12179,33 @@
     0.55
    ],
    "delivered_edge": 4833,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0598,
+     1.0,
+     0.9012
+    ],
+    "9:16": [
+     0.28,
+     0.0,
+     0.656,
+     1.0
+    ],
+    "4:3": [
+     0.0498,
+     0.0,
+     0.9412,
+     1.0
+    ],
+    "3:4": [
+     0.2398,
+     0.0,
+     0.7412,
+     1.0
+    ]
+   }
   },
   {
    "title": "Dad's Coming!",
@@ -6400,7 +12232,21 @@
     0.55
    ],
    "delivered_edge": 4815,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.05,
+     1.0,
+     0.8925
+    ],
+    "4:3": [
+     0.0499,
+     0.0,
+     0.9401,
+     1.0
+    ]
+   }
   },
   {
    "title": "Prout's Neck, Rocky Shore",
@@ -6427,7 +12273,33 @@
     0.55
    ],
    "delivered_edge": 4811,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0199,
+     1.0,
+     0.9711
+    ],
+    "9:16": [
+     0.3302,
+     0.0,
+     0.6628,
+     1.0
+    ],
+    "4:3": [
+     0.0798,
+     0.0,
+     0.8682,
+     1.0
+    ],
+    "3:4": [
+     0.2802,
+     0.0,
+     0.7238,
+     1.0
+    ]
+   }
   },
   {
    "title": "Two Figures by the Sea",
@@ -6454,7 +12326,33 @@
     0.5
    ],
    "delivered_edge": 4801,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0101,
+     1.0,
+     0.9929
+    ],
+    "9:16": [
+     0.365,
+     0.0,
+     0.687,
+     1.0
+    ],
+    "4:3": [
+     0.0999,
+     0.0,
+     0.8631,
+     1.0
+    ],
+    "3:4": [
+     0.3249,
+     0.0,
+     0.7541,
+     1.0
+    ]
+   }
   },
   {
    "title": "Watching the Tempest",
@@ -6481,7 +12379,33 @@
     0.6
    ],
    "delivered_edge": 4797,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0901,
+     1.0,
+     0.9039
+    ],
+    "9:16": [
+     0.1501,
+     0.0,
+     0.5389,
+     1.0
+    ],
+    "4:3": [
+     0.0397,
+     0.0,
+     0.9613,
+     1.0
+    ],
+    "3:4": [
+     0.1798,
+     0.0,
+     0.6982,
+     1.0
+    ]
+   }
   },
   {
    "title": "Key West",
@@ -6508,7 +12432,33 @@
     0.55
    ],
    "delivered_edge": 4787,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0599,
+     1.0,
+     0.9381
+    ],
+    "9:16": [
+     0.4799,
+     0.0,
+     0.8401,
+     1.0
+    ],
+    "4:3": [
+     0.07,
+     0.0,
+     0.924,
+     1.0
+    ],
+    "3:4": [
+     0.4198,
+     0.0,
+     0.9002,
+     1.0
+    ]
+   }
   },
   {
    "title": "Home, Sweet Home",
@@ -6535,7 +12485,33 @@
     0.35
    ],
    "delivered_edge": 4772,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "3:4": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ],
+    "16:9": [
+     0.0,
+     0.1699,
+     1.0,
+     0.5948
+    ],
+    "9:16": [
+     0.1002,
+     0.0,
+     0.8448,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1499,
+     1.0,
+     0.7165
+    ]
+   }
   },
   {
    "title": "Weaning the Calf",
@@ -6562,7 +12538,33 @@
     0.55
    ],
    "delivered_edge": 4763,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0398,
+     1.0,
+     0.9332
+    ],
+    "9:16": [
+     0.1599,
+     0.0,
+     0.5141,
+     1.0
+    ],
+    "4:3": [
+     0.0602,
+     0.0,
+     0.8998,
+     1.0
+    ],
+    "3:4": [
+     0.1399,
+     0.0,
+     0.6121,
+     1.0
+    ]
+   }
   },
   {
    "title": "Farmyard with Ducks and Chickens",
@@ -6589,7 +12591,33 @@
     0.55
    ],
    "delivered_edge": 4761,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0801,
+     1.0,
+     0.8789
+    ],
+    "9:16": [
+     0.3399,
+     0.0,
+     0.7361,
+     1.0
+    ],
+    "4:3": [
+     0.03,
+     0.0,
+     0.969,
+     1.0
+    ],
+    "3:4": [
+     0.2799,
+     0.0,
+     0.8081,
+     1.0
+    ]
+   }
   },
   {
    "title": "Grand Discharge, Lake St. John",
@@ -6616,7 +12644,33 @@
     0.55
    ],
    "delivered_edge": 4740,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.06,
+     1.0,
+     0.942
+    ],
+    "9:16": [
+     0.2801,
+     0.0,
+     0.6389,
+     1.0
+    ],
+    "4:3": [
+     0.0748,
+     0.0,
+     0.9252,
+     1.0
+    ],
+    "3:4": [
+     0.2598,
+     0.0,
+     0.7382,
+     1.0
+    ]
+   }
   },
   {
    "title": "Summertime",
@@ -6643,7 +12697,33 @@
     0.55
    ],
    "delivered_edge": 4728,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1,
+     1.0,
+     0.906
+    ],
+    "9:16": [
+     0.3502,
+     0.0,
+     0.7428,
+     1.0
+    ],
+    "4:3": [
+     0.0347,
+     0.0,
+     0.9653,
+     1.0
+    ],
+    "3:4": [
+     0.2998,
+     0.0,
+     0.8232,
+     1.0
+    ]
+   }
   },
   {
    "title": "Pike, Lake St. John (Ouananiche Fishing)",
@@ -6670,7 +12750,33 @@
     0.42
    ],
    "delivered_edge": 4712,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.06,
+     1.0,
+     0.905
+    ],
+    "9:16": [
+     0.4403,
+     0.0,
+     0.8147,
+     1.0
+    ],
+    "4:3": [
+     0.0502,
+     0.0,
+     0.9378,
+     1.0
+    ],
+    "3:4": [
+     0.3998,
+     0.0,
+     0.8992,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Butterfly",
@@ -6697,7 +12803,33 @@
     0.55
    ],
    "delivered_edge": 4688,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.09,
+     1.0,
+     0.89
+    ],
+    "9:16": [
+     0.3803,
+     0.0,
+     0.7757,
+     1.0
+    ],
+    "4:3": [
+     0.0303,
+     0.0,
+     0.9677,
+     1.0
+    ],
+    "3:4": [
+     0.3313,
+     0.0,
+     0.8587,
+     1.0
+    ]
+   }
   },
   {
    "title": "Coral Formation",
@@ -6724,7 +12856,33 @@
     0.55
    ],
    "delivered_edge": 4649,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0599,
+     1.0,
+     0.9041
+    ],
+    "9:16": [
+     0.5501,
+     0.0,
+     0.9249,
+     1.0
+    ],
+    "4:3": [
+     0.0497,
+     0.0,
+     0.9383,
+     1.0
+    ],
+    "3:4": [
+     0.4501,
+     0.0,
+     0.9499,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Light House, Nassau",
@@ -6751,7 +12909,33 @@
     0.48
    ],
    "delivered_edge": 4648,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0997,
+     1.0,
+     0.9183
+    ],
+    "9:16": [
+     0.2267,
+     0.0,
+     0.6133,
+     1.0
+    ],
+    "4:3": [
+     0.0399,
+     0.0,
+     0.9561,
+     1.0
+    ],
+    "3:4": [
+     0.1623,
+     0.0,
+     0.6777,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Bean Picker",
@@ -6778,7 +12962,33 @@
     0.45
    ],
    "delivered_edge": 4646,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1298,
+     1.0,
+     0.5152
+    ],
+    "9:16": [
+     0.0601,
+     0.0,
+     0.8809,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.13,
+     1.0,
+     0.644
+    ],
+    "3:4": [
+     0.0,
+     0.0426,
+     1.0,
+     0.9564
+    ]
+   }
   },
   {
    "title": "On the Fence",
@@ -6805,7 +13015,33 @@
     0.4
    ],
    "delivered_edge": 4635,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.2198,
+     1.0,
+     0.6552
+    ],
+    "9:16": [
+     0.0867,
+     0.0,
+     0.8133,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1497,
+     1.0,
+     0.7303
+    ],
+    "3:4": [
+     0.0151,
+     0.0,
+     0.9839,
+     1.0
+    ]
+   }
   },
   {
    "title": "Haymakers",
@@ -6832,7 +13068,33 @@
     0.5
    ],
    "delivered_edge": 4634,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0899,
+     1.0,
+     0.9011
+    ],
+    "9:16": [
+     0.455,
+     0.0,
+     0.845,
+     1.0
+    ],
+    "4:3": [
+     0.0203,
+     0.0,
+     0.9447,
+     1.0
+    ],
+    "3:4": [
+     0.39,
+     0.0,
+     0.91,
+     1.0
+    ]
+   }
   },
   {
    "title": "Man with a Scythe",
@@ -6859,7 +13121,33 @@
     0.55
    ],
    "delivered_edge": 4613,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.09,
+     1.0,
+     0.822
+    ],
+    "9:16": [
+     0.3839,
+     0.0,
+     0.8161,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.012,
+     1.0,
+     0.988
+    ],
+    "3:4": [
+     0.3118,
+     0.0,
+     0.8882,
+     1.0
+    ]
+   }
   },
   {
    "title": "Autumn Trees",
@@ -6886,7 +13174,27 @@
     0.4
    ],
    "delivered_edge": 4597,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0702,
+     1.0,
+     0.8968
+    ],
+    "4:3": [
+     0.0299,
+     0.0,
+     0.9371,
+     1.0
+    ],
+    "3:4": [
+     0.1448,
+     0.0,
+     0.6552,
+     1.0
+    ]
+   }
   },
   {
    "title": "Scene at Houghton Farm",
@@ -6913,7 +13221,33 @@
     0.55
    ],
    "delivered_edge": 4596,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0598,
+     1.0,
+     0.9232
+    ],
+    "9:16": [
+     0.2668,
+     0.0,
+     0.6332,
+     1.0
+    ],
+    "4:3": [
+     0.0502,
+     0.0,
+     0.9188,
+     1.0
+    ],
+    "3:4": [
+     0.2057,
+     0.0,
+     0.6943,
+     1.0
+    ]
+   }
   },
   {
    "title": "Ile Malin",
@@ -6940,7 +13274,33 @@
     0.62
    ],
    "delivered_edge": 4583,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0502,
+     1.0,
+     0.8918
+    ],
+    "9:16": [
+     0.262,
+     0.0,
+     0.638,
+     1.0
+    ],
+    "4:3": [
+     0.0399,
+     0.0,
+     0.9311,
+     1.0
+    ],
+    "3:4": [
+     0.1994,
+     0.0,
+     0.7006,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Houses of Parliament",
@@ -6967,7 +13327,33 @@
     0.35
    ],
    "delivered_edge": 4582,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.03,
+     1.0,
+     0.902
+    ],
+    "9:16": [
+     0.5986,
+     0.0,
+     0.9615,
+     1.0
+    ],
+    "4:3": [
+     0.0599,
+     0.0,
+     0.9201,
+     1.0
+    ],
+    "3:4": [
+     0.3081,
+     0.0,
+     0.7919,
+     1.0
+    ]
+   }
   },
   {
    "title": "Saguenay River, Lower Rapids",
@@ -6994,7 +13380,33 @@
     0.65
    ],
    "delivered_edge": 4579,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0599,
+     1.0,
+     0.9031
+    ],
+    "9:16": [
+     0.2624,
+     0.0,
+     0.6376,
+     1.0
+    ],
+    "4:3": [
+     0.0397,
+     0.0,
+     0.9293,
+     1.0
+    ],
+    "3:4": [
+     0.1998,
+     0.0,
+     0.7002,
+     1.0
+    ]
+   }
   },
   {
    "title": "Wild Geese in Flight",
@@ -7021,7 +13433,33 @@
     0.62
    ],
    "delivered_edge": 4575,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0498,
+     1.0,
+     0.8762
+    ],
+    "9:16": [
+     0.3086,
+     0.0,
+     0.6914,
+     1.0
+    ],
+    "4:3": [
+     0.0302,
+     0.0,
+     0.9378,
+     1.0
+    ],
+    "3:4": [
+     0.2448,
+     0.0,
+     0.7552,
+     1.0
+    ]
+   }
   },
   {
    "title": "On the Stile",
@@ -7048,7 +13486,33 @@
     0.4
    ],
    "delivered_edge": 4565,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0997,
+     1.0,
+     0.8223
+    ],
+    "9:16": [
+     0.281,
+     0.0,
+     0.719,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0198,
+     1.0,
+     0.9832
+    ],
+    "3:4": [
+     0.2081,
+     0.0,
+     0.7919,
+     1.0
+    ]
+   }
   },
   {
    "title": "Girl Picking Apple Blossoms",
@@ -7075,7 +13539,33 @@
     0.65
    ],
    "delivered_edge": 4558,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0699,
+     1.0,
+     0.8721
+    ],
+    "9:16": [
+     0.3028,
+     0.0,
+     0.6972,
+     1.0
+    ],
+    "4:3": [
+     0.03,
+     0.0,
+     0.965,
+     1.0
+    ],
+    "3:4": [
+     0.2371,
+     0.0,
+     0.7629,
+     1.0
+    ]
+   }
   },
   {
    "title": "A Visit from the Old Mistress",
@@ -7102,7 +13592,33 @@
     0.4
    ],
    "delivered_edge": 4552,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1001,
+     1.0,
+     0.8649
+    ],
+    "9:16": [
+     0.2431,
+     0.0,
+     0.6569,
+     1.0
+    ],
+    "4:3": [
+     0.0097,
+     0.0,
+     0.9903,
+     1.0
+    ],
+    "3:4": [
+     0.1742,
+     0.0,
+     0.7258,
+     1.0
+    ]
+   }
   },
   {
    "title": "Under a Palm Tree",
@@ -7129,7 +13645,33 @@
     0.5
    ],
    "delivered_edge": 4535,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.2,
+     1.0,
+     0.652
+    ],
+    "9:16": [
+     0.1,
+     0.0,
+     0.8,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1202,
+     1.0,
+     0.7228
+    ],
+    "3:4": [
+     0.0298,
+     0.0,
+     0.9632,
+     1.0
+    ]
+   }
   },
   {
    "title": "The French Farmyard",
@@ -7156,7 +13698,27 @@
     0.72
    ],
    "delivered_edge": 4527,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "9:16": [
+     0.1,
+     0.0,
+     0.8,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1801,
+     1.0,
+     0.7829
+    ],
+    "3:4": [
+     0.0299,
+     0.0,
+     0.9631,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Garden Gate, Bahamas",
@@ -7183,7 +13745,27 @@
     0.68
    ],
    "delivered_edge": 4520,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.5201,
+     1.0,
+     0.9089
+    ],
+    "9:16": [
+     0.0501,
+     0.0,
+     0.8639,
+     1.0
+    ],
+    "3:4": [
+     0.0,
+     0.0297,
+     1.0,
+     0.9513
+    ]
+   }
   },
   {
    "title": "Prout's Neck, Surf on Rocks",
@@ -7210,7 +13792,33 @@
     0.4
    ],
    "delivered_edge": 4466,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.08,
+     1.0,
+     0.874
+    ],
+    "9:16": [
+     0.3507,
+     0.0,
+     0.7493,
+     1.0
+    ],
+    "4:3": [
+     0.0297,
+     0.0,
+     0.9743,
+     1.0
+    ],
+    "3:4": [
+     0.2843,
+     0.0,
+     0.8157,
+     1.0
+    ]
+   }
   },
   {
    "title": "Sunset, Prout's Neck",
@@ -7237,7 +13845,33 @@
     0.6
    ],
    "delivered_edge": 4459,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0698,
+     1.0,
+     0.8732
+    ],
+    "9:16": [
+     0.1031,
+     0.0,
+     0.497,
+     1.0
+    ],
+    "4:3": [
+     0.0302,
+     0.0,
+     0.9638,
+     1.0
+    ],
+    "3:4": [
+     0.0374,
+     0.0,
+     0.5626,
+     1.0
+    ]
+   }
   },
   {
    "title": "Boys in a Dory",
@@ -7264,7 +13898,33 @@
     0.42
    ],
    "delivered_edge": 4436,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0899,
+     1.0,
+     0.8461
+    ],
+    "9:16": [
+     0.2908,
+     0.0,
+     0.7092,
+     1.0
+    ],
+    "4:3": [
+     0.0041,
+     0.0,
+     0.9959,
+     1.0
+    ],
+    "3:4": [
+     0.221,
+     0.0,
+     0.779,
+     1.0
+    ]
+   }
   },
   {
    "title": "Rum Cay",
@@ -7291,7 +13951,33 @@
     0.32
    ],
    "delivered_edge": 4434,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0601,
+     1.0,
+     0.8639
+    ],
+    "9:16": [
+     0.58,
+     0.0,
+     0.9736,
+     1.0
+    ],
+    "4:3": [
+     0.033,
+     0.0,
+     0.9661,
+     1.0
+    ],
+    "3:4": [
+     0.45,
+     0.0,
+     0.9748,
+     1.0
+    ]
+   }
   },
   {
    "title": "Eastern Point Light",
@@ -7318,7 +14004,33 @@
     0.55
    ],
    "delivered_edge": 4427,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.02,
+     1.0,
+     0.794
+    ],
+    "9:16": [
+     0.0501,
+     0.0,
+     0.4588,
+     1.0
+    ],
+    "4:3": [
+     0.0151,
+     0.0,
+     0.984,
+     1.0
+    ],
+    "3:4": [
+     0.03,
+     0.0,
+     0.5751,
+     1.0
+    ]
+   }
   },
   {
    "title": "A Sick Chicken",
@@ -7345,7 +14057,33 @@
     0.5
    ],
    "delivered_edge": 4420,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1001,
+     1.0,
+     0.5499
+    ],
+    "9:16": [
+     0.1498,
+     0.0,
+     0.8533,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0802,
+     1.0,
+     0.6798
+    ],
+    "3:4": [
+     0.0297,
+     0.0,
+     0.9678,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Wreck",
@@ -7372,7 +14110,33 @@
     0.55
    ],
    "delivered_edge": 4416,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.04,
+     1.0,
+     0.9518
+    ],
+    "9:16": [
+     0.15,
+     0.0,
+     0.497,
+     1.0
+    ],
+    "4:3": [
+     0.08,
+     0.0,
+     0.9025,
+     1.0
+    ],
+    "3:4": [
+     0.13,
+     0.0,
+     0.5927,
+     1.0
+    ]
+   }
   },
   {
    "title": "Fresh Eggs",
@@ -7399,7 +14163,33 @@
     0.5
    ],
    "delivered_edge": 4410,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.12,
+     1.0,
+     0.5796
+    ],
+    "9:16": [
+     0.1501,
+     0.0,
+     0.8384,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0799,
+     1.0,
+     0.6929
+    ],
+    "3:4": [
+     0.0301,
+     0.0,
+     0.9479,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Turkey Buzzard",
@@ -7426,7 +14216,33 @@
     0.45
    ],
    "delivered_edge": 4407,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0501,
+     1.0,
+     0.8515
+    ],
+    "9:16": [
+     0.3,
+     0.0,
+     0.6947,
+     1.0
+    ],
+    "4:3": [
+     0.032,
+     0.0,
+     0.9677,
+     1.0
+    ],
+    "3:4": [
+     0.287,
+     0.0,
+     0.8133,
+     1.0
+    ]
+   }
   },
   {
    "title": "Girl with Hay Rake",
@@ -7453,7 +14269,33 @@
     0.55
    ],
    "delivered_edge": 4382,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1201,
+     1.0,
+     0.8045
+    ],
+    "9:16": [
+     0.219,
+     0.0,
+     0.6813,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0401,
+     1.0,
+     0.9527
+    ],
+    "3:4": [
+     0.142,
+     0.0,
+     0.7584,
+     1.0
+    ]
+   }
   },
   {
    "title": "Deer Drinking",
@@ -7480,7 +14322,33 @@
     0.42
    ],
    "delivered_edge": 4357,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0499,
+     1.0,
+     0.8539
+    ],
+    "9:16": [
+     0.303,
+     0.0,
+     0.6966,
+     1.0
+    ],
+    "4:3": [
+     0.0302,
+     0.0,
+     0.9629,
+     1.0
+    ],
+    "3:4": [
+     0.1377,
+     0.0,
+     0.6623,
+     1.0
+    ]
+   }
   },
   {
    "title": "Warm Afternoon",
@@ -7507,7 +14375,27 @@
     0.68
    ],
    "delivered_edge": 4353,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.2201,
+     1.0,
+     0.8966
+    ],
+    "4:3": [
+     0.0,
+     0.0501,
+     1.0,
+     0.9522
+    ],
+    "3:4": [
+     0.2379,
+     0.0,
+     0.8615,
+     1.0
+    ]
+   }
   },
   {
    "title": "Santiago de Cuba: Street Scene",
@@ -7534,7 +14422,33 @@
     0.65
    ],
    "delivered_edge": 4347,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0999,
+     1.0,
+     0.9011
+    ],
+    "9:16": [
+     0.1026,
+     0.0,
+     0.4975,
+     1.0
+    ],
+    "4:3": [
+     0.032,
+     0.0,
+     0.9682,
+     1.0
+    ],
+    "3:4": [
+     0.0868,
+     0.0,
+     0.6133,
+     1.0
+    ]
+   }
   },
   {
    "title": "Hark! The Lark",
@@ -7561,7 +14475,33 @@
     0.4
    ],
    "delivered_edge": 4338,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0199,
+     1.0,
+     0.4971
+    ],
+    "9:16": [
+     0.1701,
+     0.0,
+     0.8332,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0299,
+     1.0,
+     0.6661
+    ],
+    "3:4": [
+     0.0581,
+     0.0,
+     0.9423,
+     1.0
+    ]
+   }
   },
   {
    "title": "Girls in a Landscape",
@@ -7588,7 +14528,33 @@
     0.55
    ],
    "delivered_edge": 4333,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0501,
+     1.0,
+     0.8211
+    ],
+    "9:16": [
+     0.375,
+     0.0,
+     0.7853,
+     1.0
+    ],
+    "4:3": [
+     0.0137,
+     0.0,
+     0.9863,
+     1.0
+    ],
+    "3:4": [
+     0.306,
+     0.0,
+     0.8531,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Cock Fight",
@@ -7615,7 +14581,33 @@
     0.45
    ],
    "delivered_edge": 4333,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.015,
+     0.0,
+     0.9854,
+     1.0
+    ],
+    "9:16": [
+     0.321,
+     0.0,
+     0.6281,
+     1.0
+    ],
+    "4:3": [
+     0.1361,
+     0.0,
+     0.8639,
+     1.0
+    ],
+    "3:4": [
+     0.2703,
+     0.0,
+     0.6797,
+     1.0
+    ]
+   }
   },
   {
    "title": "Autumn Tree Tops",
@@ -7642,7 +14634,33 @@
     0.5
    ],
    "delivered_edge": 4302,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0301,
+     1.0,
+     0.8348
+    ],
+    "9:16": [
+     0.203,
+     0.0,
+     0.5961,
+     1.0
+    ],
+    "4:3": [
+     0.0341,
+     0.0,
+     0.966,
+     1.0
+    ],
+    "3:4": [
+     0.1579,
+     0.0,
+     0.6822,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Bright Side",
@@ -7669,7 +14687,33 @@
     0.62
    ],
    "delivered_edge": 4297,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1,
+     1.0,
+     0.8628
+    ],
+    "9:16": [
+     0.243,
+     0.0,
+     0.6579,
+     1.0
+    ],
+    "4:3": [
+     0.0084,
+     0.0,
+     0.9917,
+     1.0
+    ],
+    "3:4": [
+     0.1735,
+     0.0,
+     0.7266,
+     1.0
+    ]
+   }
   },
   {
    "title": "Albert Post (1843-1872)",
@@ -7696,7 +14740,33 @@
     0.38
    ],
    "delivered_edge": 4295,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.06,
+     1.0,
+     0.4729
+    ],
+    "9:16": [
+     0.0499,
+     0.0,
+     0.8164,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.05,
+     1.0,
+     0.6005
+    ],
+    "3:4": [
+     0.0,
+     0.0101,
+     1.0,
+     0.9886
+    ]
+   }
   },
   {
    "title": "Croquet Players",
@@ -7723,7 +14793,21 @@
     0.55
    ],
    "delivered_edge": 4265,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.03,
+     1.0,
+     0.966
+    ],
+    "4:3": [
+     0.149,
+     0.0,
+     0.9502,
+     1.0
+    ]
+   }
   },
   {
    "title": "Apple Picking",
@@ -7750,7 +14834,33 @@
     0.5
    ],
    "delivered_edge": 4261,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1001,
+     1.0,
+     0.7732
+    ],
+    "9:16": [
+     0.2349,
+     0.0,
+     0.705,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0302,
+     1.0,
+     0.9276
+    ],
+    "3:4": [
+     0.1569,
+     0.0,
+     0.7837,
+     1.0
+    ]
+   }
   },
   {
    "title": "Haymaking",
@@ -7777,7 +14887,33 @@
     0.5
    ],
    "delivered_edge": 4218,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1199,
+     1.0,
+     0.5071
+    ],
+    "9:16": [
+     0.0903,
+     0.0,
+     0.9073,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0798,
+     1.0,
+     0.5962
+    ],
+    "3:4": [
+     0.0,
+     0.0197,
+     1.0,
+     0.9376
+    ]
+   }
   },
   {
    "title": "The Brierwood Pipe",
@@ -7804,7 +14940,33 @@
     0.55
    ],
    "delivered_edge": 4208,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1,
+     1.0,
+     0.59
+    ],
+    "9:16": [
+     0.1771,
+     0.0,
+     0.8227,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.06,
+     1.0,
+     0.7133
+    ],
+    "3:4": [
+     0.0701,
+     0.0,
+     0.931,
+     1.0
+    ]
+   }
   },
   {
    "title": "Near Andersonville",
@@ -7831,7 +14993,27 @@
     0.55
    ],
    "delivered_edge": 4185,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "9:16": [
+     0.193,
+     0.0,
+     0.907,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0501,
+     1.0,
+     0.6409
+    ],
+    "3:4": [
+     0.024,
+     0.0,
+     0.976,
+     1.0
+    ]
+   }
   },
   {
    "title": "A Huntsman and Dogs",
@@ -7858,7 +15040,33 @@
     0.42
    ],
    "delivered_edge": 4139,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0209,
+     1.0,
+     0.9791
+    ],
+    "9:16": [
+     0.3049,
+     0.0,
+     0.6351,
+     1.0
+    ],
+    "4:3": [
+     0.0786,
+     0.0,
+     0.8614,
+     1.0
+    ],
+    "3:4": [
+     0.2498,
+     0.0,
+     0.6902,
+     1.0
+    ]
+   }
   },
   {
    "title": "Man with Plow Horse",
@@ -7885,7 +15093,33 @@
     0.55
    ],
    "delivered_edge": 4110,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0547,
+     1.0,
+     0.9453
+    ],
+    "9:16": [
+     0.2224,
+     0.0,
+     0.5776,
+     1.0
+    ],
+    "4:3": [
+     0.0789,
+     0.0,
+     0.9211,
+     1.0
+    ],
+    "3:4": [
+     0.1631,
+     0.0,
+     0.6369,
+     1.0
+    ]
+   }
   },
   {
    "title": "Promenade on the Beach",
@@ -7912,7 +15146,33 @@
     0.55
    ],
    "delivered_edge": 4109,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0802,
+     1.0,
+     0.9188
+    ],
+    "9:16": [
+     0.1719,
+     0.0,
+     0.5491,
+     1.0
+    ],
+    "4:3": [
+     0.0529,
+     0.0,
+     0.9471,
+     1.0
+    ],
+    "3:4": [
+     0.109,
+     0.0,
+     0.612,
+     1.0
+    ]
+   }
   },
   {
    "title": "Building a Smudge",
@@ -7939,7 +15199,33 @@
     0.5
    ],
    "delivered_edge": 4096,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0498,
+     1.0,
+     0.8822
+    ],
+    "9:16": [
+     0.2599,
+     0.0,
+     0.6401,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0,
+     0.901,
+     1.0
+    ],
+    "3:4": [
+     0.1971,
+     0.0,
+     0.7039,
+     1.0
+    ]
+   }
   },
   {
    "title": "Bermuda",
@@ -7966,7 +15252,33 @@
     0.4
    ],
    "delivered_edge": 4096,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.06,
+     1.0,
+     0.903
+    ],
+    "9:16": [
+     0.2998,
+     0.0,
+     0.6752,
+     1.0
+    ],
+    "4:3": [
+     0.0547,
+     0.0,
+     0.9443,
+     1.0
+    ],
+    "3:4": [
+     0.2498,
+     0.0,
+     0.7502,
+     1.0
+    ]
+   }
   },
   {
    "title": "Clear Sailing",
@@ -7993,7 +15305,33 @@
     0.45
    ],
    "delivered_edge": 4096,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.06,
+     1.0,
+     0.877
+    ],
+    "9:16": [
+     0.5264,
+     0.0,
+     0.9136,
+     1.0
+    ],
+    "4:3": [
+     0.041,
+     0.0,
+     0.959,
+     1.0
+    ],
+    "3:4": [
+     0.4618,
+     0.0,
+     0.9782,
+     1.0
+    ]
+   }
   },
   {
    "title": "Two Sailboats",
@@ -8020,7 +15358,33 @@
     0.42
    ],
    "delivered_edge": 4096,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0499,
+     0.0,
+     0.9471,
+     1.0
+    ],
+    "9:16": [
+     0.2881,
+     0.0,
+     0.5719,
+     1.0
+    ],
+    "4:3": [
+     0.0841,
+     0.0,
+     0.7569,
+     1.0
+    ],
+    "3:4": [
+     0.2408,
+     0.0,
+     0.6192,
+     1.0
+    ]
+   }
   },
   {
    "title": "Gloucester Schooners and Waterboat",
@@ -8047,7 +15411,33 @@
     0.5
    ],
    "delivered_edge": 4096,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0498,
+     1.0,
+     0.8452
+    ],
+    "9:16": [
+     0.2011,
+     0.0,
+     0.5989,
+     1.0
+    ],
+    "4:3": [
+     0.029,
+     0.0,
+     0.972,
+     1.0
+    ],
+    "3:4": [
+     0.1348,
+     0.0,
+     0.6652,
+     1.0
+    ]
+   }
   },
   {
    "title": "Two Schooners, Gloucester",
@@ -8074,7 +15464,33 @@
     0.45
    ],
    "delivered_edge": 4096,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0398,
+     1.0,
+     0.8362
+    ],
+    "9:16": [
+     0.3519,
+     0.0,
+     0.7491,
+     1.0
+    ],
+    "4:3": [
+     0.0291,
+     0.0,
+     0.9709,
+     1.0
+    ],
+    "3:4": [
+     0.2851,
+     0.0,
+     0.8149,
+     1.0
+    ]
+   }
   },
   {
    "title": "Ship Unfurling Sails",
@@ -8101,7 +15517,33 @@
     0.42
    ],
    "delivered_edge": 4096,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "4:3": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ],
+    "16:9": [
+     0.0,
+     0.0998,
+     1.0,
+     0.8462
+    ],
+    "9:16": [
+     0.208,
+     0.0,
+     0.632,
+     1.0
+    ],
+    "3:4": [
+     0.1374,
+     0.0,
+     0.7026,
+     1.0
+    ]
+   }
   },
   {
    "title": "Two Boys in a Wagon",
@@ -8128,7 +15570,33 @@
     0.5
    ],
    "delivered_edge": 4096,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1001,
+     1.0,
+     0.5159
+    ],
+    "9:16": [
+     0.1196,
+     0.0,
+     0.8804,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0798,
+     1.0,
+     0.6342
+    ],
+    "3:4": [
+     0.0,
+     0.0072,
+     1.0,
+     0.9928
+    ]
+   }
   },
   {
    "title": "Volante (A Horse-drawn Carriage on a Country Road in Cuba)",
@@ -8155,7 +15623,21 @@
     0.4
    ],
    "delivered_edge": 4096,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0364,
+     1.0,
+     0.9636
+    ],
+    "4:3": [
+     0.0955,
+     0.0,
+     0.9045,
+     1.0
+    ]
+   }
   },
   {
    "title": "Spanish Flag, Santiago de Cuba",
@@ -8182,7 +15664,33 @@
     0.35
    ],
    "delivered_edge": 4096,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0,
+     1.0,
+     0.754
+    ],
+    "9:16": [
+     0.1902,
+     0.0,
+     0.6098,
+     1.0
+    ],
+    "4:3": [
+     0.0026,
+     0.0,
+     0.9974,
+     1.0
+    ],
+    "3:4": [
+     0.1202,
+     0.0,
+     0.6798,
+     1.0
+    ]
+   }
   },
   {
    "title": "Street Scene, Santiago de Cuba",
@@ -8209,7 +15717,33 @@
     0.55
    ],
    "delivered_edge": 4096,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.05,
+     1.0,
+     0.863
+    ],
+    "9:16": [
+     0.5754,
+     0.0,
+     0.9646,
+     1.0
+    ],
+    "4:3": [
+     0.0387,
+     0.0,
+     0.9613,
+     1.0
+    ],
+    "3:4": [
+     0.481,
+     0.0,
+     1.0,
+     1.0
+    ]
+   }
   },
   {
    "title": "Red-Winged Blackbirds",
@@ -8236,7 +15770,33 @@
     0.55
    ],
    "delivered_edge": 4096,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.2999,
+     1.0,
+     0.6971
+    ],
+    "9:16": [
+     0.1002,
+     0.0,
+     0.8968,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.2502,
+     1.0,
+     0.7798
+    ],
+    "3:4": [
+     0.0,
+     0.0298,
+     1.0,
+     0.9712
+    ]
+   }
   },
   {
    "title": "Startled",
@@ -8263,7 +15823,33 @@
     0.62
    ],
    "delivered_edge": 4096,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.02,
+     1.0,
+     0.926
+    ],
+    "9:16": [
+     0.1054,
+     0.0,
+     0.4546,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0,
+     0.8278,
+     1.0
+    ],
+    "3:4": [
+     0.0472,
+     0.0,
+     0.5128,
+     1.0
+    ]
+   }
   },
   {
    "title": "An Open Window",
@@ -8290,7 +15876,33 @@
     0.35
    ],
    "delivered_edge": 4040,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0201,
+     1.0,
+     0.4552
+    ],
+    "9:16": [
+     0.1365,
+     0.0,
+     0.8637,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0202,
+     1.0,
+     0.6004
+    ],
+    "3:4": [
+     0.0152,
+     0.0,
+     0.9848,
+     1.0
+    ]
+   }
   },
   {
    "title": "Waverly Oaks",
@@ -8317,7 +15929,33 @@
     0.62
    ],
    "delivered_edge": 4028,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.45,
+     1.0,
+     0.852
+    ],
+    "9:16": [
+     0.0564,
+     0.0,
+     0.8436,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.3501,
+     1.0,
+     0.8859
+    ],
+    "3:4": [
+     0.0,
+     0.0237,
+     1.0,
+     0.9763
+    ]
+   }
   },
   {
    "title": "Three Boys in a Dory with Lobster Pots",
@@ -8344,7 +15982,33 @@
     0.55
    ],
    "delivered_edge": 4001,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0499,
+     1.0,
+     0.9011
+    ],
+    "9:16": [
+     0.5641,
+     0.0,
+     0.9359,
+     1.0
+    ],
+    "4:3": [
+     0.0594,
+     0.0,
+     0.9406,
+     1.0
+    ],
+    "3:4": [
+     0.5022,
+     0.0,
+     0.9978,
+     1.0
+    ]
+   }
   },
   {
    "title": "Sand and Sky",
@@ -8371,7 +16035,33 @@
     0.55
    ],
    "delivered_edge": 4000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0801,
+     1.0,
+     0.8799
+    ],
+    "9:16": [
+     0.1372,
+     0.0,
+     0.5328,
+     1.0
+    ],
+    "4:3": [
+     0.0312,
+     0.0,
+     0.9688,
+     1.0
+    ],
+    "3:4": [
+     0.0713,
+     0.0,
+     0.5987,
+     1.0
+    ]
+   }
   },
   {
    "title": "Rowing Home",
@@ -8398,7 +16088,33 @@
     0.55
    ],
    "delivered_edge": 4000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1003,
+     1.0,
+     0.9007
+    ],
+    "9:16": [
+     0.2799,
+     0.0,
+     0.6751,
+     1.0
+    ],
+    "4:3": [
+     0.03,
+     0.0,
+     0.967,
+     1.0
+    ],
+    "3:4": [
+     0.24,
+     0.0,
+     0.767,
+     1.0
+    ]
+   }
   },
   {
    "title": "On a lee shore",
@@ -8425,7 +16141,27 @@
     0.25
    ],
    "delivered_edge": 4000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.05,
+     1.0,
+     0.6125
+    ],
+    "4:3": [
+     0.0,
+     0.03,
+     1.0,
+     0.78
+    ],
+    "3:4": [
+     0.05,
+     0.0,
+     0.8,
+     1.0
+    ]
+   }
   },
   {
    "title": "Reverie",
@@ -8452,7 +16188,33 @@
     0.4
    ],
    "delivered_edge": 4000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.08,
+     1.0,
+     0.436
+    ],
+    "9:16": [
+     0.0552,
+     0.0,
+     0.9438,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.08,
+     1.0,
+     0.5547
+    ],
+    "3:4": [
+     0.0,
+     0.04,
+     1.0,
+     0.884
+    ]
+   }
   },
   {
    "title": "Orange trees and gate",
@@ -8479,7 +16241,33 @@
     0.45
    ],
    "delivered_edge": 4000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0498,
+     1.0,
+     0.8632
+    ],
+    "9:16": [
+     0.5,
+     0.0,
+     0.889,
+     1.0
+    ],
+    "4:3": [
+     0.04,
+     0.0,
+     0.962,
+     1.0
+    ],
+    "3:4": [
+     0.2002,
+     0.0,
+     0.7188,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Bather",
@@ -8506,7 +16294,33 @@
     0.5
    ],
    "delivered_edge": 4000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1002,
+     1.0,
+     0.9098
+    ],
+    "9:16": [
+     0.3201,
+     0.0,
+     0.7109,
+     1.0
+    ],
+    "4:3": [
+     0.0398,
+     0.0,
+     0.9662,
+     1.0
+    ],
+    "3:4": [
+     0.25,
+     0.0,
+     0.771,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Guide",
@@ -8533,7 +16347,33 @@
     0.5
    ],
    "delivered_edge": 4000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0802,
+     1.0,
+     0.8878
+    ],
+    "9:16": [
+     0.5501,
+     0.0,
+     0.9419,
+     1.0
+    ],
+    "4:3": [
+     0.0357,
+     0.0,
+     0.9643,
+     1.0
+    ],
+    "3:4": [
+     0.4776,
+     0.0,
+     1.0,
+     1.0
+    ]
+   }
   },
   {
    "title": "Hunting Dogs in Boat (Waiting for the Start)",
@@ -8560,7 +16400,33 @@
     0.5
    ],
    "delivered_edge": 4000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0899,
+     1.0,
+     0.8961
+    ],
+    "9:16": [
+     0.3103,
+     0.0,
+     0.7027,
+     1.0
+    ],
+    "4:3": [
+     0.0348,
+     0.0,
+     0.9652,
+     1.0
+    ],
+    "3:4": [
+     0.2398,
+     0.0,
+     0.7632,
+     1.0
+    ]
+   }
   },
   {
    "title": "Shore and Surf, Nassau",
@@ -8587,7 +16453,33 @@
     0.25
    ],
    "delivered_edge": 4000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0797,
+     1.0,
+     0.8793
+    ],
+    "9:16": [
+     0.3201,
+     0.0,
+     0.7159,
+     1.0
+    ],
+    "4:3": [
+     0.031,
+     0.0,
+     0.969,
+     1.0
+    ],
+    "3:4": [
+     0.2002,
+     0.0,
+     0.7278,
+     1.0
+    ]
+   }
   },
   {
    "title": "Haystacks and Children",
@@ -8621,7 +16513,33 @@
     0.68
    ],
    "delivered_edge": 2920,
-   "resolution_tier": "HD"
+   "resolution_tier": "HD",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0901,
+     1.0,
+     0.8929
+    ],
+    "9:16": [
+     0.1799,
+     0.0,
+     0.5741,
+     1.0
+    ],
+    "4:3": [
+     0.0329,
+     0.0,
+     0.9671,
+     1.0
+    ],
+    "3:4": [
+     0.1702,
+     0.0,
+     0.6958,
+     1.0
+    ]
+   }
   },
   {
    "title": "Sunlight and Shadow",
@@ -8649,7 +16567,33 @@
     0.42
    ],
    "delivered_edge": 4000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0598,
+     1.0,
+     0.8882
+    ],
+    "9:16": [
+     0.42,
+     0.0,
+     0.802,
+     1.0
+    ],
+    "4:3": [
+     0.0498,
+     0.0,
+     0.9552,
+     1.0
+    ],
+    "3:4": [
+     0.1899,
+     0.0,
+     0.6991,
+     1.0
+    ]
+   }
   },
   {
    "title": "Gloucester Harbor",
@@ -8676,7 +16620,33 @@
     0.65
    ],
    "delivered_edge": 3999,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0699,
+     1.0,
+     0.8891
+    ],
+    "9:16": [
+     0.1699,
+     0.0,
+     0.5561,
+     1.0
+    ],
+    "4:3": [
+     0.0422,
+     0.0,
+     0.9578,
+     1.0
+    ],
+    "3:4": [
+     0.13,
+     0.0,
+     0.645,
+     1.0
+    ]
+   }
   },
   {
    "title": "Army Boots",
@@ -8703,7 +16673,33 @@
     0.35
    ],
    "delivered_edge": 3987,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1,
+     1.0,
+     0.814
+    ],
+    "9:16": [
+     0.3999,
+     0.0,
+     0.8431,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0195,
+     1.0,
+     0.9715
+    ],
+    "3:4": [
+     0.2001,
+     0.0,
+     0.7909,
+     1.0
+    ]
+   }
   },
   {
    "title": "High Cliff, Coast of Maine",
@@ -8730,7 +16726,33 @@
     0.45
    ],
    "delivered_edge": 3983,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0501,
+     1.0,
+     0.7629
+    ],
+    "9:16": [
+     0.0001,
+     0.0,
+     0.4439,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0203,
+     1.0,
+     0.9707
+    ],
+    "3:4": [
+     0.0001,
+     0.0,
+     0.5919,
+     1.0
+    ]
+   }
   },
   {
    "title": "Sailing off Gloucester",
@@ -8757,7 +16779,33 @@
     0.55
    ],
    "delivered_edge": 3971,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0399,
+     1.0,
+     0.8291
+    ],
+    "9:16": [
+     0.1301,
+     0.0,
+     0.5309,
+     1.0
+    ],
+    "4:3": [
+     0.0249,
+     0.0,
+     0.9751,
+     1.0
+    ],
+    "3:4": [
+     0.1002,
+     0.0,
+     0.6348,
+     1.0
+    ]
+   }
   },
   {
    "title": "To the Rescue",
@@ -8784,7 +16832,33 @@
     0.55
    ],
    "delivered_edge": 3968,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1902,
+     1.0,
+     0.8988
+    ],
+    "9:16": [
+     0.2097,
+     0.0,
+     0.6563,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0301,
+     1.0,
+     0.9749
+    ],
+    "3:4": [
+     0.1498,
+     0.0,
+     0.7452,
+     1.0
+    ]
+   }
   },
   {
    "title": "Bear Hunting, Prospect Rock",
@@ -8811,7 +16885,33 @@
     0.45
    ],
    "delivered_edge": 3921,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0803,
+     1.0,
+     0.8897
+    ],
+    "9:16": [
+     0.12,
+     0.0,
+     0.511,
+     1.0
+    ],
+    "4:3": [
+     0.0367,
+     0.0,
+     0.9633,
+     1.0
+    ],
+    "3:4": [
+     0.0999,
+     0.0,
+     0.6211,
+     1.0
+    ]
+   }
   },
   {
    "title": "Two Boys Watching Schooners",
@@ -8838,7 +16938,33 @@
     0.55
    ],
    "delivered_edge": 3918,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0503,
+     1.0,
+     0.8927
+    ],
+    "9:16": [
+     0.3372,
+     0.0,
+     0.7128,
+     1.0
+    ],
+    "4:3": [
+     0.0549,
+     0.0,
+     0.9451,
+     1.0
+    ],
+    "3:4": [
+     0.2701,
+     0.0,
+     0.7709,
+     1.0
+    ]
+   }
   },
   {
    "title": "Moonlight, Wood Island Light",
@@ -8865,7 +16991,33 @@
     0.5
    ],
    "delivered_edge": 3909,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0798,
+     1.0,
+     0.8202
+    ],
+    "9:16": [
+     0.1453,
+     0.0,
+     0.5727,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0059,
+     1.0,
+     0.9931
+    ],
+    "3:4": [
+     0.1001,
+     0.0,
+     0.6699,
+     1.0
+    ]
+   }
   },
   {
    "title": "Nassau Beach with Century Plants",
@@ -8892,7 +17044,33 @@
     0.52
    ],
    "delivered_edge": 3893,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.2001,
+     1.0,
+     0.8349
+    ],
+    "9:16": [
+     0.2003,
+     0.0,
+     0.6987,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0798,
+     1.0,
+     0.9262
+    ],
+    "3:4": [
+     0.1302,
+     0.0,
+     0.7948,
+     1.0
+    ]
+   }
   },
   {
    "title": "Breaking Storm, Coast of Maine",
@@ -8919,7 +17097,33 @@
     0.5
    ],
    "delivered_edge": 3886,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0899,
+     1.0,
+     0.8871
+    ],
+    "9:16": [
+     0.25,
+     0.0,
+     0.647,
+     1.0
+    ],
+    "4:3": [
+     0.0301,
+     0.0,
+     0.9709,
+     1.0
+    ],
+    "3:4": [
+     0.1499,
+     0.0,
+     0.6791,
+     1.0
+    ]
+   }
   },
   {
    "title": "English Coastal Scene",
@@ -8946,7 +17150,33 @@
     0.68
    ],
    "delivered_edge": 3882,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.15,
+     1.0,
+     0.96
+    ],
+    "9:16": [
+     0.3052,
+     0.0,
+     0.6958,
+     1.0
+    ],
+    "4:3": [
+     0.037,
+     0.0,
+     0.963,
+     1.0
+    ],
+    "3:4": [
+     0.2396,
+     0.0,
+     0.7604,
+     1.0
+    ]
+   }
   },
   {
    "title": "Searchlight on Harbor Entrance, Santiago de Cuba",
@@ -8973,7 +17203,33 @@
     0.6
    ],
    "delivered_edge": 3882,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0,
+     1.0,
+     0.9186
+    ],
+    "9:16": [
+     0.1775,
+     0.0,
+     0.522,
+     1.0
+    ],
+    "4:3": [
+     0.0918,
+     0.0,
+     0.9082,
+     1.0
+    ],
+    "3:4": [
+     0.145,
+     0.0,
+     0.6043,
+     1.0
+    ]
+   }
   },
   {
    "title": "Watching from the Cliffs",
@@ -9000,7 +17256,33 @@
     0.32
    ],
    "delivered_edge": 3881,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.05,
+     1.0,
+     0.8713
+    ],
+    "9:16": [
+     0.2549,
+     0.0,
+     0.6401,
+     1.0
+    ],
+    "4:3": [
+     0.0434,
+     0.0,
+     0.9566,
+     1.0
+    ],
+    "3:4": [
+     0.2432,
+     0.0,
+     0.7568,
+     1.0
+    ]
+   }
   },
   {
    "title": "Milking",
@@ -9027,7 +17309,33 @@
     0.55
    ],
    "delivered_edge": 3880,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1001,
+     1.0,
+     0.9331
+    ],
+    "9:16": [
+     0.2801,
+     0.0,
+     0.6599,
+     1.0
+    ],
+    "4:3": [
+     0.0498,
+     0.0,
+     0.9502,
+     1.0
+    ],
+    "3:4": [
+     0.2468,
+     0.0,
+     0.7532,
+     1.0
+    ]
+   }
   },
   {
    "title": "A Basket of Clams",
@@ -9054,7 +17362,33 @@
     0.55
    ],
    "delivered_edge": 3880,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.4199,
+     1.0,
+     0.8971
+    ],
+    "9:16": [
+     0.1679,
+     0.0,
+     0.8311,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.2799,
+     1.0,
+     0.9161
+    ],
+    "3:4": [
+     0.0579,
+     0.0,
+     0.9421,
+     1.0
+    ]
+   }
   },
   {
    "title": "Prout's Neck, Breakers",
@@ -9081,7 +17415,33 @@
     0.55
    ],
    "delivered_edge": 3866,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1892,
+     1.0,
+     1.0
+    ],
+    "9:16": [
+     0.4249,
+     0.0,
+     0.8151,
+     1.0
+    ],
+    "4:3": [
+     0.0375,
+     0.0,
+     0.9625,
+     1.0
+    ],
+    "3:4": [
+     0.3399,
+     0.0,
+     0.8602,
+     1.0
+    ]
+   }
   },
   {
    "title": "A Wall, Nassau",
@@ -9108,7 +17468,33 @@
     0.28
    ],
    "delivered_edge": 3851,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1,
+     1.0,
+     0.9055
+    ],
+    "9:16": [
+     0.4041,
+     0.0,
+     0.7969,
+     1.0
+    ],
+    "4:3": [
+     0.0345,
+     0.0,
+     0.9655,
+     1.0
+    ],
+    "3:4": [
+     0.1882,
+     0.0,
+     0.7118,
+     1.0
+    ]
+   }
   },
   {
    "title": "Nassau",
@@ -9135,7 +17521,33 @@
     0.5
    ],
    "delivered_edge": 3843,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0999,
+     1.0,
+     0.9061
+    ],
+    "9:16": [
+     0.2038,
+     0.0,
+     0.5962,
+     1.0
+    ],
+    "4:3": [
+     0.0349,
+     0.0,
+     0.9651,
+     1.0
+    ],
+    "3:4": [
+     0.1884,
+     0.0,
+     0.7116,
+     1.0
+    ]
+   }
   }
  ]
 }

@@ -118,6 +118,13 @@ def build_item(row: dict) -> dict:
         image["focal_point"] = [fx, fy]
     elif isinstance(fp, (list, tuple)) and len(fp) == 2:
         image["focal_point"] = [float(fp[0]), float(fp[1])]
+    # Per-shape crop presets (epaper.ASPECT_CROP_KEYS): image-attached metadata, never baked, so it
+    # lives beside focal_point. Flat row takes precedence over an already-nested item (idempotent).
+    ac = row.get("aspect_crops")
+    if not isinstance(ac, dict):
+        ac = img_in.get("aspect_crops")
+    if isinstance(ac, dict) and ac:
+        image["aspect_crops"] = ac
 
     item: dict = {"id": _slugify(row.get("id") or row.get("title") or ""),
                   "title": _clean_str(row.get("title")), "image": image}

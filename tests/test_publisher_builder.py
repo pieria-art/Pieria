@@ -37,6 +37,39 @@ def test_build_item_carries_series_and_resolution_tier():
     assert "series" not in bare and "resolution_tier" not in bare
 
 
+def test_build_item_carries_aspect_crops_in_image_and_omits_when_absent():
+    ac = {"16:9": [0.0, 0.1, 1.0, 0.66], "9:16": [0.28, 0.0, 0.72, 1.0]}
+    it = publisher.build_item({**_row(), "aspect_crops": ac})
+    assert it["image"]["aspect_crops"] == ac
+    # not a scalar item field — lives only under image, beside focal_point
+    assert "aspect_crops" not in it
+    # absent -> omitted entirely, keeping canonical bytes clean
+    bare = publisher.build_item(_row())
+    assert "aspect_crops" not in bare["image"]
+
+
+def test_build_item_aspect_crops_idempotent_over_nested_item():
+    ac = {"4:3": [0.0, 0.0, 1.0, 0.9]}
+    it = publisher.build_item({**_row(), "aspect_crops": ac})
+    again = publisher.build_item(it)  # already-nested (has an "image" sub-object)
+    assert again["image"]["aspect_crops"] == ac
+
+
+def test_manifest_without_aspect_crops_is_byte_identical_and_signature_stable():
+    """The critical property: a manifest that never mentions aspect_crops must produce the exact same
+    canonical (to-be-signed) bytes as before this field existed — no stray key, no signature drift."""
+    priv, pub = publisher.keygen()
+    m, errors = publisher.assemble_validate_sign(_meta(), [_row()], priv, pub)
+    assert errors == []
+    assert b"aspect_crops" not in federation.canonical_bytes(m)
+    assert federation.verify_signature(m) is True
+
+    # Same manifest built again, independently, must hash to the same canonical bytes.
+    m2, errors2 = publisher.assemble_validate_sign(_meta(), [_row()], priv, pub)
+    assert errors2 == []
+    assert federation.canonical_bytes(m) == federation.canonical_bytes(m2)
+
+
 def test_build_item_accepts_image_url_alias_and_list_tags():
     it = publisher.build_item({"title": "X", "image_url": "https://x/y.jpg", "tags": ["a", "b"]})
     assert it["image"]["full_url"] == "https://x/y.jpg" and it["tags"] == ["a", "b"]

@@ -30,7 +30,27 @@
    "credit_line": "Collection of The Metropolitan Museum of Art",
    "license_verified": "2026-07-16",
    "delivered_edge": 3919,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0202,
+     1.0,
+     0.9841
+    ],
+    "4:3": [
+     0.0498,
+     0.0,
+     0.8279,
+     1.0
+    ],
+    "3:4": [
+     0.15,
+     0.0,
+     0.5876,
+     1.0
+    ]
+   }
   },
   {
    "title": "Travelers Among Mountains and Streams",
@@ -57,7 +77,27 @@
    "credit_line": "WAHwkSr8lMK0uA at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
    "delivered_edge": 5633,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "9:16": [
+     0.0,
+     0.0501,
+     1.0,
+     0.9367
+    ],
+    "4:3": [
+     0.0,
+     0.0502,
+     1.0,
+     0.4242
+    ],
+    "3:4": [
+     0.0,
+     0.1003,
+     1.0,
+     0.7651
+    ]
+   }
   },
   {
    "title": "Early Spring",
@@ -84,7 +124,33 @@
    "credit_line": "http://www.comuseum.com/wp-content/uploads/2016/11/guo-xi_early-spring.jpg",
    "license_verified": "2026-07-16",
    "delivered_edge": 6240,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1201,
+     1.0,
+     0.5051
+    ],
+    "9:16": [
+     0.0898,
+     0.0,
+     0.9114,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0802,
+     1.0,
+     0.5937
+    ],
+    "3:4": [
+     0.0,
+     0.0302,
+     1.0,
+     0.9431
+    ]
+   }
   },
   {
    "title": "Night Revels of Han Xizai",
@@ -111,7 +177,21 @@
    "credit_line": "http://depts.washington.edu/chinaciv/painting/4literat.htm#hanxizai, Zhongguo lidai huihua: Gugong bowuyuan canghua ji, vol. 1 (Beijing: Renmin meishu chubanshe, 1978), p. 89.",
    "license_verified": "2026-07-16",
    "delivered_edge": 4720,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0554,
+     0.0,
+     0.2046,
+     1.0
+    ],
+    "4:3": [
+     0.0741,
+     0.0,
+     0.1859,
+     1.0
+    ]
+   }
   },
   {
    "title": "Summer Mountains",
@@ -138,7 +218,33 @@
    "credit_line": "Metmuseum",
    "license_verified": "2026-07-16",
    "delivered_edge": 5551,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0669,
+     0.0,
+     0.6331,
+     1.0
+    ],
+    "9:16": [
+     0.2604,
+     0.0,
+     0.4396,
+     1.0
+    ],
+    "4:3": [
+     0.1377,
+     0.0,
+     0.5623,
+     1.0
+    ],
+    "3:4": [
+     0.2306,
+     0.0,
+     0.4695,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Court of Gayumars",
@@ -165,7 +271,33 @@
    "credit_line": "Transferred from ru.wikipedia to Commons. Original uploader was Евгений Ардаев at ru.wikipedia (28 August 2008 (first version); 28 August 2008 (last version))",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1198,
+     1.0,
+     0.5285
+    ],
+    "9:16": [
+     0.1202,
+     0.0,
+     0.8946,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.08,
+     1.0,
+     0.6249
+    ],
+    "3:4": [
+     0.0,
+     0.0096,
+     1.0,
+     0.9782
+    ]
+   }
   },
   {
    "title": "Folio from the Shahnameh of Shah Tahmasp",
@@ -192,7 +324,33 @@
    "credit_line": "Sotheby,s",
    "license_verified": "2026-07-16",
    "delivered_edge": 4000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.45,
+     1.0,
+     0.8819
+    ],
+    "9:16": [
+     0.2673,
+     0.0,
+     1.0,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.3501,
+     1.0,
+     0.9259
+    ],
+    "3:4": [
+     0.0,
+     0.0,
+     0.9769,
+     1.0
+    ]
+   }
   },
   {
    "title": "Folio from the Hamzanama",
@@ -219,7 +377,33 @@
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
    "delivered_edge": 4000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.4501,
+     1.0,
+     0.8899
+    ],
+    "9:16": [
+     0.14,
+     0.0,
+     0.8594,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.3001,
+     1.0,
+     0.8866
+    ],
+    "3:4": [
+     0.02,
+     0.0,
+     0.9791,
+     1.0
+    ]
+   }
   },
   {
    "title": "Krishna Lifting Mount Govardhan",
@@ -246,7 +430,33 @@
    "credit_line": "Collection of Cleveland Museum of Art",
    "license_verified": "2026-07-16",
    "delivered_edge": 5964,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.15,
+     1.0,
+     0.56
+    ],
+    "9:16": [
+     0.1099,
+     0.0,
+     0.8817,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1001,
+     1.0,
+     0.6467
+    ],
+    "3:4": [
+     0.0,
+     0.0151,
+     1.0,
+     0.9869
+    ]
+   }
   },
   {
    "title": "Pine Trees Screen",
@@ -273,7 +483,33 @@
    "credit_line": "Emuseum",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0,
+     0.8308,
+     1.0
+    ],
+    "9:16": [
+     0.12,
+     0.0,
+     0.3828,
+     1.0
+    ],
+    "4:3": [
+     0.0249,
+     0.0,
+     0.648,
+     1.0
+    ],
+    "3:4": [
+     0.08,
+     0.0,
+     0.4305,
+     1.0
+    ]
+   }
   },
   {
    "title": "Wind God and Thunder God",
@@ -300,7 +536,33 @@
    "credit_line": "https://clevelandart.org/art/2004.86",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0201,
+     0.0,
+     0.8442,
+     1.0
+    ],
+    "9:16": [
+     0.22,
+     0.0,
+     0.4808,
+     1.0
+    ],
+    "4:3": [
+     0.05,
+     0.0,
+     0.668,
+     1.0
+    ],
+    "3:4": [
+     0.18,
+     0.0,
+     0.5277,
+     1.0
+    ]
+   }
   },
   {
    "title": "Red and White Plum Blossoms",
@@ -327,7 +589,33 @@
    "credit_line": "https://www.at-s.com/news/article/shizuoka/1032532.html",
    "license_verified": "2026-07-16",
    "delivered_edge": 4001,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.1097,
+     0.0,
+     0.8904,
+     1.0
+    ],
+    "9:16": [
+     0.376,
+     0.0,
+     0.6231,
+     1.0
+    ],
+    "4:3": [
+     0.2073,
+     0.0,
+     0.7928,
+     1.0
+    ],
+    "3:4": [
+     0.335,
+     0.0,
+     0.6644,
+     1.0
+    ]
+   }
   },
   {
    "title": "Irises Screen",
@@ -354,7 +642,21 @@
    "credit_line": "Nezu Art Museum",
    "license_verified": "2026-07-16",
    "delivered_edge": 3904,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.1275,
+     0.0,
+     0.8725,
+     1.0
+    ],
+    "4:3": [
+     0.2207,
+     0.0,
+     0.7794,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Concourse of the Birds",
@@ -381,7 +683,33 @@
     0.58
    ],
    "delivered_edge": 3876,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.45,
+     1.0,
+     0.8268
+    ],
+    "9:16": [
+     0.08,
+     0.0,
+     0.9196,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.3,
+     1.0,
+     0.8025
+    ],
+    "3:4": [
+     0.0,
+     0.0401,
+     1.0,
+     0.9335
+    ]
+   }
   },
   {
    "title": "Fish and Rocks",
@@ -415,7 +743,21 @@
     0.4
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.46,
+     0.0,
+     0.6936,
+     1.0
+    ],
+    "4:3": [
+     0.51,
+     0.0,
+     0.6852,
+     1.0
+    ]
+   }
   },
   {
    "title": "Cypress Trees",
@@ -449,7 +791,33 @@
     0.45
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.1701,
+     0.0,
+     0.836,
+     1.0
+    ],
+    "9:16": [
+     0.52,
+     0.0,
+     0.7308,
+     1.0
+    ],
+    "4:3": [
+     0.35,
+     0.0,
+     0.8495,
+     1.0
+    ],
+    "3:4": [
+     0.47,
+     0.0,
+     0.751,
+     1.0
+    ]
+   }
   },
   {
    "title": "Youth Holding a Pomegranate",
@@ -482,7 +850,33 @@
     0.45
    ],
    "delivered_edge": 6588,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1499,
+     1.0,
+     0.4887
+    ],
+    "9:16": [
+     0.0334,
+     0.0,
+     0.967,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1298,
+     1.0,
+     0.5817
+    ],
+    "3:4": [
+     0.0,
+     0.0597,
+     1.0,
+     0.863
+    ]
+   }
   },
   {
    "title": "Tobatsu Bishamonten",
@@ -509,7 +903,33 @@
    "credit_line": "Collection of The Metropolitan Museum of Art",
    "license_verified": "2026-07-16",
    "delivered_edge": 4000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "3:4": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ],
+    "16:9": [
+     0.0,
+     0.05,
+     1.0,
+     0.4718
+    ],
+    "9:16": [
+     0.125,
+     0.0,
+     0.875,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0301,
+     1.0,
+     0.5926
+    ]
+   }
   }
  ]
 }

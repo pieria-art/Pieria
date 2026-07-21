@@ -30,7 +30,33 @@
    "credit_line": "Collection of Art Institute of Chicago",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0501,
+     1.0,
+     0.4915
+    ],
+    "9:16": [
+     0.1416,
+     0.0,
+     0.8584,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0301,
+     1.0,
+     0.6187
+    ],
+    "3:4": [
+     0.0222,
+     0.0,
+     0.9778,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Poet's Garden",
@@ -57,7 +83,33 @@
    "credit_line": "Collection of Art Institute of Chicago",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.03,
+     1.0,
+     0.7421
+    ],
+    "9:16": [
+     0.228,
+     0.0,
+     0.6723,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.02,
+     1.0,
+     0.9695
+    ],
+    "3:4": [
+     0.1538,
+     0.0,
+     0.7462,
+     1.0
+    ]
+   }
   },
   {
    "title": "A Peasant Woman Digging in Front of Her Cottage",
@@ -84,7 +136,33 @@
    "credit_line": "Collection of Art Institute of Chicago",
    "license_verified": "2026-07-16",
    "delivered_edge": 6255,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "4:3": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ],
+    "16:9": [
+     0.0,
+     0.2492,
+     1.0,
+     0.9998
+    ],
+    "9:16": [
+     0.4688,
+     0.0,
+     0.8902,
+     1.0
+    ],
+    "3:4": [
+     0.3995,
+     0.0,
+     0.9615,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Drinkers",
@@ -111,7 +189,33 @@
    "credit_line": "Collection of Art Institute of Chicago",
    "license_verified": "2026-07-16",
    "delivered_edge": 5922,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1499,
+     1.0,
+     0.8491
+    ],
+    "9:16": [
+     0.2702,
+     0.0,
+     0.7228,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0677,
+     1.0,
+     1.0
+    ],
+    "3:4": [
+     0.1983,
+     0.0,
+     0.8017,
+     1.0
+    ]
+   }
   },
   {
    "title": "Fishing in Spring, the Pont de Clichy (Asnières)",
@@ -138,7 +242,33 @@
    "credit_line": "Collection of Art Institute of Chicago",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1999,
+     1.0,
+     0.8741
+    ],
+    "9:16": [
+     0.0698,
+     0.0,
+     0.5392,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0501,
+     1.0,
+     0.9489
+    ],
+    "3:4": [
+     0.1371,
+     0.0,
+     0.7629,
+     1.0
+    ]
+   }
   },
   {
    "title": "Madame Roulin Rocking the Cradle (La berceuse)",
@@ -165,7 +295,33 @@
    "credit_line": "Collection of Art Institute of Chicago",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0198,
+     1.0,
+     0.465
+    ],
+    "9:16": [
+     0.1446,
+     0.0,
+     0.8554,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.06,
+     1.0,
+     0.6535
+    ],
+    "3:4": [
+     0.0262,
+     0.0,
+     0.9738,
+     1.0
+    ]
+   }
   },
   {
    "title": "Terrace and Observation Deck at the Moulin de Blute-Fin, Montmartre",
@@ -192,7 +348,27 @@
    "credit_line": "Collection of Art Institute of Chicago",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "3:4": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ],
+    "9:16": [
+     0.0292,
+     0.0,
+     0.7708,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1503,
+     1.0,
+     0.7192
+    ]
+   }
   },
   {
    "title": "Grapes, Lemons, Pears, and Apples",
@@ -219,7 +395,33 @@
    "credit_line": "https://www.artic.edu/artworks/64957",
    "license_verified": "2026-07-16",
    "delivered_edge": 4379,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.16,
+     1.0,
+     0.812
+    ],
+    "9:16": [
+     0.2074,
+     0.0,
+     0.6926,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.065,
+     1.0,
+     0.9344
+    ],
+    "3:4": [
+     0.146,
+     0.0,
+     0.793,
+     1.0
+    ]
+   }
   },
   {
    "title": "Weeping Tree",
@@ -246,7 +448,33 @@
    "credit_line": "Copied from an art book",
    "license_verified": "2026-07-16",
    "delivered_edge": 6536,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.05,
+     1.0,
+     0.7536
+    ],
+    "9:16": [
+     0.1952,
+     0.0,
+     0.6448,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0301,
+     1.0,
+     0.9683
+    ],
+    "3:4": [
+     0.1202,
+     0.0,
+     0.7198,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Basket of Apples",
@@ -273,7 +501,33 @@
    "credit_line": "Collection of Art Institute of Chicago",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1298,
+     1.0,
+     0.8342
+    ],
+    "9:16": [
+     0.2754,
+     0.0,
+     0.7246,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.03,
+     1.0,
+     0.9692
+    ],
+    "3:4": [
+     0.2005,
+     0.0,
+     0.7995,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Bay of Marseille, Seen from L'Estaque",
@@ -300,7 +554,33 @@
    "credit_line": "1QFFkcktbe4rAg at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
    "delivered_edge": 4748,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1,
+     1.0,
+     0.8065
+    ],
+    "9:16": [
+     0.2761,
+     0.0,
+     0.7239,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0301,
+     1.0,
+     0.9721
+    ],
+    "3:4": [
+     0.1015,
+     0.0,
+     0.6985,
+     1.0
+    ]
+   }
   },
   {
    "title": "Auvers, Panoramic View",
@@ -327,7 +607,33 @@
    "credit_line": "Collection of Art Institute of Chicago",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.09,
+     1.0,
+     0.7986
+    ],
+    "9:16": [
+     0.1267,
+     0.0,
+     0.5733,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0303,
+     1.0,
+     0.975
+    ],
+    "3:4": [
+     0.0518,
+     0.0,
+     0.6472,
+     1.0
+    ]
+   }
   },
   {
    "title": "Madame Cezanne in a Yellow Chair",
@@ -354,7 +660,33 @@
    "credit_line": "Collection of Art Institute of Chicago",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.02,
+     1.0,
+     0.4642
+    ],
+    "9:16": [
+     0.1438,
+     0.0,
+     0.8562,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0203,
+     1.0,
+     0.6124
+    ],
+    "3:4": [
+     0.0251,
+     0.0,
+     0.9749,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Vase of Tulips",
@@ -381,7 +713,33 @@
    "credit_line": "Collection of Art Institute of Chicago",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.2499,
+     1.0,
+     0.6466
+    ],
+    "9:16": [
+     0.1013,
+     0.0,
+     0.8987,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1499,
+     1.0,
+     0.6789
+    ],
+    "3:4": [
+     0.0,
+     0.0298,
+     1.0,
+     0.9702
+    ]
+   }
   },
   {
    "title": "The Bathers",
@@ -409,7 +767,33 @@
    "license_verified": "2026-07-16",
    "below_floor_ok": true,
    "delivered_edge": 2746,
-   "resolution_tier": "HD"
+   "resolution_tier": "HD",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1397,
+     1.0,
+     0.8262
+    ],
+    "9:16": [
+     0.1191,
+     0.0,
+     0.5799,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.04,
+     1.0,
+     0.9553
+    ],
+    "3:4": [
+     0.0927,
+     0.0,
+     0.7073,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Plate of Apples",
@@ -436,7 +820,33 @@
    "credit_line": "Collection of Art Institute of Chicago",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1599,
+     1.0,
+     0.835
+    ],
+    "9:16": [
+     0.2157,
+     0.0,
+     0.6843,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0501,
+     1.0,
+     0.9502
+    ],
+    "3:4": [
+     0.1375,
+     0.0,
+     0.7625,
+     1.0
+    ]
+   }
   },
   {
    "title": "Bathers",
@@ -464,7 +874,27 @@
    "license_verified": "2026-07-16",
    "below_floor_ok": true,
    "delivered_edge": 3000,
-   "resolution_tier": "HD"
+   "resolution_tier": "HD",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.04,
+     1.0,
+     0.9517
+    ],
+    "4:3": [
+     0.0887,
+     0.0,
+     0.9113,
+     1.0
+    ],
+    "3:4": [
+     0.3186,
+     0.0,
+     0.7813,
+     1.0
+    ]
+   }
   },
   {
    "title": "Standing Bather, Seen from the Back",
@@ -491,7 +921,21 @@
    "credit_line": "Collection of Art Institute of Chicago",
    "license_verified": "2026-07-16",
    "delivered_edge": 7319,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "9:16": [
+     0.0736,
+     0.0,
+     0.9264,
+     1.0
+    ],
+    "3:4": [
+     0.0,
+     0.0602,
+     1.0,
+     0.9398
+    ]
+   }
   },
   {
    "title": "A Sunday on La Grande Jatte — 1884",
@@ -518,7 +962,27 @@
    "credit_line": "https://www.bostonglobe.com/arts/theater-dance/2016/09/01/huntington-two-georges-one-sondheim/OR1D4DPM8GsME67aXEjWiP/story.html",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0775,
+     1.0,
+     0.9226
+    ],
+    "9:16": [
+     0.58,
+     0.0,
+     0.9545,
+     1.0
+    ],
+    "4:3": [
+     0.0801,
+     0.0,
+     0.9676,
+     1.0
+    ]
+   }
   },
   {
    "title": "Oil Sketch for \"A Sunday on La Grande Jatte — 1884\"",
@@ -545,7 +1009,33 @@
    "credit_line": "Collection of Art Institute of Chicago",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.04,
+     1.0,
+     0.9584
+    ],
+    "9:16": [
+     0.4477,
+     0.0,
+     0.7923,
+     1.0
+    ],
+    "4:3": [
+     0.0917,
+     0.0,
+     0.9083,
+     1.0
+    ],
+    "3:4": [
+     0.3898,
+     0.0,
+     0.8492,
+     1.0
+    ]
+   }
   },
   {
    "title": "Final Study for \"Bathers at Asnières\"",
@@ -572,7 +1062,33 @@
    "credit_line": "Collection of Art Institute of Chicago",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.05,
+     1.0,
+     0.951
+    ],
+    "9:16": [
+     0.3244,
+     0.0,
+     0.6756,
+     1.0
+    ],
+    "4:3": [
+     0.0638,
+     0.0,
+     0.8962,
+     1.0
+    ],
+    "3:4": [
+     0.2459,
+     0.0,
+     0.7141,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Starry Night",
@@ -599,7 +1115,27 @@
    "credit_line": "Google Arts &amp; Culture — bgEuwDxel93-Pg",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0701,
+     1.0,
+     0.7803
+    ],
+    "4:3": [
+     0.0,
+     0.0265,
+     1.0,
+     0.9736
+    ],
+    "3:4": [
+     0.0199,
+     0.0,
+     0.6139,
+     1.0
+    ]
+   }
   },
   {
    "title": "Sunflowers",
@@ -626,7 +1162,33 @@
    "credit_line": "National Gallery, London - online catalogue.",
    "license_verified": "2026-07-16",
    "delivered_edge": 6000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1798,
+     1.0,
+     0.6223
+    ],
+    "9:16": [
+     0.1424,
+     0.0,
+     0.8576,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1198,
+     1.0,
+     0.7096
+    ],
+    "3:4": [
+     0.0232,
+     0.0,
+     0.9768,
+     1.0
+    ]
+   }
   },
   {
    "title": "Café Terrace at Night",
@@ -653,7 +1215,33 @@
    "credit_line": "https://data.collectienederland.nl/page/aggregation/kroller-muller/44529",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.3,
+     1.0,
+     0.7511
+    ],
+    "9:16": [
+     0.0499,
+     0.0,
+     0.7515,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.2001,
+     1.0,
+     0.8014
+    ],
+    "3:4": [
+     0.0323,
+     0.0,
+     0.9677,
+     1.0
+    ]
+   }
   },
   {
    "title": "Starry Night Over the Rhône",
@@ -680,7 +1268,27 @@
     0.85
    ],
    "delivered_edge": 5407,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "9:16": [
+     0.564,
+     0.0,
+     1.0,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0162,
+     1.0,
+     0.9839
+    ],
+    "3:4": [
+     0.4,
+     0.0,
+     0.9814,
+     1.0
+    ]
+   }
   },
   {
    "title": "Irises",
@@ -707,7 +1315,33 @@
     0.35
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.132,
+     1.0,
+     0.8681
+    ],
+    "9:16": [
+     0.0299,
+     0.0,
+     0.4598,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0093,
+     1.0,
+     0.9907
+    ],
+    "3:4": [
+     0.0201,
+     0.0,
+     0.5932,
+     1.0
+    ]
+   }
   },
   {
    "title": "Wheatfield with Crows",
@@ -734,7 +1368,33 @@
     0.55
    ],
    "delivered_edge": 4921,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0735,
+     0.0,
+     0.9265,
+     1.0
+    ],
+    "9:16": [
+     0.3151,
+     0.0,
+     0.5849,
+     1.0
+    ],
+    "4:3": [
+     0.1301,
+     0.0,
+     0.7699,
+     1.0
+    ],
+    "3:4": [
+     0.2701,
+     0.0,
+     0.6299,
+     1.0
+    ]
+   }
   },
   {
    "title": "Mont Sainte-Victoire",
@@ -761,7 +1421,33 @@
     0.38
    ],
    "delivered_edge": 6000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0801,
+     1.0,
+     0.8572
+    ],
+    "9:16": [
+     0.2464,
+     0.0,
+     0.6536,
+     1.0
+    ],
+    "4:3": [
+     0.0174,
+     0.0,
+     0.9826,
+     1.0
+    ],
+    "3:4": [
+     0.1786,
+     0.0,
+     0.7214,
+     1.0
+    ]
+   }
   },
   {
    "title": "Where Do We Come From? What Are We? Where Are We Going?",
@@ -788,7 +1474,33 @@
     0.4
    ],
    "delivered_edge": 5400,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.1699,
+     0.0,
+     0.8241,
+     1.0
+    ],
+    "9:16": [
+     0.4766,
+     0.0,
+     0.6835,
+     1.0
+    ],
+    "4:3": [
+     0.3347,
+     0.0,
+     0.8253,
+     1.0
+    ],
+    "3:4": [
+     0.442,
+     0.0,
+     0.718,
+     1.0
+    ]
+   }
   },
   {
    "title": "Vision After the Sermon (Jacob Wrestling with the Angel)",
@@ -815,7 +1527,33 @@
     0.55
    ],
    "delivered_edge": 5000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0801,
+     1.0,
+     0.7979
+    ],
+    "9:16": [
+     0.0001,
+     0.0,
+     0.4408,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0199,
+     1.0,
+     0.9771
+    ],
+    "3:4": [
+     0.0,
+     0.0,
+     0.5877,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Potato Eaters",
@@ -850,7 +1588,33 @@
     0.4
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0198,
+     1.0,
+     0.7572
+    ],
+    "9:16": [
+     0.3,
+     0.0,
+     0.729,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0082,
+     1.0,
+     0.9915
+    ],
+    "3:4": [
+     0.2,
+     0.0,
+     0.772,
+     1.0
+    ]
+   }
   },
   {
    "title": "Wheatfield with Cypresses",
@@ -885,7 +1649,33 @@
     0.55
    ],
    "delivered_edge": 6000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1001,
+     1.0,
+     0.807
+    ],
+    "9:16": [
+     0.4763,
+     0.0,
+     0.9238,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0287,
+     1.0,
+     0.9713
+    ],
+    "3:4": [
+     0.4017,
+     0.0,
+     0.9984,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Yellow Christ",
@@ -920,7 +1710,33 @@
     0.3
    ],
    "delivered_edge": 3965,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0299,
+     1.0,
+     0.4771
+    ],
+    "9:16": [
+     0.1462,
+     0.0,
+     0.8538,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0,
+     1.0,
+     0.5962
+    ],
+    "3:4": [
+     0.0283,
+     0.0,
+     0.9717,
+     1.0
+    ]
+   }
   },
   {
    "title": "Equestrienne (At the Cirque Fernando)",
@@ -955,7 +1771,33 @@
     0.45
    ],
    "delivered_edge": 4984,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0539,
+     1.0,
+     0.9471
+    ],
+    "9:16": [
+     0.5029,
+     0.0,
+     0.8571,
+     1.0
+    ],
+    "4:3": [
+     0.0801,
+     0.0,
+     0.9199,
+     1.0
+    ],
+    "3:4": [
+     0.4438,
+     0.0,
+     0.9162,
+     1.0
+    ]
+   }
   },
   {
    "title": "Moulin de la Galette",
@@ -990,7 +1832,27 @@
     0.35
    ],
    "delivered_edge": 7198,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.15,
+     1.0,
+     0.7895
+    ],
+    "4:3": [
+     0.0,
+     0.0702,
+     1.0,
+     0.9228
+    ],
+    "3:4": [
+     0.05,
+     0.0,
+     0.7097,
+     1.0
+    ]
+   }
   },
   {
    "title": "At the Circus: The Bareback Rider (Au Cirque: Écuyère)",
@@ -1025,7 +1887,33 @@
     0.45
    ],
    "delivered_edge": 5134,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.22,
+     1.0,
+     0.7515
+    ],
+    "9:16": [
+     0.2023,
+     0.0,
+     0.7977,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1461,
+     1.0,
+     0.8547
+    ],
+    "3:4": [
+     0.1032,
+     0.0,
+     0.897,
+     1.0
+    ]
+   }
   },
   {
    "title": "Mahana no atua (Day of the God)",
@@ -1060,7 +1948,33 @@
     0.62
    ],
    "delivered_edge": 6609,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.08,
+     1.0,
+     0.834
+    ],
+    "9:16": [
+     0.2899,
+     0.0,
+     0.7095,
+     1.0
+    ],
+    "4:3": [
+     0.0027,
+     0.0,
+     0.9973,
+     1.0
+    ],
+    "3:4": [
+     0.2199,
+     0.0,
+     0.7794,
+     1.0
+    ]
+   }
   },
   {
    "title": "Arlésiennes (Mistral)",
@@ -1095,7 +2009,33 @@
     0.5
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1199,
+     1.0,
+     0.8311
+    ],
+    "9:16": [
+     0.0801,
+     0.0,
+     0.5249,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0258,
+     1.0,
+     0.9742
+    ],
+    "3:4": [
+     0.0501,
+     0.0,
+     0.6433,
+     1.0
+    ]
+   }
   },
   {
    "title": "Woman in Front of a Still Life by Cézanne",
@@ -1130,7 +2070,33 @@
     0.3
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0,
+     1.0,
+     0.4743
+    ],
+    "9:16": [
+     0.0202,
+     0.0,
+     0.6872,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0,
+     1.0,
+     0.6324
+    ],
+    "3:4": [
+     0.0551,
+     0.0,
+     0.9446,
+     1.0
+    ]
+   }
   },
   {
    "title": "Bathers at Asnières",
@@ -1157,7 +2123,33 @@
     0.55
    ],
    "delivered_edge": 4000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.06,
+     1.0,
+     0.943
+    ],
+    "9:16": [
+     0.12,
+     0.0,
+     0.4783,
+     1.0
+    ],
+    "4:3": [
+     0.0749,
+     0.0,
+     0.9243,
+     1.0
+    ],
+    "3:4": [
+     0.13,
+     0.0,
+     0.6077,
+     1.0
+    ]
+   }
   },
   {
    "title": "Boy in a Red Waistcoat",
@@ -1184,7 +2176,33 @@
     0.25
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0001,
+     1.0,
+     0.451
+    ],
+    "9:16": [
+     0.149,
+     0.0,
+     0.8506,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0002,
+     1.0,
+     0.6015
+    ],
+    "3:4": [
+     0.0318,
+     0.0,
+     0.9674,
+     1.0
+    ]
+   }
   },
   {
    "title": "Flowing Water in the Woods",
@@ -1211,7 +2229,33 @@
     0.55
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.11,
+     1.0,
+     0.8873
+    ],
+    "9:16": [
+     0.3,
+     0.0,
+     0.707,
+     1.0
+    ],
+    "4:3": [
+     0.0179,
+     0.0,
+     0.9826,
+     1.0
+    ],
+    "3:4": [
+     0.23,
+     0.0,
+     0.7727,
+     1.0
+    ]
+   }
   },
   {
    "title": "Still Life with Fruit",
@@ -1238,7 +2282,33 @@
     0.55
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0179,
+     1.0,
+     0.9821
+    ],
+    "9:16": [
+     0.336,
+     0.0,
+     0.6642,
+     1.0
+    ],
+    "4:3": [
+     0.111,
+     0.0,
+     0.8887,
+     1.0
+    ],
+    "3:4": [
+     0.2811,
+     0.0,
+     0.7186,
+     1.0
+    ]
+   }
   },
   {
    "title": "Still Life with Blue Pot",
@@ -1265,7 +2335,33 @@
     0.35
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.13,
+     1.0,
+     0.8685
+    ],
+    "9:16": [
+     0.286,
+     0.0,
+     0.7144,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0076,
+     1.0,
+     0.9924
+    ],
+    "3:4": [
+     0.214,
+     0.0,
+     0.7852,
+     1.0
+    ]
+   }
   },
   {
    "title": "Bibémus Quarry (1898-99)",
@@ -1292,7 +2388,33 @@
     0.35
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.08,
+     1.0,
+     0.5496
+    ],
+    "9:16": [
+     0.163,
+     0.0,
+     0.8367,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0502,
+     1.0,
+     0.6763
+    ],
+    "3:4": [
+     0.0509,
+     0.0,
+     0.9492,
+     1.0
+    ]
+   }
   },
   {
    "title": "Young Italian Woman at a Table",
@@ -1319,7 +2441,33 @@
     0.28
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0001,
+     1.0,
+     0.4487
+    ],
+    "9:16": [
+     0.1478,
+     0.0,
+     0.8531,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0003,
+     1.0,
+     0.5984
+    ],
+    "3:4": [
+     0.0297,
+     0.0,
+     0.9701,
+     1.0
+    ]
+   }
   },
   {
    "title": "Still Life with Apples",
@@ -1346,7 +2494,33 @@
     0.55
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1201,
+     1.0,
+     0.8235
+    ],
+    "9:16": [
+     0.275,
+     0.0,
+     0.7247,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0313,
+     1.0,
+     0.9692
+    ],
+    "3:4": [
+     0.1999,
+     0.0,
+     0.7997,
+     1.0
+    ]
+   }
   },
   {
    "title": "Abandoned House near Aix-en-Provence",
@@ -1373,7 +2547,33 @@
     0.4
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1199,
+     1.0,
+     0.8232
+    ],
+    "9:16": [
+     0.275,
+     0.0,
+     0.725,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.031,
+     1.0,
+     0.9687
+    ],
+    "3:4": [
+     0.2,
+     0.0,
+     0.8,
+     1.0
+    ]
+   }
   },
   {
    "title": "Trees and House, Provence",
@@ -1400,7 +2600,33 @@
     0.42
    ],
    "delivered_edge": 7499,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.11,
+     1.0,
+     0.8856
+    ],
+    "9:16": [
+     0.296,
+     0.0,
+     0.7039,
+     1.0
+    ],
+    "4:3": [
+     0.0168,
+     0.0,
+     0.9838,
+     1.0
+    ],
+    "3:4": [
+     0.228,
+     0.0,
+     0.7719,
+     1.0
+    ]
+   }
   },
   {
    "title": "Seated Man",
@@ -1427,7 +2653,33 @@
     0.25
    ],
    "delivered_edge": 7075,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "3:4": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ],
+    "16:9": [
+     0.0,
+     0.06,
+     1.0,
+     0.48
+    ],
+    "9:16": [
+     0.1233,
+     0.0,
+     0.8767,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.04,
+     1.0,
+     0.6
+    ]
+   }
   },
   {
    "title": "Still Life with Onions",
@@ -1454,7 +2706,33 @@
     0.5
    ],
    "delivered_edge": 6862,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.08,
+     1.0,
+     0.783
+    ],
+    "9:16": [
+     0.3199,
+     0.0,
+     0.7701,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0204,
+     1.0,
+     0.9576
+    ],
+    "3:4": [
+     0.1499,
+     0.0,
+     0.7501,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Big Trees",
@@ -1481,7 +2759,33 @@
     0.5
    ],
    "delivered_edge": 6620,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0999,
+     1.0,
+     0.5511
+    ],
+    "9:16": [
+     0.1493,
+     0.0,
+     0.8507,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0501,
+     1.0,
+     0.6515
+    ],
+    "3:4": [
+     0.0324,
+     0.0,
+     0.9676,
+     1.0
+    ]
+   }
   },
   {
    "title": "Landscape near Melun",
@@ -1508,7 +2812,33 @@
     0.45
    ],
    "delivered_edge": 6543,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0498,
+     1.0,
+     0.7372
+    ],
+    "9:16": [
+     0.2999,
+     0.0,
+     0.7601,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0202,
+     1.0,
+     0.9368
+    ],
+    "3:4": [
+     0.1501,
+     0.0,
+     0.7639,
+     1.0
+    ]
+   }
   },
   {
    "title": "View of the Château Noir",
@@ -1535,7 +2865,33 @@
     0.35
    ],
    "delivered_edge": 6450,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0496,
+     1.0,
+     0.8644
+    ],
+    "9:16": [
+     0.1503,
+     0.0,
+     0.5387,
+     1.0
+    ],
+    "4:3": [
+     0.0202,
+     0.0,
+     0.9408,
+     1.0
+    ],
+    "3:4": [
+     0.1001,
+     0.0,
+     0.6179,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Large Bathers",
@@ -1562,7 +2918,33 @@
     0.45
    ],
    "delivered_edge": 6385,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.18,
+     1.0,
+     0.853
+    ],
+    "9:16": [
+     0.2649,
+     0.0,
+     0.7351,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0499,
+     1.0,
+     0.9471
+    ],
+    "3:4": [
+     0.1861,
+     0.0,
+     0.8129,
+     1.0
+    ]
+   }
   },
   {
    "title": "Still Life: Milk Jug and Fruit on a Table",
@@ -1589,7 +2971,33 @@
     0.5
    ],
    "delivered_edge": 6305,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0302,
+     1.0,
+     0.7128
+    ],
+    "9:16": [
+     0.2398,
+     0.0,
+     0.7032,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0304,
+     1.0,
+     0.9406
+    ],
+    "3:4": [
+     0.19,
+     0.0,
+     0.808,
+     1.0
+    ]
+   }
   },
   {
    "title": "Hollow with Trees",
@@ -1616,7 +3024,33 @@
     0.25
    ],
    "delivered_edge": 6299,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0197,
+     1.0,
+     0.8783
+    ],
+    "9:16": [
+     0.6002,
+     0.0,
+     0.9688,
+     1.0
+    ],
+    "4:3": [
+     0.0502,
+     0.0,
+     0.9238,
+     1.0
+    ],
+    "3:4": [
+     0.4798,
+     0.0,
+     0.9712,
+     1.0
+    ]
+   }
   },
   {
    "title": "View of the Sea at L'Estaque",
@@ -1643,7 +3077,33 @@
     0.5
    ],
    "delivered_edge": 6140,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0599,
+     1.0,
+     0.5131
+    ],
+    "9:16": [
+     0.12,
+     0.0,
+     0.818,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1003,
+     1.0,
+     0.7047
+    ],
+    "3:4": [
+     0.0302,
+     0.0,
+     0.9608,
+     1.0
+    ]
+   }
   },
   {
    "title": "Bathers",
@@ -1670,7 +3130,33 @@
     0.45
    ],
    "delivered_edge": 6057,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0999,
+     1.0,
+     0.8721
+    ],
+    "9:16": [
+     0.2701,
+     0.0,
+     0.6799,
+     1.0
+    ],
+    "4:3": [
+     0.0144,
+     0.0,
+     0.9856,
+     1.0
+    ],
+    "3:4": [
+     0.2268,
+     0.0,
+     0.7732,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Card Players (multi-figure version)",
@@ -1697,7 +3183,33 @@
     0.32
    ],
    "delivered_edge": 6048,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0501,
+     1.0,
+     0.7359
+    ],
+    "9:16": [
+     0.2703,
+     0.0,
+     0.7317,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0303,
+     1.0,
+     0.9447
+    ],
+    "3:4": [
+     0.1914,
+     0.0,
+     0.8066,
+     1.0
+    ]
+   }
   },
   {
    "title": "Winter Landscape, Giverny",
@@ -1724,7 +3236,33 @@
     0.45
    ],
    "delivered_edge": 5994,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0798,
+     1.0,
+     0.7772
+    ],
+    "9:16": [
+     0.2802,
+     0.0,
+     0.7338,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.03,
+     1.0,
+     0.96
+    ],
+    "3:4": [
+     0.1981,
+     0.0,
+     0.8029,
+     1.0
+    ]
+   }
   },
   {
    "title": "Still Life: Sugar Bowl and Pears",
@@ -1751,7 +3289,33 @@
     0.55
    ],
    "delivered_edge": 5993,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0597,
+     1.0,
+     0.8963
+    ],
+    "9:16": [
+     0.2799,
+     0.0,
+     0.6581,
+     1.0
+    ],
+    "4:3": [
+     0.0503,
+     0.0,
+     0.9467,
+     1.0
+    ],
+    "3:4": [
+     0.2399,
+     0.0,
+     0.7441,
+     1.0
+    ]
+   }
   },
   {
    "title": "Madame Cézanne in Blue",
@@ -1778,7 +3342,33 @@
     0.35
    ],
    "delivered_edge": 5903,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0299,
+     1.0,
+     0.4871
+    ],
+    "9:16": [
+     0.154,
+     0.0,
+     0.846,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0201,
+     1.0,
+     0.6299
+    ],
+    "3:4": [
+     0.0387,
+     0.0,
+     0.9613,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Terrace at the Garden at Les Lauves",
@@ -1805,7 +3395,33 @@
     0.5
    ],
    "delivered_edge": 5873,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0601,
+     1.0,
+     0.7629
+    ],
+    "9:16": [
+     0.2749,
+     0.0,
+     0.7251,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.02,
+     1.0,
+     0.957
+    ],
+    "3:4": [
+     0.1998,
+     0.0,
+     0.8002,
+     1.0
+    ]
+   }
   },
   {
    "title": "Standing Male Bather; Puget's Atlas",
@@ -1832,7 +3448,33 @@
     0.5
    ],
    "delivered_edge": 5801,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0199,
+     1.0,
+     0.9581
+    ],
+    "9:16": [
+     0.4499,
+     0.0,
+     0.7871,
+     1.0
+    ],
+    "4:3": [
+     0.0998,
+     0.0,
+     0.8992,
+     1.0
+    ],
+    "3:4": [
+     0.4302,
+     0.0,
+     0.8798,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Card Players (The Metropolitan Museum of Art)",
@@ -1859,7 +3501,33 @@
     0.35
    ],
    "delivered_edge": 5789,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0802,
+     1.0,
+     0.7868
+    ],
+    "9:16": [
+     0.2801,
+     0.0,
+     0.7279,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0199,
+     1.0,
+     0.9621
+    ],
+    "3:4": [
+     0.2,
+     0.0,
+     0.797,
+     1.0
+    ]
+   }
   },
   {
    "title": "Chestnut Trees at Jas de Bouffan in Winter",
@@ -1886,7 +3554,33 @@
     0.5
    ],
    "delivered_edge": 5751,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0997,
+     1.0,
+     0.8103
+    ],
+    "9:16": [
+     0.2798,
+     0.0,
+     0.7252,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0203,
+     1.0,
+     0.9677
+    ],
+    "3:4": [
+     0.2001,
+     0.0,
+     0.7939,
+     1.0
+    ]
+   }
   },
   {
    "title": "Village Square",
@@ -1913,7 +3607,33 @@
     0.3
    ],
    "delivered_edge": 5751,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0499,
+     1.0,
+     0.7301
+    ],
+    "9:16": [
+     0.0999,
+     0.0,
+     0.5651,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.03,
+     1.0,
+     0.937
+    ],
+    "3:4": [
+     0.1499,
+     0.0,
+     0.7701,
+     1.0
+    ]
+   }
   },
   {
    "title": "Gardanne",
@@ -1940,7 +3660,33 @@
     0.3
    ],
    "delivered_edge": 5748,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0501,
+     1.0,
+     0.4969
+    ],
+    "9:16": [
+     0.1459,
+     0.0,
+     0.8541,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0301,
+     1.0,
+     0.6259
+    ],
+    "3:4": [
+     0.0279,
+     0.0,
+     0.9721,
+     1.0
+    ]
+   }
   },
   {
    "title": "Landscape in Provence",
@@ -1967,7 +3713,33 @@
     0.5
    ],
    "delivered_edge": 5736,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1001,
+     1.0,
+     0.9605
+    ],
+    "9:16": [
+     0.0499,
+     0.0,
+     0.4177,
+     1.0
+    ],
+    "4:3": [
+     0.0498,
+     0.0,
+     0.9214,
+     1.0
+    ],
+    "3:4": [
+     0.0799,
+     0.0,
+     0.5703,
+     1.0
+    ]
+   }
   },
   {
    "title": "Turn in the Road",
@@ -1994,7 +3766,33 @@
     0.35
    ],
    "delivered_edge": 5701,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.08,
+     1.0,
+     0.761
+    ],
+    "9:16": [
+     0.2799,
+     0.0,
+     0.7446,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0303,
+     1.0,
+     0.9382
+    ],
+    "3:4": [
+     0.1899,
+     0.0,
+     0.8094,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Bather",
@@ -2021,7 +3819,33 @@
     0.22
    ],
    "delivered_edge": 5641,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "3:4": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ],
+    "16:9": [
+     0.0,
+     0.0499,
+     1.0,
+     0.4764
+    ],
+    "9:16": [
+     0.1301,
+     0.0,
+     0.8719,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.04,
+     1.0,
+     0.6086
+    ]
+   }
   },
   {
    "title": "View of the Bay of Marseille with the Village of Saint-Henri",
@@ -2048,7 +3872,33 @@
     0.42
    ],
    "delivered_edge": 5630,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0499,
+     1.0,
+     0.7515
+    ],
+    "9:16": [
+     0.1501,
+     0.0,
+     0.601,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.03,
+     1.0,
+     0.9655
+    ],
+    "3:4": [
+     0.12,
+     0.0,
+     0.7214,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Pond",
@@ -2075,7 +3925,33 @@
     0.45
    ],
    "delivered_edge": 5626,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1499,
+     1.0,
+     0.8306
+    ],
+    "9:16": [
+     0.02,
+     0.0,
+     0.4849,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.05,
+     1.0,
+     0.9577
+    ],
+    "3:4": [
+     0.05,
+     0.0,
+     0.6698,
+     1.0
+    ]
+   }
   },
   {
    "title": "Woman with a Coffeepot",
@@ -2102,7 +3978,33 @@
     0.25
    ],
    "delivered_edge": 5592,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0299,
+     1.0,
+     0.4384
+    ],
+    "9:16": [
+     0.1102,
+     0.0,
+     0.8846,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0199,
+     1.0,
+     0.5647
+    ],
+    "3:4": [
+     0.0,
+     0.0157,
+     1.0,
+     0.9843
+    ]
+   }
   },
   {
    "title": "Mont Sainte-Victoire Seen from the Bibémus Quarry",
@@ -2129,7 +4031,33 @@
     0.3
    ],
    "delivered_edge": 5508,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0498,
+     1.0,
+     0.7571
+    ],
+    "9:16": [
+     0.28,
+     0.0,
+     0.7275,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.03,
+     1.0,
+     0.973
+    ],
+    "3:4": [
+     0.2,
+     0.0,
+     0.7966,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Toilette",
@@ -2156,7 +4084,33 @@
     0.3
    ],
    "delivered_edge": 5483,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "3:4": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ],
+    "16:9": [
+     0.0,
+     0.05,
+     1.0,
+     0.4702
+    ],
+    "9:16": [
+     0.12,
+     0.0,
+     0.873,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0501,
+     1.0,
+     0.6103
+    ]
+   }
   },
   {
    "title": "The Village of Gardanne",
@@ -2183,7 +4137,33 @@
     0.25
    ],
    "delivered_edge": 5466,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0498,
+     1.0,
+     0.4996
+    ],
+    "9:16": [
+     0.1202,
+     0.0,
+     0.8238,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0499,
+     1.0,
+     0.6495
+    ],
+    "3:4": [
+     0.0303,
+     0.0,
+     0.9684,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Buffet",
@@ -2210,7 +4190,33 @@
     0.55
    ],
    "delivered_edge": 5435,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1,
+     1.0,
+     0.8046
+    ],
+    "9:16": [
+     0.28,
+     0.0,
+     0.729,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0302,
+     1.0,
+     0.9697
+    ],
+    "3:4": [
+     0.2,
+     0.0,
+     0.7987,
+     1.0
+    ]
+   }
   },
   {
    "title": "Still Life with a Dessert",
@@ -2237,7 +4243,33 @@
     0.45
    ],
    "delivered_edge": 5433,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1,
+     1.0,
+     0.7952
+    ],
+    "9:16": [
+     0.06,
+     0.0,
+     0.5151,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0401,
+     1.0,
+     0.967
+    ],
+    "3:4": [
+     0.05,
+     0.0,
+     0.6568,
+     1.0
+    ]
+   }
   },
   {
    "title": "Achille Emperaire",
@@ -2264,7 +4296,33 @@
     0.22
    ],
    "delivered_edge": 5388,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0599,
+     1.0,
+     0.3958
+    ],
+    "9:16": [
+     0.029,
+     0.0,
+     0.9712,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.06,
+     1.0,
+     0.5078
+    ],
+    "3:4": [
+     0.0,
+     0.02,
+     1.0,
+     0.816
+    ]
+   }
   },
   {
    "title": "The Red Rock",
@@ -2291,7 +4349,33 @@
     0.55
    ],
    "delivered_edge": 5387,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "3:4": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ],
+    "16:9": [
+     0.0,
+     0.4,
+     1.0,
+     0.8106
+    ],
+    "9:16": [
+     0.115,
+     0.0,
+     0.8855,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.25,
+     1.0,
+     0.7976
+    ]
+   }
   },
   {
    "title": "Bibémus Quarry",
@@ -2318,7 +4402,33 @@
     0.45
    ],
    "delivered_edge": 5164,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.2499,
+     1.0,
+     0.6961
+    ],
+    "9:16": [
+     0.1301,
+     0.0,
+     0.8392,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.15,
+     1.0,
+     0.7449
+    ],
+    "3:4": [
+     0.0251,
+     0.0,
+     0.9707,
+     1.0
+    ]
+   }
   },
   {
    "title": "Still Life with Milk Jug and Fruit",
@@ -2345,7 +4455,33 @@
     0.5
    ],
    "delivered_edge": 5152,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "4:3": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ],
+    "16:9": [
+     0.0,
+     0.0798,
+     1.0,
+     0.8298
+    ],
+    "9:16": [
+     0.4501,
+     0.0,
+     0.8719,
+     1.0
+    ],
+    "3:4": [
+     0.22,
+     0.0,
+     0.7825,
+     1.0
+    ]
+   }
   },
   {
    "title": "Church at Montigny-sur-Loing",
@@ -2372,7 +4508,33 @@
     0.35
    ],
    "delivered_edge": 5132,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1499,
+     1.0,
+     0.5989
+    ],
+    "9:16": [
+     0.1201,
+     0.0,
+     0.8248,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1001,
+     1.0,
+     0.6986
+    ],
+    "3:4": [
+     0.0301,
+     0.0,
+     0.9697,
+     1.0
+    ]
+   }
   },
   {
    "title": "Straw-Trimmed Vase, Sugar Bowl and Apples",
@@ -2399,7 +4561,33 @@
     0.45
    ],
    "delivered_edge": 5104,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.08,
+     1.0,
+     0.8049
+    ],
+    "9:16": [
+     0.2499,
+     0.0,
+     0.6865,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0153,
+     1.0,
+     0.9817
+    ],
+    "3:4": [
+     0.2,
+     0.0,
+     0.782,
+     1.0
+    ]
+   }
   },
   {
    "title": "Ginger Jar",
@@ -2426,7 +4614,33 @@
     0.45
    ],
    "delivered_edge": 5079,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.3498,
+     1.0,
+     0.8035
+    ],
+    "9:16": [
+     0.1102,
+     0.0,
+     0.8077,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1999,
+     1.0,
+     0.8047
+    ],
+    "3:4": [
+     0.0303,
+     0.0,
+     0.9602,
+     1.0
+    ]
+   }
   },
   {
    "title": "Madame Cézanne in a Red Armchair",
@@ -2453,7 +4667,33 @@
     0.22
    ],
    "delivered_edge": 5068,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "3:4": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ],
+    "16:9": [
+     0.0,
+     0.0301,
+     1.0,
+     0.4624
+    ],
+    "9:16": [
+     0.0998,
+     0.0,
+     0.8317,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0202,
+     1.0,
+     0.5966
+    ]
+   }
   },
   {
    "title": "Cistern in the Grounds of Château Noir",
@@ -2480,7 +4720,33 @@
     0.5
    ],
    "delivered_edge": 5030,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.2001,
+     1.0,
+     0.6639
+    ],
+    "9:16": [
+     0.1598,
+     0.0,
+     0.842,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1502,
+     1.0,
+     0.7687
+    ],
+    "3:4": [
+     0.0448,
+     0.0,
+     0.9543,
+     1.0
+    ]
+   }
   },
   {
    "title": "Portrait of Madame Cézanne",
@@ -2507,7 +4773,33 @@
     0.25
    ],
    "delivered_edge": 5005,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.04,
+     1.0,
+     0.4939
+    ],
+    "9:16": [
+     0.1314,
+     0.0,
+     0.8286,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0201,
+     1.0,
+     0.6251
+    ],
+    "3:4": [
+     0.0349,
+     0.0,
+     0.9645,
+     1.0
+    ]
+   }
   },
   {
    "title": "Bowl and Milk-Jug",
@@ -2534,7 +4826,33 @@
     0.5
    ],
    "delivered_edge": 5001,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.35,
+     1.0,
+     0.8608
+    ],
+    "9:16": [
+     0.3601,
+     0.0,
+     0.9794,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.2799,
+     1.0,
+     0.9611
+    ],
+    "3:4": [
+     0.0901,
+     0.0,
+     0.9159,
+     1.0
+    ]
+   }
   },
   {
    "title": "Mont Sainte-Victoire and Château Noir",
@@ -2561,7 +4879,33 @@
     0.4
    ],
    "delivered_edge": 5001,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1034,
+     1.0,
+     0.8098
+    ],
+    "9:16": [
+     0.08,
+     0.0,
+     0.5278,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0301,
+     1.0,
+     0.9721
+    ],
+    "3:4": [
+     0.12,
+     0.0,
+     0.7171,
+     1.0
+    ]
+   }
   },
   {
    "title": "Self-Portrait in a Soft Hat",
@@ -2588,7 +4932,33 @@
     0.35
    ],
    "delivered_edge": 5001,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0199,
+     1.0,
+     0.4825
+    ],
+    "9:16": [
+     0.0781,
+     0.0,
+     0.7622,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0199,
+     1.0,
+     0.6366
+    ],
+    "3:4": [
+     0.0301,
+     0.0,
+     0.9423,
+     1.0
+    ]
+   }
   },
   {
    "title": "Banks of the Marne",
@@ -2615,7 +4985,33 @@
     0.4
    ],
    "delivered_edge": 5001,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0998,
+     1.0,
+     0.8111
+    ],
+    "9:16": [
+     0.3001,
+     0.0,
+     0.7449,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0259,
+     1.0,
+     0.9743
+    ],
+    "3:4": [
+     0.2001,
+     0.0,
+     0.7932,
+     1.0
+    ]
+   }
   },
   {
    "title": "Country House by a River",
@@ -2642,7 +5038,33 @@
     0.35
    ],
    "delivered_edge": 4993,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1799,
+     1.0,
+     0.6307
+    ],
+    "9:16": [
+     0.1501,
+     0.0,
+     0.8521,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0799,
+     1.0,
+     0.6809
+    ],
+    "3:4": [
+     0.0302,
+     0.0,
+     0.9662,
+     1.0
+    ]
+   }
   },
   {
    "title": "Trees and Road",
@@ -2669,7 +5091,33 @@
     0.5
    ],
    "delivered_edge": 4952,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.15,
+     1.0,
+     0.6152
+    ],
+    "9:16": [
+     0.1601,
+     0.0,
+     0.8401,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.08,
+     1.0,
+     0.7003
+    ],
+    "3:4": [
+     0.0451,
+     0.0,
+     0.9518,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Spring House",
@@ -2696,7 +5144,33 @@
     0.65
    ],
    "delivered_edge": 4952,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.42,
+     1.0,
+     0.8852
+    ],
+    "9:16": [
+     0.1501,
+     0.0,
+     0.8301,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.28,
+     1.0,
+     0.9003
+    ],
+    "3:4": [
+     0.0301,
+     0.0,
+     0.9368,
+     1.0
+    ]
+   }
   },
   {
    "title": "Seven Bathers",
@@ -2723,7 +5197,33 @@
     0.45
    ],
    "delivered_edge": 4902,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.08,
+     1.0,
+     0.7589
+    ],
+    "9:16": [
+     0.27,
+     0.0,
+     0.7361,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0401,
+     1.0,
+     0.9452
+    ],
+    "3:4": [
+     0.19,
+     0.0,
+     0.8114,
+     1.0
+    ]
+   }
   },
   {
    "title": "Château Noir",
@@ -2750,7 +5250,33 @@
     0.3
    ],
    "delivered_edge": 4869,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0501,
+     1.0,
+     0.761
+    ],
+    "9:16": [
+     0.3274,
+     0.0,
+     0.7726,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0202,
+     1.0,
+     0.9679
+    ],
+    "3:4": [
+     0.2,
+     0.0,
+     0.7934,
+     1.0
+    ]
+   }
   },
   {
    "title": "Farmyard",
@@ -2777,7 +5303,33 @@
     0.4
    ],
    "delivered_edge": 4810,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1502,
+     1.0,
+     0.6049
+    ],
+    "9:16": [
+     0.1197,
+     0.0,
+     0.8155,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0802,
+     1.0,
+     0.6866
+    ],
+    "3:4": [
+     0.0197,
+     0.0,
+     0.9474,
+     1.0
+    ]
+   }
   },
   {
    "title": "Morning View of L'Estaque Against the Sunlight",
@@ -2804,7 +5356,33 @@
     0.45
    ],
    "delivered_edge": 4801,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0401,
+     1.0,
+     0.9169
+    ],
+    "9:16": [
+     0.1696,
+     0.0,
+     0.5304,
+     1.0
+    ],
+    "4:3": [
+     0.0499,
+     0.0,
+     0.9053,
+     1.0
+    ],
+    "3:4": [
+     0.17,
+     0.0,
+     0.6511,
+     1.0
+    ]
+   }
   },
   {
    "title": "Portrait of a Peasant",
@@ -2831,7 +5409,33 @@
     0.25
    ],
    "delivered_edge": 4793,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0301,
+     1.0,
+     0.5013
+    ],
+    "9:16": [
+     0.1143,
+     0.0,
+     0.7857,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0201,
+     1.0,
+     0.6484
+    ],
+    "3:4": [
+     0.0398,
+     0.0,
+     0.9352,
+     1.0
+    ]
+   }
   },
   {
    "title": "Pines and Rocks (Fontainebleau?)",
@@ -2858,7 +5462,33 @@
     0.45
    ],
    "delivered_edge": 4790,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.2501,
+     1.0,
+     0.7022
+    ],
+    "9:16": [
+     0.1299,
+     0.0,
+     0.8297,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1501,
+     1.0,
+     0.7529
+    ],
+    "3:4": [
+     0.0298,
+     0.0,
+     0.963,
+     1.0
+    ]
+   }
   },
   {
    "title": "Road Leading to the Lake",
@@ -2885,7 +5515,33 @@
     0.55
    ],
    "delivered_edge": 4787,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.2,
+     1.0,
+     0.6399
+    ],
+    "9:16": [
+     0.14,
+     0.0,
+     0.8594,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1201,
+     1.0,
+     0.7065
+    ],
+    "3:4": [
+     0.02,
+     0.0,
+     0.9791,
+     1.0
+    ]
+   }
   },
   {
    "title": "Still Life with Cherries and Peaches",
@@ -2912,7 +5568,33 @@
     0.45
    ],
    "delivered_edge": 4760,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1001,
+     1.0,
+     0.7901
+    ],
+    "9:16": [
+     0.1707,
+     0.0,
+     0.6293,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0301,
+     1.0,
+     0.9502
+    ],
+    "3:4": [
+     0.14,
+     0.0,
+     0.7513,
+     1.0
+    ]
+   }
   },
   {
    "title": "Landscape",
@@ -2939,7 +5621,27 @@
     0.45
    ],
    "delivered_edge": 4697,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.08,
+     1.0,
+     0.7933
+    ],
+    "4:3": [
+     0.0,
+     0.03,
+     1.0,
+     0.981
+    ],
+    "3:4": [
+     0.15,
+     0.0,
+     0.7415,
+     1.0
+    ]
+   }
   },
   {
    "title": "Studies of Three Figures, Including a Self-Portrait",
@@ -2966,7 +5668,27 @@
     0.4
    ],
    "delivered_edge": 4615,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "9:16": [
+     0.0502,
+     0.0,
+     0.9152,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0199,
+     1.0,
+     0.5076
+    ],
+    "3:4": [
+     0.0,
+     0.0198,
+     1.0,
+     0.8869
+    ]
+   }
   },
   {
    "title": "Afternoon in Naples",
@@ -2993,7 +5715,33 @@
     0.4
    ],
    "delivered_edge": 4568,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0601,
+     1.0,
+     0.7534
+    ],
+    "9:16": [
+     0.0199,
+     0.0,
+     0.4763,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0302,
+     1.0,
+     0.9546
+    ],
+    "3:4": [
+     0.0799,
+     0.0,
+     0.6884,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Peppermint Bottle",
@@ -3020,7 +5768,33 @@
     0.4
    ],
    "delivered_edge": 4556,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.15,
+     1.0,
+     0.8509
+    ],
+    "9:16": [
+     0.3,
+     0.0,
+     0.7514,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.03,
+     1.0,
+     0.9646
+    ],
+    "3:4": [
+     0.15,
+     0.0,
+     0.7519,
+     1.0
+    ]
+   }
   },
   {
    "title": "Portrait of Hortense Cézanne-Fiquet, the Artist's Wife",
@@ -3047,7 +5821,33 @@
     0.3
    ],
    "delivered_edge": 4535,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1199,
+     1.0,
+     0.4925
+    ],
+    "9:16": [
+     0.0503,
+     0.0,
+     0.8994,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0998,
+     1.0,
+     0.5967
+    ],
+    "3:4": [
+     0.0,
+     0.0584,
+     1.0,
+     0.9416
+    ]
+   }
   },
   {
    "title": "Houses in Provence: The Riaux Valley near L'Estaque",
@@ -3074,7 +5874,33 @@
     0.35
    ],
    "delivered_edge": 4525,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1201,
+     1.0,
+     0.831
+    ],
+    "9:16": [
+     0.4275,
+     0.0,
+     0.8725,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.026,
+     1.0,
+     0.974
+    ],
+    "3:4": [
+     0.3233,
+     0.0,
+     0.9167,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Kiss of the Muse",
@@ -3108,7 +5934,33 @@
     0.28
    ],
    "delivered_edge": 3889,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.08,
+     1.0,
+     0.5497
+    ],
+    "9:16": [
+     0.1632,
+     0.0,
+     0.8368,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.08,
+     1.0,
+     0.7063
+    ],
+    "3:4": [
+     0.051,
+     0.0,
+     0.949,
+     1.0
+    ]
+   }
   },
   {
    "title": "Fruit and a Jug on a Table",
@@ -3135,7 +5987,33 @@
     0.4
    ],
    "delivered_edge": 4495,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0599,
+     1.0,
+     0.7643
+    ],
+    "9:16": [
+     0.3554,
+     0.0,
+     0.8046,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0198,
+     1.0,
+     0.9592
+    ],
+    "3:4": [
+     0.2506,
+     0.0,
+     0.8495,
+     1.0
+    ]
+   }
   },
   {
    "title": "Farm in Normandy (Le Clos Normand, Hattenville)",
@@ -3162,7 +6040,33 @@
     0.55
    ],
    "delivered_edge": 4482,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "4:3": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ],
+    "16:9": [
+     0.0,
+     0.02,
+     1.0,
+     0.7664
+    ],
+    "9:16": [
+     0.288,
+     0.0,
+     0.712,
+     1.0
+    ],
+    "3:4": [
+     0.2174,
+     0.0,
+     0.7826,
+     1.0
+    ]
+   }
   },
   {
    "title": "Portrait of Ambroise Vollard",
@@ -3189,7 +6093,33 @@
     0.22
    ],
    "delivered_edge": 4451,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0299,
+     1.0,
+     0.4867
+    ],
+    "9:16": [
+     0.1536,
+     0.0,
+     0.8464,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.02,
+     1.0,
+     0.629
+    ],
+    "3:4": [
+     0.0382,
+     0.0,
+     0.9618,
+     1.0
+    ]
+   }
   },
   {
    "title": "Apotheosis of Delacroix",
@@ -3223,7 +6153,33 @@
     0.45
    ],
    "delivered_edge": 3249,
-   "resolution_tier": "HD"
+   "resolution_tier": "HD",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.05,
+     1.0,
+     0.7486
+    ],
+    "9:16": [
+     0.05,
+     0.0,
+     0.503,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.02,
+     1.0,
+     0.9514
+    ],
+    "3:4": [
+     0.048,
+     0.0,
+     0.6519,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Banks of the Marne",
@@ -3250,7 +6206,33 @@
     0.35
    ],
    "delivered_edge": 4348,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0799,
+     1.0,
+     0.7854
+    ],
+    "9:16": [
+     0.4257,
+     0.0,
+     0.8743,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.03,
+     1.0,
+     0.9705
+    ],
+    "3:4": [
+     0.301,
+     0.0,
+     0.8991,
+     1.0
+    ]
+   }
   },
   {
    "title": "Turn in the Road in the Woods",
@@ -3284,7 +6266,33 @@
     0.4
    ],
    "delivered_edge": 2333,
-   "resolution_tier": "HD"
+   "resolution_tier": "HD",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.28,
+     1.0,
+     0.7564
+    ],
+    "9:16": [
+     0.118,
+     0.0,
+     0.7821,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.15,
+     1.0,
+     0.7852
+    ],
+    "3:4": [
+     0.0573,
+     0.0,
+     0.9428,
+     1.0
+    ]
+   }
   },
   {
    "title": "Bather at the Seashore",
@@ -3311,7 +6319,33 @@
     0.45
    ],
    "delivered_edge": 4263,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.2001,
+     1.0,
+     0.7405
+    ],
+    "9:16": [
+     0.0,
+     0.0,
+     0.5854,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1201,
+     1.0,
+     0.8407
+    ],
+    "3:4": [
+     0.05,
+     0.0,
+     0.8305,
+     1.0
+    ]
+   }
   },
   {
    "title": "Avenue at Chantilly",
@@ -3338,7 +6372,33 @@
     0.35
    ],
    "delivered_edge": 4231,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.3001,
+     1.0,
+     0.7499
+    ],
+    "9:16": [
+     0.1483,
+     0.0,
+     0.8518,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1502,
+     1.0,
+     0.7498
+    ],
+    "3:4": [
+     0.0311,
+     0.0,
+     0.969,
+     1.0
+    ]
+   }
   },
   {
    "title": "Landscape with Poplars",
@@ -3365,7 +6425,33 @@
     0.45
    ],
    "delivered_edge": 4231,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.2801,
+     1.0,
+     0.7389
+    ],
+    "9:16": [
+     0.1552,
+     0.0,
+     0.8449,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1501,
+     1.0,
+     0.7619
+    ],
+    "3:4": [
+     0.0403,
+     0.0,
+     0.9598,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Stove in the Studio",
@@ -3392,7 +6478,33 @@
     0.55
    ],
    "delivered_edge": 4226,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.42,
+     1.0,
+     0.8081
+    ],
+    "9:16": [
+     0.0924,
+     0.0,
+     0.9076,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.32,
+     1.0,
+     0.8375
+    ],
+    "3:4": [
+     0.0,
+     0.04,
+     1.0,
+     0.96
+    ]
+   }
   },
   {
    "title": "The Card Player",
@@ -3419,7 +6531,33 @@
     0.25
    ],
    "delivered_edge": 4215,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.05,
+     1.0,
+     0.5692
+    ],
+    "9:16": [
+     0.1153,
+     0.0,
+     0.7247,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0301,
+     1.0,
+     0.7222
+    ],
+    "3:4": [
+     0.0937,
+     0.0,
+     0.9064,
+     1.0
+    ]
+   }
   },
   {
    "title": "Maison Maria with a View of Château Noir",
@@ -3446,7 +6584,33 @@
     0.35
    ],
    "delivered_edge": 4201,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0501,
+     1.0,
+     0.7502
+    ],
+    "9:16": [
+     0.0299,
+     0.0,
+     0.4819,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0301,
+     1.0,
+     0.9637
+    ],
+    "3:4": [
+     0.0799,
+     0.0,
+     0.6825,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Turning Road at Montgeroult",
@@ -3473,7 +6637,33 @@
     0.4
    ],
    "delivered_edge": 4200,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1,
+     1.0,
+     0.5494
+    ],
+    "9:16": [
+     0.148,
+     0.0,
+     0.852,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.08,
+     1.0,
+     0.6792
+    ],
+    "3:4": [
+     0.0307,
+     0.0,
+     0.9694,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Bathers (Large Plate)",
@@ -3500,7 +6690,33 @@
     0.45
    ],
    "delivered_edge": 4190,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1,
+     1.0,
+     0.7914
+    ],
+    "9:16": [
+     0.3212,
+     0.0,
+     0.7788,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.04,
+     1.0,
+     0.9618
+    ],
+    "3:4": [
+     0.1949,
+     0.0,
+     0.8051,
+     1.0
+    ]
+   }
   },
   {
    "title": "Pot and Soup Tureen",
@@ -3527,7 +6743,33 @@
     0.45
    ],
    "delivered_edge": 4180,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0247,
+     1.0,
+     0.9754
+    ],
+    "9:16": [
+     0.42,
+     0.0,
+     0.7528,
+     1.0
+    ],
+    "4:3": [
+     0.0301,
+     0.0,
+     0.8189,
+     1.0
+    ],
+    "3:4": [
+     0.328,
+     0.0,
+     0.7718,
+     1.0
+    ]
+   }
   },
   {
    "title": "Woman at a Mirror",
@@ -3561,7 +6803,33 @@
     0.45
    ],
    "delivered_edge": 2379,
-   "resolution_tier": "HD"
+   "resolution_tier": "HD",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.05,
+     1.0,
+     0.7626
+    ],
+    "9:16": [
+     0.3279,
+     0.0,
+     0.772,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0201,
+     1.0,
+     0.9701
+    ],
+    "3:4": [
+     0.1539,
+     0.0,
+     0.746,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Eternal Feminine",
@@ -3588,7 +6856,33 @@
     0.35
    ],
    "delivered_edge": 4136,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0801,
+     1.0,
+     0.7779
+    ],
+    "9:16": [
+     0.1933,
+     0.0,
+     0.6468,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0302,
+     1.0,
+     0.9606
+    ],
+    "3:4": [
+     0.1177,
+     0.0,
+     0.7223,
+     1.0
+    ]
+   }
   },
   {
    "title": "Self-Portrait with a Straw Hat",
@@ -3615,7 +6909,33 @@
     0.35
    ],
    "delivered_edge": 4133,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1499,
+     1.0,
+     0.6153
+    ],
+    "9:16": [
+     0.1601,
+     0.0,
+     0.8399,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0498,
+     1.0,
+     0.6705
+    ],
+    "3:4": [
+     0.0468,
+     0.0,
+     0.9532,
+     1.0
+    ]
+   }
   },
   {
    "title": "Milk Can and Apples",
@@ -3642,7 +6962,33 @@
     0.5
    ],
    "delivered_edge": 4126,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1999,
+     1.0,
+     0.8861
+    ],
+    "9:16": [
+     0.21,
+     0.0,
+     0.671,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.085,
+     1.0,
+     1.0
+    ],
+    "3:4": [
+     0.1201,
+     0.0,
+     0.7349,
+     1.0
+    ]
+   }
   },
   {
    "title": "House in Provence",
@@ -3669,7 +7015,33 @@
     0.45
    ],
    "delivered_edge": 4113,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.13,
+     1.0,
+     0.825
+    ],
+    "9:16": [
+     0.0599,
+     0.0,
+     0.5151,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0732,
+     1.0,
+     0.9998
+    ],
+    "3:4": [
+     0.05,
+     0.0,
+     0.657,
+     1.0
+    ]
+   }
   },
   {
    "title": "Portrait of Antoine Valabrègue",
@@ -3696,7 +7068,33 @@
     0.3
    ],
    "delivered_edge": 4101,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0499,
+     1.0,
+     0.5171
+    ],
+    "9:16": [
+     0.1349,
+     0.0,
+     0.8121,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0001,
+     1.0,
+     0.6229
+    ],
+    "3:4": [
+     0.0485,
+     0.0,
+     0.9515,
+     1.0
+    ]
+   }
   },
   {
    "title": "Autumn Landscape",
@@ -3723,7 +7121,33 @@
     0.35
    ],
    "delivered_edge": 4096,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0899,
+     1.0,
+     0.8161
+    ],
+    "9:16": [
+     0.2901,
+     0.0,
+     0.7259,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0317,
+     1.0,
+     0.9998
+    ],
+    "3:4": [
+     0.21,
+     0.0,
+     0.791,
+     1.0
+    ]
+   }
   },
   {
    "title": "House and Trees",
@@ -3750,7 +7174,33 @@
     0.45
    ],
    "delivered_edge": 4096,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0901,
+     1.0,
+     0.7929
+    ],
+    "9:16": [
+     0.1949,
+     0.0,
+     0.6451,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0627,
+     1.0,
+     0.9998
+    ],
+    "3:4": [
+     0.1699,
+     0.0,
+     0.7701,
+     1.0
+    ]
+   }
   },
   {
    "title": "Hunting Cabin in Provence",
@@ -3777,7 +7227,33 @@
     0.55
    ],
    "delivered_edge": 4096,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.075,
+     1.0,
+     0.856
+    ],
+    "9:16": [
+     0.2169,
+     0.0,
+     0.6221,
+     1.0
+    ],
+    "4:3": [
+     0.0199,
+     0.0,
+     0.9801,
+     1.0
+    ],
+    "3:4": [
+     0.2301,
+     0.0,
+     0.7703,
+     1.0
+    ]
+   }
   },
   {
    "title": "Railroad Cut",
@@ -3804,7 +7280,33 @@
     0.4
    ],
    "delivered_edge": 4096,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0249,
+     1.0,
+     0.9751
+    ],
+    "9:16": [
+     0.29,
+     0.0,
+     0.623,
+     1.0
+    ],
+    "4:3": [
+     0.1048,
+     0.0,
+     0.8942,
+     1.0
+    ],
+    "3:4": [
+     0.255,
+     0.0,
+     0.699,
+     1.0
+    ]
+   }
   },
   {
    "title": "River Bend",
@@ -3831,7 +7333,21 @@
     0.85
    ],
    "delivered_edge": 4096,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "9:16": [
+     0.46,
+     0.0,
+     0.905,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0519,
+     1.0,
+     0.9998
+    ]
+   }
   },
   {
    "title": "The Allée at Marines",
@@ -3858,7 +7374,33 @@
     0.5
    ],
    "delivered_edge": 4096,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.08,
+     1.0,
+     0.9197
+    ],
+    "9:16": [
+     0.3599,
+     0.0,
+     0.7368,
+     1.0
+    ],
+    "4:3": [
+     0.0534,
+     0.0,
+     0.9466,
+     1.0
+    ],
+    "3:4": [
+     0.2499,
+     0.0,
+     0.7524,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Bellevue Plain (The Red Earth)",
@@ -3885,7 +7427,33 @@
     0.5
    ],
    "delivered_edge": 4096,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.14,
+     1.0,
+     0.834
+    ],
+    "9:16": [
+     0.402,
+     0.0,
+     0.858,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0372,
+     1.0,
+     0.9625
+    ],
+    "3:4": [
+     0.246,
+     0.0,
+     0.854,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Chaîne de l'Étoile Mountains with the Pilon du Roi",
@@ -3912,7 +7480,33 @@
     0.45
    ],
    "delivered_edge": 4096,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.07,
+     1.0,
+     0.9356
+    ],
+    "9:16": [
+     0.267,
+     0.0,
+     0.6325,
+     1.0
+    ],
+    "4:3": [
+     0.0667,
+     0.0,
+     0.9333,
+     1.0
+    ],
+    "3:4": [
+     0.2559,
+     0.0,
+     0.7434,
+     1.0
+    ]
+   }
   },
   {
    "title": "Trees",
@@ -3939,7 +7533,33 @@
     0.5
    ],
    "delivered_edge": 4096,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0649,
+     1.0,
+     0.9346
+    ],
+    "9:16": [
+     0.3681,
+     0.0,
+     0.7319,
+     1.0
+    ],
+    "4:3": [
+     0.0688,
+     0.0,
+     0.9312,
+     1.0
+    ],
+    "3:4": [
+     0.3075,
+     0.0,
+     0.7926,
+     1.0
+    ]
+   }
   },
   {
    "title": "A Modern Olympia",
@@ -3966,7 +7586,33 @@
     0.6
    ],
    "delivered_edge": 4096,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.03,
+     1.0,
+     0.668
+    ],
+    "9:16": [
+     0.3001,
+     0.0,
+     0.7959,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0746,
+     1.0,
+     0.9253
+    ],
+    "3:4": [
+     0.1389,
+     0.0,
+     0.8001,
+     1.0
+    ]
+   }
   },
   {
    "title": "Four Peaches on a Plate",
@@ -3993,7 +7639,33 @@
     0.6
    ],
    "delivered_edge": 4096,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.07,
+     1.0,
+     0.9272
+    ],
+    "9:16": [
+     0.3652,
+     0.0,
+     0.7343,
+     1.0
+    ],
+    "4:3": [
+     0.0625,
+     0.0,
+     0.9375,
+     1.0
+    ],
+    "3:4": [
+     0.3039,
+     0.0,
+     0.7961,
+     1.0
+    ]
+   }
   },
   {
    "title": "Fruit on a Table",
@@ -4020,7 +7692,33 @@
     0.55
    ],
    "delivered_edge": 4096,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.2202,
+     1.0,
+     0.8684
+    ],
+    "9:16": [
+     0.106,
+     0.0,
+     0.594,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0678,
+     1.0,
+     0.9322
+    ],
+    "3:4": [
+     0.1247,
+     0.0,
+     0.7754,
+     1.0
+    ]
+   }
   },
   {
    "title": "Plate of Fruit on a Chair",
@@ -4047,7 +7745,33 @@
     0.55
    ],
    "delivered_edge": 4096,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0165,
+     0.0,
+     0.9835,
+     1.0
+    ],
+    "9:16": [
+     0.197,
+     0.0,
+     0.503,
+     1.0
+    ],
+    "4:3": [
+     0.0374,
+     0.0,
+     0.7626,
+     1.0
+    ],
+    "3:4": [
+     0.146,
+     0.0,
+     0.554,
+     1.0
+    ]
+   }
   },
   {
    "title": "Bottle and Fruits",
@@ -4074,7 +7798,33 @@
     0.4
    ],
    "delivered_edge": 4096,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0769,
+     1.0,
+     0.9225
+    ],
+    "9:16": [
+     0.1329,
+     0.0,
+     0.5071,
+     1.0
+    ],
+    "4:3": [
+     0.0565,
+     0.0,
+     0.9436,
+     1.0
+    ],
+    "3:4": [
+     0.1505,
+     0.0,
+     0.6495,
+     1.0
+    ]
+   }
   },
   {
    "title": "A Table Corner",
@@ -4101,7 +7851,33 @@
     0.55
    ],
    "delivered_edge": 4096,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1399,
+     1.0,
+     0.8173
+    ],
+    "9:16": [
+     0.2661,
+     0.0,
+     0.7331,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0484,
+     1.0,
+     0.9516
+    ],
+    "3:4": [
+     0.1887,
+     0.0,
+     0.8114,
+     1.0
+    ]
+   }
   },
   {
    "title": "Gardanne (Horizontal View)",
@@ -4128,7 +7904,33 @@
     0.3
    ],
    "delivered_edge": 4096,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0598,
+     1.0,
+     0.9376
+    ],
+    "9:16": [
+     0.3201,
+     0.0,
+     0.6805,
+     1.0
+    ],
+    "4:3": [
+     0.0728,
+     0.0,
+     0.9272,
+     1.0
+    ],
+    "3:4": [
+     0.2597,
+     0.0,
+     0.7403,
+     1.0
+    ]
+   }
   },
   {
    "title": "Mont Sainte-Victoire (Study I)",
@@ -4155,7 +7957,33 @@
     0.25
    ],
    "delivered_edge": 4001,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1099,
+     1.0,
+     0.8126
+    ],
+    "9:16": [
+     0.075,
+     0.0,
+     0.5254,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0316,
+     1.0,
+     0.9684
+    ],
+    "3:4": [
+     0.05,
+     0.0,
+     0.6505,
+     1.0
+    ]
+   }
   },
   {
    "title": "Mont Sainte-Victoire (Study II)",
@@ -4182,7 +8010,33 @@
     0.3
    ],
    "delivered_edge": 4001,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.06,
+     1.0,
+     0.728
+    ],
+    "9:16": [
+     0.2799,
+     0.0,
+     0.7536,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0201,
+     1.0,
+     0.9108
+    ],
+    "3:4": [
+     0.1799,
+     0.0,
+     0.8114,
+     1.0
+    ]
+   }
   },
   {
    "title": "Bathers (Small Group)",
@@ -4209,7 +8063,27 @@
     0.6
    ],
    "delivered_edge": 4001,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.2199,
+     1.0,
+     0.8445
+    ],
+    "4:3": [
+     0.0,
+     0.0499,
+     1.0,
+     0.8827
+    ],
+    "3:4": [
+     0.0802,
+     0.0,
+     0.7555,
+     1.0
+    ]
+   }
   },
   {
    "title": "Fields at Bellevue (second version)",
@@ -4236,7 +8110,33 @@
     0.55
    ],
    "delivered_edge": 4001,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.08,
+     1.0,
+     0.8652
+    ],
+    "9:16": [
+     0.22,
+     0.0,
+     0.623,
+     1.0
+    ],
+    "4:3": [
+     0.0201,
+     0.0,
+     0.9751,
+     1.0
+    ],
+    "3:4": [
+     0.2,
+     0.0,
+     0.7372,
+     1.0
+    ]
+   }
   },
   {
    "title": "Ginger Pot with Pomegranate and Pears",
@@ -4263,7 +8163,33 @@
     0.4
    ],
    "delivered_edge": 4001,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1401,
+     1.0,
+     0.8144
+    ],
+    "9:16": [
+     0.22,
+     0.0,
+     0.6892,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0502,
+     1.0,
+     0.9491
+    ],
+    "3:4": [
+     0.1699,
+     0.0,
+     0.7956,
+     1.0
+    ]
+   }
   },
   {
    "title": "Landscape: Road with Trees in Rocky Terrain",
@@ -4290,7 +8216,33 @@
     0.55
    ],
    "delivered_edge": 4001,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1999,
+     1.0,
+     0.8852
+    ],
+    "9:16": [
+     0.2801,
+     0.0,
+     0.7417,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0399,
+     1.0,
+     0.9536
+    ],
+    "3:4": [
+     0.2201,
+     0.0,
+     0.8357,
+     1.0
+    ]
+   }
   },
   {
    "title": "Mont Sainte-Victoire (Study III)",
@@ -4317,7 +8269,33 @@
     0.3
    ],
    "delivered_edge": 4001,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0299,
+     1.0,
+     0.7214
+    ],
+    "9:16": [
+     0.08,
+     0.0,
+     0.5377,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.03,
+     1.0,
+     0.9519
+    ],
+    "3:4": [
+     0.0501,
+     0.0,
+     0.6602,
+     1.0
+    ]
+   }
   },
   {
    "title": "Seated Woman in Blue",
@@ -4344,7 +8322,33 @@
     0.22
    ],
    "delivered_edge": 4001,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0301,
+     1.0,
+     0.4598
+    ],
+    "9:16": [
+     0.1298,
+     0.0,
+     0.8662,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0001,
+     1.0,
+     0.5729
+    ],
+    "3:4": [
+     0.009,
+     0.0,
+     0.991,
+     1.0
+    ]
+   }
   },
   {
    "title": "Self-Portrait",
@@ -4371,7 +8375,33 @@
     0.3
    ],
    "delivered_edge": 4001,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1,
+     1.0,
+     0.5753
+    ],
+    "9:16": [
+     0.17,
+     0.0,
+     0.8357,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.08,
+     1.0,
+     0.7138
+    ],
+    "3:4": [
+     0.05,
+     0.0,
+     0.9376,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Garden at Les Lauves",
@@ -4398,7 +8428,33 @@
     0.5
    ],
    "delivered_edge": 4001,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0999,
+     1.0,
+     0.801
+    ],
+    "9:16": [
+     0.2801,
+     0.0,
+     0.7313,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0199,
+     1.0,
+     0.9547
+    ],
+    "3:4": [
+     0.2001,
+     0.0,
+     0.8018,
+     1.0
+    ]
+   }
   },
   {
    "title": "On the Banks of a River",
@@ -4425,7 +8481,33 @@
     0.4
    ],
    "delivered_edge": 4000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.08,
+     1.0,
+     0.7556
+    ],
+    "9:16": [
+     0.1501,
+     0.0,
+     0.6183,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0499,
+     1.0,
+     0.9508
+    ],
+    "3:4": [
+     0.1801,
+     0.0,
+     0.8044,
+     1.0
+    ]
+   }
   },
   {
    "title": "Melting Snow, Fontainebleau",
@@ -4452,7 +8534,33 @@
     0.5
    ],
    "delivered_edge": 4000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0999,
+     1.0,
+     0.8668
+    ],
+    "9:16": [
+     0.2901,
+     0.0,
+     0.7026,
+     1.0
+    ],
+    "4:3": [
+     0.0101,
+     0.0,
+     0.9881,
+     1.0
+    ],
+    "3:4": [
+     0.22,
+     0.0,
+     0.7702,
+     1.0
+    ]
+   }
   },
   {
    "title": "Riverbank",
@@ -4479,7 +8587,33 @@
     0.35
    ],
    "delivered_edge": 4000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0601,
+     1.0,
+     0.7715
+    ],
+    "9:16": [
+     0.1,
+     0.0,
+     0.5447,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0302,
+     1.0,
+     0.9786
+    ],
+    "3:4": [
+     0.1499,
+     0.0,
+     0.743,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Bend in the Road",
@@ -4506,7 +8640,33 @@
     0.5
    ],
    "delivered_edge": 4000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.2498,
+     1.0,
+     0.7013
+    ],
+    "9:16": [
+     0.1403,
+     0.0,
+     0.8412,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1498,
+     1.0,
+     0.7517
+    ],
+    "3:4": [
+     0.0303,
+     0.0,
+     0.9649,
+     1.0
+    ]
+   }
   },
   {
    "title": "Still Life with Teapot",
@@ -4533,7 +8693,33 @@
     0.55
    ],
    "delivered_edge": 4000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1501,
+     1.0,
+     0.8383
+    ],
+    "9:16": [
+     0.1999,
+     0.0,
+     0.6597,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0401,
+     1.0,
+     0.9579
+    ],
+    "3:4": [
+     0.1999,
+     0.0,
+     0.8128,
+     1.0
+    ]
+   }
   },
   {
    "title": "At the Water's Edge",
@@ -4560,7 +8746,33 @@
     0.35
    ],
    "delivered_edge": 4000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0499,
+     1.0,
+     0.765
+    ],
+    "9:16": [
+     0.1901,
+     0.0,
+     0.6325,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0199,
+     1.0,
+     0.9734
+    ],
+    "3:4": [
+     0.2001,
+     0.0,
+     0.79,
+     1.0
+    ]
+   }
   },
   {
    "title": "Portrait of Antoine Valabrègue (alternate version)",
@@ -4587,7 +8799,33 @@
     0.28
    ],
    "delivered_edge": 4000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0302,
+     1.0,
+     0.5012
+    ],
+    "9:16": [
+     0.1598,
+     0.0,
+     0.8314,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0057,
+     1.0,
+     0.6338
+    ],
+    "3:4": [
+     0.0497,
+     0.0,
+     0.9453,
+     1.0
+    ]
+   }
   },
   {
    "title": "Harlequin",
@@ -4614,7 +8852,33 @@
     0.18
    ],
    "delivered_edge": 4000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0499,
+     1.0,
+     0.4119
+    ],
+    "9:16": [
+     0.0603,
+     0.0,
+     0.9345,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0,
+     1.0,
+     0.4826
+    ],
+    "3:4": [
+     0.0,
+     0.0,
+     1.0,
+     0.858
+    ]
+   }
   },
   {
    "title": "The Road, the Old Wall",
@@ -4641,7 +8905,33 @@
     0.45
    ],
    "delivered_edge": 3994,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.05,
+     1.0,
+     0.7953
+    ],
+    "9:16": [
+     0.28,
+     0.0,
+     0.7045,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0031,
+     1.0,
+     0.9969
+    ],
+    "3:4": [
+     0.22,
+     0.0,
+     0.786,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Bathers",
@@ -4668,7 +8958,33 @@
     0.5
    ],
    "delivered_edge": 3951,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0301,
+     1.0,
+     0.939
+    ],
+    "9:16": [
+     0.02,
+     0.0,
+     0.368,
+     1.0
+    ],
+    "4:3": [
+     0.0799,
+     0.0,
+     0.9051,
+     1.0
+    ],
+    "3:4": [
+     0.0,
+     0.0,
+     0.4641,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Bedroom (Amsterdam version, 1888)",
@@ -4695,7 +9011,33 @@
     0.55
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1599,
+     1.0,
+     0.8688
+    ],
+    "9:16": [
+     0.5,
+     0.0,
+     0.9464,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0274,
+     1.0,
+     0.9726
+    ],
+    "3:4": [
+     0.4,
+     0.0,
+     0.9952,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Bedroom (Musée d'Orsay version, 1889)",
@@ -4722,7 +9064,33 @@
     0.55
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0799,
+     1.0,
+     0.7994
+    ],
+    "9:16": [
+     0.45,
+     0.0,
+     0.8898,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.02,
+     1.0,
+     0.9792
+    ],
+    "3:4": [
+     0.28,
+     0.0,
+     0.8664,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Viaduct at Arles (\"The Blue Train\")",
@@ -4749,7 +9117,33 @@
     0.5
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0999,
+     1.0,
+     0.7271
+    ],
+    "9:16": [
+     0.2703,
+     0.0,
+     0.7747,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0298,
+     1.0,
+     0.8662
+    ],
+    "3:4": [
+     0.1702,
+     0.0,
+     0.8428,
+     1.0
+    ]
+   }
   },
   {
    "title": "Farmhouse in Provence",
@@ -4776,7 +9170,33 @@
     0.35
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "4:3": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ],
+    "16:9": [
+     0.0,
+     0.0601,
+     1.0,
+     0.8059
+    ],
+    "9:16": [
+     0.0599,
+     0.0,
+     0.4841,
+     1.0
+    ],
+    "3:4": [
+     0.0501,
+     0.0,
+     0.6159,
+     1.0
+    ]
+   }
   },
   {
    "title": "Two Poplars in the Alpilles near Saint-Rémy",
@@ -4803,7 +9223,33 @@
     0.42
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "3:4": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ],
+    "16:9": [
+     0.0,
+     0.1501,
+     1.0,
+     0.5709
+    ],
+    "9:16": [
+     0.124,
+     0.0,
+     0.876,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.12,
+     1.0,
+     0.681
+    ]
+   }
   },
   {
    "title": "The White House at Night",
@@ -4830,7 +9276,33 @@
     0.42
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0502,
+     1.0,
+     0.7278
+    ],
+    "9:16": [
+     0.22,
+     0.0,
+     0.687,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0303,
+     1.0,
+     0.9337
+    ],
+    "3:4": [
+     0.1397,
+     0.0,
+     0.7623,
+     1.0
+    ]
+   }
   },
   {
    "title": "Portrait of Adeline Ravoux",
@@ -4857,7 +9329,33 @@
     0.35
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1199,
+     1.0,
+     0.6841
+    ],
+    "9:16": [
+     0.0501,
+     0.0,
+     0.6109,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0298,
+     1.0,
+     0.7822
+    ],
+    "3:4": [
+     0.0202,
+     0.0,
+     0.7678,
+     1.0
+    ]
+   }
   },
   {
    "title": "Spectators in the Arena at Arles",
@@ -4884,7 +9382,27 @@
     0.8
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "9:16": [
+     0.2799,
+     0.0,
+     0.7291,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0299,
+     1.0,
+     0.9691
+    ],
+    "3:4": [
+     0.18,
+     0.0,
+     0.779,
+     1.0
+    ]
+   }
   },
   {
    "title": "Basket of Sprouting Hyacinth Bulbs",
@@ -4911,7 +9429,33 @@
     0.5
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0602,
+     1.0,
+     0.9308
+    ],
+    "9:16": [
+     0.3183,
+     0.0,
+     0.6817,
+     1.0
+    ],
+    "4:3": [
+     0.0698,
+     0.0,
+     0.9312,
+     1.0
+    ],
+    "3:4": [
+     0.2577,
+     0.0,
+     0.7423,
+     1.0
+    ]
+   }
   },
   {
    "title": "Bridge in the Rain (after Hiroshige)",
@@ -4945,7 +9489,33 @@
     0.62
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "3:4": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ],
+    "16:9": [
+     0.0,
+     0.3501,
+     1.0,
+     0.7589
+    ],
+    "9:16": [
+     0.113,
+     0.0,
+     0.887,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1999,
+     1.0,
+     0.7451
+    ]
+   }
   },
   {
    "title": "Still Life with Basket of Potatoes (I)",
@@ -4972,7 +9542,33 @@
     0.4
    ],
    "delivered_edge": 7349,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0499,
+     1.0,
+     0.7891
+    ],
+    "9:16": [
+     0.24,
+     0.0,
+     0.668,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0047,
+     1.0,
+     0.9903
+    ],
+    "3:4": [
+     0.1652,
+     0.0,
+     0.7358,
+     1.0
+    ]
+   }
   },
   {
    "title": "Still Life with Basket of Potatoes (II)",
@@ -4999,7 +9595,33 @@
     0.4
    ],
    "delivered_edge": 7320,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0398,
+     1.0,
+     0.8022
+    ],
+    "9:16": [
+     0.193,
+     0.0,
+     0.608,
+     1.0
+    ],
+    "4:3": [
+     0.0081,
+     0.0,
+     0.9919,
+     1.0
+    ],
+    "3:4": [
+     0.1303,
+     0.0,
+     0.6837,
+     1.0
+    ]
+   }
   },
   {
    "title": "Still Life with Beer Tankards",
@@ -5026,7 +9648,33 @@
     0.55
    ],
    "delivered_edge": 7264,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.03,
+     1.0,
+     0.801
+    ],
+    "9:16": [
+     0.0798,
+     0.0,
+     0.4902,
+     1.0
+    ],
+    "4:3": [
+     0.0136,
+     0.0,
+     0.9864,
+     1.0
+    ],
+    "3:4": [
+     0.0499,
+     0.0,
+     0.5971,
+     1.0
+    ]
+   }
   },
   {
    "title": "Basket of Apples",
@@ -5053,7 +9701,33 @@
     0.35
    ],
    "delivered_edge": 7210,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "4:3": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ],
+    "16:9": [
+     0.0,
+     0.05,
+     1.0,
+     0.801
+    ],
+    "9:16": [
+     0.2898,
+     0.0,
+     0.7112,
+     1.0
+    ],
+    "3:4": [
+     0.2201,
+     0.0,
+     0.7819,
+     1.0
+    ]
+   }
   },
   {
    "title": "Garden with Courting Couples: Square Saint-Pierre",
@@ -5080,7 +9754,33 @@
     0.68
    ],
    "delivered_edge": 7613,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0603,
+     1.0,
+     0.9017
+    ],
+    "9:16": [
+     0.442,
+     0.0,
+     0.818,
+     1.0
+    ],
+    "4:3": [
+     0.0548,
+     0.0,
+     0.9462,
+     1.0
+    ],
+    "3:4": [
+     0.3498,
+     0.0,
+     0.8512,
+     1.0
+    ]
+   }
   },
   {
    "title": "Almond Blossom",
@@ -5107,7 +9807,27 @@
     0.8
    ],
    "delivered_edge": 7149,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "9:16": [
+     0.2778,
+     0.0,
+     0.7222,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0204,
+     1.0,
+     0.9696
+    ],
+    "3:4": [
+     0.2037,
+     0.0,
+     0.7963,
+     1.0
+    ]
+   }
   },
   {
    "title": "Basket of Crocus Bulbs",
@@ -5134,7 +9854,33 @@
     0.5
    ],
    "delivered_edge": 7006,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1399,
+     1.0,
+     0.8541
+    ],
+    "9:16": [
+     0.26,
+     0.0,
+     0.703,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0204,
+     1.0,
+     0.9726
+    ],
+    "3:4": [
+     0.1801,
+     0.0,
+     0.7709,
+     1.0
+    ]
+   }
   },
   {
    "title": "Terrace in the Luxembourg Gardens",
@@ -5161,7 +9907,15 @@
     0.62
    ],
    "delivered_edge": 6955,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Yellow House",
@@ -5188,7 +9942,33 @@
     0.42
    ],
    "delivered_edge": 6917,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.08,
+     1.0,
+     0.805
+    ],
+    "9:16": [
+     0.1898,
+     0.0,
+     0.6262,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0151,
+     1.0,
+     0.9819
+    ],
+    "3:4": [
+     0.1201,
+     0.0,
+     0.7019,
+     1.0
+    ]
+   }
   },
   {
    "title": "Portrait of Dr. Gachet",
@@ -5215,7 +9995,33 @@
     0.25
    ],
    "delivered_edge": 6748,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0201,
+     1.0,
+     0.4879
+    ],
+    "9:16": [
+     0.0818,
+     0.0,
+     0.7582,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0202,
+     1.0,
+     0.6438
+    ],
+    "3:4": [
+     0.049,
+     0.0,
+     0.951,
+     1.0
+    ]
+   }
   },
   {
    "title": "Basket of Pansies",
@@ -5242,7 +10048,33 @@
     0.5
    ],
    "delivered_edge": 6591,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0803,
+     1.0,
+     0.7467
+    ],
+    "9:16": [
+     0.2631,
+     0.0,
+     0.7379,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0303,
+     1.0,
+     0.9187
+    ],
+    "3:4": [
+     0.1834,
+     0.0,
+     0.8166,
+     1.0
+    ]
+   }
   },
   {
    "title": "Still Life with Baskets of Potatoes",
@@ -5269,7 +10101,33 @@
     0.45
    ],
    "delivered_edge": 6536,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0499,
+     1.0,
+     0.7301
+    ],
+    "9:16": [
+     0.2699,
+     0.0,
+     0.7351,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.02,
+     1.0,
+     0.927
+    ],
+    "3:4": [
+     0.1899,
+     0.0,
+     0.8101,
+     1.0
+    ]
+   }
   },
   {
    "title": "Bobbin Winder",
@@ -5296,7 +10154,27 @@
     0.42
    ],
    "delivered_edge": 6472,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0501,
+     1.0,
+     0.78
+    ],
+    "4:3": [
+     0.0,
+     0.0001,
+     1.0,
+     0.9734
+    ],
+    "3:4": [
+     0.1999,
+     0.0,
+     0.7779,
+     1.0
+    ]
+   }
   },
   {
    "title": "Sprig of Flowering Almond Blossom in a Glass",
@@ -5323,7 +10201,33 @@
     0.32
    ],
    "delivered_edge": 6321,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0299,
+     1.0,
+     0.4672
+    ],
+    "9:16": [
+     0.1382,
+     0.0,
+     0.8617,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1199,
+     1.0,
+     0.7029
+    ],
+    "3:4": [
+     0.0177,
+     0.0,
+     0.9824,
+     1.0
+    ]
+   }
   },
   {
    "title": "Allotment with Sunflower",
@@ -5350,7 +10254,33 @@
     0.15
    ],
    "delivered_edge": 6245,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0799,
+     1.0,
+     0.5324
+    ],
+    "9:16": [
+     0.0002,
+     0.0,
+     0.6994,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0998,
+     1.0,
+     0.7032
+    ],
+    "3:4": [
+     0.0303,
+     0.0,
+     0.9625,
+     1.0
+    ]
+   }
   },
   {
    "title": "Seated Nude",
@@ -5377,7 +10307,33 @@
     0.2
    ],
    "delivered_edge": 6160,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0301,
+     1.0,
+     0.4878
+    ],
+    "9:16": [
+     0.08,
+     0.0,
+     0.7712,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0401,
+     1.0,
+     0.6504
+    ],
+    "3:4": [
+     0.0399,
+     0.0,
+     0.9615,
+     1.0
+    ]
+   }
   },
   {
    "title": "Banks of the Seine with the Pont de Clichy in Spring",
@@ -5404,7 +10360,33 @@
     0.5
    ],
    "delivered_edge": 6038,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0502,
+     1.0,
+     0.7271
+    ],
+    "9:16": [
+     0.2799,
+     0.0,
+     0.7473,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0302,
+     1.0,
+     0.9328
+    ],
+    "3:4": [
+     0.1899,
+     0.0,
+     0.813,
+     1.0
+    ]
+   }
   },
   {
    "title": "A Woman Walking in a Garden",
@@ -5431,7 +10413,33 @@
     0.35
    ],
    "delivered_edge": 5914,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.06,
+     1.0,
+     0.7727
+    ],
+    "9:16": [
+     0.2,
+     0.0,
+     0.644,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0301,
+     1.0,
+     0.9802
+    ],
+    "3:4": [
+     0.124,
+     0.0,
+     0.716,
+     1.0
+    ]
+   }
   },
   {
    "title": "Harvest in Provence",
@@ -5458,7 +10466,33 @@
     0.4
    ],
    "delivered_edge": 5720,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0999,
+     1.0,
+     0.797
+    ],
+    "9:16": [
+     0.5,
+     0.0,
+     0.954,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.02,
+     1.0,
+     0.9493
+    ],
+    "3:4": [
+     0.197,
+     0.0,
+     0.8023,
+     1.0
+    ]
+   }
   },
   {
    "title": "Portrait of the Postman Joseph Roulin",
@@ -5486,7 +10520,33 @@
     0.25
    ],
    "delivered_edge": 5076,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0,
+     1.0,
+     0.4282
+    ],
+    "9:16": [
+     0.1301,
+     0.0,
+     0.8691,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0199,
+     1.0,
+     0.5909
+    ],
+    "3:4": [
+     0.0073,
+     0.0,
+     0.9926,
+     1.0
+    ]
+   }
   },
   {
    "title": "Shoes",
@@ -5513,7 +10573,33 @@
     0.5
    ],
    "delivered_edge": 5615,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1099,
+     1.0,
+     0.784
+    ],
+    "9:16": [
+     0.2151,
+     0.0,
+     0.6845,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0499,
+     1.0,
+     0.9486
+    ],
+    "3:4": [
+     0.1871,
+     0.0,
+     0.813,
+     1.0
+    ]
+   }
   },
   {
    "title": "Wheat Field with View of Arles",
@@ -5540,7 +10626,33 @@
     0.4
    ],
    "delivered_edge": 5076,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.08,
+     1.0,
+     0.5081
+    ],
+    "9:16": [
+     0.1301,
+     0.0,
+     0.8691,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0499,
+     1.0,
+     0.6209
+    ],
+    "3:4": [
+     0.0073,
+     0.0,
+     0.9926,
+     1.0
+    ]
+   }
   },
   {
    "title": "Les Alyscamps",
@@ -5567,7 +10679,33 @@
     0.62
    ],
    "delivered_edge": 5070,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.4499,
+     1.0,
+     0.8799
+    ],
+    "9:16": [
+     0.1323,
+     0.0,
+     0.868,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.2498,
+     1.0,
+     0.8232
+    ],
+    "3:4": [
+     0.0095,
+     0.0,
+     0.9906,
+     1.0
+    ]
+   }
   },
   {
    "title": "At Eternity's Gate (Sorrowing Old Man)",
@@ -5594,7 +10732,33 @@
     0.4
    ],
    "delivered_edge": 5057,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0299,
+     1.0,
+     0.4576
+    ],
+    "9:16": [
+     0.0501,
+     0.0,
+     0.79,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0199,
+     1.0,
+     0.5901
+    ],
+    "3:4": [
+     0.0068,
+     0.0,
+     0.9932,
+     1.0
+    ]
+   }
   },
   {
    "title": "A Weaver's Cottage",
@@ -5621,7 +10785,33 @@
     0.35
    ],
    "delivered_edge": 5023,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0799,
+     1.0,
+     0.7855
+    ],
+    "9:16": [
+     0.2801,
+     0.0,
+     0.7285,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0298,
+     1.0,
+     0.9707
+    ],
+    "3:4": [
+     0.2011,
+     0.0,
+     0.7989,
+     1.0
+    ]
+   }
   },
   {
    "title": "Windmills on Montmartre",
@@ -5648,7 +10838,33 @@
     0.32
    ],
    "delivered_edge": 5001,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.12,
+     1.0,
+     0.5739
+    ],
+    "9:16": [
+     0.0015,
+     0.0,
+     0.6986,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0801,
+     1.0,
+     0.6852
+    ],
+    "3:4": [
+     0.0353,
+     0.0,
+     0.9648,
+     1.0
+    ]
+   }
   },
   {
    "title": "Daubigny's Garden",
@@ -5675,7 +10891,33 @@
     0.35
    ],
    "delivered_edge": 3870,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0094,
+     0.0,
+     0.9907,
+     1.0
+    ],
+    "9:16": [
+     0.32,
+     0.0,
+     0.6304,
+     1.0
+    ],
+    "4:3": [
+     0.1299,
+     0.0,
+     0.8659,
+     1.0
+    ],
+    "3:4": [
+     0.29,
+     0.0,
+     0.7039,
+     1.0
+    ]
+   }
   },
   {
    "title": "Sunset at Montmajour",
@@ -5702,7 +10944,33 @@
     0.28
    ],
    "delivered_edge": 4823,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0602,
+     1.0,
+     0.7731
+    ],
+    "9:16": [
+     0.2399,
+     0.0,
+     0.6837,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0202,
+     1.0,
+     0.9708
+    ],
+    "3:4": [
+     0.1539,
+     0.0,
+     0.7456,
+     1.0
+    ]
+   }
   },
   {
    "title": "Fishing Boats on the Beach at Saintes-Maries-de-la-Mer",
@@ -5729,7 +10997,33 @@
     0.28
    ],
    "delivered_edge": 4584,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1301,
+     1.0,
+     0.8719
+    ],
+    "9:16": [
+     0.1618,
+     0.0,
+     0.5883,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0051,
+     1.0,
+     0.9942
+    ],
+    "3:4": [
+     0.1199,
+     0.0,
+     0.6887,
+     1.0
+    ]
+   }
   },
   {
    "title": "Blossoming Chestnut Branches",
@@ -5757,7 +11051,33 @@
     0.5
    ],
    "delivered_edge": 3870,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0799,
+     1.0,
+     0.79
+    ],
+    "9:16": [
+     0.2271,
+     0.0,
+     0.6728,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0249,
+     1.0,
+     0.9716
+    ],
+    "3:4": [
+     0.1531,
+     0.0,
+     0.7472,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Church at Auvers",
@@ -5784,7 +11104,33 @@
     0.35
    ],
    "delivered_edge": 4433,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0401,
+     1.0,
+     0.4758
+    ],
+    "9:16": [
+     0.1368,
+     0.0,
+     0.863,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0402,
+     1.0,
+     0.6211
+    ],
+    "3:4": [
+     0.016,
+     0.0,
+     0.9841,
+     1.0
+    ]
+   }
   },
   {
    "title": "Acacia in Flower",
@@ -5811,7 +11157,33 @@
     0.5
    ],
    "delivered_edge": 4235,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.05,
+     1.0,
+     0.4646
+    ],
+    "9:16": [
+     0.1184,
+     0.0,
+     0.8816,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.15,
+     1.0,
+     0.7028
+    ],
+    "3:4": [
+     0.0,
+     0.008,
+     1.0,
+     0.9907
+    ]
+   }
   },
   {
    "title": "Sunflowers (Van Gogh Museum version)",
@@ -5838,7 +11210,33 @@
     0.55
    ],
    "delivered_edge": 4226,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "3:4": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ],
+    "16:9": [
+     0.0,
+     0.15,
+     1.0,
+     0.5792
+    ],
+    "9:16": [
+     0.1313,
+     0.0,
+     0.8687,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1801,
+     1.0,
+     0.7523
+    ]
+   }
   },
   {
    "title": "A Pair of Shoes (Arles, 1888)",
@@ -5865,7 +11263,33 @@
     0.55
    ],
    "delivered_edge": 6351,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1401,
+     1.0,
+     0.852
+    ],
+    "9:16": [
+     0.2778,
+     0.0,
+     0.7222,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0252,
+     1.0,
+     0.9744
+    ],
+    "3:4": [
+     0.2037,
+     0.0,
+     0.7963,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Brothel (Le Lupanar)",
@@ -5892,7 +11316,33 @@
     0.45
    ],
    "delivered_edge": 4096,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1201,
+     1.0,
+     0.8247
+    ],
+    "9:16": [
+     0.35,
+     0.0,
+     0.7991,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0302,
+     1.0,
+     0.9696
+    ],
+    "3:4": [
+     0.32,
+     0.0,
+     0.9187,
+     1.0
+    ]
+   }
   },
   {
    "title": "Still Life with Basket of Apples (dedicated to Lucien Pissarro)",
@@ -5919,7 +11369,33 @@
     0.55
    ],
    "delivered_edge": 3882,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1698,
+     1.0,
+     0.8316
+    ],
+    "9:16": [
+     0.2608,
+     0.0,
+     0.739,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0589,
+     1.0,
+     0.9411
+    ],
+    "3:4": [
+     0.1812,
+     0.0,
+     0.8188,
+     1.0
+    ]
+   }
   },
   {
    "title": "View of Saintes-Maries",
@@ -5946,7 +11422,33 @@
     0.35
    ],
    "delivered_edge": 3870,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0996,
+     1.0,
+     0.9005
+    ],
+    "9:16": [
+     0.42,
+     0.0,
+     0.815,
+     1.0
+    ],
+    "4:3": [
+     0.0478,
+     0.0,
+     0.9842,
+     1.0
+    ],
+    "3:4": [
+     0.3566,
+     0.0,
+     0.8833,
+     1.0
+    ]
+   }
   },
   {
    "title": "A Meadow in the Mountains: Le Mas de Saint-Paul",
@@ -5973,7 +11475,33 @@
     0.32
    ],
    "delivered_edge": 3870,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0495,
+     1.0,
+     0.7553
+    ],
+    "9:16": [
+     0.2258,
+     0.0,
+     0.6741,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0292,
+     1.0,
+     0.9704
+    ],
+    "3:4": [
+     0.1512,
+     0.0,
+     0.7488,
+     1.0
+    ]
+   }
   },
   {
    "title": "Avenue of Poplars in Autumn",
@@ -6000,7 +11528,33 @@
     0.55
    ],
    "delivered_edge": 3870,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "4:3": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ],
+    "16:9": [
+     0.0,
+     0.09,
+     1.0,
+     0.8396
+    ],
+    "9:16": [
+     0.239,
+     0.0,
+     0.661,
+     1.0
+    ],
+    "3:4": [
+     0.1686,
+     0.0,
+     0.7314,
+     1.0
+    ]
+   }
   },
   {
    "title": "Street in Saintes-Maries",
@@ -6027,7 +11581,33 @@
     0.45
    ],
    "delivered_edge": 3864,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0599,
+     1.0,
+     0.9391
+    ],
+    "9:16": [
+     0.24,
+     0.0,
+     0.5999,
+     1.0
+    ],
+    "4:3": [
+     0.0699,
+     0.0,
+     0.9229,
+     1.0
+    ],
+    "3:4": [
+     0.18,
+     0.0,
+     0.6599,
+     1.0
+    ]
+   }
   },
   {
    "title": "Orchard with Blossoming Apricot Trees",
@@ -6054,7 +11634,33 @@
     0.4
    ],
    "delivered_edge": 3864,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0799,
+     1.0,
+     0.7595
+    ],
+    "9:16": [
+     0.0872,
+     0.0,
+     0.5527,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0199,
+     1.0,
+     0.9261
+    ],
+    "3:4": [
+     0.0098,
+     0.0,
+     0.6306,
+     1.0
+    ]
+   }
   },
   {
    "title": "Bowl with Peonies and Roses",
@@ -6081,7 +11687,33 @@
     0.4
    ],
    "delivered_edge": 3846,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0798,
+     1.0,
+     0.7602
+    ],
+    "9:16": [
+     0.2675,
+     0.0,
+     0.7325,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0465,
+     1.0,
+     0.9535
+    ],
+    "3:4": [
+     0.1899,
+     0.0,
+     0.81,
+     1.0
+    ]
+   }
   },
   {
    "title": "Wheat Field with Cypresses",
@@ -6108,7 +11740,33 @@
     0.35
    ],
    "delivered_edge": 3840,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "4:3": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ],
+    "16:9": [
+     0.0,
+     0.0599,
+     1.0,
+     0.8019
+    ],
+    "9:16": [
+     0.5735,
+     0.0,
+     1.0,
+     1.0
+    ],
+    "3:4": [
+     0.4314,
+     0.0,
+     1.0,
+     1.0
+    ]
+   }
   },
   {
    "title": "At the Salon in the Rue des Moulins",
@@ -6135,7 +11793,33 @@
     0.55
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.11,
+     1.0,
+     0.762
+    ],
+    "9:16": [
+     0.3073,
+     0.0,
+     0.7926,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0653,
+     1.0,
+     0.9347
+    ],
+    "3:4": [
+     0.1765,
+     0.0,
+     0.8235,
+     1.0
+    ]
+   }
   },
   {
    "title": "Horse Behind a Stable Gate",
@@ -6162,7 +11846,33 @@
     0.32
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0801,
+     1.0,
+     0.4045
+    ],
+    "9:16": [
+     0.0122,
+     0.0,
+     0.9878,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0502,
+     1.0,
+     0.4827
+    ],
+    "3:4": [
+     0.0,
+     0.1156,
+     1.0,
+     0.8843
+    ]
+   }
   },
   {
    "title": "Count Alphonse de Toulouse-Lautrec as a Falconer",
@@ -6189,7 +11899,33 @@
     0.38
    ],
    "delivered_edge": 7625,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0999,
+     1.0,
+     0.4803
+    ],
+    "9:16": [
+     0.0842,
+     0.0,
+     0.9158,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0299,
+     1.0,
+     0.5372
+    ],
+    "3:4": [
+     0.0,
+     0.0498,
+     1.0,
+     0.9515
+    ]
+   }
   },
   {
    "title": "At the Moulin Rouge: Beginning of the Quadrille",
@@ -6216,7 +11952,33 @@
     0.35
    ],
    "delivered_edge": 7394,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0301,
+     1.0,
+     0.4546
+    ],
+    "9:16": [
+     0.1573,
+     0.0,
+     0.9027,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0203,
+     1.0,
+     0.5861
+    ],
+    "3:4": [
+     0.003,
+     0.0,
+     0.997,
+     1.0
+    ]
+   }
   },
   {
    "title": "Alfred La Guigne",
@@ -6243,7 +12005,33 @@
     0.45
    ],
    "delivered_edge": 7299,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.05,
+     1.0,
+     0.4747
+    ],
+    "9:16": [
+     0.0775,
+     0.0,
+     0.8225,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0301,
+     1.0,
+     0.5963
+    ],
+    "3:4": [
+     0.0033,
+     0.0,
+     0.9967,
+     1.0
+    ]
+   }
   },
   {
    "title": "A Passing Conquest",
@@ -6270,7 +12058,27 @@
     0.45
    ],
    "delivered_edge": 7012,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "9:16": [
+     0.0577,
+     0.0,
+     0.9423,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.04,
+     1.0,
+     0.517
+    ],
+    "3:4": [
+     0.0,
+     0.0501,
+     1.0,
+     0.898
+    ]
+   }
   },
   {
    "title": "Young Horseman Mounting His Horse",
@@ -6297,7 +12105,33 @@
     0.4
    ],
    "delivered_edge": 6954,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.15,
+     1.0,
+     0.4847
+    ],
+    "9:16": [
+     0.0274,
+     0.0,
+     0.9726,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.12,
+     1.0,
+     0.5663
+    ],
+    "3:4": [
+     0.0,
+     0.0799,
+     1.0,
+     0.8734
+    ]
+   }
   },
   {
    "title": "Portrait of François Gauzi",
@@ -6324,7 +12158,21 @@
     0.42
    ],
    "delivered_edge": 6864,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "9:16": [
+     0.0,
+     0.0204,
+     1.0,
+     0.9407
+    ],
+    "3:4": [
+     0.0,
+     0.0203,
+     1.0,
+     0.7104
+    ]
+   }
   },
   {
    "title": "In Bed",
@@ -6351,7 +12199,33 @@
     0.35
    ],
    "delivered_edge": 6812,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "4:3": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ],
+    "16:9": [
+     0.0,
+     0.0301,
+     1.0,
+     0.7594
+    ],
+    "9:16": [
+     0.083,
+     0.0,
+     0.5169,
+     1.0
+    ],
+    "3:4": [
+     0.0107,
+     0.0,
+     0.5892,
+     1.0
+    ]
+   }
   },
   {
    "title": "Carmen the Redhead (Carmen la Rousse)",
@@ -6378,7 +12252,33 @@
     0.32
    ],
    "delivered_edge": 6712,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0399,
+     1.0,
+     0.3675
+    ],
+    "9:16": [
+     0.017,
+     0.0,
+     0.983,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0199,
+     1.0,
+     0.4566
+    ],
+    "3:4": [
+     0.0,
+     0.0,
+     1.0,
+     0.7763
+    ]
+   }
   },
   {
    "title": "Avenue at Céleyran",
@@ -6405,7 +12305,33 @@
     0.45
    ],
    "delivered_edge": 6598,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0116,
+     0.0,
+     0.9884,
+     1.0
+    ],
+    "9:16": [
+     0.4,
+     0.0,
+     0.709,
+     1.0
+    ],
+    "4:3": [
+     0.1837,
+     0.0,
+     0.9163,
+     1.0
+    ],
+    "3:4": [
+     0.344,
+     0.0,
+     0.756,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Master of the Hunt",
@@ -6432,7 +12358,33 @@
     0.4
    ],
    "delivered_edge": 6392,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1201,
+     1.0,
+     0.4495
+    ],
+    "9:16": [
+     0.0198,
+     0.0,
+     0.9802,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0801,
+     1.0,
+     0.5194
+    ],
+    "3:4": [
+     0.0,
+     0.0002,
+     1.0,
+     0.7811
+    ]
+   }
   },
   {
    "title": "The White Horse Gazelle",
@@ -6459,7 +12411,33 @@
     0.35
    ],
    "delivered_edge": 6346,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0201,
+     1.0,
+     0.6954
+    ],
+    "9:16": [
+     0.1657,
+     0.0,
+     0.6343,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0002,
+     1.0,
+     0.9006
+    ],
+    "3:4": [
+     0.0876,
+     0.0,
+     0.7124,
+     1.0
+    ]
+   }
   },
   {
    "title": "Artilleryman Saddling His Horse",
@@ -6486,7 +12464,33 @@
     0.4
    ],
    "delivered_edge": 6329,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1801,
+     1.0,
+     0.604
+    ],
+    "9:16": [
+     0.1268,
+     0.0,
+     0.8732,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1001,
+     1.0,
+     0.6654
+    ],
+    "3:4": [
+     0.0024,
+     0.0,
+     0.9976,
+     1.0
+    ]
+   }
   },
   {
    "title": "Horse in the Stable at Céleyran",
@@ -6513,7 +12517,33 @@
     0.45
    ],
    "delivered_edge": 6275,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1199,
+     1.0,
+     0.511
+    ],
+    "9:16": [
+     0.0954,
+     0.0,
+     0.9046,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.08,
+     1.0,
+     0.6013
+    ],
+    "3:4": [
+     0.0,
+     0.0199,
+     1.0,
+     0.9468
+    ]
+   }
   },
   {
    "title": "Study of a Woman, Nude from Behind",
@@ -6540,7 +12570,33 @@
     0.4
    ],
    "delivered_edge": 6140,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0801,
+     1.0,
+     0.4871
+    ],
+    "9:16": [
+     0.1113,
+     0.0,
+     0.8887,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0501,
+     1.0,
+     0.5929
+    ],
+    "3:4": [
+     0.0,
+     0.0002,
+     1.0,
+     0.9651
+    ]
+   }
   },
   {
    "title": "At Her Toilette",
@@ -6567,7 +12623,33 @@
     0.35
    ],
    "delivered_edge": 6079,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0801,
+     1.0,
+     0.5406
+    ],
+    "9:16": [
+     0.1059,
+     0.0,
+     0.7931,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0302,
+     1.0,
+     0.6441
+    ],
+    "3:4": [
+     0.0419,
+     0.0,
+     0.9581,
+     1.0
+    ]
+   }
   },
   {
    "title": "Portrait of Émile Bernard",
@@ -6594,7 +12676,33 @@
     0.3
    ],
    "delivered_edge": 6000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.03,
+     1.0,
+     0.4952
+    ],
+    "9:16": [
+     0.16,
+     0.0,
+     0.84,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.02,
+     1.0,
+     0.6403
+    ],
+    "3:4": [
+     0.0466,
+     0.0,
+     0.9534,
+     1.0
+    ]
+   }
   },
   {
    "title": "At the Moulin Rouge: Portrait of Monsieur Warner",
@@ -6621,7 +12729,33 @@
     0.35
    ],
    "delivered_edge": 5959,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1301,
+     1.0,
+     0.5664
+    ],
+    "9:16": [
+     0.0875,
+     0.0,
+     0.8125,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0801,
+     1.0,
+     0.6619
+    ],
+    "3:4": [
+     0.0166,
+     0.0,
+     0.9834,
+     1.0
+    ]
+   }
   },
   {
    "title": "At the Moulin Rouge: The Dance",
@@ -6648,7 +12782,27 @@
     0.4
    ],
    "delivered_edge": 5889,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1001,
+     1.0,
+     0.8401
+    ],
+    "4:3": [
+     0.0,
+     0.0001,
+     1.0,
+     0.9869
+    ],
+    "3:4": [
+     0.295,
+     0.0,
+     0.865,
+     1.0
+    ]
+   }
   },
   {
    "title": "Portrait of Caudieux",
@@ -6675,7 +12829,33 @@
     0.2
    ],
    "delivered_edge": 5878,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.03,
+     1.0,
+     0.4316
+    ],
+    "9:16": [
+     0.0,
+     0.0,
+     0.788,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0201,
+     1.0,
+     0.5554
+    ],
+    "3:4": [
+     0.0,
+     0.0001,
+     1.0,
+     0.9519
+    ]
+   }
   },
   {
    "title": "Crouching Woman (The Laundress)",
@@ -6702,7 +12882,33 @@
     0.45
    ],
    "delivered_edge": 5688,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0,
+     1.0,
+     0.8752
+    ],
+    "9:16": [
+     0.1692,
+     0.0,
+     0.5308,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0,
+     0.857,
+     1.0
+    ],
+    "3:4": [
+     0.109,
+     0.0,
+     0.591,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Theatre Box",
@@ -6729,7 +12935,33 @@
     0.35
    ],
    "delivered_edge": 5622,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0799,
+     1.0,
+     0.5205
+    ],
+    "9:16": [
+     0.041,
+     0.0,
+     0.759,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0399,
+     1.0,
+     0.6274
+    ],
+    "3:4": [
+     0.0213,
+     0.0,
+     0.9787,
+     1.0
+    ]
+   }
   },
   {
    "title": "At the Racecourse",
@@ -6756,7 +12988,33 @@
     0.55
    ],
    "delivered_edge": 5609,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.02,
+     1.0,
+     0.8878
+    ],
+    "9:16": [
+     0.3977,
+     0.0,
+     0.7623,
+     1.0
+    ],
+    "4:3": [
+     0.0678,
+     0.0,
+     0.9322,
+     1.0
+    ],
+    "3:4": [
+     0.3369,
+     0.0,
+     0.8231,
+     1.0
+    ]
+   }
   },
   {
    "title": "Horse Behind a Picket Gate",
@@ -6783,7 +13041,33 @@
     0.42
    ],
    "delivered_edge": 5467,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0498,
+     1.0,
+     0.8989
+    ],
+    "9:16": [
+     0.3137,
+     0.0,
+     0.6863,
+     1.0
+    ],
+    "4:3": [
+     0.0583,
+     0.0,
+     0.9417,
+     1.0
+    ],
+    "3:4": [
+     0.2516,
+     0.0,
+     0.7484,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Clowness Cha-U-Kao",
@@ -6810,7 +13094,33 @@
     0.35
    ],
    "delivered_edge": 5455,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.03,
+     1.0,
+     0.4394
+    ],
+    "9:16": [
+     0.1135,
+     0.0,
+     0.8865,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0201,
+     1.0,
+     0.5659
+    ],
+    "3:4": [
+     0.0,
+     0.0002,
+     1.0,
+     0.9705
+    ]
+   }
   },
   {
    "title": "Allegory: The Springtime of Life",
@@ -6837,7 +13147,33 @@
     0.35
    ],
    "delivered_edge": 5433,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.03,
+     1.0,
+     0.876
+    ],
+    "9:16": [
+     0.413,
+     0.0,
+     0.787,
+     1.0
+    ],
+    "4:3": [
+     0.0568,
+     0.0,
+     0.9432,
+     1.0
+    ],
+    "3:4": [
+     0.3007,
+     0.0,
+     0.7993,
+     1.0
+    ]
+   }
   },
   {
    "title": "Horseman in Eighteenth-Century Costume",
@@ -6864,7 +13200,33 @@
     0.28
    ],
    "delivered_edge": 5405,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0,
+     1.0,
+     0.9804
+    ],
+    "9:16": [
+     0.2586,
+     0.0,
+     0.5814,
+     1.0
+    ],
+    "4:3": [
+     0.0675,
+     0.0,
+     0.8325,
+     1.0
+    ],
+    "3:4": [
+     0.2049,
+     0.0,
+     0.6351,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Sofa (Le Divan)",
@@ -6891,7 +13253,33 @@
     0.42
    ],
    "delivered_edge": 5170,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0501,
+     1.0,
+     0.7766
+    ],
+    "9:16": [
+     0.2322,
+     0.0,
+     0.6678,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0202,
+     1.0,
+     0.9888
+    ],
+    "3:4": [
+     0.1596,
+     0.0,
+     0.7404,
+     1.0
+    ]
+   }
   },
   {
    "title": "Jane Avril Dancing",
@@ -6918,7 +13306,21 @@
     0.45
    ],
    "delivered_edge": 5109,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "9:16": [
+     0.0,
+     0.0196,
+     1.0,
+     0.9484
+    ],
+    "3:4": [
+     0.0,
+     0.0097,
+     1.0,
+     0.7063
+    ]
+   }
   },
   {
    "title": "At the Cabaret",
@@ -6945,7 +13347,33 @@
     0.35
    ],
    "delivered_edge": 5101,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "3:4": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ],
+    "16:9": [
+     0.0,
+     0.0801,
+     1.0,
+     0.4979
+    ],
+    "9:16": [
+     0.1213,
+     0.0,
+     0.8787,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0803,
+     1.0,
+     0.6372
+    ]
+   }
   },
   {
    "title": "English Soldier Smoking a Pipe",
@@ -6972,7 +13400,33 @@
     0.42
    ],
    "delivered_edge": 4969,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "3:4": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ],
+    "16:9": [
+     0.0,
+     0.04,
+     1.0,
+     0.4686
+    ],
+    "9:16": [
+     0.08,
+     0.0,
+     0.818,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.03,
+     1.0,
+     0.6016
+    ]
+   }
   },
   {
    "title": "View of the Vineyards at Céleyran",
@@ -6999,7 +13453,33 @@
     0.45
    ],
    "delivered_edge": 4965,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1,
+     1.0,
+     0.9256
+    ],
+    "9:16": [
+     0.5299,
+     0.0,
+     0.9131,
+     1.0
+    ],
+    "4:3": [
+     0.0398,
+     0.0,
+     0.9482,
+     1.0
+    ],
+    "3:4": [
+     0.46,
+     0.0,
+     0.971,
+     1.0
+    ]
+   }
   },
   {
    "title": "By the River at Céleyran",
@@ -7026,7 +13506,33 @@
     0.5
    ],
    "delivered_edge": 4961,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1197,
+     1.0,
+     0.9163
+    ],
+    "9:16": [
+     0.2999,
+     0.0,
+     0.6971,
+     1.0
+    ],
+    "4:3": [
+     0.0298,
+     0.0,
+     0.9712,
+     1.0
+    ],
+    "3:4": [
+     0.2402,
+     0.0,
+     0.7698,
+     1.0
+    ]
+   }
   },
   {
    "title": "Rolande on the Sofa",
@@ -7053,7 +13559,33 @@
     0.22
    ],
    "delivered_edge": 4956,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0499,
+     1.0,
+     0.7786
+    ],
+    "9:16": [
+     0.0299,
+     0.0,
+     0.4641,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.01,
+     1.0,
+     0.9815
+    ],
+    "3:4": [
+     0.08,
+     0.0,
+     0.659,
+     1.0
+    ]
+   }
   },
   {
    "title": "Aristide Bruant on a Bicycle",
@@ -7080,7 +13612,33 @@
     0.22
    ],
    "delivered_edge": 4924,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0501,
+     1.0,
+     0.5016
+    ],
+    "9:16": [
+     0.1098,
+     0.0,
+     0.8107,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0302,
+     1.0,
+     0.6322
+    ],
+    "3:4": [
+     0.0298,
+     0.0,
+     0.9642,
+     1.0
+    ]
+   }
   },
   {
    "title": "Huntsman on Horseback",
@@ -7107,7 +13665,33 @@
     0.35
    ],
    "delivered_edge": 4776,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.02,
+     1.0,
+     0.9857
+    ],
+    "9:16": [
+     0.3302,
+     0.0,
+     0.6578,
+     1.0
+    ],
+    "4:3": [
+     0.0497,
+     0.0,
+     0.8263,
+     1.0
+    ],
+    "3:4": [
+     0.2801,
+     0.0,
+     0.7169,
+     1.0
+    ]
+   }
   },
   {
    "title": "Clown",
@@ -7134,7 +13718,33 @@
     0.4
    ],
    "delivered_edge": 4752,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.05,
+     1.0,
+     0.425
+    ],
+    "9:16": [
+     0.0496,
+     0.0,
+     0.8934,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0202,
+     1.0,
+     0.5202
+    ],
+    "3:4": [
+     0.0,
+     0.0202,
+     1.0,
+     0.9091
+    ]
+   }
   },
   {
    "title": "Artist with Green Gloves: The Singer Dolly",
@@ -7161,7 +13771,33 @@
     0.35
    ],
    "delivered_edge": 4578,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0301,
+     1.0,
+     0.4726
+    ],
+    "9:16": [
+     0.14,
+     0.0,
+     0.855,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0201,
+     1.0,
+     0.6103
+    ],
+    "3:4": [
+     0.0199,
+     0.0,
+     0.9731,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Terrace at Château du Bosc",
@@ -7188,7 +13824,33 @@
     0.4
    ],
    "delivered_edge": 4513,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.35,
+     1.0,
+     0.7358
+    ],
+    "9:16": [
+     0.09,
+     0.0,
+     0.91,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.25,
+     1.0,
+     0.7646
+    ],
+    "3:4": [
+     0.0,
+     0.0427,
+     1.0,
+     0.9573
+    ]
+   }
   },
   {
    "title": "Portrait of André Rivoire",
@@ -7215,7 +13877,33 @@
     0.32
    ],
    "delivered_edge": 4363,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.04,
+     1.0,
+     0.5119
+    ],
+    "9:16": [
+     0.0301,
+     0.0,
+     0.7004,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.03,
+     1.0,
+     0.6594
+    ],
+    "3:4": [
+     0.0301,
+     0.0,
+     0.9239,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Nun's Pines at Céleyran",
@@ -7242,7 +13930,33 @@
     0.32
    ],
    "delivered_edge": 4332,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.08,
+     1.0,
+     0.9197
+    ],
+    "9:16": [
+     0.6201,
+     0.0,
+     0.9969,
+     1.0
+    ],
+    "4:3": [
+     0.0299,
+     0.0,
+     0.9231,
+     1.0
+    ],
+    "3:4": [
+     0.4898,
+     0.0,
+     0.9922,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Black Countess",
@@ -7269,7 +13983,33 @@
     0.35
    ],
    "delivered_edge": 4272,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0799,
+     1.0,
+     0.8208
+    ],
+    "9:16": [
+     0.42,
+     0.0,
+     0.847,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.006,
+     1.0,
+     0.994
+    ],
+    "3:4": [
+     0.2801,
+     0.0,
+     0.8494,
+     1.0
+    ]
+   }
   },
   {
    "title": "Woman Seated in a Garden",
@@ -7296,7 +14036,33 @@
     0.28
    ],
    "delivered_edge": 4226,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0801,
+     1.0,
+     0.5198
+    ],
+    "9:16": [
+     0.0599,
+     0.0,
+     0.7795,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0503,
+     1.0,
+     0.6364
+    ],
+    "3:4": [
+     0.0197,
+     0.0,
+     0.9793,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Ballet of Papa Chrysanthème",
@@ -7323,7 +14089,33 @@
     0.4
    ],
    "delivered_edge": 4147,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1499,
+     1.0,
+     0.6411
+    ],
+    "9:16": [
+     0.0799,
+     0.0,
+     0.7241,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1,
+     1.0,
+     0.7549
+    ],
+    "3:4": [
+     0.03,
+     0.0,
+     0.889,
+     1.0
+    ]
+   }
   },
   {
    "title": "At the Bastille: Jeanne Wenz",
@@ -7350,7 +14142,33 @@
     0.22
    ],
    "delivered_edge": 4000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.05,
+     1.0,
+     0.4347
+    ],
+    "9:16": [
+     0.0597,
+     0.0,
+     0.8823,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0301,
+     1.0,
+     0.543
+    ],
+    "3:4": [
+     0.0,
+     0.0202,
+     1.0,
+     0.9318
+    ]
+   }
   },
   {
    "title": "La Goulue and Her Sister",
@@ -7377,7 +14195,33 @@
     0.35
    ],
    "delivered_edge": 4000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "3:4": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ],
+    "16:9": [
+     0.0,
+     0.0299,
+     1.0,
+     0.453
+    ],
+    "9:16": [
+     0.0801,
+     0.0,
+     0.8279,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.02,
+     1.0,
+     0.5841
+    ]
+   }
   },
   {
    "title": "Portrait of Maxime Dethomas",
@@ -7404,7 +14248,33 @@
     0.3
    ],
    "delivered_edge": 4000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.03,
+     1.0,
+     0.4687
+    ],
+    "9:16": [
+     0.2199,
+     0.0,
+     0.9413,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0301,
+     1.0,
+     0.615
+    ],
+    "3:4": [
+     0.0201,
+     0.0,
+     0.9819,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Artist's Dog, Flèche",
@@ -7431,7 +14301,33 @@
     0.5
    ],
    "delivered_edge": 4000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1499,
+     1.0,
+     0.487
+    ],
+    "9:16": [
+     0.0302,
+     0.0,
+     0.9688,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.15,
+     1.0,
+     0.5994
+    ],
+    "3:4": [
+     0.0,
+     0.0998,
+     1.0,
+     0.8989
+    ]
+   }
   },
   {
    "title": "Horsewoman (Amazone)",
@@ -7458,7 +14354,33 @@
     0.42
    ],
    "delivered_edge": 3992,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0301,
+     0.0,
+     0.9786,
+     1.0
+    ],
+    "9:16": [
+     0.08,
+     0.0,
+     0.3801,
+     1.0
+    ],
+    "4:3": [
+     0.0601,
+     0.0,
+     0.7715,
+     1.0
+    ],
+    "3:4": [
+     0.05,
+     0.0,
+     0.4502,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Jockeys",
@@ -7485,7 +14407,33 @@
     0.45
    ],
    "delivered_edge": 3963,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.3001,
+     1.0,
+     0.7032
+    ],
+    "9:16": [
+     0.0798,
+     0.0,
+     0.8647,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.2001,
+     1.0,
+     0.7376
+    ],
+    "3:4": [
+     0.0,
+     0.0202,
+     1.0,
+     0.9758
+    ]
+   }
   },
   {
    "title": "In Bed: The Kiss",
@@ -7512,7 +14460,33 @@
     0.35
    ],
    "delivered_edge": 3917,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0399,
+     1.0,
+     0.7984
+    ],
+    "9:16": [
+     0.0801,
+     0.0,
+     0.4972,
+     1.0
+    ],
+    "4:3": [
+     0.0051,
+     0.0,
+     0.994,
+     1.0
+    ],
+    "3:4": [
+     0.0501,
+     0.0,
+     0.6063,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Bedroom",
@@ -7539,7 +14513,33 @@
    "credit_line": "rgHdFPzCeCfnxQ at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
    "delivered_edge": 7171,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1199,
+     1.0,
+     0.8407
+    ],
+    "9:16": [
+     0.5001,
+     0.0,
+     0.939,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0198,
+     1.0,
+     0.9809
+    ],
+    "3:4": [
+     0.1501,
+     0.0,
+     0.7354,
+     1.0
+    ]
+   }
   }
  ]
 }

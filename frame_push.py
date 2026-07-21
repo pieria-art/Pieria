@@ -22,7 +22,7 @@ from pathlib import Path
 from typing import Awaitable, Callable, Optional, Tuple
 
 from database import SessionLocal
-from epaper import render_fullcolor
+from epaper import pick_crop_for_aspect, render_fullcolor
 from models import SettingsModel
 
 logger = logging.getLogger("artwork-display-api.frame")
@@ -50,7 +50,7 @@ _DEFAULTS = {
     "frame_display_id": "frame-tv",
 }
 
-# select_fn(playlist_name) -> (image_path, artwork_id, focal) or None, where focal is the normalized
+# select_fn(playlist_name) -> (image_path, artwork_id, focal[, aspect_crops]) or None, where focal is the normalized
 # (x, y) framing anchor. Injected by app.py so this module never imports app (avoids a circular
 # import) and stays unit-testable.
 SelectFn = Callable[[str], Awaitable[Optional[Tuple[Path, int, Tuple[float, float]]]]]
@@ -267,13 +267,19 @@ async def push_once(
     sel = await select_fn(cfg.get("playlist", ""))
     if not sel:
         return {"status": "skipped", "reason": "no artwork available"}
-    path, artwork_id, focal = sel
+    # 4th element (per-shape crop presets) is optional: a selector that predates them — or any
+    # third-party one — still returns a 3-tuple and simply gets the focal cover.
+    path, artwork_id, focal = sel[0], sel[1], sel[2]
+    aspect_crops = sel[3] if len(sel) > 3 else None
 
     if not force and artwork_id == cfg.get("last_artwork_id") and cfg.get("last_content_id"):
         return {"status": "unchanged", "artwork_id": artwork_id}
 
+    # A Frame can't Ken Burns its way out of a bad crop any more than e-ink can, so it takes the
+    # authored box too — picked for the Frame's own panel size.
+    crop_box = pick_crop_for_aspect(aspect_crops, cfg["width"], cfg["height"])
     image = await asyncio.to_thread(
-        render_fullcolor, Path(path), cfg["width"], cfg["height"], "cover", focal, 90
+        render_fullcolor, Path(path), cfg["width"], cfg["height"], "cover", focal, 90, crop_box
     )
     content_id = await client.push(image, "jpg", cfg.get("matte", "none"))
     await client.show(content_id)

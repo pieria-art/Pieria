@@ -22,7 +22,13 @@ from core.media import render_canvas_image
 from core.playback import _playlist_name_if_playable, select_next_image, touch_active_display
 from core.settings_util import _HHMM_RE, _load_schedule, _parse_hhmm, resolve_schedule_state
 from database import get_db
-from epaper import PALETTES, VALID_FORMATS, media_type_for, render_for_epaper
+from epaper import (
+    PALETTES,
+    VALID_FORMATS,
+    media_type_for,
+    pick_crop_for_aspect,
+    render_for_epaper,
+)
 from models import ArtworkModel, PlaylistModel, SettingsModel
 
 logger = logging.getLogger("artwork-display-api")
@@ -136,8 +142,13 @@ async def get_display_image(
     try:
         # A1: crop + enhance + Floyd–Steinberg dither + encode is heavy and blocking — thread it so an
         # e-ink cache miss doesn't stall the worker loop (frame_push threads its sibling render likewise).
+        # Prefer an authored per-shape crop over the focal cover. Picked against the REQUESTED w/h,
+        # so a portrait-hung panel asking for 1200x1600 gets the portrait composition, not a
+        # landscape one. None (no crop data) => unchanged focal-cover behaviour.
+        crop_box = pick_crop_for_aspect(art.aspect_crops, w, h)
         data = await run_in_threadpool(render_for_epaper, path, w, h, palette=palette, fit=fit,
-                                       focal=(art.focal_x, art.focal_y), fmt=ext)
+                                       focal=(art.focal_x, art.focal_y), fmt=ext,
+                                       crop_box=crop_box)
     except Exception as e:
         logger.error(f"[epaper] render failed for {path.name}: {e}", exc_info=True)
         raise HTTPException(500, detail="Render failed")

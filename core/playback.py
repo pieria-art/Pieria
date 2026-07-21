@@ -158,6 +158,9 @@ async def select_next_image(
         "placard_manual": p.placard_interaction_show_sec,
         "crop": {"x": selected_art.crop_x, "y": selected_art.crop_y, "width": selected_art.crop_width, "height": selected_art.crop_height},
         "focal_point": {"x": selected_art.focal_x, "y": selected_art.focal_y},
+        # Per-aspect crop presets (may be None). The CLIENT picks by its own viewport ratio — the
+        # server can't, since one now-playing payload fans out to displays of different shapes.
+        "aspect_crops": selected_art.aspect_crops,
         "metadata": {
             "id": selected_art.id,
             "is_personal": selected_art.is_personal,
@@ -230,7 +233,7 @@ def _playlist_name_if_playable(db: Session, name: Optional[str]) -> Optional[str
 
 async def _frame_select(playlist: str):
     """Selector injected into the Frame pusher: pick the current artwork for a playlist (reusing the
-    bag-shuffle/affinity in get_next_image, on a dedicated display_id) and return (file_path, id).
+    bag-shuffle/affinity in get_next_image, on a dedicated display_id) and return (file_path, id, focal, aspect_crops).
 
     Lives here (not a router) so `core.lifespan`'s boot task can start `frame_push.frame_push_loop`
     without importing a router, and so `routers/settings.py`'s "Test / Push now" route can reuse the
@@ -253,7 +256,7 @@ async def _frame_select(playlist: str):
         art = db.query(ArtworkModel).filter(ArtworkModel.id == art_id).first()
         if not art:
             return None
-        return (LIBRARY_DIR / art.filename, art_id, (art.focal_x, art.focal_y))
+        return (LIBRARY_DIR / art.filename, art_id, (art.focal_x, art.focal_y), art.aspect_crops)
     except Exception as e:
         logger.warning(f"[Frame] selection failed: {e}")
         return None

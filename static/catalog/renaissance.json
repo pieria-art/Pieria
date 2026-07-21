@@ -30,7 +30,33 @@
    "credit_line": "Collection of Art Institute of Chicago",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1501,
+     1.0,
+     0.5374
+    ],
+    "9:16": [
+     0.0597,
+     0.0,
+     0.8767,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1002,
+     1.0,
+     0.6166
+    ],
+    "3:4": [
+     0.0,
+     0.0403,
+     1.0,
+     0.9584
+    ]
+   }
   },
   {
    "title": "Virgin and Child with Two Angels",
@@ -58,7 +84,33 @@
    "license_verified": "2026-07-16",
    "below_floor_ok": true,
    "delivered_edge": 3000,
-   "resolution_tier": "HD"
+   "resolution_tier": "HD",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1799,
+     1.0,
+     0.7409
+    ],
+    "9:16": [
+     0.2201,
+     0.0,
+     0.7841,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0799,
+     1.0,
+     0.8279
+    ],
+    "3:4": [
+     0.0901,
+     0.0,
+     0.8421,
+     1.0
+    ]
+   }
   },
   {
    "title": "Allegory of Venus and Cupid",
@@ -86,7 +138,21 @@
    "license_verified": "2026-07-16",
    "below_floor_ok": true,
    "delivered_edge": 3000,
-   "resolution_tier": "HD"
+   "resolution_tier": "HD",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1499,
+     1.0,
+     0.8217
+    ],
+    "4:3": [
+     0.0,
+     0.0299,
+     1.0,
+     0.9256
+    ]
+   }
   },
   {
    "title": "Portrait of a Lady",
@@ -114,7 +180,33 @@
    "license_verified": "2026-07-16",
    "below_floor_ok": true,
    "delivered_edge": 2250,
-   "resolution_tier": "HD"
+   "resolution_tier": "HD",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0299,
+     1.0,
+     0.4824
+    ],
+    "9:16": [
+     0.1202,
+     0.0,
+     0.8194,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0398,
+     1.0,
+     0.6432
+    ],
+    "3:4": [
+     0.0303,
+     0.0,
+     0.9626,
+     1.0
+    ]
+   }
   },
   {
    "title": "Scenes from the Life of Saint John the Baptist",
@@ -141,7 +233,33 @@
    "credit_line": "Collection of Art Institute of Chicago",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0499,
+     0.0,
+     0.9232,
+     1.0
+    ],
+    "9:16": [
+     0.33,
+     0.0,
+     0.6063,
+     1.0
+    ],
+    "4:3": [
+     0.1999,
+     0.0,
+     0.8549,
+     1.0
+    ],
+    "3:4": [
+     0.32,
+     0.0,
+     0.6884,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Nativity",
@@ -168,7 +286,33 @@
    "credit_line": "Collection of Art Institute of Chicago",
    "license_verified": "2026-07-16",
    "delivered_edge": 5112,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.5001,
+     1.0,
+     0.9038
+    ],
+    "9:16": [
+     0.0999,
+     0.0,
+     0.8836,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.3501,
+     1.0,
+     0.8884
+    ],
+    "3:4": [
+     0.0,
+     0.0202,
+     1.0,
+     0.9771
+    ]
+   }
   },
   {
    "title": "Alessandro de' Medici",
@@ -195,7 +339,33 @@
    "credit_line": "Collection of Art Institute of Chicago",
    "license_verified": "2026-07-16",
    "delivered_edge": 6411,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0301,
+     1.0,
+     0.4743
+    ],
+    "9:16": [
+     0.1199,
+     0.0,
+     0.8321,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0201,
+     1.0,
+     0.6124
+    ],
+    "3:4": [
+     0.0248,
+     0.0,
+     0.9745,
+     1.0
+    ]
+   }
   },
   {
    "title": "Christ Carrying the Cross",
@@ -222,7 +392,33 @@
    "credit_line": "Collection of Art Institute of Chicago",
    "license_verified": "2026-07-16",
    "delivered_edge": 6468,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0499,
+     1.0,
+     0.4871
+    ],
+    "9:16": [
+     0.1301,
+     0.0,
+     0.8538,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0299,
+     1.0,
+     0.6128
+    ],
+    "3:4": [
+     0.0171,
+     0.0,
+     0.9821,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Crucifixion",
@@ -250,7 +446,33 @@
    "license_verified": "2026-07-16",
    "below_floor_ok": true,
    "delivered_edge": 2250,
-   "resolution_tier": "HD"
+   "resolution_tier": "HD",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.05,
+     1.0,
+     0.4572
+    ],
+    "9:16": [
+     0.11,
+     0.0,
+     0.8869,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.08,
+     1.0,
+     0.623
+    ],
+    "3:4": [
+     0.0,
+     0.02,
+     1.0,
+     0.9853
+    ]
+   }
   },
   {
    "title": "Saint John the Baptist Entering the Wilderness",
@@ -277,7 +499,33 @@
    "credit_line": "fAF3o1FJojE54g at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
    "delivered_edge": 5220,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.2199,
+     1.0,
+     0.5081
+    ],
+    "9:16": [
+     0.0,
+     0.0296,
+     1.0,
+     0.9406
+    ],
+    "4:3": [
+     0.0,
+     0.1498,
+     1.0,
+     0.5342
+    ],
+    "3:4": [
+     0.0,
+     0.1997,
+     1.0,
+     0.883
+    ]
+   }
   },
   {
    "title": "Ecce Agnus Dei",
@@ -304,7 +552,21 @@
    "credit_line": "PQFQBhH5OZFS2A at Google Cultural Institute maximum zoom level",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "9:16": [
+     0.0,
+     0.0199,
+     1.0,
+     0.9783
+    ],
+    "3:4": [
+     0.0,
+     0.25,
+     1.0,
+     0.9687
+    ]
+   }
   },
   {
    "title": "The Assassination and Funeral of Julius Caesar",
@@ -332,7 +594,33 @@
    "license_verified": "2026-07-16",
    "below_floor_ok": true,
    "delivered_edge": 3000,
-   "resolution_tier": "HD"
+   "resolution_tier": "HD",
+   "aspect_crops": {
+    "16:9": [
+     0.42,
+     0.0,
+     0.9652,
+     1.0
+    ],
+    "9:16": [
+     0.53,
+     0.0,
+     0.7025,
+     1.0
+    ],
+    "4:3": [
+     0.42,
+     0.0,
+     0.8289,
+     1.0
+    ],
+    "3:4": [
+     0.5,
+     0.0,
+     0.73,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Last Communion of Saint Jerome",
@@ -359,7 +647,33 @@
    "credit_line": "Collection of The Metropolitan Museum of Art",
    "license_verified": "2026-07-16",
    "delivered_edge": 4000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.3501,
+     1.0,
+     0.7746
+    ],
+    "9:16": [
+     0.0999,
+     0.0,
+     0.8452,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.2501,
+     1.0,
+     0.8162
+    ],
+    "3:4": [
+     0.0028,
+     0.0,
+     0.9965,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Annunciation",
@@ -386,7 +700,21 @@
    "credit_line": "Collection of The Metropolitan Museum of Art",
    "license_verified": "2026-07-16",
    "delivered_edge": 3913,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0499,
+     1.0,
+     0.9061
+    ],
+    "4:3": [
+     0.06,
+     0.0,
+     0.936,
+     1.0
+    ]
+   }
   },
   {
    "title": "Mona Lisa",
@@ -413,7 +741,33 @@
    "credit_line": "C2RMF: Galerie de tableaux en très haute définition: image page",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0299,
+     1.0,
+     0.4141
+    ],
+    "9:16": [
+     0.0883,
+     0.0,
+     0.9117,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0298,
+     1.0,
+     0.5422
+    ],
+    "3:4": [
+     0.0,
+     0.0201,
+     1.0,
+     0.9309
+    ]
+   }
   },
   {
    "title": "The Birth of Venus",
@@ -440,7 +794,33 @@
    "credit_line": "Own work",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0283,
+     1.0,
+     0.9718
+    ],
+    "9:16": [
+     0.3,
+     0.0,
+     0.6354,
+     1.0
+    ],
+    "4:3": [
+     0.1025,
+     0.0,
+     0.8975,
+     1.0
+    ],
+    "3:4": [
+     0.28,
+     0.0,
+     0.7272,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Creation of Adam",
@@ -467,7 +847,33 @@
    "credit_line": "Own work Burkhard Mücke Taken on 18 October 2017",
    "license_verified": "2026-07-16",
    "delivered_edge": 6720,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0781,
+     1.0,
+     0.9219
+    ],
+    "9:16": [
+     0.28,
+     0.0,
+     0.655,
+     1.0
+    ],
+    "4:3": [
+     0.0556,
+     0.0,
+     0.9444,
+     1.0
+    ],
+    "3:4": [
+     0.22,
+     0.0,
+     0.72,
+     1.0
+    ]
+   }
   },
   {
    "title": "The School of Athens",
@@ -494,7 +900,33 @@
    "credit_line": "\"School of Athens\" by Raphael, Raphael Rooms, Vatican Museum Complete indexed photo collection at WorldHistoryPics.com.",
    "license_verified": "2026-07-16",
    "delivered_edge": 6000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0781,
+     1.0,
+     0.9219
+    ],
+    "9:16": [
+     0.3125,
+     0.0,
+     0.6875,
+     1.0
+    ],
+    "4:3": [
+     0.0556,
+     0.0,
+     0.9444,
+     1.0
+    ],
+    "3:4": [
+     0.25,
+     0.0,
+     0.75,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Last Supper",
@@ -521,7 +953,33 @@
     0.42
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0556,
+     0.0,
+     0.9444,
+     1.0
+    ],
+    "9:16": [
+     0.3594,
+     0.0,
+     0.6406,
+     1.0
+    ],
+    "4:3": [
+     0.1667,
+     0.0,
+     0.8333,
+     1.0
+    ],
+    "3:4": [
+     0.3125,
+     0.0,
+     0.6875,
+     1.0
+    ]
+   }
   },
   {
    "title": "Primavera",
@@ -548,7 +1006,33 @@
     0.4
    ],
    "delivered_edge": 4926,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0719,
+     1.0,
+     0.9281
+    ],
+    "9:16": [
+     0.2952,
+     0.0,
+     0.6648,
+     1.0
+    ],
+    "4:3": [
+     0.0621,
+     0.0,
+     0.9379,
+     1.0
+    ],
+    "3:4": [
+     0.2337,
+     0.0,
+     0.7263,
+     1.0
+    ]
+   }
   },
   {
    "title": "Venus of Urbino",
@@ -575,7 +1059,33 @@
     0.32
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0799,
+     1.0,
+     0.8771
+    ],
+    "9:16": [
+     0.08,
+     0.0,
+     0.4769,
+     1.0
+    ],
+    "4:3": [
+     0.0301,
+     0.0,
+     0.9709,
+     1.0
+    ],
+    "3:4": [
+     0.06,
+     0.0,
+     0.5892,
+     1.0
+    ]
+   }
   },
   {
    "title": "Bacchus and Ariadne",
@@ -602,7 +1112,33 @@
     0.32
    ],
    "delivered_edge": 5529,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0897,
+     1.0,
+     0.8673
+    ],
+    "9:16": [
+     0.416,
+     0.0,
+     0.823,
+     1.0
+    ],
+    "4:3": [
+     0.0177,
+     0.0,
+     0.9823,
+     1.0
+    ],
+    "3:4": [
+     0.3902,
+     0.0,
+     0.9328,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Wedding at Cana",
@@ -629,7 +1165,33 @@
     0.55
    ],
    "delivered_edge": 3867,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1001,
+     1.0,
+     0.9358
+    ],
+    "9:16": [
+     0.3999,
+     0.0,
+     0.7786,
+     1.0
+    ],
+    "4:3": [
+     0.0399,
+     0.0,
+     0.9374,
+     1.0
+    ],
+    "3:4": [
+     0.3199,
+     0.0,
+     0.8248,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Last Judgment",
@@ -656,7 +1218,33 @@
     0.28
    ],
    "delivered_edge": 4395,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.15,
+     1.0,
+     0.6608
+    ],
+    "9:16": [
+     0.1903,
+     0.0,
+     0.8098,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1,
+     1.0,
+     0.781
+    ],
+    "3:4": [
+     0.0871,
+     0.0,
+     0.9131,
+     1.0
+    ]
+   }
   },
   {
    "title": "Virgin of the Rocks",
@@ -691,7 +1279,33 @@
     0.3
    ],
    "delivered_edge": 4226,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.2103,
+     1.0,
+     0.5847
+    ],
+    "9:16": [
+     0.0775,
+     0.0,
+     0.9225,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1704,
+     1.0,
+     0.6696
+    ],
+    "3:4": [
+     0.0,
+     0.0562,
+     1.0,
+     0.9438
+    ]
+   }
   },
   {
    "title": "The Sistine Madonna",
@@ -726,7 +1340,33 @@
     0.3
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0599,
+     1.0,
+     0.4741
+    ],
+    "9:16": [
+     0.118,
+     0.0,
+     0.882,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0499,
+     1.0,
+     0.6021
+    ],
+    "3:4": [
+     0.0,
+     0.0092,
+     1.0,
+     0.9909
+    ]
+   }
   },
   {
    "title": "Pallas and the Centaur",
@@ -768,7 +1408,33 @@
     0.32
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0797,
+     1.0,
+     0.4783
+    ],
+    "9:16": [
+     0.103,
+     0.0,
+     0.897,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0498,
+     1.0,
+     0.5812
+    ],
+    "3:4": [
+     0.0,
+     0.0277,
+     1.0,
+     0.9723
+    ]
+   }
   },
   {
    "title": "The Battle of San Romano",
@@ -803,7 +1469,33 @@
     0.4
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ],
+    "9:16": [
+     0.292,
+     0.0,
+     0.608,
+     1.0
+    ],
+    "4:3": [
+     0.0954,
+     0.0,
+     0.8446,
+     1.0
+    ],
+    "3:4": [
+     0.2193,
+     0.0,
+     0.6407,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Lamentation over the Dead Christ",
@@ -838,7 +1530,33 @@
     0.55
    ],
    "delivered_edge": 4941,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0797,
+     1.0,
+     0.6553
+    ],
+    "9:16": [
+     0.1451,
+     0.0,
+     0.6949,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0298,
+     1.0,
+     0.7972
+    ],
+    "3:4": [
+     0.0835,
+     0.0,
+     0.8165,
+     1.0
+    ]
+   }
   },
   {
    "title": "Virgin and Child with the Young Saint John the Baptist",
@@ -871,7 +1589,33 @@
     0.28
    ],
    "delivered_edge": 5096,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.05,
+     1.0,
+     0.488
+    ],
+    "9:16": [
+     0.1388,
+     0.0,
+     0.8612,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1,
+     1.0,
+     0.684
+    ],
+    "3:4": [
+     0.0184,
+     0.0,
+     0.9816,
+     1.0
+    ]
+   }
   },
   {
    "title": "Tarquin and Lucretia",
@@ -911,7 +1655,33 @@
     0.42
    ],
    "delivered_edge": 7504,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0,
+     1.0,
+     0.4748
+    ],
+    "9:16": [
+     0.1668,
+     0.0,
+     0.8332,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0,
+     1.0,
+     0.6331
+    ],
+    "3:4": [
+     0.0557,
+     0.0,
+     0.9443,
+     1.0
+    ]
+   }
   },
   {
    "title": "Annunciation",
@@ -938,7 +1708,33 @@
    "credit_line": "Self-photographed Gleb Simonov",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1099,
+     1.0,
+     0.8853
+    ],
+    "9:16": [
+     0.5499,
+     0.0,
+     0.9581,
+     1.0
+    ],
+    "4:3": [
+     0.0163,
+     0.0,
+     0.9837,
+     1.0
+    ],
+    "3:4": [
+     0.4559,
+     0.0,
+     1.0,
+     1.0
+    ]
+   }
   },
   {
    "title": "Ghent Altarpiece: Adoration of the Mystic Lamb",
@@ -965,7 +1761,33 @@
    "credit_line": "Extract of File:Lamgods_open.jpg",
    "license_verified": "2026-07-16",
    "delivered_edge": 6739,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ],
+    "9:16": [
+     0.3418,
+     0.0,
+     0.6582,
+     1.0
+    ],
+    "4:3": [
+     0.125,
+     0.0,
+     0.875,
+     1.0
+    ],
+    "3:4": [
+     0.289,
+     0.0,
+     0.711,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Annunciation",
@@ -993,7 +1815,33 @@
    "license_verified": "2026-07-16",
    "below_floor_ok": true,
    "delivered_edge": 3710,
-   "resolution_tier": "HD"
+   "resolution_tier": "HD",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.2801,
+     1.0,
+     0.7485
+    ],
+    "9:16": [
+     0.1622,
+     0.0,
+     0.8378,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1503,
+     1.0,
+     0.7747
+    ],
+    "3:4": [
+     0.0496,
+     0.0,
+     0.9504,
+     1.0
+    ]
+   }
   },
   {
    "title": "Portrait of a Young Man",
@@ -1020,7 +1868,33 @@
    "credit_line": "Collection of The Metropolitan Museum of Art",
    "license_verified": "2026-07-16",
    "delivered_edge": 3973,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0,
+     1.0,
+     0.4417
+    ],
+    "9:16": [
+     0.1419,
+     0.0,
+     0.8581,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0,
+     1.0,
+     0.589
+    ],
+    "3:4": [
+     0.0225,
+     0.0,
+     0.9775,
+     1.0
+    ]
+   }
   },
   {
    "title": "Jacob Willemsz van Veen (1456–1535), the Artist's Father",
@@ -1047,7 +1921,33 @@
    "credit_line": "Collection of The Metropolitan Museum of Art",
    "license_verified": "2026-07-16",
    "delivered_edge": 4000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.18,
+     1.0,
+     0.5659
+    ],
+    "9:16": [
+     0.09,
+     0.0,
+     0.91,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.05,
+     1.0,
+     0.5645
+    ],
+    "3:4": [
+     0.0,
+     0.02,
+     1.0,
+     0.9347
+    ]
+   }
   },
   {
    "title": "Hermann von Wedigh III (died 1560)",
@@ -1075,7 +1975,33 @@
    "license_verified": "2026-07-16",
    "below_floor_ok": true,
    "delivered_edge": 3813,
-   "resolution_tier": "HD"
+   "resolution_tier": "HD",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0,
+     1.0,
+     0.4321
+    ],
+    "9:16": [
+     0.1339,
+     0.0,
+     0.8661,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0,
+     1.0,
+     0.5761
+    ],
+    "3:4": [
+     0.0118,
+     0.0,
+     0.9882,
+     1.0
+    ]
+   }
   },
   {
    "title": "Portrait of Giuliano de' Medici",
@@ -1102,7 +2028,33 @@
     0.3
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0302,
+     1.0,
+     0.4084
+    ],
+    "9:16": [
+     0.0818,
+     0.0,
+     0.9182,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0202,
+     1.0,
+     0.5245
+    ],
+    "3:4": [
+     0.0,
+     0.0203,
+     1.0,
+     0.9171
+    ]
+   }
   },
   {
    "title": "Portrait of a Youth",
@@ -1129,7 +2081,33 @@
     0.3
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "3:4": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ],
+    "16:9": [
+     0.0,
+     0.0001,
+     1.0,
+     0.4212
+    ],
+    "9:16": [
+     0.1243,
+     0.0,
+     0.8757,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0001,
+     1.0,
+     0.5617
+    ]
+   }
   },
   {
    "title": "Venus and the Three Graces Presenting Gifts to a Young Woman",
@@ -1156,7 +2134,27 @@
     0.3
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0501,
+     1.0,
+     0.8075
+    ],
+    "4:3": [
+     0.0049,
+     0.0,
+     0.9951,
+     1.0
+    ],
+    "3:4": [
+     0.2715,
+     0.0,
+     0.8285,
+     1.0
+    ]
+   }
   },
   {
    "title": "Adoration of the Magi (Uffizi)",
@@ -1183,7 +2181,33 @@
     0.32
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.05,
+     1.0,
+     0.7267
+    ],
+    "9:16": [
+     0.2462,
+     0.0,
+     0.7138,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0299,
+     1.0,
+     0.9323
+    ],
+    "3:4": [
+     0.1883,
+     0.0,
+     0.8117,
+     1.0
+    ]
+   }
   },
   {
    "title": "Mystic Nativity",
@@ -1210,7 +2234,33 @@
     0.68
    ],
    "delivered_edge": 6785,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.42,
+     1.0,
+     0.9066
+    ],
+    "9:16": [
+     0.1749,
+     0.0,
+     0.8251,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.2,
+     1.0,
+     0.8488
+    ],
+    "3:4": [
+     0.0666,
+     0.0,
+     0.9335,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Virgin and Child with Saint John and Two Angels (Studio of Botticelli)",
@@ -1237,7 +2287,33 @@
     0.45
    ],
    "delivered_edge": 5968,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.05,
+     1.0,
+     0.6069
+    ],
+    "9:16": [
+     0.2159,
+     0.0,
+     0.7841,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0301,
+     1.0,
+     0.7725
+    ],
+    "3:4": [
+     0.1212,
+     0.0,
+     0.8788,
+     1.0
+    ]
+   }
   },
   {
    "title": "Fortitude",
@@ -1264,7 +2340,27 @@
     0.35
    ],
    "delivered_edge": 4999,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "9:16": [
+     0.0,
+     0.0099,
+     1.0,
+     0.9808
+    ],
+    "4:3": [
+     0.0,
+     0.02,
+     1.0,
+     0.4295
+    ],
+    "3:4": [
+     0.0,
+     0.0299,
+     1.0,
+     0.7581
+    ]
+   }
   },
   {
    "title": "Madonna and Child with Five Angels",
@@ -1291,7 +2387,33 @@
     0.28
    ],
    "delivered_edge": 4400,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0001,
+     1.0,
+     0.3875
+    ],
+    "9:16": [
+     0.0916,
+     0.0,
+     0.9084,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0002,
+     1.0,
+     0.5166
+    ],
+    "3:4": [
+     0.0,
+     0.0203,
+     1.0,
+     0.9384
+    ]
+   }
   },
   {
    "title": "Bardi Altarpiece (Madonna and Child with Saints John the Baptist and John the Evangelist)",
@@ -1319,7 +2441,33 @@
     0.32
    ],
    "delivered_edge": 4165,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0599,
+     1.0,
+     0.6001
+    ],
+    "9:16": [
+     0.2071,
+     0.0,
+     0.7929,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0399,
+     1.0,
+     0.7601
+    ],
+    "3:4": [
+     0.11,
+     0.0,
+     0.891,
+     1.0
+    ]
+   }
   },
   {
    "title": "Adoration of the Christ Child with Saint John (Botticelli or Workshop)",
@@ -1346,7 +2494,33 @@
     0.22
    ],
    "delivered_edge": 4293,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.04,
+     1.0,
+     0.5035
+    ],
+    "9:16": [
+     0.1586,
+     0.0,
+     0.8414,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.03,
+     1.0,
+     0.648
+    ],
+    "3:4": [
+     0.0448,
+     0.0,
+     0.9552,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Calumny of Apelles (detail: Truth)",
@@ -1373,7 +2547,33 @@
     0.35
    ],
    "delivered_edge": 4024,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "3:4": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ],
+    "16:9": [
+     0.0,
+     0.08,
+     1.0,
+     0.5
+    ],
+    "9:16": [
+     0.0499,
+     0.0,
+     0.8031,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.06,
+     1.0,
+     0.62
+    ]
+   }
   },
   {
    "title": "Virgin and Child with the Young Saint John (School of Botticelli)",
@@ -1400,7 +2600,33 @@
     0.2
    ],
    "delivered_edge": 4000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0198,
+     1.0,
+     0.3742
+    ],
+    "9:16": [
+     0.0536,
+     0.0,
+     0.9464,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0302,
+     1.0,
+     0.5028
+    ],
+    "3:4": [
+     0.0,
+     0.08,
+     1.0,
+     0.92
+    ]
+   }
   },
   {
    "title": "The Annunciation (Workshop of Botticelli)",
@@ -1427,7 +2653,33 @@
     0.5
    ],
    "delivered_edge": 4000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1199,
+     1.0,
+     0.7151
+    ],
+    "9:16": [
+     0.4682,
+     0.0,
+     0.9998,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0802,
+     1.0,
+     0.8738
+    ],
+    "3:4": [
+     0.1456,
+     0.0,
+     0.8544,
+     1.0
+    ]
+   }
   },
   {
    "title": "Young Man Before the Seven Liberal Arts",
@@ -1454,7 +2706,33 @@
     0.35
    ],
    "delivered_edge": 3920,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0298,
+     1.0,
+     0.6622
+    ],
+    "9:16": [
+     0.2998,
+     0.0,
+     0.8002,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0199,
+     1.0,
+     0.8631
+    ],
+    "3:4": [
+     0.1499,
+     0.0,
+     0.8171,
+     1.0
+    ]
+   }
   },
   {
    "title": "Pastoral Concert",
@@ -1481,7 +2759,27 @@
     0.42
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1002,
+     1.0,
+     0.8068
+    ],
+    "4:3": [
+     0.0,
+     0.0299,
+     1.0,
+     0.9721
+    ],
+    "3:4": [
+     0.2,
+     0.0,
+     0.797,
+     1.0
+    ]
+   }
   },
   {
    "title": "Venus with an Organ Player",
@@ -1508,7 +2806,33 @@
     0.4
    ],
    "delivered_edge": 7230,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0082,
+     0.0,
+     0.9918,
+     1.0
+    ],
+    "9:16": [
+     0.6199,
+     0.0,
+     0.9311,
+     1.0
+    ],
+    "4:3": [
+     0.1199,
+     0.0,
+     0.8576,
+     1.0
+    ],
+    "3:4": [
+     0.56,
+     0.0,
+     0.9749,
+     1.0
+    ]
+   }
   },
   {
    "title": "Girl in a Fur",
@@ -1535,7 +2859,33 @@
     0.22
    ],
    "delivered_edge": 6685,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.02,
+     1.0,
+     0.3896
+    ],
+    "9:16": [
+     0.072,
+     0.0,
+     0.928,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.01,
+     1.0,
+     0.5029
+    ],
+    "3:4": [
+     0.0,
+     0.0199,
+     1.0,
+     0.8961
+    ]
+   }
   },
   {
    "title": "Portrait of Alfonso I d'Este",
@@ -1562,7 +2912,33 @@
     0.22
    ],
    "delivered_edge": 6314,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0301,
+     1.0,
+     0.4959
+    ],
+    "9:16": [
+     0.1599,
+     0.0,
+     0.8391,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0199,
+     1.0,
+     0.6411
+    ],
+    "3:4": [
+     0.0472,
+     0.0,
+     0.9528,
+     1.0
+    ]
+   }
   },
   {
    "title": "Diana and Actaeon",
@@ -1589,7 +2965,27 @@
     0.35
    ],
    "delivered_edge": 6000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0499,
+     1.0,
+     0.6581
+    ],
+    "4:3": [
+     0.0,
+     0.03,
+     1.0,
+     0.841
+    ],
+    "3:4": [
+     0.2002,
+     0.0,
+     0.8938,
+     1.0
+    ]
+   }
   },
   {
    "title": "Diana and Callisto",
@@ -1616,7 +3012,33 @@
     0.42
    ],
    "delivered_edge": 6000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0602,
+     1.0,
+     0.6708
+    ],
+    "9:16": [
+     0.1799,
+     0.0,
+     0.6981,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0302,
+     1.0,
+     0.8443
+    ],
+    "3:4": [
+     0.1549,
+     0.0,
+     0.8457,
+     1.0
+    ]
+   }
   },
   {
    "title": "Nymph and Shepherd",
@@ -1643,7 +3065,33 @@
     0.42
    ],
    "delivered_edge": 5763,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0999,
+     1.0,
+     0.7576
+    ],
+    "9:16": [
+     0.3,
+     0.0,
+     0.781,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0299,
+     1.0,
+     0.9069
+    ],
+    "3:4": [
+     0.18,
+     0.0,
+     0.8215,
+     1.0
+    ]
+   }
   },
   {
    "title": "Portrait of Philip II",
@@ -1670,7 +3118,33 @@
     0.28
    ],
    "delivered_edge": 5433,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0299,
+     1.0,
+     0.4728
+    ],
+    "9:16": [
+     0.1428,
+     0.0,
+     0.8572,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0199,
+     1.0,
+     0.6105
+    ],
+    "3:4": [
+     0.0238,
+     0.0,
+     0.9762,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Bacchanal of the Andrians",
@@ -1697,7 +3171,33 @@
     0.35
    ],
    "delivered_edge": 5222,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.2799,
+     1.0,
+     0.9017
+    ],
+    "9:16": [
+     0.3001,
+     0.0,
+     0.8089,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0499,
+     1.0,
+     0.8789
+    ],
+    "3:4": [
+     0.2001,
+     0.0,
+     0.8786,
+     1.0
+    ]
+   }
   },
   {
    "title": "An Idyll: A Mother and a Halberdier in a Wooded Landscape",
@@ -1724,7 +3224,33 @@
     0.65
    ],
    "delivered_edge": 5057,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1501,
+     1.0,
+     0.6961
+    ],
+    "9:16": [
+     0.0,
+     0.0,
+     0.5795,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0802,
+     1.0,
+     0.8082
+    ],
+    "3:4": [
+     0.0499,
+     0.0,
+     0.8225,
+     1.0
+    ]
+   }
   },
   {
    "title": "Penitent Magdalene",
@@ -1752,7 +3278,33 @@
     0.22
    ],
    "delivered_edge": 4849,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.03,
+     1.0,
+     0.4457
+    ],
+    "9:16": [
+     0.1195,
+     0.0,
+     0.8805,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.02,
+     1.0,
+     0.5744
+    ],
+    "3:4": [
+     0.0,
+     0.0098,
+     1.0,
+     0.9952
+    ]
+   }
   },
   {
    "title": "Tarquin and Lucretia",
@@ -1779,7 +3331,27 @@
     0.28
    ],
    "delivered_edge": 4623,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "9:16": [
+     0.1512,
+     0.0,
+     0.8488,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1499,
+     1.0,
+     0.7547
+    ],
+    "3:4": [
+     0.035,
+     0.0,
+     0.965,
+     1.0
+    ]
+   }
   },
   {
    "title": "Mars, Venus and Cupid",
@@ -1806,7 +3378,33 @@
     0.35
    ],
    "delivered_edge": 4574,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0499,
+     1.0,
+     0.7161
+    ],
+    "9:16": [
+     0.05,
+     0.0,
+     0.525,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0199,
+     1.0,
+     0.9081
+    ],
+    "3:4": [
+     0.0501,
+     0.0,
+     0.6833,
+     1.0
+    ]
+   }
   },
   {
    "title": "Portrait of a Man",
@@ -1833,7 +3431,33 @@
     0.35
    ],
    "delivered_edge": 4252,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0199,
+     1.0,
+     0.4532
+    ],
+    "9:16": [
+     0.1348,
+     0.0,
+     0.8652,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0099,
+     1.0,
+     0.5876
+    ],
+    "3:4": [
+     0.0131,
+     0.0,
+     0.9869,
+     1.0
+    ]
+   }
   },
   {
    "title": "Venus with an Organ Player and a Dog",
@@ -1860,7 +3484,33 @@
     0.42
    ],
    "delivered_edge": 4096,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0085,
+     1.0,
+     0.9915
+    ],
+    "9:16": [
+     0.5801,
+     0.0,
+     0.9019,
+     1.0
+    ],
+    "4:3": [
+     0.0901,
+     0.0,
+     0.8531,
+     1.0
+    ],
+    "3:4": [
+     0.5001,
+     0.0,
+     0.9292,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Triumph of Love",
@@ -1887,7 +3537,33 @@
     0.35
    ],
    "delivered_edge": 4080,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.2188,
+     1.0,
+     0.7813
+    ],
+    "9:16": [
+     0.2188,
+     0.0,
+     0.7813,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.125,
+     1.0,
+     0.875
+    ],
+    "3:4": [
+     0.125,
+     0.0,
+     0.875,
+     1.0
+    ]
+   }
   }
  ]
 }

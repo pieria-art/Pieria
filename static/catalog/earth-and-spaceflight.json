@@ -30,7 +30,33 @@
    "credit_line": "https://tothemoon.im-ldi.com/gallery/Apollo/17/6#AS17-148-22727",
    "license_verified": "2026-07-16",
    "delivered_edge": 6750,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1888,
+     1.0,
+     0.7513
+    ],
+    "9:16": [
+     0.2188,
+     0.0,
+     0.7813,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.095,
+     1.0,
+     0.845
+    ],
+    "3:4": [
+     0.125,
+     0.0,
+     0.875,
+     1.0
+    ]
+   }
   },
   {
    "title": "Earthrise",
@@ -57,7 +83,33 @@
    "credit_line": "http://lroc.sese.asu.edu/posts/895",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1066,
+     1.0,
+     0.4934
+    ],
+    "9:16": [
+     0.1111,
+     0.0,
+     0.9289,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0921,
+     1.0,
+     0.6079
+    ],
+    "3:4": [
+     0.0,
+     0.0415,
+     1.0,
+     0.9586
+    ]
+   }
   },
   {
    "title": "Pale Blue Dot",
@@ -84,7 +136,33 @@
    "credit_line": "https://photojournal.jpl.nasa.gov/catalog/PIA23645",
    "license_verified": "2026-07-16",
    "delivered_edge": 5230,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.2358,
+     1.0,
+     0.8042
+    ],
+    "9:16": [
+     0.3217,
+     0.0,
+     0.8783,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.141,
+     1.0,
+     0.899
+    ],
+    "3:4": [
+     0.2289,
+     0.0,
+     0.9711,
+     1.0
+    ]
+   }
   },
   {
    "title": "Buzz Aldrin on the Moon Apollo 11",
@@ -111,7 +189,33 @@
    "credit_line": "Project Apollo Archive, AS11-40-5877",
    "license_verified": "2026-07-16",
    "delivered_edge": 3949,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.3005,
+     1.0,
+     0.8595
+    ],
+    "9:16": [
+     0.217,
+     0.0,
+     0.783,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1774,
+     1.0,
+     0.9227
+    ],
+    "3:4": [
+     0.1227,
+     0.0,
+     0.8774,
+     1.0
+    ]
+   }
   },
   {
    "title": "Bruce McCandless spacewalk",
@@ -138,7 +242,33 @@
    "credit_line": "JSC Gateway to Astronaut Photography of Earth",
    "license_verified": "2026-07-16",
    "delivered_edge": 5900,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0,
+     1.0,
+     0.5434
+    ],
+    "9:16": [
+     0.2089,
+     0.0,
+     0.7911,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0,
+     1.0,
+     0.7246
+    ],
+    "3:4": [
+     0.1118,
+     0.0,
+     0.8882,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Earth seen from Apollo 17",
@@ -165,7 +295,33 @@
    "credit_line": "This image or video was catalogued by Lyndon B. Johnson Space Center of the United States National Aeronautics and Space Administration (NASA) under Photo ID: AS17-148-22727.",
    "license_verified": "2026-07-16",
    "delivered_edge": 4463,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1985,
+     1.0,
+     0.8015
+    ],
+    "9:16": [
+     0.2377,
+     0.0,
+     0.7623,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.098,
+     1.0,
+     0.902
+    ],
+    "3:4": [
+     0.1502,
+     0.0,
+     0.8498,
+     1.0
+    ]
+   }
   },
   {
    "title": "Apollo 11 bootprint on the Moon",
@@ -192,7 +348,33 @@
    "credit_line": "This image or video was catalogued by NASA Headquarters of the United States National Aeronautics and Space Administration (NASA) under Photo ID: AS11-40-5877.",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.2991,
+     1.0,
+     0.8609
+    ],
+    "9:16": [
+     0.2184,
+     0.0,
+     0.7816,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1754,
+     1.0,
+     0.9246
+    ],
+    "3:4": [
+     0.1246,
+     0.0,
+     0.8754,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Day the Earth Smiled",
@@ -219,7 +401,33 @@
    "credit_line": "http://www.jpl.nasa.gov/spaceimages/details.php?id=PIA17172",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.1543,
+     0.0,
+     0.8457,
+     1.0
+    ],
+    "9:16": [
+     0.3906,
+     0.0,
+     0.6094,
+     1.0
+    ],
+    "4:3": [
+     0.2407,
+     0.0,
+     0.7593,
+     1.0
+    ],
+    "3:4": [
+     0.3542,
+     0.0,
+     0.6458,
+     1.0
+    ]
+   }
   },
   {
    "title": "Apollo 8 Crew Portrait",
@@ -247,7 +455,33 @@
    "license_verified": "2026-07-16",
    "below_floor_ok": true,
    "delivered_edge": 3041,
-   "resolution_tier": "HD"
+   "resolution_tier": "HD",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.3,
+     1.0,
+     0.744
+    ],
+    "9:16": [
+     0.1436,
+     0.0,
+     0.8564,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.22,
+     1.0,
+     0.812
+    ],
+    "3:4": [
+     0.0248,
+     0.0,
+     0.9752,
+     1.0
+    ]
+   }
   },
   {
    "title": "Apollo 11 Lunar Module Eagle",
@@ -274,7 +508,33 @@
    "credit_line": "NASA (hi-res)",
    "license_verified": "2026-07-16",
    "delivered_edge": 4275,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.25,
+     1.0,
+     0.8125
+    ],
+    "9:16": [
+     0.15,
+     0.0,
+     0.7125,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.12,
+     1.0,
+     0.87
+    ],
+    "3:4": [
+     0.05,
+     0.0,
+     0.8,
+     1.0
+    ]
+   }
   },
   {
    "title": "Hubble Space Telescope in Orbit",
@@ -301,7 +561,33 @@
    "credit_line": "http://www.jwst.nasa.gov/images_mirror45.html",
    "license_verified": "2026-07-16",
    "delivered_edge": 4256,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0798,
+     1.0,
+     0.9252
+    ],
+    "9:16": [
+     0.2629,
+     0.0,
+     0.6371,
+     1.0
+    ],
+    "4:3": [
+     0.0564,
+     0.0,
+     0.9436,
+     1.0
+    ],
+    "3:4": [
+     0.35,
+     0.0,
+     0.849,
+     1.0
+    ]
+   }
   }
  ]
 }

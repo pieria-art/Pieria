@@ -30,7 +30,33 @@
    "credit_line": "https://artsandculture.google.com/asset/wd/IwE6G8n5wsoEjg",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.4199,
+     1.0,
+     0.7165
+    ],
+    "9:16": [
+     0.0,
+     0.0312,
+     1.0,
+     0.9688
+    ],
+    "4:3": [
+     0.0,
+     0.3798,
+     1.0,
+     0.7754
+    ],
+    "3:4": [
+     0.0,
+     0.1497,
+     1.0,
+     0.8529
+    ]
+   }
   },
   {
    "title": "Pallas Athene",
@@ -57,7 +83,33 @@
    "credit_line": "https://www.gustav-klimt.com/images/paintings/Pallas-Athena.jpg",
    "license_verified": "2026-07-16",
    "delivered_edge": 3966,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0601,
+     1.0,
+     0.6286
+    ],
+    "9:16": [
+     0.0999,
+     0.0,
+     0.6565,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0601,
+     1.0,
+     0.8182
+    ],
+    "3:4": [
+     0.0799,
+     0.0,
+     0.822,
+     1.0
+    ]
+   }
   },
   {
    "title": "Danaë",
@@ -85,7 +137,33 @@
    "license_verified": "2026-07-16",
    "below_floor_ok": true,
    "delivered_edge": 2694,
-   "resolution_tier": "HD"
+   "resolution_tier": "HD",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0999,
+     1.0,
+     0.7056
+    ],
+    "9:16": [
+     0.2799,
+     0.0,
+     0.8024,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0301,
+     1.0,
+     0.8376
+    ],
+    "3:4": [
+     0.18,
+     0.0,
+     0.8765,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Beethoven Frieze",
@@ -112,7 +190,21 @@
    "credit_line": "http://allpaintingsstore.com/ADC/Art-ImgScreen-3.nsf/O/A-8XY64V/$FILE/Gustav-klimt-the-beethoven-frieze-the-hostile-powers.-far-wall.Jpg",
    "license_verified": "2026-07-16",
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "aspect_crops": {
+    "16:9": [
+     0.0001,
+     0.0,
+     0.5808,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0,
+     0.4356,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Slav Epic: The Apotheosis of the Slavs",
@@ -140,7 +232,33 @@
    "license_verified": "2026-07-16",
    "below_floor_ok": true,
    "delivered_edge": 2882,
-   "resolution_tier": "HD"
+   "resolution_tier": "HD",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0,
+     1.0,
+     0.465
+    ],
+    "9:16": [
+     0.1597,
+     0.0,
+     0.8403,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0001,
+     1.0,
+     0.6199
+    ],
+    "3:4": [
+     0.0463,
+     0.0,
+     0.9537,
+     1.0
+    ]
+   }
   },
   {
    "title": "Strawberry Thief",
@@ -174,7 +292,33 @@
     0.95
    ],
    "delivered_edge": 3768,
-   "resolution_tier": "HD"
+   "resolution_tier": "HD",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1139,
+     0.93,
+     0.8871
+    ],
+    "9:16": [
+     0.3097,
+     0.0,
+     0.6903,
+     1.0
+    ],
+    "4:3": [
+     0.028,
+     0.0,
+     0.93,
+     1.0
+    ],
+    "3:4": [
+     0.2463,
+     0.0,
+     0.7537,
+     1.0
+    ]
+   }
   },
   {
    "title": "Trellis",
@@ -201,7 +345,33 @@
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
    "delivered_edge": 4000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.2001,
+     1.0,
+     0.6555
+    ],
+    "9:16": [
+     0.0,
+     0.0,
+     0.6947,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1501,
+     1.0,
+     0.7575
+    ],
+    "3:4": [
+     0.0298,
+     0.0,
+     0.9561,
+     1.0
+    ]
+   }
   },
   {
    "title": "Acanthus",
@@ -235,7 +405,33 @@
     0.965
    ],
    "delivered_edge": 4044,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1595,
+     1.0,
+     0.8405
+    ],
+    "9:16": [
+     0.2678,
+     0.0,
+     0.7323,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.046,
+     1.0,
+     0.9541
+    ],
+    "3:4": [
+     0.1903,
+     0.0,
+     0.8098,
+     1.0
+    ]
+   }
   },
   {
    "title": "Magnolia and Irises",
@@ -262,7 +458,27 @@
    "credit_line": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
    "license_verified": "2026-07-16",
    "delivered_edge": 3850,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "9:16": [
+     0.0497,
+     0.0,
+     0.8447,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1502,
+     1.0,
+     0.6808
+    ],
+    "3:4": [
+     0.0,
+     0.0298,
+     1.0,
+     0.9732
+    ]
+   }
   },
   {
    "title": "The Peacock Skirt",
@@ -289,7 +505,33 @@
    "credit_line": "[1]",
    "license_verified": "2026-07-16",
    "delivered_edge": 4941,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0,
+     1.0,
+     0.4036
+    ],
+    "9:16": [
+     0.0802,
+     0.0,
+     0.8643,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0,
+     1.0,
+     0.5381
+    ],
+    "3:4": [
+     0.0,
+     0.0098,
+     1.0,
+     0.9664
+    ]
+   }
   },
   {
    "title": "The Dancer's Reward",
@@ -317,7 +559,33 @@
    "license_verified": "2026-07-16",
    "below_floor_ok": true,
    "delivered_edge": 2454,
-   "resolution_tier": "HD"
+   "resolution_tier": "HD",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0198,
+     1.0,
+     0.4324
+    ],
+    "9:16": [
+     0.1003,
+     0.0,
+     0.8671,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0,
+     1.0,
+     0.5501
+    ],
+    "3:4": [
+     0.0,
+     0.0098,
+     1.0,
+     0.9877
+    ]
+   }
   },
   {
    "title": "Neptune's Horses",
@@ -344,7 +612,33 @@
    "credit_line": "Sotheby's London, 10 May 2012, lot 14",
    "license_verified": "2026-07-16",
    "delivered_edge": 4000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ],
+    "9:16": [
+     0.3501,
+     0.0,
+     0.6679,
+     1.0
+    ],
+    "4:3": [
+     0.0498,
+     0.0,
+     0.8032,
+     1.0
+    ],
+    "3:4": [
+     0.3001,
+     0.0,
+     0.7239,
+     1.0
+    ]
+   }
   },
   {
    "title": "Ver Sacrum",
@@ -371,7 +665,33 @@
    "credit_line": "repro from artbook",
    "license_verified": "2026-07-16",
    "delivered_edge": 5460,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.2001,
+     1.0,
+     0.4221
+    ],
+    "9:16": [
+     0.0,
+     0.0204,
+     1.0,
+     0.7218
+    ],
+    "4:3": [
+     0.0,
+     0.1802,
+     1.0,
+     0.4761
+    ],
+    "3:4": [
+     0.0,
+     0.0303,
+     1.0,
+     0.5564
+    ]
+   }
   }
  ]
 }

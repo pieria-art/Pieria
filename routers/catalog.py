@@ -22,7 +22,7 @@ from sqlalchemy.orm import Session
 
 import federation
 from config import ARTWORK_ROOT, LIBRARY_DIR, SUB_PREFIX
-from core.downloads import _download_image_to_library, _focal_xy
+from core.downloads import _aspect_crops, _download_image_to_library, _focal_xy
 from core.media import warm_canvas_cache_async
 from core.settings_util import _catalog_remote_base, _fetch_remote_json
 from database import get_db
@@ -183,11 +183,13 @@ async def _download_and_create_artwork(db: Session, *, source_url: str, thumbnai
         dest_path, safe_name, w, h = await _download_image_to_library(source_url, filename=filename)
 
     fx, fy = _focal_xy(metadata)   # baked catalog/manifest focal_point [x, y] (normalized); else centered
+    crops = _aspect_crops(metadata)   # baked catalog/manifest aspect_crops; else None (focal cover fallback)
 
     artwork = ArtworkModel(
         filename=safe_name, original_width=w, original_height=h,
         crop_width=float(w), crop_height=float(h),
         focal_x=fx, focal_y=fy,
+        aspect_crops_json=json.dumps(crops) if crops else None,
         status='approved',
         title=metadata.get("title"), agent_name=metadata.get("agent_name"),
         agent_role=metadata.get("agent_role", "Artist"), creation_date=metadata.get("creation_date"),
