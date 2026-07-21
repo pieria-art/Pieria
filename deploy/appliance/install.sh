@@ -76,10 +76,32 @@ install -m 0755 "$BIN_SRC/sd-metrics"        /usr/local/bin/sd-metrics
 install -m 0755 "$BIN_SRC/sd-quiet-hours"    /usr/local/bin/sd-quiet-hours
 install -m 0755 "$BIN_SRC/sd-watchdog"       /usr/local/bin/sd-watchdog
 install -m 0755 "$BIN_SRC/sd-setup-boot"     /usr/local/bin/sd-setup-boot
+install -m 0755 "$BIN_SRC/sd-setup-pre"      /usr/local/bin/sd-setup-pre
+install -m 0755 "$BIN_SRC/sd-net-recover"    /usr/local/bin/sd-net-recover
 install -m 0755 "$SETUP_SRC/sd_setup.py"     /usr/local/bin/sd-setup
 install -m 0755 "$BIN_SRC/sd-update"         /usr/local/bin/sd-update
 install -m 0755 "$BIN_SRC/sd-eink"           /usr/local/bin/sd-eink
 install -m 0755 "$BIN_SRC/sd-image-prep"     /usr/local/bin/sd-image-prep
+
+echo "==> Enabling a persistent (but size-capped) journal"
+# An appliance that fails at a customer's house is debugged from its PREVIOUS boot — a first-run setup
+# that failed, a kiosk that crashed and rebooted. Raspberry Pi OS ships a volatile journal, so all of
+# that vanishes on reboot: after the 2026-07-21 setup-mode test the failing boot's logs were simply
+# gone (ADR-056). Cap it hard — this is an SD card, and unbounded logging is how you wear one out.
+install -d /etc/systemd/journald.conf.d
+cat > /etc/systemd/journald.conf.d/screen-docent.conf <<'EOF'
+# Screen Docent — keep logs across reboots so a failed boot can be diagnosed after the fact,
+# but bound the size: this is flash, not a server disk.
+[Journal]
+Storage=persistent
+SystemMaxUse=64M
+SystemMaxFileSize=8M
+MaxRetentionSec=1month
+EOF
+install -d -m 2755 -g systemd-journal /var/log/journal 2>/dev/null || install -d /var/log/journal
+systemd-tmpfiles --create --prefix /var/log/journal 2>/dev/null || true
+systemctl restart systemd-journald 2>/dev/null || true
+echo "    journal is persistent, capped at 64M."
 
 echo "==> Installing boot splash (shows the admin URL while the server starts)"
 install -d /usr/local/share/screen-docent
@@ -130,14 +152,28 @@ echo "==> Installing first-run setup wizard (assets only — enabled on the .img
 # build's job (a flashed card boots into setup once, then never again). hostapd/dnsmasq power the
 # Docent-Setup AP but are kept disabled so they never fight a working box's network.
 install -d /usr/local/share/screen-docent/setup
+install -m 0644 "$SETUP_SRC/common.sh"    /usr/local/share/screen-docent/setup/common.sh
 install -m 0644 "$SETUP_SRC/hostapd.conf" /usr/local/share/screen-docent/setup/hostapd.conf
 install -m 0644 "$SETUP_SRC/dnsmasq.conf" /usr/local/share/screen-docent/setup/dnsmasq.conf
-apt-get install -y --no-install-recommends hostapd dnsmasq \
+apt-get install -y --no-install-recommends hostapd dnsmasq iw \
   || echo "    (hostapd/dnsmasq unavailable — the setup AP won't come up, but a pre-seeded conf still works)"
 systemctl disable --now hostapd dnsmasq 2>/dev/null || true
 sed "s#__BOOT_CONF__#$BOOT_CONF#g" "$UNIT_SRC/sd-setup.service" > /etc/systemd/system/sd-setup.service
+# sd-setup-pre is ENABLED everywhere, unlike sd-setup.service. It is inert on a configured box (it only
+# removes a stale drop-in) and refuses to unmanage wlan0 unless sd-setup.service is enabled — and being
+# always-on is exactly what makes the setup-mode radio hand-off self-healing (ADR-056).
+sed "s#__BOOT_CONF__#$BOOT_CONF#g" "$UNIT_SRC/sd-setup-pre.service" > /etc/systemd/system/sd-setup-pre.service
 systemctl daemon-reload
+systemctl enable sd-setup-pre.service 2>/dev/null \
+  || echo "    (could not enable sd-setup-pre.service)"
 echo "    sd-setup.service installed but left DISABLED (the .img build enables it for out-of-box setup)."
+echo "    sd-setup-pre.service installed and ENABLED (safe on a configured box; self-heals the drop-in)."
+# The anti-brick backstop: re-opens the wizard if a CONFIGURED box can't get online (ADR-057). Enabled
+# everywhere — on an unconfigured box it exits immediately, since sd-setup-boot owns that case.
+sed "s#__BOOT_CONF__#$BOOT_CONF#g" "$UNIT_SRC/sd-net-recover.service" > /etc/systemd/system/sd-net-recover.service
+systemctl daemon-reload
+systemctl enable sd-net-recover.service 2>/dev/null || echo "    (could not enable sd-net-recover.service)"
+echo "    sd-net-recover.service installed and ENABLED (anti-brick: re-opens setup if never online)."
 
 echo "==> Disabling console blanking"
 for CMDLINE in /boot/firmware/cmdline.txt /boot/cmdline.txt; do

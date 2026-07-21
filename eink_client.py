@@ -32,6 +32,10 @@ logger = logging.getLogger("sd-eink")
 DEFAULT_HEARTBEAT_FILE = "/run/sd-eink.state"
 
 # fetch_fn(url) -> (content_bytes, headers_dict). Injected so push_once never calls httpx directly.
+#: First retry delay after a failed tick, in seconds; doubles per consecutive failure up to
+#: EINK_MIN_INTERVAL. Small enough that a device which outran its own server recovers in seconds.
+ERROR_BACKOFF_BASE = 15
+
 FetchFn = Callable[[str], Tuple[bytes, dict]]
 # schedule_fn() -> schedule-state JSON dict (has a "quiet" bool).
 ScheduleFn = Callable[[], dict]
@@ -254,10 +258,18 @@ def run_tick(
     try:
         res = push_once(cfg, fetch_fn, client, last_etag=state.get("last_etag"))
     except Exception as e:
-        logger.error(f"[eink] tick failed: {e}")
+        # Escalating backoff, starting SHORT. An all-in-one Pi boots its e-ink client seconds before its
+        # own Docker container binds the port, so the very first tick after a fresh setup reliably gets
+        # connection-refused. Sleeping the full steady-state interval on that one failure left a
+        # just-configured panel holding a stale image for 15 minutes — indistinguishable from a broken
+        # device to the person who just set it up (found on hardware 2026-07-21).
+        fails = state["error_streak"] = state.get("error_streak", 0) + 1
+        backoff = min(cfg.min_interval, ERROR_BACKOFF_BASE * (2 ** (fails - 1)))
+        logger.error(f"[eink] tick failed (attempt {fails}): {e} — retrying in {backoff}s")
         return {"status": "error", "reason": str(e) or e.__class__.__name__,
-                "sleep": max(60, cfg.min_interval)}
+                "attempt": fails, "sleep": backoff}
 
+    state["error_streak"] = 0
     res = dict(res)
     if res["status"] == "painted":
         state["last_etag"] = res["etag"]

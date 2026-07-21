@@ -11,55 +11,41 @@
 # ⚠ Pi-gated: the AP bring-up / teardown and Wi-Fi hand-off can only be fully validated on real Pi
 # hardware with a flash cycle. The wizard's HTTP/conf logic is verified on the laptop via `--dry-run`.
 set -u
+# hostapd/dnsmasq/iw/rfkill live in /sbin. systemd normally provides it, but be explicit so this script
+# behaves identically when run by hand over SSH (where /sbin is absent from a non-login PATH).
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
-CONF="${1:-/boot/firmware/screen-docent.conf}"
-[ -e "$CONF" ] || CONF="/boot/screen-docent.conf"
 SETUP_DIR="/usr/local/share/screen-docent/setup"
+# shellcheck source=../setup/common.sh
+. "$SETUP_DIR/common.sh"
+
+CONF="$(sd_resolve_conf "${1:-}")"
 AP_ADDR="10.0.0.1/24"
+# Everything the AP bring-up says goes here — hostapd's own log included. Never /dev/null (ADR-056).
+AP_LOG="/var/log/sd-setup-ap.log"
 
-# --- Is this box already configured? --------------------------------------------------------------
-# Configured = the conf exists AND carries non-placeholder SERVER_URL + DISPLAY_ID (the shipped example
-# uses DISPLAY_ID=living_room / SERVER_URL=http://192.168.1.50:8000 — treat those as "not set yet").
-is_configured() {
-  [ -r "$CONF" ] || return 1
-  local SERVER_URL="" DISPLAY_ID=""
-  # shellcheck disable=SC1090
-  . "$CONF" 2>/dev/null || return 1
-  [ -n "${SERVER_URL:-}" ] && [ -n "${DISPLAY_ID:-}" ] || return 1
-  [ "${DISPLAY_ID}" = "living_room" ] && [ "${SERVER_URL}" = "http://192.168.1.50:8000" ] && return 1
-  return 0
-}
-
-if is_configured; then
+if sd_is_configured "$CONF"; then
   echo "sd-setup-boot: already configured ($CONF) — skipping setup, continuing to kiosk."
+  # NOTE: deliberately do NOT touch $AP_LOG here. This unit stays enabled and runs on EVERY boot, so
+  # truncating before this check wiped the previous setup attempt's hostapd trace the moment the box
+  # rebooted into its configured state — destroying exactly the evidence we need to debug a FAILED
+  # setup (caught 2026-07-21, ADR-056). The log is only ever reset when setup actually runs.
   exit 0
 fi
 
 echo "sd-setup-boot: no configuration found — starting the Docent-Setup wizard."
+# Setup is genuinely running: start a fresh log, but keep the prior attempt alongside it so a gramps
+# box that failed setup twice still shows both stories.
+[ -s "$AP_LOG" ] && mv -f "$AP_LOG" "$AP_LOG.1" 2>/dev/null
+: > "$AP_LOG" 2>/dev/null || AP_LOG=/dev/stderr
+echo "sd-setup-boot: $(date -Is) — setup run starting" >>"$AP_LOG"
 
 # --- Bring up the AP + captive portal -------------------------------------------------------------
-start_ap() {
-  rfkill unblock wlan 2>/dev/null || true
-  # Take wlan0 away from NetworkManager FIRST — this unit is ordered After=NetworkManager, so NM is up
-  # and these stick. NM may have already auto-connected saved Wi-Fi; disconnect drops that, and
-  # "managed no" stops NM re-grabbing the radio and stomping the AP (bench-day finding 2026-07-19).
-  nmcli device disconnect wlan0 2>/dev/null || true
-  nmcli device set wlan0 managed no 2>/dev/null || true
-  # Now configure the interface + AP address (NM won't flush it out from under us).
-  ip link set wlan0 up 2>/dev/null || true
-  ip addr flush dev wlan0 2>/dev/null || true
-  ip addr add "$AP_ADDR" dev wlan0 2>/dev/null || true
-  # hostapd.service ships MASKED on Bookworm — run the binary directly (the service start is a no-op fallback).
-  systemctl start hostapd 2>/dev/null || hostapd -B "$SETUP_DIR/hostapd.conf" 2>/dev/null || true
-  dnsmasq --conf-file="$SETUP_DIR/dnsmasq.conf" 2>/dev/null || true
-}
+# The AP bring-up/teardown themselves live in common.sh, shared with sd-net-recover (which re-opens
+# this same wizard when a CONFIGURED box can't get online). One copy, one set of bugs.
+start_ap() { sd_start_ap "$AP_LOG"; }
+stop_ap()  { sd_stop_ap; }
 
-stop_ap() {
-  pkill dnsmasq 2>/dev/null || true
-  systemctl stop hostapd 2>/dev/null || pkill hostapd 2>/dev/null || true
-  ip addr flush dev wlan0 2>/dev/null || true
-  nmcli device set wlan0 managed yes 2>/dev/null || true
-}
 trap stop_ap EXIT
 
 start_ap

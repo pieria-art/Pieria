@@ -179,7 +179,10 @@ def test_run_tick_fetch_error_is_caught():
     res = ec.run_tick(_cfg(min_interval=900), _boom, client, lambda: {"quiet": False}, {})
 
     assert res["status"] == "error"
-    assert res["sleep"] >= 60
+    # First failure retries FAST (not the 900s steady-state interval): a device that outruns its own
+    # server at boot must recover in seconds, not sit on a stale image for 15 minutes.
+    assert res["sleep"] == ec.ERROR_BACKOFF_BASE
+    assert res["attempt"] == 1
     assert client.calls == []
 
 
@@ -192,7 +195,7 @@ def test_run_tick_show_error_is_caught_and_state_not_updated():
     res = ec.run_tick(_cfg(min_interval=900), fetch_fn, client, lambda: {"quiet": False}, state)
 
     assert res["status"] == "error"
-    assert res["sleep"] >= 60
+    assert res["sleep"] == ec.ERROR_BACKOFF_BASE
     assert "last_etag" not in state
 
 
@@ -291,3 +294,34 @@ def test_display_current_route_carries_etag_header(display_client):
     assert r.status_code == 200
     assert "etag" in r.headers
     assert r.headers["etag"]
+
+
+def test_error_backoff_escalates_then_resets_on_success():
+    """Consecutive failures back off 15s -> 30s -> 60s ... capped at min_interval, and a single success
+    clears the streak. The cap matters as much as the escalation: without it a long outage would retry
+    forever at 15s intervals; without the reset, one boot-time blip would keep the panel in fast-retry
+    for the rest of its life. Regression guard for the 2026-07-21 finding where any error slept 900s."""
+    calls = {"n": 0}
+
+    def _flaky(_url):
+        calls["n"] += 1
+        raise ConnectionError("connection refused")
+
+    cfg = _cfg(min_interval=900)
+    client = ec.FakeInkyClient()
+    state: dict = {}
+
+    sleeps = []
+    for _ in range(8):
+        res = ec.run_tick(cfg, _flaky, client, lambda: {"quiet": False}, state)
+        sleeps.append(res["sleep"])
+
+    assert sleeps == [15, 30, 60, 120, 240, 480, 900, 900]  # doubles, then pinned to min_interval
+
+    # A success resets the streak, so the NEXT failure starts short again.
+    ok_fetch = _fetch_fn_for(_png_bytes(), {"ETag": '"ok"'})
+    ec.run_tick(cfg, ok_fetch, ec.FakeInkyClient(), lambda: {"quiet": False}, state)
+    assert state["error_streak"] == 0
+
+    res = ec.run_tick(cfg, _flaky, client, lambda: {"quiet": False}, state)
+    assert res["sleep"] == ec.ERROR_BACKOFF_BASE

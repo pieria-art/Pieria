@@ -23,6 +23,7 @@ import os
 import re
 import shutil
 import subprocess
+import sys
 import threading
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
@@ -115,11 +116,16 @@ _CAPTIVE_PROBES = {
 
 class SetupConfig:
     """Runtime knobs shared with the request handler."""
-    def __init__(self, dry_run: bool, all_in_one: bool, boot_conf: Path, output: str):
+    def __init__(self, dry_run: bool, all_in_one: bool, boot_conf: Path, output: str,
+                 recovery: str = ""):
         self.dry_run = dry_run
         self.all_in_one = all_in_one
         self.boot_conf = boot_conf
         self.output = output
+        # Non-empty when sd-net-recover re-opened the wizard because a CONFIGURED box could not get
+        # online (usually a mistyped Wi-Fi password). Shown as a banner so the user understands this is
+        # a second attempt, not a fresh setup — otherwise the box silently looks like it reset itself.
+        self.recovery = recovery
         self.preview_path = Path("/tmp/sd-setup-preview/screen-docent.conf")
         self._revert_timer: threading.Timer | None = None
 
@@ -162,9 +168,11 @@ def _apply_rotation(output: str, orientation: str, revert_after: int, cfg: Setup
 
 def make_handler(cfg: SetupConfig):
     class Handler(BaseHTTPRequestHandler):
-        # Quiet the default noisy logging.
-        def log_message(self, *args):  # noqa: D401
-            pass
+        # Terse one-line request log. This used to be a silent `pass`, which meant a wizard served over
+        # the captive portal left NO evidence it had been reached at all — the same blindness that made
+        # the AP bug undiagnosable (ADR-056). Keep it quiet, but not invisible.
+        def log_message(self, fmt, *args):  # noqa: D401
+            sys.stderr.write(f"sd-setup: {self.address_string()} {fmt % args}\n")
 
         def _send(self, code, body, ctype="application/json"):
             data = body.encode() if isinstance(body, str) else body
@@ -193,7 +201,7 @@ def make_handler(cfg: SetupConfig):
                 self._send(200, WIZARD_HTML, "text/html; charset=utf-8")
             elif path == "/api/mode":
                 self._json(200, {"dry_run": cfg.dry_run, "all_in_one": cfg.all_in_one,
-                                 "boot_conf": str(cfg.boot_conf)})
+                                 "boot_conf": str(cfg.boot_conf), "recovery": cfg.recovery})
             elif path in _CAPTIVE_PROBES:
                 # Trigger the OS captive-portal sheet: redirect the probe to our wizard.
                 self.send_response(302)
@@ -257,6 +265,7 @@ def make_handler(cfg: SetupConfig):
                 os.chmod(cfg.boot_conf, 0o644)
                 if ssid:
                     _join_wifi(ssid, fields.get("wifi_pass", ""))
+                _release_wlan0()
                 _schedule_reboot()
                 self._json(200, {"committed": True, "wrote_to": str(cfg.boot_conf),
                                  "joined_wifi": ssid or None, "rebooting": True,
@@ -285,6 +294,27 @@ def _join_wifi(ssid: str, password: str) -> None:
                        check=True, capture_output=True, timeout=30)
 
 
+#: The setup-mode NetworkManager drop-in written by sd-setup-pre (keep in sync with setup/common.sh).
+_SETUP_DROPIN = Path("/etc/NetworkManager/conf.d/99-screen-docent-setup.conf")
+
+
+def _release_wlan0() -> None:
+    """Give wlan0 back to NetworkManager before the post-commit reboot.
+
+    While setup mode runs, wlan0 is marked unmanaged so hostapd can own the radio. That drop-in MUST NOT
+    outlive setup: `_join_wifi` only SAVES the profile and relies on NM auto-connecting it after the
+    reboot — with the radio still unmanaged, NM would never bring it up and the user would be left with a
+    box that finished setup and then silently never joined Wi-Fi. sd-setup-pre also removes this on the
+    next boot (the authoritative, self-healing path); this is the belt to that pair of braces.
+    Live-mode only; best-effort by design — a failure here is still covered on the next boot.
+    """
+    try:
+        _SETUP_DROPIN.unlink(missing_ok=True)
+    except OSError:
+        pass
+    subprocess.run(["nmcli", "general", "reload"], check=False, capture_output=True, timeout=15)
+
+
 def _schedule_reboot() -> None:
     """Reboot shortly after responding, so the user sees the success page first. Live-mode only."""
     subprocess.Popen(["sh", "-c", "sleep 3; systemctl reboot"])
@@ -298,10 +328,13 @@ def main(argv=None):
     ap.add_argument("--all-in-one", action="store_true", help="Preselect ALL_IN_ONE=1 / localhost server.")
     ap.add_argument("--boot-conf", default="", help="Override the boot-partition conf path.")
     ap.add_argument("--output", default="HDMI-A-1", help="HDMI output for the live-rotate preview.")
+    ap.add_argument("--recovery", default="",
+                    help="Banner text shown when re-opened by sd-net-recover after a failed join.")
     args = ap.parse_args(argv)
 
     boot_conf = Path(args.boot_conf) if args.boot_conf else resolve_boot_conf_path()
-    cfg = SetupConfig(dry_run=args.dry_run, all_in_one=args.all_in_one, boot_conf=boot_conf, output=args.output)
+    cfg = SetupConfig(dry_run=args.dry_run, all_in_one=args.all_in_one, boot_conf=boot_conf,
+                      output=args.output, recovery=args.recovery)
     server = ThreadingHTTPServer(("0.0.0.0", args.port), make_handler(cfg))
     mode = "DRY RUN (nothing will be changed)" if args.dry_run else "LIVE"
     print(f"Screen Docent setup wizard — {mode} — http://0.0.0.0:{args.port}  (conf target: {boot_conf})")
@@ -399,6 +432,9 @@ async function loadMode() {
     if (MODE.dry_run) {
       const b = $('mode-banner'); b.classList.remove('hidden');
       b.textContent = '🔒 Dry run — nothing on this device will be changed. This is a safe preview.';
+    } else if (MODE.recovery) {
+      const b = $('mode-banner'); b.classList.remove('hidden');
+      b.textContent = '\u26a0\ufe0f ' + MODE.recovery;
     }
     if (MODE.all_in_one) $('server_url').value = 'http://localhost:8000';
   } catch(e){}

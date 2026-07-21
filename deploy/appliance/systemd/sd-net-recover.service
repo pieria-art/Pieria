@@ -1,0 +1,25 @@
+# Installed AND ENABLED by install.sh. This is the "can't be bricked" backstop: it re-opens the setup
+# wizard when a CONFIGURED box cannot get on the network (almost always a mistyped Wi-Fi password),
+# which otherwise leaves a non-technical user with a dead appliance and no recovery short of editing
+# the SD card on a computer. See sd-net-recover and ADR-057.
+# __BOOT_CONF__ is substituted by install.sh with the boot-partition conf path.
+[Unit]
+Description=Screen Docent — re-open setup if a configured display can't get online
+After=NetworkManager.service
+Wants=NetworkManager.service
+# Pointless on a box that hasn't been through setup yet — sd-setup-boot owns that case.
+ConditionPathExists=/usr/local/bin/sd-net-recover
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/sd-net-recover __BOOT_CONF__
+# Long-lived watcher. If it dies, restart it — but slowly, so a persistent fault can't spin.
+Restart=always
+RestartSec=30
+# Give the script its own SIGTERM handling time so its trap can hand wlan0 back to NetworkManager
+# rather than leaving the radio held by hostapd across a stop/restart.
+KillSignal=SIGTERM
+TimeoutStopSec=45
+
+[Install]
+WantedBy=multi-user.target
