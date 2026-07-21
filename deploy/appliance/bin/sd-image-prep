@@ -64,8 +64,31 @@ enable_setup_service() {
 # --- DESTRUCTIVE identity/network/log wipe (--full only) ------------------------------------------
 wipe_identity() {
   rm -f /etc/ssh/ssh_host_* 2>/dev/null || true
-  # Regenerate host keys on next boot (Bookworm ships regenerate-ssh-host-keys.service; belt-and-braces).
-  systemctl enable regenerate-ssh-host-keys.service 2>/dev/null || true
+  # Re-arm host-key regeneration. The unit is regenerate_ssh_host_keys (UNDERSCORES) — this used to try
+  # the hyphenated name and swallow the failure with `2>/dev/null || true`, so regeneration was NEVER
+  # armed: sshd then had no host keys on a flashed unit and refused every connection, permanently.
+  # Found on the first real .img flash, 2026-07-21. Report failure rather than hiding it.
+  local armed=0 u
+  for u in regenerate_ssh_host_keys.service regenerate-ssh-host-keys.service; do
+    if systemctl list-unit-files "$u" >/dev/null 2>&1 && systemctl enable "$u" >/dev/null 2>&1; then
+      echo "  armed $u (each flashed unit generates its own host keys)"; armed=1; break
+    fi
+  done
+  [ "$armed" = 1 ] || echo "  WARNING: could not arm SSH host-key regeneration — flashed units will have NO SSH" >&2
+
+  # A DISTRIBUTABLE image must trust nobody. Shipping an authorized_keys means every unit in the world
+  # accepts that key — a supply-chain hole, and easy to ship by accident (this master carried the
+  # maintainer's laptop key). KEEP_AUTHORIZED_KEYS=1 opts out for a private dev master you intend to
+  # SSH into yourself.
+  if [ "${KEEP_AUTHORIZED_KEYS:-0}" = "1" ]; then
+    echo "  KEPT authorized_keys (KEEP_AUTHORIZED_KEYS=1 — dev master, do NOT distribute this image)"
+  else
+    local n
+    n=$(find /home /root -name authorized_keys 2>/dev/null | wc -l)
+    find /home /root -name authorized_keys -delete 2>/dev/null || true
+    echo "  removed $n authorized_keys file(s) — the image trusts no one"
+  fi
+
   : > /etc/machine-id
   rm -f /var/lib/dbus/machine-id 2>/dev/null || true
   echo "  wiped SSH host keys + machine-id (regenerate on first boot)"
