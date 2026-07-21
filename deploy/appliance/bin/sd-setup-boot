@@ -11,26 +11,21 @@
 # ⚠ Pi-gated: the AP bring-up / teardown and Wi-Fi hand-off can only be fully validated on real Pi
 # hardware with a flash cycle. The wizard's HTTP/conf logic is verified on the laptop via `--dry-run`.
 set -u
+# hostapd/dnsmasq/iw/rfkill live in /sbin. systemd normally provides it, but be explicit so this script
+# behaves identically when run by hand over SSH (where /sbin is absent from a non-login PATH).
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
-CONF="${1:-/boot/firmware/screen-docent.conf}"
-[ -e "$CONF" ] || CONF="/boot/screen-docent.conf"
 SETUP_DIR="/usr/local/share/screen-docent/setup"
+# shellcheck source=../setup/common.sh
+. "$SETUP_DIR/common.sh"
+
+CONF="$(sd_resolve_conf "${1:-}")"
 AP_ADDR="10.0.0.1/24"
+# Everything the AP bring-up says goes here — hostapd's own log included. Never /dev/null (ADR-056).
+AP_LOG="/var/log/sd-setup-ap.log"
+: > "$AP_LOG" 2>/dev/null || AP_LOG=/dev/stderr
 
-# --- Is this box already configured? --------------------------------------------------------------
-# Configured = the conf exists AND carries non-placeholder SERVER_URL + DISPLAY_ID (the shipped example
-# uses DISPLAY_ID=living_room / SERVER_URL=http://192.168.1.50:8000 — treat those as "not set yet").
-is_configured() {
-  [ -r "$CONF" ] || return 1
-  local SERVER_URL="" DISPLAY_ID=""
-  # shellcheck disable=SC1090
-  . "$CONF" 2>/dev/null || return 1
-  [ -n "${SERVER_URL:-}" ] && [ -n "${DISPLAY_ID:-}" ] || return 1
-  [ "${DISPLAY_ID}" = "living_room" ] && [ "${SERVER_URL}" = "http://192.168.1.50:8000" ] && return 1
-  return 0
-}
-
-if is_configured; then
+if sd_is_configured "$CONF"; then
   echo "sd-setup-boot: already configured ($CONF) — skipping setup, continuing to kiosk."
   exit 0
 fi
@@ -39,25 +34,48 @@ echo "sd-setup-boot: no configuration found — starting the Docent-Setup wizard
 
 # --- Bring up the AP + captive portal -------------------------------------------------------------
 start_ap() {
-  rfkill unblock wlan 2>/dev/null || true
-  # Take wlan0 away from NetworkManager FIRST — this unit is ordered After=NetworkManager, so NM is up
-  # and these stick. NM may have already auto-connected saved Wi-Fi; disconnect drops that, and
-  # "managed no" stops NM re-grabbing the radio and stomping the AP (bench-day finding 2026-07-19).
-  nmcli device disconnect wlan0 2>/dev/null || true
-  nmcli device set wlan0 managed no 2>/dev/null || true
-  # Now configure the interface + AP address (NM won't flush it out from under us).
-  ip link set wlan0 up 2>/dev/null || true
-  ip addr flush dev wlan0 2>/dev/null || true
-  ip addr add "$AP_ADDR" dev wlan0 2>/dev/null || true
-  # hostapd.service ships MASKED on Bookworm — run the binary directly (the service start is a no-op fallback).
-  systemctl start hostapd 2>/dev/null || hostapd -B "$SETUP_DIR/hostapd.conf" 2>/dev/null || true
-  dnsmasq --conf-file="$SETUP_DIR/dnsmasq.conf" 2>/dev/null || true
+  rfkill unblock wlan 2>>"$AP_LOG" || true
+  # wlan0 should ALREADY be NM-unmanaged: sd-setup-pre wrote the NetworkManager drop-in before NM even
+  # started (ADR-056). These runtime calls are belt-and-braces for the case where a box was pushed into
+  # setup mode without a reboot — they are no-ops when the drop-in did its job.
+  nmcli device disconnect wlan0 2>>"$AP_LOG" || true
+  nmcli device set wlan0 managed no 2>>"$AP_LOG" || true
+  # wpa_supplicant holds a claim on the radio INDEPENDENTLY of NetworkManager — unmanaging wlan0 in NM
+  # does not release it. Stop it too, or hostapd can be refused the interface.
+  systemctl stop wpa_supplicant.service 2>>"$AP_LOG" || true
+  # Bounce the link so the radio comes back in a clean state before hostapd switches it to AP mode
+  # (it may be sitting on a 5 GHz channel from a prior association; the AP is 2.4 GHz ch6).
+  ip link set wlan0 down 2>>"$AP_LOG" || true
+  ip link set wlan0 up 2>>"$AP_LOG" || true
+  ip addr flush dev wlan0 2>>"$AP_LOG" || true
+  ip addr add "$AP_ADDR" dev wlan0 2>>"$AP_LOG" || true
+  # hostapd.service ships MASKED on Bookworm, so `systemctl start hostapd` could only ever fail — run
+  # the binary. Errors are LOGGED, never discarded: the original `2>/dev/null || true` here is exactly
+  # why this bug survived a full bench day undiagnosable (ADR-056).
+  hostapd -B -f "$AP_LOG" "$SETUP_DIR/hostapd.conf" \
+    || echo "sd-setup-boot: hostapd failed to start — see $AP_LOG" >&2
+  sleep 3
+  if pgrep -f "hostapd.*$SETUP_DIR" >/dev/null 2>&1; then
+    echo "sd-setup-boot: AP up — $(iw dev wlan0 info 2>/dev/null | tr '\n' ' ')"
+  else
+    echo "sd-setup-boot: AP DID NOT START. Last 20 lines of $AP_LOG:" >&2
+    tail -20 "$AP_LOG" >&2 2>/dev/null || true
+  fi
+  dnsmasq --conf-file="$SETUP_DIR/dnsmasq.conf" 2>>"$AP_LOG" \
+    || echo "sd-setup-boot: dnsmasq failed to start — see $AP_LOG" >&2
 }
 
 stop_ap() {
-  pkill dnsmasq 2>/dev/null || true
-  systemctl stop hostapd 2>/dev/null || pkill hostapd 2>/dev/null || true
+  # Match only OUR processes — a bare `pkill dnsmasq` would also kill an unrelated system resolver.
+  pkill -f "dnsmasq.*$SETUP_DIR" 2>/dev/null || true
+  pkill -f "hostapd.*$SETUP_DIR" 2>/dev/null || true
   ip addr flush dev wlan0 2>/dev/null || true
+  # Hand the radio back. sd-setup-pre would remove the drop-in on the next boot anyway (it is the
+  # authoritative, self-healing path), but doing it here too means a commit-then-reboot is never the
+  # only thing standing between a configured user and their Wi-Fi.
+  rm -f "$SD_DROPIN"
+  systemctl start wpa_supplicant.service 2>/dev/null || true
+  nmcli general reload 2>/dev/null || true
   nmcli device set wlan0 managed yes 2>/dev/null || true
 }
 trap stop_ap EXIT

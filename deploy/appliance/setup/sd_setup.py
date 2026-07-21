@@ -23,6 +23,7 @@ import os
 import re
 import shutil
 import subprocess
+import sys
 import threading
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
@@ -162,9 +163,11 @@ def _apply_rotation(output: str, orientation: str, revert_after: int, cfg: Setup
 
 def make_handler(cfg: SetupConfig):
     class Handler(BaseHTTPRequestHandler):
-        # Quiet the default noisy logging.
-        def log_message(self, *args):  # noqa: D401
-            pass
+        # Terse one-line request log. This used to be a silent `pass`, which meant a wizard served over
+        # the captive portal left NO evidence it had been reached at all — the same blindness that made
+        # the AP bug undiagnosable (ADR-056). Keep it quiet, but not invisible.
+        def log_message(self, fmt, *args):  # noqa: D401
+            sys.stderr.write(f"sd-setup: {self.address_string()} {fmt % args}\n")
 
         def _send(self, code, body, ctype="application/json"):
             data = body.encode() if isinstance(body, str) else body
@@ -257,6 +260,7 @@ def make_handler(cfg: SetupConfig):
                 os.chmod(cfg.boot_conf, 0o644)
                 if ssid:
                     _join_wifi(ssid, fields.get("wifi_pass", ""))
+                _release_wlan0()
                 _schedule_reboot()
                 self._json(200, {"committed": True, "wrote_to": str(cfg.boot_conf),
                                  "joined_wifi": ssid or None, "rebooting": True,
@@ -283,6 +287,27 @@ def _join_wifi(ssid: str, password: str) -> None:
         subprocess.run(["nmcli", "connection", "modify", con,
                         "wifi-sec.key-mgmt", "wpa-psk", "wifi-sec.psk", password],
                        check=True, capture_output=True, timeout=30)
+
+
+#: The setup-mode NetworkManager drop-in written by sd-setup-pre (keep in sync with setup/common.sh).
+_SETUP_DROPIN = Path("/etc/NetworkManager/conf.d/99-screen-docent-setup.conf")
+
+
+def _release_wlan0() -> None:
+    """Give wlan0 back to NetworkManager before the post-commit reboot.
+
+    While setup mode runs, wlan0 is marked unmanaged so hostapd can own the radio. That drop-in MUST NOT
+    outlive setup: `_join_wifi` only SAVES the profile and relies on NM auto-connecting it after the
+    reboot — with the radio still unmanaged, NM would never bring it up and the user would be left with a
+    box that finished setup and then silently never joined Wi-Fi. sd-setup-pre also removes this on the
+    next boot (the authoritative, self-healing path); this is the belt to that pair of braces.
+    Live-mode only; best-effort by design — a failure here is still covered on the next boot.
+    """
+    try:
+        _SETUP_DROPIN.unlink(missing_ok=True)
+    except OSError:
+        pass
+    subprocess.run(["nmcli", "general", "reload"], check=False, capture_output=True, timeout=15)
 
 
 def _schedule_reboot() -> None:

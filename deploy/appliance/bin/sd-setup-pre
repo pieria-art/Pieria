@@ -1,0 +1,54 @@
+#!/usr/bin/env bash
+# sd-setup-pre — decide who owns wlan0, BEFORE NetworkManager starts (ADR-056).
+#
+# The bench-day AP failure (ADR-054) was diagnosed 2026-07-21 as a BOOT-TIME RACE, not a hostapd or
+# driver limitation: on a settled box hostapd claims wlan0 happily even with wpa_supplicant running.
+# But sd-setup-boot runs at boot ordered After=NetworkManager.service, and `After=` only means NM was
+# STARTED — not that it has settled. NM is mid-scan/mid-autoconnect at that moment, so a runtime
+# `nmcli device disconnect` + `managed no` races NM's own retry loop and loses. That is why the symptom
+# mutated from "AP flickers and vanishes" to "AP never broadcasts" when the unit ordering changed.
+#
+# This unit deletes the race instead of trying to win it: it writes a NetworkManager drop-in marking
+# wlan0 unmanaged BEFORE NM ever starts, so NM's first look at the radio already says "not mine".
+#
+# It is also the SELF-HEALING half. It runs on EVERY boot and removes the drop-in as soon as the box is
+# configured — so a crash, power-cut, or half-finished setup can never leave a configured appliance with
+# an unmanaged radio and no Wi-Fi. That failure would brick a non-technical user's box silently, which
+# is precisely what the gramps test exists to catch.
+set -u
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+SETUP_DIR=/usr/local/share/screen-docent/setup
+# shellcheck source=../setup/common.sh
+. "$SETUP_DIR/common.sh"
+
+CONF="$(sd_resolve_conf "${1:-}")"
+log() { echo "sd-setup-pre: $*"; }
+
+want_setup=no
+if sd_is_configured "$CONF"; then
+  log "configured ($CONF) — NetworkManager keeps wlan0."
+elif [ "$(systemctl is-enabled sd-setup.service 2>/dev/null)" = "enabled" ]; then
+  want_setup=yes
+else
+  # Guard: an unconfigured box whose wizard is DISABLED must NOT have its radio taken away — nothing
+  # would bring the AP up and the box would simply have no network at all.
+  log "unconfigured, but sd-setup.service is not enabled — leaving wlan0 to NetworkManager."
+fi
+
+if [ "$want_setup" = yes ]; then
+  install -d /etc/NetworkManager/conf.d
+  cat > "$SD_DROPIN" <<'EOF'
+# Screen Docent setup mode — wlan0 is handed to hostapd for the Docent-Setup AP.
+# Written by sd-setup-pre BEFORE NetworkManager starts so NM never claims the radio (there is no race
+# to lose). Removed automatically by sd-setup-pre on the first boot after the box is configured.
+[keyfile]
+unmanaged-devices=interface-name:wlan0
+EOF
+  log "setup mode — wrote $SD_DROPIN (wlan0 unmanaged; hostapd will claim it)."
+elif [ -e "$SD_DROPIN" ]; then
+  rm -f "$SD_DROPIN"
+  log "removed $SD_DROPIN — NetworkManager owns wlan0 again."
+fi
+
+exit 0

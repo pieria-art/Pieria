@@ -129,11 +129,16 @@ def test_live_commit_writes_boot_conf_0644(tmp_path, monkeypatch):
     """The live commit path writes the boot conf world-readable (0644), deterministically — the FAT
     boot partition is read from any computer, so the mode must not depend on the process umask. Wi-Fi
     join + reboot are stubbed so no hardware is touched. Pre-create the conf 0600 to prove the explicit
-    chmod overrides an existing restrictive mode (write_text alone would leave 0600)."""
+    chmod overrides an existing restrictive mode (write_text alone would leave 0600).
+
+    EVERY host-touching call on the live path must be stubbed here. Leaving `_release_wlan0` unstubbed
+    made this test shell out to the developer's own `nmcli general reload`, which pops a polkit
+    authentication dialog on the desktop mid-run (caught 2026-07-21)."""
     import stat
 
     monkeypatch.setattr(sd_setup, "_join_wifi", lambda *a, **k: None)
     monkeypatch.setattr(sd_setup, "_schedule_reboot", lambda: None)
+    monkeypatch.setattr(sd_setup, "_release_wlan0", lambda: None)
     boot_conf = tmp_path / "boot" / "screen-docent.conf"
     boot_conf.parent.mkdir(parents=True)
     boot_conf.write_text("stale")            # pre-existing file...
@@ -153,6 +158,48 @@ def test_live_commit_writes_boot_conf_0644(tmp_path, monkeypatch):
     assert status == 200 and data["committed"] is True
     assert "DISPLAY_ID=wall" in boot_conf.read_text()
     assert stat.S_IMODE(boot_conf.stat().st_mode) == 0o644
+
+
+def test_live_commit_releases_wlan0_after_saving_wifi_and_before_reboot(tmp_path, monkeypatch):
+    """The setup AP holds wlan0 via a NetworkManager `unmanaged-devices` drop-in. That drop-in MUST be
+    removed on commit: `_join_wifi` only SAVES the profile and relies on NM auto-connecting it after the
+    reboot, so if wlan0 is still unmanaged the appliance finishes setup and then silently never joins
+    Wi-Fi — a bricked box for a non-technical user. Order matters too: release must come AFTER the
+    profile is saved (so nothing races the save) and BEFORE the reboot is scheduled (ADR-056)."""
+    calls: list[str] = []
+    monkeypatch.setattr(sd_setup, "_join_wifi", lambda *a, **k: calls.append("join_wifi"))
+    monkeypatch.setattr(sd_setup, "_release_wlan0", lambda: calls.append("release_wlan0"))
+    monkeypatch.setattr(sd_setup, "_schedule_reboot", lambda: calls.append("reboot"))
+
+    boot_conf = tmp_path / "boot" / "screen-docent.conf"
+    boot_conf.parent.mkdir(parents=True)
+    cfg = sd_setup.SetupConfig(dry_run=False, all_in_one=True, boot_conf=boot_conf, output="HDMI-A-1")
+    httpd = ThreadingHTTPServer(("127.0.0.1", 0), sd_setup.make_handler(cfg))
+    t = threading.Thread(target=httpd.serve_forever, daemon=True)
+    t.start()
+    try:
+        status, _ = _post(f"http://127.0.0.1:{httpd.server_address[1]}", "/api/commit", {
+            "server_url": "http://localhost:8000", "display_id": "wall", "orientation": "landscape",
+            "wifi_ssid": "HomeNet", "wifi_pass": "hunter2",
+        })
+    finally:
+        httpd.shutdown()
+
+    assert status == 200
+    assert calls == ["join_wifi", "release_wlan0", "reboot"]
+
+
+def test_dry_run_commit_never_releases_wlan0(server, monkeypatch):
+    """A dry run must not touch the host's network stack at all — no drop-in removal, no `nmcli`.
+    (Unstubbed, this is what popped a polkit dialog on the developer's desktop.)"""
+    called = []
+    monkeypatch.setattr(sd_setup, "_release_wlan0", lambda: called.append(1))
+    base, _ = server
+    status, data = _post(base, "/api/commit", {
+        "server_url": "http://localhost:8000", "display_id": "wall", "orientation": "landscape",
+    })
+    assert status == 200 and data["dry_run"] is True
+    assert called == []
 
 
 def test_commit_rejects_invalid_fields(server):
