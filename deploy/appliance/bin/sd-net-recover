@@ -104,9 +104,8 @@ while true; do
       --html /run/sd-setup/setup-splash.html >>"$LOG" 2>&1 || true
     # Same reasoning as first-run setup: the panel is holding art and looks fine, so say what's wrong
     # ON THE GLASS. The recovery variant is red and leads with "Couldn't join your Wi-Fi" (ADR-058).
-    if [ "${EINK_ENABLED:-0}" = "1" ]; then
-      ( /usr/local/bin/sd-setup-card --ssid Docent-Setup --recovery >>"$LOG" 2>&1 || true ) &
-    fi
+    ( /usr/local/bin/sd-setup-card --ssid Docent-Setup --recovery >>"$LOG" 2>&1 \
+        || echo "sd-net-recover: no e-ink panel to paint" >>"$LOG" ) &
     EXTRA=()
     [ "${ALL_IN_ONE}" = "1" ] && EXTRA+=(--all-in-one)
     # `timeout` bounds the attempt. On a successful commit the wizard reboots the box, so this call

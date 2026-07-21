@@ -61,10 +61,14 @@ start_ap
 
 # Tell the E-INK panel it needs setting up. Without this a dumb panel keeps holding its last frame at
 # zero power, so an unconfigured box looks finished and working rather than waiting (ADR-058).
+#
+# Deliberately NOT gated on EINK_ENABLED. A freshly flashed box carries the PLACEHOLDER conf, which has
+# no EINK_ENABLED at all — so gating on it meant the card never painted on exactly the out-of-box
+# device it exists for. Just attempt it: sd-setup-card imports `inky` lazily and fails harmlessly on a
+# box with no panel, and the attempt is logged either way.
 # Backgrounded: a full Spectra 6 refresh takes ~9s and must never delay the wizard coming up.
-if [ "${EINK_ENABLED:-0}" = "1" ]; then
-  ( /usr/local/bin/sd-setup-card --ssid Docent-Setup >>"$AP_LOG" 2>&1 || true ) &
-fi
+( /usr/local/bin/sd-setup-card --ssid Docent-Setup >>"$AP_LOG" 2>&1 \
+    || echo "sd-setup-boot: no e-ink panel to paint (this is normal on an HDMI-only box)" >>"$AP_LOG" ) &
 
 # Serve the wizard on port 80 (the captive portal redirects every probe here). The wizard writes the
 # conf, joins Wi-Fi, and reboots on commit — so this normally does not return.
