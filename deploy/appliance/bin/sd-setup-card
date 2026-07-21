@@ -1,0 +1,252 @@
+#!/usr/bin/env python3
+"""sd-setup-card — paint "I need setting up" onto the e-ink panel (ADR-058).
+
+WHY THIS EXISTS: e-ink holds its last frame at ZERO power. A dumb panel on an unconfigured box
+therefore doesn't go blank and doesn't look like it's booting — it keeps showing whatever art it last
+displayed, so the device looks FINISHED AND WORKING while it silently waits for someone to set it up.
+That is a worse failure than a black screen, because nothing prompts the user to act (Josh's find,
+2026-07-21). HDMI has the same hole wearing a different mask: sd-kiosk-launch paints sd-splash.html,
+which renders an admin URL built from the PLACEHOLDER SERVER_URL — a confident, entirely wrong address.
+
+Every output surface needs a setup-state renderer. This is the e-ink one.
+
+Rendered in the panel's PURE primaries only (SPECTRA6_OUTPUT_PALETTE) — never dithered. Dithering is
+for photographs; on text it produces grain that wrecks legibility at the exact moment the user most
+needs to read something. Pure primaries also survive an inky client's internal re-quantize unchanged
+(the ADR-053 "universal" trick).
+
+Usage:
+    sd-setup-card --ssid Docent-Setup                 # paint the panel
+    sd-setup-card --ssid Docent-Setup --out card.png  # render to a file (no hardware needed)
+    sd-setup-card --recovery --ssid Docent-Setup      # the "couldn't join your Wi-Fi" variant
+"""
+from __future__ import annotations
+
+import argparse
+import sys
+from pathlib import Path
+
+from PIL import Image, ImageDraw, ImageFont
+
+# eink_client.py is installed alongside this script by install.sh (same trick sd-eink uses).
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
+WHITE = (255, 255, 255)
+BLACK = (0, 0, 0)
+RED = (255, 0, 0)
+BLUE = (0, 0, 255)
+YELLOW = (255, 255, 0)
+GREEN = (0, 255, 0)
+
+_FONT_CANDIDATES = [
+    "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
+    "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
+]
+
+
+def _font(size: int, bold: bool = False):
+    """Best available TrueType, falling back to PIL's bitmap default. The default is tiny and ugly, but
+    a readable-but-ugly card beats a crash on a box with no fonts installed."""
+    for path in (_FONT_CANDIDATES if bold else reversed(_FONT_CANDIDATES)):
+        try:
+            return ImageFont.truetype(path, size)
+        except OSError:
+            continue
+    return ImageFont.load_default()
+
+
+def _wifi_qr(ssid: str, px: int):
+    """QR encoding the Wi-Fi join itself (WIFI:...), so a phone camera joins the AP without anyone
+    finding the Wi-Fi settings menu — the step most likely to defeat a non-technical user. Optional:
+    if python3-qrcode isn't installed we simply omit it and the written instructions still work."""
+    try:
+        import qrcode
+    except ImportError:
+        return None
+    # T:nopass is correct — the setup AP is deliberately open (see hostapd.conf).
+    qr = qrcode.QRCode(border=2, box_size=1)
+    qr.add_data(f"WIFI:S:{ssid};T:nopass;;")
+    qr.make(fit=True)
+    img = qr.make_image(fill_color="black", back_color="white").convert("RGB")
+    return img.resize((px, px), Image.NEAREST)  # NEAREST keeps module edges hard
+
+
+def _gallery_wall(d: ImageDraw.ImageDraw, x: int, y: int, w: int, h: int, S) -> None:
+    """A row of framed pictures along the bottom, so the card reads as an art appliance rather than a
+    router. These are tiny GENRE compositions — landscape, portrait, still life, seascape, abstract —
+    not colour bands: flat horizontal stripes just look like flags (Josh, on seeing v2 on glass).
+
+    Drawn from the panel's pure primaries so they need no installed pack (a freshly flashed box may
+    have none) and never have to be dithered, which would smear at this size.
+    """
+    gap = S(26)
+    widths = [0.20, 0.15, 0.22, 0.17, 0.26]
+    avail = w - gap * (len(widths) - 1)
+    mat = S(14)
+    cx = x
+
+    def canvas(i):
+        """Inner drawing box of frame i."""
+        fw = int(avail * widths[i])
+        return cx + mat, y + mat, cx + fw - mat, y + h - mat, fw
+
+    for i in range(len(widths)):
+        x0, y0, x1, y1, fw = canvas(i)
+        cw, ch = x1 - x0, y1 - y0
+        d.rectangle([cx, y, cx + fw, y + h], outline=BLACK, width=S(5))
+
+        if i == 0:      # landscape: sun over hills
+            d.rectangle([x0, y0, x1, y1], fill=BLUE)
+            d.ellipse([x0 + cw * 0.55, y0 + ch * 0.12, x0 + cw * 0.85, y0 + ch * 0.42], fill=YELLOW)
+            d.polygon([(x0, y1), (x0 + cw * 0.45, y0 + ch * 0.45), (x0 + cw * 0.9, y1)], fill=GREEN)
+            d.polygon([(x0 + cw * 0.4, y1), (x0 + cw * 0.8, y0 + ch * 0.58), (x1, y1)], fill=BLACK)
+        elif i == 1:    # portrait: a figure
+            d.rectangle([x0, y0, x1, y1], fill=YELLOW)
+            d.ellipse([x0 + cw * 0.28, y0 + ch * 0.14, x0 + cw * 0.72, y0 + ch * 0.52], fill=BLACK)
+            d.polygon([(x0 + cw * 0.10, y1), (x0 + cw * 0.30, y0 + ch * 0.55),
+                       (x0 + cw * 0.70, y0 + ch * 0.55), (x0 + cw * 0.90, y1)], fill=RED)
+        elif i == 2:    # abstract: a Mondrian-ish grid
+            d.rectangle([x0, y0, x1, y1], fill=WHITE)
+            d.rectangle([x0, y0, x0 + cw * 0.45, y0 + ch * 0.55], fill=RED)
+            d.rectangle([x0 + cw * 0.5, y0, x1, y0 + ch * 0.3], fill=BLUE)
+            d.rectangle([x0 + cw * 0.55, y0 + ch * 0.62, x1, y1], fill=YELLOW)
+            d.line([x0, y0 + ch * 0.58, x1, y0 + ch * 0.58], fill=BLACK, width=S(6))
+            d.line([x0 + cw * 0.48, y0, x0 + cw * 0.48, y1], fill=BLACK, width=S(6))
+        elif i == 3:    # still life: fruit on a table
+            d.rectangle([x0, y0, x1, y1], fill=WHITE)
+            d.rectangle([x0, y0 + ch * 0.68, x1, y1], fill=BLACK)
+            d.ellipse([x0 + cw * 0.14, y0 + ch * 0.34, x0 + cw * 0.56, y0 + ch * 0.70], fill=RED)
+            d.ellipse([x0 + cw * 0.50, y0 + ch * 0.44, x0 + cw * 0.82, y0 + ch * 0.70], fill=YELLOW)
+        else:           # seascape: a sail on the water
+            d.rectangle([x0, y0, x1, y0 + ch * 0.55], fill=WHITE)
+            d.rectangle([x0, y0 + ch * 0.55, x1, y1], fill=BLUE)
+            d.ellipse([x0 + cw * 0.10, y0 + ch * 0.10, x0 + cw * 0.34, y0 + ch * 0.34], fill=YELLOW)
+            d.polygon([(x0 + cw * 0.62, y0 + ch * 0.14), (x0 + cw * 0.62, y0 + ch * 0.56),
+                       (x0 + cw * 0.34, y0 + ch * 0.56)], fill=RED)
+            d.polygon([(x0 + cw * 0.66, y0 + ch * 0.20), (x0 + cw * 0.66, y0 + ch * 0.56),
+                       (x0 + cw * 0.88, y0 + ch * 0.56)], fill=BLACK)
+        cx += fw + gap
+
+
+def render_card(width: int, height: int, ssid: str, recovery: bool = False) -> Image.Image:
+    img = Image.new("RGB", (width, height), WHITE)
+    d = ImageDraw.Draw(img)
+    scale = min(width, height) / 1200.0
+    S = lambda n: max(1, int(n * scale))  # noqa: E731 — terse scaler keeps the layout readable
+
+    margin = S(80)
+    accent = RED if recovery else BLUE
+
+    if recovery:
+        title, sub = "Couldn't join your Wi-Fi", "Let's try again — it's almost always the password."
+    else:
+        title, sub = "Set up your Screen Docent", "This display isn't connected yet."
+
+    # --- masthead ---------------------------------------------------------------------------------
+    d.rectangle([0, 0, width, S(14)], fill=accent)
+    y = margin
+    d.text((margin, y), "SCREEN DOCENT", font=_font(S(26), bold=True), fill=accent)
+    y += S(46)
+    d.text((margin, y), title, font=_font(S(72), bold=True), fill=BLACK)
+    y += S(92)
+    d.text((margin, y), sub, font=_font(S(36)), fill=BLACK)
+    y += S(28)
+    d.line([margin, y + S(26), width - margin, y + S(26)], fill=BLACK, width=S(3))
+    y += S(66)
+
+    # --- QR card, right column --------------------------------------------------------------------
+    qr_px = S(330)
+    qr = _wifi_qr(ssid, qr_px)
+    pad = S(22)
+    if qr:
+        qx = width - margin - qr_px - pad * 2
+        d.rectangle([qx, y, qx + qr_px + pad * 2, y + qr_px + pad * 2 + S(46)],
+                    outline=BLACK, width=S(4))
+        img.paste(qr, (qx + pad, y + pad))
+        d.text((qx + pad, y + pad + qr_px + S(10)), "Scan to join the network",
+               font=_font(S(26)), fill=BLACK)
+        col_w = qx - margin - S(50)
+        qr_bottom = y + qr_px + pad * 2 + S(46)
+    else:
+        col_w = width - 2 * margin
+        qr_bottom = y
+
+    # --- numbered steps, left column --------------------------------------------------------------
+    steps = [
+        f"Join the Wi-Fi network \u201c{ssid}\u201d",
+        "Your phone opens the setup page by itself.",
+        "Pick your Wi-Fi, name the display, done.",
+    ]
+    num_f, step_f = _font(S(40), bold=True), _font(S(35))
+    sy = y + S(6)
+    for i, text in enumerate(steps, 1):
+        r = S(46)
+        d.ellipse([margin, sy, margin + r, sy + r], fill=accent)
+        nw = d.textlength(str(i), font=num_f)
+        d.text((margin + (r - nw) / 2, sy + S(4)), str(i), font=num_f, fill=WHITE)
+        d.text((margin + r + S(26), sy + S(6)), text, font=step_f, fill=BLACK)
+        sy += S(84)
+    _ = col_w
+
+    # --- gallery wall ------------------------------------------------------------------------------
+    # Sized to actually FILL the lower half. On a white e-ink ground (deliberate: white is bare paper on
+    # a reflective panel, so black-on-white is the most legible thing we can put in front of someone
+    # across a room) a small strip of pictures leaves the card looking empty — the artwork has to carry
+    # real visual weight or the whole lower half reads as dead space.
+    caption = "Your gallery, ready when you are."
+    # Clear BOTH columns. Taking only the steps into account ran the frames under the QR card and
+    # clipped its caption — the band is full width, so it has to start below the taller of the two.
+    cap_y = max(sy + S(18), qr_bottom + S(34))
+    d.text((margin, cap_y), caption, font=_font(S(30), bold=True), fill=accent)
+    band_y = cap_y + S(52)
+    band_h = height - margin - S(52) - band_y
+    _gallery_wall(d, margin, band_y, width - 2 * margin, band_h, S)
+
+    foot = "No app. No account. Nothing to install."
+    d.text((margin, height - margin - S(26)), foot, font=_font(S(28)), fill=BLACK)
+    return img
+
+
+def _quantize_to_panel(img: Image.Image) -> Image.Image:
+    """Snap to the panel's pure primaries with NO dithering, so text stays crisp."""
+    try:
+        from epaper import SPECTRA6_OUTPUT_PALETTE as PAL
+    except ImportError:
+        PAL = [(0, 0, 0), (255, 255, 255), (255, 0, 0), (255, 255, 0), (0, 0, 255), (0, 255, 0)]
+    pal_img = Image.new("P", (1, 1))
+    flat = [c for rgb in PAL for c in rgb]
+    pal_img.putpalette(flat + [0] * (768 - len(flat)))
+    return img.quantize(palette=pal_img, dither=Image.Dither.NONE).convert("RGB")
+
+
+def main(argv=None):
+    ap = argparse.ArgumentParser(description="Paint the e-ink setup card")
+    ap.add_argument("--ssid", default="Docent-Setup")
+    ap.add_argument("--width", type=int, default=0, help="Override panel width (default: ask the panel)")
+    ap.add_argument("--height", type=int, default=0)
+    ap.add_argument("--recovery", action="store_true", help="The 'couldn't join your Wi-Fi' variant.")
+    ap.add_argument("--out", default="", help="Write a PNG instead of painting (no hardware needed).")
+    ap.add_argument("--saturation", type=float, default=0.5)
+    args = ap.parse_args(argv)
+
+    w, h = args.width, args.height
+    client = None
+    if not args.out:
+        from eink_client import InkyClient
+        client = InkyClient()
+        if not (w and h):
+            w, h = client.resolution
+    w, h = w or 1600, h or 1200
+
+    card = _quantize_to_panel(render_card(w, h, args.ssid, args.recovery))
+    if args.out:
+        card.save(args.out)
+        print(f"sd-setup-card: wrote {args.out} ({w}x{h})")
+        return 0
+    client.show(card, args.saturation)
+    print(f"sd-setup-card: painted {w}x{h} setup card (ssid={args.ssid}, recovery={args.recovery})")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

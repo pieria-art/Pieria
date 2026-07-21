@@ -34,6 +34,7 @@ NET_RECOVER_SUSTAINED=900 # seconds offline AFTER we've been online once (avoids
 NET_RECOVER_WINDOW=600    # how long the recovery AP stays up per attempt
 NET_RECOVER_RETRY_GAP=300 # how long NM gets to reconnect on its own between attempts
 ALL_IN_ONE=0
+EINK_ENABLED=0
 WIFI_DEV=wlan0
 # shellcheck disable=SC1090
 [ -r "$CONF" ] && . "$CONF" 2>/dev/null
@@ -99,6 +100,11 @@ while true; do
   RECOVER_PROFILE="$(nmcli -t -f NAME,TYPE con show 2>/dev/null | awk -F: '$2 ~ /wireless/ {print $1; exit}')"
 
   if sd_start_ap "$LOG"; then
+    # Same reasoning as first-run setup: the panel is holding art and looks fine, so say what's wrong
+    # ON THE GLASS. The recovery variant is red and leads with "Couldn't join your Wi-Fi" (ADR-058).
+    if [ "${EINK_ENABLED:-0}" = "1" ]; then
+      ( /usr/local/bin/sd-setup-card --ssid Docent-Setup --recovery >>"$LOG" 2>&1 || true ) &
+    fi
     EXTRA=()
     [ "${ALL_IN_ONE}" = "1" ] && EXTRA+=(--all-in-one)
     # `timeout` bounds the attempt. On a successful commit the wizard reboots the box, so this call

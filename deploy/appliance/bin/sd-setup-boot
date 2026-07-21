@@ -23,6 +23,10 @@ CONF="$(sd_resolve_conf "${1:-}")"
 AP_ADDR="10.0.0.1/24"
 # Everything the AP bring-up says goes here — hostapd's own log included. Never /dev/null (ADR-056).
 AP_LOG="/var/log/sd-setup-ap.log"
+# EINK_ENABLED tells us whether this box has a panel to paint the setup card onto.
+EINK_ENABLED=0
+# shellcheck disable=SC1090
+[ -r "$CONF" ] && . "$CONF" 2>/dev/null
 
 if sd_is_configured "$CONF"; then
   echo "sd-setup-boot: already configured ($CONF) — skipping setup, continuing to kiosk."
@@ -49,6 +53,13 @@ stop_ap()  { sd_stop_ap; }
 trap stop_ap EXIT
 
 start_ap
+
+# Tell the E-INK panel it needs setting up. Without this a dumb panel keeps holding its last frame at
+# zero power, so an unconfigured box looks finished and working rather than waiting (ADR-058).
+# Backgrounded: a full Spectra 6 refresh takes ~9s and must never delay the wizard coming up.
+if [ "${EINK_ENABLED:-0}" = "1" ]; then
+  ( /usr/local/bin/sd-setup-card --ssid Docent-Setup >>"$AP_LOG" 2>&1 || true ) &
+fi
 
 # Serve the wizard on port 80 (the captive portal redirects every probe here). The wizard writes the
 # conf, joins Wi-Fi, and reboots on commit — so this normally does not return.

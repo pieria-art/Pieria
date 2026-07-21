@@ -78,6 +78,7 @@ install -m 0755 "$BIN_SRC/sd-watchdog"       /usr/local/bin/sd-watchdog
 install -m 0755 "$BIN_SRC/sd-setup-boot"     /usr/local/bin/sd-setup-boot
 install -m 0755 "$BIN_SRC/sd-setup-pre"      /usr/local/bin/sd-setup-pre
 install -m 0755 "$BIN_SRC/sd-net-recover"    /usr/local/bin/sd-net-recover
+install -m 0755 "$BIN_SRC/sd-setup-card"     /usr/local/bin/sd-setup-card
 install -m 0755 "$SETUP_SRC/sd_setup.py"     /usr/local/bin/sd-setup
 install -m 0755 "$BIN_SRC/sd-update"         /usr/local/bin/sd-update
 install -m 0755 "$BIN_SRC/sd-eink"           /usr/local/bin/sd-eink
@@ -155,7 +156,9 @@ install -d /usr/local/share/screen-docent/setup
 install -m 0644 "$SETUP_SRC/common.sh"    /usr/local/share/screen-docent/setup/common.sh
 install -m 0644 "$SETUP_SRC/hostapd.conf" /usr/local/share/screen-docent/setup/hostapd.conf
 install -m 0644 "$SETUP_SRC/dnsmasq.conf" /usr/local/share/screen-docent/setup/dnsmasq.conf
-apt-get install -y --no-install-recommends hostapd dnsmasq iw \
+# python3-qrcode powers the setup card's scan-to-join QR; optional (the card degrades to
+# written instructions without it).
+apt-get install -y --no-install-recommends hostapd dnsmasq iw python3-qrcode \
   || echo "    (hostapd/dnsmasq unavailable — the setup AP won't come up, but a pre-seeded conf still works)"
 systemctl disable --now hostapd dnsmasq 2>/dev/null || true
 sed "s#__BOOT_CONF__#$BOOT_CONF#g" "$UNIT_SRC/sd-setup.service" > /etc/systemd/system/sd-setup.service
