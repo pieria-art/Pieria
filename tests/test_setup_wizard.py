@@ -297,3 +297,43 @@ def test_scanned_networks_survives_a_missing_cache(tmp_path, monkeypatch):
     """No scan (AP already up, or scan failed) must degrade to free-text entry, never to an error."""
     monkeypatch.setattr(sd_setup, "SCAN_CACHE", tmp_path / "nope.json")
     assert sd_setup._scanned_networks() == []
+
+
+def test_build_conf_preserves_settings_the_wizard_does_not_own():
+    """The wizard emits a FIXED key set, so a re-run silently deleted everything else — an e-ink box
+    that went through setup (or the ADR-057 recovery wizard) came back with EINK_ENABLED, saturation,
+    cadence and WATCHDOG all gone, and nothing to say why."""
+    existing = (
+        "# comment\n"
+        "SERVER_URL=http://old:8000\n"      # wizard-owned -> replaced
+        "EINK_ENABLED=1\n"                  # not owned -> preserved
+        "EINK_SATURATION=0.5\n"
+        "EINK_MIN_INTERVAL=60\n"
+        "WATCHDOG=observe\n"
+    )
+    conf = sd_setup.build_conf(
+        {"server_url": "http://localhost:8000", "display_id": "wall", "orientation": "landscape"},
+        all_in_one=True, existing=existing)
+    assert "SERVER_URL=http://localhost:8000" in conf
+    assert "SERVER_URL=http://old:8000" not in conf
+    for kept in ("EINK_ENABLED=1", "EINK_SATURATION=0.5", "EINK_MIN_INTERVAL=60", "WATCHDOG=observe"):
+        assert kept in conf, f"wizard clobbered {kept}"
+
+
+@pytest.mark.parametrize("orientation,rotate,eink", [
+    ("landscape", "", ""), ("90", "90", "portrait"), ("270", "270", "portrait"), ("180", "180", ""),
+])
+def test_orientation_reaches_both_hdmi_and_eink(orientation, rotate, eink):
+    """One orientation choice must drive BOTH surfaces: ROTATE for wlroots/HDMI and EINK_ORIENTATION for
+    the e-ink client, which reads its own variable and would otherwise stay landscape on a panel the
+    user just told us is portrait. 180 is still a landscape panel, so it is NOT portrait for e-ink."""
+    conf = sd_setup.build_conf(
+        {"server_url": "http://localhost:8000", "display_id": "wall", "orientation": orientation})
+    assert f"ROTATE={rotate}\n" in conf
+    assert f"EINK_ORIENTATION={eink}\n" in conf
+
+
+def test_build_conf_first_boot_has_nothing_to_preserve():
+    conf = sd_setup.build_conf(
+        {"server_url": "http://localhost:8000", "display_id": "wall", "orientation": "landscape"})
+    assert "EINK_ENABLED" not in conf

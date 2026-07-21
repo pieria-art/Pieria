@@ -82,12 +82,37 @@ def _pick_all_in_one(fields: dict, default: bool) -> bool:
     return str(raw).strip().lower() in ("1", "true", "yes", "on")
 
 
-def build_conf(fields: dict, all_in_one: bool = False) -> str:
+#: Keys the wizard OWNS — everything else in an existing conf is preserved verbatim.
+_WIZARD_KEYS = {"SERVER_URL", "DISPLAY_ID", "MODE", "CYCLE_TIME", "ROTATE", "OUTPUT",
+                "WAIT_TIMEOUT", "ALL_IN_ONE", "GEMINI_API_KEY", "EINK_ORIENTATION"}
+
+
+def _preserved_lines(existing: str) -> list:
+    """Settings from an existing conf that the wizard must NOT clobber.
+
+    The wizard emits a fixed key set, so a re-run silently DELETED everything else — EINK_ENABLED,
+    EINK_SATURATION, EINK_MIN_INTERVAL, WATCHDOG. An e-ink box that went through setup (or the ADR-057
+    recovery wizard) came back with its panel unconfigured and its watchdog reset, with nothing to
+    indicate why. Found before it could bite on the bench, 2026-07-21.
+    """
+    out = []
+    for raw in (existing or "").splitlines():
+        line = raw.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        key = line.split("=", 1)[0].strip()
+        if key and key not in _WIZARD_KEYS:
+            out.append(f"{key}={line.split('=', 1)[1].strip()}")
+    return out
+
+
+def build_conf(fields: dict, all_in_one: bool = False, existing: str = "") -> str:
     """Render the screen-docent.conf text from validated wizard fields.
 
     Only kiosk variables land here (SERVER_URL/DISPLAY_ID/ROTATE/OUTPUT/…). Wi-Fi credentials are NOT
     written to this FAT boot file — they go to NetworkManager via nmcli at commit time. GEMINI_API_KEY
-    is left blank (a separate, optional step for all-in-one AI).
+    is left blank (a separate, optional step for all-in-one AI). Any OTHER key already present in
+    `existing` is carried through untouched — see _preserved_lines.
     """
     rotate = ORIENTATIONS.get(fields.get("orientation", "landscape"), ("", ""))[0]
     display_id = sanitize_display_id(fields.get("display_id", "")) or "display"
@@ -104,7 +129,12 @@ def build_conf(fields: dict, all_in_one: bool = False) -> str:
         f"OUTPUT={output}\n"
         "WAIT_TIMEOUT=0\n"
         f"ALL_IN_ONE={'1' if _pick_all_in_one(fields, all_in_one) else '0'}\n"
+        # The chosen orientation must reach BOTH surfaces. ROTATE drives wlroots/HDMI; the e-ink client
+        # reads its own EINK_ORIENTATION and would otherwise stay landscape on a panel the user just
+        # told us is portrait. Only 90/270 are portrait mounts — 180 is still a landscape panel.
+        f"EINK_ORIENTATION={'portrait' if rotate in ('90', '270') else ''}\n"
         "GEMINI_API_KEY=\n"
+        + ("".join(f"{line}\n" for line in _preserved_lines(existing)))
     )
 
 
@@ -131,6 +161,14 @@ def _scanned_networks() -> list:
         if ssid not in best or signal > best[ssid]["signal"]:
             best[ssid] = {"ssid": ssid, "signal": signal, "secure": bool(n.get("secure"))}
     return sorted(best.values(), key=lambda n: -n["signal"])
+
+
+def _read_existing(path: Path) -> str:
+    """Current conf text, or empty on a first-ever boot. Never raises."""
+    try:
+        return path.read_text()
+    except OSError:
+        return ""
 
 
 def resolve_boot_conf_path() -> Path:
@@ -258,7 +296,7 @@ def make_handler(cfg: SetupConfig):
                 errors = validate_fields(body)
                 out = {"errors": errors}
                 if not errors:
-                    out["conf"] = build_conf(body, cfg.all_in_one)
+                    out["conf"] = build_conf(body, cfg.all_in_one, _read_existing(cfg.boot_conf))
                 self._json(200 if not errors else 422, out)
             elif path == "/api/orientation":
                 self._json(200, _apply_rotation(cfg.output, body.get("orientation", "landscape"),
@@ -277,7 +315,7 @@ def make_handler(cfg: SetupConfig):
             if errors:
                 self._json(422, {"errors": errors})
                 return
-            conf = build_conf(fields, cfg.all_in_one)
+            conf = build_conf(fields, cfg.all_in_one, _read_existing(cfg.boot_conf))
             ssid = (fields.get("wifi_ssid") or "").strip()
 
             if cfg.dry_run:
