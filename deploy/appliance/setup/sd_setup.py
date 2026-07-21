@@ -204,6 +204,23 @@ class SetupConfig:
         self._revert_timer: threading.Timer | None = None
 
 
+def _preview_on_eink(orientation: str) -> bool:
+    """Repaint the e-ink setup card in `orientation`, in the background. Returns whether we launched it.
+
+    Best-effort and fire-and-forget: a full Spectra 6 refresh is ~9s and the HTTP response must not wait
+    on it. Absent panel / absent script simply means False and the caller falls back to its old message.
+    """
+    card = shutil.which("sd-setup-card") or "/usr/local/bin/sd-setup-card"
+    if not Path(card).exists():
+        return False
+    try:
+        subprocess.Popen([card, "--ssid", "Docent-Setup", "--orientation", orientation],
+                         stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        return True
+    except OSError:
+        return False
+
+
 def _apply_rotation(output: str, orientation: str, revert_after: int, cfg: SetupConfig) -> dict:
     """Best-effort live rotate via wlr-randr (opt-in on the Pi), with an auto-revert so a wrong pick on
     a keyboard-less wall mount can't strand the display. Returns a status dict for the UI.
@@ -212,7 +229,16 @@ def _apply_rotation(output: str, orientation: str, revert_after: int, cfg: Setup
     laptop, or the wizard running before the kiosk starts — wlr-randr isn't present (or there's no
     Wayland session), so we record the choice and report it plainly instead of erroring."""
     transform = {"landscape": "normal", "90": "90", "180": "180", "270": "270"}.get(orientation, "normal")
+
+    # E-ink first: wlr-randr only ever drove wlroots/HDMI, so on an e-ink box the preview button did
+    # literally nothing (found mid-test, 2026-07-21). Repainting the setup card in the chosen
+    # orientation IS the preview for that surface — the user watches the panel turn.
+    eink = _preview_on_eink(orientation)
+
     if not shutil.which("wlr-randr") or not os.environ.get("WAYLAND_DISPLAY"):
+        if eink:
+            return {"mode": "eink", "message": "Repainting the e-ink panel in that orientation — "
+                                               "it takes about 10 seconds."}
         return {"mode": "unavailable",
                 "message": "Live preview runs on the display itself (the Pi kiosk). Your choice is "
                            "recorded and written to the config."}

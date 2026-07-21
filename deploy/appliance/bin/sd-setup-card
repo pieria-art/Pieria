@@ -25,6 +25,9 @@ from __future__ import annotations
 import argparse
 import base64
 import io
+import json
+import re
+import subprocess
 import sys
 from pathlib import Path
 
@@ -71,6 +74,62 @@ def _wifi_qr(ssid: str, px: int):
     qr.make(fit=True)
     img = qr.make_image(fill_color="black", back_color="white").convert("RGB")
     return img.resize((px, px), Image.NEAREST)  # NEAREST keeps module edges hard
+
+
+SCAN_CACHE = Path("/run/sd-setup/networks.json")
+
+
+def scan_networks(dev: str = "wlan0") -> list:
+    """Nearby Wi-Fi via `iw`, NOT nmcli.
+
+    This has to run during a setup boot, and by then sd-setup-pre has already marked wlan0 UNMANAGED so
+    hostapd can claim it (the whole ADR-056 fix). NetworkManager therefore owns nothing and
+    `nmcli device wifi list` returns an empty list — which is why the picker showed no networks on the
+    first real cycle (found 2026-07-21). `iw` talks to the kernel directly and doesn't care who manages
+    the device; it only needs the interface up and root.
+    """
+    subprocess.run(["ip", "link", "set", dev, "up"], check=False, capture_output=True, timeout=10)
+    out = ""
+    for _ in range(3):  # a cold radio often returns "Device or resource busy" on the first go
+        try:
+            r = subprocess.run(["iw", "dev", dev, "scan"], capture_output=True, text=True, timeout=45)
+        except (OSError, subprocess.SubprocessError):
+            break
+        if r.returncode == 0 and r.stdout.strip():
+            out = r.stdout
+            break
+        subprocess.run(["sleep", "2"], check=False)
+    if not out:
+        return []
+
+    nets, cur = [], None
+
+    def flush():
+        if cur and cur.get("ssid"):
+            nets.append(cur)
+
+    for line in out.splitlines():
+        t = line.strip()
+        if t.startswith("BSS "):
+            flush()
+            cur = {"ssid": "", "signal": 0, "secure": False}
+        elif cur is None:
+            continue
+        elif t.startswith("signal:"):
+            m = re.search(r"(-?\d+(?:\.\d+)?)", t)
+            if m:  # dBm -> rough 0-100, the same shape nmcli reports
+                cur["signal"] = max(0, min(100, int(2 * (float(m.group(1)) + 100))))
+        elif t.startswith("SSID:"):
+            cur["ssid"] = t[5:].strip()
+        elif t.startswith(("RSN:", "WPA:")) or "Privacy" in t:
+            cur["secure"] = True
+    flush()
+
+    best: dict = {}
+    for n in nets:
+        if n["ssid"] not in best or n["signal"] > best[n["ssid"]]["signal"]:
+            best[n["ssid"]] = n
+    return sorted(best.values(), key=lambda n: -n["signal"])
 
 
 def _gallery_wall(d: ImageDraw.ImageDraw, x: int, y: int, w: int, h: int, S) -> None:
@@ -312,7 +371,18 @@ def main(argv=None):
     ap.add_argument("--html", default="",
                     help="Write the HDMI setup splash (self-contained HTML) instead of painting.")
     ap.add_argument("--saturation", type=float, default=0.5)
+    ap.add_argument("--scan", action="store_true",
+                    help="Scan for Wi-Fi and cache it for the wizard's picker, then exit.")
+    ap.add_argument("--orientation", default="landscape",
+                    help="landscape | portrait | 90 | 270 | 180 — portrait mounts compose rotated.")
     args = ap.parse_args(argv)
+
+    if args.scan:
+        nets = scan_networks()
+        SCAN_CACHE.parent.mkdir(parents=True, exist_ok=True)
+        SCAN_CACHE.write_text(json.dumps(nets))
+        print(f"sd-setup-card: cached {len(nets)} networks for the setup picker")
+        return 0
 
     if args.html:
         Path(args.html).parent.mkdir(parents=True, exist_ok=True)
@@ -329,7 +399,15 @@ def main(argv=None):
             w, h = client.resolution
     w, h = w or 1600, h or 1200
 
-    card = _quantize_to_panel(render_card(w, h, args.ssid, args.recovery))
+    # A portrait panel is the SAME landscape buffer, physically turned 90 degrees. So the card must be
+    # COMPOSED at (h, w) and rotated back onto the native buffer at paint time — not composed landscape
+    # and spun, which would letterbox and mis-frame it. Mirrors eink_client's rule (eink_client.py:214).
+    portrait = args.orientation.strip().lower() in ("portrait", "90", "270")
+    if portrait:
+        card = _quantize_to_panel(render_card(h, w, args.ssid, args.recovery))
+        card = card.rotate(90, expand=True)
+    else:
+        card = _quantize_to_panel(render_card(w, h, args.ssid, args.recovery))
     if args.out:
         card.save(args.out)
         print(f"sd-setup-card: wrote {args.out} ({w}x{h})")
