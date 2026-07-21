@@ -177,3 +177,24 @@ rule above is built from.
    primaries for the client) generalizes to other e-ink families (ACeP 7-colour, mono greyscale); the
    specific palette values and gamma rule in this doc are EL133UF1-specific and would need their own
    bench pass on different hardware.
+
+---
+
+## Panel orientation — which way is "portrait"? (bench, 2026-07-21)
+
+`EINK_ORIENTATION=portrait` tells `eink_client` to compose at `h × w` and rotate back onto the panel's
+native landscape buffer at paint time. But *which* 90° turn is a physical question about how the panel
+is mounted, and it isn't discoverable from software.
+
+**For the Pimoroni Inky Impression 13.3" (EL133UF1): `90` is the correct portrait setting.** The
+practical check on the bench: **at 90 the silkscreened text on the PCB reads the right way up.** Use
+that as the orientation reference rather than guessing from the ribbon cable or the connector side.
+
+Validated end-to-end in the first-run wizard: choosing "Portrait — rotated 90°" writes `ROTATE=90`
+(wlroots/HDMI) *and* `EINK_ORIENTATION=portrait`, and the panel painted portrait-composed art in
+production — not a spun landscape frame.
+
+⚠ **Unverified on the raw Waveshare equivalent.** It very likely matches (same EL133UF1 glass), but the
+carrier board differs, so treat `90` as confirmed-for-Pimoroni and re-check on first contact with other
+hardware. If a future panel disagrees, the fix belongs in the wizard's orientation labels, not in
+`eink_client` — the compose-then-rotate rule is panel-independent.
