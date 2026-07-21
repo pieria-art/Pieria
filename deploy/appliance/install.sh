@@ -215,7 +215,16 @@ if [ "${ALL_IN_ONE:-0}" = "1" ]; then
 
   echo "    Building & starting the stack (first run downloads + builds; be patient)..."
   ( cd "$REPO_ROOT" && docker compose -f docker-compose.yml -f "$OVERRIDE" up -d --build )
-  echo "    Server is starting on http://localhost:8000 (restart: unless-stopped survives reboot)"
+  echo "    Server is starting on http://localhost:8000"
+
+  # Make boot-time startup EXPLICIT. `restart: unless-stopped` only revives a container that already
+  # exists, so it cannot help a freshly flashed image (nothing to revive) or a box after a
+  # `docker compose down`. See sd-app.service.
+  sed -e "s#__REPO_ROOT__#$REPO_ROOT#g" -e "s#__COMPOSE_OVERRIDE__#$OVERRIDE#g" \
+    "$UNIT_SRC/sd-app.service" > /etc/systemd/system/sd-app.service
+  systemctl daemon-reload
+  systemctl enable sd-app.service 2>/dev/null || echo "    (could not enable sd-app.service)"
+  echo "    sd-app.service installed + ENABLED (creates the stack on boot, even on a fresh flash)."
 
   echo "==> Installing host metrics timer (Device Health throttle/under-voltage reading)"
   sed "s#__REPO_ROOT__#$REPO_ROOT#g" "$UNIT_SRC/sd-metrics.service" > /etc/systemd/system/sd-metrics.service

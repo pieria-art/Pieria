@@ -1,0 +1,34 @@
+# Installed AND ENABLED by install.sh (all-in-one only) as /etc/systemd/system/sd-app.service.
+# __REPO_ROOT__ and __COMPOSE_OVERRIDE__ are substituted by install.sh.
+#
+# WHY THIS EXISTS: until now nothing brought the stack up at boot. install.sh ran `docker compose up -d`
+# once, and `restart: unless-stopped` kept THAT container alive across reboots. That works on a box
+# someone provisioned by hand, but it silently fails in the two cases that matter most:
+#
+#   * A FLASHED IMAGE. A golden master captured with no container (or with one that was explicitly
+#     stopped, which `unless-stopped` deliberately does not restart) boots with nothing to create it —
+#     no app, no art, ever. Found while preparing the first .img capture, 2026-07-21.
+#   * Any `docker compose down`, which removes the container and with it the only thing that would have
+#     restarted it.
+#
+# Making startup explicit means the image can ship with NO container at all: first boot creates it.
+# That is also what lets the .img ship empty and pull its first pack from R2 out of the box.
+[Unit]
+Description=Screen Docent application stack (docker compose)
+Requires=docker.service
+After=docker.service network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+WorkingDirectory=__REPO_ROOT__
+# No --build: the image is baked into the card. Building here would turn a first boot into a 20-minute
+# compile on a Pi, and would need the network before the wizard has even configured it.
+ExecStart=/usr/bin/docker compose -f docker-compose.yml -f __COMPOSE_OVERRIDE__ up -d
+ExecStop=/usr/bin/docker compose -f docker-compose.yml -f __COMPOSE_OVERRIDE__ stop
+# First boot may create the container and run migrations; don't let systemd time it out.
+TimeoutStartSec=0
+
+[Install]
+WantedBy=multi-user.target
