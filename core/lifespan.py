@@ -10,9 +10,8 @@ import os
 import shutil
 from contextlib import asynccontextmanager
 from datetime import UTC, datetime
-from pathlib import Path
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI
 from fastapi.concurrency import run_in_threadpool
 from PIL import Image
 from sqlalchemy import delete, func, select
@@ -21,7 +20,7 @@ from sqlalchemy.orm import Session
 import federation
 import frame_push
 from config import ARTWORK_ROOT, LIBRARY_DIR
-from core.downloads import _aspect_crops, _download_image_to_library, _focal_xy
+from core.downloads import _aspect_crops, _focal_xy
 from core.media import render_canvas_image
 from core.playback import _frame_select
 from core.settings_util import _upsert_setting
@@ -41,7 +40,7 @@ logger = logging.getLogger("artwork-display-api")
 
 # ADR-038: the manifest tools/build_pack.py bakes into a self-contained appliance art-pack. When
 # present, boot mints its collections straight from local masters (pre_seed_from_pack) instead of
-# downloading factory_seed.json live (run_factory_seed) — see the leader-only boot section below.
+# (The old live-download factory seed was removed 2026-07-21 — see the leader-only boot section.)
 PACK_MANIFEST = ARTWORK_ROOT / "pack-manifest.json"
 # ADR-044: the unified-ingestion pack layout — a pack-index listing per-collection signed Manifest v2
 # feeds. When present, boot installs each as a VERIFIED LOCAL SUBSCRIPTION (the same path a third-party
@@ -121,16 +120,16 @@ def sync_db_with_filesystem(db: Session) -> None:
 def pre_seed_from_pack(db: Session) -> bool:
     """Boot-time consumer of tools/build_pack.py's pack-manifest.json (ADR-038): when the appliance
     ships with a baked-in art-pack, mint its collections into playlists with masters already local
-    (no downloads) — the offline counterpart to run_factory_seed's live-download path.
+    (no downloads) — the baked-pack path; there is no live-download seeder any more.
 
     Returns False when there's no pack (PACK_MANIFEST absent) so the caller falls back to
-    run_factory_seed; True once seeded (including "already seeded" on a repeat boot).
+    seed_from_registry; True once seeded (including "already seeded" on a repeat boot).
     """
     if not PACK_MANIFEST.exists():
         return False
 
     if db.query(SettingsModel).filter(SettingsModel.setting_key == "pack_seeded").first():
-        return True  # idempotency guard — distinct from is_seed, which run_factory_seed also sets
+        return True  # idempotency guard — distinct from is_seed, which the retired factory seed also sets
 
     manifest = json.loads(PACK_MANIFEST.read_text())
     collections = manifest.get("collections", [])
@@ -479,89 +478,6 @@ def restore_gallery_from_collection(db: Session, playlist_id: int) -> dict | Non
     return {"restored": restored, "missing_masters": missing_masters, "title": pl.name}
 
 
-async def run_factory_seed(db: Session):
-    """Parses factory_seed.json and injects masterpieces if library is empty."""
-    seed_file = Path("static/factory_seed.json")
-    if not seed_file.exists(): return
-
-    existing = db.query(ArtworkModel).filter(ArtworkModel.is_seed == True).first()
-    if existing: return
-
-    try:
-        import json
-        with open(seed_file) as f:
-            seeds = json.load(f)
-
-        logger.info(f"[Bootstrapper] Injecting {len(seeds)} Masterpieces from Factory Seed...")
-
-        async def perform_downloads(seed_items: list):
-            db_local = SessionLocal()
-            try:
-                await asyncio.sleep(2)
-                for idx, item in enumerate(seed_items):
-                    await asyncio.sleep(2.0)
-                    try:
-                        pl_name = item.get("playlist", "The Masterpieces")
-                        playlist = db_local.query(PlaylistModel).filter(PlaylistModel.name == pl_name).first()
-                        if not playlist:
-                            playlist = PlaylistModel(name=pl_name)
-                            db_local.add(playlist); db_local.commit(); db_local.refresh(playlist)
-                            (ARTWORK_ROOT / pl_name).mkdir(parents=True, exist_ok=True)
-
-                        filename = f"seed_{idx}_{item.get('title', 'art').replace(' ','_').lower()[:15]}"
-                        logger.info(f"[Bootstrapper] Downloading '{filename}'...")
-
-                        # Shared robust downloader (UA + 429 retry + validation).
-                        try:
-                            dest_path, safe_name, w, h = await _download_image_to_library(
-                                item.get("source_url"), filename=filename)
-                        except HTTPException as e:
-                            logger.error(f"[Bootstrapper] Failed download {filename}: {e.detail}")
-                            continue
-
-                        pl_path = ARTWORK_ROOT / pl_name / safe_name
-                        # Remove stale symlink before creating new one
-                        if pl_path.is_symlink() or pl_path.exists():
-                            pl_path.unlink()
-                        try: os.symlink(dest_path.resolve(), pl_path)
-                        except OSError: shutil.copy(dest_path, pl_path)
-
-                        sfx, sfy = _focal_xy(item)
-                        scrops = _aspect_crops(item)
-                        artwork = ArtworkModel(
-                            filename=safe_name, original_width=w, original_height=h,
-                            crop_width=float(w), crop_height=float(h),
-                            status='approved',
-                            title=item.get("title"), agent_name=item.get("agent_name"),
-                            agent_role=item.get("agent_role"), creation_date=item.get("creation_date"),
-                            cultural_context=item.get("cultural_context"), medium=item.get("medium"),
-                            date_display=item.get("date_display"), description_narrative=item.get("description_narrative"),
-                            tags=item.get("tags"), series=item.get("series"),
-                            resolution_tier=item.get("resolution_tier"), is_seed=True,
-                            focal_x=sfx, focal_y=sfy,
-                            aspect_crops_json=json.dumps(scrops) if scrops else None,
-                        )
-                        db_local.add(artwork); db_local.commit(); db_local.refresh(artwork)
-
-                        try:
-                            db_local.execute(playlist_artwork.insert().values(
-                                playlist_id=playlist.id, artwork_id=artwork.id, display_order=idx
-                            ))
-                            db_local.commit()
-                        except Exception:
-                            db_local.rollback()  # playlist_artwork may already exist
-
-                        logger.info(f"[Bootstrapper] ✓ Seeded '{item.get('title')}' → {pl_name}")
-
-                    except Exception as inner_e: logger.error(f"[Bootstrapper] Item error: {inner_e}")
-            finally: db_local.close()
-
-        asyncio.create_task(perform_downloads(seeds))
-
-    except Exception as e:
-        logger.error(f"[Bootstrapper] Failed to parse factory_seed.json: {e}")
-
-
 async def _seed_default_collection(registry_url: str, cid: str):
     """Background: download+install the OOB default collection from R2, then set it as the default
     playlist and mark the pack seeded. Own real, verified art — no live Wikimedia dependency."""
@@ -595,7 +511,7 @@ async def seed_from_registry(db: Session) -> bool:
     the background so boot stays fast; art appears when it lands. Additional collections come via the card.
 
     Returns True if seeding was initiated (caller SKIPS the factory-seed fallback); False if the registry is
-    unreachable/empty (caller falls back to run_factory_seed — a purist/offline "works without our infra")."""
+    unreachable/empty (no fallback: the box simply has no art yet and retries on a later boot)."""
     from config import PACK_REGISTRY_URL
     from core import pack_fetch  # lazy: import cycle
     if db.query(SettingsModel).filter(SettingsModel.setting_key == "pack_seeded").first():
@@ -677,8 +593,16 @@ async def lifespan(app: FastAPI):
             except Exception as e:
                 logger.error(f"[PackSeed] Non-fatal error during pack install/pre-seed: {e}", exc_info=True)
                 has_pack = False
+            # NO live-download fallback any more (removed 2026-07-21). run_factory_seed hotlinked
+            # museum URLs from static/factory_seed.json, which contradicted the own-the-art
+            # architecture AND had a poisonous failure mode: on a setup-mode boot there is no network
+            # yet, so it created its playlists, failed every download, and left three EMPTY galleries
+            # behind permanently. Those empties then sorted ahead of the real pack and stranded the
+            # e-ink pull. A box that cannot reach R2 simply has no art yet and will seed on a later
+            # boot; if we ever want a true offline start, bake a lean Core pack INTO the image rather
+            # than live-downloading from museums.
             if not has_pack:
-                await run_factory_seed(db)
+                logger.info("[PackSeed] No pack yet (offline or registry unreachable) — will retry next boot.")
         finally:
             db.close()
 
