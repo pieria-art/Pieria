@@ -103,6 +103,18 @@ case "${1:-}" in
     clean_logs
     echo "Done. Power down now and capture the card (dd -> pishrink -> xz). Do NOT reboot this box"
     echo "on the bench — it would regenerate identity here instead of on the flashed units."
+    # --full deletes the SSH host keys, so this command destroys its own remote access: any shutdown
+    # has to happen in the SAME invocation or the box can only be powered off by pulling the plug,
+    # which images a dirty ext4 journal into every flashed unit (learned the hard way 2026-07-21).
+    if [ "${POWEROFF:-0}" = "1" ]; then
+      echo "Syncing and powering off now (POWEROFF=1)."
+      sync
+      exec systemctl poweroff
+    else
+      echo
+      echo "TIP: re-run with POWEROFF=1 to sync + shut down in one step — after this command SSH is"
+      echo "     already dead (host keys are gone), so you cannot cleanly shut down remotely."
+    fi
     ;;
   --help|-h|"")
     sed -n '2,30p' "$0" | sed 's/^# \{0,1\}//'
