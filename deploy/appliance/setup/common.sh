@@ -87,6 +87,13 @@ EOF
 # $1 = optional NM profile to explicitly reactivate (recovery path re-joins the saved Wi-Fi).
 sd_stop_ap() {
   local PROFILE="${1:-}"
+  # Do NOTHING unless an AP is actually up. This used to tear down unconditionally, so merely stopping
+  # sd-net-recover on a HEALTHY box ran `ip addr flush dev wlan0` and knocked it off the network — it
+  # took the bench Pi offline and out of reach (2026-07-21). Teardown must be safe by construction, not
+  # by every caller remembering to check.
+  if ! pgrep -f "hostapd.*$SD_SETUP_DIR" >/dev/null 2>&1 && [ ! -e "$SD_DROPIN" ]; then
+    return 0
+  fi
   # Match only OUR processes — a bare `pkill dnsmasq` would kill an unrelated system resolver.
   pkill -f "dnsmasq.*$SD_SETUP_DIR" 2>/dev/null || true
   pkill -f "hostapd.*$SD_SETUP_DIR" 2>/dev/null || true
