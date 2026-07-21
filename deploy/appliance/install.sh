@@ -210,7 +210,10 @@ if [ "${ALL_IN_ONE:-0}" = "1" ]; then
   # by 1000 or the container can't write the DB — migrations fail and every DB endpoint 500s (a box first
   # set up under the OLD root container leaves these root-owned; this reconciles it, idempotently, BEFORE
   # the container boots so the very first migration can write).
-  mkdir -p "$REPO_ROOT/data" "$REPO_ROOT/Artwork"
+  # data/appliance is the unprivileged container's mailbox to root (update bridge). Pre-create it with
+  # the container's ownership so a root-run helper (sd-metrics/sd-watchdog) can't get there first and
+  # leave it root-owned — which makes every "Update App" fail with a 500 (found 2026-07-21).
+  mkdir -p "$REPO_ROOT/data/appliance" "$REPO_ROOT/Artwork"
   chown -R 1000:1000 "$REPO_ROOT/data" "$REPO_ROOT/Artwork" || true
 
   echo "    Building & starting the stack (first run downloads + builds; be patient)..."

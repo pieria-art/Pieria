@@ -20,6 +20,11 @@ fi
 OUT_DIR="$REPO_ROOT/data/appliance"
 OUT="$OUT_DIR/host_metrics.json"
 mkdir -p "$OUT_DIR"
+# The container is UNPRIVILEGED (uid 1000) and uses this directory as its mailbox to root — the update
+# bridge writes request.json/status.json here. We run as ROOT, so whichever of us creates the directory
+# first owns it, and root winning means the container gets EACCES and every "Update App" returns a 500.
+# Observed on the first flashed unit, 2026-07-21. Always hand ownership back.
+chown 1000:1000 "$OUT_DIR" 2>/dev/null || true
 
 THROTTLED=""
 TEMP=""
