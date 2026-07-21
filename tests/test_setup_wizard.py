@@ -253,3 +253,47 @@ def test_mode_recovery_defaults_empty(server):
     base, _ = server
     with urllib.request.urlopen(base + "/api/mode") as r:
         assert json.loads(r.read())["recovery"] == ""
+
+
+@pytest.mark.parametrize("raw,default,expected", [
+    ("1", False, True), ("0", True, False), ("true", False, True), ("on", False, True),
+    (None, True, True), (None, False, False), ("", True, True),
+])
+def test_pick_all_in_one(raw, default, expected):
+    """ALL_IN_ONE used to come ONLY from the --all-in-one CLI flag, which sd-setup-boot never passes —
+    so the flagship all-in-one .img could not write ALL_IN_ONE=1 from its own wizard. The form field now
+    decides, falling back to the CLI default when absent."""
+    fields = {} if raw is None else {"all_in_one": raw}
+    assert sd_setup._pick_all_in_one(fields, default) is expected
+
+
+def test_build_conf_honours_the_form_over_the_cli_default():
+    conf = sd_setup.build_conf(
+        {"server_url": "http://localhost:8000", "display_id": "wall",
+         "orientation": "landscape", "all_in_one": "1"},
+        all_in_one=False)          # CLI says no, the user said yes -> the user wins
+    assert "ALL_IN_ONE=1" in conf
+
+
+def test_scanned_networks_dedupes_meshes_and_sorts_by_signal(tmp_path, monkeypatch):
+    """A mesh shows the same SSID once per radio (the bench saw 3Yosts five times). The picker must show
+    each network ONCE, strongest first, or the list is unusable on exactly the setups most likely to
+    have several access points."""
+    cache = tmp_path / "networks.json"
+    cache.write_text(json.dumps([
+        {"ssid": "3Yosts", "signal": 52, "secure": True},
+        {"ssid": "Neighbour", "signal": 61, "secure": True},
+        {"ssid": "3Yosts", "signal": 74, "secure": True},
+        {"ssid": "", "signal": 90, "secure": False},      # hidden/blank -> dropped
+    ]))
+    monkeypatch.setattr(sd_setup, "SCAN_CACHE", cache)
+    nets = sd_setup._scanned_networks()
+    # 3Yosts wins on its STRONGEST radio (74), not the 52 that happened to be listed first.
+    assert [n["ssid"] for n in nets] == ["3Yosts", "Neighbour"]
+    assert nets[0]["signal"] == 74
+
+
+def test_scanned_networks_survives_a_missing_cache(tmp_path, monkeypatch):
+    """No scan (AP already up, or scan failed) must degrade to free-text entry, never to an error."""
+    monkeypatch.setattr(sd_setup, "SCAN_CACHE", tmp_path / "nope.json")
+    assert sd_setup._scanned_networks() == []

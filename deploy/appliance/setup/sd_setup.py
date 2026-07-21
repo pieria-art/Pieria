@@ -71,6 +71,17 @@ def validate_fields(fields: dict) -> dict:
     return errors
 
 
+def _pick_all_in_one(fields: dict, default: bool) -> bool:
+    """The wizard now ASKS whether this box runs the server. Fall back to the CLI/--all-in-one default
+    when the field is absent (older clients, or a caller that already knows). Without this the flagship
+    all-in-one .img could never write ALL_IN_ONE=1: the value came only from a CLI flag that
+    sd-setup-boot does not pass."""
+    raw = fields.get("all_in_one")
+    if raw is None or raw == "":
+        return default
+    return str(raw).strip().lower() in ("1", "true", "yes", "on")
+
+
 def build_conf(fields: dict, all_in_one: bool = False) -> str:
     """Render the screen-docent.conf text from validated wizard fields.
 
@@ -92,9 +103,34 @@ def build_conf(fields: dict, all_in_one: bool = False) -> str:
         f"ROTATE={rotate}\n"
         f"OUTPUT={output}\n"
         "WAIT_TIMEOUT=0\n"
-        f"ALL_IN_ONE={'1' if all_in_one else '0'}\n"
+        f"ALL_IN_ONE={'1' if _pick_all_in_one(fields, all_in_one) else '0'}\n"
         "GEMINI_API_KEY=\n"
     )
+
+
+#: Written by sd-setup-boot while wlan0 is still in STATION mode. Once hostapd owns the radio a scan is
+#: impossible, so the list must be captured before the AP goes up and served from here.
+SCAN_CACHE = Path("/run/sd-setup/networks.json")
+
+
+def _scanned_networks() -> list:
+    """Cached nearby networks, best signal first. Never raises: an unreadable or absent cache simply
+    means the wizard falls back to a free-text SSID field."""
+    try:
+        data = json.loads(SCAN_CACHE.read_text())
+    except (OSError, json.JSONDecodeError):
+        return []
+    best: dict = {}
+    for n in data if isinstance(data, list) else []:
+        ssid = (n.get("ssid") or "").strip()
+        if not ssid:
+            continue  # hidden/blank SSIDs can't be picked from a list
+        signal = n.get("signal") or 0
+        # A mesh advertises the same SSID once per radio/band. Keep the STRONGEST rather than whichever
+        # came first: relying on nmcli's ordering would silently show a weak entry if that ever changed.
+        if ssid not in best or signal > best[ssid]["signal"]:
+            best[ssid] = {"ssid": ssid, "signal": signal, "secure": bool(n.get("secure"))}
+    return sorted(best.values(), key=lambda n: -n["signal"])
 
 
 def resolve_boot_conf_path() -> Path:
@@ -199,6 +235,8 @@ def make_handler(cfg: SetupConfig):
             path = self.path.split("?", 1)[0]
             if path == "/":
                 self._send(200, WIZARD_HTML, "text/html; charset=utf-8")
+            elif path == "/api/networks":
+                self._json(200, {"networks": _scanned_networks()})
             elif path == "/api/mode":
                 self._json(200, {"dry_run": cfg.dry_run, "all_in_one": cfg.all_in_one,
                                  "boot_conf": str(cfg.boot_conf), "recovery": cfg.recovery})
@@ -381,9 +419,22 @@ WIZARD_HTML = """<!DOCTYPE html>
 
   <div class="card" id="form-card">
     <label>Wi-Fi network <span style="text-transform:none;letter-spacing:0;color:var(--muted)">(skip if wired)</span></label>
-    <input type="text" id="wifi_ssid" placeholder="Your Wi-Fi name" autocomplete="off">
+    <select id="wifi_pick"><option value="">Scanning\u2026</option></select>
+    <input type="text" id="wifi_ssid" class="hidden" placeholder="Your Wi-Fi name" autocomplete="off">
+    <div class="hint" id="wifi_hint">Pick your network from the list \u2014 no typing, no typos.</div>
     <label>Wi-Fi password</label>
     <input type="password" id="wifi_pass" placeholder="Leave blank for an open network" autocomplete="off">
+    <label style="display:flex;align-items:center;gap:8px;text-transform:none;letter-spacing:0;margin-top:8px;">
+      <input type="checkbox" id="wifi_show" style="width:auto;"> Show password
+    </label>
+
+    <label>What does this box do?</label>
+    <select id="all_in_one">
+      <option value="1">It runs everything (server + display)</option>
+      <option value="0">It's a display only \u2014 my server is elsewhere</option>
+    </select>
+    <div class="hint">Most people want one box that does both. Choose the second only if you already
+      run Screen Docent on another machine.</div>
 
     <label>Server address</label>
     <input type="text" id="server_url" value="http://localhost:8000">
@@ -440,9 +491,53 @@ async function loadMode() {
   } catch(e){}
 }
 
+// The radio can only scan in station mode, so sd-setup-boot scans BEFORE raising the AP and caches the
+// result. Typing an SSID by hand is the single biggest source of a failed setup, so the list is the
+// default and free text is the fallback (hidden networks, or an empty/failed scan).
+async function loadNetworks() {
+  const pick = $('wifi_pick'), manual = $('wifi_ssid');
+  let nets = [];
+  try { nets = (await fetch('/api/networks').then(r=>r.json())).networks || []; } catch(e){}
+  pick.innerHTML = '';
+  const blank = document.createElement('option');
+  blank.value = ''; blank.textContent = nets.length ? 'Choose your network\u2026' : 'No networks found';
+  pick.appendChild(blank);
+  nets.forEach(n => {
+    const o = document.createElement('option');
+    o.value = n.ssid;
+    o.textContent = n.ssid + (n.secure ? '' : ' (open)') + (n.signal ? '  \u00b7 ' + n.signal + '%' : '');
+    pick.appendChild(o);
+  });
+  const other = document.createElement('option');
+  other.value = '__manual__'; other.textContent = 'Type it myself\u2026';
+  pick.appendChild(other);
+
+  pick.onchange = () => {
+    const manualMode = pick.value === '__manual__';
+    manual.classList.toggle('hidden', !manualMode);
+    if (manualMode) { manual.value = ''; manual.focus(); } else { manual.value = pick.value; }
+    $('wifi_hint').textContent = manualMode
+      ? 'Enter the exact network name, including capitals.'
+      : 'Pick your network from the list \u2014 no typing, no typos.';
+  };
+  if (!nets.length) { pick.value = '__manual__'; pick.onchange(); }
+}
+
+function wireWifiExtras() {
+  $('wifi_show').onchange = (e) => {
+    $('wifi_pass').type = e.target.checked ? 'text' : 'password';
+  };
+  $('all_in_one').onchange = (e) => {
+    // Keep the server address honest with the choice: an all-in-one box serves itself.
+    if (e.target.value === '1') $('server_url').value = 'http://localhost:8000';
+    else if ($('server_url').value === 'http://localhost:8000') $('server_url').value = 'http://';
+  };
+}
+
 function fields() {
   return {
     wifi_ssid: $('wifi_ssid').value, wifi_pass: $('wifi_pass').value,
+    all_in_one: $('all_in_one').value,
     server_url: $('server_url').value, display_id: $('display_id').value,
     orientation: $('orientation').value,
   };
@@ -494,6 +589,8 @@ $('commit').onclick = async () => {
 };
 
 loadMode();
+loadNetworks();
+wireWifiExtras();
 </script>
 </body></html>"""
 

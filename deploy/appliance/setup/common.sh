@@ -46,9 +46,41 @@ sd_have_ip() {
 # Bring up the Docent-Setup AP + captive DNS/DHCP. $1 = log file (never /dev/null — ADR-056).
 # Idempotent with respect to the drop-in, so it is safe on both the setup-boot path (where sd-setup-pre
 # already wrote it) and the recovery path (where it must be created on the fly).
+# Scan for nearby Wi-Fi and cache it for the wizard's SSID picker. MUST run while wlan0 is still in
+# station mode — once hostapd owns the radio it is an AP and cannot scan. Typing an SSID by hand is the
+# single biggest cause of a failed setup (ADR-057), so this list is what makes the picker possible.
+# Best-effort: no cache simply means the wizard offers a free-text field.
+sd_scan_networks() {
+  local LOG="${1:-/dev/null}" out=/run/sd-setup/networks.json line ssid signal sec first=1
+  install -d /run/sd-setup 2>/dev/null || return 0
+  nmcli device wifi rescan 2>>"$LOG" || true
+  sleep 4
+  : > "$out"
+  printf '[' >> "$out"
+  # -t -f gives colon-separated fields; SSID may contain escaped colons, so take the LAST two fields
+  # as SIGNAL/SECURITY and treat everything before them as the name.
+  while IFS= read -r line; do
+    [ -z "$line" ] && continue
+    sec="${line##*:}"; line="${line%:*}"
+    signal="${line##*:}"; ssid="${line%:*}"
+    [ -z "$ssid" ] && continue
+    ssid="${ssid//\\:/:}"
+    [ "$first" = 1 ] || printf ',' >> "$out"
+    first=0
+    printf '{"ssid":"%s","signal":%s,"secure":%s}' \
+      "$(printf '%s' "$ssid" | sed 's/\\/\\\\/g; s/"/\\"/g')" \
+      "${signal:-0}" \
+      "$([ -n "$sec" ] && echo true || echo false)" >> "$out"
+  done < <(nmcli -t -f SSID,SIGNAL,SECURITY device wifi list 2>>"$LOG" | grep -v '^:')
+  printf ']' >> "$out"
+  echo "sd: cached $(grep -o '"ssid"' "$out" | wc -l) networks for the setup picker"
+}
+
 sd_start_ap() {
   local LOG="${1:-/var/log/sd-setup-ap.log}"
   rfkill unblock wlan 2>>"$LOG" || true
+  # Capture the neighbourhood BEFORE we take the radio (see sd_scan_networks).
+  sd_scan_networks "$LOG" || true
   install -d /etc/NetworkManager/conf.d
   cat > "$SD_DROPIN" <<'EOF'
 # Screen Docent setup mode — wlan0 is handed to hostapd for the Docent-Setup AP.
