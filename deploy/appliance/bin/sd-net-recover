@@ -1,0 +1,103 @@
+#!/usr/bin/env bash
+# sd-net-recover — the "can't be bricked" backstop (ADR-057).
+#
+# THE HOLE THIS FILLS: the first-run wizard saves the Wi-Fi profile and reboots, trusting NetworkManager
+# to auto-join it. If the user mistyped the password (or picked a neighbour's SSID), the box comes back
+# CONFIGURED — so sd-setup-boot's is_configured() check makes it no-op — with no network, no AP, and no
+# wizard. Nothing in the appliance noticed. Recovery meant pulling the SD card and editing it on a
+# computer, which for the target user means the device is dead. That directly contradicts the product's
+# "can't be bricked" promise.
+#
+# WHAT IT DOES: watches for a sustained lack of network on a configured box and, when it sees one,
+# re-opens the SAME wizard behind the SAME Docent-Setup AP with a banner explaining why. The user
+# retypes the password from their phone. Nothing is destroyed — their existing config stays on disk and
+# is simply rewritten on commit.
+#
+# WHY IT CAN USE PLAIN nmcli (unlike sd-setup-pre): the NetworkManager race that ADR-056 fixed exists
+# only during early boot, when NM is mid-autoconnect. This runs long after NM has settled, so runtime
+# `nmcli` calls are authoritative here.
+set -u
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+SETUP_DIR=/usr/local/share/screen-docent/setup
+# shellcheck source=../setup/common.sh
+. "$SETUP_DIR/common.sh"
+
+CONF="$(sd_resolve_conf "${1:-}")"
+LOG=/var/log/sd-net-recover.log
+say() { echo "sd-net-recover: $*"; }
+
+# Knobs, overridable from screen-docent.conf.
+NET_RECOVER=on            # off disables the backstop entirely
+NET_RECOVER_GRACE=120     # seconds offline after BOOT before we intervene
+NET_RECOVER_SUSTAINED=900 # seconds offline AFTER we've been online once (avoids reacting to a blip)
+NET_RECOVER_WINDOW=600    # how long the recovery AP stays up per attempt
+NET_RECOVER_RETRY_GAP=300 # how long NM gets to reconnect on its own between attempts
+ALL_IN_ONE=0
+WIFI_DEV=wlan0
+# shellcheck disable=SC1090
+[ -r "$CONF" ] && . "$CONF" 2>/dev/null
+
+if ! sd_is_configured "$CONF"; then
+  say "not configured — sd-setup-boot owns this box, nothing to recover."
+  exit 0
+fi
+if [ "${NET_RECOVER}" = "off" ]; then
+  say "disabled via NET_RECOVER=off."
+  exit 0
+fi
+
+# Whatever happens (including SIGTERM from systemd), never leave the radio held hostage.
+cleanup() { sd_stop_ap "${RECOVER_PROFILE:-}" >/dev/null 2>&1; }
+trap cleanup EXIT INT TERM
+
+say "watching ${WIFI_DEV} (grace ${NET_RECOVER_GRACE}s, sustained ${NET_RECOVER_SUSTAINED}s)"
+
+STEP=15
+offline=0
+threshold="$NET_RECOVER_GRACE"   # tighter right after boot; relaxes once we've seen the network work
+
+while true; do
+  if sd_have_ip "$WIFI_DEV"; then
+    [ "$offline" -gt 0 ] && say "back online after ${offline}s"
+    offline=0
+    # We have proof the network works, so from here on only a LONG outage justifies stealing the radio
+    # — a router reboot at 3am must not pop a setup portal over someone's artwork.
+    threshold="$NET_RECOVER_SUSTAINED"
+    sleep "$STEP"
+    continue
+  fi
+
+  offline=$((offline + STEP))
+  if [ "$offline" -lt "$threshold" ]; then
+    sleep "$STEP"
+    continue
+  fi
+
+  # --- Intervene ---------------------------------------------------------------------------------
+  say "offline for ${offline}s — re-opening the setup wizard on the Docent-Setup AP"
+  : > "$LOG" 2>/dev/null || true
+  # Remember which profile to reactivate if the user never shows up.
+  RECOVER_PROFILE="$(nmcli -t -f NAME,TYPE con show 2>/dev/null | awk -F: '$2 ~ /wireless/ {print $1; exit}')"
+
+  if sd_start_ap "$LOG"; then
+    EXTRA=()
+    [ "${ALL_IN_ONE}" = "1" ] && EXTRA+=(--all-in-one)
+    # `timeout` bounds the attempt. On a successful commit the wizard reboots the box, so this call
+    # normally never returns at all.
+    timeout "$NET_RECOVER_WINDOW" /usr/local/bin/sd-setup --port 80 --boot-conf "$CONF" \
+      --recovery "This display couldn't join your Wi-Fi. Check the network name and password, then try again." \
+      "${EXTRA[@]}" || true
+    say "recovery window closed with no commit — returning the radio to NetworkManager"
+  else
+    say "could not raise the recovery AP (see $LOG) — will retry"
+  fi
+
+  sd_stop_ap "$RECOVER_PROFILE"
+  unset RECOVER_PROFILE
+  # Give NetworkManager an uncontended shot at reconnecting before we consider intervening again;
+  # the original problem may simply have been the router being slower than us.
+  say "giving NetworkManager ${NET_RECOVER_RETRY_GAP}s to reconnect on its own"
+  sleep "$NET_RECOVER_RETRY_GAP"
+  offline=0
+done

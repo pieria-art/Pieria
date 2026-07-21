@@ -116,11 +116,16 @@ _CAPTIVE_PROBES = {
 
 class SetupConfig:
     """Runtime knobs shared with the request handler."""
-    def __init__(self, dry_run: bool, all_in_one: bool, boot_conf: Path, output: str):
+    def __init__(self, dry_run: bool, all_in_one: bool, boot_conf: Path, output: str,
+                 recovery: str = ""):
         self.dry_run = dry_run
         self.all_in_one = all_in_one
         self.boot_conf = boot_conf
         self.output = output
+        # Non-empty when sd-net-recover re-opened the wizard because a CONFIGURED box could not get
+        # online (usually a mistyped Wi-Fi password). Shown as a banner so the user understands this is
+        # a second attempt, not a fresh setup — otherwise the box silently looks like it reset itself.
+        self.recovery = recovery
         self.preview_path = Path("/tmp/sd-setup-preview/screen-docent.conf")
         self._revert_timer: threading.Timer | None = None
 
@@ -196,7 +201,7 @@ def make_handler(cfg: SetupConfig):
                 self._send(200, WIZARD_HTML, "text/html; charset=utf-8")
             elif path == "/api/mode":
                 self._json(200, {"dry_run": cfg.dry_run, "all_in_one": cfg.all_in_one,
-                                 "boot_conf": str(cfg.boot_conf)})
+                                 "boot_conf": str(cfg.boot_conf), "recovery": cfg.recovery})
             elif path in _CAPTIVE_PROBES:
                 # Trigger the OS captive-portal sheet: redirect the probe to our wizard.
                 self.send_response(302)
@@ -323,10 +328,13 @@ def main(argv=None):
     ap.add_argument("--all-in-one", action="store_true", help="Preselect ALL_IN_ONE=1 / localhost server.")
     ap.add_argument("--boot-conf", default="", help="Override the boot-partition conf path.")
     ap.add_argument("--output", default="HDMI-A-1", help="HDMI output for the live-rotate preview.")
+    ap.add_argument("--recovery", default="",
+                    help="Banner text shown when re-opened by sd-net-recover after a failed join.")
     args = ap.parse_args(argv)
 
     boot_conf = Path(args.boot_conf) if args.boot_conf else resolve_boot_conf_path()
-    cfg = SetupConfig(dry_run=args.dry_run, all_in_one=args.all_in_one, boot_conf=boot_conf, output=args.output)
+    cfg = SetupConfig(dry_run=args.dry_run, all_in_one=args.all_in_one, boot_conf=boot_conf,
+                      output=args.output, recovery=args.recovery)
     server = ThreadingHTTPServer(("0.0.0.0", args.port), make_handler(cfg))
     mode = "DRY RUN (nothing will be changed)" if args.dry_run else "LIVE"
     print(f"Screen Docent setup wizard — {mode} — http://0.0.0.0:{args.port}  (conf target: {boot_conf})")
@@ -424,6 +432,9 @@ async function loadMode() {
     if (MODE.dry_run) {
       const b = $('mode-banner'); b.classList.remove('hidden');
       b.textContent = '🔒 Dry run — nothing on this device will be changed. This is a safe preview.';
+    } else if (MODE.recovery) {
+      const b = $('mode-banner'); b.classList.remove('hidden');
+      b.textContent = '\u26a0\ufe0f ' + MODE.recovery;
     }
     if (MODE.all_in_one) $('server_url').value = 'http://localhost:8000';
   } catch(e){}

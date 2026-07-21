@@ -227,3 +227,29 @@ def test_mode_endpoint_reports_dry_run(server):
     base, _ = server
     status, body = _get(base, "/api/mode")
     assert json.loads(body)["dry_run"] is True
+
+
+def test_mode_exposes_recovery_banner_text(tmp_path):
+    """sd-net-recover re-opens this same wizard on a box that failed to get online. /api/mode carries
+    the reason so the page can explain itself — without it the box looks like it spontaneously reset
+    to factory setup, which is more alarming than the original failure (ADR-057)."""
+    boot_conf = tmp_path / "boot" / "screen-docent.conf"
+    msg = "This display couldn't join your Wi-Fi."
+    cfg = sd_setup.SetupConfig(dry_run=True, all_in_one=False, boot_conf=boot_conf,
+                               output="HDMI-A-1", recovery=msg)
+    httpd = ThreadingHTTPServer(("127.0.0.1", 0), sd_setup.make_handler(cfg))
+    t = threading.Thread(target=httpd.serve_forever, daemon=True)
+    t.start()
+    try:
+        with urllib.request.urlopen(f"http://127.0.0.1:{httpd.server_address[1]}/api/mode") as r:
+            body = json.loads(r.read())
+    finally:
+        httpd.shutdown()
+    assert body["recovery"] == msg
+
+
+def test_mode_recovery_defaults_empty(server):
+    """A normal first-run setup must NOT show a recovery banner."""
+    base, _ = server
+    with urllib.request.urlopen(base + "/api/mode") as r:
+        assert json.loads(r.read())["recovery"] == ""

@@ -77,6 +77,7 @@ install -m 0755 "$BIN_SRC/sd-quiet-hours"    /usr/local/bin/sd-quiet-hours
 install -m 0755 "$BIN_SRC/sd-watchdog"       /usr/local/bin/sd-watchdog
 install -m 0755 "$BIN_SRC/sd-setup-boot"     /usr/local/bin/sd-setup-boot
 install -m 0755 "$BIN_SRC/sd-setup-pre"      /usr/local/bin/sd-setup-pre
+install -m 0755 "$BIN_SRC/sd-net-recover"    /usr/local/bin/sd-net-recover
 install -m 0755 "$SETUP_SRC/sd_setup.py"     /usr/local/bin/sd-setup
 install -m 0755 "$BIN_SRC/sd-update"         /usr/local/bin/sd-update
 install -m 0755 "$BIN_SRC/sd-eink"           /usr/local/bin/sd-eink
@@ -167,6 +168,12 @@ systemctl enable sd-setup-pre.service 2>/dev/null \
   || echo "    (could not enable sd-setup-pre.service)"
 echo "    sd-setup.service installed but left DISABLED (the .img build enables it for out-of-box setup)."
 echo "    sd-setup-pre.service installed and ENABLED (safe on a configured box; self-heals the drop-in)."
+# The anti-brick backstop: re-opens the wizard if a CONFIGURED box can't get online (ADR-057). Enabled
+# everywhere — on an unconfigured box it exits immediately, since sd-setup-boot owns that case.
+sed "s#__BOOT_CONF__#$BOOT_CONF#g" "$UNIT_SRC/sd-net-recover.service" > /etc/systemd/system/sd-net-recover.service
+systemctl daemon-reload
+systemctl enable sd-net-recover.service 2>/dev/null || echo "    (could not enable sd-net-recover.service)"
+echo "    sd-net-recover.service installed and ENABLED (anti-brick: re-opens setup if never online)."
 
 echo "==> Disabling console blanking"
 for CMDLINE in /boot/firmware/cmdline.txt /boot/cmdline.txt; do

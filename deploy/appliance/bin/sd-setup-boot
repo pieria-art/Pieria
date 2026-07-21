@@ -41,51 +41,11 @@ echo "sd-setup-boot: no configuration found — starting the Docent-Setup wizard
 echo "sd-setup-boot: $(date -Is) — setup run starting" >>"$AP_LOG"
 
 # --- Bring up the AP + captive portal -------------------------------------------------------------
-start_ap() {
-  rfkill unblock wlan 2>>"$AP_LOG" || true
-  # wlan0 should ALREADY be NM-unmanaged: sd-setup-pre wrote the NetworkManager drop-in before NM even
-  # started (ADR-056). These runtime calls are belt-and-braces for the case where a box was pushed into
-  # setup mode without a reboot — they are no-ops when the drop-in did its job.
-  nmcli device disconnect wlan0 2>>"$AP_LOG" || true
-  nmcli device set wlan0 managed no 2>>"$AP_LOG" || true
-  # wpa_supplicant holds a claim on the radio INDEPENDENTLY of NetworkManager — unmanaging wlan0 in NM
-  # does not release it. Stop it too, or hostapd can be refused the interface.
-  systemctl stop wpa_supplicant.service 2>>"$AP_LOG" || true
-  # Bounce the link so the radio comes back in a clean state before hostapd switches it to AP mode
-  # (it may be sitting on a 5 GHz channel from a prior association; the AP is 2.4 GHz ch6).
-  ip link set wlan0 down 2>>"$AP_LOG" || true
-  ip link set wlan0 up 2>>"$AP_LOG" || true
-  ip addr flush dev wlan0 2>>"$AP_LOG" || true
-  ip addr add "$AP_ADDR" dev wlan0 2>>"$AP_LOG" || true
-  # hostapd.service ships MASKED on Bookworm, so `systemctl start hostapd` could only ever fail — run
-  # the binary. Errors are LOGGED, never discarded: the original `2>/dev/null || true` here is exactly
-  # why this bug survived a full bench day undiagnosable (ADR-056).
-  hostapd -B -f "$AP_LOG" "$SETUP_DIR/hostapd.conf" \
-    || echo "sd-setup-boot: hostapd failed to start — see $AP_LOG" >&2
-  sleep 3
-  if pgrep -f "hostapd.*$SETUP_DIR" >/dev/null 2>&1; then
-    echo "sd-setup-boot: AP up — $(iw dev wlan0 info 2>/dev/null | tr '\n' ' ')"
-  else
-    echo "sd-setup-boot: AP DID NOT START. Last 20 lines of $AP_LOG:" >&2
-    tail -20 "$AP_LOG" >&2 2>/dev/null || true
-  fi
-  dnsmasq --conf-file="$SETUP_DIR/dnsmasq.conf" 2>>"$AP_LOG" \
-    || echo "sd-setup-boot: dnsmasq failed to start — see $AP_LOG" >&2
-}
+# The AP bring-up/teardown themselves live in common.sh, shared with sd-net-recover (which re-opens
+# this same wizard when a CONFIGURED box can't get online). One copy, one set of bugs.
+start_ap() { sd_start_ap "$AP_LOG"; }
+stop_ap()  { sd_stop_ap; }
 
-stop_ap() {
-  # Match only OUR processes — a bare `pkill dnsmasq` would also kill an unrelated system resolver.
-  pkill -f "dnsmasq.*$SETUP_DIR" 2>/dev/null || true
-  pkill -f "hostapd.*$SETUP_DIR" 2>/dev/null || true
-  ip addr flush dev wlan0 2>/dev/null || true
-  # Hand the radio back. sd-setup-pre would remove the drop-in on the next boot anyway (it is the
-  # authoritative, self-healing path), but doing it here too means a commit-then-reboot is never the
-  # only thing standing between a configured user and their Wi-Fi.
-  rm -f "$SD_DROPIN"
-  systemctl start wpa_supplicant.service 2>/dev/null || true
-  nmcli general reload 2>/dev/null || true
-  nmcli device set wlan0 managed yes 2>/dev/null || true
-}
 trap stop_ap EXIT
 
 start_ap
