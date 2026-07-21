@@ -132,6 +132,42 @@ def scan_networks(dev: str = "wlan0") -> list:
     return sorted(best.values(), key=lambda n: -n["signal"])
 
 
+def fit_font_px(d, texts, avail: int, start_px: int, min_px: int) -> int:
+    """Largest size at/below start_px where every line fits `avail`, floored at min_px.
+
+    The SSID is user-supplied and appears verbatim in step 1, so the column has to hold arbitrary
+    network names. The available width used to be computed and then thrown away (`_ = col_w`), which is
+    exactly how step text ended up printed straight through the QR box on the bench panel.
+    """
+    px = start_px
+    while px > min_px:
+        if max(d.textlength(t, font=_font(px)) for t in texts) <= avail:
+            break
+        px -= max(1, start_px // 18)
+    return px
+
+
+def ellipsize(d, text: str, font, avail: int) -> str:
+    """Trim `text` with an ellipsis until it fits `avail`.
+
+    The last line of defence. Shrinking the type handles ordinary long SSIDs, but a truly absurd name
+    still overflows at the legibility floor — and overflow means printing through the QR box, which is
+    worse than a truncated name. The QR still encodes the EXACT ssid, and the wizard shows the full
+    list, so nothing is lost by clipping it here.
+    """
+    if d.textlength(text, font=font) <= avail:
+        return text
+    ell = "\u2026"
+    lo, hi = 0, len(text)
+    while lo < hi:
+        mid = (lo + hi + 1) // 2
+        if d.textlength(text[:mid] + ell, font=font) <= avail:
+            lo = mid
+        else:
+            hi = mid - 1
+    return text[:lo] + ell
+
+
 def _gallery_wall(d: ImageDraw.ImageDraw, x: int, y: int, w: int, h: int, S) -> None:
     """A row of framed pictures along the bottom, so the card reads as an art appliance rather than a
     router. These are tiny GENRE compositions — landscape, portrait, still life, seascape, abstract —
@@ -215,39 +251,63 @@ def render_card(width: int, height: int, ssid: str, recovery: bool = False) -> I
     d.line([margin, y + S(26), width - margin, y + S(26)], fill=BLACK, width=S(3))
     y += S(66)
 
-    # --- QR card, right column --------------------------------------------------------------------
-    qr_px = S(330)
-    qr = _wifi_qr(ssid, qr_px)
-    pad = S(22)
-    if qr:
-        qx = width - margin - qr_px - pad * 2
-        d.rectangle([qx, y, qx + qr_px + pad * 2, y + qr_px + pad * 2 + S(46)],
-                    outline=BLACK, width=S(4))
-        img.paste(qr, (qx + pad, y + pad))
-        d.text((qx + pad, y + pad + qr_px + S(10)), "Scan to join the network",
-               font=_font(S(26)), fill=BLACK)
-        col_w = qx - margin - S(50)
-        qr_bottom = y + qr_px + pad * 2 + S(46)
-    else:
-        col_w = width - 2 * margin
-        qr_bottom = y
-
-    # --- numbered steps, left column --------------------------------------------------------------
     steps = [
         f"Join the Wi-Fi network \u201c{ssid}\u201d",
         "Your phone opens the setup page by itself.",
         "Pick your Wi-Fi, name the display, done.",
     ]
-    num_f, step_f = _font(S(40), bold=True), _font(S(35))
+    # A portrait canvas is ~400px narrower, so a side-by-side QR leaves the step column too tight and
+    # the text ran straight through the QR box on the bench panel (photo, 2026-07-21). Stack instead —
+    # same call the HTML splash makes for portrait screens.
+    stacked = height > width
+
+    qr_px = S(330)
+    qr = _wifi_qr(ssid, qr_px)
+    pad = S(22)
+    qr_box_w = qr_px + pad * 2
+    qr_box_h = qr_px + pad * 2 + S(46)
+
+    def _draw_qr(bx, by):
+        d.rectangle([bx, by, bx + qr_box_w, by + qr_box_h], outline=BLACK, width=S(4))
+        img.paste(qr, (bx + pad, by + pad))
+        d.text((bx + pad, by + pad + qr_px + S(10)), "Scan to join the network",
+               font=_font(S(26)), fill=BLACK)
+
+    # --- QR (side-by-side only; the stacked one is placed after the steps) -------------------------
+    if qr and not stacked:
+        qx = width - margin - qr_box_w
+        _draw_qr(qx, y)
+        col_w = qx - margin - S(50)
+        qr_bottom = y + qr_box_h
+    else:
+        col_w = width - 2 * margin
+        qr_bottom = y
+
+    # --- numbered steps, fitted to the column they actually have ----------------------------------
+    # The available width was previously COMPUTED AND DISCARDED (`_ = col_w`), which is precisely how
+    # the overlap shipped. Shrink the step font until the longest line fits — the SSID is user-visible
+    # and can be long, so this has to hold for arbitrary names, not just "Docent-Setup".
+    bullet, gutter = S(46), S(26)
+    avail = col_w - bullet - gutter
+    step_px = fit_font_px(d, steps, avail, start_px=S(35), min_px=S(20))
+    num_f, step_f = _font(S(40), bold=True), _font(step_px)
+    # Shrinking handles ordinary names; ellipsize guarantees it for pathological ones.
+    steps = [ellipsize(d, t, step_f, avail) for t in steps]
+
     sy = y + S(6)
     for i, text in enumerate(steps, 1):
-        r = S(46)
-        d.ellipse([margin, sy, margin + r, sy + r], fill=accent)
+        d.ellipse([margin, sy, margin + bullet, sy + bullet], fill=accent)
         nw = d.textlength(str(i), font=num_f)
-        d.text((margin + (r - nw) / 2, sy + S(4)), str(i), font=num_f, fill=WHITE)
-        d.text((margin + r + S(26), sy + S(6)), text, font=step_f, fill=BLACK)
+        d.text((margin + (bullet - nw) / 2, sy + S(4)), str(i), font=num_f, fill=WHITE)
+        d.text((margin + bullet + gutter, sy + S(8)), text, font=step_f, fill=BLACK)
         sy += S(84)
-    _ = col_w
+
+    # --- QR below the steps on a portrait canvas, centred -----------------------------------------
+    if qr and stacked:
+        qy = sy + S(24)
+        _draw_qr((width - qr_box_w) // 2, qy)
+        qr_bottom = qy + qr_box_h
+        sy = qr_bottom
 
     # --- gallery wall ------------------------------------------------------------------------------
     # Sized to actually FILL the lower half. On a white e-ink ground (deliberate: white is bare paper on
