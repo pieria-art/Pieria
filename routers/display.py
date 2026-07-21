@@ -50,6 +50,26 @@ async def get_artwork_display(artwork_id: int, db: Session = Depends(get_db)):
 
 
 
+def _resolve_display_playlist(db: Session, display_id: str) -> Optional[str]:
+    """The playlist a display should show when it didn't ask for one, by name, or None.
+
+    Same precedence the Canvas gets from /api/displays/{id}/preferred-playlist — last-played for THIS
+    display, then the global default — but with a final fallback the pull path specifically needs: the
+    first playlist that actually HAS artwork. Ordering by id alone picks empty starter galleries on a
+    fresh install and strands the device (see get_display_image).
+    """
+    last = db.query(SettingsModel).filter(SettingsModel.setting_key == f"last_playlist:{display_id}").first()
+    default = db.query(SettingsModel).filter(SettingsModel.setting_key == "default_playlist").first()
+    name = (_playlist_name_if_playable(db, last.setting_value if last else None)
+            or _playlist_name_if_playable(db, default.setting_value if default else None))
+    if name:
+        return name
+    for p in db.query(PlaylistModel).order_by(PlaylistModel.id).all():
+        if _playlist_name_if_playable(db, p.name):
+            return p.name
+    return None
+
+
 @router.get("/api/displays/{display_id}/preferred-playlist")
 async def get_preferred_playlist(display_id: str, db: Session = Depends(get_db)):
     """Which playlist a freshly-loaded display (no ?playlist= given) should show. Precedence:
@@ -120,12 +140,16 @@ async def get_display_image(
     if palette not in PALETTES:
         raise HTTPException(400, detail=f"Unknown palette. Options: {', '.join(PALETTES)}")
 
-    # Playlist binding is stateless (v1): explicit ?playlist=, else the first one.
+    # Playlist binding is stateless (v1): explicit ?playlist=, else resolve one that can actually be
+    # PLAYED. This used to take `ORDER BY id LIMIT 1`, which is wrong the moment any empty playlist
+    # sorts first — and on a fresh out-of-box install it always does: seeding creates several empty
+    # starter galleries (ids 1-3) before the downloaded pack lands (id 4). The e-ink pull therefore
+    # 404'd forever on a brand-new device while /playlists and /artworks both looked perfectly healthy,
+    # and the panel just held its last frame. Found on the first real .img flash, 2026-07-21.
     if not playlist:
-        first = db.query(PlaylistModel).order_by(PlaylistModel.id).first()
-        if not first:
-            raise HTTPException(404, detail="No playlists exist")
-        playlist = first.name
+        playlist = _resolve_display_playlist(db, display_id)
+        if not playlist:
+            raise HTTPException(404, detail="No playlist with any artwork yet")
 
     # Reuse the canonical selection brain (advances state once per fetch).
     info = await select_next_image(

@@ -110,3 +110,48 @@ def test_pull_bmp_format(seeded):
     assert r.status_code == 200
     assert r.headers["content-type"] == "image/bmp"
     assert Image.open(io.BytesIO(r.content)).size == (200, 150)
+
+
+def test_pull_skips_empty_playlists_that_sort_first(client):
+    """THE out-of-box bug (found on the first real .img flash, 2026-07-21).
+
+    Seeding creates several empty starter galleries BEFORE a downloaded pack lands, so the pack's
+    playlist is not the lowest id. The pull used `ORDER BY id LIMIT 1`, resolved to an EMPTY playlist,
+    and 404'd forever on a brand-new device — while /playlists and /artworks both looked perfectly
+    healthy and the panel simply held its last frame. Resolve to something PLAYABLE instead.
+
+    Built in creation order (empties first, pack last) because that is exactly how a real first boot
+    produces it — and because re-assigning primary keys after commit would orphan the m2m rows and
+    fake the failure for the wrong reason.
+    """
+    c, db = client
+    for name in ("The Masterpieces", "Landscapes & Horizons", "Faces of Antiquity"):
+        db.add(PlaylistModel(name=name))
+    db.commit()
+
+    routers_display.LIBRARY_DIR.mkdir(parents=True, exist_ok=True)
+    Image.new("RGB", (900, 1200), (150, 90, 40)).save(
+        routers_display.LIBRARY_DIR / "_oob.jpg", format="JPEG", quality=85)
+    art = ArtworkModel(filename="_oob.jpg", title="Mona Lisa", status="approved")
+    db.add(art); db.commit(); db.refresh(art)
+    pack = PlaylistModel(name="Masterpieces")
+    pack.artworks.append(art)
+    db.add(pack); db.commit()
+
+    # Precondition: the lowest-id playlist is empty — i.e. the shape that used to strand the device.
+    first = db.query(PlaylistModel).order_by(PlaylistModel.id).first()
+    assert first.name == "The Masterpieces" and len(first.artworks) == 0
+
+    r = c.get("/display/eink1/current.png?w=800&h=600")
+    assert r.status_code == 200, "an empty playlist sorting first must not strand the display"
+    assert Image.open(io.BytesIO(r.content)).size == (800, 600)
+
+
+def test_pull_404s_only_when_nothing_is_playable(client):
+    """With no art anywhere the 404 is correct — and should say so, rather than claiming no playlists."""
+    c, db = client
+    p = PlaylistModel(name="empty")
+    db.add(p); db.commit()
+    r = c.get("/display/eink1/current.png")
+    assert r.status_code == 404
+    assert "artwork" in r.json()["detail"].lower()
