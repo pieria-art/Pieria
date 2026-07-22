@@ -38,6 +38,23 @@ from models import (
 
 logger = logging.getLogger("artwork-display-api")
 
+# ADR-061: how long to wait between out-of-box R2 seed attempts (seconds; the last value repeats
+# forever). Tight at the start — the common failure is the app winning the race against its own
+# network by a few seconds — then capped at 5 minutes so a box behind a dead router keeps a slow
+# heartbeat going instead of either giving up or hammering R2.
+_SEED_RETRY_BACKOFF = (15, 30, 60, 120, 300)
+
+# asyncio only holds a WEAK reference to a running task, so a fire-and-forget create_task() can be
+# garbage-collected mid-flight. Everything long-lived we spawn at boot goes through _spawn().
+_BACKGROUND_TASKS: set[asyncio.Task] = set()
+
+
+def _spawn(coro) -> asyncio.Task:
+    task = asyncio.create_task(coro)
+    _BACKGROUND_TASKS.add(task)
+    task.add_done_callback(_BACKGROUND_TASKS.discard)
+    return task
+
 # ADR-038: the manifest tools/build_pack.py bakes into a self-contained appliance art-pack. When
 # present, boot mints its collections straight from local masters (pre_seed_from_pack) instead of
 # (The old live-download factory seed was removed 2026-07-21 — see the leader-only boot section.)
@@ -478,9 +495,11 @@ def restore_gallery_from_collection(db: Session, playlist_id: int) -> dict | Non
     return {"restored": restored, "missing_masters": missing_masters, "title": pl.name}
 
 
-async def _seed_default_collection(registry_url: str, cid: str):
-    """Background: download+install the OOB default collection from R2, then set it as the default
-    playlist and mark the pack seeded. Own real, verified art — no live Wikimedia dependency."""
+async def _seed_default_collection(registry_url: str, cid: str) -> bool:
+    """One attempt: download+install the OOB default collection from R2, then set it as the default
+    playlist and mark the pack seeded. Own real, verified art — no live Wikimedia dependency.
+
+    Returns True only when the collection actually landed; the caller (`_oob_seed_loop`) retries on False."""
     from core import pack_fetch  # lazy: avoids the pack_fetch <-> lifespan import cycle
     db = SessionLocal()
     client = pack_fetch.new_client()
@@ -488,7 +507,7 @@ async def _seed_default_collection(registry_url: str, cid: str):
         res = await pack_fetch.install_collection_from_registry(db, client, registry_url, cid)
         if not res.get("ok"):
             logger.error(f"[Seed] OOB install of {cid!r} failed: {res.get('error')}")
-            return
+            return False
         # _install_collection already minted the '<title>' playlist + artworks; make it the default.
         sub = db.query(SubscriptionModel).filter(SubscriptionModel.url == f"pack:{cid}").first()
         title = sub.title if sub and sub.title else cid
@@ -496,50 +515,115 @@ async def _seed_default_collection(registry_url: str, cid: str):
         _upsert_setting(db, "pack_seeded", "v2:registry")
         db.commit()
         logger.info(f"[Seed] OOB ready — '{title}' installed from R2 + set as default playlist ({res.get('trust')}).")
+        return True
+    except asyncio.CancelledError:
+        raise  # shutdown, not a failure — don't log it as one
     except Exception as e:  # noqa: BLE001 — seeding must never wedge the box
         logger.error(f"[Seed] OOB default-collection error: {e}", exc_info=True)
+        return False
     finally:
         await client.aclose()
         db.close()
+
+
+def _oob_seed_satisfied() -> bool:
+    """True once this box has pack art, however it arrived. Normally that's our own seed setting
+    `pack_seeded`; but the owner may also have installed a collection by hand from the Art Packs card
+    while we were still retrying, and that must stop the loop too. In that second case we record
+    `pack_seeded` ourselves (and adopt a default playlist if nothing set one) so the state is complete
+    and the check doesn't have to re-derive it every cycle."""
+    db = SessionLocal()
+    try:
+        if db.query(SettingsModel).filter(SettingsModel.setting_key == "pack_seeded").first():
+            return True
+        sub = db.query(SubscriptionModel).filter(SubscriptionModel.url.like("pack:%")).first()
+        if sub is None:
+            return False
+        if not db.query(SettingsModel).filter(SettingsModel.setting_key == "default_playlist").first():
+            _upsert_setting(db, "default_playlist", sub.title or sub.url.removeprefix("pack:"))
+        _upsert_setting(db, "pack_seeded", "v2:user")
+        db.commit()
+        logger.info(f"[Seed] OOB retry stood down — {sub.title!r} was installed from the Art Packs card.")
+        return True
+    except Exception as e:  # noqa: BLE001 — a probe failure must never kill the retry loop
+        logger.warning(f"[Seed] OOB satisfied-check failed ({type(e).__name__}: {e}); assuming not seeded.")
+        return False
+    finally:
+        db.close()
+
+
+async def _oob_seed_loop(registry_url: str):
+    """Keep trying the out-of-box R2 pull until the box actually owns art.
+
+    A fresh unit loses the FIRST attempt far more often than not: the app comes up seconds after the
+    network stack, so DNS/TLS to R2 can fail outright, or Wi-Fi association is still in flight. The
+    original code fired exactly one background attempt and, on failure, logged "will retry next boot"
+    — which meant a box that was set up correctly sat there showing nothing until someone thought to
+    power-cycle it. That is the whole out-of-box experience, lost to a race.
+
+    So: retry indefinitely, with the backoff below. It starts tight because the overwhelmingly common
+    case (network a few seconds behind the app) clears within a minute, and caps at 5 minutes so a box
+    left on a dead router or an un-paid hotspot still lights up whenever the network returns, without
+    hammering R2 in the meantime."""
+    attempt = 0
+    while True:
+        attempt += 1
+        if _oob_seed_satisfied():
+            return
+        cid = await _resolve_default_collection(registry_url)
+        if cid and await _seed_default_collection(registry_url, cid):
+            return
+        delay = _SEED_RETRY_BACKOFF[min(attempt - 1, len(_SEED_RETRY_BACKOFF) - 1)]
+        logger.info(f"[Seed] OOB pull attempt {attempt} did not land; retrying in {delay}s.")
+        await asyncio.sleep(delay)
+
+
+async def _resolve_default_collection(registry_url: str) -> str | None:
+    """Ask the registry which collection a fresh box should own (Masterpieces, normally). Returns None
+    — never raises — when the registry is unreachable or names nothing installable, so the retry loop
+    treats a dead network and an empty registry the same way: wait and ask again."""
+    from core import pack_fetch  # lazy: import cycle
+    client = pack_fetch.new_client()
+    try:
+        registry = await pack_fetch.fetch_registry(client, registry_url)
+    except asyncio.CancelledError:
+        raise
+    except Exception as e:  # noqa: BLE001 — unreachable registry is the expected first-boot case
+        logger.warning(f"[Seed] registry {registry_url} unreachable ({type(e).__name__}: {e}).")
+        return None
+    finally:
+        await client.aclose()
+
+    cols = registry.get("collections", [])
+    cid = (registry.get("default")
+           or ("masterpieces" if any(c.get("id") == "masterpieces" for c in cols) else None)
+           or (registry.get("core") or [None])[0]
+           or (cols[0]["id"] if cols else None))
+    if not cid:
+        logger.warning("[Seed] registry has no installable default collection.")
+        return None
+    return cid
 
 
 async def seed_from_registry(db: Session) -> bool:
     """OOB "art on screen in 5 minutes" (ADR-038/040 #4): with NO baked pack, pull the registry's DEFAULT
     collection (Masterpieces) from R2, install it — which mints the 'Masterpieces' playlist — set it as the
     default playlist, and mark seeded. So a fresh `docker compose up` owns real, *verified* art instead of
-    live-downloading the Wikimedia factory seed (retires source-rot on first-run too). The download runs in
-    the background so boot stays fast; art appears when it lands. Additional collections come via the card.
+    live-downloading the Wikimedia factory seed (retires source-rot on first-run too).
 
-    Returns True if seeding was initiated (caller SKIPS the factory-seed fallback); False if the registry is
-    unreachable/empty (no fallback: the box simply has no art yet and retries on a later boot)."""
+    The pull runs in the background so boot stays fast, and it RETRIES until it lands (ADR-061) — the
+    registry lookup happens inside the loop, because "the network isn't up yet" is the single most likely
+    thing to be wrong on a box's very first boot. Returns True once seeding is underway; the box owns art
+    when it lands. Additional collections come via the Art Packs card."""
     from config import PACK_REGISTRY_URL
-    from core import pack_fetch  # lazy: import cycle
     if db.query(SettingsModel).filter(SettingsModel.setting_key == "pack_seeded").first():
         return True  # already seeded (idempotent)
 
     row = db.query(SettingsModel).filter(SettingsModel.setting_key == "pack_registry_url").first()
     registry_url = row.setting_value if row and row.setting_value else PACK_REGISTRY_URL
 
-    client = pack_fetch.new_client()
-    try:
-        registry = await pack_fetch.fetch_registry(client, registry_url)
-    except Exception as e:  # noqa: BLE001 — registry unreachable => fall back to the factory seed
-        logger.warning(f"[Seed] registry {registry_url} unreachable ({type(e).__name__}); using factory seed.")
-        return False
-    finally:
-        await client.aclose()
-
-    cols = registry.get("collections", [])
-    default_id = (registry.get("default")
-                  or ("masterpieces" if any(c.get("id") == "masterpieces" for c in cols) else None)
-                  or (registry.get("core") or [None])[0]
-                  or (cols[0]["id"] if cols else None))
-    if not default_id:
-        logger.warning("[Seed] registry has no installable default collection; using factory seed.")
-        return False
-
-    logger.info(f"[Seed] OOB: pulling default collection {default_id!r} from {registry_url} (background)...")
-    asyncio.create_task(_seed_default_collection(registry_url, default_id))
+    logger.info(f"[Seed] OOB: pulling the default collection from {registry_url} (background, will retry)...")
+    _spawn(_oob_seed_loop(registry_url))
     return True
 
 
@@ -602,17 +686,17 @@ async def lifespan(app: FastAPI):
             # boot; if we ever want a true offline start, bake a lean Core pack INTO the image rather
             # than live-downloading from museums.
             if not has_pack:
-                logger.info("[PackSeed] No pack yet (offline or registry unreachable) — will retry next boot.")
+                logger.info("[PackSeed] No pack and no seed underway — will retry next boot.")
         finally:
             db.close()
 
         # Pre-render the capped Canvas derivatives in the background so the display never stalls on
         # the one-time encode of a huge original (leader-only; runs while the server serves traffic).
-        asyncio.create_task(warm_all_canvas_cache())
+        _spawn(warm_all_canvas_cache())
 
         # Leader-only: the Samsung Frame TV pusher. Running it solely in the leader avoids
         # firing it once per uvicorn worker. No-op until enabled in Settings → Frame TV.
-        asyncio.create_task(frame_push.frame_push_loop(_frame_select))
+        _spawn(frame_push.frame_push_loop(_frame_select))
         logger.info("[Startup] Frame TV push loop scheduled (leader).")
     except Exception as e:
         logger.error(f"[Startup] Non-fatal error during initialization: {e}", exc_info=True)
