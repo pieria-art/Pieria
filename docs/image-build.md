@@ -79,7 +79,7 @@ pre-populated library:
 ```bash
 cd ~/Screen-Docent
 docker compose -f docker-compose.yml -f deploy/appliance/compose/docker-compose.appliance.yml down
-sudo rm -rf data/screen_docent.db Artwork/*
+sudo rm -rf data/*.db* Artwork/*        # the DB is data/artwork.db (database.py)
 ```
 
 Leaving art baked in is a legitimate alternative (a "lean Core" image — faster to first paint, much

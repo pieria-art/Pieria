@@ -133,9 +133,18 @@ wipe_secrets() {
   # 2) The database — a key entered in Admin -> AI Engine is stored as the `ai_api_key` setting, and
   #    it takes PRECEDENCE over the env var (ai_client.py). Capturing a DB you smoke-tested with is
   #    therefore enough to leak it. Refuse rather than silently deleting someone's library.
-  local db="$root/data/screen_docent.db"
-  if [ -f "$db" ] && command -v python3 >/dev/null 2>&1; then
-    local found
+  # GLOB, don't hardcode a filename. The first cut of this check looked for `screen_docent.db`; the
+  # app actually uses `data/artwork.db` (database.py), so it printed a confident "DB: absent" while a
+  # real database sat right there. A check that reports a false all-clear is worse than no check.
+  # Globbing also survives an SD_DATABASE_URL override and any future rename.
+  local checked=0 db found
+  shopt -s nullglob
+  for db in "$root"/data/*.db; do
+    checked=1
+    if ! command -v python3 >/dev/null 2>&1; then
+      echo "  WARNING: python3 missing — could not check $db for stored API keys" >&2
+      continue
+    fi
     found="$(python3 - "$db" <<'PY' 2>/dev/null || true
 import sqlite3, sys
 try:
@@ -144,21 +153,35 @@ try:
                   "('ai_api_key','museum_api_key') and coalesce(setting_value,'') != ''").fetchone()
     print(r[0] if r else 0)
 except Exception:
-    print("?")
+    print("?")   # unreadable/no settings table -> treat as unknown, not as clean
 PY
 )"
-    if [ "$found" != "0" ] && [ -n "$found" ]; then
+    if [ "$found" = "0" ]; then
+      echo "  $(basename "$db") carries no stored API keys"
+    else
       echo >&2
-      echo "  REFUSING TO CONTINUE: $db stores an API key ($found row(s))." >&2
+      echo "  REFUSING TO CONTINUE: $db reports stored API keys ($found)." >&2
       echo "  A distributable image must ship no keys — the end user supplies their own in" >&2
       echo "  Admin -> AI Engine. Clear the database first (this also makes first boot exercise" >&2
       echo "  the real out-of-box R2 pull):" >&2
-      echo "      docker compose ... down && sudo rm -rf $root/data/screen_docent.db $root/Artwork/*" >&2
+      echo "      cd $root && docker compose -f docker-compose.yml \\" >&2
+      echo "        -f deploy/appliance/compose/docker-compose.appliance.yml down" >&2
+      echo "      sudo rm -rf $root/data/*.db* $root/Artwork/*" >&2
       exit 1
     fi
-    echo "  database carries no stored API keys"
-  elif [ -f "$db" ]; then
-    echo "  WARNING: python3 missing — could not check $db for stored API keys" >&2
+  done
+  shopt -u nullglob
+  [ "$checked" = 1 ] || echo "  no database present (correct for a capture)"
+
+  # An image is supposed to ship EMPTY and pull from R2. Art left in place is not a security problem,
+  # but it silently adds gigabytes to something you are about to distribute — say so.
+  if [ -d "$root/Artwork" ]; then
+    local n
+    n=$(find "$root/Artwork" -type f ! -name '.*' 2>/dev/null | wc -l)
+    if [ "$n" -gt 0 ]; then
+      echo "  NOTE: Artwork/ still holds $n file(s), $(du -sh "$root/Artwork" 2>/dev/null | cut -f1) —" \
+           "the captured image will carry them. Clear it first if you meant to ship empty."
+    fi
   fi
 }
 
