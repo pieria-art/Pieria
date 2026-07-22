@@ -52,6 +52,28 @@ EOF
   fi
 }
 
+# --- make the placeholder conf describe what this IMAGE can actually do ----------------------------
+declare_capabilities() {
+  # E-ink is a BAKE-TIME decision: EINK_ENABLED only ever controlled whether install.sh installs and
+  # enables sd-eink. The running client never reads it, so a box whose panel is painting happily still
+  # reported EINK_ENABLED=0 — because the shipped placeholder says 0 and the wizard faithfully
+  # preserves whatever it finds (observed on the first full gramps run, 2026-07-22).
+  #
+  # Harmless for painting, NOT harmless for updates: sd-update's "Update Scripts" re-runs install.sh,
+  # which reads EINK_ENABLED=0 and skips the entire e-ink branch — SPI, i2c-dev, the client install.
+  # So an e-ink unit silently stops receiving e-ink provisioning on every update it ever takes.
+  #
+  # Fix the description at its source: the image declares its own capabilities.
+  local want=0
+  systemctl is-enabled sd-eink.service >/dev/null 2>&1 && want=1
+  if grep -qE "^[[:space:]]*EINK_ENABLED=" "$BOOT_CONF" 2>/dev/null; then
+    sed -i "s/^[[:space:]]*EINK_ENABLED=.*/EINK_ENABLED=$want/" "$BOOT_CONF"
+  else
+    printf '\nEINK_ENABLED=%s\n' "$want" >> "$BOOT_CONF"
+  fi
+  echo "  declared EINK_ENABLED=$want in $BOOT_CONF (matches sd-eink.service on this image)"
+}
+
 enable_setup_service() {
   if ! systemctl list-unit-files sd-setup.service >/dev/null 2>&1; then
     echo "  ERROR: sd-setup.service is not installed — run install.sh first." >&2
@@ -264,6 +286,7 @@ case "${1:-}" in
     require_root "$@"
     echo "==> sd-image-prep: enable-setup (light, reversible)"
     reset_conf_to_placeholder
+    declare_capabilities
     enable_setup_service
     echo "Done. Reboot to enter the Docent-Setup wizard. (Undo: write a real conf, or"
     echo "'systemctl disable sd-setup.service'.)"
@@ -273,6 +296,7 @@ case "${1:-}" in
     echo "==> sd-image-prep: FULL (destructive — for a distributable image capture)"
     wipe_secrets  # FIRST: this can abort, and it should abort before anything destructive happens
     reset_conf_to_placeholder
+    declare_capabilities
     enable_setup_service
     wipe_network
     wipe_identity
