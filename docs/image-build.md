@@ -21,7 +21,12 @@ step that reads state back rather than assuming the previous command worked.
 | **Cards** | Two, ideally. One is workable (capture-then-flash-back, ADR-060) but leaves no fallback if the capture is bad. |
 | **Reader** | A USB adapter. Note it presents as `/dev/sd*` — the same namespace as the laptop's own NVMe. **Confirm the device node before every destructive command.** |
 | **Laptop space** | ~65 GB free: the raw `dd` is the full card size before `pishrink` shrinks it. |
-| **Tools** | `pishrink`, `xz`, and a Gemini API key if you want AI features baked in. |
+| **Tools** | `pishrink`, `xz`. |
+
+> **Do not bake in a Gemini API key.** A distributable image must ship no secrets; the end user enters
+> their own under **Admin → AI Engine**, which takes precedence over the environment anyway
+> (`ai_client.py`). `--full` scrubs `.env` and refuses to continue if the database holds a key, but the
+> simplest guard is never to pass one. Only a private dev master should carry `GEMINI_API_KEY=`.
 
 ---
 
@@ -44,7 +49,7 @@ it exists only so you can drive the build.
 ```bash
 git clone https://github.com/<you>/Screen-Docent.git
 cd Screen-Docent
-sudo ALL_IN_ONE=1 EINK_ENABLED=1 GEMINI_API_KEY=... deploy/appliance/install.sh
+sudo ALL_IN_ONE=1 EINK_ENABLED=1 deploy/appliance/install.sh      # no GEMINI_API_KEY — see above
 ```
 
 **The flavour variables are the single most expensive thing to get wrong.** `install.sh` reads them
@@ -91,9 +96,15 @@ card — that is what makes first boot fast.
 sudo POWEROFF=1 sd-image-prep --full
 ```
 
-This resets the boot conf to the placeholder (so first boot enters the wizard), enables
+This scrubs secrets, resets the boot conf to the placeholder (so first boot enters the wizard), enables
 `sd-setup.service`, wipes saved Wi-Fi, wipes machine identity, re-arms SSH host-key regeneration,
 removes every `authorized_keys`, cleans logs, and stamps the `fake-hwclock` floor.
+
+The secret scrub runs **first**, because it can abort — and it should abort before anything
+destructive has happened. It empties `.env` and refuses to continue if the database stores an
+`ai_api_key`. Note how easy that one is to ship by accident: a key you typed into Admin → AI Engine
+while smoke-testing in step 3 lives in the DB, takes precedence over the environment, and is invisible
+at capture time. If it stops you here, you skipped step 3's emptying.
 
 - **`POWEROFF=1` is not optional in practice.** `--full` deletes the SSH host keys, destroying its own
   remote access — without it your only remaining option is pulling the plug, which images a dirty ext4
@@ -154,6 +165,7 @@ Each of these has already cost real time.
 | trixie instead of Bookworm | e-ink stack won't install (python 3.13) | Pick the OS release explicitly in Imager |
 | Host-key regeneration not armed | Every flashed unit refuses SSH, permanently | `--full` reports which unit it armed; read it (ADR-060) |
 | `authorized_keys` shipped | Every unit in the world trusts your laptop | `--full` removes it and prints the count |
+| Gemini key shipped in `.env` or the DB | Your API key on every unit, billed to you | Don't pass `GEMINI_API_KEY`; `--full` scrubs `.env` and aborts on a key in the DB |
 | Plug pulled after `--full` | Dirty journal imaged into every unit | `POWEROFF=1` |
 | No container in the master | Boots with no app, forever — `unless-stopped` can't create one | `sd-app.service` (ADR-060) |
 | Stale clock on a months-old image | "Registry unreachable"; TLS fails as *not yet valid* | `sd-timesync-wait` + seed retry (ADR-061/062) |

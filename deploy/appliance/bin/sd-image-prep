@@ -99,6 +99,69 @@ wipe_network() {
   echo "  wiped saved Wi-Fi (NetworkManager system-connections)"
 }
 
+# --- resolve the app repo root (install.sh baked it into sd-app.service) --------------------------
+repo_root() {
+  local r
+  r="$(systemctl show -p WorkingDirectory --value sd-app.service 2>/dev/null || true)"
+  [ -n "$r" ] && [ -d "$r" ] && { echo "$r"; return 0; }
+  for d in /home/*/Screen-Docent /root/Screen-Docent; do
+    [ -d "$d" ] && { echo "$d"; return 0; }
+  done
+  return 1
+}
+
+# --- secrets that must NEVER ride a distributable image (--full only) -----------------------------
+wipe_secrets() {
+  # The same class of mistake as shipping authorized_keys: a secret that is invisible on the bench and
+  # is then copied to every unit in the world. Two carriers, both easy to miss because neither lives
+  # anywhere you'd think to look at capture time.
+  local root
+  if ! root="$(repo_root)"; then
+    echo "  WARNING: could not locate the app repo — CHECK .env AND the database for keys by hand" >&2
+    return 0
+  fi
+
+  # 1) .env — install.sh writes GEMINI_API_KEY here when one is passed. TRUNCATE, never delete: the
+  #    compose file declares `env_file: .env`, and docker compose fails outright if it is missing.
+  if [ -s "$root/.env" ]; then
+    ( umask 077; : > "$root/.env" )
+    echo "  emptied $root/.env (it held a key — that would have shipped to every unit)"
+  else
+    echo "  .env already empty"
+  fi
+
+  # 2) The database — a key entered in Admin -> AI Engine is stored as the `ai_api_key` setting, and
+  #    it takes PRECEDENCE over the env var (ai_client.py). Capturing a DB you smoke-tested with is
+  #    therefore enough to leak it. Refuse rather than silently deleting someone's library.
+  local db="$root/data/screen_docent.db"
+  if [ -f "$db" ] && command -v python3 >/dev/null 2>&1; then
+    local found
+    found="$(python3 - "$db" <<'PY' 2>/dev/null || true
+import sqlite3, sys
+try:
+    c = sqlite3.connect(f"file:{sys.argv[1]}?mode=ro", uri=True)
+    r = c.execute("select count(*) from settings where setting_key in "
+                  "('ai_api_key','museum_api_key') and coalesce(setting_value,'') != ''").fetchone()
+    print(r[0] if r else 0)
+except Exception:
+    print("?")
+PY
+)"
+    if [ "$found" != "0" ] && [ -n "$found" ]; then
+      echo >&2
+      echo "  REFUSING TO CONTINUE: $db stores an API key ($found row(s))." >&2
+      echo "  A distributable image must ship no keys — the end user supplies their own in" >&2
+      echo "  Admin -> AI Engine. Clear the database first (this also makes first boot exercise" >&2
+      echo "  the real out-of-box R2 pull):" >&2
+      echo "      docker compose ... down && sudo rm -rf $root/data/screen_docent.db $root/Artwork/*" >&2
+      exit 1
+    fi
+    echo "  database carries no stored API keys"
+  elif [ -f "$db" ]; then
+    echo "  WARNING: python3 missing — could not check $db for stored API keys" >&2
+  fi
+}
+
 # --- clock floor for the captured image (--full only) ---------------------------------------------
 stamp_clock() {
   # ADR-062. A Pi has no battery-backed clock, so `fake-hwclock` restores a saved timestamp at boot and
@@ -144,6 +207,7 @@ case "${1:-}" in
   --full)
     require_root "$@"
     echo "==> sd-image-prep: FULL (destructive — for a distributable image capture)"
+    wipe_secrets  # FIRST: this can abort, and it should abort before anything destructive happens
     reset_conf_to_placeholder
     enable_setup_service
     wipe_network
