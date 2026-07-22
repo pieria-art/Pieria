@@ -314,7 +314,15 @@ async function refreshPlaylists(isInitial = false) {
         if (playlists.length > 0) {
             currentPlaylists = playlists;
             populatePlaylistSelect(playlists);
-            if (isInitial) {
+            // `|| !currentPlaylist` is the out-of-box recovery, and it is not optional. On a freshly
+            // flashed box the kiosk reaches this page BEFORE the first pack has finished downloading
+            // from R2, so the initial call sees zero playlists, paints the "no art yet" overlay and
+            // returns. Art then lands ~15-60s later, the 15s poll fires with isInitial=false, and the
+            // old code updated the dropdown but never picked a playlist or started the cycle — so the
+            // overlay stayed up FOREVER, on a box that owned 40 works, until someone reloaded the page.
+            // Whether it happened at all came down to which side of the download the page load fell on:
+            // it passed one bench run and failed the next with no code change (2026-07-22, Runs 1/2).
+            if (isInitial || !currentPlaylist) {
                 const requestedPlaylistName = urlParams.get('playlist');
                 let activePlaylist = playlists.find(p => p.name === requestedPlaylistName);
                 if (!activePlaylist) {
