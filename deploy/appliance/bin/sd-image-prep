@@ -185,6 +185,47 @@ PY
   fi
 }
 
+# --- remote login: no shared credentials on a distributed image (--full only) ---------------------
+lock_login() {
+  # The third leg of the same problem as SSH host keys and authorized_keys. A public image means every
+  # unit in the world shares whatever login it was baked with — exactly the pi/raspberry default-password
+  # problem the Raspberry Pi Foundation spent years killing. Host-key regeneration and authorized_keys
+  # removal do nothing about a PASSWORD.
+  #
+  # We cannot delete the build user: the app lives in its home directory (/home/<user>/Screen-Docent)
+  # and sd-app.service runs docker compose from there. The account must exist to own files — it just
+  # must not be able to log in. So: lock the password, leave the account.
+  #
+  # KEEP_LOGIN=1 opts out for a bench image you intend to SSH into (the same escape hatch as
+  # KEEP_AUTHORIZED_KEYS). Never for a distributable one.
+  if [ "${KEEP_LOGIN:-0}" = "1" ]; then
+    echo "  KEPT login + SSH (KEEP_LOGIN=1 — bench image, do NOT distribute)"
+    return 0
+  fi
+
+  # Lock every human account (uid >= 1000, excluding nobody). `passwd -l` prefixes the hash with '!',
+  # so password auth fails while the account keeps working for file ownership and console autologin.
+  local locked=""
+  while IFS=: read -r user _ uid _ _ _ _; do
+    [ "$uid" -ge 1000 ] 2>/dev/null || continue
+    [ "$uid" -ge 65534 ] && continue
+    passwd -l "$user" >/dev/null 2>&1 && locked="$locked $user"
+  done < /etc/passwd
+  echo "  locked password login for:${locked:- (none found)}"
+
+  # SSH off by default. This MATCHES the platform: Raspberry Pi OS Lite ships sshd disabled unless you
+  # enable it, and the escape hatch is a well-known idiom — drop an empty file named `ssh` on the FAT
+  # boot partition (handled by raspberrypi-sys-mods' sshswitch) and it comes back on next boot. Set
+  # credentials the same way with a `userconf.txt`. Both work from any computer with a card reader, so
+  # a technical owner is never locked out, and a non-technical one has no exposed service at all.
+  # The appliance's real management surface is the web admin UI, not a terminal.
+  if systemctl disable --now ssh >/dev/null 2>&1 || systemctl disable --now sshd >/dev/null 2>&1; then
+    echo "  disabled sshd (re-enable per unit: put an empty file named 'ssh' on the boot partition)"
+  else
+    echo "  (no ssh unit to disable)"
+  fi
+}
+
 # --- clock floor for the captured image (--full only) ---------------------------------------------
 stamp_clock() {
   # ADR-062. A Pi has no battery-backed clock, so `fake-hwclock` restores a saved timestamp at boot and
@@ -235,6 +276,7 @@ case "${1:-}" in
     enable_setup_service
     wipe_network
     wipe_identity
+    lock_login
     clean_logs
     stamp_clock   # last: the floor should be as late as possible (see ADR-062)
     echo "Done. Power down now and capture the card (dd -> pishrink -> xz). Do NOT reboot this box"

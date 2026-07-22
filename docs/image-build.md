@@ -109,8 +109,9 @@ at capture time. If it stops you here, you skipped step 3's emptying.
 - **`POWEROFF=1` is not optional in practice.** `--full` deletes the SSH host keys, destroying its own
   remote access — without it your only remaining option is pulling the plug, which images a dirty ext4
   journal into every unit you ever flash.
-- **Never pass `KEEP_AUTHORIZED_KEYS=1` for a distributable image.** It ships your key to every unit in
-  the world. It exists only for private dev masters.
+- **Never pass `KEEP_AUTHORIZED_KEYS=1` or `KEEP_LOGIN=1` for a distributable image.** The first ships
+  your SSH key to every unit in the world; the second ships a shared password and a listening sshd.
+  Both exist only for private bench masters.
 
 **Verify:** read the command's own output before it powers off — it names the host-key unit it armed,
 the count of `authorized_keys` files removed, and the clock floor it stamped. If it warns that it
@@ -169,7 +170,26 @@ Each of these has already cost real time.
 | Plug pulled after `--full` | Dirty journal imaged into every unit | `POWEROFF=1` |
 | No container in the master | Boots with no app, forever — `unless-stopped` can't create one | `sd-app.service` (ADR-060) |
 | Stale clock on a months-old image | "Registry unreachable"; TLS fails as *not yet valid* | `sd-timesync-wait` + seed retry (ADR-061/062) |
+| Shared login on every unit | Anyone who downloads the image can log into any deployed box | `--full` locks all uid>=1000 passwords and disables sshd |
 | Wrong `/dev/sd*` | You overwrite your laptop | `lsblk` before every destructive command |
+
+## Remote access on a shipped unit
+
+The image ships with **no usable login**: `--full` regenerates host keys per unit, removes every
+`authorized_keys`, locks every uid≥1000 password, and disables `sshd`. The appliance's management
+surface is the **web admin UI**, not a terminal — gramps never needs a shell, and a unit sitting on a
+home network exposes no service with shared credentials.
+
+A technical owner is still never locked out, using two stock Raspberry Pi OS mechanisms (both verified
+present on the image — `sshswitch.service` and `userconf-pi`). From any computer with a card reader,
+on the FAT boot partition:
+
+| Want | Drop this on the boot partition |
+|---|---|
+| SSH turned on | an empty file named `ssh` |
+| A login to use | `userconf.txt` containing `username:<openssl passwd -6 output>` |
+
+This is the same partition the config lives on, so it needs no tooling we don't already rely on.
 
 ## Related
 
