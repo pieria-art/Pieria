@@ -47,6 +47,7 @@ it exists only so you can drive the build.
 ## 2. Provision
 
 ```bash
+sudo apt-get update && sudo apt-get install -y git   # Pi OS Lite does not ship git
 git clone https://github.com/<you>/Screen-Docent.git
 cd Screen-Docent
 sudo ALL_IN_ONE=1 EINK_ENABLED=1 deploy/appliance/install.sh      # no GEMINI_API_KEY — see above

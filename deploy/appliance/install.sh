@@ -69,7 +69,7 @@ else
 fi
 echo "    E-ink client (sd-eink): ${EINK_ENABLED:-0}"
 
-echo "==> Installing packages (cage, seatd, chromium, curl, avahi, wlr-randr)"
+echo "==> Installing packages (git, cage, seatd, chromium, curl, avahi, wlr-randr)"
 export DEBIAN_FRONTEND=noninteractive
 apt-get update
 # chromium-browser is the Raspberry Pi OS package; plain `chromium` on others.
@@ -77,7 +77,12 @@ apt-get update
 # wlr-randr applies the ROTATE= display rotation for portrait/rotated panels.
 # cec-utils provides cec-client, used by sd-quiet-hours to power the TV off/on over HDMI-CEC
 # (Night & Quiet Hours). Non-fatal if unavailable — the Canvas software blackout still applies.
-apt-get install -y --no-install-recommends cage seatd curl avahi-daemon wlr-randr cec-utils \
+# git is a RUNTIME dependency, not just a build one: sd-update's "Update App" does `git fetch` +
+# `git reset --hard origin/main` on the device. Raspberry Pi OS Lite does NOT ship it, and it was
+# present on every box we'd ever tested only because you need it to clone this repo in the first
+# place — circular, and it would have left a unit unable to take a single update (found on the first
+# genuinely fresh install, 2026-07-22).
+apt-get install -y --no-install-recommends git cage seatd curl avahi-daemon wlr-randr cec-utils \
   || { echo "package install failed" >&2; exit 1; }
 if ! apt-get install -y --no-install-recommends chromium-browser; then
   apt-get install -y --no-install-recommends chromium
