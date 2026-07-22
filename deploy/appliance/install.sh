@@ -349,6 +349,21 @@ if [ "${EINK_ENABLED:-0}" = "1" ]; then
     echo "    WARNING: no config.txt found — enable SPI + I2C yourself (raspi-config > Interface)" >&2
   fi
 
+  # ...and load i2c-dev, which is a SEPARATE step people forget because raspi-config hides it.
+  # `dtparam=i2c_arm=on` enables the I2C *hardware*; the `i2c-dev` module is what creates the
+  # /dev/i2c-* character devices userspace actually opens. raspi-config's "Enable I2C" does BOTH.
+  # Doing only the dtparam leaves NO /dev/i2c-* at all, so the Inky library cannot read the board's
+  # ID EEPROM and dies with "No EEPROM detected! You must manually initialise your Inky board." —
+  # which reads like a wiring or hardware fault, not a missing kernel module. Found on the first
+  # fresh install, 2026-07-22; it would have shipped a DEAD e-ink panel in the release image.
+  if ! grep -qE "^[[:space:]]*i2c-dev[[:space:]]*$" /etc/modules 2>/dev/null; then
+    echo "i2c-dev" >> /etc/modules
+    echo "    added i2c-dev to /etc/modules (creates /dev/i2c-* for the panel's ID EEPROM)"
+  else
+    echo "    i2c-dev already in /etc/modules"
+  fi
+  modprobe i2c-dev 2>/dev/null || true   # take effect now as well as at next boot
+
   # eink_client.py is stdlib+Pillow+httpx only (no app import) and runs host-side even with no local
   # container (satellite mode) — install it ALONGSIDE sd-eink so its own-directory sys.path trick finds
   # it (see the script's header comment). Works whether or not ALL_IN_ONE is set.
