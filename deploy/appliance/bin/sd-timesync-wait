@@ -1,0 +1,59 @@
+#!/usr/bin/env bash
+# sd-timesync-wait — hold the app back for a few seconds until NTP has corrected the clock.
+#
+# WHY THIS EXISTS (ADR-062). A Pi has no battery-backed clock (the Pi 5's RTC needs a battery that
+# doesn't ship with it), so Raspberry Pi OS uses `fake-hwclock`: the time is saved to disk periodically
+# and restored on boot. A DISTRIBUTED .img therefore carries the timestamp of the day it was BAKED, and
+# every unit flashed from it boots believing it is that day — possibly many months in the past.
+#
+# The consequence is not cosmetic. TLS certificates have a `notBefore`, and packs.curwe.ai sits behind
+# Cloudflare, which rotates certs roughly every 90 days. A unit flashed four months after the image was
+# built boots, presents a clock from before its own server's certificate was issued, and the handshake
+# fails with "certificate is not yet valid". That surfaces as "registry unreachable" — so the box looks
+# like it has a network problem when what it has is a calendar problem. Flagged on the ADR-060 flash
+# cycle, where the skew was only ~28 minutes and therefore harmless; in the field it would not be.
+#
+# The fix is to let NTP speak first. NTP is plain UDP with no certificates, so it works fine with a
+# wildly wrong clock — it is the one network service that can bootstrap us out of this.
+#
+# WHY NOT the stock `systemd-time-wait-sync.service`: it ships `TimeoutStartSec=infinity` and is ordered
+# `Before=time-sync.target` inside `sysinit.target`, so enabling it on a box with no internet blocks the
+# ENTIRE boot forever — no kiosk, no setup wizard, no admin UI. That is precisely the brick we promise
+# can't happen. This unit waits in a bounded way, off the critical path, and gates only the app.
+#
+# It NEVER fails: if the deadline passes we log loudly and exit 0 so the stack starts anyway. The app's
+# out-of-box seed retries on its own backoff (ADR-061), so a clock that syncs late is still recovered —
+# this just makes the common case work on the FIRST try instead of the third.
+set -uo pipefail
+
+DEADLINE="${SD_TIMESYNC_DEADLINE:-45}"   # seconds; NTP normally lands within a few of network-online
+
+synced() {
+  # `timedatectl show` is the machine-readable form; NTPSynchronized reflects the kernel's own
+  # time-synchronized flag, which is set by whichever NTP implementation is running (timesyncd,
+  # chrony, ntpd), so this does not care which one the OS ships.
+  [ "$(timedatectl show -p NTPSynchronized --value 2>/dev/null)" = "yes" ]
+}
+
+before="$(date -u '+%Y-%m-%d %H:%M:%S')"
+
+if synced; then
+  echo "clock already synchronized ($before UTC)."
+  exit 0
+fi
+
+echo "waiting up to ${DEADLINE}s for NTP; clock currently reads $before UTC."
+waited=0
+while [ "$waited" -lt "$DEADLINE" ]; do
+  sleep 1
+  waited=$((waited + 1))
+  if synced; then
+    echo "clock synchronized after ${waited}s: $before UTC -> $(date -u '+%Y-%m-%d %H:%M:%S') UTC."
+    exit 0
+  fi
+done
+
+echo "WARNING: no NTP sync after ${DEADLINE}s; the clock still reads $before UTC." >&2
+echo "WARNING: if that date is wrong, HTTPS will fail with 'certificate is not yet valid' and the" >&2
+echo "         art registry will look unreachable. Starting anyway; the seed retries on its own." >&2
+exit 0

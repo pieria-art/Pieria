@@ -83,6 +83,7 @@ install -m 0755 "$SETUP_SRC/sd_setup.py"     /usr/local/bin/sd-setup
 install -m 0755 "$BIN_SRC/sd-update"         /usr/local/bin/sd-update
 install -m 0755 "$BIN_SRC/sd-eink"           /usr/local/bin/sd-eink
 install -m 0755 "$BIN_SRC/sd-image-prep"     /usr/local/bin/sd-image-prep
+install -m 0755 "$BIN_SRC/sd-timesync-wait"  /usr/local/bin/sd-timesync-wait
 
 echo "==> Enabling a persistent (but size-capped) journal"
 # An appliance that fails at a customer's house is debugged from its PREVIOUS boot — a first-run setup
@@ -219,6 +220,25 @@ if [ "${ALL_IN_ONE:-0}" = "1" ]; then
   echo "    Building & starting the stack (first run downloads + builds; be patient)..."
   ( cd "$REPO_ROOT" && docker compose -f docker-compose.yml -f "$OVERRIDE" up -d --build )
   echo "    Server is starting on http://localhost:8000"
+
+  # ADR-062: gate the app on a synced clock. A flashed .img boots with fake-hwclock's BUILD-DAY
+  # timestamp, and a clock in the past fails TLS to R2 with "certificate is not yet valid" — which
+  # reads as "registry unreachable". NTP is plain UDP and works with a wrong clock, so let it go first.
+  echo "==> Installing the clock-sync gate (sd-timesync-wait)"
+  # Keep the fake-hwclock floor AND a working NTP client: fake-hwclock stops the clock starting at
+  # 1970 (which fails TLS even harder), timesyncd corrects it once there's a network. Neither is
+  # guaranteed present on a minimal image, and neither is fatal if apt can't supply it.
+  for p in fake-hwclock systemd-timesyncd; do
+    dpkg -s "$p" >/dev/null 2>&1 || apt-get install -y --no-install-recommends "$p" || \
+      echo "    (could not install $p — continuing)"
+  done
+  systemctl enable --now fake-hwclock 2>/dev/null || true
+  systemctl enable --now systemd-timesyncd 2>/dev/null || echo "    (no systemd-timesyncd; is another NTP client running?)"
+  timedatectl set-ntp true 2>/dev/null || true
+  install -m 0644 "$UNIT_SRC/sd-timesync-wait.service" /etc/systemd/system/sd-timesync-wait.service
+  systemctl daemon-reload
+  systemctl enable sd-timesync-wait.service 2>/dev/null || echo "    (could not enable sd-timesync-wait.service)"
+  echo "    sd-timesync-wait.service installed + ENABLED (bounded ${SD_TIMESYNC_DEADLINE:-45}s wait, never blocks boot)."
 
   # Make boot-time startup EXPLICIT. `restart: unless-stopped` only revives a container that already
   # exists, so it cannot help a freshly flashed image (nothing to revive) or a box after a

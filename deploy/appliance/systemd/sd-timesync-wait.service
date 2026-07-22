@@ -1,0 +1,25 @@
+# Installed AND ENABLED by install.sh (all-in-one only) as /etc/systemd/system/sd-timesync-wait.service.
+#
+# Gate the app on a correct clock (ADR-062). A flashed .img boots with `fake-hwclock`'s BUILD-DAY
+# timestamp, and a clock in the past fails TLS against certificates issued after that day — which
+# presents as "registry unreachable", not as a clock fault. See sd-timesync-wait for the full story.
+#
+# Deliberately ordered AFTER network-online rather than using the stock systemd-time-wait-sync.service,
+# which waits forever inside sysinit.target and would hang the whole boot on a box with no internet.
+# This one is bounded, sits off the boot critical path (the kiosk, the setup wizard and getty are not
+# ordered behind it), and always exits 0 so it can never block the stack from starting.
+[Unit]
+Description=Wait for NTP before Screen Docent uses the network (clock-skew TLS guard)
+After=network-online.target systemd-timesyncd.service
+Wants=network-online.target
+Before=sd-app.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/local/bin/sd-timesync-wait
+# Belt and braces: the script bounds its own wait, but if it ever hangs, systemd must not hold the app.
+TimeoutStartSec=120
+
+[Install]
+WantedBy=multi-user.target

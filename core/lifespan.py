@@ -506,7 +506,8 @@ async def _seed_default_collection(registry_url: str, cid: str) -> bool:
     try:
         res = await pack_fetch.install_collection_from_registry(db, client, registry_url, cid)
         if not res.get("ok"):
-            logger.error(f"[Seed] OOB install of {cid!r} failed: {res.get('error')}")
+            err = str(res.get("error"))
+            logger.error(f"[Seed] OOB install of {cid!r} failed: {err}{_clock_skew_hint(err)}")
             return False
         # _install_collection already minted the '<title>' playlist + artworks; make it the default.
         sub = db.query(SubscriptionModel).filter(SubscriptionModel.url == f"pack:{cid}").first()
@@ -524,6 +525,20 @@ async def _seed_default_collection(registry_url: str, cid: str) -> bool:
     finally:
         await client.aclose()
         db.close()
+
+
+def _clock_skew_hint(err: str) -> str:
+    """ADR-062: turn a TLS failure caused by a wrong clock into a message that says so.
+
+    A Pi has no battery-backed clock, so a unit flashed from a months-old .img boots believing it is
+    the day the image was baked. Certificates issued after that day are "not yet valid", the handshake
+    fails, and the box reports the art registry as unreachable — sending anyone debugging it after the
+    network, which is fine. Name the real cause. Returns '' when the error isn't clock-shaped."""
+    low = err.lower()
+    if "not yet valid" in low or ("certificate_verify_failed" in low and "expired" not in low):
+        return (f" — the system clock reads {datetime.now(UTC):%Y-%m-%d %H:%M} UTC; if that date is wrong, "
+                "this is CLOCK SKEW, not a network fault (waiting for NTP to correct it).")
+    return ""
 
 
 def _oob_seed_satisfied() -> bool:
@@ -589,7 +604,8 @@ async def _resolve_default_collection(registry_url: str) -> str | None:
     except asyncio.CancelledError:
         raise
     except Exception as e:  # noqa: BLE001 — unreachable registry is the expected first-boot case
-        logger.warning(f"[Seed] registry {registry_url} unreachable ({type(e).__name__}: {e}).")
+        err = f"{type(e).__name__}: {e}"
+        logger.warning(f"[Seed] registry {registry_url} unreachable ({err}){_clock_skew_hint(err)}")
         return None
     finally:
         await client.aclose()

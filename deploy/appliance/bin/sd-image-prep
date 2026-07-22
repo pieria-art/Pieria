@@ -99,6 +99,31 @@ wipe_network() {
   echo "  wiped saved Wi-Fi (NetworkManager system-connections)"
 }
 
+# --- clock floor for the captured image (--full only) ---------------------------------------------
+stamp_clock() {
+  # ADR-062. A Pi has no battery-backed clock, so `fake-hwclock` restores a saved timestamp at boot and
+  # every unit flashed from this image will believe it is the moment we capture right now. Two things
+  # follow, and both matter for a DISTRIBUTED image:
+  #
+  #   * Write the floor as LATE as possible. It only ever moves the clock forward (fake-hwclock takes
+  #     max(saved, current)), so the newest honest value is the best one: it minimises how far in the
+  #     past a flashed unit starts, and starting at the real 1970 epoch fails TLS far worse.
+  #   * Never write a FUTURE date to "buy margin". That trades a `notBefore` failure for a `notAfter`
+  #     one and breaks TLS from the other end. The real fix is NTP before the network is used, which
+  #     is sd-timesync-wait.service's job — this is only the floor before NTP lands.
+  if command -v fake-hwclock >/dev/null 2>&1; then
+    fake-hwclock save 2>/dev/null || true
+    echo "  stamped the fake-hwclock floor: $(cat /etc/fake-hwclock.data 2>/dev/null || echo unknown) UTC"
+  else
+    echo "  WARNING: fake-hwclock not installed — flashed units will boot at the 1970 epoch and ALL" >&2
+    echo "           HTTPS will fail until NTP lands. Install it before capturing a shippable image." >&2
+  fi
+  if ! systemctl is-enabled sd-timesync-wait.service >/dev/null 2>&1; then
+    echo "  WARNING: sd-timesync-wait.service is not enabled — a unit flashed months from now may fail" >&2
+    echo "           TLS to the art registry on a stale clock (ADR-062). Re-run install.sh." >&2
+  fi
+}
+
 clean_logs() {
   journalctl --rotate 2>/dev/null || true
   journalctl --vacuum-time=1s 2>/dev/null || true
@@ -124,6 +149,7 @@ case "${1:-}" in
     wipe_network
     wipe_identity
     clean_logs
+    stamp_clock   # last: the floor should be as late as possible (see ADR-062)
     echo "Done. Power down now and capture the card (dd -> pishrink -> xz). Do NOT reboot this box"
     echo "on the bench — it would regenerate identity here instead of on the flashed units."
     # --full deletes the SSH host keys, so this command destroys its own remote access: any shutdown

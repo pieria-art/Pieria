@@ -18,6 +18,12 @@ Description=Screen Docent application stack (docker compose)
 Requires=docker.service
 After=docker.service network-online.target
 Wants=network-online.target
+# ADR-062: a flashed image boots on fake-hwclock's build-day timestamp, and a clock in the past fails
+# TLS to R2 ("certificate is not yet valid") while looking like a network outage. Wait for NTP first.
+# Wants=, not Requires= — sd-timesync-wait always exits 0, but even if it somehow failed the app must
+# still start: a box with a wrong clock is far better than a box with no UI.
+Wants=sd-timesync-wait.service
+After=sd-timesync-wait.service
 
 [Service]
 Type=oneshot

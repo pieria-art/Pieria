@@ -170,6 +170,22 @@ async def test_seed_idempotent_when_already_seeded(monkeypatch):
     assert await L.seed_from_registry(db) is True
 
 
+def test_clock_skew_hint_names_the_real_cause():
+    """ADR-062: a stale-image clock fails TLS with 'not yet valid' and otherwise reads as a network
+    outage. The log must point at the calendar, not send someone off debugging Wi-Fi."""
+    err = ("ConnectError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: "
+           "certificate is not yet valid (_ssl.c:1006)")
+    assert "CLOCK SKEW" in L._clock_skew_hint(err)
+
+
+def test_clock_skew_hint_stays_quiet_for_ordinary_failures():
+    for err in ["ConnectError: [Errno -3] Temporary failure in name resolution",
+                "ReadTimeout: timed out",
+                "HTTPStatusError: 503 Service Unavailable",
+                "ConnectError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate has expired"]:
+        assert L._clock_skew_hint(err) == "", err
+
+
 @pytest.mark.asyncio
 async def test_seed_default_collection_installs_and_sets_default_playlist(monkeypatch):
     db = _db()
