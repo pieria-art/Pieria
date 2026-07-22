@@ -26,16 +26,48 @@ REPO_ROOT="$(cd "$HERE/../.." && pwd)"
 
 # Read an existing appliance config if one is already present (e.g. placed on
 # the boot partition before first boot) so we honor ALL_IN_ONE / GEMINI_API_KEY / EINK_ENABLED.
+#
+# ...but let the ENVIRONMENT override it, because of a trap that will otherwise eat an entire image
+# build: on a FRESH Raspberry Pi OS there is no conf yet, so ALL_IN_ONE defaults to 0 and this script
+# silently provisions a THIN CLIENT — no Docker, no sd-app.service, no clock gate. A card baked that
+# way can never become all-in-one, no matter what the first-run wizard writes, because the machinery
+# was never installed. So an image build states the flavour explicitly:
+#
+#     sudo ALL_IN_ONE=1 EINK_ENABLED=1 deploy/appliance/install.sh
+#
+# Precedence: explicit env > conf on disk > default. (`sudo` clears the environment unless the var is
+# assigned on the command line as above, or you pass `sudo -E`.)
+_ENV_ALL_IN_ONE="${ALL_IN_ONE:-}"
+_ENV_EINK_ENABLED="${EINK_ENABLED:-}"
+_ENV_GEMINI_API_KEY="${GEMINI_API_KEY:-}"
 ALL_IN_ONE=0
 GEMINI_API_KEY=""
 EINK_ENABLED=0
+CONF_SRC="(none — no screen-docent.conf found)"
 for d in /boot/firmware /boot /etc; do
   if [ -r "$d/screen-docent.conf" ]; then
     # shellcheck disable=SC1090
     . "$d/screen-docent.conf"
+    CONF_SRC="$d/screen-docent.conf"
     break
   fi
 done
+_OVERRODE=0
+[ -n "$_ENV_ALL_IN_ONE" ]     && { ALL_IN_ONE="$_ENV_ALL_IN_ONE";     _OVERRODE=1; }
+[ -n "$_ENV_EINK_ENABLED" ]   && { EINK_ENABLED="$_ENV_EINK_ENABLED"; _OVERRODE=1; }
+[ -n "$_ENV_GEMINI_API_KEY" ] && { GEMINI_API_KEY="$_ENV_GEMINI_API_KEY"; _OVERRODE=1; }
+[ "$_OVERRODE" = 1 ] && CONF_SRC="$CONF_SRC + env override"
+
+# Say which flavour is being built BEFORE the long package/Docker work, not after. Getting this wrong
+# is invisible until the finished card fails to serve anything.
+if [ "${ALL_IN_ONE:-0}" = "1" ]; then
+  echo "==> FLAVOUR: ALL-IN-ONE (server + display on this box). Config: $CONF_SRC"
+else
+  echo "==> FLAVOUR: DISPLAY-ONLY thin client (server lives elsewhere). Config: $CONF_SRC"
+  echo "    If you meant to build the all-in-one image, stop now and re-run:"
+  echo "      sudo ALL_IN_ONE=1 EINK_ENABLED=${EINK_ENABLED:-0} $0"
+fi
+echo "    E-ink client (sd-eink): ${EINK_ENABLED:-0}"
 
 echo "==> Installing packages (cage, seatd, chromium, curl, avahi, wlr-randr)"
 export DEBIAN_FRONTEND=noninteractive
@@ -303,6 +335,39 @@ fi
 echo "==> Finalizing"
 systemctl set-default multi-user.target   # boot to console; autologin does the rest
 systemctl daemon-reload
+
+# ADR-059's meta-lesson, applied to the provisioner itself: VERIFY WHAT LANDED, NOT WHAT YOU SENT.
+# Nearly every unit above is enabled with `|| true` or `2>/dev/null ||`, so a failure prints one soft
+# line and scrolls away in a thousand lines of apt output. On an image build that is expensive — the
+# fault shows up as a dead card hours later. Print the real state, read back from systemd.
+echo
+echo "==> Installed state (read back from systemd — this is what the card will actually do)"
+_expected="sd-setup-pre.service sd-net-recover.service"
+[ "${ALL_IN_ONE:-0}" = "1" ] && _expected="$_expected sd-app.service sd-timesync-wait.service sd-metrics.timer sd-quiet-hours.timer sd-watchdog.timer sd-update.path"
+[ "${EINK_ENABLED:-0}" = "1" ] && _expected="$_expected sd-eink.service"
+_missing=0
+for u in $_expected; do
+  _state="$(systemctl is-enabled "$u" 2>/dev/null || echo "MISSING")"
+  case "$_state" in
+    enabled|enabled-runtime|static|indirect) printf '    %-28s %s\n' "$u" "$_state" ;;
+    *) printf '    %-28s %s   <-- NOT ENABLED\n' "$u" "$_state"; _missing=1 ;;
+  esac
+done
+# sd-setup.service is intentionally DISABLED here — sd-image-prep enables it for the .img.
+printf '    %-28s %s (correct: sd-image-prep enables it on the image)\n' \
+  "sd-setup.service" "$(systemctl is-enabled sd-setup.service 2>/dev/null || echo MISSING)"
+if [ "${ALL_IN_ONE:-0}" = "1" ]; then
+  if docker compose version >/dev/null 2>&1; then
+    printf '    %-28s %s\n' "docker compose" "present"
+  else
+    printf '    %-28s %s   <-- NOT USABLE\n' "docker compose" "MISSING"; _missing=1
+  fi
+fi
+if [ "$_missing" = "1" ]; then
+  echo
+  echo "  WARNING: something above did not get enabled. Fix it BEFORE capturing an image —" >&2
+  echo "           a missing unit here is a card that boots into nothing." >&2
+fi
 
 cat <<EOF
 

@@ -115,6 +115,9 @@ reboots into the gallery. No SSH, no SD-card editing.
   leaves `sd-setup.service` **disabled** (and `hostapd`/`dnsmasq` disabled) so it never disturbs a
   working box. The image-build step enables `sd-setup.service`.
 - **The wizard only ever writes `screen-docent.conf`** — it never touches `Artwork/` or the database.
+- **Baking the image itself:** see **[`docs/image-build.md`](../../docs/image-build.md)** — the full
+  provision → verify → sysprep → capture → gramps-test checklist, plus the traps that have already
+  cost real time (wrong flavour, trixie vs Bookworm, unarmed host keys, shipped `authorized_keys`).
 
 **Test it non-destructively on a working Pi (no flash, no changes):**
 
@@ -238,6 +241,11 @@ like Fire TV / bring-your-own-browser; it's simply inert here.)
 | `bin/sd-watchdog` | (all-in-one) Self-heal: probes server + kiosk; on sustained failure escalates relaunch-kiosk → restart-container → reboot (with a boot-loop cap). Ships in `WATCHDOG=observe` (logs only) until you set `enforce`; run by `sd-watchdog.timer` every 60 s. |
 | `bin/sd-setup-boot` | First-boot gate: if unconfigured, brings up the `Docent-Setup` AP + captive portal and runs the wizard; else no-ops. Run by `sd-setup.service` (enabled on the `.img` only). |
 | `setup/{hostapd,dnsmasq}.conf` | The `Docent-Setup` access point + DNS catch-all that make the captive portal fire. Used only while `sd-setup-boot` runs. |
+| `bin/sd-setup-pre` | Runs before the wizard to hand `wlan0` to `hostapd` (marks it NetworkManager-unmanaged) and to clear a stale drop-in afterwards. Enabled everywhere; inert on a configured box (ADR-056). |
+| `bin/sd-net-recover` | Anti-brick backstop: re-opens the setup wizard if a *configured* box can never get online (e.g. the Wi-Fi password was mistyped). Enabled everywhere (ADR-057). |
+| `bin/sd-setup-card` | Renders the e-ink first-run setup card — instructions plus a `WIFI:` join QR — locally with PIL, so an unconfigured box looks *waiting* rather than *working* (ADR-058). |
+| `bin/sd-timesync-wait` | Bounded wait for NTP before the app touches the network. A flashed `.img` boots on `fake-hwclock`'s build-day timestamp, and a clock in the past fails TLS as "certificate is not yet valid" — which reads as "registry unreachable" (ADR-062). Always exits 0, so it can delay the stack but never block it. |
+| `bin/sd-image-prep` | Sysprep for the `.img` bake: `--enable-setup` (light, reversible) or `--full` (destructive — wipes identity/Wi-Fi/logs, re-arms host keys, removes `authorized_keys`, stamps the clock floor). See `docs/image-build.md`. |
 | `bin/sd-update` | (all-in-one) Root host helper for GUI updates — whitelisted update-app / update-scripts / reboot; triggered by `sd-update.path`. |
 | `bin/sd-eink` | (optional, `EINK_ENABLED=1`) Track B e-ink client: polls `/display/<id>/current.png` and blits it to a Pimoroni Inky Impression Spectra 6 panel over SPI. Long-running (not timer-driven); works all-in-one or as a satellite pointed at a remote hub. `--dry-run`/`EINK_DRY_RUN=1` smoke-tests it with no panel attached. |
 | `share/sd-splash.html` | Boot splash shown while the server starts, displaying the admin URL / `<hostname>.local` / IP; self-redirects to the canvas once the server answers. |
@@ -246,6 +254,10 @@ like Fire TV / bring-your-own-browser; it's simply inert here.)
 | `systemd/sd-quiet-hours.{service,timer}` | (all-in-one) Polls the quiet-hours schedule and drives HDMI-CEC panel power. |
 | `systemd/sd-watchdog.{service,timer}` | (all-in-one) Runs the self-heal watchdog every 60 s (observe mode by default). |
 | `systemd/sd-setup.service` | Runs `sd-setup-boot` on first boot. Installed disabled; enabled only on the pre-baked `.img`. |
+| `systemd/sd-setup-pre.service` | Runs `sd-setup-pre`. Enabled everywhere — being always-on is what makes the setup-mode radio hand-off self-healing. |
+| `systemd/sd-net-recover.service` | Runs `sd-net-recover`. Enabled everywhere (anti-brick). |
+| `systemd/sd-app.service` | (all-in-one) Brings the compose stack up at boot. Exists because `restart: unless-stopped` only revives a container that *already exists* — a freshly flashed card has none, so without this it boots with no app, ever (ADR-060). |
+| `systemd/sd-timesync-wait.service` | (all-in-one) Runs `sd-timesync-wait` after `network-online`, ordered before `sd-app`. Deliberately not the stock `systemd-time-wait-sync.service`, which waits *forever* inside `sysinit.target` and would hang the entire boot on a box with no internet. |
 | `systemd/sd-update.{path,service}` | (all-in-one) Watches for GUI update requests and runs `sd-update`. |
 | `systemd/sd-eink.service` | (optional, `EINK_ENABLED=1`) Long-running unit running `sd-eink` (`Restart=always`; the poll/sleep cadence lives inside the client, not a timer). |
 | `udev/99-screen-docent-no-cec-pointer.rules` | Ignores the HDMI-CEC phantom pointer so no stray cursor shows on the display. |
