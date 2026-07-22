@@ -198,7 +198,16 @@ install -m 0644 "$SETUP_SRC/dnsmasq.conf" /usr/local/share/screen-docent/setup/d
 # written instructions without it).
 apt-get install -y --no-install-recommends hostapd dnsmasq iw python3-qrcode \
   || echo "    (hostapd/dnsmasq unavailable — the setup AP won't come up, but a pre-seeded conf still works)"
-systemctl disable --now hostapd dnsmasq 2>/dev/null || true
+# MASK, don't merely disable. Debian's hostapd package enables its service on install, and a plain
+# `disable` was observed NOT to stick across install.sh re-runs — the captured 2026-07-22 image still
+# carried an enabled hostapd.service. It could not actually start (the unit carries
+# ConditionFileNotEmpty=/etc/hostapd/hostapd.conf and we never write that file), so it was harmless in
+# practice — but "harmless because a config file happens to be absent" is a thin guarantee for the one
+# daemon that fights us for wlan0. AP contention during setup already cost a bench day (ADR-054/056).
+# Masking makes it unstartable outright. sd-setup-boot doesn't care: it execs the hostapd BINARY with
+# its own config, which masking does not affect.
+systemctl mask hostapd 2>/dev/null || systemctl disable --now hostapd 2>/dev/null || true
+systemctl disable --now dnsmasq 2>/dev/null || true
 sed "s#__BOOT_CONF__#$BOOT_CONF#g" "$UNIT_SRC/sd-setup.service" > /etc/systemd/system/sd-setup.service
 # sd-setup-pre is ENABLED everywhere, unlike sd-setup.service. It is inert on a configured box (it only
 # removes a stale drop-in) and refuses to unmanage wlan0 unless sd-setup.service is enabled — and being
