@@ -64,8 +64,56 @@ TARGET="$URL"
 # owner to visit an address that does not exist (ADR-058). It is on /run, so it vanishes on reboot —
 # a configured box can never be stuck showing it.
 SETUP_SPLASH="/run/sd-setup/setup-splash.html"
+# An UNCONFIGURED box must never be shown the normal splash, because that splash confidently prints an
+# admin address derived from the placeholder conf ("http://192.168.1.50:8000", "living_room"). Checking
+# for the setup splash exactly once is not enough: sd-setup.service is Type=simple, so its
+# `Before=getty@tty1.service` is satisfied the moment it forks, and the kiosk can arrive here seconds
+# before sd-setup-boot has written the file (measured: 2.1s early, first full gramps run 2026-07-22).
+#
+# So decide from the CONFIG, which is authoritative and race-free, and only then wait for the artwork:
+# if this box is not configured we are in setup mode by definition, and we wait for the real splash
+# rather than falling through to a wrong address.
+_sd_configured() {
+  # Same rule as common.sh's sd_is_configured — the shipped placeholder counts as "not set yet".
+  # Duplicated deliberately: this script runs as the unprivileged kiosk user at login and must not
+  # depend on sourcing files under /usr/local/share.
+  [ -r "$CONF" ] || return 1
+  [ -n "${SERVER_URL:-}" ] && [ -n "${DISPLAY_ID:-}" ] || return 1
+  [ "${DISPLAY_ID}" = "living_room" ] && [ "${SERVER_URL}" = "http://192.168.1.50:8000" ] && return 1
+  return 0
+}
+
 if [ -r "$SETUP_SPLASH" ]; then
   exec_kiosk_target="file://$SETUP_SPLASH"
+elif ! _sd_configured; then
+  # Setup mode, splash not written yet. Wait for it — bounded, so a box that somehow never writes one
+  # still reaches a screen instead of hanging on a black display forever.
+  echo "sd-kiosk-launch: unconfigured box — waiting for the setup splash before painting anything." >&2
+  _waited=0
+  while [ "$_waited" -lt 30 ]; do
+    [ -r "$SETUP_SPLASH" ] && break
+    sleep 1; _waited=$((_waited + 1))
+  done
+  if [ -r "$SETUP_SPLASH" ]; then
+    echo "sd-kiosk-launch: setup splash appeared after ${_waited}s." >&2
+    exec_kiosk_target="file://$SETUP_SPLASH"
+  else
+    # Still nothing. Say something true rather than something precise-and-wrong: the placeholder
+    # address is worse than no address, because the owner will go and try it.
+    echo "sd-kiosk-launch: no setup splash after ${_waited}s — painting a generic setup notice." >&2
+    _fallback="${XDG_RUNTIME_DIR:-/tmp}/sd-setup-fallback.html"
+    cat > "$_fallback" <<'FALLBACK'
+<meta charset="utf-8"><title>Screen Docent — setup</title>
+<style>html,body{height:100%;margin:0;background:#111;color:#eee;
+font:400 2.2vw/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+display:flex;align-items:center;justify-content:center;text-align:center}
+div{max-width:70%} b{font-size:3.2vw;display:block;margin-bottom:.6em}</style>
+<div><b>This Screen Docent needs setting up</b>
+Join the <b style="display:inline;font-size:inherit">Docent-Setup</b> Wi-Fi network
+from your phone, and a setup page will open automatically.</div>
+FALLBACK
+    exec_kiosk_target="file://$_fallback"
+  fi
 fi
 SPLASH_SRC="/usr/local/share/screen-docent/sd-splash.html"
 if [ -n "${exec_kiosk_target:-}" ]; then

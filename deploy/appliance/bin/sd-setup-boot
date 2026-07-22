@@ -52,12 +52,19 @@ stop_ap()  { sd_stop_ap; }
 
 trap stop_ap EXIT
 
-start_ap
-
 # Tell the HDMI screen it needs setting up. sd-kiosk-launch prefers this file over the normal splash,
 # which would otherwise show an admin URL built from the PLACEHOLDER SERVER_URL — a confident, wrong
 # address (ADR-058). Written for every box: HDMI is the default surface, e-ink the opt-in one.
+#
+# WRITTEN BEFORE start_ap, and that ordering is the whole point. sd-setup.service is Type=simple, so
+# systemd calls it "started" the instant it forks — `Before=getty@tty1.service` was satisfied 18ms into
+# boot, and the kiosk then reached this check ~2s BEFORE start_ap returned and the file appeared. The
+# HDMI screen showed the placeholder address for the entire setup (observed 2026-07-22, first full
+# gramps run). The splash needs nothing from the AP — it is static instructions plus a QR of the SSID
+# NAME — so writing it first removes the dependency instead of racing it.
 /usr/local/bin/sd-setup-card --ssid Docent-Setup --html /run/sd-setup/setup-splash.html >>"$AP_LOG" 2>&1 || true
+
+start_ap
 
 # Tell the E-INK panel it needs setting up. Without this a dumb panel keeps holding its last frame at
 # zero power, so an unconfigured box looks finished and working rather than waiting (ADR-058).
