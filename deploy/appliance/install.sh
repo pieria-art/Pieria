@@ -314,6 +314,36 @@ fi
 
 if [ "${EINK_ENABLED:-0}" = "1" ]; then
   echo "==> E-ink panel enabled (Track B): installing sd-eink host client + deps"
+
+  # Enable the buses the panel talks over. This was a HOLE found on 2026-07-22: the bench Pi had
+  # `dtparam=spi=on` because someone ran raspi-config by hand during bring-up, so everything worked
+  # here while install.sh never enabled it — meaning anyone provisioning their own Pi got sd-eink
+  # installed, no /dev/spidev*, and a panel that simply never paints. Invisible from the box that
+  # works. SPI carries the pixels; I2C is how the Inky library reads the board's ID EEPROM to
+  # auto-detect which panel is attached.
+  CONFIG_TXT=""
+  for c in /boot/firmware/config.txt /boot/config.txt; do
+    [ -f "$c" ] && { CONFIG_TXT="$c"; break; }
+  done
+  if [ -n "$CONFIG_TXT" ]; then
+    _spi_reboot=0
+    for param in spi=on i2c_arm=on; do
+      # An ACTIVE line only — a commented `#dtparam=spi=on` is the Raspberry Pi OS default and does
+      # nothing, so grepping without the anchor would happily match it and skip the fix.
+      if grep -qE "^[[:space:]]*dtparam=${param}" "$CONFIG_TXT"; then
+        echo "    $param already enabled in $CONFIG_TXT"
+      else
+        printf '\n# Screen Docent (e-ink): SPI carries pixels, I2C reads the panel ID EEPROM.\ndtparam=%s\n' \
+          "$param" >> "$CONFIG_TXT"
+        echo "    enabled dtparam=$param in $CONFIG_TXT"
+        _spi_reboot=1
+      fi
+    done
+    [ "$_spi_reboot" = "1" ] && echo "    NOTE: SPI/I2C changes need a REBOOT before the panel will paint."
+  else
+    echo "    WARNING: no config.txt found — enable SPI + I2C yourself (raspi-config > Interface)" >&2
+  fi
+
   # eink_client.py is stdlib+Pillow+httpx only (no app import) and runs host-side even with no local
   # container (satellite mode) — install it ALONGSIDE sd-eink so its own-directory sys.path trick finds
   # it (see the script's header comment). Works whether or not ALL_IN_ONE is set.
