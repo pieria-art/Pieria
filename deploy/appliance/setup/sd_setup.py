@@ -18,6 +18,7 @@ The wizard NEVER touches Artwork/ or the database — it only ever writes screen
 from __future__ import annotations
 
 import argparse
+import glob
 import json
 import os
 import re
@@ -221,6 +222,53 @@ def _preview_on_eink(orientation: str) -> bool:
         return False
 
 
+def _kiosk_wayland_env() -> dict | None:
+    """Locate the kiosk compositor's Wayland socket so root can drive it.
+
+    The wizard runs as ROOT from sd-setup.service, which has no Wayland session of its own — so
+    `WAYLAND_DISPLAY` is unset by definition, and the live-rotate path below could never run in
+    production. It only ever worked when someone ran the wizard by hand from inside a session, which is
+    why the HDMI rotation preview silently did nothing on a real box (found 2026-07-22, Run 2).
+
+    The compositor that owns the display is `cage`, running as the kiosk user, and its socket lives in
+    that user's XDG runtime dir. Root can open it — it just has to be told where it is."""
+    for sock in sorted(glob.glob("/run/user/*/wayland-*")):
+        if sock.endswith(".lock"):
+            continue
+        return {"XDG_RUNTIME_DIR": os.path.dirname(sock),
+                "WAYLAND_DISPLAY": os.path.basename(sock)}
+    return None
+
+
+def _enabled_outputs(env: dict) -> list:
+    """Names of the outputs the compositor currently has enabled, in wlr-randr's own order."""
+    try:
+        out = subprocess.run(["wlr-randr"], capture_output=True, timeout=10,
+                             env=env, text=True).stdout
+    except (subprocess.SubprocessError, FileNotFoundError):
+        return []
+    names, current = [], None
+    for line in out.splitlines():
+        if line[:1].isalnum():
+            current = line.split()[0]
+        elif "Enabled: yes" in line and current:
+            names.append(current)
+    return names
+
+
+def _resolve_output(output: str, env: dict) -> str:
+    """Map a configured output name onto one that actually exists.
+
+    A Pi 5 has two HDMI sockets and the shipped default is HDMI-A-1, so anyone who used the other one
+    had every rotation target a non-existent output: wlr-randr fails and nothing rotates, silently.
+    Seen on the bench 2026-07-22, where the monitor enumerated as HDMI-A-2 while the conf said
+    HDMI-A-1. Which physical socket someone used is not something they should have to tell us."""
+    have = _enabled_outputs(env)
+    if not have or output in have:
+        return output
+    return have[0]
+
+
 def _apply_rotation(output: str, orientation: str, revert_after: int, cfg: SetupConfig) -> dict:
     """Best-effort live rotate via wlr-randr (opt-in on the Pi), with an auto-revert so a wrong pick on
     a keyboard-less wall mount can't strand the display. Returns a status dict for the UI.
@@ -235,16 +283,23 @@ def _apply_rotation(output: str, orientation: str, revert_after: int, cfg: Setup
     # orientation IS the preview for that surface — the user watches the panel turn.
     eink = _preview_on_eink(orientation)
 
-    if not shutil.which("wlr-randr") or not os.environ.get("WAYLAND_DISPLAY"):
+    # Prefer OUR OWN session if we somehow have one (hand-run wizard), else borrow the kiosk's.
+    wl_env = ({"XDG_RUNTIME_DIR": os.environ.get("XDG_RUNTIME_DIR", ""),
+               "WAYLAND_DISPLAY": os.environ["WAYLAND_DISPLAY"]}
+              if os.environ.get("WAYLAND_DISPLAY") else _kiosk_wayland_env())
+
+    if not shutil.which("wlr-randr") or wl_env is None:
         if eink:
             return {"mode": "eink", "message": "Repainting the e-ink panel in that orientation — "
                                                "it takes about 10 seconds."}
         return {"mode": "unavailable",
                 "message": "Live preview runs on the display itself (the Pi kiosk). Your choice is "
                            "recorded and written to the config."}
+    env = {**os.environ, **wl_env}
+    output = _resolve_output(output, env)
     try:
         subprocess.run(["wlr-randr", "--output", output, "--transform", transform],
-                       check=True, capture_output=True, timeout=10)
+                       check=True, capture_output=True, timeout=10, env=env)
     except (subprocess.SubprocessError, FileNotFoundError) as e:
         return {"mode": "error", "message": f"Could not rotate: {e}"}
 
@@ -253,9 +308,11 @@ def _apply_rotation(output: str, orientation: str, revert_after: int, cfg: Setup
         cfg._revert_timer.cancel()
 
     def _revert():
+        # Same borrowed session as the apply above — a revert that quietly fails would strand a
+        # wall-mounted display in a wrong orientation, which is the exact thing the timer exists for.
         try:
             subprocess.run(["wlr-randr", "--output", output, "--transform", "normal"],
-                           check=False, capture_output=True, timeout=10)
+                           check=False, capture_output=True, timeout=10, env=env)
         except (subprocess.SubprocessError, FileNotFoundError):
             pass
 

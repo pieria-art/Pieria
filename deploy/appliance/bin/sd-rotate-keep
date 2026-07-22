@@ -18,6 +18,26 @@ set -u
 
 OUTPUT="${1:?usage: sd-rotate-keep OUTPUT TRANSFORM}"
 WANT="${2:?usage: sd-rotate-keep OUTPUT TRANSFORM}"
+
+# Resolve OUTPUT against what the compositor ACTUALLY has. A Pi 5 has two HDMI ports and the shipped
+# default is HDMI-A-1, so anyone who used the other socket had every rotation silently target an output
+# that does not exist: wlr-randr fails, nothing rotates, and nothing says why. Observed on the bench
+# 2026-07-22 — the monitor enumerated as HDMI-A-2 while the conf said HDMI-A-1.
+#
+# A physical port is not something the owner should have to name. If the configured output isn't
+# present, fall back to the first ENABLED one, which on an appliance is the panel by definition.
+resolve_output() {
+  local have
+  have="$(wlr-randr 2>/dev/null | awk '/^[A-Za-z]/{name=$1} /Enabled: yes/{print name}')"
+  [ -z "$have" ] && { printf '%s' "$OUTPUT"; return; }          # can't tell — trust the conf
+  if printf '%s\n' "$have" | grep -qx -- "$OUTPUT"; then
+    printf '%s' "$OUTPUT"; return
+  fi
+  local first; first="$(printf '%s\n' "$have" | head -1)"
+  echo "sd-rotate-keep: configured output '$OUTPUT' is not connected; using '$first' instead." >&2
+  printf '%s' "$first"
+}
+OUTPUT="$(resolve_output)"
 INTERVAL="${SD_ROTATE_INTERVAL:-5}"
 
 command -v wlr-randr >/dev/null 2>&1 || {
