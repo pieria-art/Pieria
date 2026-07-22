@@ -382,15 +382,18 @@ _expected="sd-setup-pre.service sd-net-recover.service"
 [ "${EINK_ENABLED:-0}" = "1" ] && _expected="$_expected sd-eink.service"
 _missing=0
 for u in $_expected; do
-  _state="$(systemctl is-enabled "$u" 2>/dev/null || echo "MISSING")"
+  # NB: `systemctl is-enabled` PRINTS the state and exits non-zero for disabled/masked, so the obvious
+  # `|| echo MISSING` appends a bogus second line to a perfectly good answer. Only substitute when
+  # nothing at all came back.
+  _state="$(systemctl is-enabled "$u" 2>/dev/null)"; [ -n "$_state" ] || _state="MISSING"
   case "$_state" in
     enabled|enabled-runtime|static|indirect) printf '    %-28s %s\n' "$u" "$_state" ;;
     *) printf '    %-28s %s   <-- NOT ENABLED\n' "$u" "$_state"; _missing=1 ;;
   esac
 done
 # sd-setup.service is intentionally DISABLED here — sd-image-prep enables it for the .img.
-printf '    %-28s %s (correct: sd-image-prep enables it on the image)\n' \
-  "sd-setup.service" "$(systemctl is-enabled sd-setup.service 2>/dev/null || echo MISSING)"
+_setup_state="$(systemctl is-enabled sd-setup.service 2>/dev/null)"; [ -n "$_setup_state" ] || _setup_state="MISSING"
+printf '    %-28s %s (correct: sd-image-prep enables it on the image)\n' "sd-setup.service" "$_setup_state"
 if [ "${ALL_IN_ONE:-0}" = "1" ]; then
   if docker compose version >/dev/null 2>&1; then
     printf '    %-28s %s\n' "docker compose" "present"
