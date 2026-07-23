@@ -174,8 +174,9 @@
                     <p>Give each screen a unique <code>display</code> ID; the phone remote targets any of them independently.</p>
                 </div>
             </div>
-            <p style="font-size:0.9rem; color:#94a3b8;">New here? Start with <a href="#quickstart" style="color:var(--accent-color);">Quick Start</a>
-               (Docker), or jump to the <a href="#appliance" style="color:var(--accent-color);">Raspberry Pi Appliance</a> for a hang-and-forget frame.</p>
+            <p style="font-size:0.9rem; color:#94a3b8;">New here? For a hang-and-forget frame, the easiest path is to
+               <a href="#appliance" style="color:var(--accent-color);">flash the appliance image</a> and set it up from your phone —
+               no terminal. To run the curation server yourself, start with <a href="#quickstart" style="color:var(--accent-color);">Quick Start</a> (Docker).</p>
         </section>
 
         <section id="quickstart">
@@ -471,34 +472,58 @@ GEMINI_API_KEY=your_free_key_here</code></pre>
 
         <section id="appliance">
             <h2>Raspberry Pi Appliance (Recommended for TVs)</h2>
-            <p>The easiest way to drive a TV or monitor is a dedicated Raspberry Pi that boots straight into
-               the full-screen display &mdash; no browser chrome, no manual URL entry, and no third-party kiosk
-               app. Flash a card, point it at your server, and forget it. (A Pi 4 is plenty for display-only;
-               a Pi 5 with 8&nbsp;GB is recommended if you also run the server on it.)</p>
+            <p>A dedicated Raspberry Pi boots straight into the full-screen display &mdash; no browser chrome, no
+               manual URL entry, no third-party kiosk app. There are two ways to get one: <strong>flash the
+               pre-baked image</strong> (no terminal at all) or <strong>build it yourself</strong> with the
+               provisioner. (A Pi 4 is plenty for display-only; a Pi 5 is recommended if the box also runs the
+               server.)</p>
 
-            <h3>1. Flash Raspberry Pi OS Lite</h3>
-            <p>Use <strong>Raspberry Pi Imager</strong> to write <strong>Raspberry Pi OS Lite (64-bit)</strong>
-               to a microSD card. Before writing, open <em>Edit Settings</em> and set:</p>
-            <ul>
-                <li><strong>Hostname</strong> (e.g. <code>docent-living-room</code>) &mdash; also becomes the address you'll use: <code>docent-living-room.local</code>.</li>
-                <li><strong>Enable SSH</strong> (password or public key)</li>
-                <li><strong>Username + password</strong> (your one-time login)</li>
-                <li>⚠️ <strong>Wi-Fi SSID + password + country</strong> &mdash; <strong>the single most important step.</strong> This is the only place Wi-Fi is configured; skip it and the Pi boots dark with no easy recovery.</li>
-                <li><strong>Locale / timezone</strong></li>
-            </ul>
+            <h3>The easy way &mdash; flash the pre-baked image</h3>
+            <p>The all-in-one appliance image sets itself up from your phone. You never open a terminal or edit a
+               file:</p>
+            <ol>
+                <li><strong>Download</strong> <code>docent-&lt;version&gt;.img.xz</code> from the
+                    <a href="https://github.com/AiwendilInTheWoods/Screen-Docent/releases/latest">Releases page</a>.</li>
+                <li><strong>Flash</strong> it with <strong>Raspberry Pi Imager</strong> or Balena Etcher &mdash; no
+                    OS-customisation needed (leave "Edit Settings" alone).</li>
+                <li><strong>Boot</strong> the Pi. The screen shows a setup card. From your phone, join the open
+                    <strong><code>Docent-Setup</code></strong> Wi-Fi network &mdash; a setup page opens on its own
+                    (captive portal).</li>
+                <li><strong>Set it up</strong>: pick your Wi-Fi from the list, name the display (it becomes
+                    <code>&lt;name&gt;.local</code>), choose orientation (with a live preview), confirm. The Pi
+                    joins your network, downloads its first gallery, and paints &mdash; unattended.</li>
+            </ol>
+            <div class="tip">
+                <strong>It won't strand you.</strong> Mistype the Wi-Fi password or interrupt setup and the box
+                <em>re-opens</em> the <code>Docent-Setup</code> hotspot on the next boot instead of showing a dead
+                screen &mdash; so you always get another try from your phone. Each unit generates its own network
+                name and its own security identity on first boot; nothing is shared between units.
+            </div>
+            <div class="tip">
+                <strong>Updates, no SSH.</strong> When a newer release ships, <code>Admin &rarr; 🩺 Devices &rarr;
+                Appliance Maintenance</code> shows it with release notes and a one-click <strong>Update</strong>
+                &mdash; the box pulls it and rebuilds itself. You choose when; nothing installs on its own.
+            </div>
 
-            <h3>2. Run the installer</h3>
-            <p>Boot the Pi (no keyboard or monitor needed), SSH in at <code>&lt;hostname&gt;.local</code>, and run:</p>
+            <h3>Build it yourself (or a thin-client)</h3>
+            <p>To build the image from scratch, roll your own for another board, or set up a <strong>display-only
+               thin client</strong> (this Pi shows art; a server elsewhere curates), run the provisioner on a fresh
+               <strong>Raspberry Pi OS Lite (64-bit, Bookworm)</strong>. Flash it with Imager (set a hostname, SSH,
+               and Wi-Fi under <em>Edit Settings</em>), SSH in, then:</p>
             <pre><code>git clone https://github.com/AiwendilInTheWoods/Screen-Docent.git
-sudo Screen-Docent/deploy/appliance/install.sh</code></pre>
+# all-in-one (server + display on this box):
+sudo ALL_IN_ONE=1 EINK_ENABLED=1 Screen-Docent/deploy/appliance/install.sh
+# ...or display-only thin client (server lives elsewhere): omit ALL_IN_ONE.</code></pre>
             <p>This installs <code>cage</code> + Chromium as a kiosk, launches it on boot, disables screen
-               blanking, ensures <code>avahi-daemon</code> (so <code>&lt;hostname&gt;.local</code> works), and
-               writes a config file to the SD card's boot partition.</p>
+               blanking, ensures <code>avahi-daemon</code> (so <code>&lt;hostname&gt;.local</code> works), and (all-
+               in-one) installs Docker and runs the server on the same Pi. To turn a provisioned box into a
+               distributable image, see <a href="https://github.com/AiwendilInTheWoods/Screen-Docent/blob/main/docs/image-build.md"><code>docs/image-build.md</code></a>.</p>
 
-            <h3>3. Configure the display</h3>
+            <h3>Configure a thin-client display</h3>
             <div class="tip" id="find-server-address">
                 <strong>Finding your server's address</strong>
-                <code>SERVER_URL</code> is wherever your Screen Docent server runs &mdash; not this Pi. To find it:
+                For a thin client, <code>SERVER_URL</code> is wherever your Screen Docent server runs &mdash; not
+                this Pi. To find it:
                 <ul style="margin:8px 0 0; padding-left:20px;">
                     <li>Open the admin (<code>Settings &rarr; 📡 This Server</code>) on the server box &mdash; it shows the exact address to copy.</li>
                     <li>Or on the server run <code>hostname -I</code> for its LAN IP (e.g. <code>192.168.1.50</code>) &rarr; <code>http://192.168.1.50:8000</code>.</li>
@@ -516,12 +541,6 @@ CYCLE_TIME=                           # optional: seconds per image</code></pre>
                <code>&lt;hostname&gt;.local</code>, and its IP &mdash; so you can read the address right off the
                wall instead of hunting the DHCP lease &mdash; then it switches to the art automatically once
                the server answers.</p>
-
-            <h3>All-in-one (server + display on one box)</h3>
-            <p>For a single-frame setup with no separate server, set <code>ALL_IN_ONE=1</code>,
-               <code>SERVER_URL=http://localhost:8000</code> in the config, then re-run the installer. It installs
-               Docker and runs the server on the same Pi. Reach the admin from another device at
-               <code>http://&lt;hostname&gt;.local:8000/admin</code>.</p>
 
             <h3>Device Health (all-in-one only)</h3>
             <p>On an all-in-one box, a <strong>🩺 Devices</strong> tab appears in the admin sidebar with live

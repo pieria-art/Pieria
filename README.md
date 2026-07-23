@@ -4,11 +4,20 @@
 [![Sources](https://github.com/AiwendilInTheWoods/Screen-Docent/actions/workflows/verify-sources.yml/badge.svg)](https://github.com/AiwendilInTheWoods/Screen-Docent/actions/workflows/verify-sources.yml)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](LICENSE)
 
-**Screen Docent** is an open-source, AI-powered digital art curator and signage platform. It transforms any TV or monitor into a high-end museum display, complete with autonomous artwork analysis, intelligent metadata generation, and instant mobile remote control.
+**Screen Docent** is an open-source, AI-powered digital art curator that turns any TV, monitor, or e-ink
+panel into a high-end museum display — with autonomous artwork analysis, museum-grade placards, and
+instant mobile remote control.
 
 ![A Screen Docent display showing Vermeer's The Milkmaid with an auto-generated museum placard](static/docs/display.png)
 
 > *A live display: full-bleed artwork, an auto-generated museum placard, and a QR code for details.*
+
+**Own your art wall.** No subscription, no ads, no cloud account, no vendor that can switch it off. The
+polished art frames — Meural, Depict, Canvia — are closed, subscription-locked, and several have
+**bricked their customers' hardware** when the company moved on. Screen Docent is the opposite: it runs
+on hardware you already own (or a $35 Pi), keeps working with no internet, and is yours to keep. Flash
+one image, set it up from your phone, and a curated public-domain museum gallery is on the wall in
+minutes — **or** run the curation brain on a server you control and point any screen at it.
 
 ## ✨ Features
 
@@ -17,6 +26,7 @@
 *   **🏛 VRA Core Database:** Built on the established Visual Resources Association schema, securely housing rich metadata alongside dynamic crop data and playlists. Supports Many-to-Many relationships for flexible artwork-to-playlist mapping and custom sequencing.
 *   **📱 WebSocket Remote:** A mobile-first, no-refresh PWA remote to switch playlists, change modes, and trigger placards instantly.
 *   **📺 Multi-Display Support:** Targeted routing using unique display IDs allows a single server to manage different artwork streams across multiple TVs.
+*   **📦 Flash-and-go appliance (can't be bricked):** A pre-baked Raspberry Pi image sets itself up from your phone over a captive-portal Wi-Fi hotspot — no SSH, no config files. If setup is interrupted or Wi-Fi is wrong, it re-opens its own hotspot instead of black-screening. **Self-updating** without a terminal: the admin page notifies you when a new release ships (with notes) and updates on one click — you decide when, nothing auto-installs. No cloud account, no subscription, nothing a vendor can switch off.
 *   **🎨 Advanced Rendering:** Choose between cinematic Ken Burns pans, static user-defined crops, or blurred matte effects. The Ken Burns pan is **focal-point-aware** — every artwork carries a focal point (AI-derived, or tap-to-set) so off-center subjects, like a portrait's face, stay framed instead of being slowly panned out of view.
 *   **📸 My Photos (Studio):** A phone-first studio to put your *own* photos on the wall — multi-upload (with camera capture), optional AI captions (in a warm photo-album voice, with an honest on-device-vs-cloud privacy note), and tap-to-set framing. **iPhone HEIC photos work as-is** (auto-converted on upload). Your photos are stored **locally on your server** — never uploaded to anyone's cloud, never indexed — and shown with a clean caption (zero museum jargon).
 *   **⚖️ Hierarchical Config:** Precise control via URL parameters that override playlist and global defaults.
@@ -47,16 +57,45 @@ it. The same server supports any mix of these at once — it's a versatile setup
 The full, illustrated guide (with screenshots and walkthroughs for each) lives in the in-app
 **Help & Docs** page at `http://localhost:8000/help`.
 
-## 🚀 Quickstart Deployment
+## 🚀 Get Started — two front doors
 
-The fastest way to get Screen Docent running is using Docker.
+Pick the one that matches what you want:
 
-### 1. Prerequisites
-*   [Docker](https://docs.docker.com/get-docker/)
-*   [Docker Compose](https://docs.docker.com/compose/install/)
+- **A. "I want an art frame."** Flash one image to a Raspberry Pi, set it up from your phone. No SSH, no
+  config files, no Linux. → **[Flash the appliance image](#a-flash-the-appliance-image-art-in-minutes)**
+- **B. "I want to run the curation server."** A small Docker app on a machine you already have; point
+  any number of screens at it. → **[Run the brain with Docker](#b-run-the-brain-with-docker)**
 
-### 2. Launch
-No config files needed — clone and go:
+Both run the same curation brain and can be mixed freely (one server, many screens).
+
+### A. Flash the appliance image (art in minutes)
+
+The **all-in-one Docent Appliance** is a Raspberry Pi that *is* the whole thing — server and display in
+one box. You never touch a terminal:
+
+1. **Download** the latest image from the **[Releases page](https://github.com/AiwendilInTheWoods/Screen-Docent/releases/latest)** (`docent-<version>.img.xz`).
+2. **Flash** it to a microSD card with [Raspberry Pi Imager](https://www.raspberrypi.com/software/) (or Balena Etcher) — no OS-customisation needed.
+3. **Boot** the Pi. The screen shows a setup card; join the **`Docent-Setup`** Wi-Fi from your phone and a page opens automatically.
+4. **Set up** — pick your Wi-Fi, name the display, choose orientation. It reboots, downloads its first gallery, and paints. Museum art on the wall, unattended.
+
+> **It can't be bricked.** If Wi-Fi is mistyped or setup is interrupted, the box re-opens its own setup
+> hotspot instead of stranding you on a black screen. There's no cloud account to lose and no vendor to
+> shut it down — the whole system is on the card in your hand.
+>
+> **Updates, no SSH.** When a new release is out, the admin page shows it with release notes and a one-
+> click **Update** — the box pulls it and rebuilds itself. You choose when; nothing auto-installs.
+
+**Build the image yourself** (or roll your own for other boards) with a fresh Raspberry Pi OS + our
+provisioner — see **[docs/image-build.md](docs/image-build.md)** and [`deploy/appliance/`](deploy/appliance/README.md).
+A **display-only thin client** (Pi shows art, a server elsewhere curates) uses the same provisioner —
+set `ALL_IN_ONE=0`.
+
+### B. Run the brain with Docker
+
+Run the curation server on anything with Docker — a NAS, a mini-PC, an old laptop — and point any screen at it.
+
+**Prerequisites:** [Docker](https://docs.docker.com/get-docker/) + [Docker Compose](https://docs.docker.com/compose/install/). Then clone and go — no config files:
+
 ```bash
 git clone https://github.com/AiwendilInTheWoods/Screen-Docent.git
 cd Screen-Docent
@@ -64,12 +103,12 @@ docker compose up -d --build
 ```
 (No `.env` required; the stack runs out of the box and you configure the AI model in-app below.)
 
-### 3. Access the System
-*   **Admin Dashboard:** `http://localhost:8000/admin` (Upload, discover, and manage art)
-*   **Main Display:** `http://localhost:8000/` (Point your TV browser here)
-*   **Mobile Remote:** `http://localhost:8000/remote` (Control from your phone)
+**Access it:**
+*   **Admin Dashboard:** `http://localhost:8000/admin` (upload, discover, and manage art)
+*   **Main Display:** `http://localhost:8000/` (point a TV browser here, or a [display appliance](#a-flash-the-appliance-image-art-in-minutes))
+*   **Mobile Remote:** `http://localhost:8000/remote` (control from your phone)
 
-### 4. Connect a Model (optional, in-app)
+### Connect a Model (optional, in-app — applies to both paths)
 Screen Docent works immediately without any AI — the starter art ships with full placards, and the
 museum **Discover** scouts need no key. To unlock auto-curation (metadata generation, enrichment,
 smarter search), open **Admin → ⚙ Settings → 🧠 AI Engine**, pick a provider (Google Gemini, OpenAI,
@@ -77,15 +116,8 @@ Anthropic, OpenRouter, or a local Ollama/LM Studio server), paste a key (or **Si
 OpenRouter** for one-click setup), and click **Test & Save** — validated live, effective in seconds.
 
 > Prefer files? You can still pre-seed a default Gemini key with a `.env` (`GEMINI_API_KEY=…`) in the
-> project root before launch; the in-app setting overrides it when set.
-
-## 🖥️ Display Appliance (recommended for TVs)
-
-The easiest way to drive a TV or monitor is the **Docent Appliance**: flash a
-Raspberry Pi, point it at your server, and it boots straight into the fullscreen
-display — no Fully Kiosk, no browser chrome, no URL typing. See
-[`deploy/appliance/`](deploy/appliance/README.md). For low-power panels, see the
-**e-ink & BYOS frames** section below.
+> project root before launch; the in-app setting overrides it when set. (A *distributed* appliance image
+> never ships a key — each owner adds their own.)
 
 ## 🖼️ e-ink & BYOS frames (image API)
 
