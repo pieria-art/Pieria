@@ -1,0 +1,58 @@
+#!/usr/bin/env bash
+# sd-hostname — give a fresh unit a UNIQUE default hostname, and never clobber a chosen one.
+#
+# WHY (ADR-070). Every unit flashed from one image would otherwise share the hostname baked at capture
+# time — so two on one LAN both claim the same `<name>.local`, avahi appends an unpredictable `-2`, and
+# any printed "visit docent.local:8000" instruction is wrong on at least one of them. And the bench
+# image literally shipped as `docent-bench-pi`, a development name, on every unit.
+#
+# This runs early on EVERY boot (cheap, idempotent) and does exactly one thing: if the hostname is still
+# a known DEFAULT (never chosen by anyone), replace it with `docent-XXXX`, where XXXX is derived from
+# this unit's machine-id — which sd-image-prep wiped, so systemd regenerated a fresh, unique one on
+# first boot. The moment the setup wizard applies a real name (`living-room`), that is no longer a
+# default, so this leaves it untouched forever after.
+#
+# It is the FLOOR; the wizard is the real chooser. Ordered before the setup AP so the setup card's
+# `<name>.local` / QR is already unique when a human first sees it.
+set -u
+
+cur="$(hostname 2>/dev/null || cat /etc/hostname 2>/dev/null || echo '')"
+
+# Only these count as "nobody picked this" — anything else is a user/derived name we must not touch.
+case "$cur" in
+  raspberrypi|docent|docent-setup|docent-bench-pi|localhost|"") ;;
+  *) exit 0 ;;
+esac
+
+# Unique suffix from the (freshly regenerated) machine-id; fall back to random bytes if it's not there
+# yet, then to the wifi MAC — we must never produce the SAME suffix on two units.
+mid="$(tr -cd 'a-f0-9' < /etc/machine-id 2>/dev/null)"
+sfx="${mid:0:4}"
+if [ -z "$sfx" ]; then
+  sfx="$(od -An -N2 -tx1 /dev/urandom 2>/dev/null | tr -cd 'a-f0-9')"
+fi
+if [ -z "$sfx" ]; then
+  sfx="$(cat /sys/class/net/wlan0/address 2>/dev/null | tr -cd 'a-f0-9' | tail -c 4)"
+fi
+[ -n "$sfx" ] || { echo "sd-hostname: could not derive a unique suffix; leaving '$cur'" >&2; exit 0; }
+
+new="docent-${sfx}"
+[ "$new" = "$cur" ] && exit 0
+
+if command -v hostnamectl >/dev/null 2>&1 && hostnamectl set-hostname "$new" 2>/dev/null; then
+  :
+else
+  echo "$new" > /etc/hostname 2>/dev/null || { echo "sd-hostname: cannot write hostname" >&2; exit 0; }
+  hostname "$new" 2>/dev/null || true
+fi
+
+# Keep /etc/hosts' 127.0.1.1 line in step so `sudo` doesn't warn and avahi advertises the right name.
+if [ -w /etc/hosts ] || [ "$(id -u)" = 0 ]; then
+  if grep -qE '^\s*127\.0\.1\.1' /etc/hosts 2>/dev/null; then
+    sed -i "s/^\s*127\.0\.1\.1.*/127.0.1.1\t$new/" /etc/hosts 2>/dev/null || true
+  else
+    printf '127.0.1.1\t%s\n' "$new" >> /etc/hosts 2>/dev/null || true
+  fi
+fi
+
+echo "sd-hostname: set default hostname '$new' (was '$cur')"

@@ -337,3 +337,55 @@ def test_build_conf_first_boot_has_nothing_to_preserve():
     conf = sd_setup.build_conf(
         {"server_url": "http://localhost:8000", "display_id": "wall", "orientation": "landscape"})
     assert "EINK_ENABLED" not in conf
+
+
+# --- hostname (ADR-070) -------------------------------------------------------
+
+@pytest.mark.parametrize("raw,expected", [
+    ("Living Room", "living-room"),        # spaces -> hyphen, the headline case
+    ("Den_TV", "den-tv"),                  # underscores -> hyphens (DNS labels can't hold _)
+    ("  --Hall--  ", "hall"),              # trim stray separators
+    ("Kids' Room!!", "kids-room"),         # drop punctuation, collapse
+    ("café", "caf"),                       # non-ascii dropped, remainder valid
+    ("", ""),                              # nothing usable -> blank (caller keeps baked default)
+    ("---", ""),                           # only separators -> blank, NOT a leading/trailing hyphen
+    ("a" * 80, "a" * 63),                  # clamp to a 63-char DNS label
+])
+def test_derive_hostname(raw, expected):
+    assert sd_setup.derive_hostname(raw) == expected
+
+
+@pytest.mark.parametrize("name,ok", [
+    ("living-room", True), ("docent-4f9a", True), ("a", True),
+    ("-lead", False), ("trail-", False), ("Up_per", False), ("has space", False), ("", False),
+])
+def test_valid_hostname(name, ok):
+    assert sd_setup.valid_hostname(name) is ok
+
+
+def test_resolve_hostname_explicit_beats_derived():
+    # An advanced user opened the edit field and typed a real box name — it wins over the display name.
+    assert sd_setup.resolve_hostname({"display_id": "Living Room", "hostname": "docent-hub"}) == "docent-hub"
+
+
+def test_resolve_hostname_falls_back_to_display_name():
+    # Gramps never touches the field -> the hostname follows the display name.
+    assert sd_setup.resolve_hostname({"display_id": "Living Room", "hostname": ""}) == "living-room"
+
+
+def test_resolve_hostname_ignores_an_invalid_explicit_entry():
+    # Garbage typed into the advanced field must not become the hostname; derive instead.
+    assert sd_setup.resolve_hostname({"display_id": "Kitchen", "hostname": "-bad-"}) == "kitchen"
+
+
+def test_build_conf_writes_the_derived_hostname():
+    conf = sd_setup.build_conf(
+        {"server_url": "http://localhost:8000", "display_id": "Living Room", "orientation": "landscape"})
+    assert "HOSTNAME=living-room\n" in conf
+
+
+def test_validate_rejects_a_bad_explicit_hostname_but_not_a_blank_one():
+    base = {"server_url": "http://localhost:8000", "display_id": "wall", "orientation": "landscape"}
+    assert "hostname" not in sd_setup.validate_fields(base)                       # blank is fine
+    assert "hostname" not in sd_setup.validate_fields({**base, "hostname": "hub"})  # valid is fine
+    assert "hostname" in sd_setup.validate_fields({**base, "hostname": "-nope-"})   # garbage is caught

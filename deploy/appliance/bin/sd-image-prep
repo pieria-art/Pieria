@@ -114,6 +114,20 @@ wipe_identity() {
   : > /etc/machine-id
   rm -f /var/lib/dbus/machine-id 2>/dev/null || true
   echo "  wiped SSH host keys + machine-id (regenerate on first boot)"
+
+  # ADR-070: strip the build-time hostname (e.g. the Imager name, or 'docent-bench-pi') down to the
+  # neutral placeholder 'docent'. sd-hostname turns that into a UNIQUE docent-XXXX on first boot (from
+  # the machine-id we just wiped + regenerated), and the wizard lets the owner name it. Shipping a fixed
+  # build hostname means every unit collides on <name>.local and carries a dev name into a stranger's home.
+  local oldhost
+  oldhost="$(cat /etc/hostname 2>/dev/null || echo '?')"
+  echo "docent" > /etc/hostname 2>/dev/null || true
+  if grep -qE '^\s*127\.0\.1\.1' /etc/hosts 2>/dev/null; then
+    sed -i 's/^\s*127\.0\.1\.1.*/127.0.1.1\tdocent/' /etc/hosts 2>/dev/null || true
+  else
+    printf '127.0.1.1\tdocent\n' >> /etc/hosts 2>/dev/null || true
+  fi
+  echo "  reset hostname '$oldhost' -> 'docent' placeholder (sd-hostname makes it unique on first boot)"
 }
 
 wipe_network() {

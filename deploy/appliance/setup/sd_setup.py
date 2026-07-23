@@ -42,12 +42,31 @@ ORIENTATIONS = {
 
 _SERVER_URL_RE = re.compile(r"^https?://[^\s/]+(?::\d+)?(?:/.*)?$")
 _DISPLAY_ID_RE = re.compile(r"[^a-z0-9_-]+")
+_HOSTNAME_STRIP_RE = re.compile(r"[^a-z0-9-]+")
+_HOSTNAME_VALID_RE = re.compile(r"^[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?$")
 
 
 def sanitize_display_id(raw: str) -> str:
     """Lowercase, collapse anything that isn't [a-z0-9_-] to a single underscore, and trim leading/
     trailing separators so an id never starts or ends with a stray '-' or '_'."""
     return _DISPLAY_ID_RE.sub("_", (raw or "").strip().lower()).strip("_-")
+
+
+def derive_hostname(raw: str) -> str:
+    """Turn a human display name into an RFC1123-safe hostname: lowercase, underscores→hyphens,
+    anything else dropped, collapsed and trimmed to a valid DNS label (≤63 chars, no leading/trailing
+    hyphen). "Living Room" → "living-room" → it answers at living-room.local.
+
+    Returns "" when nothing usable survives, so the caller falls back to the unique baked default
+    (docent-XXXX) rather than shipping an invalid name."""
+    s = _HOSTNAME_STRIP_RE.sub("-", (raw or "").strip().lower().replace("_", "-"))
+    s = re.sub(r"-+", "-", s).strip("-")[:63].rstrip("-")
+    return s if _HOSTNAME_VALID_RE.match(s) else ""
+
+
+def valid_hostname(raw: str) -> bool:
+    """Is `raw` already a valid single DNS label (what /etc/hostname wants)?"""
+    return bool(_HOSTNAME_VALID_RE.match((raw or "").strip()))
 
 
 def validate_fields(fields: dict) -> dict:
@@ -69,7 +88,24 @@ def validate_fields(fields: dict) -> dict:
     if fields.get("orientation") not in ORIENTATIONS:
         errors["orientation"] = "Choose an orientation."
 
+    # Hostname is OPTIONAL: blank means "derive from the display name," and if that yields nothing the
+    # box keeps its unique baked default. Only a non-empty, explicitly-typed value is validated — so an
+    # advanced user who opens the edit affordance and types garbage gets told, while gramps who never
+    # touches it is never bothered.
+    hn = (fields.get("hostname") or "").strip()
+    if hn and not valid_hostname(hn):
+        errors["hostname"] = "Letters, numbers and hyphens only; can't start or end with a hyphen."
+
     return errors
+
+
+def resolve_hostname(fields: dict) -> str:
+    """The hostname this box should take: an explicit valid entry wins, else derive it from the display
+    name, else "" (the caller leaves the unique baked default in place)."""
+    explicit = (fields.get("hostname") or "").strip()
+    if valid_hostname(explicit):
+        return explicit
+    return derive_hostname(fields.get("display_id", ""))
 
 
 def _pick_all_in_one(fields: dict, default: bool) -> bool:
@@ -85,7 +121,7 @@ def _pick_all_in_one(fields: dict, default: bool) -> bool:
 
 #: Keys the wizard OWNS — everything else in an existing conf is preserved verbatim.
 _WIZARD_KEYS = {"SERVER_URL", "DISPLAY_ID", "MODE", "CYCLE_TIME", "ROTATE", "OUTPUT",
-                "WAIT_TIMEOUT", "ALL_IN_ONE", "GEMINI_API_KEY", "EINK_ORIENTATION"}
+                "WAIT_TIMEOUT", "ALL_IN_ONE", "GEMINI_API_KEY", "EINK_ORIENTATION", "HOSTNAME"}
 
 
 def _preserved_lines(existing: str) -> list:
@@ -119,11 +155,16 @@ def build_conf(fields: dict, all_in_one: bool = False, existing: str = "") -> st
     display_id = sanitize_display_id(fields.get("display_id", "")) or "display"
     server_url = (fields.get("server_url") or "").strip() or "http://localhost:8000"
     output = (fields.get("output") or "HDMI-A-1").strip()
+    hostname = resolve_hostname(fields)
     return (
         "# Screen Docent — Appliance configuration\n"
         "# Written by the first-run setup wizard. Safe to edit on the SD card's boot partition.\n"
         f"SERVER_URL={server_url}\n"
         f"DISPLAY_ID={display_id}\n"
+        # The network name this box answers to (<HOSTNAME>.local). Applied at commit via hostnamectl;
+        # recorded here so it survives a conf edit and the value is visible. Blank = keep the unique
+        # baked default (docent-XXXX).
+        f"HOSTNAME={hostname}\n"
         "MODE=\n"
         "CYCLE_TIME=\n"
         f"ROTATE={rotate}\n"
@@ -422,6 +463,7 @@ def make_handler(cfg: SetupConfig):
                 # World-readable by design (FAT boot partition, read from any computer). Set it
                 # explicitly so the mode is deterministic rather than inherited from the process umask.
                 os.chmod(cfg.boot_conf, 0o644)
+                _apply_hostname(resolve_hostname(fields))
                 if ssid:
                     _join_wifi(ssid, fields.get("wifi_pass", ""))
                 _release_wlan0()
@@ -433,6 +475,42 @@ def make_handler(cfg: SetupConfig):
                 self._json(500, {"error": f"Commit failed: {e}"})
 
     return Handler
+
+
+def _apply_hostname(hostname: str) -> None:
+    """Set the box's network name at commit so it answers at <hostname>.local after the reboot.
+
+    Best-effort and non-fatal by design: a hostname failure must never block a commit that already
+    wrote the conf and joined Wi-Fi — the box would still work, just under its baked default name. Live-
+    mode only (the caller skips this in dry-run). Blank hostname → leave the unique baked default alone.
+
+    Updates the 127.0.1.1 line in /etc/hosts too: without it `sudo` warns 'unable to resolve host' and
+    avahi can advertise a stale name. hostnamectl handles /etc/hostname; /etc/hosts it does not."""
+    if not hostname or not valid_hostname(hostname):
+        return
+    try:
+        subprocess.run(["hostnamectl", "set-hostname", hostname],
+                       check=True, capture_output=True, timeout=15)
+    except (subprocess.SubprocessError, FileNotFoundError):
+        try:
+            Path("/etc/hostname").write_text(hostname + "\n")
+        except OSError:
+            return  # can't set it at all — box keeps its current name, harmless
+    try:
+        hosts = Path("/etc/hosts")
+        lines = hosts.read_text().splitlines()
+        out, seen = [], False
+        for ln in lines:
+            if ln.split("#", 1)[0].strip().startswith("127.0.1.1"):
+                out.append(f"127.0.1.1\t{hostname}")
+                seen = True
+            else:
+                out.append(ln)
+        if not seen:
+            out.append(f"127.0.1.1\t{hostname}")
+        hosts.write_text("\n".join(out) + "\n")
+    except OSError:
+        pass  # /etc/hostname is the one that actually matters; hosts is a courtesy
 
 
 def _join_wifi(ssid: str, password: str) -> None:
@@ -566,6 +644,17 @@ WIZARD_HTML = """<!DOCTYPE html>
     <input type="text" id="display_id" placeholder="living_room">
     <div class="err" id="err-display_id"></div>
     <div class="hint">Appears in the phone remote. Letters, numbers, - or _.</div>
+    <div class="hint" id="host-line" style="margin-top:8px;">
+      On your network as <b id="host-preview" class="ok">docent</b>.local
+      · <a href="#" id="host-edit" style="color:var(--accent);">change</a>
+    </div>
+    <div id="host-edit-row" class="hidden">
+      <label>Network name (advanced)</label>
+      <input type="text" id="hostname" placeholder="living-room" autocomplete="off">
+      <div class="err" id="err-hostname"></div>
+      <div class="hint">The <code>.local</code> address other devices use to reach this box. Most
+        people can leave this — it follows the display name.</div>
+    </div>
 
     <label>Orientation</label>
     <select id="orientation">
@@ -655,15 +744,42 @@ function wireWifiExtras() {
   };
 }
 
+// Turn a display name into the hostname the box will answer to — MUST match derive_hostname() in the
+// Python: lowercase, underscores→hyphens, drop the rest, collapse/trim, ≤63 chars. It's a preview only;
+// the server re-derives authoritatively on commit, so a drift here is cosmetic, not a correctness bug.
+function deriveHost(name){
+  let s = (name||'').trim().toLowerCase().replace(/_/g,'-').replace(/[^a-z0-9-]+/g,'-');
+  s = s.replace(/-+/g,'-').replace(/^-+|-+$/g,'').slice(0,63).replace(/-+$/,'');
+  return s;
+}
+let hostEdited = false;   // once the user opens + types the advanced field, stop auto-following
+function refreshHostPreview(){
+  const derived = deriveHost($('display_id').value) || 'docent';
+  $('host-preview').textContent = hostEdited && $('hostname').value ? $('hostname').value : derived;
+}
+function wireHostname(){
+  $('display_id').addEventListener('input', () => { if(!hostEdited) refreshHostPreview(); });
+  $('host-edit').onclick = (e) => {
+    e.preventDefault();
+    $('host-edit-row').classList.remove('hidden');
+    $('host-line').classList.add('hidden');
+    if(!$('hostname').value) $('hostname').value = deriveHost($('display_id').value);
+    $('hostname').focus();
+    hostEdited = true;
+  };
+  $('hostname').addEventListener('input', refreshHostPreview);
+}
+
 function fields() {
   return {
     wifi_ssid: $('wifi_ssid').value, wifi_pass: $('wifi_pass').value,
     all_in_one: $('all_in_one').value,
     server_url: $('server_url').value, display_id: $('display_id').value,
+    hostname: $('hostname').value,
     orientation: $('orientation').value,
   };
 }
-function clearErrors(){ ['server_url','display_id','orientation'].forEach(f=>{ const e=$('err-'+f); e.style.display='none'; }); }
+function clearErrors(){ ['server_url','display_id','orientation','hostname'].forEach(f=>{ const e=$('err-'+f); e.style.display='none'; }); }
 function showErrors(errs){ clearErrors(); for(const [f,m] of Object.entries(errs)){ const e=$('err-'+f); if(e){ e.textContent=m; e.style.display='block'; } } }
 
 $('try-rotate').onclick = async () => {
@@ -681,8 +797,10 @@ $('continue').onclick = async () => {
   clearErrors();
   $('conf-preview').textContent = data.conf;
   const f = fields();
+  const host = (f.hostname && f.hostname.trim()) || deriveHost(f.display_id) || 'docent';
   $('confirm-summary').textContent = `Display “${f.display_id}” → ${f.server_url}` +
-    (f.wifi_ssid ? ` · Wi-Fi “${f.wifi_ssid}”` : ' · wired network');
+    (f.wifi_ssid ? ` · Wi-Fi “${f.wifi_ssid}”` : ' · wired network') +
+    ` · reachable at ${host}.local`;
   $('form-card').classList.add('hidden');
   $('confirm-card').classList.remove('hidden');
   window.scrollTo(0,0);
@@ -712,6 +830,8 @@ $('commit').onclick = async () => {
 loadMode();
 loadNetworks();
 wireWifiExtras();
+wireHostname();
+refreshHostPreview();
 </script>
 </body></html>"""
 

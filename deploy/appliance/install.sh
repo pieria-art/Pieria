@@ -121,6 +121,7 @@ install -m 0755 "$BIN_SRC/sd-update"         /usr/local/bin/sd-update
 install -m 0755 "$BIN_SRC/sd-eink"           /usr/local/bin/sd-eink
 install -m 0755 "$BIN_SRC/sd-image-prep"     /usr/local/bin/sd-image-prep
 install -m 0755 "$BIN_SRC/sd-timesync-wait"  /usr/local/bin/sd-timesync-wait
+install -m 0755 "$BIN_SRC/sd-hostname"       /usr/local/bin/sd-hostname
 
 echo "==> Enabling a persistent (but size-capped) journal"
 # An appliance that fails at a customer's house is debugged from its PREVIOUS boot — a first-run setup

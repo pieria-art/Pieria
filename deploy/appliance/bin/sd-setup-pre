@@ -25,6 +25,11 @@ SETUP_DIR=/usr/local/share/screen-docent/setup
 CONF="$(sd_resolve_conf "${1:-}")"
 log() { echo "sd-setup-pre: $*"; }
 
+# ADR-070: give a fresh unit a unique default hostname (docent-XXXX) before the setup AP raises, so the
+# setup card's <name>.local / QR is unique from the first moment. No-op once a real name is chosen.
+# Ordered here because sd-setup-pre already runs early, as root, on every boot. Non-fatal.
+command -v sd-hostname >/dev/null 2>&1 && sd-hostname || true
+
 want_setup=no
 if sd_is_configured "$CONF"; then
   log "configured ($CONF) — NetworkManager keeps wlan0."
