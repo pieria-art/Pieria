@@ -643,6 +643,21 @@ async def seed_from_registry(db: Session) -> bool:
     return True
 
 
+async def _update_check_loop():
+    """ADR-071: refresh the 'is there a newer release?' cache about once a day, so the admin UI shows a
+    current answer without a live GitHub call on page load. Leader-only, best-effort, appliance-only."""
+    import config
+    if not config.IS_APPLIANCE:
+        return
+    from core import update_check
+    while True:
+        try:
+            await update_check.check_for_update(force=True)
+        except Exception as e:  # noqa: BLE001 — a background check must never take the app down
+            logger.info(f"[update-check] background refresh skipped: {type(e).__name__}: {e}")
+        await asyncio.sleep(24 * 3600)
+
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     """Lifecycle events for FastAPI application with multi-worker concurrency locks."""
@@ -714,6 +729,9 @@ async def lifespan(app: FastAPI):
         # firing it once per uvicorn worker. No-op until enabled in Settings → Frame TV.
         _spawn(frame_push.frame_push_loop(_frame_select))
         logger.info("[Startup] Frame TV push loop scheduled (leader).")
+
+        # ADR-071: keep the update-availability cache warm (appliance-only; no-op elsewhere).
+        _spawn(_update_check_loop())
     except Exception as e:
         logger.error(f"[Startup] Non-fatal error during initialization: {e}", exc_info=True)
 

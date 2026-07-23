@@ -46,7 +46,7 @@ import federation  # noqa: F401 — tests/test_federation.py + tests/test_publis
 
 # ARTWORK_ROOT + STATIC_DIR are used below (static mounts); LIBRARY_DIR is kept bound because
 # tests/test_display_image.py, test_factory_reset.py + test_playlist_resume.py monkeypatch it.
-from config import ARTWORK_ROOT, LIBRARY_DIR, STATIC_DIR  # noqa: F401
+from config import APP_VERSION, ARTWORK_ROOT, LIBRARY_DIR, STATIC_DIR  # noqa: F401
 
 # Targeted WebSocket connection registry (shared by the ws + remote push paths).
 from core.connections import ConnectionManager, manager  # noqa: F401
@@ -101,7 +101,7 @@ from routers.studio import PERSONAL_PLAYLIST_NAME  # noqa: F401  — re-exported
 from routers.studio import router as studio_router
 from routers.ws import router as ws_router
 
-app = FastAPI(title="Screen Docent", version="0.4.5", lifespan=lifespan)
+app = FastAPI(title="Screen Docent", version=APP_VERSION, lifespan=lifespan)
 
 # Leaf domain routers (Phase 1 + Phase 2 + Phase 3 + Phase 4 of the app-split refactor — see
 # .ai/refactor_app_split_plan.md).

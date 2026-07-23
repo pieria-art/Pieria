@@ -30,6 +30,7 @@ LOG=""
 _get() { python3 -c "import json,sys; print(json.load(open(sys.argv[1])).get(sys.argv[2],''))" "$REQ" "$1" 2>/dev/null; }
 ACTION="$(_get action)"
 NONCE="$(_get nonce)"
+REF="$(_get ref)"
 
 write_status() {
   local state="$1" msg="${2:-}" tail_json="[]"
@@ -80,13 +81,29 @@ reload_kiosk() {
 rc=0
 case "$ACTION" in
   update-app)
-    # Exactly the documented manual sequence: pin to origin/main, rebuild the stack.
-    # sd-update runs as ROOT but the repo is owned by the login user (uid 1000), so git's
-    # "dubious ownership" guard would refuse. Mark the repo safe inline (per-command, no global
-    # config mutation) so root can operate on the user-owned checkout.
+    # Pin the checkout, then rebuild the stack. sd-update runs as ROOT but the repo is owned by the
+    # login user (uid 1000), so git's "dubious ownership" guard would refuse. Mark the repo safe inline
+    # (per-command, no global config mutation) so root can operate on the user-owned checkout.
     GIT_SAFE=(-c "safe.directory=$REPO_ROOT")
-    ( cd "$REPO_ROOT" && run git "${GIT_SAFE[@]}" fetch --prune origin ) || rc=$?
-    [ $rc -eq 0 ] && { ( cd "$REPO_ROOT" && run git "${GIT_SAFE[@]}" reset --hard origin/main ) || rc=$?; }
+
+    # Decide the target. A release TAG (ADR-071) is the shipped-product path: the GUI update-check
+    # offers the latest GitHub Release and passes its tag here. No ref → track origin/main (dev boxes,
+    # and backward compatibility with the old two-button GUI). A ref is re-validated against the ACTUAL
+    # fetched tags before use — the endpoint's regex is the first gate, this is the authoritative one:
+    # we only ever check out a ref that exists as a real tag, so a crafted request.json can't point us
+    # at an arbitrary revision.
+    ( cd "$REPO_ROOT" && run git "${GIT_SAFE[@]}" fetch --prune --tags origin ) || rc=$?
+    TARGET="origin/main"
+    if [ $rc -eq 0 ] && [ -n "$REF" ]; then
+      if ( cd "$REPO_ROOT" && git "${GIT_SAFE[@]}" rev-parse -q --verify "refs/tags/${REF}^{commit}" >/dev/null 2>&1 ); then
+        TARGET="refs/tags/${REF}"
+      else
+        write_status error "requested release '$REF' is not a known tag"
+        rm -f "$REQ"; rm -f "$LOG"
+        exit 1
+      fi
+    fi
+    [ $rc -eq 0 ] && { ( cd "$REPO_ROOT" && run git "${GIT_SAFE[@]}" reset --hard "$TARGET" ) || rc=$?; }
     [ $rc -eq 0 ] && { ( cd "$REPO_ROOT" && run docker compose -f docker-compose.yml -f "$OVERRIDE" up -d --build ) || rc=$?; }
     [ $rc -eq 0 ] && reload_kiosk
     ;;

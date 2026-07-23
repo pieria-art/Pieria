@@ -61,6 +61,13 @@ _appliance_token_warned = False
 
 class ApplianceUpdateRequest(BaseModel):
     action: str
+    ref: Optional[str] = None   # ADR-071: the release tag to check out (update-app); None = origin/main
+
+
+# A release tag we're willing to pass to the host updater. Deliberately strict — this string is handed
+# to `git` on the host (as an argument, never eval'd, and re-validated there against the real tag list),
+# but keeping the surface tiny here is the cheap first gate: semver-ish tags only.
+_REF_RE = __import__("re").compile(r"^v?\d+(\.\d+){0,3}(-[0-9A-Za-z.]+)?$")
 
 
 @router.post("/api/appliance/update")
@@ -85,6 +92,9 @@ async def appliance_update(req: ApplianceUpdateRequest, request: Request,
         logger.warning("SD_APPLIANCE_UPDATE_TOKEN is unset — /api/appliance/update is gated only by the "
                        "cross-origin guard. Set it to require a shared secret from non-browser callers.")
         _appliance_token_warned = True
+    ref = (req.ref or "").strip()
+    if ref and not _REF_RE.match(ref):
+        raise HTTPException(status_code=400, detail=f"invalid release ref: {ref!r}")
     nonce = secrets.token_hex(8)
     config.APPLIANCE_DIR.mkdir(parents=True, exist_ok=True)
     # Write the status FIRST (so the .path trigger always finds a status), then the request.
@@ -92,9 +102,22 @@ async def appliance_update(req: ApplianceUpdateRequest, request: Request,
               "message": "queued", "log_tail": []}
     (config.APPLIANCE_DIR / "status.json").write_text(json.dumps(status))
     request = {"action": req.action, "requested_at": datetime.now(UTC).isoformat(), "nonce": nonce}
+    if ref:
+        request["ref"] = ref
     (config.APPLIANCE_DIR / "request.json").write_text(json.dumps(request))
-    logger.info(f"Appliance update queued: {req.action} (nonce {nonce})")
+    logger.info(f"Appliance update queued: {req.action}{f' -> {ref}' if ref else ''} (nonce {nonce})")
     return {"status": "queued", "nonce": nonce}
+
+
+@router.get("/api/appliance/update/check")
+async def appliance_update_check(refresh: bool = False):
+    """Is a newer release available? Reads the cached result unless ?refresh=true (rate-limited to once
+    per 15 min). Appliance-only, like the rest of the bridge. Never errors on a failed check — it
+    reports {error: ...} so the admin UI can say 'couldn't check' instead of breaking."""
+    if not config.IS_APPLIANCE:
+        raise HTTPException(status_code=403, detail="appliance update bridge not enabled")
+    from core import update_check
+    return await update_check.check_for_update(force=refresh)
 
 
 @router.get("/api/appliance/update/status")

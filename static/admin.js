@@ -298,7 +298,48 @@ async function initDevicesCapability() {
 
 function enterDevices() {
     refreshHostHealth();
+    refreshUpdateCheck(false);
 }
+
+// ADR-071: surface "is there a newer release?" in the Maintenance panel. Notify-only — the user
+// decides when to apply. `force` triggers a live GitHub check (rate-limited server-side); the default
+// reads the daily-refreshed cache so opening the tab is cheap.
+let _latestReleaseTag = null;   // remembered so the Update button targets the release, not origin/main
+async function refreshUpdateCheck(force) {
+    const line = document.getElementById('update-check-line');
+    const notes = document.getElementById('update-notes');
+    if (!line) return;
+    if (force) line.textContent = 'Checking…';
+    let d;
+    try {
+        const res = await fetch(`${API_BASE}/api/appliance/update/check${force ? '?refresh=true' : ''}`);
+        if (!res.ok) { line.textContent = 'Update check unavailable.'; return; }
+        d = await res.json();
+    } catch (e) { line.textContent = 'Couldn’t reach the update service.'; return; }
+
+    _latestReleaseTag = d.update_available ? d.latest : null;
+    notes.style.display = 'none';
+    if (d.update_available) {
+        line.innerHTML = `⬆ <b style="color:#fbbf24;">Update available:</b> ` +
+            `${_esc(d.latest_name || d.latest)} ` +
+            `<span style="color:#64748b;">(you have v${_esc(d.current)})</span>`;
+        if (d.notes) {
+            notes.style.display = 'block';
+            notes.textContent = d.notes;
+        }
+        // Retarget the existing Update App button at this release tag.
+        const b = document.getElementById('maint-update-app');
+        if (b) b.textContent = `⬆ Update to ${d.latest}`;
+    } else if (d.no_releases) {
+        line.innerHTML = `You’re on v${_esc(d.current)}. <span style="color:#64748b;">No published releases yet.</span>`;
+    } else if (d.error && !d.latest) {
+        line.textContent = `On v${d.current}. Couldn’t check for updates just now.`;
+    } else {
+        line.innerHTML = `✓ <span style="color:var(--success-color);">Up to date</span> ` +
+            `<span style="color:#64748b;">(v${_esc(d.current)})</span>`;
+    }
+}
+window.refreshUpdateCheck = refreshUpdateCheck;
 
 function _fmtUptime(s) {
     if (s == null) return '—';
@@ -402,8 +443,13 @@ async function refreshHostHealth() {
 // --- Appliance maintenance: GUI-triggered host updates ----------------------
 let _maintPoll = null;
 const _MAINT_BTNS = ['maint-update-app', 'maint-update-scripts', 'maint-reboot'];
+function _updateAppPrompt() {
+    // Name the target so the confirm is honest about what's being installed.
+    return _latestReleaseTag
+        ? `Update to ${_latestReleaseTag} now? This installs that release and rebuilds — the display drops briefly while the container restarts.`
+        : 'Update the app now? This pulls the latest from origin/main and rebuilds — the display drops briefly while the container restarts.';
+}
 const _MAINT_PROMPTS = {
-    'update-app': 'Update the app now? This pulls the latest from origin/main and rebuilds — the display drops briefly while the container restarts.',
     'update-scripts': 'Re-run the appliance installer to refresh the kiosk scripts and services?',
     'reboot': 'Reboot this device now?',
 };
@@ -413,7 +459,8 @@ function _maintButtons(disabled) {
 }
 
 async function applianceAction(action) {
-    const ok = await confirmModal(_MAINT_PROMPTS[action] || `Run ${action}?`, {
+    const prompt = action === 'update-app' ? _updateAppPrompt() : (_MAINT_PROMPTS[action] || `Run ${action}?`);
+    const ok = await confirmModal(prompt, {
         confirmText: action === 'reboot' ? 'Reboot' : 'Proceed',
         danger: action === 'reboot' || action === 'update-app',
     });
@@ -423,10 +470,14 @@ async function applianceAction(action) {
     statusEl.textContent = '⏳ Queued…';
     _maintButtons(true);
     try {
+        // update-app targets the known release tag when there is one (ADR-071); otherwise the host
+        // helper falls back to origin/main.
+        const body = { action };
+        if (action === 'update-app' && _latestReleaseTag) body.ref = _latestReleaseTag;
         const res = await fetch(`${API_BASE}/api/appliance/update`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ action }),
+            body: JSON.stringify(body),
         });
         if (!res.ok) {
             const e = await res.json().catch(() => ({}));

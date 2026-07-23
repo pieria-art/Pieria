@@ -582,8 +582,19 @@
                 <div id="appliance-maintenance-slot" style="background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 25px;">
                     <h3 style="margin-top: 0; font-size: 0.9rem; color: var(--text-color);">🛠 Appliance Maintenance</h3>
                     <p style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 16px;">
-                        Manage this box without SSH. Updates pull the latest from <code>origin/main</code> and rebuild.
+                        Manage this box without SSH.
                     </p>
+                    <!-- ADR-071: update availability. Populated by refreshUpdateCheck(); shows the current
+                         version, whether a newer release exists, its notes, and a one-click update. -->
+                    <div id="update-check" style="margin-bottom:16px; padding:14px 16px; border-radius:9px;
+                        border:1px solid var(--border-color); background:#0f172a; font-size:0.82rem; color:#94a3b8;">
+                        <span id="update-check-line">Checking for updates…</span>
+                        <a href="#" id="update-check-now" onclick="refreshUpdateCheck(true); return false;"
+                           style="margin-left:8px; color:var(--accent-color, #6366f1); font-size:0.78rem;">check now</a>
+                        <div id="update-notes" style="display:none; margin-top:10px; padding-top:10px;
+                            border-top:1px solid var(--border-color); white-space:pre-wrap; color:#cbd5e1;
+                            max-height:160px; overflow:auto; font-size:0.78rem;"></div>
+                    </div>
                     <div style="display:flex; gap:10px; flex-wrap:wrap;">
                         <button class="secondary" id="maint-update-app" onclick="applianceAction('update-app')">⬆ Update App</button>
                         <button class="secondary" id="maint-update-scripts" onclick="applianceAction('update-scripts')">↻ Update Scripts</button>

@@ -11,6 +11,15 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+# --- Version + update channel (ADR-071) --------------------------------------------------------------
+# Single source of truth for the running version. Bump this WHEN YOU CUT A RELEASE and tag the commit
+# `vX.Y.Z` — the update check compares this against the latest GitHub Release, and sd-update checks out
+# that tag. Keep the two in lockstep: the tag is what ships, this is what the box believes it is running.
+APP_VERSION = "0.4.5"
+
+# owner/repo whose GitHub Releases define "latest". Public info; overridable for a fork.
+UPDATE_REPO = os.getenv("SD_UPDATE_REPO", "AiwendilInTheWoods/Screen-Docent").strip()
+
 # C1: AI enrichment sometimes emits Markdown emphasis (e.g. "*The Irish Question*"). The placard and
 # /art page render plain text, so the markers show literally. Flatten inline emphasis to plain prose.
 # Lives here (dep-free) so app.py, curator.py and agents.py all share one implementation; mirrored by
