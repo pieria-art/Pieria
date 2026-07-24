@@ -43,6 +43,7 @@ from __future__ import annotations
 import argparse
 import subprocess
 import sys
+import threading
 from pathlib import Path
 
 import numpy as np
@@ -458,7 +459,37 @@ def cmd_selftest(args) -> None:
 
 
 def _grab(device: str, size: str, warmup: int, out: str) -> None:
-    _v4l2_set(device, *GAIN_CTRL)      # see GAIN_CTRL: this camera walks its gain back up on its own
+    # ⚠️ THE CONTROLS MUST BE WRITTEN WHILE THE STREAM IS OPEN, not before it.
+    #
+    # Writes made before ffmpeg opens the device are discarded at stream start: measured 2026-08-29,
+    # exposure read back as 400 immediately after being written, then 156 after a single grab, and
+    # gain walked from a locked 24 to 205 on its own. The give-away was an exposure sweep whose frame
+    # means cycled with a period of THREE regardless of the value requested — each reading was the
+    # previous grab's drifted state. Re-asserting immediately before the grab does NOT help, because
+    # the reset happens when the stream opens, which is after that write.
+    #
+    # So a helper thread re-asserts them continuously for the life of the capture. With it, the
+    # controls read back correct afterwards and the frame responds to exposure monotonically; without
+    # it, neither is true. This supersedes the earlier gain-only re-assert, which fixed half of the
+    # problem and hid the other half.
+    stop = threading.Event()
+
+    def _hold() -> None:
+        while not stop.is_set():
+            for ctrl, val in PREGRAB_CTRLS:
+                _v4l2_set(device, ctrl, val)
+            stop.wait(0.08)
+
+    holder = threading.Thread(target=_hold, daemon=True)
+    holder.start()
+    try:
+        _grab_stream(device, size, warmup, out)
+    finally:
+        stop.set()
+        holder.join(timeout=2.0)
+
+
+def _grab_stream(device: str, size: str, warmup: int, out: str) -> None:
     # MJPEG explicitly: at 1080p the C920 offers MJPG at 30 fps but raw YUYV only at ~5 fps, and
     # ffmpeg will happily pick the slow one — which turns a one-frame grab into a long stall and,
     # on a marginal USB port, into a wedged device.
@@ -486,18 +517,33 @@ def _frame_delta(a: Path, b: Path) -> float:
 #: quantises exposure coarsely: 560-740 are indistinguishable, as were 150-200 under the lamp.
 CAMERA_LOCK = [
     ("auto_exposure", 1),                 # 1 = Manual Mode
-    ("exposure_time_absolute", 620),
+    ("exposure_time_absolute", 2047),
     ("white_balance_automatic", 0),
     ("white_balance_temperature", 4000),
     ("exposure_dynamic_framerate", 0),
     ("backlight_compensation", 0),
     ("power_line_frequency", 2),          # 60 Hz — stops mains flicker beating with the shutter
-    ("gain", 24),
+    ("gain", 72),
 ]
 #: ⚠️ The C920 drives GAIN back up on its own (measured: 0 -> 109 -> 255 as exposure rose) even in
 #: manual exposure mode. Every capture therefore re-asserts it immediately before grabbing. Without
 #: this the panel clips ~30% of its pixels and every measurement built on it is silently wrong.
-GAIN_CTRL = ("gain", 24)
+GAIN_CTRL = ("gain", 72)
+
+#: Controls re-asserted immediately before EVERY grab, because this camera silently walks them back.
+#:
+#: ⚠️ Gain was known to drift (0 -> 109 -> 255 measured during setup) and was already re-asserted
+#: here. EXPOSURE DRIFTS THE SAME WAY and was not, which was found on 2026-08-29: with the control
+#: read back as 400 immediately after writing it, a single grab left it at 156, while gain had walked
+#: from the locked 24 to 205 on its own. The symptom is nasty because it is quiet — an exposure sweep
+#: returned frame means that cycled with a period of 3 regardless of the value set, because each
+#: reading reflected the PREVIOUS grab's drifted state rather than the requested one.
+#:
+#: The per-photograph black/white affine absorbs a global exposure change, so colour ratios survive
+#: this. What does not survive is the clipping budget: an exposure that wanders upward clips the
+#: white anchor, and a clipped anchor invalidates the whole correction. Re-assert, then verify.
+PREGRAB_CTRLS = [(c, v) for c, v in CAMERA_LOCK
+                 if c in ("auto_exposure", "exposure_time_absolute", "gain")]
 
 
 def _v4l2_set(device: str, ctrl: str, value) -> None:
