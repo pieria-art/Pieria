@@ -5,7 +5,7 @@
 # this is the ONLY component with host privilege; the web app never gets it.
 # __REPO_ROOT__ is substituted by install.sh.
 [Unit]
-Description=Screen Docent appliance updater (git pull / rebuild / scripts / reboot)
+Description=Pieria appliance updater (git pull / rebuild / scripts / reboot)
 
 [Service]
 Type=oneshot

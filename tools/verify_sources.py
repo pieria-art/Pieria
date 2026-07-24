@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Verify every image source Screen Docent depends on still resolves to a real image.
+"""Verify every image source Pieria depends on still resolves to a real image.
 
 A deterministic health-check (NOT an AI agent) over three scopes: the factory seed, the bundled
 catalog, and subscribed Manifest v2 feeds. External hosts rot silently — Wikimedia tightened its

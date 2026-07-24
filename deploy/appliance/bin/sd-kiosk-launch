@@ -7,14 +7,14 @@
 set -u
 
 find_conf() {
-  for p in /boot/firmware/screen-docent.conf /boot/screen-docent.conf /etc/screen-docent.conf; do
+  for p in /boot/firmware/pieria.conf /boot/pieria.conf /etc/pieria.conf; do
     [ -r "$p" ] && { printf '%s\n' "$p"; return 0; }
   done
   return 1
 }
 
 CONF="$(find_conf)" || {
-  echo "sd-kiosk-launch: no screen-docent.conf found on the boot partition or /etc" >&2
+  echo "sd-kiosk-launch: no pieria.conf found on the boot partition or /etc" >&2
   exit 1
 }
 # shellcheck disable=SC1090
@@ -59,7 +59,7 @@ CHROME_FLAGS=(
 # staring at black. If it's NOT installed (older image), fall back to the original
 # behavior: block until the server is reachable, then open the canvas directly.
 TARGET="$URL"
-# Setup mode wins outright. sd-setup-boot / sd-net-recover drop this file while the Docent-Setup AP is
+# Setup mode wins outright. sd-setup-boot / sd-net-recover drop this file while the Pieria-Setup AP is
 # up; the normal splash below would render an admin URL from the PLACEHOLDER SERVER_URL and tell the
 # owner to visit an address that does not exist (ADR-058). It is on /run, so it vanishes on reboot —
 # a configured box can never be stuck showing it.
@@ -103,19 +103,19 @@ elif ! _sd_configured; then
     echo "sd-kiosk-launch: no setup splash after ${_waited}s — painting a generic setup notice." >&2
     _fallback="${XDG_RUNTIME_DIR:-/tmp}/sd-setup-fallback.html"
     cat > "$_fallback" <<'FALLBACK'
-<meta charset="utf-8"><title>Screen Docent — setup</title>
+<meta charset="utf-8"><title>Pieria — setup</title>
 <style>html,body{height:100%;margin:0;background:#111;color:#eee;
 font:400 2.2vw/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
 display:flex;align-items:center;justify-content:center;text-align:center}
 div{max-width:70%} b{font-size:3.2vw;display:block;margin-bottom:.6em}</style>
-<div><b>This Screen Docent needs setting up</b>
-Join the <b style="display:inline;font-size:inherit">Docent-Setup</b> Wi-Fi network
+<div><b>This Pieria needs setting up</b>
+Join the <b style="display:inline;font-size:inherit">Pieria-Setup</b> Wi-Fi network
 from your phone, and a setup page will open automatically.</div>
 FALLBACK
     exec_kiosk_target="file://$_fallback"
   fi
 fi
-SPLASH_SRC="/usr/local/share/screen-docent/sd-splash.html"
+SPLASH_SRC="/usr/local/share/pieria/sd-splash.html"
 if [ -n "${exec_kiosk_target:-}" ]; then
   TARGET="$exec_kiosk_target"
 elif [ -r "$SPLASH_SRC" ]; then

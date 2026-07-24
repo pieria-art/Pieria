@@ -255,9 +255,9 @@ def test_emit_v2_manifests_signs_and_verifies(tmp_path):
     # one signed, valid, verified-tier manifest per collection
     for c in cols:
         m = _json.loads((tmp_path / "_manifests" / f"{c['id']}.json").read_text())
-        assert m["manifest_version"] == 2 and m["publisher"]["id"] == "screendocent"
+        assert m["manifest_version"] == 2 and m["publisher"]["id"] == "pieria"
         assert federation.verify_signature(m) is True
-        assert federation.assess_trust(m, trusted_keys={"screendocent": pub}) == "verified"
+        assert federation.assess_trust(m, trusted_keys={"pieria": pub}) == "verified"
         # local asset, no remote URL
         assert m["items"][0]["image"]["local_file"] and "full_url" not in m["items"][0]["image"]
 
@@ -278,7 +278,7 @@ def test_emit_v2_manifests_unsigned_is_community(tmp_path):
     build_pack._emit_v2_manifests(tmp_path, cols, signing_key=None, generated_at=None)
     m = _json.loads((tmp_path / "_manifests" / "impressionism.json").read_text())
     assert "signature" not in m
-    assert federation.assess_trust(m, trusted_keys={"screendocent": "whatever"}) == "community"
+    assert federation.assess_trust(m, trusted_keys={"pieria": "whatever"}) == "community"
 
 
 def test_build_item_accepts_local_file():

@@ -1,6 +1,6 @@
 {
   "_comment": "Curated registry of VERIFIED publishers: publisher.id -> base64 Ed25519 public key. A subscribed manifest is promoted to the 'verified' trust tier only when it is signed AND its publisher key matches the entry here (a validly self-signed feed whose key is NOT here stays 'community' / trust-on-first-use). v1 is hand-curated; add an entry via PR. Keys below the _comment line are real trusted keys.",
   "publishers": {
-    "screendocent": "/x3Ye7ZyWyq6UVmaRmJhRsZkuCNuKsTXPJHuWAFfFrs="
+    "pieria": "/x3Ye7ZyWyq6UVmaRmJhRsZkuCNuKsTXPJHuWAFfFrs="
   }
 }

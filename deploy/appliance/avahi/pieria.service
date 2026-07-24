@@ -1,13 +1,13 @@
 <?xml version="1.0" standalone='no'?>
 <!DOCTYPE service-group SYSTEM "avahi-service.dtd">
 <!--
-  Installed by install.sh (all-in-one only) as /etc/avahi/services/screen-docent.service.
-  Advertises this box's Screen Docent server over mDNS so it shows by a friendly name in
+  Installed by install.sh (all-in-one only) as /etc/avahi/services/pieria.service.
+  Advertises this box's Pieria server over mDNS so it shows by a friendly name in
   network/Bonjour browsers, in addition to <hostname>.local. Only installed on an all-in-one
   box — a thin client runs no server, so advertising one here would be a lie.
 -->
 <service-group>
-  <name replace-wildcards="yes">Screen Docent on %h</name>
+  <name replace-wildcards="yes">Pieria on %h</name>
   <service>
     <type>_http._tcp</type>
     <port>8000</port>

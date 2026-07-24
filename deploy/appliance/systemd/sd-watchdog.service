@@ -3,7 +3,7 @@
 # WATCHDOG=enforce it relaunches the kiosk / restarts the container / reboots on sustained failure.
 # Triggered by sd-watchdog.timer. __BOOT_CONF__ and __REPO_ROOT__ are substituted by install.sh.
 [Unit]
-Description=Screen Docent kiosk/server watchdog (self-heal)
+Description=Pieria kiosk/server watchdog (self-heal)
 
 [Service]
 Type=oneshot

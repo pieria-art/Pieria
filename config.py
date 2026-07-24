@@ -1,5 +1,5 @@
 """
-Shared configuration constants for the Screen Docent application.
+Shared configuration constants for the Pieria application.
 Extracted from app.py to break circular import dependencies.
 """
 
@@ -18,7 +18,7 @@ load_dotenv()
 APP_VERSION = "0.4.5"
 
 # owner/repo whose GitHub Releases define "latest". Public info; overridable for a fork.
-UPDATE_REPO = os.getenv("SD_UPDATE_REPO", "AiwendilInTheWoods/Screen-Docent").strip()
+UPDATE_REPO = os.getenv("SD_UPDATE_REPO", "AiwendilInTheWoods/Pieria").strip()
 
 # C1: AI enrichment sometimes emits Markdown emphasis (e.g. "*The Irish Question*"). The placard and
 # /art page render plain text, so the markers show literally. Flatten inline emphasis to plain prose.
@@ -55,7 +55,7 @@ SUB_PREFIX = "sub_"
 # Wikimedia (and most museum/image hosts) reject the default httpx User-Agent; every outbound image
 # fetch must send this descriptive UA. Lives here (not app.py) so the offline tools/ scripts can
 # reuse it without importing the FastAPI app.
-SD_USER_AGENT = "ScreenDocent/1.0 (https://github.com/AiwendilInTheWoods/Screen-Docent; art display) httpx"
+SD_USER_AGENT = "Pieria/1.0 (https://github.com/AiwendilInTheWoods/Pieria; art display) httpx"
 
 # Modular-pack registry (ADR-040 #4 / ADR-038 §5): the public packs.json the "browse & download packs"
 # card reads to offer on-demand collections. Default = the official Cloudflare R2 host behind curwe.ai;

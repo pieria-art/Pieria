@@ -1,8 +1,8 @@
-<svg width="85" height="70" viewBox="5 15 90 70" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <!-- Rounded Display Frame -->
-  <rect x="5" y="15" width="90" height="70" rx="10" stroke="#f1f5f9" stroke-width="4"/>
-  <!-- stylized Screen Docent 'SD' Mark -->
-  <path d="M35 40C35 37.2386 37.2386 35 40 35H55C57.7614 35 60 37.2386 60 40V45C60 47.7614 57.7614 50 55 50H45C42.2386 50 40 52.2386 40 55V60C40 62.7614 42.2386 65 45 65H60C62.7614 65 65 62.7614 65 60" stroke="#22d3ee" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
-  <!-- Small dot for the Docent's Monocle feel -->
-  <circle cx="65" cy="40" r="4" fill="#22d3ee"/>
+<svg width="92" height="72" viewBox="4 14 92 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Pieria — the display frame -->
+  <rect x="8" y="18" width="84" height="64" rx="10" stroke="#f1f5f9" stroke-width="4"/>
+  <!-- The Pierian Spring: concentric ripples on a still pool -->
+  <ellipse cx="50" cy="52" rx="26" ry="9" stroke="#22d3ee" stroke-width="4"/>
+  <ellipse cx="50" cy="52" rx="14" ry="4.8" stroke="#22d3ee" stroke-width="4"/>
+  <circle cx="50" cy="52" r="2.6" fill="#22d3ee"/>
 </svg>

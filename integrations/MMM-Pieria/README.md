@@ -1,17 +1,17 @@
-# MMM-ScreenDocent
+# MMM-Pieria
 
 A [MagicMirror²](https://magicmirror.builders/) module that turns a slot on your mirror into a
 rotating museum wall: it shows the **current curated artwork and its placard** (title, artist, date,
-medium, and an AI-written blurb) from a running [Screen Docent](https://github.com/AiwendilInTheWoods/Screen-Docent)
+medium, and an AI-written blurb) from a running [Pieria](https://github.com/AiwendilInTheWoods/Pieria)
 server.
 
-It's a thin client over Screen Docent's existing display feed — **no extra server setup**. The module
+It's a thin client over Pieria's existing display feed — **no extra server setup**. The module
 asks the server what to show next on a timer, honoring the server's own per-artwork display time, and
 the server's curation brain (shuffle + affinity weighting) decides the rotation.
 
 ## Preview it first (no MagicMirror required)
 
-Open [`preview.html`](preview.html) in any browser, point it at your Screen Docent server (default
+Open [`preview.html`](preview.html) in any browser, point it at your Pieria server (default
 `http://localhost:8000`), and you'll see exactly what the module renders. Handy for confirming your
 server URL and picking a playlist before you wire it into MagicMirror.
 
@@ -21,11 +21,11 @@ From your MagicMirror folder:
 
 ```bash
 cd ~/MagicMirror/modules
-# Option A — copy just this folder (e.g. from a Screen Docent checkout):
-cp -r /path/to/Screen-Docent/integrations/MMM-ScreenDocent .
-# Option B — clone Screen Docent and symlink the module:
-# git clone https://github.com/AiwendilInTheWoods/Screen-Docent.git
-# ln -s Screen-Docent/integrations/MMM-ScreenDocent MMM-ScreenDocent
+# Option A — copy just this folder (e.g. from a Pieria checkout):
+cp -r /path/to/Pieria/integrations/MMM-Pieria .
+# Option B — clone Pieria and symlink the module:
+# git clone https://github.com/AiwendilInTheWoods/Pieria.git
+# ln -s Pieria/integrations/MMM-Pieria MMM-Pieria
 ```
 
 No `npm install` needed — the module is front-end only.
@@ -36,10 +36,10 @@ Add a block to the `modules` array in `~/MagicMirror/config/config.js`:
 
 ```js
 {
-  module: "MMM-ScreenDocent",
+  module: "MMM-Pieria",
   position: "fullscreen_below", // full-bleed art backdrop + corner placard
   config: {
-    serverUrl: "http://192.168.1.50:8000", // your Screen Docent server
+    serverUrl: "http://192.168.1.50:8000", // your Pieria server
     playlist: "",                          // blank = the server's first playlist
     displayId: "magicmirror"
   }
@@ -53,7 +53,7 @@ Prefer a contained card? Use a normal region like `position: "top_left"` instead
 
 | Option | Default | Description |
 | --- | --- | --- |
-| `serverUrl` | `"http://localhost:8000"` | Base URL of your Screen Docent server. |
+| `serverUrl` | `"http://localhost:8000"` | Base URL of your Pieria server. |
 | `playlist` | `""` | Playlist/collection name to show. Blank = the server's first playlist. |
 | `displayId` | `"magicmirror"` | Identifies this display to the server's rotation state. Give each mirror a unique id if you run more than one. |
 | `updateInterval` | `0` | Milliseconds between artworks. `0` honors the server's per-artwork `display_time`. |
@@ -77,10 +77,10 @@ If the server is briefly unreachable, the module keeps showing the last artwork 
 
 ## Possible enhancements
 
-- A `node_helper.js` for server-side fetching (not needed today — Screen Docent serves open CORS).
-- Live push over the Screen Docent WebSocket (`/ws/{display_id}`) instead of timer-based fetch.
-- Targeting a specific `displayId` from the Screen Docent admin remote.
+- A `node_helper.js` for server-side fetching (not needed today — Pieria serves open CORS).
+- Live push over the Pieria WebSocket (`/ws/{display_id}`) instead of timer-based fetch.
+- Targeting a specific `displayId` from the Pieria admin remote.
 
 ## License
 
-AGPL-3.0 — part of the [Screen Docent](https://github.com/AiwendilInTheWoods/Screen-Docent) project.
+AGPL-3.0 — part of the [Pieria](https://github.com/AiwendilInTheWoods/Pieria) project.

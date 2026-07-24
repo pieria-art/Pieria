@@ -14,7 +14,7 @@
 # Making startup explicit means the image can ship with NO container at all: first boot creates it.
 # That is also what lets the .img ship empty and pull its first pack from R2 out of the box.
 [Unit]
-Description=Screen Docent application stack (docker compose)
+Description=Pieria application stack (docker compose)
 Requires=docker.service
 After=docker.service network-online.target
 Wants=network-online.target

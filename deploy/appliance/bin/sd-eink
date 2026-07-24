@@ -9,7 +9,7 @@ BOTH topologies: all-in-one (SERVER_URL=http://localhost:8000, alongside the loc
 client-only/satellite (SERVER_URL points at a remote hub; no local container needed at all).
 
 Sources the appliance config the same way sd-quiet-hours does: the conf path is argv[1] (the
-`screen-docent.conf` on the boot partition), parsed as KEY=VALUE lines into os.environ, then
+`pieria.conf` on the boot partition), parsed as KEY=VALUE lines into os.environ, then
 `EinkConfig.from_env()` reads SERVER_URL / DISPLAY_ID / EINK_MIN_INTERVAL / EINK_SATURATION /
 EINK_ORIENTATION from there.
 
@@ -30,7 +30,7 @@ from pathlib import Path
 logger = logging.getLogger("sd-eink")
 
 # eink_client.py is stdlib+Pillow+httpx only (no app/database imports) so it can run host-side with
-# no local Screen Docent checkout at all in satellite mode. It's installed ALONGSIDE this script in
+# no local Pieria checkout at all in satellite mode. It's installed ALONGSIDE this script in
 # /usr/local/bin by install.sh; running Python auto-adds the script's own directory to sys.path, so
 # that layout "just works". Fall back to the repo-root copy for in-place dev/testing (this file lives
 # at deploy/appliance/bin/sd-eink, three directories below the repo root).

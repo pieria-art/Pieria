@@ -1,4 +1,4 @@
-"""Validator for Screen Docent **Manifest v2** (see docs/manifest-v2.md).
+"""Validator for Pieria **Manifest v2** (see docs/manifest-v2.md).
 
 Executable source of truth for the federation manifest format. Pure-Python, no dependency — it runs
 both offline (in the catalog builder) and at runtime (when the app fetches a subscribed manifest).

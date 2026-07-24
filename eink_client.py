@@ -4,7 +4,7 @@ E-ink device client (Track B) — the poll-and-sleep bridge that pulls the curre
 
 Runs HOST-SIDE (not in the container) via `deploy/appliance/bin/sd-eink` — GPIO/SPI aren't reachable
 from the non-root app container (ADR-037), and this client must also run standalone in "satellite" mode
-with no local Screen Docent container at all. So this module is deliberately standalone: only stdlib +
+with no local Pieria container at all. So this module is deliberately standalone: only stdlib +
 Pillow + httpx + (lazily) `inky`. No `database`/app imports — see `.ai/spec_eink_spectra6.md` §3.2/3.4.
 
 Design note (no hardware here): mirrors `frame_push.py`'s shape — an `EinkClient` ABC + a real

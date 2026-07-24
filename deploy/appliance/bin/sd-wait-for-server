@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # sd-wait-for-server URL [TIMEOUT_SECONDS]
 #
-# Block until the Screen Docent server answers an HTTP request, so the kiosk
+# Block until the Pieria server answers an HTTP request, so the kiosk
 # browser never lands on a "can't connect" error page during a cold boot
 # (e.g. the LAN/server isn't up yet). TIMEOUT_SECONDS=0 (default) waits forever.
 set -u

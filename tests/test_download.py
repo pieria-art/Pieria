@@ -73,7 +73,7 @@ def test_sends_descriptive_user_agent(lib, monkeypatch):
                         _fake_client_factory([_Resp(200, _png_bytes())], captured))
     dest, name, w, h = asyncio.run(_download_image_to_library("https://x.test/a.jpg", filename="t"))
     # The whole reason the refactor exists: a real UA, not httpx's default (which Wikimedia 403s).
-    assert "ScreenDocent" in captured["headers"].get("User-Agent", "")
+    assert "Pieria" in captured["headers"].get("User-Agent", "")
     assert (w, h) == (40, 30) and dest.exists() and name == "t.jpg"
 
 
@@ -157,7 +157,7 @@ def test_approve_discovery_uses_robust_downloader(client):
     r = c.post(f"/api/discover/approve/{item.id}")
     assert r.status_code == 200, r.text
     # The bug this refactor fixes: the old path used a bare httpx client (default UA → Wikimedia 403).
-    assert "ScreenDocent" in captured["headers"].get("User-Agent", "")
+    assert "Pieria" in captured["headers"].get("User-Agent", "")
 
     art = db.query(ArtworkModel).filter(ArtworkModel.title == "Test Piece").first()
     assert art is not None and art.status == "processing"

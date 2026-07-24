@@ -1,4 +1,4 @@
-"""Shared kernel for the Screen-Docent app.
+"""Shared kernel for the Pieria app.
 
 Cross-domain primitives that multiple routers (and the app lifespan) depend on:
 connection registry, media/derivative rendering, the SSRF-safe downloader, playback

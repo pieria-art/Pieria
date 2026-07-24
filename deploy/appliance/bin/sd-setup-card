@@ -16,9 +16,9 @@ needs to read something. Pure primaries also survive an inky client's internal r
 (the ADR-053 "universal" trick).
 
 Usage:
-    sd-setup-card --ssid Docent-Setup                 # paint the panel
-    sd-setup-card --ssid Docent-Setup --out card.png  # render to a file (no hardware needed)
-    sd-setup-card --recovery --ssid Docent-Setup      # the "couldn't join your Wi-Fi" variant
+    sd-setup-card --ssid Pieria-Setup                 # paint the panel
+    sd-setup-card --ssid Pieria-Setup --out card.png  # render to a file (no hardware needed)
+    sd-setup-card --recovery --ssid Pieria-Setup      # the "couldn't join your Wi-Fi" variant
 """
 from __future__ import annotations
 
@@ -237,12 +237,12 @@ def render_card(width: int, height: int, ssid: str, recovery: bool = False) -> I
     if recovery:
         title, sub = "Couldn't join your Wi-Fi", "Let's try again — it's almost always the password."
     else:
-        title, sub = "Set up your Screen Docent", "This display isn't connected yet."
+        title, sub = "Set up your Pieria", "This display isn't connected yet."
 
     # --- masthead ---------------------------------------------------------------------------------
     d.rectangle([0, 0, width, S(14)], fill=accent)
     y = margin
-    d.text((margin, y), "SCREEN DOCENT", font=_font(S(26), bold=True), fill=accent)
+    d.text((margin, y), "PIERIA", font=_font(S(26), bold=True), fill=accent)
     y += S(46)
     d.text((margin, y), title, font=_font(S(72), bold=True), fill=BLACK)
     y += S(92)
@@ -286,7 +286,7 @@ def render_card(width: int, height: int, ssid: str, recovery: bool = False) -> I
     # --- numbered steps, fitted to the column they actually have ----------------------------------
     # The available width was previously COMPUTED AND DISCARDED (`_ = col_w`), which is precisely how
     # the overlap shipped. Shrink the step font until the longest line fits — the SSID is user-visible
-    # and can be long, so this has to hold for arbitrary names, not just "Docent-Setup".
+    # and can be long, so this has to hold for arbitrary names, not just "Pieria-Setup".
     bullet, gutter = S(46), S(26)
     avail = col_w - bullet - gutter
     step_px = fit_font_px(d, steps, avail, start_px=S(35), min_px=S(20))
@@ -331,7 +331,7 @@ def render_card(width: int, height: int, ssid: str, recovery: bool = False) -> I
 SPLASH_HTML = """<!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Set up your Screen Docent</title>
+<title>Set up your Pieria</title>
 <style>
   /* Sized in vmin, NOT vw. A portrait panel (Josh's own rig is a portrait 55") makes vw the SHORT axis,
      so vw-based type collapsed to unreadable and floated in a sea of empty dark. vmin is identical in
@@ -364,7 +364,7 @@ SPLASH_HTML = """<!DOCTYPE html>
   }}
 </style></head>
 <body><div class="wrap">
-  <div class="eyebrow">SCREEN DOCENT</div>
+  <div class="eyebrow">PIERIA</div>
   <h1>{title}</h1>
   <p class="sub">{sub}</p>
   <div class="cols">
@@ -395,7 +395,7 @@ def render_splash(ssid: str, recovery: bool = False) -> str:
         title, sub = "Couldn&rsquo;t join your Wi-Fi", "Let&rsquo;s try again &mdash; it&rsquo;s almost always the password."
         accent = "#ef4444"
     else:
-        title, sub = "Set up your Screen Docent", "This display isn&rsquo;t connected yet."
+        title, sub = "Set up your Pieria", "This display isn&rsquo;t connected yet."
         accent = "#3b82f6"
 
     qr_block = ""
@@ -423,7 +423,7 @@ def _quantize_to_panel(img: Image.Image) -> Image.Image:
 
 def main(argv=None):
     ap = argparse.ArgumentParser(description="Paint the e-ink setup card")
-    ap.add_argument("--ssid", default="Docent-Setup")
+    ap.add_argument("--ssid", default="Pieria-Setup")
     ap.add_argument("--width", type=int, default=0, help="Override panel width (default: ask the panel)")
     ap.add_argument("--height", type=int, default=0)
     ap.add_argument("--recovery", action="store_true", help="The 'couldn't join your Wi-Fi' variant.")

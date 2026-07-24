@@ -1,20 +1,20 @@
-# 🖼️ Screen Docent
+# 🖼️ Pieria
 
-[![CI](https://github.com/AiwendilInTheWoods/Screen-Docent/actions/workflows/pytest.yml/badge.svg)](https://github.com/AiwendilInTheWoods/Screen-Docent/actions/workflows/pytest.yml)
-[![Sources](https://github.com/AiwendilInTheWoods/Screen-Docent/actions/workflows/verify-sources.yml/badge.svg)](https://github.com/AiwendilInTheWoods/Screen-Docent/actions/workflows/verify-sources.yml)
+[![CI](https://github.com/AiwendilInTheWoods/Pieria/actions/workflows/pytest.yml/badge.svg)](https://github.com/AiwendilInTheWoods/Pieria/actions/workflows/pytest.yml)
+[![Sources](https://github.com/AiwendilInTheWoods/Pieria/actions/workflows/verify-sources.yml/badge.svg)](https://github.com/AiwendilInTheWoods/Pieria/actions/workflows/verify-sources.yml)
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPLv3-blue.svg)](LICENSE)
 
-**Screen Docent** is an open-source, AI-powered digital art curator that turns any TV, monitor, or e-ink
+**Pieria** is an open-source, AI-powered digital art curator that turns any TV, monitor, or e-ink
 panel into a high-end museum display — with autonomous artwork analysis, museum-grade placards, and
 instant mobile remote control.
 
-![A Screen Docent display showing Vermeer's The Milkmaid with an auto-generated museum placard](static/docs/display.png)
+![A Pieria display showing Vermeer's The Milkmaid with an auto-generated museum placard](static/docs/display.png)
 
 > *A live display: full-bleed artwork, an auto-generated museum placard, and a QR code for details.*
 
 **Own your art wall.** No subscription, no ads, no cloud account, no vendor that can switch it off. The
 polished art frames — Meural, Depict, Canvia — are closed, subscription-locked, and several have
-**bricked their customers' hardware** when the company moved on. Screen Docent is the opposite: it runs
+**bricked their customers' hardware** when the company moved on. Pieria is the opposite: it runs
 on hardware you already own (or a $35 Pi), keeps working with no internet, and is yours to keep. Flash
 one image, set it up from your phone, and a curated public-domain museum gallery is on the wall in
 minutes — **or** run the curation brain on a server you control and point any screen at it.
@@ -38,7 +38,7 @@ minutes — **or** run the curation brain on a server you control and point any 
 
 ## 🧭 Deployment Models
 
-Screen Docent is a **curation brain** you run once (a small Docker app) + **any screen** you point at
+Pieria is a **curation brain** you run once (a small Docker app) + **any screen** you point at
 it. The same server supports any mix of these at once — it's a versatile setup, not a single appliance:
 
 | Model | What it is | Best for |
@@ -70,12 +70,12 @@ Both run the same curation brain and can be mixed freely (one server, many scree
 
 ### A. Flash the appliance image (art in minutes)
 
-The **all-in-one Docent Appliance** is a Raspberry Pi that *is* the whole thing — server and display in
+The **all-in-one Pieria Appliance** is a Raspberry Pi that *is* the whole thing — server and display in
 one box. You never touch a terminal:
 
-1. **Download** the latest image from the **[Releases page](https://github.com/AiwendilInTheWoods/Screen-Docent/releases/latest)** (`docent-<version>.img.xz`).
+1. **Download** the latest image from the **[Releases page](https://github.com/AiwendilInTheWoods/Pieria/releases/latest)** (`pieria-<version>.img.xz`).
 2. **Flash** it to a microSD card with [Raspberry Pi Imager](https://www.raspberrypi.com/software/) (or Balena Etcher) — no OS-customisation needed.
-3. **Boot** the Pi. The screen shows a setup card; join the **`Docent-Setup`** Wi-Fi from your phone and a page opens automatically.
+3. **Boot** the Pi. The screen shows a setup card; join the **`Pieria-Setup`** Wi-Fi from your phone and a page opens automatically.
 4. **Set up** — pick your Wi-Fi, name the display, choose orientation. It reboots, downloads its first gallery, and paints. Museum art on the wall, unattended.
 
 > **It can't be bricked.** If Wi-Fi is mistyped or setup is interrupted, the box re-opens its own setup
@@ -97,8 +97,8 @@ Run the curation server on anything with Docker — a NAS, a mini-PC, an old lap
 **Prerequisites:** [Docker](https://docs.docker.com/get-docker/) + [Docker Compose](https://docs.docker.com/compose/install/). Then clone and go — no config files:
 
 ```bash
-git clone https://github.com/AiwendilInTheWoods/Screen-Docent.git
-cd Screen-Docent
+git clone https://github.com/AiwendilInTheWoods/Pieria.git
+cd Pieria
 docker compose up -d --build
 ```
 (No `.env` required; the stack runs out of the box and you configure the AI model in-app below.)
@@ -109,7 +109,7 @@ docker compose up -d --build
 *   **Mobile Remote:** `http://localhost:8000/remote` (control from your phone)
 
 ### Connect a Model (optional, in-app — applies to both paths)
-Screen Docent works immediately without any AI — the starter art ships with full placards, and the
+Pieria works immediately without any AI — the starter art ships with full placards, and the
 museum **Discover** scouts need no key. To unlock auto-curation (metadata generation, enrichment,
 smarter search), open **Admin → ⚙ Settings → 🧠 AI Engine**, pick a provider (Google Gemini, OpenAI,
 Anthropic, OpenRouter, or a local Ollama/LM Studio server), paste a key (or **Sign in with
@@ -146,14 +146,14 @@ Thin clients that render the same curation brain on platforms people already run
 - **[Samsung Frame TV](integrations/frame-tv/)** — push curated art into a Frame's **Art Mode** over
   your LAN (no Samsung account, no Art Store subscription). Configure it in **Settings → 🖼️ Frame TV**
   (IP, playlist, interval) and the server keeps the Frame updated, reusing the same curation brain.
-  Turns a Frame you already own into another Screen Docent display.
-- **[MagicMirror²](integrations/MMM-ScreenDocent/)** — the `MMM-ScreenDocent` module turns a slot on a
+  Turns a Frame you already own into another Pieria display.
+- **[MagicMirror²](integrations/MMM-Pieria/)** — the `MMM-Pieria` module turns a slot on a
   smart mirror into a rotating museum wall (current artwork + placard from your server). Front-end
   only, no extra setup; includes a `preview.html` to try it in any browser without MagicMirror.
 
 ## 🏛️ VRA Core Metadata Architecture
 
-Screen Docent utilizes the **Visual Resources Association (VRA) Core** schema for its internal SQLite database design (`models.py`). This guarantees museum-quality structural integrity.
+Pieria utilizes the **Visual Resources Association (VRA) Core** schema for its internal SQLite database design (`models.py`). This guarantees museum-quality structural integrity.
 Supported schema properties mapped automatically by the AI include:
 *   `title`
 *   `agent_name` & `agent_role` (e.g., Maker, Artist, Photographer)
@@ -165,7 +165,7 @@ Supported schema properties mapped automatically by the AI include:
 
 ## 🛠️ Configuration Hierarchy
 
-Screen Docent uses a strict priority system for settings like `cycle_time`, `mode`, and `shuffle`:
+Pieria uses a strict priority system for settings like `cycle_time`, `mode`, and `shuffle`:
 
 1.  **URL Parameters:** `?mode=static-crop&cycle_time=60` (Highest Priority)
 2.  **Playlist Defaults:** Configured per collection in the Admin UI.
@@ -186,7 +186,7 @@ label is mostly perception. HTTPS earns its keep in two specific cases:
    *secure context* (HTTPS **or** `http://localhost`). Over `http://<LAN-IP>` the button is hidden and
    you paste an OpenRouter key instead — HTTPS (or accessing via `localhost`) restores one-click.
 
-**Why not bake certs into the app:** Screen Docent streams to headless browsers (Smart TVs, Pi
+**Why not bake certs into the app:** Pieria streams to headless browsers (Smart TVs, Pi
 kiosks) that can't click through a cert warning — a self-signed cert on the Python backend breaks
 them with un-bypassable `ERR_CERT_AUTHORITY_INVALID`. So TLS is terminated by an **opt-in reverse
 proxy**, and **kiosks keep using plain `http://`** (localhost on an all-in-one box, or
@@ -211,14 +211,14 @@ This runs [Caddy](https://caddyserver.com/) in front of the app ([`deploy/tls/Ca
   Caddy fetches a trusted Let's Encrypt certificate automatically (ports 80+443 must be reachable).
 
 * **B. LAN-only with Caddy's internal CA (no domain) — you must trust the CA once per device.**
-  Leave the default (`SD_TLS_HOST=docent.local`, `tls internal`). Browsers will warn until you
+  Leave the default (`SD_TLS_HOST=pieria.local`, `tls internal`). Browsers will warn until you
   install Caddy's root CA on each phone/laptop that opens the admin:
   ```bash
   # grab the root CA Caddy generated, then trust it on your device(s)
   docker compose --profile tls cp caddy:/data/caddy/pki/authorities/local/root.crt ./caddy-root.crt
   ```
   Install `caddy-root.crt` into your OS/browser trust store (macOS Keychain, Windows "Trusted Root",
-  iOS/Android profile). After that, `https://docent.local` shows a clean lock. Per-device, but
+  iOS/Android profile). After that, `https://pieria.local` shows a clean lock. Per-device, but
   one-time. (Tools like [mkcert](https://github.com/FiloSottile/mkcert) automate the same idea.)
 
 > **Reminder:** don't point a TV/kiosk at the internal-CA HTTPS URL — it can't accept the cert. Keep

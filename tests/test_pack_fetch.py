@@ -64,7 +64,7 @@ def _point_lifespan_at(monkeypatch, pub, root: Path):
     monkeypatch.setattr(lifespan_module, "ARTWORK_ROOT", root)
     monkeypatch.setattr(lifespan_module, "LIBRARY_DIR", root / "_Library")
     monkeypatch.setattr(lifespan_module, "PACK_INDEX", root / "pack-index.json")
-    monkeypatch.setattr(federation, "TRUSTED_KEYS", {"screendocent": pub})
+    monkeypatch.setattr(federation, "TRUSTED_KEYS", {"pieria": pub})
     monkeypatch.setattr(pack_fetch.federation, "_assert_public_url", lambda url: None)  # test hosts aren't public
 
 
@@ -95,7 +95,7 @@ def _bake_core(tmp_path, dist):
     device = tmp_path / "device"
     _extract_into(dist / "masterpieces.tar", device)
     (device / "pack-index.json").write_text(json.dumps({
-        "pack_version": "2", "publisher": {"id": "screendocent"},
+        "pack_version": "2", "publisher": {"id": "pieria"},
         "collections": [{"id": "masterpieces", "title": "Masterpieces",
                          "manifest": "_manifests/masterpieces.json", "item_count": 2, "default": True}],
     }))

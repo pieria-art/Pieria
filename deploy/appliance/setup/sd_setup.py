@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Screen Docent — first-run setup wizard (R1-F1).
+"""Pieria — first-run setup wizard (R1-F1).
 
 A tiny, dependency-free (Python stdlib only) web wizard that collects Wi-Fi + server/display config on
-first boot and writes the appliance `screen-docent.conf`, so a non-technical user never touches SSH or
-hand-edits a file. On a freshly flashed Pi it runs behind a `Docent-Setup` Wi-Fi hotspot + captive
+first boot and writes the appliance `pieria.conf`, so a non-technical user never touches SSH or
+hand-edits a file. On a freshly flashed Pi it runs behind a `Pieria-Setup` Wi-Fi hotspot + captive
 portal (see sd-setup-boot); here it is just the HTTP brain.
 
 Two modes:
@@ -13,7 +13,7 @@ Two modes:
                     python3 sd_setup.py --dry-run --port 8080
                 then open http://<pi>:8080 from a phone/laptop on the same network.
 
-The wizard NEVER touches Artwork/ or the database — it only ever writes screen-docent.conf.
+The wizard NEVER touches Artwork/ or the database — it only ever writes pieria.conf.
 """
 from __future__ import annotations
 
@@ -58,7 +58,7 @@ def derive_hostname(raw: str) -> str:
     hyphen). "Living Room" → "living-room" → it answers at living-room.local.
 
     Returns "" when nothing usable survives, so the caller falls back to the unique baked default
-    (docent-XXXX) rather than shipping an invalid name."""
+    (pieria-XXXX) rather than shipping an invalid name."""
     s = _HOSTNAME_STRIP_RE.sub("-", (raw or "").strip().lower().replace("_", "-"))
     s = re.sub(r"-+", "-", s).strip("-")[:63].rstrip("-")
     return s if _HOSTNAME_VALID_RE.match(s) else ""
@@ -144,7 +144,7 @@ def _preserved_lines(existing: str) -> list:
 
 
 def build_conf(fields: dict, all_in_one: bool = False, existing: str = "") -> str:
-    """Render the screen-docent.conf text from validated wizard fields.
+    """Render the pieria.conf text from validated wizard fields.
 
     Only kiosk variables land here (SERVER_URL/DISPLAY_ID/ROTATE/OUTPUT/…). Wi-Fi credentials are NOT
     written to this FAT boot file — they go to NetworkManager via nmcli at commit time. GEMINI_API_KEY
@@ -157,13 +157,13 @@ def build_conf(fields: dict, all_in_one: bool = False, existing: str = "") -> st
     output = (fields.get("output") or "HDMI-A-1").strip()
     hostname = resolve_hostname(fields)
     return (
-        "# Screen Docent — Appliance configuration\n"
+        "# Pieria — Appliance configuration\n"
         "# Written by the first-run setup wizard. Safe to edit on the SD card's boot partition.\n"
         f"SERVER_URL={server_url}\n"
         f"DISPLAY_ID={display_id}\n"
         # The network name this box answers to (<HOSTNAME>.local). Applied at commit via hostnamectl;
         # recorded here so it survives a conf edit and the value is visible. Blank = keep the unique
-        # baked default (docent-XXXX).
+        # baked default (pieria-XXXX).
         f"HOSTNAME={hostname}\n"
         "MODE=\n"
         "CYCLE_TIME=\n"
@@ -216,7 +216,7 @@ def _read_existing(path: Path) -> str:
 def resolve_boot_conf_path() -> Path:
     """Where the real conf lives — Bookworm moved it from /boot to /boot/firmware."""
     firmware = Path("/boot/firmware")
-    return (firmware if firmware.is_dir() else Path("/boot")) / "screen-docent.conf"
+    return (firmware if firmware.is_dir() else Path("/boot")) / "pieria.conf"
 
 
 # --- HTTP server --------------------------------------------------------------
@@ -242,7 +242,7 @@ class SetupConfig:
         # online (usually a mistyped Wi-Fi password). Shown as a banner so the user understands this is
         # a second attempt, not a fresh setup — otherwise the box silently looks like it reset itself.
         self.recovery = recovery
-        self.preview_path = Path("/tmp/sd-setup-preview/screen-docent.conf")
+        self.preview_path = Path("/tmp/sd-setup-preview/pieria.conf")
         self._revert_timer: threading.Timer | None = None
 
 
@@ -256,7 +256,7 @@ def _preview_on_eink(orientation: str) -> bool:
     if not Path(card).exists():
         return False
     try:
-        subprocess.Popen([card, "--ssid", "Docent-Setup", "--orientation", orientation],
+        subprocess.Popen([card, "--ssid", "Pieria-Setup", "--orientation", orientation],
                          stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
         return True
     except OSError:
@@ -519,7 +519,7 @@ def _join_wifi(ssid: str, password: str) -> None:
     NM-unmanaged), and activating would tear the AP down mid-commit — killing the phone's connection
     before it ever sees the success page. Leaving setup mode on reboot lets NM auto-connect the saved
     profile. Live-mode only. (bench-day finding 2026-07-19)"""
-    con = f"docent-{ssid}"
+    con = f"pieria-{ssid}"
     # Idempotent: drop any stale profile of the same name from a prior run.
     subprocess.run(["nmcli", "connection", "delete", con], check=False, capture_output=True, timeout=15)
     subprocess.run(["nmcli", "connection", "add", "type", "wifi", "con-name", con,
@@ -532,7 +532,7 @@ def _join_wifi(ssid: str, password: str) -> None:
 
 
 #: The setup-mode NetworkManager drop-in written by sd-setup-pre (keep in sync with setup/common.sh).
-_SETUP_DROPIN = Path("/etc/NetworkManager/conf.d/99-screen-docent-setup.conf")
+_SETUP_DROPIN = Path("/etc/NetworkManager/conf.d/99-pieria-setup.conf")
 
 
 def _release_wlan0() -> None:
@@ -558,7 +558,7 @@ def _schedule_reboot() -> None:
 
 
 def main(argv=None):
-    ap = argparse.ArgumentParser(description="Screen Docent first-run setup wizard")
+    ap = argparse.ArgumentParser(description="Pieria first-run setup wizard")
     ap.add_argument("--dry-run", action="store_true",
                     help="Run the full wizard but change nothing (safe to run on a working Pi).")
     ap.add_argument("--port", type=int, default=80, help="Port to serve on (default 80; use 8080 for dry-run).")
@@ -574,7 +574,7 @@ def main(argv=None):
                       output=args.output, recovery=args.recovery)
     server = ThreadingHTTPServer(("0.0.0.0", args.port), make_handler(cfg))
     mode = "DRY RUN (nothing will be changed)" if args.dry_run else "LIVE"
-    print(f"Screen Docent setup wizard — {mode} — http://0.0.0.0:{args.port}  (conf target: {boot_conf})")
+    print(f"Pieria setup wizard — {mode} — http://0.0.0.0:{args.port}  (conf target: {boot_conf})")
     try:
         server.serve_forever()
     except KeyboardInterrupt:
@@ -586,7 +586,7 @@ WIZARD_HTML = """<!DOCTYPE html>
 <html lang="en"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Set up your Screen Docent</title>
+<title>Set up your Pieria</title>
 <style>
   :root { --bg:#0f172a; --card:#1e293b; --border:#334155; --accent:#3b82f6; --text:#f1f5f9; --muted:#94a3b8; --danger:#ef4444; --ok:#34d399; }
   * { box-sizing: border-box; }
@@ -633,19 +633,19 @@ WIZARD_HTML = """<!DOCTYPE html>
       <option value="0">It's a display only \u2014 my server is elsewhere</option>
     </select>
     <div class="hint">Most people want one box that does both. Choose the second only if you already
-      run Screen Docent on another machine.</div>
+      run Pieria on another machine.</div>
 
     <label>Server address</label>
     <input type="text" id="server_url" value="http://localhost:8000">
     <div class="err" id="err-server_url"></div>
-    <div class="hint">Where Screen Docent runs. If this box runs the server too, keep localhost.</div>
+    <div class="hint">Where Pieria runs. If this box runs the server too, keep localhost.</div>
 
     <label>Name this display</label>
     <input type="text" id="display_id" placeholder="living_room">
     <div class="err" id="err-display_id"></div>
     <div class="hint">Appears in the phone remote. Letters, numbers, - or _.</div>
     <div class="hint" id="host-line" style="margin-top:8px;">
-      On your network as <b id="host-preview" class="ok">docent</b>.local
+      On your network as <b id="host-preview" class="ok">pieria</b>.local
       · <a href="#" id="host-edit" style="color:var(--accent);">change</a>
     </div>
     <div id="host-edit-row" class="hidden">
@@ -754,7 +754,7 @@ function deriveHost(name){
 }
 let hostEdited = false;   // once the user opens + types the advanced field, stop auto-following
 function refreshHostPreview(){
-  const derived = deriveHost($('display_id').value) || 'docent';
+  const derived = deriveHost($('display_id').value) || 'pieria';
   $('host-preview').textContent = hostEdited && $('hostname').value ? $('hostname').value : derived;
 }
 function wireHostname(){
@@ -797,7 +797,7 @@ $('continue').onclick = async () => {
   clearErrors();
   $('conf-preview').textContent = data.conf;
   const f = fields();
-  const host = (f.hostname && f.hostname.trim()) || deriveHost(f.display_id) || 'docent';
+  const host = (f.hostname && f.hostname.trim()) || deriveHost(f.display_id) || 'pieria';
   $('confirm-summary').textContent = `Display “${f.display_id}” → ${f.server_url}` +
     (f.wifi_ssid ? ` · Wi-Fi “${f.wifi_ssid}”` : ' · wired network') +
     ` · reachable at ${host}.local`;

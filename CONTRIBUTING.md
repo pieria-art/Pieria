@@ -1,6 +1,6 @@
-# Contributing to Screen Docent
+# Contributing to Pieria
 
-Thanks for being here. Screen Docent is an open-source art appliance, and it gets better the more
+Thanks for being here. Pieria is an open-source art appliance, and it gets better the more
 people put it on hardware we've never seen.
 
 There is **no CLA**. You keep the copyright to everything you write. We use the
@@ -17,14 +17,14 @@ no accounts, no lawyers.
 - **Museum API adapters.** New public-domain sources are welcome. See `scout.py` and the existing
   adapters for the shape.
 - **Output surfaces.** Home Assistant, TRMNL/BYOS, MagicMirror, Frame TV — anything that can render
-  an image can be a Screen Docent display.
+  an image can be a Pieria display.
 - **Docs.** If the README or `/help` lied to you, that's a bug worth filing.
 
 ## Development setup
 
 ```bash
-git clone https://github.com/AiwendilInTheWoods/Screen-Docent.git
-cd Screen-Docent
+git clone https://github.com/AiwendilInTheWoods/Pieria.git
+cd Pieria
 
 python3.11 -m venv .venv
 .venv/bin/pip install -r requirements.txt -r requirements-dev.txt
@@ -68,7 +68,7 @@ Run the tests before you open a PR:
 
 ## Licensing of contributions
 
-Screen Docent is licensed under the **GNU Affero General Public License v3.0** (see [LICENSE](LICENSE)).
+Pieria is licensed under the **GNU Affero General Public License v3.0** (see [LICENSE](LICENSE)).
 
 By signing off on a contribution, you agree that:
 
@@ -89,7 +89,7 @@ non-exclusive: use your contribution anywhere else you like, under any terms you
 
 The AGPL covers the **code**. It does not grant rights to the project **name or logo**.
 You may fork freely — please just give the fork its own name so nobody gets confused about who
-supports what.
+supports what. See [TRADEMARK.md](TRADEMARK.md).
 
 ### AI-assisted contributions
 

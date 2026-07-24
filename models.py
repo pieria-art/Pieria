@@ -1,5 +1,5 @@
 """
-SQLAlchemy models for Screen Docent.
+SQLAlchemy models for Pieria.
 Phase 3: Many-to-Many relationship between Playlists and Artworks.
 """
 

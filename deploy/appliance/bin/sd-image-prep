@@ -21,13 +21,13 @@
 set -euo pipefail
 
 # --- resolve the boot-partition conf path (same rule as sd-setup-boot / install.sh) ---------------
-if [ -d /boot/firmware ]; then BOOT_CONF="/boot/firmware/screen-docent.conf"; else BOOT_CONF="/boot/screen-docent.conf"; fi
+if [ -d /boot/firmware ]; then BOOT_CONF="/boot/firmware/pieria.conf"; else BOOT_CONF="/boot/pieria.conf"; fi
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 # The shipped placeholder conf, if we can find it (repo layout: ../config/…; installed layout: none).
 CONF_EXAMPLE=""
-for c in "$SCRIPT_DIR/../config/screen-docent.conf.example" \
-         "/usr/local/share/screen-docent/screen-docent.conf.example"; do
+for c in "$SCRIPT_DIR/../config/pieria.conf.example" \
+         "/usr/local/share/pieria/pieria.conf.example"; do
   [ -r "$c" ] && { CONF_EXAMPLE="$c"; break; }
 done
 
@@ -43,7 +43,7 @@ reset_conf_to_placeholder() {
   else
     # No example on disk (installed-only layout) — write the minimal placeholder the gate keys on.
     cat > "$BOOT_CONF" <<'EOF'
-# Screen Docent — Appliance configuration (placeholder; the first-run wizard rewrites this).
+# Pieria — Appliance configuration (placeholder; the first-run wizard rewrites this).
 SERVER_URL=http://192.168.1.50:8000
 DISPLAY_ID=living_room
 EOF
@@ -115,19 +115,19 @@ wipe_identity() {
   rm -f /var/lib/dbus/machine-id 2>/dev/null || true
   echo "  wiped SSH host keys + machine-id (regenerate on first boot)"
 
-  # ADR-070: strip the build-time hostname (e.g. the Imager name, or 'docent-bench-pi') down to the
-  # neutral placeholder 'docent'. sd-hostname turns that into a UNIQUE docent-XXXX on first boot (from
+  # ADR-070: strip the build-time hostname (e.g. the Imager name, or 'pieria-bench-pi') down to the
+  # neutral placeholder 'pieria'. sd-hostname turns that into a UNIQUE pieria-XXXX on first boot (from
   # the machine-id we just wiped + regenerated), and the wizard lets the owner name it. Shipping a fixed
   # build hostname means every unit collides on <name>.local and carries a dev name into a stranger's home.
   local oldhost
   oldhost="$(cat /etc/hostname 2>/dev/null || echo '?')"
-  echo "docent" > /etc/hostname 2>/dev/null || true
+  echo "pieria" > /etc/hostname 2>/dev/null || true
   if grep -qE '^\s*127\.0\.1\.1' /etc/hosts 2>/dev/null; then
     sed -i 's/^\s*127\.0\.1\.1.*/127.0.1.1\tdocent/' /etc/hosts 2>/dev/null || true
   else
     printf '127.0.1.1\tdocent\n' >> /etc/hosts 2>/dev/null || true
   fi
-  echo "  reset hostname '$oldhost' -> 'docent' placeholder (sd-hostname makes it unique on first boot)"
+  echo "  reset hostname '$oldhost' -> 'pieria' placeholder (sd-hostname makes it unique on first boot)"
 }
 
 wipe_network() {
@@ -140,7 +140,7 @@ repo_root() {
   local r
   r="$(systemctl show -p WorkingDirectory --value sd-app.service 2>/dev/null || true)"
   [ -n "$r" ] && [ -d "$r" ] && { echo "$r"; return 0; }
-  for d in /home/*/Screen-Docent /root/Screen-Docent; do
+  for d in /home/*/Pieria /root/Pieria; do
     [ -d "$d" ] && { echo "$d"; return 0; }
   done
   return 1
@@ -169,7 +169,7 @@ wipe_secrets() {
   # 2) The database — a key entered in Admin -> AI Engine is stored as the `ai_api_key` setting, and
   #    it takes PRECEDENCE over the env var (ai_client.py). Capturing a DB you smoke-tested with is
   #    therefore enough to leak it. Refuse rather than silently deleting someone's library.
-  # GLOB, don't hardcode a filename. The first cut of this check looked for `screen_docent.db`; the
+  # GLOB, don't hardcode a filename. The first cut of this check looked for `pieria.db`; the
   # app actually uses `data/artwork.db` (database.py), so it printed a confident "DB: absent" while a
   # real database sat right there. A check that reports a false all-clear is worse than no check.
   # Globbing also survives an SD_DATABASE_URL override and any future rename.
@@ -228,7 +228,7 @@ lock_login() {
   # problem the Raspberry Pi Foundation spent years killing. Host-key regeneration and authorized_keys
   # removal do nothing about a PASSWORD.
   #
-  # We cannot delete the build user: the app lives in its home directory (/home/<user>/Screen-Docent)
+  # We cannot delete the build user: the app lives in its home directory (/home/<user>/Pieria)
   # and sd-app.service runs docker compose from there. The account must exist to own files — it just
   # must not be able to log in. So: lock the password, leave the account.
   #
@@ -302,7 +302,7 @@ case "${1:-}" in
     reset_conf_to_placeholder
     declare_capabilities
     enable_setup_service
-    echo "Done. Reboot to enter the Docent-Setup wizard. (Undo: write a real conf, or"
+    echo "Done. Reboot to enter the Pieria-Setup wizard. (Undo: write a real conf, or"
     echo "'systemctl disable sd-setup.service'.)"
     ;;
   --full)

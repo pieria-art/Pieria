@@ -157,12 +157,12 @@ def test_add_local_subscription_item_references_master_no_network(client, monkey
     # a verified LOCAL subscription with one local_file item (master already on disk)
     Image.new("RGB", (50, 40), (5, 6, 7)).save(tmp_path / "core_masterwork.jpg", "JPEG")
     manifest = {"manifest_version": 2, "id": "core", "title": "Core",
-                "publisher": {"id": "screendocent", "name": "Screen Docent"},
+                "publisher": {"id": "pieria", "name": "Pieria"},
                 "items": [{"id": "mw", "title": "Master Work", "artist": "A. Painter",
                            "image": {"local_file": "core_masterwork.jpg", "license": "Public Domain",
                                      "focal_point": [0.4, 0.6]}}]}
     sub = SubscriptionModel(url="pack:core", collection_id="core", title="Core",
-                            publisher_id="screendocent", publisher_name="Screen Docent", trust="verified",
+                            publisher_id="pieria", publisher_name="Pieria", trust="verified",
                             enabled=True, cached_manifest=json.dumps(manifest), item_count=1, last_status="ok")
     db.add(sub); db.commit(); db.refresh(sub)
 

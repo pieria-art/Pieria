@@ -666,7 +666,7 @@ async def lifespan(app: FastAPI):
     # and runs exclusive boot tasks; the other workers get BlockingIOError and skip them.
     # We deliberately never unlock — the OS releases the flock when the worker process exits,
     # so a slightly delayed follower can't grab it mid-boot and race the migrations.
-    lock_file = open("/tmp/screen_docent_startup.lock", "w")
+    lock_file = open("/tmp/pieria_startup.lock", "w")
     try:
         fcntl.flock(lock_file, fcntl.LOCK_EX | fcntl.LOCK_NB)
     except BlockingIOError:

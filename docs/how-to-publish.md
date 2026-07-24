@@ -1,8 +1,8 @@
 # How to publish a collection
 
-Screen Docent is **federated**: anyone can publish a collection of their own artwork as a
-**Manifest v2** JSON file, host it anywhere public, and any other Screen Docent can subscribe to it.
-You keep your work on your own hosting — Screen Docent indexes *pointers*, it never hosts your images
+Pieria is **federated**: anyone can publish a collection of their own artwork as a
+**Manifest v2** JSON file, host it anywhere public, and any other Pieria can subscribe to it.
+You keep your work on your own hosting — Pieria indexes *pointers*, it never hosts your images
 or takes a cut. (See [`manifest-v2.md`](manifest-v2.md) for the schema; the validator
 `tools/manifest_validator.py` is the source of truth.)
 
@@ -65,7 +65,7 @@ Each item is an artwork + the **public URL of the image you host yourself** + it
 **Licensing rules** (enforced by the validator): every image needs a license — either per item or via
 the collection's `default_license`. Use SPDX-ish ids: `CC0-1.0`, `CC-BY-4.0`, `CC-BY-SA-4.0`, `PD`,
 `proprietary`. **`CC-BY*` and `CC-BY-SA*` require an `attribution`.** You declare the license; you're
-attesting you have the right to — Screen Docent can't verify copyright (no platform can), it verifies
+attesting you have the right to — Pieria can't verify copyright (no platform can), it verifies
 *identity* and honors takedowns.
 
 ## 3. Sign it

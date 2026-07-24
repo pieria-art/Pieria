@@ -1,12 +1,12 @@
-# Screen Docent — Docent Appliance
+# Pieria — Pieria Appliance
 
 Turn a cheap Raspberry Pi into a self-contained art frame that boots straight
-into the Screen Docent display: **fullscreen, no browser chrome, no Fully Kiosk,
+into the Pieria display: **fullscreen, no browser chrome, no Fully Kiosk,
 survives reboots, never sleeps.** This is the recommended way to drive a TV or
-monitor — point it at your Screen Docent server and forget it.
+monitor — point it at your Pieria server and forget it.
 
 > **Scope:** *display-only* — the Pi is a thin client that connects to a Screen
-> Docent server running elsewhere (e.g. your MS-01). **This is the recommended
+> Pieria server running elsewhere (e.g. your MS-01). **This is the recommended
 > production setup, not just a first cut:** the display device only runs the
 > Chromium kiosk, so it stays cheap, cool (~5–7 W), and small enough to tuck
 > behind the panel. Running the server *on the same Pi* ("all-in-one") is also
@@ -20,7 +20,7 @@ monitor — point it at your Screen Docent server and forget it.
 - A microSD card flashed with **Raspberry Pi OS Lite, 64-bit (Bookworm)** using
   Raspberry Pi Imager. In the Imager's settings, enable SSH and set a user so you
   can log in once to run the installer.
-- A running Screen Docent server reachable on your LAN (the box running
+- A running Pieria server reachable on your LAN (the box running
   `docker compose up` — see the repo root [`README.md`](../../README.md)).
   *(Not needed for all-in-one mode, which runs the server on the Pi itself.)*
 
@@ -30,7 +30,7 @@ Boxed Pi → running kiosk in minutes:
 
 1. **Raspberry Pi Imager** → choose **Raspberry Pi OS Lite (64-bit)**.
 2. Click the gear / **Edit Settings** *before* writing and set:
-   - **Hostname** (e.g. `docent-living-room`) — also becomes your address: `docent-living-room.local`.
+   - **Hostname** (e.g. `pieria-living-room`) — also becomes your address: `pieria-living-room.local`.
    - **Enable SSH** (password or public key)
    - **Username + password** (your one-time login to run the installer)
    - ⚠️ **Wi-Fi SSID + password + country** — **the single most important step.** This is the
@@ -38,13 +38,13 @@ Boxed Pi → running kiosk in minutes:
      later without a keyboard+monitor. If you skip it, the Pi boots dark and silent.
    - **Locale / timezone**
 3. Write the card and boot the Pi — no keyboard or monitor required.
-4. *(Optional, and required to pre-enable all-in-one)* drop a `screen-docent.conf`
+4. *(Optional, and required to pre-enable all-in-one)* drop a `pieria.conf`
    onto the boot partition now.
 5. `ssh <user>@<hostname>.local`, then follow **Install** below.
 
 > **Finding the box on your network (no IP hunting):** because you set a Hostname in step 2, you reach
 > it by name — SSH as `<hostname>.local`, and (for all-in-one) open the admin at
-> **`http://<hostname>.local:8000/admin`** (e.g. `http://docent-living-room.local:8000/admin`). The
+> **`http://<hostname>.local:8000/admin`** (e.g. `http://pieria-living-room.local:8000/admin`). The
 > installer makes sure the `avahi-daemon` (mDNS) that powers `.local` is running. If your client
 > doesn't do mDNS (some Android devices), find the Pi's DHCP address in your router's client list, or
 > run `ping <hostname>.local` from a Mac/PC to resolve it.
@@ -58,8 +58,8 @@ Boxed Pi → running kiosk in minutes:
 SSH into the freshly-booted Pi, then:
 
 ```bash
-git clone https://github.com/AiwendilInTheWoods/Screen-Docent.git
-sudo Screen-Docent/deploy/appliance/install.sh
+git clone https://github.com/AiwendilInTheWoods/Pieria.git
+sudo Pieria/deploy/appliance/install.sh
 ```
 
 The installer:
@@ -73,12 +73,12 @@ The installer:
 
 ## Configure
 
-Edit `screen-docent.conf` on the **boot partition** (it appears as a small FAT
+Edit `pieria.conf` on the **boot partition** (it appears as a small FAT
 volume named `bootfs`/`boot` when you put the SD card in any computer — no SSH
-needed). On the Pi itself it lives at `/boot/firmware/screen-docent.conf`.
+needed). On the Pi itself it lives at `/boot/firmware/pieria.conf`.
 
 ```ini
-SERVER_URL=http://192.168.1.50:8000   # your Screen Docent server
+SERVER_URL=http://192.168.1.50:8000   # your Pieria server
 DISPLAY_ID=living_room                # unique name shown in the mobile remote
 MODE=                                 # optional: ken-burns|static-crop|contain-matte
 CYCLE_TIME=                           # optional: seconds per image
@@ -105,8 +105,8 @@ isn't reachable yet, the screen stays black and paints automatically once it is.
 
 ## First-run setup wizard (R1-F1)
 
-Instead of editing `screen-docent.conf` by hand, a freshly flashed card can configure itself from a
-phone. On first boot (no valid conf yet), `sd-setup-boot` brings up an open **`Docent-Setup`** Wi-Fi AP
+Instead of editing `pieria.conf` by hand, a freshly flashed card can configure itself from a
+phone. On first boot (no valid conf yet), `sd-setup-boot` brings up an open **`Pieria-Setup`** Wi-Fi AP
 with a captive portal; you join it, a setup page opens, you enter Wi-Fi + server + display name +
 orientation, confirm "does this look right?", and the Pi writes the conf, joins your network, and
 reboots into the gallery. No SSH, no SD-card editing.
@@ -114,7 +114,7 @@ reboots into the gallery. No SSH, no SD-card editing.
 - **Enabled on the pre-baked `.img`, not by `install.sh`.** `install.sh` installs the wizard assets but
   leaves `sd-setup.service` **disabled** (and `hostapd`/`dnsmasq` disabled) so it never disturbs a
   working box. The image-build step enables `sd-setup.service`.
-- **The wizard only ever writes `screen-docent.conf`** — it never touches `Artwork/` or the database.
+- **The wizard only ever writes `pieria.conf`** — it never touches `Artwork/` or the database.
 - **Baking the image itself:** see **[`docs/image-build.md`](../../docs/image-build.md)** — the full
   provision → verify → sysprep → capture → gramps-test checklist, plus the traps that have already
   cost real time (wrong flavour, trixie vs Bookworm, unarmed host keys, shipped `authorized_keys`).
@@ -122,7 +122,7 @@ reboots into the gallery. No SSH, no SD-card editing.
 **Test it non-destructively on a working Pi (no flash, no changes):**
 
 ```
-python3 ~/Screen-Docent/deploy/appliance/setup/sd_setup.py --dry-run --port 8080
+python3 ~/Pieria/deploy/appliance/setup/sd_setup.py --dry-run --port 8080
 ```
 
 Then open `http://<pi-ip>:8080` from a phone or laptop on the same network and walk the wizard. In
@@ -138,8 +138,8 @@ display are untouched. (Orientation preview is simulated unless you opt into the
 
 ## All-in-one mode (server + display on one box)
 
-For a single-frame setup with **no separate server**, the appliance can also run the Screen Docent
-server on the same Pi. In `screen-docent.conf` set:
+For a single-frame setup with **no separate server**, the appliance can also run the Pieria
+server on the same Pi. In `pieria.conf` set:
 
 ```ini
 ALL_IN_ONE=1
@@ -169,7 +169,7 @@ anyone with the SD card can read it.
 ## E-ink panel (Track B, optional)
 
 For a Pimoroni **Inky Impression 13.3" (Spectra 6)** panel wired to this box's GPIO header, set in
-`screen-docent.conf`:
+`pieria.conf`:
 
 ```ini
 EINK_ENABLED=1
@@ -180,13 +180,13 @@ EINK_ORIENTATION=         # blank = landscape 1600x1200 | portrait = 1200x1600
 
 then re-run `sudo install.sh`. This works in **either** topology: all-in-one (`SERVER_URL=http://localhost:8000`,
 alongside the server container on this same box) or **satellite/client-only** — no local container at
-all, `SERVER_URL` pointed at a remote hub (another Screen Docent box on the LAN). `sd-eink` runs
+all, `SERVER_URL` pointed at a remote hub (another Pieria box on the LAN). `sd-eink` runs
 host-side (not in Docker) because GPIO/SPI aren't reachable from the non-root app container; it polls
 `GET /display/<DISPLAY_ID>/current.png`, change-detects on the response's `ETag` so an unchanged frame
 never triggers a panel refresh, and never repaints during Night/Quiet Hours (e-ink holds its image at
 zero power, so "quiet" means *stop refreshing*, not blank the panel).
 
-Smoke-test with no panel attached: `EINK_DRY_RUN=1 sd-eink /path/to/screen-docent.conf` (or `--dry-run`)
+Smoke-test with no panel attached: `EINK_DRY_RUN=1 sd-eink /path/to/pieria.conf` (or `--dry-run`)
 swaps in an in-memory fake and logs "would paint" instead of touching hardware.
 
 ---
@@ -239,8 +239,8 @@ like Fire TV / bring-your-own-browser; it's simply inert here.)
 | `bin/sd-quiet-hours` | (all-in-one) Powers the TV off/on over HDMI-CEC to match the app's Night & Quiet Hours schedule (only when `quiet_mode=cec`, on-transition only); run by `sd-quiet-hours.timer` every 60 s. Needs `cec-utils`; the Canvas software blackout is the fallback. |
 | `setup/sd_setup.py` | First-run wizard web server (stdlib only). Installed as `/usr/local/bin/sd-setup`. Serves the setup form + captive-portal redirects; `--dry-run` for a safe in-situ test. |
 | `bin/sd-watchdog` | (all-in-one) Self-heal: probes server + kiosk; on sustained failure escalates relaunch-kiosk → restart-container → reboot (with a boot-loop cap). Ships in `WATCHDOG=observe` (logs only) until you set `enforce`; run by `sd-watchdog.timer` every 60 s. |
-| `bin/sd-setup-boot` | First-boot gate: if unconfigured, brings up the `Docent-Setup` AP + captive portal and runs the wizard; else no-ops. Run by `sd-setup.service` (enabled on the `.img` only). |
-| `setup/{hostapd,dnsmasq}.conf` | The `Docent-Setup` access point + DNS catch-all that make the captive portal fire. Used only while `sd-setup-boot` runs. |
+| `bin/sd-setup-boot` | First-boot gate: if unconfigured, brings up the `Pieria-Setup` AP + captive portal and runs the wizard; else no-ops. Run by `sd-setup.service` (enabled on the `.img` only). |
+| `setup/{hostapd,dnsmasq}.conf` | The `Pieria-Setup` access point + DNS catch-all that make the captive portal fire. Used only while `sd-setup-boot` runs. |
 | `bin/sd-setup-pre` | Runs before the wizard to hand `wlan0` to `hostapd` (marks it NetworkManager-unmanaged) and to clear a stale drop-in afterwards. Enabled everywhere; inert on a configured box (ADR-056). |
 | `bin/sd-net-recover` | Anti-brick backstop: re-opens the setup wizard if a *configured* box can never get online (e.g. the Wi-Fi password was mistyped). Enabled everywhere (ADR-057). |
 | `bin/sd-setup-card` | Renders the e-ink first-run setup card — instructions plus a `WIFI:` join QR — locally with PIL, so an unconfigured box looks *waiting* rather than *working* (ADR-058). |
@@ -260,9 +260,9 @@ like Fire TV / bring-your-own-browser; it's simply inert here.)
 | `systemd/sd-timesync-wait.service` | (all-in-one) Runs `sd-timesync-wait` after `network-online`, ordered before `sd-app`. Deliberately not the stock `systemd-time-wait-sync.service`, which waits *forever* inside `sysinit.target` and would hang the entire boot on a box with no internet. |
 | `systemd/sd-update.{path,service}` | (all-in-one) Watches for GUI update requests and runs `sd-update`. |
 | `systemd/sd-eink.service` | (optional, `EINK_ENABLED=1`) Long-running unit running `sd-eink` (`Restart=always`; the poll/sleep cadence lives inside the client, not a timer). |
-| `udev/99-screen-docent-no-cec-pointer.rules` | Ignores the HDMI-CEC phantom pointer so no stray cursor shows on the display. |
-| `avahi/screen-docent.service` | (all-in-one) Advertises the server over mDNS with a friendly name. |
-| `config/screen-docent.conf.example` | Template seeded to the boot partition. |
+| `udev/99-pieria-no-cec-pointer.rules` | Ignores the HDMI-CEC phantom pointer so no stray cursor shows on the display. |
+| `avahi/pieria.service` | (all-in-one) Advertises the server over mDNS with a friendly name. |
+| `config/pieria.conf.example` | Template seeded to the boot partition. |
 | `compose/docker-compose.appliance.yml` | All-in-one override (Uvicorn 4→2 workers, `SD_APPLIANCE_MODE=all-in-one`) merged over the root compose. |
 
 ---
@@ -298,7 +298,7 @@ Some smart displays can point their own browser at the server and skip the Pi en
 browser is current enough to render the Canvas app. In practice many aren't: the **Samsung QMR's
 Tizen MagicINFO URL Launcher is too old** and fails to render the app (which is exactly why this
 appliance exists). When the built-in browser can't do it, this thin-client Pi is the fix.
-Screen Docent's **e-ink image endpoint** also lets such limited panels show art by fetching a
+Pieria's **e-ink image endpoint** also lets such limited panels show art by fetching a
 server-rendered *image* instead of running the app — see the main README's e-ink section.
 
 ## Fallback: X11 instead of cage

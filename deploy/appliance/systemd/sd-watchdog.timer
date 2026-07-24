@@ -3,7 +3,7 @@
 # FAIL_THRESHOLD=3, a real fault needs ~3 minutes of sustained failure before any action — long
 # enough to ignore transient blips, short enough to self-heal an unattended wall display.
 [Unit]
-Description=Run the Screen Docent watchdog every 60s
+Description=Run the Pieria watchdog every 60s
 
 [Timer]
 OnBootSec=60

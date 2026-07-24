@@ -4,7 +4,7 @@
 # Runs sd-metrics.service ~30s after boot and every 30s thereafter, so the Device
 # Health console always has a fresh throttle/under-voltage reading.
 [Unit]
-Description=Run Screen Docent host metrics writer every 30s
+Description=Run Pieria host metrics writer every 30s
 
 [Timer]
 OnBootSec=30

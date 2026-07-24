@@ -1,0 +1,21 @@
+{
+  "name": "mmm-pieria",
+  "version": "1.0.0",
+  "description": "MagicMirror² module that displays the current curated artwork and museum placard from a Pieria server.",
+  "main": "MMM-Pieria.js",
+  "keywords": [
+    "MagicMirror",
+    "MagicMirror2",
+    "pieria",
+    "art",
+    "museum",
+    "digital-art",
+    "public-domain"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AiwendilInTheWoods/Pieria.git",
+    "directory": "integrations/MMM-Pieria"
+  },
+  "license": "MIT"
+}

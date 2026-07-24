@@ -42,7 +42,7 @@ from pathlib import Path
 
 import httpx
 
-UA = "ScreenDocent/1.0 (offline art catalog build; jmyost@gmail.com)"
+UA = "Pieria/1.0 (offline art catalog build; jmyost@gmail.com)"
 
 MIN_NATIVE_EDGE = 3840  # true-4K floor (ADR-039): pack-survivable long edge
 MAX_ASPECT = 4.0        # reject ultra-panoramic strips (matches greedy_grab)

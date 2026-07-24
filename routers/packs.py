@@ -35,7 +35,7 @@ async def list_packs(db: Session = Depends(get_db)):
     """The registry annotated with per-collection install state (for the browse card). Degrades to an
     `error` field + empty list when the registry can't be reached, so the card shows a friendly message."""
     url = _registry_url(db)
-    # cid -> trust for installed packs; every registry pack is Official (this is the signed screendocent registry).
+    # cid -> trust for installed packs; every registry pack is Official (this is the signed pieria registry).
     installed = {s.url.split("pack:", 1)[1]: s.trust
                  for s in db.query(SubscriptionModel).filter(SubscriptionModel.url.like("pack:%")).all()}
     client = pack_fetch.new_client()
@@ -52,7 +52,7 @@ async def list_packs(db: Session = Depends(get_db)):
         cid = c.get("id")
         row["installed"] = cid in installed
         # Trust badge: an installed pack shows what the device verified (verified/community); an available
-        # one shows Official (it's from the signed screendocent registry, verified for real at install).
+        # one shows Official (it's from the signed pieria registry, verified for real at install).
         row["trust"] = installed.get(cid) or "official"
         row["job"] = _JOBS.get(cid, {}).get("state")
         cols.append(row)

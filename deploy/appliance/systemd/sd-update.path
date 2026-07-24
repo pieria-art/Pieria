@@ -4,7 +4,7 @@
 # Watches the bind-mounted request file the container writes when the admin GUI asks
 # for an update; triggers sd-update.service. __REPO_ROOT__ is substituted by install.sh.
 [Unit]
-Description=Watch for Screen Docent appliance update requests
+Description=Watch for Pieria appliance update requests
 
 [Path]
 PathChanged=__REPO_ROOT__/data/appliance/request.json

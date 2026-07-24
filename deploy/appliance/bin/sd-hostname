@@ -3,11 +3,11 @@
 #
 # WHY (ADR-070). Every unit flashed from one image would otherwise share the hostname baked at capture
 # time — so two on one LAN both claim the same `<name>.local`, avahi appends an unpredictable `-2`, and
-# any printed "visit docent.local:8000" instruction is wrong on at least one of them. And the bench
-# image literally shipped as `docent-bench-pi`, a development name, on every unit.
+# any printed "visit pieria.local:8000" instruction is wrong on at least one of them. And the bench
+# image literally shipped as `pieria-bench-pi`, a development name, on every unit.
 #
 # This runs early on EVERY boot (cheap, idempotent) and does exactly one thing: if the hostname is still
-# a known DEFAULT (never chosen by anyone), replace it with `docent-XXXX`, where XXXX is derived from
+# a known DEFAULT (never chosen by anyone), replace it with `pieria-XXXX`, where XXXX is derived from
 # this unit's machine-id — which sd-image-prep wiped, so systemd regenerated a fresh, unique one on
 # first boot. The moment the setup wizard applies a real name (`living-room`), that is no longer a
 # default, so this leaves it untouched forever after.
@@ -20,7 +20,7 @@ cur="$(hostname 2>/dev/null || cat /etc/hostname 2>/dev/null || echo '')"
 
 # Only these count as "nobody picked this" — anything else is a user/derived name we must not touch.
 case "$cur" in
-  raspberrypi|docent|docent-setup|docent-bench-pi|localhost|"") ;;
+  raspberrypi|pieria|pieria-setup|pieria-bench-pi|localhost|"") ;;
   *) exit 0 ;;
 esac
 
@@ -36,7 +36,7 @@ if [ -z "$sfx" ]; then
 fi
 [ -n "$sfx" ] || { echo "sd-hostname: could not derive a unique suffix; leaving '$cur'" >&2; exit 0; }
 
-new="docent-${sfx}"
+new="pieria-${sfx}"
 [ "$new" = "$cur" ] && exit 0
 
 if command -v hostnamectl >/dev/null 2>&1 && hostnamectl set-hostname "$new" 2>/dev/null; then

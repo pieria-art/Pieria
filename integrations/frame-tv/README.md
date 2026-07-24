@@ -1,13 +1,13 @@
 # Samsung Frame TV push
 
-Push **curated, open, no-subscription** Screen Docent art into a Samsung Frame TV's **Art Mode** over
-your local network — turning a Frame you already own into another Screen Docent display, with no
+Push **curated, open, no-subscription** Pieria art into a Samsung Frame TV's **Art Mode** over
+your local network — turning a Frame you already own into another Pieria display, with no
 Samsung account and no Art Store subscription.
 
 ## Two ways to use it
 
 ### 1. Built in to the server (recommended)
-Screen Docent has a built-in Frame pusher. Configure it in **Admin → Settings → 🖼️ Frame TV**:
+Pieria has a built-in Frame pusher. Configure it in **Admin → Settings → 🖼️ Frame TV**:
 
 - **Enable** + your Frame's **IP address**
 - a **playlist** to show, a **refresh interval**, and (optionally) resolution/matte

@@ -1,7 +1,7 @@
-# Screen Docent — Hardware Profile & Sizing
+# Pieria — Hardware Profile & Sizing
 
-> What Screen Docent actually needs to run, by output type — derived from a real soak, not guesswork.
-> Screen Docent is **hardware-agnostic**: it runs on whatever panel + small computer you point at it.
+> What Pieria actually needs to run, by output type — derived from a real soak, not guesswork.
+> Pieria is **hardware-agnostic**: it runs on whatever panel + small computer you point at it.
 > These are *validated recommendations*, not requirements.
 
 ## TL;DR — pick by output

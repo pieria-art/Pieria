@@ -347,7 +347,7 @@ async def artwork_detail_page(artwork_id: int, db: Session = Depends(get_db)):
                   if art.source_url else "")
     return HTMLResponse(f"""<!DOCTYPE html><html lang=en><head>
 <meta charset=UTF-8><meta name=viewport content="width=device-width, initial-scale=1">
-<title>{title} — Screen Docent</title><style>
+<title>{title} — Pieria</title><style>
  /* Canonical palette inlined (kept self-contained so this public landing works offline). */
  :root {{ color-scheme: dark; --bg:#0f172a; --surface:#1e293b; --inset:#0f172a; --border:#334155; --text:#f1f5f9; --muted:#94a3b8; --accent:#3b82f6; }}
  body {{ margin:0; background:var(--bg); color:var(--text); font-family:'Inter',system-ui,-apple-system,sans-serif; line-height:1.6; }}
@@ -370,7 +370,7 @@ async def artwork_detail_page(artwork_id: int, db: Session = Depends(get_db)):
  {f'<p class=desc>{desc}</p>' if desc else ''}
  {f'<div class=tags>{tag_html}</div>' if tag_html else ''}
  {source}
- <div class=brand><img src="/logo.svg" alt=""> Presented by Screen Docent</div>
+ <div class=brand><img src="/logo.svg" alt=""> Presented by Pieria</div>
 </div></body></html>""")
 
 class CropPayload(BaseModel):

@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # sd-setup-boot — first-boot gate for the setup wizard (R1-F1).
 #
-# If the box is already configured (a real screen-docent.conf exists), do nothing and let the normal
-# kiosk boot proceed. Otherwise bring up the "Docent-Setup" Wi-Fi AP + captive portal and run the setup
+# If the box is already configured (a real pieria.conf exists), do nothing and let the normal
+# kiosk boot proceed. Otherwise bring up the "Pieria-Setup" Wi-Fi AP + captive portal and run the setup
 # wizard so a non-technical user configures the display from their phone — no SSH, no SD-card editing.
 #
 # Runs as a systemd oneshot (sd-setup.service) BEFORE the kiosk. On commit the wizard writes the conf,
@@ -15,7 +15,7 @@ set -u
 # behaves identically when run by hand over SSH (where /sbin is absent from a non-login PATH).
 PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
-SETUP_DIR="/usr/local/share/screen-docent/setup"
+SETUP_DIR="/usr/local/share/pieria/setup"
 # shellcheck source=../setup/common.sh
 . "$SETUP_DIR/common.sh"
 
@@ -37,7 +37,7 @@ if sd_is_configured "$CONF"; then
   exit 0
 fi
 
-echo "sd-setup-boot: no configuration found — starting the Docent-Setup wizard."
+echo "sd-setup-boot: no configuration found — starting the Pieria-Setup wizard."
 # Setup is genuinely running: start a fresh log, but keep the prior attempt alongside it so a gramps
 # box that failed setup twice still shows both stories.
 [ -s "$AP_LOG" ] && mv -f "$AP_LOG" "$AP_LOG.1" 2>/dev/null
@@ -62,7 +62,7 @@ trap stop_ap EXIT
 # HDMI screen showed the placeholder address for the entire setup (observed 2026-07-22, first full
 # gramps run). The splash needs nothing from the AP — it is static instructions plus a QR of the SSID
 # NAME — so writing it first removes the dependency instead of racing it.
-/usr/local/bin/sd-setup-card --ssid Docent-Setup --html /run/sd-setup/setup-splash.html >>"$AP_LOG" 2>&1 || true
+/usr/local/bin/sd-setup-card --ssid Pieria-Setup --html /run/sd-setup/setup-splash.html >>"$AP_LOG" 2>&1 || true
 
 start_ap
 
@@ -74,7 +74,7 @@ start_ap
 # device it exists for. Just attempt it: sd-setup-card imports `inky` lazily and fails harmlessly on a
 # box with no panel, and the attempt is logged either way.
 # Backgrounded: a full Spectra 6 refresh takes ~9s and must never delay the wizard coming up.
-( /usr/local/bin/sd-setup-card --ssid Docent-Setup >>"$AP_LOG" 2>&1 \
+( /usr/local/bin/sd-setup-card --ssid Pieria-Setup >>"$AP_LOG" 2>&1 \
     || echo "sd-setup-boot: no e-ink panel to paint (this is normal on an HDMI-only box)" >>"$AP_LOG" ) &
 
 # Serve the wizard on port 80 (the captive portal redirects every probe here). The wizard writes the

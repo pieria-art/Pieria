@@ -1,4 +1,4 @@
-# Screen Docent — appliance all-in-one compose override.
+# Pieria — appliance all-in-one compose override.
 #
 # Merged on top of the repo's root docker-compose.yml:
 #   docker compose -f docker-compose.yml \

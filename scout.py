@@ -1,5 +1,5 @@
 """
-Modular Semantic Art Scout for Screen Docent.
+Modular Semantic Art Scout for Pieria.
 Discovers new high-resolution public-domain art.
 
 Smart Search: Uses QueryClassifier to dispatch API-specific optimized queries.
@@ -137,7 +137,7 @@ class ChicagoArtScout(MuseumScout):
         q = query or "painting"
         logger.info(f"[Scout] ChicagoArtScout searching for: {q} (intent: {intent.query_type if intent else 'none'}, offset: {offset})")
         found = []
-        headers = {"User-Agent": "ScreenDocent/1.0"}
+        headers = {"User-Agent": "Pieria/1.0"}
 
         try:
             async with httpx.AsyncClient(headers=headers) as client:
@@ -206,7 +206,7 @@ class MetMuseumScout(MuseumScout):
         q = query or "painting"
         logger.info(f"[Scout] MetMuseumScout searching for: {q} (intent: {intent.query_type if intent else 'none'}, offset: {offset})")
         found = []
-        headers = {"User-Agent": "ScreenDocent/1.0"}
+        headers = {"User-Agent": "Pieria/1.0"}
 
         try:
             async with httpx.AsyncClient(headers=headers, timeout=30.0) as client:
@@ -301,7 +301,7 @@ class ClevelandArtScout(MuseumScout):
         q = query or "painting"
         logger.info(f"[Scout] ClevelandArtScout searching for: {q} (intent: {intent.query_type if intent else 'none'}, offset: {offset})")
         found = []
-        headers = {"User-Agent": "ScreenDocent/1.0"}
+        headers = {"User-Agent": "Pieria/1.0"}
 
         try:
             async with httpx.AsyncClient(headers=headers) as client:
@@ -780,7 +780,7 @@ class NasaScout(MuseumScout):
         q = (intent.canonical_name if intent and intent.query_type == "artist" else query) or "galaxy"
         logger.info(f"[Scout] NasaScout searching for: {q} (offset: {offset})")
         found = []
-        headers = {"User-Agent": "ScreenDocent/1.0"}
+        headers = {"User-Agent": "Pieria/1.0"}
         try:
             async with httpx.AsyncClient(headers=headers, timeout=30.0) as client:
                 resp = await client.get(self.SEARCH_URL, params={"q": q, "media_type": "image"})
@@ -832,7 +832,7 @@ class WikimediaScout(MuseumScout):
         }
         await _wm_throttle()
         try:
-            async with httpx.AsyncClient(headers={"User-Agent": "ScreenDocent/1.0 (https://github.com/AiwendilInTheWoods/Screen-Docent)"}, timeout=30.0) as client:
+            async with httpx.AsyncClient(headers={"User-Agent": "Pieria/1.0 (https://github.com/AiwendilInTheWoods/Pieria)"}, timeout=30.0) as client:
                 resp = None
                 for attempt in range(3):
                     resp = await client.get(self.API_URL, params=params)

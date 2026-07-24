@@ -1,4 +1,4 @@
-# Building a distributable Screen Docent `.img`
+# Building a distributable Pieria `.img`
 
 How to bake a golden master that a stranger can flash, boot, and set up from a phone.
 
@@ -48,13 +48,13 @@ it exists only so you can drive the build.
 
 ```bash
 sudo apt-get update && sudo apt-get install -y git   # Pi OS Lite does not ship git
-git clone https://github.com/<you>/Screen-Docent.git
-cd Screen-Docent
+git clone https://github.com/<you>/Pieria.git
+cd Pieria
 sudo ALL_IN_ONE=1 EINK_ENABLED=1 deploy/appliance/install.sh      # no GEMINI_API_KEY — see above
 ```
 
 **The flavour variables are the single most expensive thing to get wrong.** `install.sh` reads them
-from `screen-docent.conf`, which does not exist on a fresh box — so without the env overrides it
+from `pieria.conf`, which does not exist on a fresh box — so without the env overrides it
 provisions a **thin client**: no Docker, no `sd-app.service`, no clock gate. A card baked that way can
 never become all-in-one no matter what the first-run wizard writes, because the machinery was never
 installed. The script prints the flavour it chose in its first line; **read that line.**
@@ -70,7 +70,7 @@ that boots into nothing.
 
 ## 3. Prove the box works, then empty it
 
-Configure `/boot/firmware/screen-docent.conf` for real (`SERVER_URL=http://localhost:8000`,
+Configure `/boot/firmware/pieria.conf` for real (`SERVER_URL=http://localhost:8000`,
 `ALL_IN_ONE=1`, a `DISPLAY_ID`, `ROTATE`/`EINK_ORIENTATION` to taste), reboot, and confirm on glass:
 art on HDMI, art on the e-ink panel, `http://<host>.local:8000` serving the admin UI.
 
@@ -78,7 +78,7 @@ Then **empty it**, so first boot exercises the real out-of-box path rather than 
 pre-populated library:
 
 ```bash
-cd ~/Screen-Docent
+cd ~/Pieria
 docker compose -f docker-compose.yml -f deploy/appliance/compose/docker-compose.appliance.yml down
 sudo rm -rf data/*.db* Artwork/*        # the DB is data/artwork.db (database.py)
 ```
@@ -126,8 +126,8 @@ With the card in the laptop reader, and after confirming the device node:
 
 ```bash
 lsblk -o NAME,SIZE,MODEL,TRAN            # CONFIRM which /dev/sdX is the card
-sudo dd if=/dev/sdX of=~/docent-img/docent-master.img bs=4M status=progress conv=fsync
-sudo pishrink -Z ~/docent-img/docent-master.img ~/docent-img/docent-release.img.xz
+sudo dd if=/dev/sdX of=~/pieria-img/pieria-master.img bs=4M status=progress conv=fsync
+sudo pishrink -Z ~/pieria-img/pieria-master.img ~/pieria-img/pieria-release.img.xz
 ```
 
 `pishrink` shrinks the filesystem to its used size (~59 G → ~6 G), injects a first-boot auto-expand,
@@ -143,7 +143,7 @@ not a licence to pull the plug in step 4.
 Flash the release image to a card, put it in a Pi that has **never** been provisioned, and run the
 whole thing as a stranger would: no SSH, no keyboard, phone only.
 
-Expect: boot → auto-expand → first-run setup → e-ink setup card with the join QR → `Docent-Setup` AP →
+Expect: boot → auto-expand → first-run setup → e-ink setup card with the join QR → `Pieria-Setup` AP →
 captive portal → SSID picker → commit → reboot → joins Wi-Fi → `sd-app.service` creates the container
 from nothing → migrations on an empty DB → first pack pulls from R2 → paints.
 
