@@ -1,5 +1,5 @@
 """
-Unified OpenAI-compatible AI client for Screen Docent.
+Unified OpenAI-compatible AI client for Pieria.
 
 Single source of truth for ALL model calls (vision enrichment + fast classification).
 Every provider — Google Gemini, OpenAI, Anthropic, OpenRouter, and local servers such as
@@ -288,8 +288,8 @@ def chat(
     if cfg.get("api_key"):
         headers["Authorization"] = f"Bearer {cfg['api_key']}"
     # OpenRouter attribution headers (harmless for other providers).
-    headers["HTTP-Referer"] = "https://screendocent.app"
-    headers["X-Title"] = "Screen Docent"
+    headers["HTTP-Referer"] = "https://pieria.app"
+    headers["X-Title"] = "Pieria"
 
     url = f"{cfg['base_url'].rstrip('/')}/chat/completions"
     # B5: reuse a pooled client (no fresh TLS handshake per call) + one bounded retry on transient

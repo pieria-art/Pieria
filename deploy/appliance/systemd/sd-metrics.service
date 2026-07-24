@@ -5,7 +5,7 @@
 # bind-mounted data/appliance/host_metrics.json for the Device Health console.
 # Triggered by sd-metrics.timer. __REPO_ROOT__ is substituted by install.sh.
 [Unit]
-Description=Screen Docent host metrics writer (throttle/under-voltage)
+Description=Pieria host metrics writer (throttle/under-voltage)
 
 [Service]
 Type=oneshot

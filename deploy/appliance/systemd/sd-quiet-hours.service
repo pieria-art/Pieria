@@ -6,7 +6,7 @@
 # by sd-quiet-hours.timer. __BOOT_CONF__ is substituted by install.sh with the appliance
 # config path (SERVER_URL + DISPLAY_ID).
 [Unit]
-Description=Screen Docent quiet-hours HDMI-CEC panel power
+Description=Pieria quiet-hours HDMI-CEC panel power
 
 [Service]
 Type=oneshot

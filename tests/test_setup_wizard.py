@@ -1,6 +1,6 @@
 """First-run setup wizard (R1-F1).
 
-sd_setup is the stdlib wizard that writes screen-docent.conf on first boot. These lock the pure conf
+sd_setup is the stdlib wizard that writes pieria.conf on first boot. These lock the pure conf
 logic (validation, conf bytes, orientation mapping) and prove the safety contract that makes the
 in-situ dry-run trustworthy: a dry-run commit writes only the preview file and NEVER the real boot conf.
 """
@@ -67,7 +67,7 @@ def test_build_conf_landscape_leaves_rotate_blank():
 
 
 def test_resolve_boot_conf_path_targets_the_conf_file():
-    assert sd_setup.resolve_boot_conf_path().name == "screen-docent.conf"
+    assert sd_setup.resolve_boot_conf_path().name == "pieria.conf"
 
 
 def test_orientation_preview_degrades_gracefully_without_wlr_randr(monkeypatch):
@@ -86,9 +86,9 @@ def test_orientation_preview_degrades_gracefully_without_wlr_randr(monkeypatch):
 @pytest.fixture
 def server(tmp_path):
     """A wizard server in dry-run, with the boot conf pointed at a path that must stay untouched."""
-    boot_conf = tmp_path / "boot" / "screen-docent.conf"
+    boot_conf = tmp_path / "boot" / "pieria.conf"
     cfg = sd_setup.SetupConfig(dry_run=True, all_in_one=False, boot_conf=boot_conf, output="HDMI-A-1")
-    cfg.preview_path = tmp_path / "preview" / "screen-docent.conf"
+    cfg.preview_path = tmp_path / "preview" / "pieria.conf"
     httpd = ThreadingHTTPServer(("127.0.0.1", 0), sd_setup.make_handler(cfg))
     t = threading.Thread(target=httpd.serve_forever, daemon=True)
     t.start()
@@ -139,7 +139,7 @@ def test_live_commit_writes_boot_conf_0644(tmp_path, monkeypatch):
     monkeypatch.setattr(sd_setup, "_join_wifi", lambda *a, **k: None)
     monkeypatch.setattr(sd_setup, "_schedule_reboot", lambda: None)
     monkeypatch.setattr(sd_setup, "_release_wlan0", lambda: None)
-    boot_conf = tmp_path / "boot" / "screen-docent.conf"
+    boot_conf = tmp_path / "boot" / "pieria.conf"
     boot_conf.parent.mkdir(parents=True)
     boot_conf.write_text("stale")            # pre-existing file...
     boot_conf.chmod(0o600)                    # ...with restrictive perms the commit must override
@@ -171,7 +171,7 @@ def test_live_commit_releases_wlan0_after_saving_wifi_and_before_reboot(tmp_path
     monkeypatch.setattr(sd_setup, "_release_wlan0", lambda: calls.append("release_wlan0"))
     monkeypatch.setattr(sd_setup, "_schedule_reboot", lambda: calls.append("reboot"))
 
-    boot_conf = tmp_path / "boot" / "screen-docent.conf"
+    boot_conf = tmp_path / "boot" / "pieria.conf"
     boot_conf.parent.mkdir(parents=True)
     cfg = sd_setup.SetupConfig(dry_run=False, all_in_one=True, boot_conf=boot_conf, output="HDMI-A-1")
     httpd = ThreadingHTTPServer(("127.0.0.1", 0), sd_setup.make_handler(cfg))
@@ -233,7 +233,7 @@ def test_mode_exposes_recovery_banner_text(tmp_path):
     """sd-net-recover re-opens this same wizard on a box that failed to get online. /api/mode carries
     the reason so the page can explain itself — without it the box looks like it spontaneously reset
     to factory setup, which is more alarming than the original failure (ADR-057)."""
-    boot_conf = tmp_path / "boot" / "screen-docent.conf"
+    boot_conf = tmp_path / "boot" / "pieria.conf"
     msg = "This display couldn't join your Wi-Fi."
     cfg = sd_setup.SetupConfig(dry_run=True, all_in_one=False, boot_conf=boot_conf,
                                output="HDMI-A-1", recovery=msg)
@@ -356,7 +356,7 @@ def test_derive_hostname(raw, expected):
 
 
 @pytest.mark.parametrize("name,ok", [
-    ("living-room", True), ("docent-4f9a", True), ("a", True),
+    ("living-room", True), ("pieria-4f9a", True), ("a", True),
     ("-lead", False), ("trail-", False), ("Up_per", False), ("has space", False), ("", False),
 ])
 def test_valid_hostname(name, ok):
@@ -365,7 +365,7 @@ def test_valid_hostname(name, ok):
 
 def test_resolve_hostname_explicit_beats_derived():
     # An advanced user opened the edit field and typed a real box name — it wins over the display name.
-    assert sd_setup.resolve_hostname({"display_id": "Living Room", "hostname": "docent-hub"}) == "docent-hub"
+    assert sd_setup.resolve_hostname({"display_id": "Living Room", "hostname": "pieria-hub"}) == "pieria-hub"
 
 
 def test_resolve_hostname_falls_back_to_display_name():

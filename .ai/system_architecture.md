@@ -1,4 +1,4 @@
-# Screen Docent — System Architecture
+# Pieria — System Architecture
 
 > **Version:** 0.9.1 · **Last Updated:** 2026-06-27
 
@@ -183,7 +183,7 @@ Uvicorn runs 4 workers (separate memory). Cross-worker coordination via SQLite:
 ## File Tree (Core Application)
 
 ```
-Screen-Docent/
+Pieria/
 ├── app.py              # FastAPI: routes, WS hub, middleware, lifespan, catalog+federation+e-ink endpoints
 ├── ai_client.py        # ONE OpenAI-compatible client for all model calls (BYO provider/key/model)
 ├── config.py           # Shared constants (ARTWORK_ROOT, LIBRARY_DIR) — breaks circular imports
@@ -219,7 +219,7 @@ Screen-Docent/
 │   ├── catalog/            # bundled split manifest (index.json + per-collection)
 │   ├── vendor/             # Cropper / Sortable / QRCode (vendored, offline)
 │   └── assets/keepawake.mp4 # local sleep-defeater
-├── integrations/          # MMM-ScreenDocent (MagicMirror²) · frame-tv (push_once CLI)
+├── integrations/          # MMM-Pieria (MagicMirror²) · frame-tv (push_once CLI)
 │
 ├── Artwork/_Library/      # canonical image store      ·  data/artwork.db  (volume-mapped)
 │   └── Artwork/_derivatives/  # resolution-capped Canvas display cache (regenerable; internal _-dir)

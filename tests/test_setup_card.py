@@ -62,14 +62,14 @@ def test_scan_returns_empty_when_iw_fails(monkeypatch):
 
 
 def test_render_card_produces_panel_sized_image():
-    img = sd_card.render_card(1600, 1200, "Docent-Setup")
+    img = sd_card.render_card(1600, 1200, "Pieria-Setup")
     assert img.size == (1600, 1200)
 
 
 def test_splash_is_self_contained_and_names_the_ssid():
     """The kiosk loads this over file:// with no network — every asset must be inline."""
-    html = sd_card.render_splash("Docent-Setup")
-    assert "Docent-Setup" in html
+    html = sd_card.render_splash("Pieria-Setup")
+    assert "Pieria-Setup" in html
     assert "http://" not in html.replace("http://192.168", "")  # no external asset URLs
     assert "<style>" in html
 
@@ -79,7 +79,7 @@ def test_fit_font_px_shrinks_until_the_longest_line_fits():
     SSID printed straight through the QR box on a portrait panel."""
     from PIL import Image, ImageDraw
     d = ImageDraw.Draw(Image.new("RGB", (10, 10)))
-    short = ['Join the Wi-Fi network "Docent-Setup"']
+    short = ['Join the Wi-Fi network "Pieria-Setup"']
     long_ = ['Join the Wi-Fi network "SomeAbsurdlyLongNetworkNameThatKeepsGoing-5GHz"']
 
     tight = sd_card.fit_font_px(d, long_, avail=600, start_px=35, min_px=20)
@@ -106,7 +106,7 @@ def test_ellipsize_guarantees_fit_when_shrinking_is_not_enough():
 def test_portrait_canvas_stacks_so_text_cannot_hit_the_qr():
     """A portrait canvas is ~400px narrower; side-by-side left the step column too tight. Both
     orientations must render at their requested size with the layout intact."""
-    assert sd_card.render_card(1200, 1600, "Docent-Setup").size == (1200, 1600)   # portrait
-    assert sd_card.render_card(1600, 1200, "Docent-Setup").size == (1600, 1200)   # landscape
+    assert sd_card.render_card(1200, 1600, "Pieria-Setup").size == (1200, 1600)   # portrait
+    assert sd_card.render_card(1600, 1200, "Pieria-Setup").size == (1600, 1200)   # landscape
     # An extreme name must still render both ways without raising.
     assert sd_card.render_card(1200, 1600, "X" * 60).size == (1200, 1600)

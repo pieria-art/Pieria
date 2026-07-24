@@ -1,9 +1,9 @@
 # Installed by install.sh as /etc/systemd/system/sd-setup.service, but ENABLED only on a freshly baked
 # .img (never enabled by install.sh on an already-running box). On first boot it runs sd-setup-boot,
-# which no-ops if the box is already configured, else brings up the Docent-Setup AP + wizard.
+# which no-ops if the box is already configured, else brings up the Pieria-Setup AP + wizard.
 # __BOOT_CONF__ is substituted by install.sh with the boot-partition conf path.
 [Unit]
-Description=Screen Docent first-run setup wizard (captive portal)
+Description=Pieria first-run setup wizard (captive portal)
 # Run before the kiosk.
 Before=getty@tty1.service
 # MUST start AFTER NetworkManager, not before it. NM owns wlan0; if we bring up the setup AP first, NM

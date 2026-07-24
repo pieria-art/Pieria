@@ -24,9 +24,9 @@ def _local_manifest():
     """A minimal 2-item Manifest v2 whose assets are LOCAL (pack ships the bytes)."""
     return {
         "manifest_version": 2,
-        "id": "screendocent-core",
-        "title": "Screen Docent — Core",
-        "publisher": {"id": "screendocent", "name": "Screen Docent"},
+        "id": "pieria-core",
+        "title": "Pieria — Core",
+        "publisher": {"id": "pieria", "name": "Pieria"},
         "default_license": "Public Domain",
         "items": [
             {"id": "monet-sunrise", "title": "Impression, Sunrise", "artist": "Claude Monet",
@@ -50,7 +50,7 @@ def test_signed_local_pack_is_verified_when_key_registered():
     # untrusted registry → a valid self-signed feed is only 'community'
     assert federation.assess_trust(signed, trusted_keys={}) == "community"
     # the build-time public key registered under the publisher id → 'verified'
-    assert federation.assess_trust(signed, trusted_keys={"screendocent": pub}) == "verified"
+    assert federation.assess_trust(signed, trusted_keys={"pieria": pub}) == "verified"
     assert federation.verify_signature(signed) is True
 
 
@@ -60,7 +60,7 @@ def test_tampered_local_manifest_fails_verification():
     tampered = copy.deepcopy(signed)
     tampered["items"][0]["title"] = "Not Sunrise"          # mutate signed content
     assert federation.verify_signature(tampered) is False
-    assert federation.assess_trust(tampered, trusted_keys={"screendocent": pub}) == "community"
+    assert federation.assess_trust(tampered, trusted_keys={"pieria": pub}) == "community"
 
 
 def test_local_item_maps_to_on_disk_reference_not_a_url():

@@ -1,6 +1,6 @@
 """Assemble a self-contained, offline "art-pack" (maintainer tool — NOT part of the runtime image).
 
-ADR-038: Screen Docent moves from "link, don't own" (catalog JSON carries a `source_url`/
+ADR-038: Pieria moves from "link, don't own" (catalog JSON carries a `source_url`/
 `thumbnail_url`, images download live at first-seed and at each catalog "Add") to shipping the
 appliance with the curated collection **baked in**. This is the assembly step: it downloads every
 catalog + factory-seed image once, caps it to display resolution, dedupes shared source files,
@@ -85,7 +85,7 @@ GRANDFATHER_MIN_EDGE = 2160
 # First-party publisher identity (ADR-044): the Core pack ships as this publisher's signed Manifest v2
 # feeds — one per collection. Signed at build time with a key that never ships; the PUBLIC key lives in
 # registry/trusted_publishers.json so assess_trust() promotes the pack to 'verified' on the appliance.
-PACK_PUBLISHER = {"id": "screendocent", "name": "Screen Docent"}
+PACK_PUBLISHER = {"id": "pieria", "name": "Pieria"}
 # base64 Ed25519 private key (build secret, NEVER committed): CLI --signing-key or this env var.
 SIGNING_KEY_ENV = "SD_PACK_SIGNING_KEY"
 

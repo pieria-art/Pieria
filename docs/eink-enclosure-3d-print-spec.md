@@ -1,4 +1,4 @@
-# Screen-Docent — E‑Ink Art Frame: 3D‑Print Enclosure Spec
+# Pieria — E‑Ink Art Frame: 3D‑Print Enclosure Spec
 
 > **Status:** DRAFT v0.1 — awaiting answers from the printer owner (see [§10 Open Questions](#10-open-questions-fill-in-with-your-friends-answers)).
 > **Audience:** someone who prints their own stuff and speaks maker.

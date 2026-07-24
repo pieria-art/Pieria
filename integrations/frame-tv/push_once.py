@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """
-push_once.py — one-shot Screen Docent → Samsung Frame TV push (real-hardware test tool).
+push_once.py — one-shot Pieria → Samsung Frame TV push (real-hardware test tool).
 
-Screen Docent's built-in Frame pusher is exercised end-to-end in CI against a fake client, but the
+Pieria's built-in Frame pusher is exercised end-to-end in CI against a fake client, but the
 actual Samsung art-mode WebSocket handshake can only be confirmed on a real Frame. This standalone
 script is how a Frame owner (or beta tester) does that confirmation: it pulls the current artwork from
-a running Screen Docent server over HTTP, renders it to the TV's resolution, and pushes it into Art
+a running Pieria server over HTTP, renders it to the TV's resolution, and pushes it into Art
 Mode — printing each step verbosely.
 
 Standalone on purpose (only needs: httpx, Pillow, samsungtvws) so a tester can run it without the
@@ -27,7 +27,7 @@ from PIL import Image, ImageOps
 
 
 def fetch_current(server: str, playlist: str, display_id: str):
-    """Ask the Screen Docent server for the current artwork; return (image_bytes, title)."""
+    """Ask the Pieria server for the current artwork; return (image_bytes, title)."""
     params = {"playlist_name": playlist, "display_id": display_id, "direction": "1"}
     with httpx.Client(timeout=30.0) as client:
         if not playlist:
@@ -55,9 +55,9 @@ def render(data: bytes, w: int, h: int, quality: int = 90) -> bytes:
 
 
 def main():
-    ap = argparse.ArgumentParser(description="Push the current Screen Docent artwork to a Samsung Frame TV.")
+    ap = argparse.ArgumentParser(description="Push the current Pieria artwork to a Samsung Frame TV.")
     ap.add_argument("--host", required=True, help="Frame TV IP/hostname")
-    ap.add_argument("--server", default="http://localhost:8000", help="Screen Docent server URL")
+    ap.add_argument("--server", default="http://localhost:8000", help="Pieria server URL")
     ap.add_argument("--playlist", default="", help="Playlist name (blank = server's first)")
     ap.add_argument("--port", type=int, default=8001)
     ap.add_argument("--width", type=int, default=3840)

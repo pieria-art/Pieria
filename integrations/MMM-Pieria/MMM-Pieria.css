@@ -1,15 +1,15 @@
-/* MMM-ScreenDocent — museum placard styling that reads well on a dark mirror.
+/* MMM-Pieria — museum placard styling that reads well on a dark mirror.
    Works both in a normal region (contained card) and in fullscreen_below
    (art as a full-bleed backdrop with a corner placard). */
 
-.MMM-ScreenDocent {
+.MMM-Pieria {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	gap: 12px;
 }
 
-.MMM-ScreenDocent .sd-image {
+.MMM-Pieria .sd-image {
 	max-width: 100%;
 	max-height: 70vh;
 	object-fit: contain;
@@ -18,48 +18,48 @@
 	transition: opacity 1s ease-in-out;
 }
 
-.MMM-ScreenDocent .sd-placard {
+.MMM-Pieria .sd-placard {
 	max-width: 32em;
 	text-align: center;
 	line-height: 1.35;
 }
 
-.MMM-ScreenDocent .sd-title {
+.MMM-Pieria .sd-title {
 	font-size: 1.2em;
 	font-weight: 500;
 	font-style: italic;
 }
 
-.MMM-ScreenDocent .sd-artist {
+.MMM-Pieria .sd-artist {
 	font-size: 1em;
 	margin-top: 2px;
 }
 
-.MMM-ScreenDocent .sd-meta {
+.MMM-Pieria .sd-meta {
 	margin-top: 4px;
 	text-transform: none;
 	letter-spacing: 0.5px;
 }
 
-.MMM-ScreenDocent .sd-description {
+.MMM-Pieria .sd-description {
 	margin-top: 8px;
 	opacity: 0.85;
 	line-height: 1.4;
 }
 
-.MMM-ScreenDocent .sd-status {
+.MMM-Pieria .sd-status {
 	padding: 1em;
 }
 
 /* Fullscreen backdrop: the art fills the screen and the placard floats bottom-left,
    the way an art display looks. MagicMirror adds .region.fullscreen.below for that slot. */
-.region.fullscreen.below .MMM-ScreenDocent {
+.region.fullscreen.below .MMM-Pieria {
 	position: absolute;
 	inset: 0;
 	display: block;
 }
 
-.region.fullscreen.below .MMM-ScreenDocent .sd-image {
+.region.fullscreen.below .MMM-Pieria .sd-image {
 	width: 100%;
 	height: 100%;
 	max-width: none;
@@ -68,7 +68,7 @@
 	box-shadow: none;
 }
 
-.region.fullscreen.below .MMM-ScreenDocent .sd-placard {
+.region.fullscreen.below .MMM-Pieria .sd-placard {
 	position: absolute;
 	left: 4vw;
 	bottom: 4vh;

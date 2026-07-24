@@ -36,7 +36,7 @@ import httpx
 from scout import _wikimedia_filepath, _wm_is_pd
 
 API_URL = "https://commons.wikimedia.org/w/api.php"
-UA = "ScreenDocent/1.0 (offline art catalog build; jmyost@gmail.com)"
+UA = "Pieria/1.0 (offline art catalog build; jmyost@gmail.com)"
 
 MIN_NATIVE_EDGE = 3840  # true-4K floor (ADR-039): pack-survivable long edge
 MAX_ASPECT = 4.0        # reject ultra-panoramic handscrolls / banners (ADR-039 quality pass)

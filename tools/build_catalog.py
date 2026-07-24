@@ -339,7 +339,7 @@ async def build_collection(db, spec, cache, *, limit=None, enrich=True, verify=T
 
 
 async def main():
-    ap = argparse.ArgumentParser(description="Build the Screen Docent catalog manifest.")
+    ap = argparse.ArgumentParser(description="Build the Pieria catalog manifest.")
     ap.add_argument("--collection", help="build only this collection id")
     ap.add_argument("--limit", type=int, help="cap items per collection (for quick runs)")
     ap.add_argument("--no-enrich", action="store_true", help="skip model enrichment (template only)")

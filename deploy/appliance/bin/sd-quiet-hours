@@ -10,7 +10,7 @@
 # Run on a short systemd timer (sd-quiet-hours.timer). Reads SERVER_URL + DISPLAY_ID from the appliance
 # config so it targets the same server/display as the kiosk.
 #
-# Usage: sd-quiet-hours <CONFIG_FILE>   (the appliance screen-docent.conf)
+# Usage: sd-quiet-hours <CONFIG_FILE>   (the appliance pieria.conf)
 set -u
 
 CONF="${1:-}"

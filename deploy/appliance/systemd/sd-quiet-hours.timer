@@ -5,7 +5,7 @@
 # follows the quiet-hours window within a minute of each boundary. Firing on-change only
 # (state file) means this cheap poll doesn't spam CEC.
 [Unit]
-Description=Poll Screen Docent quiet-hours schedule every 60s
+Description=Poll Pieria quiet-hours schedule every 60s
 
 [Timer]
 OnBootSec=60

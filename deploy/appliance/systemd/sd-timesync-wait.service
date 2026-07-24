@@ -9,7 +9,7 @@
 # This one is bounded, sits off the boot critical path (the kiosk, the setup wizard and getty are not
 # ordered behind it), and always exits 0 so it can never block the stack from starting.
 [Unit]
-Description=Wait for NTP before Screen Docent uses the network (clock-skew TLS guard)
+Description=Wait for NTP before Pieria uses the network (clock-skew TLS guard)
 After=network-online.target systemd-timesyncd.service
 Wants=network-online.target
 Before=sd-app.service

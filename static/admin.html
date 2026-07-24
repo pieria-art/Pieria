@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Screen Docent Admin</title>
+    <title>Pieria Admin</title>
     <link rel="icon" type="image/svg+xml" href="/logo.svg">
     <!-- Cropper.js + Sortable.js — vendored locally so admin works offline / air-gapped -->
     <link rel="stylesheet" href="/vendor/cropper.min.css">
@@ -334,14 +334,14 @@
     <!-- Mobile-only top bar + drawer backdrop (CSS hides these on desktop) -->
     <div class="mobile-topbar">
         <button class="hamburger" onclick="toggleSidebar()" aria-label="Open menu">☰</button>
-        <span class="mt-title">Screen Docent</span>
+        <span class="mt-title">Pieria</span>
     </div>
     <div class="sidebar-backdrop" onclick="toggleSidebar()"></div>
     <div id="toast-container"></div>
     <aside>
         <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 30px;">
             <img src="/logo.svg" alt="Logo" style="height: 32px;">
-            <h1 style="margin: 0; font-size: 1.25rem; color: var(--accent-color);">Screen Docent</h1>
+            <h1 style="margin: 0; font-size: 1.25rem; color: var(--accent-color);">Pieria</h1>
         </div>
         
         <div class="nav-tabs">
@@ -560,7 +560,7 @@
                 <div style="background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 25px;">
                     <h3 style="margin-top: 0; font-size: 0.9rem; color: var(--text-color);">🩺 Server Health <span id="device-health-updated" style="font-weight:normal; color:#64748b; font-size:0.72rem;"></span></h3>
                     <p style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 16px;">
-                        Live metrics for the box running Screen Docent (this all-in-one appliance).
+                        Live metrics for the box running Pieria (this all-in-one appliance).
                     </p>
                     <div id="host-health-grid" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:14px;">
                         <span style="color:#94a3b8; font-size:0.8rem;">Loading…</span>
@@ -931,7 +931,7 @@
         </style>
         <div id="view-publisher" class="hidden">
             <h2 style="color: var(--accent-color); font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.1rem; margin-bottom: 16px;">Publisher Studio</h2>
-            <p class="intro">Author a collection of <strong>your own externally-hosted images</strong> into a signed Manifest&nbsp;v2 feed. Anyone running Screen Docent can subscribe to it. We index your URLs — we never host your images.</p>
+            <p class="intro">Author a collection of <strong>your own externally-hosted images</strong> into a signed Manifest&nbsp;v2 feed. Anyone running Pieria can subscribe to it. We index your URLs — we never host your images.</p>
 
             <section class="panel">
                 <h2>1 · Publisher identity</h2>

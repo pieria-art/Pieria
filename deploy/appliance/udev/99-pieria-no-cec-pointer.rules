@@ -1,4 +1,4 @@
-# Screen Docent appliance — suppress the HDMI-CEC phantom pointer.
+# Pieria appliance — suppress the HDMI-CEC phantom pointer.
 #
 # The Pi's HDMI-CEC input nodes (vc4-hdmi-0 / vc4-hdmi-1) advertise a RELATIVE
 # pointer (REL_X/REL_Y), so the cage/wlroots compositor sees "a mouse" and draws a

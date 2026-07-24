@@ -53,7 +53,7 @@ from tools.tag_resolution import index_masters  # noqa: E402
 DEFAULT_DIRS = ["static/catalog", "art-pack/_catalog"]
 DEFAULT_PACK = "art-pack"
 DEFAULT_SCRATCH = Path(
-    "/tmp/claude-1000/-home-josh-ai-workspace-Screen-Docent/"
+    "/tmp/claude-1000/-home-josh-ai-workspace-Pieria/"
     "a5043e89-2e39-4669-9b58-98f2091e4b95/scratchpad/aspect_crops/imgs"
 )
 DOWNSCALE_EDGE = 600

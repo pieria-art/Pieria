@@ -9,7 +9,7 @@
 # "can't be bricked" promise.
 #
 # WHAT IT DOES: watches for a sustained lack of network on a configured box and, when it sees one,
-# re-opens the SAME wizard behind the SAME Docent-Setup AP with a banner explaining why. The user
+# re-opens the SAME wizard behind the SAME Pieria-Setup AP with a banner explaining why. The user
 # retypes the password from their phone. Nothing is destroyed — their existing config stays on disk and
 # is simply rewritten on commit.
 #
@@ -19,7 +19,7 @@
 set -u
 PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
-SETUP_DIR=/usr/local/share/screen-docent/setup
+SETUP_DIR=/usr/local/share/pieria/setup
 # shellcheck source=../setup/common.sh
 . "$SETUP_DIR/common.sh"
 
@@ -27,7 +27,7 @@ CONF="$(sd_resolve_conf "${1:-}")"
 LOG=/var/log/sd-net-recover.log
 say() { echo "sd-net-recover: $*"; }
 
-# Knobs, overridable from screen-docent.conf.
+# Knobs, overridable from pieria.conf.
 NET_RECOVER=on            # off disables the backstop entirely
 NET_RECOVER_GRACE=120     # seconds offline after BOOT before we intervene
 NET_RECOVER_SUSTAINED=900 # seconds offline AFTER we've been online once (avoids reacting to a blip)
@@ -94,17 +94,17 @@ while true; do
   fi
 
   # --- Intervene ---------------------------------------------------------------------------------
-  say "offline for ${offline}s — re-opening the setup wizard on the Docent-Setup AP"
+  say "offline for ${offline}s — re-opening the setup wizard on the Pieria-Setup AP"
   : > "$LOG" 2>/dev/null || true
   # Remember which profile to reactivate if the user never shows up.
   RECOVER_PROFILE="$(nmcli -t -f NAME,TYPE con show 2>/dev/null | awk -F: '$2 ~ /wireless/ {print $1; exit}')"
 
   if sd_start_ap "$LOG"; then
-    /usr/local/bin/sd-setup-card --ssid Docent-Setup --recovery \
+    /usr/local/bin/sd-setup-card --ssid Pieria-Setup --recovery \
       --html /run/sd-setup/setup-splash.html >>"$LOG" 2>&1 || true
     # Same reasoning as first-run setup: the panel is holding art and looks fine, so say what's wrong
     # ON THE GLASS. The recovery variant is red and leads with "Couldn't join your Wi-Fi" (ADR-058).
-    ( /usr/local/bin/sd-setup-card --ssid Docent-Setup --recovery >>"$LOG" 2>&1 \
+    ( /usr/local/bin/sd-setup-card --ssid Pieria-Setup --recovery >>"$LOG" 2>&1 \
         || echo "sd-net-recover: no e-ink panel to paint" >>"$LOG" ) &
     EXTRA=()
     [ "${ALL_IN_ONE}" = "1" ] && EXTRA+=(--all-in-one)

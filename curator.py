@@ -1,5 +1,5 @@
 """
-Autonomous RAG Curator for Screen Docent.
+Autonomous RAG Curator for Pieria.
 Enriches artwork metadata using Wikipedia context and Gemini.
 """
 

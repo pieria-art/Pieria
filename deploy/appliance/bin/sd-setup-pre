@@ -18,14 +18,14 @@
 set -u
 PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
-SETUP_DIR=/usr/local/share/screen-docent/setup
+SETUP_DIR=/usr/local/share/pieria/setup
 # shellcheck source=../setup/common.sh
 . "$SETUP_DIR/common.sh"
 
 CONF="$(sd_resolve_conf "${1:-}")"
 log() { echo "sd-setup-pre: $*"; }
 
-# ADR-070: give a fresh unit a unique default hostname (docent-XXXX) before the setup AP raises, so the
+# ADR-070: give a fresh unit a unique default hostname (pieria-XXXX) before the setup AP raises, so the
 # setup card's <name>.local / QR is unique from the first moment. No-op once a real name is chosen.
 # Ordered here because sd-setup-pre already runs early, as root, on every boot. Non-fatal.
 command -v sd-hostname >/dev/null 2>&1 && sd-hostname || true
@@ -44,7 +44,7 @@ fi
 if [ "$want_setup" = yes ]; then
   install -d /etc/NetworkManager/conf.d
   cat > "$SD_DROPIN" <<'EOF'
-# Screen Docent setup mode — wlan0 is handed to hostapd for the Docent-Setup AP.
+# Pieria setup mode — wlan0 is handed to hostapd for the Pieria-Setup AP.
 # Written by sd-setup-pre BEFORE NetworkManager starts so NM never claims the radio (there is no race
 # to lose). Removed automatically by sd-setup-pre on the first boot after the box is configured.
 [keyfile]

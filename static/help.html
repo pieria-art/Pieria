@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Screen Docent Help</title>
+    <title>Pieria Help</title>
     <link rel="icon" type="image/svg+xml" href="/logo.svg">
     <link rel="stylesheet" href="/app.css">
     <style>
@@ -83,13 +83,13 @@
 <body class="app-shell">
     <div class="mobile-topbar">
         <button class="hamburger" onclick="document.body.classList.toggle('sidebar-open')">☰</button>
-        <span class="mt-title">Screen Docent Help</span>
+        <span class="mt-title">Pieria Help</span>
     </div>
     <div class="sidebar-backdrop" onclick="document.body.classList.remove('sidebar-open')"></div>
     <aside>
         <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 24px;">
             <img src="/logo.svg" alt="Logo" style="height: 32px;">
-            <h1 style="margin: 0; font-size: 1.25rem; color: var(--accent-color);">Screen Docent</h1>
+            <h1 style="margin: 0; font-size: 1.25rem; color: var(--accent-color);">Pieria</h1>
         </div>
         <nav>
             <a href="/admin" class="back">← Back to Dashboard</a>
@@ -116,7 +116,7 @@
     <main class="help-main">
         <section id="overview">
             <h2>Overview & Deployment Models</h2>
-            <p class="lead">Screen Docent is two things: a <strong>curation brain</strong> you run once
+            <p class="lead">Pieria is two things: a <strong>curation brain</strong> you run once
                (a small Docker app), and <strong>any screen</strong> you point at it. Add art, and it plays
                beautifully — with cinematic pans, museum placards, and a phone remote.</p>
 
@@ -189,8 +189,8 @@
             </ul>
 
             <h3>Launch</h3>
-            <pre><code>git clone https://github.com/AiwendilInTheWoods/Screen-Docent.git
-cd Screen-Docent
+            <pre><code>git clone https://github.com/AiwendilInTheWoods/Pieria.git
+cd Pieria
 docker compose up -d --build</code></pre>
             <p>That's it — no <code>.env</code> needed. The app boots with starter art already curated.</p>
 
@@ -202,7 +202,7 @@ docker compose up -d --build</code></pre>
             </ul>
 
             <figure>
-                <img class="shot" src="/docs/library.png" alt="The Screen Docent admin dashboard showing a grid of masterpieces">
+                <img class="shot" src="/docs/library.png" alt="The Pieria admin dashboard showing a grid of masterpieces">
                 <figcaption>The admin dashboard — your library, collections, the art catalog, and settings, all in one place.</figcaption>
             </figure>
 
@@ -291,8 +291,8 @@ docker compose up -d --build</code></pre>
                 to author and sign a collection of your own hosted images, then host the exported
                 <code>manifest.json</code> anywhere and share its URL. Prefer the command line? Use
                 <code>python -m tools.build_manifest</code>. Full walkthrough:
-                <a href="https://github.com/AiwendilInTheWoods/Screen-Docent/blob/main/docs/how-to-publish.md" target="_blank" style="color:var(--accent-color);">How&nbsp;to&nbsp;publish</a>
-                (the <a href="https://github.com/AiwendilInTheWoods/Screen-Docent/blob/main/docs/manifest-v2.md" target="_blank" style="color:var(--accent-color);">Manifest&nbsp;v2</a> schema).
+                <a href="https://github.com/AiwendilInTheWoods/Pieria/blob/main/docs/how-to-publish.md" target="_blank" style="color:var(--accent-color);">How&nbsp;to&nbsp;publish</a>
+                (the <a href="https://github.com/AiwendilInTheWoods/Pieria/blob/main/docs/manifest-v2.md" target="_blank" style="color:var(--accent-color);">Manifest&nbsp;v2</a> schema).
             </div>
 
             <h3 id="catalog">Hosting the catalog remotely (grow it without rebuilding)</h3>
@@ -482,12 +482,12 @@ GEMINI_API_KEY=your_free_key_here</code></pre>
             <p>The all-in-one appliance image sets itself up from your phone. You never open a terminal or edit a
                file:</p>
             <ol>
-                <li><strong>Download</strong> <code>docent-&lt;version&gt;.img.xz</code> from the
-                    <a href="https://github.com/AiwendilInTheWoods/Screen-Docent/releases/latest">Releases page</a>.</li>
+                <li><strong>Download</strong> <code>pieria-&lt;version&gt;.img.xz</code> from the
+                    <a href="https://github.com/AiwendilInTheWoods/Pieria/releases/latest">Releases page</a>.</li>
                 <li><strong>Flash</strong> it with <strong>Raspberry Pi Imager</strong> or Balena Etcher &mdash; no
                     OS-customisation needed (leave "Edit Settings" alone).</li>
                 <li><strong>Boot</strong> the Pi. The screen shows a setup card. From your phone, join the open
-                    <strong><code>Docent-Setup</code></strong> Wi-Fi network &mdash; a setup page opens on its own
+                    <strong><code>Pieria-Setup</code></strong> Wi-Fi network &mdash; a setup page opens on its own
                     (captive portal).</li>
                 <li><strong>Set it up</strong>: pick your Wi-Fi from the list, name the display (it becomes
                     <code>&lt;name&gt;.local</code>), choose orientation (with a live preview), confirm. The Pi
@@ -495,7 +495,7 @@ GEMINI_API_KEY=your_free_key_here</code></pre>
             </ol>
             <div class="tip">
                 <strong>It won't strand you.</strong> Mistype the Wi-Fi password or interrupt setup and the box
-                <em>re-opens</em> the <code>Docent-Setup</code> hotspot on the next boot instead of showing a dead
+                <em>re-opens</em> the <code>Pieria-Setup</code> hotspot on the next boot instead of showing a dead
                 screen &mdash; so you always get another try from your phone. Each unit generates its own network
                 name and its own security identity on first boot; nothing is shared between units.
             </div>
@@ -510,19 +510,19 @@ GEMINI_API_KEY=your_free_key_here</code></pre>
                thin client</strong> (this Pi shows art; a server elsewhere curates), run the provisioner on a fresh
                <strong>Raspberry Pi OS Lite (64-bit, Bookworm)</strong>. Flash it with Imager (set a hostname, SSH,
                and Wi-Fi under <em>Edit Settings</em>), SSH in, then:</p>
-            <pre><code>git clone https://github.com/AiwendilInTheWoods/Screen-Docent.git
+            <pre><code>git clone https://github.com/AiwendilInTheWoods/Pieria.git
 # all-in-one (server + display on this box):
-sudo ALL_IN_ONE=1 EINK_ENABLED=1 Screen-Docent/deploy/appliance/install.sh
+sudo ALL_IN_ONE=1 EINK_ENABLED=1 Pieria/deploy/appliance/install.sh
 # ...or display-only thin client (server lives elsewhere): omit ALL_IN_ONE.</code></pre>
             <p>This installs <code>cage</code> + Chromium as a kiosk, launches it on boot, disables screen
                blanking, ensures <code>avahi-daemon</code> (so <code>&lt;hostname&gt;.local</code> works), and (all-
                in-one) installs Docker and runs the server on the same Pi. To turn a provisioned box into a
-               distributable image, see <a href="https://github.com/AiwendilInTheWoods/Screen-Docent/blob/main/docs/image-build.md"><code>docs/image-build.md</code></a>.</p>
+               distributable image, see <a href="https://github.com/AiwendilInTheWoods/Pieria/blob/main/docs/image-build.md"><code>docs/image-build.md</code></a>.</p>
 
             <h3>Configure a thin-client display</h3>
             <div class="tip" id="find-server-address">
                 <strong>Finding your server's address</strong>
-                For a thin client, <code>SERVER_URL</code> is wherever your Screen Docent server runs &mdash; not
+                For a thin client, <code>SERVER_URL</code> is wherever your Pieria server runs &mdash; not
                 this Pi. To find it:
                 <ul style="margin:8px 0 0; padding-left:20px;">
                     <li>Open the admin (<code>Settings &rarr; 📡 This Server</code>) on the server box &mdash; it shows the exact address to copy.</li>
@@ -530,9 +530,9 @@ sudo ALL_IN_ONE=1 EINK_ENABLED=1 Screen-Docent/deploy/appliance/install.sh
                     <li>Or use its hostname: <code>http://&lt;server-hostname&gt;.local:8000</code> (works on most home networks via mDNS).</li>
                 </ul>
             </div>
-            <p>Edit <code>screen-docent.conf</code> on the card's <strong>boot partition</strong> (visible on any
+            <p>Edit <code>pieria.conf</code> on the card's <strong>boot partition</strong> (visible on any
                computer &mdash; no SSH needed), then reboot:</p>
-            <pre><code>SERVER_URL=http://192.168.1.50:8000   # your Screen Docent server
+            <pre><code>SERVER_URL=http://192.168.1.50:8000   # your Pieria server
 DISPLAY_ID=living_room                # unique name shown in the remote
 MODE=                                 # optional: ken-burns|static-crop|contain-matte
 CYCLE_TIME=                           # optional: seconds per image</code></pre>
@@ -544,7 +544,7 @@ CYCLE_TIME=                           # optional: seconds per image</code></pre>
 
             <h3>Device Health (all-in-one only)</h3>
             <p>On an all-in-one box, a <strong>🩺 Devices</strong> tab appears in the admin sidebar with live
-               health for the machine running Screen Docent &mdash; CPU load, temperature, memory, free disk,
+               health for the machine running Pieria &mdash; CPU load, temperature, memory, free disk,
                uptime, Pi power/throttle (under-voltage) state, and the displays currently being served.</p>
             <p>This tab is shown <strong>only in all-in-one mode</strong>. A thin-client (display-only) Pi runs no
                server, so there's nothing to measure there &mdash; its admin is served by your central server,
@@ -647,7 +647,7 @@ done</code></pre>
                browser window. The recommended way to get there is the <a href="#appliance" style="color:var(--accent-color);">Raspberry Pi Appliance</a>
                above &mdash; the options below are for reusing an existing TV stick instead.</p>
             <p><strong>Which board should I buy, and how much RAM?</strong> See the
-               <a href="https://github.com/AiwendilInTheWoods/Screen-Docent/blob/main/docs/hardware-profile.md" target="_blank" style="color:var(--accent-color);">Hardware&nbsp;Profile</a>
+               <a href="https://github.com/AiwendilInTheWoods/Pieria/blob/main/docs/hardware-profile.md" target="_blank" style="color:var(--accent-color);">Hardware&nbsp;Profile</a>
                &mdash; validated RAM/storage sizing by output type (TV, e-ink, satellite), soak-tested thermals, and current board prices.</p>
 
             <h3>Bring-your-own TV stick (fallback)</h3>

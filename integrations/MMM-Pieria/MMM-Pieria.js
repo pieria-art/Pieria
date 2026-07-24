@@ -1,20 +1,20 @@
 /* global Module, Log */
 
 /**
- * MMM-ScreenDocent
+ * MMM-Pieria
  * A MagicMirror² module that shows the current curated artwork + museum placard
- * from a running Screen Docent server (https://github.com/AiwendilInTheWoods/Screen-Docent).
+ * from a running Pieria server (https://github.com/AiwendilInTheWoods/Pieria).
  *
  * It is a thin client over the server's existing display feed: it GETs /next-image,
  * which returns the image URL, the placard metadata, and the display cadence. Each call
  * advances the server's rotation for this display_id, so the module fetches once per
  * cycle on a timer (honoring the server's display_time by default) — never rapid-polls.
  *
- * Front-end only: Screen Docent serves wide-open CORS, so no node_helper is required.
+ * Front-end only: Pieria serves wide-open CORS, so no node_helper is required.
  */
-Module.register("MMM-ScreenDocent", {
+Module.register("MMM-Pieria", {
 	defaults: {
-		serverUrl: "http://localhost:8000", // base URL of your Screen Docent server
+		serverUrl: "http://localhost:8000", // base URL of your Pieria server
 		playlist: "", // playlist/collection name; blank = use the server's first playlist
 		displayId: "magicmirror", // identifies this display to the server's rotation state
 		updateInterval: 0, // ms between artworks; 0 = honor the server's display_time
@@ -31,14 +31,14 @@ Module.register("MMM-ScreenDocent", {
 	start() {
 		Log.info(`Starting module: ${this.name}`);
 		this.current = null; // last successful /next-image payload
-		this.status = "Connecting to Screen Docent…";
+		this.status = "Connecting to Pieria…";
 		this.resolvedPlaylist = this.config.playlist || null;
 		this.timer = null;
 		this.fetchCurrent();
 	},
 
 	getStyles() {
-		return ["MMM-ScreenDocent.css"];
+		return ["MMM-Pieria.css"];
 	},
 
 	// ---- networking -------------------------------------------------------
@@ -94,7 +94,7 @@ Module.register("MMM-ScreenDocent", {
 			Log.error(`${this.name}: fetch failed — ${err.message}`);
 			// Keep showing the last good artwork if we have one; otherwise show status.
 			if (!this.current) {
-				this.status = `Can't reach Screen Docent at ${this.config.serverUrl}`;
+				this.status = `Can't reach Pieria at ${this.config.serverUrl}`;
 				this.updateDom(0);
 			}
 			this.scheduleNext(this.config.retryDelay);
@@ -136,7 +136,7 @@ Module.register("MMM-ScreenDocent", {
 
 	getDom() {
 		const wrapper = document.createElement("div");
-		wrapper.className = "MMM-ScreenDocent";
+		wrapper.className = "MMM-Pieria";
 
 		if (!this.current) {
 			const status = document.createElement("div");

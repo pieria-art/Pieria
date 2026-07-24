@@ -1,11 +1,11 @@
-# Screen Docent — Appliance configuration
+# Pieria — Appliance configuration
 #
 # Edit this file on the SD card's boot partition (visible as a small FAT
 # volume on any computer after flashing), then reboot the Pi. No SSH needed.
 #
 # Lines are KEY=VALUE and are sourced by the kiosk launcher as shell variables.
 
-# URL of your Screen Docent server (the box running `docker compose up`).
+# URL of your Pieria server (the box running `docker compose up`).
 # For ALL_IN_ONE mode (below), point this at this box: http://localhost:8000
 SERVER_URL=http://192.168.1.50:8000
 
@@ -46,7 +46,7 @@ WAIT_TIMEOUT=0
 WATCHDOG=observe
 
 # --- All-in-one mode (optional) -------------------------------------------
-# Set ALL_IN_ONE=1 to ALSO run the Screen Docent server on THIS box via Docker
+# Set ALL_IN_ONE=1 to ALSO run the Pieria server on THIS box via Docker
 # (one box = server + display). Then set SERVER_URL=http://localhost:8000 above.
 # Leave 0 for the normal thin-client setup (server lives elsewhere, e.g. MS-01).
 ALL_IN_ONE=0

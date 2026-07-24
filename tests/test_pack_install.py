@@ -53,7 +53,7 @@ def _install(tmp_path, monkeypatch, *, registered=True):
     monkeypatch.setattr(lifespan_module, "ARTWORK_ROOT", artwork_root)
     monkeypatch.setattr(lifespan_module, "LIBRARY_DIR", library_dir)
     monkeypatch.setattr(lifespan_module, "PACK_INDEX", artwork_root / "pack-index.json")
-    monkeypatch.setattr(federation, "TRUSTED_KEYS", {"screendocent": pub} if registered else {})
+    monkeypatch.setattr(federation, "TRUSTED_KEYS", {"pieria": pub} if registered else {})
     return artwork_root
 
 
@@ -84,7 +84,7 @@ def test_install_creates_verified_subscriptions_and_playlists(tmp_path, monkeypa
         for s in subs.values():
             assert s.trust == "verified"
             assert s.url.startswith("pack:")
-            assert s.publisher_id == "screendocent"
+            assert s.publisher_id == "pieria"
             assert s.enabled is True and s.last_status == "ok"
 
         # playlists minted from local masters

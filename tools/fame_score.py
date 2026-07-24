@@ -131,7 +131,7 @@ def bake(scores_path: Path, top: int, dry_run: bool) -> int:
     # Synthesize the Masterpieces collection file (build_pack + pre-seed consume it like any collection;
     # items are dup-by-source_url of their home collections, which the downstream dedup handles).
     mp = {"id": MASTERPIECES_ID, "title": MASTERPIECES_TITLE, "description": MASTERPIECES_DESC,
-          "source": "Screen Docent", "license": "Public Domain", "items": top_items}
+          "source": "Pieria", "license": "Public Domain", "items": top_items}
     (CATALOG_DIR / f"{MASTERPIECES_ID}.json").write_text(json.dumps(mp, indent=1, ensure_ascii=False))
 
     # Retire the old Greatest Hits synthesized collection if present (renamed to Masterpieces).
@@ -145,7 +145,7 @@ def bake(scores_path: Path, top: int, dry_run: bool) -> int:
     cols = [c for c in index.get("collections", []) if c.get("id") not in (MASTERPIECES_ID, LEGACY_GH_ID)]
     cover = top_items[0].get("thumbnail_url", "") if top_items else ""
     cols.insert(0, {"id": MASTERPIECES_ID, "title": MASTERPIECES_TITLE, "description": MASTERPIECES_DESC,
-                    "source": "Screen Docent", "license": "Public Domain",
+                    "source": "Pieria", "license": "Public Domain",
                     "count": len(top_items), "cover_thumbnail": cover})
     index["collections"] = cols
     INDEX_FILE.write_text(json.dumps(index, indent=1, ensure_ascii=False))

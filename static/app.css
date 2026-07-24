@@ -1,5 +1,5 @@
 /* ===========================================================================
-   app.css — shared design system for Screen Docent's non-display pages.
+   app.css — shared design system for Pieria's non-display pages.
    Canonical theme tokens + component atoms + two layout shells:
      • .app-shell  — the full sidebar+drawer layout (admin-style; used by Help)
      • .topbar     — a minimal top bar with back-nav (used by My Photos, Remote)

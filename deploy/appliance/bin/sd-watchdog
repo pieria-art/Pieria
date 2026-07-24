@@ -7,7 +7,7 @@
 #     relaunch kiosk  ->  restart container  ->  reboot
 # with a reboot cap so a genuinely-broken box can't boot-loop.
 #
-# MODE (screen-docent.conf  WATCHDOG=):
+# MODE (pieria.conf  WATCHDOG=):
 #   observe  (default) — probe + log what it WOULD do, take NO action. Safe to run un-verified.
 #   enforce            — actually relaunch / restart / reboot.
 #   off                — no-op.
@@ -18,9 +18,9 @@
 # on real hardware — verify on the bench Pi before flipping WATCHDOG=enforce on a production display.
 set -u
 
-CONF="${1:-/boot/firmware/screen-docent.conf}"
-[ -e "$CONF" ] || CONF="/boot/screen-docent.conf"
-REPO_ROOT="${2:-$HOME/Screen-Docent}"
+CONF="${1:-/boot/firmware/pieria.conf}"
+[ -e "$CONF" ] || CONF="/boot/pieria.conf"
+REPO_ROOT="${2:-$HOME/Pieria}"
 
 # shellcheck disable=SC1090
 [ -r "$CONF" ] && . "$CONF" 2>/dev/null || true

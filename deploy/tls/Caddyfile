@@ -1,4 +1,4 @@
-# Screen Docent — optional HTTPS reverse proxy.
+# Pieria — optional HTTPS reverse proxy.
 # Opt-in only:  docker compose --profile tls up -d
 # The app itself stays on plain http://:8000 (kiosks/displays keep using that).
 #

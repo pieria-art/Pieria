@@ -65,7 +65,7 @@ def _point_lifespan_at(monkeypatch, pub, root: Path):
     monkeypatch.setattr(lifespan_module, "ARTWORK_ROOT", root)
     monkeypatch.setattr(lifespan_module, "LIBRARY_DIR", root / "_Library")
     monkeypatch.setattr(lifespan_module, "PACK_INDEX", root / "pack-index.json")
-    monkeypatch.setattr(federation, "TRUSTED_KEYS", {"screendocent": pub})
+    monkeypatch.setattr(federation, "TRUSTED_KEYS", {"pieria": pub})
 
 
 def _extract_into(tar_path: Path, dest_root: Path):
@@ -157,7 +157,7 @@ def test_downloaded_collection_appends_without_reseeding(tmp_path, monkeypatch):
     _extract_into(dist / "masterpieces.tar", device)
     # a Core-only pack-index (what the .img would carry)
     (device / "pack-index.json").write_text(json.dumps({
-        "pack_version": "2", "publisher": {"id": "screendocent"},
+        "pack_version": "2", "publisher": {"id": "pieria"},
         "collections": [{"id": "masterpieces", "title": "Masterpieces",
                          "manifest": "_manifests/masterpieces.json", "item_count": 2, "default": True}],
     }))
@@ -250,7 +250,7 @@ def test_uninstall_default_reassigns_to_remaining_collection(tmp_path, monkeypat
     _extract_into(dist / "masterpieces.tar", device)
     _extract_into(dist / "cartography.tar", device)
     (device / "pack-index.json").write_text(json.dumps({
-        "pack_version": "2", "publisher": {"id": "screendocent"}, "collections": [
+        "pack_version": "2", "publisher": {"id": "pieria"}, "collections": [
             {"id": "masterpieces", "title": "Masterpieces", "manifest": "_manifests/masterpieces.json",
              "item_count": 2, "default": True},
             {"id": "cartography", "title": "Cartography", "manifest": "_manifests/cartography.json",

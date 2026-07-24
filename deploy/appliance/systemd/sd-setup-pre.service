@@ -4,11 +4,11 @@
 # makes the setup-mode radio hand-off self-healing — see sd-setup-pre and ADR-056.
 # __BOOT_CONF__ is substituted by install.sh with the boot-partition conf path.
 [Unit]
-Description=Screen Docent — claim wlan0 for setup before NetworkManager starts
+Description=Pieria — claim wlan0 for setup before NetworkManager starts
 Documentation=man:NetworkManager.conf(5)
 # Must run before NM reads its configuration, so the drop-in is already in place on NM's first look at
 # the radio. DefaultDependencies=no + sysinit.target puts us in early boot; local-fs gives us /etc and
-# the boot partition (where screen-docent.conf lives).
+# the boot partition (where pieria.conf lives).
 DefaultDependencies=no
 After=local-fs.target
 Before=NetworkManager.service network-pre.target shutdown.target

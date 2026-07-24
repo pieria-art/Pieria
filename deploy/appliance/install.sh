@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-# Screen Docent — Appliance provisioner
+# Pieria — Appliance provisioner
 #
 # Turns a fresh Raspberry Pi OS Lite (64-bit, Bookworm) install into a kiosk
-# that boots straight into the Screen Docent Canvas display, fullscreen, with
+# that boots straight into the Pieria Canvas display, fullscreen, with
 # no browser chrome and no Fully Kiosk. Idempotent — safe to re-run.
 #
 # Default: display-only (thin client → server elsewhere). Optionally also runs
@@ -21,7 +21,7 @@ HERE="$(cd "$(dirname "$0")" && pwd)"
 BIN_SRC="$HERE/bin"
 UNIT_SRC="$HERE/systemd"
 SETUP_SRC="$HERE/setup"
-CONF_EXAMPLE="$HERE/config/screen-docent.conf.example"
+CONF_EXAMPLE="$HERE/config/pieria.conf.example"
 REPO_ROOT="$(cd "$HERE/../.." && pwd)"
 
 # Read an existing appliance config if one is already present (e.g. placed on
@@ -43,12 +43,12 @@ _ENV_GEMINI_API_KEY="${GEMINI_API_KEY:-}"
 ALL_IN_ONE=0
 GEMINI_API_KEY=""
 EINK_ENABLED=0
-CONF_SRC="(none — no screen-docent.conf found)"
+CONF_SRC="(none — no pieria.conf found)"
 for d in /boot/firmware /boot /etc; do
-  if [ -r "$d/screen-docent.conf" ]; then
+  if [ -r "$d/pieria.conf" ]; then
     # shellcheck disable=SC1090
-    . "$d/screen-docent.conf"
-    CONF_SRC="$d/screen-docent.conf"
+    . "$d/pieria.conf"
+    CONF_SRC="$d/pieria.conf"
     break
   fi
 done
@@ -129,8 +129,8 @@ echo "==> Enabling a persistent (but size-capped) journal"
 # that vanishes on reboot: after the 2026-07-21 setup-mode test the failing boot's logs were simply
 # gone (ADR-056). Cap it hard — this is an SD card, and unbounded logging is how you wear one out.
 install -d /etc/systemd/journald.conf.d
-cat > /etc/systemd/journald.conf.d/screen-docent.conf <<'EOF'
-# Screen Docent — keep logs across reboots so a failed boot can be diagnosed after the fact,
+cat > /etc/systemd/journald.conf.d/pieria.conf <<'EOF'
+# Pieria — keep logs across reboots so a failed boot can be diagnosed after the fact,
 # but bound the size: this is flash, not a server disk.
 [Journal]
 Storage=persistent
@@ -144,14 +144,14 @@ systemctl restart systemd-journald 2>/dev/null || true
 echo "    journal is persistent, capped at 64M."
 
 echo "==> Installing boot splash (shows the admin URL while the server starts)"
-install -d /usr/local/share/screen-docent
-install -m 0644 "$HERE/share/sd-splash.html" /usr/local/share/screen-docent/sd-splash.html
+install -d /usr/local/share/pieria
+install -m 0644 "$HERE/share/sd-splash.html" /usr/local/share/pieria/sd-splash.html
 # The shipped placeholder conf — sd-image-prep falls back to this when resetting a box to setup mode.
-install -m 0644 "$CONF_EXAMPLE" /usr/local/share/screen-docent/screen-docent.conf.example
+install -m 0644 "$CONF_EXAMPLE" /usr/local/share/pieria/pieria.conf.example
 
 echo "==> Installing udev rule (suppress the HDMI-CEC phantom pointer / stray cursor)"
-install -m 0644 "$HERE/udev/99-screen-docent-no-cec-pointer.rules" \
-  /etc/udev/rules.d/99-screen-docent-no-cec-pointer.rules
+install -m 0644 "$HERE/udev/99-pieria-no-cec-pointer.rules" \
+  /etc/udev/rules.d/99-pieria-no-cec-pointer.rules
 udevadm control --reload-rules 2>/dev/null || true
 udevadm trigger --subsystem-match=input --action=change 2>/dev/null || true
 
@@ -162,10 +162,10 @@ sed "s/__KIOSK_USER__/$KIOSK_USER/g" "$UNIT_SRC/autologin.conf" \
 
 echo "==> Installing login hook (launches kiosk on tty1)"
 PROFILE="/home/$KIOSK_USER/.bash_profile"
-if ! grep -q "Screen Docent kiosk launch" "$PROFILE" 2>/dev/null; then
+if ! grep -q "Pieria kiosk launch" "$PROFILE" 2>/dev/null; then
   cat >> "$PROFILE" <<'EOF'
 
-# Screen Docent kiosk launch
+# Pieria kiosk launch
 if [ -z "${DISPLAY:-}" ] && [ "$(tty)" = "/dev/tty1" ]; then
   exec sd-kiosk-launch
 fi
@@ -176,9 +176,9 @@ chown "$KIOSK_USER:$KIOSK_USER" "$PROFILE"
 echo "==> Seeding config on the boot partition"
 BOOT_CONF=""
 for d in /boot/firmware /boot; do
-  if [ -d "$d" ]; then BOOT_CONF="$d/screen-docent.conf"; break; fi
+  if [ -d "$d" ]; then BOOT_CONF="$d/pieria.conf"; break; fi
 done
-[ -z "$BOOT_CONF" ] && BOOT_CONF="/boot/firmware/screen-docent.conf"
+[ -z "$BOOT_CONF" ] && BOOT_CONF="/boot/firmware/pieria.conf"
 if [ ! -e "$BOOT_CONF" ]; then
   install -m 0644 "$CONF_EXAMPLE" "$BOOT_CONF"
   echo "    Wrote $BOOT_CONF  (edit SERVER_URL and DISPLAY_ID before reboot)"
@@ -187,14 +187,14 @@ else
 fi
 
 echo "==> Installing first-run setup wizard (assets only — enabled on the .img, NOT on this box)"
-# The wizard writes screen-docent.conf on a fresh flash so a non-technical user never edits files.
+# The wizard writes pieria.conf on a fresh flash so a non-technical user never edits files.
 # We install the assets everywhere but keep sd-setup.service DISABLED here: enabling it is the .img
 # build's job (a flashed card boots into setup once, then never again). hostapd/dnsmasq power the
-# Docent-Setup AP but are kept disabled so they never fight a working box's network.
-install -d /usr/local/share/screen-docent/setup
-install -m 0644 "$SETUP_SRC/common.sh"    /usr/local/share/screen-docent/setup/common.sh
-install -m 0644 "$SETUP_SRC/hostapd.conf" /usr/local/share/screen-docent/setup/hostapd.conf
-install -m 0644 "$SETUP_SRC/dnsmasq.conf" /usr/local/share/screen-docent/setup/dnsmasq.conf
+# Pieria-Setup AP but are kept disabled so they never fight a working box's network.
+install -d /usr/local/share/pieria/setup
+install -m 0644 "$SETUP_SRC/common.sh"    /usr/local/share/pieria/setup/common.sh
+install -m 0644 "$SETUP_SRC/hostapd.conf" /usr/local/share/pieria/setup/hostapd.conf
+install -m 0644 "$SETUP_SRC/dnsmasq.conf" /usr/local/share/pieria/setup/dnsmasq.conf
 # python3-qrcode powers the setup card's scan-to-join QR; optional (the card degrades to
 # written instructions without it).
 apt-get install -y --no-install-recommends hostapd dnsmasq iw python3-qrcode \
@@ -235,7 +235,7 @@ for CMDLINE in /boot/firmware/cmdline.txt /boot/cmdline.txt; do
 done
 
 if [ "${ALL_IN_ONE:-0}" = "1" ]; then
-  echo "==> All-in-one mode: provisioning the Screen Docent server on this box"
+  echo "==> All-in-one mode: provisioning the Pieria server on this box"
   OVERRIDE="$HERE/compose/docker-compose.appliance.yml"
 
   if ! command -v docker >/dev/null 2>&1; then
@@ -318,7 +318,7 @@ if [ "${ALL_IN_ONE:-0}" = "1" ]; then
 
   echo "==> Advertising the server over mDNS (friendly name in network browsers)"
   install -d /etc/avahi/services
-  install -m 0644 "$HERE/avahi/screen-docent.service" /etc/avahi/services/screen-docent.service
+  install -m 0644 "$HERE/avahi/pieria.service" /etc/avahi/services/pieria.service
 
   echo "==> Installing GUI update bridge (Admin -> Devices -> Maintenance)"
   sed "s#__REPO_ROOT__#$REPO_ROOT#g" "$UNIT_SRC/sd-update.path"    > /etc/systemd/system/sd-update.path
@@ -348,7 +348,7 @@ if [ "${EINK_ENABLED:-0}" = "1" ]; then
       if grep -qE "^[[:space:]]*dtparam=${param}" "$CONFIG_TXT"; then
         echo "    $param already enabled in $CONFIG_TXT"
       else
-        printf '\n# Screen Docent (e-ink): SPI carries pixels, I2C reads the panel ID EEPROM.\ndtparam=%s\n' \
+        printf '\n# Pieria (e-ink): SPI carries pixels, I2C reads the panel ID EEPROM.\ndtparam=%s\n' \
           "$param" >> "$CONFIG_TXT"
         echo "    enabled dtparam=$param in $CONFIG_TXT"
         _spi_reboot=1
@@ -440,7 +440,7 @@ cat <<EOF
 Done.
 
   1. Edit the config:   $BOOT_CONF
-       - SERVER_URL  -> your Screen Docent server (e.g. http://192.168.1.50:8000)
+       - SERVER_URL  -> your Pieria server (e.g. http://192.168.1.50:8000)
        - DISPLAY_ID  -> a unique name for this screen
   2. Reboot:            sudo reboot
 

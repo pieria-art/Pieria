@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-FastAPI Backend for Screen Docent.
+FastAPI Backend for Pieria.
 Phase 4: Targeted WebSocket Routing for Multiple Displays.
 """
 
@@ -101,7 +101,7 @@ from routers.studio import PERSONAL_PLAYLIST_NAME  # noqa: F401  — re-exported
 from routers.studio import router as studio_router
 from routers.ws import router as ws_router
 
-app = FastAPI(title="Screen Docent", version=APP_VERSION, lifespan=lifespan)
+app = FastAPI(title="Pieria", version=APP_VERSION, lifespan=lifespan)
 
 # Leaf domain routers (Phase 1 + Phase 2 + Phase 3 + Phase 4 of the app-split refactor — see
 # .ai/refactor_app_split_plan.md).

@@ -1,4 +1,4 @@
-# Weekly deterministic check that every image source Screen Docent ships still resolves to a real
+# Weekly deterministic check that every image source Pieria ships still resolves to a real
 # image — the regime that catches external source-rot (e.g. Wikimedia tightening its thumbnail
 # whitelist, which once left a fresh box booting empty) before a user hits it.
 #

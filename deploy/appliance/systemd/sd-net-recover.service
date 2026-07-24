@@ -4,7 +4,7 @@
 # the SD card on a computer. See sd-net-recover and ADR-057.
 # __BOOT_CONF__ is substituted by install.sh with the boot-partition conf path.
 [Unit]
-Description=Screen Docent — re-open setup if a configured display can't get online
+Description=Pieria — re-open setup if a configured display can't get online
 After=NetworkManager.service
 Wants=NetworkManager.service
 # Pointless on a box that hasn't been through setup yet — sd-setup-boot owns that case.

@@ -1,4 +1,4 @@
-# Screen Docent — Manifest v2 (federation + interpretation)
+# Pieria — Manifest v2 (federation + interpretation)
 
 > **Status:** schema frozen (draft 1, 2026-06-21). The validator
 > (`tools/manifest_validator.py`) is the executable source of truth; this doc explains intent.

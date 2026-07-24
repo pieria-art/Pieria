@@ -3,13 +3,13 @@
 # (re-opens the wizard when a CONFIGURED box can't get online). All three need the same answers to
 # "is this box configured?" and "how do I take/return the radio", so that logic lives here once rather
 # than drifting in three copies — the is_configured duplication is what made ADR-054 hard to reason
-# about. Installed to /usr/local/share/screen-docent/setup/common.sh by install.sh.
+# about. Installed to /usr/local/share/pieria/setup/common.sh by install.sh.
 
-SD_SETUP_DIR=/usr/local/share/screen-docent/setup
+SD_SETUP_DIR=/usr/local/share/pieria/setup
 # The NetworkManager drop-in that hands wlan0 to hostapd. Written by sd-setup-pre BEFORE NM starts on a
 # setup boot (that ordering is the whole point — see ADR-056), and at runtime by sd-net-recover, where
 # there is no race to lose because NM has long since settled.
-SD_DROPIN=/etc/NetworkManager/conf.d/99-screen-docent-setup.conf
+SD_DROPIN=/etc/NetworkManager/conf.d/99-pieria-setup.conf
 SD_AP_ADDR=10.0.0.1/24
 
 # Resolve the boot-partition conf path: honour an explicit argument, else probe the usual mounts.
@@ -18,9 +18,9 @@ sd_resolve_conf() {
   if [ -n "$c" ] && [ -e "$c" ]; then echo "$c"; return; fi
   local d
   for d in /boot/firmware /boot; do
-    if [ -e "$d/screen-docent.conf" ]; then echo "$d/screen-docent.conf"; return; fi
+    if [ -e "$d/pieria.conf" ]; then echo "$d/pieria.conf"; return; fi
   done
-  echo "${c:-/boot/firmware/screen-docent.conf}"
+  echo "${c:-/boot/firmware/pieria.conf}"
 }
 
 # Configured = the conf exists AND carries non-placeholder SERVER_URL + DISPLAY_ID. The shipped example
@@ -54,7 +54,7 @@ sd_scan_networks() {
     || echo "sd: wifi scan failed — the wizard will fall back to typing the SSID" >>"$LOG"
 }
 
-# Bring up the Docent-Setup AP + captive DNS/DHCP. $1 = log file (never /dev/null — ADR-056).
+# Bring up the Pieria-Setup AP + captive DNS/DHCP. $1 = log file (never /dev/null — ADR-056).
 # Idempotent with respect to the drop-in, so it is safe on both the setup-boot path (where sd-setup-pre
 # already wrote it) and the recovery path (where it must be created on the fly).
 sd_start_ap() {
@@ -64,7 +64,7 @@ sd_start_ap() {
   sd_scan_networks "$LOG" || true
   install -d /etc/NetworkManager/conf.d
   cat > "$SD_DROPIN" <<'EOF'
-# Screen Docent setup mode — wlan0 is handed to hostapd for the Docent-Setup AP.
+# Pieria setup mode — wlan0 is handed to hostapd for the Pieria-Setup AP.
 [keyfile]
 unmanaged-devices=interface-name:wlan0
 EOF
@@ -108,7 +108,7 @@ sd_stop_ap() {
     return 0
   fi
   # Drop the HDMI setup splash. sd-kiosk-launch shows it purely because the file EXISTS, so a stale one
-  # would tell the owner of a perfectly working display to go join Docent-Setup. A commit reboots (and
+  # would tell the owner of a perfectly working display to go join Pieria-Setup. A commit reboots (and
   # /run is tmpfs, so it clears itself) — but the recovery path can hand the radio back WITHOUT a
   # reboot, and that case has to clean up after itself.
   rm -f /run/sd-setup/setup-splash.html

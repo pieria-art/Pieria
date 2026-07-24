@@ -1,4 +1,4 @@
-# ADDED FOR SCREEN DOCENT:
+# ADDED FOR PIERIA:
 import os
 import sys
 from logging.config import fileConfig

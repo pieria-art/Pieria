@@ -31,7 +31,7 @@ logger = logging.getLogger("artwork-display-api")
 _CACHE = config.APPLIANCE_DIR / "update-check.json"
 _MIN_REFRESH_SEC = 900          # never hit GitHub more than once per 15 min, even on a manual "check now"
 _RELEASES_URL = f"https://api.github.com/repos/{config.UPDATE_REPO}/releases/latest"
-_UA = "ScreenDocent-UpdateCheck"
+_UA = "Pieria-UpdateCheck"
 
 
 def _parse_version(s: str) -> tuple | None:

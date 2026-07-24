@@ -30,7 +30,7 @@ from scout import (
 
 logger = logging.getLogger("catalog-builder.sources")
 
-UA = {"User-Agent": "ScreenDocent-CatalogBuilder/1.0 (https://github.com/AiwendilInTheWoods/Screen-Docent)"}
+UA = {"User-Agent": "Pieria-CatalogBuilder/1.0 (https://github.com/AiwendilInTheWoods/Pieria)"}
 MUSEUM_SOURCES = {"chicago", "met", "cleveland", "rijks", "smk"}
 # MIN_DISPLAY_EDGE (≥2000px long edge for up-to-4K displays) and the Wikimedia/NASA resolution +
 # PD helpers are imported from scout.py so the offline builder and the live Scouts never drift.
