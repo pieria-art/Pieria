@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/AiwendilInTheWoods/Screen-Docent/actions/workflows/pytest.yml/badge.svg)](https://github.com/AiwendilInTheWoods/Screen-Docent/actions/workflows/pytest.yml)
 [![Sources](https://github.com/AiwendilInTheWoods/Screen-Docent/actions/workflows/verify-sources.yml/badge.svg)](https://github.com/AiwendilInTheWoods/Screen-Docent/actions/workflows/verify-sources.yml)
-[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](LICENSE)
+[![License: AGPL v3](https://img.shields.io/badge/License-AGPLv3-blue.svg)](LICENSE)
 
 **Screen Docent** is an open-source, AI-powered digital art curator that turns any TV, monitor, or e-ink
 panel into a high-end museum display — with autonomous artwork analysis, museum-grade placards, and
