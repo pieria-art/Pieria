@@ -14,7 +14,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/AiwendilInTheWoods/Pieria.git",
+    "url": "https://github.com/pieria-art/Pieria.git",
     "directory": "integrations/MMM-Pieria"
   },
   "license": "MIT"

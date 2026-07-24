@@ -189,7 +189,7 @@
             </ul>
 
             <h3>Launch</h3>
-            <pre><code>git clone https://github.com/AiwendilInTheWoods/Pieria.git
+            <pre><code>git clone https://github.com/pieria-art/Pieria.git
 cd Pieria
 docker compose up -d --build</code></pre>
             <p>That's it — no <code>.env</code> needed. The app boots with starter art already curated.</p>
@@ -291,8 +291,8 @@ docker compose up -d --build</code></pre>
                 to author and sign a collection of your own hosted images, then host the exported
                 <code>manifest.json</code> anywhere and share its URL. Prefer the command line? Use
                 <code>python -m tools.build_manifest</code>. Full walkthrough:
-                <a href="https://github.com/AiwendilInTheWoods/Pieria/blob/main/docs/how-to-publish.md" target="_blank" style="color:var(--accent-color);">How&nbsp;to&nbsp;publish</a>
-                (the <a href="https://github.com/AiwendilInTheWoods/Pieria/blob/main/docs/manifest-v2.md" target="_blank" style="color:var(--accent-color);">Manifest&nbsp;v2</a> schema).
+                <a href="https://github.com/pieria-art/Pieria/blob/main/docs/how-to-publish.md" target="_blank" style="color:var(--accent-color);">How&nbsp;to&nbsp;publish</a>
+                (the <a href="https://github.com/pieria-art/Pieria/blob/main/docs/manifest-v2.md" target="_blank" style="color:var(--accent-color);">Manifest&nbsp;v2</a> schema).
             </div>
 
             <h3 id="catalog">Hosting the catalog remotely (grow it without rebuilding)</h3>
@@ -483,7 +483,7 @@ GEMINI_API_KEY=your_free_key_here</code></pre>
                file:</p>
             <ol>
                 <li><strong>Download</strong> <code>pieria-&lt;version&gt;.img.xz</code> from the
-                    <a href="https://github.com/AiwendilInTheWoods/Pieria/releases/latest">Releases page</a>.</li>
+                    <a href="https://github.com/pieria-art/Pieria/releases/latest">Releases page</a>.</li>
                 <li><strong>Flash</strong> it with <strong>Raspberry Pi Imager</strong> or Balena Etcher &mdash; no
                     OS-customisation needed (leave "Edit Settings" alone).</li>
                 <li><strong>Boot</strong> the Pi. The screen shows a setup card. From your phone, join the open
@@ -510,14 +510,14 @@ GEMINI_API_KEY=your_free_key_here</code></pre>
                thin client</strong> (this Pi shows art; a server elsewhere curates), run the provisioner on a fresh
                <strong>Raspberry Pi OS Lite (64-bit, Bookworm)</strong>. Flash it with Imager (set a hostname, SSH,
                and Wi-Fi under <em>Edit Settings</em>), SSH in, then:</p>
-            <pre><code>git clone https://github.com/AiwendilInTheWoods/Pieria.git
+            <pre><code>git clone https://github.com/pieria-art/Pieria.git
 # all-in-one (server + display on this box):
 sudo ALL_IN_ONE=1 EINK_ENABLED=1 Pieria/deploy/appliance/install.sh
 # ...or display-only thin client (server lives elsewhere): omit ALL_IN_ONE.</code></pre>
             <p>This installs <code>cage</code> + Chromium as a kiosk, launches it on boot, disables screen
                blanking, ensures <code>avahi-daemon</code> (so <code>&lt;hostname&gt;.local</code> works), and (all-
                in-one) installs Docker and runs the server on the same Pi. To turn a provisioned box into a
-               distributable image, see <a href="https://github.com/AiwendilInTheWoods/Pieria/blob/main/docs/image-build.md"><code>docs/image-build.md</code></a>.</p>
+               distributable image, see <a href="https://github.com/pieria-art/Pieria/blob/main/docs/image-build.md"><code>docs/image-build.md</code></a>.</p>
 
             <h3>Configure a thin-client display</h3>
             <div class="tip" id="find-server-address">
@@ -647,7 +647,7 @@ done</code></pre>
                browser window. The recommended way to get there is the <a href="#appliance" style="color:var(--accent-color);">Raspberry Pi Appliance</a>
                above &mdash; the options below are for reusing an existing TV stick instead.</p>
             <p><strong>Which board should I buy, and how much RAM?</strong> See the
-               <a href="https://github.com/AiwendilInTheWoods/Pieria/blob/main/docs/hardware-profile.md" target="_blank" style="color:var(--accent-color);">Hardware&nbsp;Profile</a>
+               <a href="https://github.com/pieria-art/Pieria/blob/main/docs/hardware-profile.md" target="_blank" style="color:var(--accent-color);">Hardware&nbsp;Profile</a>
                &mdash; validated RAM/storage sizing by output type (TV, e-ink, satellite), soak-tested thermals, and current board prices.</p>
 
             <h3>Bring-your-own TV stick (fallback)</h3>

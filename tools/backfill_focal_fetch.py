@@ -23,7 +23,7 @@ import httpx
 
 CAT = Path("static/catalog")
 SEED = Path("static/factory_seed.json")
-UA = "Pieria-FocalBackfill/1.0 (https://github.com/AiwendilInTheWoods/Pieria)"
+UA = "Pieria-FocalBackfill/1.0 (https://github.com/pieria-art/Pieria)"
 SKIP = {"index.json", "_pending_artic.json"}
 
 

@@ -2,7 +2,7 @@
 
 A [MagicMirror²](https://magicmirror.builders/) module that turns a slot on your mirror into a
 rotating museum wall: it shows the **current curated artwork and its placard** (title, artist, date,
-medium, and an AI-written blurb) from a running [Pieria](https://github.com/AiwendilInTheWoods/Pieria)
+medium, and an AI-written blurb) from a running [Pieria](https://github.com/pieria-art/Pieria)
 server.
 
 It's a thin client over Pieria's existing display feed — **no extra server setup**. The module
@@ -24,7 +24,7 @@ cd ~/MagicMirror/modules
 # Option A — copy just this folder (e.g. from a Pieria checkout):
 cp -r /path/to/Pieria/integrations/MMM-Pieria .
 # Option B — clone Pieria and symlink the module:
-# git clone https://github.com/AiwendilInTheWoods/Pieria.git
+# git clone https://github.com/pieria-art/Pieria.git
 # ln -s Pieria/integrations/MMM-Pieria MMM-Pieria
 ```
 
@@ -83,4 +83,4 @@ If the server is briefly unreachable, the module keeps showing the last artwork 
 
 ## License
 
-AGPL-3.0 — part of the [Pieria](https://github.com/AiwendilInTheWoods/Pieria) project.
+AGPL-3.0 — part of the [Pieria](https://github.com/pieria-art/Pieria) project.

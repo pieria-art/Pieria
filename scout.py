@@ -832,7 +832,7 @@ class WikimediaScout(MuseumScout):
         }
         await _wm_throttle()
         try:
-            async with httpx.AsyncClient(headers={"User-Agent": "Pieria/1.0 (https://github.com/AiwendilInTheWoods/Pieria)"}, timeout=30.0) as client:
+            async with httpx.AsyncClient(headers={"User-Agent": "Pieria/1.0 (https://github.com/pieria-art/Pieria)"}, timeout=30.0) as client:
                 resp = None
                 for attempt in range(3):
                     resp = await client.get(self.API_URL, params=params)

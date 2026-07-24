@@ -70,7 +70,7 @@ mark, and don't use it as the identity of anything that isn't this project.
 ## Contact
 
 Questions, edge cases, and permission requests: open an issue on
-[the repository](https://github.com/AiwendilInTheWoods/Pieria/issues), or reach the maintainer through
+[the repository](https://github.com/pieria-art/Pieria/issues), or reach the maintainer through
 the contact listed there.
 
 ---

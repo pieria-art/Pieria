@@ -1,7 +1,7 @@
 # 🖼️ Pieria
 
-[![CI](https://github.com/AiwendilInTheWoods/Pieria/actions/workflows/pytest.yml/badge.svg)](https://github.com/AiwendilInTheWoods/Pieria/actions/workflows/pytest.yml)
-[![Sources](https://github.com/AiwendilInTheWoods/Pieria/actions/workflows/verify-sources.yml/badge.svg)](https://github.com/AiwendilInTheWoods/Pieria/actions/workflows/verify-sources.yml)
+[![CI](https://github.com/pieria-art/Pieria/actions/workflows/pytest.yml/badge.svg)](https://github.com/pieria-art/Pieria/actions/workflows/pytest.yml)
+[![Sources](https://github.com/pieria-art/Pieria/actions/workflows/verify-sources.yml/badge.svg)](https://github.com/pieria-art/Pieria/actions/workflows/verify-sources.yml)
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPLv3-blue.svg)](LICENSE)
 
 **Pieria** is an open-source, AI-powered digital art curator that turns any TV, monitor, or e-ink
@@ -73,7 +73,7 @@ Both run the same curation brain and can be mixed freely (one server, many scree
 The **all-in-one Pieria Appliance** is a Raspberry Pi that *is* the whole thing — server and display in
 one box. You never touch a terminal:
 
-1. **Download** the latest image from the **[Releases page](https://github.com/AiwendilInTheWoods/Pieria/releases/latest)** (`pieria-<version>.img.xz`).
+1. **Download** the latest image from the **[Releases page](https://github.com/pieria-art/Pieria/releases/latest)** (`pieria-<version>.img.xz`).
 2. **Flash** it to a microSD card with [Raspberry Pi Imager](https://www.raspberrypi.com/software/) (or Balena Etcher) — no OS-customisation needed.
 3. **Boot** the Pi. The screen shows a setup card; join the **`Pieria-Setup`** Wi-Fi from your phone and a page opens automatically.
 4. **Set up** — pick your Wi-Fi, name the display, choose orientation. It reboots, downloads its first gallery, and paints. Museum art on the wall, unattended.
@@ -97,7 +97,7 @@ Run the curation server on anything with Docker — a NAS, a mini-PC, an old lap
 **Prerequisites:** [Docker](https://docs.docker.com/get-docker/) + [Docker Compose](https://docs.docker.com/compose/install/). Then clone and go — no config files:
 
 ```bash
-git clone https://github.com/AiwendilInTheWoods/Pieria.git
+git clone https://github.com/pieria-art/Pieria.git
 cd Pieria
 docker compose up -d --build
 ```

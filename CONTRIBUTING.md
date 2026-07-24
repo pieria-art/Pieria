@@ -23,7 +23,7 @@ no accounts, no lawyers.
 ## Development setup
 
 ```bash
-git clone https://github.com/AiwendilInTheWoods/Pieria.git
+git clone https://github.com/pieria-art/Pieria.git
 cd Pieria
 
 python3.11 -m venv .venv

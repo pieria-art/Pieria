@@ -3,7 +3,7 @@
 /**
  * MMM-Pieria
  * A MagicMirror² module that shows the current curated artwork + museum placard
- * from a running Pieria server (https://github.com/AiwendilInTheWoods/Pieria).
+ * from a running Pieria server (https://github.com/pieria-art/Pieria).
  *
  * It is a thin client over the server's existing display feed: it GETs /next-image,
  * which returns the image URL, the placard metadata, and the display cadence. Each call

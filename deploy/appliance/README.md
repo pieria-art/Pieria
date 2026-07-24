@@ -58,7 +58,7 @@ Boxed Pi → running kiosk in minutes:
 SSH into the freshly-booted Pi, then:
 
 ```bash
-git clone https://github.com/AiwendilInTheWoods/Pieria.git
+git clone https://github.com/pieria-art/Pieria.git
 sudo Pieria/deploy/appliance/install.sh
 ```
 

@@ -26,7 +26,7 @@ from pathlib import Path
 CATALOG_DIR = Path(__file__).resolve().parent.parent / "static" / "catalog"
 AIC_QID = "Q239303"  # Art Institute of Chicago
 SPARQL = "https://query.wikidata.org/sparql"
-UA = "Pieria/1.0 (https://github.com/AiwendilInTheWoods/Pieria; jmyost@gmail.com) coverage-probe"
+UA = "Pieria/1.0 (https://github.com/pieria-art/Pieria; jmyost@gmail.com) coverage-probe"
 
 # Pull every AIC-collection artwork on Wikidata that has an image; P18 is returned as a
 # Special:FilePath URL. OPTIONAL creator/inventory help disambiguate duplicate titles.

@@ -42,7 +42,7 @@ CACHE_FILE = Path(__file__).resolve().parent / ".artic_cache.json"
 AIC_QID = "Q239303"  # Art Institute of Chicago (Wikidata)
 AIC_SEARCH = "https://api.artic.edu/api/v1/artworks/search"
 SPARQL = "https://query.wikidata.org/sparql"
-UA = "Pieria/1.0 (https://github.com/AiwendilInTheWoods/Pieria; jmyost@gmail.com) re-source"
+UA = "Pieria/1.0 (https://github.com/pieria-art/Pieria; jmyost@gmail.com) re-source"
 AIC_UA = "Pieria (jmyost@gmail.com)"  # AIC asks clients to set this
 
 SOURCE_WIDTH = 3840  # matches the live resolver + seed convention (scout.py:864)
