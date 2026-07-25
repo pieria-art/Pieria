@@ -105,6 +105,36 @@
         #np-label { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.1rem; color: var(--accent-color); }
         #np-title { font-weight: 600; font-size: 0.95rem; margin-top: 2px; }
         #np-sub { font-size: 0.8rem; color: #94a3b8; margin-top: 2px; }
+
+        /* "Read placard" — the placard text on the phone. This is the only placard an e-ink panel
+           gets: render_for_epaper bakes no text, so the phone in your hand IS the wall label. */
+        #placard-tile { display: none; flex-direction: column; }
+        #placard-toggle {
+            display: flex; align-items: center; gap: 8px; width: 100%; text-align: left;
+            background: var(--card-bg); color: var(--text-color);
+            border: 1px solid var(--border-color); border-radius: 12px;
+            padding: 12px; font-size: 0.85rem; font-weight: 600; cursor: pointer;
+        }
+        #placard-toggle .caret { color: var(--accent-color); font-size: 0.7rem; }
+        #placard-body {
+            background: #0f172a; border: 1px solid var(--border-color); border-top: none;
+            border-radius: 0 0 12px 12px; padding: 14px; margin-top: -6px;
+        }
+        .pl-title { font-size: 1.05rem; font-weight: 600; }
+        .pl-series { font-size: 0.85rem; font-style: italic; color: #cbd5e1; margin-top: 2px; }
+        .pl-artist { font-size: 0.9rem; color: #cbd5e1; margin-top: 4px; }
+        .pl-meta { font-size: 0.8rem; color: #94a3b8; margin-top: 4px; }
+        /* Capped + scrollable: a long narrative must not shove the transport controls and the
+           collection grid off the bottom of a phone screen. */
+        .pl-desc { font-size: 0.9rem; line-height: 1.6; margin-top: 12px; max-height: 40vh; overflow-y: auto; }
+        .pl-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+        .pl-tag {
+            background: #1e293b; border: 1px solid var(--border-color); color: #cbd5e1;
+            padding: 3px 10px; border-radius: 20px; font-size: 0.7rem;
+        }
+        .pl-learn { display: inline-block; margin-top: 14px; color: var(--accent-color); text-decoration: none; font-size: 0.85rem; font-weight: 600; }
+        #screen-hint { font-size: 0.7rem; color: #94a3b8; margin: 6px 0 0; }
+        .remote-btn:disabled { opacity: 0.45; cursor: not-allowed; }
         .footer { 
             margin-top: auto; 
             padding: 40px 20px 20px; 
@@ -144,6 +174,23 @@
             </div>
         </div>
 
+        <!-- Read the placard here, on the phone. Distinct from "Show on screen" below, which pushes
+             the placard onto the display itself. Static skeleton; filled by textContent only. -->
+        <div id="placard-tile">
+            <button id="placard-toggle" aria-expanded="false" aria-controls="placard-body">
+                <span class="caret">▸</span> Read placard
+            </button>
+            <div id="placard-body" hidden>
+                <div class="pl-title"></div>
+                <div class="pl-series"></div>
+                <div class="pl-artist"></div>
+                <div class="pl-meta"></div>
+                <div class="pl-desc"></div>
+                <div class="pl-tags"></div>
+                <a class="pl-learn" target="_blank" rel="noopener">Learn more →</a>
+            </div>
+        </div>
+
         <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px;">
             <div style="display:flex; flex-direction:column; gap:5px;">
                 <label>Display Mode</label>
@@ -154,17 +201,18 @@
                 </select>
             </div>
             <div style="display:flex; flex-direction:column; gap:5px; justify-content: flex-end;">
-                <button class="remote-btn" style="padding: 12px; font-size: 0.8rem;" onclick="sendRemoteCommand('show_placard')">
-                    Show Placard
+                <button id="show-on-screen-btn" class="remote-btn" style="padding: 12px; font-size: 0.8rem;" onclick="sendRemoteCommand('show_placard')">
+                    Show on screen
                 </button>
             </div>
         </div>
+        <p id="screen-hint" style="display:none;"></p>
 
         <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px;">
-            <button class="remote-btn" style="padding: 15px;" onclick="sendRemoteCommand('prev_image')">
+            <button id="prev-btn" class="remote-btn" style="padding: 15px;" onclick="sendRemoteCommand('prev_image')">
                 ◀ Previous
             </button>
-            <button class="remote-btn" style="padding: 15px;" onclick="sendRemoteCommand('next_image')">
+            <button id="next-btn" class="remote-btn" style="padding: 15px;" onclick="sendRemoteCommand('next_image')">
                 Next ▶
             </button>
         </div>
@@ -182,16 +230,20 @@
         if (urlParams.get('rotate') === 'true') document.body.classList.add('force-portrait');
 
         const API_BASE = window.location.origin;
-        let lastKnownIds = null;        // R1: sentinel so the FIRST poll always renders, even when empty
+        let lastKnownSig = null;        // R1: sentinel so the FIRST poll always renders, even when empty
                                         // (was []; an empty first result equalled [] and never populated,
                                         // leaving the static "Searching…" placeholder up forever).
-        let displaysById = {};          // display_id -> {display_id, playlist, artwork} from the last poll
+        let displaysById = {};          // display_id -> {display_id, playlist, artwork, live} from the last poll
+        let placardArtId = null;        // artwork the placard tile currently describes
+        let placardOpen = false;        // survives polls, so the tile doesn't slam shut every 5s
+        let placardSeq = 0;             // drops out-of-order fetch responses
 
         async function init() {
             await fetchPlaylists();
             await refreshActiveDisplays();
             // Update the now-showing panel + collection highlight when the target display changes.
             document.getElementById('display-select').addEventListener('change', updateNowPlaying);
+            document.getElementById('placard-toggle').addEventListener('click', togglePlacard);
             // Poll for new displays (and their now-playing) every 5 seconds
             setInterval(refreshActiveDisplays, 5000);
         }
@@ -228,29 +280,31 @@
         async function refreshActiveDisplays() {
             try {
                 const response = await fetch(`${API_BASE}/api/remote/displays`);
-                const displays = await response.json();   // [{display_id, playlist, artwork}]
+                const displays = await response.json();   // [{display_id, playlist, artwork, live}]
 
                 displaysById = {};
                 displays.forEach(d => { displaysById[d.display_id] = d; });
 
-                // Only re-render the <select> when the set of displays changes (preserves the open
+                // Only re-render the <select> when something in it actually changes (preserves the open
                 // dropdown + selection); now-playing is refreshed every poll below since it advances
-                // independently of the display list.
-                const ids = displays.map(d => d.display_id);
-                if (JSON.stringify(ids) !== JSON.stringify(lastKnownIds)) {
-                    lastKnownIds = ids;
-                    populateDisplaySelect(ids);
+                // independently of the display list. Liveness is part of the key because it's part of
+                // the option's TEXT ("— asleep") — keying on ids alone froze that label forever, since
+                // a panel dozing off doesn't change the id set.
+                const sig = displays.map(d => `${d.display_id}|${d.live ? 1 : 0}`);
+                if (JSON.stringify(sig) !== JSON.stringify(lastKnownSig)) {
+                    lastKnownSig = sig;
+                    populateDisplaySelect(displays);
                 }
                 updateNowPlaying();
             } catch (err) { console.error('Discovery failed', err); }
         }
 
-        function populateDisplaySelect(ids) {
+        function populateDisplaySelect(displays) {
             const select = document.getElementById('display-select');
             const currentVal = select.value;
             select.innerHTML = '';
 
-            if (ids.length === 0) {
+            if (displays.length === 0) {
                 const opt = document.createElement('option');
                 opt.value = "";
                 opt.textContent = "No active displays found";
@@ -260,15 +314,18 @@
             }
             _setHint("");
 
-            ids.forEach(id => {
+            displays.forEach(d => {
                 const opt = document.createElement('option');
-                opt.value = id;
-                opt.textContent = id === 'default' ? "Default Display" : `Display: ${id}`;
+                opt.value = d.display_id;
+                const label = d.display_id === 'default' ? "Default Display" : `Display: ${d.display_id}`;
+                // Asleep = a pull-mode frame (e-ink) between wakes. Still listed, still showing art —
+                // just not reachable by a command until it next checks in.
+                opt.textContent = d.live ? label : `${label} — asleep`;
                 select.appendChild(opt);
             });
 
             // Restore selection if it still exists
-            if (ids.includes(currentVal)) {
+            if (displays.some(d => d.display_id === currentVal)) {
                 select.value = currentVal;
             }
         }
@@ -284,14 +341,118 @@
                 b.classList.toggle('active-collection', !!(info && info.playlist && b.dataset.collection === info.playlist));
             });
 
+            updateCommandAvailability(info);
+
             const art = info && info.artwork;
-            if (!art) { panel.style.display = 'none'; return; }
+            if (!art) { panel.style.display = 'none'; syncPlacard(null); return; }
             panel.style.display = 'flex';
             document.getElementById('np-thumb').src = art.thumb_url;
             // textContent throughout — titles/artist names are museum/user data, never trusted as markup.
             const artist = (!art.is_personal && art.agent_name) ? ` — ${art.agent_name}` : '';
             document.getElementById('np-title').textContent = (art.title || 'Untitled') + artist;
             document.getElementById('np-sub').textContent = info.playlist ? `in “${info.playlist}” collection` : '';
+            syncPlacard(art);
+        }
+
+        // A sleeping (pull-mode) display holds no socket, so a queued command would sit in the
+        // remote_commands table unread — and fire in a burst if that id ever did connect. Grey the whole
+        // command surface rather than letting taps vanish into it.
+        function updateCommandAvailability(info) {
+            const live = !!(info && info.live);
+            ['show-on-screen-btn', 'prev-btn', 'next-btn', 'mode-select'].forEach(id => {
+                document.getElementById(id).disabled = !live;
+            });
+            document.querySelectorAll('#playlist-grid .remote-btn').forEach(b => {
+                if (b.dataset.empty !== '1') b.disabled = !live;
+            });
+            const hint = document.getElementById('screen-hint');
+            const show = info && !live;
+            hint.textContent = show ? "This panel shows art only — read the placard above." : '';
+            hint.style.display = show ? '' : 'none';
+        }
+
+        // --- Placard ------------------------------------------------------------------------------
+        // Fetched only when the now-playing artwork CHANGES, not on every 5s poll.
+        function syncPlacard(art) {
+            const tile = document.getElementById('placard-tile');
+            if (!art) { tile.style.display = 'none'; placardArtId = null; return; }
+            if (art.id === placardArtId) return;          // same piece — leave the rendered tile alone
+            placardArtId = art.id;
+            fetchPlacard(art.id);
+        }
+
+        async function fetchPlacard(id) {
+            const seq = ++placardSeq;
+            try {
+                const r = await fetch(`${API_BASE}/artworks/${id}/placard`);
+                if (!r.ok) throw new Error(`HTTP ${r.status}`);
+                const m = await r.json();
+                // Drop a response that lost the race (display flipped, or the art advanced) — fetches
+                // can resolve out of order.
+                if (seq !== placardSeq || id !== placardArtId) return;
+                renderPlacard(m);
+            } catch (err) {
+                console.error('Placard fetch failed', err);   // a missing placard is not a user error
+                if (seq === placardSeq) document.getElementById('placard-tile').style.display = 'none';
+            }
+        }
+
+        // Mirrors updatePlacard() in app.js — same fields, same rules, so the phone and the TV agree.
+        // No stripMd() here: the server already stripped title/series/description on the way out.
+        function renderPlacard(m) {
+            const tile = document.getElementById('placard-tile');
+            if (!m || !m.title) { tile.style.display = 'none'; return; }
+            tile.style.display = 'flex';
+
+            const el = cls => tile.querySelector('.' + cls);
+            const series = el('pl-series'), artist = el('pl-artist'), meta = el('pl-meta');
+            const desc = el('pl-desc'), tags = el('pl-tags'), learn = el('pl-learn');
+            el('pl-title').textContent = m.title;
+            tags.innerHTML = '';                          // clearing only; content is textContent below
+
+            if (m.is_personal) {
+                // Personal photo: caption + optional date. No artist/medium/culture/tags jargon, and
+                // nothing to "learn more" about.
+                series.style.display = 'none';
+                artist.textContent = m.date_display || m.creation_date || '';
+                meta.textContent = '';
+                desc.textContent = '';
+                tags.style.display = 'none';
+                learn.style.display = 'none';
+                return;
+            }
+
+            series.style.display = m.series ? '' : 'none';
+            series.textContent = m.series || '';
+            const role = (m.agent_role && m.agent_role !== 'Artist') ? ` (${m.agent_role})` : '';
+            const made = m.creation_date ? ` • ${m.creation_date}` : '';
+            artist.textContent = `${m.agent_name || 'Unknown Artist'}${role}${made}`;
+
+            // Drop date_display when it just repeats the byline's creation_date (app.js C2).
+            const dd = m.date_display;
+            const dupDate = dd && dd.toLowerCase() === (m.creation_date || '').toLowerCase();
+            meta.textContent = [m.cultural_context, m.medium, dupDate ? null : dd].filter(Boolean).join(' | ');
+            desc.textContent = m.description || '';
+
+            tags.style.display = '';
+            (m.tags || '').split(',').forEach(t => {
+                if (!t.trim()) return;
+                const span = document.createElement('span');
+                span.className = 'pl-tag';
+                span.textContent = t.trim();
+                tags.appendChild(span);
+            });
+
+            const artId = Number(m.id);
+            learn.style.display = Number.isFinite(artId) ? '' : 'none';
+            if (Number.isFinite(artId)) learn.href = `/art/${artId}`;
+        }
+
+        function togglePlacard() {
+            placardOpen = !placardOpen;
+            document.getElementById('placard-body').hidden = !placardOpen;
+            document.getElementById('placard-toggle').setAttribute('aria-expanded', String(placardOpen));
+            document.querySelector('#placard-toggle .caret').textContent = placardOpen ? '▾' : '▸';
         }
 
         async function fetchPlaylists() {
@@ -317,6 +478,7 @@
                 btn.appendChild(span);
                 if (n === 0) {   // R4: an empty collection would blank the display — don't let it be tapped
                     btn.disabled = true;
+                    btn.dataset.empty = '1';   // stays disabled even when the display is live
                     btn.style.opacity = '0.5';
                 } else {
                     btn.onclick = () => setPlaylist(p.name);

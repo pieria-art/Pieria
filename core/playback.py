@@ -10,7 +10,7 @@ display, ws/remote, and health domains.
 import json
 import logging
 import random
-from datetime import UTC, datetime
+from datetime import UTC, datetime, timedelta
 from typing import Optional
 
 from fastapi import HTTPException
@@ -30,6 +30,28 @@ from models import (
 )
 
 logger = logging.getLogger("artwork-display-api")
+
+
+def placard_metadata(art: ArtworkModel) -> dict:
+    """The canonical placard payload for one artwork.
+
+    ONE definition, so the TV placard (/next-image -> app.js updatePlacard) and the phone placard
+    (/artworks/{id}/placard -> remote.html) cannot drift apart. tests/test_placard_api.py asserts the
+    two key sets are equal precisely so that adding a field to one and not the other fails loudly.
+
+    Returns RAW model values — Markdown stripping is the caller's job, because the two callers strip in
+    different places: the Canvas does it client-side in stripMd() (static/app.js), the phone endpoint
+    does it server-side with config.strip_markdown().
+    """
+    return {
+        "id": art.id,
+        "is_personal": art.is_personal,
+        "title": art.title, "agent_name": art.agent_name, "agent_role": art.agent_role,
+        "creation_date": art.creation_date, "cultural_context": art.cultural_context,
+        "medium": art.medium, "date_display": art.date_display,
+        "series": art.series,
+        "description": art.description_narrative, "tags": art.tags
+    }
 
 
 async def select_next_image(
@@ -161,15 +183,7 @@ async def select_next_image(
         # Per-aspect crop presets (may be None). The CLIENT picks by its own viewport ratio — the
         # server can't, since one now-playing payload fans out to displays of different shapes.
         "aspect_crops": selected_art.aspect_crops,
-        "metadata": {
-            "id": selected_art.id,
-            "is_personal": selected_art.is_personal,
-            "title": selected_art.title, "agent_name": selected_art.agent_name, "agent_role": selected_art.agent_role,
-            "creation_date": selected_art.creation_date, "cultural_context": selected_art.cultural_context,
-            "medium": selected_art.medium, "date_display": selected_art.date_display,
-            "series": selected_art.series,
-            "description": selected_art.description_narrative, "tags": selected_art.tags
-        }
+        "metadata": placard_metadata(selected_art)
     }
 
 
@@ -206,6 +220,55 @@ def _display_now_playing(db: Session, row: "ActiveDisplayModel") -> dict:
     """{display_id, playlist, artwork} for a display row — the shared shape for /remote + Devices."""
     return {"display_id": row.display_id, "playlist": row.current_playlist,
             "artwork": _now_playing_artwork(db, row.current_artwork_id)}
+
+
+# --- Liveness windows -------------------------------------------------------------------------
+# Two different questions, two different windows:
+#   LIVE  — "is this display checking in right now?" A Canvas heartbeat lands every 5s (ws.py), so
+#           15s is three missed beats. This is what gates the remote-control command surface.
+#   KNOWN — "should the remote still remember this display?" An e-ink panel pulls one frame and then
+#           DEEP-SLEEPS for the playlist's display_time, so a strict 15s window makes the very display
+#           you want the placard for invisible almost all the time. The window is derived from the
+#           panel's own cadence (2x display_time = one missed pull plus slack) — server-side arithmetic
+#           only. Nothing here keeps a panel awake or reaches out to it: the frame decides when to wake
+#           from the X-Refresh-After header, which matters for future battery-powered panels.
+LIVE_WINDOW_SEC = 15
+# Ceiling. touch_active_display() rows are never garbage-collected (only a clean WS disconnect deletes
+# one), so without this a future daily-refresh panel would linger in the dropdown for days after being
+# unplugged.
+MAX_KNOWN_WINDOW_SEC = 6 * 3600
+
+
+def _as_utc(dt: datetime) -> datetime:
+    """SQLite hands back last_seen_at NAIVE (the column is DateTime, not DateTime(timezone=True)) even
+    though it was written aware, so comparing it to an aware now() raises TypeError. Harmless until a
+    comparison happens in Python instead of SQL — which the per-row KNOWN window below does."""
+    return dt if dt.tzinfo else dt.replace(tzinfo=UTC)
+
+
+def _is_live(row: "ActiveDisplayModel", now: datetime) -> bool:
+    """Checking in right now — i.e. reachable by a remote command."""
+    return _as_utc(row.last_seen_at) > now - timedelta(seconds=LIVE_WINDOW_SEC)
+
+
+def known_displays(db: Session) -> list[tuple["ActiveDisplayModel", bool]]:
+    """Displays the remote should still remember, each with whether it's currently live.
+
+    One outer join rather than a per-row playlist lookup. current_playlist is a denormalized NAME, not
+    an FK, and the rename path doesn't update it — so a renamed playlist misses the join and collapses
+    to the LIVE window, which self-heals on that display's next frame serve. Same fallback covers a
+    display that has checked in but never served (current_playlist is null).
+    """
+    now = datetime.now(UTC)   # one clock for every row in the response
+    rows = (db.query(ActiveDisplayModel, PlaylistModel.display_time)
+              .outerjoin(PlaylistModel, PlaylistModel.name == ActiveDisplayModel.current_playlist)
+              .all())
+    out = []
+    for row, display_time in rows:
+        window = min(max(LIVE_WINDOW_SEC, 2 * (display_time or 0)), MAX_KNOWN_WINDOW_SEC)
+        if _as_utc(row.last_seen_at) > now - timedelta(seconds=window):
+            out.append((row, _is_live(row, now)))
+    return out
 
 
 def touch_active_display(db: Session, display_id: str):

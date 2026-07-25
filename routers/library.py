@@ -30,6 +30,7 @@ import federation
 from agents import process_artwork
 from config import LIBRARY_DIR, strip_markdown
 from core.media import get_optimized_image
+from core.playback import placard_metadata
 from core.playlists import _link_artwork_to_playlist
 from core.schemas import ArtworkSchema
 from database import SessionLocal, get_db
@@ -372,6 +373,34 @@ async def artwork_detail_page(artwork_id: int, db: Session = Depends(get_db)):
  {source}
  <div class=brand><img src="/logo.svg" alt=""> Presented by Pieria</div>
 </div></body></html>""")
+
+@router.get("/artworks/{artwork_id}/placard")
+async def get_artwork_placard(artwork_id: int, db: Session = Depends(get_db)):
+    """The placard text for one artwork, as JSON — what the phone Remote's 'Read placard' tile renders.
+
+    Exists because an e-ink panel shows art ONLY (render_for_epaper bakes no text), so the phone is the
+    placard surface for it. Same key set as /next-image's `metadata` block — both come from
+    core.playback.placard_metadata, and tests/test_placard_api.py asserts the two can't drift.
+
+    Markdown is stripped HERE, on exactly the three fields the Canvas runs through stripMd()
+    (static/app.js updatePlacard: title, series, description), so remote.html needs no fourth copy of
+    that helper. Everything else is passed through raw.
+
+    Reads only — it never triggers enrichment. Placards are generated on upload (agents.process_artwork),
+    on admin re-enrich (routers/curation.py), or offline at pack-build time; a null description here just
+    means one was never made. Also deliberately NOT gated on status=='approved': /art/{id} and
+    /artworks/{id}/preview already serve unapproved rows, so a gate here would be a novel inconsistency
+    that exposes nothing new.
+    """
+    art = db.query(ArtworkModel).filter(ArtworkModel.id == artwork_id).first()
+    if not art: raise HTTPException(404)
+    data = placard_metadata(art)
+    for field in ("title", "series", "description"):
+        if data[field]:
+            data[field] = strip_markdown(data[field])
+    # is_personal is passed through, NOT blanked server-side: /next-image doesn't blank either, and the
+    # client branches on the flag (app.js and remote.html both). Identical key sets is the whole point.
+    return data
 
 class CropPayload(BaseModel):
     crop_x: float = 0.0

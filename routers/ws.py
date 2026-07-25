@@ -9,7 +9,7 @@ worker processes (ADR-006), since no single worker sees every display's socket.
 import asyncio
 import json
 import logging
-from datetime import UTC, datetime, timedelta
+from datetime import UTC, datetime
 from typing import Optional
 
 from fastapi import APIRouter, Depends, WebSocket, WebSocketDisconnect
@@ -17,7 +17,7 @@ from pydantic import BaseModel
 from sqlalchemy.orm import Session
 
 from core.connections import manager
-from core.playback import _display_now_playing
+from core.playback import _display_now_playing, _is_live, known_displays
 from core.security import _origin_allowed
 from database import SessionLocal, get_db
 from models import ActiveDisplayModel, RemoteCommandModel
@@ -33,25 +33,27 @@ router = APIRouter()
 # GET /remote (the page) now lives in routers/pages.py.
 @router.get("/api/remote/displays")
 async def get_active_displays(db: Session = Depends(get_db)):
-    """Active displays (seen in the last 15s), each with what it's currently showing so the Remote can
-    render a 'now showing' panel + highlight the active collection. Shape: {display_id, playlist, artwork}."""
-    cutoff = datetime.now(UTC) - timedelta(seconds=15)
-    displays = db.query(ActiveDisplayModel).filter(ActiveDisplayModel.last_seen_at > cutoff).all()
-    return [_display_now_playing(db, d) for d in displays]
+    """Displays the Remote should remember, each with what it's showing so the page can render the
+    'now showing' panel + placard and highlight the active collection.
+    Shape: {display_id, playlist, artwork, live}.
+
+    Deliberately NOT limited to the 15s live window. An e-ink panel pulls one frame then deep-sleeps
+    for the playlist's display_time, so a strict window hid the very display whose placard the phone
+    is meant to carry. `live` still reports the strict window — it's what gates the command surface,
+    since a sleeping panel holds no socket to receive a command on. See core.playback.known_displays.
+    """
+    return [{**_display_now_playing(db, row), "live": live} for row, live in known_displays(db)]
 
 
 @router.get("/api/displays/{display_id}/now-playing")
 async def get_display_now_playing(display_id: str, db: Session = Depends(get_db)):
-    """What one display is currently showing (artwork + collection). Powers the Remote's 'now showing'
-    panel; polled alongside the display list. artwork is null until the display has served a frame."""
-    cutoff = datetime.now(UTC) - timedelta(seconds=15)
+    """What one display is currently showing (artwork + collection). artwork is null until the display
+    has served a frame. `active` is the strict live window, unchanged — /api/remote/displays widened its
+    listing for sleeping e-ink, this did not, so nothing that asks "is this display reachable?" moved."""
     row = db.query(ActiveDisplayModel).filter(ActiveDisplayModel.display_id == display_id).first()
     if not row:
         return {"display_id": display_id, "active": False, "playlist": None, "artwork": None}
-    active = db.query(ActiveDisplayModel).filter(
-        ActiveDisplayModel.display_id == display_id,
-        ActiveDisplayModel.last_seen_at > cutoff).first() is not None
-    return {**_display_now_playing(db, row), "active": active}
+    return {**_display_now_playing(db, row), "active": _is_live(row, datetime.now(UTC))}
 
 # /api/health/host + the appliance update bridge (/api/appliance/update*) now live in
 # routers/health.py.
