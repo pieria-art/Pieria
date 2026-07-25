@@ -2238,7 +2238,10 @@ function applyAiGating() {
     if (banner && !banner.dataset.dismissed) {
         const hasPending = !!document.querySelector('#review-list .review-card');
         const text = document.getElementById('ai-banner-text');
-        if (aiLastError && hasPending) {
+        // Order matters. "No key at all" is a CONFIG state with its own friendlier message and a
+        // connect-a-model link, and it also records an error (the pipeline still raises) — so check
+        // it first, or the least-informative variant wins the most common case.
+        if (aiConfigured && aiLastError && hasPending) {
             // textContent — the message is provider output, never trusted as markup.
             if (text) text.textContent = `Auto-analysis failed: ${aiLastError} — fill in the details below, or check Settings → AI Engine.`;
             banner.style.display = 'flex';

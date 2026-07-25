@@ -244,6 +244,10 @@ async def save_ai_settings(payload: AISettingsPayload, db: Session = Depends(get
     _upsert_setting(db, "ai_temperature", (payload.temperature or "").strip())
     db.commit()
     ai_client.invalidate_config_cache()
+    # We just proved this config works against the live endpoint, so any recorded failure describes the
+    # OLD config. Leaving it would show "Auto-analysis failed: ..." to someone who has just fixed the
+    # problem, until the next successful enrichment happened to clear it.
+    ai_client.clear_failure()
     return {"status": "success", "provider": provider, "model": payload.model}
 
 

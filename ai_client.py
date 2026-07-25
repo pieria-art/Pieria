@@ -32,21 +32,32 @@ logger = logging.getLogger("artwork-display-api.ai_client")
 # -----------------------------------------------------------------------------
 # Provider presets — base_url + a curated, known-good model list per provider.
 # Mirrored (loosely) by the admin UI so users get sensible defaults per provider.
+#
+# These lists are HAND-MAINTAINED and therefore go stale — the 2026-07-25 UAT caught them a full
+# generation behind, which ages the product on day one. POST-LAUNCH: fetch each provider's own model
+# list at runtime (all of them expose one; the OpenAI-compatible shape is `GET {base_url}/models`) and
+# filter hard — vision-capable only, no image-GENERATION models, no dated snapshots, no deprecated
+# entries — falling back to the hardcoded list below when the fetch fails or the box is offline. The
+# filter is the load-bearing part: an unfiltered list would offer models that can't do enrichment.
 # -----------------------------------------------------------------------------
 PRESETS = {
     "gemini": {
         "label": "Google Gemini",
         "base_url": "https://generativelanguage.googleapis.com/v1beta/openai",
-        # gemini-3.5-flash + 3.1-flash-lite are GA; 3.1-pro-preview is the latest Pro
-        # currently exposed (swap to gemini-3.5-pro once it reaches GA).
-        "models": ["gemini-3.5-flash", "gemini-3.1-pro-preview", "gemini-3.1-flash-lite"],
+        # All GA as of 2026-07. 3.6-flash is the current stable default; flash-lite is the cheap tier.
+        # NB the "-image" Gemini models are image GENERATION — not what enrichment needs, which is
+        # vision *input*. Don't add them here.
+        "models": ["gemini-3.6-flash", "gemini-3.5-flash", "gemini-3.5-flash-lite"],
         "key_url": "https://aistudio.google.com/apikey",
         "json_mode": True,
     },
     "openai": {
         "label": "OpenAI",
         "base_url": "https://api.openai.com/v1",
-        "models": ["gpt-5.5", "gpt-5.4", "gpt-5.4-mini", "gpt-5.4-nano"],
+        # 5.6 family is current (terra = balanced, sol = high-capability, luna = cost-optimised).
+        # gpt-5.4 kept as a known-good fallback: enrichment needs VISION input, and if a 5.6 variant
+        # ever ships without it the user needs somewhere to land that isn't "nothing works".
+        "models": ["gpt-5.6-terra", "gpt-5.6-sol", "gpt-5.6-luna", "gpt-5.4"],
         "key_url": "https://platform.openai.com/api-keys",
         "json_mode": True,
     },
@@ -65,8 +76,8 @@ PRESETS = {
         "label": "OpenRouter (one-click sign-in)",
         "base_url": "https://openrouter.ai/api/v1",
         "models": [
-            "google/gemini-3.5-flash",
-            "openai/gpt-5.4-mini",
+            "google/gemini-3.6-flash",
+            "openai/gpt-5.6-terra",
             "anthropic/claude-sonnet-5",
             "meta-llama/llama-3.2-90b-vision-instruct",
         ],
