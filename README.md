@@ -8,7 +8,7 @@
 panel into a high-end museum display — with autonomous artwork analysis, museum-grade placards, and
 instant mobile remote control.
 
-![A Pieria display showing Vermeer's The Milkmaid with an auto-generated museum placard](static/docs/display.png)
+![A Pieria display showing Leonardo da Vinci's The Last Supper with an auto-generated museum placard and a QR code linking to more detail](static/docs/display.png)
 
 > *A live display: full-bleed artwork, an auto-generated museum placard, and a QR code for details.*
 
@@ -52,7 +52,7 @@ it. The same server supports any mix of these at once — it's a versatile setup
 
 > **Which board, how much RAM, what it costs?** See the **[Hardware Profile](docs/hardware-profile.md)** — validated sizing by output type (TV, e-ink, satellite), soak-tested thermals, and current board prices.
 
-![A quick tour of the admin dashboard, catalog, and discovery](static/docs/admin-tour.gif)
+![A quick tour of the admin dashboard: Curated Art, the collections grid, the full library, and galleries](static/docs/admin-tour.gif)
 
 The full, illustrated guide (with screenshots and walkthroughs for each) lives in the in-app
 **Help & Docs** page at `http://localhost:8000/help`.
