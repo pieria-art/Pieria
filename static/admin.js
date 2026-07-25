@@ -174,6 +174,10 @@ function switchView(view) {
     document.getElementById('view-publisher').classList.toggle('hidden', view !== 'publisher');
     document.getElementById('view-settings').classList.toggle('hidden', view !== 'settings');
 
+    // Opening the Review Queue is when a stale-or-fresh enrichment failure matters — re-read health
+    // so the banner reflects now, not whenever the page was last loaded.
+    if (view === 'review') refreshAiHealth();
+
     document.getElementById('sidebar-playlists').classList.toggle('hidden', view !== 'playlists');
 
     // On mobile, picking a view closes the slide-in drawer.
@@ -1714,7 +1718,21 @@ async function uploadFiles(files, playlistId) {
         if (banner) delete banner.dataset.dismissed;
         applyAiGating();
         showTransientNotice('Uploaded to the Review Queue. Auto-analysis is off — add details there, or connect a model.', nudgeConnectModel);
+        return;
     }
+
+    // A model IS connected — but "connected" only means a key exists. Enrichment runs in the
+    // background, so a broken key fails AFTER this function returns. Re-check health shortly after
+    // and speak up if it failed, rather than leaving the user with silently empty metadata.
+    setTimeout(async () => {
+        await refreshAiHealth();
+        if (aiLastError) {
+            const banner = document.getElementById('ai-offline-banner');
+            if (banner) delete banner.dataset.dismissed;
+            applyAiGating();
+            showTransientNotice(`Auto-analysis failed: ${aiLastError}`, nudgeConnectModel);
+        }
+    }, 6000);
 }
 
 // Minimal non-blocking toast (no framework). Optional action label jumps to the AI Engine panel.
@@ -2202,6 +2220,7 @@ function unlockPremiumScout(source, name) {
 // -----------------------------------------------------------------------------
 let aiPresets = {};
 let aiConfigured = false;   // mirrors /api/settings/ai has_key; gates AI-only controls
+let aiLastError = '';       // mirrors /api/settings/ai last_error — health, NOT config (see below)
 
 function _setVal(id, v) { const el = document.getElementById(id); if (el) el.value = v || ''; }
 
@@ -2212,12 +2231,35 @@ function applyAiGating() {
         el.classList.toggle('ai-gated', !aiConfigured);
         el.title = aiConfigured ? '' : 'Connect a model in Settings → AI Engine to use this';
     });
-    // Review Queue banner: show only when there are pending items and no model is connected.
+    // Review Queue banner. TWO distinct states, and conflating them was a real bug: aiConfigured only
+    // says a key EXISTS. A key that's invalid, expired, revoked or over quota passes that check and
+    // then fails at call time — the artwork lands with empty metadata and the user is told nothing.
     const banner = document.getElementById('ai-offline-banner');
     if (banner && !banner.dataset.dismissed) {
         const hasPending = !!document.querySelector('#review-list .review-card');
-        banner.style.display = (!aiConfigured && hasPending) ? 'flex' : 'none';
+        const text = document.getElementById('ai-banner-text');
+        if (aiLastError && hasPending) {
+            // textContent — the message is provider output, never trusted as markup.
+            if (text) text.textContent = `Auto-analysis failed: ${aiLastError} — fill in the details below, or check Settings → AI Engine.`;
+            banner.style.display = 'flex';
+        } else if (!aiConfigured && hasPending) {
+            if (text) text.innerHTML = 'No AI model connected — fill in the details below and <strong>Approve &amp; Publish</strong>, or <a href="#" onclick="nudgeConnectModel(); return false;" style="color:var(--accent-color);">connect a model</a> to auto-fill metadata.';
+            banner.style.display = 'flex';
+        } else {
+            banner.style.display = 'none';
+        }
     }
+}
+
+// Re-read AI health (cheap) and repaint the banner. Called when the Review Queue is opened and after
+// an upload, since enrichment runs in the BACKGROUND — the failure lands after the upload returns.
+async function refreshAiHealth() {
+    try {
+        const cfg = await (await fetch(`${API_BASE}/api/settings/ai`)).json();
+        aiConfigured = !!cfg.has_key;
+        aiLastError = cfg.last_error || '';
+        applyAiGating();
+    } catch (err) { console.error('[Admin] AI health check failed:', err); }
 }
 
 // Send the user to the AI Engine panel and flash it (used when they trigger a gated action).
@@ -2238,6 +2280,7 @@ async function loadAiSettings() {
         const cfg = await resp.json();
         aiPresets = cfg.presets || {};
         aiConfigured = !!cfg.has_key;
+        aiLastError = cfg.last_error || '';
         applyAiGating();
 
         const provSel = document.getElementById('ai-provider');

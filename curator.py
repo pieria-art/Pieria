@@ -95,12 +95,14 @@ async def enrich_artwork(artwork_id: int, db: Session, context_hints: str = None
 
         artwork.status = 'pending_review'
         db.commit()
+        ai_client.clear_failure()
         logger.info(f"[RAG Curator] Successfully enriched {artwork.title}")
         return artwork
 
     except Exception as e:
         logger.error(f"[RAG Curator] Gemini enrichment failed: {e}", exc_info=True)
         db.rollback()
+        ai_client.record_failure(e)   # surfaced on the Review Queue banner; see ai_client.record_failure
         artwork.status = 'pending_review'
         db.add(artwork)
         db.commit()

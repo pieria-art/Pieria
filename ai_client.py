@@ -18,6 +18,7 @@ import json
 import logging
 import os
 import time
+from datetime import UTC, datetime
 from urllib.parse import urlparse
 
 import httpx
@@ -52,7 +53,9 @@ PRESETS = {
     "anthropic": {
         "label": "Anthropic Claude",
         "base_url": "https://api.anthropic.com/v1",
-        "models": ["claude-opus-4-8", "claude-sonnet-4-6", "claude-haiku-4-5"],
+        # Sonnet 5 leads: near-Opus quality on this workload at a fraction of Opus pricing, so it's
+        # the right default for placard writing. Opus 5 for the hardest cases, Haiku 4.5 for cheap.
+        "models": ["claude-sonnet-5", "claude-opus-5", "claude-haiku-4-5"],
         "key_url": "https://console.anthropic.com/settings/keys",
         # Anthropic's OpenAI-compat layer does not reliably honour response_format;
         # rely on prompt + tolerant fence-stripping instead.
@@ -64,7 +67,7 @@ PRESETS = {
         "models": [
             "google/gemini-3.5-flash",
             "openai/gpt-5.4-mini",
-            "anthropic/claude-haiku-4-5",
+            "anthropic/claude-sonnet-5",
             "meta-llama/llama-3.2-90b-vision-instruct",
         ],
         "oauth": True,
@@ -104,6 +107,15 @@ AI_SETTING_KEYS = (
 )
 
 
+# Last-failure record. Separate from AI_SETTING_KEYS: these are health, not config, and must never
+# be echoed back into the settings form.
+AI_HEALTH_KEYS = ("ai_last_error", "ai_last_error_at")
+
+# Some providers echo the offending credential back in their error body. Never persist that — this
+# record is read straight into the admin UI.
+_KEYISH = __import__("re").compile(r"\b(?:sk-|AIza|ghp_|xox[baprs]-)[A-Za-z0-9_\-]{8,}\b")
+
+
 class AIConfigError(RuntimeError):
     """Raised when the AI provider is unconfigured or the API call fails."""
 
@@ -126,6 +138,76 @@ def _read_settings_rows() -> dict:
             .all()
         )
         return {r.setting_key: r.setting_value for r in rows if r.setting_value}
+    finally:
+        db.close()
+
+
+# Anthropic removed the sampling parameters from Claude Opus 4.7 onward and across the 5-family:
+# sending `temperature` to them is a hard 400, not a warning. The Temperature box in Admin → AI Engine
+# is provider-agnostic, so a user who sets it and then picks a current Claude model would break every
+# enrichment — and (before the health record above) would have been told nothing about why.
+_NO_TEMPERATURE = __import__("re").compile(
+    r"claude-(?:opus-(?:4-7|4-8|5)|sonnet-5|fable-5|mythos-5)", __import__("re").I
+)
+
+
+def rejects_temperature(model: str) -> bool:
+    """True for models that 400 on `temperature` rather than ignoring it."""
+    return bool(model and _NO_TEMPERATURE.search(model))
+
+
+def _write_health(pairs: dict) -> None:
+    """Upsert health rows on a PRIVATE session.
+
+    Callers record a failure from inside an `except` that has already rolled their own session back;
+    reusing it would either lose the write or resurrect the rolled-back work. Best-effort by design —
+    failing to record why enrichment failed must never itself break a serve.
+    """
+    db = SessionLocal()
+    try:
+        for k, v in pairs.items():
+            row = db.query(SettingsModel).filter(SettingsModel.setting_key == k).first()
+            if row:
+                row.setting_value = v
+            else:
+                db.add(SettingsModel(setting_key=k, setting_value=v))
+        db.commit()
+    except Exception as e:
+        logger.error(f"[AI] could not record health state: {e}")
+        db.rollback()
+    finally:
+        db.close()
+
+
+def record_failure(detail: str) -> None:
+    """Remember why the last model call failed, so the UI can say so instead of showing empty metadata.
+
+    `has_key` only proves a key EXISTS. A key that is invalid, expired, revoked or over quota passes
+    every configuration check and then fails at call time — which is exactly the case that used to
+    produce an artwork with a null title and no explanation anywhere but the server log.
+    """
+    _write_health({
+        "ai_last_error": _KEYISH.sub("<redacted>", str(detail))[:300],
+        "ai_last_error_at": datetime.now(UTC).isoformat(),
+    })
+
+
+def clear_failure() -> None:
+    """Called after a successful model call — the engine is demonstrably healthy again."""
+    _write_health({"ai_last_error": "", "ai_last_error_at": ""})
+
+
+def get_failure() -> dict:
+    """{detail, at} for the last failure, or empty strings when the engine is healthy."""
+    db = SessionLocal()
+    try:
+        rows = {
+            r.setting_key: r.setting_value
+            for r in db.query(SettingsModel).filter(SettingsModel.setting_key.in_(AI_HEALTH_KEYS)).all()
+        }
+        return {"detail": rows.get("ai_last_error") or "", "at": rows.get("ai_last_error_at") or ""}
+    except Exception:
+        return {"detail": "", "at": ""}
     finally:
         db.close()
 
@@ -281,7 +363,7 @@ def chat(
         payload["response_format"] = {"type": "json_object"}
 
     t = temperature if temperature is not None else cfg.get("temperature")
-    if t is not None:
+    if t is not None and not rejects_temperature(model):
         payload["temperature"] = t
 
     headers = {"Content-Type": "application/json"}

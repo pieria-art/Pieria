@@ -428,7 +428,7 @@
         <!-- Review Queue View -->
         <div id="view-review" class="hidden">
             <div id="ai-offline-banner" style="display:none; align-items:center; gap:12px; background:#1e293b; border:1px solid #f59e0b; border-radius:10px; padding:12px 16px; margin-bottom:18px; font-size:0.82rem; color:#fcd34d;">
-                <span style="flex-grow:1;">No AI model connected — fill in the details below and <strong>Approve &amp; Publish</strong>, or <a href="#" onclick="nudgeConnectModel(); return false;" style="color:var(--accent-color);">connect a model</a> to auto-fill metadata.</span>
+                <span id="ai-banner-text" style="flex-grow:1;">No AI model connected — fill in the details below and <strong>Approve &amp; Publish</strong>, or <a href="#" onclick="nudgeConnectModel(); return false;" style="color:var(--accent-color);">connect a model</a> to auto-fill metadata.</span>
                 <button class="secondary" onclick="this.parentElement.dataset.dismissed='1'; this.parentElement.style.display='none'" style="padding:4px 10px; font-size:0.75rem;">Dismiss</button>
             </div>
             <div id="review-toolbar" style="display:flex; justify-content:flex-end; margin-bottom:14px;">

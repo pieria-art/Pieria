@@ -171,6 +171,7 @@ async def get_ai_settings(db: Session = Depends(get_db)):
         .all()
     }
     cfg = ai_client.get_ai_config(force=True)
+    health = ai_client.get_failure()
     return {
         "provider": rows.get("ai_provider", ai_client.DEFAULT_PROVIDER),
         "base_url": rows.get("ai_base_url", ""),
@@ -180,6 +181,10 @@ async def get_ai_settings(db: Session = Depends(get_db)):
         "has_key": cfg["configured"],
         "key_source": "db" if rows.get("ai_api_key") else ("env" if cfg["configured"] else "none"),
         "model_is_local": ai_client.is_local_base_url(cfg["base_url"]),
+        # Health, not config: has_key only proves a key EXISTS. A bad/expired/over-quota key passes
+        # every config check and fails at call time, which used to be invisible to the user.
+        "last_error": health["detail"],
+        "last_error_at": health["at"],
         "presets": {
             k: {
                 "label": v["label"],

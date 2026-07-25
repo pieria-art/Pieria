@@ -114,9 +114,13 @@ async def process_artwork(artwork_id: int, db: Session, user_hint: str = None):
         apply_focal_point(artwork, metadata)
 
         db.commit()
+        ai_client.clear_failure()   # engine demonstrably healthy — drop any stale error banner
         return artwork # Return updated object
 
     except Exception as e:
         logger.error(f"[AI Agent] AI processing failed: {e}", exc_info=True)
         db.rollback()
+        # Record WHY, so the Review Queue can say it. Without this the artwork just lands with empty
+        # metadata and the only evidence is this log line — the user is told nothing.
+        ai_client.record_failure(e)
         return None
