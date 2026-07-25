@@ -218,6 +218,54 @@ def auto_corpus(n: int) -> list[Path]:
     return [p for p, _ in chosen]
 
 
+# ---------------------------------------------------------------------------
+# Labelling + fit. The point of the bench session: turn Josh-at-the-panel into
+# coefficients, so the shipped "auto" is derived from judgement instead of guessed.
+# ---------------------------------------------------------------------------
+# ONE definition of the feature vector, used by the fit AND emitted into the shipped function, so the
+# two cannot drift. Scaled to roughly 0..1 — raw units (0..100 vs 0..255) are badly conditioned.
+FEATURES = ("wash_pct", "mean_lum", "lum_stddev", "mean_chroma", "chroma_stddev", "edge_pct")
+_SCALE = {"wash_pct": 100.0, "mean_lum": 255.0, "lum_stddev": 128.0,
+          "mean_chroma": 255.0, "chroma_stddev": 128.0, "edge_pct": 100.0}
+
+
+def feature_vector(p: dict) -> list[float]:
+    return [p[f] / _SCALE[f] for f in FEATURES]
+
+
+def _solve(a: list[list[float]], b: list[float]) -> list[float]:
+    """Gaussian elimination with partial pivoting. n<=7 here, so this is plenty and needs no numpy —
+    which keeps the whole calibration path dependency-free."""
+    n = len(b)
+    m = [row[:] + [b[i]] for i, row in enumerate(a)]
+    for col in range(n):
+        piv = max(range(col, n), key=lambda r: abs(m[r][col]))
+        if abs(m[piv][col]) < 1e-12:
+            raise ValueError("singular system — need more, or more varied, labels")
+        m[col], m[piv] = m[piv], m[col]
+        for r in range(n):
+            if r == col:
+                continue
+            f = m[r][col] / m[col][col]
+            for c in range(col, n + 1):
+                m[r][c] -= f * m[col][c]
+    return [m[i][n] / m[i][i] for i in range(n)]
+
+
+def ols(rows: list[dict]) -> tuple[list[float], float]:
+    """Least squares with intercept. Returns (coeffs, r2); coeffs[0] is the intercept."""
+    xs = [[1.0] + feature_vector(r["features"]) for r in rows]
+    ys = [r["gamma"] for r in rows]
+    k = len(xs[0])
+    xtx = [[sum(x[i] * x[j] for x in xs) for j in range(k)] for i in range(k)]
+    xty = [sum(x[i] * y for x, y in zip(xs, ys)) for i in range(k)]
+    beta = _solve(xtx, xty)
+    mean = sum(ys) / len(ys)
+    ss_res = sum((y - sum(b * v for b, v in zip(beta, x))) ** 2 for x, y in zip(xs, ys))
+    ss_tot = sum((y - mean) ** 2 for y in ys) or 1e-12
+    return beta, 1.0 - ss_res / ss_tot
+
+
 def _resolve(args) -> list[Path]:
     if args.images:
         return [Path(i) for i in args.images]
@@ -239,10 +287,55 @@ def main() -> None:
             s.add_argument("--out", default="bench-eink")
             s.add_argument("--cols", type=int, default=3)
 
+    lab = sub.add_parser("label", help="bench session: show a sheet, record which cell you picked")
+    lab.add_argument("--images", nargs="*")
+    lab.add_argument("--auto-corpus", type=int, default=20)
+    lab.add_argument("--gamma", default="1.2,1.5,1.8,2.1,2.4,2.7")
+    lab.add_argument("--contrast", default="1.0")
+    lab.add_argument("--saturation", default="1.0")
+    lab.add_argument("--out", default="bench-eink")
+    lab.add_argument("--cols", type=int, default=3)
+    lab.add_argument("--labels", default="bench-eink/labels.jsonl")
+    lab.add_argument("--push", action="store_true", help="blit each sheet to the panel (run on the Pi)")
+
+    fit = sub.add_parser("fit", help="derive the auto-setter from the labels")
+    fit.add_argument("--labels", default="bench-eink/labels.jsonl")
+    fit.add_argument("--holdout", type=int, default=0, help="reserve the last N labels to check against")
+
     p = sub.add_parser("push", help="run ON the bench Pi: send one PNG straight to the panel")
     p.add_argument("image")
 
     args = ap.parse_args()
+
+    if args.cmd == "fit":
+        rows = [json.loads(ln) for ln in Path(args.labels).read_text().splitlines() if ln.strip()]
+        if len(rows) < len(FEATURES) + 2:
+            sys.exit(f"only {len(rows)} labels — need at least {len(FEATURES) + 2} to fit {len(FEATURES)} features")
+        train = rows[:-args.holdout] if args.holdout else rows
+        beta, r2 = ols(train)
+
+        print(f"# fitted on {len(train)} labels   R² = {r2:.3f}")
+        print(f"# features: {', '.join(FEATURES)}")
+        print("\n# --- paste into epaper.py, replacing _adaptive_gamma's body ---")
+        print("_GAMMA_COEFFS = (")
+        print(f"    {beta[0]:+.5f},   # intercept")
+        for name, b in zip(FEATURES, beta[1:]):
+            print(f"    {b:+.5f},   # {name} / {_SCALE[name]:g}")
+        print(")")
+        print("# gamma = intercept + sum(coeff * feature/scale), clamped to the labelled range.")
+        print("# epaper.py also needs the feature computation — port `predictors()` from this tool")
+        print("# (it already runs on a 256x256 downscale, same cost as today's _adaptive_gamma).")
+        lo, hi = min(r["gamma"] for r in train), max(r["gamma"] for r in train)
+        print(f"_GAMMA_RANGE = ({lo}, {hi})   # never extrapolate past what was actually judged")
+
+        if args.holdout:
+            print(f"\n# holdout — {args.holdout} pieces never used in the fit:")
+            for r in rows[-args.holdout:]:
+                pred = beta[0] + sum(b * v for b, v in zip(beta[1:], feature_vector(r["features"])))
+                pred = max(lo, min(hi, pred))
+                print(f"#   {Path(r['image']).name[:44]:46s} chose {r['gamma']:.2f}  "
+                      f"predicted {pred:.2f}  ({pred - r['gamma']:+.2f})")
+        return
 
     if args.cmd == "push":
         from inky.auto import auto  # noqa: PLC0415 — Pi-only dependency
@@ -275,6 +368,48 @@ def main() -> None:
     ]
     out = Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
+
+    if args.cmd == "label":
+        labels = Path(args.labels)
+        labels.parent.mkdir(parents=True, exist_ok=True)
+        done = {json.loads(ln)["image"] for ln in labels.read_text().splitlines() if ln.strip()} \
+            if labels.exists() else set()
+        letters = "".join(chr(65 + i) for i in range(len(grid)))
+        print(f"{len(images)} images, {len(grid)} settings each. "
+              f"Type a letter ({letters[0]}–{letters[-1]}), 's' to skip, 'q' to stop.\n"
+              f"Already labelled: {len(done)} (those are skipped, so a session can resume).\n")
+
+        for i, img in enumerate(images, 1):
+            if str(img) in done:
+                continue
+            dest = out / f"label_{i:02d}_{Path(img).stem[:28]}.png"
+            contact_sheet(Path(img), grid, cols=args.cols).save(dest)
+            if args.push:
+                from inky.auto import auto  # noqa: PLC0415
+                panel = auto()
+                panel.set_image(Image.open(dest).convert("RGB"))
+                panel.show()
+            print(f"[{i}/{len(images)}] {Path(img).name}\n    {dest}")
+
+            while True:
+                choice = input(f"    best of {letters}? ").strip().upper()
+                if choice == "Q":
+                    print("stopped — labels so far are saved")
+                    return
+                if choice == "S":
+                    break
+                idx = letters.find(choice)
+                if idx >= 0:
+                    with Image.open(img) as im:
+                        feats = predictors(im)
+                    with labels.open("a") as fh:
+                        fh.write(json.dumps({"image": str(img), "choice": choice,
+                                             **grid[idx], "features": feats}) + "\n")
+                    print(f"    recorded {choice} → γ{grid[idx]['gamma']}")
+                    break
+                print(f"    not one of {letters} (or s/q)")
+        print(f"\nlabels → {labels}\nnow:  python -m tools.eink_calibrate fit --labels {labels} --holdout 5")
+        return
 
     for i, img in enumerate(images, 1):
         if args.cmd == "sheet":
