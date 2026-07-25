@@ -1140,7 +1140,7 @@ async function clearPendingDiscoveries() {
 }
 
 async function factoryReset() {
-    if (!(await confirmModal('⚠️ FACTORY RESET\n\nThis deletes ALL artwork except the original seed masterpieces, clears the entire discover queue, and removes playlist associations. This CANNOT be undone.', { confirmText: 'Continue', danger: true }))) return;
+    if (!(await confirmModal('⚠️ FACTORY RESET\n\nThis deletes ALL of your artwork — including the seed masterpieces — clears the entire discover queue, and removes playlist associations. This CANNOT be undone.\n\nAfter restarting, the server re-downloads the seed collections, which needs an internet connection.', { confirmText: 'Continue', danger: true }))) return;
 
     const typed = await promptModal('Type RESET to confirm factory reset:', { placeholder: 'RESET', confirmText: 'Reset', danger: true });
     if (typed !== 'RESET') {

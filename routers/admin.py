@@ -11,7 +11,7 @@ from sqlalchemy.orm import Session
 from config import ARTWORK_ROOT, LIBRARY_DIR
 from core.media import DERIVATIVES_DIR
 from database import get_db
-from models import ArtworkModel, DiscoveryQueueModel, playlist_artwork
+from models import ArtworkModel, DiscoveryQueueModel, SettingsModel, playlist_artwork
 
 logger = logging.getLogger("artwork-display-api")
 
@@ -93,13 +93,22 @@ async def factory_reset(req: FactoryResetRequest, db: Session = Depends(get_db))
             try: d.unlink()
             except OSError: pass
 
+    # 8. Re-arm the seeder. Step 5 deletes the seed artworks precisely so the bootstrapper re-downloads
+    # them — but seeding is gated on the EXISTENCE of `pack_seeded` (core/lifespan.py:148,335), so
+    # leaving that row behind means the next boot decides it has already seeded and skips. The result
+    # was an empty library that never refilled, on a box whose whole promise is that it can't be
+    # bricked. Clearing the gate is what makes the "restart to re-seed" in our own response true.
+    seed_gate = db.query(SettingsModel).filter(SettingsModel.setting_key == "pack_seeded").delete()
+
     db.commit()
 
-    logger.info(f"[Factory Reset] Removed {art_count} + {seed_count} seed artworks, {files_deleted} files, {discover_count} queue items. Seeds will re-download on restart.")
+    logger.info(f"[Factory Reset] Removed {art_count} + {seed_count} seed artworks, {files_deleted} files, "
+                f"{discover_count} queue items, seed gate cleared={bool(seed_gate)}. Seeds re-download on restart.")
     return {
         "status": "Factory reset complete. Restart the server to re-seed masterpieces.",
         "artworks_removed": art_count,
         "seed_artworks_removed": seed_count,
         "files_deleted": files_deleted,
         "queue_items_cleared": discover_count,
+        "seed_gate_cleared": bool(seed_gate),
     }
