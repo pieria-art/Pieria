@@ -21,6 +21,71 @@ sd_setup = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(sd_setup)
 
 
+# --- safety backstop ----------------------------------------------------------
+
+# Binaries on the live commit path that reconfigure THE MACHINE RUNNING PYTEST, not the appliance.
+# `wlr-randr` is deliberately NOT here: it is display-local, absent on dev boxes, and the orientation
+# tests already exercise its absence.
+_HOST_MUTATING = {"hostnamectl", "nmcli", "systemctl", "reboot", "rfkill"}
+
+
+@pytest.fixture(autouse=True)
+def _block_host_mutation(monkeypatch):
+    """Fail LOUDLY if a test lets the live commit path reconfigure the developer's own machine.
+
+    WHY THIS EXISTS AS A FIXTURE AND NOT AS ADVICE. The live path shells out to `hostnamectl
+    set-hostname`, `nmcli` and `systemctl reboot`. A test that drives that path and forgets to stub one
+    of those helpers does not fail — it silently reconfigures the box running pytest, and passes. That
+    has now happened twice:
+      * 2026-07-21 — `_release_wlan0` left unstubbed shelled out to the developer's own
+        `nmcli general reload`, popping a polkit dialog mid-run.
+      * 2026-07-23 + 2026-07-24 — `_apply_hostname` (added later, ADR-070) renamed the developer's
+        laptop to `wall`, the `display_id` value these tests use, twice, each needing a manual repair.
+        `hostnamectl` succeeds for an active desktop session via polkit, and the follow-up /etc/hosts
+        write fails as non-root and is swallowed — so the damage is real but leaves no test-visible trace.
+    The first incident was fixed by stubbing that one helper. That fixes an INSTANCE; the next live-path
+    helper reintroduces the bug, which is exactly what happened. So this closes it at the subprocess
+    boundary: reaching the real host now requires an explicit stub and can never happen by omission.
+
+    Violations are recorded as well as raised, because `make_handler` catches Exception on the commit
+    path and turns it into a 500 — a test that does not assert 200 would otherwise swallow the guard.
+    """
+    real = sd_setup.subprocess
+    violations: list[str] = []
+
+    def _check(argv):
+        parts = list(argv) if isinstance(argv, (list, tuple)) else [str(argv)]
+        joined = " ".join(str(p) for p in parts)
+        names = {pathlib.PurePath(str(p)).name for p in parts}
+        if names & _HOST_MUTATING:
+            violations.append(joined)
+            raise AssertionError(
+                f"BLOCKED a host-mutating command in a test: {joined!r}\n"
+                f"This would reconfigure the machine running pytest. Stub the sd_setup helper that "
+                f"calls it (e.g. monkeypatch.setattr(sd_setup, '_apply_hostname', lambda *a, **k: None))."
+            )
+
+    class _Guard:
+        """Delegates everything to the real subprocess module except the two entry points."""
+        def __getattr__(self, name):
+            return getattr(real, name)
+
+        def run(self, argv, *a, **k):
+            _check(argv)
+            return real.run(argv, *a, **k)
+
+        def Popen(self, argv, *a, **k):
+            _check(argv)
+            return real.Popen(argv, *a, **k)
+
+    monkeypatch.setattr(sd_setup, "subprocess", _Guard())
+    yield
+    assert not violations, (
+        "the live commit path reached the real host during this test: "
+        + "; ".join(repr(v) for v in violations)
+    )
+
+
 # --- pure logic ---------------------------------------------------------------
 
 @pytest.mark.parametrize("raw,expected", [
@@ -133,12 +198,15 @@ def test_live_commit_writes_boot_conf_0644(tmp_path, monkeypatch):
 
     EVERY host-touching call on the live path must be stubbed here. Leaving `_release_wlan0` unstubbed
     made this test shell out to the developer's own `nmcli general reload`, which pops a polkit
-    authentication dialog on the desktop mid-run (caught 2026-07-21)."""
+    authentication dialog on the desktop mid-run (caught 2026-07-21). Leaving `_apply_hostname`
+    unstubbed renamed the developer's laptop to `wall` (caught 2026-07-25) — `_block_host_mutation`
+    now enforces this paragraph instead of trusting it."""
     import stat
 
     monkeypatch.setattr(sd_setup, "_join_wifi", lambda *a, **k: None)
     monkeypatch.setattr(sd_setup, "_schedule_reboot", lambda: None)
     monkeypatch.setattr(sd_setup, "_release_wlan0", lambda: None)
+    monkeypatch.setattr(sd_setup, "_apply_hostname", lambda *a, **k: None)
     boot_conf = tmp_path / "boot" / "pieria.conf"
     boot_conf.parent.mkdir(parents=True)
     boot_conf.write_text("stale")            # pre-existing file...
@@ -170,6 +238,7 @@ def test_live_commit_releases_wlan0_after_saving_wifi_and_before_reboot(tmp_path
     monkeypatch.setattr(sd_setup, "_join_wifi", lambda *a, **k: calls.append("join_wifi"))
     monkeypatch.setattr(sd_setup, "_release_wlan0", lambda: calls.append("release_wlan0"))
     monkeypatch.setattr(sd_setup, "_schedule_reboot", lambda: calls.append("reboot"))
+    monkeypatch.setattr(sd_setup, "_apply_hostname", lambda *a, **k: None)
 
     boot_conf = tmp_path / "boot" / "pieria.conf"
     boot_conf.parent.mkdir(parents=True)
