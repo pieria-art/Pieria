@@ -575,7 +575,7 @@ CYCLE_TIME=                           # optional: seconds per image</code></pre>
                 <thead><tr><th>Parameter</th><th>Values</th></tr></thead>
                 <tbody>
                     <tr><td><code>display_id</code></td><td>A unique name for this frame (path segment)</td></tr>
-                    <tr><td><code>playlist</code></td><td>Collection name (defaults to the first collection)</td></tr>
+                    <tr><td><code>playlist</code></td><td>Collection name. Omit it and the frame falls back to what <em>this</em> display last played, then your default collection, then the first collection that actually has art in it.</td></tr>
                     <tr><td><code>w</code> / <code>h</code></td><td>Your panel's pixel dimensions</td></tr>
                     <tr><td><code>palette</code></td><td><code>spectra6</code>, <code>acep7</code>, <code>gray4</code>, <code>gray16</code></td></tr>
                     <tr><td><code>fit</code></td><td><code>cover</code> (fill, default) or <code>contain</code> (letterbox)</td></tr>

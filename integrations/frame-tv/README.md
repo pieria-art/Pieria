@@ -7,7 +7,7 @@ Samsung account and no Art Store subscription.
 ## Two ways to use it
 
 ### 1. Built in to the server (recommended)
-Pieria has a built-in Frame pusher. Configure it in **Admin → Settings → 🖼️ Frame TV**:
+Pieria has a built-in Frame pusher. Configure it in **Admin → Settings → 🖼️ Samsung Frame TV**:
 
 - **Enable** + your Frame's **IP address**
 - a **playlist** to show, a **refresh interval**, and (optionally) resolution/matte

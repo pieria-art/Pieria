@@ -1,11 +1,11 @@
-# Pieria — Pieria Appliance
+# Pieria — Raspberry Pi Appliance
 
 Turn a cheap Raspberry Pi into a self-contained art frame that boots straight
 into the Pieria display: **fullscreen, no browser chrome, no Fully Kiosk,
 survives reboots, never sleeps.** This is the recommended way to drive a TV or
 monitor — point it at your Pieria server and forget it.
 
-> **Scope:** *display-only* — the Pi is a thin client that connects to a Screen
+> **Scope:** *display-only* — the Pi is a thin client that connects to a
 > Pieria server running elsewhere (e.g. your MS-01). **This is the recommended
 > production setup, not just a first cut:** the display device only runs the
 > Chromium kiosk, so it stays cheap, cool (~5–7 W), and small enough to tuck
