@@ -34,6 +34,15 @@ __pycache__/
 tools/.catalog_cache.json
 tools/.artic_cache.json
 
+# E-ink calibration bench output. The contact sheets are regenerable and large; the JUDGEMENT is not
+# — it costs a person standing at a panel for an hour and cannot be reproduced from the code.
+# corpus.json is kept because labels.jsonl references images by path only: without the frozen corpus
+# there is no record of WHICH 30 images were selected, in what order, or with what features.
+bench-eink/*
+!bench-eink/labels.jsonl
+!bench-eink/corpus.json
+!bench-eink/retest.jsonl
+
 # Local-only dev docs (kept on disk, not published).
 # .ai/ is private-by-default; only the system architecture doc is tracked.
 PRD.md

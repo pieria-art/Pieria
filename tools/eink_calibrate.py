@@ -107,7 +107,11 @@ def predictors(img: Image.Image) -> dict:
     # Edge density: cheap Sobel-ish proxy. Line art and engravings sit high here even when their
     # luminance histogram looks like a pale painting's — which is exactly where wash_pct misleads.
     edges = lum.filter(__import__("PIL.ImageFilter", fromlist=["FIND_EDGES"]).FIND_EDGES)
-    edge_pct = sum(1 for v in edges.getdata() if v > 48) / (256 * 256) * 100.0
+    # Count via the histogram, not `sum(... for v in getdata())`. Identical result — bins 49..255 ARE
+    # the pixels above the threshold — but it stays in C instead of running 65536 Python iterations per
+    # image. That difference is invisible on a laptop scanning 122 files and fatal on the appliance
+    # scanning an installed 2857-work library, where `auto_corpus` calls this once per file.
+    edge_pct = sum(edges.histogram()[49:]) / (256 * 256) * 100.0
 
     return {
         "wash_pct": round(wash_pct, 2),
@@ -180,8 +184,36 @@ def contact_sheet(path: Path, settings: list[dict], cols: int = 3) -> Image.Imag
 # ---------------------------------------------------------------------------
 # Corpus selection — spread across the feature space, not random.
 # ---------------------------------------------------------------------------
-def auto_corpus(n: int) -> list[Path]:
+def _stratified(paths: list[Path], per_collection: int) -> list[Path]:
+    """Evenly-spaced sample of at most `per_collection` files from each collection.
+
+    Library filenames are `<collection>__<title>__<hash>.jpg`, so the prefix is the collection. Taking
+    a slice per collection guarantees category coverage BY CONSTRUCTION rather than hoping the
+    farthest-point pass stumbles onto it — and it is what makes the scan affordable: the candidate pool
+    only has to COVER the feature space, not enumerate it.
+
+    Evenly spaced rather than the first K: filenames sort by title, so `[:K]` would take everything
+    alphabetically early, which correlates with subject matter far more than it looks.
+    """
+    groups: dict[str, list[Path]] = {}
+    for p in paths:
+        groups.setdefault(p.name.split("__", 1)[0], []).append(p)
+    out: list[Path] = []
+    for _, members in sorted(groups.items()):
+        if len(members) <= per_collection:
+            out.extend(members)
+            continue
+        step = len(members) / per_collection
+        out.extend(members[int(i * step)] for i in range(per_collection))
+    return sorted(out)
+
+
+def auto_corpus(n: int, scan_cap: int | None = None) -> list[Path]:
     """Pick n images that MAXIMISE spread across the predictor space.
+
+    `scan_cap` limits how many files per collection are SCANNED as candidates (None = all). Scanning
+    is O(library) and decodes every master; labelling is O(n). Those are different budgets and
+    conflating them is what made a 20-image session try to read a 2857-work library.
 
     A random sample under-represents exactly the cases that break the heuristic — the corpus that
     caused this problem was narrow, so sampling it the same way reproduces the blind spot. Greedy
@@ -191,10 +223,23 @@ def auto_corpus(n: int) -> list[Path]:
     paths = sorted(p for p in LIBRARY_DIR.glob("*.jpg"))
     if not paths:
         return []
+    if scan_cap:
+        paths = _stratified(paths, scan_cap)
     feats = []
     for p in paths:
         try:
             with Image.open(p) as im:
+                # RANKING ONLY — decode at 1/8 scale via libjpeg's DCT scaling. `predictors` resizes to
+                # 256x256 anyway, so full-resolution decode of a 4K+ master is pure waste: it dominates
+                # the scan at ~700ms/image, which is 33min over an installed 2857-work library on a
+                # laptop and multiples of that on the Pi. draft() makes it ~20x cheaper.
+                #
+                # The tiny feature differences this introduces are acceptable HERE and only here: this
+                # pass decides which images to SHOW, a farthest-point ordering that is robust to small
+                # perturbations. The features that reach the fit are recomputed at full fidelity from
+                # the chosen files (tools.eink_bench.cmd_corpus), so no approximate value is ever
+                # trained on.
+                im.draft("RGB", (256, 256))
                 f = predictors(im)
             feats.append((p, [f["wash_pct"] / 100, f["mean_lum"] / 255, f["mean_chroma"] / 255,
                               f["edge_pct"] / 100, f["lum_stddev"] / 128]))
