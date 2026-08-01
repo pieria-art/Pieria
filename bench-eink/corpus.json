@@ -388,5 +388,395 @@
       "edge_pct": 5.78,
       "current_gamma": 1.5
     }
+  },
+  {
+    "n": 31,
+    "image": "Artwork/_Library/dutch-golden-age__the-milkmaid__aa4889a6.jpg",
+    "features": {
+      "wash_pct": 14.74,
+      "mean_lum": 104.9,
+      "lum_stddev": 71.3,
+      "mean_chroma": 32.8,
+      "chroma_stddev": 19.9,
+      "edge_pct": 10.12,
+      "current_gamma": 1.432
+    }
+  },
+  {
+    "n": 32,
+    "image": "Artwork/_Library/ancient-egypt__seated-scribe__820b4533.jpg",
+    "features": {
+      "wash_pct": 1.78,
+      "mean_lum": 142.8,
+      "lum_stddev": 48.5,
+      "mean_chroma": 17.3,
+      "chroma_stddev": 16.4,
+      "edge_pct": 14.15,
+      "current_gamma": 1.4
+    }
+  },
+  {
+    "n": 33,
+    "image": "Artwork/_Library/audubon-birds-of-america__piping-plover__0128566b.jpg",
+    "features": {
+      "wash_pct": 14.58,
+      "mean_lum": 220.6,
+      "lum_stddev": 37.3,
+      "mean_chroma": 40.9,
+      "chroma_stddev": 10.4,
+      "edge_pct": 5.02,
+      "current_gamma": 1.431
+    }
+  },
+  {
+    "n": 34,
+    "image": "Artwork/_Library/cities-architecture__trafalgar-square-london__d437f054.jpg",
+    "features": {
+      "wash_pct": 39.21,
+      "mean_lum": 158.4,
+      "lum_stddev": 53.6,
+      "mean_chroma": 21.9,
+      "chroma_stddev": 8.6,
+      "edge_pct": 12.41,
+      "current_gamma": 1.5
+    }
+  },
+  {
+    "n": 35,
+    "image": "Artwork/_Library/cartography__atlas-coelestis__9e2e89d6.jpg",
+    "features": {
+      "wash_pct": 17.66,
+      "mean_lum": 210.9,
+      "lum_stddev": 16.7,
+      "mean_chroma": 41.1,
+      "chroma_stddev": 8.3,
+      "edge_pct": 17.44,
+      "current_gamma": 1.451
+    }
+  },
+  {
+    "n": 36,
+    "image": "Artwork/_Library/documentary-photography__american-gothic-washington-d-c__f5bc3dcf.jpg",
+    "features": {
+      "wash_pct": 18.73,
+      "mean_lum": 140.7,
+      "lum_stddev": 70.3,
+      "mean_chroma": 0.0,
+      "chroma_stddev": 0.0,
+      "edge_pct": 11.13,
+      "current_gamma": 1.458
+    }
+  },
+  {
+    "n": 37,
+    "image": "Artwork/_Library/masterpieces__under-the-wave-off-kanagawa__dca22560.jpg",
+    "features": {
+      "wash_pct": 23.57,
+      "mean_lum": 166.8,
+      "lum_stddev": 61.6,
+      "mean_chroma": 30.9,
+      "chroma_stddev": 18.0,
+      "edge_pct": 21.53,
+      "current_gamma": 1.49
+    }
+  },
+  {
+    "n": 38,
+    "image": "Artwork/_Library/post-impressionism__hollow-with-trees__8a0b200f.jpg",
+    "features": {
+      "wash_pct": 74.59,
+      "mean_lum": 205.1,
+      "lum_stddev": 19.6,
+      "mean_chroma": 30.6,
+      "chroma_stddev": 9.9,
+      "edge_pct": 6.95,
+      "current_gamma": 1.5
+    }
+  },
+  {
+    "n": 39,
+    "image": "Artwork/_Library/earth-and-spaceflight__hubble-space-telescope-in-orbit__2ebb7e41.jpg",
+    "features": {
+      "wash_pct": 1.9,
+      "mean_lum": 83.9,
+      "lum_stddev": 57.9,
+      "mean_chroma": 84.9,
+      "chroma_stddev": 48.0,
+      "edge_pct": 22.47,
+      "current_gamma": 1.4
+    }
+  },
+  {
+    "n": 40,
+    "image": "Artwork/_Library/symbolism-romance__lady-lilith__91b0f9c2.jpg",
+    "features": {
+      "wash_pct": 8.24,
+      "mean_lum": 134.4,
+      "lum_stddev": 78.0,
+      "mean_chroma": 59.3,
+      "chroma_stddev": 34.7,
+      "edge_pct": 17.76,
+      "current_gamma": 1.4
+    }
+  },
+  {
+    "n": 41,
+    "image": "Artwork/_Library/art-nouveau-decorative__the-peacock-skirt__959f418a.jpg",
+    "features": {
+      "wash_pct": 56.05,
+      "mean_lum": 175.7,
+      "lum_stddev": 97.4,
+      "mean_chroma": 2.2,
+      "chroma_stddev": 1.0,
+      "edge_pct": 26.72,
+      "current_gamma": 1.5
+    }
+  },
+  {
+    "n": 42,
+    "image": "Artwork/_Library/renaissance__an-idyll-a-mother-and-a-halberdier-in-a-__6594d578.jpg",
+    "features": {
+      "wash_pct": 1.15,
+      "mean_lum": 120.0,
+      "lum_stddev": 49.4,
+      "mean_chroma": 55.2,
+      "chroma_stddev": 30.7,
+      "edge_pct": 9.49,
+      "current_gamma": 1.4
+    }
+  },
+  {
+    "n": 43,
+    "image": "Artwork/_Library/golden-age-illustration__and-see-that-you-watch-well-he-snarled__84e0b9cf.jpg",
+    "features": {
+      "wash_pct": 4.29,
+      "mean_lum": 47.7,
+      "lum_stddev": 56.2,
+      "mean_chroma": 43.8,
+      "chroma_stddev": 32.7,
+      "edge_pct": 11.93,
+      "current_gamma": 1.4
+    }
+  },
+  {
+    "n": 44,
+    "image": "Artwork/_Library/botanical__rosa-gallica__7c833113.jpg",
+    "features": {
+      "wash_pct": 65.09,
+      "mean_lum": 190.5,
+      "lum_stddev": 38.3,
+      "mean_chroma": 25.6,
+      "chroma_stddev": 6.4,
+      "edge_pct": 11.52,
+      "current_gamma": 1.5
+    }
+  },
+  {
+    "n": 45,
+    "image": "Artwork/_Library/art-nouveau-decorative__strawberry-thief__73e10581.jpg",
+    "features": {
+      "wash_pct": 3.97,
+      "mean_lum": 87.6,
+      "lum_stddev": 47.1,
+      "mean_chroma": 23.4,
+      "chroma_stddev": 14.3,
+      "edge_pct": 35.65,
+      "current_gamma": 1.4
+    }
+  },
+  {
+    "n": 46,
+    "image": "Artwork/_Library/masterpieces__the-kiss__552e767a.jpg",
+    "features": {
+      "wash_pct": 0.0,
+      "mean_lum": 130.9,
+      "lum_stddev": 28.0,
+      "mean_chroma": 76.7,
+      "chroma_stddev": 29.1,
+      "edge_pct": 18.58,
+      "current_gamma": 1.4
+    }
+  },
+  {
+    "n": 47,
+    "image": "Artwork/_Library/asian-art__irises-screen__b648177a.jpg",
+    "features": {
+      "wash_pct": 0.0,
+      "mean_lum": 137.7,
+      "lum_stddev": 51.7,
+      "mean_chroma": 88.9,
+      "chroma_stddev": 37.7,
+      "edge_pct": 22.62,
+      "current_gamma": 1.4
+    }
+  },
+  {
+    "n": 48,
+    "image": "Artwork/_Library/ukiyo-e__mallard-duck-and-snow-covered-reeds__71a6d61e.jpg",
+    "features": {
+      "wash_pct": 1.11,
+      "mean_lum": 179.3,
+      "lum_stddev": 47.0,
+      "mean_chroma": 42.2,
+      "chroma_stddev": 22.8,
+      "edge_pct": 15.34,
+      "current_gamma": 1.4
+    }
+  },
+  {
+    "n": 49,
+    "image": "Artwork/_Library/modern-masters__te-burao-the-hibiscus-tree__8ed8dd3d.jpg",
+    "features": {
+      "wash_pct": 0.0,
+      "mean_lum": 87.0,
+      "lum_stddev": 39.8,
+      "mean_chroma": 20.6,
+      "chroma_stddev": 16.3,
+      "edge_pct": 15.22,
+      "current_gamma": 1.4
+    }
+  },
+  {
+    "n": 50,
+    "image": "Artwork/_Library/asian-art__the-concourse-of-the-birds__f316820b.jpg",
+    "features": {
+      "wash_pct": 11.69,
+      "mean_lum": 127.3,
+      "lum_stddev": 43.8,
+      "mean_chroma": 28.1,
+      "chroma_stddev": 23.0,
+      "edge_pct": 25.1,
+      "current_gamma": 1.411
+    }
+  },
+  {
+    "n": 51,
+    "image": "Artwork/_Library/cosmos__crab-nebula__c610beeb.jpg",
+    "features": {
+      "wash_pct": 3.28,
+      "mean_lum": 71.0,
+      "lum_stddev": 71.4,
+      "mean_chroma": 28.1,
+      "chroma_stddev": 26.4,
+      "edge_pct": 16.75,
+      "current_gamma": 1.4
+    }
+  },
+  {
+    "n": 52,
+    "image": "Artwork/_Library/masterpieces__caf-terrace-at-night__ee0577b7.jpg",
+    "features": {
+      "wash_pct": 0.0,
+      "mean_lum": 82.7,
+      "lum_stddev": 30.9,
+      "mean_chroma": 55.8,
+      "chroma_stddev": 39.0,
+      "edge_pct": 20.16,
+      "current_gamma": 1.4
+    }
+  },
+  {
+    "n": 53,
+    "image": "Artwork/_Library/sculpture-antiquity__sabine-houdon-1787-1836__e06d2e62.jpg",
+    "features": {
+      "wash_pct": 2.54,
+      "mean_lum": 108.4,
+      "lum_stddev": 44.8,
+      "mean_chroma": 8.4,
+      "chroma_stddev": 8.0,
+      "edge_pct": 3.18,
+      "current_gamma": 1.4
+    }
+  },
+  {
+    "n": 54,
+    "image": "Artwork/_Library/ukiyo-e__nanukayo-the-seventh-night__61629285.jpg",
+    "features": {
+      "wash_pct": 4.78,
+      "mean_lum": 201.1,
+      "lum_stddev": 19.6,
+      "mean_chroma": 50.2,
+      "chroma_stddev": 7.4,
+      "edge_pct": 26.72,
+      "current_gamma": 1.4
+    }
+  },
+  {
+    "n": 55,
+    "image": "Artwork/_Library/earth-and-spaceflight__bruce-mccandless-spacewalk__3d794203.jpg",
+    "features": {
+      "wash_pct": 0.0,
+      "mean_lum": 32.3,
+      "lum_stddev": 49.2,
+      "mean_chroma": 17.2,
+      "chroma_stddev": 26.2,
+      "edge_pct": 2.24,
+      "current_gamma": 1.4
+    }
+  },
+  {
+    "n": 56,
+    "image": "Artwork/_Library/vintage-posters__see-america-welcome-to-montana__8bc0171a.jpg",
+    "features": {
+      "wash_pct": 23.6,
+      "mean_lum": 146.8,
+      "lum_stddev": 81.0,
+      "mean_chroma": 38.9,
+      "chroma_stddev": 30.0,
+      "edge_pct": 12.76,
+      "current_gamma": 1.491
+    }
+  },
+  {
+    "n": 57,
+    "image": "Artwork/_Library/marine__the-shipwreck__d81dc92c.jpg",
+    "features": {
+      "wash_pct": 25.53,
+      "mean_lum": 116.7,
+      "lum_stddev": 82.7,
+      "mean_chroma": 0.0,
+      "chroma_stddev": 0.0,
+      "edge_pct": 15.3,
+      "current_gamma": 1.5
+    }
+  },
+  {
+    "n": 58,
+    "image": "Artwork/_Library/documentary-photography__ancient-ruins-in-the-canyon-de-chelly__655344de.jpg",
+    "features": {
+      "wash_pct": 0.01,
+      "mean_lum": 58.1,
+      "lum_stddev": 45.0,
+      "mean_chroma": 42.1,
+      "chroma_stddev": 20.8,
+      "edge_pct": 22.59,
+      "current_gamma": 1.4
+    }
+  },
+  {
+    "n": 59,
+    "image": "Artwork/_Library/romanticism__dort-or-dordrecht-the-dort-packet-boat-f__64b4b29a.jpg",
+    "features": {
+      "wash_pct": 16.45,
+      "mean_lum": 172.3,
+      "lum_stddev": 44.6,
+      "mean_chroma": 41.5,
+      "chroma_stddev": 24.1,
+      "edge_pct": 6.2,
+      "current_gamma": 1.443
+    }
+  },
+  {
+    "n": 60,
+    "image": "Artwork/_Library/romanticism__the-burning-of-the-houses-of-lords-and-c__bee17317.jpg",
+    "features": {
+      "wash_pct": 0.0,
+      "mean_lum": 110.7,
+      "lum_stddev": 31.0,
+      "mean_chroma": 52.0,
+      "chroma_stddev": 32.3,
+      "edge_pct": 7.38,
+      "current_gamma": 1.4
+    }
   }
 ]

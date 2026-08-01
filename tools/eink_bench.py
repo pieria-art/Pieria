@@ -37,7 +37,7 @@ import json
 import sys
 from pathlib import Path
 
-from PIL import Image
+from PIL import Image, ImageEnhance
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
@@ -160,6 +160,87 @@ def cmd_extend(args) -> None:
               f"{f['edge_pct']:6.1f}  {Path(r['image']).name[:54]}")
 
 
+def _db_crop_and_focal(filename: str, w: int, h: int):
+    """The AUTHORED crop the production endpoint would use, plus the work's focal point.
+
+    `render_tile` (the contact-sheet path) passes crop_box=None and focal-cover-crops instead. That is
+    not what ships: `routers/display.py` calls `pick_crop_for_aspect(art.aspect_crops, w, h)` (ADR-055).
+    The difference is not cosmetic — on a full-sheet Audubon scan the authored 4:3 box is
+    [0, 0.29, 1, 0.81], tight to the plate and its caption, while the focal cover crop of a near-square
+    tile is mostly blank margin. An hour of the first session was spent judging paper because of it.
+    """
+    import sqlite3  # noqa: PLC0415 — only needed on the appliance
+    db = Path("data/artwork.db")
+    if not db.exists():
+        return None, (0.5, 0.5)
+    con = sqlite3.connect(str(db))
+    try:
+        row = con.execute(
+            "select aspect_crops_json, focal_x, focal_y from artworks where filename = ?",
+            (filename,)).fetchone()
+    finally:
+        con.close()
+    if not row:
+        return None, (0.5, 0.5)
+    crops_json, fx, fy = row
+    focal = (fx if fx is not None else 0.5, fy if fy is not None else 0.5)
+    try:
+        crops = json.loads(crops_json) if crops_json else None
+    except (TypeError, ValueError):
+        crops = None
+    return ec.epaper.pick_crop_for_aspect(crops, w, h), focal
+
+
+def cmd_full(args) -> None:
+    """Render ONE candidate at full panel resolution, with the authored crop, and blit it.
+
+    This supersedes the contact sheet for judgement. A 3x2 sheet gives each candidate 1/6 of the panel,
+    which does two things that invalidate the result: it under-resolves fine detail, and — worse — it
+    breaks the DITHER. Floyd-Steinberg approximates an out-of-gamut colour by scattering pure primaries
+    that are meant to fuse at the panel's native resolution and viewing distance; at 1/6 area those dots
+    are ~3x larger relative to the image and read as garish speckle instead. The 2026-08-01 session
+    nearly concluded that e-ink could not reproduce art at all, on the strength of that artifact alone.
+    Contact sheets are for BRACKETING a range cheaply; every judgement that decides anything is full-panel.
+    """
+    rows = _load_corpus()
+    row = next((r for r in rows if r["n"] == args.n), None)
+    if row is None:
+        sys.exit(f"no corpus entry {args.n} (have 1..{max(r['n'] for r in rows)})")
+    img = Path(row["image"])
+    w, h = args.width, args.height
+    crop, focal = _db_crop_and_focal(img.name, w, h)
+
+    fitted = ec.epaper._fit_rgb(img, w, h, "cover", focal, crop)
+    if abs(args.saturation - 1.0) > 1e-3:
+        fitted = ImageEnhance.Color(fitted).enhance(args.saturation)
+    if abs(args.contrast - 1.0) > 1e-3:
+        fitted = ImageEnhance.Contrast(fitted).enhance(args.contrast)
+    if args.gamma > 0:
+        fitted = ec.epaper._apply_gamma(fitted, args.gamma)
+    q = fitted.quantize(
+        palette=ec.epaper._cached_palette_image("_spectra6_dither", ec.epaper.SPECTRA6_DITHER_PALETTE),
+        dither=Image.Dither.FLOYDSTEINBERG)
+    q.putpalette(ec.epaper._flat_palette(ec.epaper.SPECTRA6_OUTPUT_PALETTE))
+    out = q.convert("RGB")
+
+    OUT.mkdir(parents=True, exist_ok=True)
+    # Dimensions belong in the name: the same image at 1600x1200 and 1200x1600 resolves to DIFFERENT
+    # authored crops (4:3 vs 3:4), so they are different renders, not the same one twice.
+    dest = OUT / f"full_{args.n:02d}_{w}x{h}_g{args.gamma}_s{args.saturation}_c{args.contrast}.png"
+    out.save(dest)
+    print(f"[{args.n}] {img.name}")
+    print(f"  {w}x{h}  gamma {args.gamma}  saturation {args.saturation}  contrast {args.contrast}")
+    print(f"  crop {crop if crop else 'NONE (focal cover)'}  focal {focal}")
+    print(f"  {dest}")
+    if args.no_push:
+        return
+    from inky.auto import auto  # noqa: PLC0415
+    panel = auto()
+    panel.set_image(out)
+    panel.show()
+    print("  pushed to panel")
+
+
 def cmd_show(args) -> None:
     rows = _load_corpus()
     row = next((r for r in rows if r["n"] == args.n), None)
@@ -272,6 +353,15 @@ def main() -> None:
     r.add_argument("--force", action="store_true")
     r.add_argument("--note", default="", help="why this cell won — free text, kept with the label")
 
+    fu = sub.add_parser("full", help="render ONE candidate at full panel with the authored crop")
+    fu.add_argument("n", type=int)
+    fu.add_argument("--gamma", type=float, default=1.8)
+    fu.add_argument("--saturation", type=float, default=1.0)
+    fu.add_argument("--contrast", type=float, default=1.0)
+    fu.add_argument("--width", type=int, default=1600)
+    fu.add_argument("--height", type=int, default=1200)
+    fu.add_argument("--no-push", action="store_true")
+
     e = sub.add_parser("extend", help="append N more images, seeded with the existing corpus")
     e.add_argument("--n", type=int, default=30)
     e.add_argument("--scan-cap", type=int, default=12)
@@ -280,7 +370,7 @@ def main() -> None:
 
     args = ap.parse_args()
     {"corpus": cmd_corpus, "show": cmd_show, "record": cmd_record,
-     "status": cmd_status, "extend": cmd_extend}[args.cmd](args)
+     "status": cmd_status, "extend": cmd_extend, "full": cmd_full}[args.cmd](args)
 
 
 if __name__ == "__main__":
