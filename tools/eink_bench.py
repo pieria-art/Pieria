@@ -241,6 +241,25 @@ def cmd_full(args) -> None:
         crop = _db_crop_key(img.name, args.crop_key)
 
     fitted = ec.epaper._fit_rgb(img, w, h, args.fit, focal, crop)
+    if abs(args.chroma_gamma - 1.0) > 1e-3:
+        # A CURVE on chroma, not a multiplier. `ImageEnhance.Color(k)` scales every pixel's saturation
+        # by the same k, which cannot serve one frame containing both a saturated gown and desaturated
+        # skin: halving it fixed the skin and killed the gown (Flaming June, 2026-08-01).
+        #
+        # The dither's actual failure is gamut compression toward the hull — LOW-chroma tones acquire
+        # false colour (tan reads golden, skin reads orange) because they must be built from vivid
+        # primaries, while genuinely saturated colour is already served. So attenuate by how saturated
+        # a pixel ALREADY is: s' = s**k. At k=2, s=0.2 -> x0.20 but s=0.8 -> x0.80.
+        hue, sat, val = fitted.convert("HSV").split()   # NOT h/v — `h` is the panel height
+        # s' = max(s**k, s*floor) — a curve with a floor.
+        #
+        # Pure s**k fails at both ends of one frame: at k=2 it takes very faint colour (s=0.2) down to
+        # x0.20, erasing the finch's butterflies, while at k=1.5 it leaves MID chroma (s=0.5-0.6, the
+        # tan reeds) at x0.55-0.70 and the golden cast returns. The floor keeps faint colour alive; the
+        # curve still crushes the mid-range and spares genuinely saturated content (Flaming June's gown).
+        lut = [min(255, int(round(255.0 * max((i / 255.0) ** args.chroma_gamma,
+                                              (i / 255.0) * args.chroma_floor)))) for i in range(256)]
+        fitted = Image.merge("HSV", (hue, sat.point(lut), val)).convert("RGB")
     if abs(args.saturation - 1.0) > 1e-3:
         fitted = ImageEnhance.Color(fitted).enhance(args.saturation)
     if abs(args.contrast - 1.0) > 1e-3:
@@ -256,17 +275,27 @@ def cmd_full(args) -> None:
     OUT.mkdir(parents=True, exist_ok=True)
     # Dimensions belong in the name: the same image at 1600x1200 and 1200x1600 resolves to DIFFERENT
     # authored crops (4:3 vs 3:4), so they are different renders, not the same one twice.
-    dest = OUT / f"full_{args.n:02d}_{w}x{h}_{args.fit}_g{args.gamma}_s{args.saturation}_c{args.contrast}.png"
+    dest = OUT / f"full_{args.n:02d}_{w}x{h}_{args.fit}_g{args.gamma}_k{args.chroma_gamma}_s{args.saturation}_c{args.contrast}.png"
     out.save(dest)
     print(f"[{args.n}] {img.name}")
-    print(f"  {w}x{h}  gamma {args.gamma}  saturation {args.saturation}  contrast {args.contrast}")
+    print(f"  {w}x{h}  gamma {args.gamma}  chroma_gamma {args.chroma_gamma}  "
+          f"saturation {args.saturation}  contrast {args.contrast}")
     print(f"  fit {args.fit}  crop {crop if crop else 'NONE (focal cover)'}  focal {focal}")
     print(f"  {dest}")
     if args.no_push:
         return
     from inky.auto import auto  # noqa: PLC0415
     panel = auto()
-    panel.set_image(out)
+    pw, ph = panel.resolution
+    shown = out
+    if (out.width, out.height) != (pw, ph):
+        # Portrait composition on a physically landscape buffer — exactly what eink_client does when
+        # EINK_ORIENTATION=portrait: the server frames at h x w, the client rotates it back onto the
+        # panel's native buffer. Turn the panel 90 degrees to view.
+        shown = out.rotate(90, expand=True)
+        print(f"  rotated {out.width}x{out.height} -> {shown.width}x{shown.height} for the panel "
+              f"(turn the panel 90 degrees)")
+    panel.set_image(shown)
     panel.show()
     print("  pushed to panel")
 
@@ -388,6 +417,12 @@ def main() -> None:
     fu.add_argument("--gamma", type=float, default=1.8)
     fu.add_argument("--saturation", type=float, default=1.0)
     fu.add_argument("--contrast", type=float, default=1.0)
+    fu.add_argument("--chroma-floor", type=float, default=0.0,
+                    help="minimum multiplier applied to saturation (0 = no floor). Keeps faint colour "
+                         "from being erased by an aggressive --chroma-gamma.")
+    fu.add_argument("--chroma-gamma", type=float, default=1.0,
+                    help="exponent on HSV saturation (s**k). >1 crushes low chroma while sparing "
+                         "high chroma; 1.0 = off. Applied BEFORE --saturation.")
     fu.add_argument("--width", type=int, default=1600)
     fu.add_argument("--height", type=int, default=1200)
     fu.add_argument("--fit", default="cover", choices=("cover", "contain"),
