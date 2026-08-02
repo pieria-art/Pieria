@@ -191,6 +191,23 @@ def _db_crop_and_focal(filename: str, w: int, h: int):
     return ec.epaper.pick_crop_for_aspect(crops, w, h), focal
 
 
+def _db_crop_key(filename: str, key: str):
+    """A specific authored box by key, bypassing nearest-aspect selection."""
+    import sqlite3  # noqa: PLC0415
+    db = Path("data/artwork.db")
+    if not db.exists():
+        return None
+    con = sqlite3.connect(str(db))
+    try:
+        row = con.execute("select aspect_crops_json from artworks where filename = ?", (filename,)).fetchone()
+    finally:
+        con.close()
+    try:
+        return tuple(json.loads(row[0])[key]) if row and row[0] else None
+    except (TypeError, ValueError, KeyError):
+        return None
+
+
 def cmd_full(args) -> None:
     """Render ONE candidate at full panel resolution, with the authored crop, and blit it.
 
@@ -209,8 +226,21 @@ def cmd_full(args) -> None:
     img = Path(row["image"])
     w, h = args.width, args.height
     crop, focal = _db_crop_and_focal(img.name, w, h)
+    if args.box:
+        # An explicit normalised box, for AUTHORING a better grab than the stored preset. The stored
+        # 4:3 for a full-sheet scan preserves the whole plate width and accepts side margins; sometimes
+        # the right answer is to crop INTO the work and fill the frame with the subject.
+        crop = tuple(float(v) for v in args.box.split(","))
+        if len(crop) != 4:
+            sys.exit("--box needs x0,y0,x1,y1 normalised 0..1")
+    elif args.crop_key == "none":
+        crop = None
+    elif args.crop_key != "auto":
+        # Containing a box that is ALREADY the target aspect is a no-op — the whole point of `contain`
+        # for portrait art on a landscape panel is to letterbox a PORTRAIT framing (3:4) into it.
+        crop = _db_crop_key(img.name, args.crop_key)
 
-    fitted = ec.epaper._fit_rgb(img, w, h, "cover", focal, crop)
+    fitted = ec.epaper._fit_rgb(img, w, h, args.fit, focal, crop)
     if abs(args.saturation - 1.0) > 1e-3:
         fitted = ImageEnhance.Color(fitted).enhance(args.saturation)
     if abs(args.contrast - 1.0) > 1e-3:
@@ -226,11 +256,11 @@ def cmd_full(args) -> None:
     OUT.mkdir(parents=True, exist_ok=True)
     # Dimensions belong in the name: the same image at 1600x1200 and 1200x1600 resolves to DIFFERENT
     # authored crops (4:3 vs 3:4), so they are different renders, not the same one twice.
-    dest = OUT / f"full_{args.n:02d}_{w}x{h}_g{args.gamma}_s{args.saturation}_c{args.contrast}.png"
+    dest = OUT / f"full_{args.n:02d}_{w}x{h}_{args.fit}_g{args.gamma}_s{args.saturation}_c{args.contrast}.png"
     out.save(dest)
     print(f"[{args.n}] {img.name}")
     print(f"  {w}x{h}  gamma {args.gamma}  saturation {args.saturation}  contrast {args.contrast}")
-    print(f"  crop {crop if crop else 'NONE (focal cover)'}  focal {focal}")
+    print(f"  fit {args.fit}  crop {crop if crop else 'NONE (focal cover)'}  focal {focal}")
     print(f"  {dest}")
     if args.no_push:
         return
@@ -360,6 +390,15 @@ def main() -> None:
     fu.add_argument("--contrast", type=float, default=1.0)
     fu.add_argument("--width", type=int, default=1600)
     fu.add_argument("--height", type=int, default=1200)
+    fu.add_argument("--fit", default="cover", choices=("cover", "contain"),
+                    help="contain = letterbox the whole work onto white. On a panel whose substrate "
+                         "IS paper-white that reads as a mount board, not as bars — the only way to "
+                         "show portrait art on a landscape panel without cropping the composition.")
+    fu.add_argument("--crop-key", default="auto",
+                    choices=("auto", "none", "16:9", "9:16", "4:3", "3:4"),
+                    help="auto = what production picks by nearest aspect; a key forces that box; "
+                         "none = no authored crop at all (whole work).")
+    fu.add_argument("--box", default="", help="explicit normalised crop x0,y0,x1,y1 (overrides --crop-key)")
     fu.add_argument("--no-push", action="store_true")
 
     e = sub.add_parser("extend", help="append N more images, seeded with the existing corpus")
