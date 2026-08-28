@@ -201,6 +201,83 @@ def _apply_gamma(img: Image.Image, gamma: float) -> Image.Image:
     return img.point(lut * len(img.getbands()))
 
 
+# --- Chroma correction: a HUE-CONDITIONED curve (bench-derived 2026-08-28, ADR-088) ---------------
+# The dither's colour failure is gamut compression toward the hull: LOW-chroma tones acquire false
+# colour because they must be rebuilt from vivid primaries, while genuinely saturated colour is
+# already served. So attenuate by how saturated a pixel already is -- s' = max(s**k, s*floor).
+#
+# The FLOOR cannot be one number per image. Measured on the two works that disagree: Flaming June's
+# skin (PIL hue ~12-18) must lose its colour or it reads orange, while Sunflowers' pale wall (hue
+# ~32) must keep its colour because it genuinely is yellow. A per-image scalar cannot say "this
+# faint colour is spurious and that one is real" -- but the pixel's HUE can: the two populations
+# separate at 0.999 accuracy on hue alone (overlap 0.002).
+#
+# The mechanism is which ink can serve the hue. The wall at 32 sits essentially ON the yellow ink
+# (36), so its colour survives the dither honestly; skin at 12-18 is far from both yellow(36) and
+# red(253), so whatever chroma it keeps gets rebuilt from inks of the wrong hue and reads false.
+# Hence: floor high where an ink matches the hue, low where none does.
+_CHROMATIC_INK_HUES = None
+
+
+def _chromatic_ink_hues() -> list:
+    """PIL-HSV hues (0..255) of the panel's CHROMATIC inks -- black/white carry no hue.
+
+    Derived from SPECTRA6_DITHER_PALETTE rather than hardcoded, so re-measuring the panel's
+    primaries moves the chroma rule with it instead of silently desynchronising from the dither.
+    """
+    global _CHROMATIC_INK_HUES
+    if _CHROMATIC_INK_HUES is None:
+        hues = []
+        for rgb in SPECTRA6_DITHER_PALETTE:
+            px = Image.new("RGB", (1, 1), tuple(rgb)).convert("HSV")
+            h, s, _v = px.getpixel((0, 0))
+            if s > 32:          # black(0,0,0) and white(161,164,165) have no meaningful hue
+                hues.append(float(h))
+        _CHROMATIC_INK_HUES = hues
+    return _CHROMATIC_INK_HUES
+
+
+def _hue_error(hue: float) -> float:
+    """Smallest circular distance (PIL hue units, 0..128) from `hue` to any chromatic ink."""
+    best = 128.0
+    for ih in _chromatic_ink_hues():
+        d = abs(hue - ih) % 256.0
+        best = min(best, min(d, 256.0 - d))
+    return best
+
+
+def apply_chroma_curve(img: Image.Image, chroma_gamma: float, floor_max: float,
+                       hue_e0: float, bands: int = 48) -> Image.Image:
+    """s' = max(s**k, s*floor(hue)) on HSV saturation, with floor keyed on hue-to-ink distance.
+
+        floor(h) = floor_max * max(0, 1 - hue_error(h) / hue_e0)
+
+    `hue_e0` is the hue distance (PIL units; 256 = full circle) at which a hue is considered
+    unservable by any ink and its faint colour is crushed entirely.
+
+    Implemented as `bands` hue slices rather than a true 2-D transform because Pillow's `point()`
+    is per-channel: each slice gets its own saturation LUT and is pasted through a hue mask. All
+    C-speed, no numpy -- which is the point, since this has to run on the Pi inside the render.
+    Banding in the FLOOR is second-order (it only sets a lower bound on chroma), so ~48 slices is
+    visually indistinguishable from a continuous curve.
+    """
+    if abs(chroma_gamma - 1.0) < 1e-3 and floor_max <= 0.0:
+        return img
+    hue_c, sat_c, val_c = img.convert("HSV").split()
+    out_sat = sat_c.copy()
+    for b in range(bands):
+        lo = b * 256 // bands
+        hi = (b + 1) * 256 // bands
+        if hi <= lo:
+            continue
+        floor = floor_max * max(0.0, 1.0 - _hue_error((lo + hi - 1) / 2.0) / max(hue_e0, 1e-6))
+        lut = [min(255, int(round(255.0 * max((i / 255.0) ** chroma_gamma, (i / 255.0) * floor))))
+               for i in range(256)]
+        mask = hue_c.point([255 if lo <= i < hi else 0 for i in range(256)])
+        out_sat.paste(sat_c.point(lut), mask=mask)
+    return Image.merge("HSV", (hue_c, out_sat, val_c)).convert("RGB")
+
+
 def _adaptive_gamma(img: Image.Image) -> float:
     """Bench-calibrated highlight pulldown (2026-07-19), 1.4..1.5.
 

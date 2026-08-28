@@ -10,6 +10,9 @@ from epaper import (
     PALETTES,
     SPECTRA6_OUTPUT_PALETTE,
     _adaptive_gamma,
+    _chromatic_ink_hues,
+    _hue_error,
+    apply_chroma_curve,
     normalize_crop_box,
     pick_crop_for_aspect,
     render_for_epaper,
@@ -231,3 +234,74 @@ def test_pick_crop_for_aspect_degrades_quietly():
     assert pick_crop_for_aspect({"bogus": [0, 0, 1, 1]}, 1600, 1200) is None
     assert pick_crop_for_aspect({"4:3": "nonsense"}, 1600, 1200) is None
     assert pick_crop_for_aspect({"4:3": [0, 0, 1, 0.75]}, 1600, 0) is None     # no divide-by-zero
+
+
+# --- Hue-conditioned chroma curve (ADR-088 correction) ------------------------------------------
+
+def _solid(rgb, size=(64, 64)):
+    return Image.new("RGB", size, rgb)
+
+
+def _mean_chroma(img):
+    px = list(img.convert("RGB").getdata())
+    return sum(max(p) - min(p) for p in px) / len(px)
+
+
+def test_chromatic_ink_hues_excludes_black_and_white():
+    """The floor is keyed on hue, and black/white carry none — including them would put a spurious
+    'well-served' hue peak wherever their nominal hue happens to land."""
+    hues = _chromatic_ink_hues()
+    assert len(hues) == 4, f"expected the 4 chromatic inks, got {hues}"
+
+
+def test_hue_error_peaks_between_inks_and_vanishes_on_them():
+    for ink_hue in _chromatic_ink_hues():
+        assert _hue_error(ink_hue) == 0.0
+    # midway between the two closest inks nothing serves the hue well
+    a, b = sorted(_chromatic_ink_hues())[:2]
+    assert _hue_error((a + b) / 2.0) > 0.0
+
+
+def test_chroma_curve_crushes_an_unservable_hue_and_spares_a_servable_one():
+    """The whole point: same lever, opposite outcomes, decided by hue alone.
+
+    Guards the ADR-088 correction — June's skin (a hue no ink serves) must lose its faint colour
+    while Sunflowers' pale wall (essentially the yellow ink's own hue) must keep it.
+    """
+    inks = _chromatic_ink_hues()
+    served = int(min(inks))                                   # sits exactly on an ink
+    # the WORST-served hue, found rather than assumed: a fixed offset can silently land on another
+    # ink (yellow+64 is green, which is how the first version of this test fooled itself).
+    unserved = max(range(256), key=_hue_error)
+    assert _hue_error(unserved) > _hue_error(served)
+
+    on_ink = Image.new("HSV", (64, 64), (served, 90, 220)).convert("RGB")
+    off_ink = Image.new("HSV", (64, 64), (unserved, 90, 220)).convert("RGB")
+
+    kept = apply_chroma_curve(on_ink, chroma_gamma=2.0, floor_max=0.7, hue_e0=20.0)
+    crushed = apply_chroma_curve(off_ink, chroma_gamma=2.0, floor_max=0.7, hue_e0=20.0)
+
+    kept_ratio = _mean_chroma(kept) / max(_mean_chroma(on_ink), 1e-6)
+    crushed_ratio = _mean_chroma(crushed) / max(_mean_chroma(off_ink), 1e-6)
+    assert kept_ratio > crushed_ratio, (
+        f"a hue an ink can serve must keep more chroma than one none can "
+        f"(kept {kept_ratio:.3f} vs crushed {crushed_ratio:.3f})")
+
+
+def test_chroma_curve_is_a_noop_when_disabled():
+    src = _solid((200, 120, 60))
+    assert apply_chroma_curve(src, chroma_gamma=1.0, floor_max=0.0, hue_e0=20.0) is src
+
+
+def test_chroma_curve_preserves_size_and_mode():
+    src = _solid((200, 120, 60), size=(80, 40))
+    out = apply_chroma_curve(src, chroma_gamma=2.0, floor_max=0.7, hue_e0=20.0)
+    assert out.size == (80, 40) and out.mode == "RGB"
+
+
+def test_chroma_curve_never_raises_saturation():
+    """s' = max(s**k, s*floor) with k>=1 and floor<=1 can only attenuate — a curve that BOOSTS
+    chroma would push more colour at a palette that is already over-saturating."""
+    src = Image.new("HSV", (64, 64), (30, 200, 200)).convert("RGB")
+    out = apply_chroma_curve(src, chroma_gamma=2.0, floor_max=1.0, hue_e0=20.0)
+    assert _mean_chroma(out) <= _mean_chroma(src) + 1.0
