@@ -324,6 +324,14 @@ def build_flat_field(flat_photo: Image.Image, w: int, h: int, roi=None, smooth: 
     punch holes in the map.
     """
     rect = rectify(flat_photo, w, h, roi)
+    import tools.eink_target as _et
+    cx0, cy0, cx1, cy1 = _et.content_box(w, h)
+    content_mean = float(np.asarray(rect.convert("L")).astype(float)[cy0:cy1, cx0:cx1].mean())
+    if content_mean < 90:
+        raise ValueError(
+            f"flat-field content mean is {content_mean:.0f} — far too dark for an all-white target. "
+            f"This is almost certainly a mid-refresh capture (a Spectra 6 inversion phase photographs "
+            f"as a dark wash). Re-render `target flat`, wait for the panel, and re-capture.")
     small = rect.resize((max(4, w // smooth), max(4, h // smooth)), Image.BOX)
     field = np.asarray(small.resize((w, h), Image.BICUBIC)).astype(float)
     return np.maximum(field, 1.0)
@@ -471,6 +479,56 @@ def _v4l2_get(device: str, ctrl: str):
         return None
 
 
+def score_against_reference(photo: Image.Image, ref: Image.Image, w: int, h: int,
+                            flat=None, roi=None, fuse_factor: int = 6) -> dict:
+    """How close is what the panel actually showed to what the artwork looks like?
+
+    Both sides are FUSED first. Floyd-Steinberg carries colour in the spatial mix of pure primaries,
+    so a per-pixel comparison of a dithered frame measures every pixel as fully saturated and says
+    nothing.
+
+    ⚠️ The panel is normalised to ITS OWN black and white, because that is what a viewer adapts to —
+    the panel's white IS white to the eye looking at it. The reference is full-range sRGB. So this
+    measures whether the panel's rendering is faithful WITHIN the range it can produce; it does not,
+    and cannot, measure the range itself.
+    """
+    r = read_panel(photo, w, h, roi=roi, flat=flat)
+    import tools.eink_target as _et
+    cx0, cy0, cx1, cy1 = _et.content_box(w, h)
+    panel = r["corrected"].crop((cx0, cy0, cx1, cy1))
+    ref = ref.convert("RGB").resize(panel.size, Image.LANCZOS)
+
+    def _fuse(im):
+        return np.asarray(im.resize((im.width // fuse_factor, im.height // fuse_factor),
+                                    Image.BOX)).astype(float)
+    P, R = _fuse(panel), _fuse(ref)
+
+    def _hsv(a):
+        x = np.asarray(Image.fromarray(a.astype(np.uint8), "RGB").convert("HSV")).astype(float)
+        return x[..., 0], x[..., 1], x[..., 2]
+    ph, ps, pv = _hsv(P)
+    rh, rs, rv = _hsv(R)
+    dh = np.abs(ph - rh) % 256.0
+    dh = np.minimum(dh, 256.0 - dh)
+    return {
+        "d_luminance": float((pv - rv).mean()),
+        "abs_luminance": float(np.abs(pv - rv).mean()),
+        "d_saturation": float((ps - rs).mean()),
+        "abs_hue": float(dh.mean()),
+        "rms": float(np.sqrt(((P - R) ** 2).mean())),
+        "patch_residual": r["patch_residual"],
+    }
+
+
+def cmd_score(args) -> None:
+    w, h = args.width, args.height
+    flat = build_flat_field(Image.open(args.flat), w, h) if args.flat else None
+    m = score_against_reference(Image.open(args.photo), Image.open(args.reference), w, h, flat=flat)
+    print(f"  d_luminance {m['d_luminance']:+7.2f}   |d_lum| {m['abs_luminance']:6.2f}")
+    print(f"  d_saturation{m['d_saturation']:+7.2f}   |d_hue| {m['abs_hue']:6.2f}")
+    print(f"  RMS {m['rms']:6.2f}    patch non-uniformity {m['patch_residual']:.2f}")
+
+
 def cmd_lock(args) -> None:
     """Pin the camera so nothing drifts between measurements, then VERIFY it took.
 
@@ -521,11 +579,13 @@ def cmd_capture(args) -> None:
     tmp_a = Path(args.out).with_suffix(".settle_a.png")
     tmp_b = Path(args.out).with_suffix(".settle_b.png")
     _grab(args.device, args.size, args.warmup, str(tmp_a))
+    stable = 0
     for attempt in range(1, args.settle_tries + 1):
         _grab(args.device, args.size, max(2, args.warmup // 4), str(tmp_b))
         delta = _frame_delta(tmp_a, tmp_b)
-        print(f"  settle {attempt}: frame delta {delta:6.2f}")
-        if delta <= args.settle_delta:
+        stable = stable + 1 if delta <= args.settle_delta else 0
+        print(f"  settle {attempt}: frame delta {delta:6.2f}  stable {stable}/{args.settle_stable}")
+        if stable >= args.settle_stable:
             tmp_b.replace(Path(args.out))
             tmp_a.unlink(missing_ok=True)
             print(f"captured (settled) -> {args.out}")
@@ -579,6 +639,13 @@ def main() -> None:
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = ap.add_subparsers(dest="cmd", required=True)
     sub.add_parser("selftest", help="validate the pipeline against synthetic photographs")
+    sc = sub.add_parser("score", help="fidelity of a photographed panel against its reference")
+    sc.add_argument("photo")
+    sc.add_argument("reference")
+    sc.add_argument("--flat", default="")
+    sc.add_argument("--width", type=int, default=1600)
+    sc.add_argument("--height", type=int, default=1200)
+
     lk = sub.add_parser("lock", help="pin camera exposure/WB/focus/gain and verify it took")
     lk.add_argument("--device", default="/dev/video0")
     lk.add_argument("--focus", type=int, default=30)
@@ -596,6 +663,11 @@ def main() -> None:
     c.add_argument("--settle-delta", type=float, default=1.2,
                    help="mean abs frame difference (0-255) counted as settled")
     c.add_argument("--settle-tries", type=int, default=25)
+    c.add_argument("--settle-stable", type=int, default=3,
+                   help="consecutive agreeing frames required. ONE agreement is not enough: a Spectra "
+                        "6 refresh passes through slow phases where two successive grabs look "
+                        "identical, and a flat-field reference was once captured mid-refresh as a "
+                        "dark purple inversion state that then corrupted everything divided by it.")
     r = sub.add_parser("read", help="rectify + normalise a photograph and report")
     r.add_argument("photo")
     r.add_argument("--target", default="", help="the rendered target, to take w/h from")
@@ -608,7 +680,7 @@ def main() -> None:
     r.add_argument("--out", default="")
     args = ap.parse_args()
     {"selftest": cmd_selftest, "capture": cmd_capture, "read": cmd_read,
-     "lock": cmd_lock}[args.cmd](args)
+     "lock": cmd_lock, "score": cmd_score}[args.cmd](args)
 
 
 if __name__ == "__main__":

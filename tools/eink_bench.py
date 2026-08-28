@@ -843,6 +843,14 @@ def cmd_target(args) -> None:
         if args.gamma > 0:
             fitted = ec.epaper._apply_gamma(fitted, args.gamma)
         content = et._quantize(fitted)
+        # Save the UNQUANTISED fit as this render's reference. It has to be produced here, at this
+        # exact framing: the art target fits into the content box, whose aspect differs from the
+        # panel's, so a reference generated for the full panel is a different crop of the work and
+        # cannot be compared against pixel for pixel.
+        REF.mkdir(parents=True, exist_ok=True)
+        ref_path = REF / f"artref_{args.n:02d}.jpg"
+        fitted_ref = ec.epaper._fit_rgb(img, cw, ch, args.fit, focal, crop)
+        fitted_ref.save(ref_path, "JPEG", quality=92)
         tag = f"art{args.n:02d}_g{args.gamma}_k{args.chroma_gamma}"
         if args.white_point > 0:
             tag += f"_wp{args.white_point}"
@@ -858,6 +866,8 @@ def cmd_target(args) -> None:
     dest = OUT / f"target_{tag}_{w}x{h}.png"
     canvas.save(dest)
     print(f"target: {args.kind}  {w}x{h}")
+    if args.kind == "art":
+        print(f"  reference saved -> bench-eink/reference/artref_{args.n:02d}.jpg")
     print(f"  content box {et.content_box(w, h)}")
     print(f"  {dest}")
     if REF.exists():
