@@ -246,8 +246,36 @@ def _hue_error(hue: float) -> float:
     return best
 
 
+def _hue_error_fraction(hue: float) -> float:
+    """How unserved a hue is, normalised by its LOCAL gap: 0.0 on an ink, 1.0 midway between two.
+
+    A fixed absolute cutoff cannot work here, because the panel's chromatic inks are unevenly
+    spaced (yellow 36, green 100, blue 172, red 253). Measured 2026-08-28: with an absolute
+    cutoff of 20 units the floor reaches ZERO across 9.4% / 12.5% / 16.0% of the circle in the
+    yellow-green, green-blue and blue-red gaps and across 0.0% of the narrow red-yellow arc --
+    38% of all hues annihilated, and the one surviving arc is exactly the WARM one. On the panel
+    that showed up as a woodblock's pale blue vanishing (hue ~130-150, dead centre of the
+    green-blue gap) while warm-dominated oils were served well. That is an accident of ink
+    spacing, not a colour-science decision.
+
+    Normalising by the half-gap makes every gap behave the same: full protection on an ink,
+    falling to none only at the single midpoint hue between two inks.
+    """
+    inks = sorted(_chromatic_ink_hues())
+    ring = inks + [inks[0] + 256.0]
+    h = hue % 256.0
+    if h < inks[0]:
+        h += 256.0
+    for lo, hi in zip(ring, ring[1:]):
+        if lo <= h <= hi:
+            half = (hi - lo) / 2.0
+            return min(1.0, min(h - lo, hi - h) / half) if half > 0 else 0.0
+    return 1.0
+
+
 def apply_chroma_curve(img: Image.Image, chroma_gamma: float, floor_max: float,
-                       hue_e0: float, bands: int = 48) -> Image.Image:
+                       hue_e0: float, bands: int = 48, gap_normalised: bool = False,
+                       floor_min: float = 0.0) -> Image.Image:
     """s' = max(s**k, s*floor(hue)) on HSV saturation, with floor keyed on hue-to-ink distance.
 
         floor(h) = floor_max * max(0, 1 - hue_error(h) / hue_e0)
@@ -270,7 +298,12 @@ def apply_chroma_curve(img: Image.Image, chroma_gamma: float, floor_max: float,
         hi = (b + 1) * 256 // bands
         if hi <= lo:
             continue
-        floor = floor_max * max(0.0, 1.0 - _hue_error((lo + hi - 1) / 2.0) / max(hue_e0, 1e-6))
+        mid = (lo + hi - 1) / 2.0
+        if gap_normalised:
+            unserved = _hue_error_fraction(mid)
+        else:
+            unserved = min(1.0, _hue_error(mid) / max(hue_e0, 1e-6))
+        floor = max(floor_min, floor_max * (1.0 - unserved))
         lut = [min(255, int(round(255.0 * max((i / 255.0) ** chroma_gamma, (i / 255.0) * floor))))
                for i in range(256)]
         mask = hue_c.point([255 if lo <= i < hi else 0 for i in range(256)])

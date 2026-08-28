@@ -267,8 +267,10 @@ def cmd_full(args) -> None:
         # two works at once — June's skin must lose its colour while Sunflowers' wall must keep its —
         # but those populations separate at 0.999 accuracy on HUE alone, so the floor is keyed on how
         # well any ink can serve the pixel's hue instead of being one number per image.
-        fitted = ec.epaper.apply_chroma_curve(fitted, args.chroma_gamma,
-                                              args.chroma_floor_max, args.chroma_hue_e0)
+        fitted = ec.epaper.apply_chroma_curve(fitted, args.chroma_gamma, args.chroma_floor_max,
+                                              args.chroma_hue_e0,
+                                              gap_normalised=args.chroma_gap_normalised,
+                                              floor_min=args.chroma_floor_min)
     elif abs(args.chroma_gamma - 1.0) > 1e-3:
         # A CURVE on chroma, not a multiplier. `ImageEnhance.Color(k)` scales every pixel's saturation
         # by the same k, which cannot serve one frame containing both a saturated gown and desaturated
@@ -306,14 +308,23 @@ def cmd_full(args) -> None:
     # The chroma recipe belongs in the name too: a hue-conditioned render and a scalar-floor render at
     # the same gamma are different candidates, and a judgement filed against the wrong one is the
     # error this harness exists to prevent.
-    chroma_tag = (f"_hf{args.chroma_floor_max}e{args.chroma_hue_e0}"
-                  if args.chroma_floor_max is not None else f"_fl{args.chroma_floor}")
+    if args.chroma_floor_max is None:
+        chroma_tag = f"_fl{args.chroma_floor}"
+    elif args.chroma_gap_normalised:
+        chroma_tag = f"_hf{args.chroma_floor_max}gapmin{args.chroma_floor_min}"
+    else:
+        chroma_tag = f"_hf{args.chroma_floor_max}e{args.chroma_hue_e0}"
     dest = (OUT / f"full_{args.n:02d}_{w}x{h}_{args.fit}_g{args.gamma}_k{args.chroma_gamma}"
                   f"{chroma_tag}_s{args.saturation}_c{args.contrast}.png")
     out.save(dest)
     print(f"[{args.n}] {img.name}")
-    chroma_desc = (f"hue-conditioned floor_max {args.chroma_floor_max} e0 {args.chroma_hue_e0}"
-                   if args.chroma_floor_max is not None else f"scalar floor {args.chroma_floor}")
+    if args.chroma_floor_max is None:
+        chroma_desc = f"scalar floor {args.chroma_floor}"
+    elif args.chroma_gap_normalised:
+        chroma_desc = (f"hue-conditioned GAP-NORMALISED floor_max {args.chroma_floor_max} "
+                       f"floor_min {args.chroma_floor_min}")
+    else:
+        chroma_desc = f"hue-conditioned floor_max {args.chroma_floor_max} e0 {args.chroma_hue_e0}"
     print(f"  {w}x{h}  gamma {args.gamma}  chroma_gamma {args.chroma_gamma}  "
           f"saturation {args.saturation}  contrast {args.contrast}")
     print(f"  chroma: {chroma_desc}")
@@ -816,6 +827,13 @@ def main() -> None:
                          "--chroma-floor with floor(hue) = FLOOR_MAX * max(0, 1 - hue_err/E0), so "
                          "faint colour survives where an ink matches the hue and is crushed where "
                          "none does. Pass with --chroma-hue-e0.")
+    fu.add_argument("--chroma-gap-normalised", action="store_true",
+                    help="normalise hue error by the LOCAL ink gap instead of a fixed --chroma-hue-e0. "
+                         "The inks are unevenly spaced, so a fixed cutoff annihilates 38%% of the hue "
+                         "circle in the wide gaps while sparing the narrow warm arc entirely — "
+                         "measured on the panel as a woodblock's pale blue vanishing (2026-08-28).")
+    fu.add_argument("--chroma-floor-min", type=float, default=0.0,
+                    help="floor never falls below this, so no hue is ever fully stripped of colour.")
     fu.add_argument("--chroma-hue-e0", type=float, default=20.0,
                     help="hue distance (PIL units, 256 = full circle) at which a hue counts as "
                          "unservable by any ink. Only used with --chroma-floor-max.")

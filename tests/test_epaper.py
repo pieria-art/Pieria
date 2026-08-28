@@ -12,6 +12,7 @@ from epaper import (
     _adaptive_gamma,
     _chromatic_ink_hues,
     _hue_error,
+    _hue_error_fraction,
     apply_chroma_curve,
     normalize_crop_box,
     pick_crop_for_aspect,
@@ -305,3 +306,33 @@ def test_chroma_curve_never_raises_saturation():
     src = Image.new("HSV", (64, 64), (30, 200, 200)).convert("RGB")
     out = apply_chroma_curve(src, chroma_gamma=2.0, floor_max=1.0, hue_e0=20.0)
     assert _mean_chroma(out) <= _mean_chroma(src) + 1.0
+
+
+def test_gap_normalised_floor_has_no_dead_zones():
+    """The absolute-cutoff floor annihilated 38% of the hue circle, and only in the WIDE ink gaps.
+
+    Guards the 2026-08-28 panel finding: the chromatic inks are unevenly spaced (yellow 36, green
+    100, blue 172, red 253), so a fixed cutoff spares the narrow warm arc and wipes out cool faint
+    colour — a woodblock's pale blue vanished. Gap normalisation must reach zero only AT a midpoint.
+    """
+    dead_abs = [h for h in range(256) if 0.7 * max(0.0, 1 - _hue_error(h) / 20.0) == 0.0]
+    dead_gap = [h for h in range(256) if 0.7 * (1 - _hue_error_fraction(h)) <= 0.0]
+    assert len(dead_abs) > 80, "expected the absolute cutoff to have wide dead zones"
+    assert len(dead_gap) <= 6, f"gap normalisation should kill only midpoints, got {dead_gap}"
+
+
+def test_gap_normalised_floor_peaks_on_every_ink():
+    for ink in _chromatic_ink_hues():
+        assert _hue_error_fraction(ink) == 0.0, f"floor must be full on ink hue {ink}"
+
+
+def test_floor_min_keeps_colour_everywhere():
+    """floor_min is the guarantee that no hue is ever stripped completely."""
+    worst = max(range(256), key=_hue_error_fraction)
+    # FAINT colour specifically: floor_min only bites where s*floor_min exceeds s**k, i.e. below
+    # s = floor_min**(1/(k-1)). At k=2, floor_min=0.35 that is s < 0.35 -- saturated content is
+    # governed by the curve, not the floor, which is exactly the intended division of labour.
+    src = Image.new("HSV", (32, 32), (worst, 40, 200)).convert("RGB")
+    stripped = apply_chroma_curve(src, 2.0, 0.7, 20.0, gap_normalised=True, floor_min=0.0)
+    kept = apply_chroma_curve(src, 2.0, 0.7, 20.0, gap_normalised=True, floor_min=0.35)
+    assert _mean_chroma(kept) > _mean_chroma(stripped)
