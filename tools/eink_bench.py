@@ -8,12 +8,23 @@ the person at the keyboard. It is the wrong shape when they are not — a remote
 over SSH while someone stands at the panel calling letters out loud. There is no TTY to type into, and
 a half-finished loop holds the session open.
 
-So this splits the same work into four idempotent commands that each do one thing and exit:
+So this splits the same work into idempotent commands that each do one thing and exit:
 
     corpus            pick the max-spread corpus ONCE and freeze it to corpus.json
-    show N            render sheet N and blit it to the panel
+    show N            render sheet N and blit it to the panel        (BRACKETING only — ADR-084)
     record N LETTER   append that judgement to labels.jsonl
     status            what has been judged, what is left
+
+    reference         regenerate the laptop ground truth, through the render's own crop path
+    full N            render ONE candidate at full panel, authored crop, and blit it   (DECIDES)
+    classify N CLASS  pre-register a work's MATERIAL class, before it is judged
+    full-record N V   record a full-panel A/B verdict
+    full-status       campaign progress, by verdict and by material class
+
+`show` vs `full` is the ADR-084 split and it is not a preference: a 3x2 contact sheet gives each
+candidate 1/6 of the panel, which breaks the dither (primaries meant to FUSE at native resolution read
+as speckle) and used the wrong crop. Sixty judgements were made against that artifact and had to be
+demoted to a prior. Sheets may cheaply bracket a range; anything that decides something is `full`.
 
 FROZEN CORPUS IS THE POINT. `auto_corpus` re-runs greedy farthest-point selection over whatever is in
 LIBRARY_DIR at that moment. On this appliance the library GROWS while packs install, so calling it per
@@ -233,6 +244,16 @@ def cmd_full(args) -> None:
         crop = tuple(float(v) for v in args.box.split(","))
         if len(crop) != 4:
             sys.exit("--box needs x0,y0,x1,y1 normalised 0..1")
+        if args.save_box:
+            # Persist it so `reference` frames the ground truth the SAME way. An authored box that
+            # lives only in one shell command is how the panel and the laptop end up showing two
+            # different compositions of the same work.
+            boxes = _load_json(BOXES, {})
+            boxes[str(args.n)] = list(crop)
+            BOXES.write_text(json.dumps(boxes, indent=1, sort_keys=True))
+            print(f"  saved authored box for {args.n} -> {BOXES} (re-run `reference` to match)")
+    elif _authored_box(args.n) is not None and args.crop_key == "auto":
+        crop = _authored_box(args.n)
     elif args.crop_key == "none":
         crop = None
     elif args.crop_key != "auto":
@@ -241,7 +262,14 @@ def cmd_full(args) -> None:
         crop = _db_crop_key(img.name, args.crop_key)
 
     fitted = ec.epaper._fit_rgb(img, w, h, args.fit, focal, crop)
-    if abs(args.chroma_gamma - 1.0) > 1e-3:
+    if args.chroma_floor_max is not None:
+        # HUE-CONDITIONED floor (ADR-088 correction, 2026-08-28). The scalar floor below cannot serve
+        # two works at once — June's skin must lose its colour while Sunflowers' wall must keep its —
+        # but those populations separate at 0.999 accuracy on HUE alone, so the floor is keyed on how
+        # well any ink can serve the pixel's hue instead of being one number per image.
+        fitted = ec.epaper.apply_chroma_curve(fitted, args.chroma_gamma,
+                                              args.chroma_floor_max, args.chroma_hue_e0)
+    elif abs(args.chroma_gamma - 1.0) > 1e-3:
         # A CURVE on chroma, not a multiplier. `ImageEnhance.Color(k)` scales every pixel's saturation
         # by the same k, which cannot serve one frame containing both a saturated gown and desaturated
         # skin: halving it fixed the skin and killed the gown (Flaming June, 2026-08-01).
@@ -275,13 +303,27 @@ def cmd_full(args) -> None:
     OUT.mkdir(parents=True, exist_ok=True)
     # Dimensions belong in the name: the same image at 1600x1200 and 1200x1600 resolves to DIFFERENT
     # authored crops (4:3 vs 3:4), so they are different renders, not the same one twice.
-    dest = OUT / f"full_{args.n:02d}_{w}x{h}_{args.fit}_g{args.gamma}_k{args.chroma_gamma}_s{args.saturation}_c{args.contrast}.png"
+    # The chroma recipe belongs in the name too: a hue-conditioned render and a scalar-floor render at
+    # the same gamma are different candidates, and a judgement filed against the wrong one is the
+    # error this harness exists to prevent.
+    chroma_tag = (f"_hf{args.chroma_floor_max}e{args.chroma_hue_e0}"
+                  if args.chroma_floor_max is not None else f"_fl{args.chroma_floor}")
+    dest = (OUT / f"full_{args.n:02d}_{w}x{h}_{args.fit}_g{args.gamma}_k{args.chroma_gamma}"
+                  f"{chroma_tag}_s{args.saturation}_c{args.contrast}.png")
     out.save(dest)
     print(f"[{args.n}] {img.name}")
+    chroma_desc = (f"hue-conditioned floor_max {args.chroma_floor_max} e0 {args.chroma_hue_e0}"
+                   if args.chroma_floor_max is not None else f"scalar floor {args.chroma_floor}")
     print(f"  {w}x{h}  gamma {args.gamma}  chroma_gamma {args.chroma_gamma}  "
           f"saturation {args.saturation}  contrast {args.contrast}")
+    print(f"  chroma: {chroma_desc}")
     print(f"  fit {args.fit}  crop {crop if crop else 'NONE (focal cover)'}  focal {focal}")
     print(f"  {dest}")
+    # Tell the laptop what the panel is about to show, so the judge's ground truth follows the panel
+    # rather than being stepped by hand. Written even with --no-push: a render that was not pushed is
+    # still the last thing decided about, and a stale pointer is worse than a slightly early one.
+    if REF.exists():
+        (REF / "current.json").write_text(json.dumps({"n": args.n, "dest": dest.name}))
     if args.no_push:
         return
     from inky.auto import auto  # noqa: PLC0415
@@ -388,6 +430,339 @@ def cmd_status(args) -> None:
         print(f"  {r['n']:3d}  {mark:9s}  {Path(r['image']).name[:56]}")
 
 
+# --- The judgement rig: panel + laptop reference, same work, same framing ------------------------
+#
+# "Faithful" is undefined without a ground truth. The 2026-08-01 session judged sixty renders with no
+# reference at all — picking the least-bad of six variants of the same wrong thing (ADR-084). The
+# reference viewer fixed that, but two gaps remained until now:
+#
+#   1. the refs were the UNCROPPED sources, so a subject-filling panel render was compared against a
+#      full-sheet reference — two different compositions, which re-imports the ADR-084 error a level up;
+#   2. nothing advanced the laptop when the panel changed, so page and panel could silently drift
+#      apart mid-campaign — the image-vs-label misalignment the frozen corpus exists to prevent.
+#
+# Both close by generating and SERVING the references from the Pi: `reference` renders each work
+# through the same crop path as `full` (minus the quantise), `full` writes current.json, and the page
+# follows it. The laptop is then just a browser and there is no cross-machine copy to fall out of sync.
+#
+#     sudo python3 -m tools.eink_bench reference          # regenerate, through the render's crop path
+#     python3 -m http.server 8090 --directory bench-eink/reference
+#     # laptop browser -> http://<pi>:8090/   (press l to toggle follow)
+
+FULLPANEL = OUT / "fullpanel.jsonl"
+CLASSES = OUT / "classes.json"
+BOXES = OUT / "boxes.json"
+REF = OUT / "reference"
+
+#: MATERIAL classes, not collections. The 2026-08-02 conflict was semantic — June's skin must go
+#: neutral while Sunflowers' wall is genuinely yellow — and material is what encodes that. Assigned
+#: from the WORK before judging: post-hoc slicing of a finished dataset is fishing.
+MATERIAL_CLASSES = (
+    "aged-paper-plate",   # engraved/lithographic plates and prints on visible paper stock
+    "oil-painting",       # canvas, scanned edge to edge
+    "flat-ink-print",     # woodblock/ukiyo-e/poster — flat areas, hard boundaries
+    "mono-photograph",    # no chroma at all
+    "neutral-sculpture",  # 3-D objects, near-neutral, lit
+    "dark-field",         # astro/night — mostly black ground
+)
+
+VERDICTS = ("new", "incumbent", "tie", "both-bad")
+
+
+def _load_json(path, default):
+    if not path.exists():
+        return default
+    try:
+        return json.loads(path.read_text())
+    except (OSError, ValueError):
+        return default
+
+
+def _authored_box(n: int):
+    """A hand-authored crop override for work n, shared by BOTH the render and the reference.
+
+    ADR-087 changed what a crop is for on a landscape panel — fill the frame with the subject rather
+    than preserve the composition — and those boxes are authored one at a time on the panel before
+    the catalog-wide re-derivation runs. Keeping them in one file that `full` and `reference` both
+    read is what stops the panel showing a subject grab while the laptop shows the whole sheet.
+    """
+    box = _load_json(BOXES, {}).get(str(n))
+    return tuple(float(v) for v in box) if box and len(box) == 4 else None
+
+
+def _title_of(image_path: str) -> tuple:
+    """('collection', 'title') from a _Library filename `collection__title__hash.jpg`."""
+    stem = Path(image_path).stem
+    parts = stem.split("__")
+    coll = parts[0] if parts else ""
+    title = parts[1].replace("-", " ") if len(parts) > 1 else stem
+    return coll, title
+
+
+def cmd_reference(args) -> None:
+    """Regenerate the laptop reference set THROUGH the render's crop path (no quantise).
+
+    Must be re-run whenever the framing changes — a new authored box, or the ADR-087 re-derivation —
+    otherwise the ground truth silently stops being the thing on the panel.
+    """
+    rows = _load_corpus()
+    REF.mkdir(parents=True, exist_ok=True)
+    w, h = args.width, args.height
+    meta = []
+    for row in rows:
+        n, img = row["n"], Path(row["image"])
+        if not img.exists():
+            print(f"  [{n:2d}] MISSING {img}")
+            continue
+        crop, focal = _db_crop_and_focal(img.name, w, h)
+        box = _authored_box(n)
+        if box:
+            crop = box
+        framed = ec.epaper._fit_rgb(img, w, h, args.fit, focal, crop)
+        dest = REF / f"ref_{n:02d}.jpg"
+        framed.save(dest, "JPEG", quality=92)
+        coll, title = _title_of(row["image"])
+        meta.append({"n": n, "file": dest.name, "collection": coll, "title": title,
+                     "features": row.get("features", {}),
+                     "crop": list(crop) if crop else None,
+                     "authored_box": bool(box)})
+        print(f"  [{n:2d}] {dest.name}  crop {'AUTHORED ' if box else ''}{crop if crop else 'none (focal cover)'}")
+    (REF / "meta.json").write_text(json.dumps(meta, indent=1))
+    (REF / "index.html").write_text(_reference_html(meta, w, h))
+    print(f"\n{len(meta)} references at {w}x{h} ({args.fit}) -> {REF}/")
+    print(f"serve:  python3 -m http.server {args.port} --directory {REF}")
+    print(f"open :  http://<this-pi>:{args.port}/     (l = follow the panel, i = features, f = fullscreen)")
+
+
+def _reference_html(meta: list, w: int, h: int) -> str:
+    """The viewer. Neutral surround is not decoration — see the comment in the emitted CSS."""
+    return _REF_HTML_TEMPLATE.replace("__EMBEDDED__", json.dumps(meta)).replace("__PANEL__", f"{w}x{h}")
+
+
+def cmd_full_record(args) -> None:
+    """Record a full-panel A/B verdict. Refuses a work with no pre-registered class."""
+    rows = _load_corpus()
+    row = next((r for r in rows if r["n"] == args.n), None)
+    if row is None:
+        sys.exit(f"no corpus entry {args.n}")
+    if args.verdict not in VERDICTS:
+        sys.exit(f"verdict must be one of {', '.join(VERDICTS)}")
+    classes = _load_json(CLASSES, {})
+    cls = classes.get(str(args.n))
+    if not cls and not args.force:
+        sys.exit(f"work {args.n} has no pre-registered class — run `classify {args.n} <class>` first "
+                 f"(or --force). Assigning a class AFTER seeing the result is fishing, not a hypothesis.")
+    done = {}
+    if FULLPANEL.exists():
+        done = {json.loads(ln)["n"]: json.loads(ln)
+                for ln in FULLPANEL.read_text().splitlines() if ln.strip()}
+    if args.n in done and not args.force:
+        sys.exit(f"work {args.n} already recorded ({done[args.n]['verdict']}) — pass --force to replace")
+    rec = {"n": args.n, "image": row["image"], "class": cls, "verdict": args.verdict,
+           "candidate": args.candidate, "note": args.note, "features": row.get("features", {})}
+    lines = [json.dumps(v) for k, v in sorted(done.items()) if k != args.n] + [json.dumps(rec)]
+    FULLPANEL.write_text("\n".join(lines) + "\n")
+    print(f"[{args.n}] {args.verdict}   class={cls}   {row['image'].split('__')[1] if '__' in row['image'] else ''}")
+    print(f"  {len(lines)}/{len(rows)} recorded")
+
+
+def cmd_full_status(args) -> None:
+    rows = _load_corpus()
+    classes = _load_json(CLASSES, {})
+    done = {}
+    if FULLPANEL.exists():
+        done = {json.loads(ln)["n"]: json.loads(ln)
+                for ln in FULLPANEL.read_text().splitlines() if ln.strip()}
+    print(f"{len(done)}/{len(rows)} judged at full panel   "
+          f"{sum(1 for r in rows if classes.get(str(r['n'])))}/{len(rows)} classified")
+    tally, by_class = {}, {}
+    for r in rows:
+        n = r["n"]
+        cls = classes.get(str(n), "-")
+        d = done.get(n)
+        if d:
+            tally[d["verdict"]] = tally.get(d["verdict"], 0) + 1
+            by_class.setdefault(cls, {}).setdefault(d["verdict"], 0)
+            by_class[cls][d["verdict"]] += 1
+        if args.verbose or not d:
+            coll, title = _title_of(r["image"])
+            print(f"  {n:3d}  {(d['verdict'] if d else '--'):10s} {cls:18s} {title[:44]}")
+    if tally:
+        print("\noverall: " + "  ".join(f"{k}={v}" for k, v in sorted(tally.items())))
+    for cls, t in sorted(by_class.items()):
+        total = sum(t.values())
+        print(f"  {cls:18s} n={total:3d}  " + "  ".join(f"{k}={v}" for k, v in sorted(t.items())))
+        if total < 5:
+            print("      ^ thin cell — too few to claim a within-class model from")
+
+
+def cmd_classify(args) -> None:
+    rows = _load_corpus()
+    classes = _load_json(CLASSES, {})
+    if args.n is None:
+        unset = [r["n"] for r in rows if not classes.get(str(r["n"]))]
+        print("classes: " + ", ".join(MATERIAL_CLASSES))
+        counts = {}
+        for r in rows:
+            counts[classes.get(str(r["n"]), "-")] = counts.get(classes.get(str(r["n"]), "-"), 0) + 1
+        for k, v in sorted(counts.items()):
+            print(f"  {k:18s} {v:3d}")
+        if unset:
+            print(f"\nunclassified ({len(unset)}): {' '.join(str(u) for u in unset)}")
+        return
+    if args.material not in MATERIAL_CLASSES:
+        sys.exit(f"class must be one of: {', '.join(MATERIAL_CLASSES)}")
+    if not any(r["n"] == args.n for r in rows):
+        sys.exit(f"no corpus entry {args.n}")
+    classes[str(args.n)] = args.material
+    CLASSES.write_text(json.dumps(classes, indent=1, sort_keys=True))
+    print(f"[{args.n}] class = {args.material}")
+
+
+_REF_HTML_TEMPLATE = r"""<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pieria — e-ink calibration reference viewer</title>
+<style>
+  /* NEUTRAL SURROUND, DELIBERATELY.
+     This page exists to be the ground truth in a colour judgement, so the page itself must not
+     participate. A white background makes an image read darker and more saturated; a black one makes
+     it read lighter and washed. Mid-grey is the standard evaluation surround (ISO 3664), and every
+     piece of chrome here is strictly neutral — no accent colours anywhere near the artwork. */
+  :root { --surround:#7a7a7a; --chrome:#4a4a4a; --ink:#f0f0f0; --dim:#c8c8c8; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  html,body { height:100%; }
+  body {
+    background:var(--surround); color:var(--ink);
+    font:13px/1.5 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    display:flex; flex-direction:column; overflow:hidden;
+  }
+  header {
+    background:var(--chrome); padding:8px 14px; display:flex; gap:16px; align-items:baseline;
+    flex:0 0 auto; border-bottom:1px solid #333;
+  }
+  #n { font-size:20px; font-weight:700; min-width:4.5em; }
+  #title { font-size:15px; }
+  #coll, #panel { color:var(--dim); }
+  /* The follow pill is the only non-neutral thing on the page and it is INTENTIONALLY outside the
+     image area: if the page has silently stopped tracking the panel, that must be visible without
+     looking away from the artwork for long. */
+  #follow { margin-left:auto; padding:2px 8px; border-radius:3px; font-size:11px;
+            background:#3a3a3a; color:var(--dim); border:1px solid #2a2a2a; }
+  #follow.on { background:#d8d8d8; color:#222; }
+  #hint { color:var(--dim); font-size:11px; text-align:right; }
+  main { flex:1 1 auto; display:flex; align-items:center; justify-content:center; padding:14px; min-height:0; }
+  img { max-width:100%; max-height:100%; object-fit:contain; display:block; }
+  #feat {
+    position:fixed; right:14px; bottom:14px; background:rgba(40,40,40,.94); padding:10px 12px;
+    border-radius:4px; font-size:12px; display:none; white-space:pre; color:var(--dim);
+  }
+  #feat.on { display:block; }
+  #jump {
+    position:fixed; left:50%; top:50%; transform:translate(-50%,-50%);
+    background:rgba(30,30,30,.95); padding:18px 28px; border-radius:6px;
+    font-size:34px; letter-spacing:.1em; display:none;
+  }
+  #jump.on { display:block; }
+</style>
+</head>
+<body>
+<header>
+  <span id="n">--/--</span>
+  <span id="title">loading…</span>
+  <span id="coll"></span>
+  <span id="panel">__PANEL__</span>
+  <span id="follow">follow: off</span>
+  <span id="hint">← → step · number+Enter · <b>l</b> follow · <b>i</b> features · <b>f</b> fullscreen</span>
+</header>
+<main><img id="img" alt=""></main>
+<div id="feat"></div>
+<div id="jump"></div>
+
+<script>
+// Metadata is INLINED, not fetched: this page must still work when opened straight off the disk.
+// FOLLOW mode needs http (fetch is blocked on file://), which is why `reference` prints a one-line
+// http.server command — serve it FROM THE PI so the refs and the panel can never be different builds.
+const EMBEDDED = __EMBEDDED__;
+
+let META = [], idx = 0, buf = "", follow = false, lastN = null;
+const $ = id => document.getElementById(id);
+
+function render() {
+  const m = META[idx];
+  if (!m) return;
+  $("img").src = m.file;
+  $("img").alt = m.title;
+  $("n").textContent = String(m.n).padStart(2, "0") + "/" + META.length;
+  $("title").textContent = m.title;
+  $("coll").textContent = m.collection;
+  const f = m.features || {};
+  $("feat").textContent =
+    "wash    " + f.wash_pct +
+    "\nlum     " + f.mean_lum +
+    "\nchroma  " + f.mean_chroma +
+    "\nedge    " + f.edge_pct +
+    "\ncrop    " + (m.crop ? m.crop.map(v => v.toFixed(3)).join(", ") : "none") +
+    (m.authored_box ? "  (AUTHORED)" : "");
+  // Preload neighbours so stepping is instant — a 1600px JPEG decode is otherwise a visible stall,
+  // and any pause invites the eye to re-adapt between the reference and the panel.
+  [idx - 1, idx + 1].forEach(j => { if (META[j]) new Image().src = META[j].file; });
+}
+function go(i) { idx = Math.max(0, Math.min(META.length - 1, i)); render(); }
+function goN(n) { const at = META.findIndex(m => m.n === n); if (at >= 0) go(at); }
+function showJump() {
+  const j = $("jump");
+  if (buf) { j.textContent = buf; j.classList.add("on"); } else { j.classList.remove("on"); }
+}
+function setFollow(on, note) {
+  follow = on;
+  $("follow").textContent = "follow: " + (on ? "ON" : (note || "off"));
+  $("follow").classList.toggle("on", on);
+}
+// Poll what the PANEL was last told to show. `full N` writes current.json, so the laptop tracks the
+// panel instead of being stepped by hand — the two drifting apart mid-campaign is exactly the
+// image-vs-judgement misalignment the frozen corpus exists to prevent, one level up.
+async function poll() {
+  if (!follow) return;
+  try {
+    const r = await fetch("current.json?t=" + Date.now(), { cache: "no-store" });
+    if (!r.ok) throw new Error(r.status);
+    const cur = await r.json();
+    if (cur && cur.n && cur.n !== lastN) { lastN = cur.n; goN(cur.n); }
+  } catch (e) {
+    setFollow(false, "unavailable (open over http)");
+  }
+}
+setInterval(poll, 1000);
+
+addEventListener("keydown", e => {
+  if (e.key === "ArrowRight" || e.key === " ") { go(idx + 1); e.preventDefault(); }
+  else if (e.key === "ArrowLeft") { go(idx - 1); e.preventDefault(); }
+  else if (e.key === "Home") go(0);
+  else if (e.key === "End") go(META.length - 1);
+  else if (e.key === "i") $("feat").classList.toggle("on");
+  else if (e.key === "l") { setFollow(!follow); if (follow) { lastN = null; poll(); } }
+  else if (e.key === "f") { document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen(); }
+  else if (/^[0-9]$/.test(e.key)) { buf += e.key; showJump(); }
+  else if (e.key === "Enter" && buf) {
+    // Jump by SHEET NUMBER, not array position. They coincide today, but the corpus is appended to
+    // (batch two was `extend`), so binding to n is what keeps "sheet 41" meaning sheet 41.
+    goN(parseInt(buf, 10)); buf = ""; showJump();
+  }
+  else if (e.key === "Escape") { buf = ""; showJump(); }
+});
+
+META = EMBEDDED;
+render();
+setFollow(true);
+</script>
+</body>
+</html>
+"""
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -423,6 +798,14 @@ def main() -> None:
     fu.add_argument("--chroma-gamma", type=float, default=1.0,
                     help="exponent on HSV saturation (s**k). >1 crushes low chroma while sparing "
                          "high chroma; 1.0 = off. Applied BEFORE --saturation.")
+    fu.add_argument("--chroma-floor-max", type=float, default=None,
+                    help="HUE-CONDITIONED floor (ADR-088 correction). Replaces the scalar "
+                         "--chroma-floor with floor(hue) = FLOOR_MAX * max(0, 1 - hue_err/E0), so "
+                         "faint colour survives where an ink matches the hue and is crushed where "
+                         "none does. Pass with --chroma-hue-e0.")
+    fu.add_argument("--chroma-hue-e0", type=float, default=20.0,
+                    help="hue distance (PIL units, 256 = full circle) at which a hue counts as "
+                         "unservable by any ink. Only used with --chroma-floor-max.")
     fu.add_argument("--width", type=int, default=1600)
     fu.add_argument("--height", type=int, default=1200)
     fu.add_argument("--fit", default="cover", choices=("cover", "contain"),
@@ -434,7 +817,33 @@ def main() -> None:
                     help="auto = what production picks by nearest aspect; a key forces that box; "
                          "none = no authored crop at all (whole work).")
     fu.add_argument("--box", default="", help="explicit normalised crop x0,y0,x1,y1 (overrides --crop-key)")
+    fu.add_argument("--save-box", action="store_true",
+                    help="persist --box to boxes.json so `reference` frames the ground truth the "
+                         "same way. Use it the moment a framing is accepted.")
     fu.add_argument("--no-push", action="store_true")
+
+    rf = sub.add_parser("reference", help="regenerate the laptop reference set through the render's crop path")
+    rf.add_argument("--width", type=int, default=1600)
+    rf.add_argument("--height", type=int, default=1200)
+    rf.add_argument("--fit", default="cover", choices=("cover", "contain"))
+    rf.add_argument("--port", type=int, default=8090, help="port quoted in the printed serve command")
+
+    fr = sub.add_parser("full-record", help="record a full-panel A/B verdict")
+    fr.add_argument("n", type=int)
+    fr.add_argument("verdict", choices=VERDICTS)
+    fr.add_argument("--candidate", default="",
+                    help="which recipe was the 'new' side, e.g. 'hue f0.70 e20' — a verdict with no "
+                         "candidate cannot be replayed")
+    fr.add_argument("--note", default="", help="residual in the judge's own words; this is where the "
+                                               "next mechanism has come from every time so far")
+    fr.add_argument("--force", action="store_true", help="replace an existing record / skip the class gate")
+
+    fs = sub.add_parser("full-status", help="campaign progress, by verdict and by material class")
+    fs.add_argument("-v", "--verbose", action="store_true", help="list every work, not just the unjudged")
+
+    cl = sub.add_parser("classify", help="pre-register a work's MATERIAL class (before judging it)")
+    cl.add_argument("n", type=int, nargs="?", default=None)
+    cl.add_argument("material", nargs="?", default=None)
 
     e = sub.add_parser("extend", help="append N more images, seeded with the existing corpus")
     e.add_argument("--n", type=int, default=30)
@@ -444,7 +853,9 @@ def main() -> None:
 
     args = ap.parse_args()
     {"corpus": cmd_corpus, "show": cmd_show, "record": cmd_record,
-     "status": cmd_status, "extend": cmd_extend, "full": cmd_full}[args.cmd](args)
+     "status": cmd_status, "extend": cmd_extend, "full": cmd_full,
+     "reference": cmd_reference, "full-record": cmd_full_record,
+     "full-status": cmd_full_status, "classify": cmd_classify}[args.cmd](args)
 
 
 if __name__ == "__main__":
