@@ -825,6 +825,8 @@ def cmd_target(args) -> None:
         # Fit to the CONTENT box, not the panel: the art must be measured at the size it is
         # photographed at, and rescaling a dithered frame afterwards would destroy the dither.
         fitted = ec.epaper._fit_rgb(img, cw, ch, args.fit, focal, crop)
+        if args.white_point > 0:
+            fitted = fitted.point([min(255, int(round(i * args.white_point))) for i in range(256)] * 3)
         if args.chroma_floor_max is not None:
             fitted = ec.epaper.apply_chroma_curve(fitted, args.chroma_gamma, args.chroma_floor_max,
                                                   args.chroma_hue_e0,
@@ -842,6 +844,8 @@ def cmd_target(args) -> None:
             fitted = ec.epaper._apply_gamma(fitted, args.gamma)
         content = et._quantize(fitted)
         tag = f"art{args.n:02d}_g{args.gamma}_k{args.chroma_gamma}"
+        if args.white_point > 0:
+            tag += f"_wp{args.white_point}"
         if args.chroma_floor_max is not None:
             tag += (f"_hf{args.chroma_floor_max}gap" if args.chroma_gap_normalised
                     else f"_hf{args.chroma_floor_max}e{args.chroma_hue_e0}")
@@ -972,6 +976,8 @@ def main() -> None:
     tg.add_argument("--gamma", type=float, default=1.4)
     tg.add_argument("--saturation", type=float, default=1.0)
     tg.add_argument("--chroma-gamma", type=float, default=1.0)
+    tg.add_argument("--white-point", type=float, default=0.0,
+                    help="see `full --white-point` (ADR-090)")
     tg.add_argument("--chroma-floor", type=float, default=0.0)
     tg.add_argument("--chroma-floor-max", type=float, default=None)
     tg.add_argument("--chroma-hue-e0", type=float, default=20.0)
