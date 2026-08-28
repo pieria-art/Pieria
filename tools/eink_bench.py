@@ -314,13 +314,14 @@ def cmd_full(args) -> None:
     # The chroma recipe belongs in the name too: a hue-conditioned render and a scalar-floor render at
     # the same gamma are different candidates, and a judgement filed against the wrong one is the
     # error this harness exists to prevent.
+    wp_tag = f"_wp{args.white_point}" if args.white_point > 0 else ""
     if args.chroma_floor_max is None:
         chroma_tag = f"_fl{args.chroma_floor}"
     elif args.chroma_gap_normalised:
         chroma_tag = f"_hf{args.chroma_floor_max}gapmin{args.chroma_floor_min}"
     else:
         chroma_tag = f"_hf{args.chroma_floor_max}e{args.chroma_hue_e0}"
-    dest = (OUT / f"full_{args.n:02d}_{w}x{h}_{args.fit}_g{args.gamma}_k{args.chroma_gamma}"
+    dest = (OUT / f"full_{args.n:02d}_{w}x{h}_{args.fit}_g{args.gamma}{wp_tag}_k{args.chroma_gamma}"
                   f"{chroma_tag}_s{args.saturation}_c{args.contrast}.png")
     out.save(dest)
     print(f"[{args.n}] {img.name}")
@@ -334,6 +335,9 @@ def cmd_full(args) -> None:
     print(f"  {w}x{h}  gamma {args.gamma}  chroma_gamma {args.chroma_gamma}  "
           f"saturation {args.saturation}  contrast {args.contrast}")
     print(f"  chroma: {chroma_desc}")
+    if args.white_point > 0:
+        print(f"  white-point: {args.white_point} (255 -> {round(255*args.white_point)}; "
+              f"white ink is 163)")
     print(f"  fit {args.fit}  crop {crop if crop else 'NONE (focal cover)'}  focal {focal}")
     print(f"  {dest}")
     # Tell the laptop what the panel is about to show, so the judge's ground truth follows the panel
