@@ -787,6 +787,80 @@ setFollow(true);
 """
 
 
+def cmd_target(args) -> None:
+    """Render a self-calibrating measurement target and blit it.
+
+    Every target carries a black registration frame (four inside corners -> homography) and a strip
+    of PURE ink patches (-> per-photograph colour correction). That is what makes a handheld phone
+    photo usable: the correction is solved from inside the same frame, so shots taken minutes apart
+    under different light stay comparable. See tools/eink_target.py for why this is per-photo rather
+    than one measured camera offset.
+    """
+    from tools import eink_target as et  # noqa: PLC0415
+    w, h = args.width, args.height
+    if args.kind == "art":
+        if args.n is None:
+            sys.exit("target art needs --n <corpus number>")
+        rows = _load_corpus()
+        row = next((r for r in rows if r["n"] == args.n), None)
+        if row is None:
+            sys.exit(f"no corpus entry {args.n}")
+        img = Path(row["image"])
+        cx0, cy0, cx1, cy1 = et.content_box(w, h)
+        cw, ch = cx1 - cx0, cy1 - cy0
+        crop, focal = _db_crop_and_focal(img.name, cw, ch)
+        box = _authored_box(args.n)
+        if box:
+            crop = box
+        # Fit to the CONTENT box, not the panel: the art must be measured at the size it is
+        # photographed at, and rescaling a dithered frame afterwards would destroy the dither.
+        fitted = ec.epaper._fit_rgb(img, cw, ch, args.fit, focal, crop)
+        if args.chroma_floor_max is not None:
+            fitted = ec.epaper.apply_chroma_curve(fitted, args.chroma_gamma, args.chroma_floor_max,
+                                                  args.chroma_hue_e0,
+                                                  gap_normalised=args.chroma_gap_normalised,
+                                                  floor_min=args.chroma_floor_min)
+        elif abs(args.chroma_gamma - 1.0) > 1e-3:
+            hue_c, sat_c, val_c = fitted.convert("HSV").split()
+            lut = [min(255, int(round(255.0 * max((i / 255.0) ** args.chroma_gamma,
+                                                  (i / 255.0) * args.chroma_floor))))
+                   for i in range(256)]
+            fitted = Image.merge("HSV", (hue_c, sat_c.point(lut), val_c)).convert("RGB")
+        if abs(args.saturation - 1.0) > 1e-3:
+            fitted = ImageEnhance.Color(fitted).enhance(args.saturation)
+        if args.gamma > 0:
+            fitted = ec.epaper._apply_gamma(fitted, args.gamma)
+        content = et._quantize(fitted)
+        tag = f"art{args.n:02d}_g{args.gamma}_k{args.chroma_gamma}"
+        if args.chroma_floor_max is not None:
+            tag += (f"_hf{args.chroma_floor_max}gap" if args.chroma_gap_normalised
+                    else f"_hf{args.chroma_floor_max}e{args.chroma_hue_e0}")
+    else:
+        content = et.TARGETS[args.kind](w, h)
+        tag = args.kind
+
+    canvas = et.compose(content, w, h)
+    OUT.mkdir(parents=True, exist_ok=True)
+    dest = OUT / f"target_{tag}_{w}x{h}.png"
+    canvas.save(dest)
+    print(f"target: {args.kind}  {w}x{h}")
+    print(f"  content box {et.content_box(w, h)}")
+    print(f"  {dest}")
+    if REF.exists():
+        (REF / "current.json").write_text(json.dumps({"n": args.n or 0, "dest": dest.name}))
+    if args.no_push:
+        return
+    from inky.auto import auto  # noqa: PLC0415
+    panel = auto()
+    pw, ph = panel.resolution
+    shown = canvas if (canvas.width, canvas.height) == (pw, ph) else canvas.rotate(90, expand=True)
+    panel.set_image(shown)
+    panel.show()
+    print("  pushed to panel")
+    print("  PHOTO: straight on, diffuse light (the glass is specular), whole frame in shot "
+          "including the black border and the patch strip.")
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -878,6 +952,22 @@ def main() -> None:
     fs = sub.add_parser("full-status", help="campaign progress, by verdict and by material class")
     fs.add_argument("-v", "--verbose", action="store_true", help="list every work, not just the unjudged")
 
+    tg = sub.add_parser("target", help="render a self-calibrating measurement target for photography")
+    tg.add_argument("kind", choices=("primaries", "ramp", "huegrid", "art"))
+    tg.add_argument("--n", type=int, default=None, help="corpus number, for kind=art")
+    tg.add_argument("--gamma", type=float, default=1.4)
+    tg.add_argument("--saturation", type=float, default=1.0)
+    tg.add_argument("--chroma-gamma", type=float, default=1.0)
+    tg.add_argument("--chroma-floor", type=float, default=0.0)
+    tg.add_argument("--chroma-floor-max", type=float, default=None)
+    tg.add_argument("--chroma-hue-e0", type=float, default=20.0)
+    tg.add_argument("--chroma-gap-normalised", action="store_true")
+    tg.add_argument("--chroma-floor-min", type=float, default=0.0)
+    tg.add_argument("--fit", default="cover", choices=("cover", "contain"))
+    tg.add_argument("--width", type=int, default=1600)
+    tg.add_argument("--height", type=int, default=1200)
+    tg.add_argument("--no-push", action="store_true")
+
     cl = sub.add_parser("classify", help="pre-register a work's MATERIAL class (before judging it)")
     cl.add_argument("n", type=int, nargs="?", default=None)
     cl.add_argument("material", nargs="?", default=None)
@@ -891,7 +981,7 @@ def main() -> None:
     args = ap.parse_args()
     {"corpus": cmd_corpus, "show": cmd_show, "record": cmd_record,
      "status": cmd_status, "extend": cmd_extend, "full": cmd_full,
-     "reference": cmd_reference, "full-record": cmd_full_record,
+     "reference": cmd_reference, "full-record": cmd_full_record, "target": cmd_target,
      "full-status": cmd_full_status, "classify": cmd_classify}[args.cmd](args)
 
 
