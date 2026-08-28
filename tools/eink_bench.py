@@ -461,10 +461,17 @@ MATERIAL_CLASSES = (
     "aged-paper-plate",   # engraved/lithographic plates and prints on visible paper stock
     "oil-painting",       # canvas, scanned edge to edge
     "flat-ink-print",     # woodblock/ukiyo-e/poster — flat areas, hard boundaries
-    "mono-photograph",    # no chroma at all
+    "mono-photograph",    # greyscale photographic prints
+    "colour-photograph",  # photographs carrying real colour — incl. photochroms and toned albumen
     "neutral-sculpture",  # 3-D objects, near-neutral, lit
     "dark-field",         # astro/night — mostly black ground
 )
+# ⚠️ CLASS IS THE MATERIAL, NOT A FEATURE THRESHOLD. `the-shipwreck` (n57) measures mean_chroma 0.0
+# yet is a monochrome ENGRAVING on paper — an aged-paper-plate whose render problems are a plate's,
+# not a photograph's. Assign by looking at the work; the features are inputs to the model, not the
+# label. `colour-photograph` was added 2026-08-28 only after looking: the first list had nowhere to
+# put the Hubble frame, a photochrom, or a sepia albumen print, and they would have been forced into
+# a class they do not behave like.
 
 VERDICTS = ("new", "incumbent", "tie", "both-bad")
 

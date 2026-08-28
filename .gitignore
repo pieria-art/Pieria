@@ -44,6 +44,13 @@ bench-eink/*
 !bench-eink/retest.jsonl
 !bench-eink/drifttest.jsonl
 !bench-eink/fullpanel_recipes.jsonl
+!bench-eink/fullpanel.jsonl
+!bench-eink/classes.json
+!bench-eink/boxes.json
+# classes.json / boxes.json are DECISIONS, not output: a material class assigned by looking at 60
+# works, and crop boxes authored one at a time on the panel. Neither is reproducible from the code,
+# and both must reach the Pi by git — the harness reads them there. bench-eink/reference/ stays
+# ignored because `eink_bench reference` regenerates it (and must, whenever framing changes).
 
 # Local-only dev docs (kept on disk, not published).
 # .ai/ is private-by-default; only the system architecture doc is tracked.
