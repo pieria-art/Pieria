@@ -148,23 +148,44 @@ def _mean_rgb(img: Image.Image, rect, inset: float = 0.22) -> np.ndarray:
 
 
 def solve_correction(rectified: Image.Image, w: int, h: int) -> tuple:
-    """Per-channel affine (gain, offset) mapping photographed patches -> intended ink RGB.
+    """Per-channel affine solved from the BLACK and WHITE patches ONLY.
 
-    Deliberately affine per channel rather than a full 3x3: with six patches a 3x3 would start
-    fitting the panel's own crosstalk as if it were camera error, and the panel is the thing being
-    measured. Gain and offset absorb exposure and white balance, which is what actually varies.
+    ⚠️ A first version anchored on all six inks, mapping them to SPECTRA6_OUTPUT_PALETTE — the PURE
+    primaries. That is wrong twice over. The panel physically cannot emit pure (255,0,0); it emits a
+    muted ink. So the fit was asked to reach impossible targets and responded with extreme gains and
+    clipping (measured: residual 65-108/255, a negative channel gain). And it was CIRCULAR: the
+    chromatic inks' true values are exactly what we are trying to measure, so they cannot also be the
+    anchors.
+
+    Black and white are the only legitimate anchors, because their role is definitional rather than
+    measured: they set the tonal range, absorbing exposure and white balance. Everything is then
+    expressed in PANEL-RELATIVE units — the panel's own black is 0 and its own white is 255 — which
+    is self-consistent, needs no prior knowledge of the inks, and is directly comparable to any other
+    palette normalised the same way.
     """
-    inks = [tuple(c) for c in ep.SPECTRA6_OUTPUT_PALETTE]
-    rects = patch_rects(w, h, len(inks))
-    meas = np.stack([_mean_rgb(rectified, r) for r in rects])
-    want = np.asarray(inks, dtype=float)
-    gain, off = np.zeros(3), np.zeros(3)
-    for c in range(3):
-        A = np.stack([meas[:, c], np.ones(len(meas))], axis=1)
-        sol, *_ = np.linalg.lstsq(A, want[:, c], rcond=None)
-        gain[c], off[c] = sol
-    resid = float(np.abs((meas * gain + off) - want).mean())
-    return gain, off, resid
+    rects = patch_rects(w, h, len(ep.SPECTRA6_OUTPUT_PALETTE))
+    black = _mean_rgb(rectified, rects[0])
+    white = _mean_rgb(rectified, rects[1])
+    span = np.maximum(white - black, 1e-3)
+    gain = 255.0 / span
+    off = -black * gain
+    # Diagnostic: how uniform is each patch? A specular highlight or uneven light shows up here long
+    # before it shows up as a wrong colour, and silently biases every later measurement.
+    stds = []
+    for r in rects:
+        x0, y0, x1, y1 = r
+        dx, dy = int((x1 - x0) * 0.22), int((y1 - y0) * 0.22)
+        a = np.asarray(rectified.crop((x0 + dx, y0 + dy, x1 - dx, y1 - dy))).astype(float)
+        stds.append(float(a.reshape(-1, 3).std(axis=0).mean()))
+    return gain, off, float(np.mean(stds))
+
+
+def normalise_palette(palette) -> list:
+    """Express an assumed palette in the same panel-relative units, so it can be compared."""
+    arr = np.asarray([list(c) for c in palette], dtype=float)
+    black, white = arr[0], arr[1]
+    span = np.maximum(white - black, 1e-3)
+    return [[round(v, 1) for v in ((c - black) * 255.0 / span)] for c in arr]
 
 
 def apply_correction(img: Image.Image, gain, off) -> Image.Image:
@@ -259,16 +280,119 @@ def cmd_selftest(args) -> None:
         sys.exit(1)
 
 
-def cmd_capture(args) -> None:
-    """Grab one frame with ffmpeg. Discards the first frames so auto-exposure can settle."""
+def _grab(device: str, size: str, warmup: int, out: str) -> None:
+    _v4l2_set(device, *GAIN_CTRL)      # see GAIN_CTRL: this camera walks its gain back up on its own
     cmd = ["ffmpeg", "-hide_banner", "-loglevel", "error", "-f", "v4l2",
-           "-video_size", args.size, "-i", args.device, "-frames:v", "1", "-y", args.out]
-    if args.warmup > 0:
-        cmd = ["ffmpeg", "-hide_banner", "-loglevel", "error", "-f", "v4l2",
-               "-video_size", args.size, "-i", args.device,
-               "-vf", f"select=gte(n\\,{args.warmup})", "-frames:v", "1", "-y", args.out]
+           "-video_size", size, "-i", device]
+    if warmup > 0:
+        cmd += ["-vf", f"select=gte(n\\,{warmup})"]
+    cmd += ["-frames:v", "1", "-y", out]
     subprocess.run(cmd, check=True)
-    print(f"captured -> {args.out}")
+
+
+def _frame_delta(a: Path, b: Path) -> float:
+    """Mean absolute difference between two frames, 0-255."""
+    x = np.asarray(Image.open(a).convert("L").resize((320, 180), Image.BOX)).astype(float)
+    y = np.asarray(Image.open(b).convert("L").resize((320, 180), Image.BOX)).astype(float)
+    return float(np.abs(x - y).mean())
+
+
+#: Locked C920 settings for the overhead rig, found by sweeping against the panel 2026-08-28.
+#: exposure 200 + gain 24 puts the panel's white at 253 with p99.9 = 247 and ZERO clipped pixels —
+#: nearly the full range with nothing lost at the top. A clipped white anchor invalidates the whole
+#: correction, so headroom matters more than brightness here.
+CAMERA_LOCK = [
+    ("auto_exposure", 1),                 # 1 = Manual Mode
+    ("exposure_time_absolute", 200),
+    ("white_balance_automatic", 0),
+    ("white_balance_temperature", 4000),
+    ("exposure_dynamic_framerate", 0),
+    ("backlight_compensation", 0),
+    ("power_line_frequency", 2),          # 60 Hz — stops mains flicker beating with the shutter
+    ("gain", 24),
+]
+#: ⚠️ The C920 drives GAIN back up on its own (measured: 0 -> 109 -> 255 as exposure rose) even in
+#: manual exposure mode. Every capture therefore re-asserts it immediately before grabbing. Without
+#: this the panel clips ~30% of its pixels and every measurement built on it is silently wrong.
+GAIN_CTRL = ("gain", 24)
+
+
+def _v4l2_set(device: str, ctrl: str, value) -> None:
+    subprocess.run(["v4l2-ctl", "-d", device, f"--set-ctrl={ctrl}={value}"],
+                   check=False, capture_output=True)
+
+
+def _v4l2_get(device: str, ctrl: str):
+    r = subprocess.run(["v4l2-ctl", "-d", device, f"--get-ctrl={ctrl}"],
+                       check=False, capture_output=True, text=True)
+    try:
+        # menu controls read back as "auto_exposure: 1 (Manual Mode)" — take the leading integer
+        return int(r.stdout.strip().split(":")[1].strip().split()[0])
+    except (IndexError, ValueError):
+        return None
+
+
+def cmd_lock(args) -> None:
+    """Pin the camera so nothing drifts between measurements, then VERIFY it took.
+
+    Auto exposure, auto white balance and autofocus each re-decide per frame, so with them on, two
+    photographs of the same panel are two different measurements. Focus must be set AFTER disabling
+    continuous autofocus — the control is inactive until then and the write fails with 'Permission
+    denied', which looks like a permissions problem and is not one.
+    """
+    dev = args.device
+    for ctrl, val in CAMERA_LOCK:
+        _v4l2_set(dev, ctrl, val)
+    _v4l2_set(dev, "focus_automatic_continuous", 0)
+    _v4l2_set(dev, "focus_absolute", args.focus)
+    _v4l2_set(dev, *GAIN_CTRL)
+    print("locked camera controls (read back):")
+    bad = []
+    for ctrl, val in CAMERA_LOCK + [("focus_automatic_continuous", 0), ("focus_absolute", args.focus)]:
+        got = _v4l2_get(dev, ctrl)
+        ok = got == val
+        if not ok:
+            bad.append((ctrl, val, got))
+        print(f"  {ctrl:32s} want {val:5} got {got}  {'ok' if ok else '<-- DID NOT TAKE'}")
+    if bad:
+        print("\n⚠️ some controls did not take. Read-back is not optional here: this camera "
+              "silently overrode gain and exposure during setup, and the only symptom was clipped "
+              "measurements that looked like a lighting problem.")
+
+
+def cmd_capture(args) -> None:
+    """Grab a frame, optionally waiting until the PANEL has stopped changing.
+
+    ⚠️ AN E-INK REFRESH IS NOT INSTANT AND IT IS NOT MONOTONIC. A Spectra 6 update takes ~9-16 s and
+    drives the pixels through inversion and flashing phases on the way, so a frame grabbed too early
+    is not a slightly-early version of the final image — it is a DIFFERENT image. The first real
+    capture of this rig was taken mid-refresh and produced a patch residual of 97/255 and a negative
+    blue gain, which reads exactly like a badly mis-calibrated camera rather than like a timing bug.
+
+    So settle by OBSERVATION rather than by a fixed sleep: keep grabbing until two consecutive frames
+    agree, which adapts to whatever the panel and the lighting are actually doing. A fixed delay
+    would be both slower on average and wrong exactly when the panel is slowest.
+    """
+    if not args.settle:
+        _grab(args.device, args.size, args.warmup, args.out)
+        print(f"captured -> {args.out}")
+        return
+    tmp_a = Path(args.out).with_suffix(".settle_a.png")
+    tmp_b = Path(args.out).with_suffix(".settle_b.png")
+    _grab(args.device, args.size, args.warmup, str(tmp_a))
+    for attempt in range(1, args.settle_tries + 1):
+        _grab(args.device, args.size, max(2, args.warmup // 4), str(tmp_b))
+        delta = _frame_delta(tmp_a, tmp_b)
+        print(f"  settle {attempt}: frame delta {delta:6.2f}")
+        if delta <= args.settle_delta:
+            tmp_b.replace(Path(args.out))
+            tmp_a.unlink(missing_ok=True)
+            print(f"captured (settled) -> {args.out}")
+            return
+        tmp_b.replace(tmp_a)
+    tmp_a.replace(Path(args.out))
+    print(f"⚠️ never settled below {args.settle_delta} in {args.settle_tries} tries — "
+          f"kept the last frame. The panel may still be refreshing, or something in shot is moving.")
 
 
 def cmd_read(args) -> None:
@@ -278,18 +402,30 @@ def cmd_read(args) -> None:
     r = read_panel(photo, w, h, roi=roi)
     print(f"gain   {[round(v, 4) for v in r['gain']]}")
     print(f"offset {[round(v, 2) for v in r['offset']]}")
-    print(f"patch residual (mean abs, 0-255): {r['patch_residual']:.2f}")
-    if r["patch_residual"] > 18:
-        print("  ⚠️ high — check for a specular highlight on the glass, or a clipped exposure")
+    print(f"patch non-uniformity (mean std within patches, 0-255): {r['patch_residual']:.2f}")
+    if r["patch_residual"] > 14:
+        print("  ⚠️ high — uneven light or a specular highlight on the glass. Both bias every "
+              "later measurement, so fix the lighting rather than correcting for it.")
     out = Path(args.out or "bench-eink/measured_corrected.png")
     r["corrected"].save(out)
     print(f"corrected -> {out}")
     if args.primaries:
-        print("\nMEASURED PANEL PRIMARIES vs the assumed SPECTRA6_DITHER_PALETTE:")
+        print("\nMEASURED PANEL PRIMARIES vs the assumed SPECTRA6_DITHER_PALETTE")
+        print("(both in PANEL-RELATIVE units: this panel's own black = 0, its own white = 255)")
         prim = measured_primaries(r["corrected"], w, h)
-        for name, assumed in zip(et.INK_NAMES, ep.SPECTRA6_DITHER_PALETTE):
+        assumed_norm = normalise_palette(ep.SPECTRA6_DITHER_PALETTE)
+        worst = 0.0
+        for name, assumed in zip(et.INK_NAMES, assumed_norm):
             got = prim[name]
-            print(f"  {name:7s} measured {got}   assumed {list(assumed)}")
+            d = max(abs(a - b) for a, b in zip(got, assumed))
+            worst = max(worst, d)
+            flag = "  <-- DIFFERS" if d > 30 else ""
+            print(f"  {name:7s} measured {[round(v) for v in got]}   assumed {[round(v) for v in assumed]}"
+                  f"   worst channel {d:5.1f}{flag}")
+        print(f"\n  largest disagreement: {worst:.1f}/255")
+        if worst > 30:
+            print("  This panel does not match Pimoroni's measurement, and every distance "
+                  "calculation in the renderer assumes it does.")
 
 
 def main() -> None:
@@ -297,11 +433,21 @@ def main() -> None:
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = ap.add_subparsers(dest="cmd", required=True)
     sub.add_parser("selftest", help="validate the pipeline against synthetic photographs")
+    lk = sub.add_parser("lock", help="pin camera exposure/WB/focus/gain and verify it took")
+    lk.add_argument("--device", default="/dev/video0")
+    lk.add_argument("--focus", type=int, default=30)
     c = sub.add_parser("capture", help="grab one frame from a v4l2 device")
     c.add_argument("--device", default="/dev/video0")
     c.add_argument("--size", default="1920x1080")
     c.add_argument("--warmup", type=int, default=12, help="frames to discard so AE/AWB settle")
     c.add_argument("--out", default="bench-eink/shot.png")
+    c.add_argument("--settle", action="store_true",
+                   help="keep grabbing until two consecutive frames agree — an e-ink refresh passes "
+                        "through inversion phases, so an early grab is a different image, not an "
+                        "early one")
+    c.add_argument("--settle-delta", type=float, default=1.2,
+                   help="mean abs frame difference (0-255) counted as settled")
+    c.add_argument("--settle-tries", type=int, default=25)
     r = sub.add_parser("read", help="rectify + normalise a photograph and report")
     r.add_argument("photo")
     r.add_argument("--target", default="", help="the rendered target, to take w/h from")
@@ -311,7 +457,8 @@ def main() -> None:
     r.add_argument("--primaries", action="store_true", help="report measured ink primaries")
     r.add_argument("--out", default="")
     args = ap.parse_args()
-    {"selftest": cmd_selftest, "capture": cmd_capture, "read": cmd_read}[args.cmd](args)
+    {"selftest": cmd_selftest, "capture": cmd_capture, "read": cmd_read,
+     "lock": cmd_lock}[args.cmd](args)
 
 
 if __name__ == "__main__":
