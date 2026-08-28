@@ -46,7 +46,7 @@ photographs of the same panel are two different measurements.
 | control | value | note |
 |---|---|---|
 | `auto_exposure` | 1 | Manual Mode |
-| `exposure_time_absolute` | 200 | quantised — 150 and 200 behave identically, 260 clips |
+| `exposure_time_absolute` | 620 | **lighting-specific — re-sweep whenever the light changes.** 620 suits ambient-only; the same rig wanted 200 under a clip light. Quantised: 560–740 are indistinguishable |
 | `gain` | 24 | see the warning below |
 | `white_balance_automatic` | 0 | |
 | `white_balance_temperature` | 4000 | |
@@ -55,8 +55,17 @@ photographs of the same panel are two different measurements.
   inactive until continuous AF is off. It looks like a permissions problem and is not one. |
 | `power_line_frequency` | 2 | 60 Hz; stops mains flicker beating with the shutter |
 
-**exposure 200 + gain 24** puts the panel's white at 253 with p99.9 = 247 and **zero clipped pixels**.
-Headroom matters more than brightness: a clipped white anchor invalidates the entire correction.
+**exposure 620 + gain 24** (ambient only) puts the panel's white at 214 with **zero clipped pixels on
+the panel**. Headroom matters more than brightness: a clipped white anchor invalidates the entire
+correction.
+
+⚠️ `exposure_dynamic_framerate` must be **0** here. With it at 1 the camera drops the frame rate to
+allow longer shutters, which changes what a given exposure number means — the same value produced a
+panel max of 214 with it off and 148 with it on. Either is workable; mixing them across a flat-field
+and a measurement is not.
+
+**Measured, and worth knowing before adding a lamp:** ambient-only light was FLATTER than the clip
+light — spread 54/255 versus 116/255. The lamp was solving a problem the rig did not have.
 
 ⚠️ **The C920 walks its own gain back up.** Measured during setup: gain went 0 → 109 → 255 across an
 exposure sweep *while in manual exposure mode*. At gain 255 roughly 30% of the panel clips. Every
@@ -70,7 +79,8 @@ as a lighting problem, not a camera problem.
 python -m tools.eink_measure capture --device /dev/video0 --settle --out bench-eink/shot.png
 ```
 
-⚠️ **Wait for the panel, not for a stopwatch.** A Spectra 6 refresh takes ~9–16 s and drives the
+⚠️ **Wait for the panel, not for a stopwatch.** A Spectra 6 refresh takes **~22 s measured on this
+panel** (the ~9–16 s figure came from spec sheets) and drives the
 pixels through inversion and flashing phases on the way, so a frame grabbed early is not an early
 version of the final image — it is a *different* image. The first capture of this rig was taken
 mid-refresh and produced a patch residual of 97/255 and a negative channel gain, which reads exactly
@@ -134,13 +144,41 @@ correct only if the registration frame is the darkest outermost thing — and a 
 bezel**. The synthetic photos include one, so every case failed loudly instead of silently
 mis-registering against hardware later. `tests/test_eink_measure.py` guards it.
 
+## Instrument accuracy — measured, not assumed
+
+The honest way to characterise this rig is to photograph the SAME ink in two different places on the
+panel and see whether it measures the same. The primaries target has each ink twice: once as a large
+content cell, once in the calibration strip.
+
+```
+white:  253.2  vs  250.2     agreement within  3 of 255  (1.2%)
+black:   17.2  vs   41.9     disagreement of  32 of 255  (12.6%)
+```
+
+**The rig is precise on bright tones and unreliable on dark ones**, and the cause is physical.
+Ambient light reflecting off the panel's glass adds a veiling glare that sits on top of dark ink.
+Flat-field division removes a MULTIPLICATIVE gradient; veiling glare is ADDITIVE, so it survives.
+It is also why exposure hits a ceiling: the panel's black is simply not very black under room light,
+so the whole black-to-white span lands in ~85 of 255 levels and the correction has to stretch it ~3x,
+amplifying every residual along with the signal.
+
+⚠️ **Blue and green are dark inks.** The measurements the colour work most needs are the ones this
+rig is currently worst at. Treat dark-ink numbers as indicative, not settled.
+
+**The fix is a hood**, not more processing: shield the panel and lens from stray ambient so the only
+light reaching the glass is the light you chose. That raises contrast at the dark end, where all the
+uncertainty lives.
+
 ## Known-open
 
 - **Corner detection finds the panel bezel, not the registration frame's inner edge.** On a real
   photograph the rectified image includes the Pimoroni silkscreen and the flex cable, so patch
   rectangles straddle boundaries. This is the next fix.
-- **Flat-field correction not yet implemented.** Lighting spread across the panel was measured at
-  86–116 of 255. Photograph an all-white panel once per rig setup and divide later frames by it; that
-  removes the gradient *and* lens vignetting exactly.
+- **A ceiling fan was running during early captures.** It swept shadows across the panel between
+  frames, which is why `--settle` sometimes never converged. Anything moving overhead invalidates a
+  flat-field reference by baking a transient into it. Turn it off.
+- **The lighting gradient caps dynamic range.** Above exposure 1000 the brightest part of the panel
+  clips while the dimmest is still at ~215, so ~7% of the panel saturates before white is full scale.
+  Flat-field cannot recover clipped data — this is a lighting fix, not a software one.
 - **`sd-eink` holds the panel's SPI/GPIO lines** (`Restart=always`, 10 s). Stop it for a session and
   restart it afterwards, or renders fail at the push with "some pins we need are in use".
