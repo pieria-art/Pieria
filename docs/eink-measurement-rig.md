@@ -30,6 +30,20 @@ with at least one recorded disagreement (see the Milkmaid, `bench-eink/fullpanel
   is simply gone. A brightness *gradient* is by contrast entirely correctable (see flat-field, below),
   so prefer soft uneven light over hard even light.
 
+  ![The failure mode: a clip light aimed at the panel puts a specular hotspot across the bottom of the
+  frame, blowing out the calibration patch strip that every measurement is anchored
+  to](images/rig-specular-glare.jpg)
+
+  *What it looks like when it goes wrong.* Red box is the specular hotspot — 3.1% of the frame, landing
+  squarely on the patch strip. Orange marks the registration border running off the top, which alone
+  makes the frame unusable: no border, no homography.
+
+  ![A correctly framed capture: the whole registration border visible, no specular hotspot on the
+  panel, patch strip cleanly readable](images/rig-good-capture.jpg)
+
+  *What it looks like when it is right.* Whole border in shot, patch strip intact, no blowout on the
+  panel. The remaining brightness gradient is expected and is what the flat-field reference removes.
+
 - **Surface:** the panel currently sits on a bright wood floor. This defeats automatic panel
   detection (the floor is brighter than parts of the panel), so `read --roi` may be needed. A dark
   matte surface under the panel removes the problem.
