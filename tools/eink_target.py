@@ -111,7 +111,8 @@ def content_box(w: int, h: int) -> tuple:
     return (x0, y0, x1, y1)
 
 
-def compose(content: Image.Image, w: int, h: int, extra_patches=None) -> Image.Image:
+def compose(content: Image.Image, w: int, h: int, extra_patches=None,
+            patches: bool = True) -> Image.Image:
     """Put already-quantised content inside the registration frame and add the calibration strip.
 
     Composition happens AFTER quantisation on purpose. Re-quantising the finished canvas would
@@ -133,6 +134,8 @@ def compose(content: Image.Image, w: int, h: int, extra_patches=None) -> Image.I
         d.rectangle([fx - FID_SIZE // 2, fy - FID_SIZE // 2,
                      fx + FID_SIZE // 2, fy + FID_SIZE // 2], fill=BLACK)
 
+    if not patches:
+        return canvas
     # Calibration strip: the six pure inks, then any extra patches (e.g. dithered greys).
     patches = [(n, c) for n, c in zip(INK_NAMES, _output_inks())] + list(extra_patches or [])
     sy0 = y1 + PATCH_GAP
@@ -223,4 +226,20 @@ def target_huegrid(w: int, h: int, hues: int = 12, sats: int = 6) -> Image.Image
     return _quantize(img.convert("RGB"))
 
 
-TARGETS = {"primaries": target_primaries, "ramp": target_ramp, "huegrid": target_huegrid}
+def target_flat(w: int, h: int) -> Image.Image:
+    """A featureless white field — the FLAT-FIELD reference.
+
+    Photograph it once per rig setup and it becomes a per-pixel map of how the light actually falls
+    across the panel, plus the lens's own vignetting. Dividing later frames by it removes both.
+
+    Necessary rather than nice: measured illumination varies by ~100/255 corner to centre on this
+    rig, and the colour correction is a single global affine, so an ink sitting in a dim corner reads
+    darker than the black anchor sitting in a bright one and is crushed to zero. That is exactly what
+    happened — red, blue and green all measured [0,0,0] while registration was working correctly.
+    """
+    x0, y0, x1, y1 = content_box(w, h)
+    return Image.new("RGB", (x1 - x0, y1 - y0), WHITE)
+
+
+TARGETS = {"primaries": target_primaries, "ramp": target_ramp, "huegrid": target_huegrid,
+           "flat": target_flat}

@@ -839,7 +839,7 @@ def cmd_target(args) -> None:
         content = et.TARGETS[args.kind](w, h)
         tag = args.kind
 
-    canvas = et.compose(content, w, h)
+    canvas = et.compose(content, w, h, patches=(args.kind != "flat"))
     OUT.mkdir(parents=True, exist_ok=True)
     dest = OUT / f"target_{tag}_{w}x{h}.png"
     canvas.save(dest)
@@ -953,7 +953,7 @@ def main() -> None:
     fs.add_argument("-v", "--verbose", action="store_true", help="list every work, not just the unjudged")
 
     tg = sub.add_parser("target", help="render a self-calibrating measurement target for photography")
-    tg.add_argument("kind", choices=("primaries", "ramp", "huegrid", "art"))
+    tg.add_argument("kind", choices=("primaries", "ramp", "huegrid", "art", "flat"))
     tg.add_argument("--n", type=int, default=None, help="corpus number, for kind=art")
     tg.add_argument("--gamma", type=float, default=1.4)
     tg.add_argument("--saturation", type=float, default=1.0)

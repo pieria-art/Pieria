@@ -54,26 +54,91 @@ import epaper as ep  # noqa: E402
 from tools import eink_target as et  # noqa: E402
 
 DARK_MAX = 90          # a pixel this dark, after normalising the frame's own range, is "frame"
+DILATE_CELLS = 3       # coarse cells of dilation used to rejoin split bright regions, then undone
 
 
 # --- geometry ------------------------------------------------------------------------------------
 
 def panel_bbox(img: Image.Image, roi=None) -> tuple:
-    """Rough bounding box of the panel's lit area — the bright region, since the render's outermost
-    pixels are a white gutter. Only needs to be approximately right: it seeds the fiducial search."""
-    a = np.asarray(img.convert("L")).astype(float)
+    """Bounding box of the panel's lit area — the LARGEST CONNECTED bright, NEUTRAL region.
+
+    Two refinements, each forced by a real photograph:
+
+      * NEUTRAL, not merely bright. The rig sits on a bright wood floor, and "bright" selected the
+        floor along with the panel, so the box spanned the whole frame and every fiducial was then
+        searched for in the wrong place. The floor is bright but strongly saturated orange; the
+        panel's gutter is bright and near-neutral.
+      * CONNECTED, not just the bounding box of matching pixels. A desaturated sage-green door in
+        shot also passes bright-and-neutral, and dragged the right edge 300 px past the panel.
+
+    Only needs to be approximately right — it seeds the fiducial search, which then refines.
+    """
     if roi:
         x0, y0, x1, y1 = roi
-        sub, off = a[y0:y1, x0:x1], (x0, y0)
+        sub, off = img.crop((x0, y0, x1, y1)), (x0, y0)
     else:
-        sub, off = a, (0, 0)
-    lo, hi = float(sub.min()), float(sub.max())
-    norm = (sub - lo) / max(hi - lo, 1e-6) * 255.0
-    ys, xs = np.nonzero(norm >= 150.0)
-    if len(xs) < 100:
-        raise ValueError("no bright panel area found — check the ROI and the exposure")
-    return (int(xs.min()) + off[0], int(ys.min()) + off[1],
-            int(xs.max()) + off[0], int(ys.max()) + off[1])
+        sub, off = img, (0, 0)
+    hsv = np.asarray(sub.convert("HSV"))
+    sat, val = hsv[..., 1].astype(float), hsv[..., 2].astype(float)
+    mask = (val > 120) & (sat < 55)
+    if mask.sum() < 200:
+        raise ValueError("no bright neutral panel area found — check exposure and the ROI")
+
+    # Coarse-grid connected components: cheap, dependency-free, and plenty for a seed box.
+    step = 16
+    gh, gw = mask.shape[0] // step, mask.shape[1] // step
+    if gh < 3 or gw < 3:
+        ys, xs = np.nonzero(mask)
+        return (int(xs.min()) + off[0], int(ys.min()) + off[1],
+                int(xs.max()) + off[0], int(ys.max()) + off[1])
+    coarse = mask[:gh * step, :gw * step].reshape(gh, step, gw, step).mean(axis=(1, 3)) > 0.5
+
+    # DILATE before labelling. The target's content band spans the full width with dark cells, which
+    # splits the white area into a top and a bottom component — and the bottom one is larger, so the
+    # panel box came back as its lower half. Bridging a few cells rejoins them. It does not rejoin
+    # the panel to other bright-neutral objects in the room, because the floor between them is bright
+    # but SATURATED and never entered the mask in the first place.
+    grown = coarse.copy()
+    for _ in range(DILATE_CELLS):
+        g = grown.copy()
+        g[1:, :] |= grown[:-1, :]
+        g[:-1, :] |= grown[1:, :]
+        g[:, 1:] |= grown[:, :-1]
+        g[:, :-1] |= grown[:, 1:]
+        grown = g
+    coarse = grown
+
+    seen = np.zeros_like(coarse, dtype=bool)
+    best = None
+    for sy in range(gh):
+        for sx in range(gw):
+            if not coarse[sy, sx] or seen[sy, sx]:
+                continue
+            stack, cells = [(sy, sx)], []
+            seen[sy, sx] = True
+            while stack:
+                cy, cx = stack.pop()
+                cells.append((cy, cx))
+                for ny, nx in ((cy - 1, cx), (cy + 1, cx), (cy, cx - 1), (cy, cx + 1)):
+                    if 0 <= ny < gh and 0 <= nx < gw and coarse[ny, nx] and not seen[ny, nx]:
+                        seen[ny, nx] = True
+                        stack.append((ny, nx))
+            if best is None or len(cells) > len(best):
+                best = cells
+    ys = [c[0] for c in best]
+    xs = [c[1] for c in best]
+    # Undo the dilation: it was there to rejoin split regions, not to enlarge the answer. Leaving it
+    # in pushed the box ~48 px past the panel on every side, which moved the expected fiducial
+    # positions outward far enough that the search latched onto the frame corner instead.
+    grow = DILATE_CELLS * step
+    x0 = min(xs) * step + grow
+    y0 = min(ys) * step + grow
+    x1 = (max(xs) + 1) * step - grow
+    y1 = (max(ys) + 1) * step - grow
+    if x1 - x0 < 40 or y1 - y0 < 40:      # degenerate after shrinking — fall back to the raw box
+        x0, y0 = min(xs) * step, min(ys) * step
+        x1, y1 = (max(xs) + 1) * step, (max(ys) + 1) * step
+    return (x0 + off[0], y0 + off[1], x1 + off[0], y1 + off[1])
 
 
 def find_fiducials(img: Image.Image, w: int, h: int, roi=None) -> list:
@@ -110,7 +175,14 @@ def find_fiducials(img: Image.Image, w: int, h: int, roi=None) -> list:
         wx0, wx1 = int(max(px0, ex - win)), int(min(px1, ex + win))
         wy0, wy1 = int(max(py0, ey - win)), int(min(py1, ey + win))
         cell = norm[wy0:wy1, wx0:wx1]
-        ys, xs = np.nonzero(cell <= DARK_MAX)
+        # LOCAL threshold, not a global one. A fiducial sitting in a vignetted corner is far brighter
+        # in absolute terms than one under the light, so a single global cutoff finds some fiducials
+        # and misses others — which showed up as the two right-hand fiducials disagreeing by 69 px
+        # while the two top ones agreed to 7. Thresholding against the window's own range makes
+        # detection independent of how that corner happens to be lit.
+        c_lo, c_hi = float(cell.min()), float(cell.max())
+        local_cut = c_lo + 0.45 * max(c_hi - c_lo, 1.0)
+        ys, xs = np.nonzero(cell <= min(local_cut, DARK_MAX * 1.8))
         if len(xs) < 12:
             raise ValueError(
                 f"fiducial near ({int(ex)},{int(ey)}) not found — is the whole panel in shot, and "
@@ -226,8 +298,25 @@ def fuse(img: Image.Image, factor: int = 8) -> np.ndarray:
                                  Image.BOX)).astype(float)
 
 
-def read_panel(photo: Image.Image, w: int, h: int, roi=None) -> dict:
+def build_flat_field(flat_photo: Image.Image, w: int, h: int, roi=None, smooth: int = 40):
+    """Smooth illumination map from a photograph of an all-white panel, in render coordinates.
+
+    Heavily smoothed on purpose: illumination genuinely varies slowly across a panel, and the blur
+    also averages away the registration frame and the fiducials, which are dark and would otherwise
+    punch holes in the map.
+    """
+    rect = rectify(flat_photo, w, h, roi)
+    small = rect.resize((max(4, w // smooth), max(4, h // smooth)), Image.BOX)
+    field = np.asarray(small.resize((w, h), Image.BICUBIC)).astype(float)
+    return np.maximum(field, 1.0)
+
+
+def read_panel(photo: Image.Image, w: int, h: int, roi=None, flat=None) -> dict:
     rect = rectify(photo, w, h, roi)
+    if flat is not None:
+        a = np.asarray(rect).astype(float)
+        a = a / flat * float(flat.mean())
+        rect = Image.fromarray(np.clip(a, 0, 255).astype(np.uint8), "RGB")
     gain, off, resid = solve_correction(rect, w, h)
     corrected = apply_correction(rect, gain, off)
     return {"rectified": rect, "corrected": corrected,
@@ -324,12 +413,15 @@ def _frame_delta(a: Path, b: Path) -> float:
 
 
 #: Locked C920 settings for the overhead rig, found by sweeping against the panel 2026-08-28.
-#: exposure 200 + gain 24 puts the panel's white at 253 with p99.9 = 247 and ZERO clipped pixels —
-#: nearly the full range with nothing lost at the top. A clipped white anchor invalidates the whole
-#: correction, so headroom matters more than brightness here.
+#: ⚠️ EXPOSURE IS LIGHTING-SPECIFIC AND MUST BE RE-SWEPT WHENEVER THE LIGHT CHANGES. 620 suits
+#: ambient-only (curtain closed, no lamp): panel max 214, ZERO clipped pixels on the panel. Under a
+#: clip light the same rig wanted 200. Getting this wrong is not subtle — at the ambient level, an
+#: exposure tuned for lamplight left the frame too dark to even locate the panel.
+#: A clipped white anchor invalidates the whole correction, so headroom beats brightness. The C920
+#: quantises exposure coarsely: 560-740 are indistinguishable, as were 150-200 under the lamp.
 CAMERA_LOCK = [
     ("auto_exposure", 1),                 # 1 = Manual Mode
-    ("exposure_time_absolute", 200),
+    ("exposure_time_absolute", 620),
     ("white_balance_automatic", 0),
     ("white_balance_temperature", 4000),
     ("exposure_dynamic_framerate", 0),
@@ -367,14 +459,16 @@ def cmd_lock(args) -> None:
     denied', which looks like a permissions problem and is not one.
     """
     dev = args.device
-    for ctrl, val in CAMERA_LOCK:
+    lock = [(c, args.exposure if (c == "exposure_time_absolute" and args.exposure) else v)
+            for c, v in CAMERA_LOCK]
+    for ctrl, val in lock:
         _v4l2_set(dev, ctrl, val)
     _v4l2_set(dev, "focus_automatic_continuous", 0)
     _v4l2_set(dev, "focus_absolute", args.focus)
     _v4l2_set(dev, *GAIN_CTRL)
     print("locked camera controls (read back):")
     bad = []
-    for ctrl, val in CAMERA_LOCK + [("focus_automatic_continuous", 0), ("focus_absolute", args.focus)]:
+    for ctrl, val in lock + [("focus_automatic_continuous", 0), ("focus_absolute", args.focus)]:
         got = _v4l2_get(dev, ctrl)
         ok = got == val
         if not ok:
@@ -425,8 +519,13 @@ def cmd_read(args) -> None:
     photo = Image.open(args.photo)
     w, h = (Image.open(args.target).size if args.target else (args.width, args.height))
     roi = tuple(int(v) for v in args.roi.split(",")) if args.roi else None
-    r = read_panel(photo, w, h, roi=roi)
-    print(f"gain   {[round(v, 4) for v in r['gain']]}")
+    flat = None
+    if args.flat:
+        flat = build_flat_field(Image.open(args.flat), w, h, roi=roi)
+        print(f"flat-field applied from {args.flat} "
+              f"(illumination range {flat.min():.0f}-{flat.max():.0f})")
+    r = read_panel(photo, w, h, roi=roi, flat=flat)
+    print(f"gain   {[round(float(v), 4) for v in r['gain']]}")
     print(f"offset {[round(v, 2) for v in r['offset']]}")
     print(f"patch non-uniformity (mean std within patches, 0-255): {r['patch_residual']:.2f}")
     if r["patch_residual"] > 14:
@@ -462,6 +561,8 @@ def main() -> None:
     lk = sub.add_parser("lock", help="pin camera exposure/WB/focus/gain and verify it took")
     lk.add_argument("--device", default="/dev/video0")
     lk.add_argument("--focus", type=int, default=30)
+    lk.add_argument("--exposure", type=int, default=None,
+                    help="override exposure_time_absolute; re-sweep this whenever the light changes")
     c = sub.add_parser("capture", help="grab one frame from a v4l2 device")
     c.add_argument("--device", default="/dev/video0")
     c.add_argument("--size", default="1920x1080")
@@ -480,6 +581,8 @@ def main() -> None:
     r.add_argument("--width", type=int, default=1600)
     r.add_argument("--height", type=int, default=1200)
     r.add_argument("--roi", default="", help="x0,y0,x1,y1 crop to the panel's active area")
+    r.add_argument("--flat", default="", help="photograph of an all-white panel; divides out the "
+                                              "lighting gradient and lens vignetting")
     r.add_argument("--primaries", action="store_true", help="report measured ink primaries")
     r.add_argument("--out", default="")
     args = ap.parse_args()
