@@ -262,6 +262,12 @@ def cmd_full(args) -> None:
         crop = _db_crop_key(img.name, args.crop_key)
 
     fitted = ec.epaper._fit_rgb(img, w, h, args.fit, focal, crop)
+    if args.white_point > 0:
+        # WHITE-POINT COMPRESSION, not gamma. The palette's lightest ink is white at luminance ~163,
+        # so every input above that has no ink to be built from and renders as flat white: measured,
+        # the top 38% of the input range collapses to a single output value. Gamma cannot fix it —
+        # it preserves endpoints, so 255 still maps to 255 and still clips. Scaling does.
+        fitted = fitted.point([min(255, int(round(i * args.white_point))) for i in range(256)] * 3)
     if args.chroma_floor_max is not None:
         # HUE-CONDITIONED floor (ADR-088 correction, 2026-08-28). The scalar floor below cannot serve
         # two works at once — June's skin must lose its colour while Sunflowers' wall must keep its —
@@ -896,6 +902,10 @@ def main() -> None:
     fu.add_argument("--chroma-gamma", type=float, default=1.0,
                     help="exponent on HSV saturation (s**k). >1 crushes low chroma while sparing "
                          "high chroma; 1.0 = off. Applied BEFORE --saturation.")
+    fu.add_argument("--white-point", type=float, default=0.0,
+                    help="scale input luminance before dithering so the brightest input lands on the "
+                         "white INK rather than above it. 0.64 maps 255 -> 163 (the measured white "
+                         "ink). 0 = off. Fixes highlight collapse, which gamma structurally cannot.")
     fu.add_argument("--chroma-floor-max", type=float, default=None,
                     help="HUE-CONDITIONED floor (ADR-088 correction). Replaces the scalar "
                          "--chroma-floor with floor(hue) = FLOOR_MAX * max(0, 1 - hue_err/E0), so "
