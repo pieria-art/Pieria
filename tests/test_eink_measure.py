@@ -34,20 +34,21 @@ def test_recovers_primaries_through_warp_and_camera_distortion():
         assert worst <= 20, f"{name}: measured {got[name]} vs {list(want)}"
 
 
-def test_finds_the_frame_not_the_dark_bezel():
-    """The bug the self-test caught: a naive dark-extremes search locks onto the dark surround.
+def test_finds_fiducials_not_the_dark_bezel():
+    """The failure that cost real bench time: the first detector took the outermost dark rectangle,
+    which on real hardware is the panel BEZEL, not the registration frame.
 
-    _synthesise_photo pads with a dark bezel exactly like a real panel, so this fails loudly if the
-    panel-first detection is ever removed. Corners must land near the render's own frame, not out at
-    the padded edge.
+    _synthesise_photo pads with a dark bezel exactly like a real panel. Fiducials are drawn well
+    inboard, so each detected centre must land near its expected inboard position — nowhere near the
+    padded edge.
     """
     photo = em._synthesise_photo(_target(), warp=0.0, gain=(1, 1, 1), off=(0, 0, 0),
                                  noise=0.0, seed=1)
     pad = int(max(W, H) * 0.12)
-    corners = em.find_frame_corners(photo)
-    for x, y in corners:
-        assert pad - 4 <= x <= photo.width - pad + 4, f"corner x={x} escaped to the bezel"
-        assert pad - 4 <= y <= photo.height - pad + 4, f"corner y={y} escaped to the bezel"
+    got = em.find_fiducials(photo, W, H)
+    want = [(x + pad, y + pad) for x, y in et.fiducial_centres(W, H)]
+    for (gx, gy), (wx, wy) in zip(got, want):
+        assert abs(gx - wx) < 12 and abs(gy - wy) < 12, f"fiducial at ({gx:.0f},{gy:.0f}) want ({wx},{wy})"
 
 
 def test_correction_is_solved_per_photograph():

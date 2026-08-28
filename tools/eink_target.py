@@ -57,6 +57,20 @@ INNER_PAD = 10             # white gutter inside the frame
 PATCH_H = 96               # calibration strip height
 PATCH_GAP = 6
 
+#: Corner fiducials, INBOARD of the frame. The registration frame alone is not enough on real
+#: hardware: the panel's own BEZEL is dark and sits immediately outside it, so a detector looking for
+#: "the outermost dark rectangle" locks onto the bezel and every measurement is offset by its width.
+#: That happened — the rectified image came back containing the Pimoroni silkscreen and the flex
+#: cable. Solid squares set well inside the white margin have no dark neighbour to be confused with,
+#: and their centres are known exactly.
+FID_SIZE = 56
+FID_INSET = 132            # centre offset from the panel edge, both axes
+#: Clearance the content must keep from a fiducial. The detector searches a window around each
+#: fiducial, so anything dark that creeps into that window drags the centroid — measured 55 px and
+#: then 87 px off when a black content cell crowded one. Content is kept outside the search window
+#: by construction rather than the detector being asked to be clever about it.
+FID_CLEAR = 44
+
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 
@@ -79,12 +93,21 @@ def _quantize(img: Image.Image) -> Image.Image:
     return q.convert("RGB")
 
 
+def fiducial_centres(w: int, h: int) -> list:
+    """Centres of the four corner fiducials, in render pixels: tl, tr, br, bl."""
+    a, b = FID_INSET, FID_INSET
+    return [(a, b), (w - 1 - a, b), (w - 1 - a, h - 1 - b), (a, h - 1 - b)]
+
+
 def content_box(w: int, h: int) -> tuple:
     """Pixel rect of the measurable content area, inside the frame and above the patch strip."""
     x0 = OUTER_MARGIN + FRAME_W + INNER_PAD
-    y0 = OUTER_MARGIN + FRAME_W + INNER_PAD
     x1 = w - OUTER_MARGIN - FRAME_W - INNER_PAD
-    y1 = h - OUTER_MARGIN - FRAME_W - INNER_PAD - PATCH_H - PATCH_GAP
+    y0 = FID_INSET + FID_SIZE // 2 + FID_CLEAR
+    # The patch strip sits ABOVE the bottom fiducials, not below them. Laying it out from the panel
+    # edge upward put the strip straight on top of them at smaller panel sizes — the two features
+    # occupied the same rows and neither could be measured.
+    y1 = h - FID_INSET - FID_SIZE // 2 - FID_CLEAR - PATCH_GAP - PATCH_H
     return (x0, y0, x1, y1)
 
 
@@ -105,6 +128,10 @@ def compose(content: Image.Image, w: int, h: int, extra_patches=None) -> Image.I
     fitted = content.resize((x1 - x0, y1 - y0), Image.NEAREST) if content.size != (x1 - x0, y1 - y0) \
         else content
     canvas.paste(fitted, (x0, y0))
+
+    for fx, fy in fiducial_centres(w, h):
+        d.rectangle([fx - FID_SIZE // 2, fy - FID_SIZE // 2,
+                     fx + FID_SIZE // 2, fy + FID_SIZE // 2], fill=BLACK)
 
     # Calibration strip: the six pure inks, then any extra patches (e.g. dithered greys).
     patches = [(n, c) for n, c in zip(INK_NAMES, _output_inks())] + list(extra_patches or [])

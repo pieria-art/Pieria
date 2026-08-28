@@ -58,50 +58,77 @@ DARK_MAX = 90          # a pixel this dark, after normalising the frame's own ra
 
 # --- geometry ------------------------------------------------------------------------------------
 
-def find_frame_corners(img: Image.Image, roi=None) -> list:
-    """Four corners of the outermost dark quadrilateral, as (x, y) in photo pixels.
-
-    Uses extremes of x+y and x-y rather than contour following: the registration frame is the
-    outermost dark structure, so its corners are the extreme points of the dark mask along both
-    diagonals. No OpenCV, no connected components, and it degrades predictably.
-
-    ⚠️ The panel BEZEL and the surround are dark too, and the first version of this grabbed those
-    instead of the frame — the self-test caught it before any hardware existed. So the panel is
-    located FIRST (bright content's bounding box, since the render's outermost pixels are a white
-    gutter) and the frame is sought inside that. `roi` remains available to override when a scene
-    has other bright objects in it.
-    """
+def panel_bbox(img: Image.Image, roi=None) -> tuple:
+    """Rough bounding box of the panel's lit area — the bright region, since the render's outermost
+    pixels are a white gutter. Only needs to be approximately right: it seeds the fiducial search."""
     a = np.asarray(img.convert("L")).astype(float)
     if roi:
         x0, y0, x1, y1 = roi
-        sub = a[y0:y1, x0:x1]
-        off = (x0, y0)
+        sub, off = a[y0:y1, x0:x1], (x0, y0)
     else:
-        sub = a
-        off = (0, 0)
+        sub, off = a, (0, 0)
     lo, hi = float(sub.min()), float(sub.max())
     norm = (sub - lo) / max(hi - lo, 1e-6) * 255.0
-
-    # FIND THE PANEL FIRST. The bezel and the surround are dark too, and a naive dark-extremes
-    # search grabs those instead of the registration frame — the self-test caught exactly that.
-    # The render's outermost pixels are the white gutter, so the bright content's bounding box IS
-    # the panel's active area; the frame is then the outermost dark structure INSIDE it.
-    bys, bxs = np.nonzero(norm >= 160.0)
-    if len(bxs) >= 100:
-        pad = 2
-        bx0, bx1 = max(0, int(bxs.min()) - pad), min(norm.shape[1], int(bxs.max()) + 1 + pad)
-        by0, by1 = max(0, int(bys.min()) - pad), min(norm.shape[0], int(bys.max()) + 1 + pad)
-        mask = np.zeros_like(norm, dtype=bool)
-        mask[by0:by1, bx0:bx1] = True
-    else:
-        mask = np.ones_like(norm, dtype=bool)
-    ys, xs = np.nonzero((norm <= DARK_MAX) & mask)
+    ys, xs = np.nonzero(norm >= 150.0)
     if len(xs) < 100:
-        raise ValueError("no dark registration frame found — check the ROI and the exposure")
-    s, d = xs + ys, xs - ys
-    idx = {"tl": int(np.argmin(s)), "br": int(np.argmax(s)),
-           "tr": int(np.argmax(d)), "bl": int(np.argmin(d))}
-    return [(float(xs[idx[k]] + off[0]), float(ys[idx[k]] + off[1])) for k in ("tl", "tr", "br", "bl")]
+        raise ValueError("no bright panel area found — check the ROI and the exposure")
+    return (int(xs.min()) + off[0], int(ys.min()) + off[1],
+            int(xs.max()) + off[0], int(ys.max()) + off[1])
+
+
+def find_fiducials(img: Image.Image, w: int, h: int, roi=None) -> list:
+    """Centres of the four corner fiducials in photo pixels: tl, tr, br, bl.
+
+    ⚠️ THIS REPLACED A DETECTOR THAT LOOKED FOR THE OUTERMOST DARK RECTANGLE. On synthetic photos
+    that worked; on the real panel it locked onto the BEZEL, which is dark and sits immediately
+    outside the registration frame. The rectified image came back containing the Pimoroni silkscreen
+    and the flex cable, patch rectangles straddled boundaries, and the numbers looked like a
+    mis-calibrated camera rather than a registration failure.
+
+    The fix was to the TARGET rather than to the detector: fiducials are drawn well inboard, where
+    nothing else is dark, so there is nothing to confuse them with. Each is then found as the dark
+    centroid inside a window around where it is expected — which needs only a rough panel box to
+    start from, and tolerates rotation and perspective comfortably.
+    """
+    px0, py0, px1, py1 = panel_bbox(img, roi)
+    pw, ph = px1 - px0, py1 - py0
+    if pw < 50 or ph < 50:
+        raise ValueError(f"panel box too small to work with: {pw}x{ph}")
+    a = np.asarray(img.convert("L")).astype(float)
+    lo, hi = float(a[py0:py1, px0:px1].min()), float(a[py0:py1, px0:px1].max())
+    norm = (a - lo) / max(hi - lo, 1e-6) * 255.0
+
+    out = []
+    for fx, fy in et.fiducial_centres(w, h):
+        # expected position as a fraction of the render, mapped onto the rough panel box
+        ex = px0 + pw * (fx / w)
+        ey = py0 + ph * (fy / h)
+        # Window must not be able to reach the content: FID_CLEAR is the clearance the target
+        # guarantees, so stay inside it.
+        scale = min(pw / w, ph / h)
+        win = max(14, int(scale * (et.FID_SIZE / 2 + et.FID_CLEAR * 0.8)))
+        wx0, wx1 = int(max(px0, ex - win)), int(min(px1, ex + win))
+        wy0, wy1 = int(max(py0, ey - win)), int(min(py1, ey + win))
+        cell = norm[wy0:wy1, wx0:wx1]
+        ys, xs = np.nonzero(cell <= DARK_MAX)
+        if len(xs) < 12:
+            raise ValueError(
+                f"fiducial near ({int(ex)},{int(ey)}) not found — is the whole panel in shot, and "
+                f"is the target one that carries fiducials? Re-render targets after updating "
+                f"eink_target.py.")
+        # Refine iteratively. A plain centroid of every dark pixel in the window is dragged by any
+        # other dark thing that creeps into it — measured 55 px off when a black content cell sat
+        # near a fiducial. Re-centroiding within a fiducial-sized radius converges onto the fiducial
+        # and drops the intruder, because the intruder is farther away by construction.
+        cx, cy = xs.mean(), ys.mean()
+        rad = max(8.0, scale * et.FID_SIZE * 0.6)
+        for _ in range(3):
+            keep = ((xs - cx) ** 2 + (ys - cy) ** 2) <= rad ** 2
+            if keep.sum() < 12:
+                break
+            cx, cy = xs[keep].mean(), ys[keep].mean()
+        out.append((float(cx + wx0), float(cy + wy0)))
+    return out
 
 
 def _perspective_coeffs(dst_corners, src_corners) -> tuple:
@@ -115,10 +142,9 @@ def _perspective_coeffs(dst_corners, src_corners) -> tuple:
 
 
 def rectify(photo: Image.Image, w: int, h: int, roi=None) -> Image.Image:
-    """Resample the photo onto the render's pixel grid using the registration frame."""
-    src = find_frame_corners(photo, roi)
-    m = et.OUTER_MARGIN
-    dst = [(m, m), (w - 1 - m, m), (w - 1 - m, h - 1 - m), (m, h - 1 - m)]
+    """Resample the photo onto the render's pixel grid using the corner fiducials."""
+    src = find_fiducials(photo, w, h, roi)
+    dst = [(float(x), float(y)) for x, y in et.fiducial_centres(w, h)]
     coeffs = _perspective_coeffs(dst, src)
     return photo.convert("RGB").transform((w, h), Image.PERSPECTIVE, coeffs, Image.BICUBIC)
 
