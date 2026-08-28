@@ -165,23 +165,43 @@ panel and see whether it measures the same. The primaries target has each ink tw
 content cell, once in the calibration strip.
 
 ```
-white:  253.2  vs  250.2     agreement within  3 of 255  (1.2%)
-black:   17.2  vs   41.9     disagreement of  32 of 255  (12.6%)
+BRIGHT ROOM, ambient + lamp, panel on a wood floor:
+  white:  253.2  vs  250.2     agree within  3 of 255  (1.2%)
+  black:   17.2  vs   41.9     differ by    32 of 255  (12.6%)
+
+DARK CORNER, curtains closed, overheads off, halo raking, panel on black fabric:
+  white:  252    vs  255       agree within  6 of 255  (2.3%)
+  black:    2    vs   10       agree within  8 of 255  (3.3%)   <- 32 -> 8.5
 ```
 
-**The rig is precise on bright tones and unreliable on dark ones**, and the cause is physical.
+**The dark corner fixed it**, and it fixed it by the predicted mechanism, which is the strongest form
+of evidence available here: the veiling-glare hypothesis said "remove stray ambient and the dark end
+will tighten", the intervention was made, and it did. Dark inks are now trustworthy — which matters
+because blue and green are dark inks.
+
+**Before the dark corner, the rig was precise on bright tones and unreliable on dark ones**, and the
+cause is physical.
 Ambient light reflecting off the panel's glass adds a veiling glare that sits on top of dark ink.
 Flat-field division removes a MULTIPLICATIVE gradient; veiling glare is ADDITIVE, so it survives.
 It is also why exposure hits a ceiling: the panel's black is simply not very black under room light,
 so the whole black-to-white span lands in ~85 of 255 levels and the correction has to stretch it ~3x,
 amplifying every residual along with the signal.
 
-⚠️ **Blue and green are dark inks.** The measurements the colour work most needs are the ones this
-rig is currently worst at. Treat dark-ink numbers as indicative, not settled.
+### The remaining limit is colour space, not noise
 
-**The fix is a hood**, not more processing: shield the panel and lens from stray ambient so the only
-light reaching the glass is the light you chose. That raises contrast at the dark end, where all the
-uncertainty lives.
+⚠️ **What the rig produces is camera-RGB normalised to the panel's own black and white — NOT sRGB.**
+The correction is a per-channel affine anchored on black and white, which absorbs exposure and gross
+white balance but does NOT characterise the camera's spectral response. The C920's colour filters are
+not human vision, so a measured ink cannot be compared directly against `SPECTRA6_DITHER_PALETTE`,
+which is sRGB. Some of any disagreement is the instrument.
+
+Directions are probably meaningful (this panel's red measured far more saturated than assumed, its
+blue further toward blue). Magnitudes are not, and **that is not enough to justify rewriting a
+constant every distance calculation in the renderer depends on.**
+
+**To make it authoritative, put a known colour reference in the frame** — a ColorChecker, or any
+printed patch set with published sRGB values — and solve the camera's response from it. That converts
+these numbers from suggestive to settled, and it is the next thing this rig needs.
 
 ## Known-open
 

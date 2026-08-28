@@ -80,7 +80,25 @@ def panel_bbox(img: Image.Image, roi=None) -> tuple:
         sub, off = img, (0, 0)
     hsv = np.asarray(sub.convert("HSV"))
     sat, val = hsv[..., 1].astype(float), hsv[..., 2].astype(float)
-    mask = (val > 120) & (sat < 55)
+    neutral = sat < 55
+    if neutral.sum() < 200:
+        raise ValueError("no neutral area found — is the panel in shot?")
+    # OTSU, not a fixed cutoff. A fixed "bright" threshold is a statement about the lighting, and it
+    # broke the moment the lighting changed: under a raking light the panel's far side fell below
+    # V=120, so half of it dropped out of the mask and the panel box came back as its bottom half —
+    # which sent every fiducial search to the wrong place. Otsu finds the split between the dark
+    # surround and the lit panel from the image's own histogram, so it travels between setups.
+    vals = val[neutral]
+    hist, _ = np.histogram(vals, bins=64, range=(0, 256))
+    tot = hist.sum()
+    w0 = np.cumsum(hist)
+    w1 = tot - w0
+    centres = (np.arange(64) + 0.5) * 4.0
+    m0 = np.cumsum(hist * centres) / np.maximum(w0, 1)
+    m1 = (np.sum(hist * centres) - np.cumsum(hist * centres)) / np.maximum(w1, 1)
+    between = w0 * w1 * (m0 - m1) ** 2
+    cut = float(centres[int(np.argmax(between))])
+    mask = neutral & (val > cut)
     if mask.sum() < 200:
         raise ValueError("no bright neutral panel area found — check exposure and the ROI")
 
@@ -397,8 +415,11 @@ def cmd_selftest(args) -> None:
 
 def _grab(device: str, size: str, warmup: int, out: str) -> None:
     _v4l2_set(device, *GAIN_CTRL)      # see GAIN_CTRL: this camera walks its gain back up on its own
+    # MJPEG explicitly: at 1080p the C920 offers MJPG at 30 fps but raw YUYV only at ~5 fps, and
+    # ffmpeg will happily pick the slow one — which turns a one-frame grab into a long stall and,
+    # on a marginal USB port, into a wedged device.
     cmd = ["ffmpeg", "-hide_banner", "-loglevel", "error", "-f", "v4l2",
-           "-video_size", size, "-i", device]
+           "-input_format", "mjpeg", "-video_size", size, "-i", device]
     if warmup > 0:
         cmd += ["-vf", f"select=gte(n\\,{warmup})"]
     cmd += ["-frames:v", "1", "-y", out]
