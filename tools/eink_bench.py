@@ -566,7 +566,8 @@ def cmd_full_record(args) -> None:
     if args.n in done and not args.force:
         sys.exit(f"work {args.n} already recorded ({done[args.n]['verdict']}) — pass --force to replace")
     rec = {"n": args.n, "image": row["image"], "class": cls, "verdict": args.verdict,
-           "candidate": args.candidate, "note": args.note, "features": row.get("features", {})}
+           "preference": args.preference, "candidate": args.candidate, "note": args.note,
+           "features": row.get("features", {})}
     lines = [json.dumps(v) for k, v in sorted(done.items()) if k != args.n] + [json.dumps(rec)]
     FULLPANEL.write_text("\n".join(lines) + "\n")
     print(f"[{args.n}] {args.verdict}   class={cls}   {row['image'].split('__')[1] if '__' in row['image'] else ''}")
@@ -596,6 +597,11 @@ def cmd_full_status(args) -> None:
             print(f"  {n:3d}  {(d['verdict'] if d else '--'):10s} {cls:18s} {title[:44]}")
     if tally:
         print("\noverall: " + "  ".join(f"{k}={v}" for k, v in sorted(tally.items())))
+    split = [d for d in done.values() if d.get("preference") and d["preference"] != d["verdict"]]
+    if split:
+        print(f"fidelity/preference SPLIT on {len(split)}/{len(done)} judged: "
+              + ", ".join(f"{d['n']}({d['class']})" for d in split))
+        print("  ^ the render that is closer to the reference is NOT the one the judge would hang.")
     for cls, t in sorted(by_class.items()):
         total = sum(t.values())
         print(f"  {cls:18s} n={total:3d}  " + "  ".join(f"{k}={v}" for k, v in sorted(t.items())))
@@ -841,6 +847,12 @@ def main() -> None:
     fr.add_argument("--candidate", default="",
                     help="which recipe was the 'new' side, e.g. 'hue f0.70 e20' — a verdict with no "
                          "candidate cannot be replayed")
+    fr.add_argument("--preference", default="", choices=("", "new", "incumbent", "same"),
+                    help="which one the judge would rather HANG, when that differs from which is "
+                         "closer to the reference. The verdict is always fidelity (the rig was "
+                         "rebuilt around having a ground truth); this records the split so a "
+                         "systematic divergence across the corpus becomes visible instead of being "
+                         "argued from memory. Leave empty when fidelity and preference agree.")
     fr.add_argument("--note", default="", help="residual in the judge's own words; this is where the "
                                                "next mechanism has come from every time so far")
     fr.add_argument("--force", action="store_true", help="replace an existing record / skip the class gate")
