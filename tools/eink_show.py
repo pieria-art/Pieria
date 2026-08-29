@@ -75,12 +75,21 @@ def main() -> None:
     if args.gamma > 0:
         fitted = ec.epaper._apply_gamma(fitted, args.gamma)
 
+    # The UNQUANTISED reference, at this exact framing, so the browser harness can show what the
+    # render is trying to be. It has to be produced here rather than reused: the crop and focal point
+    # come from the database per work, so a reference generated any other way is a different picture.
+    ref_dir = eb.OUT / "reference"
+    ref_dir.mkdir(parents=True, exist_ok=True)
+    ref_name = f"show_{src.stem[:40]}.jpg"
+    ec.epaper._fit_rgb(src, w, h, args.fit, focal, crop).save(ref_dir / ref_name, "JPEG", quality=92)
+
     out = et._quantize(fitted)
     tag = f"{src.stem[:34]}_g{args.gamma}_wp{args.white_point}_k{args.chroma_gamma}_s{args.saturation}"
     dest = eb.OUT / f"show_{tag}.png"
     eb.OUT.mkdir(parents=True, exist_ok=True)
     out.save(dest)
     print(f"{src.name}\n  crop {crop}  focal {focal}\n  {dest}")
+    print(f"  reference -> bench-eink/reference/{ref_name}")
     if args.no_push:
         return
     from inky.auto import auto  # noqa: PLC0415
