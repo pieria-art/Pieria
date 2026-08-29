@@ -48,6 +48,7 @@ bench-eink/*
 !bench-eink/classes.json
 !bench-eink/boxes.json
 !bench-eink/ab_labels.jsonl
+!bench-eink/wp3_labels.jsonl
 !bench-eink/wpfit.jsonl
 !bench-eink/wp_predicted.json
 # classes.json / boxes.json are DECISIONS, not output: a material class assigned by looking at 60

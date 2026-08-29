@@ -1,0 +1,12 @@
+{"n": 2, "levels": [0.64, 0.76, 0.88], "pick": 0.76, "round": 3, "note": "previously called taste in a 2-way; middle wins outright in the 3-way"}
+{"n": 6, "levels": [0.64, 0.76, 0.88], "pick": 0.76, "round": 3, "note": "previously a tie in the 2-way; middle wins"}
+{"n": 8, "levels": [0.64, 0.76, 0.88], "pick": 0.76, "lean": "toward 0.64", "round": 3, "note": "2 leaning toward 1; the statue/background grain trade sits between the extremes"}
+{"n": 19, "levels": [0.64, 0.76, 0.88], "pick": 0.76, "round": 3, "note": "judge: has to be 2"}
+{"n": 55, "levels": [0.64, 0.76, 0.88], "pick": null, "round": 3, "note": "EXCLUDED at the judge request: the image itself does not read (a spacewalk against black), so the choice is not about the render.", "excluded": true}
+{"n": 54, "levels": [0.64, 0.76, 0.88], "pick": 0.64, "round": 3, "note": "palest work in the queue (91.1pct above ceiling) picks the HEAVIEST compression - rules out a single constant"}
+{"n": 17, "levels": [0.64, 0.76, 0.88], "pick": 0.76, "round": 3}
+{"n": 37, "levels": [0.64, 0.76, 0.88], "pick": 0.64, "round": 3}
+{"n": 42, "levels": [0.64, 0.76, 0.88], "pick": 0.64, "round": 3}
+{"n": 53, "levels": [0.64, 0.76, 0.88], "pick": 0.64, "round": 3}
+{"n": 49, "levels": [0.64, 0.76, 0.88], "pick": 0.88, "round": 3, "note": "first 0.88 pick - very little above the ceiling (5.3pct)"}
+{"n": 28, "levels": [0.64, 0.76, 0.88], "pick": 0.76, "round": 3}
