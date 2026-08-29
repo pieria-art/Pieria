@@ -94,6 +94,14 @@ def readout_grid_means(img, w, h, cols, rows, gutter=8) -> dict:
 def readout_inkmix(img, w, h) -> dict:
     """The optical mixing law: measured colour for every ink pair at every known ratio.
 
+    ⚠️ CAVEAT ON `linearity_error`: its pure-ink reference comes from the calibration STRIP, and strip
+    patches (250x96, embedded in a bright canvas) measure differently from large ink FIELDS
+    (509x345, clean interiors) — measured 2026-08-29 at 40-81/255 apart in the chromatic inks, in raw
+    pre-affine values. Black and white are exempt because the affine is anchored on them, which also
+    means their agreement proves nothing. So treat linearity_error as provisional; the `mixtures`
+    themselves are the primary data and it can be recomputed offline against better pure references.
+    The patch-size effect is itself measured by the element-size sweep in this same target.
+
     `linearity_error` is the headline. If the panel mixed additively, a 1:1 tile of inks A and B
     would measure at the midpoint of the two pure inks. This reports how far off that is, per pair,
     in panel-relative units — and it is the number that decides whether the renderer's sRGB distance

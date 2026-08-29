@@ -278,9 +278,47 @@ def rectify(photo: Image.Image, w: int, h: int, roi=None) -> Image.Image:
 
 # --- photometry ----------------------------------------------------------------------------------
 
-def patch_rects(w: int, h: int, count: int) -> list:
+def strip_dy(rectified: Image.Image, w: int, h: int, search: int = 48) -> int:
+    """Vertical correction for the calibration strip, found from the strip's own six patches.
+
+    ⚠️ WHY THIS IS NEEDED EVEN THOUGH THE HOMOGRAPHY IS EXACT. A four-point homography fits its four
+    points BY CONSTRUCTION, so lens distortion never shows up AT the fiducials — it shows up BETWEEN
+    them, and the calibration strip sits between them. Measured 2026-08-29 on the real panel: all four
+    fiducials mapped with error 0.0, while the black calibration patch actually occupied rows 876-965
+    against a nominal 900-996.
+
+    That 25 px is harmless for the large ink FIELDS, which are 345 px tall and sampled with a 0.30
+    inset, i.e. 103 px of margin. It is fatal for the strip, which is 96 px tall with a 0.22 inset —
+    21 px of margin — so the sampling window walks off the patch and onto the white canvas below it.
+    The visible symptoms were an inflated black anchor and, downstream of the affine it anchors, every
+    ink darker than it crushed to zero. It reads exactly like a scatter or lighting problem.
+
+    Found JOINTLY across all six patches rather than per patch: the offset that minimises the total
+    within-patch variation is the one that centres the strip. Solving all six together is what keeps
+    it honest — a per-patch search lets the black patch slide onto the black registration frame, which
+    scores beautifully and is completely wrong.
+    """
+    a = np.asarray(rectified.convert("L")).astype(float)
+    base = patch_rects(w, h, len(et.STRIP_ORDER), dy=0)
+    best, best_dy = None, 0
+    for dy in range(-search, search + 1, 2):
+        tot = 0.0
+        ok = True
+        for (x0, y0, x1, y1) in base:
+            sy0, sy1 = y0 + dy + int((y1 - y0) * 0.22), y1 + dy - int((y1 - y0) * 0.22)
+            sx0, sx1 = x0 + int((x1 - x0) * 0.22), x1 - int((x1 - x0) * 0.22)
+            if sy0 < 0 or sy1 > a.shape[0] or sy1 <= sy0:
+                ok = False
+                break
+            tot += float(a[sy0:sy1, sx0:sx1].std())
+        if ok and (best is None or tot < best):
+            best, best_dy = tot, dy
+    return best_dy
+
+
+def patch_rects(w: int, h: int, count: int, dy: int = 0) -> list:
     x0, y0, x1, y1 = et.content_box(w, h)
-    sy0 = y1 + et.PATCH_GAP
+    sy0 = y1 + et.PATCH_GAP + dy
     total = x1 - x0
     pw = (total - et.PATCH_GAP * (count - 1)) / count
     out = []
@@ -316,7 +354,7 @@ def solve_correction(rectified: Image.Image, w: int, h: int) -> tuple:
     is self-consistent, needs no prior knowledge of the inks, and is directly comparable to any other
     palette normalised the same way.
     """
-    rects = patch_rects(w, h, len(ep.SPECTRA6_OUTPUT_PALETTE))
+    rects = patch_rects(w, h, len(ep.SPECTRA6_OUTPUT_PALETTE), dy=strip_dy(rectified, w, h))
     # Index by NAME, not by position: the strip is laid out in et.STRIP_ORDER, which puts the two
     # anchors at opposite ends so the black one is not lifted by scatter from the white one.
     black = _mean_rgb(rectified, rects[et.STRIP_ORDER.index("black")], inset=0.30)
