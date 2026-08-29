@@ -455,6 +455,26 @@ def cmd_ghost(args) -> None:
         _record(rec)
 
 
+def _flat_at(t, flat_a, flat_b, t_a, t_b):
+    """Illumination map for a capture taken at time `t`, interpolated between two flat fields.
+
+    ⚠️ FLAT-FIELD DIVISION ONLY REMOVES THE SHAPE THAT WAS THERE WHEN THE FLAT WAS SHOT. A global
+    brightness change is absorbed downstream by the per-photograph black/white affine, so a fading
+    light is harmless on its own — measured 2026-08-29, the daylight fell 37.4% across the session
+    and none of that matters. What does NOT get absorbed is a change in the SHAPE of the
+    illumination, and that drifted too: after removing the global fade, the residual gradient moved
+    by 1.5% median and 6.9% at the 95th percentile, with the corners moving most as the sun angle
+    changed. That is the same order as the measurement error bar, so it is worth correcting.
+
+    Bracketing a long run with a flat field at each end makes the correction possible: each capture
+    is corrected by the illumination that actually existed when it was taken.
+    """
+    if flat_b is None or t_b <= t_a:
+        return flat_a
+    w = min(1.0, max(0.0, (t - t_a) / (t_b - t_a)))
+    return flat_a * (1.0 - w) + flat_b * w
+
+
 def cmd_rederive(args) -> None:
     """Recompute every readout from the BANKED RAW CAPTURES, without touching the panel.
 
@@ -467,7 +487,13 @@ def cmd_rederive(args) -> None:
     So: capture generously and analyse later. A run that banks raws is never wasted, even when every
     number it derived at the time turns out to be wrong.
     """
-    flat = em.build_flat_field(Image.open(args.flat), *PANEL)
+    flat_a = em.build_flat_field(Image.open(args.flat), *PANEL)
+    t_a = Path(args.flat).stat().st_mtime
+    flat_b, t_b = None, t_a
+    if args.flat_close:
+        flat_b = em.build_flat_field(Image.open(args.flat_close), *PANEL)
+        t_b = Path(args.flat_close).stat().st_mtime
+        print(f"interpolating the flat field across {(t_b - t_a) / 60:.0f} min of illumination drift")
     src = Path(args.profile)
     recs = [json.loads(ln) for ln in src.read_text().splitlines() if ln.strip()]
     out = Path(args.out)
@@ -484,6 +510,7 @@ def cmd_rederive(args) -> None:
             row = {"cond": rec["cond"], "kind": rec["kind"], "flags": rec["flags"],
                    "readout": rec["kind"]}
             try:
+                flat = _flat_at(raw.stat().st_mtime, flat_a, flat_b, t_a, t_b)
                 r = em.read_panel(Image.open(raw), *PANEL, flat=flat, reference=_reference(row))
                 fn = er.READOUTS[row["kind"]]
                 rec = dict(rec, readout=fn(r["corrected"], *PANEL),
@@ -529,6 +556,10 @@ def main() -> None:
                                 "the 8 h / 24 h points, which cannot be taken in one sitting)")
     rd = sub.add_parser("rederive", help="recompute all readouts from banked raws, no panel needed")
     rd.add_argument("--flat", required=True)
+    rd.add_argument("--flat-close", default="",
+                    help="a second flat field shot at the END of the run; the illumination map is "
+                         "then interpolated per capture by timestamp, which corrects drift in the "
+                         "SHAPE of the lighting (the global level is absorbed by the affine)")
     rd.add_argument("--profile", default=str(PROFILE))
     rd.add_argument("--out", default=str(OUT / "panel_profile_rederived.jsonl"))
     args = ap.parse_args()
