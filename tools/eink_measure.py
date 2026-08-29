@@ -719,12 +719,12 @@ CAMERA_LOCK = [
     ("exposure_dynamic_framerate", 0),
     ("backlight_compensation", 0),
     ("power_line_frequency", 2),          # 60 Hz — stops mains flicker beating with the shutter
-    ("gain", 72),
+    ("gain", 255),
 ]
 #: ⚠️ The C920 drives GAIN back up on its own (measured: 0 -> 109 -> 255 as exposure rose) even in
 #: manual exposure mode. Every capture therefore re-asserts it immediately before grabbing. Without
 #: this the panel clips ~30% of its pixels and every measurement built on it is silently wrong.
-GAIN_CTRL = ("gain", 72)
+GAIN_CTRL = ("gain", 255)
 
 #: Controls re-asserted immediately before EVERY grab, because this camera silently walks them back.
 #:

@@ -902,8 +902,11 @@ def cmd_target(args) -> None:
             lever_tag += f"_s{args.saturation}"
 
         if args.kind == "huevalue":
-            content = et.target_huevalue(w, h, sat=args.sat, isolate=args.isolate, pre=_pre)
-            tag = f"huevalue_s{args.sat}" + ("_iso" if args.isolate else "_joint") + lever_tag
+            content = et.target_huevalue(w, h, sat=args.sat, isolate=args.isolate, pre=_pre,
+                                         v_lo=args.v_lo, v_hi=args.v_hi)
+            tag = (f"huevalue_s{args.sat}" + ("_iso" if args.isolate else "_joint")
+                   + (f"_v{args.v_lo}-{args.v_hi}" if (args.v_lo, args.v_hi) != (40, 245) else "")
+                   + lever_tag)
         elif args.kind == "surround":
             content = et.target_surround(w, h, centre=args.centre, pre=_pre)
             tag = f"surround_c{args.centre}{lever_tag}"
@@ -1044,6 +1047,8 @@ def main() -> None:
                          "boundaries — i.e. how much any dithered grid target can be trusted.")
     tg.add_argument("--sat", type=float, default=0.55,
                     help="huevalue: saturation of the grid (0-1)")
+    tg.add_argument("--v-lo", type=int, default=40, help="huevalue: lowest value row")
+    tg.add_argument("--v-hi", type=int, default=245, help="huevalue: highest value row")
     tg.add_argument("--centre", type=int, default=170,
                     help="surround: the input value repeated in every cell")
     tg.add_argument("--n", type=int, default=None, help="corpus number, for kind=art")

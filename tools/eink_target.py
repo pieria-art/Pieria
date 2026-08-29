@@ -391,8 +391,14 @@ def target_inkmix(w: int, h: int) -> Image.Image:
 
 
 def target_huevalue(w: int, h: int, hues: int = 12, values: int = 6, sat: float = 0.55,
-                    isolate: bool = False, pre=None) -> Image.Image:
+                    isolate: bool = False, pre=None, v_lo: int = 40, v_hi: int = 245) -> Image.Image:
     """Hue x VALUE grid, DITHERED — ADR-091's table, measured on glass at last.
+
+    `v_lo`/`v_hi` bound the value axis. The default 40-245 spans the range, but its BOTTOM row lands
+    at 4-8/255 of measured chroma — below the rig's ~16/255 dark floor — so "chroma collapses at low
+    value" cannot be distinguished from "the instrument cannot see chroma down here". Re-shooting the
+    same target denser at the bottom (v_lo=20, v_hi=100) is the only way to separate the two, and no
+    amount of re-analysis substitutes for it: the signal was never captured above the noise.
 
     ⚠️ ADR-091 claims chroma survival collapses as VALUE rises: simulated, every hue survives at
     v=100 and six collapse to zero at v=220. That table was produced by simulating the quantiser and
@@ -414,7 +420,7 @@ def target_huevalue(w: int, h: int, hues: int = 12, values: int = 6, sat: float 
     if isolate:
         img = Image.new("RGB", (cw, ch), WHITE)
         for r in range(values):
-            v = round(40 + (245 - 40) * r / max(values - 1, 1))
+            v = round(v_lo + (v_hi - v_lo) * r / max(values - 1, 1))
             for c in range(hues):
                 rx0, ry0, rx1, ry1 = rects[r * hues + c]
                 cell = Image.new("HSV", (rx1 - rx0, ry1 - ry0), (round(256 * c / hues), s, v))
