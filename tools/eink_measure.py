@@ -555,12 +555,29 @@ def read_panel(photo: Image.Image, w: int, h: int, roi=None, flat=None, referenc
         a = np.asarray(rect).astype(float)
         a = a / flat * float(flat.mean())
         rect = Image.fromarray(np.clip(a, 0, 255).astype(np.uint8), "RGB")
-    align = None
-    if reference is not None:
-        rect = align_to_reference(rect, reference, w, h, prior=align_prior)
-        align = rect.info.get("align")
+    # ⚠️ ORDER MATTERS, AND GETTING IT WRONG IS CATASTROPHIC AND QUIET.
+    #
+    # The homography puts the calibration FURNITURE — frame, fiducials, patch strip — exactly at its
+    # nominal positions; that is what it is solved to do. solve_correction reads the black and white
+    # anchors from the strip at those nominal positions.
+    #
+    # align_to_reference then shifts the WHOLE image, furniture included, to line the CONTENT up.
+    # Running it before solve_correction therefore moves the anchors out from under the very function
+    # that depends on them: the affine is solved from whatever now sits at the nominal strip
+    # coordinates, the gain comes out absurd, and the corrected image blows out to near-binary noise.
+    #
+    # It is quiet because patch_residual cannot see it — that metric measures within-patch
+    # UNIFORMITY, not whether the gain is sane, so it kept reporting a healthy 2-3 while the image
+    # was destroyed. The visible symptom was a tone ramp reading as all zeros.
+    #
+    # So: correct the tones FIRST, while the furniture is still where the homography put it, and
+    # align only afterwards, for the content readout.
     gain, off, resid = solve_correction(rect, w, h)
     corrected = apply_correction(rect, gain, off)
+    align = None
+    if reference is not None:
+        corrected = align_to_reference(corrected, reference, w, h, prior=align_prior)
+        align = corrected.info.get("align")
     return {"rectified": rect, "corrected": corrected, "align": align,
             "gain": gain.tolist(), "offset": off.tolist(), "patch_residual": resid}
 
