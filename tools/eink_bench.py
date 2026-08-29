@@ -864,8 +864,27 @@ def cmd_target(args) -> None:
         # (primaries, inkmix, uniformity, flat) ignore `pre` entirely — they are panel invariants
         # and no render setting applies to them, which is exactly why they are captured once.
         def _pre(im):
+            # ⚠️ THE FULL CHAIN, IN cmd_full's ORDER: white-point -> chroma -> saturation -> gamma.
+            # An earlier version applied only white-point and gamma while still ACCEPTING
+            # --saturation and --chroma-gamma, so those two flags were silently inert. That is
+            # exactly the EINK_SATURATION defect (ADR-089) — a knob that is offered, documented and
+            # does nothing — and it would have turned a lever-interaction sweep into a set of
+            # duplicate baselines that "proved" chroma has no effect.
             if args.white_point > 0:
                 im = im.point([min(255, int(round(i * args.white_point))) for i in range(256)] * 3)
+            if args.chroma_floor_max is not None:
+                im = ec.epaper.apply_chroma_curve(im, args.chroma_gamma, args.chroma_floor_max,
+                                                  args.chroma_hue_e0,
+                                                  gap_normalised=args.chroma_gap_normalised,
+                                                  floor_min=args.chroma_floor_min)
+            elif abs(args.chroma_gamma - 1.0) > 1e-3:
+                hue_c, sat_c, val_c = im.convert("HSV").split()
+                lut = [min(255, int(round(255.0 * max((i / 255.0) ** args.chroma_gamma,
+                                                      (i / 255.0) * args.chroma_floor))))
+                       for i in range(256)]
+                im = Image.merge("HSV", (hue_c, sat_c.point(lut), val_c)).convert("RGB")
+            if abs(args.saturation - 1.0) > 1e-3:
+                im = ImageEnhance.Color(im).enhance(args.saturation)
             if args.gamma > 0:
                 im = ec.epaper._apply_gamma(im, args.gamma)
             return im
@@ -875,6 +894,12 @@ def cmd_target(args) -> None:
             lever_tag += f"_wp{args.white_point}"
         if args.gamma > 0:
             lever_tag += f"_g{args.gamma}"
+        if abs(args.chroma_gamma - 1.0) > 1e-3:
+            lever_tag += f"_k{args.chroma_gamma}"
+        if args.chroma_floor_max is not None:
+            lever_tag += f"_hf{args.chroma_floor_max}e{args.chroma_hue_e0}"
+        if abs(args.saturation - 1.0) > 1e-3:
+            lever_tag += f"_s{args.saturation}"
 
         if args.kind == "huevalue":
             content = et.target_huevalue(w, h, sat=args.sat, isolate=args.isolate, pre=_pre)

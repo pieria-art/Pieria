@@ -51,60 +51,92 @@ PANEL = (1600, 1200)
 GEOMETRY_VERSION = 3
 
 
-def _rows(kinds=None) -> list:
-    """The capture matrix.
+def _lever_row(kind, readout, wp=0.0, gamma=1.0, chroma=1.0, sat=1.0, floor_max=None,
+               isolate=False):
+    """One condition = one point in lever space. The name encodes every lever so resume is exact."""
+    flags = ["--gamma", str(gamma)]
+    if wp > 0:
+        flags += ["--white-point", str(wp)]
+    if abs(chroma - 1.0) > 1e-3:
+        flags += ["--chroma-gamma", str(chroma)]
+    if sat is not None and abs(sat - 1.0) > 1e-3:
+        flags += ["--saturation", str(sat)]
+    if floor_max is not None:
+        flags += ["--chroma-floor-max", str(floor_max)]
+    if isolate:
+        flags += ["--isolate"]
+    cond = (f"{kind}_wp{wp}_g{gamma}_k{chroma}_s{sat}"
+            + (f"_hf{floor_max}" if floor_max is not None else "")
+            + ("_iso" if isolate else ""))
+    return {"cond": cond, "kind": kind, "flags": flags, "readout": readout}
 
-    Split by whether a render setting can touch the target at all. The four undithered targets are
-    PANEL INVARIANTS — no lever applies, so they are captured once and never swept, which is most of
-    why the battery costs ~30 refreshes instead of ~120.
+
+def _rows(kinds=None) -> list:
+    """The capture matrix: panel invariants once, then a FACTORIAL over the render levers.
+
+    Two questions need different designs and this covers both:
+
+      * MAIN EFFECTS — what does each lever do on its own. A one-at-a-time sweep answers that.
+      * INTERACTIONS — does one lever change what another lever does. Only a crossed design answers
+        that, and it is the question a one-at-a-time sweep silently cannot see. ADR-088's chroma work
+        failed partly because chroma was swept while luminance, the binding constraint, was held at a
+        value that made chroma look irrelevant.
+
+    The crossing is chosen per target rather than run everywhere, because a full 4x3x3x3 factorial is
+    108 conditions per target and most cells would be uninformative:
+
+      * `tonefine` is NEUTRAL, so it crosses WHITE-POINT x GAMMA — the two levers that move tone —
+        and carries a couple of chroma/saturation cells purely as a NULL CHECK: a chroma lever that
+        moves a neutral ramp is misbehaving, and that is worth knowing.
+      * `huevalue` is CHROMATIC, so it crosses WHITE-POINT x CHROMA — which is precisely ADR-091's
+        open claim that the gamut is luminance-limited, i.e. that white-point and chroma are not
+        independent at all.
+      * `edges` and `linepairs` cross WHITE-POINT x GAMMA at the extremes only: they measure
+        structure, and structure is cheap to sample coarsely.
     """
+    WP = (0.0, 0.64, 0.75, 0.88)
     rows = [
-        # --- M1, the repeatability null. FIRST, and everything downstream is reported against it.
-        # Without an inter-REFRESH floor, no difference measured later is interpretable: "the hue
-        # moved 9 units" is meaningless until 9 is known to be more than the panel's own scatter.
+        # --- M1 repeatability null: FIRST, and every later difference is reported against it.
         {"cond": "primaries#1", "kind": "primaries", "flags": [], "readout": "primaries"},
         {"cond": "primaries#2", "kind": "primaries", "flags": [], "readout": "primaries"},
-
-        # --- panel invariants
+        # --- panel invariants: undithered, no lever applies, captured once
         {"cond": "inkmix", "kind": "inkmix", "flags": [], "readout": "inkmix"},
-        {"cond": "uniformity@0", "kind": "uniformity", "flags": [], "readout": "uniformity",
-         "prompt": None},
+        {"cond": "uniformity@0", "kind": "uniformity", "flags": [], "readout": "uniformity"},
         {"cond": "uniformity@180", "kind": "uniformity", "flags": [], "readout": "uniformity",
          "prompt": "ROTATE THE PANEL 180 DEGREES, then press Enter. Without this pair, panel "
                    "non-uniformity and the rig's flat-field residual are perfectly confounded and "
-                   "the measurement is of the lighting."},
-
-        # --- tone response and grain across the white-point ladder, at gamma 1.0
-        {"cond": "tonefine_wp0", "kind": "tonefine", "flags": ["--gamma", "1.0"], "readout": "tonefine"},
-        {"cond": "tonefine_wp0.64", "kind": "tonefine",
-         "flags": ["--gamma", "1.0", "--white-point", "0.64"], "readout": "tonefine"},
-        {"cond": "tonefine_wp0.75", "kind": "tonefine",
-         "flags": ["--gamma", "1.0", "--white-point", "0.75"], "readout": "tonefine"},
-        {"cond": "tonefine_wp0.88", "kind": "tonefine",
-         "flags": ["--gamma", "1.0", "--white-point", "0.88"], "readout": "tonefine"},
-        # The INCUMBENT. _adaptive_gamma ships 1.4-1.5 today with no white-point, so the vault must
-        # record what is actually on customers' panels, not only the challenger.
-        {"cond": "tonefine_ship", "kind": "tonefine", "flags": ["--gamma", "1.4"], "readout": "tonefine"},
-
-        # --- ADR-091's table, measured on glass
-        {"cond": "huevalue_wp0", "kind": "huevalue", "flags": ["--gamma", "1.0"], "readout": "huevalue"},
-        {"cond": "huevalue_wp0.75", "kind": "huevalue",
-         "flags": ["--gamma", "1.0", "--white-point", "0.75"], "readout": "huevalue"},
-        {"cond": "huevalue_iso_wp0.75", "kind": "huevalue",
-         "flags": ["--gamma", "1.0", "--white-point", "0.75", "--isolate"], "readout": "huevalue"},
-
-        # --- validity, structure and detail at the shipping candidate
-        {"cond": "surround_wp0.75", "kind": "surround",
-         "flags": ["--gamma", "1.0", "--white-point", "0.75"], "readout": "surround"},
-        {"cond": "edges_wp0.75", "kind": "edges",
-         "flags": ["--gamma", "1.0", "--white-point", "0.75"], "readout": "edges"},
-        {"cond": "edges_wp0", "kind": "edges", "flags": ["--gamma", "1.0"], "readout": "edges"},
-        {"cond": "linepairs_wp0.75", "kind": "linepairs",
-         "flags": ["--gamma", "1.0", "--white-point", "0.75"], "readout": "linepairs"},
-        {"cond": "linepairs_wp0", "kind": "linepairs", "flags": ["--gamma", "1.0"], "readout": "linepairs"},
-        {"cond": "resample_wp0.75", "kind": "resample",
-         "flags": ["--gamma", "1.0", "--white-point", "0.75"], "readout": "resample"},
+                   "the measurement is of the lighting, not of the panel."},
     ]
+    # --- tone: WHITE-POINT x GAMMA, crossed. Gamma 1.4 is the INCUMBENT (_adaptive_gamma ships
+    #     1.4-1.5 today with no white-point), so the vault records what is on customers' panels.
+    for wp in WP:
+        for g in (1.0, 1.4, 1.8):
+            rows.append(_lever_row("tonefine", "tonefine", wp=wp, gamma=g))
+    # null checks: a chroma or saturation lever should barely move a NEUTRAL ramp
+    rows.append(_lever_row("tonefine", "tonefine", wp=0.75, chroma=2.0))
+    rows.append(_lever_row("tonefine", "tonefine", wp=0.75, sat=0.7))
+    rows.append(_lever_row("tonefine", "tonefine", wp=0.75, sat=1.3))
+    # --- colour: WHITE-POINT x CHROMA, crossed — ADR-091's claim that these are not independent
+    for wp in WP:
+        for k in (1.0, 1.5, 2.0):
+            rows.append(_lever_row("huevalue", "huevalue", wp=wp, chroma=k))
+    for g in (1.4, 1.8):
+        rows.append(_lever_row("huevalue", "huevalue", wp=0.75, gamma=g))
+    for sat in (0.7, 1.3):
+        rows.append(_lever_row("huevalue", "huevalue", wp=0.75, sat=sat))
+    # the ADR-088 hue-conditioned floor, measured rather than argued about
+    rows.append(_lever_row("huevalue", "huevalue", wp=0.75, chroma=2.0, floor_max=0.5))
+    # the cross-cell dither-bleed control
+    rows.append(_lever_row("huevalue", "huevalue", wp=0.75, isolate=True))
+    # --- structure: coarse corners of WHITE-POINT x GAMMA
+    for kind in ("edges", "linepairs"):
+        for wp in (0.0, 0.75):
+            for g in (1.0, 1.8):
+                rows.append(_lever_row(kind, kind, wp=wp, gamma=g))
+    rows.append(_lever_row("surround", "surround", wp=0.0))
+    rows.append(_lever_row("surround", "surround", wp=0.75))
+    rows.append(_lever_row("resample", "resample", wp=0.75))
+    rows.append(_lever_row("resample", "resample", wp=0.0))
     if kinds:
         want = {k.strip() for k in kinds.split(",") if k.strip()}
         rows = [r for r in rows if r["kind"] in want or r["cond"] in want]
@@ -219,7 +251,8 @@ def one_row(row, flat, args) -> dict:
     # Align against the render we actually sent. See em.align_to_reference: the homography fits its
     # four fiducials exactly and hides both lens distortion and any systematic centroid bias, and the
     # residual is a scale error big enough to move a dense grid by half a cell.
-    r = em.read_panel(Image.open(shot), *PANEL, roi=roi, flat=flat, reference=_reference(row))
+    r = em.read_panel(Image.open(shot), *PANEL, roi=roi, flat=flat, reference=_reference(row),
+                      align_prior=getattr(args, "prior", None))
     fn = er.READOUTS[row["readout"]]
     data = fn(r["corrected"], *PANEL)
     # The visual record: rectified and corrected, downscaled. Numbers answer the question you thought
@@ -235,8 +268,30 @@ def one_row(row, flat, args) -> dict:
             "readout": data}
 
 
+def _align_prior(flat, args):
+    """Measure the rig's alignment ONCE, on a target with enough structure to localise.
+
+    Alignment is a property of the RIG — camera and panel do not move between rows — so searching for
+    it per row is strictly worse than measuring it once and reusing it. `inkmix` is the right source:
+    15 columns of distinct colour give a sharply peaked correlation surface, where a neutral tone
+    ramp gives a nearly flat one and returns noise (measured: `tonefine` pinned dx at the +90 search
+    limit, a boundary result, while every structured target agreed on scale 0.94 / dx~6 / dy-42).
+    """
+    raw = VAULT / "raw" / "inkmix.png"
+    if not raw.exists():
+        return None
+    row = {"cond": "inkmix", "kind": "inkmix", "flags": [], "readout": "inkmix"}
+    rect = em.rectify(Image.open(raw), *PANEL)
+    aligned = em.align_to_reference(rect, _reference(row), *PANEL)
+    prior = aligned.info.get("align")
+    print(f"rig alignment measured from inkmix: correlation {prior[0]}, scale {prior[1]}, "
+          f"dx {prior[2]:+d}, dy {prior[3]:+d}\n")
+    return prior
+
+
 def cmd_run(args) -> None:
     flat = em.build_flat_field(Image.open(args.flat), *PANEL)
+    args.prior = _align_prior(flat, args)
     done = _done_keys()
     rows = [r for r in _rows(args.only) if r["cond"] not in done]
     print(f"{len(done)} rows already banked, {len(rows)} to capture, pace {args.pace}s\n")

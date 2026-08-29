@@ -461,7 +461,7 @@ def build_flat_field(flat_photo: Image.Image, w: int, h: int, roi=None, smooth: 
 
 
 def align_to_reference(rect: Image.Image, reference: Image.Image, w: int, h: int,
-                       max_shift: int = 90) -> Image.Image:
+                       max_shift: int = 90, prior=None) -> Image.Image:
     """Snap a rectified photograph onto the render grid using the RENDER ITSELF as the reference.
 
     ⚠️ WHY THE HOMOGRAPHY IS NOT THE END OF THE STORY. It is solved from four fiducials, so it fits
@@ -477,6 +477,27 @@ def align_to_reference(rect: Image.Image, reference: Image.Image, w: int, h: int
     inferring it, and it is the only check here that can fail loudly: a low correlation means the
     photograph does not show the target we think it shows.
     """
+    # ⚠️ ALIGNMENT IS A PROPERTY OF THE RIG, NOT OF THE TARGET. Camera and panel do not move between
+    # rows, so the residual is the same for every capture in a session — and searching for it per row
+    # is strictly worse than measuring it once on a well-structured target and reusing it. Measured
+    # 2026-08-29: the structured targets (inkmix, huevalue, surround, edges) all agreed on
+    # scale 0.94, dx~6, dy-42 with patch residuals of 2.0-2.3, while the low-contrast ones disagreed
+    # wildly and scored 9-13 — `tonefine`, a ladder of grey steps, pinned dx at the +90 search LIMIT,
+    # which is a boundary result and therefore a request to widen rather than an answer.
+    #
+    # A neutral tone ramp simply does not carry enough horizontal structure to localise, so its
+    # correlation surface is nearly flat and the argmax is noise. Passing the rig's alignment in as
+    # `prior` is what makes those targets measurable at all.
+    if prior is not None:
+        corr, scale, dx, dy = prior
+        inv = 1.0 / scale
+        nw_, nh_ = int(w * inv), int(h * inv)
+        moved = Image.new("RGB", (w, h), (255, 255, 255))
+        moved.paste(rect.convert("RGB").resize((nw_, nh_), Image.BICUBIC),
+                    (int((w - nw_) / 2 - dx * inv), int((h - nh_) / 2 - dy * inv)))
+        moved.info["align"] = (corr, scale, dx, dy)
+        return moved
+
     a = np.asarray(rect.convert("L")).astype(float)
     t0 = np.asarray(reference.convert("L").resize((w, h), Image.BILINEAR)).astype(float)
 
@@ -509,7 +530,8 @@ def align_to_reference(rect: Image.Image, reference: Image.Image, w: int, h: int
     return moved
 
 
-def read_panel(photo: Image.Image, w: int, h: int, roi=None, flat=None, reference=None) -> dict:
+def read_panel(photo: Image.Image, w: int, h: int, roi=None, flat=None, reference=None,
+               align_prior=None) -> dict:
     rect = rectify(photo, w, h, roi)
     if flat is not None:
         a = np.asarray(rect).astype(float)
@@ -517,7 +539,7 @@ def read_panel(photo: Image.Image, w: int, h: int, roi=None, flat=None, referenc
         rect = Image.fromarray(np.clip(a, 0, 255).astype(np.uint8), "RGB")
     align = None
     if reference is not None:
-        rect = align_to_reference(rect, reference, w, h)
+        rect = align_to_reference(rect, reference, w, h, prior=align_prior)
         align = rect.info.get("align")
     gain, off, resid = solve_correction(rect, w, h)
     corrected = apply_correction(rect, gain, off)
