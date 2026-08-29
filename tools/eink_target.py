@@ -124,9 +124,28 @@ def fiducial_centres(w: int, h: int) -> list:
 
 
 def content_box(w: int, h: int) -> tuple:
-    """Pixel rect of the measurable content area, inside the frame and above the patch strip."""
-    x0 = OUTER_MARGIN + FRAME_W + INNER_PAD
-    x1 = w - OUTER_MARGIN - FRAME_W - INNER_PAD
+    """Pixel rect of the measurable content area — inside the FIDUCIALS, not merely inside the frame.
+
+    ⚠️ THE MEASURABLE AREA MUST NOT EXTEND BEYOND THE REGISTRATION POINTS. The homography is solved
+    from the four fiducials, so inside their span it INTERPOLATES and outside it EXTRAPOLATES — and
+    extrapolating a mapping that is absorbing lens distortion goes wrong fast.
+
+    Measured 2026-08-29. The content box used to start at x=36 while the fiducials sit at x=132 and
+    x=1467, so 96 px at each side were extrapolated. Vertically the content (204-894) already sat
+    inside the fiducials (132-1067) and was merely interpolated. The two error scales matched that
+    exactly: ~25 px of vertical slip, ~95 px of horizontal slip — a full cell width on a dense grid.
+
+    The consequence was not subtle and was nearly banked as physics: with every sampling window one
+    cell to the left of the cell it was measuring, the ink-mixture chart reported that ZERO of 15 ink
+    pairs mix additively, with errors to 234/255. Two inks in a checkerboard cannot do that. The large
+    `primaries` fields survived only because a 509 px cell sampled at a 0.30 inset has 153 px of
+    margin to lose.
+
+    The cost is 22% of the width (1528 -> 1192). That is the price of every measurement being taken
+    where the registration is actually solved rather than guessed.
+    """
+    x0 = FID_INSET + FID_SIZE // 2 + FID_CLEAR
+    x1 = w - FID_INSET - FID_SIZE // 2 - FID_CLEAR
     y0 = FID_INSET + FID_SIZE // 2 + FID_CLEAR
     # The patch strip sits ABOVE the bottom fiducials, not below them. Laying it out from the panel
     # edge upward put the strip straight on top of them at smaller panel sizes — the two features

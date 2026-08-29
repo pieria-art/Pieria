@@ -46,7 +46,7 @@ PANEL = (1600, 1200)
 #: Bumped whenever the target furniture moves (content_box, fiducials, patch strip). Captures taken
 #: under different geometry are NOT comparable, and a silent comparison across a geometry change is
 #: exactly the kind of error this file exists to prevent.
-GEOMETRY_VERSION = 2
+GEOMETRY_VERSION = 3
 
 
 def _rows(kinds=None) -> list:

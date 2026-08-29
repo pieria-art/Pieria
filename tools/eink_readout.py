@@ -30,13 +30,73 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from tools import eink_target as et  # noqa: E402
 
 
+def grid_offsets(img: Image.Image, w: int, h: int, cols: int, rows: int, gutter: int,
+                 search: int = 30) -> tuple:
+    """Fit a smooth per-cell sampling correction for lens distortion.
+
+    ⚠️ WHY A RECTIFIED IMAGE STILL NEEDS THIS. The homography is solved from four fiducials and
+    therefore fits those four points EXACTLY — distortion cannot show up at them, only BETWEEN them.
+    Measured 2026-08-29: every fiducial mapped with error 0.0 while the calibration strip sat 25 px
+    off its nominal rows.
+
+    Whether that matters depends entirely on cell size versus inset margin. The `primaries` target's
+    ink fields are 509x345 sampled at a 0.30 inset — 103 px of margin — and read correctly. The
+    calibration strip (96 px tall, 21 px of margin) and every dense grid in this battery (inkmix
+    cells are 101x98, ~22 px of margin) do not: the sampling window walks off the cell and averages in
+    its neighbour. The symptom is spectacular and easy to misread as physics — the ink-mixture chart
+    came back reporting that ZERO of 15 ink pairs mix additively, with errors up to 234/255, which is
+    not a possible property of two inks in a checkerboard.
+
+    Each cell's own best offset is found by minimising interior variance (calibration cells are flat
+    by construction), then a LINEAR model dx,dy = f(x,y) is fitted across all cells and used in place
+    of the raw per-cell answers. The fit is the safeguard: an individual cell can lock onto the wrong
+    feature and score beautifully, but it cannot drag a least-squares plane fitted over dozens of
+    cells. This captures translation plus the first-order (scale and shear) part of the distortion;
+    what is left is the radial residual, which is small over a single cell.
+    """
+    x0, y0, x1, y1 = et.content_box(w, h)
+    cw, ch = x1 - x0, y1 - y0
+    a = np.asarray(img.convert("L")).astype(float)
+    rects = et._grid_rects(cw, ch, cols, rows, gutter)
+    pts, offs = [], []
+    for rx0, ry0, rx1, ry1 in rects:
+        bw, bh = rx1 - rx0, ry1 - ry0
+        ix, iy = int(bw * 0.30), int(bh * 0.30)
+        best, bo = None, (0, 0)
+        for step, rng in ((5, search), (1, 5)):
+            cy, cx = bo
+            for dy in range(cy - rng, cy + rng + 1, step):
+                for dx in range(cx - rng, cx + rng + 1, step):
+                    sy0, sy1 = y0 + ry0 + iy + dy, y0 + ry1 - iy + dy
+                    sx0, sx1 = x0 + rx0 + ix + dx, x0 + rx1 - ix + dx
+                    if sy0 < 0 or sx0 < 0 or sy1 > a.shape[0] or sx1 > a.shape[1] or sy1 <= sy0:
+                        continue
+                    v = float(a[sy0:sy1, sx0:sx1].std())
+                    if best is None or v < best:
+                        best, bo = v, (dy, dx)
+        pts.append((x0 + (rx0 + rx1) / 2, y0 + (ry0 + ry1) / 2))
+        offs.append(bo)
+    P = np.array([[px, py, 1.0] for px, py in pts])
+    DY = np.array([o[0] for o in offs], dtype=float)
+    DX = np.array([o[1] for o in offs], dtype=float)
+    cy_, *_ = np.linalg.lstsq(P, DY, rcond=None)
+    cx_, *_ = np.linalg.lstsq(P, DX, rcond=None)
+    return [(int(round(float(P[i] @ cy_))), int(round(float(P[i] @ cx_)))) for i in range(len(pts))]
+
+
 def _cells(img: Image.Image, w: int, h: int, cols: int, rows: int, gutter: int = 8) -> list:
-    """Per-cell arrays for a cols x rows grid laid out by et._grid_rects, in content coordinates."""
+    """Per-cell arrays for a cols x rows grid laid out by et._grid_rects, in content coordinates.
+
+    Sampling positions are corrected by grid_offsets() — see there for why a rectified image is not
+    already aligned, and what it costs when this is skipped.
+    """
     x0, y0, x1, y1 = et.content_box(w, h)
     cw, ch = x1 - x0, y1 - y0
     a = np.asarray(img.convert("RGB")).astype(float)
+    corr = grid_offsets(img, w, h, cols, rows, gutter)
     out = []
-    for rx0, ry0, rx1, ry1 in et._grid_rects(cw, ch, cols, rows, gutter):
+    for (rx0, ry0, rx1, ry1), (ody, odx) in zip(et._grid_rects(cw, ch, cols, rows, gutter), corr):
+        rx0, rx1, ry0, ry1 = rx0 + odx, rx1 + odx, ry0 + ody, ry1 + ody
         # Inset hard: the fusion kernel is 6x6 panel px and error diffusion contaminates a cell's
         # leading edge, so the readout is taken from the interior only.
         dx, dy = int((rx1 - rx0) * 0.22), int((ry1 - ry0) * 0.22)
