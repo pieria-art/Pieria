@@ -49,6 +49,8 @@ bench-eink/*
 !bench-eink/boxes.json
 !bench-eink/ab_labels.jsonl
 !bench-eink/wp3_labels.jsonl
+!bench-eink/wp3_round2_blinding.json
+!bench-eink/wp3_round2_notes.json
 !bench-eink/wpfit.jsonl
 !bench-eink/wp_predicted.json
 !bench-eink/panel_profile.jsonl

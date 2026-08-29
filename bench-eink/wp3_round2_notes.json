@@ -1,0 +1,14 @@
+{
+  "round": 2,
+  "date": "2026-08-29",
+  "levels": [0.64, 0.76, 0.88],
+  "gamma": 1.0,
+  "blinding": "presented as A/B/C in a seeded-random order per work; judge not told which level is which until after the call. See wp3_round2_blinding.json.",
+  "lighting": "5000K D50 high-CRI lamp, constant for the round; reference viewed on screen at ISO 3664 mid-grey surround",
+  "prior_exposure_flags": {
+    "note": "The corpus contains only 14 oils; 12 are this round and 2 were judged in round 1, so no unexposed oil was available as a substitute. Rather than drop these, they are flagged so the fit can be run with and without them and the anchoring objection answered with a number.",
+    "adr_cited_strong": [16, 9, 31],
+    "binary_ab_only_mild": [7, 27, 40, 31],
+    "clean": [5, 25, 46, 52, 59, 60]
+  }
+}
