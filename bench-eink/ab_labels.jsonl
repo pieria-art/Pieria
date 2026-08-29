@@ -13,3 +13,15 @@
 {"n": 47, "a_wp": 0.64, "b_wp": 0.88, "pick": "a", "note": "judge: A for the detail on the irises, B more correct on the background, takes A. Sixth work split this way, and the pattern in the picks is that SUBJECT detail above the ceiling outweighs background cleanliness."}
 {"n": 38, "a_wp": 0.64, "b_wp": 0.88, "pick": "a", "confidence": "high", "note": "A no doubt, not even close. Judge reason is COLOUR, not detail: B sacrifices the beautiful colour, which is what this painting is about. First judgement to isolate the ADR-091 mechanism cleanly - a pale watercolour has LIGHT colour washes sitting above the luminance of the chromatic inks (blue 71, green 73, red 101), so only compression brings them into the band where those inks can build them."}
 {"n": 35, "a_wp": 0.64, "b_wp": 0.88, "pick": "a", "confidence": "high", "note": "A wins all day - all the lines washed away on B. Extreme end of the feature range."}
+{"n": 32, "a_wp": 0.64, "b_wp": 0.88, "pick": "b", "round": 2, "note": "frame 49.6pct predicts A, focal-r0.35 23.0pct predicts B; judge chose B (focal view wins)"}
+{"n": 36, "a_wp": 0.64, "b_wp": 0.88, "pick": "b", "confidence": "low", "round": 2, "framing": "full-panel", "note": "frame 47.0pct predicts B, focal 61.8pct predicts A; judge chose B (frame view wins) - close"}
+{"n": 34, "a_wp": 0.64, "b_wp": 0.88, "pick": "a", "round": 2, "framing": "full-panel"}
+{"n": 18, "a_wp": 0.64, "b_wp": 0.88, "pick": "a", "round": 2, "framing": "full-panel"}
+{"n": 40, "a_wp": 0.64, "b_wp": 0.88, "pick": "a", "round": 2, "framing": "full-panel", "note": "frame 42.8pct predicts B; judge chose A - rule miss"}
+{"n": 56, "a_wp": 0.64, "b_wp": 0.88, "pick": "a", "confidence": "very low", "round": 2, "framing": "full-panel", "note": "judge: so close, either, lean A"}
+{"n": 24, "a_wp": 0.64, "b_wp": 0.88, "pick": "b", "round": 2, "framing": "full-panel", "note": "frame 56.3pct predicts A; judge chose B - rule miss"}
+{"n": 27, "a_wp": 0.64, "b_wp": 0.88, "pick": "a", "round": 2, "framing": "full-panel"}
+{"n": 4, "a_wp": 0.64, "b_wp": 0.88, "pick": "b", "round": 2, "framing": "full-panel", "note": "frame 37.9pct predicts B, focal 48.4pct predicts A; judge chose B (frame view wins)"}
+{"n": 26, "a_wp": 0.64, "b_wp": 0.88, "pick": "a", "round": 2, "framing": "full-panel", "note": "frame 58.8pct predicts A, focal 37.7pct predicts B; judge chose A (frame view wins)"}
+{"n": 11, "a_wp": 0.64, "b_wp": 0.88, "pick": "a", "round": 2, "framing": "full-panel", "note": "judge: all about the subject here"}
+{"n": 6, "a_wp": 0.64, "b_wp": 0.88, "pick": "tie", "round": 2, "framing": "full-panel", "note": "judge: either, A maybe for detail - excluded"}
