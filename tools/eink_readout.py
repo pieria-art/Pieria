@@ -62,8 +62,15 @@ def grid_offsets(img: Image.Image, w: int, h: int, cols: int, rows: int, gutter:
     for rx0, ry0, rx1, ry1 in rects:
         bw, bh = rx1 - rx0, ry1 - ry0
         ix, iy = int(bw * 0.30), int(bh * 0.30)
+        # ⚠️ THE SEARCH MUST NOT REACH THE NEIGHBOURING CELL. A fixed +/-30 px window was fine when
+        # cells were ~100 px, but narrowing content_box shrank `inkmix` cells to 67x86 and the search
+        # could then lock onto the wrong cell entirely — the tell was blue+green reading [254,253,252]
+        # at all five ratios, which two dark inks cannot do. Cap at a third of the cell so a lock-on
+        # is geometrically impossible rather than merely unlikely.
+        cap = max(4, int(min(bw, bh) / 3))
+        rng0 = min(search, cap)
         best, bo = None, (0, 0)
-        for step, rng in ((5, search), (1, 5)):
+        for step, rng in ((5, rng0), (1, min(5, cap))):
             cy, cx = bo
             for dy in range(cy - rng, cy + rng + 1, step):
                 for dx in range(cx - rng, cx + rng + 1, step):
@@ -85,7 +92,7 @@ def grid_offsets(img: Image.Image, w: int, h: int, cols: int, rows: int, gutter:
 
 
 def _cells(img: Image.Image, w: int, h: int, cols: int, rows: int, gutter: int = 8,
-           band: float = 1.0) -> list:
+           band: float = 1.0, inset: float = 0.22) -> list:
     """Per-cell arrays for a cols x rows grid laid out by et._grid_rects, in content coordinates.
 
     Sampling positions are corrected by grid_offsets() — see there for why a rectified image is not
@@ -107,7 +114,7 @@ def _cells(img: Image.Image, w: int, h: int, cols: int, rows: int, gutter: int =
         rx0, rx1, ry0, ry1 = rx0 + odx, rx1 + odx, ry0 + ody, ry1 + ody
         # Inset hard: the fusion kernel is 6x6 panel px and error diffusion contaminates a cell's
         # leading edge, so the readout is taken from the interior only.
-        dx, dy = int((rx1 - rx0) * 0.22), int((ry1 - ry0) * 0.22)
+        dx, dy = int((rx1 - rx0) * inset), int((ry1 - ry0) * inset)
         out.append(a[y0 + ry0 + dy: y0 + ry1 - dy, x0 + rx0 + dx: x0 + rx1 - dx])
     return out
 
@@ -321,16 +328,30 @@ def readout_edges(img, w, h) -> dict:
     minus (mean of the strip just left of it), in panel-relative units. A value at the noise floor
     means diffusion is not visibly directional at this contrast.
     """
-    cells = _cells(img, w, h, 4, 2, gutter=6)
+    # ⚠️ AN EARLIER VERSION MEASURED CONTRAST, NOT SMEAR. It compared the far LEFT of the cell against
+    # the far RIGHT — but the cell is background-block-background, so those two strips are both
+    # BACKGROUND and their difference is just the target's own polarity flip. On a perfectly
+    # registered digital render it equalled rendered(fg) - rendered(bg) exactly, carrying no
+    # diffusion information at all.
+    #
+    # Floyd-Steinberg pushes error RIGHT and DOWN, so the smear is a difference between the
+    # background immediately AFTER the block and the background immediately BEFORE it, at the same
+    # distance. That is what this now measures.
+    # ⚠️ inset=0 IS REQUIRED HERE. The default 0.22 inset hands back the cell's interior, spanning
+    # 22-78% — but the inner block spans 25-75%, so an inset readout sees ONLY the block and never
+    # the background either side of it. That is why the previous version could not measure smear: it
+    # had no background in view, so its "asymmetry" could only ever be the block's own contrast.
+    cells = _cells(img, w, h, 4, 2, gutter=6, inset=0.0)
     out = []
     for c in cells[:8]:
         hgt, wid = c.shape[0], c.shape[1]
-        band = c[hgt // 3: 2 * hgt // 3]
-        strip = max(4, wid // 12)
-        left = float(band[:, :strip].mean())
-        right = float(band[:, -strip:].mean())
-        out.append({"left": round(left, 2), "right": round(right, 2),
-                    "asymmetry": round(right - left, 2)})
+        band = c[hgt // 3: 2 * hgt // 3].mean(axis=2)
+        mx, gap = wid // 4, max(3, wid // 20)      # the inner block spans mx .. wid-mx
+        lead = float(band[:, max(0, mx - 2 * gap): max(1, mx - gap)].mean())   # before the block
+        trail = float(band[:, min(wid - 1, wid - mx + gap): min(wid, wid - mx + 2 * gap)].mean())
+        blk = float(band[:, mx + gap: wid - mx - gap].mean())                  # the block itself
+        out.append({"leading_bg": round(lead, 2), "trailing_bg": round(trail, 2),
+                    "block": round(blk, 2), "asymmetry": round(trail - lead, 2)})
     worst = max((abs(o["asymmetry"]) for o in out), default=0.0)
     return {"blocks": out, "worst_asymmetry": round(worst, 2)}
 

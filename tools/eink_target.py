@@ -430,7 +430,7 @@ def target_huevalue(w: int, h: int, hues: int = 12, values: int = 6, sat: float 
     canvas = Image.new("HSV", (cw, ch), (0, 0, 255))
     d = ImageDraw.Draw(canvas)
     for r in range(values):
-        v = round(40 + (245 - 40) * r / max(values - 1, 1))
+        v = round(v_lo + (v_hi - v_lo) * r / max(values - 1, 1))
         for c in range(hues):
             rx0, ry0, rx1, ry1 = rects[r * hues + c]
             d.rectangle([rx0, ry0, rx1 - 1, ry1 - 1], fill=(round(256 * c / hues), s, v))

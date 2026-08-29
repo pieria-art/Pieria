@@ -574,11 +574,22 @@ def read_panel(photo: Image.Image, w: int, h: int, roi=None, flat=None, referenc
     # align only afterwards, for the content readout.
     gain, off, resid = solve_correction(rect, w, h)
     corrected = apply_correction(rect, gain, off)
+    # ⚠️ ALIGNMENT MOVES THE FURNITURE TOO. `corrected` after alignment has the CONTENT on the render
+    # grid, but the registration frame, fiducials and patch strip have all moved with it — so any
+    # readout that samples the strip at nominal coordinates on the aligned image is reading the wrong
+    # place. That is what invalidated `strip`, `field_vs_strip`, `worst_disagreement` and
+    # `linearity_error`, and the proof it can never pass by accident: the affine's own anchors must
+    # read 0 and 255 BY CONSTRUCTION, and they read black [61.6,52.5,37.3] / white [226,235,230].
+    #
+    # Both frames are returned. Content readouts use `corrected`; anything sampling the FURNITURE
+    # must use `corrected_furniture`, where the homography's own registration still holds.
+    corrected_furniture = corrected
     align = None
     if reference is not None:
         corrected = align_to_reference(corrected, reference, w, h, prior=align_prior)
         align = corrected.info.get("align")
-    return {"rectified": rect, "corrected": corrected, "align": align,
+    return {"rectified": rect, "corrected": corrected,
+            "corrected_furniture": corrected_furniture, "align": align,
             "gain": gain.tolist(), "offset": off.tolist(), "patch_residual": resid}
 
 

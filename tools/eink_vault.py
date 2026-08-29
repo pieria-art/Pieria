@@ -31,7 +31,7 @@ import sys
 import time
 from pathlib import Path
 
-from PIL import Image
+from PIL import Image, ImageEnhance
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
@@ -287,20 +287,44 @@ def _conditions(args) -> dict:
 def _reference(row) -> Image.Image:
     """Rebuild the exact image that was pushed for this row, to align the photograph against."""
     kind, flags = row["kind"], row["flags"]
-    kw = {}
-    if "--white-point" in flags or "--gamma" in flags:
-        wp = float(flags[flags.index("--white-point") + 1]) if "--white-point" in flags else 0.0
-        gm = float(flags[flags.index("--gamma") + 1]) if "--gamma" in flags else 0.0
 
-        def pre(im):
-            if wp > 0:
-                im = im.point([min(255, int(round(i * wp))) for i in range(256)] * 3)
-            if gm > 0:
-                im = ec.epaper._apply_gamma(im, gm)
-            return im
-        kw["pre"] = pre
+    def _flag(name, default=None):
+        return float(flags[flags.index(name) + 1]) if name in flags else default
+
+    # ⚠️ THE FULL CHAIN, IN cmd_target's ORDER. An earlier version applied only white-point and
+    # gamma, so for every chroma or saturation condition the photograph was aligned against a
+    # reference that did NOT match what was rendered. Alignment survives that on `tonefine` (those
+    # levers barely move a neutral ramp) but it is wrong in principle and misleading on `huevalue`.
+    # A reference that does not reproduce the render is not a reference.
+    wp = _flag("--white-point", 0.0)
+    gm = _flag("--gamma", 0.0)
+    k = _flag("--chroma-gamma", 1.0)
+    sat = _flag("--saturation", 1.0)
+    fmax = _flag("--chroma-floor-max", None)
+    e0 = _flag("--chroma-hue-e0", 20.0)
+
+    def pre(im):
+        if wp > 0:
+            im = im.point([min(255, int(round(i * wp))) for i in range(256)] * 3)
+        if fmax is not None:
+            im = ec.epaper.apply_chroma_curve(im, k, fmax, e0)
+        elif abs(k - 1.0) > 1e-3:
+            hue, s_, val = im.convert("HSV").split()
+            lut = [min(255, int(round(255.0 * (i / 255.0) ** k))) for i in range(256)]
+            im = Image.merge("HSV", (hue, s_.point(lut), val)).convert("RGB")
+        if abs(sat - 1.0) > 1e-3:
+            im = ImageEnhance.Color(im).enhance(sat)
+        if gm > 0:
+            im = ec.epaper._apply_gamma(im, gm)
+        return im
+
+    kw = {"pre": pre}
     if kind == "huevalue":
         kw["isolate"] = "--isolate" in flags
+        if "--v-lo" in flags:
+            kw["v_lo"] = int(_flag("--v-lo"))
+        if "--v-hi" in flags:
+            kw["v_hi"] = int(_flag("--v-hi"))
     if kind in ("primaries", "inkmix", "uniformity", "flat"):
         kw = {}
     content = et.TARGETS[kind](*PANEL, **kw)
