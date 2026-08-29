@@ -63,3 +63,35 @@ def test_correction_is_solved_per_photograph():
     for name in et.INK_NAMES:
         drift = max(abs(x - y) for x, y in zip(pa[name], pb[name]))
         assert drift <= 22, f"{name} disagrees across lighting: {pa[name]} vs {pb[name]}"
+
+
+def test_panel_box_survives_perspective_without_splitting():
+    """REGRESSION (2026-08-29). The panel box is seeded from the largest connected bright-neutral
+    region, and what held that region together across the target's dark content bands was the 10 px
+    outer white gutter — 0.625 of a 16 px coarse cell, barely over the 0.5 coverage threshold.
+
+    Under perspective it fell below, six grid rows went empty, the region split, and the seed box
+    came back as a fraction of the panel. Self-test case 4 (4% warp) had been failing since a20d785
+    and the whole 2026-08-28 measurement session ran on it. Registration failure is silent: the
+    numbers look like a mis-calibrated camera, not like a mis-registered frame.
+    """
+    for warp in (0.0, 0.02, 0.04):
+        photo = em._synthesise_photo(_target(), warp=warp, gain=(0.70, 0.88, 1.35),
+                                     off=(30, 12, -20), noise=6.0, seed=4)
+        x0, y0, x1, y1 = em.panel_bbox(photo)
+        assert (x1 - x0) > 0.85 * W and (y1 - y0) > 0.85 * H, (
+            f"warp {warp}: seed box {x1 - x0}x{y1 - y0} is a fraction of the {W}x{H} panel")
+
+
+def test_panel_is_found_under_a_strong_camera_colour_cast():
+    """REGRESSION (2026-08-29). The panel is neutral in the WORLD, not in the photograph. The C920's
+    white balance is locked to a fixed 4000 K that does not match the room, so the panel photographs
+    with a cast; testing saturation on RAW pixels rejects the panel for being the colour the camera
+    made it. 19 of 42 randomised synthetic captures failed this way, reporting "no neutral area
+    found" with the panel plainly in shot.
+    """
+    for gain in ((0.70, 0.88, 1.35), (1.30, 1.00, 0.72), (0.95, 1.25, 0.80)):
+        photo = em._synthesise_photo(_target(), warp=0.02, gain=gain, off=(20, 6, -12),
+                                     noise=3.0, seed=11)
+        r = em.read_panel(photo, W, H)          # must not raise
+        assert r["patch_residual"] < 14, f"gain {gain}: residual {r['patch_residual']:.1f}"

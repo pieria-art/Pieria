@@ -54,7 +54,8 @@ import epaper as ep  # noqa: E402
 from tools import eink_target as et  # noqa: E402
 
 DARK_MAX = 90          # a pixel this dark, after normalising the frame's own range, is "frame"
-DILATE_CELLS = 3       # coarse cells of dilation used to rejoin split bright regions, then undone
+DILATE_V_CELLS = 26    # VERTICAL bridging (coarse cells) used only to rejoin split bright regions
+DILATE_H_CELLS = 2     # horizontal bridging — deliberately small, see panel_bbox
 
 
 # --- geometry ------------------------------------------------------------------------------------
@@ -78,7 +79,23 @@ def panel_bbox(img: Image.Image, roi=None) -> tuple:
         sub, off = img.crop((x0, y0, x1, y1)), (x0, y0)
     else:
         sub, off = img, (0, 0)
-    hsv = np.asarray(sub.convert("HSV"))
+    # Remove the camera's global colour cast BEFORE asking "is this neutral?".
+    #
+    # ⚠️ The panel is neutral in the WORLD, not in the raw photograph. The C920's locked white balance
+    # is a fixed 4000 K that does not match the room, so a grey panel photographs with a cast — and a
+    # per-channel gain as ordinary as (0.70, 0.88, 1.35) turns the panel's own white strongly blue.
+    # Testing saturation on raw pixels therefore rejects the panel for being the colour the camera
+    # made it, and the detector fails with "no neutral area found" while the panel is plainly in shot.
+    # Measured: 19 of 42 randomised synthetic captures failed this way before this normalisation.
+    #
+    # Anchoring on a high per-channel percentile (not the max, which is noise or a specular fleck)
+    # makes the mask invariant to any global cast — exactly the invariance wanted here, because we
+    # are looking for THE PANEL, not for a colour. It is a detection aid only: the measurement itself
+    # is still corrected by the black/white patch affine downstream, untouched by this.
+    arr = np.asarray(sub.convert("RGB")).astype(float)
+    ref = np.percentile(arr.reshape(-1, 3), 97.0, axis=0)
+    balanced = np.clip(arr * (255.0 / np.maximum(ref, 1.0)), 0, 255).astype(np.uint8)
+    hsv = np.asarray(Image.fromarray(balanced, "RGB").convert("HSV"))
     sat, val = hsv[..., 1].astype(float), hsv[..., 2].astype(float)
     neutral = sat < 55
     if neutral.sum() < 200:
@@ -111,16 +128,30 @@ def panel_bbox(img: Image.Image, roi=None) -> tuple:
                 int(xs.max()) + off[0], int(ys.max()) + off[1])
     coarse = mask[:gh * step, :gw * step].reshape(gh, step, gw, step).mean(axis=(1, 3)) > 0.5
 
-    # DILATE before labelling. The target's content band spans the full width with dark cells, which
-    # splits the white area into a top and a bottom component — and the bottom one is larger, so the
-    # panel box came back as its lower half. Bridging a few cells rejoins them. It does not rejoin
-    # the panel to other bright-neutral objects in the room, because the floor between them is bright
-    # but SATURATED and never entered the mask in the first place.
+    # DILATE before labelling, ANISOTROPICALLY. The target's content bands span the full width with
+    # dark cells and split the white area into a top and a bottom component — and the bottom one is
+    # larger, so the panel box came back as its lower half.
+    #
+    # ⚠️ What actually holds the two halves together is the target's 10 px outer white gutter, which
+    # fills 0.625 of a 16 px cell — barely over the 0.5 coverage threshold. Any warp, blur or
+    # resampling pushes it under, and the panel splits. Measured on self-test case 4 (4% warp): six
+    # grid rows dropped to ZERO cells and the seed box came back 1504x752 instead of 1600x1200.
+    # Relying on a 10 px feature for connectivity is the underlying fragility; bridging removes it.
+    #
+    # The bridging is vertical-dominant on purpose. The bands that split our targets run HORIZONTALLY
+    # (content rows, the patch strip), so vertical bridging is what rejoins the panel to itself. The
+    # intruders that forced connected-components in the first place — the wood floor, the sage door —
+    # were LATERAL, so horizontal bridging is kept small and cannot reach them. Over-dilating
+    # vertically is cheap because the box below is taken from the UNDILATED cells.
+    undilated = coarse.copy()
     grown = coarse.copy()
-    for _ in range(DILATE_CELLS):
+    for _ in range(DILATE_V_CELLS):
         g = grown.copy()
         g[1:, :] |= grown[:-1, :]
         g[:-1, :] |= grown[1:, :]
+        grown = g
+    for _ in range(DILATE_H_CELLS):
+        g = grown.copy()
         g[:, 1:] |= grown[:, :-1]
         g[:, :-1] |= grown[:, 1:]
         grown = g
@@ -143,19 +174,24 @@ def panel_bbox(img: Image.Image, roi=None) -> tuple:
                         stack.append((ny, nx))
             if best is None or len(cells) > len(best):
                 best = cells
-    ys = [c[0] for c in best]
-    xs = [c[1] for c in best]
-    # Undo the dilation: it was there to rejoin split regions, not to enlarge the answer. Leaving it
-    # in pushed the box ~48 px past the panel on every side, which moved the expected fiducial
-    # positions outward far enough that the search latched onto the frame corner instead.
-    grow = DILATE_CELLS * step
-    x0 = min(xs) * step + grow
-    y0 = min(ys) * step + grow
-    x1 = (max(xs) + 1) * step - grow
-    y1 = (max(ys) + 1) * step - grow
-    if x1 - x0 < 40 or y1 - y0 < 40:      # degenerate after shrinking — fall back to the raw box
-        x0, y0 = min(xs) * step, min(ys) * step
-        x1, y1 = (max(xs) + 1) * step, (max(ys) + 1) * step
+    # Undo the dilation by taking the box over the ORIGINAL cells of the winning component, not by
+    # shrinking the grown box. The dilation exists to decide CONNECTIVITY; it must not contribute to
+    # the ANSWER. The previous version subtracted a flat DILATE_CELLS*step from every side, which is
+    # only correct when the mask actually over-grew by that much. On a clean capture — dark surround,
+    # panel on black fabric, nothing bright and neutral nearby, which is the rig as it stands now —
+    # nothing over-grows, so the subtraction pulled the seed box ~48 px INSIDE the panel, displaced
+    # every expected fiducial position, and made the search miss under perspective. That is a silent
+    # registration error, not a visible failure: it broke self-test case 4 (4% warp) in a20d785 and
+    # went unnoticed through the whole 2026-08-28 measurement session.
+    component = np.zeros_like(coarse, dtype=bool)
+    for cy, cx in best:
+        component[cy, cx] = True
+    keep = component & undilated
+    if not keep.any():                    # component exists only in the dilated mask — keep the grown box
+        keep = component
+    ys, xs = np.nonzero(keep)
+    x0, y0 = int(xs.min()) * step, int(ys.min()) * step
+    x1, y1 = (int(xs.max()) + 1) * step, (int(ys.max()) + 1) * step
     return (x0 + off[0], y0 + off[1], x1 + off[0], y1 + off[1])
 
 
