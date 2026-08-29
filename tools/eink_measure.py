@@ -317,8 +317,10 @@ def solve_correction(rectified: Image.Image, w: int, h: int) -> tuple:
     palette normalised the same way.
     """
     rects = patch_rects(w, h, len(ep.SPECTRA6_OUTPUT_PALETTE))
-    black = _mean_rgb(rectified, rects[0])
-    white = _mean_rgb(rectified, rects[1])
+    # Index by NAME, not by position: the strip is laid out in et.STRIP_ORDER, which puts the two
+    # anchors at opposite ends so the black one is not lifted by scatter from the white one.
+    black = _mean_rgb(rectified, rects[et.STRIP_ORDER.index("black")], inset=0.30)
+    white = _mean_rgb(rectified, rects[et.STRIP_ORDER.index("white")], inset=0.30)
     span = np.maximum(white - black, 1e-3)
     gain = 255.0 / span
     off = -black * gain

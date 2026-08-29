@@ -138,7 +138,7 @@ def readout_primaries_from_strip(img, w, h) -> dict:
     from tools import eink_measure as em  # local import: readout is importable without a camera
     rects = em.patch_rects(w, h, len(et.INK_NAMES))
     return {n: [round(float(v), 2) for v in em._mean_rgb(img, r)]
-            for n, r in zip(et.INK_NAMES, rects)}
+            for n, r in zip(et.STRIP_ORDER, rects)}
 
 
 def readout_primaries(img, w, h) -> dict:

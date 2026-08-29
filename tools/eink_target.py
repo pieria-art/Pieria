@@ -80,6 +80,23 @@ WHITE = (255, 255, 255)
 #: photograph one ink at a time.
 INK_NAMES = ("black", "white", "red", "yellow", "blue", "green")
 
+#: Order the patches are LAID OUT in along the calibration strip. Deliberately NOT palette order.
+#:
+#: ⚠️ In palette order the BLACK patch sits immediately beside the WHITE one — the zero point of every
+#: measurement placed next to the brightest thing on the panel. Lateral scatter in the glass then
+#: lifts the anchor. Measured 2026-08-29: brightness ACROSS a single black patch climbed monotonically
+#: 87.4 -> 106.0 from its far side toward the white neighbour, an 18.6/255 gradient inside one patch,
+#: leaving the strip's black 11.8 brighter than a large black field of the same ink.
+#:
+#: That is not a cosmetic error. The affine's offset comes from this patch, so every ink DARKER than
+#: the contaminated anchor is crushed to zero — measured on red's G and B and on blue's R, which is
+#: exactly the "red, blue and green all measured [0,0,0] while registration was working correctly"
+#: failure already on record. A deeper measurement inset only recovers 11.8 -> 7.6, because the
+#: scatter spans the whole patch; the neighbours have to change.
+#:
+#: So the two anchors go to OPPOSITE ENDS, with the dark chromatic inks between them.
+STRIP_ORDER = ("black", "blue", "green", "red", "yellow", "white")
+
 
 def _output_inks() -> list:
     return [tuple(c) for c in ep.SPECTRA6_OUTPUT_PALETTE]
@@ -144,7 +161,8 @@ def compose(content: Image.Image, w: int, h: int, extra_patches=None,
     if not patches:
         return canvas
     # Calibration strip: the six pure inks, then any extra patches (e.g. dithered greys).
-    patches = [(n, c) for n, c in zip(INK_NAMES, _output_inks())] + list(extra_patches or [])
+    by_name = dict(zip(INK_NAMES, _output_inks()))
+    patches = [(n, by_name[n]) for n in STRIP_ORDER] + list(extra_patches or [])
     sy0 = y1 + PATCH_GAP
     sy1 = sy0 + PATCH_H
     total = x1 - x0
