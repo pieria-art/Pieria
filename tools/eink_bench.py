@@ -858,8 +858,36 @@ def cmd_target(args) -> None:
             tag += (f"_hf{args.chroma_floor_max}gap" if args.chroma_gap_normalised
                     else f"_hf{args.chroma_floor_max}e{args.chroma_hue_e0}")
     else:
-        content = et.TARGETS[args.kind](w, h)
-        tag = args.kind
+        # The render's pre-transform chain, in the same order cmd_full applies it. It must reach the
+        # generator rather than the finished canvas: these levers act on CONTENT, and running them
+        # over an already-dithered pattern would transform the dither instead. Undithered targets
+        # (primaries, inkmix, uniformity, flat) ignore `pre` entirely — they are panel invariants
+        # and no render setting applies to them, which is exactly why they are captured once.
+        def _pre(im):
+            if args.white_point > 0:
+                im = im.point([min(255, int(round(i * args.white_point))) for i in range(256)] * 3)
+            if args.gamma > 0:
+                im = ec.epaper._apply_gamma(im, args.gamma)
+            return im
+
+        lever_tag = ""
+        if args.white_point > 0:
+            lever_tag += f"_wp{args.white_point}"
+        if args.gamma > 0:
+            lever_tag += f"_g{args.gamma}"
+
+        if args.kind == "huevalue":
+            content = et.target_huevalue(w, h, sat=args.sat, isolate=args.isolate, pre=_pre)
+            tag = f"huevalue_s{args.sat}" + ("_iso" if args.isolate else "_joint") + lever_tag
+        elif args.kind == "surround":
+            content = et.target_surround(w, h, centre=args.centre, pre=_pre)
+            tag = f"surround_c{args.centre}{lever_tag}"
+        elif args.kind in ("primaries", "inkmix", "uniformity", "flat"):
+            content = et.TARGETS[args.kind](w, h)
+            tag = args.kind
+        else:
+            content = et.TARGETS[args.kind](w, h, pre=_pre)
+            tag = f"{args.kind}{lever_tag}"
 
     canvas = et.compose(content, w, h, patches=(args.kind != "flat"))
     OUT.mkdir(parents=True, exist_ok=True)
@@ -981,7 +1009,18 @@ def main() -> None:
     fs.add_argument("-v", "--verbose", action="store_true", help="list every work, not just the unjudged")
 
     tg = sub.add_parser("target", help="render a self-calibrating measurement target for photography")
-    tg.add_argument("kind", choices=("primaries", "ramp", "huegrid", "art", "flat"))
+    tg.add_argument("kind", choices=("primaries", "inkmix", "uniformity", "flat",
+                                     "ramp", "tonefine", "huegrid", "huevalue", "surround",
+                                     "edges", "linepairs", "resample", "art"))
+    tg.add_argument("--isolate", action="store_true",
+                    help="huevalue: dither each cell on its OWN and composite, instead of dithering "
+                         "the whole grid in one pass. The DIFFERENCE between the two is the "
+                         "measurement of how far Floyd-Steinberg error bleeds across cell "
+                         "boundaries — i.e. how much any dithered grid target can be trusted.")
+    tg.add_argument("--sat", type=float, default=0.55,
+                    help="huevalue: saturation of the grid (0-1)")
+    tg.add_argument("--centre", type=int, default=170,
+                    help="surround: the input value repeated in every cell")
     tg.add_argument("--n", type=int, default=None, help="corpus number, for kind=art")
     tg.add_argument("--gamma", type=float, default=1.4)
     tg.add_argument("--saturation", type=float, default=1.0)
