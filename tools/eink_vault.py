@@ -357,7 +357,12 @@ def _align_prior(flat, args):
 
 def cmd_run(args) -> None:
     flat = em.build_flat_field(Image.open(args.flat), *PANEL)
-    args.prior = _align_prior(flat, args)
+    # ⚠️ NO GLOBAL PRIOR. Alignment is NOT purely a rig property: the per-photo rectification varies
+    # with fiducial detection, so the residual varies per capture and a fixed prior corrects the
+    # wrong amount. Measured: an inkmix-derived prior made `tonefine` worse than doing nothing. Each
+    # row runs the content-masked search instead, which is what makes low-contrast targets
+    # measurable at all.
+    args.prior = None
     done = _done_keys()
     rows = _randomised([r for r in _rows(args.only) if r["cond"] not in done], args.seed)
     print(f"{len(done)} rows already banked, {len(rows)} to capture, pace {args.pace}s\n")
