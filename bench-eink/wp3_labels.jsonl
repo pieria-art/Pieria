@@ -15,3 +15,10 @@
 {"n": 25, "levels": [0.64, 0.76, 0.88], "pick": 0.88, "round": 4, "note": "picked after re-showing B against C", "shown_as": "B", "blinded": true, "prior_exposure": "none"}
 {"n": 52, "levels": [0.64, 0.76, 0.88], "pick": 0.88, "round": 4, "note": "", "shown_as": "B", "blinded": true, "prior_exposure": "none"}
 {"n": 60, "levels": [0.64, 0.76, 0.88], "pick": 0.88, "round": 4, "note": "", "shown_as": "B", "blinded": true, "prior_exposure": "none"}
+{"n": 46, "levels": [0.64, 0.76, 0.88], "pick": 0.88, "round": 4, "note": "re-showed A and C before calling; gold-leaf work, hardest test of the yellow ink", "shown_as": "C", "blinded": true, "prior_exposure": "none"}
+{"n": 5, "levels": [0.64, 0.76, 0.88], "pick": 0.88, "round": 4, "note": "", "shown_as": "C", "blinded": true, "prior_exposure": "none"}
+{"n": 31, "levels": [0.64, 0.76, 0.88], "pick": 0.76, "round": 4, "note": "B by a hair over A; closest call of the round, re-showed both twice", "margin": "narrow", "runner_up": 0.88, "shown_as": "B", "blinded": true, "prior_exposure": "A/B round + fullpanel disagreement (trueness vs preference) + ADR-cited \u2014 flagged for sensitivity analysis"}
+{"n": 9, "levels": [0.64, 0.76, 0.88], "pick": 0.88, "round": 4, "note": "", "shown_as": "C", "blinded": true, "prior_exposure": "07-19 gamma sweep + ADR-cited \u2014 flagged for sensitivity analysis"}
+{"n": 40, "levels": [0.64, 0.76, 0.88], "pick": 0.64, "round": 4, "note": "", "shown_as": "C", "blinded": true, "prior_exposure": "binary A/B round only (mild)"}
+{"n": 27, "levels": [0.64, 0.76, 0.88], "pick": 0.64, "round": 4, "note": "re-showed A before calling", "shown_as": "C", "blinded": true, "prior_exposure": "binary A/B round only (mild)"}
+{"n": 59, "levels": [0.64, 0.76, 0.88], "pick": 0.76, "round": 4, "note": "hardest call of the round; sky and boats pull different ways. C rejected outright ('loses too much'); decided between A and B over three passes.", "margin": "narrow", "runner_up": 0.64, "rejected": 0.88, "shown_as": "A", "blinded": true, "prior_exposure": "none"}
