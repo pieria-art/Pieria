@@ -10,3 +10,8 @@
 {"n": 53, "levels": [0.64, 0.76, 0.88], "pick": 0.64, "round": 3}
 {"n": 49, "levels": [0.64, 0.76, 0.88], "pick": 0.88, "round": 3, "note": "first 0.88 pick - very little above the ceiling (5.3pct)"}
 {"n": 28, "levels": [0.64, 0.76, 0.88], "pick": 0.76, "round": 3}
+{"n": 16, "levels": [0.64, 0.76, 0.88], "pick": 0.64, "round": 4, "note": "both B and C have the excessive graininess", "shown_as": "A", "blinded": true, "prior_exposure": "ADR-090 cited (June's mantle) \u2014 flagged for sensitivity analysis"}
+{"n": 7, "levels": [0.64, 0.76, 0.88], "pick": 0.88, "round": 4, "note": "B and C both darken it up too much", "shown_as": "A", "blinded": true, "prior_exposure": "binary A/B round only (mild)"}
+{"n": 25, "levels": [0.64, 0.76, 0.88], "pick": 0.88, "round": 4, "note": "picked after re-showing B against C", "shown_as": "B", "blinded": true, "prior_exposure": "none"}
+{"n": 52, "levels": [0.64, 0.76, 0.88], "pick": 0.88, "round": 4, "note": "", "shown_as": "B", "blinded": true, "prior_exposure": "none"}
+{"n": 60, "levels": [0.64, 0.76, 0.88], "pick": 0.88, "round": 4, "note": "", "shown_as": "B", "blinded": true, "prior_exposure": "none"}
