@@ -450,6 +450,46 @@ def cmd_ghost(args) -> None:
         _record(rec)
 
 
+def cmd_rederive(args) -> None:
+    """Recompute every readout from the BANKED RAW CAPTURES, without touching the panel.
+
+    This is the single most valuable property of the vault. The irreplaceable asset is the raw
+    photograph plus its capture conditions: the rig — this camera lock, this flat field, this
+    lighting — cannot be recreated once it comes down, but a readout is just arithmetic over a file
+    and can be recomputed as many times as it takes. Six separate analysis bugs were fixed on
+    2026-08-29 after the captures were taken, and not one of them cost a panel refresh.
+
+    So: capture generously and analyse later. A run that banks raws is never wasted, even when every
+    number it derived at the time turns out to be wrong.
+    """
+    flat = em.build_flat_field(Image.open(args.flat), *PANEL)
+    src = Path(args.profile)
+    recs = [json.loads(ln) for ln in src.read_text().splitlines() if ln.strip()]
+    out = Path(args.out)
+    done, failed = 0, 0
+    with out.open("w") as fh:
+        for rec in recs:
+            raw = VAULT / "raw" / f"{rec['cond'].replace('#', '_')}.png"
+            if not rec.get("ok") or not raw.exists():
+                fh.write(json.dumps(rec) + "\n")
+                continue
+            row = {"cond": rec["cond"], "kind": rec["kind"], "flags": rec["flags"],
+                   "readout": rec.get("readout") or rec["kind"]}
+            try:
+                r = em.read_panel(Image.open(raw), *PANEL, flat=flat, reference=_reference(row))
+                fn = er.READOUTS[row["readout"]]
+                rec = dict(rec, readout=fn(r["corrected"], *PANEL),
+                           patch_residual=round(float(r["patch_residual"]), 2),
+                           align=r.get("align"), rederived=True)
+                done += 1
+            except Exception as exc:
+                rec = dict(rec, ok=False, error=f"rederive: {str(exc)[:200]}")
+                failed += 1
+            fh.write(json.dumps(rec) + "\n")
+            print(f"  {rec['cond']:38s} {'ok' if rec.get('ok') else 'FAILED'}", flush=True)
+    print(f"\n{done} re-derived, {failed} failed -> {out}")
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -479,8 +519,13 @@ def main() -> None:
             s.add_argument("--resume-only", action="store_true",
                            help="do not re-render; photograph the frame already on the panel (for "
                                 "the 8 h / 24 h points, which cannot be taken in one sitting)")
+    rd = sub.add_parser("rederive", help="recompute all readouts from banked raws, no panel needed")
+    rd.add_argument("--flat", required=True)
+    rd.add_argument("--profile", default=str(PROFILE))
+    rd.add_argument("--out", default=str(OUT / "panel_profile_rederived.jsonl"))
     args = ap.parse_args()
-    {"run": cmd_run, "dwell": cmd_dwell, "ghost": cmd_ghost}[args.cmd](args)
+    {"run": cmd_run, "dwell": cmd_dwell, "ghost": cmd_ghost,
+     "rederive": cmd_rederive}[args.cmd](args)
 
 
 if __name__ == "__main__":
