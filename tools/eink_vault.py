@@ -35,8 +35,10 @@ from PIL import Image
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
+from tools import eink_calibrate as ec  # noqa: E402
 from tools import eink_measure as em  # noqa: E402
 from tools import eink_readout as er  # noqa: E402
+from tools import eink_target as et  # noqa: E402
 
 OUT = Path("bench-eink")
 PROFILE = OUT / "panel_profile.jsonl"
@@ -184,6 +186,29 @@ def _conditions(args) -> dict:
             "colour_reference": "none (no ColorChecker) — absolute colour claims are NOT supported"}
 
 
+def _reference(row) -> Image.Image:
+    """Rebuild the exact image that was pushed for this row, to align the photograph against."""
+    kind, flags = row["kind"], row["flags"]
+    kw = {}
+    if "--white-point" in flags or "--gamma" in flags:
+        wp = float(flags[flags.index("--white-point") + 1]) if "--white-point" in flags else 0.0
+        gm = float(flags[flags.index("--gamma") + 1]) if "--gamma" in flags else 0.0
+
+        def pre(im):
+            if wp > 0:
+                im = im.point([min(255, int(round(i * wp))) for i in range(256)] * 3)
+            if gm > 0:
+                im = ec.epaper._apply_gamma(im, gm)
+            return im
+        kw["pre"] = pre
+    if kind == "huevalue":
+        kw["isolate"] = "--isolate" in flags
+    if kind in ("primaries", "inkmix", "uniformity", "flat"):
+        kw = {}
+    content = et.TARGETS[kind](*PANEL, **kw)
+    return et.compose(content, *PANEL, patches=(kind != "flat"))
+
+
 def one_row(row, flat, args) -> dict:
     t0 = time.time()
     shot = VAULT / "raw" / f"{row['cond'].replace('#', '_')}.png"
@@ -191,7 +216,10 @@ def one_row(row, flat, args) -> dict:
     _settle_wait(args)
     _capture(shot, args)
     roi = tuple(int(v) for v in args.roi.split(",")) if args.roi else None
-    r = em.read_panel(Image.open(shot), *PANEL, roi=roi, flat=flat)
+    # Align against the render we actually sent. See em.align_to_reference: the homography fits its
+    # four fiducials exactly and hides both lens distortion and any systematic centroid bias, and the
+    # residual is a scale error big enough to move a dense grid by half a cell.
+    r = em.read_panel(Image.open(shot), *PANEL, roi=roi, flat=flat, reference=_reference(row))
     fn = er.READOUTS[row["readout"]]
     data = fn(r["corrected"], *PANEL)
     # The visual record: rectified and corrected, downscaled. Numbers answer the question you thought
@@ -202,6 +230,7 @@ def one_row(row, flat, args) -> dict:
     return {"cond": row["cond"], "kind": row["kind"], "flags": row["flags"], "ok": True,
             "patch_residual": round(float(r["patch_residual"]), 2),
             "gain": [round(v, 4) for v in r["gain"]], "offset": [round(v, 2) for v in r["offset"]],
+            "align": r.get("align"),
             "seconds": round(time.time() - t0, 1), "conditions": _conditions(args),
             "readout": data}
 

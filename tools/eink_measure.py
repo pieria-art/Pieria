@@ -268,9 +268,55 @@ def _perspective_coeffs(dst_corners, src_corners) -> tuple:
     return tuple(res.tolist())
 
 
+def refine_fiducials(photo: Image.Image, w: int, h: int, src: list, iters: int = 2) -> list:
+    """Re-find each fiducial in a TIGHT window predicted by the current homography.
+
+    ⚠️ THE FIRST PASS IS SEEDED BY panel_bbox, AND THAT SEED BIASES THE SCALE. find_fiducials places
+    its search windows using a rough bright-region box; when that box is off, every window is off the
+    same way, each centroid is pulled toward its window centre, and the result is not a random error
+    but a systematic one — the four points move together, so the solved homography comes out at the
+    wrong SCALE while still fitting its own four points perfectly.
+
+    Measured 2026-08-29 by cross-correlating the rectified photograph against the digital target:
+    best match at scale 0.96 with a 16/32 px translation, i.e. a 4% scale error, which is ~48 px
+    across the content — half a cell on a dense grid. Nothing upstream reports it, because a
+    homography always fits its own four points.
+
+    Iterating removes the dependence on the seed: predict where each fiducial should be from the
+    current solution, search a window tight enough that only the fiducial can be inside it, re-solve.
+    Two passes are enough; the correction is monotone and small after the first.
+    """
+    dst = [(float(x), float(y)) for x, y in et.fiducial_centres(w, h)]
+    a = np.asarray(photo.convert("L")).astype(float)
+    cur = [(float(x), float(y)) for x, y in src]
+    for _ in range(iters):
+        try:
+            coeffs = _perspective_coeffs(dst, cur)      # render -> photo
+        except Exception:
+            return cur
+        out = []
+        for (ex, ey) in dst:
+            den = coeffs[6] * ex + coeffs[7] * ey + 1.0
+            px = (coeffs[0] * ex + coeffs[1] * ey + coeffs[2]) / den
+            py = (coeffs[3] * ex + coeffs[4] * ey + coeffs[5]) / den
+            win = int(et.FID_SIZE * 0.9)
+            x0, x1 = int(px - win), int(px + win)
+            y0, y1 = int(py - win), int(py + win)
+            if x0 < 0 or y0 < 0 or x1 > a.shape[1] or y1 > a.shape[0]:
+                out.append((px, py))
+                continue
+            cell = a[y0:y1, x0:x1]
+            lo, hi = float(cell.min()), float(cell.max())
+            m = cell <= lo + 0.45 * max(hi - lo, 1.0)
+            ys, xs = np.nonzero(m)
+            out.append((x0 + xs.mean(), y0 + ys.mean()) if len(xs) >= 12 else (px, py))
+        cur = out
+    return cur
+
+
 def rectify(photo: Image.Image, w: int, h: int, roi=None) -> Image.Image:
     """Resample the photo onto the render's pixel grid using the corner fiducials."""
-    src = find_fiducials(photo, w, h, roi)
+    src = refine_fiducials(photo, w, h, find_fiducials(photo, w, h, roi))
     dst = [(float(x), float(y)) for x, y in et.fiducial_centres(w, h)]
     coeffs = _perspective_coeffs(dst, src)
     return photo.convert("RGB").transform((w, h), Image.PERSPECTIVE, coeffs, Image.BICUBIC)
@@ -414,15 +460,68 @@ def build_flat_field(flat_photo: Image.Image, w: int, h: int, roi=None, smooth: 
     return np.maximum(field, 1.0)
 
 
-def read_panel(photo: Image.Image, w: int, h: int, roi=None, flat=None) -> dict:
+def align_to_reference(rect: Image.Image, reference: Image.Image, w: int, h: int,
+                       max_shift: int = 90) -> Image.Image:
+    """Snap a rectified photograph onto the render grid using the RENDER ITSELF as the reference.
+
+    ⚠️ WHY THE HOMOGRAPHY IS NOT THE END OF THE STORY. It is solved from four fiducials, so it fits
+    those four points exactly and reports no error no matter how wrong it is elsewhere. Two things
+    then survive it: lens distortion, which is zero at the fitted points and grows between them, and
+    a systematic bias in the fiducial centroids themselves, which moves all four together and comes
+    out as a SCALE error. Measured 2026-08-29 by cross-correlating against the digital target: best
+    match at scale 0.96 with a 16/32 px translation — about 48 px across the content, half a cell on
+    a dense grid, and completely invisible to every check upstream.
+
+    We always know exactly what was sent to the panel, so the render is the perfect reference. A
+    coarse scale-and-translation search against it measures the residual directly instead of
+    inferring it, and it is the only check here that can fail loudly: a low correlation means the
+    photograph does not show the target we think it shows.
+    """
+    a = np.asarray(rect.convert("L")).astype(float)
+    t0 = np.asarray(reference.convert("L").resize((w, h), Image.BILINEAR)).astype(float)
+
+    def n(x):
+        return (x - x.mean()) / (x.std() + 1e-9)
+
+    best = None
+    for scale in (0.94, 0.96, 0.98, 1.00, 1.02, 1.04, 1.06):
+        tw, th = int(w * scale), int(h * scale)
+        t = np.asarray(Image.fromarray(t0.astype(np.uint8)).resize((tw, th), Image.BILINEAR)
+                       ).astype(float)
+        for dy in range(-max_shift, max_shift + 1, 6):
+            for dx in range(-max_shift, max_shift + 1, 6):
+                oy, ox = (h - th) // 2 + dy, (w - tw) // 2 + dx
+                ys0, ys1 = max(0, oy), min(h, oy + th)
+                xs0, xs1 = max(0, ox), min(w, ox + tw)
+                if ys1 - ys0 < h * 0.5 or xs1 - xs0 < w * 0.5:
+                    continue
+                c = float((n(a[ys0:ys1, xs0:xs1]) * n(t[ys0 - oy:ys1 - oy, xs0 - ox:xs1 - ox])).mean())
+                if best is None or c > best[0]:
+                    best = (c, scale, dx, dy)
+    corr, scale, dx, dy = best
+    # Invert the found (scale, translation) so the PHOTO lands on the render grid.
+    inv = 1.0 / scale
+    nw_, nh_ = int(w * inv), int(h * inv)
+    moved = Image.new("RGB", (w, h), (255, 255, 255))
+    src = rect.convert("RGB").resize((nw_, nh_), Image.BICUBIC)
+    moved.paste(src, (int((w - nw_) / 2 - dx * inv), int((h - nh_) / 2 - dy * inv)))
+    moved.info["align"] = (round(corr, 3), scale, dx, dy)
+    return moved
+
+
+def read_panel(photo: Image.Image, w: int, h: int, roi=None, flat=None, reference=None) -> dict:
     rect = rectify(photo, w, h, roi)
     if flat is not None:
         a = np.asarray(rect).astype(float)
         a = a / flat * float(flat.mean())
         rect = Image.fromarray(np.clip(a, 0, 255).astype(np.uint8), "RGB")
+    align = None
+    if reference is not None:
+        rect = align_to_reference(rect, reference, w, h)
+        align = rect.info.get("align")
     gain, off, resid = solve_correction(rect, w, h)
     corrected = apply_correction(rect, gain, off)
-    return {"rectified": rect, "corrected": corrected,
+    return {"rectified": rect, "corrected": corrected, "align": align,
             "gain": gain.tolist(), "offset": off.tolist(), "patch_residual": resid}
 
 
