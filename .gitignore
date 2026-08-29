@@ -47,6 +47,9 @@ bench-eink/*
 !bench-eink/fullpanel.jsonl
 !bench-eink/classes.json
 !bench-eink/boxes.json
+!bench-eink/ab_labels.jsonl
+!bench-eink/wpfit.jsonl
+!bench-eink/wp_predicted.json
 # classes.json / boxes.json are DECISIONS, not output: a material class assigned by looking at 60
 # works, and crop boxes authored one at a time on the panel. Neither is reproducible from the code,
 # and both must reach the Pi by git — the harness reads them there. bench-eink/reference/ stays

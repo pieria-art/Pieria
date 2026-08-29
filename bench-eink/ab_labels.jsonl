@@ -1,0 +1,15 @@
+{"n": 7, "a_wp": 0.64, "b_wp": 0.88, "pick": "b", "note": "B closer to colour true"}
+{"n": 58, "a_wp": 0.64, "b_wp": 0.88, "pick": "b"}
+{"n": 2, "a_wp": 0.64, "b_wp": 0.88, "pick": "tie", "confidence": "none", "note": "judge: totally taste, B acceptable too \u2014 excluded from the fit"}
+{"n": 43, "a_wp": 0.64, "b_wp": 0.88, "pick": "b"}
+{"n": 8, "a_wp": 0.64, "b_wp": 0.88, "pick": "a", "confidence": "low", "note": "judge: trading less grain on the statue for MORE grain on the white background. Verified: at 0.64 100pct of the background falls below the white ink and must be dithered; at 0.88 100pct stays above it and renders clean white."}
+{"n": 29, "a_wp": 0.64, "b_wp": 0.88, "pick": "b"}
+{"n": 12, "a_wp": 0.64, "b_wp": 0.88, "pick": "a"}
+{"n": 33, "a_wp": 0.64, "b_wp": 0.88, "pick": "a", "confidence": "low", "note": "SPLIT WITHIN THE WORK, and it confirms the gain/cost model: the CAPTION (faint fine text above the ceiling) is legible ONLY on A; the CREAM PAPER (flat above the ceiling) is richer but grainier on A; the BIRD (midtone, already below the ceiling) renders better on B. Judge takes A overall but calls it very close, and conditions it on better cropping (ADR-087)."}
+{"n": 15, "a_wp": 0.64, "b_wp": 0.88, "pick": "a"}
+{"n": 31, "a_wp": 0.64, "b_wp": 0.88, "pick": "b", "note": "judge decomposes it unprompted: B better for the maid and the corner (midtones below the ceiling, compression only darkens them), A better for the white wall on the right (bright detail above the ceiling, only compression rescues it). Fourth work where the split falls exactly where the gain/cost model predicts."}
+{"n": 19, "a_wp": 0.64, "b_wp": 0.88, "pick": "b", "confidence": "low", "note": "judge: the column and gold wall are too messy on A (flat bright areas dropping below the ceiling and acquiring grain), but the Discobolus itself pays the price on B. Could go either way; B asked. Fifth confirmation of the gain/cost split."}
+{"n": 3, "a_wp": 0.64, "b_wp": 0.88, "pick": "a"}
+{"n": 47, "a_wp": 0.64, "b_wp": 0.88, "pick": "a", "note": "judge: A for the detail on the irises, B more correct on the background, takes A. Sixth work split this way, and the pattern in the picks is that SUBJECT detail above the ceiling outweighs background cleanliness."}
+{"n": 38, "a_wp": 0.64, "b_wp": 0.88, "pick": "a", "confidence": "high", "note": "A no doubt, not even close. Judge reason is COLOUR, not detail: B sacrifices the beautiful colour, which is what this painting is about. First judgement to isolate the ADR-091 mechanism cleanly - a pale watercolour has LIGHT colour washes sitting above the luminance of the chromatic inks (blue 71, green 73, red 101), so only compression brings them into the band where those inks can build them."}
+{"n": 35, "a_wp": 0.64, "b_wp": 0.88, "pick": "a", "confidence": "high", "note": "A wins all day - all the lines washed away on B. Extreme end of the feature range."}

@@ -510,7 +510,34 @@ def score_against_reference(photo: Image.Image, ref: Image.Image, w: int, h: int
     rh, rs, rv = _hsv(R)
     dh = np.abs(ph - rh) % 256.0
     dh = np.minimum(dh, 256.0 - dh)
+    # HIGHLIGHT DETAIL RETENTION — the thing RMS cannot see.
+    # White-point compression exists because content above the white ink's luminance (163) has no ink
+    # to be built from and collapses to flat white. That is a loss of local STRUCTURE, and a fused
+    # pixel-difference metric is blind to it: a flat white region and a correctly textured one can
+    # have similar means. So measure local variation directly, in exactly the region at risk.
+    hi = rv > 163.0
+    if hi.sum() > 40:
+        def _local_sd(x):
+            k = 3
+            xp = np.pad(x, k, mode="edge")
+            acc = np.zeros_like(x)
+            acc2 = np.zeros_like(x)
+            n = 0
+            for dy in range(-k, k + 1):
+                for dx in range(-k, k + 1):
+                    w_ = xp[k + dy:k + dy + x.shape[0], k + dx:k + dx + x.shape[1]]
+                    acc += w_
+                    acc2 += w_ * w_
+                    n += 1
+            mean = acc / n
+            return np.sqrt(np.maximum(acc2 / n - mean * mean, 0.0))
+        sd_ref = _local_sd(rv)[hi].mean()
+        sd_pan = _local_sd(pv)[hi].mean()
+        detail = float(sd_pan / max(sd_ref, 1e-6))
+    else:
+        detail = float("nan")
     return {
+        "highlight_detail": detail,
         "d_luminance": float((pv - rv).mean()),
         "abs_luminance": float(np.abs(pv - rv).mean()),
         "d_saturation": float((ps - rs).mean()),
@@ -527,6 +554,8 @@ def cmd_score(args) -> None:
     print(f"  d_luminance {m['d_luminance']:+7.2f}   |d_lum| {m['abs_luminance']:6.2f}")
     print(f"  d_saturation{m['d_saturation']:+7.2f}   |d_hue| {m['abs_hue']:6.2f}")
     print(f"  RMS {m['rms']:6.2f}    patch non-uniformity {m['patch_residual']:.2f}")
+    print(f"  highlight detail retained {m['highlight_detail']:.3f}  "
+          f"(1.0 = same local structure as the reference above the ink ceiling; 0 = flattened)")
 
 
 def cmd_lock(args) -> None:
