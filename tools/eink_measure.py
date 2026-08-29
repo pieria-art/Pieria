@@ -498,28 +498,46 @@ def align_to_reference(rect: Image.Image, reference: Image.Image, w: int, h: int
         moved.info["align"] = (corr, scale, dx, dy)
         return moved
 
-    a = np.asarray(rect.convert("L")).astype(float)
-    t0 = np.asarray(reference.convert("L").resize((w, h), Image.BILINEAR)).astype(float)
+    # ⚠️ CORRELATE ON THE CONTENT, NOT ON THE WHOLE FRAME. The registration furniture — frame,
+    # fiducials, patch strip — is identical in every target and is ALREADY aligned by the homography,
+    # so including it lets it dominate the correlation and pin a spurious peak. That is fatal for a
+    # low-contrast target: `tonefine` is mostly white paper, its furniture outweighed its 13 grey
+    # bars, and the "alignment" it produced was worse than doing nothing (patch residual 12.0 against
+    # 2.3, and a tone ramp that ran backwards). Masking to the content box makes the search measure
+    # the thing we actually need aligned.
+    cx0, cy0, cx1, cy1 = et.content_box(w, h)
+    # Search at 1/4 scale: we are looking for offsets of tens of pixels, so full resolution buys
+    # nothing and costs 16x. The result is scaled back up before use.
+    DS = 4
+    a_full = np.asarray(rect.convert("L")).astype(float)[cy0:cy1, cx0:cx1]
+    ref_full = np.asarray(reference.convert("L").resize((w, h), Image.BILINEAR)).astype(float)
+    t_full = ref_full[cy0:cy1, cx0:cx1]
+    a = np.asarray(Image.fromarray(a_full.astype(np.uint8)).resize(
+        (a_full.shape[1] // DS, a_full.shape[0] // DS), Image.BOX)).astype(float)
+    t0 = np.asarray(Image.fromarray(t_full.astype(np.uint8)).resize(
+        (t_full.shape[1] // DS, t_full.shape[0] // DS), Image.BOX)).astype(float)
+    ch_, cw_ = a.shape
 
     def n(x):
         return (x - x.mean()) / (x.std() + 1e-9)
 
     best = None
-    for scale in (0.94, 0.96, 0.98, 1.00, 1.02, 1.04, 1.06):
-        tw, th = int(w * scale), int(h * scale)
+    for scale in (0.96, 0.98, 1.00, 1.02, 1.04):
+        tw, th = int(cw_ * scale), int(ch_ * scale)
         t = np.asarray(Image.fromarray(t0.astype(np.uint8)).resize((tw, th), Image.BILINEAR)
                        ).astype(float)
-        for dy in range(-max_shift, max_shift + 1, 6):
-            for dx in range(-max_shift, max_shift + 1, 6):
-                oy, ox = (h - th) // 2 + dy, (w - tw) // 2 + dx
-                ys0, ys1 = max(0, oy), min(h, oy + th)
-                xs0, xs1 = max(0, ox), min(w, ox + tw)
-                if ys1 - ys0 < h * 0.5 or xs1 - xs0 < w * 0.5:
+        for dy in range(-max_shift // DS, max_shift // DS + 1):
+            for dx in range(-max_shift // DS, max_shift // DS + 1):
+                oy, ox = (ch_ - th) // 2 + dy, (cw_ - tw) // 2 + dx
+                ys0, ys1 = max(0, oy), min(ch_, oy + th)
+                xs0, xs1 = max(0, ox), min(cw_, ox + tw)
+                if ys1 - ys0 < ch_ * 0.6 or xs1 - xs0 < cw_ * 0.6:
                     continue
                 c = float((n(a[ys0:ys1, xs0:xs1]) * n(t[ys0 - oy:ys1 - oy, xs0 - ox:xs1 - ox])).mean())
                 if best is None or c > best[0]:
                     best = (c, scale, dx, dy)
     corr, scale, dx, dy = best
+    dx, dy = dx * DS, dy * DS          # back to full-resolution pixels
     # Invert the found (scale, translation) so the PHOTO lands on the render grid.
     inv = 1.0 / scale
     nw_, nh_ = int(w * inv), int(h * inv)

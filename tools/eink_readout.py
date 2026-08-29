@@ -31,7 +31,7 @@ from tools import eink_target as et  # noqa: E402
 
 
 def grid_offsets(img: Image.Image, w: int, h: int, cols: int, rows: int, gutter: int,
-                 search: int = 30) -> tuple:
+                 search: int = 30, band: float = 1.0) -> tuple:
     """Fit a smooth per-cell sampling correction for lens distortion.
 
     ⚠️ WHY A RECTIFIED IMAGE STILL NEEDS THIS. The homography is solved from four fiducials and
@@ -55,7 +55,7 @@ def grid_offsets(img: Image.Image, w: int, h: int, cols: int, rows: int, gutter:
     what is left is the radial residual, which is small over a single cell.
     """
     x0, y0, x1, y1 = et.content_box(w, h)
-    cw, ch = x1 - x0, y1 - y0
+    cw, ch = x1 - x0, int((y1 - y0) * band)
     a = np.asarray(img.convert("L")).astype(float)
     rects = et._grid_rects(cw, ch, cols, rows, gutter)
     pts, offs = [], []
@@ -84,7 +84,8 @@ def grid_offsets(img: Image.Image, w: int, h: int, cols: int, rows: int, gutter:
     return [(int(round(float(P[i] @ cy_))), int(round(float(P[i] @ cx_)))) for i in range(len(pts))]
 
 
-def _cells(img: Image.Image, w: int, h: int, cols: int, rows: int, gutter: int = 8) -> list:
+def _cells(img: Image.Image, w: int, h: int, cols: int, rows: int, gutter: int = 8,
+           band: float = 1.0) -> list:
     """Per-cell arrays for a cols x rows grid laid out by et._grid_rects, in content coordinates.
 
     Sampling positions are corrected by grid_offsets() — see there for why a rectified image is not
@@ -92,8 +93,15 @@ def _cells(img: Image.Image, w: int, h: int, cols: int, rows: int, gutter: int =
     """
     x0, y0, x1, y1 = et.content_box(w, h)
     cw, ch = x1 - x0, y1 - y0
+    # ⚠️ `band` must match the fraction of the content height the TARGET actually laid its grid into.
+    # target_tonefine puts its step cells in the top 72% and keeps the rest for a low-slope gradient;
+    # reading it back over the full height sampled row 0 across a cell boundary and row 1 across the
+    # gradient. The symptom was a NULL CHECK failing loudly and correctly: saturation, which cannot
+    # change a grey, appeared to move a neutral ramp by 100/255, and one condition reported a tone
+    # ramp running BACKWARDS. Both are impossible, which is what made the mismatch findable.
+    ch = int(ch * band)
     a = np.asarray(img.convert("RGB")).astype(float)
-    corr = grid_offsets(img, w, h, cols, rows, gutter)
+    corr = grid_offsets(img, w, h, cols, rows, gutter, band=band)
     out = []
     for (rx0, ry0, rx1, ry1), (ody, odx) in zip(et._grid_rects(cw, ch, cols, rows, gutter), corr):
         rx0, rx1, ry0, ry1 = rx0 + odx, rx1 + odx, ry0 + ody, ry1 + ody
@@ -237,7 +245,7 @@ def readout_tonefine(img, w, h, lo=100, hi=200, steps=26) -> dict:
     neutrality breaks ON GLASS while looking perfect in simulation. So a hue rotation measured here
     is evidence about the PALETTE, and `inkmix` plus `primaries` are what localise it.
     """
-    cells = _cells(img, w, h, 13, 2, gutter=4)
+    cells = _cells(img, w, h, 13, 2, gutter=4, band=0.72)
     out = []
     for i in range(min(steps, len(cells))):
         v_in = round(lo + (hi - lo) * i / max(steps - 1, 1))
