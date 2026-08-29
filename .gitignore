@@ -65,3 +65,5 @@ ROADMAP.md
 CLAUDE.md
 .ai/*
 !.ai/system_architecture.md
+!bench-eink/analysis/
+!bench-eink/analysis/**
