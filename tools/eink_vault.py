@@ -94,6 +94,32 @@ def _rows(kinds=None) -> list:
       * `edges` and `linepairs` cross WHITE-POINT x GAMMA at the extremes only: they measure
         structure, and structure is cheap to sample coarsely.
     """
+    # --- the design ------------------------------------------------------------------------------
+    # A CENTRAL COMPOSITE DESIGN, which is the standard answer to "several continuous levers, want
+    # main effects AND interactions, cannot afford a full factorial":
+    #
+    #   AXIAL points   each lever swept along its own axis with the others at centre. Captures
+    #                  CURVATURE — white-point's effect is plainly nonlinear, so two levels would
+    #                  fit a straight line through a bend and call it an effect.
+    #   CORNER points  every lever at low/high, fully crossed. 2^4 = 16 is cheap enough to run FULL
+    #                  rather than fractional, which leaves every main effect and every two-factor
+    #                  interaction UNCONFOUNDED. One-at-a-time sweeps structurally cannot do this:
+    #                  they cannot separate a main effect from an interaction at all.
+    #   CENTRE reps    the same centre condition, repeated. This is the PURE ERROR estimate, and
+    #                  without it an effect cannot be distinguished from noise. The repeatability
+    #                  null on `primaries` does not substitute: that target is UNDITHERED, and
+    #                  dither is stochastic, so its noise floor is a different and larger number.
+    #
+    # ⚠️ RUN ORDER IS RANDOMISED, and that is not fastidiousness. The rig runs on daylight. Running
+    # all wp=0 early and all wp=0.88 late would alias any slow illumination drift directly onto the
+    # white-point effect and report it as a finding. Randomisation converts a systematic error into
+    # a noise term the centre replicates can actually measure.
+    CENTRE = dict(wp=0.75, gamma=1.4, chroma=1.5, sat=1.0)
+    AXIAL = {"wp": (0.0, 0.64, 0.75, 0.88, 1.0),
+             "gamma": (1.0, 1.4, 1.8, 2.2),
+             "chroma": (1.0, 1.5, 2.0, 2.5),
+             "sat": (0.7, 0.85, 1.0, 1.15, 1.3)}
+    CORNERS = {"wp": (0.64, 0.88), "gamma": (1.0, 1.8), "chroma": (1.0, 2.0), "sat": (0.7, 1.3)}
     WP = (0.0, 0.64, 0.75, 0.88)
     rows = [
         # --- M1 repeatability null: FIRST, and every later difference is reported against it.
@@ -137,10 +163,50 @@ def _rows(kinds=None) -> list:
     rows.append(_lever_row("surround", "surround", wp=0.75))
     rows.append(_lever_row("resample", "resample", wp=0.75))
     rows.append(_lever_row("resample", "resample", wp=0.0))
+    # --- central composite blocks on the two informative targets ---------------------------------
+    import itertools
+    for kind in ("tonefine", "huevalue"):
+        seen = {r["cond"] for r in rows}
+        # axial: one lever off centre at a time
+        for lever, values in AXIAL.items():
+            for v in values:
+                kw = dict(CENTRE)
+                kw[lever] = v
+                r = _lever_row(kind, kind, **kw)
+                if r["cond"] not in seen:
+                    seen.add(r["cond"])
+                    rows.append(r)
+        # corners: full 2^4, so no main effect is confounded with a two-factor interaction
+        for combo in itertools.product(*CORNERS.values()):
+            kw = dict(zip(CORNERS.keys(), combo))
+            r = _lever_row(kind, kind, **kw)
+            if r["cond"] not in seen:
+                seen.add(r["cond"])
+                rows.append(r)
+        # centre replicates: the pure-error estimate for a DITHERED target
+        for rep in range(3):
+            r = _lever_row(kind, kind, **CENTRE)
+            r = dict(r, cond=r["cond"] + f"_rep{rep + 1}")
+            rows.append(r)
+
     if kinds:
         want = {k.strip() for k in kinds.split(",") if k.strip()}
         rows = [r for r in rows if r["kind"] in want or r["cond"] in want]
     return rows
+
+
+def _randomised(rows, seed: int):
+    """Shuffle run order, keeping the invariants first.
+
+    See the design note in _rows(): on a daylight rig, running a lever's levels in order aliases slow
+    illumination drift onto that lever's effect. The invariants stay at the front because the
+    alignment prior and the repeatability floor are needed before anything else can be interpreted.
+    """
+    import random
+    head = [r for r in rows if r["kind"] in ("primaries", "inkmix", "uniformity")]
+    tail = [r for r in rows if r not in head]
+    random.Random(seed).shuffle(tail)
+    return head + tail
 
 
 def _ssh(cmd: str, args, timeout: int = 300) -> tuple:
@@ -293,7 +359,7 @@ def cmd_run(args) -> None:
     flat = em.build_flat_field(Image.open(args.flat), *PANEL)
     args.prior = _align_prior(flat, args)
     done = _done_keys()
-    rows = [r for r in _rows(args.only) if r["cond"] not in done]
+    rows = _randomised([r for r in _rows(args.only) if r["cond"] not in done], args.seed)
     print(f"{len(done)} rows already banked, {len(rows)} to capture, pace {args.pace}s\n")
     last = 0.0
     for i, row in enumerate(rows, 1):
@@ -404,6 +470,8 @@ def main() -> None:
                             "sleep): if a capture overruns, no extra wait is added")
         if name == "run":
             s.add_argument("--only", default="", help="comma-separated target kinds or row keys")
+            s.add_argument("--seed", type=int, default=20260829,
+                           help="run-order randomisation seed; recorded so the order is replayable")
         if name == "dwell":
             s.add_argument("--target", default="tonefine")
             s.add_argument("--marks", default="30,120,600,3600",
