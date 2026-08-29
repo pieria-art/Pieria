@@ -473,11 +473,14 @@ def cmd_rederive(args) -> None:
             if not rec.get("ok") or not raw.exists():
                 fh.write(json.dumps(rec) + "\n")
                 continue
+            # ⚠️ rec["readout"] holds the RESULT of the previous readout, not its name. The name
+            # lives in the capture matrix, keyed by kind — reading it back off the record hands a
+            # dict to a dict lookup.
             row = {"cond": rec["cond"], "kind": rec["kind"], "flags": rec["flags"],
-                   "readout": rec.get("readout") or rec["kind"]}
+                   "readout": rec["kind"]}
             try:
                 r = em.read_panel(Image.open(raw), *PANEL, flat=flat, reference=_reference(row))
-                fn = er.READOUTS[row["readout"]]
+                fn = er.READOUTS[row["kind"]]
                 rec = dict(rec, readout=fn(r["corrected"], *PANEL),
                            patch_residual=round(float(r["patch_residual"]), 2),
                            align=r.get("align"), rederived=True)
