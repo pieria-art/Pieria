@@ -103,7 +103,7 @@ Sunflowers        1.40    68.4%       54.3%        -14.1
 ```
 
 ⚠️ **0.75 is INTERIM and LABEL-DERIVED** (ADR-093, 23 three-level human judgements). The physics puts
-the media-relative value at `Y_white^(1/2.4)` = **0.660** (naive palette ratio 163.3/255 = 0.641), and
+the media-relative value at `srgb_encode(Y_white)` = **0.641** (naive palette ratio 163.3/255 = 0.641), and
 says the exact transform is a **curve** — ~0.37 in the shadows rising to 0.64 at the top — not a scale.
 The gap to the human mean of 0.73–0.80 is a one-parameter preference residual. The physics-first model
 re-decides this.

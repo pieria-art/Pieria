@@ -66,8 +66,9 @@ SPECTRA6_OUTPUT_PALETTE = [
 #
 # 🔑 The physics says this number is not a preference at all. Once the panel's own white ink is the
 # adapting white — which is what an observer adapts to on reflective media — the media-relative
-# encoded ratio is Y_white**(1/2.4) = 0.660 (the naive palette ratio 163.3/255 = 0.641), and the exact
-# ratio is a CURVE, ~0.37 in the shadows rising to 0.64 at the top, not a scale. The gap between that
+# encoded ratio is srgb_encode(Y_white) = 0.641, and the exact ratio is a CURVE, ~0.33 in the shadows
+# rising to 0.64 at the top, not a scale. (It coincides with the naive palette ratio 163.3/255 = 0.6405
+# only because this white ink is near-neutral; that is not an identity.) The gap between that
 # and the human mean of 0.73-0.80 is a one-parameter preference residual, not a free knob.
 # The physics-first model re-decides this. CHANGING EITHER VALUE REQUIRES AN ADR.
 SPECTRA6_WHITE_POINT = 0.75
