@@ -2,7 +2,8 @@
 
 WHY THIS EXISTS
 ---------------
-`epaper._adaptive_gamma()` was calibrated on the 2026-07-19 bench set (ADR-053) and washes out on a
+`legacy_adaptive_gamma()` (below; was `epaper._adaptive_gamma`, RETIRED from production by ADR-098)
+was calibrated on the 2026-07-19 bench set (ADR-053) and washes out on a
 wider corpus. It returns only **1.4–1.5**, keyed on a single feature (`wash_pct` — pixels that are both
 bright and near-neutral), with four hardcoded constants. Two things need answering on real hardware,
 and only one of them is "re-tune the numbers":
@@ -88,6 +89,42 @@ PANEL_W, PANEL_H = 1600, 1200
 # Candidate predictors. `wash_pct` is the incumbent; the rest are the challengers
 # the bench session is meant to judge it against.
 # ---------------------------------------------------------------------------
+def legacy_adaptive_gamma(img: Image.Image) -> float:
+    """🔴 RETIRED FROM PRODUCTION (ADR-098, 2026-08-29). Kept ONLY so historical baselines reproduce.
+
+    It lived at `epaper._adaptive_gamma` and was condemned twice: worse than a plain constant
+    (R^2 = -3.137 cross-validated, ADR-081), and measurably the WORST option on dark paintings — it
+    picks gamma 1.40 on The Night Watch, rendering 85.0% of the shadow region as bare black ink
+    against 67.4% for no correction at all (ADR-094). Production now ships the constant recipe in
+    `epaper.SPECTRA6_WHITE_POINT` / `SPECTRA6_GAMMA`.
+
+    ⚠️ It was MOVED here rather than deprecated in place. A retired heuristic that still exists at its
+    old address, with tools importing it, is how a retired heuristic comes back.
+
+    Original docstring follows, verbatim.
+
+    ---
+
+    Bench-calibrated highlight pulldown (2026-07-19), 1.4..1.5.
+
+    A single light ink (grey-white) means bright pieces flatten ("wash"). Pulling highlights down into
+    the panel's dither range recovers structure — and helps EVERY image, not just high-key ones. But the
+    amount needed is driven by flat *low-chroma near-white* content, NOT overall brightness: a woodblock
+    print (big pale areas) needs more pulldown than an equally-bright but chromatic painting whose hues
+    already separate. So we key gamma on the 'wash' fraction (bright AND near-neutral pixels), measured
+    on a downscaled copy (cheap vs. a ~9s panel refresh).
+    """
+    small = img.resize((256, 256))
+    r, g, b = small.split()
+    mx = ImageChops.lighter(ImageChops.lighter(r, g), b)
+    mn = ImageChops.darker(ImageChops.darker(r, g), b)
+    chroma = ImageChops.subtract(mx, mn)
+    bright = small.convert("L").point(lambda v: 255 if v > 204 else 0)
+    lowchroma = chroma.point(lambda v: 255 if v < 40 else 0)
+    wash_pct = ImageChops.multiply(bright, lowchroma).histogram()[255] / (256 * 256) * 100.0
+    return 1.4 + 0.1 * max(0.0, min(1.0, (wash_pct - 10.0) / 15.0))
+
+
 def predictors(img: Image.Image) -> dict:
     small = img.convert("RGB").resize((256, 256))
     r, g, b = small.split()
@@ -120,7 +157,9 @@ def predictors(img: Image.Image) -> dict:
         "mean_chroma": round(chroma_stat.mean[0], 1),
         "chroma_stddev": round(chroma_stat.stddev[0], 1),
         "edge_pct": round(edge_pct, 2),
-        "current_gamma": round(epaper._adaptive_gamma(img.convert("RGB")), 3),
+        # Key name unchanged on purpose: recorded corpus rows carry `current_gamma`, and
+        # renaming it would desynchronise the corpus from its own reader (ADR-098).
+        "current_gamma": round(legacy_adaptive_gamma(img.convert("RGB")), 3),
     }
 
 
@@ -361,7 +400,7 @@ def main() -> None:
 
         print(f"# fitted on {len(train)} labels   R² = {r2:.3f}")
         print(f"# features: {', '.join(FEATURES)}")
-        print("\n# --- paste into epaper.py, replacing _adaptive_gamma's body ---")
+        print("\n# --- a fitted replacement for the RETIRED legacy_adaptive_gamma (ADR-098) ---")
         print("_GAMMA_COEFFS = (")
         print(f"    {beta[0]:+.5f},   # intercept")
         for name, b in zip(FEATURES, beta[1:]):
@@ -369,7 +408,7 @@ def main() -> None:
         print(")")
         print("# gamma = intercept + sum(coeff * feature/scale), clamped to the labelled range.")
         print("# epaper.py also needs the feature computation — port `predictors()` from this tool")
-        print("# (it already runs on a 256x256 downscale, same cost as today's _adaptive_gamma).")
+        print("# (it runs on a 256x256 downscale, same cost as the retired heuristic).")
         lo, hi = min(r["gamma"] for r in train), max(r["gamma"] for r in train)
         print(f"_GAMMA_RANGE = ({lo}, {hi})   # never extrapolate past what was actually judged")
 

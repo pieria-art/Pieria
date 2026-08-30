@@ -14,7 +14,7 @@ import math
 from functools import lru_cache
 from pathlib import Path
 
-from PIL import Image, ImageChops, ImageEnhance, ImageOps
+from PIL import Image, ImageEnhance, ImageOps
 
 # --- Palettes -----------------------------------------------------------------
 # Nominal sRGB anchors per device family. Per-panel colour tuning is deferred
@@ -57,6 +57,21 @@ SPECTRA6_OUTPUT_PALETTE = [
     (0, 0, 0), (255, 255, 255), (255, 0, 0),
     (255, 255, 0), (0, 0, 255), (0, 255, 0),
 ]
+
+# --- The shipping tone recipe (ADR-098, 2026-08-29) -----------------------------------------------
+# ⚠️ INTERIM AND LABEL-DERIVED. 0.75 comes from ADR-093 — 23 three-level human judgements — and it
+# replaced `_adaptive_gamma`, which was condemned twice: worse than a constant (R^2 = -3.137, ADR-081)
+# and the WORST option measured on dark paintings (gamma 1.40 on The Night Watch renders 85.0% of the
+# shadow region as bare black, against 67.4% for no correction at all, ADR-094).
+#
+# 🔑 The physics says this number is not a preference at all. Once the panel's own white ink is the
+# adapting white — which is what an observer adapts to on reflective media — the media-relative
+# encoded ratio is Y_white**(1/2.4) = 0.660 (the naive palette ratio 163.3/255 = 0.641), and the exact
+# ratio is a CURVE, ~0.37 in the shadows rising to 0.64 at the top, not a scale. The gap between that
+# and the human mean of 0.73-0.80 is a one-parameter preference residual, not a free knob.
+# The physics-first model re-decides this. CHANGING EITHER VALUE REQUIRES AN ADR.
+SPECTRA6_WHITE_POINT = 0.75
+SPECTRA6_GAMMA = 1.0
 
 # Requested extension -> (PIL format, media type).
 VALID_FORMATS = {
@@ -194,11 +209,39 @@ def _palette_image(name: str) -> Image.Image:
 
 
 def _apply_gamma(img: Image.Image, gamma: float) -> Image.Image:
-    """Per-channel gamma via LUT. gamma>1 darkens highlights/midtones."""
+    """Per-channel gamma via LUT. gamma>1 darkens highlights/midtones.
+
+    NOT called in production since ADR-098 — the shipping path goes through `_tone_lut`. Retained
+    because four maintainer tools sweep gamma with it and the physics-first work needs it.
+    """
     if abs(gamma - 1.0) < 1e-3:
         return img
     lut = [round(255 * (i / 255) ** gamma) for i in range(256)]
     return img.point(lut * len(img.getbands()))
+
+
+@lru_cache(maxsize=32)
+def _tone_lut(white_point: float, gamma: float) -> tuple:
+    """The 256-entry tone LUT: white-point scale, then gamma. ONE definition of the recipe.
+
+    Four call sites used to build this by hand — production, eink_show, eink_scurve, eink_bench — and
+    four implementations of one LUT is a drift factory. Returns a tuple so it stays hashable and
+    cacheable; callers do `img.point(list(lut) * 3)`.
+
+    ⚠️ ORDER IS LOAD-BEARING and matches `eink_bench.cmd_full`: white-point scales FIRST, gamma acts
+    on the scaled value. Swapping them is a different curve, and a judgement filed against the wrong
+    one is the error the bench harness exists to prevent.
+
+    PIL-only and integer — this runs on the Pi inside the render (no numpy in the app venv).
+    """
+    wp = 1.0 if white_point <= 0 else white_point
+    out = []
+    for i in range(256):
+        v = min(255, int(round(i * wp)))
+        if abs(gamma - 1.0) >= 1e-3:
+            v = int(round(255 * (v / 255) ** gamma))
+        out.append(max(0, min(255, v)))
+    return tuple(out)
 
 
 # --- Chroma correction: a HUE-CONDITIONED curve (bench-derived 2026-08-28, ADR-088) ---------------
@@ -311,27 +354,6 @@ def apply_chroma_curve(img: Image.Image, chroma_gamma: float, floor_max: float,
     return Image.merge("HSV", (hue_c, out_sat, val_c)).convert("RGB")
 
 
-def _adaptive_gamma(img: Image.Image) -> float:
-    """Bench-calibrated highlight pulldown (2026-07-19), 1.4..1.5.
-
-    A single light ink (grey-white) means bright pieces flatten ("wash"). Pulling highlights down into
-    the panel's dither range recovers structure — and helps EVERY image, not just high-key ones. But the
-    amount needed is driven by flat *low-chroma near-white* content, NOT overall brightness: a woodblock
-    print (big pale areas) needs more pulldown than an equally-bright but chromatic painting whose hues
-    already separate. So we key gamma on the 'wash' fraction (bright AND near-neutral pixels), measured
-    on a downscaled copy (cheap vs. a ~9s panel refresh).
-    """
-    small = img.resize((256, 256))
-    r, g, b = small.split()
-    mx = ImageChops.lighter(ImageChops.lighter(r, g), b)
-    mn = ImageChops.darker(ImageChops.darker(r, g), b)
-    chroma = ImageChops.subtract(mx, mn)
-    bright = small.convert("L").point(lambda v: 255 if v > 204 else 0)
-    lowchroma = chroma.point(lambda v: 255 if v < 40 else 0)
-    wash_pct = ImageChops.multiply(bright, lowchroma).histogram()[255] / (256 * 256) * 100.0
-    return 1.4 + 0.1 * max(0.0, min(1.0, (wash_pct - 10.0) / 15.0))
-
-
 @lru_cache(maxsize=128)
 def render_for_epaper(
     image_path: Path,
@@ -361,11 +383,12 @@ def render_for_epaper(
     fitted = _fit_rgb(image_path, w, h, fit, focal, crop_box)
 
     if palette == "spectra6":
-        # Bench-calibrated path (2026-07-19): adaptive highlight pulldown, then Floyd-Steinberg dither
-        # toward the panel's REAL primaries, then re-encode to pure primaries so any client maps it
-        # correctly. `enhance` now gates the adaptive gamma pulldown (default on). See SPECTRA6_* above.
+        # Bench-calibrated path: a CONSTANT tone recipe (ADR-098), then Floyd-Steinberg dither toward
+        # the panel's REAL primaries, then re-encode to pure primaries so any client maps it correctly.
+        # `enhance` gates the tone correction (default on). See SPECTRA6_WHITE_POINT above for why the
+        # constant replaced the per-image `_adaptive_gamma`, and why 0.75 is interim.
         if enhance:
-            fitted = _apply_gamma(fitted, _adaptive_gamma(fitted))
+            fitted = fitted.point(list(_tone_lut(SPECTRA6_WHITE_POINT, SPECTRA6_GAMMA)) * 3)
         quantized = fitted.quantize(
             palette=_cached_palette_image("_spectra6_dither", SPECTRA6_DITHER_PALETTE),
             dither=Image.Dither.FLOYDSTEINBERG,

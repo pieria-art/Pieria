@@ -305,7 +305,7 @@ def _reference(row) -> Image.Image:
 
     def pre(im):
         if wp > 0:
-            im = im.point([min(255, int(round(i * wp))) for i in range(256)] * 3)
+            im = im.point(list(ec.epaper._tone_lut(wp, 1.0)) * 3)  # ADR-098: one definition of the white-point LUT
         if fmax is not None:
             im = ec.epaper.apply_chroma_curve(im, k, fmax, e0)
         elif abs(k - 1.0) > 1e-3:

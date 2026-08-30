@@ -1,8 +1,9 @@
 # E-Ink Spectra 6 (EL133UF1) — Render Calibration
 
-> **Status:** ✅ Bench-validated on real hardware, 2026-07-19. Recipe lives in `epaper.py`
-> (`SPECTRA6_DITHER_PALETTE` / `SPECTRA6_OUTPUT_PALETTE` / `_adaptive_gamma` / `_apply_gamma`, under
-> `palette="spectra6"` in `render_for_epaper`). Decision record: `.ai/decision_log.md` ADR-053.
+> **Status:** ✅ Bench-validated on real hardware, 2026-07-19 — **but §4 is RETIRED (ADR-098,
+> 2026-08-29).** Recipe lives in `epaper.py` (`SPECTRA6_DITHER_PALETTE` / `SPECTRA6_OUTPUT_PALETTE` /
+> `SPECTRA6_WHITE_POINT` / `SPECTRA6_GAMMA` / `_tone_lut`, under `palette="spectra6"` in
+> `render_for_epaper`). Decision records: `.ai/decision_log.md` ADR-053, **ADR-093, ADR-098**.
 > Product spec for the client/topology this feeds: `.ai/spec_eink_spectra6.md`.
 
 ## The panel
@@ -28,7 +29,10 @@ reproduce. Two visible failures resulted:
 
 ## The recipe (locked, except gamma)
 
-`spectra6 = dither to measured real-primaries · saturation 1.0 · Floyd–Steinberg · re-encode to pure-primary output · + wash-adaptive gamma pre-pulldown`
+`spectra6 = white-point 0.75 · gamma 1.0 · dither to measured real-primaries · Floyd–Steinberg · re-encode to pure-primary output`
+
+⚠️ **The gamma pre-pulldown in §4 below is RETIRED (ADR-098).** It is kept as a record of how the
+recipe was reached, not as a description of what ships.
 
 ### 1. Dither toward the panel's measured primaries
 
@@ -76,34 +80,54 @@ and blits it. No `inky` library or per-device colour math needed on the client.
 **Validated on the panel:** the server-dithered "universal" path was judged visually indistinguishable
 from — arguably better than — `inky`'s own native dithering path. Same quality, works everywhere.
 
-### 4. Wash-adaptive gamma (highlight pulldown)
+### 4. ~~Wash-adaptive gamma (highlight pulldown)~~ — 🔴 RETIRED 2026-08-29 (ADR-098)
 
-The panel's single light ink is physically grey, not white, so bright/flat regions can lose structure at
-gamma 1.0 ("wash"). Pushing tones down with `γ>1` moves them into the range where the panel has the most
-dither resolution — this **helps every image**, not just high-key ones (even the dark Nighthawks came out
-better at 1.4 than 1.0).
+**What ships now is a constant:** white-point **0.75**, gamma **1.0**, applied as one LUT by
+`epaper._tone_lut()` before the dither. `_adaptive_gamma` is gone from `epaper.py`; it survives only as
+`tools/eink_calibrate.legacy_adaptive_gamma()` so historical baselines still reproduce.
 
-The wrinkle: the *amount* of pulldown needed does **not** track overall brightness. A flat, pale woodblock
-print needs more pulldown than an equally-bright but chromatic painting whose hues are already separated.
-The signal that actually predicts it is **"wash"** — the fraction of pixels that are simultaneously bright
-*and* low-chroma (near-neutral):
+**Why it was retired — two independent condemnations:**
+
+| finding | number |
+|---|---|
+| ADR-081 — worse than a plain constant, cross-validated | R² = **−3.137** |
+| ADR-094 — the WORST option measured on dark paintings | picks γ 1.40 on The Night Watch → **85.0%** of the shadow region as bare black ink, against **67.4%** for *no correction at all* |
+
+Measured effect of the swap (bare-black fraction of the sub-luminance-60 region, 700 px renders):
+
+```
+                 γ(old)   OLD      NEW (wp 0.75)   delta
+The Night Watch   1.40    84.4%       74.2%        -10.2
+Olympia           1.40    82.8%       71.1%        -11.7
+Sunflowers        1.40    68.4%       54.3%        -14.1
+```
+
+⚠️ **0.75 is INTERIM and LABEL-DERIVED** (ADR-093, 23 three-level human judgements). The physics puts
+the media-relative value at `Y_white^(1/2.4)` = **0.660** (naive palette ratio 163.3/255 = 0.641), and
+says the exact transform is a **curve** — ~0.37 in the shadows rising to 0.64 at the top — not a scale.
+The gap to the human mean of 0.73–0.80 is a one-parameter preference residual. The physics-first model
+re-decides this.
+
+**A measured cost of compression, previously unrecorded:** a flat saturated yellow (230,230,20) renders
+**100% yellow ink** with no correction but **76.7% yellow / 23.3% green** at wp 0.75 — compression
+knocks it off its own ink. Green is nowhere near a saturated yellow perceptually; it wins only on the
+quantiser's naive *gamma-encoded* RGB distance. That is a symptom of the linearisation defect, not of
+the white point.
+
+**The original reasoning, kept for the record.** The panel's single light ink is physically grey, not
+white, so bright/flat regions lose structure at gamma 1.0 ("wash"). The amount of pulldown needed did
+not track overall brightness — a flat pale woodblock print needed more than an equally-bright chromatic
+painting — so gamma was keyed on the *wash* fraction (bright AND low-chroma):
 
 ```
 wash_pct = % of pixels where L > 0.80·255  AND  chroma < 40   (chroma = max(R,G,B) − min(R,G,B))
-gamma    = 1.4 + 0.1 · clamp((wash_pct − 10) / 15, 0, 1)
+gamma    = 1.4 + 0.1 · clamp((wash_pct − 10) / 15, 0, 1)      # 1.4 at ≤10%, 1.5 at ≥25%
 ```
 
-- `wash_pct ≤ 10%` → **γ 1.4**
-- `wash_pct ≥ 25%` → **γ 1.5**
-- linear between
-
-Computed on a 256×256 downscaled copy of the fitted image (cheap relative to a ~9s panel refresh),
-PIL-only (no numpy in the app venv). Implementation: `_adaptive_gamma()` + `_apply_gamma()` in
-`epaper.py`.
-
-**Known confound (unsolved, parked):** skin-heavy bright pieces want *less* pulldown than the wash metric
-predicts — darkening flesh tones nudges them toward the brick-red ink and reads oranger. Brightness/wash
-is the primary driver; skin is a second-order correction, deferred (see Follow-ups).
+📏 **Why it failed is worth keeping.** Its whole output range was 0.1 wide (1.4–1.5), it keyed on one
+feature with four hand-set constants, and the direction it moved — γ > 1 darkens — is the wrong
+direction for the end that was actually starved. Its known confound (skin-heavy bright pieces wanted
+*less* pulldown, since darkening flesh nudges it toward the brick-red ink) was parked, and is now moot.
 
 ## Bench findings — per-piece preferred gamma (saturation 1.0)
 

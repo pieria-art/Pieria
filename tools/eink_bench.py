@@ -267,7 +267,7 @@ def cmd_full(args) -> None:
         # so every input above that has no ink to be built from and renders as flat white: measured,
         # the top 38% of the input range collapses to a single output value. Gamma cannot fix it —
         # it preserves endpoints, so 255 still maps to 255 and still clips. Scaling does.
-        fitted = fitted.point([min(255, int(round(i * args.white_point))) for i in range(256)] * 3)
+        fitted = fitted.point(list(ec.epaper._tone_lut(args.white_point, 1.0)) * 3)  # ADR-098: one definition of the white-point LUT
     if args.chroma_floor_max is not None:
         # HUE-CONDITIONED floor (ADR-088 correction, 2026-08-28). The scalar floor below cannot serve
         # two works at once — June's skin must lose its colour while Sunflowers' wall must keep its —
@@ -826,7 +826,7 @@ def cmd_target(args) -> None:
         # photographed at, and rescaling a dithered frame afterwards would destroy the dither.
         fitted = ec.epaper._fit_rgb(img, cw, ch, args.fit, focal, crop)
         if args.white_point > 0:
-            fitted = fitted.point([min(255, int(round(i * args.white_point))) for i in range(256)] * 3)
+            fitted = fitted.point(list(ec.epaper._tone_lut(args.white_point, 1.0)) * 3)  # ADR-098: one definition of the white-point LUT
         if args.chroma_floor_max is not None:
             fitted = ec.epaper.apply_chroma_curve(fitted, args.chroma_gamma, args.chroma_floor_max,
                                                   args.chroma_hue_e0,
@@ -871,7 +871,7 @@ def cmd_target(args) -> None:
             # does nothing — and it would have turned a lever-interaction sweep into a set of
             # duplicate baselines that "proved" chroma has no effect.
             if args.white_point > 0:
-                im = im.point([min(255, int(round(i * args.white_point))) for i in range(256)] * 3)
+                im = im.point(list(ec.epaper._tone_lut(args.white_point, 1.0)) * 3)  # ADR-098: one definition of the white-point LUT
             if args.chroma_floor_max is not None:
                 im = ec.epaper.apply_chroma_curve(im, args.chroma_gamma, args.chroma_floor_max,
                                                   args.chroma_hue_e0,

@@ -99,7 +99,7 @@ def framed(n: int, corpus: dict) -> Image.Image:
 
 
 def wp_lut(wp: float) -> list:
-    return [min(255, int(round(i * wp))) for i in range(256)]
+    return list(ep._tone_lut(wp, 1.0))  # ADR-098: one definition of the white-point LUT
 
 
 def gate(costfn, labels, scores) -> dict:

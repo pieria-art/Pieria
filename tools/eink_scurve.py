@@ -58,6 +58,9 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 import epaper as ep  # noqa: E402
 
+# The retired production heuristic, kept as a historical baseline only (ADR-098).
+from tools.eink_calibrate import legacy_adaptive_gamma as _legacy_adaptive_gamma  # noqa: E402
+
 DITHER = np.array(ep.SPECTRA6_DITHER_PALETTE, dtype=float)
 INK_LUM = DITHER.mean(axis=1)
 BLACK_IDX, WHITE_IDX = 0, 1
@@ -179,12 +182,12 @@ def main() -> None:
     for label, lut in (
             ("production (adaptive gamma, no wp)", None),   # replaced per-work below
             ("wp0.75 g1.0 (recipe candidate)",
-             [min(255, int(round(i * args.baseline_wp))) for i in range(256)]),
+             list(ep._tone_lut(args.baseline_wp, 1.0))),
             ("no correction", list(range(256)))):
         if lut is None:
             rows = []
             for _, im in works:
-                g = ep._adaptive_gamma(im)
+                g = _legacy_adaptive_gamma(im)
                 rows.append(score(im, [round(255 * (i / 255) ** g) for i in range(256)]))
             c = float(np.mean([cost(r) for r in rows]))
         else:

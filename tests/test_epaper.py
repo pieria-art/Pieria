@@ -8,11 +8,17 @@ from PIL import Image
 
 from epaper import (
     PALETTES,
+    SPECTRA6_DITHER_PALETTE,
+    SPECTRA6_GAMMA,
     SPECTRA6_OUTPUT_PALETTE,
-    _adaptive_gamma,
+    SPECTRA6_WHITE_POINT,
+    _cached_palette_image,
     _chromatic_ink_hues,
+    _fit_rgb,
+    _flat_palette,
     _hue_error,
     _hue_error_fraction,
+    _tone_lut,
     apply_chroma_curve,
     normalize_crop_box,
     pick_crop_for_aspect,
@@ -90,23 +96,60 @@ def test_output_colors_are_subset_of_palette(tmp_path):
     assert _colors(data).issubset(set(SPECTRA6_OUTPUT_PALETTE))
 
 
-def test_spectra6_adaptive_gamma_keys_on_wash(tmp_path):
-    # Highlight pulldown is driven by flat low-chroma near-white ("wash") content, not brightness:
-    # a woodblock-print-like pale neutral -> 1.5; a bright but CHROMATIC fill or a mid tone -> 1.4.
-    washy = Image.new("RGB", (256, 256), (235, 236, 234))       # bright + near-neutral
-    bright_colour = Image.new("RGB", (256, 256), (255, 255, 120))  # bright but high-chroma (yellow)
-    midtone = Image.new("RGB", (256, 256), (120, 120, 120))     # not bright
-    assert _adaptive_gamma(washy) == pytest.approx(1.5, abs=0.01)
-    assert _adaptive_gamma(bright_colour) == pytest.approx(1.4, abs=0.01)
-    assert _adaptive_gamma(midtone) == pytest.approx(1.4, abs=0.01)
+def test_spectra6_tone_recipe_is_the_declared_constant(tmp_path):
+    """The shipped recipe is a DECLARED pair of constants, and this pins them (ADR-098).
+
+    0.75 is interim and label-derived; the physics-derived media-relative value is ~0.64. Pinning it
+    here means changing it is a deliberate act that trips a test and needs an ADR, rather than a
+    silent edit. It replaced `_adaptive_gamma`, which now lives in tools/eink_calibrate.py as
+    `legacy_adaptive_gamma` and is not importable from epaper at all.
+    """
+    import epaper
+
+    assert SPECTRA6_WHITE_POINT == 0.75
+    assert SPECTRA6_GAMMA == 1.0
+    assert not hasattr(epaper, "_adaptive_gamma"), "the retired heuristic must not be back in epaper"
+
+    # And the production path is exactly that LUT, then the dither, then the re-encode.
+    src = _make_image(tmp_path, "recipe.png")
+    got = render_for_epaper(src, 120, 120, palette="spectra6", fmt="png")
+
+    fitted = _fit_rgb(src, 120, 120, "cover", (0.5, 0.5), None)
+    fitted = fitted.point(list(_tone_lut(SPECTRA6_WHITE_POINT, SPECTRA6_GAMMA)) * 3)
+    q = fitted.quantize(palette=_cached_palette_image("_spectra6_dither", SPECTRA6_DITHER_PALETTE),
+                        dither=Image.Dither.FLOYDSTEINBERG)
+    q.putpalette(_flat_palette(SPECTRA6_OUTPUT_PALETTE))
+    buf = io.BytesIO()
+    q.save(buf, format="PNG", optimize=True)
+    assert got == buf.getvalue()
 
 
-def test_spectra6_enhance_false_skips_gamma(tmp_path):
-    # enhance gates the adaptive gamma pulldown on the spectra6 path.
+def test_tone_lut_white_point_matches_the_hand_built_lut():
+    # _tone_lut replaced seven hand-built copies of the white-point LUT across the tools. This is the
+    # equivalence that made that safe; it must keep holding or the bench renders drift from production.
+    for wp in (0.64, 0.75, 0.88, 1.0):
+        assert list(_tone_lut(wp, 1.0)) == [min(255, int(round(i * wp))) for i in range(256)]
+    # gamma=1.0 is a true no-op, and the order is white-point FIRST, then gamma.
+    assert list(_tone_lut(0.75, 2.0)) == [
+        round(255 * (min(255, int(round(i * 0.75))) / 255) ** 2.0) for i in range(256)
+    ]
+
+
+def test_spectra6_enhance_false_skips_tone_correction(tmp_path):
+    # enhance gates the constant tone recipe on the spectra6 path. Still true with a white-point of
+    # 0.75, which is not the identity — and enhance=False must be exactly the identity-LUT render.
     src = _make_image(tmp_path, "e.png")
-    with_gamma = render_for_epaper(src, 120, 120, palette="spectra6", fmt="png", enhance=True)
-    no_gamma = render_for_epaper(src, 120, 120, palette="spectra6", fmt="png", enhance=False)
-    assert with_gamma != no_gamma
+    corrected = render_for_epaper(src, 120, 120, palette="spectra6", fmt="png", enhance=True)
+    raw = render_for_epaper(src, 120, 120, palette="spectra6", fmt="png", enhance=False)
+    assert corrected != raw
+
+    fitted = _fit_rgb(src, 120, 120, "cover", (0.5, 0.5), None)
+    q = fitted.quantize(palette=_cached_palette_image("_spectra6_dither", SPECTRA6_DITHER_PALETTE),
+                        dither=Image.Dither.FLOYDSTEINBERG)
+    q.putpalette(_flat_palette(SPECTRA6_OUTPUT_PALETTE))
+    buf = io.BytesIO()
+    q.save(buf, format="PNG", optimize=True)
+    assert raw == buf.getvalue()
 
 
 def test_grayscale_palette_is_only_gray(tmp_path):
@@ -175,8 +218,20 @@ def test_crop_box_selects_region(tmp_path):
     tl = render_for_epaper(src, 100, 100, palette="spectra6", fmt="png", crop_box=(0.0, 0.0, 0.5, 0.5))
     br = render_for_epaper(src, 100, 100, palette="spectra6", fmt="png", crop_box=(0.5, 0.5, 1.0, 1.0))
     assert tl != br
-    assert _colors(tl) == {(255, 0, 0)}      # top-left quadrant is solid red
-    assert _colors(br) == {(255, 255, 0)}    # bottom-right is solid yellow
+    # DOMINANCE, not exact equality. This is a crop test; pinning the exact ink set made it a hostage
+    # to the tone recipe. Under ADR-098's white-point the source yellow (230,230,20) compresses to
+    # (173,173,15), which is near the yellow ink but not on it, so error diffusion tips a few pixels
+    # to green — correct behaviour for a compressing recipe, and not something a crop test should fail on.
+    def _dominant(png):
+        im = Image.open(io.BytesIO(png)).convert("RGB")
+        counts = im.getcolors(maxcolors=256 * 256)
+        return max(counts)[1], max(counts)[0] / (im.width * im.height)
+
+    # Measured under ADR-098: top-left is 100% red; bottom-right is 76.7% yellow / 23.3% green
+    # (100% yellow with no correction). The 0.6 bar is well clear of that and of a coin flip.
+    for png, expected in ((tl, (255, 0, 0)), (br, (255, 255, 0))):
+        ink, share = _dominant(png)
+        assert ink == expected and share > 0.6, f"expected {expected} dominant, got {ink} at {share:.2%}"
 
 
 def test_no_crop_box_is_byte_identical(tmp_path):

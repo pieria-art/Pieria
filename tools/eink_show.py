@@ -63,7 +63,7 @@ def main() -> None:
 
     if args.white_point > 0:
         fitted = fitted.point(
-            [min(255, int(round(i * args.white_point))) for i in range(256)] * 3)
+            list(ec.epaper._tone_lut(args.white_point, 1.0)) * 3)  # ADR-098: one definition of the white-point LUT
     if abs(args.chroma_gamma - 1.0) > 1e-3:
         hue, sat, val = fitted.convert("HSV").split()
         lut = [min(255, int(round(255.0 * (i / 255.0) ** args.chroma_gamma))) for i in range(256)]
