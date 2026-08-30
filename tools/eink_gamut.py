@@ -196,3 +196,16 @@ def to_media_relative(rgb8) -> np.ndarray:
 def map_srgb8(rgb8, **kw) -> np.ndarray:
     """8-bit sRGB -> gamut-mapped media-relative Lab. Normalise first, then compress chroma."""
     return gamut_map(to_media_relative(rgb8), **kw)
+
+
+def to_quantiser_srgb8(lab) -> np.ndarray:
+    """Media-relative Lab -> the 8-bit sRGB the QUANTISER compares against.
+
+    ⚠️ NO UN-ADAPTATION. The palette stores each ink as the sRGB encoding of its ABSOLUTE XYZ, so that
+    is the space `quantize()` measures distance in. Dividing back out by the adaptation (the obvious
+    "return to source space" move, and the one made here first) pushes yellow — which is above media
+    white — past linear 1.0, where the clip destroys it. The check that catches it is cheap and exact:
+    the six inks must round-trip to `SPECTRA6_DITHER_PALETTE` byte for byte.
+    """
+    lin = ec.xyz_to_linear_rgb(ec.lab_to_xyz(np.asarray(lab, dtype=np.float64), pm.media_white()))
+    return np.clip(np.round(ec.linear_to_srgb(np.clip(lin, 0.0, 1.0)) * 255.0), 0, 255).astype(np.uint8)

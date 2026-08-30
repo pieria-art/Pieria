@@ -131,3 +131,16 @@ def test_the_source_palette_constant_is_untouched():
         (0, 0, 0), (161, 164, 165), (156, 72, 75),
         (208, 190, 71), (61, 59, 94), (58, 91, 70),
     ]
+
+
+def test_the_quantiser_space_round_trips_the_inks_byte_for_byte():
+    """Guards the conversion back into the quantiser's space.
+
+    The first version un-adapted by dividing out the chromatic adaptation, which is the obvious move
+    and is wrong: the palette stores ABSOLUTE XYZ encoded as sRGB, and un-adapting pushes yellow —
+    above media white — past linear 1.0, where clipping destroys it. Byte-exact round-trip of the six
+    inks is the cheapest possible statement that the space is right.
+    """
+    lab = ec.xyz_to_lab(pm.ink_xyz(), pm.media_white())
+    got = eg.to_quantiser_srgb8(lab)
+    assert got.tolist() == [list(c) for c in ep.SPECTRA6_DITHER_PALETTE]
