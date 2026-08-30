@@ -33,6 +33,16 @@ that can be checked.
 ⚠️ WHAT THIS CANNOT DECIDE. Whether a lifted black point — no true black anywhere in the frame — is
 acceptable on a wall is a judgement, not a measurement (ADR-084: the panel decides). The optimiser
 reports it; it does not weigh it.
+
+🔴 `cost()` IS WITHDRAWN AS A FITTING OBJECTIVE (ADR-097, 2026-08-29). Gated against the 23 human
+white-point calls it scores 7/23 = 30.4% against a 34.8% base rate — and, disqualifyingly, **predicts
+wp 0.64 on 23 of 23 works**: it is a constant, and its hits are the works where the judge happened to
+agree with the constant. The highlight term outweighs everything opposing it by ~4x, so compression
+always wins; the same mechanism ran the toe to the grid edge. On the six fitted works this cost
+prefers the degenerate curve to the identity LUT 90.53 vs 224.20. The best possible re-weighting of
+the six terms reaches only 34.8-43.5% leave-one-out, so **do not re-tune the weights** — the terms
+cannot see what the judge sees. Gate any replacement with `tools/eink_objective_gate.py` FIRST;
+detail in `bench-eink/analysis/OBJECTIVE_GATE_2026-08-29.md`.
 """
 from __future__ import annotations
 
@@ -227,7 +237,13 @@ def main() -> None:
               f" {r['pale_chroma_kept']:12.1f}")
 
     Path(args.out).parent.mkdir(parents=True, exist_ok=True)
+    # ⚠️ RECORD THE CONDITIONS, NOT JUST THE RESULT. The 2026-08-29 fit could not be reproduced from
+    # this file: its metrics only reappear at --max-px 380, which the file did not record. Same
+    # signature as the eleven instrument defects — a record that omits what it was measured under.
     json.dump({"pivot": pivot, "toe": toe, "shoulder": shoulder, "cost": c,
+               "max_px": args.max_px, "images": [str(Path(p)) for p in args.images],
+               "weights": {"w_shadow": 1.0, "w_high": 1.0, "w_chroma": 1.0, "w_grain": 0.35,
+                           "w_tone": 3.0, "w_contrast": 40.0},
                "lut": scurve_lut(pivot, toe, shoulder),
                "baselines": {k: v[1] for k, v in base.items()},
                "per_work": {n: r for (n, _), r in zip(works, rows)}},
