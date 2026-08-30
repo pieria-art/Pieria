@@ -40,7 +40,14 @@ def main() -> None:
             input(f"  [{i + 1}/{len(plan)}]  press Enter to render slot  ***{step['slot']}***  ")
             cmd = [sys.executable, "tools/eink_show.py", step["image"],
                    "--white-point", str(step["white_point"]), "--gamma", str(step["gamma"])]
-            subprocess.run(cmd, cwd=ROOT, check=False)
+            # ⚠️ SWALLOW THE OUTPUT. `eink_show` prints its output filename, which embeds the
+            # recipe (…_g1.0_wp1.0_…). On the first attempt at this session that leaked the mapping
+            # into the terminal on slot 1 and the blinding had to be re-seeded. A blinded protocol
+            # has to blind every channel, including the ones that are only incidentally visible.
+            r = subprocess.run(cmd, cwd=ROOT, check=False,
+                               stdout=subprocess.DEVNULL, stderr=subprocess.PIPE, text=True)
+            if r.returncode != 0:
+                print(f"      ⚠️ render failed: {r.stderr.strip().splitlines()[-1] if r.stderr else r.returncode}")
             print(f"      slot {step['slot']} is on the panel. Look at it before pressing Enter again.\n")
         input("  all four shown. Press Enter to restore the art cycle. ")
     finally:
