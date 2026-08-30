@@ -5,3 +5,10 @@ respx==0.21.1
 # Dev-only linter/formatter (config in pyproject.toml). Never shipped — the Docker
 # image installs requirements.txt only.  ruff check .   |   ruff check --fix .
 ruff==0.15.18
+
+# Maintainer/test-only. NEVER installed into the Docker image (which installs requirements.txt alone),
+# and epaper.py stays PIL-only because it runs on the Pi inside the render. Declared here because
+# tools/eink_{color,scurve,objective_gate,measure,readout}.py and tests/test_eink_color.py already
+# import it — CI was passing only because the local .venv happened to have it, which is a check that
+# could only pass. ADR-098-adjacent; see the physics-first plan.
+numpy==2.4.6
