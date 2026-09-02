@@ -12,3 +12,8 @@ ruff==0.15.18
 # import it — CI was passing only because the local .venv happened to have it, which is a check that
 # could only pass. ADR-098-adjacent; see the physics-first plan.
 numpy==2.4.6
+
+# Maintainer/bench-only, same rule as numpy above: NEVER in the Docker image or on the Pi. Needed by
+# tools/eink_raw.py to decode the NEX-6's .ARW into scene-linear camera RGB — the measurement rig's
+# ingest path. Wraps LibRaw; the wheel bundles it, so no system libraw is required.
+rawpy==0.27.1

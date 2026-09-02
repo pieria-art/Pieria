@@ -322,9 +322,126 @@ def rectify(photo: Image.Image, w: int, h: int, roi=None) -> Image.Image:
     return photo.convert("RGB").transform((w, h), Image.PERSPECTIVE, coeffs, Image.BICUBIC)
 
 
-# --- photometry ----------------------------------------------------------------------------------
+def _geometry_proxy(arr: np.ndarray) -> Image.Image:
+    """An 8-bit RGB stand-in for a float array, built ONLY so the existing PIL-based corner finders
+    (`find_fiducials`/`refine_fiducials`) can run unchanged on data that arrives in some other
+    photometric convention (`tools.eink_raw.RawFrame.rgb`'s scene-linear 1.0-is-saturation, or
+    anything else).
 
-def strip_dy(rectified: Image.Image, w: int, h: int, search: int = 48) -> int:
+    Safe because it feeds GEOMETRY ONLY, never photometry: fiducial/panel-box detection is a
+    dark-centroid search that already re-normalises against its own local min/max (see
+    `find_fiducials`), so all this needs to preserve is spatial structure and each pixel's own R:G:B
+    ratio — not calibrated brightness. A single scalar affine over the WHOLE array (not per channel)
+    is what keeps that ratio intact; scaling channels independently would tint every pixel and could
+    fool the neutral-panel test in `panel_bbox`. The float data used for the actual measurement is
+    never touched by this — `rectify_float` samples the ORIGINAL array through the homography this
+    proxy only helped solve.
+    """
+    # PERCENTILES, not min/max. A raw frame carries hot pixels — this sensor's dark current reaches
+    # ~4400 counts above black at long exposure — and a single hot pixel taken as `max` compresses
+    # the whole proxy toward black, which is exactly when the fiducials get harder to find. Clipping
+    # the outer 0.1% costs nothing here (the proxy is a detection aid, not a measurement) and makes
+    # the scaling depend on the scene instead of on its worst pixel.
+    lo, hi = (float(v) for v in np.percentile(arr, [0.1, 99.9]))
+    span = max(hi - lo, 1e-9)
+    scaled = (arr - lo) * (255.0 / span)
+    return Image.fromarray(np.clip(scaled, 0, 255).astype(np.uint8), "RGB")
+
+
+def _sample_bilinear(arr: np.ndarray, xs: np.ndarray, ys: np.ndarray) -> np.ndarray:
+    """Bilinear-sample `arr` (H,W,3) at fractional (xs, ys), CLAMPING outside the array rather than
+    wrapping or extrapolating — an output pixel whose homography maps it off the edge of the photo
+    (a corner slightly mis-detected, or content right at the frame boundary) gets the nearest real
+    pixel instead of a wraparound artefact or garbage.
+    """
+    height, width = arr.shape[:2]
+    xs = np.clip(xs, 0.0, width - 1)
+    ys = np.clip(ys, 0.0, height - 1)
+    x0 = np.floor(xs).astype(np.int64)
+    y0 = np.floor(ys).astype(np.int64)
+    x1 = np.minimum(x0 + 1, width - 1)
+    y1 = np.minimum(y0 + 1, height - 1)
+    fx = (xs - x0)[..., None]
+    fy = (ys - y0)[..., None]
+    top = arr[y0, x0] * (1.0 - fx) + arr[y0, x1] * fx
+    bottom = arr[y1, x0] * (1.0 - fx) + arr[y1, x1] * fx
+    return top * (1.0 - fy) + bottom * fy
+
+
+def rectify_float(photo: np.ndarray, w: int, h: int, roi=None) -> np.ndarray:
+    """Float counterpart to `rectify()`: same corner detection, precision-preserving resample.
+
+    `rectify()` cannot simply be reused on continuous data — it calls PIL's own uint8-backed
+    PERSPECTIVE transform, which is exactly the precision loss a raw capture exists to avoid. But
+    re-deriving corner detection for float data would duplicate a lot of hard-won, photograph-tuned
+    logic (`panel_bbox`/`find_fiducials`/`refine_fiducials`) for no benefit: corner geometry needs at
+    most 8 bits of contrast to locate, never the extra dynamic range this file exists to keep. So
+    detection runs UNCHANGED against an 8-bit PROXY built from this same array (`_geometry_proxy`),
+    and only the final resample — the step where photometric precision actually matters — touches
+    the float data. The homography itself is solved exactly as `rectify()` solves it
+    (`_perspective_coeffs(dst, src)`), so the two paths agree on WHERE to sample; they differ only in
+    what they do once they get there.
+
+    ⚠️ scipy is not a dependency of this project and must not become one: the sampler below is a
+    plain numpy bilinear implementation of PIL's own PERSPECTIVE convention — for output pixel
+    (x, y), `xs = (a*x+b*y+c) / (g*x+h*y+1)`, `ys = (d*x+e*y+f) / (g*x+h*y+1)` — not scipy's
+    `map_coordinates`.
+
+    BILINEAR here vs BICUBIC in `rectify()` is a real, permanent difference, not a bug: this is a
+    NEW path for raw captures, not a replacement for the banked 8-bit one, and the large-area patch
+    means `_mean_rgb` computes are insensitive to which of the two kernels put the sub-pixel energy
+    where.
+
+    Returns an (h, w, 3) float64 array in WHATEVER units `photo` arrived in. Unlike `rectify()`,
+    which always hands back an 8-bit PIL Image, this never rescales — so a caller's own convention
+    (e.g. `tools.eink_raw.RawFrame.rgb`, 1.0 == sensor saturation) survives unchanged into
+    `read_panel`'s float entry point.
+    """
+    arr = np.asarray(photo, dtype=np.float64)
+    if arr.ndim != 3 or arr.shape[-1] != 3:
+        raise ValueError(f"expected an (H,W,3) RGB array, got shape {arr.shape}")
+    proxy = _geometry_proxy(arr)
+    src = refine_fiducials(proxy, w, h, find_fiducials(proxy, w, h, roi))
+    dst = [(float(x), float(y)) for x, y in et.fiducial_centres(w, h)]
+    a, b, c, d, e, f, g, hh = _perspective_coeffs(dst, src)
+    xs_out, ys_out = np.meshgrid(np.arange(w, dtype=np.float64), np.arange(h, dtype=np.float64))
+    den = g * xs_out + hh * ys_out + 1.0
+    src_x = (a * xs_out + b * ys_out + c) / den
+    src_y = (d * xs_out + e * ys_out + f) / den
+    return _sample_bilinear(arr, src_x, src_y)
+
+
+# --- photometry ----------------------------------------------------------------------------------
+#
+# Everything from here down works in float64 on an EXPLICIT axis: 0.0-255.0, continuous — the same
+# numeric range this file has always used (the calibration strip anchors PANEL-RELATIVE output to
+# black=0/white=255), just no longer smuggled in implicitly via "whatever `.astype(float)` happened
+# to see after a PIL uint8 conversion." Making it explicit is what lets `tools.eink_raw.RawFrame.rgb`
+# — scene-linear float64, its OWN convention of 1.0 == sensor saturation — join the same arithmetic:
+# it is lifted onto this axis ONCE, at read_panel's entry (see below), by the caller's convention,
+# not re-derived per function. RECTIFY stays PIL/8-bit-only on purpose — see read_panel's docstring
+# for why warping continuous data through Pillow's own uint8 resampling was left out of scope.
+
+
+def _as_float_rgb(source) -> np.ndarray:
+    """The one seam a photograph crosses into this file's float64 arithmetic.
+
+    `source` is either a `PIL.Image` — the webcam rig's native 8-bit capture — or an ndarray already
+    sitting on this file's own 0.0-255.0 axis. An ndarray is trusted AS IS rather than rescaled here:
+    the one place a different convention (eink_raw's 1.0 == saturation) actually gets converted onto
+    this axis is read_panel's entry, which is the only place that knows which convention `photo`
+    arrived in. Rescaling here too would double-scale a raw frame the instant one function using this
+    helper called another that also used it.
+    """
+    if isinstance(source, Image.Image):
+        return np.asarray(source.convert("RGB")).astype(np.float64)
+    arr = np.asarray(source, dtype=np.float64)
+    if arr.ndim != 3 or arr.shape[-1] != 3:
+        raise ValueError(f"expected an (H,W,3) RGB array, got shape {arr.shape}")
+    return arr
+
+
+def strip_dy(rectified, w: int, h: int, search: int = 48) -> int:
     """Vertical correction for the calibration strip, found from the strip's own six patches.
 
     ⚠️ WHY THIS IS NEEDED EVEN THOUGH THE HOMOGRAPHY IS EXACT. A four-point homography fits its four
@@ -344,7 +461,14 @@ def strip_dy(rectified: Image.Image, w: int, h: int, search: int = 48) -> int:
     it honest — a per-patch search lets the black patch slide onto the black registration frame, which
     scores beautifully and is completely wrong.
     """
-    a = np.asarray(rectified.convert("L")).astype(float)
+    if isinstance(rectified, Image.Image):
+        a = np.asarray(rectified.convert("L")).astype(float)
+    else:
+        # PIL's own "L" conversion (kept untouched above, for the banked 8-bit path) is a fixed-point
+        # approximation of ITU-R BT.601 luma; this float version is for the array path only, which has
+        # no prior banked numbers it needs to match bit-for-bit.
+        arr = _as_float_rgb(rectified)
+        a = arr[..., 0] * 0.299 + arr[..., 1] * 0.587 + arr[..., 2] * 0.114
     base = patch_rects(w, h, len(et.STRIP_ORDER), dy=0)
     best, best_dy = None, 0
     for dy in range(-search, search + 1, 2):
@@ -375,16 +499,50 @@ def patch_rects(w: int, h: int, count: int, dy: int = 0) -> list:
     return out
 
 
-def _mean_rgb(img: Image.Image, rect, inset: float = 0.22) -> np.ndarray:
+def _mean_rgb(img, rect, inset: float = 0.22) -> np.ndarray:
     """Mean of a patch's INTERIOR. The inset avoids edge bleed from resampling and from the
-    specular highlight that room light puts somewhere on the glass."""
+    specular highlight that room light puts somewhere on the glass.
+
+    Converts the WHOLE image via `_as_float_rgb` and then slices, rather than cropping the PIL Image
+    first: identical pixels either way (mode-conversion is per-pixel, independent of the crop box —
+    checked directly, not assumed), and slicing an array is the only option once `img` can be a bare
+    ndarray rather than a `PIL.Image`.
+    """
     x0, y0, x1, y1 = rect
     dx, dy = int((x1 - x0) * inset), int((y1 - y0) * inset)
-    a = np.asarray(img.crop((x0 + dx, y0 + dy, x1 - dx, y1 - dy)).convert("RGB")).astype(float)
+    arr = _as_float_rgb(img)
+    a = arr[y0 + dy:y1 - dy, x0 + dx:x1 - dx, :]
     return a.reshape(-1, 3).mean(axis=0)
 
 
-def solve_correction(rectified: Image.Image, w: int, h: int) -> tuple:
+def _trap_level(photo, rect) -> np.ndarray:
+    """Mean RGB inside the veiling-glare light trap's aperture — "whatever it reads" — converted onto
+    THIS FILE'S OWN 0-255 axis regardless of source, so the result plugs straight into `read_panel`'s
+    `trap=`/`build_flat_field`'s `trap=`. `photo` is a `PIL.Image` (already 0-255) or a raw scene-
+    linear ndarray (`tools.eink_raw.RawFrame.rgb`'s 1.0-is-saturation convention); unlike `_as_float_
+    rgb`, which leaves an ndarray's axis alone because it cannot know which convention it arrived in,
+    this DOES rescale it — the caller here always knows, because it just decoded the raw file itself.
+
+    Deliberately sampled from the photograph's OWN, UNRECTIFIED pixel grid, not the render grid: the
+    trap's reading is a spatially constant additive offset (stray light inside the lens/rig, not a
+    feature of the scene), so it needs no homography to be meaningful, and measuring it here means it
+    never has to survive the resample that geometry detection exists to drive.
+    """
+    x0, y0, x1, y1 = rect
+    if isinstance(photo, Image.Image):
+        arr, scale = np.asarray(photo.convert("RGB")).astype(np.float64), 1.0
+    else:
+        arr = np.asarray(photo, dtype=np.float64)
+        if arr.ndim != 3 or arr.shape[-1] != 3:
+            raise ValueError(f"expected an (H,W,3) RGB array, got shape {arr.shape}")
+        scale = 255.0
+    patch = arr[y0:y1, x0:x1]
+    if patch.size == 0:
+        raise ValueError(f"--trap rect {rect} is empty against a {arr.shape[1]}x{arr.shape[0]} image")
+    return patch.reshape(-1, 3).mean(axis=0) * scale
+
+
+def solve_correction(rectified, w: int, h: int) -> tuple:
     """Per-channel affine solved from the BLACK and WHITE patches ONLY.
 
     ⚠️ A first version anchored on all six inks, mapping them to SPECTRA6_OUTPUT_PALETTE — the PURE
@@ -410,11 +568,12 @@ def solve_correction(rectified: Image.Image, w: int, h: int) -> tuple:
     off = -black * gain
     # Diagnostic: how uniform is each patch? A specular highlight or uneven light shows up here long
     # before it shows up as a wrong colour, and silently biases every later measurement.
+    full = _as_float_rgb(rectified)
     stds = []
     for r in rects:
         x0, y0, x1, y1 = r
         dx, dy = int((x1 - x0) * 0.22), int((y1 - y0) * 0.22)
-        a = np.asarray(rectified.crop((x0 + dx, y0 + dy, x1 - dx, y1 - dy))).astype(float)
+        a = full[y0 + dy:y1 - dy, x0 + dx:x1 - dx, :]
         stds.append(float(a.reshape(-1, 3).std(axis=0).mean()))
     return gain, off, float(np.mean(stds))
 
@@ -427,8 +586,20 @@ def normalise_palette(palette) -> list:
     return [[round(v, 1) for v in ((c - black) * 255.0 / span)] for c in arr]
 
 
-def apply_correction(img: Image.Image, gain, off) -> Image.Image:
-    a = np.asarray(img.convert("RGB")).astype(float) * gain + off
+def apply_correction(img, gain, off, *, as_float: bool = False) -> Image.Image | np.ndarray:
+    """Returns a `PIL.Image` by default, whatever `img` was: everything downstream of a corrected
+    frame in the banked 8-bit pipeline — measured_primaries, align_to_reference, the vault's own
+    visual record — is 8-bit PIL code, so this is where any extra precision a caller carried in has
+    always been spent, on purpose.
+
+    `as_float=True` skips that spend and returns the float64 array instead, UNCLIPPED. A raw
+    caller's entire reason for taking this path is to keep values a uint8 buffer cannot represent —
+    two patches 0.2/255 apart, a specular highlight a hair over the white anchor — and clamping to
+    [0,255] here would throw exactly that away again one line later. It defaults to False and is
+    opt-in so every existing 8-bit caller is unaffected byte-for-byte."""
+    a = _as_float_rgb(img) * gain + off
+    if as_float:
+        return a
     return Image.fromarray(np.clip(a, 0, 255).astype(np.uint8), "RGB")
 
 
@@ -439,13 +610,25 @@ def fuse(img: Image.Image, factor: int = 8) -> np.ndarray:
                                  Image.BOX)).astype(float)
 
 
-def build_flat_field(flat_photo: Image.Image, w: int, h: int, roi=None, smooth: int = 40):
+def build_flat_field(flat_photo: Image.Image, w: int, h: int, roi=None, smooth: int = 40, trap=None):
     """Smooth illumination map from a photograph of an all-white panel, in render coordinates.
 
     Heavily smoothed on purpose: illumination genuinely varies slowly across a panel, and the blur
     also averages away the registration frame and the fiducials, which are dark and would otherwise
     punch holes in the map.
+
+    🔴 `trap`, if given, is the additive veiling-glare pedestal (see `read_panel`) ALREADY measured for
+    this photograph, subtracted before anything else runs. This flat-field reference is itself a
+    photograph, taken on the same rig, so it carries the same optical veiling glare as any other shot
+    — a reading of "how bright the panel photographs" that is secretly "true brightness plus flare".
+    Dividing a later frame by an uncleaned flat is self-inconsistent from the first division, and
+    nothing downstream can detect it: it just looks like a slightly wrong illumination map. Cleaning
+    it here, once, is what makes `read_panel`'s own trap subtraction on the numerator actually correct
+    — see its docstring for why the two must agree.
     """
+    if trap is not None:
+        arr = np.asarray(flat_photo.convert("RGB")).astype(np.float64) - np.asarray(trap, dtype=float)
+        flat_photo = Image.fromarray(np.clip(arr, 0, 255).astype(np.uint8), "RGB")
     rect = rectify(flat_photo, w, h, roi)
     import tools.eink_target as _et
     cx0, cy0, cx1, cy1 = _et.content_box(w, h)
@@ -548,13 +731,54 @@ def align_to_reference(rect: Image.Image, reference: Image.Image, w: int, h: int
     return moved
 
 
-def read_panel(photo: Image.Image, w: int, h: int, roi=None, flat=None, reference=None,
-               align_prior=None) -> dict:
-    rect = rectify(photo, w, h, roi)
+def read_panel(photo, w: int, h: int, roi=None, flat=None, reference=None,
+               align_prior=None, trap=None) -> dict:
+    """`photo` is normally the webcam rig's 8-bit PIL Image, rectified below exactly as before.
+
+    It may also be an already-rectified float64 ndarray in `tools.eink_raw.RawFrame.rgb`'s own
+    convention (scene-linear, 1.0 == sensor saturation) — the hook a raw-camera capture plugs into,
+    produced by `rectify_float` below (RECTIFY itself stays PIL/8-bit-only; see its docstring for
+    why). `reference=`/`roi=`, which both depend on rectify()'s PIL machinery, are not available on
+    this path. Once on it, everything downstream — flat-field division, `apply_correction` — stays
+    in float too, so taking this path costs none of the precision it exists to keep.
+
+    🔴 `trap`, if given, is the additive optical-veiling-glare pedestal a light trap read for THIS
+    photograph — subtracted BEFORE the flat-field division, never after. Flare is additive (stray
+    light landing on the sensor on top of the real image) while the flat field is a MULTIPLICATIVE
+    correction (illumination/vignetting), and those two do not commute: dividing first bakes the
+    flare into every value the division touches, then subtracting it back out over- or
+    under-corrects wherever the flat field departed from 1.0. This is the fix for the dark end never
+    improving under the old (flat-only) correction — flare is a floor that a multiplicative-only
+    correction can never reach under. `flat`, when also supplied, must already have had ITS OWN trap
+    reading subtracted (`build_flat_field(..., trap=...)`) — passing a flat field that still carries
+    flare is the self-inconsistency `build_flat_field` warns about, and this function has no way to
+    detect it: both frames are photographs and simply added the same way.
+    """
+    float_path = not isinstance(photo, Image.Image)
+    if not float_path:
+        rect = rectify(photo, w, h, roi)
+    else:
+        if reference is not None or roi is not None:
+            raise NotImplementedError(
+                "an already-rectified float array has no rectify()/align_to_reference behind it "
+                "(both are PIL/8-bit-only) — pass reference=None, roi=None")
+        arr = np.asarray(photo, dtype=np.float64)
+        if arr.shape != (h, w, 3):
+            raise ValueError(
+                f"already-rectified input must be exactly (h, w, 3) = ({h}, {w}, 3), got {arr.shape}")
+        rect = arr * 255.0      # onto this file's own axis — see the note above strip_dy()
+    if trap is not None:
+        # ADDITIVE, and BEFORE the (multiplicative) flat division — see the docstring above. A
+        # spatially-constant pedestal commutes with rectify's geometric resample, so it does not
+        # matter that `rect` has already been warped/scaled by this point.
+        a = np.asarray(rect).astype(float) - np.asarray(trap, dtype=float)
+        rect = a if float_path else Image.fromarray(np.clip(a, 0, 255).astype(np.uint8), "RGB")
     if flat is not None:
         a = np.asarray(rect).astype(float)
         a = a / flat * float(flat.mean())
-        rect = Image.fromarray(np.clip(a, 0, 255).astype(np.uint8), "RGB")
+        # Stay in float on the float path: rounding to a uint8 PIL Image here would spend the same
+        # precision `apply_correction`'s `as_float` mode exists to keep, just one step earlier.
+        rect = a if float_path else Image.fromarray(np.clip(a, 0, 255).astype(np.uint8), "RGB")
     # ⚠️ ORDER MATTERS, AND GETTING IT WRONG IS CATASTROPHIC AND QUIET.
     #
     # The homography puts the calibration FURNITURE — frame, fiducials, patch strip — exactly at its
@@ -573,7 +797,7 @@ def read_panel(photo: Image.Image, w: int, h: int, roi=None, flat=None, referenc
     # So: correct the tones FIRST, while the furniture is still where the homography put it, and
     # align only afterwards, for the content readout.
     gain, off, resid = solve_correction(rect, w, h)
-    corrected = apply_correction(rect, gain, off)
+    corrected = apply_correction(rect, gain, off, as_float=float_path)
     # ⚠️ ALIGNMENT MOVES THE FURNITURE TOO. `corrected` after alignment has the CONTENT on the render
     # grid, but the registration frame, fiducials and patch strip have all moved with it — so any
     # readout that samples the strip at nominal coordinates on the aligned image is reading the wrong
@@ -593,11 +817,15 @@ def read_panel(photo: Image.Image, w: int, h: int, roi=None, flat=None, referenc
             "gain": gain.tolist(), "offset": off.tolist(), "patch_residual": resid}
 
 
-def measured_primaries(corrected: Image.Image, w: int, h: int) -> dict:
+def measured_primaries(corrected, w: int, h: int) -> dict:
     """What the panel ACTUALLY produced for each pure ink, in the corrected photo's terms.
 
     The point of the `primaries` target: `epaper.SPECTRA6_DITHER_PALETTE` is Pimoroni's measurement
     of a different EL133UF1, and every distance calculation in the renderer assumes it.
+
+    `corrected` may be the usual 8-bit PIL Image, or the float64 ndarray `read_panel` returns for
+    its float entry point (`apply_correction(..., as_float=True)`) — `_mean_rgb`/`_as_float_rgb`
+    already handle either the same way, so nothing here needed to change to accept it.
     """
     x0, y0, x1, y1 = et.content_box(w, h)
     cw, ch = x1 - x0, y1 - y0
@@ -614,8 +842,15 @@ def measured_primaries(corrected: Image.Image, w: int, h: int) -> dict:
 # --- self-test -----------------------------------------------------------------------------------
 
 def _synthesise_photo(target: Image.Image, warp: float, gain, off, noise: float,
-                      seed: int) -> Image.Image:
-    """Fake a photograph: perspective, camera colour distortion, sensor noise, dark surround."""
+                      seed: int, flare=0.0) -> Image.Image:
+    """Fake a photograph: perspective, camera colour distortion, sensor noise, dark surround.
+
+    `flare`, default 0.0 (a no-op — every pre-existing caller and all four selftest cases are
+    unaffected), models the additive OPTICAL VEILING GLARE a light trap would read: added to the
+    whole frame BEFORE the camera's own gain/offset, because glare is stray light landing on the
+    sensor ALONGSIDE the real scene light, not a property of the camera's own response curve — the
+    same distinction `tools.eink_raw` draws between the sensor's electronic offset and this.
+    """
     rng = np.random.default_rng(seed)
     w, h = target.size
     pad = int(max(w, h) * 0.12)
@@ -630,6 +865,7 @@ def _synthesise_photo(target: Image.Image, warp: float, gain, off, noise: float,
            (rng.uniform(0, j), H - 1 - rng.uniform(0, j))]
     warped = canvas.transform((W, H), Image.PERSPECTIVE, _perspective_coeffs(dst, src), Image.BICUBIC)
     a = np.asarray(warped).astype(float)
+    a = a + np.asarray(flare, dtype=float)
     a = a * np.asarray(gain) + np.asarray(off)
     a += rng.normal(0, noise, a.shape)
     return Image.fromarray(np.clip(a, 0, 255).astype(np.uint8), "RGB")
@@ -914,29 +1150,44 @@ def cmd_capture(args) -> None:
           f"kept the last frame. The panel may still be refreshing, or something in shot is moving.")
 
 
-def cmd_read(args) -> None:
-    photo = Image.open(args.photo)
-    w, h = (Image.open(args.target).size if args.target else (args.width, args.height))
-    roi = tuple(int(v) for v in args.roi.split(",")) if args.roi else None
-    flat = None
-    if args.flat:
-        flat = build_flat_field(Image.open(args.flat), w, h, roi=roi)
-        print(f"flat-field applied from {args.flat} "
-              f"(illumination range {flat.min():.0f}-{flat.max():.0f})")
-    r = read_panel(photo, w, h, roi=roi, flat=flat)
+#: `.ARW` (Sony) / `.DNG` (generic raw) route through `tools.eink_raw` instead of `PIL.Image.open`.
+#: EXTENSION-SNIFFING, NOT CONTENT-SNIFFING, is fine here: this is a maintainer CLI where the person
+#: running it supplies both the file and, implicitly, its format — unlike a web upload there is no
+#: untrusted-input reason to verify the real type from magic bytes, and a wrong extension fails loudly
+#: anyway (`PIL.Image.open` rejects a raw file's bytes; `rawpy.imread` rejects a PNG's).
+RAW_EXTENSIONS = {".arw", ".dng"}
+
+
+def _parse_rect(s: str):
+    """`"x0,y0,x1,y1"` -> an int tuple, or `None` for an empty string. Shared by `--roi` and
+    `--trap`, which use the identical convention: a crop box in the photograph's OWN, unrectified
+    pixel coordinates.
+    """
+    return tuple(int(v) for v in s.split(",")) if s else None
+
+
+def _target_size(args) -> tuple:
+    return Image.open(args.target).size if args.target else (args.width, args.height)
+
+
+def _report_read(r: dict, w: int, h: int, out: Path, primaries: bool) -> None:
+    """Shared by the PNG and raw branches of `cmd_read` — everything after `read_panel` returns is
+    identical regardless of which camera produced the pixels."""
     print(f"gain   {[round(float(v), 4) for v in r['gain']]}")
     print(f"offset {[round(v, 2) for v in r['offset']]}")
     print(f"patch non-uniformity (mean std within patches, 0-255): {r['patch_residual']:.2f}")
     if r["patch_residual"] > 14:
         print("  ⚠️ high — uneven light or a specular highlight on the glass. Both bias every "
               "later measurement, so fix the lighting rather than correcting for it.")
-    out = Path(args.out or "bench-eink/measured_corrected.png")
-    r["corrected"].save(out)
+    corrected = r["corrected"]
+    img = corrected if isinstance(corrected, Image.Image) else \
+        Image.fromarray(np.clip(corrected, 0, 255).astype(np.uint8), "RGB")
+    img.save(out)
     print(f"corrected -> {out}")
-    if args.primaries:
+    if primaries:
         print("\nMEASURED PANEL PRIMARIES vs the assumed SPECTRA6_DITHER_PALETTE")
         print("(both in PANEL-RELATIVE units: this panel's own black = 0, its own white = 255)")
-        prim = measured_primaries(r["corrected"], w, h)
+        prim = measured_primaries(corrected, w, h)
         assumed_norm = normalise_palette(ep.SPECTRA6_DITHER_PALETTE)
         worst = 0.0
         for name, assumed in zip(et.INK_NAMES, assumed_norm):
@@ -950,6 +1201,59 @@ def cmd_read(args) -> None:
         if worst > 30:
             print("  This panel does not match Pimoroni's measurement, and every distance "
                   "calculation in the renderer assumes it does.")
+
+
+def _cmd_read_raw(args, path: Path) -> None:
+    """The `.ARW`/`.DNG` branch of `cmd_read`. Split out (rather than branching inline) because it is
+    the only code in this file that needs `tools.eink_raw`, and therefore the only code that needs
+    `rawpy` — imported HERE, lazily, so that reading a PNG (every existing test, and the Pi image,
+    which never touches this function) never pays for an import that can fail.
+    """
+    try:
+        from tools import eink_raw
+    except ImportError as exc:
+        raise SystemExit(
+            f"reading a raw capture ({path.suffix}) needs the optional 'rawpy' dependency, which is "
+            f"not installed here (pip install rawpy) — or pass a PNG capture instead. ({exc})") from exc
+    w, h = _target_size(args)
+    roi = _parse_rect(args.roi)
+    trap_rect = _parse_rect(args.trap)
+    frame = eink_raw.decode(path, dark_frame=args.dark or None)
+    print(f"raw: black {frame.black:.1f}  dark_current {frame.dark_current:.1f}  "
+          f"clipped {frame.clipped_fraction * 100:.4f}%")
+    trap = _trap_level(frame.rgb, trap_rect) if trap_rect else None
+    if trap is not None:
+        print(f"trap pedestal (veiling glare, 0-255 axis): {[round(v, 2) for v in trap]}")
+    rectified = rectify_float(frame.rgb, w, h, roi=roi)
+    flat = None
+    if args.flat:
+        flat_photo = Image.open(args.flat)
+        flat_trap = _trap_level(flat_photo, trap_rect) if trap_rect else None
+        flat = build_flat_field(flat_photo, w, h, roi=roi, trap=flat_trap)
+        print(f"flat-field applied from {args.flat} "
+              f"(illumination range {flat.min():.0f}-{flat.max():.0f})")
+    r = read_panel(rectified, w, h, flat=flat, trap=trap)
+    _report_read(r, w, h, Path(args.out or "bench-eink/measured_corrected.png"), args.primaries)
+
+
+def cmd_read(args) -> None:
+    path = Path(args.photo)
+    if path.suffix.lower() in RAW_EXTENSIONS:
+        _cmd_read_raw(args, path)
+        return
+    if args.dark or args.trap:
+        raise SystemExit("--dark/--trap apply to raw (.ARW/.DNG) captures only — drop them, or pass "
+                          "a raw photo, for a veiling-glare correction on the PNG path")
+    photo = Image.open(args.photo)
+    w, h = _target_size(args)
+    roi = _parse_rect(args.roi)
+    flat = None
+    if args.flat:
+        flat = build_flat_field(Image.open(args.flat), w, h, roi=roi)
+        print(f"flat-field applied from {args.flat} "
+              f"(illumination range {flat.min():.0f}-{flat.max():.0f})")
+    r = read_panel(photo, w, h, roi=roi, flat=flat)
+    _report_read(r, w, h, Path(args.out or "bench-eink/measured_corrected.png"), args.primaries)
 
 
 def main() -> None:
@@ -986,7 +1290,8 @@ def main() -> None:
                         "6 refresh passes through slow phases where two successive grabs look "
                         "identical, and a flat-field reference was once captured mid-refresh as a "
                         "dark purple inversion state that then corrupted everything divided by it.")
-    r = sub.add_parser("read", help="rectify + normalise a photograph and report")
+    r = sub.add_parser("read", help="rectify + normalise a photograph and report "
+                                    "(.ARW/.DNG route through tools.eink_raw)")
     r.add_argument("photo")
     r.add_argument("--target", default="", help="the rendered target, to take w/h from")
     r.add_argument("--width", type=int, default=1600)
@@ -994,6 +1299,13 @@ def main() -> None:
     r.add_argument("--roi", default="", help="x0,y0,x1,y1 crop to the panel's active area")
     r.add_argument("--flat", default="", help="photograph of an all-white panel; divides out the "
                                               "lighting gradient and lens vignetting")
+    r.add_argument("--dark", default="", help="raw path only: lens-cap frame at matching "
+                                              "exposure/ISO, passed to eink_raw.decode(dark_frame=)")
+    r.add_argument("--trap", default="", help="raw path only: x0,y0,x1,y1 region, in the ORIGINAL "
+                                              "unrectified photo, of a light trap's aperture — its "
+                                              "mean level is the additive optical veiling glare, "
+                                              "subtracted before the flat-field division. Optional; "
+                                              "a no-op until the trap physically exists in shot")
     r.add_argument("--primaries", action="store_true", help="report measured ink primaries")
     r.add_argument("--out", default="")
     args = ap.parse_args()
