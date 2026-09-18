@@ -205,6 +205,47 @@ constant every distance calculation in the renderer depends on.**
 printed patch set with published sRGB values — and solve the camera's response from it. That converts
 these numbers from suggestive to settled, and it is the next thing this rig needs.
 
+## Session procedure — NEX-6 rig, daytime under the ambient gate (ADR-112 / ADR-114)
+
+The sections above describe the original C920 rig. The measurement session now uses the Sony NEX-6
+at the ADR-112 settings (M · f/5.6 · ISO 100 · 20 s · manual focus · SteadyShot off · 10 s timer ·
+RAW+JPEG · Long Exposure NR off), a light trap coplanar with the tray, a per-frame ColorChecker, and
+one flat field. ADR-112 measured **40% of the panel's lamp-on signal as room light** in an
+uncurtained afternoon room and pinned the session to after dark; ADR-114 replaces "after dark" with a
+**measured gate** so a daytime session in a dark corner is allowed when the number says so.
+
+**The mechanism decides the fix.** The camera looks straight down at a glossy panel, so what the lens
+sees reflected is the region **above** the panel — about twice the panel's size, centred on the lens,
+at the camera's height. That is the ceiling, not the walls. A cloth draped *around* the rig does
+nothing for it; a **roof** over the rig at camera height, lens through a hole, lamp underneath, does.
+
+1. **Rig first, panel last.** Camera on the down-looking arm, tray on the stool, trap coplanar with
+   the tray, lamp at ~45° off to the side (specular must miss the lens), diffuser on, lamp warming
+   ≥ 15 min. Frame and focus on a sheet of paper on the **empty** tray. Nothing is mounted or adjusted
+   above the panel after it goes in — the first EL133UF1 was destroyed by a part dropped from a few
+   inches.
+2. **Roof.** Black cloth over the rig at camera height, ~1 m² centred on the lens. Flock anything
+   shiny the panel can see. (A black lens barrel needs nothing.)
+3. **Seat the panel** by its PCB, under a rigid cover, then cover off. Bench Pi up with `sd-eink`
+   **disabled** (it repaints the panel on boot). Touch focus only if the panel's height moved things.
+4. **Gate.** Put white on the panel. Shoot the **lit** frame first, then lamp off and shoot the
+   **dark** frame *without touching the camera* — a flat, near-zero dark frame is pixel-identical to a
+   lens-cap frame (ADR-112's DSC00270), and shooting lit-then-dark is what makes `--cap-was-off`
+   honest.
+
+       python -m tools.eink_ambient_check check --lit <lit.ARW> --dark <dark.ARW> --cap-was-off
+
+   **GO ≤ 3%** · **BRACKET ≤ 10%** (start *and* end flat, ambient frame every ~30 min) · **NO-GO**
+   above — bank the rig, wait for dark. The block map says *where* the room is mirrored: a bright band
+   on one edge means hang flock on that side and re-measure.
+5. **Shoot.** Flat field, hands out, then the ADR-110 frames. The camera is the eyes (the JPEG is the
+   preview); after the flat field nobody reaches in. Ambient and flat frames are **camera-only** — the
+   panel is bistable, so they cost no refreshes. At the end, a second flat and
+
+       python -m tools.eink_ambient_check compare --a <flat_start.ARW> --b <flat_end.ARW>
+
+   gives the session's flat-field shape drift in the same % as the gate.
+
 ## Known-open
 
 - **Corner detection finds the panel bezel, not the registration frame's inner edge.** On a real
