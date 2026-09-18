@@ -118,8 +118,10 @@ ink patches** (→ per-photograph colour correction). Composition happens *after
 re-quantising the finished canvas would dither the calibration patches, and a dithered patch measures
 the dither rather than the ink.
 
-**Pack many conditions into one frame.** The panel refresh is now the bottleneck, and colour e-ink has
-finite refresh cycles — this is the only Spectra 6 panel the project owns. `huegrid` measures 72
+**Pack many conditions into one frame.** The panel refresh is the bottleneck at ~22 s, and vendors ask
+for **no more than one refresh per ~180 s** — so throughput is paced by the clock, not by a wear
+budget (ADR-113: E Ink publishes no update-count rating for the EL133UF1, and the stated limits are an
+interval and a dwell, not a total). `huegrid` measures 72
 hue×saturation cells in a *single* refresh because the camera resolves them spatially. Dense targets,
 not parameter sweeps.
 

@@ -18,9 +18,10 @@ negative at both ends. That is the ADR-084 grid-ceiling lesson again: a boundary
 to widen the search, never an answer. This widens automatically and marks anything it could not
 bracket.
 
-⚠️ PANEL WEAR IS THE REAL BUDGET. Every measurement is a panel refresh (~22 s), and colour e-ink has
-finite refresh cycles — this is the only Spectra 6 the project owns. Two refreshes per work is the
-floor; widening costs more. Resume rather than restart.
+⚠️ PACING IS THE REAL BUDGET, NOT WEAR. Every measurement is a panel refresh (~22 s) and vendors ask
+for no more than one per ~180 s, so a run is bounded by the clock. "Colour e-ink has finite refresh
+cycles" was unsourced and is struck (ADR-113). Two refreshes per work is the floor; widening costs
+more wall-clock. Resume rather than restart.
 
     python -m tools.eink_wpfit --flat bench-eink/reference/flat.png --works 1,4,9
     python -m tools.eink_wpfit --flat ... --all          # every corpus work not yet measured
