@@ -38,8 +38,17 @@ OUTPUT=HDMI-A-1
 # reachable, then paints automatically). Recommended: 0 for a home server.
 WAIT_TIMEOUT=0
 
+# TIMEZONE: the house clock, as an IANA zone name (America/Chicago, Europe/London, …).
+# The setup wizard fills it from your phone. Night & Quiet Hours and the CEC panel power
+# follow THIS clock — a Pi OS image ships set to Europe/London, which is wrong for most
+# homes and only shows up when the schedule fires hours off. Applied at every boot;
+# blank = leave the OS timezone alone.
+TIMEZONE=
+
 # WATCHDOG: kiosk/server self-heal (all-in-one). On sustained failure it escalates
-# relaunch-kiosk -> restart-container -> reboot (with a boot-loop guard).
+# relaunch-kiosk -> restart-container -> reboot (with a boot-loop guard). Probes: server up,
+# cage+chromium up, artwork present, the Canvas page heart-beating, and the picture still
+# CHANGING (the same work for 3x the playlist's display_time = a wedged browser).
 #   observe  = probe + log what it WOULD do, take NO action (default; safe to leave on)
 #   enforce  = actually self-heal (set this once you've confirmed it on YOUR hardware)
 #   off      = disabled

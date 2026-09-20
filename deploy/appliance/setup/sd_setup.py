@@ -88,6 +88,11 @@ def validate_fields(fields: dict) -> dict:
     if fields.get("orientation") not in ORIENTATIONS:
         errors["orientation"] = "Choose an orientation."
 
+    # Timezone is OPTIONAL and normally auto-filled from the phone; only a non-blank value is checked.
+    tz = (fields.get("timezone") or "").strip()
+    if tz and not valid_timezone(tz):
+        errors["timezone"] = "Use a zone name like America/Chicago or Europe/London."
+
     # Hostname is OPTIONAL: blank means "derive from the display name," and if that yields nothing the
     # box keeps its unique baked default. Only a non-empty, explicitly-typed value is validated — so an
     # advanced user who opens the edit affordance and types garbage gets told, while gramps who never
@@ -121,7 +126,34 @@ def _pick_all_in_one(fields: dict, default: bool) -> bool:
 
 #: Keys the wizard OWNS — everything else in an existing conf is preserved verbatim.
 _WIZARD_KEYS = {"SERVER_URL", "DISPLAY_ID", "MODE", "CYCLE_TIME", "ROTATE", "OUTPUT",
-                "WAIT_TIMEOUT", "ALL_IN_ONE", "GEMINI_API_KEY", "EINK_ORIENTATION", "HOSTNAME"}
+                "WAIT_TIMEOUT", "ALL_IN_ONE", "GEMINI_API_KEY", "EINK_ORIENTATION", "HOSTNAME",
+                "TIMEZONE"}
+
+#: IANA zone names: Area/Location[/Sub], e.g. America/Chicago, America/Argentina/Buenos_Aires; also
+#: bare "UTC". Shape check only — existence is verified against the OS zoneinfo where present.
+_TIMEZONE_RE = re.compile(r"^[A-Za-z][A-Za-z0-9_+\-]*(/[A-Za-z0-9_+\-]+){0,2}$")
+
+
+def valid_timezone(tz: str) -> bool:
+    """True for a zone name this box can set. The phone supplies it (Intl.DateTimeFormat), so garbage is
+    rare — but the field is editable. When the OS zoneinfo is available the name must exist in it;
+    without zoneinfo (a stripped test env) the shape check stands alone."""
+    tz = (tz or "").strip()
+    if not tz or len(tz) > 64 or not _TIMEZONE_RE.match(tz):
+        return False
+    try:
+        from zoneinfo import available_timezones
+        zones = available_timezones()
+    except Exception:  # noqa: BLE001 — no tzdata → shape check only
+        return True
+    return tz in zones if zones else True
+
+
+def resolve_timezone(fields: dict) -> str:
+    """The TIMEZONE= value to write: the form's zone if valid, else blank (= leave the OS clock alone).
+    Blank is deliberate for garbage — a wrong zone is worse than the default the user can still fix."""
+    tz = (fields.get("timezone") or "").strip()
+    return tz if valid_timezone(tz) else ""
 
 
 def _preserved_lines(existing: str) -> list:
@@ -165,6 +197,9 @@ def build_conf(fields: dict, all_in_one: bool = False, existing: str = "") -> st
         # recorded here so it survives a conf edit and the value is visible. Blank = keep the unique
         # baked default (pieria-XXXX).
         f"HOSTNAME={hostname}\n"
+        # The house clock (IANA name). Night & Quiet Hours + CEC panel power follow it; applied at every
+        # boot by sd-timesync-wait and at commit. Blank = leave the OS timezone alone.
+        f"TIMEZONE={resolve_timezone(fields)}\n"
         "MODE=\n"
         "CYCLE_TIME=\n"
         f"ROTATE={rotate}\n"
@@ -464,6 +499,7 @@ def make_handler(cfg: SetupConfig):
                 # explicitly so the mode is deterministic rather than inherited from the process umask.
                 os.chmod(cfg.boot_conf, 0o644)
                 _apply_hostname(resolve_hostname(fields))
+                _apply_timezone(resolve_timezone(fields))
                 if ssid:
                     _join_wifi(ssid, fields.get("wifi_pass", ""))
                 _release_wlan0()
@@ -511,6 +547,18 @@ def _apply_hostname(hostname: str) -> None:
         hosts.write_text("\n".join(out) + "\n")
     except OSError:
         pass  # /etc/hostname is the one that actually matters; hosts is a courtesy
+
+
+def _apply_timezone(tz: str) -> None:
+    """Set the OS timezone at commit (best-effort, non-fatal — same contract as _apply_hostname). Blank
+    = leave the OS default. sd-timesync-wait re-applies TIMEZONE= at every boot, so a failure here
+    self-heals on the reboot that follows the commit."""
+    if not tz or not valid_timezone(tz):
+        return
+    try:
+        subprocess.run(["timedatectl", "set-timezone", tz], check=True, capture_output=True, timeout=15)
+    except (subprocess.SubprocessError, FileNotFoundError):
+        pass  # boot-time apply will retry; the conf already carries the value
 
 
 def _join_wifi(ssid: str, password: str) -> None:
@@ -669,6 +717,11 @@ WIZARD_HTML = """<!DOCTYPE html>
     </div>
     <div class="hint" id="rotate-status"></div>
 
+    <label>Time zone</label>
+    <input type="text" id="timezone" placeholder="America/Chicago" autocomplete="off">
+    <div class="err" id="err-timezone"></div>
+    <div class="hint">Filled in from this phone. Night &amp; Quiet Hours follow this clock.</div>
+
     <div style="margin-top:20px;"><button id="continue">Review &amp; finish →</button></div>
   </div>
 
@@ -686,6 +739,9 @@ WIZARD_HTML = """<!DOCTYPE html>
 <script>
 const $ = id => document.getElementById(id);
 let MODE = { dry_run:false };
+
+// The phone knows the house's zone; the Pi (fresh image) does not. Pre-fill, leave it editable.
+try { const tz = Intl.DateTimeFormat().resolvedOptions().timeZone; if (tz) $('timezone').value = tz; } catch (e) {}
 
 async function loadMode() {
   try {
@@ -777,9 +833,10 @@ function fields() {
     server_url: $('server_url').value, display_id: $('display_id').value,
     hostname: $('hostname').value,
     orientation: $('orientation').value,
+    timezone: $('timezone').value,
   };
 }
-function clearErrors(){ ['server_url','display_id','orientation','hostname'].forEach(f=>{ const e=$('err-'+f); e.style.display='none'; }); }
+function clearErrors(){ ['server_url','display_id','orientation','hostname','timezone'].forEach(f=>{ const e=$('err-'+f); e.style.display='none'; }); }
 function showErrors(errs){ clearErrors(); for(const [f,m] of Object.entries(errs)){ const e=$('err-'+f); if(e){ e.textContent=m; e.style.display='block'; } } }
 
 $('try-rotate').onclick = async () => {

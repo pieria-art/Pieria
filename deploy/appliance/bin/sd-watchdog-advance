@@ -1,0 +1,129 @@
+#!/usr/bin/env python3
+"""sd-watchdog-advance — the two probes sd-watchdog could not do in shell (2026-09-20).
+
+Answers, for ONE display, from the server's own view of it:
+
+  live     — is the Canvas PAGE checking in? (`live` on /api/remote/displays is page-owned since the
+             heartbeat moved into the page's JS; a wedged page goes silent within 15s.)
+  advance  — has the picture CHANGED recently? now-playing must move at least every display_time; if
+             the same artwork has sat for 3x display_time + a margin, the page is stuck even if it is
+             somehow still heart-beating (e.g. JS alive, paint pipeline dead).
+
+Why this exists: the prod Pi held one frame for a week (2026-09-13 → 09-20) while cage+chromium were
+alive, the WebSocket stayed open on protocol ping/pong, `active` read true and the watchdog's paint
+probe ("artwork non-null") passed. Every signal measured the wrong layer. See memory `prod-kiosk-wedge`.
+
+Usage:  sd-watchdog-advance SERVER_URL DISPLAY_ID          (state file: $SD_WATCHDOG_ADVANCE_STATE,
+                                                            default /run/sd-watchdog.advance)
+Prints: "<live> <advance>" as two 0/1 tokens on one line. Any failure to decide prints "1 1" — an
+unreachable server or malformed JSON is the server probe's business, not a reason to relaunch the kiosk.
+
+Every rule is in decide() so tests can drive it without HTTP.
+"""
+from __future__ import annotations
+
+import json
+import os
+import sys
+import time
+import urllib.request
+
+#: Stale = the same artwork for longer than this many display_times, plus MARGIN_SEC for the fetch and
+#: crossfade. 3x (not 2x) because bag-shuffle can legitimately draw the same work twice across a bag
+#: refill; one false relaunch an hour would be its own kind of broken.
+STALE_MULTIPLIER = 3
+MARGIN_SEC = 120
+#: If display_time can't be resolved, never call anything stale below this. A 20-minute playlist is
+#: the slowest a TV runs today; e-ink does not go through this probe (no kiosk).
+FALLBACK_DISPLAY_TIME_SEC = 1200
+
+
+def decide(displays: list, playlists: list, display_id: str, state: dict | None, now: float) -> tuple:
+    """Pure decision. Returns (live_ok, advance_ok, new_state, reason).
+
+    `state` is {"artwork_id": int, "since": epoch} from the previous run, or None. The returned state
+    must be persisted by the caller so the clock starts when the artwork was FIRST seen unchanged.
+    """
+    row = next((d for d in displays if isinstance(d, dict) and d.get("display_id") == display_id), None)
+    if row is None:
+        # No row = the page never connected/served. The paint probe already counts that; don't double it.
+        return 1, 1, None, "display not registered"
+
+    live_ok = 1 if row.get("live", True) else 0       # missing key = pre-heartbeat server: don't judge
+
+    art = row.get("artwork") or {}
+    art_id = art.get("id")
+    if art_id is None:
+        return live_ok, 1, None, "no artwork yet"       # paint probe's case
+
+    if state and state.get("artwork_id") == art_id:
+        since = float(state.get("since", now))
+        new_state = {"artwork_id": art_id, "since": since}
+    else:
+        return live_ok, 1, {"artwork_id": art_id, "since": now}, "artwork changed"
+
+    playlist = next((p for p in playlists if isinstance(p, dict) and p.get("name") == row.get("playlist")), None)
+    if playlist is not None and len(playlist.get("artworks") or []) <= 1:
+        return live_ok, 1, new_state, "single-work playlist never advances"
+    display_time = (playlist or {}).get("display_time") or FALLBACK_DISPLAY_TIME_SEC
+    try:
+        display_time = max(1, int(display_time))
+    except (TypeError, ValueError):
+        display_time = FALLBACK_DISPLAY_TIME_SEC
+
+    limit = STALE_MULTIPLIER * display_time + MARGIN_SEC
+    held = now - since
+    if held > limit:
+        return live_ok, 0, new_state, f"same artwork {art_id} for {int(held)}s (limit {limit}s)"
+    return live_ok, 1, new_state, f"same artwork {art_id} for {int(held)}s (limit {limit}s)"
+
+
+def _get_json(url: str):
+    with urllib.request.urlopen(url, timeout=8) as r:   # noqa: S310 — localhost appliance server
+        return json.load(r)
+
+
+def _load_state(path: str) -> dict | None:
+    try:
+        with open(path) as f:
+            d = json.load(f)
+        return d if isinstance(d, dict) else None
+    except (OSError, ValueError):
+        return None
+
+
+def _save_state(path: str, state: dict | None) -> None:
+    try:
+        if state is None:
+            if os.path.exists(path):
+                os.remove(path)
+            return
+        tmp = path + ".tmp"
+        with open(tmp, "w") as f:
+            json.dump(state, f)
+        os.replace(tmp, path)
+    except OSError:
+        pass  # /run unwritable → we simply re-derive next minute
+
+
+def main(argv: list) -> int:
+    if len(argv) != 3:
+        print("1 1")
+        return 0
+    server_url, display_id = argv[1].rstrip("/"), argv[2]
+    state_path = os.environ.get("SD_WATCHDOG_ADVANCE_STATE", "/run/sd-watchdog.advance")
+    try:
+        displays = _get_json(f"{server_url}/api/remote/displays")
+        playlists = _get_json(f"{server_url}/playlists")
+    except Exception:  # noqa: BLE001 — server trouble is the server probe's job
+        print("1 1")
+        return 0
+    live_ok, advance_ok, new_state, reason = decide(displays, playlists, display_id, _load_state(state_path), time.time())
+    _save_state(state_path, new_state)
+    print(f"{live_ok} {advance_ok}")
+    print(reason, file=sys.stderr)
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main(sys.argv))

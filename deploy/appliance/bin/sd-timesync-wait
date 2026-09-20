@@ -28,6 +28,26 @@ set -uo pipefail
 
 DEADLINE="${SD_TIMESYNC_DEADLINE:-45}"   # seconds; NTP normally lands within a few of network-online
 
+# Timezone (2026-09-20). The wizard/user records TIMEZONE= in pieria.conf; this is the root, every-boot,
+# clock-adjacent place to make the OS agree with it. A Pi OS image boots set to Europe/London; the
+# prod display ran that way for months and it only surfaced as "quiet hours would fire six hours off".
+# Idempotent (no-op when already set); a bad zone name is logged and ignored, never fatal.
+CONF="${SD_CONF:-/boot/firmware/pieria.conf}"
+[ -r "$CONF" ] || CONF="/boot/pieria.conf"
+TIMEZONE=""
+# shellcheck disable=SC1090
+[ -r "$CONF" ] && . "$CONF" 2>/dev/null
+if [ -n "${TIMEZONE:-}" ]; then
+  current="$(timedatectl show -p Timezone --value 2>/dev/null || true)"
+  if [ "$current" != "$TIMEZONE" ]; then
+    if timedatectl set-timezone "$TIMEZONE" 2>/dev/null; then
+      echo "timezone set to $TIMEZONE (was ${current:-unknown})."
+    else
+      echo "WARNING: TIMEZONE=$TIMEZONE in $CONF is not a zone timedatectl accepts; keeping ${current:-the OS default}." >&2
+    fi
+  fi
+fi
+
 synced() {
   # `timedatectl show` is the machine-readable form; NTPSynchronized reflects the kernel's own
   # time-synchronized flag, which is set by whichever NTP implementation is running (timesyncd,

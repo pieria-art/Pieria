@@ -186,8 +186,29 @@ function setEmptyState(show) {
 /**
  * Initializes Targeted WebSocket connection.
  */
+// Page-owned liveness (2026-09-20). The server used to mark this display "live" for as long as the
+// socket stayed open — but a socket stays open on protocol ping/pong that the BROWSER answers even when
+// this page's main thread is wedged (the prod Pi held one frame for a week reporting `active: true`).
+// So the page itself now says "I'm alive" every HEARTBEAT_MS; a wedged page falls silent and the host
+// watchdog relaunches the kiosk. The server never echoes this frame.
+const HEARTBEAT_MS = 5000;
+let heartbeatTimer = null;
+
+function sendHeartbeat() {
+    if (!socket || socket.readyState !== WebSocket.OPEN) return;
+    try {
+        socket.send(JSON.stringify({ action: 'heartbeat', artwork_id: activeArtworkId }));
+    } catch (e) { /* the onclose path reconnects; nothing to do here */ }
+}
+
 function connectWS() {
     socket = new WebSocket(WS_URL);
+
+    socket.onopen = () => {
+        if (heartbeatTimer) clearInterval(heartbeatTimer);
+        sendHeartbeat();                                   // go live immediately, not 5s later
+        heartbeatTimer = setInterval(sendHeartbeat, HEARTBEAT_MS);
+    };
 
     socket.onmessage = async (event) => {
         try {
@@ -209,6 +230,8 @@ function connectWS() {
                 case 'prev_image':
                     startDisplayCycleManually(-1);
                     break;
+                case 'heartbeat':
+                    break;                                 // an older server echoes our own beat back
                 case 'show_placard':
                     if (placardTimeout) clearTimeout(placardTimeout);
                     const manualShowTime = globalConfig.placard_manual !== null ? globalConfig.placard_manual : (currentPlaylistData?.placard_manual !== undefined ? currentPlaylistData.placard_manual : DEFAULT_SETTINGS.placard_manual);
@@ -223,6 +246,7 @@ function connectWS() {
     };
 
     socket.onclose = () => {
+        if (heartbeatTimer) { clearInterval(heartbeatTimer); heartbeatTimer = null; }
         console.warn('[Client] Hub connection lost. Retrying in 5s...');
         setTimeout(connectWS, 5000);
     };

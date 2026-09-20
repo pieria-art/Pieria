@@ -100,21 +100,24 @@ async def websocket_endpoint(websocket: WebSocket, display_id: str):
         return
     await manager.connect(websocket, display_id)
 
-    async def heartbeat():
-        """Updates the active_displays table to signify this display is alive on this worker."""
-        while True:
-            try:
-                with SessionLocal() as db:
-                    display = db.query(ActiveDisplayModel).filter(ActiveDisplayModel.display_id == display_id).first()
-                    if display:
-                        display.last_seen_at = datetime.now(UTC)
-                    else:
-                        display = ActiveDisplayModel(display_id=display_id)
-                        db.add(display)
-                    db.commit()
-            except Exception as e:
-                logger.error(f"Heartbeat error for {display_id}: {e}", exc_info=True)
-            await asyncio.sleep(5)
+    # Liveness is PAGE-OWNED (2026-09-20). The Canvas sends {"action":"heartbeat"} every 5s from its own
+    # JS; only that frame bumps last_seen_at. The previous design had THIS handler write the heartbeat
+    # every 5s for as long as the socket stayed open — and a socket stays open on protocol-level
+    # ping/pong that the *browser process* answers with the page's main thread wedged. The prod Pi sat
+    # a week with `active: true`, a healthy watchdog, and a frozen picture (memory: prod-kiosk-wedge).
+    # A dead page now goes `active: false` in LIVE_WINDOW_SEC, which the host watchdog acts on.
+    def _page_heartbeat():
+        """Upsert last_seen_at for a heartbeat frame the page's JS actually sent."""
+        try:
+            with SessionLocal() as db:
+                display = db.query(ActiveDisplayModel).filter(ActiveDisplayModel.display_id == display_id).first()
+                if display:
+                    display.last_seen_at = datetime.now(UTC)
+                else:
+                    db.add(ActiveDisplayModel(display_id=display_id))
+                db.commit()
+        except Exception as e:
+            logger.error(f"Heartbeat error for {display_id}: {e}", exc_info=True)
 
     async def command_poller():
         """Polls the remote_commands table for actions targeting this specific display."""
@@ -131,8 +134,7 @@ async def websocket_endpoint(websocket: WebSocket, display_id: str):
                 logger.error(f"Command poller error for {display_id}: {e}", exc_info=True)
             await asyncio.sleep(1)
 
-    # Start sync workers
-    heartbeat_task = asyncio.create_task(heartbeat())
+    # Start the command relay
     poller_task = asyncio.create_task(command_poller())
 
     try:
@@ -140,6 +142,9 @@ async def websocket_endpoint(websocket: WebSocket, display_id: str):
             # A frame sent up this socket is echoed only to sockets on THIS display_id — never
             # broadcast to every screen (H5: that let one anonymous client inject to all displays).
             data = await websocket.receive_json()
+            if isinstance(data, dict) and data.get("action") == "heartbeat":
+                _page_heartbeat()          # liveness only — never echoed to the display's sockets
+                continue
             await manager.send_personal_message(data, display_id)
     except WebSocketDisconnect:
         manager.disconnect(websocket, display_id)
@@ -147,7 +152,6 @@ async def websocket_endpoint(websocket: WebSocket, display_id: str):
         logger.error(f"WebSocket error on '{display_id}': {e}", exc_info=True)
         manager.disconnect(websocket, display_id)
     finally:
-        heartbeat_task.cancel()
         poller_task.cancel()
         # Clean up heartbeat from DB immediately on clean disconnect
         with SessionLocal() as db:

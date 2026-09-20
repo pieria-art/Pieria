@@ -447,6 +447,31 @@ def test_resolve_hostname_ignores_an_invalid_explicit_entry():
     assert sd_setup.resolve_hostname({"display_id": "Kitchen", "hostname": "-bad-"}) == "kitchen"
 
 
+def test_build_conf_writes_the_phones_timezone():
+    # 2026-09-20: a Pi OS image boots set to Europe/London; the prod display ran that way for months.
+    conf = sd_setup.build_conf({"server_url": "http://localhost:8000", "display_id": "lr",
+                                "orientation": "landscape", "timezone": "America/Chicago"})
+    assert "TIMEZONE=America/Chicago\n" in conf
+
+
+def test_build_conf_blanks_an_invalid_timezone_rather_than_writing_garbage():
+    conf = sd_setup.build_conf({"server_url": "http://localhost:8000", "display_id": "lr",
+                                "orientation": "landscape", "timezone": "Mars/Olympus_Mons"})
+    assert "TIMEZONE=\n" in conf
+    # ...and a re-run of the wizard owns the key (it is not "preserved" as a foreign setting twice)
+    again = sd_setup.build_conf({"server_url": "http://localhost:8000", "display_id": "lr",
+                                 "orientation": "landscape", "timezone": "Europe/London"}, existing=conf)
+    assert again.count("TIMEZONE=") == 1
+    assert "TIMEZONE=Europe/London\n" in again
+
+
+def test_validate_rejects_a_bad_timezone_but_not_a_blank_one():
+    base = {"server_url": "http://localhost:8000", "display_id": "lr", "orientation": "landscape"}
+    assert "timezone" not in sd_setup.validate_fields({**base, "timezone": ""})
+    assert "timezone" not in sd_setup.validate_fields({**base, "timezone": "America/Chicago"})
+    assert "timezone" in sd_setup.validate_fields({**base, "timezone": "not a zone; rm -rf"})
+
+
 def test_build_conf_writes_the_derived_hostname():
     conf = sd_setup.build_conf(
         {"server_url": "http://localhost:8000", "display_id": "Living Room", "orientation": "landscape"})

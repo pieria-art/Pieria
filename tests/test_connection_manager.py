@@ -120,3 +120,53 @@ def test_ws_endpoint_broadcasts_received_frame(monkeypatch):
             assert "testdisp" in manager.active_connections
             ws.send_json({"action": "reload"})
             assert ws.receive_json() == {"action": "reload"}   # broadcast echoes back to the sender
+
+
+# ---- page-owned liveness (2026-09-20) ----------------------------------------------------------
+# The server used to bump last_seen_at itself every 5s for as long as the socket was open. A socket
+# stays open on protocol ping/pong the BROWSER answers with the page wedged — the prod Pi held one frame
+# for a week reporting active:true. Only a heartbeat frame the page's JS sends may mark it live.
+
+def _patched_db(monkeypatch):
+    engine = create_engine("sqlite://", connect_args={"check_same_thread": False}, poolclass=StaticPool)
+    Base.metadata.create_all(bind=engine)
+    session_factory = sessionmaker(bind=engine, autoflush=False, autocommit=False)
+    monkeypatch.setattr(app_module, "SessionLocal", session_factory)
+    monkeypatch.setattr(routers_ws, "SessionLocal", session_factory)
+    return session_factory
+
+
+def _row(session_factory, display_id):
+    from models import ActiveDisplayModel
+    with session_factory() as db:
+        return db.query(ActiveDisplayModel).filter(ActiveDisplayModel.display_id == display_id).first()
+
+
+def test_open_socket_alone_does_not_mark_the_display_live(monkeypatch):
+    sf = _patched_db(monkeypatch)
+    with TestClient(app) as c:
+        with c.websocket_connect("/ws/silent") as ws:
+            # Prove the handler is fully up (a frame round-trips) — and still no liveness row.
+            ws.send_json({"action": "reload"})
+            assert ws.receive_json() == {"action": "reload"}
+            assert _row(sf, "silent") is None      # nothing to be "live" from
+
+
+def test_page_heartbeat_marks_live_and_is_never_echoed(monkeypatch):
+    sf = _patched_db(monkeypatch)
+    with TestClient(app) as c:
+        with c.websocket_connect("/ws/beating") as ws:
+            ws.send_json({"action": "heartbeat", "artwork_id": None})
+            # A heartbeat must not come back as a command; the next frame we receive is the echo of a
+            # real frame sent AFTER it — if the heartbeat had been echoed it would arrive first.
+            ws.send_json({"action": "reload"})
+            assert ws.receive_json() == {"action": "reload"}
+            row = _row(sf, "beating")
+            assert row is not None
+            # The HTTP routes read the real DB via get_db, so judge liveness with the same rule they use.
+            from datetime import UTC, datetime
+
+            from core.playback import _is_live
+            assert _is_live(row, datetime.now(UTC))
+        # clean disconnect still removes the row (unchanged contract)
+        assert _row(sf, "beating") is None

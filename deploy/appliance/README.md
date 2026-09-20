@@ -36,7 +36,9 @@ Boxed Pi → running kiosk in minutes:
    - ⚠️ **Wi-Fi SSID + password + country** — **the single most important step.** This is the
      **only** place Wi-Fi gets configured; it is *not* on the boot partition and cannot be fixed
      later without a keyboard+monitor. If you skip it, the Pi boots dark and silent.
-   - **Locale / timezone**
+   - **Locale / timezone** — set it here if you can; the setup wizard also records `TIMEZONE=` in
+     `pieria.conf` (auto-filled from your phone) and the box applies it at every boot. Night & Quiet
+     Hours follow this clock, so a wrong zone fires the schedule hours off.
 3. Write the card and boot the Pi — no keyboard or monitor required.
 4. *(Optional, and required to pre-enable all-in-one)* drop a `pieria.conf`
    onto the boot partition now.

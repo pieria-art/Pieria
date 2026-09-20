@@ -112,6 +112,7 @@ install -m 0755 "$BIN_SRC/sd-rotate-keep"    /usr/local/bin/sd-rotate-keep
 install -m 0755 "$BIN_SRC/sd-metrics"        /usr/local/bin/sd-metrics
 install -m 0755 "$BIN_SRC/sd-quiet-hours"    /usr/local/bin/sd-quiet-hours
 install -m 0755 "$BIN_SRC/sd-watchdog"       /usr/local/bin/sd-watchdog
+install -m 0755 "$BIN_SRC/sd-watchdog-advance" /usr/local/bin/sd-watchdog-advance
 install -m 0755 "$BIN_SRC/sd-setup-boot"     /usr/local/bin/sd-setup-boot
 install -m 0755 "$BIN_SRC/sd-setup-pre"      /usr/local/bin/sd-setup-pre
 install -m 0755 "$BIN_SRC/sd-net-recover"    /usr/local/bin/sd-net-recover

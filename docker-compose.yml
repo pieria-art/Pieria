@@ -9,6 +9,12 @@ services:
       - ./Artwork:/app/Artwork
       # Map the data directory for SQLite database persistence
       - ./data:/app/data
+      # The container clock must be the HOUSE clock: Night & Quiet Hours and the CEC panel power
+      # resolve "now" inside the container, which is otherwise UTC regardless of the host's timezone
+      # (found 2026-09-20 — the schedule would have fired hours off). A bind of the host's zone file
+      # is the standard fix and needs no config. Note: it is resolved at container start, so after
+      # `timedatectl set-timezone` restart the stack (or reboot).
+      - /etc/localtime:/etc/localtime:ro
     env_file:
       # Optional: pre-seed env vars (e.g. a default GEMINI_API_KEY). The app runs fine
       # without it — configure the AI model in-app via Admin → Settings → AI Engine.
