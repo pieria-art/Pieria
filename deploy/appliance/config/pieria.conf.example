@@ -45,10 +45,19 @@ WAIT_TIMEOUT=0
 # blank = leave the OS timezone alone.
 TIMEZONE=
 
-# WATCHDOG: kiosk/server self-heal (all-in-one). On sustained failure it escalates
-# relaunch-kiosk -> restart-container -> reboot (with a boot-loop guard). Probes: server up,
-# cage+chromium up, artwork present, the Canvas page heart-beating, and the picture still
-# CHANGING (the same work for 3x the playlist's display_time = a wedged browser).
+# WATCHDOG: kiosk/server self-heal (all-in-one). Probes: server up, cage+chromium up, artwork
+# present, the Canvas page heart-beating, and the picture still CHANGING (the same work for 3x the
+# playlist's display_time = a wedged browser). ADR-121: a browser-level fault (server reachable, but
+# kiosk/paint/live/advance unhealthy) escalates ONLY to relaunch-kiosk, then gives up and just
+# observes — a reboot never fixed a wedged page, and rebooting for one killed an in-flight app
+# update six times in 50 minutes on the bench. Only the server being genuinely unreachable can reach
+# restart-container / reboot:
+#   fails 1-2  no action (hysteresis)
+#   fails 3-5  browser fault -> relaunch-kiosk   |  server down -> restart-container
+#   fails 6+   browser fault -> give up, observe |  server down -> reboot (capped 3-per-6h, and
+#                                                    never within 10 minutes of boot)
+# The watchdog also PAUSES entirely (no probe, no action, fail counter untouched) while an
+# Admin -> Devices action (update-app, update-system, ...) is queued/running and under 30 minutes old.
 #   observe  = probe + log what it WOULD do, take NO action (default; safe to leave on)
 #   enforce  = actually self-heal (set this once you've confirmed it on YOUR hardware)
 #   off      = disabled
