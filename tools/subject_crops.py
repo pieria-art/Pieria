@@ -313,7 +313,7 @@ def _centroid(mask: np.ndarray) -> tuple[float, float]:
 
 def _centered_box(bh: float, r: float, centroid: tuple[float, float]) -> list[float]:
     """The largest box of aspect ratio (in normalized w/h terms) `r` at height `bh`, centred on
-    `centroid` and clamped to stay inside [0,1] — the "can't reach coverage" fallback."""
+    `centroid` and clamped to stay inside [0,1] — used only for the fully-blank-mask edge case."""
     bw = min(1.0, bh * r)
     bh = min(1.0, bh)
     cx, cy = centroid
@@ -322,14 +322,36 @@ def _centered_box(bh: float, r: float, centroid: tuple[float, float]) -> list[fl
     return [round(x0, 4), round(y0, 4), round(x0 + bw, 4), round(y0 + bh, 4)]
 
 
+def _extent_centered_box(mask: np.ndarray, h_px: int, w_px: int) -> list[int]:
+    """Centre a `h_px`x`w_px` window within the subject's own pixel EXTENT (bbox midpoint), not its
+    mass centroid and not the argmax-best-mass position — the "can't reach coverage" fallback.
+
+    Measured on real plates: for a tall bird standing upright (body mass concentrated low, head
+    thin and far above it), BOTH the mass centroid and the pure argmax-best-mass position sit low
+    — they optimize for total captured ink, which a broad body/wings/tail simply has more of than
+    a thin head, so either one fully sacrifices the head to buy a little more tail. Centring on the
+    bbox's own midpoint instead trades a bit of total coverage for NOT fully excluding either end:
+    it splits the loss between the two extremities of an elongated subject rather than dumping it
+    all on the one with less mass. This only runs when the coverage target is already unreachable
+    at the largest possible box, so there's no "better, still-sufficient" placement being missed."""
+    h, w = mask.shape
+    ys, xs = np.where(mask)
+    cy = (int(ys.min()) + int(ys.max()) + 1) / 2.0
+    cx = (int(xs.min()) + int(xs.max()) + 1) / 2.0
+    y0_px = int(round(min(max(cy - h_px / 2, 0.0), h - h_px)))
+    x0_px = int(round(min(max(cx - w_px / 2, 0.0), w - w_px)))
+    return [x0_px, y0_px]
+
+
 def subject_box(mask: np.ndarray, target_aspect: float, source_aspect: float,
                  coverage: float = COVERAGE_DEFAULT) -> list[float]:
     """The smallest box of exact `target_aspect` (real, source-aspect-corrected) that encloses
     >= `coverage` of `mask`'s ink mass — a bisection on box height (`BISECT_STEPS` steps), with the
     best position at each candidate size found via an integral-image argmax (stride
     `POSITION_STRIDE`). Falls back to the largest box that fits the frame at this aspect, centred on
-    the ink centroid, when even that can't reach `coverage` (multi-subject plates whose parts are
-    too far apart — ADR-087's accepted trade: more paper, still the best available placement).
+    the subject's own pixel EXTENT (see `_extent_centered_box`), when even that can't reach
+    `coverage` (an elongated single subject, or multi-subject plates whose parts are too far apart —
+    ADR-087's accepted trade: more paper, and some loss at both ends rather than all of it at one).
     Always returns an exact-aspect box (post-`snap`)."""
     h, w = mask.shape
     total = float(mask.sum())
@@ -350,7 +372,12 @@ def subject_box(mask: np.ndarray, target_aspect: float, source_aspect: float,
 
     cov_hi, h_px, w_px, pos = eval_scale(hi)
     if cov_hi < coverage:
-        box = _centered_box(hi, r, _centroid(mask))
+        # Can't reach the coverage target even at the largest box this aspect can be -- see
+        # `_extent_centered_box`'s docstring for why this uses the subject's own bbox midpoint
+        # rather than the argmax-best-mass position or the raw mass centroid.
+        x0_px, y0_px = _extent_centered_box(mask, h_px, w_px)
+        box = [round(x0_px / w, 4), round(y0_px / h, 4),
+               round((x0_px + w_px) / w, 4), round((y0_px + h_px) / h, 4)]
         return snap(box, source_aspect, target_aspect)
 
     best = (h_px, w_px, pos)
