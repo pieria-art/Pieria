@@ -635,6 +635,31 @@
                     </div>
                 </div>
 
+                <!-- Actions: one-shot things to do to this box (ADR-119). -->
+                <div id="device-actions-card" style="background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 25px;">
+                    <h3 style="margin-top: 0; font-size: 0.9rem; color: var(--text-color);">⚡ Actions</h3>
+                    <p style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 16px;">
+                        Fixes to try, in order of how much they interrupt.
+                    </p>
+                    <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                        <button class="secondary" data-maint onclick="applianceAction('relaunch-kiosk')">🖵 Restart display</button>
+                        <button class="secondary" data-maint onclick="applianceAction('restart-app')">↻ Restart app</button>
+                        <button class="secondary" data-maint onclick="applianceAction('reboot')" style="color:#ef4444;">⏻ Reboot</button>
+                        <button class="secondary" data-maint onclick="applianceAction('poweroff')" style="color:#ef4444;">⏼ Shut down</button>
+                    </div>
+                    <div style="margin-top:18px; padding-top:14px; border-top:1px solid var(--border-color);">
+                        <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+                            <button class="secondary" data-maint onclick="applianceAction('support-bundle')">🧾 Create support bundle</button>
+                            <a id="ds-bundle-link" href="/api/appliance/support-bundle" download
+                               style="display:none; color:var(--accent-color, #6366f1); font-size:0.82rem;">Download</a>
+                        </div>
+                        <div class="ds-hint" id="ds-bundle-line">
+                            A single file with this box's logs and versions, for troubleshooting. Wi-Fi
+                            passwords and API keys are removed before it is written.
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Appliance Maintenance: GUI-triggered host updates via the sd-update bridge. -->
                 <div id="appliance-maintenance-slot" style="background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 25px;">
                     <h3 style="margin-top: 0; font-size: 0.9rem; color: var(--text-color);">🛠 Appliance Maintenance</h3>

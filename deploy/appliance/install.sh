@@ -114,6 +114,7 @@ install -m 0755 "$BIN_SRC/sd-metrics"        /usr/local/bin/sd-metrics
 # shell out to it, and the container loads the SAME file to validate before it ever queues a request.
 install -m 0755 "$BIN_SRC/sd-conf"           /usr/local/bin/sd-conf
 install -m 0755 "$BIN_SRC/sd-rotate-now"     /usr/local/bin/sd-rotate-now
+install -m 0755 "$BIN_SRC/sd-support-bundle" /usr/local/bin/sd-support-bundle
 install -m 0755 "$BIN_SRC/sd-quiet-hours"    /usr/local/bin/sd-quiet-hours
 install -m 0755 "$BIN_SRC/sd-watchdog"       /usr/local/bin/sd-watchdog
 install -m 0755 "$BIN_SRC/sd-watchdog-advance" /usr/local/bin/sd-watchdog-advance

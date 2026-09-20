@@ -331,3 +331,39 @@ def test_every_settings_arm_exports_conf_json_for_the_ui(h):
     exported = json.loads((h.dir / "conf.json").read_text())
     assert exported["values"]["WATCHDOG"] == "off"
     assert not any("KEY" in k for k in exported["values"])    # never the Gemini key
+
+
+# --- action arms (ADR-119) -----------------------------------------------------------------------
+
+def test_relaunch_kiosk_restarts_the_login_session(h):
+    h.request("relaunch-kiosk")
+    h.run()
+    assert h.status["state"] == "done"
+    assert "[dry-run] systemctl restart getty@tty1" in h.log
+
+
+def test_restart_app_also_relaunches_the_kiosk(h):
+    # A reloaded container leaves the Canvas connected with a stalled advance timer, so the picture
+    # would sit frozen until the next cycle.
+    h.request("restart-app")
+    h.run()
+    assert "[dry-run] docker compose" in h.log and "restart" in h.log
+    assert "[dry-run] systemctl restart getty@tty1" in h.log
+
+
+def test_poweroff_writes_its_status_and_consumes_the_request_first(h):
+    h.request("poweroff")
+    assert h.run().returncode == 0
+    assert h.status["state"] == "done"
+    assert h.status["message"] == "powering off"
+    assert h.request_consumed
+    assert "[dry-run] systemctl poweroff" in h.log
+    assert "systemctl poweroff" not in h.called
+
+
+def test_support_bundle_runs_the_collector(h):
+    h.request("support-bundle")
+    h.run()
+    assert h.status["state"] == "done"
+    assert "sd-support-bundle" in h.log
+    assert "download" in h.status["message"]

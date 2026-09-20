@@ -458,6 +458,10 @@ function _updateAppPrompt() {
 const _MAINT_PROMPTS = {
     'update-scripts': 'Re-run the appliance installer to refresh the kiosk scripts and services?',
     'reboot': 'Reboot this device now?',
+    'relaunch-kiosk': 'Restart the picture on the screen? It goes dark for a few seconds. Nothing else is affected.',
+    'restart-app': 'Restart the Pieria app? The screen goes dark for up to a minute and the phone remote is briefly unavailable.',
+    'poweroff': 'Shut this box down?\n\nThere is no remote power-on — someone has to unplug it and plug it back in to turn it on again.',
+    'support-bundle': 'Collect this box\u2019s logs and versions into a downloadable file? Wi-Fi passwords and API keys are removed before it is written.',
     'reopen-setup': 'Move this display to a new Wi-Fi network?\n\nThe box reboots into its own “Pieria-Setup” Wi-Fi hotspot and waits for you to join it from a phone. This admin page is gone until you finish setup. Your art, collections and settings are kept.',
 };
 const _MAINT_DANGER = new Set(['reboot', 'update-app', 'reopen-setup', 'poweroff']);
@@ -530,7 +534,20 @@ function _pollMaint() {
         }
         if (['done', 'error', 'idle'].includes(data.state)) {
             clearInterval(_maintPoll); _maintPoll = null;
+            const msg = String(data.message || '');
+            if (/^rebooting/.test(msg)) {
+                // The server is going away under us. Don't re-enable the buttons into a dead box —
+                // wait for it to answer again, then reload so the whole page reflects the new state.
+                statusEl.textContent = '⏳ Rebooting — this page reloads when the device is back…';
+                _waitForDeviceBack();
+                return;
+            }
+            if (/^powering off/.test(msg)) {
+                statusEl.textContent = '⏼ Powered off. To turn it back on, unplug the power and plug it in again.';
+                return;   // buttons stay disabled: there is nothing left to talk to
+            }
             _maintButtons(false);
+            refreshHostHealth();      // pick up the new conf / bundle / update state
         }
     }, 2500);
 }
@@ -575,6 +592,19 @@ function _renderDeviceSettings(host) {
             tz.value = conf.TIMEZONE || guess;
         }
         _dsLoaded = true;
+    }
+
+    const link = document.getElementById('ds-bundle-link');
+    const bline = document.getElementById('ds-bundle-line');
+    const bundle = host.support_bundle;
+    if (link && bundle && bundle.exists) {
+        link.style.display = '';
+        const kb = Math.max(1, Math.round((bundle.size_bytes || 0) / 1024));
+        if (bline) bline.textContent =
+            `Last bundle: ${new Date(bundle.created_at).toLocaleString()} · ${kb} KB. ` +
+            'Wi-Fi passwords and API keys are removed before it is written.';
+    } else if (link) {
+        link.style.display = 'none';
     }
 
     // Both halves of the clock. ADR-118's whole failure was that nothing showed them together: the
@@ -671,6 +701,22 @@ window.saveTimezone = saveTimezone;
 window.saveWatchdog = saveWatchdog;
 window.previewOrientation = previewOrientation;
 window.keepOrientation = keepOrientation;
+
+// A reboot takes the server with it, so every fetch fails until it doesn't. Poll until one succeeds,
+// then reload — the alternative is a page whose every control talks to a box that isn't there.
+function _waitForDeviceBack(attempt = 0) {
+    setTimeout(async () => {
+        try {
+            const res = await fetch(`${API_BASE}/api/health/host`, { cache: 'no-store' });
+            if (res.ok) { location.reload(); return; }
+        } catch (e) { /* still down */ }
+        if (attempt < 120) _waitForDeviceBack(attempt + 1);   // ~5 minutes, then give up quietly
+        else {
+            const el = document.getElementById('maint-status');
+            if (el) el.textContent = '⚠ The device hasn\u2019t come back yet. Reload this page once it has.';
+        }
+    }, 2500);
+}
 
 // --- Federation: subscriptions + trust badges -------------------------------
 const _TRUST = {

@@ -92,6 +92,7 @@ PY
 case "$ACTION" in
   update-app|update-scripts|reboot) : ;;
   set-timezone|preview-orientation|set-orientation|set-display-name|set-watchdog|reopen-setup) : ;;
+  relaunch-kiosk|restart-app|poweroff|support-bundle) : ;;
   *)
     write_status error "unknown action: $ACTION"
     rm -f "$REQ"
@@ -263,6 +264,34 @@ case "$ACTION" in
     fi
     persist_log
     systemctl reboot
+    exit 0
+    ;;
+  relaunch-kiosk)
+    reload_kiosk
+    DONE_MSG="display restarted"
+    ;;
+  restart-app)
+    ( cd "$REPO_ROOT" && run "${COMPOSE[@]}" restart ) || rc=$?
+    # The reloaded container leaves the kiosk Canvas connected but with a stalled advance timer, so
+    # the picture would sit frozen until the next cycle — relaunch it too.
+    [ $rc -eq 0 ] && reload_kiosk
+    DONE_MSG="app restarted"
+    ;;
+  support-bundle)
+    run "$SD_SUPPORT_BIN" "$REPO_ROOT" || rc=$?
+    DONE_MSG="support bundle ready to download"
+    ;;
+  poweroff)
+    # Same ordering rule as reboot: after `systemctl poweroff` there is no "after".
+    write_status done "powering off"
+    rm -f "$REQ"
+    if [ "$DRY_RUN" = "1" ]; then
+      echo "[dry-run] systemctl poweroff" >> "$LOG"
+      persist_log
+      exit 0
+    fi
+    persist_log
+    systemctl poweroff
     exit 0
     ;;
   reboot)
