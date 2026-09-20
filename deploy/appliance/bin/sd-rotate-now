@@ -1,0 +1,97 @@
+#!/usr/bin/env python3
+"""sd-rotate-now — rotate the live kiosk display, right now (ADR-119).
+
+Split out of sd-update so the dispatcher stays a thin `case`: this is the part that has to know how
+to reach a Wayland session it does not own. The logic is ported from sd_setup.py's rotation preview,
+where it was learned the hard way (2026-07-22, Run 2):
+
+  * root has NO Wayland session of its own, so WAYLAND_DISPLAY is unset by definition and the rotate
+    silently did nothing in production — it only ever worked when someone ran the wizard by hand from
+    inside a session. The compositor is `cage` running as the kiosk user; root can drive its socket,
+    it just has to be told where it is.
+  * a Pi 5 has TWO HDMI sockets. The shipped default is HDMI-A-1, so anyone who used the other one
+    had every rotation target an output that does not exist: wlr-randr fails and nothing turns.
+
+Usage:  sd-rotate-now apply|revert <landscape|90|180|270> [--output NAME]
+
+`apply` and `revert` do the same work; they are separate verbs so the journal and the transient
+sd-orientation-revert unit's argv say plainly which one ran.
+"""
+from __future__ import annotations
+
+import argparse
+import glob
+import os
+import shutil
+import subprocess
+import sys
+
+TRANSFORMS = {"landscape": "normal", "": "normal", "90": "90", "180": "180", "270": "270"}
+
+
+def kiosk_wayland_env():
+    """The kiosk compositor's Wayland socket, as an env fragment — or None if there is no session."""
+    for sock in sorted(glob.glob("/run/user/*/wayland-*")):
+        if sock.endswith(".lock"):
+            continue
+        return {"XDG_RUNTIME_DIR": os.path.dirname(sock), "WAYLAND_DISPLAY": os.path.basename(sock)}
+    return None
+
+
+def enabled_outputs(env: dict) -> list:
+    """Names of the outputs the compositor currently has enabled, in wlr-randr's own order."""
+    try:
+        out = subprocess.run(["wlr-randr"], capture_output=True, timeout=10, env=env, text=True).stdout
+    except (subprocess.SubprocessError, FileNotFoundError):
+        return []
+    names, current = [], None
+    for line in out.splitlines():
+        if line[:1].isalnum():
+            current = line.split()[0]
+        elif "Enabled: yes" in line and current:
+            names.append(current)
+    return names
+
+
+def resolve_output(output: str, env: dict) -> str:
+    """Map a configured output name onto one that actually exists — which physical socket someone
+    plugged into is not something they should have to tell us."""
+    have = enabled_outputs(env)
+    if not have or output in have:
+        return output
+    return have[0]
+
+
+def main(argv=None) -> int:
+    ap = argparse.ArgumentParser(description="Rotate the live kiosk display")
+    ap.add_argument("verb", choices=["apply", "revert"])
+    ap.add_argument("orientation")
+    ap.add_argument("--output", default="HDMI-A-1")
+    args = ap.parse_args(argv)
+
+    transform = TRANSFORMS.get(args.orientation.strip())
+    if transform is None:
+        print(f"sd-rotate-now: unknown orientation {args.orientation!r}", file=sys.stderr)
+        return 2
+
+    wl = kiosk_wayland_env()
+    if not shutil.which("wlr-randr") or wl is None:
+        # Not a failure: a headless/server-only box, or the kiosk not up yet. The conf still carries
+        # the choice and the next kiosk launch applies it.
+        print("sd-rotate-now: no kiosk Wayland session — nothing to rotate live")
+        return 0
+
+    env = {**os.environ, **wl}
+    output = resolve_output((args.output or "HDMI-A-1").strip() or "HDMI-A-1", env)
+    try:
+        subprocess.run(["wlr-randr", "--output", output, "--transform", transform],
+                       check=True, capture_output=True, timeout=10, env=env)
+    except (subprocess.SubprocessError, FileNotFoundError) as e:
+        print(f"sd-rotate-now: {args.verb} failed: {e}", file=sys.stderr)
+        return 1
+    print(f"sd-rotate-now: {args.verb} {output} -> {transform}")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

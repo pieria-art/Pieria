@@ -1,0 +1,156 @@
+#!/usr/bin/env bash
+# sd-support-bundle — one downloadable tarball of everything you'd ask for over SSH (ADR-119).
+#
+# A shipped appliance has no shell: sshd is disabled and every password is locked (ADR-064). So when
+# a display misbehaves in a stranger's house, "send me the output of journalctl" is not a thing that
+# can happen. This collects it instead, into data/appliance/support-bundle.tar.gz, which the admin UI
+# offers as a download.
+#
+# Every item is BEST-EFFORT: a missing vcgencmd, no docker, no previous boot in the journal — each
+# just yields a short file saying so. A bundle that fails because one probe is unavailable is a
+# bundle nobody ever gets.
+#
+# NOTHING SECRET MAY RIDE THIS FILE. The user will mail it to us, paste it in an issue, or drop it in
+# a forum thread. So: the conf is redacted (redact_conf, below), .env contributes NAMES ONLY and
+# never values, and nmcli is called WITHOUT --show-secrets, which is what would otherwise print every
+# saved Wi-Fi PSK in plain text.
+#
+# Usage: sd-support-bundle <REPO_ROOT>
+set -u
+
+#: Redact any conf line whose KEY NAME looks like a credential, keeping the name so a reader can see
+#: that it is set. A function, not an inline sed, so the redaction can be unit-tested directly:
+#:     bash -c 'SD_SUPPORT_BUNDLE_LIB=1 . sd-support-bundle; redact_conf' < fixture
+redact_conf() {
+  sed -E 's/^([[:space:]]*[A-Za-z0-9_]*(KEY|TOKEN|PASS|PSK|SECRET)[A-Za-z0-9_]*)[[:space:]]*=.*/\1=<redacted>/'
+}
+
+# Sourced as a library (tests) — stop here, with the functions defined and nothing collected.
+[ "${SD_SUPPORT_BUNDLE_LIB:-0}" = "1" ] && return 0
+
+REPO_ROOT="${1:-}"
+if [ -z "$REPO_ROOT" ]; then
+  echo "sd-support-bundle: REPO_ROOT argument required" >&2
+  exit 1
+fi
+
+OUT_DIR="$REPO_ROOT/data/appliance"
+OUT="$OUT_DIR/support-bundle.tar.gz"
+OVERRIDE="$REPO_ROOT/deploy/appliance/compose/docker-compose.appliance.yml"
+
+if [ -n "${SD_CONF:-}" ]; then
+  CONF="$SD_CONF"
+elif [ -d /boot/firmware ]; then
+  CONF="/boot/firmware/pieria.conf"
+else
+  CONF="/boot/pieria.conf"
+fi
+
+mkdir -p "$OUT_DIR"
+WORK="$(mktemp -d)"
+STAGE="$WORK/pieria-support"
+mkdir -p "$STAGE/appliance"
+trap 'rm -rf "$WORK"' EXIT
+
+# Every collector runs inside this: a failure becomes a note in the file, never a failed bundle.
+grab() {
+  local dest="$1"; shift
+  if ! "$@" > "$STAGE/$dest" 2>&1; then
+    printf '\n[sd-support-bundle: `%s` failed or is unavailable on this box]\n' "$*" >> "$STAGE/$dest"
+  fi
+}
+
+# --- logs ------------------------------------------------------------------------------------------
+grab journal-current.txt   journalctl -b -n 3000 -o short-iso --no-pager
+grab journal-kernel.txt    journalctl -b -k -n 1000 -o short-iso --no-pager
+# The PREVIOUS boot is where a crash-and-reboot actually lives; install.sh makes the journal
+# persistent for exactly this reason (ADR-056).
+grab journal-previous.txt  journalctl -b -1 -n 2000 -o short-iso --no-pager
+grab journal-sd-units.txt  journalctl -u 'sd-*' -n 2000 -o short-iso --no-pager
+grab units.txt             systemctl list-units --all --no-pager --no-legend
+
+# --- this box --------------------------------------------------------------------------------------
+{
+  echo "=== uname ==="; uname -a 2>&1
+  echo; echo "=== os-release ==="; cat /etc/os-release 2>&1
+  echo; echo "=== uptime ==="; uptime 2>&1
+  echo; echo "=== free ==="; free -h 2>&1
+  echo; echo "=== df ==="; df -h 2>&1
+  echo; echo "=== timedatectl ==="; timedatectl 2>&1
+  echo; echo "=== throttled / temp / firmware (Pi only) ==="
+  if command -v vcgencmd >/dev/null 2>&1; then
+    vcgencmd get_throttled 2>&1; vcgencmd measure_temp 2>&1; vcgencmd version 2>&1
+  else
+    echo "(no vcgencmd — not a Raspberry Pi, or running off-device)"
+  fi
+  echo; echo "=== rpi-eeprom ==="
+  command -v rpi-eeprom-update >/dev/null 2>&1 && rpi-eeprom-update 2>&1 || echo "(not available)"
+} > "$STAGE/system.txt" 2>&1
+
+# The kiosk stack's versions — the first question after any "the picture froze" report (ADR-118 was
+# Chromium 149, pinned by neglect).
+{
+  for c in chromium chromium-browser cage wlr-randr docker; do
+    printf '=== %s ===\n' "$c"
+    command -v "$c" >/dev/null 2>&1 && "$c" --version 2>&1 || echo "(not installed)"
+    echo
+  done
+  echo "=== dpkg ==="
+  dpkg -l chromium chromium-browser cage wlr-randr seatd 2>&1 | tail -n +1
+} > "$STAGE/versions.txt" 2>&1
+
+# Top consumers by memory then CPU — a wedged renderer shows up here as a flat pinned core.
+{
+  echo "=== top RSS ==="
+  ps -eo pid,ppid,rss,pcpu,etime,comm --sort=-rss 2>&1 | head -25
+  echo; echo "=== top CPU ==="
+  ps -eo pid,ppid,rss,pcpu,etime,comm --sort=-pcpu 2>&1 | head -25
+} > "$STAGE/processes.txt" 2>&1
+
+# NEVER --show-secrets: that prints every saved Wi-Fi PSK in plain text.
+{
+  echo "=== ip -br addr ==="; ip -br addr 2>&1
+  echo; echo "=== routes ==="; ip route 2>&1
+  echo; echo "=== nmcli device status ==="
+  command -v nmcli >/dev/null 2>&1 && nmcli -t device status 2>&1 || echo "(no nmcli)"
+  echo; echo "=== saved connections (names only) ==="
+  command -v nmcli >/dev/null 2>&1 && nmcli -t -f NAME,TYPE connection show 2>&1 || echo "(no nmcli)"
+} > "$STAGE/network.txt" 2>&1
+
+# --- the app ----------------------------------------------------------------------------------------
+{
+  echo "=== docker ps ==="
+  docker ps -a 2>&1 || echo "(no docker)"
+  echo; echo "=== images ==="
+  docker images 2>&1 || true
+} > "$STAGE/docker-ps.txt" 2>&1
+( cd "$REPO_ROOT" && docker compose -f docker-compose.yml -f "$OVERRIDE" logs --tail 200 ) \
+  > "$STAGE/container.log" 2>&1 || echo "(could not read container logs)" >> "$STAGE/container.log"
+
+# --- configuration, redacted -------------------------------------------------------------------------
+if [ -r "$CONF" ]; then
+  redact_conf < "$CONF" > "$STAGE/pieria.conf.redacted" 2>/dev/null
+else
+  echo "(no conf at $CONF)" > "$STAGE/pieria.conf.redacted"
+fi
+# NAMES only. The whole point of .env is that it holds the Gemini key.
+if [ -r "$REPO_ROOT/.env" ]; then
+  sed -E 's/=.*//' "$REPO_ROOT/.env" | grep -E '^[A-Za-z_]' > "$STAGE/env.keys" 2>/dev/null || true
+fi
+[ -f "$STAGE/env.keys" ] || echo "(no .env)" > "$STAGE/env.keys"
+
+# --- the bridge's own state ---------------------------------------------------------------------------
+for f in watchdog.json host_metrics.json update-check.json os-updates.json status.json conf.json \
+         last-update.log watchdog-reboots.log; do
+  [ -r "$OUT_DIR/$f" ] && cp -f "$OUT_DIR/$f" "$STAGE/appliance/$f" 2>/dev/null || true
+done
+
+# --- pack it ------------------------------------------------------------------------------------------
+date -u +"collected %Y-%m-%dT%H:%M:%SZ on $(hostname 2>/dev/null || echo unknown)" > "$STAGE/README.txt"
+TMP_TGZ="$WORK/bundle.tar.gz"
+( cd "$WORK" && tar czf "$TMP_TGZ" pieria-support ) || { echo "sd-support-bundle: tar failed" >&2; exit 1; }
+# Atomic: the UI may be polling for this file, and a half-written tarball downloads as a corrupt one.
+mv -f "$TMP_TGZ" "$OUT"
+chown 1000:1000 "$OUT" 2>/dev/null || true
+chmod 0644 "$OUT" 2>/dev/null || true
+echo "sd-support-bundle: wrote $OUT ($(du -h "$OUT" 2>/dev/null | cut -f1))"

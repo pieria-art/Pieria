@@ -3,10 +3,12 @@
 #
 # Oneshot that writes the Pi throttle/under-voltage bitmask (vcgencmd) into the
 # bind-mounted data/appliance/host_metrics.json for the Device Health console.
-# Triggered by sd-metrics.timer. __REPO_ROOT__ is substituted by install.sh.
+# It also keeps data/appliance/conf.json in step with the boot conf (ADR-119), which is why it
+# needs the conf path. Triggered by sd-metrics.timer. __REPO_ROOT__ and __BOOT_CONF__ are
+# substituted by install.sh.
 [Unit]
 Description=Pieria host metrics writer (throttle/under-voltage)
 
 [Service]
 Type=oneshot
-ExecStart=/usr/local/bin/sd-metrics __REPO_ROOT__
+ExecStart=/usr/local/bin/sd-metrics __REPO_ROOT__ __BOOT_CONF__

@@ -1,0 +1,214 @@
+#!/usr/bin/env python3
+"""sd-os-check — what would `apt full-upgrade` do to this box, and would it need a reboot? (ADR-119)
+
+The appliance's OS packages were pinned by neglect: install.sh apt-installs Chromium once, there is
+no hold and no unattended-upgrades, so a box sits on whatever Raspberry Pi OS shipped the day it was
+provisioned. The prod unit reached Chromium 149 with 150 offered and 69 packages pending — and a
+Chromium bug is what froze the living-room TV for a week (ADR-118). So the version drift is itself a
+risk, and the first step to managing it is being able to SEE it from the admin UI.
+
+Runs nightly on a timer and writes data/appliance/os-updates.json. Never fails the caller: a box with
+no network, or apt busy, reports that in the file and exits 0 — a red X in the UI is information, a
+crashed timer is not.
+
+Usage: sd-os-check <REPO_ROOT> [--no-update] [--print-reboot]
+  --no-update     skip `apt-get update` (the caller already refreshed, or is mid-upgrade)
+  --print-reboot  also print 1/0 on stdout, so `update-system` can decide BEFORE it upgrades
+"""
+from __future__ import annotations
+
+import argparse
+import fcntl
+import json
+import os
+import re
+import subprocess
+import sys
+import time
+from datetime import UTC, datetime
+from pathlib import Path
+
+#: Packages whose upgrade genuinely needs a reboot to take effect.
+#: Chromium and cage are deliberately NOT here: a running kiosk picks up a new browser on relaunch,
+#: which is far cheaper than a reboot and is what `update-system` does anyway.
+REBOOT_RE = re.compile(
+    r"^(linux-image|linux-headers|raspberrypi-kernel|raspi-firmware|rpi-eeprom|firmware-"
+    r"|libc6$|systemd$|udev|dbus|containerd\.io|docker-ce|docker\.io|libseat|seatd)")
+
+#: `apt-get -s` lines. Versions may carry an epoch (1:149.0…) and a NEW package has no [from] part:
+#:   Inst chromium [149.0.7827.1-rpt1] (150.0.1 rpi-distro:stable [arm64])
+#:   Inst libnewdep (1.2.3 Debian:12/stable [arm64])
+#:   Remv obsolete-thing [1.0-2]
+_INST_RE = re.compile(r"^Inst\s+(?P<name>\S+)\s+(?:\[(?P<from>[^\]]*)\]\s+)?\((?P<to>\S+)")
+_REMV_RE = re.compile(r"^Remv\s+(?P<name>\S+)(?:\s+\[(?P<ver>[^\]]*)\])?")
+
+MAX_PACKAGES = 50
+
+
+def parse_simulation(text: str) -> dict:
+    """Turn `apt-get -s full-upgrade` output into {packages, removals}.
+
+    `Conf` lines are ignored on purpose: apt emits one per package it would configure, so counting
+    them would roughly double every number the UI shows."""
+    packages, removals = [], []
+    for line in (text or "").splitlines():
+        line = line.strip()
+        if line.startswith("Inst "):
+            m = _INST_RE.match(line)
+            if m:
+                packages.append({"name": m.group("name"),
+                                 "from": (m.group("from") or "").strip(),
+                                 "to": m.group("to")})
+        elif line.startswith("Remv "):
+            m = _REMV_RE.match(line)
+            if m:
+                removals.append(m.group("name"))
+    return {"packages": packages, "removals": removals}
+
+
+def reboot_likely(packages) -> tuple:
+    """(bool, reasons). Named reasons, not just a flag — "reboot likely" with nothing behind it is
+    the kind of warning people learn to click through."""
+    reasons = []
+    for pkg in packages:
+        name = pkg["name"] if isinstance(pkg, dict) else str(pkg)
+        if REBOOT_RE.match(name) and name not in reasons:
+            reasons.append(name)
+    return bool(reasons), reasons
+
+
+def build_report(parsed: dict, *, error: str = "", duration_s: float = 0.0) -> dict:
+    """The JSON the UI reads. The package list is capped: a box two years behind has hundreds, and
+    nothing about the 300th name helps anyone decide."""
+    packages = parsed.get("packages", [])
+    needs_reboot, reasons = reboot_likely(packages)
+    return {
+        "checked_at": datetime.now(UTC).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "count": len(packages),
+        "removals": parsed.get("removals", []),
+        "packages": packages[:MAX_PACKAGES],
+        "truncated": len(packages) > MAX_PACKAGES,
+        "reboot_likely": needs_reboot,
+        "reboot_reasons": reasons,
+        "error": error,
+        "duration_s": round(duration_s, 1),
+    }
+
+
+# --- host side --------------------------------------------------------------------------------
+
+APT_COMMON = ["-o", "DPkg::Lock::Timeout=300"]
+
+
+def _lock_path() -> str:
+    return os.environ.get("SD_LOCK_FILE", "/run/lock/pieria-apt.lock")
+
+
+def acquire_apt_lock(timeout: int = 600):
+    """Our own lock around the whole apt conversation, shared with `update-system`.
+
+    apt's own locking is per-invocation; this is what stops a nightly check from starting in the
+    middle of a user-triggered upgrade. Returns the open fd, or None when the lock can't be taken —
+    in which case the caller reports "busy" rather than fighting for it."""
+    path = _lock_path()
+    try:
+        Path(path).parent.mkdir(parents=True, exist_ok=True)
+        fd = open(path, "w")
+    except OSError:
+        return None          # nowhere to lock (dev box) — proceed unlocked, nothing to race with
+    deadline = time.time() + timeout
+    while True:
+        try:
+            fcntl.flock(fd, fcntl.LOCK_EX | fcntl.LOCK_NB)
+            return fd
+        except OSError:
+            if time.time() >= deadline:
+                fd.close()
+                return None
+            time.sleep(2)
+
+
+def _update_in_progress(appliance_dir: Path) -> bool:
+    """Is sd-update mid-action? A nightly `apt-get update` during a full-upgrade is exactly the lock
+    contention this avoids."""
+    try:
+        data = json.loads((appliance_dir / "status.json").read_text())
+    except (OSError, ValueError):
+        return False
+    return data.get("state") in ("queued", "running") and data.get("action") in (
+        "update-system", "update-app", "update-scripts")
+
+
+def _run_apt(args) -> subprocess.CompletedProcess:
+    env = {**os.environ, "DEBIAN_FRONTEND": "noninteractive"}
+    return subprocess.run(["apt-get", *APT_COMMON, *args],
+                          capture_output=True, text=True, timeout=900, env=env)
+
+
+def write_report(appliance_dir: Path, report: dict) -> None:
+    appliance_dir.mkdir(parents=True, exist_ok=True)
+    out = appliance_dir / "os-updates.json"
+    tmp = out.with_suffix(".tmp")
+    tmp.write_text(json.dumps(report, indent=2) + "\n")
+    os.replace(tmp, out)
+    # Root writes it, the unprivileged container reads it (ADR-037).
+    try:
+        os.chown(out, 1000, 1000)
+    except (OSError, AttributeError):
+        pass
+    try:
+        os.chmod(out, 0o644)
+    except OSError:
+        pass
+
+
+def main(argv=None) -> int:
+    ap = argparse.ArgumentParser(description="Check for pending OS package updates")
+    ap.add_argument("repo_root")
+    ap.add_argument("--no-update", action="store_true", help="skip apt-get update")
+    ap.add_argument("--print-reboot", action="store_true", help="print 1/0 for reboot_likely")
+    args = ap.parse_args(argv)
+
+    appliance_dir = Path(args.repo_root) / "data" / "appliance"
+    started = time.time()
+    parsed, error = {"packages": [], "removals": []}, ""
+
+    if _update_in_progress(appliance_dir):
+        error = "update in progress"
+    else:
+        lock = acquire_apt_lock()
+        try:
+            if not args.no_update:
+                r = _run_apt(["-qq", "update"])
+                if r.returncode != 0:
+                    # Almost always no network. Say so plainly rather than "exit 100".
+                    error = (r.stderr or r.stdout or "apt-get update failed").strip().splitlines()[-1][:300]
+            if not error:
+                r = _run_apt(["-s", "full-upgrade"])
+                if r.returncode != 0:
+                    error = (r.stderr or r.stdout or "apt-get -s failed").strip().splitlines()[-1][:300]
+                else:
+                    parsed = parse_simulation(r.stdout)
+        except FileNotFoundError:
+            error = "apt-get not found on this system"
+        except subprocess.SubprocessError as e:
+            error = f"apt failed: {e}"[:300]
+        finally:
+            if lock is not None:
+                lock.close()
+
+    report = build_report(parsed, error=error, duration_s=time.time() - started)
+    try:
+        write_report(appliance_dir, report)
+    except OSError as e:
+        print(f"sd-os-check: could not write the report: {e}", file=sys.stderr)
+
+    if args.print_reboot:
+        print("1" if report["reboot_likely"] else "0")
+    # ALWAYS 0: this runs on a timer, and a failed unit is a red light nobody sees. The failure is
+    # in the report, where the UI can show it.
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

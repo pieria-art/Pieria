@@ -5,10 +5,15 @@
 # box with no spare SD card.
 #
 # Two modes:
-#   --enable-setup  (light, reversible, NON-destructive) — enable sd-setup.service + reset the boot conf
-#                   to the shipped placeholder so sd-setup-boot::is_configured() returns false and the
-#                   NEXT boot enters the wizard exactly once. Keeps SSH host keys, NetworkManager
-#                   connections, and the app database, so you can reconnect and reconcile afterward.
+#   --enable-setup  (light, reversible, NON-destructive) — enable sd-setup.service + point the boot
+#                   conf's SERVER_URL/DISPLAY_ID back at the shipped placeholder pair, so
+#                   sd-setup-boot::is_configured() returns false and the NEXT boot enters the wizard
+#                   exactly once. Keeps SSH host keys, NetworkManager connections, and the app
+#                   database, so you can reconnect and reconcile afterward.
+#                   ADR-119: it sets exactly those TWO keys rather than overwriting the whole file.
+#                   The GUI now offers this as "move this display to a new Wi-Fi network", and a
+#                   wholesale reset would silently discard WATCHDOG, TIMEZONE, EINK_* and
+#                   OS_UPDATE_* — settings the owner chose and the wizard never asks about again.
 #   --full          (DESTRUCTIVE — for a distributable image capture only) — everything --enable-setup
 #                   does, PLUS wipe machine identity (SSH host keys, /etc/machine-id), saved Wi-Fi
 #                   (NetworkManager system-connections), and logs, so the captured .img is clean and
@@ -24,6 +29,8 @@ set -euo pipefail
 if [ -d /boot/firmware ]; then BOOT_CONF="/boot/firmware/pieria.conf"; else BOOT_CONF="/boot/pieria.conf"; fi
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+SD_CONF_BIN="${SD_CONF_BIN:-$SCRIPT_DIR/sd-conf}"
+[ -x "$SD_CONF_BIN" ] || SD_CONF_BIN="/usr/local/bin/sd-conf"
 # The shipped placeholder conf, if we can find it (repo layout: ../config/…; installed layout: none).
 CONF_EXAMPLE=""
 for c in "$SCRIPT_DIR/../config/pieria.conf.example" \
@@ -35,7 +42,23 @@ require_root() {
   if [ "$(id -u)" -ne 0 ]; then echo "Please run as root:  sudo $0 $*" >&2; exit 1; fi
 }
 
-# --- reset the boot conf to the shipped placeholder (is_configured() -> false) --------------------
+# --- send the box back through the wizard WITHOUT losing its settings (--enable-setup) -------------
+# sd-setup-boot::sd_is_configured() keys on exactly this SERVER_URL/DISPLAY_ID pair, so writing just
+# those two is enough to re-arm the wizard — and leaves everything else in the conf alone.
+unconfigure_conf() {
+  if [ -x "$SD_CONF_BIN" ]; then
+    "$SD_CONF_BIN" --conf "$BOOT_CONF" set \
+      SERVER_URL=http://192.168.1.50:8000 DISPLAY_ID=living_room
+    echo "  re-armed the wizard in $BOOT_CONF (all other settings preserved)"
+  else
+    echo "  WARNING: sd-conf not found — falling back to a WHOLESALE conf reset" >&2
+    reset_conf_to_placeholder
+  fi
+}
+
+# --- reset the boot conf to the shipped placeholder (--full only; is_configured() -> false) --------
+# A distributable image SHOULD ship the placeholder verbatim: it carries the shipped comments, and
+# nothing of this bench box's configuration has any business riding an .img to a stranger's house.
 reset_conf_to_placeholder() {
   if [ -n "$CONF_EXAMPLE" ]; then
     install -m 0644 "$CONF_EXAMPLE" "$BOOT_CONF"
@@ -299,7 +322,7 @@ case "${1:-}" in
   --enable-setup)
     require_root "$@"
     echo "==> sd-image-prep: enable-setup (light, reversible)"
-    reset_conf_to_placeholder
+    unconfigure_conf
     declare_capabilities
     enable_setup_service
     echo "Done. Reboot to enter the Pieria-Setup wizard. (Undo: write a real conf, or"

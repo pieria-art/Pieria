@@ -1,0 +1,18 @@
+# Installed by install.sh (all-in-one only) as:
+#   /etc/systemd/system/sd-os-check.timer
+#
+# Once a night, well inside any plausible quiet-hours window.
+[Unit]
+Description=Run the Pieria OS update check nightly
+
+[Timer]
+OnCalendar=*-*-* 04:30
+# Every appliance is flashed from the same image, so without a spread they would all hit the mirror
+# within the same second.
+RandomizedDelaySec=30min
+# A LATE check is harmless — it only reads. (Contrast sd-os-upgrade.timer, which is deliberately
+# NOT persistent: a missed Sunday must not upgrade-and-reboot at the next power-on.)
+Persistent=true
+
+[Install]
+WantedBy=timers.target

@@ -1,11 +1,16 @@
 #!/usr/bin/env bash
-# sd-update — host-side appliance updater.
+# sd-update — host-side appliance updater and settings applier.
 #
 # Triggered by sd-update.path when the (unprivileged) container writes
 # data/appliance/request.json. Runs as root via a systemd oneshot. Performs ONLY a
 # fixed, whitelisted action — the requested string is matched in a `case`, never
 # evaluated — and writes progress back to data/appliance/status.json for the GUI to
 # poll. Set DRY_RUN=1 to echo the dispatch instead of executing it (used in tests).
+#
+# ADR-119: a shipped appliance has no shell (sshd off, passwords locked — ADR-064), so this is the
+# ONLY way a setting on the boot conf can be changed. Every value-bearing field is validated twice:
+# once at the endpoint, and authoritatively here by `sd-conf`, which enforces SAFE_VALUE_RE because
+# the conf is `.`-sourced as shell by four scripts. Nothing from the request is ever unquoted.
 #
 # Usage: sd-update <REPO_ROOT>   (the dir whose ./data is bind-mounted into the container)
 set -u
@@ -23,6 +28,26 @@ OVERRIDE="$REPO_ROOT/deploy/appliance/compose/docker-compose.appliance.yml"
 DRY_RUN="${DRY_RUN:-0}"
 LOG=""
 
+# The appliance conf. Same rule as sd-conf/sd_setup: an explicit SD_CONF wins (tests), else Bookworm's
+# /boot/firmware, else the old /boot.
+if [ -n "${SD_CONF:-}" ]; then
+  CONF="$SD_CONF"
+elif [ -d /boot/firmware ]; then
+  CONF="/boot/firmware/pieria.conf"
+else
+  CONF="/boot/pieria.conf"
+fi
+
+# Sibling helpers, found next to THIS script wherever it was installed (the pattern sd-watchdog uses
+# for sd-watchdog-advance), each overridable so a test can point at a stub.
+BINDIR="$(dirname "$(readlink -f "$0")")"
+SD_CONF_BIN="${SD_CONF_BIN:-$BINDIR/sd-conf}"
+SD_OS_CHECK_BIN="${SD_OS_CHECK_BIN:-$BINDIR/sd-os-check}"
+SD_SUPPORT_BIN="${SD_SUPPORT_BIN:-$BINDIR/sd-support-bundle}"
+SD_ROTATE_BIN="${SD_ROTATE_BIN:-$BINDIR/sd-rotate-now}"
+SD_IMAGE_PREP_BIN="${SD_IMAGE_PREP_BIN:-$BINDIR/sd-image-prep}"
+SD_SYSTEMD_DIR="${SD_SYSTEMD_DIR:-/etc/systemd/system}"
+
 # Nothing queued (e.g. the .path re-fired on our own deletion of the request) — no-op.
 [ -r "$REQ" ] || exit 0
 
@@ -31,6 +56,20 @@ _get() { python3 -c "import json,sys; print(json.load(open(sys.argv[1])).get(sys
 ACTION="$(_get action)"
 NONCE="$(_get nonce)"
 REF="$(_get ref)"
+TIMEZONE="$(_get timezone)"
+ORIENTATION="$(_get orientation)"
+DISPLAY_ID="$(_get display_id)"
+WATCHDOG_MODE="$(_get watchdog)"
+SCHEDULE="$(_get schedule)"
+SCHED_TIME="$(_get time)"
+
+# Root writes into the container's mailbox. ADR-037: hand every file back to uid 1000 and make it
+# world-readable, or the next GUI read is an EACCES nobody can explain (the exact class of fault
+# fixed for the DIRECTORY in sd-metrics, which left the FILES to be found later).
+handback() {
+  chown 1000:1000 "$1" 2>/dev/null || true
+  chmod 0644 "$1" 2>/dev/null || true
+}
 
 write_status() {
   local state="$1" msg="${2:-}" tail_json="[]"
@@ -46,11 +85,15 @@ json.dump({
     "log_tail": json.loads(os.environ["SD_TAIL"]), "updated_at": os.environ["SD_NOW"],
 }, open(sys.argv[1], "w"))
 PY
+  handback "$STATUS"
 }
 
 # Whitelist — anything else is rejected before any work happens.
 case "$ACTION" in
   update-app|update-scripts|reboot) : ;;
+  set-timezone|preview-orientation|set-orientation|set-display-name|set-watchdog|reopen-setup) : ;;
+  relaunch-kiosk|restart-app|poweroff|support-bundle) : ;;
+  check-os-updates|update-system|set-os-schedule) : ;;
   *)
     write_status error "unknown action: $ACTION"
     rm -f "$REQ"
@@ -70,6 +113,60 @@ run() {
   "$@" >> "$LOG" 2>&1
 }
 
+# status.json is overwritten by the NEXT action, so it is not a record of what this one did. Keep the
+# log where the admin UI (and a support bundle) can still read it after a reboot ate the status.
+persist_log() {
+  [ -n "$LOG" ] && [ -f "$LOG" ] || return 0
+  install -m 0644 -o 1000 -g 1000 "$LOG" "$DIR/last-update.log" 2>/dev/null \
+    || { cp -f "$LOG" "$DIR/last-update.log" 2>/dev/null && handback "$DIR/last-update.log"; } || true
+  rm -f "$LOG"
+}
+
+# Writing the conf is deliberately NOT behind `run`: it is the one effect a DRY_RUN test can observe,
+# and sd-conf is pure file surgery with no host side effects (it touches no service, no network, no
+# package). Everything that DOES touch the host stays dry-runnable.
+conf_set() {
+  echo "+ sd-conf set $*" >> "$LOG"
+  "$SD_CONF_BIN" --conf "$CONF" set "$@" >> "$LOG" 2>&1
+}
+
+conf_export() {
+  "$SD_CONF_BIN" --conf "$CONF" export --out "$DIR/conf.json" >> "$LOG" 2>&1 || true
+}
+
+conf_get() { "$SD_CONF_BIN" --conf "$CONF" get "$1" 2>/dev/null; }
+
+COMPOSE=(docker compose -f docker-compose.yml -f "$OVERRIDE")
+
+# One lock for the whole apt conversation, shared with sd-os-check. apt's own locking is
+# per-invocation, so without this a nightly check can land in the middle of a user-triggered
+# upgrade — the contention shows up as a baffling "could not get lock" in the GUI.
+SD_LOCK_FILE="${SD_LOCK_FILE:-/run/lock/pieria-apt.lock}"
+apt_lock() {
+  mkdir -p "$(dirname "$SD_LOCK_FILE")" 2>/dev/null || true
+  exec 9>"$SD_LOCK_FILE" 2>/dev/null || return 0   # nowhere to lock: nothing to race with either
+  flock -w 600 9
+}
+
+# A full-upgrade on a Pi is minutes of silence. Re-publish the log's last line every few seconds so
+# the admin UI's status advances instead of looking hung. Off under DRY_RUN to keep tests
+# deterministic, and always stopped before the final status is written.
+HEARTBEAT_PID=""
+heartbeat_start() {
+  [ "$DRY_RUN" = "1" ] && return 0
+  ( while :; do
+      sleep 5
+      write_status running "apt: $(tail -n 1 "$LOG" 2>/dev/null | cut -c1-120)"
+    done ) &
+  HEARTBEAT_PID=$!
+}
+heartbeat_stop() {
+  [ -n "$HEARTBEAT_PID" ] || return 0
+  kill "$HEARTBEAT_PID" 2>/dev/null || true
+  wait "$HEARTBEAT_PID" 2>/dev/null || true
+  HEARTBEAT_PID=""
+}
+
 # A container rebuild leaves the already-loaded kiosk Canvas WS-connected but with a stalled auto-advance
 # timer (it doesn't re-fetch on reconnect) — the display freezes until something nudges it (a Remote tap,
 # or the next cycle up to display_time away). Relaunch the kiosk so it reloads fresh against the rebuilt
@@ -78,7 +175,15 @@ reload_kiosk() {
   run systemctl restart getty@tty1 || true
 }
 
+# The e-ink client caches DISPLAY_ID and EINK_ORIENTATION at start, so a change to either is invisible
+# to a running panel until the unit restarts. Only touch it when this box actually has one enabled.
+eink_restart_if_enabled() {
+  [ "$(conf_get EINK_ENABLED)" = "1" ] || return 0
+  run systemctl restart sd-eink || true
+}
+
 rc=0
+DONE_MSG=""       # arms that finish with something worth saying set this; else "<action> completed"
 case "$ACTION" in
   update-app)
     # Pin the checkout, then rebuild the stack. sd-update runs as ROOT but the repo is owned by the
@@ -99,12 +204,12 @@ case "$ACTION" in
         TARGET="refs/tags/${REF}"
       else
         write_status error "requested release '$REF' is not a known tag"
-        rm -f "$REQ"; rm -f "$LOG"
+        rm -f "$REQ"; persist_log
         exit 1
       fi
     fi
     [ $rc -eq 0 ] && { ( cd "$REPO_ROOT" && run git "${GIT_SAFE[@]}" reset --hard "$TARGET" ) || rc=$?; }
-    [ $rc -eq 0 ] && { ( cd "$REPO_ROOT" && run docker compose -f docker-compose.yml -f "$OVERRIDE" up -d --build ) || rc=$?; }
+    [ $rc -eq 0 ] && { ( cd "$REPO_ROOT" && run "${COMPOSE[@]}" up -d --build ) || rc=$?; }
     [ $rc -eq 0 ] && reload_kiosk
     ;;
   update-scripts)
@@ -112,24 +217,234 @@ case "$ACTION" in
     run "$REPO_ROOT/deploy/appliance/install.sh" || rc=$?
     [ $rc -eq 0 ] && reload_kiosk
     ;;
+  set-timezone)
+    conf_set "TIMEZONE=$TIMEZONE" || rc=$?
+    [ $rc -eq 0 ] && { run timedatectl set-timezone "$TIMEZONE" || rc=$?; }
+    # ADR-118: docker-compose binds /etc/localtime, and a bind mount is resolved at container START.
+    # Without this restart the host clock moves and the app keeps serving Night & Quiet Hours on the
+    # old zone — the exact split that made the prod TV's schedule fire hours off.
+    [ $rc -eq 0 ] && { ( cd "$REPO_ROOT" && run "${COMPOSE[@]}" restart ) || rc=$?; }
+    conf_export
+    DONE_MSG="time zone set to $TIMEZONE"
+    ;;
+  preview-orientation)
+    # Revert to what the conf says NOW, not to 'normal': on a box already mounted in portrait, a
+    # preview that expired to landscape would leave the wall display wrong in a new way.
+    CURRENT="$(conf_get ROTATE)"
+    [ -n "$CURRENT" ] || CURRENT="landscape"
+    # Two previews inside the 30s window would collide on the transient unit name; stopping first is
+    # what makes a second click work instead of erroring.
+    run systemctl stop sd-orientation-revert.service || true
+    run "$SD_ROTATE_BIN" apply "$ORIENTATION" --output "$(conf_get OUTPUT)" || rc=$?
+    [ $rc -eq 0 ] && { run systemd-run --on-active=30 --unit=sd-orientation-revert --collect \
+        "$SD_ROTATE_BIN" revert "$CURRENT" --output "$(conf_get OUTPUT)" || rc=$?; }
+    DONE_MSG="previewing — reverts in 30 seconds unless you keep it"
+    ;;
+  set-orientation)
+    case "$ORIENTATION" in
+      landscape) ROT="" ;;
+      90|180|270) ROT="$ORIENTATION" ;;
+      *)
+        write_status error "invalid orientation: $ORIENTATION"
+        rm -f "$REQ"; persist_log
+        exit 1
+        ;;
+    esac
+    run systemctl stop sd-orientation-revert.service || true
+    # BOTH keys, always (ADR-059 #2): ROTATE drives wlroots/HDMI and EINK_ORIENTATION drives the
+    # e-ink client, which would otherwise stay landscape on a panel the user just said is portrait.
+    # Only 90/270 are portrait mounts — 180 is still a landscape panel.
+    case "$ORIENTATION" in 90|270) EINK_O="portrait" ;; *) EINK_O="" ;; esac
+    conf_set "ROTATE=$ROT" "EINK_ORIENTATION=$EINK_O" || rc=$?
+    [ $rc -eq 0 ] && reload_kiosk
+    [ $rc -eq 0 ] && eink_restart_if_enabled
+    conf_export
+    DONE_MSG="orientation set to $ORIENTATION"
+    ;;
+  set-display-name)
+    # HOSTNAME is deliberately NOT touched (ADR-083: renaming it trips a Chromium SingletonLock bug
+    # that leaves the kiosk unable to start). The display name and the network name are separate.
+    conf_set "DISPLAY_ID=$DISPLAY_ID" || rc=$?
+    [ $rc -eq 0 ] && reload_kiosk
+    [ $rc -eq 0 ] && eink_restart_if_enabled
+    conf_export
+    DONE_MSG="display renamed to $DISPLAY_ID"
+    ;;
+  set-watchdog)
+    # Nothing to restart: sd-watchdog re-sources the conf on every tick, so the next one picks it up.
+    conf_set "WATCHDOG=$WATCHDOG_MODE" || rc=$?
+    conf_export
+    DONE_MSG="self-heal set to $WATCHDOG_MODE"
+    ;;
+  reopen-setup)
+    # --enable-setup now PRESERVES the non-wizard keys (see sd-image-prep), so watchdog mode, time
+    # zone, e-ink and OS-update settings survive a trip back through the wizard.
+    run "$SD_IMAGE_PREP_BIN" --enable-setup || rc=$?
+    if [ $rc -ne 0 ]; then
+      write_status error "could not re-open the setup wizard (exit $rc)"
+      rm -f "$REQ"; persist_log
+      exit 1
+    fi
+    write_status done "rebooting into the setup wizard"
+    rm -f "$REQ"
+    if [ "$DRY_RUN" = "1" ]; then
+      echo "[dry-run] systemctl reboot" >> "$LOG"
+      persist_log
+      exit 0
+    fi
+    persist_log
+    systemctl reboot
+    exit 0
+    ;;
+  relaunch-kiosk)
+    reload_kiosk
+    DONE_MSG="display restarted"
+    ;;
+  restart-app)
+    ( cd "$REPO_ROOT" && run "${COMPOSE[@]}" restart ) || rc=$?
+    # The reloaded container leaves the kiosk Canvas connected but with a stalled advance timer, so
+    # the picture would sit frozen until the next cycle — relaunch it too.
+    [ $rc -eq 0 ] && reload_kiosk
+    DONE_MSG="app restarted"
+    ;;
+  support-bundle)
+    run "$SD_SUPPORT_BIN" "$REPO_ROOT" || rc=$?
+    DONE_MSG="support bundle ready to download"
+    ;;
+  poweroff)
+    # Same ordering rule as reboot: after `systemctl poweroff` there is no "after".
+    write_status done "powering off"
+    rm -f "$REQ"
+    if [ "$DRY_RUN" = "1" ]; then
+      echo "[dry-run] systemctl poweroff" >> "$LOG"
+      persist_log
+      exit 0
+    fi
+    persist_log
+    systemctl poweroff
+    exit 0
+    ;;
+  check-os-updates)
+    run "$SD_OS_CHECK_BIN" "$REPO_ROOT" || rc=$?
+    DONE_MSG="update check complete"
+    ;;
+  update-system)
+    if ! apt_lock; then
+      write_status error "another package operation is still running — try again in a few minutes"
+      rm -f "$REQ"; persist_log
+      exit 1
+    fi
+    export DEBIAN_FRONTEND=noninteractive
+    # --force-confdef/--force-confold: an unattended box cannot answer a conffile prompt, and an apt
+    # run blocked on one is a display that never comes back.
+    APT=(apt-get -y -o DPkg::Lock::Timeout=300
+         -o Dpkg::Options::=--force-confdef -o Dpkg::Options::=--force-confold)
+
+    run "${APT[@]}" update || rc=$?
+
+    # Decide the reboot question BEFORE upgrading. Afterwards the simulation is empty and there is
+    # nothing left to read it from — asking later would always answer "no".
+    REBOOT=0
+    if [ $rc -eq 0 ]; then
+      REBOOT="$("$SD_OS_CHECK_BIN" "$REPO_ROOT" --no-update --print-reboot 2>/dev/null || echo 0)"
+      case "$REBOOT" in 0|1) ;; *) REBOOT=0 ;; esac
+      echo "+ reboot_likely=$REBOOT" >> "$LOG"
+    fi
+
+    heartbeat_start
+    [ $rc -eq 0 ] && { run "${APT[@]}" full-upgrade || rc=$?; }
+    [ $rc -eq 0 ] && { run "${APT[@]}" autoremove --purge || true; }
+    [ $rc -eq 0 ] && { run apt-get clean || true; }
+    heartbeat_stop
+
+    # A containerd/docker upgrade restarts the daemon under us, which can leave the stack down.
+    # `up -d` is idempotent and is the only thing that guarantees it is back.
+    [ $rc -eq 0 ] && { ( cd "$REPO_ROOT" && run "${COMPOSE[@]}" up -d ) || rc=$?; }
+    # Re-check so the UI's count reflects reality now, not at 04:30 tomorrow.
+    [ $rc -eq 0 ] && { run "$SD_OS_CHECK_BIN" "$REPO_ROOT" --no-update || true; }
+
+    if [ $rc -eq 0 ] && [ "$REBOOT" = "1" ]; then
+      write_status done "system updated — rebooting"
+      rm -f "$REQ"
+      if [ "$DRY_RUN" = "1" ]; then
+        echo "[dry-run] systemctl reboot" >> "$LOG"
+        persist_log
+        exit 0
+      fi
+      persist_log
+      systemctl reboot
+      exit 0
+    fi
+    # No reboot needed, but Chromium may well have been upgraded under a running kiosk.
+    [ $rc -eq 0 ] && reload_kiosk
+    DONE_MSG="system packages updated"
+    ;;
+  set-os-schedule)
+    # The time is optional in the request: keep whatever the conf already holds, else the default.
+    WHEN="$SCHED_TIME"
+    [ -n "$WHEN" ] || WHEN="$(conf_get OS_UPDATE_TIME)"
+    [ -n "$WHEN" ] || WHEN="03:00"
+    # Re-validated here as well as at the endpoint: this string is interpolated into a systemd unit
+    # file, so a second gate costs nothing and closes the case where the conf was hand-edited.
+    case "$WHEN" in
+      [0-2][0-9]:[0-5][0-9]) : ;;
+      *)
+        write_status error "invalid time: $WHEN"
+        rm -f "$REQ"; persist_log
+        exit 1
+        ;;
+    esac
+    case "${WHEN%%:*}" in 00|01|02|03|04|05|06|07|08|09|1[0-9]|2[0-3]) : ;; *)
+        write_status error "invalid time: $WHEN"
+        rm -f "$REQ"; persist_log
+        exit 1
+        ;;
+    esac
+    conf_set "OS_UPDATE_SCHEDULE=$SCHEDULE" "OS_UPDATE_TIME=$WHEN" || rc=$?
+    if [ $rc -eq 0 ]; then
+      DROPIN_DIR="$SD_SYSTEMD_DIR/sd-os-upgrade.timer.d"
+      mkdir -p "$DROPIN_DIR"
+      {
+        echo "# Written by sd-update (ADR-119) — the owner's chosen weekly upgrade time."
+        echo "[Timer]"
+        echo "# A drop-in ACCUMULATES list values, so the shipped OnCalendar must be cleared first;"
+        echo "# without the empty assignment the timer would fire at BOTH times."
+        echo "OnCalendar="
+        echo "OnCalendar=Sun *-*-* $WHEN:00"
+      } > "$DROPIN_DIR/10-pieria.conf"
+      chmod 0644 "$DROPIN_DIR/10-pieria.conf" 2>/dev/null || true
+      run systemctl daemon-reload || true
+      if [ "$SCHEDULE" = "weekly" ]; then
+        run systemctl enable --now sd-os-upgrade.timer || rc=$?
+        DONE_MSG="weekly updates on, Sundays at $WHEN"
+      else
+        run systemctl disable --now sd-os-upgrade.timer || true
+        DONE_MSG="weekly updates off"
+      fi
+    fi
+    conf_export
+    ;;
   reboot)
+    # Write the final status and consume the request BEFORE rebooting: after `systemctl reboot` there
+    # is no "after" in which to do it, and the UI would poll a stale `running` forever.
     write_status done "rebooting"
     rm -f "$REQ"
     if [ "$DRY_RUN" = "1" ]; then
       echo "[dry-run] systemctl reboot" >> "$LOG"
-      rm -f "$LOG"
+      persist_log
       exit 0
     fi
+    persist_log
     systemctl reboot
     exit 0
     ;;
 esac
 
 if [ $rc -eq 0 ]; then
-  write_status done "$ACTION completed"
+  write_status done "${DONE_MSG:-$ACTION completed}"
 else
   write_status error "$ACTION failed (exit $rc)"
 fi
 
 rm -f "$REQ"      # consume the request so the .path re-arms for the next one
-rm -f "$LOG"
+persist_log

@@ -439,6 +439,10 @@ async function refreshHostHealth() {
         const data = await res.json();
         _renderHostHealth(data.host || {});
         _renderActiveDisplays(data.displays || []);
+        _renderDeviceSettings(data.host || {});
+        renderOsUpdates(data.host || {});
+        _renderOsSchedule(data.host || {});
+        _renderLastUpdateLog(data.host || {});
         const stamp = document.getElementById('device-health-updated');
         if (stamp) stamp.textContent = '· updated ' + new Date().toLocaleTimeString();
     } catch (e) { /* transient — next poll retries */ }
@@ -446,29 +450,49 @@ async function refreshHostHealth() {
 
 // --- Appliance maintenance: GUI-triggered host updates ----------------------
 let _maintPoll = null;
-const _MAINT_BTNS = ['maint-update-app', 'maint-update-scripts', 'maint-reboot'];
 function _updateAppPrompt() {
     // Name the target so the confirm is honest about what's being installed.
     return _latestReleaseTag
         ? `Update to ${_latestReleaseTag} now? This installs that release and rebuilds — the display drops briefly while the container restarts.`
         : 'Update the app now? This pulls the latest from origin/main and rebuilds — the display drops briefly while the container restarts.';
 }
+// Every confirm says what actually happens on the device. These actions are irreversible from a
+// browser — the box has no shell (ADR-064) — so a vague prompt is a trap, not a courtesy.
 const _MAINT_PROMPTS = {
     'update-scripts': 'Re-run the appliance installer to refresh the kiosk scripts and services?',
+    'update-system': 'Install the available Raspberry Pi OS updates now?\n\nThe screen goes dark for several minutes. If the kernel, firmware or container runtime is among them, the box reboots on its own when it\u2019s done. Best done at a time nobody is looking at the art.',
+    'check-os-updates': null,
     'reboot': 'Reboot this device now?',
+    'relaunch-kiosk': 'Restart the picture on the screen? It goes dark for a few seconds. Nothing else is affected.',
+    'restart-app': 'Restart the Pieria app? The screen goes dark for up to a minute and the phone remote is briefly unavailable.',
+    'poweroff': 'Shut this box down?\n\nThere is no remote power-on — someone has to unplug it and plug it back in to turn it on again.',
+    'support-bundle': 'Collect this box\u2019s logs and versions into a downloadable file? Wi-Fi passwords and API keys are removed before it is written.',
+    'reopen-setup': 'Move this display to a new Wi-Fi network?\n\nThe box reboots into its own “Pieria-Setup” Wi-Fi hotspot and waits for you to join it from a phone. This admin page is gone until you finish setup. Your art, collections and settings are kept.',
 };
+const _MAINT_DANGER = new Set(['reboot', 'update-app', 'reopen-setup', 'poweroff']);
 
 function _maintButtons(disabled) {
-    _MAINT_BTNS.forEach(id => { const b = document.getElementById(id); if (b) b.disabled = disabled; });
+    document.querySelectorAll('[data-maint]').forEach(b => { b.disabled = disabled; });
 }
 
-async function applianceAction(action) {
-    const prompt = action === 'update-app' ? _updateAppPrompt() : (_MAINT_PROMPTS[action] || `Run ${action}?`);
-    const ok = await confirmModal(prompt, {
-        confirmText: action === 'reboot' ? 'Reboot' : 'Proceed',
-        danger: action === 'reboot' || action === 'update-app',
-    });
-    if (!ok) return;
+/**
+ * Queue a whitelisted host action through the sd-update bridge.
+ *   extra  — the action's declared fields (the endpoint drops anything it didn't ask for).
+ *   opts   — { prompt: string|null (null skips the confirm), confirmText, danger }.
+ */
+async function applianceAction(action, extra = {}, opts = {}) {
+    // `in`, not `||`: a null entry in the table means "this one needs no confirmation" and must not
+    // fall through to the generic prompt.
+    const prompt = opts.prompt !== undefined ? opts.prompt
+        : (action === 'update-app' ? _updateAppPrompt()
+            : (action in _MAINT_PROMPTS ? _MAINT_PROMPTS[action] : `Run ${action}?`));
+    if (prompt !== null) {
+        const ok = await confirmModal(prompt, {
+            confirmText: opts.confirmText || (action === 'reboot' ? 'Reboot' : 'Proceed'),
+            danger: opts.danger !== undefined ? opts.danger : _MAINT_DANGER.has(action),
+        });
+        if (!ok) return false;
+    }
     const statusEl = document.getElementById('maint-status');
     statusEl.style.display = 'block';
     statusEl.textContent = '⏳ Queued…';
@@ -476,7 +500,7 @@ async function applianceAction(action) {
     try {
         // update-app targets the known release tag when there is one (ADR-071); otherwise the host
         // helper falls back to origin/main.
-        const body = { action };
+        const body = { action, ...extra };
         if (action === 'update-app' && _latestReleaseTag) body.ref = _latestReleaseTag;
         const res = await fetch(`${API_BASE}/api/appliance/update`, {
             method: 'POST',
@@ -487,12 +511,14 @@ async function applianceAction(action) {
             const e = await res.json().catch(() => ({}));
             statusEl.textContent = '✗ ' + (e.detail || 'request failed');
             _maintButtons(false);
-            return;
+            return false;
         }
         _pollMaint();
+        return true;
     } catch (e) {
         statusEl.textContent = '✗ ' + e.message;
         _maintButtons(false);
+        return false;
     }
 }
 window.applianceAction = applianceAction;
@@ -516,7 +542,296 @@ function _pollMaint() {
         }
         if (['done', 'error', 'idle'].includes(data.state)) {
             clearInterval(_maintPoll); _maintPoll = null;
+            const msg = String(data.message || '');
+            if (/^rebooting/.test(msg)) {
+                // The server is going away under us. Don't re-enable the buttons into a dead box —
+                // wait for it to answer again, then reload so the whole page reflects the new state.
+                statusEl.textContent = '⏳ Rebooting — this page reloads when the device is back…';
+                _waitForDeviceBack();
+                return;
+            }
+            if (/^powering off/.test(msg)) {
+                statusEl.textContent = '⏼ Powered off. To turn it back on, unplug the power and plug it in again.';
+                return;   // buttons stay disabled: there is nothing left to talk to
+            }
             _maintButtons(false);
+            refreshHostHealth();      // pick up the new conf / bundle / update state
+        }
+    }, 2500);
+}
+
+// --- OS updates (appliance only, ADR-119) ------------------------------------
+// The APP (a Pieria release) and the SYSTEM (Raspberry Pi OS packages) are different things on
+// different cadences. This renders the system half from the nightly sd-os-check report.
+let _osScheduleLoaded = false;
+
+function _ago(iso) {
+    if (!iso) return 'never';
+    const secs = (Date.now() - new Date(iso).getTime()) / 1000;
+    if (!isFinite(secs) || secs < 0) return 'just now';
+    if (secs < 3600) return `${Math.max(1, Math.round(secs / 60))} min ago`;
+    if (secs < 86400) return `${Math.round(secs / 3600)} h ago`;
+    return `${Math.round(secs / 86400)} d ago`;
+}
+
+function renderOsUpdates(host) {
+    const line = document.getElementById('os-updates-line');
+    if (!line) return;
+    const btn = document.getElementById('maint-update-system');
+    const os = host.os_updates;
+
+    if (!os) {
+        line.innerHTML = 'No check has run yet. ' + _osCheckLink();
+        if (btn) btn.disabled = true;
+        return;
+    }
+    if (os.error) {
+        // Almost always "no network". Say what it was, not "exit 100".
+        line.innerHTML = `<span style="color:#fbbf24;">⚠ Couldn\u2019t check for system updates:</span> ` +
+            `${_esc(os.error)} <span style="color:#64748b;">(${_esc(_ago(os.checked_at))})</span> ` + _osCheckLink();
+        if (btn) btn.disabled = true;
+        return;
+    }
+    if (!os.count) {
+        line.innerHTML = `✓ <span style="color:var(--success-color);">System is up to date</span> ` +
+            `<span style="color:#64748b;">(checked ${_esc(_ago(os.checked_at))})</span> ` + _osCheckLink();
+        if (btn) btn.disabled = true;
+        return;
+    }
+
+    // Name the packages people recognise rather than a bare count — "69 packages" tells nobody
+    // whether the thing that froze their TV is among them.
+    const notable = (os.packages || [])
+        .filter(p => /^(chromium|cage|linux-image|raspberrypi-kernel|rpi-eeprom|docker|containerd)/.test(p.name))
+        .slice(0, 3)
+        .map(p => `${_esc(p.name)} ${_esc(p.to)}`);
+    const reboot = os.reboot_likely
+        ? ` · <span style="color:#fbbf24;">reboot likely (${_esc((os.reboot_reasons || []).slice(0, 3).join(', '))})</span>`
+        : ' · no reboot expected';
+    const removals = (os.removals && os.removals.length)
+        ? ` · ${os.removals.length} to be removed` : '';
+    line.innerHTML = `<b style="color:#fbbf24;">${os.count} update${os.count === 1 ? '' : 's'} available</b>` +
+        (notable.length ? ` <span style="color:#cbd5e1;">incl. ${notable.join(', ')}</span>` : '') +
+        reboot + removals +
+        ` <span style="color:#64748b;">· checked ${_esc(_ago(os.checked_at))}</span> ` + _osCheckLink();
+    if (btn) btn.disabled = false;
+}
+
+function _osCheckLink() {
+    return `<a href="#" onclick="applianceAction('check-os-updates'); return false;" ` +
+        `style="margin-left:6px; color:var(--accent-color, #6366f1); font-size:0.78rem;">check now</a>`;
+}
+
+function _osScheduleChanged() {
+    const weekly = document.getElementById('os-schedule').value === 'weekly';
+    document.getElementById('os-schedule-time').style.display = weekly ? '' : 'none';
+}
+
+function _renderOsSchedule(host) {
+    if (_osScheduleLoaded) return;      // don't clobber a half-made choice on the 5s poll
+    const conf = (host.conf && host.conf.values) || {};
+    const sel = document.getElementById('os-schedule');
+    const time = document.getElementById('os-schedule-time');
+    if (!sel || !time) return;
+    sel.value = conf.OS_UPDATE_SCHEDULE === 'weekly' ? 'weekly' : 'off';
+    if (conf.OS_UPDATE_TIME) time.value = conf.OS_UPDATE_TIME;
+    _osScheduleChanged();
+    _osScheduleLoaded = true;
+}
+
+async function saveOsSchedule() {
+    const schedule = document.getElementById('os-schedule').value;
+    const time = document.getElementById('os-schedule-time').value || '03:00';
+    const prompt = schedule === 'weekly'
+        ? `Install system updates automatically every Sunday at ${time}?\n\nThis runs unattended: it installs whatever Raspberry Pi OS offers and reboots the box if the kernel, firmware or container runtime changed. A week the box is switched off is skipped, not caught up later.`
+        : 'Turn automatic system updates off? You can still update on demand from this page.';
+    await applianceAction('set-os-schedule', { schedule, time }, { prompt, danger: schedule === 'weekly' });
+    _osScheduleLoaded = false;
+    _dsLoaded = false;
+}
+
+// The last run's log, collapsed. status.json is overwritten by the next action, so after a reboot
+// this is the only record of what the previous one actually did.
+function _renderLastUpdateLog(host) {
+    const details = document.getElementById('last-update-details');
+    const pre = document.getElementById('last-update-log');
+    if (!details || !pre) return;
+    const lines = host.last_update_log;
+    const busy = document.getElementById('maint-log');
+    if (!lines || !lines.length || (busy && busy.style.display !== 'none')) {
+        details.style.display = 'none';
+        return;
+    }
+    details.style.display = '';
+    pre.textContent = lines.join('\n');
+}
+
+window.renderOsUpdates = renderOsUpdates;
+window.saveOsSchedule = saveOsSchedule;
+window._osScheduleChanged = _osScheduleChanged;
+
+// --- Device settings (appliance only, ADR-119) -------------------------------
+// The boot conf, editable from here because a shipped box has no other management surface: sshd is
+// off and every password is locked (ADR-064). Values come from data/appliance/conf.json, which the
+// host exports after every edit — the app itself cannot read /boot/firmware.
+let _dsLoaded = false;          // don't clobber a field the user is mid-edit on every 5s poll
+let _previewTimer = null;
+
+function _dsFillTimezones() {
+    const list = document.getElementById('ds-timezone-list');
+    if (!list || list.childElementCount) return;
+    // Intl.supportedValuesOf is ES2022 — guarded, because the datalist is a convenience and the
+    // field stays free text (and server-validated) without it.
+    let zones = [];
+    try { zones = Intl.supportedValuesOf('timeZone') || []; } catch (e) { zones = []; }
+    list.innerHTML = zones.map(z => `<option value="${_esc(z)}">`).join('');
+}
+
+function _renderDeviceSettings(host) {
+    const card = document.getElementById('device-settings-card');
+    if (!card) return;
+    const conf = (host.conf && host.conf.values) || {};
+    _dsFillTimezones();
+
+    if (!_dsLoaded) {
+        const name = document.getElementById('ds-display-name');
+        if (name) name.value = conf.DISPLAY_ID || '';
+        const orient = document.getElementById('ds-orientation');
+        if (orient) orient.value = conf.ROTATE || 'landscape';
+        const wd = document.getElementById('ds-watchdog');
+        if (wd) wd.value = conf.WATCHDOG || 'observe';
+        const tz = document.getElementById('ds-timezone');
+        if (tz) {
+            // A Pi OS image boots set to Europe/London, so a blank TIMEZONE= is wrong for most homes
+            // and only shows up when the schedule fires hours off (ADR-118). Offer this browser's
+            // zone as the starting point rather than making the user know the IANA name.
+            let guess = '';
+            try { guess = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (e) {}
+            tz.value = conf.TIMEZONE || guess;
+        }
+        _dsLoaded = true;
+    }
+
+    const link = document.getElementById('ds-bundle-link');
+    const bline = document.getElementById('ds-bundle-line');
+    const bundle = host.support_bundle;
+    if (link && bundle && bundle.exists) {
+        link.style.display = '';
+        const kb = Math.max(1, Math.round((bundle.size_bytes || 0) / 1024));
+        if (bline) bline.textContent =
+            `Last bundle: ${new Date(bundle.created_at).toLocaleString()} · ${kb} KB. ` +
+            'Wi-Fi passwords and API keys are removed before it is written.';
+    } else if (link) {
+        link.style.display = 'none';
+    }
+
+    // Both halves of the clock. ADR-118's whole failure was that nothing showed them together: the
+    // Pi sat on Europe/London while the container ran on UTC, and Night & Quiet Hours followed the
+    // container. A disagreement here is the symptom, made visible.
+    const line = document.getElementById('ds-clock-line');
+    if (line) {
+        const hostTz = (host.conf && host.conf.host_timezone) || '—';
+        const ctz = host.container_tz || {};
+        const appTz = (ctz.tzname && ctz.tzname[0]) || '—';
+        const appNow = ctz.now ? ctz.now.replace('T', ' ') : '';
+        const disagree = hostTz !== '—' && appTz !== '—' && appTz !== 'UTC' && !hostTz.endsWith(appTz);
+        const utcButZoned = appTz === 'UTC' && hostTz !== '—' && hostTz !== 'UTC';
+        line.className = 'ds-hint' + ((disagree || utcButZoned) ? ' ds-warn' : '');
+        line.innerHTML = `Device: <b>${_esc(hostTz)}</b> · app clock: <b>${_esc(appTz)}</b>` +
+            (appNow ? ` (${_esc(appNow)})` : '') +
+            ((disagree || utcButZoned)
+                ? ' — these disagree, so Night &amp; Quiet Hours may fire at the wrong time. Saving the zone fixes both.'
+                : ' · Night &amp; Quiet Hours follow this clock.');
+    }
+}
+
+async function saveDisplayName() {
+    const el = document.getElementById('ds-display-name');
+    const value = (el.value || '').trim();
+    if (!value) return;
+    await applianceAction('set-display-name', { display_id: value }, {
+        prompt: `Rename this display to “${value}”? The picture relaunches, and the phone remote will show the new name. Names are lowercased (“Living Room” becomes living_room).`,
+    });
+    _dsLoaded = false;
+}
+
+async function saveTimezone() {
+    const value = (document.getElementById('ds-timezone').value || '').trim();
+    if (!value) return;
+    await applianceAction('set-timezone', { timezone: value }, {
+        prompt: `Set this device's time zone to ${value}?\n\nNight & Quiet Hours follow this clock, so if the schedule boundary moves across the current time the TV may switch on or off once as it catches up. The app restarts to pick up the new zone.`,
+    });
+    _dsLoaded = false;
+}
+
+async function saveWatchdog() {
+    const value = document.getElementById('ds-watchdog').value;
+    const prompts = {
+        enforce: 'Let this box fix itself? On a sustained failure it relaunches the browser, then restarts the app, then reboots — with a cap so it cannot boot-loop.',
+        observe: 'Set self-heal to observe? It will watch and log problems but take no action.',
+        off: 'Turn self-heal off? A frozen display will stay frozen until someone notices.',
+    };
+    await applianceAction('set-watchdog', { watchdog: value }, {
+        prompt: prompts[value], danger: value === 'off',
+    });
+    _dsLoaded = false;
+}
+
+// Preview is the one action with no confirm: it IS the confirmation, and it undoes itself. The host
+// arms a 30s revert to whatever the conf currently says, so a wrong pick on a keyboard-less wall
+// mount cannot strand the display.
+async function previewOrientation() {
+    const value = document.getElementById('ds-orientation').value;
+    const hint = document.getElementById('ds-orientation-hint');
+    const keep = document.getElementById('ds-orientation-keep');
+    const queued = await applianceAction('preview-orientation', { orientation: value }, { prompt: null });
+    if (!queued) return;
+    if (_previewTimer) clearInterval(_previewTimer);
+    let left = 28;
+    keep.style.display = '';
+    hint.textContent = `Turning the picture… keep it within ${left}s or it goes back.`;
+    keep.textContent = `Keep ✓ ${left}s`;
+    _previewTimer = setInterval(() => {
+        left -= 1;
+        if (left <= 0) {
+            clearInterval(_previewTimer); _previewTimer = null;
+            keep.style.display = 'none';
+            hint.textContent = 'Preview ended — the picture went back to the saved orientation.';
+            return;
+        }
+        keep.textContent = `Keep ✓ ${left}s`;
+    }, 1000);
+}
+
+async function keepOrientation() {
+    const value = document.getElementById('ds-orientation').value;
+    if (_previewTimer) { clearInterval(_previewTimer); _previewTimer = null; }
+    document.getElementById('ds-orientation-keep').style.display = 'none';
+    document.getElementById('ds-orientation-hint').textContent = 'Saving…';
+    await applianceAction('set-orientation', { orientation: value }, { prompt: null });
+    document.getElementById('ds-orientation-hint').textContent =
+        'Saved. The display restarts in the new orientation.';
+    _dsLoaded = false;
+}
+
+window.saveDisplayName = saveDisplayName;
+window.saveTimezone = saveTimezone;
+window.saveWatchdog = saveWatchdog;
+window.previewOrientation = previewOrientation;
+window.keepOrientation = keepOrientation;
+
+// A reboot takes the server with it, so every fetch fails until it doesn't. Poll until one succeeds,
+// then reload — the alternative is a page whose every control talks to a box that isn't there.
+function _waitForDeviceBack(attempt = 0) {
+    setTimeout(async () => {
+        try {
+            const res = await fetch(`${API_BASE}/api/health/host`, { cache: 'no-store' });
+            if (res.ok) { location.reload(); return; }
+        } catch (e) { /* still down */ }
+        if (attempt < 120) _waitForDeviceBack(attempt + 1);   // ~5 minutes, then give up quietly
+        else {
+            const el = document.getElementById('maint-status');
+            if (el) el.textContent = '⚠ The device hasn\u2019t come back yet. Reload this page once it has.';
         }
     }, 2500);
 }

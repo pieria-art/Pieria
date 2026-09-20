@@ -8,13 +8,23 @@
 # systemd timer (sd-metrics.timer). Everything else (load/temp/disk/mem/uptime) the
 # app reads directly from /proc + /sys, so it is intentionally NOT duplicated here.
 #
-# Usage: sd-metrics <REPO_ROOT>   (the dir whose ./data is mounted into the container)
+# It also keeps data/appliance/conf.json in step with the boot conf (ADR-119). The app cannot read
+# /boot/firmware — it is outside the container — so that mirror is how the admin UI knows the
+# device's settings. sd-update re-exports it after every edit; doing it here as well is what makes a
+# HAND edit of the conf (SD card in a laptop) show up in the UI instead of silently disagreeing.
+#
+# Usage: sd-metrics <REPO_ROOT> [CONF]   (the dir whose ./data is mounted into the container)
 set -u
 
 REPO_ROOT="${1:-}"
 if [ -z "$REPO_ROOT" ]; then
   echo "sd-metrics: REPO_ROOT argument required" >&2
   exit 1
+fi
+
+CONF="${2:-}"
+if [ -z "$CONF" ]; then
+  if [ -d /boot/firmware ]; then CONF="/boot/firmware/pieria.conf"; else CONF="/boot/pieria.conf"; fi
 fi
 
 OUT_DIR="$REPO_ROOT/data/appliance"
@@ -44,3 +54,15 @@ mv -f "$TMP" "$OUT"
 # mktemp makes the file 0600; the non-root (uid 1000) container reads it via host_health, so make it
 # world-readable (root writes it, the container only reads).
 chmod 0644 "$OUT" 2>/dev/null || true
+
+# --- conf mirror for the container (ADR-119) -------------------------------------------------------
+# Re-export only when the mirror is missing or the conf is NEWER, so the 30s timer costs nothing in
+# the steady state but self-heals a hand-edited card on the next tick.
+CONF_JSON="$OUT_DIR/conf.json"
+SD_CONF_BIN="${SD_CONF_BIN:-$(dirname "$(readlink -f "$0")")/sd-conf}"
+[ -x "$SD_CONF_BIN" ] || SD_CONF_BIN="/usr/local/bin/sd-conf"
+if [ -x "$SD_CONF_BIN" ] && [ -r "$CONF" ]; then
+  if [ ! -f "$CONF_JSON" ] || [ "$CONF" -nt "$CONF_JSON" ]; then
+    "$SD_CONF_BIN" --conf "$CONF" export --out "$CONF_JSON" 2>/dev/null || true
+  fi
+fi

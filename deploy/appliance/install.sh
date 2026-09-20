@@ -110,6 +110,13 @@ install -m 0755 "$BIN_SRC/sd-kiosk-launch"   /usr/local/bin/sd-kiosk-launch
 install -m 0755 "$BIN_SRC/sd-wait-for-server" /usr/local/bin/sd-wait-for-server
 install -m 0755 "$BIN_SRC/sd-rotate-keep"    /usr/local/bin/sd-rotate-keep
 install -m 0755 "$BIN_SRC/sd-metrics"        /usr/local/bin/sd-metrics
+# sd-conf is the single conf validator/writer (ADR-119) — sd-update, sd-metrics and sd-image-prep all
+# shell out to it, and the container loads the SAME file to validate before it ever queues a request.
+install -m 0755 "$BIN_SRC/sd-conf"           /usr/local/bin/sd-conf
+install -m 0755 "$BIN_SRC/sd-rotate-now"     /usr/local/bin/sd-rotate-now
+install -m 0755 "$BIN_SRC/sd-support-bundle" /usr/local/bin/sd-support-bundle
+install -m 0755 "$BIN_SRC/sd-os-check"       /usr/local/bin/sd-os-check
+install -m 0755 "$BIN_SRC/sd-os-schedule"    /usr/local/bin/sd-os-schedule
 install -m 0755 "$BIN_SRC/sd-quiet-hours"    /usr/local/bin/sd-quiet-hours
 install -m 0755 "$BIN_SRC/sd-watchdog"       /usr/local/bin/sd-watchdog
 install -m 0755 "$BIN_SRC/sd-watchdog-advance" /usr/local/bin/sd-watchdog-advance
@@ -298,7 +305,8 @@ if [ "${ALL_IN_ONE:-0}" = "1" ]; then
   echo "    sd-app.service installed + ENABLED (creates the stack on boot, even on a fresh flash)."
 
   echo "==> Installing host metrics timer (Device Health throttle/under-voltage reading)"
-  sed "s#__REPO_ROOT__#$REPO_ROOT#g" "$UNIT_SRC/sd-metrics.service" > /etc/systemd/system/sd-metrics.service
+  sed -e "s#__REPO_ROOT__#$REPO_ROOT#g" -e "s#__BOOT_CONF__#$BOOT_CONF#g" \
+    "$UNIT_SRC/sd-metrics.service" > /etc/systemd/system/sd-metrics.service
   install -m 0644 "$UNIT_SRC/sd-metrics.timer" /etc/systemd/system/sd-metrics.timer
   systemctl daemon-reload
   systemctl enable --now sd-metrics.timer || true
@@ -316,6 +324,27 @@ if [ "${ALL_IN_ONE:-0}" = "1" ]; then
   systemctl daemon-reload
   # Safe to enable: WATCHDOG defaults to 'observe' (logs, never acts) until you set enforce in the conf.
   systemctl enable --now sd-watchdog.timer || true
+
+  echo "==> Installing the nightly OS update check (report only — installs nothing)"
+  sed "s#__REPO_ROOT__#$REPO_ROOT#g" "$UNIT_SRC/sd-os-check.service" > /etc/systemd/system/sd-os-check.service
+  install -m 0644 "$UNIT_SRC/sd-os-check.timer" /etc/systemd/system/sd-os-check.timer
+  systemctl daemon-reload
+  systemctl enable --now sd-os-check.timer || true
+
+  echo "==> Installing the opt-in weekly OS upgrade timer"
+  sed -e "s#__BOOT_CONF__#$BOOT_CONF#g" -e "s#__REPO_ROOT__#$REPO_ROOT#g" \
+    "$UNIT_SRC/sd-os-upgrade.service" > /etc/systemd/system/sd-os-upgrade.service
+  install -m 0644 "$UNIT_SRC/sd-os-upgrade.timer" /etc/systemd/system/sd-os-upgrade.timer
+  systemctl daemon-reload
+  # Installed, but enabled ONLY if the owner already turned it on. "Update Scripts" re-runs this
+  # script, and a blanket `enable` here would silently switch unattended upgrades back on for
+  # everyone who had deliberately turned them off.
+  if [ "${OS_UPDATE_SCHEDULE:-off}" = "weekly" ]; then
+    systemctl enable --now sd-os-upgrade.timer || true
+    echo "    weekly OS upgrades are ON (conf says weekly)"
+  else
+    echo "    weekly OS upgrades are OFF (default; enable from Admin -> Devices -> Updates)"
+  fi
 
   echo "==> Advertising the server over mDNS (friendly name in network browsers)"
   install -d /etc/avahi/services
@@ -404,7 +433,7 @@ systemctl daemon-reload
 echo
 echo "==> Installed state (read back from systemd — this is what the card will actually do)"
 _expected="sd-setup-pre.service sd-net-recover.service"
-[ "${ALL_IN_ONE:-0}" = "1" ] && _expected="$_expected sd-app.service sd-timesync-wait.service sd-metrics.timer sd-quiet-hours.timer sd-watchdog.timer sd-update.path"
+[ "${ALL_IN_ONE:-0}" = "1" ] && _expected="$_expected sd-app.service sd-timesync-wait.service sd-metrics.timer sd-quiet-hours.timer sd-watchdog.timer sd-update.path sd-os-check.timer"
 [ "${EINK_ENABLED:-0}" = "1" ] && _expected="$_expected sd-eink.service"
 _missing=0
 for u in $_expected; do
