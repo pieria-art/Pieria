@@ -1,11 +1,16 @@
 #!/usr/bin/env bash
-# sd-update — host-side appliance updater.
+# sd-update — host-side appliance updater and settings applier.
 #
 # Triggered by sd-update.path when the (unprivileged) container writes
 # data/appliance/request.json. Runs as root via a systemd oneshot. Performs ONLY a
 # fixed, whitelisted action — the requested string is matched in a `case`, never
 # evaluated — and writes progress back to data/appliance/status.json for the GUI to
 # poll. Set DRY_RUN=1 to echo the dispatch instead of executing it (used in tests).
+#
+# ADR-119: a shipped appliance has no shell (sshd off, passwords locked — ADR-064), so this is the
+# ONLY way a setting on the boot conf can be changed. Every value-bearing field is validated twice:
+# once at the endpoint, and authoritatively here by `sd-conf`, which enforces SAFE_VALUE_RE because
+# the conf is `.`-sourced as shell by four scripts. Nothing from the request is ever unquoted.
 #
 # Usage: sd-update <REPO_ROOT>   (the dir whose ./data is bind-mounted into the container)
 set -u
@@ -23,6 +28,26 @@ OVERRIDE="$REPO_ROOT/deploy/appliance/compose/docker-compose.appliance.yml"
 DRY_RUN="${DRY_RUN:-0}"
 LOG=""
 
+# The appliance conf. Same rule as sd-conf/sd_setup: an explicit SD_CONF wins (tests), else Bookworm's
+# /boot/firmware, else the old /boot.
+if [ -n "${SD_CONF:-}" ]; then
+  CONF="$SD_CONF"
+elif [ -d /boot/firmware ]; then
+  CONF="/boot/firmware/pieria.conf"
+else
+  CONF="/boot/pieria.conf"
+fi
+
+# Sibling helpers, found next to THIS script wherever it was installed (the pattern sd-watchdog uses
+# for sd-watchdog-advance), each overridable so a test can point at a stub.
+BINDIR="$(dirname "$(readlink -f "$0")")"
+SD_CONF_BIN="${SD_CONF_BIN:-$BINDIR/sd-conf}"
+SD_OS_CHECK_BIN="${SD_OS_CHECK_BIN:-$BINDIR/sd-os-check}"
+SD_SUPPORT_BIN="${SD_SUPPORT_BIN:-$BINDIR/sd-support-bundle}"
+SD_ROTATE_BIN="${SD_ROTATE_BIN:-$BINDIR/sd-rotate-now}"
+SD_IMAGE_PREP_BIN="${SD_IMAGE_PREP_BIN:-$BINDIR/sd-image-prep}"
+SD_SYSTEMD_DIR="${SD_SYSTEMD_DIR:-/etc/systemd/system}"
+
 # Nothing queued (e.g. the .path re-fired on our own deletion of the request) — no-op.
 [ -r "$REQ" ] || exit 0
 
@@ -31,6 +56,20 @@ _get() { python3 -c "import json,sys; print(json.load(open(sys.argv[1])).get(sys
 ACTION="$(_get action)"
 NONCE="$(_get nonce)"
 REF="$(_get ref)"
+TIMEZONE="$(_get timezone)"
+ORIENTATION="$(_get orientation)"
+DISPLAY_ID="$(_get display_id)"
+WATCHDOG_MODE="$(_get watchdog)"
+SCHEDULE="$(_get schedule)"
+SCHED_TIME="$(_get time)"
+
+# Root writes into the container's mailbox. ADR-037: hand every file back to uid 1000 and make it
+# world-readable, or the next GUI read is an EACCES nobody can explain (the exact class of fault
+# fixed for the DIRECTORY in sd-metrics, which left the FILES to be found later).
+handback() {
+  chown 1000:1000 "$1" 2>/dev/null || true
+  chmod 0644 "$1" 2>/dev/null || true
+}
 
 write_status() {
   local state="$1" msg="${2:-}" tail_json="[]"
@@ -46,6 +85,7 @@ json.dump({
     "log_tail": json.loads(os.environ["SD_TAIL"]), "updated_at": os.environ["SD_NOW"],
 }, open(sys.argv[1], "w"))
 PY
+  handback "$STATUS"
 }
 
 # Whitelist — anything else is rejected before any work happens.
@@ -70,12 +110,44 @@ run() {
   "$@" >> "$LOG" 2>&1
 }
 
+# status.json is overwritten by the NEXT action, so it is not a record of what this one did. Keep the
+# log where the admin UI (and a support bundle) can still read it after a reboot ate the status.
+persist_log() {
+  [ -n "$LOG" ] && [ -f "$LOG" ] || return 0
+  install -m 0644 -o 1000 -g 1000 "$LOG" "$DIR/last-update.log" 2>/dev/null \
+    || { cp -f "$LOG" "$DIR/last-update.log" 2>/dev/null && handback "$DIR/last-update.log"; } || true
+  rm -f "$LOG"
+}
+
+# Writing the conf is deliberately NOT behind `run`: it is the one effect a DRY_RUN test can observe,
+# and sd-conf is pure file surgery with no host side effects (it touches no service, no network, no
+# package). Everything that DOES touch the host stays dry-runnable.
+conf_set() {
+  echo "+ sd-conf set $*" >> "$LOG"
+  "$SD_CONF_BIN" --conf "$CONF" set "$@" >> "$LOG" 2>&1
+}
+
+conf_export() {
+  "$SD_CONF_BIN" --conf "$CONF" export --out "$DIR/conf.json" >> "$LOG" 2>&1 || true
+}
+
+conf_get() { "$SD_CONF_BIN" --conf "$CONF" get "$1" 2>/dev/null; }
+
+COMPOSE=(docker compose -f docker-compose.yml -f "$OVERRIDE")
+
 # A container rebuild leaves the already-loaded kiosk Canvas WS-connected but with a stalled auto-advance
 # timer (it doesn't re-fetch on reconnect) — the display freezes until something nudges it (a Remote tap,
 # or the next cycle up to display_time away). Relaunch the kiosk so it reloads fresh against the rebuilt
 # container. Best-effort + non-fatal (a headless/server-only box has no getty@tty1).
 reload_kiosk() {
   run systemctl restart getty@tty1 || true
+}
+
+# The e-ink client caches DISPLAY_ID and EINK_ORIENTATION at start, so a change to either is invisible
+# to a running panel until the unit restarts. Only touch it when this box actually has one enabled.
+eink_restart_if_enabled() {
+  [ "$(conf_get EINK_ENABLED)" = "1" ] || return 0
+  run systemctl restart sd-eink || true
 }
 
 rc=0
@@ -99,12 +171,12 @@ case "$ACTION" in
         TARGET="refs/tags/${REF}"
       else
         write_status error "requested release '$REF' is not a known tag"
-        rm -f "$REQ"; rm -f "$LOG"
+        rm -f "$REQ"; persist_log
         exit 1
       fi
     fi
     [ $rc -eq 0 ] && { ( cd "$REPO_ROOT" && run git "${GIT_SAFE[@]}" reset --hard "$TARGET" ) || rc=$?; }
-    [ $rc -eq 0 ] && { ( cd "$REPO_ROOT" && run docker compose -f docker-compose.yml -f "$OVERRIDE" up -d --build ) || rc=$?; }
+    [ $rc -eq 0 ] && { ( cd "$REPO_ROOT" && run "${COMPOSE[@]}" up -d --build ) || rc=$?; }
     [ $rc -eq 0 ] && reload_kiosk
     ;;
   update-scripts)
@@ -113,13 +185,16 @@ case "$ACTION" in
     [ $rc -eq 0 ] && reload_kiosk
     ;;
   reboot)
+    # Write the final status and consume the request BEFORE rebooting: after `systemctl reboot` there
+    # is no "after" in which to do it, and the UI would poll a stale `running` forever.
     write_status done "rebooting"
     rm -f "$REQ"
     if [ "$DRY_RUN" = "1" ]; then
       echo "[dry-run] systemctl reboot" >> "$LOG"
-      rm -f "$LOG"
+      persist_log
       exit 0
     fi
+    persist_log
     systemctl reboot
     exit 0
     ;;
@@ -132,4 +207,4 @@ else
 fi
 
 rm -f "$REQ"      # consume the request so the .path re-arms for the next one
-rm -f "$LOG"
+persist_log
