@@ -91,6 +91,7 @@ PY
 # Whitelist — anything else is rejected before any work happens.
 case "$ACTION" in
   update-app|update-scripts|reboot) : ;;
+  set-timezone|preview-orientation|set-orientation|set-display-name|set-watchdog|reopen-setup) : ;;
   *)
     write_status error "unknown action: $ACTION"
     rm -f "$REQ"
@@ -151,6 +152,7 @@ eink_restart_if_enabled() {
 }
 
 rc=0
+DONE_MSG=""       # arms that finish with something worth saying set this; else "<action> completed"
 case "$ACTION" in
   update-app)
     # Pin the checkout, then rebuild the stack. sd-update runs as ROOT but the repo is owned by the
@@ -184,6 +186,85 @@ case "$ACTION" in
     run "$REPO_ROOT/deploy/appliance/install.sh" || rc=$?
     [ $rc -eq 0 ] && reload_kiosk
     ;;
+  set-timezone)
+    conf_set "TIMEZONE=$TIMEZONE" || rc=$?
+    [ $rc -eq 0 ] && { run timedatectl set-timezone "$TIMEZONE" || rc=$?; }
+    # ADR-118: docker-compose binds /etc/localtime, and a bind mount is resolved at container START.
+    # Without this restart the host clock moves and the app keeps serving Night & Quiet Hours on the
+    # old zone — the exact split that made the prod TV's schedule fire hours off.
+    [ $rc -eq 0 ] && { ( cd "$REPO_ROOT" && run "${COMPOSE[@]}" restart ) || rc=$?; }
+    conf_export
+    DONE_MSG="time zone set to $TIMEZONE"
+    ;;
+  preview-orientation)
+    # Revert to what the conf says NOW, not to 'normal': on a box already mounted in portrait, a
+    # preview that expired to landscape would leave the wall display wrong in a new way.
+    CURRENT="$(conf_get ROTATE)"
+    [ -n "$CURRENT" ] || CURRENT="landscape"
+    # Two previews inside the 30s window would collide on the transient unit name; stopping first is
+    # what makes a second click work instead of erroring.
+    run systemctl stop sd-orientation-revert.service || true
+    run "$SD_ROTATE_BIN" apply "$ORIENTATION" --output "$(conf_get OUTPUT)" || rc=$?
+    [ $rc -eq 0 ] && { run systemd-run --on-active=30 --unit=sd-orientation-revert --collect \
+        "$SD_ROTATE_BIN" revert "$CURRENT" --output "$(conf_get OUTPUT)" || rc=$?; }
+    DONE_MSG="previewing — reverts in 30 seconds unless you keep it"
+    ;;
+  set-orientation)
+    case "$ORIENTATION" in
+      landscape) ROT="" ;;
+      90|180|270) ROT="$ORIENTATION" ;;
+      *)
+        write_status error "invalid orientation: $ORIENTATION"
+        rm -f "$REQ"; persist_log
+        exit 1
+        ;;
+    esac
+    run systemctl stop sd-orientation-revert.service || true
+    # BOTH keys, always (ADR-059 #2): ROTATE drives wlroots/HDMI and EINK_ORIENTATION drives the
+    # e-ink client, which would otherwise stay landscape on a panel the user just said is portrait.
+    # Only 90/270 are portrait mounts — 180 is still a landscape panel.
+    case "$ORIENTATION" in 90|270) EINK_O="portrait" ;; *) EINK_O="" ;; esac
+    conf_set "ROTATE=$ROT" "EINK_ORIENTATION=$EINK_O" || rc=$?
+    [ $rc -eq 0 ] && reload_kiosk
+    [ $rc -eq 0 ] && eink_restart_if_enabled
+    conf_export
+    DONE_MSG="orientation set to $ORIENTATION"
+    ;;
+  set-display-name)
+    # HOSTNAME is deliberately NOT touched (ADR-083: renaming it trips a Chromium SingletonLock bug
+    # that leaves the kiosk unable to start). The display name and the network name are separate.
+    conf_set "DISPLAY_ID=$DISPLAY_ID" || rc=$?
+    [ $rc -eq 0 ] && reload_kiosk
+    [ $rc -eq 0 ] && eink_restart_if_enabled
+    conf_export
+    DONE_MSG="display renamed to $DISPLAY_ID"
+    ;;
+  set-watchdog)
+    # Nothing to restart: sd-watchdog re-sources the conf on every tick, so the next one picks it up.
+    conf_set "WATCHDOG=$WATCHDOG_MODE" || rc=$?
+    conf_export
+    DONE_MSG="self-heal set to $WATCHDOG_MODE"
+    ;;
+  reopen-setup)
+    # --enable-setup now PRESERVES the non-wizard keys (see sd-image-prep), so watchdog mode, time
+    # zone, e-ink and OS-update settings survive a trip back through the wizard.
+    run "$SD_IMAGE_PREP_BIN" --enable-setup || rc=$?
+    if [ $rc -ne 0 ]; then
+      write_status error "could not re-open the setup wizard (exit $rc)"
+      rm -f "$REQ"; persist_log
+      exit 1
+    fi
+    write_status done "rebooting into the setup wizard"
+    rm -f "$REQ"
+    if [ "$DRY_RUN" = "1" ]; then
+      echo "[dry-run] systemctl reboot" >> "$LOG"
+      persist_log
+      exit 0
+    fi
+    persist_log
+    systemctl reboot
+    exit 0
+    ;;
   reboot)
     # Write the final status and consume the request BEFORE rebooting: after `systemctl reboot` there
     # is no "after" in which to do it, and the UI would poll a stale `running` forever.
@@ -201,7 +282,7 @@ case "$ACTION" in
 esac
 
 if [ $rc -eq 0 ]; then
-  write_status done "$ACTION completed"
+  write_status done "${DONE_MSG:-$ACTION completed}"
 else
   write_status error "$ACTION failed (exit $rc)"
 fi
