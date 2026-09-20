@@ -411,3 +411,161 @@ def test_emit_skips_items_with_all_four_present(tmp_path):
     assert downscaled.exists()
     with Image.open(downscaled) as im:
         assert max(im.size) <= dac.DOWNSCALE_EDGE
+
+
+# --------------------------------------------------------------------------- --replace-collection
+
+def test_replace_collection_drops_a_stale_key_not_in_the_results(tmp_path):
+    """The scoped --prune: a collection named in --replace-collection gets its aspect_crops
+    WHOLESALE-replaced, so a key present on the item but absent from the results is REMOVED --
+    unlike the default additive merge, which would leave it stale."""
+    pack = tmp_path / "art-pack"
+    lib = pack / "_Library"
+    lib.mkdir(parents=True)
+    _master(lib, "https://x/a.jpg", 1000, 1000)
+    cat = tmp_path / "static" / "catalog"
+    existing = dict(FULL_SET)  # all four keys already present
+    _catalog(cat, "col", [{"title": "A", "source_url": "https://x/a.jpg", "aspect_crops": existing}])
+    only_two = {"16:9": FULL_SET["16:9"], "4:3": FULL_SET["4:3"]}
+    results_path = tmp_path / "results.json"
+    results_path.write_text(json.dumps([{"source_url": "https://x/a.jpg", "aspect_crops": only_two}]))
+
+    dac.bake(results_path, [str(cat)], pack, write=True, replace_collections=["col"])
+
+    doc = json.loads((cat / "col.json").read_text())
+    assert set(doc["items"][0]["aspect_crops"].keys()) == {"16:9", "4:3"}
+
+
+def test_replace_collection_only_affects_the_named_collection(tmp_path):
+    pack = tmp_path / "art-pack"
+    lib = pack / "_Library"
+    lib.mkdir(parents=True)
+    _master(lib, "https://x/a.jpg", 1000, 1000)
+    _master(lib, "https://x/b.jpg", 1000, 1000)
+    cat = tmp_path / "static" / "catalog"
+    cat.mkdir(parents=True)
+    (cat / "col-a.json").write_text(json.dumps({
+        "id": "col-a", "items": [{"title": "A", "source_url": "https://x/a.jpg",
+                                   "aspect_crops": dict(FULL_SET)}]}))
+    (cat / "col-b.json").write_text(json.dumps({
+        "id": "col-b", "items": [{"title": "B", "source_url": "https://x/b.jpg",
+                                   "aspect_crops": dict(FULL_SET)}]}))
+    only_one = {"16:9": FULL_SET["16:9"]}
+    results_path = tmp_path / "results.json"
+    results_path.write_text(json.dumps([
+        {"source_url": "https://x/a.jpg", "aspect_crops": only_one},
+        {"source_url": "https://x/b.jpg", "aspect_crops": only_one},
+    ]))
+
+    dac.bake(results_path, [str(cat)], pack, write=True, replace_collections=["col-a"])
+
+    doc_a = json.loads((cat / "col-a.json").read_text())
+    doc_b = json.loads((cat / "col-b.json").read_text())
+    # col-a was wholesale-replaced: only the one surviving key remains.
+    assert set(doc_a["items"][0]["aspect_crops"].keys()) == {"16:9"}
+    # col-b kept the default additive merge: the original four keys are all still there.
+    assert set(doc_b["items"][0]["aspect_crops"].keys()) == {"16:9", "9:16", "4:3", "3:4"}
+
+
+def test_replace_collection_is_idempotent(tmp_path, capsys):
+    pack = tmp_path / "art-pack"
+    lib = pack / "_Library"
+    lib.mkdir(parents=True)
+    _master(lib, "https://x/a.jpg", 1000, 1000)
+    cat = tmp_path / "static" / "catalog"
+    _catalog(cat, "col", [{"title": "A", "source_url": "https://x/a.jpg"}])
+    results_path = tmp_path / "results.json"
+    results_path.write_text(json.dumps([{"source_url": "https://x/a.jpg", "aspect_crops": FULL_SET}]))
+
+    dac.bake(results_path, [str(cat)], pack, write=True, replace_collections=["col"])
+    doc1 = json.loads((cat / "col.json").read_text())
+    assert doc1["items"][0]["aspect_crops"] == FULL_SET
+
+    capsys.readouterr()
+    dac.bake(results_path, [str(cat)], pack, write=True, replace_collections=["col"])
+    out = capsys.readouterr().out
+    doc2 = json.loads((cat / "col.json").read_text())
+    assert doc2 == doc1
+    assert "0 item(s), 0 box(es)" in out
+
+
+# --------------------------------------------------------------------------- --gate subject
+
+def _subject_result(source_url, boxes, coverage=0.92, area=0.4, paper_fraction=0.3,
+                     ink_fraction=0.2, caption_cut=0.7):
+    """Build one results.json entry in the shape tools/subject_crops.py\'s CLI writes -- the same
+    diag.boxes.{coverage,area,paper_fraction} + item-level ink_fraction/caption_cut --gate subject
+    trusts rather than recomputing."""
+    return {
+        "source_url": source_url, "title": "T", "aspect_crops": boxes,
+        "diag": {
+            "ink_fraction": ink_fraction, "caption_cut": caption_cut,
+            "boxes": {k: {"coverage": coverage, "area": area, "paper_fraction": paper_fraction}
+                      for k in boxes},
+        },
+    }
+
+
+def test_gate_subject_keeps_a_well_formed_box_even_with_bad_coverage_area_paper(tmp_path):
+    """Regression guard for the design decision in subject_crops.gate_subject_box: coverage/area/
+    paper are FLAG-only, never reject. A structurally sound (exact-aspect, in-bounds) box must
+    survive --gate subject even when its diag values are terrible."""
+    pack = tmp_path / "art-pack"
+    lib = pack / "_Library"
+    lib.mkdir(parents=True)
+    _master(lib, "https://x/a.jpg", 1000, 1000)  # square source
+    cat = tmp_path / "static" / "catalog"
+    _catalog(cat, "col", [{"title": "A", "source_url": "https://x/a.jpg"}])
+    exact_4_3 = [0.1, 0.1, 0.9, 0.7]  # bw=0.8, bh=0.6, bw/bh == 4/3 exactly at source_aspect=1.0
+    result = _subject_result("https://x/a.jpg", {"4:3": exact_4_3},
+                              coverage=0.01, area=0.001, paper_fraction=0.999, ink_fraction=0.001)
+    results_path = tmp_path / "results.json"
+    results_path.write_text(json.dumps([result]))
+
+    dac.bake(results_path, [str(cat)], pack, write=True, gate="subject")
+
+    doc = json.loads((cat / "col.json").read_text())
+    assert doc["items"][0]["aspect_crops"] == {"4:3": exact_4_3}
+
+
+def test_gate_subject_drops_an_aspect_inexact_box(tmp_path):
+    pack = tmp_path / "art-pack"
+    lib = pack / "_Library"
+    lib.mkdir(parents=True)
+    _master(lib, "https://x/a.jpg", 1000, 1000)
+    cat = tmp_path / "static" / "catalog"
+    _catalog(cat, "col", [{"title": "A", "source_url": "https://x/a.jpg"}])
+    wrong_aspect = [0.1, 0.1, 0.9, 0.9]  # a square box filed under "4:3"
+    exact_3_4 = [0.15, 0.0, 0.85, 0.9333]  # bw=0.7, bh=0.9333, bw/bh == 3/4
+    result = _subject_result("https://x/a.jpg", {"4:3": wrong_aspect, "3:4": exact_3_4})
+    results_path = tmp_path / "results.json"
+    results_path.write_text(json.dumps([result]))
+
+    dac.bake(results_path, [str(cat)], pack, write=True, gate="subject")
+
+    doc = json.loads((cat / "col.json").read_text())
+    ac = doc["items"][0]["aspect_crops"]
+    assert "4:3" not in ac  # dropped -- not the exact target aspect
+    assert "3:4" in ac      # kept -- exact aspect, regardless of coverage/area/paper
+
+
+def test_gate_subject_combined_with_replace_collection(tmp_path):
+    """The two new flags are independent and compose: subject-gated results wholesale-replace the
+    collection\'s aspect_crops, dropping the pre-existing (composition-preserving) boxes entirely."""
+    pack = tmp_path / "art-pack"
+    lib = pack / "_Library"
+    lib.mkdir(parents=True)
+    _master(lib, "https://x/a.jpg", 1000, 1000)
+    cat = tmp_path / "static" / "catalog"
+    _catalog(cat, "col", [{"title": "A", "source_url": "https://x/a.jpg",
+                            "aspect_crops": dict(FULL_SET)}])
+    exact_4_3 = [0.1, 0.1, 0.9, 0.7]
+    result = _subject_result("https://x/a.jpg", {"4:3": exact_4_3})
+    results_path = tmp_path / "results.json"
+    results_path.write_text(json.dumps([result]))
+
+    dac.bake(results_path, [str(cat)], pack, write=True, gate="subject",
+              replace_collections=["col"])
+
+    doc = json.loads((cat / "col.json").read_text())
+    assert doc["items"][0]["aspect_crops"] == {"4:3": exact_4_3}

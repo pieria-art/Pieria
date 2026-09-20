@@ -32,7 +32,19 @@ Bake SNAPS every box to its exact target aspect first (preserving the agent's co
 see `snap()`), then QA-gates the corrected geometry (`aspect_inexact` / `not_maximal` / `focal_outside`,
 plus `near_maximal` / `snap_moved_far` warnings) — see `_validate_item()`/`_gate_box()`. At the ~2857-work
 scale nobody can eyeball every box, so `--report` dumps the full per-item verdict and `--fail-under`
-lets an unattended run halt instead of baking a bad batch.
+lets an unattended run halt instead of baking a bad batch. Bake is ADDITIVE by default (merges new
+keys into `aspect_crops`, never removes an existing one).
+
+**`--gate subject` (ADR-087)** routes each box through `tools.subject_crops.gate_subject_box` instead
+of the default composition-preserving gate — for results produced by `tools/subject_crops.py`
+(subject-filling boxes, deliberately NOT near-full-frame, so the default `not_maximal` gate would
+reject every one of them by design). **`--replace-collection <id>`** (repeatable) is the scoped
+`--prune`: for items in that collection ONLY, wholesale-replaces `aspect_crops` with whatever the
+results/gate produced (a key the gate drops is removed, not left stale); every other collection still
+gets the default additive merge.
+
+    python -m tools.derive_aspect_crops --bake audubon_results.json --gate subject \
+        --replace-collection audubon-birds-of-america --report bake_report.json --write
 """
 from __future__ import annotations
 
@@ -408,16 +420,102 @@ def _load_validated(
     return validated, rejects, drop_counts, warn_counts, report_rows
 
 
+def _load_validated_subject(
+    results_path: Path, masters: dict[str, Path],
+) -> tuple[dict[str, dict], dict[str, int], dict[str, int], dict[str, int], list[dict]]:
+    """Like `_load_validated`, but routes each box through `subject_crops.gate_subject_box`
+    instead of the default composition-preserving gate (`--gate subject`).
+
+    `coverage`/`area`/`paper_fraction` are TRUSTED from the results file's own `diag` (the deriver
+    already measured them against the real ink mask; re-measuring here would mean re-decoding
+    every master's pixels a second time for no benefit). `source_aspect` and the box's own
+    shape/range/exactness are NOT trusted — recomputed here from the actual on-disk master, same
+    non-trust posture as the default gate.
+
+    Atomicity is deliberately DIFFERENT from `_load_validated`'s: these boxes are machine-derived
+    (a deterministic detector's output), not an agent's compositional judgment, so there's no
+    "the whole submission is suspect" case to protect against. Any `gate_subject_box` reject
+    (malformed / out of [0,1] / not the exact target aspect — none of which should fire in
+    practice, since `subject_crops.subject_box` always runs its boxes through `snap()`) drops only
+    that one key, never the whole item — mirrors the QUALITY-gate (non-atomic) half of
+    `_validate_item`, not its MALFORMED (atomic) half."""
+    from tools import subject_crops  # local: subject_crops imports FROM this module at its own
+    # load time, so a module-level import here would be circular.
+
+    raw = json.loads(results_path.read_text())
+    validated: dict[str, dict] = {}
+    rejects: dict[str, int] = {}
+    drop_counts: dict[str, int] = {}
+    warn_counts: dict[str, int] = {}
+    report_rows: list[dict] = []
+    aspect_cache: dict[str, float] = {}
+    for r in raw:
+        su = r.get("source_url")
+        ac = r.get("aspect_crops")
+        title = r.get("title") or ""
+        if not isinstance(su, str) or not su or not isinstance(ac, dict):
+            rejects["bad_entry"] = rejects.get("bad_entry", 0) + 1
+            report_rows.append({"source_url": su, "title": title, "valid": False,
+                                 "reject_reason": "bad_entry", "keys": {}})
+            continue
+        h = _hash8(su)
+        if h not in aspect_cache:
+            master = masters.get(h)
+            if master is None:
+                rejects["no_master"] = rejects.get("no_master", 0) + 1
+                report_rows.append({"source_url": su, "title": title, "valid": False,
+                                     "reject_reason": "no_master", "keys": {}})
+                continue
+            aspect_cache[h] = _source_aspect(master)
+        source_aspect = aspect_cache[h]
+
+        diag = r.get("diag") if isinstance(r.get("diag"), dict) else {}
+        box_diag = diag.get("boxes") if isinstance(diag.get("boxes"), dict) else {}
+        out: dict[str, list[float]] = {}
+        key_diag: dict = {}
+        for key in ASPECT_CROP_KEYS:
+            box = ac.get(key)
+            if box is None:
+                continue
+            kd = box_diag.get(key) if isinstance(box_diag.get(key), dict) else {}
+            target = _target_ratio(key)
+            reason, warnings = subject_crops.gate_subject_box(
+                box, source_aspect, target,
+                coverage=kd.get("coverage", 0.0), area=kd.get("area", 0.0),
+                paper_fraction=kd.get("paper_fraction", 1.0),
+                ink_fraction=diag.get("ink_fraction"), caption_cut=diag.get("caption_cut"))
+            for w in warnings:
+                warn_counts[w] = warn_counts.get(w, 0) + 1
+            key_diag[key] = {"box": box, "snap_delta": 0.0, "warnings": warnings, "reject": reason}
+            if reason is not None:
+                drop_counts[reason] = drop_counts.get(reason, 0) + 1
+                continue
+            out[key] = box
+        reason = None if out else "empty"
+        report_rows.append({"source_url": su, "title": title, "valid": reason is None,
+                             "reject_reason": reason, "keys": key_diag})
+        if reason is not None:
+            rejects[reason] = rejects.get(reason, 0) + 1
+            continue
+        validated[su] = out
+    return validated, rejects, drop_counts, warn_counts, report_rows
+
+
 def bake(results_path: Path, dirs: list[str], pack: Path, write: bool,
-         report_path: Path | None = None, fail_under: float | None = None) -> int:
+         report_path: Path | None = None, fail_under: float | None = None,
+         replace_collections: list[str] | None = None, gate: str = "default") -> int:
     library = pack / "_Library"
     if not library.is_dir():
         print(f"FAIL: no masters at {library} — run tools.build_pack first.")
         return 1
     masters = index_masters(library)
-    su_index = _index_focal_points(dirs)
-    validated, rejects, drop_counts, warn_counts, report_rows = _load_validated(
-        results_path, masters, su_index)
+    if gate == "subject":
+        validated, rejects, drop_counts, warn_counts, report_rows = _load_validated_subject(
+            results_path, masters)
+    else:
+        su_index = _index_focal_points(dirs)
+        validated, rejects, drop_counts, warn_counts, report_rows = _load_validated(
+            results_path, masters, su_index)
     # `rejects` = items that produced ZERO usable boxes (bad_entry/no_master fail before we even try;
     # `malformed` voids atomically; `empty` means every key was gate-dropped). `drop_counts` = individual
     # boxes the quality gate dropped from an otherwise-still-usable item — NOT items, never atomic.
@@ -445,6 +543,7 @@ def bake(results_path: Path, dirs: list[str], pack: Path, write: bool,
         print(f"\nFAIL: valid rate {pct:.1f}% is below --fail-under {fail_under:.1f}% — refusing to bake.")
         return 1
 
+    replace_set = set(replace_collections) if replace_collections else set()
     items_changed = boxes_written = 0
     for d in dirs:
         base = Path(d)
@@ -455,6 +554,8 @@ def bake(results_path: Path, dirs: list[str], pack: Path, write: bool,
                 continue
             doc = json.loads(path.read_text())
             items = doc if isinstance(doc, list) else doc.get("items", [])
+            cid = doc.get("id", path.stem) if isinstance(doc, dict) else path.stem
+            replace_this_file = cid in replace_set
             file_changed = False
             for it in items:
                 su = it.get("source_url")
@@ -462,6 +563,20 @@ def bake(results_path: Path, dirs: list[str], pack: Path, write: bool,
                     continue
                 new_ac = validated[su]
                 cur_ac = it.get("aspect_crops") if isinstance(it.get("aspect_crops"), dict) else {}
+                if replace_this_file:
+                    # The scoped "--prune": WHOLESALE-replace this item's aspect_crops with
+                    # exactly what survived the gate — a key the gate dropped (or that this run
+                    # simply didn't produce) is REMOVED, not left stale. Only collections named in
+                    # --replace-collection get this; every other collection keeps the default
+                    # additive merge below (never removes a key — see bake()'s docstring).
+                    if cur_ac == new_ac:
+                        continue  # already applied — idempotent no-op
+                    items_changed += 1
+                    boxes_written += len(new_ac)
+                    file_changed = True
+                    if write:
+                        it["aspect_crops"] = dict(new_ac)
+                    continue
                 diff_keys = [k for k in new_ac if cur_ac.get(k) != new_ac[k]]
                 if not diff_keys:
                     continue  # already applied — idempotent no-op
@@ -496,12 +611,22 @@ def main() -> int:
                      help="--bake: write a JSON array of every per-item QA outcome")
     ap.add_argument("--fail-under", type=float, metavar="PCT", default=None,
                      help="--bake: exit non-zero (and skip --write) if the valid-item rate is below PCT")
+    ap.add_argument("--replace-collection", action="append", dest="replace_collections", metavar="ID",
+                     help="--bake: WHOLESALE-replace this collection's aspect_crops from the results "
+                          "(the scoped --prune — a key the gate drops is removed, not left stale). "
+                          "Repeatable. Every other collection keeps the default additive merge.")
+    ap.add_argument("--gate", choices=("default", "subject"), default="default",
+                     help="--bake: 'default' is the composition-preserving gate (unchanged); "
+                          "'subject' routes each box through subject_crops.gate_subject_box, "
+                          "trusting the results file's own diag.coverage/area/paper_fraction and "
+                          "re-checking aspect exactness + range itself")
     args = ap.parse_args()
 
     dirs = args.dirs or DEFAULT_DIRS
     if args.emit:
         return emit(args.emit, dirs, args.pack, args.scratch, args.limit, args.collections)
-    return bake(args.bake, dirs, args.pack, args.write, args.report, args.fail_under)
+    return bake(args.bake, dirs, args.pack, args.write, args.report, args.fail_under,
+                args.replace_collections, args.gate)
 
 
 if __name__ == "__main__":
