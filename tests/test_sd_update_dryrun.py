@@ -171,6 +171,37 @@ def test_reboot_writes_its_status_and_consumes_the_request_before_rebooting(h):
     assert "systemctl reboot" not in h.called    # the shim was never reached
 
 
+# --- a request that predates this boot is not re-run (ADR-121 fix 4) -------------------------------
+# request.json survives a reboot untouched, and sd-update.path re-fires on the next boot's first
+# systemd pass — so a request queued before a reboot that then actually happened (update-system's own
+# end-of-run reboot, or the watchdog rebooting mid-apt, 2026-09-20) would otherwise silently RE-RUN.
+
+def test_a_stale_request_is_reported_and_consumed_without_running_anything(h):
+    h.request("update-system", requested_at="2020-01-01T00:00:00+00:00")
+    r = h.run(SD_BOOT_EPOCH="1700000000")   # far after 2020 — boot came after the request was queued
+    assert r.returncode == 0
+    assert h.status["state"] == "error"
+    assert "interrupted by a reboot before it finished" in h.status["message"]
+    assert h.request_consumed
+    assert h.called == ""                    # nothing was ever dispatched — not even apt_lock's flock
+
+
+def test_a_fresh_request_after_the_boot_it_was_made_in_still_runs(h):
+    h.request("update-scripts", requested_at="2100-01-01T00:00:00+00:00")   # after the fake boot
+    r = h.run(SD_BOOT_EPOCH="1700000000")
+    assert r.returncode == 0
+    assert h.status["state"] == "done"
+    assert "install.sh" in h.log
+
+
+def test_a_request_with_no_requested_at_is_never_treated_as_stale(h):
+    # Backward compatibility: an older/hand-written request.json without the field must not 500.
+    h.request("update-scripts")
+    r = h.run(SD_BOOT_EPOCH="1700000000")
+    assert r.returncode == 0
+    assert h.status["state"] == "done"
+
+
 def test_update_app_without_a_ref_tracks_origin_main(h):
     h.request("update-app")
     h.run()
