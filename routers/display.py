@@ -124,6 +124,13 @@ async def get_display_image(
     palette: str = Query("spectra6"),
     fit: str = Query("cover"),
     shuffle: Optional[bool] = Query(None),
+    interval: Optional[int] = Query(
+        None, ge=15, le=86400,
+        description="The client's own actual pull cadence in seconds (ADR-121), e.g. "
+                     "max(display_time, EINK_MIN_INTERVAL) for the e-ink client. Widens how long "
+                     "known_displays() keeps this display listed, so a client whose real sleep floor "
+                     "is longer than 2x the playlist's display_time doesn't drop off /api/remote/displays "
+                     "between its own pulls."),
     db: Session = Depends(get_db),
 ):
     """
@@ -177,7 +184,7 @@ async def get_display_image(
         logger.error(f"[epaper] render failed for {path.name}: {e}", exc_info=True)
         raise HTTPException(500, detail="Render failed")
 
-    touch_active_display(db, display_id)
+    touch_active_display(db, display_id, refresh_s=interval)
 
     return Response(
         content=data,
