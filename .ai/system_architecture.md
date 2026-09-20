@@ -104,6 +104,35 @@ adapter for Samsung Frame TVs — and is growing a **federated catalog** so anyo
   TV hidden behind a `FrameClient` ABC (`SamsungFrameClient` + `FakeFrameClient`) — all logic tested
   against the fake; real-hardware path in `integrations/frame-tv/`.
 
+### The appliance (all-in-one Pi) — managed entirely from the web admin
+- **No shell, by design.** A release image disables `sshd` and locks every password (ADR-064), so the
+  admin UI is the box's *only* management surface. Anything it can't do can't be done.
+- **The bridge (ADR-032, grown by ADR-119).** The unprivileged container writes
+  `data/appliance/request.json`; the root `sd-update.path` unit runs `sd-update`, which matches the
+  action in a **`case`** — never `eval` — and writes `status.json` back for the UI to poll. **16
+  whitelisted actions:** app update/scripts/reboot · time zone, orientation (+ self-reverting
+  preview), display name, self-heal mode, re-open-setup · restart display/app, poweroff, support
+  bundle · OS check, full OS upgrade, weekly schedule.
+- **Two gates, one validator.** `deploy/appliance/bin/sd-conf` owns the per-key validators and
+  `SAFE_VALUE_RE = ^[A-Za-z0-9_./:+@,-]*$` — load-bearing because four scripts `.`-source the conf as
+  shell, making every value potential code. The endpoint **loads that same file** (`deploy/` ships in
+  the image) so the first gate and the authoritative host-side gate run identical code (the ADR-071
+  `ref` pattern). Writes edit **in place**: comments, order and untouched keys survive (ADR-059 #1).
+  `HOSTNAME` is not writable at all (ADR-083).
+- **The conf mirror.** The app cannot read `/boot/firmware`. `sd-conf export` writes the non-secret
+  keys to `data/appliance/conf.json` after every edit and on the `sd-metrics` timer when the conf is
+  newer — which is what makes a hand-edited SD card visible in the UI. Every root-written file in
+  `data/appliance/` is `chown 1000:1000` + `0644` (ADR-037).
+- **OS updates (ADR-119).** `sd-os-check` reports nightly what `apt full-upgrade` would do, with a
+  reboot verdict and named reasons, and installs nothing. `update-system` decides the reboot question
+  *before* upgrading (afterwards the simulation is empty), then upgrades, brings the compose stack
+  back up (a containerd upgrade restarts the daemon under it), re-checks, and either reboots or
+  relaunches the kiosk. One `flock` is shared with the nightly check. The weekly schedule is opt-in
+  and its timer is **not** `Persistent` — a missed Sunday is skipped, never replayed at power-on.
+- **Diagnostics without SSH.** `sd-support-bundle` tars logs, versions, network and bridge state for
+  download; the conf is redacted, `.env` contributes key names only, and `nmcli` is never asked for
+  secrets — the user is the one who forwards the file.
+
 ### Framing — per-artwork focal points
 - Every artwork carries a normalized **`focal_x`/`focal_y`** (default `0.5,0.5` = center = prior behavior)
   — the visual subject the renderer keeps in frame. **One point feeds all three outputs:** the Canvas

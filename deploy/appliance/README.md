@@ -195,9 +195,29 @@ swaps in an in-memory fake and logs "would paint" instead of touching hardware.
 
 ## GUI maintenance & updates (all-in-one)
 
-In all-in-one mode the admin gains a **🩺 Devices** tab (host health) and an **Appliance Maintenance**
-card that can **Update App** (git pull `origin/main` + `docker compose up -d --build`), **Update
-Scripts** (re-run `install.sh`), and **Reboot** — no SSH.
+In all-in-one mode the admin gains a **🩺 Devices** tab with four cards, and they are the box's
+**only** management surface: a release image disables `sshd` and locks every password (ADR-064), so
+if it cannot be done here it cannot be done at all.
+
+| Card | What it does |
+|---|---|
+| **Server Health / Active Displays** | Live host metrics and the screens this server is serving. |
+| **⚙ Device Settings** | Display name · orientation (with a self-reverting on-screen preview) · time zone · self-heal mode · "move this display to a new Wi-Fi network" (re-opens the setup wizard). |
+| **⚡ Actions** | Restart display · restart app · reboot · shut down · create a support bundle (a redacted tarball of logs and versions, downloadable). |
+| **⬆ Updates** | The Pieria app (release or `origin/main`, plus Update Scripts) and the Raspberry Pi OS packages (a nightly check, an on-demand full upgrade, and an opt-in weekly schedule). |
+
+**Settings live in `pieria.conf` on the boot partition, and the app cannot read it** — that file is
+outside the container. So `sd-conf export` mirrors the non-secret keys to `data/appliance/conf.json`
+(refreshed after every edit, and by the `sd-metrics` timer whenever the conf is newer, which is what
+makes a hand-edited SD card show up in the UI instead of silently disagreeing with it).
+
+**OS updates (ADR-119).** `sd-os-check` runs nightly and reports what `apt full-upgrade` *would* do,
+including a reboot verdict with named reasons; it installs nothing. `update-system` does the upgrade
+the user asked for — deciding the reboot question *before* upgrading, since afterwards the simulation
+is empty — and either reboots or relaunches the kiosk. The weekly schedule is **off by default**, and
+its timer is deliberately **not** `Persistent`: a Sunday the box was switched off is skipped, never
+replayed at the next power-on. This supersedes the "blessed marker" design in
+`.ai/spec_managed_os_updates.md`.
 
 **How the privilege boundary is kept.** The web app runs in an **unprivileged container** and never
 gains host access. A GUI action only writes `data/appliance/request.json` into the bind-mounted data
@@ -206,12 +226,25 @@ dir. A root **systemd path unit** (`sd-update.path`) notices the file and runs t
 `case`, never evaluated), writes progress to `data/appliance/status.json` for the GUI to poll, and
 deletes the request. The container stays non-root; only the oneshot helper has host privilege.
 
+**Values are validated twice.** Four scripts `.`-source `pieria.conf` as shell, so a conf value is
+potential *code*, not just a bad setting. `deploy/appliance/bin/sd-conf` owns the validators and
+enforces `SAFE_VALUE_RE` (`^[A-Za-z0-9_./:+@,-]*$`); the endpoint loads that same file to reject a
+bad value early, and `sd-update` re-runs it on the host as the authoritative gate (the ADR-071 `ref`
+pattern). Nothing from a request is ever `eval`'d or passed unquoted. `sd-conf` also edits **in
+place**: comments, ordering and every key it wasn't asked to change survive byte-for-byte (ADR-059
+#1). Every file root writes into `data/appliance/` is handed back to uid 1000 and made `0644`
+(ADR-037) — otherwise the container reads it as EACCES.
+
 > **Trust assumption.** Anything that can write `data/appliance/request.json` (the app, or anyone
-> with write access to the data dir) can trigger a root-level pull/rebuild/reboot. The nonce is
+> with write access to the data dir) can trigger a root-level action — now including `poweroff` and
+> `reopen-setup`, which are the same risk class as the `reboot` that was already there. The nonce is
 > anti-stale-replay, not authentication. The bridge is enabled **only** when the all-in-one compose
-> sets `SD_APPLIANCE_MODE=all-in-one`, and `update-app` is pinned to `git reset --hard origin/main`
-> (no arbitrary ref/URL) — which **discards any local edits on the Pi**. The appliance is not an edit
-> host, so that's intended; do bench work on a clone, not the deployed box.
+> sets `SD_APPLIANCE_MODE=all-in-one`, and `update-app` is pinned to a real fetched tag or
+> `origin/main` (no arbitrary ref/URL) — which **discards any local edits on the Pi**. The appliance
+> is not an edit host, so that's intended; do bench work on a clone, not the deployed box.
+>
+> `HOSTNAME` is deliberately **not** writable through the bridge (ADR-083: renaming it trips a
+> Chromium `SingletonLock` bug that leaves the kiosk unable to start).
 
 ---
 
@@ -248,7 +281,12 @@ like Fire TV / bring-your-own-browser; it's simply inert here.)
 | `bin/sd-setup-card` | Renders the e-ink first-run setup card — instructions plus a `WIFI:` join QR — locally with PIL, so an unconfigured box looks *waiting* rather than *working* (ADR-058). |
 | `bin/sd-timesync-wait` | Bounded wait for NTP before the app touches the network. A flashed `.img` boots on `fake-hwclock`'s build-day timestamp, and a clock in the past fails TLS as "certificate is not yet valid" — which reads as "registry unreachable" (ADR-062). Always exits 0, so it can delay the stack but never block it. |
 | `bin/sd-image-prep` | Sysprep for the `.img` bake: `--enable-setup` (light, reversible) or `--full` (destructive — wipes identity/Wi-Fi/logs, re-arms host keys, removes `authorized_keys`, stamps the clock floor). See `docs/image-build.md`. |
-| `bin/sd-update` | (all-in-one) Root host helper for GUI updates — whitelisted update-app / update-scripts / reboot; triggered by `sd-update.path`. |
+| `bin/sd-update` | (all-in-one) Root host helper for every GUI action — 16 whitelisted actions matched in a `case`, never evaluated; triggered by `sd-update.path`. Writes `status.json`, persists `last-update.log`. |
+| `bin/sd-conf` | The single validator/reader/writer for `pieria.conf`. Importable and a CLI (`set`/`get`/`validate`/`export`). Enforces `SAFE_VALUE_RE` because the conf is `.`-sourced as shell; edits in place so comments and unknown keys survive (ADR-059 #1). The container loads this same file, so both gates run identical code. |
+| `bin/sd-rotate-now` | Rotates the live kiosk display via `wlr-randr` on the kiosk user's Wayland socket (root has no session of its own), resolving the real output name. Used for the orientation preview and its transient 30 s revert. |
+| `bin/sd-os-check` | (all-in-one) Reports what `apt full-upgrade` would do → `data/appliance/os-updates.json`, with a reboot verdict and named reasons. Installs nothing; always exits 0 (a failed timer is a red light nobody sees). Run nightly by `sd-os-check.timer`. |
+| `bin/sd-os-schedule` | (all-in-one) The opt-in weekly upgrade. Queues the same `update-system` request the GUI button writes, so scheduled and manual upgrades share one code path. Refuses unless the conf says `weekly`, and skips the week rather than stacking on an action in flight. |
+| `bin/sd-support-bundle` | (all-in-one) Collects logs, versions, network and bridge state into `data/appliance/support-bundle.tar.gz` for download. The conf is redacted, `.env` contributes key *names* only, and `nmcli` is called without `--show-secrets` — the user is the one who sends this file on. |
 | `bin/sd-eink` | (optional, `EINK_ENABLED=1`) Track B e-ink client: polls `/display/<id>/current.png` and blits it to a Pimoroni Inky Impression Spectra 6 panel over SPI. Long-running (not timer-driven); works all-in-one or as a satellite pointed at a remote hub. `--dry-run`/`EINK_DRY_RUN=1` smoke-tests it with no panel attached. |
 | `share/sd-splash.html` | Boot splash shown while the server starts, displaying the admin URL / `<hostname>.local` / IP; self-redirects to the canvas once the server answers. |
 | `systemd/autologin.conf` | `getty@tty1` drop-in enabling kiosk-user autologin. |
@@ -261,6 +299,8 @@ like Fire TV / bring-your-own-browser; it's simply inert here.)
 | `systemd/sd-app.service` | (all-in-one) Brings the compose stack up at boot. Exists because `restart: unless-stopped` only revives a container that *already exists* — a freshly flashed card has none, so without this it boots with no app, ever (ADR-060). |
 | `systemd/sd-timesync-wait.service` | (all-in-one) Runs `sd-timesync-wait` after `network-online`, ordered before `sd-app`. Deliberately not the stock `systemd-time-wait-sync.service`, which waits *forever* inside `sysinit.target` and would hang the entire boot on a box with no internet. |
 | `systemd/sd-update.{path,service}` | (all-in-one) Watches for GUI update requests and runs `sd-update`. |
+| `systemd/sd-os-check.{service,timer}` | (all-in-one) Nightly OS update check at 04:30 (+ up to 30 min jitter), `Nice=10`/idle I/O so it never costs the kiosk a frame. `Persistent=true` — a late check is harmless, it only reads. |
+| `systemd/sd-os-upgrade.{service,timer}` | (all-in-one) The opt-in weekly upgrade, installed **disabled**; the admin UI enables it and writes a drop-in with the chosen time. **`Persistent=false`** on purpose: a missed Sunday must not upgrade-and-reboot the moment someone switches their art frame on. |
 | `systemd/sd-eink.service` | (optional, `EINK_ENABLED=1`) Long-running unit running `sd-eink` (`Restart=always`; the poll/sleep cadence lives inside the client, not a timer). |
 | `udev/99-pieria-no-cec-pointer.rules` | Ignores the HDMI-CEC phantom pointer so no stray cursor shows on the display. |
 | `avahi/pieria.service` | (all-in-one) Advertises the server over mDNS with a friendly name. |
