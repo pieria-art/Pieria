@@ -440,6 +440,9 @@ async function refreshHostHealth() {
         _renderHostHealth(data.host || {});
         _renderActiveDisplays(data.displays || []);
         _renderDeviceSettings(data.host || {});
+        renderOsUpdates(data.host || {});
+        _renderOsSchedule(data.host || {});
+        _renderLastUpdateLog(data.host || {});
         const stamp = document.getElementById('device-health-updated');
         if (stamp) stamp.textContent = '· updated ' + new Date().toLocaleTimeString();
     } catch (e) { /* transient — next poll retries */ }
@@ -457,6 +460,8 @@ function _updateAppPrompt() {
 // browser — the box has no shell (ADR-064) — so a vague prompt is a trap, not a courtesy.
 const _MAINT_PROMPTS = {
     'update-scripts': 'Re-run the appliance installer to refresh the kiosk scripts and services?',
+    'update-system': 'Install the available Raspberry Pi OS updates now?\n\nThe screen goes dark for several minutes. If the kernel, firmware or container runtime is among them, the box reboots on its own when it\u2019s done. Best done at a time nobody is looking at the art.',
+    'check-os-updates': null,
     'reboot': 'Reboot this device now?',
     'relaunch-kiosk': 'Restart the picture on the screen? It goes dark for a few seconds. Nothing else is affected.',
     'restart-app': 'Restart the Pieria app? The screen goes dark for up to a minute and the phone remote is briefly unavailable.',
@@ -476,8 +481,11 @@ function _maintButtons(disabled) {
  *   opts   — { prompt: string|null (null skips the confirm), confirmText, danger }.
  */
 async function applianceAction(action, extra = {}, opts = {}) {
+    // `in`, not `||`: a null entry in the table means "this one needs no confirmation" and must not
+    // fall through to the generic prompt.
     const prompt = opts.prompt !== undefined ? opts.prompt
-        : (action === 'update-app' ? _updateAppPrompt() : (_MAINT_PROMPTS[action] || `Run ${action}?`));
+        : (action === 'update-app' ? _updateAppPrompt()
+            : (action in _MAINT_PROMPTS ? _MAINT_PROMPTS[action] : `Run ${action}?`));
     if (prompt !== null) {
         const ok = await confirmModal(prompt, {
             confirmText: opts.confirmText || (action === 'reboot' ? 'Reboot' : 'Proceed'),
@@ -551,6 +559,116 @@ function _pollMaint() {
         }
     }, 2500);
 }
+
+// --- OS updates (appliance only, ADR-119) ------------------------------------
+// The APP (a Pieria release) and the SYSTEM (Raspberry Pi OS packages) are different things on
+// different cadences. This renders the system half from the nightly sd-os-check report.
+let _osScheduleLoaded = false;
+
+function _ago(iso) {
+    if (!iso) return 'never';
+    const secs = (Date.now() - new Date(iso).getTime()) / 1000;
+    if (!isFinite(secs) || secs < 0) return 'just now';
+    if (secs < 3600) return `${Math.max(1, Math.round(secs / 60))} min ago`;
+    if (secs < 86400) return `${Math.round(secs / 3600)} h ago`;
+    return `${Math.round(secs / 86400)} d ago`;
+}
+
+function renderOsUpdates(host) {
+    const line = document.getElementById('os-updates-line');
+    if (!line) return;
+    const btn = document.getElementById('maint-update-system');
+    const os = host.os_updates;
+
+    if (!os) {
+        line.innerHTML = 'No check has run yet. ' + _osCheckLink();
+        if (btn) btn.disabled = true;
+        return;
+    }
+    if (os.error) {
+        // Almost always "no network". Say what it was, not "exit 100".
+        line.innerHTML = `<span style="color:#fbbf24;">⚠ Couldn\u2019t check for system updates:</span> ` +
+            `${_esc(os.error)} <span style="color:#64748b;">(${_esc(_ago(os.checked_at))})</span> ` + _osCheckLink();
+        if (btn) btn.disabled = true;
+        return;
+    }
+    if (!os.count) {
+        line.innerHTML = `✓ <span style="color:var(--success-color);">System is up to date</span> ` +
+            `<span style="color:#64748b;">(checked ${_esc(_ago(os.checked_at))})</span> ` + _osCheckLink();
+        if (btn) btn.disabled = true;
+        return;
+    }
+
+    // Name the packages people recognise rather than a bare count — "69 packages" tells nobody
+    // whether the thing that froze their TV is among them.
+    const notable = (os.packages || [])
+        .filter(p => /^(chromium|cage|linux-image|raspberrypi-kernel|rpi-eeprom|docker|containerd)/.test(p.name))
+        .slice(0, 3)
+        .map(p => `${_esc(p.name)} ${_esc(p.to)}`);
+    const reboot = os.reboot_likely
+        ? ` · <span style="color:#fbbf24;">reboot likely (${_esc((os.reboot_reasons || []).slice(0, 3).join(', '))})</span>`
+        : ' · no reboot expected';
+    const removals = (os.removals && os.removals.length)
+        ? ` · ${os.removals.length} to be removed` : '';
+    line.innerHTML = `<b style="color:#fbbf24;">${os.count} update${os.count === 1 ? '' : 's'} available</b>` +
+        (notable.length ? ` <span style="color:#cbd5e1;">incl. ${notable.join(', ')}</span>` : '') +
+        reboot + removals +
+        ` <span style="color:#64748b;">· checked ${_esc(_ago(os.checked_at))}</span> ` + _osCheckLink();
+    if (btn) btn.disabled = false;
+}
+
+function _osCheckLink() {
+    return `<a href="#" onclick="applianceAction('check-os-updates'); return false;" ` +
+        `style="margin-left:6px; color:var(--accent-color, #6366f1); font-size:0.78rem;">check now</a>`;
+}
+
+function _osScheduleChanged() {
+    const weekly = document.getElementById('os-schedule').value === 'weekly';
+    document.getElementById('os-schedule-time').style.display = weekly ? '' : 'none';
+}
+
+function _renderOsSchedule(host) {
+    if (_osScheduleLoaded) return;      // don't clobber a half-made choice on the 5s poll
+    const conf = (host.conf && host.conf.values) || {};
+    const sel = document.getElementById('os-schedule');
+    const time = document.getElementById('os-schedule-time');
+    if (!sel || !time) return;
+    sel.value = conf.OS_UPDATE_SCHEDULE === 'weekly' ? 'weekly' : 'off';
+    if (conf.OS_UPDATE_TIME) time.value = conf.OS_UPDATE_TIME;
+    _osScheduleChanged();
+    _osScheduleLoaded = true;
+}
+
+async function saveOsSchedule() {
+    const schedule = document.getElementById('os-schedule').value;
+    const time = document.getElementById('os-schedule-time').value || '03:00';
+    const prompt = schedule === 'weekly'
+        ? `Install system updates automatically every Sunday at ${time}?\n\nThis runs unattended: it installs whatever Raspberry Pi OS offers and reboots the box if the kernel, firmware or container runtime changed. A week the box is switched off is skipped, not caught up later.`
+        : 'Turn automatic system updates off? You can still update on demand from this page.';
+    await applianceAction('set-os-schedule', { schedule, time }, { prompt, danger: schedule === 'weekly' });
+    _osScheduleLoaded = false;
+    _dsLoaded = false;
+}
+
+// The last run's log, collapsed. status.json is overwritten by the next action, so after a reboot
+// this is the only record of what the previous one actually did.
+function _renderLastUpdateLog(host) {
+    const details = document.getElementById('last-update-details');
+    const pre = document.getElementById('last-update-log');
+    if (!details || !pre) return;
+    const lines = host.last_update_log;
+    const busy = document.getElementById('maint-log');
+    if (!lines || !lines.length || (busy && busy.style.display !== 'none')) {
+        details.style.display = 'none';
+        return;
+    }
+    details.style.display = '';
+    pre.textContent = lines.join('\n');
+}
+
+window.renderOsUpdates = renderOsUpdates;
+window.saveOsSchedule = saveOsSchedule;
+window._osScheduleChanged = _osScheduleChanged;
 
 // --- Device settings (appliance only, ADR-119) -------------------------------
 // The boot conf, editable from here because a shipped box has no other management surface: sshd is

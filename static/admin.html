@@ -660,15 +660,15 @@
                     </div>
                 </div>
 
-                <!-- Appliance Maintenance: GUI-triggered host updates via the sd-update bridge. -->
+                <!-- Updates: the app (a Pieria release) and the OS (Raspberry Pi packages) are two
+                     different things with two different cadences, on one card so they aren't
+                     confused for each other (ADR-119). -->
                 <div id="appliance-maintenance-slot" style="background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 25px;">
-                    <h3 style="margin-top: 0; font-size: 0.9rem; color: var(--text-color);">🛠 Appliance Maintenance</h3>
-                    <p style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 16px;">
-                        Manage this box without SSH.
-                    </p>
-                    <!-- ADR-071: update availability. Populated by refreshUpdateCheck(); shows the current
-                         version, whether a newer release exists, its notes, and a one-click update. -->
-                    <div id="update-check" style="margin-bottom:16px; padding:14px 16px; border-radius:9px;
+                    <h3 style="margin-top: 0; font-size: 0.9rem; color: var(--text-color);">⬆ Updates</h3>
+
+                    <!-- App: a Pieria release (ADR-071). Populated by refreshUpdateCheck(). -->
+                    <div style="font-size:0.72rem; text-transform:uppercase; letter-spacing:0.05rem; color:#94a3b8; margin-bottom:8px;">Pieria app</div>
+                    <div id="update-check" style="margin-bottom:12px; padding:14px 16px; border-radius:9px;
                         border:1px solid var(--border-color); background:#0f172a; font-size:0.82rem; color:#94a3b8;">
                         <span id="update-check-line">Checking for updates…</span>
                         <a href="#" id="update-check-now" onclick="refreshUpdateCheck(true); return false;"
@@ -680,10 +680,48 @@
                     <div style="display:flex; gap:10px; flex-wrap:wrap;">
                         <button class="secondary" data-maint id="maint-update-app" onclick="applianceAction('update-app')">⬆ Update App</button>
                         <button class="secondary" data-maint id="maint-update-scripts" onclick="applianceAction('update-scripts')">↻ Update Scripts</button>
-                        <button class="secondary" data-maint id="maint-reboot" onclick="applianceAction('reboot')" style="color:#ef4444;">⏻ Reboot</button>
                     </div>
-                    <div id="maint-status" style="margin-top:16px; font-size:0.82rem; color:#94a3b8; display:none;"></div>
+
+                    <!-- System: Raspberry Pi OS packages. -->
+                    <div style="margin-top:22px; padding-top:16px; border-top:1px solid var(--border-color);">
+                        <div style="font-size:0.72rem; text-transform:uppercase; letter-spacing:0.05rem; color:#94a3b8; margin-bottom:8px;">System (Raspberry Pi OS)</div>
+                        <div id="os-updates-line" style="margin-bottom:12px; padding:14px 16px; border-radius:9px;
+                            border:1px solid var(--border-color); background:#0f172a; font-size:0.82rem; color:#94a3b8;">
+                            Checking…
+                        </div>
+                        <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+                            <button class="secondary" data-maint id="maint-update-system" onclick="applianceAction('update-system')">⬆ Update system</button>
+                        </div>
+                        <div class="ds-hint">
+                            Installs whatever Raspberry Pi OS currently offers. The screen goes dark for
+                            several minutes, and the box reboots if the kernel, firmware or container
+                            runtime changed.
+                        </div>
+                    </div>
+
+                    <!-- Schedule: opt-in, and labelled as unattended. -->
+                    <div style="margin-top:22px; padding-top:16px; border-top:1px solid var(--border-color);">
+                        <div style="font-size:0.72rem; text-transform:uppercase; letter-spacing:0.05rem; color:#94a3b8; margin-bottom:8px;">Automatic system updates</div>
+                        <div class="ds-row">
+                            <select id="os-schedule" class="ds-input" onchange="_osScheduleChanged()">
+                                <option value="off">Off — I'll update manually</option>
+                                <option value="weekly">Weekly, on Sundays</option>
+                            </select>
+                            <input type="time" id="os-schedule-time" class="ds-input" value="03:00" style="flex:0 0 130px; display:none;">
+                            <button class="secondary" data-maint id="os-schedule-save" onclick="saveOsSchedule()">Save</button>
+                        </div>
+                        <div class="ds-hint" id="os-schedule-hint">
+                            Weekly installs updates and <b>may reboot this box</b> with nobody watching.
+                            A week the box is switched off is skipped, not caught up later.
+                        </div>
+                    </div>
+
+                    <div id="maint-status" style="margin-top:18px; font-size:0.82rem; color:#94a3b8; display:none;"></div>
                     <pre id="maint-log" style="margin-top:10px; max-height:200px; overflow:auto; background:#0f172a; border:1px solid var(--border-color); border-radius:8px; padding:12px; font-size:0.72rem; color:#cbd5e1; display:none; white-space:pre-wrap;"></pre>
+                    <details id="last-update-details" style="margin-top:10px; display:none;">
+                        <summary style="cursor:pointer; font-size:0.78rem; color:#94a3b8;">Last run log</summary>
+                        <pre id="last-update-log" style="margin-top:8px; max-height:200px; overflow:auto; background:#0f172a; border:1px solid var(--border-color); border-radius:8px; padding:12px; font-size:0.72rem; color:#cbd5e1; white-space:pre-wrap;"></pre>
+                    </details>
                 </div>
             </div>
         </div>
