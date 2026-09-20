@@ -17,6 +17,8 @@ import json
 import os
 import shutil
 import subprocess
+import time
+from datetime import UTC, datetime
 
 import config
 
@@ -140,6 +142,71 @@ def read_watchdog():
     return None
 
 
+def _read_json(name):
+    """One shape for every root-written JSON mailbox file in data/appliance/: the file may be absent
+    (before the first host run), mid-write, or unreadable — all of which mean None, never an
+    exception. The endpoint must not 500 because a timer hasn't fired yet."""
+    path = config.APPLIANCE_DIR / name
+    try:
+        if path.exists():
+            return json.loads(path.read_text())
+    except (OSError, ValueError, json.JSONDecodeError):
+        pass
+    return None
+
+
+def read_conf():
+    """The non-secret mirror of pieria.conf, exported by `sd-conf export` (written after every conf
+    edit and self-healed by the sd-metrics timer). The app NEVER reads /boot/firmware itself — it is
+    outside the container — so this file is how the admin UI knows the device's current settings."""
+    return _read_json("conf.json")
+
+
+def read_os_updates():
+    """Last `sd-os-check` result: how many packages apt would install and whether that needs a
+    reboot. None before the nightly timer has ever run."""
+    return _read_json("os-updates.json")
+
+
+def read_support_bundle():
+    """Presence + age + size of the diagnostic tarball, so the admin UI can offer the download link
+    and say how fresh it is. The bundle itself is served by its own endpoint."""
+    path = config.APPLIANCE_DIR / "support-bundle.tar.gz"
+    try:
+        if not path.exists():
+            return {"exists": False}
+        st = path.stat()
+        return {"exists": True,
+                "created_at": datetime.fromtimestamp(st.st_mtime, UTC).strftime("%Y-%m-%dT%H:%M:%SZ"),
+                "size_bytes": st.st_size}
+    except OSError:
+        return {"exists": False}
+
+
+def read_last_update_log(max_lines: int = 60):
+    """Tail of the last sd-update run. status.json only carries a live tail and is overwritten by the
+    next action, so this is the only record of what the PREVIOUS action actually did — the thing you
+    want after a reboot that ate the status."""
+    path = config.APPLIANCE_DIR / "last-update.log"
+    try:
+        if path.exists():
+            return path.read_text().splitlines()[-max_lines:]
+    except OSError:
+        pass
+    return None
+
+
+def container_tz():
+    """The clock this PROCESS is on. ADR-118: the Pi sat on Europe/London while the container ran on
+    UTC, so Night & Quiet Hours fired hours off and nothing in the UI could show the disagreement.
+    Surfacing both halves is what makes that visible — compare against conf.json's host_timezone."""
+    try:
+        return {"tzname": list(time.tzname), "offset_s": -time.timezone,
+                "now": datetime.now().strftime("%Y-%m-%dT%H:%M:%S")}
+    except (OSError, ValueError):
+        return None
+
+
 def collect() -> dict:
     """Assemble a single JSON-able health snapshot. Never raises."""
     return {
@@ -150,4 +217,9 @@ def collect() -> dict:
         "disk": read_disk(),
         "throttled": read_throttled(),
         "watchdog": read_watchdog(),
+        "conf": read_conf(),
+        "os_updates": read_os_updates(),
+        "support_bundle": read_support_bundle(),
+        "last_update_log": read_last_update_log(),
+        "container_tz": container_tz(),
     }
