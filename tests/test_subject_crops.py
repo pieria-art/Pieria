@@ -212,6 +212,40 @@ def test_subject_box_falls_back_to_largest_inscribed_when_unreachable():
     assert (y1 - y0) >= hi - 0.02
 
 
+def test_subject_box_landscape_fallback_anchors_on_top_not_centre():
+    """Regression guard for the real bug: an upright bird (Wild Turkey, Golden Eagle, stacked
+    Snowy Owls) is tall enough that a LANDSCAPE key (16:9/4:3) can't reach the coverage floor at
+    any vertical position -- centring on the subject's own extent (the portrait-key rule) still
+    routinely lands the top edge below the head, since the box is short relative to the subject.
+    The landscape fallback must instead anchor the box's TOP edge at the subject's own top extent
+    (plus TOP_ANCHOR_MARGIN_FRAC headroom) so the head is always kept and the loss falls on the
+    feet/base -- never the reverse, which is what centring did before this fix."""
+    h, w = 200, 100
+    mask = np.zeros((h, w), dtype=bool)
+    mask[10:190, 40:60] = True  # a tall, uniform-density column spanning 90% of the height
+
+    # Landscape key: box height (hi=0.75 at source_aspect=1.0) is well short of the subject's own
+    # 90%-of-height extent, so coverage=0.97 is unreachable -> fallback engages.
+    box = sc.subject_box(mask, 4 / 3, 1.0, coverage=0.97)
+    x0, y0, x1, y1 = box
+    top_extent = 10 / h
+    expected_y0 = max(0.0, top_extent - sc.TOP_ANCHOR_MARGIN_FRAC)
+    assert abs(y0 - expected_y0) < 0.02, "landscape fallback must anchor near the subject's own top"
+    # centring (the old, wrong behaviour) would have placed y0 near the extent's MIDPOINT (~0.4),
+    # far below the top -- explicitly rule that out too.
+    assert y0 < 0.15
+
+    # Portrait key: choose a source_aspect that ALSO leaves vertical positioning freedom (hi<1),
+    # so the contrast is real -- centring is still correct there, not top-anchoring.
+    pbox = sc.subject_box(mask, 3 / 4, 0.5, coverage=0.97)
+    px0, py0, px1, py1 = pbox
+    subject_mid = (10 + 190) / 2 / h
+    box_h = py1 - py0
+    expected_py0 = subject_mid - box_h / 2
+    assert abs(py0 - expected_py0) < 0.02, "portrait fallback must still centre on the extent"
+    assert py0 > 0.15  # nowhere near the top-anchored landscape result
+
+
 def test_subject_box_is_approximately_minimal_area():
     mask = np.zeros((120, 100), dtype=bool)
     mask[40:80, 30:70] = True
