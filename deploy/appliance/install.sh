@@ -110,6 +110,10 @@ install -m 0755 "$BIN_SRC/sd-kiosk-launch"   /usr/local/bin/sd-kiosk-launch
 install -m 0755 "$BIN_SRC/sd-wait-for-server" /usr/local/bin/sd-wait-for-server
 install -m 0755 "$BIN_SRC/sd-rotate-keep"    /usr/local/bin/sd-rotate-keep
 install -m 0755 "$BIN_SRC/sd-metrics"        /usr/local/bin/sd-metrics
+# sd-conf is the single conf validator/writer (ADR-119) — sd-update, sd-metrics and sd-image-prep all
+# shell out to it, and the container loads the SAME file to validate before it ever queues a request.
+install -m 0755 "$BIN_SRC/sd-conf"           /usr/local/bin/sd-conf
+install -m 0755 "$BIN_SRC/sd-rotate-now"     /usr/local/bin/sd-rotate-now
 install -m 0755 "$BIN_SRC/sd-quiet-hours"    /usr/local/bin/sd-quiet-hours
 install -m 0755 "$BIN_SRC/sd-watchdog"       /usr/local/bin/sd-watchdog
 install -m 0755 "$BIN_SRC/sd-watchdog-advance" /usr/local/bin/sd-watchdog-advance
@@ -298,7 +302,8 @@ if [ "${ALL_IN_ONE:-0}" = "1" ]; then
   echo "    sd-app.service installed + ENABLED (creates the stack on boot, even on a fresh flash)."
 
   echo "==> Installing host metrics timer (Device Health throttle/under-voltage reading)"
-  sed "s#__REPO_ROOT__#$REPO_ROOT#g" "$UNIT_SRC/sd-metrics.service" > /etc/systemd/system/sd-metrics.service
+  sed -e "s#__REPO_ROOT__#$REPO_ROOT#g" -e "s#__BOOT_CONF__#$BOOT_CONF#g" \
+    "$UNIT_SRC/sd-metrics.service" > /etc/systemd/system/sd-metrics.service
   install -m 0644 "$UNIT_SRC/sd-metrics.timer" /etc/systemd/system/sd-metrics.timer
   systemctl daemon-reload
   systemctl enable --now sd-metrics.timer || true
