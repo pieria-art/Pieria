@@ -224,6 +224,52 @@ def test_run_tick_updates_state_on_paint():
     assert state["last_etag"] == '"e1"'
 
 
+# --- ADR-121: the client reports its own actual cadence back to the server -------------------------
+
+def test_push_once_sends_no_interval_by_default():
+    urls = []
+
+    def _fetch(url):
+        urls.append(url)
+        return _png_bytes(), {"ETag": '"e1"'}
+
+    ec.push_once(_cfg(), _fetch, ec.FakeInkyClient(), last_etag=None)
+    assert "interval=" not in urls[0]
+
+
+def test_push_once_appends_the_interval_it_is_given():
+    urls = []
+
+    def _fetch(url):
+        urls.append(url)
+        return _png_bytes(), {"ETag": '"e1"'}
+
+    ec.push_once(_cfg(), _fetch, ec.FakeInkyClient(), last_etag=None, interval=900)
+    assert "interval=900" in urls[0]
+
+
+def test_run_tick_carries_the_previous_ticks_sleep_as_the_next_ticks_interval():
+    """The client can't know THIS tick's actual sleep before the fetch that determines it (the sleep is
+    max(X-Refresh-After, EINK_MIN_INTERVAL), and X-Refresh-After only arrives in the response) — so it
+    reports the previous tick's computed sleep, which converges immediately and matches steady state."""
+    urls = []
+
+    def _fetch(url):
+        urls.append(url)
+        return _png_bytes(), {"ETag": '"e1"', "X-Refresh-After": "30"}
+
+    cfg = _cfg(min_interval=900)
+    state: dict = {}
+
+    res1 = ec.run_tick(cfg, _fetch, ec.FakeInkyClient(), lambda: {"quiet": False}, state)
+    assert "interval=" not in urls[0]        # first tick ever: nothing to report yet
+    assert res1["sleep"] == 900 and state["last_interval"] == 900
+
+    res2 = ec.run_tick(cfg, _fetch, ec.FakeInkyClient(), lambda: {"quiet": False}, state)
+    assert "interval=900" in urls[1]         # second tick reports the first tick's actual sleep
+    assert res2["sleep"] == 900
+
+
 # ------------------------------------------------------------------ InkyClient hardware mapping
 
 class _FakeInky:

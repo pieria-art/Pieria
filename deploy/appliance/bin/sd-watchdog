@@ -4,9 +4,20 @@
 #
 # Probes the server (HTTP), the kiosk (cage + Chromium alive), and — via sd-watchdog-advance — whether
 # the Canvas PAGE is alive (page-owned heartbeat) and its picture still changing. On SUSTAINED failure (hysteresis:
-# FAIL_THRESHOLD consecutive bad probes, so a transient blip is ignored) it escalates:
-#     relaunch kiosk  ->  restart container  ->  reboot
-# with a reboot cap so a genuinely-broken box can't boot-loop.
+# FAIL_THRESHOLD consecutive bad probes, so a transient blip is ignored) it escalates —
+#
+# ADR-121 (2026-09-20): a browser-level fault (server reachable, kiosk/paint/live/advance unhealthy)
+# escalates ONLY as far as relaunch-kiosk, then gives up and just observes. Only the server being
+# genuinely unreachable can reach restart-container / reboot — a reboot never fixed a wedged page, and
+# the previous escalation-by-fail-count-alone rebooted through an in-flight app update six times in
+# 50 minutes on the bench:
+#     fails 1-2  no action (hysteresis)
+#     fails 3-5  browser fault -> relaunch-kiosk   |  server down -> restart-container
+#     fails 6+   browser fault -> give up, observe |  server down -> reboot
+# with a reboot cap (3 per 6h) and a 10-minute post-boot grace so a genuinely-broken box can't
+# boot-loop, or compound a crash-on-boot into something tighter than the timer's own 60s cadence. The
+# watchdog also PAUSES ENTIRELY — no probe, no action, fail counter untouched — while an Admin ->
+# Devices appliance action (sd-update's own status.json) is queued/running and under 30 minutes old.
 #
 # MODE (pieria.conf  WATCHDOG=):
 #   observe  (default) — probe + log what it WOULD do, take NO action. Safe to run un-verified.
@@ -45,14 +56,31 @@ REBOOTS="$OUT_DIR/watchdog-reboots.log"   # epoch per reboot (persistent → sur
 COMPOSE=(-f docker-compose.yml -f deploy/appliance/compose/docker-compose.appliance.yml)
 
 FAIL_THRESHOLD=3        # consecutive bad probes before acting (hysteresis)
+# ADR-121: the SAME fails count that promotes a server-down box to reboot is, for a browser-level
+# fault (server reachable, kiosk/paint/live/advance unhealthy), the point where we STOP acting instead
+# — a reboot never fixed a wedged page (that's the whole 2026-09-20 incident: 6 reboots in 50 minutes,
+# each one killing an in-flight apt upgrade). "3 consecutive relaunch-kiosk actions without recovery"
+# is fails 3,4,5; fails reaching this second threshold (6) means those 3 relaunches didn't help.
+ESCALATE_AFTER=$((FAIL_THRESHOLD * 2))
 REBOOT_CAP=3            # at most this many reboots ...
-REBOOT_WINDOW=1800      # ... within this many seconds (boot-loop guard)
+REBOOT_WINDOW=$((6 * 3600))   # ... within this many seconds (boot-loop guard) — was 1800s (30 min),
+                               # which only slowed the 2026-09-20 loop rather than stopping it.
+MIN_UPTIME_FOR_REBOOT=600     # never reboot within this many seconds of boot (avoid compounding a
+                               # crash-on-boot into a tighter loop than the timer's own 60s cadence).
+UPTIME_FILE="${SD_UPTIME_FILE:-/proc/uptime}"   # overridable so a test can fake "just booted"
 
 now="$(date +%s)"
 now_iso="$(date -Is 2>/dev/null || date)"
 
 # --- enforce actions (only called when MODE=enforce) --------------------------
 reboot_capped() {
+  local uptime_s
+  uptime_s="$(awk '{print int($1)}' "$UPTIME_FILE" 2>/dev/null)"
+  case "$uptime_s" in ''|*[!0-9]*) uptime_s=999999 ;; esac
+  if [ "$uptime_s" -lt "$MIN_UPTIME_FOR_REBOOT" ]; then
+    logger -t sd-watchdog "within ${MIN_UPTIME_FOR_REBOOT}s of boot (uptime ${uptime_s}s) — refusing to reboot"
+    return 0
+  fi
   # Boot-loop guard: refuse to reboot if we've already rebooted REBOOT_CAP times in REBOOT_WINDOW.
   local recent=0
   if [ -r "$REBOOTS" ]; then
@@ -73,6 +101,58 @@ perform() {
     reboot)            reboot_capped ;;
   esac
 }
+
+# --- pause while an appliance action is in flight (ADR-121) --------------------
+# sd-update's own actions (update-app/update-system/restart-app/...) can legitimately leave the
+# server unreachable or the kiosk mid-reload for minutes — and update-system's reboot can take the
+# whole box down. None of that is a fault the watchdog should act on: the 2026-09-20 incident's
+# reboot loop each time killed a running `update-system` apt download outright. If the appliance
+# bridge's own status.json says an action is queued/running and recent, pause entirely — no probes,
+# no fail-counter change — until it finishes or goes stale (30 min: long enough for a real
+# full-upgrade, short enough that a genuinely stuck action doesn't disable self-heal forever).
+APPLIANCE_STATUS="$OUT_DIR/status.json"
+IN_FLIGHT_MAX_AGE=1800
+if [ -r "$APPLIANCE_STATUS" ]; then
+  read -r ia_state ia_age ia_action < <(python3 - "$APPLIANCE_STATUS" 2>/dev/null <<'PY'
+import datetime
+import json
+import sys
+
+try:
+    d = json.load(open(sys.argv[1]))
+except Exception:
+    print("", 999999, "")
+    raise SystemExit(0)
+
+state = d.get("state") or ""
+action = d.get("action") or "update"
+ts = d.get("updated_at") or d.get("queued_at") or ""
+age = 999999
+if ts:
+    try:
+        dt = datetime.datetime.fromisoformat(str(ts).replace("Z", "+00:00"))
+        if dt.tzinfo is None:
+            dt = dt.replace(tzinfo=datetime.timezone.utc)
+        age = int((datetime.datetime.now(datetime.timezone.utc) - dt).total_seconds())
+    except Exception:
+        age = 999999
+print(state, age, action)
+PY
+)
+  case "$ia_age" in ''|*[!0-9]*) ia_age=999999 ;; esac
+  case "$ia_state" in
+    queued|running)
+      if [ "$ia_age" -lt "$IN_FLIGHT_MAX_AGE" ]; then
+        tmp="$(mktemp "$OUT_DIR/.watchdog.XXXXXX" 2>/dev/null || echo "$STATUS.tmp")"
+        printf '{"mode":"%s","checked_at":"%s","action":"%s","message":"%s"}\n' \
+          "$MODE" "$now_iso" "paused: $ia_action in flight" "paused: $ia_action in flight" > "$tmp"
+        mv -f "$tmp" "$STATUS" 2>/dev/null || true
+        chmod 0644 "$STATUS" 2>/dev/null || true
+        exit 0
+      fi
+      ;;
+  esac
+fi
 
 # --- probes -------------------------------------------------------------------
 server_ok=0
@@ -128,20 +208,34 @@ if [ "$healthy" = 1 ]; then
   fails=0
 else
   fails=$((fails + 1))
-  # Pick the escalation rung. Server down is worse than a dead browser; a persistently-failing box
-  # escalates to reboot only after we've already tried the cheaper fixes (fails past 2x threshold).
+  # Pick the escalation rung. A browser-level fault (server reachable, but kiosk/paint/live/advance
+  # unhealthy) NEVER escalates past relaunch-kiosk — restart-container and reboot are reserved for the
+  # server being genuinely unreachable, sustained. ADR-121: the prod incident escalated a wedged-page
+  # fault straight through to reboot, and a reboot never fixed a paint fault — it only killed whatever
+  # else was running (an in-flight apt upgrade, six times in 50 minutes).
   want="none"
   if [ "$fails" -ge "$FAIL_THRESHOLD" ]; then
-    if [ "$fails" -ge $((FAIL_THRESHOLD * 2)) ]; then
-      want="reboot"
-    elif [ "$server_ok" = 0 ]; then
-      want="restart-container"
+    if [ "$server_ok" = 0 ]; then
+      if [ "$fails" -ge "$ESCALATE_AFTER" ]; then
+        want="reboot"
+      else
+        want="restart-container"
+      fi
     else
-      want="relaunch-kiosk"
+      if [ "$fails" -ge "$ESCALATE_AFTER" ]; then
+        want="give-up"
+      else
+        want="relaunch-kiosk"
+      fi
     fi
   fi
 
-  if [ "$want" != "none" ]; then
+  if [ "$want" = "give-up" ]; then
+    # 3 relaunch-kiosk attempts (fails 3,4,5) didn't recover it — stop acting and just observe until
+    # the probes recover on their own or a human intervenes. Never reboot for this.
+    action="give-up"
+    message="giving up on kiosk relaunch; observe (fails=$fails, server reachable) — a reboot never fixed a paint fault"
+  elif [ "$want" != "none" ]; then
     if [ "$MODE" = "enforce" ]; then
       action="$want"
       message="enforcing: $want (fails=$fails)"

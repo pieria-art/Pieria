@@ -237,6 +237,12 @@ LIVE_WINDOW_SEC = 15
 # one), so without this a future daily-refresh panel would linger in the dropdown for days after being
 # unplugged.
 MAX_KNOWN_WINDOW_SEC = 6 * 3600
+#: SettingsModel KV key prefix for a display's OWN reported pull cadence (ADR-121). The e-ink client's
+#: actual sleep is max(display_time, EINK_MIN_INTERVAL) — a client-side floor the server has no other
+#: way to learn. A 30s playlist behind a 900s EINK_MIN_INTERVAL made the 2*display_time window (60s)
+#: hide the panel for 14 of every 15 minutes (2026-09-20 bench incident) even though it was pulling
+#: exactly on schedule. Stored as a plain KV row (no schema migration) alongside `last_playlist:<id>`.
+_REFRESH_S_PREFIX = "display_refresh_s:"
 
 
 def _as_utc(dt: datetime) -> datetime:
@@ -258,28 +264,61 @@ def known_displays(db: Session) -> list[tuple["ActiveDisplayModel", bool]]:
     an FK, and the rename path doesn't update it — so a renamed playlist misses the join and collapses
     to the LIVE window, which self-heals on that display's next frame serve. Same fallback covers a
     display that has checked in but never served (current_playlist is null).
+
+    The window also considers each display's OWN reported pull cadence (`refresh_s`, ADR-121), not
+    just 2x the playlist's display_time — a client whose actual sleep floor (EINK_MIN_INTERVAL) is
+    longer than that must still be widened, or it goes KNOWN-window-invisible between its own pulls.
     """
     now = datetime.now(UTC)   # one clock for every row in the response
     rows = (db.query(ActiveDisplayModel, PlaylistModel.display_time)
               .outerjoin(PlaylistModel, PlaylistModel.name == ActiveDisplayModel.current_playlist)
               .all())
+    refresh_by_display = {}
+    if rows:
+        settings_rows = (db.query(SettingsModel.setting_key, SettingsModel.setting_value)
+                            .filter(SettingsModel.setting_key.like(f"{_REFRESH_S_PREFIX}%"))
+                            .all())
+        for key, value in settings_rows:
+            refresh_by_display[key[len(_REFRESH_S_PREFIX):]] = value
+
     out = []
     for row, display_time in rows:
-        window = min(max(LIVE_WINDOW_SEC, 2 * (display_time or 0)), MAX_KNOWN_WINDOW_SEC)
+        refresh_s = 0
+        raw = refresh_by_display.get(row.display_id)
+        if raw is not None:
+            try:
+                refresh_s = int(raw)
+            except (TypeError, ValueError):
+                refresh_s = 0
+        window = min(max(LIVE_WINDOW_SEC, 2 * (display_time or 0), 2 * refresh_s), MAX_KNOWN_WINDOW_SEC)
         if _as_utc(row.last_seen_at) > now - timedelta(seconds=window):
             out.append((row, _is_live(row, now)))
     return out
 
 
-def touch_active_display(db: Session, display_id: str):
+def touch_active_display(db: Session, display_id: str, refresh_s: Optional[int] = None):
     """Upsert last_seen_at so pull-on-wake e-ink frames show up in the remote/
-    admin just like WebSocket-connected Canvas displays."""
+    admin just like WebSocket-connected Canvas displays.
+
+    `refresh_s` (ADR-121) is the client's own reported pull cadence — sent by the e-ink pull route as
+    the `interval` query param — persisted into SettingsModel as `display_refresh_s:<display_id>` (no
+    schema migration needed) so known_displays() can widen its window to match. None (Canvas, or an
+    e-ink client that hasn't been updated yet) leaves any previously-stored value untouched.
+    """
     try:
         d = db.query(ActiveDisplayModel).filter(ActiveDisplayModel.display_id == display_id).first()
         if d:
             d.last_seen_at = datetime.now(UTC)
         else:
             db.add(ActiveDisplayModel(display_id=display_id))
+        if refresh_s is not None:
+            key = f"{_REFRESH_S_PREFIX}{display_id}"
+            row = db.query(SettingsModel).filter(SettingsModel.setting_key == key).first()
+            value = str(refresh_s)
+            if row is None:
+                db.add(SettingsModel(setting_key=key, setting_value=value))
+            elif row.setting_value != value:
+                row.setting_value = value
         db.commit()
     except Exception as e:
         logger.error(f"touch_active_display error for {display_id}: {e}")

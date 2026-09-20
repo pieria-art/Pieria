@@ -195,11 +195,22 @@ def push_once(
     client: EinkClient,
     *,
     last_etag: Optional[str] = None,
+    interval: Optional[int] = None,
 ) -> dict:
     """Pull the current image and paint it if it changed. Returns a status dict; never raises for
     expected conditions (unchanged). A fetch or client.show error propagates to the caller
-    (run_tick handles it) — matches frame_push's contract."""
-    content, headers = fetch_fn(cfg.pull_url)
+    (run_tick handles it) — matches frame_push's contract.
+
+    `interval` (ADR-121) is this client's own actual pull cadence — the sleep it settled on after its
+    LAST tick, i.e. max(display_time, EINK_MIN_INTERVAL). Sent as `&interval=` so the server can widen
+    its KNOWN-display window to match a cadence slower than 2x display_time (a fixed EINK_MIN_INTERVAL
+    floor made a 30s playlist's panel disappear from /api/remote/displays for 14 of every 15 minutes —
+    the 2026-09-20 bench incident). run_tick supplies the previous tick's `sleep`; the very first tick
+    of a run has none yet, so it's omitted (the server's un-widened fallback covers that one request)."""
+    url = cfg.pull_url
+    if interval:
+        url = f"{url}&interval={int(interval)}"
+    content, headers = fetch_fn(url)
 
     etag = headers.get("ETag") or headers.get("etag")
     if not etag:
@@ -256,7 +267,8 @@ def run_tick(
         return {"status": "quiet", "sleep": cfg.min_interval}
 
     try:
-        res = push_once(cfg, fetch_fn, client, last_etag=state.get("last_etag"))
+        res = push_once(cfg, fetch_fn, client, last_etag=state.get("last_etag"),
+                         interval=state.get("last_interval"))
     except Exception as e:
         # Escalating backoff, starting SHORT. An all-in-one Pi boots its e-ink client seconds before its
         # own Docker container binds the port, so the very first tick after a fresh setup reliably gets
@@ -277,6 +289,9 @@ def run_tick(
         res["sleep"] = max(res.get("refresh_after", cfg.min_interval), cfg.min_interval)
     else:  # unchanged
         res["sleep"] = cfg.min_interval
+    # Remembered for the NEXT tick's `&interval=` (see push_once) — one tick behind, which converges
+    # immediately and matches steady state since a playlist's display_time rarely changes tick to tick.
+    state["last_interval"] = res["sleep"]
     return res
 
 

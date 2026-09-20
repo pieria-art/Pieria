@@ -12,6 +12,11 @@
 # once at the endpoint, and authoritatively here by `sd-conf`, which enforces SAFE_VALUE_RE because
 # the conf is `.`-sourced as shell by four scripts. Nothing from the request is ever unquoted.
 #
+# ADR-121: request.json survives a reboot untouched and sd-update.path re-fires on the next boot, so
+# a request whose `requested_at` predates THIS boot means a reboot happened before it finished (its
+# own end-of-run reboot, or the watchdog rebooting mid-apt) — it is reported as interrupted and
+# consumed, never silently re-run. `SD_BOOT_EPOCH` overrides the boot-time read for tests.
+#
 # Usage: sd-update <REPO_ROOT>   (the dir whose ./data is bind-mounted into the container)
 set -u
 
@@ -62,6 +67,7 @@ DISPLAY_ID="$(_get display_id)"
 WATCHDOG_MODE="$(_get watchdog)"
 SCHEDULE="$(_get schedule)"
 SCHED_TIME="$(_get time)"
+REQUESTED_AT="$(_get requested_at)"
 
 # Root writes into the container's mailbox. ADR-037: hand every file back to uid 1000 and make it
 # world-readable, or the next GUI read is an EACCES nobody can explain (the exact class of fault
@@ -121,6 +127,28 @@ persist_log() {
     || { cp -f "$LOG" "$DIR/last-update.log" 2>/dev/null && handback "$DIR/last-update.log"; } || true
   rm -f "$LOG"
 }
+
+# ADR-121 fix 4: request.json survives a reboot untouched (it's a plain file in the bind-mounted
+# mailbox), and sd-update.path re-fires on every start — so a request queued before a reboot that
+# then actually happened (update-system's own end-of-run reboot, or the watchdog rebooting mid-apt,
+# 2026-09-20) silently RE-RUNS at the next boot instead of reporting what happened to the run that
+# was already in flight. Compare the request's own `requested_at` against this boot's start time;
+# older-than-boot means "a reboot happened out from under this request" for ANY action, not just
+# update-system, so the check runs here once rather than special-cased per arm.
+BOOT_EPOCH="${SD_BOOT_EPOCH:-}"
+if [ -n "$REQUESTED_AT" ] && [ -z "$BOOT_EPOCH" ]; then
+  BOOT_EPOCH="$(date -d "$(uptime -s 2>/dev/null)" +%s 2>/dev/null || echo 0)"
+fi
+if [ -n "$REQUESTED_AT" ] && [ -n "$BOOT_EPOCH" ] && [ "$BOOT_EPOCH" != "0" ]; then
+  REQUESTED_EPOCH="$(date -d "$REQUESTED_AT" +%s 2>/dev/null || echo 0)"
+  if [ "$REQUESTED_EPOCH" != "0" ] && [ "$REQUESTED_EPOCH" -lt "$BOOT_EPOCH" ]; then
+    echo "+ requested_at=$REQUESTED_AT predates this boot (epoch $BOOT_EPOCH) — a reboot happened before it finished" >> "$LOG"
+    write_status error "interrupted by a reboot before it finished — run it again"
+    rm -f "$REQ"
+    persist_log
+    exit 0
+  fi
+fi
 
 # Writing the conf is deliberately NOT behind `run`: it is the one effect a DRY_RUN test can observe,
 # and sd-conf is pure file surgery with no host side effects (it touches no service, no network, no

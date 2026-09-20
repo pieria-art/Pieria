@@ -6,6 +6,7 @@ client can reach — so a regression here is invisible until it shows up on glas
 """
 
 import io
+from datetime import UTC, datetime, timedelta
 
 import pytest
 from fastapi.testclient import TestClient
@@ -18,7 +19,7 @@ import app as app_module
 import routers.display as routers_display
 from app import app
 from database import Base, get_db
-from models import ArtworkModel, PlaylistModel
+from models import ActiveDisplayModel, ArtworkModel, PlaylistModel
 
 
 @pytest.fixture
@@ -155,3 +156,41 @@ def test_pull_404s_only_when_nothing_is_playable(client):
     r = c.get("/display/eink1/current.png")
     assert r.status_code == 404
     assert "artwork" in r.json()["detail"].lower()
+
+
+# --- ADR-121: the pull's own reported cadence widens the KNOWN window --------------------------
+# The bench incident: a 30s playlist behind a fixed EINK_MIN_INTERVAL (900s) made the old rule's
+# 2*display_time=60s window hide the panel for 14 of every 15 minutes even though it never missed a
+# pull. `seeded`'s playlist ("default") is left at PlaylistModel's default display_time=30, so the
+# OLD rule's window is exactly 60s here — the boundary this fix must move.
+
+def _age(db, display_id, seconds):
+    row = db.query(ActiveDisplayModel).filter(ActiveDisplayModel.display_id == display_id).first()
+    row.last_seen_at = datetime.now(UTC) - timedelta(seconds=seconds)
+    db.commit()
+
+
+def test_pull_with_interval_keeps_the_display_known_past_the_old_window(seeded):
+    c, db, _ = seeded
+    r = c.get("/display/eink1/current.png", params={"interval": 900})
+    assert r.status_code == 200
+    _age(db, "eink1", 1700)   # past the old 60s window, inside 2*interval=1800s
+
+    displays = c.get("/api/remote/displays").json()
+    assert len(displays) == 1
+    assert displays[0]["display_id"] == "eink1"
+    assert displays[0]["live"] is False
+
+
+def test_pull_without_interval_keeps_the_old_rule(seeded):
+    c, db, _ = seeded
+    r = c.get("/display/eink1/current.png")
+    assert r.status_code == 200
+    _age(db, "eink1", 90)     # past the old 60s window
+
+    assert c.get("/api/remote/displays").json() == []
+
+
+def test_pull_interval_below_15_is_rejected(seeded):
+    c, _, _ = seeded
+    assert c.get("/display/eink1/current.png", params={"interval": 5}).status_code == 422
