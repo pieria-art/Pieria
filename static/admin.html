@@ -578,6 +578,63 @@
                     </div>
                 </div>
 
+                <!-- Device settings: the boot conf, editable without SSH (ADR-119). A shipped box has
+                     no shell at all, so this card is the only way any of these can change. -->
+                <div id="device-settings-card" style="background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 25px;">
+                    <h3 style="margin-top: 0; font-size: 0.9rem; color: var(--text-color);">⚙ Device Settings</h3>
+                    <p style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 18px;">
+                        How this box is set up. Changes are applied on the device itself.
+                    </p>
+
+                    <!-- Display name -->
+                    <label class="ds-label" for="ds-display-name">Display name</label>
+                    <div class="ds-row">
+                        <input type="text" id="ds-display-name" class="ds-input" placeholder="living_room" autocomplete="off">
+                        <button class="secondary" data-maint id="ds-display-name-save" onclick="saveDisplayName()">Save</button>
+                    </div>
+                    <div class="ds-hint">Appears in the phone remote. Letters, numbers, - or _. The display restarts.</div>
+
+                    <!-- Orientation -->
+                    <label class="ds-label" for="ds-orientation">Orientation</label>
+                    <div class="ds-row">
+                        <select id="ds-orientation" class="ds-input">
+                            <option value="landscape">Landscape (normal)</option>
+                            <option value="90">Portrait — rotated 90°</option>
+                            <option value="270">Portrait — rotated 270°</option>
+                            <option value="180">Upside-down (180°)</option>
+                        </select>
+                        <button class="secondary" data-maint id="ds-orientation-preview" onclick="previewOrientation()">Preview on screen</button>
+                        <button class="secondary" data-maint id="ds-orientation-keep" onclick="keepOrientation()" style="display:none;">Keep ✓</button>
+                    </div>
+                    <div class="ds-hint" id="ds-orientation-hint">Preview turns the picture for 30 seconds, then puts it back.</div>
+
+                    <!-- Time zone -->
+                    <label class="ds-label" for="ds-timezone">Time zone</label>
+                    <div class="ds-row">
+                        <input type="text" id="ds-timezone" class="ds-input" list="ds-timezone-list" placeholder="America/Chicago" autocomplete="off">
+                        <datalist id="ds-timezone-list"></datalist>
+                        <button class="secondary" data-maint id="ds-timezone-save" onclick="saveTimezone()">Save</button>
+                    </div>
+                    <div class="ds-hint" id="ds-clock-line">—</div>
+
+                    <!-- Self-heal -->
+                    <label class="ds-label" for="ds-watchdog">Self-heal</label>
+                    <div class="ds-row">
+                        <select id="ds-watchdog" class="ds-input">
+                            <option value="observe">Observe — watch and log only</option>
+                            <option value="enforce">Enforce — fix the display automatically</option>
+                            <option value="off">Off</option>
+                        </select>
+                        <button class="secondary" data-maint id="ds-watchdog-save" onclick="saveWatchdog()">Save</button>
+                    </div>
+                    <div class="ds-hint">Enforce relaunches the browser, restarts the app, then reboots if the picture stops changing.</div>
+
+                    <div style="margin-top:18px; padding-top:14px; border-top:1px solid var(--border-color);">
+                        <a href="#" id="ds-reopen-setup" onclick="applianceAction('reopen-setup'); return false;"
+                           style="color:#ef4444; font-size:0.8rem;">Move this display to a new Wi-Fi network…</a>
+                    </div>
+                </div>
+
                 <!-- Appliance Maintenance: GUI-triggered host updates via the sd-update bridge. -->
                 <div id="appliance-maintenance-slot" style="background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 25px;">
                     <h3 style="margin-top: 0; font-size: 0.9rem; color: var(--text-color);">🛠 Appliance Maintenance</h3>
@@ -596,9 +653,9 @@
                             max-height:160px; overflow:auto; font-size:0.78rem;"></div>
                     </div>
                     <div style="display:flex; gap:10px; flex-wrap:wrap;">
-                        <button class="secondary" id="maint-update-app" onclick="applianceAction('update-app')">⬆ Update App</button>
-                        <button class="secondary" id="maint-update-scripts" onclick="applianceAction('update-scripts')">↻ Update Scripts</button>
-                        <button class="secondary" id="maint-reboot" onclick="applianceAction('reboot')" style="color:#ef4444;">⏻ Reboot</button>
+                        <button class="secondary" data-maint id="maint-update-app" onclick="applianceAction('update-app')">⬆ Update App</button>
+                        <button class="secondary" data-maint id="maint-update-scripts" onclick="applianceAction('update-scripts')">↻ Update Scripts</button>
+                        <button class="secondary" data-maint id="maint-reboot" onclick="applianceAction('reboot')" style="color:#ef4444;">⏻ Reboot</button>
                     </div>
                     <div id="maint-status" style="margin-top:16px; font-size:0.82rem; color:#94a3b8; display:none;"></div>
                     <pre id="maint-log" style="margin-top:10px; max-height:200px; overflow:auto; background:#0f172a; border:1px solid var(--border-color); border-radius:8px; padding:12px; font-size:0.72rem; color:#cbd5e1; display:none; white-space:pre-wrap;"></pre>

@@ -165,3 +165,20 @@ body.app-shell { display: flex; height: 100vh; overflow: hidden; }
     body.app-shell.sidebar-open .sidebar-backdrop { display: block; }
     .app-shell main { padding: 56px 16px 0; }
 }
+
+/* --- Device settings rows (admin -> Devices, ADR-119) ------------------------------------------
+   A label / control+button row / hint stack, used for every setting on the appliance card. The row
+   wraps rather than squeezing, so a long zone name and its Save button stay usable on a phone. */
+.ds-label {
+    display: block; margin: 16px 0 6px; font-size: 0.72rem; text-transform: uppercase;
+    letter-spacing: 0.05rem; color: #94a3b8;
+}
+.ds-label:first-of-type { margin-top: 0; }
+.ds-row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+.ds-input {
+    flex: 1 1 200px; min-width: 0; padding: 9px 11px; border-radius: 8px; font-size: 0.9rem;
+    background: var(--input-bg, #0f172a); border: 1px solid var(--border-color); color: var(--text-color);
+}
+.ds-input:focus { outline: none; border-color: var(--accent-color); }
+.ds-hint { margin-top: 6px; font-size: 0.75rem; color: #94a3b8; }
+.ds-warn { color: #fbbf24; }

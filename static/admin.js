@@ -439,6 +439,7 @@ async function refreshHostHealth() {
         const data = await res.json();
         _renderHostHealth(data.host || {});
         _renderActiveDisplays(data.displays || []);
+        _renderDeviceSettings(data.host || {});
         const stamp = document.getElementById('device-health-updated');
         if (stamp) stamp.textContent = '· updated ' + new Date().toLocaleTimeString();
     } catch (e) { /* transient — next poll retries */ }
@@ -446,29 +447,40 @@ async function refreshHostHealth() {
 
 // --- Appliance maintenance: GUI-triggered host updates ----------------------
 let _maintPoll = null;
-const _MAINT_BTNS = ['maint-update-app', 'maint-update-scripts', 'maint-reboot'];
 function _updateAppPrompt() {
     // Name the target so the confirm is honest about what's being installed.
     return _latestReleaseTag
         ? `Update to ${_latestReleaseTag} now? This installs that release and rebuilds — the display drops briefly while the container restarts.`
         : 'Update the app now? This pulls the latest from origin/main and rebuilds — the display drops briefly while the container restarts.';
 }
+// Every confirm says what actually happens on the device. These actions are irreversible from a
+// browser — the box has no shell (ADR-064) — so a vague prompt is a trap, not a courtesy.
 const _MAINT_PROMPTS = {
     'update-scripts': 'Re-run the appliance installer to refresh the kiosk scripts and services?',
     'reboot': 'Reboot this device now?',
+    'reopen-setup': 'Move this display to a new Wi-Fi network?\n\nThe box reboots into its own “Pieria-Setup” Wi-Fi hotspot and waits for you to join it from a phone. This admin page is gone until you finish setup. Your art, collections and settings are kept.',
 };
+const _MAINT_DANGER = new Set(['reboot', 'update-app', 'reopen-setup', 'poweroff']);
 
 function _maintButtons(disabled) {
-    _MAINT_BTNS.forEach(id => { const b = document.getElementById(id); if (b) b.disabled = disabled; });
+    document.querySelectorAll('[data-maint]').forEach(b => { b.disabled = disabled; });
 }
 
-async function applianceAction(action) {
-    const prompt = action === 'update-app' ? _updateAppPrompt() : (_MAINT_PROMPTS[action] || `Run ${action}?`);
-    const ok = await confirmModal(prompt, {
-        confirmText: action === 'reboot' ? 'Reboot' : 'Proceed',
-        danger: action === 'reboot' || action === 'update-app',
-    });
-    if (!ok) return;
+/**
+ * Queue a whitelisted host action through the sd-update bridge.
+ *   extra  — the action's declared fields (the endpoint drops anything it didn't ask for).
+ *   opts   — { prompt: string|null (null skips the confirm), confirmText, danger }.
+ */
+async function applianceAction(action, extra = {}, opts = {}) {
+    const prompt = opts.prompt !== undefined ? opts.prompt
+        : (action === 'update-app' ? _updateAppPrompt() : (_MAINT_PROMPTS[action] || `Run ${action}?`));
+    if (prompt !== null) {
+        const ok = await confirmModal(prompt, {
+            confirmText: opts.confirmText || (action === 'reboot' ? 'Reboot' : 'Proceed'),
+            danger: opts.danger !== undefined ? opts.danger : _MAINT_DANGER.has(action),
+        });
+        if (!ok) return false;
+    }
     const statusEl = document.getElementById('maint-status');
     statusEl.style.display = 'block';
     statusEl.textContent = '⏳ Queued…';
@@ -476,7 +488,7 @@ async function applianceAction(action) {
     try {
         // update-app targets the known release tag when there is one (ADR-071); otherwise the host
         // helper falls back to origin/main.
-        const body = { action };
+        const body = { action, ...extra };
         if (action === 'update-app' && _latestReleaseTag) body.ref = _latestReleaseTag;
         const res = await fetch(`${API_BASE}/api/appliance/update`, {
             method: 'POST',
@@ -487,12 +499,14 @@ async function applianceAction(action) {
             const e = await res.json().catch(() => ({}));
             statusEl.textContent = '✗ ' + (e.detail || 'request failed');
             _maintButtons(false);
-            return;
+            return false;
         }
         _pollMaint();
+        return true;
     } catch (e) {
         statusEl.textContent = '✗ ' + e.message;
         _maintButtons(false);
+        return false;
     }
 }
 window.applianceAction = applianceAction;
@@ -520,6 +534,143 @@ function _pollMaint() {
         }
     }, 2500);
 }
+
+// --- Device settings (appliance only, ADR-119) -------------------------------
+// The boot conf, editable from here because a shipped box has no other management surface: sshd is
+// off and every password is locked (ADR-064). Values come from data/appliance/conf.json, which the
+// host exports after every edit — the app itself cannot read /boot/firmware.
+let _dsLoaded = false;          // don't clobber a field the user is mid-edit on every 5s poll
+let _previewTimer = null;
+
+function _dsFillTimezones() {
+    const list = document.getElementById('ds-timezone-list');
+    if (!list || list.childElementCount) return;
+    // Intl.supportedValuesOf is ES2022 — guarded, because the datalist is a convenience and the
+    // field stays free text (and server-validated) without it.
+    let zones = [];
+    try { zones = Intl.supportedValuesOf('timeZone') || []; } catch (e) { zones = []; }
+    list.innerHTML = zones.map(z => `<option value="${_esc(z)}">`).join('');
+}
+
+function _renderDeviceSettings(host) {
+    const card = document.getElementById('device-settings-card');
+    if (!card) return;
+    const conf = (host.conf && host.conf.values) || {};
+    _dsFillTimezones();
+
+    if (!_dsLoaded) {
+        const name = document.getElementById('ds-display-name');
+        if (name) name.value = conf.DISPLAY_ID || '';
+        const orient = document.getElementById('ds-orientation');
+        if (orient) orient.value = conf.ROTATE || 'landscape';
+        const wd = document.getElementById('ds-watchdog');
+        if (wd) wd.value = conf.WATCHDOG || 'observe';
+        const tz = document.getElementById('ds-timezone');
+        if (tz) {
+            // A Pi OS image boots set to Europe/London, so a blank TIMEZONE= is wrong for most homes
+            // and only shows up when the schedule fires hours off (ADR-118). Offer this browser's
+            // zone as the starting point rather than making the user know the IANA name.
+            let guess = '';
+            try { guess = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (e) {}
+            tz.value = conf.TIMEZONE || guess;
+        }
+        _dsLoaded = true;
+    }
+
+    // Both halves of the clock. ADR-118's whole failure was that nothing showed them together: the
+    // Pi sat on Europe/London while the container ran on UTC, and Night & Quiet Hours followed the
+    // container. A disagreement here is the symptom, made visible.
+    const line = document.getElementById('ds-clock-line');
+    if (line) {
+        const hostTz = (host.conf && host.conf.host_timezone) || '—';
+        const ctz = host.container_tz || {};
+        const appTz = (ctz.tzname && ctz.tzname[0]) || '—';
+        const appNow = ctz.now ? ctz.now.replace('T', ' ') : '';
+        const disagree = hostTz !== '—' && appTz !== '—' && appTz !== 'UTC' && !hostTz.endsWith(appTz);
+        const utcButZoned = appTz === 'UTC' && hostTz !== '—' && hostTz !== 'UTC';
+        line.className = 'ds-hint' + ((disagree || utcButZoned) ? ' ds-warn' : '');
+        line.innerHTML = `Device: <b>${_esc(hostTz)}</b> · app clock: <b>${_esc(appTz)}</b>` +
+            (appNow ? ` (${_esc(appNow)})` : '') +
+            ((disagree || utcButZoned)
+                ? ' — these disagree, so Night &amp; Quiet Hours may fire at the wrong time. Saving the zone fixes both.'
+                : ' · Night &amp; Quiet Hours follow this clock.');
+    }
+}
+
+async function saveDisplayName() {
+    const el = document.getElementById('ds-display-name');
+    const value = (el.value || '').trim();
+    if (!value) return;
+    await applianceAction('set-display-name', { display_id: value }, {
+        prompt: `Rename this display to “${value}”? The picture relaunches, and the phone remote will show the new name. Names are lowercased (“Living Room” becomes living_room).`,
+    });
+    _dsLoaded = false;
+}
+
+async function saveTimezone() {
+    const value = (document.getElementById('ds-timezone').value || '').trim();
+    if (!value) return;
+    await applianceAction('set-timezone', { timezone: value }, {
+        prompt: `Set this device's time zone to ${value}?\n\nNight & Quiet Hours follow this clock, so if the schedule boundary moves across the current time the TV may switch on or off once as it catches up. The app restarts to pick up the new zone.`,
+    });
+    _dsLoaded = false;
+}
+
+async function saveWatchdog() {
+    const value = document.getElementById('ds-watchdog').value;
+    const prompts = {
+        enforce: 'Let this box fix itself? On a sustained failure it relaunches the browser, then restarts the app, then reboots — with a cap so it cannot boot-loop.',
+        observe: 'Set self-heal to observe? It will watch and log problems but take no action.',
+        off: 'Turn self-heal off? A frozen display will stay frozen until someone notices.',
+    };
+    await applianceAction('set-watchdog', { watchdog: value }, {
+        prompt: prompts[value], danger: value === 'off',
+    });
+    _dsLoaded = false;
+}
+
+// Preview is the one action with no confirm: it IS the confirmation, and it undoes itself. The host
+// arms a 30s revert to whatever the conf currently says, so a wrong pick on a keyboard-less wall
+// mount cannot strand the display.
+async function previewOrientation() {
+    const value = document.getElementById('ds-orientation').value;
+    const hint = document.getElementById('ds-orientation-hint');
+    const keep = document.getElementById('ds-orientation-keep');
+    const queued = await applianceAction('preview-orientation', { orientation: value }, { prompt: null });
+    if (!queued) return;
+    if (_previewTimer) clearInterval(_previewTimer);
+    let left = 28;
+    keep.style.display = '';
+    hint.textContent = `Turning the picture… keep it within ${left}s or it goes back.`;
+    keep.textContent = `Keep ✓ ${left}s`;
+    _previewTimer = setInterval(() => {
+        left -= 1;
+        if (left <= 0) {
+            clearInterval(_previewTimer); _previewTimer = null;
+            keep.style.display = 'none';
+            hint.textContent = 'Preview ended — the picture went back to the saved orientation.';
+            return;
+        }
+        keep.textContent = `Keep ✓ ${left}s`;
+    }, 1000);
+}
+
+async function keepOrientation() {
+    const value = document.getElementById('ds-orientation').value;
+    if (_previewTimer) { clearInterval(_previewTimer); _previewTimer = null; }
+    document.getElementById('ds-orientation-keep').style.display = 'none';
+    document.getElementById('ds-orientation-hint').textContent = 'Saving…';
+    await applianceAction('set-orientation', { orientation: value }, { prompt: null });
+    document.getElementById('ds-orientation-hint').textContent =
+        'Saved. The display restarts in the new orientation.';
+    _dsLoaded = false;
+}
+
+window.saveDisplayName = saveDisplayName;
+window.saveTimezone = saveTimezone;
+window.saveWatchdog = saveWatchdog;
+window.previewOrientation = previewOrientation;
+window.keepOrientation = keepOrientation;
 
 // --- Federation: subscriptions + trust badges -------------------------------
 const _TRUST = {
