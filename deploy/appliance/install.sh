@@ -115,6 +115,7 @@ install -m 0755 "$BIN_SRC/sd-metrics"        /usr/local/bin/sd-metrics
 install -m 0755 "$BIN_SRC/sd-conf"           /usr/local/bin/sd-conf
 install -m 0755 "$BIN_SRC/sd-rotate-now"     /usr/local/bin/sd-rotate-now
 install -m 0755 "$BIN_SRC/sd-support-bundle" /usr/local/bin/sd-support-bundle
+install -m 0755 "$BIN_SRC/sd-os-check"       /usr/local/bin/sd-os-check
 install -m 0755 "$BIN_SRC/sd-quiet-hours"    /usr/local/bin/sd-quiet-hours
 install -m 0755 "$BIN_SRC/sd-watchdog"       /usr/local/bin/sd-watchdog
 install -m 0755 "$BIN_SRC/sd-watchdog-advance" /usr/local/bin/sd-watchdog-advance
@@ -323,6 +324,12 @@ if [ "${ALL_IN_ONE:-0}" = "1" ]; then
   # Safe to enable: WATCHDOG defaults to 'observe' (logs, never acts) until you set enforce in the conf.
   systemctl enable --now sd-watchdog.timer || true
 
+  echo "==> Installing the nightly OS update check (report only — installs nothing)"
+  sed "s#__REPO_ROOT__#$REPO_ROOT#g" "$UNIT_SRC/sd-os-check.service" > /etc/systemd/system/sd-os-check.service
+  install -m 0644 "$UNIT_SRC/sd-os-check.timer" /etc/systemd/system/sd-os-check.timer
+  systemctl daemon-reload
+  systemctl enable --now sd-os-check.timer || true
+
   echo "==> Advertising the server over mDNS (friendly name in network browsers)"
   install -d /etc/avahi/services
   install -m 0644 "$HERE/avahi/pieria.service" /etc/avahi/services/pieria.service
@@ -410,7 +417,7 @@ systemctl daemon-reload
 echo
 echo "==> Installed state (read back from systemd — this is what the card will actually do)"
 _expected="sd-setup-pre.service sd-net-recover.service"
-[ "${ALL_IN_ONE:-0}" = "1" ] && _expected="$_expected sd-app.service sd-timesync-wait.service sd-metrics.timer sd-quiet-hours.timer sd-watchdog.timer sd-update.path"
+[ "${ALL_IN_ONE:-0}" = "1" ] && _expected="$_expected sd-app.service sd-timesync-wait.service sd-metrics.timer sd-quiet-hours.timer sd-watchdog.timer sd-update.path sd-os-check.timer"
 [ "${EINK_ENABLED:-0}" = "1" ] && _expected="$_expected sd-eink.service"
 _missing=0
 for u in $_expected; do

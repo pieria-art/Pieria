@@ -1,0 +1,18 @@
+# Installed by install.sh (all-in-one only) as:
+#   /etc/systemd/system/sd-os-check.service
+#
+# Nightly "what would apt upgrade?" check. Writes data/appliance/os-updates.json for the admin UI's
+# Updates card. Never installs anything — see sd-os-upgrade.service for that.
+# __REPO_ROOT__ is substituted by install.sh.
+[Unit]
+Description=Pieria OS update check (report only, installs nothing)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/sd-os-check __REPO_ROOT__
+# This shares a Pi with a Chromium kiosk that is painting a picture. An apt index refresh is not
+# worth a dropped frame, so it runs at the back of the queue for both CPU and disk.
+Nice=10
+IOSchedulingClass=idle
