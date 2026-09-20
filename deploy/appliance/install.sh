@@ -44,6 +44,32 @@ ALL_IN_ONE=0
 GEMINI_API_KEY=""
 EINK_ENABLED=0
 CONF_SRC="(none — no pieria.conf found)"
+
+# ADR-083 — migrate a LEGACY `screen-docent.conf` before anything reads the conf. Decided 2026-08-20,
+# implemented 2026-09-20 after it bit the prod Pi: its real conf was still `screen-docent.conf`, this
+# script saw no `pieria.conf`, seeded the example (the "not configured yet" placeholder pair) and
+# pointed the setup gate at it — the living-room TV came up in setup mode after a routine
+# "Update Scripts". Rule: if the new conf is ABSENT or still the placeholder, and a legacy conf that
+# is itself configured sits beside it, copy the legacy conf over. Runs BEFORE the flavour is decided so
+# this very run provisions the right flavour. The legacy file is left in place; nothing reads it after
+# this run (the unit paths below are all rewritten to `pieria.conf`).
+_conf_is_placeholder() {
+  ( SERVER_URL=""; DISPLAY_ID=""; . "$1" 2>/dev/null
+    [ -z "$SERVER_URL" ] || [ -z "$DISPLAY_ID" ] || \
+    { [ "$SERVER_URL" = "http://192.168.1.50:8000" ] && [ "$DISPLAY_ID" = "living_room" ]; } )
+}
+for d in /boot/firmware /boot /etc; do
+  [ -d "$d" ] || continue
+  _legacy="$d/screen-docent.conf"; _new="$d/pieria.conf"
+  if [ -r "$_legacy" ] && ! _conf_is_placeholder "$_legacy"; then
+    if [ ! -e "$_new" ] || _conf_is_placeholder "$_new"; then
+      install -m 0644 "$_legacy" "$_new"
+      echo "==> MIGRATED legacy config: $_legacy -> $_new (ADR-083). Legacy file left in place, unused."
+    fi
+  fi
+  break
+done
+
 for d in /boot/firmware /boot /etc; do
   if [ -r "$d/pieria.conf" ]; then
     # shellcheck disable=SC1090
@@ -433,6 +459,14 @@ systemctl daemon-reload
 echo
 echo "==> Installed state (read back from systemd — this is what the card will actually do)"
 _expected="sd-setup-pre.service sd-net-recover.service"
+# ADR-083 #2 — a unit that still points at a conf path THIS run did not write is split-brain
+# (some helpers reading one conf, the rest another). Loud, not fatal: the read-back below still runs.
+_stale_units="$(grep -lE '(screen-docent|pieria)\.conf' /etc/systemd/system/sd-*.service 2>/dev/null \
+  | xargs -r grep -LF "$BOOT_CONF" 2>/dev/null || true)"
+if [ -n "$_stale_units" ]; then
+  echo "!!  WARNING: these units reference a conf other than $BOOT_CONF (ADR-083 split-brain):"
+  echo "$_stale_units" | sed 's/^/      /'
+fi
 [ "${ALL_IN_ONE:-0}" = "1" ] && _expected="$_expected sd-app.service sd-timesync-wait.service sd-metrics.timer sd-quiet-hours.timer sd-watchdog.timer sd-update.path sd-os-check.timer"
 [ "${EINK_ENABLED:-0}" = "1" ] && _expected="$_expected sd-eink.service"
 _missing=0
