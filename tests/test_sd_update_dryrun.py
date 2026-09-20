@@ -78,6 +78,7 @@ class Harness:
              "SD_CALLS": str(self.calls),
              "SD_CONF": str(self.conf),
              "SD_SYSTEMD_DIR": str(self.systemd),
+             "SD_LOCK_FILE": str(self.root.parent / "apt.lock"),
              "DRY_RUN": "1" if dry else "0"}
         e.update(env)
         return subprocess.run(["bash", str(_BIN / "sd-update"), str(self.root)],
@@ -367,3 +368,89 @@ def test_support_bundle_runs_the_collector(h):
     assert h.status["state"] == "done"
     assert "sd-support-bundle" in h.log
     assert "download" in h.status["message"]
+
+
+# --- OS updates (ADR-119) --------------------------------------------------------------------
+
+def _os_check_stub(h, reboot="0"):
+    """Stand in for sd-os-check. The real one shells out to apt, which must never happen here."""
+    return h.stub("sd-os-check", f'case "$*" in *--print-reboot*) echo {reboot} ;; esac\nexit 0')
+
+
+def test_check_os_updates_just_runs_the_checker(h):
+    stub = _os_check_stub(h)
+    h.request("check-os-updates")
+    h.run(SD_OS_CHECK_BIN=str(stub))
+    assert h.status["state"] == "done"
+    assert "sd-os-check" in h.log
+
+
+def test_update_system_reboots_when_the_plan_says_so(h):
+    stub = _os_check_stub(h, reboot="1")
+    h.request("update-system")
+    assert h.run(SD_OS_CHECK_BIN=str(stub)).returncode == 0
+    assert h.status["state"] == "done"
+    assert "rebooting" in h.status["message"]
+    assert h.request_consumed
+    assert "[dry-run] systemctl reboot" in h.log
+    assert "systemctl reboot" not in h.called       # never actually reached
+
+
+def test_update_system_relaunches_the_kiosk_when_no_reboot_is_needed(h):
+    # Chromium may still have been upgraded under a running kiosk.
+    stub = _os_check_stub(h, reboot="0")
+    h.request("update-system")
+    h.run(SD_OS_CHECK_BIN=str(stub))
+    assert h.status["state"] == "done"
+    assert "rebooting" not in h.status["message"]
+    assert "[dry-run] systemctl restart getty@tty1" in h.log
+
+
+def test_update_system_decides_the_reboot_question_before_upgrading(h):
+    # Afterwards the simulation is empty, so asking later would always answer "no".
+    stub = _os_check_stub(h, reboot="1")
+    h.request("update-system")
+    h.run(SD_OS_CHECK_BIN=str(stub))
+    log = h.log
+    assert log.index("reboot_likely=1") < log.index("full-upgrade")
+
+
+def test_update_system_runs_the_whole_apt_sequence(h):
+    stub = _os_check_stub(h)
+    h.request("update-system")
+    h.run(SD_OS_CHECK_BIN=str(stub))
+    log = h.log
+    for fragment in ("apt-get -y", "DPkg::Lock::Timeout=300", "--force-confold",
+                     "update", "full-upgrade", "autoremove --purge", "apt-get clean"):
+        assert fragment in log, fragment
+    # The stack is brought back explicitly: a containerd upgrade restarts the daemon under us.
+    assert "[dry-run] docker compose" in log and "up -d" in log
+
+
+def test_update_system_refreshes_the_count_afterwards(h):
+    # Otherwise the UI would keep showing the pre-upgrade number until 04:30 tomorrow.
+    stub = _os_check_stub(h)
+    h.request("update-system")
+    h.run(SD_OS_CHECK_BIN=str(stub))
+    log = h.log
+    # The pre-upgrade decision is recorded, and the post-upgrade re-check ran after the compose bring-up.
+    assert "reboot_likely=" in log
+    assert log.index("up -d") < log.index("sd-os-check")
+    assert "--no-update" in log
+
+
+def test_update_system_takes_the_shared_apt_lock(h):
+    stub = _os_check_stub(h)
+    h.request("update-system")
+    h.run(SD_OS_CHECK_BIN=str(stub))
+    assert "flock -w 600" in h.called
+
+
+def test_update_system_bows_out_when_the_lock_is_held(h):
+    stub = _os_check_stub(h)
+    h.stub("flock", "exit 1")
+    h.request("update-system")
+    assert h.run(SD_OS_CHECK_BIN=str(stub)).returncode == 1
+    assert h.status["state"] == "error"
+    assert "still running" in h.status["message"]
+    assert "apt-get" not in h.called

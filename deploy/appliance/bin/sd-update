@@ -93,6 +93,7 @@ case "$ACTION" in
   update-app|update-scripts|reboot) : ;;
   set-timezone|preview-orientation|set-orientation|set-display-name|set-watchdog|reopen-setup) : ;;
   relaunch-kiosk|restart-app|poweroff|support-bundle) : ;;
+  check-os-updates|update-system) : ;;
   *)
     write_status error "unknown action: $ACTION"
     rm -f "$REQ"
@@ -136,6 +137,35 @@ conf_export() {
 conf_get() { "$SD_CONF_BIN" --conf "$CONF" get "$1" 2>/dev/null; }
 
 COMPOSE=(docker compose -f docker-compose.yml -f "$OVERRIDE")
+
+# One lock for the whole apt conversation, shared with sd-os-check. apt's own locking is
+# per-invocation, so without this a nightly check can land in the middle of a user-triggered
+# upgrade — the contention shows up as a baffling "could not get lock" in the GUI.
+SD_LOCK_FILE="${SD_LOCK_FILE:-/run/lock/pieria-apt.lock}"
+apt_lock() {
+  mkdir -p "$(dirname "$SD_LOCK_FILE")" 2>/dev/null || true
+  exec 9>"$SD_LOCK_FILE" 2>/dev/null || return 0   # nowhere to lock: nothing to race with either
+  flock -w 600 9
+}
+
+# A full-upgrade on a Pi is minutes of silence. Re-publish the log's last line every few seconds so
+# the admin UI's status advances instead of looking hung. Off under DRY_RUN to keep tests
+# deterministic, and always stopped before the final status is written.
+HEARTBEAT_PID=""
+heartbeat_start() {
+  [ "$DRY_RUN" = "1" ] && return 0
+  ( while :; do
+      sleep 5
+      write_status running "apt: $(tail -n 1 "$LOG" 2>/dev/null | cut -c1-120)"
+    done ) &
+  HEARTBEAT_PID=$!
+}
+heartbeat_stop() {
+  [ -n "$HEARTBEAT_PID" ] || return 0
+  kill "$HEARTBEAT_PID" 2>/dev/null || true
+  wait "$HEARTBEAT_PID" 2>/dev/null || true
+  HEARTBEAT_PID=""
+}
 
 # A container rebuild leaves the already-loaded kiosk Canvas WS-connected but with a stalled auto-advance
 # timer (it doesn't re-fetch on reconnect) — the display freezes until something nudges it (a Remote tap,
@@ -293,6 +323,61 @@ case "$ACTION" in
     persist_log
     systemctl poweroff
     exit 0
+    ;;
+  check-os-updates)
+    run "$SD_OS_CHECK_BIN" "$REPO_ROOT" || rc=$?
+    DONE_MSG="update check complete"
+    ;;
+  update-system)
+    if ! apt_lock; then
+      write_status error "another package operation is still running — try again in a few minutes"
+      rm -f "$REQ"; persist_log
+      exit 1
+    fi
+    export DEBIAN_FRONTEND=noninteractive
+    # --force-confdef/--force-confold: an unattended box cannot answer a conffile prompt, and an apt
+    # run blocked on one is a display that never comes back.
+    APT=(apt-get -y -o DPkg::Lock::Timeout=300
+         -o Dpkg::Options::=--force-confdef -o Dpkg::Options::=--force-confold)
+
+    run "${APT[@]}" update || rc=$?
+
+    # Decide the reboot question BEFORE upgrading. Afterwards the simulation is empty and there is
+    # nothing left to read it from — asking later would always answer "no".
+    REBOOT=0
+    if [ $rc -eq 0 ]; then
+      REBOOT="$("$SD_OS_CHECK_BIN" "$REPO_ROOT" --no-update --print-reboot 2>/dev/null || echo 0)"
+      case "$REBOOT" in 0|1) ;; *) REBOOT=0 ;; esac
+      echo "+ reboot_likely=$REBOOT" >> "$LOG"
+    fi
+
+    heartbeat_start
+    [ $rc -eq 0 ] && { run "${APT[@]}" full-upgrade || rc=$?; }
+    [ $rc -eq 0 ] && { run "${APT[@]}" autoremove --purge || true; }
+    [ $rc -eq 0 ] && { run apt-get clean || true; }
+    heartbeat_stop
+
+    # A containerd/docker upgrade restarts the daemon under us, which can leave the stack down.
+    # `up -d` is idempotent and is the only thing that guarantees it is back.
+    [ $rc -eq 0 ] && { ( cd "$REPO_ROOT" && run "${COMPOSE[@]}" up -d ) || rc=$?; }
+    # Re-check so the UI's count reflects reality now, not at 04:30 tomorrow.
+    [ $rc -eq 0 ] && { run "$SD_OS_CHECK_BIN" "$REPO_ROOT" --no-update || true; }
+
+    if [ $rc -eq 0 ] && [ "$REBOOT" = "1" ]; then
+      write_status done "system updated — rebooting"
+      rm -f "$REQ"
+      if [ "$DRY_RUN" = "1" ]; then
+        echo "[dry-run] systemctl reboot" >> "$LOG"
+        persist_log
+        exit 0
+      fi
+      persist_log
+      systemctl reboot
+      exit 0
+    fi
+    # No reboot needed, but Chromium may well have been upgraded under a running kiosk.
+    [ $rc -eq 0 ] && reload_kiosk
+    DONE_MSG="system packages updated"
     ;;
   reboot)
     # Write the final status and consume the request BEFORE rebooting: after `systemctl reboot` there
