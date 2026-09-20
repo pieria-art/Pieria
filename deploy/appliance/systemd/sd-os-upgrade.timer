@@ -1,0 +1,18 @@
+# Installed by install.sh (all-in-one only) as:
+#   /etc/systemd/system/sd-os-upgrade.timer
+#
+# Installed DISABLED. `set-os-schedule` from the admin UI enables it and writes a drop-in with the
+# owner's chosen time; turning the schedule off disables it again.
+[Unit]
+Description=Run the Pieria weekly OS upgrade
+
+[Timer]
+OnCalendar=Sun *-*-* 03:00:00
+RandomizedDelaySec=10min
+# DELIBERATELY NOT Persistent. This upgrade installs packages and may reboot with nobody watching,
+# so a Sunday the box was switched off must be SKIPPED, not replayed the moment it powers on — which
+# would be the worst possible time: someone just turned their art frame on.
+Persistent=false
+
+[Install]
+WantedBy=timers.target

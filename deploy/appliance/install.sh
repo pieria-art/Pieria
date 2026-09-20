@@ -116,6 +116,7 @@ install -m 0755 "$BIN_SRC/sd-conf"           /usr/local/bin/sd-conf
 install -m 0755 "$BIN_SRC/sd-rotate-now"     /usr/local/bin/sd-rotate-now
 install -m 0755 "$BIN_SRC/sd-support-bundle" /usr/local/bin/sd-support-bundle
 install -m 0755 "$BIN_SRC/sd-os-check"       /usr/local/bin/sd-os-check
+install -m 0755 "$BIN_SRC/sd-os-schedule"    /usr/local/bin/sd-os-schedule
 install -m 0755 "$BIN_SRC/sd-quiet-hours"    /usr/local/bin/sd-quiet-hours
 install -m 0755 "$BIN_SRC/sd-watchdog"       /usr/local/bin/sd-watchdog
 install -m 0755 "$BIN_SRC/sd-watchdog-advance" /usr/local/bin/sd-watchdog-advance
@@ -329,6 +330,21 @@ if [ "${ALL_IN_ONE:-0}" = "1" ]; then
   install -m 0644 "$UNIT_SRC/sd-os-check.timer" /etc/systemd/system/sd-os-check.timer
   systemctl daemon-reload
   systemctl enable --now sd-os-check.timer || true
+
+  echo "==> Installing the opt-in weekly OS upgrade timer"
+  sed -e "s#__BOOT_CONF__#$BOOT_CONF#g" -e "s#__REPO_ROOT__#$REPO_ROOT#g" \
+    "$UNIT_SRC/sd-os-upgrade.service" > /etc/systemd/system/sd-os-upgrade.service
+  install -m 0644 "$UNIT_SRC/sd-os-upgrade.timer" /etc/systemd/system/sd-os-upgrade.timer
+  systemctl daemon-reload
+  # Installed, but enabled ONLY if the owner already turned it on. "Update Scripts" re-runs this
+  # script, and a blanket `enable` here would silently switch unattended upgrades back on for
+  # everyone who had deliberately turned them off.
+  if [ "${OS_UPDATE_SCHEDULE:-off}" = "weekly" ]; then
+    systemctl enable --now sd-os-upgrade.timer || true
+    echo "    weekly OS upgrades are ON (conf says weekly)"
+  else
+    echo "    weekly OS upgrades are OFF (default; enable from Admin -> Devices -> Updates)"
+  fi
 
   echo "==> Advertising the server over mDNS (friendly name in network browsers)"
   install -d /etc/avahi/services

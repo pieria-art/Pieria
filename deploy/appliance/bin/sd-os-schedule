@@ -1,0 +1,73 @@
+#!/usr/bin/env bash
+# sd-os-schedule — the weekly unattended OS upgrade, if the owner opted in (ADR-119).
+#
+# Run by sd-os-upgrade.timer. It does NOT upgrade anything itself: it drops the same request.json
+# that the GUI button writes, so the work flows through sd-update's `update-system` arm and produces
+# identical logging, identical status, and one code path to reason about.
+#
+# Two belts, because this one reboots a box with nobody watching:
+#   1. it refuses unless the CONF says weekly — so a timer left enabled by a stale drop-in, or by an
+#      installer re-run, still cannot upgrade a box whose owner turned the schedule off;
+#   2. it refuses while any bridge action is queued or running, rather than queueing behind it.
+#
+# Usage: sd-os-schedule <CONF> <REPO_ROOT>
+set -u
+
+CONF="${1:-/boot/firmware/pieria.conf}"
+[ -e "$CONF" ] || CONF="/boot/pieria.conf"
+REPO_ROOT="${2:-}"
+if [ -z "$REPO_ROOT" ]; then
+  echo "sd-os-schedule: REPO_ROOT argument required" >&2
+  exit 1
+fi
+
+# shellcheck disable=SC1090
+[ -r "$CONF" ] && . "$CONF" 2>/dev/null || true
+if [ "${OS_UPDATE_SCHEDULE:-off}" != "weekly" ]; then
+  logger -t sd-os-schedule "schedule is '${OS_UPDATE_SCHEDULE:-off}' — not weekly, nothing to do" 2>/dev/null || true
+  exit 0
+fi
+
+DIR="$REPO_ROOT/data/appliance"
+REQ="$DIR/request.json"
+STATUS="$DIR/status.json"
+mkdir -p "$DIR" 2>/dev/null || true
+chown 1000:1000 "$DIR" 2>/dev/null || true
+
+# Don't stack on top of whatever the owner (or another timer) already started.
+if [ -r "$STATUS" ]; then
+  BUSY="$(python3 -c "import json,sys
+try:
+    d = json.load(open(sys.argv[1]))
+    print('1' if d.get('state') in ('queued', 'running') else '0')
+except Exception:
+    print('0')" "$STATUS" 2>/dev/null || echo 0)"
+  if [ "$BUSY" = "1" ]; then
+    logger -t sd-os-schedule "an action is already in flight — skipping this week" 2>/dev/null || true
+    exit 0
+  fi
+fi
+
+# Status FIRST, then the request — the same ordering the endpoint uses, so the .path trigger always
+# finds a status to report. `source: schedule` is what lets the UI say why an upgrade it never asked
+# for is running.
+SD_STATUS="$STATUS" SD_REQ="$REQ" python3 - <<'PY'
+import json, os, secrets
+from datetime import UTC, datetime
+
+now = datetime.now(UTC).isoformat()
+nonce = secrets.token_hex(8)
+with open(os.environ["SD_STATUS"], "w") as fh:
+    json.dump({"state": "queued", "action": "update-system", "nonce": nonce,
+               "message": "queued by the weekly schedule", "log_tail": [], "queued_at": now}, fh)
+with open(os.environ["SD_REQ"], "w") as fh:
+    json.dump({"action": "update-system", "requested_at": now, "nonce": nonce,
+               "source": "schedule"}, fh)
+PY
+
+# Root wrote both; the container reads them (ADR-037).
+for f in "$STATUS" "$REQ"; do
+  chown 1000:1000 "$f" 2>/dev/null || true
+  chmod 0644 "$f" 2>/dev/null || true
+done
+logger -t sd-os-schedule "queued the weekly system update" 2>/dev/null || true

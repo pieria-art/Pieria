@@ -93,7 +93,7 @@ case "$ACTION" in
   update-app|update-scripts|reboot) : ;;
   set-timezone|preview-orientation|set-orientation|set-display-name|set-watchdog|reopen-setup) : ;;
   relaunch-kiosk|restart-app|poweroff|support-bundle) : ;;
-  check-os-updates|update-system) : ;;
+  check-os-updates|update-system|set-os-schedule) : ;;
   *)
     write_status error "unknown action: $ACTION"
     rm -f "$REQ"
@@ -378,6 +378,51 @@ case "$ACTION" in
     # No reboot needed, but Chromium may well have been upgraded under a running kiosk.
     [ $rc -eq 0 ] && reload_kiosk
     DONE_MSG="system packages updated"
+    ;;
+  set-os-schedule)
+    # The time is optional in the request: keep whatever the conf already holds, else the default.
+    WHEN="$SCHED_TIME"
+    [ -n "$WHEN" ] || WHEN="$(conf_get OS_UPDATE_TIME)"
+    [ -n "$WHEN" ] || WHEN="03:00"
+    # Re-validated here as well as at the endpoint: this string is interpolated into a systemd unit
+    # file, so a second gate costs nothing and closes the case where the conf was hand-edited.
+    case "$WHEN" in
+      [0-2][0-9]:[0-5][0-9]) : ;;
+      *)
+        write_status error "invalid time: $WHEN"
+        rm -f "$REQ"; persist_log
+        exit 1
+        ;;
+    esac
+    case "${WHEN%%:*}" in 00|01|02|03|04|05|06|07|08|09|1[0-9]|2[0-3]) : ;; *)
+        write_status error "invalid time: $WHEN"
+        rm -f "$REQ"; persist_log
+        exit 1
+        ;;
+    esac
+    conf_set "OS_UPDATE_SCHEDULE=$SCHEDULE" "OS_UPDATE_TIME=$WHEN" || rc=$?
+    if [ $rc -eq 0 ]; then
+      DROPIN_DIR="$SD_SYSTEMD_DIR/sd-os-upgrade.timer.d"
+      mkdir -p "$DROPIN_DIR"
+      {
+        echo "# Written by sd-update (ADR-119) — the owner's chosen weekly upgrade time."
+        echo "[Timer]"
+        echo "# A drop-in ACCUMULATES list values, so the shipped OnCalendar must be cleared first;"
+        echo "# without the empty assignment the timer would fire at BOTH times."
+        echo "OnCalendar="
+        echo "OnCalendar=Sun *-*-* $WHEN:00"
+      } > "$DROPIN_DIR/10-pieria.conf"
+      chmod 0644 "$DROPIN_DIR/10-pieria.conf" 2>/dev/null || true
+      run systemctl daemon-reload || true
+      if [ "$SCHEDULE" = "weekly" ]; then
+        run systemctl enable --now sd-os-upgrade.timer || rc=$?
+        DONE_MSG="weekly updates on, Sundays at $WHEN"
+      else
+        run systemctl disable --now sd-os-upgrade.timer || true
+        DONE_MSG="weekly updates off"
+      fi
+    fi
+    conf_export
     ;;
   reboot)
     # Write the final status and consume the request BEFORE rebooting: after `systemctl reboot` there

@@ -454,3 +454,60 @@ def test_update_system_bows_out_when_the_lock_is_held(h):
     assert h.status["state"] == "error"
     assert "still running" in h.status["message"]
     assert "apt-get" not in h.called
+
+
+# --- the opt-in weekly schedule (ADR-119) ---------------------------------------------------------
+
+def _dropin(h):
+    return h.systemd / "sd-os-upgrade.timer.d" / "10-pieria.conf"
+
+
+def test_setting_weekly_writes_the_conf_the_dropin_and_enables_the_timer(h):
+    h.request("set-os-schedule", schedule="weekly", time="03:30")
+    h.run()
+    assert h.status["state"] == "done"
+    assert h.conf_value("OS_UPDATE_SCHEDULE") == "weekly"
+    assert h.conf_value("OS_UPDATE_TIME") == "03:30"
+    body = _dropin(h).read_text()
+    assert "OnCalendar=Sun *-*-* 03:30:00" in body
+    # A drop-in ACCUMULATES list values: without the reset the timer would fire at both times.
+    assert "OnCalendar=\n" in body
+    assert "[dry-run] systemctl enable --now sd-os-upgrade.timer" in h.log
+    assert "03:30" in h.status["message"]
+
+
+def test_turning_the_schedule_off_disables_the_timer(h):
+    h.request("set-os-schedule", schedule="off")
+    h.run()
+    assert h.conf_value("OS_UPDATE_SCHEDULE") == "off"
+    assert "[dry-run] systemctl disable --now sd-os-upgrade.timer" in h.log
+    assert "enable --now" not in h.log
+
+
+def test_an_omitted_time_keeps_what_the_conf_already_holds(h):
+    h.request("set-os-schedule", schedule="weekly", time="04:45")
+    h.run()
+    h.request("set-os-schedule", schedule="off")
+    h.run()
+    assert h.conf_value("OS_UPDATE_TIME") == "04:45"
+
+
+def test_an_omitted_time_on_a_fresh_conf_defaults_to_three_am(h):
+    h.request("set-os-schedule", schedule="weekly")
+    h.run()
+    assert h.conf_value("OS_UPDATE_TIME") == "03:00"
+
+
+@pytest.mark.parametrize("bad", ["25:00", "3:00", "03:60", "0a:00"])
+def test_the_host_re_validates_the_time_before_it_reaches_a_unit_file(h, bad):
+    # This string is interpolated into a systemd unit; the endpoint is the first gate, not the only one.
+    h.request("set-os-schedule", schedule="weekly", time=bad)
+    assert h.run().returncode == 1
+    assert h.status["state"] == "error"
+    assert not _dropin(h).exists()
+
+
+def test_the_schedule_reloads_systemd_so_the_dropin_takes_effect(h):
+    h.request("set-os-schedule", schedule="weekly", time="02:15")
+    h.run()
+    assert "[dry-run] systemctl daemon-reload" in h.log
