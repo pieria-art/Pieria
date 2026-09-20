@@ -115,7 +115,15 @@ def panel_bbox(img: Image.Image, roi=None) -> tuple:
     m0 = np.cumsum(hist * centres) / np.maximum(w0, 1)
     m1 = (np.sum(hist * centres) - np.cumsum(hist * centres)) / np.maximum(w1, 1)
     between = w0 * w1 * (m0 - m1) ** 2
-    cut = float(centres[int(np.argmax(between))])
+    # The MIDDLE of the optimal plateau, not its first bin. When the surround and the panel are two
+    # well-separated modes — a flocked rig — every empty bin between them scores the identical
+    # between-class variance, and `argmax` returns the FIRST of them: a cut resting on the edge of
+    # the dark mode, where a one-count jitter (a raw frame rescaled for the geometry proxy, a
+    # slightly brighter bezel) tips the whole surround into the mask and the panel box becomes the
+    # frame. Measured 2026-09-19 on a synthetic flat: cut 18 against a bezel at 19. Byte-identical
+    # to the old behaviour whenever the maximum is unique.
+    top = np.flatnonzero(np.isclose(between, between.max(), rtol=1e-9, atol=0.0))
+    cut = float(centres[int(top[len(top) // 2])])
     mask = neutral & (val > cut)
     if mask.sum() < 200:
         raise ValueError("no bright neutral panel area found — check exposure and the ROI")
@@ -626,6 +634,8 @@ def build_flat_field(flat_photo: Image.Image, w: int, h: int, roi=None, smooth: 
     it here, once, is what makes `read_panel`'s own trap subtraction on the numerator actually correct
     — see its docstring for why the two must agree.
     """
+    if not isinstance(flat_photo, Image.Image):
+        return _build_flat_field_float(flat_photo, w, h, roi=roi, smooth=smooth, trap=trap)
     if trap is not None:
         arr = np.asarray(flat_photo.convert("RGB")).astype(np.float64) - np.asarray(trap, dtype=float)
         flat_photo = Image.fromarray(np.clip(arr, 0, 255).astype(np.uint8), "RGB")
@@ -641,6 +651,53 @@ def build_flat_field(flat_photo: Image.Image, w: int, h: int, roi=None, smooth: 
     small = rect.resize((max(4, w // smooth), max(4, h // smooth)), Image.BOX)
     field = np.asarray(small.resize((w, h), Image.BICUBIC)).astype(float)
     return np.maximum(field, 1.0)
+
+
+def _build_flat_field_float(flat_arr, w: int, h: int, roi=None, smooth: int = 40, trap=None):
+    """`build_flat_field` for a RAW flat: an (H,W,3) float64 array already on this file's 0-255 axis
+    (a `RawFrame.rgb` times 255 — the caller lifts it, exactly as `read_panel` does for the content
+    frame, because only the caller knows the convention it decoded in).
+
+    Two things differ from the PIL path, both forced by the data rather than chosen:
+
+    * The resample is `rectify_float`, not `rectify` — pushing a scene-linear flat through PIL's
+      uint8 PERSPECTIVE would quantise a 15%-of-full-scale white (the raw rig's typical exposure,
+      ~38 on this axis) to ~5 bits, and every later frame is DIVIDED by this map.
+    * The mid-refresh guard is RELATIVE, not the PIL path's absolute `content_mean < 90`. On a raw
+      frame the absolute level is whatever the shutter made it — the same correctly-exposed white
+      that reads ~230 off the webcam reads ~38 here — so an absolute floor either fires on every
+      good flat or catches nothing. What actually distinguishes a settled white from an inversion-
+      phase wash is CONTRAST: the content should sit far above the four black fiducials, and during
+      a refresh the whole panel is one dark tone. A ratio below 3 fails loudly.
+    """
+    arr = np.asarray(flat_arr, dtype=np.float64)
+    if arr.ndim != 3 or arr.shape[-1] != 3:
+        raise ValueError(f"expected an (H,W,3) RGB array, got shape {arr.shape}")
+    if trap is not None:
+        arr = arr - np.asarray(trap, dtype=float)
+    rect = rectify_float(arr, w, h, roi)
+    import tools.eink_target as _et
+    cx0, cy0, cx1, cy1 = _et.content_box(w, h)
+    content_mean = float(rect[cy0:cy1, cx0:cx1].mean())
+    half = _et.FID_SIZE // 4
+    fid = float(np.mean([rect[fy - half:fy + half, fx - half:fx + half].mean()
+                         for fx, fy in _et.fiducial_centres(w, h)]))
+    ratio = content_mean / max(fid, 1e-9)
+    if ratio < 3.0:
+        raise ValueError(
+            f"flat-field content is only {ratio:.2f}x the fiducials ({content_mean:.2f} vs {fid:.2f} "
+            f"on the 0-255 axis) — an all-white panel reads ~10x its black fiducials. This is almost "
+            f"certainly a mid-refresh capture (a Spectra 6 inversion phase photographs as a dark "
+            f"wash). Re-render `target flat`, wait for the panel, and re-capture.")
+    sw, sh = max(4, w // smooth), max(4, h // smooth)
+    field = np.empty((h, w, 3), dtype=np.float64)
+    for c in range(3):
+        chan = Image.fromarray(rect[..., c].astype(np.float32), "F")
+        field[..., c] = np.asarray(chan.resize((sw, sh), Image.BOX).resize((w, h), Image.BICUBIC),
+                                   dtype=np.float64)
+    # The floor is relative for the same reason the guard is: 1.0 on a webcam's axis is a
+    # 0.4%-of-white pixel, but on a raw flat exposed to 15% it would be a 2.6% one — a real value.
+    return np.maximum(field, content_mean * 1e-3)
 
 
 def align_to_reference(rect: Image.Image, reference: Image.Image, w: int, h: int,
@@ -1227,11 +1284,23 @@ def _cmd_read_raw(args, path: Path) -> None:
     rectified = rectify_float(frame.rgb, w, h, roi=roi)
     flat = None
     if args.flat:
-        flat_photo = Image.open(args.flat)
-        flat_trap = _trap_level(flat_photo, trap_rect) if trap_rect else None
+        if Path(args.flat).suffix.lower() in RAW_EXTENSIONS:
+            # A raw flat is decoded exactly like the content frame — its own dark (`--flat-dark`,
+            # defaulting to the content frame's, which is right when the two share an exposure), its
+            # own trap reading, and the same 0-255 lift `read_panel` applies — so the division below
+            # is like-for-like. Found on the 2026-09-19 shoot (ADR-115 §7): the flat WAS a raw, and
+            # `Image.open` rejected it.
+            flat_frame = eink_raw.decode(Path(args.flat), dark_frame=getattr(args, "flat_dark", "")
+                                         or args.dark or None)
+            flat_photo = flat_frame.rgb * 255.0
+            flat_trap = _trap_level(flat_frame.rgb, trap_rect) if trap_rect else None
+            print(f"flat raw: clipped {flat_frame.clipped_fraction * 100:.4f}%")
+        else:
+            flat_photo = Image.open(args.flat)
+            flat_trap = _trap_level(flat_photo, trap_rect) if trap_rect else None
         flat = build_flat_field(flat_photo, w, h, roi=roi, trap=flat_trap)
         print(f"flat-field applied from {args.flat} "
-              f"(illumination range {flat.min():.0f}-{flat.max():.0f})")
+              f"(illumination range {flat.min():.2f}-{flat.max():.2f})")
     r = read_panel(rectified, w, h, flat=flat, trap=trap)
     _report_read(r, w, h, Path(args.out or "bench-eink/measured_corrected.png"), args.primaries)
 
@@ -1299,10 +1368,13 @@ def main() -> None:
     r.add_argument("--roi", default="", help="x0,y0,x1,y1 crop to the panel's active area")
     r.add_argument("--flat", default="", help="photograph of an all-white panel; divides out the "
                                               "lighting gradient and lens vignetting")
+    r.add_argument("--flat-dark", default="", help="raw path only: lens-cap frame for a RAW --flat "
+                   "(defaults to --dark; give it when the flat's exposure differs from the shot's)")
     r.add_argument("--dark", default="", help="raw path only: lens-cap frame at matching "
                                               "exposure/ISO, passed to eink_raw.decode(dark_frame=)")
-    r.add_argument("--trap", default="", help="raw path only: x0,y0,x1,y1 region, in the ORIGINAL "
-                                              "unrectified photo, of a light trap's aperture — its "
+    r.add_argument("--trap", default="", help="raw path only: x0,y0,x1,y1 region, in the UNRECTIFIED "
+                                              "photo's DECODED (2x2-binned, half-resolution) pixel "
+                                              "grid, of a light trap's aperture — its "
                                               "mean level is the additive optical veiling glare, "
                                               "subtracted before the flat-field division. Optional; "
                                               "a no-op until the trap physically exists in shot")

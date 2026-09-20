@@ -49,11 +49,31 @@ from tools import eink_color as ec  # noqa: E402
 INK_NAMES = ("black", "white", "red", "yellow", "blue", "green")
 BLACK, WHITE = 0, 1
 
-#: The single hook for a real measurement. Set this to a (6, 3) array of CIE XYZ (Y normalised so the
-#: white ink is 1.0) once a ColorChecker or colorimeter exists, and everything below re-derives.
-#: Until then it is None and the palette is used. It is deliberately NOT a copy of the palette: a hook
-#: pre-filled with the thing it is meant to replace is indistinguishable from having replaced it.
-_MEASURED_INK_XYZ = None
+#: The single hook for a real measurement: a (6, 3) array of CIE XYZ, D65, ABSOLUTE (Y in 0..1, a
+#: perfect diffuser = 1.0 — the same units `srgb8_to_xyz` gave the swatch, where the white ink was
+#: Y 0.37). ⚠️ An earlier version of this comment said "Y normalised so the white ink is 1.0"; that
+#: would have put `L_abs` at 100 for the white ink and broken `eink_gamut`'s `media_white()/D65`
+#: adaptation ratio. Absolute is what every consumer below assumes.
+#:
+#: 🟢 FILLED 2026-09-19 (ADR-116): the six inks of THIS EL133UF1, photographed on the NEX-6 rig
+#: through a ColorChecker Classic Mini lying on the panel, Bradford-adapted D50 -> D65. Provenance
+#: and every caveat (red and blue extrapolated beyond the chart's hull; pigments fitted, inks
+#: measured): `bench-eink/analysis/PRIMARIES_2026-09-19.md`; the number itself is
+#: `shoot_2026-09-19_primaries.json` -> palette.hook_xyz_d65_absolute. Set to None to fall back to
+#: the vendor swatch for an A/B.
+#:
+#: ⚠️ `epaper.SPECTRA6_DITHER_PALETTE` — what the SHIPPING quantiser measures distance against — is
+#: still the swatch. This model and the renderer now disagree about the inks, on purpose and loudly
+#: (see `ink_srgb8()` and the test that pins the disagreement): replacing the shipping palette is
+#: ADR-084's call, made on the panel, not here.
+_MEASURED_INK_XYZ = np.array([
+    [0.04270, 0.04143, 0.05734],   # black
+    [0.34601, 0.37620, 0.45719],   # white
+    [0.10968, 0.05863, 0.01443],   # red
+    [0.33306, 0.38111, 0.07691],   # yellow
+    [0.06606, 0.05710, 0.28673],   # blue
+    [0.10585, 0.13248, 0.18563],   # green
+])
 
 
 def ink_xyz() -> np.ndarray:
@@ -61,6 +81,19 @@ def ink_xyz() -> np.ndarray:
     if _MEASURED_INK_XYZ is not None:
         return np.asarray(_MEASURED_INK_XYZ, dtype=np.float64)
     return ec.srgb8_to_xyz(np.array(ep.SPECTRA6_DITHER_PALETTE, dtype=np.float64))
+
+
+def ink_source() -> str:
+    return "SPECTRA6_DITHER_PALETTE (Pimoroni EL133UF1 — ANOTHER PHYSICAL PANEL)" \
+        if _MEASURED_INK_XYZ is None else "_MEASURED_INK_XYZ (ADR-116, this panel, 2026-09-19)"
+
+
+def ink_srgb8() -> np.ndarray:
+    """The inks as 8-bit sRGB of their ABSOLUTE XYZ — the encoding `SPECTRA6_DITHER_PALETTE` uses, so
+    this is what the shipping palette WOULD be if it were derived from `ink_xyz()`. Equal to the
+    constant byte-for-byte while the hook is None; different from it now (the pinned disagreement)."""
+    lin = ec.xyz_to_linear_rgb(ink_xyz())
+    return np.clip(np.round(ec.linear_to_srgb(np.clip(lin, 0.0, 1.0)) * 255.0), 0, 255).astype(np.uint8)
 
 
 def media_white() -> np.ndarray:
@@ -183,7 +216,7 @@ def gamut_surface_lab(n: int = 160) -> np.ndarray:
     return ec.xyz_to_lab(ec.linear_rgb_to_xyz(pts), media_white())
 
 
-def cusp_table(bins: int = 72, n: int = 160) -> list[dict]:
+def cusp_table(bins: int = 72, n: int = 256) -> list[dict]:
     """Per-hue maximum chroma on the gamut boundary, and the L* at which it occurs."""
     lab = gamut_surface_lab(n)
     lch = ec.lab_to_lch(lab)
@@ -283,6 +316,14 @@ def media_ceiling_level() -> float:
     return 255.0 * float(ec.linear_to_srgb(media_white()[1]))
 
 
+def media_floor_level() -> float:
+    """The source level whose radiance equals the BLACK ink's. Below it the reference is darker than
+    the panel can be — the mirror of `media_ceiling_level`, and 0 only on a palette whose black is a
+    perfect (0,0,0). ADR-116 measured it at Y 0.041, i.e. source level ~57: everything under that is
+    floor-clipped, a gamut fact like the ceiling, and is reported separately from the dither error."""
+    return 255.0 * float(ec.linear_to_srgb(ink_xyz()[BLACK][1]))
+
+
 def dither_error_report(levels=range(0, 256, 8)) -> dict:
     """Defect 1, isolated: what gamma-space error diffusion realises vs what it believes it realised.
 
@@ -303,8 +344,9 @@ def dither_error_report(levels=range(0, 256, 8)) -> dict:
     inks_lin = ec.xyz_to_linear_rgb(ink_xyz())
     Yw = media_white()
     ceil_d = media_ceiling_level()
+    floor_d = media_floor_level()
     pal = ep._cached_palette_image("_spectra6_dither", ep.SPECTRA6_DITHER_PALETTE)
-    dither, clipping = [], []
+    dither, clipping, floored = [], [], []
     for d in levels:
         img = Image.new("RGB", (128, 128), (int(d), int(d), int(d)))
         idx = np.asarray(img.quantize(palette=pal, dither=Image.Dither.FLOYDSTEINBERG))
@@ -313,26 +355,31 @@ def dither_error_report(levels=range(0, 256, 8)) -> dict:
         believed_L = float(ec.xyz_to_lab(ec.srgb8_to_xyz([d, d, d]), Yw)[0])
         row = {"d": int(d), "believed_L": round(believed_L, 2), "realised_L": round(realised_L, 2),
                "error_L": round(realised_L - believed_L, 2)}
-        (dither if d <= ceil_d else clipping).append(row)
+        (clipping if d > ceil_d else floored if d < floor_d else dither).append(row)
     peak = max(dither, key=lambda r: r["error_L"])
     return {
         "media_ceiling_level": round(ceil_d, 1),
+        "media_floor_level": round(floor_d, 1),
         "dither_error_below_ceiling": dither,
         "ceiling_clipping_above": clipping,
+        "floor_clipping_below": floored,
         "prediction_holds": {
             "positive_everywhere_below_ceiling": all(r["error_L"] >= -0.01 for r in dither),
-            "zero_at_black": abs(dither[0]["error_L"]) < 0.01,
+            # "vanishes at the dark endpoint": at the floor on a palette with a real black, at d=0 on one
+            # without. Either way the first ACHIEVABLE level lands on a single ink and has no mixture.
+            "zero_at_black": abs(dither[0]["error_L"]) < (0.01 if floor_d == 0 else 3.0),
             "peak_error_L": peak["error_L"], "peak_at_d": peak["d"],
+            "floor_clipped_levels": len(floored),
             "peak_is_in_the_shadows": peak["d"] <= 64,
         },
     }
 def main() -> None:
     rep = {
         "provenance": {
-            "ink_source": "SPECTRA6_DITHER_PALETTE (Pimoroni EL133UF1 — ANOTHER PHYSICAL PANEL)"
-                          if _MEASURED_INK_XYZ is None else "_MEASURED_INK_XYZ",
+            "ink_source": ink_source(),
             "adapting_white": "the panel's own white ink (reflective media)",
             "palette": [list(c) for c in ep.SPECTRA6_DITHER_PALETTE],
+            "ink_srgb8_derived": ink_srgb8().tolist(),
         },
         "inks": ink_table(),
         "gamut": {"faces": len(hull_faces()[0]), "edges": len(hull_edges(hull_faces()[0])),
@@ -365,7 +412,9 @@ def main() -> None:
           f"a gamut fact, reported separately")
     print(f"\ngamut: {rep['gamut']['faces']} faces, Euler {rep['gamut']['euler']}, "
           f"{rep['gamut']['volume_frac_of_linear_cube'] * 100:.2f}% of the linear cube")
-    dest = ROOT / "bench-eink/analysis/S1_panel_geometry.json"
+    # The swatch-era report is a banked artefact (S1, 2026-08-29); the measured palette writes beside it.
+    dest = ROOT / ("bench-eink/analysis/S1_panel_geometry.json" if _MEASURED_INK_XYZ is None
+                   else "bench-eink/analysis/S1_panel_geometry_measured.json")
     dest.write_text(json.dumps(rep, indent=1))
     print(f"\n-> {dest}")
 

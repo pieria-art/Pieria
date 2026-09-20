@@ -73,7 +73,8 @@ def test_the_difference_between_modes_matches_S1_independently(lut):
     quantity, no shared code beyond the colour module. A disagreement here refutes one of them.
     """
     best_d, best_err = None, -1.0
-    for d in range(8, 168, 8):
+    floor = int(np.ceil(pm.media_floor_level() / 8.0)) * 8       # below it both modes are floor-clipped
+    for d in range(max(8, floor), 168, 8):
         a = np.full((160, 160, 3), d, dtype=np.uint8)
         err = _realised_L(ed.dither(a, mode="legacy")) - _realised_L(ed.dither(a, mode="linear", lut=lut))
         if err > best_err:
@@ -87,10 +88,15 @@ def test_the_difference_between_modes_matches_S1_independently(lut):
 def test_linear_mode_realises_the_source_radiance_where_it_is_achievable(lut):
     """A correct dither reproduces the target tone. Below the media ceiling it should land on the
     source's own lightness; above it, it can only reach the paper white — and must."""
+    floor = pm.media_floor_level()
     for d in (24, 48, 96, 144):
         a = np.full((160, 160, 3), d, dtype=np.uint8)
         want = float(ec.xyz_to_lab(ec.srgb8_to_xyz([d, d, d]), pm.media_white())[0])
-        assert _realised_L(ed.dither(a, mode="linear", lut=lut)) == pytest.approx(want, abs=1.5)
+        got = _realised_L(ed.dither(a, mode="linear", lut=lut))
+        if d < floor:          # darker than the black ink: floor-clipped, a gamut fact (ADR-116)
+            assert got == pytest.approx(float(ec.xyz_to_lab(pm.ink_xyz()[0], pm.media_white())[0]), abs=1.5)
+        else:
+            assert got == pytest.approx(want, abs=1.5)
     for d in (200, 255):
         a = np.full((160, 160, 3), d, dtype=np.uint8)
         assert _realised_L(ed.dither(a, mode="linear", lut=lut)) == pytest.approx(100.0, abs=0.5)
@@ -98,10 +104,26 @@ def test_linear_mode_realises_the_source_radiance_where_it_is_achievable(lut):
 
 @pytest.mark.parametrize("i,name", list(enumerate(pm.INK_NAMES)))
 def test_a_pure_ink_image_renders_entirely_as_that_ink(i, name, lut):
-    a = np.full((48, 48, 3), ep.SPECTRA6_DITHER_PALETTE[i], dtype=np.uint8)
-    for mode in ("linear", "legacy"):
+    """Linear mode targets `pm.ink_xyz()` (the measured inks since ADR-116), so its pure-ink input is
+    the derived sRGB; legacy mode IS the shipping quantiser and targets the swatch. Blue's measured
+    colour lies outside sRGB (linear R -0.017) and its 8-bit encoding is clipped, so the nearest ink
+    to the clipped input is still asserted to be blue — that is the LUT doing its job."""
+    inside_srgb = (ec.xyz_to_linear_rgb(pm.ink_xyz())[i] >= 0).all()
+    for mode, src in (("linear", pm.ink_srgb8()), ("legacy", ep.SPECTRA6_DITHER_PALETTE)):
+        a = np.full((48, 48, 3), src[i], dtype=np.uint8)
         idx = ed.dither(a, mode=mode, lut=lut if mode == "linear" else None)
-        assert (idx == i).all(), f"{mode}: pure {name} did not render as {name}"
+        if mode == "legacy":
+            assert (idx == i).all(), f"legacy: pure {name} did not render as {name}"
+        elif inside_srgb:
+            # The 8-bit encoding of a measured ink is not exact; the residue is diffused and flips a
+            # few pixels (measured: 7 of 2304 for white). ≥99% is the ink; 100% would need a float input.
+            assert (idx == i).mean() >= 0.99, f"linear: pure {name} rendered as itself only {(idx == i).mean():.3f}"
+        else:
+            # Blue: the clipped input is a colour BETWEEN blue and green, and the dither honestly
+            # realises that (measured 79% blue + 21% green). The LUT still calls the input blue.
+            lin = np.clip(ec.srgb_to_linear(src[i] / 255.0), 0.0, 1.0)
+            assert ed._lut_lookup(lut, lin) == i
+            assert (idx == i).mean() > 0.6
 
 
 def test_wavefront_ordering_is_a_valid_topological_order():

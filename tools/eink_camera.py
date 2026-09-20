@@ -168,6 +168,44 @@ def solve_camera_matrix(patch_rgb, reference_lab: np.ndarray = CC24_LAB_AFTER_20
     return M, report
 
 
+def solve_camera_affine(patch_rgb, reference_lab: np.ndarray = CC24_LAB_AFTER_2014
+                        ) -> tuple[np.ndarray, np.ndarray, dict]:
+    """`solve_camera_matrix` plus a constant term: `target_xyz ≈ (patch_rgb - pedestal) @ M.T`.
+
+    WHY A SECOND SOLVER RATHER THAN A FLAG. The plain 3x3 is the physically meaningful object (module
+    docstring); this one exists for a specific measured defect. On the 2026-09-19 rig the chart lying
+    ON the panel read a white-to-black ratio of ~18 against the published 27.6, while the same chart on
+    the flock beside the panel read 26.7: the bright panel puts a veiling-glare pedestal into the lens
+    that a light trap in a dark corner of the frame cannot see. A pedestal is ADDITIVE, so a 3x3 with
+    no constant term has to bend its gains to chase it and the black patch comes back as the worst
+    residual (4.6 dE00). Twelve parameters against 24 patches is still well-posed. The pedestal is
+    returned in CAMERA units, so a caller can subtract the same pedestal from anything else that was
+    photographed in the same place under the same glare — the panel's own inks, for one.
+
+    ⚠️ It is a check that can fail, and should be run as one: on a chart that has NO pedestal the
+    recovered `pedestal` must come back at ~0 and the residual must not improve. A large pedestal on a
+    frame where none is expected is a bug, not a finding.
+    """
+    patch_rgb = np.asarray(patch_rgb, dtype=np.float64)
+    reference_lab = np.asarray(reference_lab, dtype=np.float64)
+    if patch_rgb.shape != reference_lab.shape:
+        raise ValueError(
+            f"patch_rgb {patch_rgb.shape} must match reference_lab {reference_lab.shape}")
+    target_xyz = lab_to_xyz(reference_lab, D50)
+    A = np.hstack([patch_rgb, np.ones((patch_rgb.shape[0], 1))])     # (N, 4)
+    X, _, _, _ = np.linalg.lstsq(A, target_xyz, rcond=None)          # (4, 3)
+    M = X[:3].T
+    offset = X[3]                                                     # XYZ = M rgb + offset
+    pedestal = -np.linalg.solve(M, offset)                            # = M (rgb - pedestal)
+    predicted_lab = xyz_to_lab(apply_camera_matrix(patch_rgb - pedestal, M), D50)
+    de00 = np.asarray(ciede2000(predicted_lab, reference_lab), dtype=np.float64)
+    worst_idx = int(np.argmax(de00))
+    report = {"de00": de00, "mean": float(de00.mean()), "median": float(np.median(de00)),
+              "worst": float(de00[worst_idx]),
+              "worst_patch": CC24_NAMES[worst_idx] if len(CC24_NAMES) == len(de00) else worst_idx}
+    return M, pedestal, report
+
+
 def apply_camera_matrix(rgb, M: np.ndarray) -> np.ndarray:
     """Linear camera RGB (..., 3) -> CIE XYZ (..., 3) under D50, via a matrix from `solve_camera_matrix`.
 

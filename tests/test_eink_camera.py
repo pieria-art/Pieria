@@ -190,3 +190,20 @@ def test_cmd_selftest_passes(capsys):
     ec.cmd_selftest(None)   # cmd_selftest takes an argparse Namespace but never reads it
     out = capsys.readouterr().out
     assert "self-test PASSED" in out
+
+
+def test_solve_camera_affine_recovers_a_known_pedestal_and_reads_zero_without_one():
+    """The affine solver must recover an additive pedestal exactly on a synthetic chart, and — the
+    half that can fail — report ~0 on a chart that has none, so a spurious pedestal is detectable."""
+    from tools.eink_camera import solve_camera_affine
+    rgb = ec._synthesise_camera_rgb(ec.CC24_LAB_AFTER_2014, ec._TRUE_CAMERA_TO_XYZ)
+    pedestal = np.array([0.8, 1.9, 1.1])
+    M, p, report = solve_camera_affine(rgb + pedestal)
+    assert np.allclose(p, pedestal, atol=1e-6), p
+    assert np.allclose(M, ec._TRUE_CAMERA_TO_XYZ, atol=1e-6)
+    assert report["mean"] < 1e-6
+    M0, p0, report0 = solve_camera_affine(rgb)
+    assert np.allclose(p0, 0.0, atol=1e-6), p0
+    # And the plain 3x3 on the pedestal-contaminated chart is visibly worse: the defect the affine exists for.
+    _, plain = ec.solve_camera_matrix(rgb + pedestal)
+    assert plain["mean"] > 0.5, plain["mean"]

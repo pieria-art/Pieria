@@ -111,8 +111,28 @@ def test_the_white_point_is_a_curve_not_a_scale():
     assert ratio[-1] != pytest.approx(float(pm.media_white()[1]) ** (1 / 2.4), abs=0.005)
 
 
-def test_luminance_reorders_the_inks_versus_the_flat_mean():
-    """ADR-094's founding claim, pinned. The flat mean puts white on top; real luminance puts yellow."""
+@pytest.fixture
+def swatch(monkeypatch):
+    """ADR-094/096's registered claims were made ABOUT the vendor swatch; they stay pinned on it."""
+    monkeypatch.setattr(pm, "_MEASURED_INK_XYZ", None)
+
+
+def test_measured_palette_restates_the_structure(swatch_free=None):
+    """What ADR-116 changes structurally, pinned so a future palette edit is a visible event:
+    yellow and white are luminance EQUALS (within the fit, not a 38% gap), and the largest gap on the
+    media-relative lightness ladder is at the TOP (green -> white), not in the shadows."""
+    if pm._MEASURED_INK_XYZ is None:
+        pytest.skip("hook unset")
+    s = pm.starvation_report()
+    Y = {r["ink"]: r["Y"] for r in pm.ink_table()}
+    assert abs(Y["yellow"] / Y["white"] - 1.0) < 0.06
+    assert s["L_media"]["largest_gap"]["from"] == "green"
+    assert s["L_media"]["largest_gap"]["to"] == "white"
+    assert pm.media_floor_level() > 0.0
+
+
+def test_luminance_reorders_the_inks_versus_the_flat_mean(swatch):
+    """ADR-094's founding claim, pinned ON THE SWATCH. The flat mean puts white on top; real luminance puts yellow."""
     s = pm.starvation_report()
     assert s["flat_rgb_mean"]["top_ink"] == "white"
     assert s["linear_Y"]["top_ink"] == "yellow"
@@ -123,13 +143,32 @@ def test_luminance_reorders_the_inks_versus_the_flat_mean():
     assert s["L_media"]["largest_gap"]["pct_of_range"] > 30
 
 
-def test_gamma_space_dither_error_matches_the_registered_prediction():
-    """Registered BEFORE running: positive everywhere below the media ceiling (sRGB encoding is
-    concave, so the realised mean radiance exceeds what the encoded arithmetic asserts), largest where
-    the EOTF curvature is largest, and vanishing at black."""
+def test_gamma_space_dither_error_matches_the_registered_prediction(swatch):
+    """Registered BEFORE running, ON THE SWATCH: positive everywhere below the media ceiling (sRGB
+    encoding is concave, so the realised mean radiance exceeds what the encoded arithmetic asserts),
+    largest where the EOTF curvature is largest, and vanishing at black."""
     rep = pm.dither_error_report()
     p = rep["prediction_holds"]
     assert p["positive_everywhere_below_ceiling"]
     assert p["zero_at_black"]
     assert p["peak_is_in_the_shadows"]
     assert p["peak_error_L"] > 5.0, "if the defect were negligible there would be nothing to fix"
+    assert p["floor_clipped_levels"] == 0
+
+
+def test_gamma_space_dither_error_on_the_measured_palette():
+    """The same prediction re-registered for a real black (ADR-116): still positive everywhere and
+    peaking in the shadows, but it CANNOT vanish at the dark end — the first achievable level above
+    the black ink still needs a mixture — and the levels below the black ink are floor-clipped, a
+    gamut fact reported separately, exactly as the ceiling already was."""
+    if pm._MEASURED_INK_XYZ is None:
+        pytest.skip("hook unset")
+    rep = pm.dither_error_report()
+    p = rep["prediction_holds"]
+    assert p["positive_everywhere_below_ceiling"]
+    assert p["peak_is_in_the_shadows"]
+    assert p["peak_error_L"] > 5.0
+    assert p["floor_clipped_levels"] >= 1
+    assert rep["floor_clipping_below"][0]["error_L"] == pytest.approx(
+        float(ec.xyz_to_lab(pm.ink_xyz()[0], pm.media_white())[0]), abs=0.1), \
+        "at d=0 the whole error is the black ink's own lightness"

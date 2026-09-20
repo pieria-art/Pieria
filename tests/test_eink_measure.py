@@ -349,3 +349,105 @@ def test_raw_cli_cleans_the_flat_field_with_its_own_trap_reading(monkeypatch, tm
     assert np.allclose(seen["trap"], 40.0), (
         f"the flat field's pedestal must be measured from the FLAT photo's own aperture (40), not "
         f"reused from the content frame (127.5); got {seen['trap']}")
+
+
+# --- raw flat field (ADR-115 §7: the flat WAS a raw, and the CLI opened it with PIL) -------------
+
+def test_build_flat_field_float_matches_the_pil_path_on_the_same_flat():
+    """A raw flat handed in as a float array on the 0-255 axis must produce the same illumination
+    map the 8-bit path does for the same photograph — the float path exists to keep precision on
+    dim raw frames, not to change what a flat field means."""
+    flat_target = et.compose(et.target_flat(W, H), W, H)
+    # Gain kept below 1.0 on every channel so nothing sits at 255: the PIL path CLIPS the bicubic
+    # overshoot beside the dark fiducials (measured 3.8% in a corner cell at gain 1.0) and that is a
+    # defect of the 8-bit path, not a disagreement the float path should be held to.
+    photo = em._synthesise_photo(flat_target, warp=0.0, gain=(0.9, 0.8, 0.8), off=(0, 0, 0),
+                                 noise=0.0, seed=16)
+    pil_field = em.build_flat_field(photo, W, H)
+    float_field = em.build_flat_field(np.asarray(photo).astype(np.float64), W, H)
+    x0, y0, x1, y1 = et.content_box(W, H)
+    rel = np.abs(float_field - pil_field)[y0:y1, x0:x1] / pil_field[y0:y1, x0:x1]
+    # ~1% is the PIL path's own uint8 rounding of the BOX-reduced map (measured 1.06%).
+    assert rel.max() < 0.02, f"float and PIL flat fields disagree by up to {rel.max() * 100:.2f}%"
+
+
+def test_build_flat_field_float_keeps_a_dim_raw_exposure():
+    """The whole reason for the float path: a raw rig exposes the white panel to ~15% of full scale
+    (≈38 on the 0-255 axis). The PIL path's absolute `content_mean < 90` guard would reject that as
+    mid-refresh; the float path must accept it and return a field at that level, not clamp it."""
+    flat_target = et.compose(et.target_flat(W, H), W, H)
+    photo = em._synthesise_photo(flat_target, warp=0.0, gain=(1, 1, 1), off=(0, 0, 0), noise=0.0,
+                                 seed=17)
+    dim = np.asarray(photo).astype(np.float64) * 0.15
+    with pytest.raises(ValueError):
+        em.build_flat_field(Image.fromarray(dim.astype(np.uint8), "RGB"), W, H)
+    field = em.build_flat_field(dim, W, H)
+    x0, y0, x1, y1 = et.content_box(W, H)
+    assert 30 < field[y0:y1, x0:x1].mean() < 45
+
+
+def test_build_flat_field_float_rejects_a_mid_refresh_wash():
+    """The relative guard must still FAIL on the thing the absolute one caught: an inversion-phase
+    frame where the whole panel, fiducials included, is one dark tone."""
+    flat_target = et.compose(et.target_flat(W, H), W, H)
+    photo = em._synthesise_photo(flat_target, warp=0.0, gain=(1, 1, 1), off=(0, 0, 0), noise=0.0,
+                                 seed=18)
+    arr = np.asarray(photo).astype(np.float64)
+    # warp=0 pastes the render at a known offset, so darken exactly the content box: the fiducials
+    # stay findable (the geometry is intact) but the panel between them is a wash barely above them.
+    # A pedestal on the whole frame keeps the fiducials REAL (black ink photographs at ~9% of
+    # white, never 0): without it the synthetic fiducials read exactly 0 and any content at all is
+    # infinitely brighter than them — a check that could only pass.
+    pad = int(max(W, H) * 0.12)
+    x0, y0, x1, y1 = et.content_box(W, H)
+    arr *= 0.9
+    arr[pad + y0:pad + y1, pad + x0:pad + x1] *= 0.05
+    arr += 20.0
+    with pytest.raises(ValueError, match="fiducials"):
+        em.build_flat_field(arr, W, H)
+
+
+def test_raw_cli_decodes_a_raw_flat_with_its_own_dark_and_trap(monkeypatch, tmp_path):
+    """The gap found on the 2026-09-19 shoot: `--flat E4.ARW` must go through `eink_raw.decode`
+    (with `--flat-dark`, or `--dark` when absent), be lifted onto the 0-255 axis, and hand
+    `build_flat_field` a pedestal read from the FLAT frame's own trap aperture — not `Image.open`."""
+    seen = {"decoded": [], "flat_trap": None, "flat_level": None}
+
+    class _Frame:
+        def __init__(self, level):
+            self.rgb = np.full((H, W, 3), level, dtype=np.float64)
+            self.rgb[0:20, 0:20] = level / 10
+            self.black, self.dark_current, self.clipped_fraction = 512.0, 0.0, 0.0
+
+    def fake_decode(p, dark_frame=None):
+        seen["decoded"].append((Path(p).name, dark_frame))
+        return _Frame(0.5 if Path(p).name.startswith("shot") else 0.2)
+
+    def spy_build(flat_photo, w, h, roi=None, smooth=40, trap=None):
+        seen["flat_trap"] = None if trap is None else np.asarray(trap, dtype=float).copy()
+        seen["flat_level"] = float(np.asarray(flat_photo)[100, 100, 0])
+        return np.ones((h, w, 3), dtype=np.float64)
+
+    import tools as _tools_pkg
+    fake_raw = types.SimpleNamespace(decode=fake_decode)
+    monkeypatch.setitem(sys.modules, "tools.eink_raw", fake_raw)
+    monkeypatch.setattr(_tools_pkg, "eink_raw", fake_raw, raising=False)
+    monkeypatch.setattr(em, "build_flat_field", spy_build)
+    monkeypatch.setattr(em, "rectify_float", lambda a, w, h, roi=None: np.asarray(a, dtype=np.float64))
+    monkeypatch.setattr(em, "read_panel", lambda *a, **k: {"corrected": None})
+    monkeypatch.setattr(em, "_report_read", lambda *a, **k: None)
+
+    args = types.SimpleNamespace(width=W, height=H, target="", roi="", trap="0,0,20,20",
+                                 dark="cap.ARW", flat_dark="flatcap.ARW", flat="flat.ARW",
+                                 out=str(tmp_path / "o.png"), primaries=False)
+    em._cmd_read_raw(args, Path("shot.ARW"))
+
+    assert ("flat.ARW", "flatcap.ARW") in seen["decoded"], seen["decoded"]
+    assert seen["flat_level"] == pytest.approx(0.2 * 255.0), "the raw flat must be lifted to the 0-255 axis"
+    assert seen["flat_trap"] is not None and np.allclose(seen["flat_trap"], 0.02 * 255.0), (
+        f"the flat's pedestal must come from the FLAT frame's own aperture (5.1), got {seen['flat_trap']}")
+
+    args.flat_dark = ""
+    seen["decoded"].clear()
+    em._cmd_read_raw(args, Path("shot.ARW"))
+    assert ("flat.ARW", "cap.ARW") in seen["decoded"], "--flat-dark must default to --dark"

@@ -4,6 +4,12 @@
 > sessions can look up panel behaviour instead of re-deriving it from judgements.
 > Rig: `docs/eink-measurement-rig.md` · decisions: `.ai/decision_log.md` ADR-053, 081, 084, 088-093.
 
+> 🆕 **A second corpus exists — 2026-09-19, NEX-6 raws with a ColorChecker and a light trap**
+> (`bench-eink/vault/raw/2026-09-19/`, 47 `.ARW`, gitignored). Unlike the 08-29 corpus below it IS
+> absolute colorimetry: the six inks in XYZ/Lab, ADR-116, `bench-eink/analysis/PRIMARIES_2026-09-19.md`,
+> manifest `shoot_2026-09-19.json`, reproduce with `python -m tools.eink_shoot primaries …`.
+> The "out of reach" column below is out of reach for THIS (08-29) corpus only.
+
 ## What this is, and what it is not
 
 **⚠️ UNITS: camera-RGB normalised to THIS panel's own black = 0 and white = 255. NOT sRGB.**

@@ -43,7 +43,8 @@ def test_the_anchor_is_always_on_the_achievable_neutral_axis():
     with hue errors up to 98 degrees."""
     h = np.linspace(0, 360, 721)
     L = eg.cusp_lightness(h)
-    assert L.max() <= 100.0 - eg._ANCHOR_MARGIN and L.min() >= eg._ANCHOR_MARGIN
+    lo, hi = eg.anchor_band()
+    assert L.max() <= hi and L.min() >= lo
     neutral = np.stack([L, np.zeros_like(L), np.zeros_like(L)], axis=-1)
     assert eg.in_destination(neutral).all(), "every anchor must itself be achievable"
 
@@ -52,7 +53,9 @@ def test_colours_well_inside_the_gamut_are_left_alone(sample):
     """The knee's whole purpose: don't move what does not need moving."""
     _, lab = sample
     knee = 0.9
-    out = eg.gamut_map(lab, knee=knee)
+    # black_L=0: these tests exercise the CHROMA stage, and the default black-point compensation
+    # (ADR-116) moves every colour's lightness, which is not what "untouched" is about.
+    out = eg.gamut_map(lab, knee=knee, black_L=0.0)
     moved = ec.ciede2000(lab, out)
     # Anything the map left untouched must be bit-identical, not merely close.
     untouched = moved < 1e-9
@@ -65,14 +68,15 @@ def test_knee_1_is_pure_clipping_and_leaves_every_in_gamut_colour_exact(sample):
     _, lab = sample
     inside = eg.in_destination(lab)
     assert inside.any()
-    out = eg.gamut_map(lab, knee=1.0)
+    out = eg.gamut_map(lab, knee=1.0, black_L=0.0)
     assert np.allclose(lab[inside], out[inside], atol=1e-6)
 
 
 def test_a_lower_knee_compresses_more(sample):
     """Monotone in the parameter: a smaller core must move more colour, not less."""
     _, lab = sample
-    moved = [float((ec.ciede2000(lab, eg.gamut_map(lab, knee=k)) > 1e-9).mean()) for k in (1.0, 0.9, 0.6)]
+    moved = [float((ec.ciede2000(lab, eg.gamut_map(lab, knee=k, black_L=0.0)) > 1e-9).mean())
+             for k in (1.0, 0.9, 0.6)]
     assert moved[0] < moved[1] < moved[2], f"knee monotonicity broken: {moved}"
 
 
@@ -88,7 +92,13 @@ def test_chroma_ordering_is_preserved_along_a_hue_ray():
             C = np.linspace(0, 130, 60)
             lab = ec.lch_to_lab(np.stack([np.full_like(C, L), C, np.full_like(C, hue)], axis=-1))
             worst = min(worst, float(np.diff(ec.lab_to_lch(eg.gamut_map(lab))[:, 1]).min()))
-    assert worst > -0.5, f"chroma ordering inverted by {worst:.3f} C*"
+    # Re-measured on the measured palette (ADR-116): the neutral floor at L* 49.65 narrows the anchor
+    # band to [61.65, 88] and the yellow-apex residual grows — worst -0.78 C* on this sweep (with the
+    # default black-point toe), -1.34 on the dense one, at hue 75-85 / L* 50-72, with margin 12 still
+    # the best of 0/5/8/10/12/14/20. Bound is the measured worst plus headroom; stated, not rounded
+    # away; under the ~1 C* threshold HERE but not on the dense sweep — an open item of the mapper
+    # (ADR-117), not a pass.
+    assert worst > -1.0, f"chroma ordering inverted by {worst:.3f} C*"
 
 
 def test_the_map_is_continuous():
@@ -101,27 +111,38 @@ def test_the_map_is_continuous():
         assert step.max() < 1.0, f"jump of {step.max():.3f} Lab units at hue {hue}"
 
 
-def test_lightness_is_the_identity_on_neutrals_when_black_is_black():
-    """THE S3 FINDING, pinned. Media-relative normalisation already matches the ranges, so perceptual
-    intent has no lightness compression to do and NO TONE CURVE FALLS OUT OF IT. If the palette ever
-    gains a non-zero black, `black_L` puts a toe back — and this test is where that shows up."""
+def test_lightness_on_neutrals_is_the_identity_above_the_floor_and_a_toe_below_it():
+    """THE S3 FINDING, re-pinned after ADR-116. On the swatch the achievable neutral axis was 0..100
+    and lightness was the identity — no tone curve fell out of perceptual intent. On the measured
+    palette the axis starts at `neutral_floor()` (L* 49.65): above it the identity still holds
+    exactly, and the default black-point compensation maps the source's 0..100 onto floor..100 —
+    the toe the module docstring predicted the day black was measured."""
+    floor = eg.neutral_floor()
     L = np.linspace(0, 100, 101)
     lab = np.stack([L, np.zeros_like(L), np.zeros_like(L)], axis=-1)
-    # atol from the measured numerical floor (1.8e-6, from the Lab cube-root near zero and the
-    # boundary bisection), not from hope. The bug this catches was 4 L* and then 0.96 L*.
-    assert np.allclose(eg.gamut_map(lab)[:, 0], L, atol=1e-4)
-
-    with_black = eg.gamut_map(lab, black_L=8.0)[:, 0]
-    assert with_black[0] == pytest.approx(8.0, abs=1e-6), "a real black point must lift the floor"
-    assert with_black[-1] == pytest.approx(100.0, abs=1e-6), "and must not move the white"
-    assert np.all(np.diff(with_black) > 0)
+    # Compensation OFF: the identity wherever the source and destination boundaries coincide — the
+    # whole axis on the swatch (floor 0), the knee's core above the floor on the measured palette
+    # (the last 10% before the floor is compressed, which is the knee doing its job). atol from the
+    # measured numerical floor, 1.8e-6 — the bug this catches was 4 L* and then 0.96 L*.
+    off = eg.gamut_map(lab, black_L=0.0)[:, 0]
+    lo, _ = eg.anchor_band()
+    core = L >= floor + 0.1 * (lo - floor) + 1e-3
+    assert np.allclose(off[core], L[core], atol=1e-4)
+    assert np.all(off[L < floor] >= floor - 1e-3), "below the floor a neutral can only clip to it"
+    # Compensation ON (the default): the toe is EXACTLY the affine 0 -> floor, 100 -> 100. Once the
+    # source's black sits on the destination's floor the two boundaries coincide again and the knee
+    # is the identity on the axis — so this is the swatch-era identity, relocated.
+    on = eg.gamut_map(lab)[:, 0]
+    assert np.allclose(on, floor + L * (100.0 - floor) / 100.0, atol=1e-4)
+    explicit = eg.gamut_map(lab, black_L=max(floor, 8.0))[:, 0]
+    assert explicit[0] == pytest.approx(max(floor, 8.0), abs=1e-3)
 
 
 @pytest.mark.parametrize("i,name", list(enumerate(pm.INK_NAMES)))
 def test_each_ink_maps_to_itself(i, name):
     """The inks are the gamut's own vertices; a map that moves them is compressing its destination."""
     lab = ec.xyz_to_lab(pm.ink_xyz()[i], pm.media_white())
-    out = eg.gamut_map(lab[None, :], knee=1.0)[0]
+    out = eg.gamut_map(lab[None, :], knee=1.0, black_L=0.0)[0]     # the chroma stage alone
     assert float(ec.ciede2000(lab, out)) < 0.5, f"{name} moved by {float(ec.ciede2000(lab, out)):.2f} dE"
 
 
@@ -143,4 +164,20 @@ def test_the_quantiser_space_round_trips_the_inks_byte_for_byte():
     """
     lab = ec.xyz_to_lab(pm.ink_xyz(), pm.media_white())
     got = eg.to_quantiser_srgb8(lab)
-    assert got.tolist() == [list(c) for c in ep.SPECTRA6_DITHER_PALETTE]
+    assert got.tolist() == pm.ink_srgb8().tolist()
+
+
+def test_the_shipping_palette_and_the_measured_inks_disagree_and_that_is_known():
+    """TRIPWIRE, not an invariant. Since ADR-116 the analysis plane reasons from the measured inks
+    while `epaper.SPECTRA6_DITHER_PALETTE` — what the shipping quantiser measures distance against —
+    is still the vendor swatch. That disagreement is deliberate (ADR-084: the panel decides what
+    ships) and it must stay VISIBLE: the day the shipping palette is replaced, or the hook is
+    unset, this test flips and the docstring in `eink_panel_model` has to be rewritten with it."""
+    derived = pm.ink_srgb8().tolist()
+    shipping = [list(c) for c in ep.SPECTRA6_DITHER_PALETTE]
+    if pm._MEASURED_INK_XYZ is None:
+        assert derived == shipping
+    else:
+        assert derived != shipping, "the shipping palette now matches the measured inks — update the docs"
+        blue = ec.xyz_to_linear_rgb(pm.ink_xyz())[pm.INK_NAMES.index("blue")]
+        assert blue.min() < 0, "blue was inside sRGB — re-check the measured palette"

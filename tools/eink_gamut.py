@@ -106,7 +106,34 @@ def _boundary_distance(anchor, direction, inside_fn, hi=400.0, iters=40) -> np.n
 #: the ~1 C* discrimination threshold. Ordering is what perceptual intent promises; 0.2% chroma is not
 #: a price worth arguing about.
 _ANCHOR_MARGIN = 12.0
-_NEUTRAL_MIN, _NEUTRAL_MAX = _ANCHOR_MARGIN, 100.0 - _ANCHOR_MARGIN
+
+
+def neutral_floor(tol: float = 1e-4) -> float:
+    r"""The darkest media-relative L\* that is NEUTRAL (a\* = b\* = 0) and inside the hull.
+
+    🔴 ON THE MEASURED PALETTE THIS IS L\* 49.65, NOT 0 (ADR-116). The black ink is L\* 39.6 and
+    reddish (a\* +9.3), so the neutral axis leaves the hull well above it: no grey darker than a
+    mid-grey exists on this panel. The swatch, with its perfect (0,0,0) black, gave 0 — which is why
+    everything below assumed the neutral axis ran 0..100 and why that assumption was invisible.
+    Found by bisection on `in_destination`, like every other boundary here, so it is a sample to
+    `tol`, not a closed form.
+    """
+    if in_destination(np.array([[0.0, 0.0, 0.0]]))[0]:
+        return 0.0                                   # a perfect black: the swatch, exactly, not 1e-4
+    lo, hi = 0.0, 100.0
+    while hi - lo > tol:
+        mid = 0.5 * (lo + hi)
+        if in_destination(np.array([[mid, 0.0, 0.0]]))[0]:
+            hi = mid
+        else:
+            lo = mid
+    return float(hi)
+
+
+def anchor_band() -> tuple[float, float]:
+    r"""The L\* interval the cusp anchor may occupy: the achievable neutral axis, `_ANCHOR_MARGIN` in
+    from each end. `[12, 88]` on the swatch; `[61.65, 88]` on the measured palette."""
+    return neutral_floor() + _ANCHOR_MARGIN, 100.0 - _ANCHOR_MARGIN
 
 
 def cusp_lightness(hue_deg, table=None) -> np.ndarray:
@@ -126,20 +153,25 @@ def cusp_lightness(hue_deg, table=None) -> np.ndarray:
     tab = table if table is not None else pm.cusp_table()
     h = np.array([r["hue_deg"] for r in tab] + [360.0])
     L = np.array([r["L_at_cusp"] for r in tab] + [tab[0]["L_at_cusp"]])
-    return np.clip(np.interp(np.asarray(hue_deg) % 360.0, h, L), _NEUTRAL_MIN, _NEUTRAL_MAX)
+    lo, hi = anchor_band()
+    return np.clip(np.interp(np.asarray(hue_deg) % 360.0, h, L), lo, hi)
 
 
-def gamut_map(lab_src, knee: float = 0.9, black_L: float = 0.0, cusp_tab=None):
+def gamut_map(lab_src, knee: float = 0.9, black_L: float | None = None, cusp_tab=None):
     """Map media-relative Lab into the panel's gamut, preserving hue and ordering.
 
     knee    fraction of the DESTINATION boundary distance left untouched. 1.0 = pure clipping
             (colorimetric intent); lower values trade in-gamut accuracy for out-of-gamut structure.
-    black_L L* of the panel's black ink. 0.0 on the current palette, BY ASSUMPTION — the palette gives
-            a perfect black and nothing has measured it. Nonzero puts a toe back (see the module
-            docstring); it is exposed so that the day a measurement exists it is one argument.
+    black_L the L* the source's black is mapped to — black-point compensation, the toe the module
+            docstring said would come back the day black was measured. `None` (the default) means
+            `neutral_floor()`: the darkest achievable neutral, 0.0 on the swatch (so the old identity
+            behaviour is unchanged there) and 49.65 on the measured palette (ADR-116). Pass 0.0 to
+            switch compensation off and watch dark neutrals clip at the floor instead.
     """
     lab = np.asarray(lab_src, dtype=np.float64)
     flat = lab.reshape(-1, 3)
+    if black_L is None:
+        black_L = neutral_floor()
 
     # --- lightness: the identity, unless the black point is not actually black -------------------
     L = flat[:, 0]
@@ -156,7 +188,18 @@ def gamut_map(lab_src, knee: float = 0.9, black_L: float = 0.0, cusp_tab=None):
     unit = np.where(d[:, None] > 1e-9, vec / np.maximum(d, 1e-9)[:, None], np.array([1.0, 0.0, 0.0]))
 
     d_dst = _boundary_distance(anchor, unit, in_destination)
-    d_src = np.maximum(_boundary_distance(anchor, unit, in_source), d)   # the point IS in the source
+
+    # The SOURCE boundary is tested in the source's own, un-compensated lightness: a probe point on
+    # the compensated axis has to be mapped back through the toe before asking "is this in the
+    # source cube?", or the source's floor (L* 0) and the destination's (`black_L`) never coincide
+    # and the knee compresses the last 10% of every dark neutral instead of being the identity there.
+    def _in_source_compensated(p):
+        q = np.array(p, dtype=np.float64, copy=True)
+        if black_L > 0.0:
+            q[..., 0] = (q[..., 0] - black_L) * 100.0 / (100.0 - black_L)
+        return in_source(q)
+
+    d_src = np.maximum(_boundary_distance(anchor, unit, _in_source_compensated), d)   # the point IS in the source
 
     core = knee * d_dst
     span = np.maximum(d_src - core, 1e-9)

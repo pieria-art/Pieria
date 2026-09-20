@@ -15,6 +15,20 @@ from tools import eink_dither as ed
 from tools import eink_panel_model as pm
 from tools import eink_scielab as sl
 
+
+@pytest.fixture(autouse=True, scope="module")
+def _swatch_era_registration():
+    """⚠️ PINNED TO THE VENDOR SWATCH ON PURPOSE (ADR-117). Every registered prediction in this file
+    was derived on `SPECTRA6_DITHER_PALETTE`; since ADR-116 `eink_panel_model` reasons from the
+    measured inks, on which the panel's structure differs (neutral floor L* 49.65, yellow = white).
+    Re-deriving this analysis on the measured palette is open work, not a test edit — until then the
+    file documents what was true of the swatch, and says so here rather than silently.
+    Module-scoped so it is in place BEFORE the module-scoped measurement fixtures are built."""
+    from tools import eink_panel_model as _pm
+    with pytest.MonkeyPatch.context() as mp:
+        mp.setattr(_pm, "_MEASURED_INK_XYZ", None)
+        yield
+
 _LUT = ed.nearest_ink_lut()
 
 
