@@ -69,3 +69,6 @@ CLAUDE.md
 !.ai/system_architecture.md
 !bench-eink/analysis/
 !bench-eink/analysis/**
+
+# e-ink candidate viewer output (regenerable renders, ~29MB)
+bench-eink/analysis/h121_compare/

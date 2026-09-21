@@ -16,14 +16,35 @@ from tools import eink_panel_model as pm
 from tools import eink_scielab as sl
 
 
-@pytest.fixture(autouse=True, scope="module")
+@pytest.fixture()
 def _swatch_era_registration():
     """⚠️ PINNED TO THE VENDOR SWATCH ON PURPOSE (ADR-117). Every registered prediction in this file
     was derived on `SPECTRA6_DITHER_PALETTE`; since ADR-116 `eink_panel_model` reasons from the
     measured inks, on which the panel's structure differs (neutral floor L* 49.65, yellow = white).
-    Re-deriving this analysis on the measured palette is open work, not a test edit — until then the
-    file documents what was true of the swatch, and says so here rather than silently.
-    Module-scoped so it is in place BEFORE the module-scoped measurement fixtures are built."""
+
+    🔴 FUNCTION-SCOPED ON PURPOSE (spec_s456, 2026-09-21) — it was `scope="module"` and that was a bug,
+    not a convenience: a module-scoped fixture, once first requested, does NOT tear down between
+    tests that don't request it — it stays live until the module's last item runs. Verified directly
+    with a 4-test probe (A requests it, B/C/D don't; all four still read the patch as active) before
+    fixing this file. Under the old scope, `test_the_wide_negative_lobe_does_not_decide_anything` and
+    `test_subsampling_the_difference_field_is_unbiased` were SILENTLY STILL RUNNING ON THE SWATCH
+    despite not requesting this fixture (they sit between two tests that do) — they happened to pass
+    either way, so nothing was masked, but the "unpinned" claim about them was false. Function scope
+    fixes the leak: only a test that explicitly takes `_swatch_era_registration` as an argument sees
+    the swatch. Three do, for a documented, verified reason
+    (`test_grain_fades_with_distance_but_tone_error_does_not`, `test_degenerate_renders_lose_to_real_
+    ones`, `test_the_objective_prefers_the_corrected_pipeline_to_production` — probed with the hook
+    live and FAILED for real structural reasons, see `bench-eink/analysis/
+    S4_perceptual_objective_measured.md`). The other six now genuinely run on the measured palette.
+    Of those, three never touch `eink_panel_model` at all (`test_filter_preserves_the_mean`,
+    `test_transfer_function_has_unit_dc_gain`, `test_opponent_round_trip_is_the_identity`) and
+    `test_reduces_to_plain_cielab_on_a_flat_patch` only calls `pm.media_white()` for an identity that
+    holds at any white point — "unpinned" is not a substantive claim for these four. The remaining two
+    (`test_the_wide_negative_lobe_does_not_decide_anything`, `test_subsampling_the_difference_field_
+    is_unbiased`) DO call ink-dependent code (`pm.ink_xyz()`, `_quantize`) — their un-pin IS
+    substantive, and they pass because their assertions are about a RANKING or a BOUND that holds
+    under either palette, not because the palette doesn't reach them.
+    """
     from tools import eink_panel_model as _pm
     with pytest.MonkeyPatch.context() as mp:
         mp.setattr(_pm, "_MEASURED_INK_XYZ", None)
@@ -79,7 +100,7 @@ def test_opponent_round_trip_is_the_identity():
     assert np.allclose((xyz @ sl._XYZ_TO_OPP.T) @ sl._OPP_TO_XYZ.T, xyz, atol=1e-12)
 
 
-def test_grain_fades_with_distance_but_tone_error_does_not():
+def test_grain_fades_with_distance_but_tone_error_does_not(_swatch_era_registration):
     """Two stimuli whose correct behaviour is known a priori, so the test can fail.
 
     A dithered flat grey differs from its reference ONLY in high-frequency pattern, so its penalty must
@@ -104,7 +125,7 @@ def test_grain_fades_with_distance_but_tone_error_does_not():
     assert max(tone) / min(tone) < 1.10, f"a low-frequency offset must be ~distance-invariant: {tone}"
 
 
-def test_degenerate_renders_lose_to_real_ones():
+def test_degenerate_renders_lose_to_real_ones(_swatch_era_registration):
     """⛔ THE ONE THAT MATTERS. ADR-097's objective preferred a grey rectangle to the picture.
 
     Any objective that scores a constant image better than an honest render of the work is not
@@ -158,7 +179,7 @@ def test_subsampling_the_difference_field_is_unbiased():
     assert abs(full - sub) < 0.05, f"stride-4 sample off by {abs(full - sub):.4f} dE"
 
 
-def test_the_objective_prefers_the_corrected_pipeline_to_production():
+def test_the_objective_prefers_the_corrected_pipeline_to_production(_swatch_era_registration):
     """A sanity floor on the whole programme: if the physics-derived pipeline did NOT score better
     than what ships, something upstream is wrong and no optimisation should be run.
 

@@ -19,9 +19,20 @@ def _swatch_era_registration():
     """⚠️ PINNED TO THE VENDOR SWATCH ON PURPOSE (ADR-117). Every registered prediction in this file
     was derived on `SPECTRA6_DITHER_PALETTE`; since ADR-116 `eink_panel_model` reasons from the
     measured inks, on which the panel's structure differs (neutral floor L* 49.65, yellow = white).
-    Re-deriving this analysis on the measured palette is open work, not a test edit — until then the
-    file documents what was true of the swatch, and says so here rather than silently.
-    Module-scoped so it is in place BEFORE the module-scoped measurement fixtures are built."""
+    Module-scoped so it is in place BEFORE the module-scoped measurement fixtures are built.
+
+    🔴 PROBED on the measured palette (spec_s456, 2026-09-21) — `bench-eink/analysis/
+    S5_shipping_transform_measured.md`. Kept FULLY pinned, module-wide, on purpose: 4 of 7 tests here
+    fail with the hook live, for real reasons — but read the LADDER report, not just this note, before
+    quoting a mechanism from it: the shipped default (`black_L=None`) maps true darks to the derived
+    neutral floor L* 49.64 (a black-point-compensation toe, `eink_gamut.gamut_map`), not to the
+    measured black ink's own L* 39.6 — a genuinely correct-but-worse-than-doing-nothing choice on this
+    palette, worth ~8.4 ΔE00 mean if switched off (measured, not yet acted on — ADR-084's call). The
+    quantiser's response is also far more onto than before (6% vs the pinned test's >10% unreachable
+    bar). Splitting the pin per-test is NOT safe here — `response` and `work` below are MODULE-scoped
+    and shared, so a partial un-pin would let a swatch-built `response` leak into a measured-expecting
+    test (or vice versa) depending on pytest's collection order, which is exactly the contamination
+    shape this item warns about. The whole file stays pinned; see the report for the measured numbers."""
     from tools import eink_panel_model as _pm
     with pytest.MonkeyPatch.context() as mp:
         mp.setattr(_pm, "_MEASURED_INK_XYZ", None)
