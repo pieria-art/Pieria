@@ -246,7 +246,23 @@ def test_subject_box_landscape_fallback_anchors_on_top_not_centre():
     assert py0 > 0.15  # nowhere near the top-anchored landscape result
 
 
-def test_subject_box_is_approximately_minimal_area():
+def test_subject_box_centres_the_surplus_when_narrower_than_the_box():
+    """Regression guard for the real bug: MacGillivray's Finch got a REACHABLE-coverage box (no
+    fallback involved) that still left ~40% empty paper on one side. Once a box is wide enough to
+    fully enclose a narrow subject, every x-position along that slack ties on enclosed mass --
+    `np.argmax` silently returns the first (left-most) tied cell unless ties are broken toward the
+    subject's own extent centre. A tall, narrow column (well clear of the frame edges, so clamping
+    can't be mistaken for centring) must come back with the box's horizontal surplus split evenly
+    across both sides."""
+    h, w = 200, 200
+    mask = np.zeros((h, w), dtype=bool)
+    mask[20:180, 70:90] = True  # tall column, x-centre=80/200=0.4 -- off the canvas's own 0.5
+
+    box = sc.subject_box(mask, 1.0, 1.0, coverage=0.9)  # a square target -> guaranteed horizontal
+    x0, y0, x1, y1 = box                                # slack once the tall column is enclosed
+    box_cx = (x0 + x1) / 2
+    subject_cx = 80 / w
+    assert abs(box_cx - subject_cx) < 0.01, "surplus must be split within 1%, centred on the subject"
     mask = np.zeros((120, 100), dtype=bool)
     mask[40:80, 30:70] = True
     for key in sc.ASPECT_CROP_KEYS:

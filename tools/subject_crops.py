@@ -84,6 +84,8 @@ CAPTION_SEARCH_FRAC = 0.30   # only look for the gap within the plate's bottom 3
 COVERAGE_DEFAULT = 0.92
 BISECT_STEPS = 60
 POSITION_STRIDE = 2
+POSITION_TIE_TOL = 0.005   # placements within this fraction of the max enclosed mass are "tied";
+                           # break ties toward the subject's own extent centre (see _best_position)
 
 # --- gate ------------------------------------------------------------------------------------
 # The "REJECT" constants document where a genuinely-broken box would sit; they're not applied
@@ -284,11 +286,24 @@ def _integral_image(mask: np.ndarray) -> np.ndarray:
     return ii
 
 
-def _best_position(ii: np.ndarray, h_px: int, w_px: int, h: int, w: int,
-                    stride: int) -> tuple[float, tuple[int, int]]:
+def _best_position(ii: np.ndarray, h_px: int, w_px: int, h: int, w: int, stride: int,
+                    prefer_center: tuple[float, float] | None = None,
+                    tie_tol: float = POSITION_TIE_TOL) -> tuple[float, tuple[int, int]]:
     """argmax enclosed ink mass, over a stride-`stride` grid of top-left positions, via the
     integral image — fully vectorized (no python loop over candidate positions). Returns
-    (best_mass, (y0_px, x0_px))."""
+    (best_mass, (y0_px, x0_px)).
+
+    When `prefer_center` (a (y, x) pixel point — the subject's own EXTENT centre, not its mass
+    centroid) is given, ties are broken toward it: among every placement whose enclosed mass is
+    within `tie_tol` of the true maximum (not just the single cell `argmax` would pick), the one
+    whose OWN centre is closest to `prefer_center` wins.
+
+    Without this, a box with slack on some axis — already wide/tall enough to enclose the whole
+    subject along that axis, so every placement along it scores identically — silently returns
+    `argmax`'s default (the first, i.e. top-left-most, tied cell), dumping ALL the surplus paper on
+    one side. Measured on MacGillivray's Finch: a 4:3 box that already fully contained both birds
+    left ~40% empty paper on the LEFT, because every x0 from 0 up to the slack's end tied on mass
+    and `argmax` simply returned the first one."""
     ys = np.arange(0, h - h_px + 1, stride)
     xs = np.arange(0, w - w_px + 1, stride)
     if ys.size == 0:
@@ -298,7 +313,19 @@ def _best_position(ii: np.ndarray, h_px: int, w_px: int, h: int, w: int,
     y0, x0 = np.meshgrid(ys, xs, indexing="ij")
     y1, x1 = y0 + h_px, x0 + w_px
     sums = ii[y1, x1] - ii[y0, x1] - ii[y1, x0] + ii[y0, x0]
-    flat = int(np.argmax(sums))
+
+    if prefer_center is not None:
+        best_sum = float(sums.max())
+        thresh = best_sum * (1.0 - tie_tol) if best_sum > 0 else best_sum
+        near_max = sums >= thresh
+        cy = y0.astype(np.float64) + h_px / 2.0
+        cx = x0.astype(np.float64) + w_px / 2.0
+        pc_y, pc_x = prefer_center
+        dist2 = (cy - pc_y) ** 2 + (cx - pc_x) ** 2
+        dist2 = np.where(near_max, dist2, np.inf)
+        flat = int(np.argmin(dist2))
+    else:
+        flat = int(np.argmax(sums))
     iy, ix = np.unravel_index(flat, sums.shape)
     return float(sums[iy, ix]), (int(y0[iy, ix]), int(x0[iy, ix]))
 
@@ -323,6 +350,21 @@ def _centered_box(bh: float, r: float, centroid: tuple[float, float]) -> list[fl
 
 
 TOP_ANCHOR_MARGIN_FRAC = 0.02  # landscape-key fallback: headroom above the subject's own top edge
+
+
+def _extent(mask: np.ndarray) -> tuple[int, int, int, int]:
+    """(y_lo, y_hi, x_lo, x_hi) pixel bbox of every ink pixel; y_hi/x_hi exclusive. Callers only
+    reach this once the mask is known non-empty (total mass > 0)."""
+    ys, xs = np.where(mask)
+    return int(ys.min()), int(ys.max()) + 1, int(xs.min()), int(xs.max()) + 1
+
+
+def _extent_center(mask: np.ndarray) -> tuple[float, float]:
+    """(cy, cx) pixel midpoint of the subject's own bbox EXTENT — not its mass centroid. This is
+    the tie-break target `subject_box` passes into `_best_position`, and what `_extent_anchored_box`
+    centres its non-anchored axis on."""
+    y_lo, y_hi, x_lo, x_hi = _extent(mask)
+    return (y_lo + y_hi) / 2.0, (x_lo + x_hi) / 2.0
 
 
 def _extent_anchored_box(mask: np.ndarray, h_px: int, w_px: int, *, anchor_top: bool) -> list[int]:
@@ -351,9 +393,7 @@ def _extent_anchored_box(mask: np.ndarray, h_px: int, w_px: int, *, anchor_top: 
       coverage target is already unreachable at the largest possible box, so there's no "better,
       still-sufficient" placement being missed either way."""
     h, w = mask.shape
-    ys, xs = np.where(mask)
-    y_lo, y_hi = int(ys.min()), int(ys.max()) + 1
-    x_lo, x_hi = int(xs.min()), int(xs.max()) + 1
+    y_lo, y_hi, x_lo, x_hi = _extent(mask)
     cx = (x_lo + x_hi) / 2.0
     x0_px = int(round(min(max(cx - w_px / 2, 0.0), w - w_px)))
     if anchor_top:
@@ -370,12 +410,17 @@ def subject_box(mask: np.ndarray, target_aspect: float, source_aspect: float,
     """The smallest box of exact `target_aspect` (real, source-aspect-corrected) that encloses
     >= `coverage` of `mask`'s ink mass — a bisection on box height (`BISECT_STEPS` steps), with the
     best position at each candidate size found via an integral-image argmax (stride
-    `POSITION_STRIDE`). Falls back to the largest box that fits the frame at this aspect, positioned
-    against the subject's own pixel EXTENT (see `_extent_anchored_box`), when even that can't reach
-    `coverage` (an elongated single subject, or multi-subject plates whose parts are too far apart —
-    ADR-087's accepted trade: more paper, and the loss placed where it costs least). For a landscape
-    key (`target_aspect > 1`: 16:9/4:3) the fallback anchors on the subject's TOP edge (an upright
-    bird's head, never its feet); for a portrait key it centres on the extent instead.
+    `POSITION_STRIDE`), with ties (placements within `POSITION_TIE_TOL` of the max enclosed mass —
+    i.e. an axis with SLACK, already big enough to enclose the whole subject along it) broken
+    toward the subject's own extent centre rather than defaulting to the top-left-most tied cell
+    (measured on MacGillivray's Finch: a reachable-coverage box left ~40% empty paper on one side
+    before this — see `_best_position`'s docstring). Falls back to the largest box that fits the
+    frame at this aspect, positioned against the subject's own pixel EXTENT (see
+    `_extent_anchored_box`), when even that can't reach `coverage` (an elongated single subject, or
+    multi-subject plates whose parts are too far apart — ADR-087's accepted trade: more paper, and
+    the loss placed where it costs least). For a landscape key (`target_aspect > 1`: 16:9/4:3) the
+    fallback anchors on the subject's TOP edge (an upright bird's head, never its feet); for a
+    portrait key it centres on the extent instead (both axes, same tie-break principle as above).
     Always returns an exact-aspect box (post-`snap`)."""
     h, w = mask.shape
     total = float(mask.sum())
@@ -387,11 +432,13 @@ def subject_box(mask: np.ndarray, target_aspect: float, source_aspect: float,
         return snap(box, source_aspect, target_aspect)
 
     ii = _integral_image(mask)
+    prefer_center = _extent_center(mask)
 
     def eval_scale(bh: float):
         h_px = max(1, min(h, int(round(bh * h))))
         w_px = max(1, min(w, int(round(bh * r * w))))
-        best_sum, pos = _best_position(ii, h_px, w_px, h, w, POSITION_STRIDE)
+        best_sum, pos = _best_position(ii, h_px, w_px, h, w, POSITION_STRIDE,
+                                        prefer_center=prefer_center)
         return best_sum / total, h_px, w_px, pos
 
     cov_hi, h_px, w_px, pos = eval_scale(hi)
