@@ -61,7 +61,6 @@ class EinkConfig:
             server_url=os.environ.get("SERVER_URL", "http://localhost:8000").rstrip("/"),
             display_id=os.environ.get("DISPLAY_ID", "default"),
             min_interval=_int_env("EINK_MIN_INTERVAL", 900),
-            saturation=_float_env("EINK_SATURATION", 0.5),
             orientation=os.environ.get("EINK_ORIENTATION", "").strip(),
         )
 

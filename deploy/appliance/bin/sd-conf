@@ -125,10 +125,12 @@ VALIDATORS = {
 WRITABLE_KEYS = set(VALIDATORS)
 
 #: Keys mirrored into data/appliance/conf.json for the container to read. Whitelist, not blacklist.
+#: EINK_SATURATION removed from this list (ADR-089 follow-up, 2026-09-22) — the knob was inert. A
+#: pieria.conf carrying an old EINK_SATURATION= line still parses fine; it's simply not exported.
 EXPORT_KEYS = (
     "SERVER_URL", "DISPLAY_ID", "HOSTNAME", "TIMEZONE", "MODE", "CYCLE_TIME", "ROTATE", "OUTPUT",
     "WAIT_TIMEOUT", "ALL_IN_ONE", "WATCHDOG", "EINK_ENABLED", "EINK_ORIENTATION",
-    "EINK_MIN_INTERVAL", "EINK_SATURATION", "OS_UPDATE_SCHEDULE", "OS_UPDATE_TIME",
+    "EINK_MIN_INTERVAL", "OS_UPDATE_SCHEDULE", "OS_UPDATE_TIME",
 )
 
 

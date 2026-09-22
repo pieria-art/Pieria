@@ -176,7 +176,6 @@ For a Pimoroni **Inky Impression 13.3" (Spectra 6)** panel wired to this box's G
 ```ini
 EINK_ENABLED=1
 EINK_MIN_INTERVAL=900     # cadence floor (s) — e-ink art is contemplative
-EINK_SATURATION=0.5       # Inky saturation 0-1 (bench-tune against the real panel)
 EINK_ORIENTATION=         # blank = landscape 1600x1200 | portrait = 1200x1600
 ```
 

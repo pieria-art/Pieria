@@ -258,4 +258,9 @@ nothing for it; a **roof** over the rig at camera height, lens through a hole, l
   clips while the dimmest is still at ~215, so ~7% of the panel saturates before white is full scale.
   Flat-field cannot recover clipped data — this is a lighting fix, not a software one.
 - **`sd-eink` holds the panel's SPI/GPIO lines** (`Restart=always`, 10 s). Stop it for a session and
-  restart it afterwards, or renders fail at the push with "some pins we need are in use".
+  restart it afterwards, or renders fail at the push with "some pins we need are in use". If the
+  appliance's `sd-watchdog` is also running (WATCHDOG=enforce or observe) on this box, touch the hold
+  flag first — `touch /run/pieria-eink-hold` (or `$SD_EINK_HOLD_FLAG` if overridden) — and remove it
+  when you restart `sd-eink`. Without it the watchdog reads the stopped unit as a fault and, on an
+  enforce box, tries to `restart-eink` mid-session (fighting your manual stop); with it present the
+  watchdog reports `eink-held` and leaves `sd-eink` alone (F6).

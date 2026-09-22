@@ -33,15 +33,19 @@ argument feeds THAT re-quantize:
 
   SERVER (`epaper.render_for_epaper`)   gamma → dither to measured primaries → re-encode to PURE
   TRANSPORT, Inky only (`eink_client.py:146`)
-                                        set_image(img, saturation=EINK_SATURATION)  [default 0.5]
+                                        set_image(img, saturation=0.5)  [fixed — no longer a config
+                                                                          knob, EINK_SATURATION was
+                                                                          removed, ADR-089 follow-up]
                                         → inky re-quantizes our primaries to its ink mix
 
 So saturation is not nudging a photograph — it is choosing which ink mix each of our six pure primaries
-resolves to. Hence its outsized visible effect.
+resolves to. In practice it turned out to be a no-op: ADR-089 measured all six pure output primaries
+mapping back to themselves at every saturation blend (0.0 / 0.5 / 1.0), which is why `EINK_SATURATION`
+was removed as a config knob at the transport (the fixed `saturation=0.5` above is what's left of it).
 
 The consequence that matters for tuning: a DUMB BLITTER (Waveshare/ESP32, TRMNL BYOS) has no such
 re-quantize — our primaries go straight to the inks. The same server render therefore resolves
-differently on the two client classes, and anything tuned via EINK_SATURATION helps only the Inky. The
+differently on the two client classes, and the Inky-only re-quantize above helps only the Inky. The
 bench unit is Pimoroni; the enclosure spec targets the Waveshare 13.3" (SKU 29355). Tuning saturation
 downstream risks dialling in something that doesn't transfer to the hardware the case is built for.
 

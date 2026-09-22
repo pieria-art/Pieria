@@ -10,8 +10,8 @@ client-only/satellite (SERVER_URL points at a remote hub; no local container nee
 
 Sources the appliance config the same way sd-quiet-hours does: the conf path is argv[1] (the
 `pieria.conf` on the boot partition), parsed as KEY=VALUE lines into os.environ, then
-`EinkConfig.from_env()` reads SERVER_URL / DISPLAY_ID / EINK_MIN_INTERVAL / EINK_SATURATION /
-EINK_ORIENTATION from there.
+`EinkConfig.from_env()` reads SERVER_URL / DISPLAY_ID / EINK_MIN_INTERVAL / EINK_ORIENTATION
+from there.
 
 Usage:  sd-eink <CONFIG_FILE> [--dry-run]
         EINK_DRY_RUN=1 sd-eink <CONFIG_FILE>
