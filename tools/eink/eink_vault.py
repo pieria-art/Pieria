@@ -26,6 +26,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import subprocess
 import sys
 import time
@@ -556,9 +557,9 @@ def main() -> None:
     for name in ("run", "dwell", "ghost"):
         s = sub.add_parser(name)
         s.add_argument("--flat", required=True, help="photograph of the all-white panel, this rig setup")
-        s.add_argument("--pi", default="pi@PI_HOST_REDACTED")
+        s.add_argument("--pi", default=os.environ.get("PIERIA_BENCH_PI", ""))
         s.add_argument("--key", default=str(Path.home() / ".ssh/id_ed25519"))
-        s.add_argument("--known", default=str(Path.home() / ".ssh/known_hosts"))
+        s.add_argument("--known", default=os.environ.get("PIERIA_KNOWN_HOSTS", str(Path.home() / ".ssh/known_hosts")))
         s.add_argument("--repo", default="/home/pi/Screen-Docent")
         s.add_argument("--device", default="/dev/video0")
         s.add_argument("--roi", default="", help="x0,y0,x1,y1 crop to the panel's active area")

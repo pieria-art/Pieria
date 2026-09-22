@@ -30,6 +30,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import subprocess
 import sys
 import time
@@ -113,9 +114,9 @@ def main() -> None:
     ap.add_argument("--flat", required=True, help="flat-field photograph for this rig setup")
     ap.add_argument("--works", default="", help="comma-separated corpus numbers")
     ap.add_argument("--all", action="store_true", help="every corpus work not already measured")
-    ap.add_argument("--pi", default="pi@PI_HOST_REDACTED")
+    ap.add_argument("--pi", default=os.environ.get("PIERIA_BENCH_PI", ""))
     ap.add_argument("--key", default=str(Path.home() / ".ssh/id_ed25519"))
-    ap.add_argument("--known", default=str(Path.home() / ".ssh/known_hosts"))
+    ap.add_argument("--known", default=os.environ.get("PIERIA_KNOWN_HOSTS", str(Path.home() / ".ssh/known_hosts")))
     ap.add_argument("--repo", default="/home/pi/Screen-Docent")
     ap.add_argument("--device", default="/dev/video0")
     ap.add_argument("--port", type=int, default=8090)

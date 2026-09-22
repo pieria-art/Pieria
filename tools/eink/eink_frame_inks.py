@@ -357,7 +357,7 @@ FRAMES = {
 
 #: D, ESTABLISHED (third review pass, D1). `bench-eink/analysis/session_2026-09-20/{masterpieces__
 #: sunflowers,masterpieces__caf-terrace-at-night}/inks.json` (key "A") is committed at 35d1069 —
-#: ADR-120's OWN panel session, run on the bench Pi (PI_HOST_REDACTED) that actually does the pushing.
+#: ADR-120's OWN panel session, run on the bench Pi that actually does the pushing.
 #: "A" is `epaper.render_for_epaper` byte-for-byte (swatch, wp 0.75, gamma 1.0, Floyd-Steinberg,
 #: `eink_candidate.ink_fractions()` on its index map) — exactly F6's and F10's shipping recipe. A THIRD,
 #: independent read-only check on the Pi today reproduced these numbers exactly and confirmed
