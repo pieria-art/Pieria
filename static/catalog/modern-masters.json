@@ -17,20 +17,20 @@
    "tags": "mythology, symbolism, hercules, hydra, french, heroic, dramatic, oil painting",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/2ae64c8a-266d-470a-a25a-c83127564636/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/2ae64c8a-266d-470a-a25a-c83127564636/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Hercules%20and%20the%20Lernaean%20Hydra%2C%201875-1876%2C%20by%20Gustave%20Moreau%20-%20Art%20Institute%20of%20Chicago%20-%20DSC09590.JPG?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Hercules%20and%20the%20Lernaean%20Hydra%2C%201875-1876%2C%20by%20Gustave%20Moreau%20-%20Art%20Institute%20of%20Chicago%20-%20DSC09590.JPG?width=600",
    "focal_point": [
     0.25,
     0.52
    ],
    "featured_rank": 25,
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
-   "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 7680,
-   "resolution_tier": "8K",
+   "license_basis": "CC0",
+   "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "credit_line": "Photograph Daderot, Taken in 10 October 2012, 14:04:03",
+   "license_verified": "2026-09-22",
+   "delivered_edge": 3356,
+   "resolution_tier": "HD",
    "aspect_crops": {
     "16:9": [
      0.0,
@@ -56,7 +56,8 @@
      0.933,
      1.0
     ]
-   }
+   },
+   "below_floor_ok": true
   },
   {
    "title": "The Girl by the Window",
@@ -70,20 +71,20 @@
    "tags": "expressionism, symbolism, psychological, solitude, figure painting, norwegian art, fin de siècle",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/d7df2633-3b40-f570-c906-211503a37cde/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/d7df2633-3b40-f570-c906-211503a37cde/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Edvard%20Munch%20-%20The%20Girl%20by%20the%20Window%20-%202000.50%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Edvard%20Munch%20-%20The%20Girl%20by%20the%20Window%20-%202000.50%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
    "focal_point": [
     0.55,
     0.22
    ],
    "featured_rank": 30,
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 7097,
-   "resolution_tier": "4K",
+   "credit_line": "https://www.artic.edu/artworks/154235",
+   "license_verified": "2026-09-22",
+   "delivered_edge": 3000,
+   "resolution_tier": "HD",
    "aspect_crops": {
     "16:9": [
      0.0,
@@ -109,7 +110,8 @@
      1.0,
      0.9316
     ]
-   }
+   },
+   "below_floor_ok": true
   },
   {
    "title": "The Kiss",
@@ -668,67 +670,6 @@
    }
   },
   {
-   "title": "Woman on Rose Divan",
-   "agent_name": "Henri Matisse",
-   "agent_role": "Painter",
-   "creation_date": "1921",
-   "cultural_context": "Early French modernism, Matisse's Nice period",
-   "medium": "Oil on canvas",
-   "date_display": "1921",
-   "description_narrative": "Painted during Matisse's years in Nice, this work belongs to a series of odalisque-inspired interiors in which he posed models amid richly patterned, decorative settings drenched in Mediterranean light. The reclining figure and ornamental surroundings reflect Matisse's enduring interest in pattern, color, and the sensuous pleasures of painting.",
-   "tags": [
-    "matisse",
-    "modern-art",
-    "nice",
-    "interior",
-    "pattern",
-    "odalisque",
-    "color"
-   ],
-   "source": "Art Institute of Chicago",
-   "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/65e58fc4-4dd1-7149-b76b-94547745bece/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/65e58fc4-4dd1-7149-b76b-94547745bece/full/400,/0/default.jpg",
-   "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
-   "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
-   "featured_rank": 42,
-   "focal_point": [
-    0.42,
-    0.45
-   ],
-   "delivered_edge": 6143,
-   "resolution_tier": "4K",
-   "aspect_crops": {
-    "16:9": [
-     0.0,
-     0.0999,
-     1.0,
-     0.7835
-    ],
-    "9:16": [
-     0.1501,
-     0.0,
-     0.6129,
-     1.0
-    ],
-    "4:3": [
-     0.0,
-     0.03,
-     1.0,
-     0.9414
-    ],
-    "3:4": [
-     0.1201,
-     0.0,
-     0.7372,
-     1.0
-    ]
-   }
-  },
-  {
    "title": "Landscape: Window Overlooking the Woods",
    "agent_name": "Édouard Vuillard",
    "agent_role": "Painter",
@@ -748,20 +689,20 @@
    ],
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/a1dc6109-6e0c-7801-ebe8-8c95fec2c4e4/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/a1dc6109-6e0c-7801-ebe8-8c95fec2c4e4/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Edouard%20Jean%20Vuillard%20-%20Landscape%2C%20Window%20Overlooking%20the%20Woods%20-%201981.77%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Edouard%20Jean%20Vuillard%20-%20Landscape%2C%20Window%20Overlooking%20the%20Woods%20-%201981.77%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
+   "credit_line": "https://www.artic.edu/artworks/109926",
+   "license_verified": "2026-09-22",
    "featured_rank": 28,
    "focal_point": [
     0.25,
     0.4
    ],
-   "delivered_edge": 4000,
-   "resolution_tier": "4K",
+   "delivered_edge": 3000,
+   "resolution_tier": "HD",
    "aspect_crops": {
     "16:9": [
      0.0,
@@ -787,7 +728,8 @@
      0.5008,
      1.0
     ]
-   }
+   },
+   "below_floor_ok": true
   },
   {
    "title": "Te burao (The Hibiscus Tree)",
@@ -809,20 +751,20 @@
    ],
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/604fe021-6008-f666-bce8-456b2fdc9bd4/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/604fe021-6008-f666-bce8-456b2fdc9bd4/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Paul%20Gauguin%20-%20Te%20burao%20%28The%20Hibiscus%20Tree%29%20-%201923.308%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Paul%20Gauguin%20-%20Te%20burao%20%28The%20Hibiscus%20Tree%29%20-%201923.308%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
+   "credit_line": "https://www.artic.edu/artworks/8360",
+   "license_verified": "2026-09-22",
    "featured_rank": 38,
    "focal_point": [
     0.75,
     0.4
    ],
-   "delivered_edge": 6883,
-   "resolution_tier": "4K",
+   "delivered_edge": 3000,
+   "resolution_tier": "HD",
    "aspect_crops": {
     "16:9": [
      0.0,
@@ -848,7 +790,8 @@
      0.8035,
      1.0
     ]
-   }
+   },
+   "below_floor_ok": true
   },
   {
    "title": "No te aha oe riri (Why Are You Angry?)",
@@ -870,20 +813,20 @@
    ],
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/2adb35ce-8e94-cda5-210e-b04d488bbdc8/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/2adb35ce-8e94-cda5-210e-b04d488bbdc8/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Paul%20Gauguin%2C%20No%20te%20aha%20oe%20riri%20%28Why%20Are%20You%20Angry%3F%29%2C%201896%2C%201933.1119%2C%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Paul%20Gauguin%2C%20No%20te%20aha%20oe%20riri%20%28Why%20Are%20You%20Angry%3F%29%2C%201896%2C%201933.1119%2C%20Art%20Institute%20of%20Chicago.jpg?width=600",
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
-   "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
+   "license_basis": "CC0",
+   "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "credit_line": "https://www.artic.edu/artworks/16496",
+   "license_verified": "2026-09-22",
    "featured_rank": 62,
    "focal_point": [
     0.68,
     0.5
    ],
-   "delivered_edge": 6727,
-   "resolution_tier": "4K",
+   "delivered_edge": 3000,
+   "resolution_tier": "HD",
    "aspect_crops": {
     "16:9": [
      0.0,
@@ -909,7 +852,8 @@
      0.7487,
      1.0
     ]
-   }
+   },
+   "below_floor_ok": true
   },
   {
    "title": "Sawmill, Outskirts of Paris",
@@ -931,20 +875,20 @@
    ],
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/3826e366-e82a-e853-12e4-b303a1618103/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/3826e366-e82a-e853-12e4-b303a1618103/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Henri%20Rousseau%20-%20Sawmill%2C%20Outskirts%20of%20Paris%20-%201950.133%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Henri%20Rousseau%20-%20Sawmill%2C%20Outskirts%20of%20Paris%20-%201950.133%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
+   "credit_line": "https://www.artic.edu/artworks/68433",
+   "license_verified": "2026-09-22",
    "featured_rank": 52,
    "focal_point": [
     0.28,
     0.45
    ],
-   "delivered_edge": 7680,
-   "resolution_tier": "8K",
+   "delivered_edge": 3000,
+   "resolution_tier": "HD",
    "aspect_crops": {
     "16:9": [
      0.0231,
@@ -970,7 +914,8 @@
      0.4228,
      1.0
     ]
-   }
+   },
+   "below_floor_ok": true
   },
   {
    "title": "The Virgin (Die Jungfrau)",

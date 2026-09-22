@@ -17,20 +17,20 @@
    "tags": "water lilies, pond, nature, impressionism, french art, tranquil, reflections, garden",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/3c27b499-af56-f0d5-93b5-a7f2f1ad5813/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/3c27b499-af56-f0d5-93b5-a7f2f1ad5813/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Claude%20Monet%20-%20Water%20Lilies%20-%201906%2C%20Ryerson.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Claude%20Monet%20-%20Water%20Lilies%20-%201906%2C%20Ryerson.jpg?width=600",
    "focal_point": [
     0.5,
     0.7
    ],
    "featured_rank": 95,
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 7680,
-   "resolution_tier": "8K",
+   "credit_line": "Unknown sourceUnknown source",
+   "license_verified": "2026-09-22",
+   "delivered_edge": 2342,
+   "resolution_tier": "HD",
    "aspect_crops": {
     "16:9": [
      0.0,
@@ -56,7 +56,8 @@
      0.8605,
      1.0
     ]
-   }
+   },
+   "below_floor_ok": true
   },
   {
    "title": "Arrival of the Normandy Train, Gare Saint-Lazare",
@@ -123,20 +124,20 @@
    "tags": "landscape, impressionism, haystack, light, rural, summer, series, french art",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/a38e2828-ec6f-ece1-a30f-70243449197b/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/a38e2828-ec6f-ece1-a30f-70243449197b/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Claude%20Monet%20-%20Stacks%20of%20Wheat%20%28End%20of%20Summer%29%20-%201985.1103%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Claude%20Monet%20-%20Stacks%20of%20Wheat%20%28End%20of%20Summer%29%20-%201985.1103%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
    "focal_point": [
     0.74,
     0.5
    ],
    "featured_rank": 65,
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 6884,
-   "resolution_tier": "4K",
+   "credit_line": "https://www.artic.edu/artworks/64818",
+   "license_verified": "2026-09-22",
+   "delivered_edge": 3000,
+   "resolution_tier": "HD",
    "aspect_crops": {
     "16:9": [
      0.0,
@@ -162,7 +163,8 @@
      1.0,
      1.0
     ]
-   }
+   },
+   "below_floor_ok": true
   },
   {
    "title": "Cliff Walk at Pourville",
@@ -176,20 +178,20 @@
    "tags": "landscape, impressionism, nature, coast, sea, cliffs, french, 19th century",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/b0effb1c-ff23-bbaa-f809-9fd94e31c1a0/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/b0effb1c-ff23-bbaa-f809-9fd94e31c1a0/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Claude%20Monet%20-%20Cliff%20Walk%20at%20Pourville%20-%20Google%20Art%20Project.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Claude%20Monet%20-%20Cliff%20Walk%20at%20Pourville%20-%20Google%20Art%20Project.jpg?width=600",
    "focal_point": [
     0.66,
     0.42
    ],
    "featured_rank": 55,
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 6356,
-   "resolution_tier": "4K",
+   "credit_line": "Google Arts &amp; Culture: Home page – Image Maximum resolution.",
+   "license_verified": "2026-09-22",
+   "delivered_edge": 2807,
+   "resolution_tier": "HD",
    "aspect_crops": {
     "16:9": [
      0.0,
@@ -215,7 +217,8 @@
      0.9206,
      1.0
     ]
-   }
+   },
+   "below_floor_ok": true
   },
   {
    "title": "Water Lily Pond",
@@ -229,20 +232,20 @@
    "tags": "water lilies, pond, garden, impressionism, landscape, nature, serene, painting",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/8534685d-1102-e1e3-e194-94f6e925e8b0/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/8534685d-1102-e1e3-e194-94f6e925e8b0/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Claude%20Monet%20-%20Water%20Lily%20Pond%20-%201933.441%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Claude%20Monet%20-%20Water%20Lily%20Pond%20-%201933.441%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
    "focal_point": [
     0.5,
     0.3
    ],
    "featured_rank": 80,
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 5448,
-   "resolution_tier": "4K",
+   "credit_line": "https://www.artic.edu/artworks/87088",
+   "license_verified": "2026-09-22",
+   "delivered_edge": 3000,
+   "resolution_tier": "HD",
    "aspect_crops": {
     "16:9": [
      0.0,
@@ -268,7 +271,8 @@
      0.8371,
      1.0
     ]
-   }
+   },
+   "below_floor_ok": true
   },
   {
    "title": "The Beach at Sainte-Adresse",
@@ -323,7 +327,7 @@
    "tags": "landscape, impressionism, nature, coast, italy, light, vibrant, painterly",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/4d1b3ad0-14db-0d21-ad9f-17abb8bdfbb5/full/6018,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bordighera.jpg?width=3840",
    "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bordighera.jpg?width=600",
    "focal_point": [
     0.5,
@@ -334,9 +338,9 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "http://www.artic.edu/aic/collections/artwork/81537",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 6018,
-   "resolution_tier": "4K",
+   "license_verified": "2026-09-22",
+   "delivered_edge": 3000,
+   "resolution_tier": "HD",
    "aspect_crops": {
     "16:9": [
      0.0,
@@ -362,7 +366,8 @@
      0.7534,
      1.0
     ]
-   }
+   },
+   "below_floor_ok": true
   },
   {
    "title": "Stacks of Wheat (End of Day, Autumn)",
@@ -376,99 +381,21 @@
    "tags": "wheatstacks, landscape, impressionism, French art, oil painting, series, natural light, autumn",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/4c364c64-2108-4e19-5fc5-1ab26ba924a7/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/4c364c64-2108-4e19-5fc5-1ab26ba924a7/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Claude%20Monet%20-%20Stacks%20of%20Wheat%20%28End%20of%20Day%2C%20Autumn%29%20-%201933.444%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Claude%20Monet%20-%20Stacks%20of%20Wheat%20%28End%20of%20Day%2C%20Autumn%29%20-%201933.444%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
    "focal_point": [
     0.7,
     0.55
    ],
    "featured_rank": 60,
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 6840,
-   "resolution_tier": "4K",
-   "aspect_crops": {
-    "16:9": [
-     0.0,
-     0.0599,
-     1.0,
-     0.9235
-    ],
-    "9:16": [
-     0.5801,
-     0.0,
-     0.9464,
-     1.0
-    ],
-    "4:3": [
-     0.0801,
-     0.0,
-     0.9485,
-     1.0
-    ],
-    "3:4": [
-     0.4601,
-     0.0,
-     0.9485,
-     1.0
-    ]
-   }
-  },
-  {
-   "title": "Branch of the Seine near Giverny (Mist)",
-   "agent_name": "Claude Monet",
-   "agent_role": "Artist",
-   "creation_date": "1897",
-   "cultural_context": "Impressionism, French",
-   "medium": "Oil on canvas",
-   "date_display": "1897",
-   "description_narrative": "This serene oil painting captures a tranquil branch of the Seine River near Giverny, enveloped in a soft mist. Monet masterfully explores the transient effects of light and atmosphere on water and landscape, a hallmark of his late Impressionist style.",
-   "tags": "landscape, impressionism, river, mist, atmospheric, french, serene, nature",
-   "source": "Art Institute of Chicago",
-   "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/838d8c33-a3b4-68ea-587b-87ceec2011af/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/838d8c33-a3b4-68ea-587b-87ceec2011af/full/400,/0/default.jpg",
-   "focal_point": [
-    0.3,
-    0.32
-   ],
-   "featured_rank": 35,
-   "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
-   "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 5253,
-   "resolution_tier": "4K",
-   "aspect_crops": {
-    "16:9": [
-     0.0,
-     0.1501,
-     1.0,
-     0.7298
-    ],
-    "9:16": [
-     0.0999,
-     0.0,
-     0.6457,
-     1.0
-    ],
-    "4:3": [
-     0.0,
-     0.0802,
-     1.0,
-     0.8531
-    ],
-    "3:4": [
-     0.0598,
-     0.0,
-     0.7876,
-     1.0
-    ]
-   }
+   "credit_line": "https://www.artic.edu/artworks/14624",
+   "license_verified": "2026-09-22",
+   "delivered_edge": 3000,
+   "resolution_tier": "HD",
+   "below_floor_ok": true
   },
   {
    "title": "On the Bank of the Seine, Bennecourt",
@@ -482,20 +409,20 @@
    "tags": "impressionism, landscape, river, nature, france, outdoor, seine, light",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/66f95ea3-a11a-1cf4-6599-d0a49bb25744/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/66f95ea3-a11a-1cf4-6599-d0a49bb25744/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Claude%20Monet%20-%20On%20the%20Bank%20of%20the%20Seine%2C%20Bennecourt%20-%201922.427%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Claude%20Monet%20-%20On%20the%20Bank%20of%20the%20Seine%2C%20Bennecourt%20-%201922.427%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
    "focal_point": [
     0.3,
     0.72
    ],
    "featured_rank": 45,
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 6116,
-   "resolution_tier": "4K",
+   "credit_line": "https://www.artic.edu/artworks/81539",
+   "license_verified": "2026-09-22",
+   "delivered_edge": 3000,
+   "resolution_tier": "HD",
    "aspect_crops": {
     "16:9": [
      0.0,
@@ -521,7 +448,8 @@
      0.6062,
      1.0
     ]
-   }
+   },
+   "below_floor_ok": true
   },
   {
    "title": "Apples and Grapes",
@@ -535,46 +463,21 @@
    "tags": "apples, grapes, still life, impressionism, french art, oil painting, fruit",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/c12058f4-188f-c6ed-f0fe-52b32acfb296/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/c12058f4-188f-c6ed-f0fe-52b32acfb296/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Claude%20Monet%20-%20Apples%20and%20Grapes%20-%201933.1152%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Claude%20Monet%20-%20Apples%20and%20Grapes%20-%201933.1152%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
    "focal_point": [
     0.55,
     0.45
    ],
    "featured_rank": 30,
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 6133,
-   "resolution_tier": "4K",
-   "aspect_crops": {
-    "16:9": [
-     0.0,
-     0.05,
-     1.0,
-     0.7537
-    ],
-    "9:16": [
-     0.3,
-     0.0,
-     0.7496,
-     1.0
-    ],
-    "4:3": [
-     0.0,
-     0.02,
-     1.0,
-     0.9583
-    ],
-    "3:4": [
-     0.22,
-     0.0,
-     0.8195,
-     1.0
-    ]
-   }
+   "credit_line": "https://www.artic.edu/artworks/16549",
+   "license_verified": "2026-09-22",
+   "delivered_edge": 3000,
+   "resolution_tier": "HD",
+   "below_floor_ok": true
   },
   {
    "title": "The Artist's House at Argenteuil",
@@ -588,20 +491,20 @@
    "tags": "impressionism, landscape, garden, french, painting, oil on canvas, argenteuil, 1873",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/7d533ed4-ff54-fa2c-64f4-2b16bfbb5880/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/7d533ed4-ff54-fa2c-64f4-2b16bfbb5880/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Claude%20Monet%20-%20The%20Artist%27s%20House%20at%20Argenteuil%20-%201933.1153%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Claude%20Monet%20-%20The%20Artist%27s%20House%20at%20Argenteuil%20-%201933.1153%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
    "focal_point": [
     0.42,
     0.72
    ],
    "featured_rank": 50,
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 5928,
-   "resolution_tier": "4K",
+   "credit_line": "https://www.artic.edu/artworks/16554",
+   "license_verified": "2026-09-22",
+   "delivered_edge": 3000,
+   "resolution_tier": "HD",
    "aspect_crops": {
     "16:9": [
      0.0,
@@ -627,7 +530,8 @@
      0.8027,
      1.0
     ]
-   }
+   },
+   "below_floor_ok": true
   },
   {
    "title": "Poppy Field (Giverny)",
@@ -641,20 +545,20 @@
    "tags": "poppy, field, landscape, impressionism, nature, light, Giverny, vibrant",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/db94c894-a24c-c2e0-9db9-0506567a0152/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/db94c894-a24c-c2e0-9db9-0506567a0152/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Claude%20Monet%20-%20Poppy%20Field%20%28Giverny%29%20-%201922.4465%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Claude%20Monet%20-%20Poppy%20Field%20%28Giverny%29%20-%201922.4465%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
    "focal_point": [
     0.55,
     0.45
    ],
    "featured_rank": 55,
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 6770,
-   "resolution_tier": "4K",
+   "credit_line": "https://www.artic.edu/artworks/4783",
+   "license_verified": "2026-09-22",
+   "delivered_edge": 3000,
+   "resolution_tier": "HD",
    "aspect_crops": {
     "16:9": [
      0.0,
@@ -680,7 +584,8 @@
      0.7471,
      1.0
     ]
-   }
+   },
+   "below_floor_ok": true
   },
   {
    "title": "Houses of Parliament, London",
@@ -694,20 +599,20 @@
    "tags": "london, cityscape, impressionism, monet, fog, atmosphere, oil painting",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/03930df3-1e6c-eeca-8660-c0b22ca477ff/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/03930df3-1e6c-eeca-8660-c0b22ca477ff/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Claude%20Monet%2C%20Houses%20of%20Parliament%2C%20London%2C%201900-1903%2C%201933.1164%2C%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Claude%20Monet%2C%20Houses%20of%20Parliament%2C%20London%2C%201900-1903%2C%201933.1164%2C%20Art%20Institute%20of%20Chicago.jpg?width=600",
    "focal_point": [
     0.45,
     0.35
    ],
    "featured_rank": 60,
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
-   "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 5876,
-   "resolution_tier": "4K",
+   "license_basis": "CC0",
+   "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "credit_line": "https://www.artic.edu/artworks/16584",
+   "license_verified": "2026-09-22",
+   "delivered_edge": 3000,
+   "resolution_tier": "HD",
    "aspect_crops": {
     "16:9": [
      0.0,
@@ -733,7 +638,8 @@
      0.7144,
      1.0
     ]
-   }
+   },
+   "below_floor_ok": true
   },
   {
    "title": "Chrysanthemums",
@@ -1225,20 +1131,20 @@
    "tags": "dancers, backstage, ballet, oil painting, impressionism, French, candid, figures",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/8fe022ba-e358-5cda-aa70-d96edd0b4f20/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/8fe022ba-e358-5cda-aa70-d96edd0b4f20/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Hilaire%20Germain%20Edgar%20Degas%20-%20Yellow%20Dancers%20%28In%20the%20Wings%29%20-%201963.923%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Hilaire%20Germain%20Edgar%20Degas%20-%20Yellow%20Dancers%20%28In%20the%20Wings%29%20-%201963.923%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
    "focal_point": [
     0.55,
     0.33
    ],
    "featured_rank": 45,
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 5989,
-   "resolution_tier": "4K",
+   "credit_line": "https://www.artic.edu/artworks/18951",
+   "license_verified": "2026-09-22",
+   "delivered_edge": 3000,
+   "resolution_tier": "HD",
    "aspect_crops": {
     "16:9": [
      0.0,
@@ -1264,7 +1170,8 @@
      0.9596,
      1.0
     ]
-   }
+   },
+   "below_floor_ok": true
   },
   {
    "title": "Henri Degas and His Niece Lucie Degas (The Artist's Uncle and Cousin)",
@@ -1278,20 +1185,20 @@
    "tags": "portrait, family, impressionism, realism, oil painting, 19th century, figure study",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/ba4d7ead-bd10-e02d-6f5f-613050d7062e/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/ba4d7ead-bd10-e02d-6f5f-613050d7062e/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Hilaire%20Germain%20Edgar%20Degas%20-%20Henri%20Degas%20and%20His%20Niece%20Lucie%20Degas%20%28The%20Artist%27s%20Uncle%20and%20Cousin%29%20-%201933.429%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Hilaire%20Germain%20Edgar%20Degas%20-%20Henri%20Degas%20and%20His%20Niece%20Lucie%20Degas%20%28The%20Artist%27s%20Uncle%20and%20Cousin%29%20-%201933.429%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
    "focal_point": [
     0.78,
     0.2
    ],
    "featured_rank": 25,
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 7182,
-   "resolution_tier": "4K",
+   "credit_line": "https://www.artic.edu/artworks/14574",
+   "license_verified": "2026-09-22",
+   "delivered_edge": 3000,
+   "resolution_tier": "HD",
    "aspect_crops": {
     "16:9": [
      0.0,
@@ -1311,7 +1218,8 @@
      1.0,
      0.9264
     ]
-   }
+   },
+   "below_floor_ok": true
   },
   {
    "title": "Café Singer",
@@ -1487,34 +1395,21 @@
    "tags": "crystal palace, london, cityscape, impressionism, oil painting, 19th century, landscape",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/4eb368b5-3b66-ae2c-bd4a-2643015e05fc/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/4eb368b5-3b66-ae2c-bd4a-2643015e05fc/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Camille%20Pissarro%20-%20Le%20Crystal%20Palace%2C%20Londres.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Camille%20Pissarro%20-%20Le%20Crystal%20Palace%2C%20Londres.jpg?width=600",
    "focal_point": [
     0.27,
     0.4
    ],
    "featured_rank": 40,
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 7680,
-   "resolution_tier": "8K",
-   "aspect_crops": {
-    "16:9": [
-     0.0,
-     0.0199,
-     1.0,
-     0.9059
-    ],
-    "4:3": [
-     0.0499,
-     0.0,
-     0.8965,
-     1.0
-    ]
-   }
+   "credit_line": "The Art Institute of Chicago",
+   "license_verified": "2026-09-22",
+   "delivered_edge": 3000,
+   "resolution_tier": "HD",
+   "below_floor_ok": true
   },
   {
    "title": "Woman and Child at the Well",
@@ -1528,46 +1423,21 @@
    "tags": "rural life, impressionism, genre scene, daily life, woman, child, village, domestic",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/a2ddbd89-d864-8877-37bc-cd3dce12c37c/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/a2ddbd89-d864-8877-37bc-cd3dce12c37c/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Young-woman-and-child-at-the-well-1882.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Young-woman-and-child-at-the-well-1882.jpg?width=600",
    "focal_point": [
     0.34,
     0.28
    ],
    "featured_rank": 25,
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
-   "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 7680,
-   "resolution_tier": "8K",
-   "aspect_crops": {
-    "16:9": [
-     0.0,
-     0.1501,
-     1.0,
-     0.5999
-    ],
-    "9:16": [
-     0.0998,
-     0.0,
-     0.8033,
-     1.0
-    ],
-    "4:3": [
-     0.0,
-     0.1201,
-     1.0,
-     0.7199
-    ],
-    "3:4": [
-     0.0198,
-     0.0,
-     0.9577,
-     1.0
-    ]
-   }
+   "license_basis": "CC0",
+   "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "credit_line": "www.wikiart.org and www.artic.edu",
+   "license_verified": "2026-09-22",
+   "delivered_edge": 2250,
+   "resolution_tier": "HD",
+   "below_floor_ok": true
   },
   {
    "title": "Young Peasant Having Her Coffee",
@@ -1635,20 +1505,20 @@
    "tags": "landscape, winter, snow, rural, impressionism, nature, French art",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/053f9be8-3617-c4ef-36cd-1deb5e13b288/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/053f9be8-3617-c4ef-36cd-1deb5e13b288/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Rabbit-Warren%2C%20C%C3%B4te%20Saint-Denis%20at%20Pontoise%2C%20Effect%20of%20Snow.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Rabbit-Warren%2C%20C%C3%B4te%20Saint-Denis%20at%20Pontoise%2C%20Effect%20of%20Snow.jpg?width=600",
    "focal_point": [
     0.5,
     0.36
    ],
    "featured_rank": 35,
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
-   "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 6153,
-   "resolution_tier": "4K",
+   "license_basis": "CC0",
+   "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "credit_line": "www.artic.edu",
+   "license_verified": "2026-09-22",
+   "delivered_edge": 2767,
+   "resolution_tier": "HD",
    "aspect_crops": {
     "16:9": [
      0.0,
@@ -1674,7 +1544,8 @@
      0.9602,
      1.0
     ]
-   }
+   },
+   "below_floor_ok": true
   },
   {
    "title": "The Banks of the Marne in Winter",
@@ -2696,20 +2567,20 @@
    ],
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/3a608f55-d76e-fa96-d0b1-0789fbc48f1e/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/3a608f55-d76e-fa96-d0b1-0789fbc48f1e/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pierre-Auguste%20Renoir%20-%20Two%20Sisters%20%28On%20the%20Terrace%29%20-%201933.455%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pierre-Auguste%20Renoir%20-%20Two%20Sisters%20%28On%20the%20Terrace%29%20-%201933.455%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
+   "credit_line": "https://www.artic.edu/artworks/14655",
+   "license_verified": "2026-09-22",
    "featured_rank": 78,
    "focal_point": [
     0.42,
     0.35
    ],
-   "delivered_edge": 7680,
-   "resolution_tier": "8K",
+   "delivered_edge": 2250,
+   "resolution_tier": "HD",
    "aspect_crops": {
     "16:9": [
      0.0,
@@ -2735,7 +2606,8 @@
      0.9508,
      1.0
     ]
-   }
+   },
+   "below_floor_ok": true
   },
   {
    "title": "Acrobats at the Cirque Fernando (Francisca and Angelina Wartenberg)",
@@ -2757,20 +2629,20 @@
    ],
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/321c45f5-22a3-84a2-44cc-cf66642d4cf2/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/321c45f5-22a3-84a2-44cc-cf66642d4cf2/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pierre-Auguste%20Renoir%20-%20Acrobats%20at%20the%20Cirque%20Fernando%20%28Francisca%20and%20Angelina%20Wartenberg%29%20-%20Google%20Art%20Project.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pierre-Auguste%20Renoir%20-%20Acrobats%20at%20the%20Cirque%20Fernando%20%28Francisca%20and%20Angelina%20Wartenberg%29%20-%20Google%20Art%20Project.jpg?width=600",
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
+   "credit_line": "YwE4b40vRNMvFA at Google Cultural Institute maximum zoom level",
+   "license_verified": "2026-09-22",
    "featured_rank": 45,
    "focal_point": [
     0.63,
     0.5
    ],
-   "delivered_edge": 7680,
-   "resolution_tier": "8K",
+   "delivered_edge": 4614,
+   "resolution_tier": "4K",
    "aspect_crops": {
     "3:4": [
      0.0,
@@ -2799,67 +2671,6 @@
    }
   },
   {
-   "title": "Charing Cross Bridge, London",
-   "agent_name": "Claude Monet",
-   "agent_role": "Painter",
-   "creation_date": "1901",
-   "cultural_context": "French Impressionism, Monet's London series",
-   "medium": "Oil on canvas",
-   "date_display": "1901",
-   "description_narrative": "Monet painted this view of the Thames and Charing Cross Bridge from his room at the Savoy Hotel during extended stays in London around 1899 to 1901. He was fascinated by how the city's coal-smoke fog transformed sunlight into shifting veils of color over the water.",
-   "tags": [
-    "monet",
-    "impressionism",
-    "london",
-    "thames",
-    "bridge",
-    "fog",
-    "cityscape"
-   ],
-   "source": "Art Institute of Chicago",
-   "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/e9179922-f68d-34c5-481d-abf49e046863/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/e9179922-f68d-34c5-481d-abf49e046863/full/400,/0/default.jpg",
-   "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
-   "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
-   "featured_rank": 62,
-   "focal_point": [
-    0.62,
-    0.35
-   ],
-   "delivered_edge": 5971,
-   "resolution_tier": "4K",
-   "aspect_crops": {
-    "16:9": [
-     0.0,
-     0.0897,
-     1.0,
-     0.8953
-    ],
-    "9:16": [
-     0.3536,
-     0.0,
-     0.7464,
-     1.0
-    ],
-    "4:3": [
-     0.03,
-     0.0,
-     0.961,
-     1.0
-    ],
-    "3:4": [
-     0.2882,
-     0.0,
-     0.8118,
-     1.0
-    ]
-   }
-  },
-  {
    "title": "The Races at Longchamp",
    "agent_name": "Édouard Manet",
    "agent_role": "Painter",
@@ -2879,20 +2690,20 @@
    ],
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/e9ce5aca-4c34-c8dd-b8a1-91b3e3197211/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/e9ce5aca-4c34-c8dd-b8a1-91b3e3197211/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/%C3%89douard%20Manet%20-%20The%20Races%20at%20Longchamp%20-%201922.424%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/%C3%89douard%20Manet%20-%20The%20Races%20at%20Longchamp%20-%201922.424%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
+   "credit_line": "https://www.artic.edu/artworks/81533",
+   "license_verified": "2026-09-22",
    "featured_rank": 50,
    "focal_point": [
     0.55,
     0.55
    ],
-   "delivered_edge": 7680,
-   "resolution_tier": "8K",
+   "delivered_edge": 3000,
+   "resolution_tier": "HD",
    "aspect_crops": {
     "16:9": [
      0.02,
@@ -2918,7 +2729,8 @@
      0.7151,
      1.0
     ]
-   }
+   },
+   "below_floor_ok": true
   },
   {
    "title": "Woman at Her Toilette",
@@ -2940,20 +2752,20 @@
    ],
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/78c80988-6524-cec7-c661-a4c0a706d06f/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/78c80988-6524-cec7-c661-a4c0a706d06f/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Berthe%20Morisot%20-%20Woman%20at%20Her%20Toilette%20-%201924.127%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Berthe%20Morisot%20-%20Woman%20at%20Her%20Toilette%20-%201924.127%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
+   "credit_line": "https://www.artic.edu/artworks/11723",
+   "license_verified": "2026-09-22",
    "featured_rank": 42,
    "focal_point": [
     0.42,
     0.25
    ],
-   "delivered_edge": 4946,
-   "resolution_tier": "4K",
+   "delivered_edge": 3000,
+   "resolution_tier": "HD",
    "aspect_crops": {
     "4:3": [
      0.0,
@@ -2979,7 +2791,8 @@
      0.8608,
      1.0
     ]
-   }
+   },
+   "below_floor_ok": true
   },
   {
    "title": "On a Balcony",
@@ -3001,20 +2814,20 @@
    ],
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/f0150d21-33ab-f6ea-0d4d-32d459f091fe/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/f0150d21-33ab-f6ea-0d4d-32d459f091fe/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Mary%20Cassatt%20-%20On%20a%20Balcony%20-%201938.18%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Mary%20Cassatt%20-%20On%20a%20Balcony%20-%201938.18%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
+   "credit_line": "https://www.artic.edu/artworks/26650",
+   "license_verified": "2026-09-22",
    "featured_rank": 40,
    "focal_point": [
     0.38,
     0.32
    ],
-   "delivered_edge": 7680,
-   "resolution_tier": "8K",
+   "delivered_edge": 3000,
+   "resolution_tier": "HD",
    "aspect_crops": {
     "16:9": [
      0.0,
@@ -3040,7 +2853,8 @@
      0.9883,
      1.0
     ]
-   }
+   },
+   "below_floor_ok": true
   },
   {
    "title": "The Seine at Port-Marly, Piles of Sand",
@@ -3062,46 +2876,21 @@
    ],
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/c4425cb6-d8b5-6390-603d-7f802406d05d/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/c4425cb6-d8b5-6390-603d-7f802406d05d/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Alfred%20Sisley%20-%20The%20Seine%20at%20Port-Marly%2C%20Piles%20of%20Sand%20-%201933.1177%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Alfred%20Sisley%20-%20The%20Seine%20at%20Port-Marly%2C%20Piles%20of%20Sand%20-%201933.1177%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
+   "credit_line": "https://www.artic.edu/artworks/16633",
+   "license_verified": "2026-09-22",
    "featured_rank": 48,
    "focal_point": [
     0.55,
     0.5
    ],
-   "delivered_edge": 7680,
-   "resolution_tier": "8K",
-   "aspect_crops": {
-    "16:9": [
-     0.0,
-     0.1002,
-     1.0,
-     0.8878
-    ],
-    "9:16": [
-     0.3491,
-     0.0,
-     0.7509,
-     1.0
-    ],
-    "4:3": [
-     0.0199,
-     0.0,
-     0.9721,
-     1.0
-    ],
-    "3:4": [
-     0.1322,
-     0.0,
-     0.6678,
-     1.0
-    ]
-   }
+   "delivered_edge": 3000,
+   "resolution_tier": "HD",
+   "below_floor_ok": true
   },
   {
    "title": "A Turn in the Road",
@@ -3123,20 +2912,20 @@
    ],
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/0f076222-52b2-9bb4-4409-72fdf485d895/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/0f076222-52b2-9bb4-4409-72fdf485d895/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Alfred%20Sisley%20-%20A%20Turn%20in%20the%20Road%20-%201947.112%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Alfred%20Sisley%20-%20A%20Turn%20in%20the%20Road%20-%201947.112%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
+   "credit_line": "https://www.artic.edu/artworks/96559",
+   "license_verified": "2026-09-22",
    "featured_rank": 30,
    "focal_point": [
     0.5,
     0.68
    ],
-   "delivered_edge": 7680,
-   "resolution_tier": "8K",
+   "delivered_edge": 3000,
+   "resolution_tier": "HD",
    "aspect_crops": {
     "16:9": [
      0.0,
@@ -3162,7 +2951,8 @@
      0.9178,
      1.0
     ]
-   }
+   },
+   "below_floor_ok": true
   },
   {
    "title": "Mill of Pont Maupuit",
@@ -3184,46 +2974,21 @@
    ],
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/f4abdcdc-1d4f-4b8c-5f16-dacc42d509f5/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/f4abdcdc-1d4f-4b8c-5f16-dacc42d509f5/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jean%20Baptiste%20Armand%20Guillaumin%20-%20Mill%20of%20Pont%20Maupuit%20-%201933.1123%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jean%20Baptiste%20Armand%20Guillaumin%20-%20Mill%20of%20Pont%20Maupuit%20-%201933.1123%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
+   "credit_line": "https://www.artic.edu/artworks/16502",
+   "license_verified": "2026-09-22",
    "featured_rank": 22,
    "focal_point": [
     0.68,
     0.4
    ],
-   "delivered_edge": 7680,
-   "resolution_tier": "8K",
-   "aspect_crops": {
-    "16:9": [
-     0.0,
-     0.12,
-     1.0,
-     0.821
-    ],
-    "9:16": [
-     0.3998,
-     0.0,
-     0.8512,
-     1.0
-    ],
-    "4:3": [
-     0.0,
-     0.0302,
-     1.0,
-     0.9648
-    ],
-    "3:4": [
-     0.2801,
-     0.0,
-     0.8819,
-     1.0
-    ]
-   }
+   "delivered_edge": 3000,
+   "resolution_tier": "HD",
+   "below_floor_ok": true
   },
   {
    "title": "Paris Street; Rainy Day",
@@ -3237,20 +3002,20 @@
    "tags": "urban life, street scene, rainy day, 19th century, realism, city, umbrellas, french art",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/f8fd76e9-c396-5678-36ed-6a348c904d27/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/f8fd76e9-c396-5678-36ed-6a348c904d27/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Gustave%20Caillebotte%20-%20Paris%20Street%2C%20Rainy%20Day%20-%201964.336%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Gustave%20Caillebotte%20-%20Paris%20Street%2C%20Rainy%20Day%20-%201964.336%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
    "focal_point": [
     0.6,
     0.45
    ],
    "featured_rank": 82,
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 7680,
-   "resolution_tier": "8K",
+   "credit_line": "https://www.artic.edu/artworks/20684",
+   "license_verified": "2026-09-22",
+   "delivered_edge": 2898,
+   "resolution_tier": "HD",
    "aspect_crops": {
     "16:9": [
      0.0,
@@ -3276,7 +3041,8 @@
      0.9822,
      1.0
     ]
-   }
+   },
+   "below_floor_ok": true
   },
   {
    "title": "Jerusalem Artichoke Flowers",

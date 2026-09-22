@@ -17,20 +17,20 @@
    "tags": "religious art, renaissance, italian, madonna, sacred, serene, tempera painting",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/b59cc3e9-a7c0-5aa1-1a22-bb472bb2e6d4/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/b59cc3e9-a7c0-5aa1-1a22-bb472bb2e6d4/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sandro%20Botticelli%20-%20Virgin%20and%20Child%20with%20an%20Angel%20-%201954.283%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sandro%20Botticelli%20-%20Virgin%20and%20Child%20with%20an%20Angel%20-%201954.283%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
    "focal_point": [
     0.62,
     0.27
    ],
    "featured_rank": 35,
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 7680,
-   "resolution_tier": "8K",
+   "credit_line": "https://www.artic.edu/artworks/80530",
+   "license_verified": "2026-09-22",
+   "delivered_edge": 3000,
+   "resolution_tier": "HD",
    "aspect_crops": {
     "16:9": [
      0.0,
@@ -56,7 +56,8 @@
      1.0,
      0.9584
     ]
-   }
+   },
+   "below_floor_ok": true
   },
   {
    "title": "Virgin and Child with Two Angels",
@@ -220,20 +221,20 @@
    "tags": "religious, narrative, early renaissance, italian, tempera, saint john the baptist",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/a6c18204-e035-5fd0-408e-46b27d1ee6c5/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/a6c18204-e035-5fd0-408e-46b27d1ee6c5/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bartolommeo%20di%20Giovanni%20-%20Scenes%20from%20the%20Life%20of%20Saint%20John%20the%20Baptist%20-%201937.996%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bartolommeo%20di%20Giovanni%20-%20Scenes%20from%20the%20Life%20of%20Saint%20John%20the%20Baptist%20-%201937.996%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
    "focal_point": [
     0.45,
     0.55
    ],
    "featured_rank": 12,
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 7680,
-   "resolution_tier": "8K",
+   "credit_line": "https://www.artic.edu/artworks/25740",
+   "license_verified": "2026-09-22",
+   "delivered_edge": 3000,
+   "resolution_tier": "HD",
    "aspect_crops": {
     "16:9": [
      0.0499,
@@ -259,7 +260,8 @@
      0.6884,
      1.0
     ]
-   }
+   },
+   "below_floor_ok": true
   },
   {
    "title": "The Nativity",
@@ -273,20 +275,20 @@
    "tags": "nativity, religious art, christianity, renaissance, high renaissance, italian art, sacred, oil painting",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/40fdb1d6-93fe-2916-78fb-f56a1ac261f1/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/40fdb1d6-93fe-2916-78fb-f56a1ac261f1/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Fra%20Bartolommeo%20-%20The%20Nativity%20-%202005.49%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Fra%20Bartolommeo%20-%20The%20Nativity%20-%202005.49%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
    "focal_point": [
     0.46,
     0.78
    ],
    "featured_rank": 30,
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 5112,
-   "resolution_tier": "4K",
+   "credit_line": "https://www.artic.edu/artworks/184371",
+   "license_verified": "2026-09-22",
+   "delivered_edge": 3000,
+   "resolution_tier": "HD",
    "aspect_crops": {
     "16:9": [
      0.0,
@@ -312,7 +314,8 @@
      1.0,
      0.9771
     ]
-   }
+   },
+   "below_floor_ok": true
   },
   {
    "title": "Alessandro de' Medici",
@@ -326,46 +329,21 @@
    "tags": "portrait, mannerism, italian renaissance, medici, nobility, oil painting, 16th century",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/2b751a0e-a492-7fa9-749c-6667cdd1c928/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/2b751a0e-a492-7fa9-749c-6667cdd1c928/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pontormo%2C%20%28Jacopo%20Carrucci%29%20-%20Alessandro%20de%27%20Medici%20-%201933.1002%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pontormo%2C%20%28Jacopo%20Carrucci%29%20-%20Alessandro%20de%27%20Medici%20-%201933.1002%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
    "focal_point": [
     0.45,
     0.34
    ],
    "featured_rank": 32,
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 6411,
-   "resolution_tier": "4K",
-   "aspect_crops": {
-    "16:9": [
-     0.0,
-     0.0301,
-     1.0,
-     0.4743
-    ],
-    "9:16": [
-     0.1199,
-     0.0,
-     0.8321,
-     1.0
-    ],
-    "4:3": [
-     0.0,
-     0.0201,
-     1.0,
-     0.6124
-    ],
-    "3:4": [
-     0.0248,
-     0.0,
-     0.9745,
-     1.0
-    ]
-   }
+   "credit_line": "https://www.artic.edu/artworks/110759",
+   "license_verified": "2026-09-22",
+   "delivered_edge": 3000,
+   "resolution_tier": "HD",
+   "below_floor_ok": true
   },
   {
    "title": "Christ Carrying the Cross",
@@ -379,20 +357,20 @@
    "tags": "christ, crucifixion, religious art, high renaissance, italian, suffering, dramatic, oil painting",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/13a251ba-2c7a-2d0c-3f65-820c0e1f1a39/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/13a251ba-2c7a-2d0c-3f65-820c0e1f1a39/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sebastiano%20del%20Piombo%20-%20Christ%20Carrying%20the%20Cross%20-%202016.15%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sebastiano%20del%20Piombo%20-%20Christ%20Carrying%20the%20Cross%20-%202016.15%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
    "focal_point": [
     0.37,
     0.45
    ],
    "featured_rank": 30,
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 6468,
-   "resolution_tier": "4K",
+   "credit_line": "https://www.artic.edu/artworks/234781",
+   "license_verified": "2026-09-22",
+   "delivered_edge": 3000,
+   "resolution_tier": "HD",
    "aspect_crops": {
     "16:9": [
      0.0,
@@ -418,7 +396,8 @@
      0.9821,
      1.0
     ]
-   }
+   },
+   "below_floor_ok": true
   },
   {
    "title": "The Crucifixion",
@@ -1576,20 +1555,20 @@
    ],
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/d63b9402-c42b-cce3-aa63-6d213ad621cd/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/d63b9402-c42b-cce3-aa63-6d213ad621cd/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Correggio%20-%20Virgin%20and%20Child%20with%20the%20Young%20Saint%20John%20the%20Baptist%20-%201965.688%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Correggio%20-%20Virgin%20and%20Child%20with%20the%20Young%20Saint%20John%20the%20Baptist%20-%201965.688%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
+   "credit_line": "https://www.artic.edu/artworks/23972",
+   "license_verified": "2026-09-22",
    "featured_rank": 45,
    "focal_point": [
     0.38,
     0.28
    ],
-   "delivered_edge": 5096,
-   "resolution_tier": "4K",
+   "delivered_edge": 2250,
+   "resolution_tier": "HD",
    "aspect_crops": {
     "16:9": [
      0.0,
@@ -1615,7 +1594,8 @@
      0.9816,
      1.0
     ]
-   }
+   },
+   "below_floor_ok": true
   },
   {
    "title": "Tarquin and Lucretia",
@@ -1635,13 +1615,13 @@
    ],
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/84bc6762-6a64-dde5-5dc3-ec31c75aa32b/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/84bc6762-6a64-dde5-5dc3-ec31c75aa32b/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tintoretto%20-%20Tarquin%20and%20Lucretia%20-%201949.203%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tintoretto%20-%20Tarquin%20and%20Lucretia%20-%201949.203%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
+   "credit_line": "https://www.artic.edu/artworks/64920",
+   "license_verified": "2026-09-22",
    "featured_rank": 40,
    "needs_frame_crop": true,
    "crop_box": [
@@ -1654,8 +1634,8 @@
     0.45,
     0.42
    ],
-   "delivered_edge": 7504,
-   "resolution_tier": "4K",
+   "delivered_edge": 2250,
+   "resolution_tier": "HD",
    "aspect_crops": {
     "16:9": [
      0.0,
@@ -1681,7 +1661,8 @@
      0.9443,
      1.0
     ]
-   }
+   },
+   "below_floor_ok": true
   },
   {
    "title": "Annunciation",

@@ -17,20 +17,20 @@
    "tags": "self-portrait, post-impressionism, oil painting, expressive, dutch art, portraiture, intense",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/47c5bcb8-62ef-e5d7-55e7-f5121f409a30/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/47c5bcb8-62ef-e5d7-55e7-f5121f409a30/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Vincent%20van%20Gogh%20-%20Self-Portrait%20-%201954.326%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Vincent%20van%20Gogh%20-%20Self-Portrait%20-%201954.326%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
    "focal_point": [
     0.45,
     0.34
    ],
    "featured_rank": 55,
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 7680,
-   "resolution_tier": "8K",
+   "credit_line": "https://www.artic.edu/artworks/80607",
+   "license_verified": "2026-09-22",
+   "delivered_edge": 2250,
+   "resolution_tier": "HD",
    "aspect_crops": {
     "16:9": [
      0.0,
@@ -56,7 +56,8 @@
      0.9778,
      1.0
     ]
-   }
+   },
+   "below_floor_ok": true
   },
   {
    "title": "The Poet's Garden",
@@ -70,20 +71,20 @@
    "tags": "garden, landscape, arles, post-impressionism, vibrant, expressive, oil painting",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/d4bc1723-7cbc-d36d-a9cb-f84553f2a6f6/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/d4bc1723-7cbc-d36d-a9cb-f84553f2a6f6/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Vincent%20van%20Gogh%20-%20The%20Poet%27s%20Garden%20-%201933.433%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Vincent%20van%20Gogh%20-%20The%20Poet%27s%20Garden%20-%201933.433%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
    "focal_point": [
     0.5,
     0.42
    ],
    "featured_rank": 40,
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 7680,
-   "resolution_tier": "8K",
+   "credit_line": "https://www.artic.edu/artworks/14586",
+   "license_verified": "2026-09-22",
+   "delivered_edge": 2834,
+   "resolution_tier": "HD",
    "aspect_crops": {
     "16:9": [
      0.0,
@@ -109,7 +110,8 @@
      0.7462,
      1.0
     ]
-   }
+   },
+   "below_floor_ok": true
   },
   {
    "title": "A Peasant Woman Digging in Front of Her Cottage",
@@ -123,46 +125,21 @@
    "tags": "peasant, rural life, dutch art, realism, early work, oil painting, 19th century",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/1d3a275d-45dd-6026-b6ed-d7d8df417a3d/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/1d3a275d-45dd-6026-b6ed-d7d8df417a3d/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Vincent%20van%20Gogh%20-%20A%20Peasant%20Woman%20Digging%20in%20Front%20of%20Her%20Cottage%20-%201968.92%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Vincent%20van%20Gogh%20-%20A%20Peasant%20Woman%20Digging%20in%20Front%20of%20Her%20Cottage%20-%201968.92%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
    "focal_point": [
     0.62,
     0.72
    ],
    "featured_rank": 25,
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 6255,
-   "resolution_tier": "4K",
-   "aspect_crops": {
-    "4:3": [
-     0.0,
-     0.0,
-     1.0,
-     1.0
-    ],
-    "16:9": [
-     0.0,
-     0.2492,
-     1.0,
-     0.9998
-    ],
-    "9:16": [
-     0.4688,
-     0.0,
-     0.8902,
-     1.0
-    ],
-    "3:4": [
-     0.3995,
-     0.0,
-     0.9615,
-     1.0
-    ]
-   }
+   "credit_line": "https://www.artic.edu/artworks/28862",
+   "license_verified": "2026-09-22",
+   "delivered_edge": 3000,
+   "resolution_tier": "HD",
+   "below_floor_ok": true
   },
   {
    "title": "The Drinkers",
@@ -176,20 +153,20 @@
    "tags": "post-impressionism, figure study, social scene, expressive, drinking, dutch art",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/d0ff5b36-bb38-b156-6042-5c8545352c2f/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/d0ff5b36-bb38-b156-6042-5c8545352c2f/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Vincent%20van%20Gogh%20-%20The%20Drinkers%20-%201953.178%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Vincent%20van%20Gogh%20-%20The%20Drinkers%20-%201953.178%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
    "focal_point": [
     0.55,
     0.35
    ],
    "featured_rank": 25,
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 5922,
-   "resolution_tier": "4K",
+   "credit_line": "https://www.artic.edu/artworks/79349",
+   "license_verified": "2026-09-22",
+   "delivered_edge": 3000,
+   "resolution_tier": "HD",
    "aspect_crops": {
     "16:9": [
      0.0,
@@ -215,7 +192,8 @@
      0.8017,
      1.0
     ]
-   }
+   },
+   "below_floor_ok": true
   },
   {
    "title": "Fishing in Spring, the Pont de Clichy (Asnières)",
@@ -229,20 +207,20 @@
    "tags": "fishing, river, landscape, spring, urban scene, post-impressionism, oil painting, france",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/5512cee9-6d00-d01b-b0be-ac7843cc8f76/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/5512cee9-6d00-d01b-b0be-ac7843cc8f76/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Vincent%20van%20Gogh%20-%20Fishing%20in%20Spring%2C%20the%20Pont%20de%20Clichy%20%28Asni%C3%A8res%29%20-%201965.1169%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Vincent%20van%20Gogh%20-%20Fishing%20in%20Spring%2C%20the%20Pont%20de%20Clichy%20%28Asni%C3%A8res%29%20-%201965.1169%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
    "focal_point": [
     0.4,
     0.55
    ],
    "featured_rank": 30,
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 7680,
-   "resolution_tier": "8K",
+   "credit_line": "https://www.artic.edu/artworks/109314",
+   "license_verified": "2026-09-22",
+   "delivered_edge": 2689,
+   "resolution_tier": "HD",
    "aspect_crops": {
     "16:9": [
      0.0,
@@ -268,7 +246,8 @@
      0.7629,
      1.0
     ]
-   }
+   },
+   "below_floor_ok": true
   },
   {
    "title": "Madame Roulin Rocking the Cradle (La berceuse)",
@@ -282,20 +261,20 @@
    "tags": "portrait, woman, motherhood, oil painting, post-impressionism, vibrant colors, arles period",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/6f3ca8b9-fef6-edfc-a71c-3e7b471d5f6c/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/6f3ca8b9-fef6-edfc-a71c-3e7b471d5f6c/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Vincent%20van%20Gogh%20-%20Madame%20Roulin%20Rocking%20the%20Cradle%20%28La%20berceuse%29%20-%201926.200%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Vincent%20van%20Gogh%20-%20Madame%20Roulin%20Rocking%20the%20Cradle%20%28La%20berceuse%29%20-%201926.200%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
    "focal_point": [
     0.5,
     0.28
    ],
    "featured_rank": 55,
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 7680,
-   "resolution_tier": "8K",
+   "credit_line": "https://www.artic.edu/artworks/27949",
+   "license_verified": "2026-09-22",
+   "delivered_edge": 3000,
+   "resolution_tier": "HD",
    "aspect_crops": {
     "16:9": [
      0.0,
@@ -321,7 +300,8 @@
      0.9738,
      1.0
     ]
-   }
+   },
+   "below_floor_ok": true
   },
   {
    "title": "Terrace and Observation Deck at the Moulin de Blute-Fin, Montmartre",
@@ -335,20 +315,20 @@
    "tags": "Vincent van Gogh, Montmartre, cityscape, oil painting, post-impressionist, 19th century",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/a971fad5-a24d-9985-03fb-1f17db9a9d74/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/a971fad5-a24d-9985-03fb-1f17db9a9d74/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Vincent%20van%20Gogh%20-%20Terrace%20and%20Observation%20Deck%20at%20the%20Moulin%20de%20Blute-Fin%2C%20Montmartre%20-%201926.202%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Vincent%20van%20Gogh%20-%20Terrace%20and%20Observation%20Deck%20at%20the%20Moulin%20de%20Blute-Fin%2C%20Montmartre%20-%201926.202%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
    "focal_point": [
     0.7,
     0.65
    ],
    "featured_rank": 30,
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 7680,
-   "resolution_tier": "8K",
+   "credit_line": "https://www.artic.edu/artworks/27954",
+   "license_verified": "2026-09-22",
+   "delivered_edge": 2250,
+   "resolution_tier": "HD",
    "aspect_crops": {
     "3:4": [
      0.0,
@@ -368,7 +348,8 @@
      1.0,
      0.7192
     ]
-   }
+   },
+   "below_floor_ok": true
   },
   {
    "title": "Grapes, Lemons, Pears, and Apples",
@@ -435,7 +416,7 @@
    "tags": "tree, nature, expressive, ink drawing, post-impressionism, solitary, draughtsmanship",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/34f09257-4c7f-3421-7396-e9dba321258a/full/6536,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Van%20Gogh%20-%20Blick%20in%20den%20Park%20von%20Arles.jpeg?width=3840",
    "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Van%20Gogh%20-%20Blick%20in%20den%20Park%20von%20Arles.jpeg?width=600",
    "focal_point": [
     0.5,
@@ -446,35 +427,10 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "Copied from an art book",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 6536,
-   "resolution_tier": "4K",
-   "aspect_crops": {
-    "16:9": [
-     0.0,
-     0.05,
-     1.0,
-     0.7536
-    ],
-    "9:16": [
-     0.1952,
-     0.0,
-     0.6448,
-     1.0
-    ],
-    "4:3": [
-     0.0,
-     0.0301,
-     1.0,
-     0.9683
-    ],
-    "3:4": [
-     0.1202,
-     0.0,
-     0.7198,
-     1.0
-    ]
-   }
+   "license_verified": "2026-09-22",
+   "delivered_edge": 2520,
+   "resolution_tier": "HD",
+   "below_floor_ok": true
   },
   {
    "title": "The Basket of Apples",
@@ -488,20 +444,20 @@
    "tags": "still life, apples, post-impressionism, french art, oil painting, multiple perspectives, compositional study, modern art",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/52ac8996-3460-cf71-cb42-5c4d0aa29b74/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/52ac8996-3460-cf71-cb42-5c4d0aa29b74/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Paul%20C%C3%A9zanne%20-%20The%20Basket%20of%20Apples%20-%201926.252%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Paul%20C%C3%A9zanne%20-%20The%20Basket%20of%20Apples%20-%201926.252%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
    "focal_point": [
     0.45,
     0.4
    ],
    "featured_rank": 60,
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 7680,
-   "resolution_tier": "8K",
+   "credit_line": "https://www.artic.edu/artworks/111436",
+   "license_verified": "2026-09-22",
+   "delivered_edge": 2811,
+   "resolution_tier": "HD",
    "aspect_crops": {
     "16:9": [
      0.0,
@@ -527,7 +483,8 @@
      0.7995,
      1.0
     ]
-   }
+   },
+   "below_floor_ok": true
   },
   {
    "title": "The Bay of Marseille, Seen from L'Estaque",
@@ -594,20 +551,20 @@
    "tags": "landscape, post-impressionism, oil painting, French art, nature, modern art, Auvers",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/90bc0cec-0d4e-9af5-3912-52a082a428e5/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/90bc0cec-0d4e-9af5-3912-52a082a428e5/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Paul%20C%C3%A9zanne%20-%20Auvers%2C%20Panoramic%20View%20-%201933.422%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Paul%20C%C3%A9zanne%20-%20Auvers%2C%20Panoramic%20View%20-%201933.422%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
    "focal_point": [
     0.5,
     0.5
    ],
    "featured_rank": 30,
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 7680,
-   "resolution_tier": "8K",
+   "credit_line": "https://www.artic.edu/artworks/14556",
+   "license_verified": "2026-09-22",
+   "delivered_edge": 2820,
+   "resolution_tier": "HD",
    "aspect_crops": {
     "16:9": [
      0.0,
@@ -633,7 +590,8 @@
      0.6472,
      1.0
     ]
-   }
+   },
+   "below_floor_ok": true
   },
   {
    "title": "Madame Cezanne in a Yellow Chair",
@@ -647,20 +605,20 @@
    "tags": "portrait, post-impressionism, oil painting, figure study, domestic scene, structural, modern art",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/4822cd01-44ac-041a-36b8-c0542377b750/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/4822cd01-44ac-041a-36b8-c0542377b750/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Paul%20C%C3%A9zanne%20-%20Madame%20C%C3%A9zanne%20in%20a%20Yellow%20Chair%20-%201948.54%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Paul%20C%C3%A9zanne%20-%20Madame%20C%C3%A9zanne%20in%20a%20Yellow%20Chair%20-%201948.54%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
    "focal_point": [
     0.52,
     0.21
    ],
    "featured_rank": 45,
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 7680,
-   "resolution_tier": "8K",
+   "credit_line": "https://www.artic.edu/artworks/62371",
+   "license_verified": "2026-09-22",
+   "delivered_edge": 2250,
+   "resolution_tier": "HD",
    "aspect_crops": {
     "16:9": [
      0.0,
@@ -686,7 +644,8 @@
      0.9749,
      1.0
     ]
-   }
+   },
+   "below_floor_ok": true
   },
   {
    "title": "The Vase of Tulips",
@@ -700,46 +659,21 @@
    "tags": "still life, flowers, tulips, Post-Impressionism, French art, oil painting, modern art",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/96f23681-9701-a668-5c3f-6ffa951f7ecc/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/96f23681-9701-a668-5c3f-6ffa951f7ecc/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Paul%20C%C3%A9zanne%20-%20The%20Vase%20of%20Tulips%20-%201933.423%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Paul%20C%C3%A9zanne%20-%20The%20Vase%20of%20Tulips%20-%201933.423%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
    "focal_point": [
     0.45,
     0.35
    ],
    "featured_rank": 30,
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 7680,
-   "resolution_tier": "8K",
-   "aspect_crops": {
-    "16:9": [
-     0.0,
-     0.2499,
-     1.0,
-     0.6466
-    ],
-    "9:16": [
-     0.1013,
-     0.0,
-     0.8987,
-     1.0
-    ],
-    "4:3": [
-     0.0,
-     0.1499,
-     1.0,
-     0.6789
-    ],
-    "3:4": [
-     0.0,
-     0.0298,
-     1.0,
-     0.9702
-    ]
-   }
+   "credit_line": "https://www.artic.edu/artworks/14561",
+   "license_verified": "2026-09-22",
+   "delivered_edge": 2250,
+   "resolution_tier": "HD",
+   "below_floor_ok": true
   },
   {
    "title": "The Bathers",
@@ -807,20 +741,20 @@
    "tags": "still life, apples, post-impressionism, oil painting, fruit, modern art, French",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/2e6d6a89-61bd-5098-59d3-b41d14bf7973/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/2e6d6a89-61bd-5098-59d3-b41d14bf7973/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Paul%20C%C3%A9zanne%20-%20The%20Plate%20of%20Apples%20-%201949.512%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Paul%20C%C3%A9zanne%20-%20The%20Plate%20of%20Apples%20-%201949.512%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
    "focal_point": [
     0.45,
     0.6
    ],
    "featured_rank": 35,
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 7680,
-   "resolution_tier": "8K",
+   "credit_line": "https://www.artic.edu/artworks/65811",
+   "license_verified": "2026-09-22",
+   "delivered_edge": 2708,
+   "resolution_tier": "HD",
    "aspect_crops": {
     "16:9": [
      0.0,
@@ -846,7 +780,8 @@
      0.7625,
      1.0
     ]
-   }
+   },
+   "below_floor_ok": true
   },
   {
    "title": "Bathers",
@@ -908,34 +843,21 @@
    "tags": "figure study, bather, post-impressionism, oil painting, human form, french art, modern art",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/527417cf-28b5-45f0-8afe-20af0dcc1418/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/527417cf-28b5-45f0-8afe-20af0dcc1418/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Paul%20C%C3%A9zanne%20-%20Standing%20Bather%2C%20Seen%20from%20the%20Back%20-%202007.289%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Paul%20C%C3%A9zanne%20-%20Standing%20Bather%2C%20Seen%20from%20the%20Back%20-%202007.289%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
    "focal_point": [
     0.4,
     0.2
    ],
    "featured_rank": 30,
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 7319,
-   "resolution_tier": "4K",
-   "aspect_crops": {
-    "9:16": [
-     0.0736,
-     0.0,
-     0.9264,
-     1.0
-    ],
-    "3:4": [
-     0.0,
-     0.0602,
-     1.0,
-     0.9398
-    ]
-   }
+   "credit_line": "https://www.artic.edu/artworks/191564",
+   "license_verified": "2026-09-22",
+   "delivered_edge": 2250,
+   "resolution_tier": "HD",
+   "below_floor_ok": true
   },
   {
    "title": "A Sunday on La Grande Jatte — 1884",
@@ -996,46 +918,21 @@
    "tags": "oil sketch, preparatory study, pointillism, neo-impressionism, french, 19th century, parisian life, leisure",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/081be15c-8812-c174-eeb2-cf318a2e67cf/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/081be15c-8812-c174-eeb2-cf318a2e67cf/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Georges%20Seurat%20-%20Oil%20Sketch%20for%20%22La%20Grande%20Jatte%22%20-%201981.15%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Georges%20Seurat%20-%20Oil%20Sketch%20for%20%22La%20Grande%20Jatte%22%20-%201981.15%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
    "focal_point": [
     0.6,
     0.35
    ],
    "featured_rank": 45,
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 7680,
-   "resolution_tier": "8K",
-   "aspect_crops": {
-    "16:9": [
-     0.0,
-     0.04,
-     1.0,
-     0.9584
-    ],
-    "9:16": [
-     0.4477,
-     0.0,
-     0.7923,
-     1.0
-    ],
-    "4:3": [
-     0.0917,
-     0.0,
-     0.9083,
-     1.0
-    ],
-    "3:4": [
-     0.3898,
-     0.0,
-     0.8492,
-     1.0
-    ]
-   }
+   "credit_line": "https://www.artic.edu/artworks/61616",
+   "license_verified": "2026-09-22",
+   "delivered_edge": 3000,
+   "resolution_tier": "HD",
+   "below_floor_ok": true
   },
   {
    "title": "Final Study for \"Bathers at Asnières\"",
@@ -1049,20 +946,20 @@
    "tags": "study, figures, landscape, oil painting, post-impressionist, preparatory, early modern",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/1db67905-d421-95bf-1e91-4b60dd776886/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/1db67905-d421-95bf-1e91-4b60dd776886/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Georges%20Seurat%20-%20Final%20Study%20for%20%22Bathers%20at%20Asni%C3%A8res%22%20-%201962.578%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Georges%20Seurat%20-%20Final%20Study%20for%20%22Bathers%20at%20Asni%C3%A8res%22%20-%201962.578%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
    "focal_point": [
     0.55,
     0.42
    ],
    "featured_rank": 35,
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 7680,
-   "resolution_tier": "8K",
+   "credit_line": "https://www.artic.edu/artworks/20199",
+   "license_verified": "2026-09-22",
+   "delivered_edge": 3000,
+   "resolution_tier": "HD",
    "aspect_crops": {
     "16:9": [
      0.0,
@@ -1088,7 +985,8 @@
      0.7141,
      1.0
     ]
-   }
+   },
+   "below_floor_ok": true
   },
   {
    "title": "The Starry Night",
@@ -1758,13 +1656,13 @@
    ],
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/65db9e21-83c3-1cc6-7240-1e1996d87f52/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/65db9e21-83c3-1cc6-7240-1e1996d87f52/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Henri%20de%20Toulouse-Lautrec%20-%20Equestrienne%20%28At%20the%20Cirque%20Fernando%29%20-%201925.523%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Henri%20de%20Toulouse-Lautrec%20-%20Equestrienne%20%28At%20the%20Cirque%20Fernando%29%20-%201925.523%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
+   "credit_line": "https://www.artic.edu/artworks/16146",
+   "license_verified": "2026-09-22",
    "featured_rank": 64,
    "focal_point": [
     0.55,
@@ -1819,20 +1717,20 @@
    ],
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/156aaed6-fe3c-a13c-f39e-55f381205929/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/156aaed6-fe3c-a13c-f39e-55f381205929/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Henri%20de%20Toulouse-Lautrec%20-%20Moulin%20de%20la%20Galette%20-%201933.458%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Henri%20de%20Toulouse-Lautrec%20-%20Moulin%20de%20la%20Galette%20-%201933.458%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
+   "credit_line": "https://www.artic.edu/artworks/14664",
+   "license_verified": "2026-09-22",
    "featured_rank": 55,
    "focal_point": [
     0.55,
     0.35
    ],
-   "delivered_edge": 7198,
-   "resolution_tier": "4K",
+   "delivered_edge": 2568,
+   "resolution_tier": "HD",
    "aspect_crops": {
     "16:9": [
      0.0,
@@ -1852,68 +1750,8 @@
      0.7097,
      1.0
     ]
-   }
-  },
-  {
-   "title": "At the Circus: The Bareback Rider (Au Cirque: Écuyère)",
-   "agent_name": "Henri de Toulouse-Lautrec",
-   "agent_role": "Painter",
-   "creation_date": "1888",
-   "cultural_context": "French Post-Impressionism, circus subjects",
-   "medium": "Oil on vellum",
-   "date_display": "1888",
-   "description_narrative": "Toulouse-Lautrec painted this circus performer on vellum, a support he favored for its smooth surface and slight translucency, capturing a bareback rider mid-performance with rapid, calligraphic brushwork. The subject reflects his lifelong fascination with the circus as a site of spectacle and physical performance.",
-   "tags": [
-    "toulouse-lautrec",
-    "post-impressionism",
-    "circus",
-    "performer",
-    "vellum",
-    "movement",
-    "paris"
-   ],
-   "source": "Art Institute of Chicago",
-   "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/f37b8965-3643-d101-a401-9c5f033cb312/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/f37b8965-3643-d101-a401-9c5f033cb312/full/400,/0/default.jpg",
-   "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
-   "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
-   "featured_rank": 45,
-   "focal_point": [
-    0.55,
-    0.45
-   ],
-   "delivered_edge": 5134,
-   "resolution_tier": "4K",
-   "aspect_crops": {
-    "16:9": [
-     0.0,
-     0.22,
-     1.0,
-     0.7515
-    ],
-    "9:16": [
-     0.2023,
-     0.0,
-     0.7977,
-     1.0
-    ],
-    "4:3": [
-     0.0,
-     0.1461,
-     1.0,
-     0.8547
-    ],
-    "3:4": [
-     0.1032,
-     0.0,
-     0.897,
-     1.0
-    ]
-   }
+   },
+   "below_floor_ok": true
   },
   {
    "title": "Mahana no atua (Day of the God)",
@@ -1935,20 +1773,20 @@
    ],
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/a4bef587-48a4-d186-813d-f297441b1ab3/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/a4bef587-48a4-d186-813d-f297441b1ab3/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Paul%20Gauguin%20-%20Mahana%20no%20atua%20%28Day%20of%20the%20God%29%20-%201926.198%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Paul%20Gauguin%20-%20Mahana%20no%20atua%20%28Day%20of%20the%20God%29%20-%201926.198%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
+   "credit_line": "https://www.artic.edu/artworks/27943",
+   "license_verified": "2026-09-22",
    "featured_rank": 76,
    "focal_point": [
     0.42,
     0.62
    ],
-   "delivered_edge": 6609,
-   "resolution_tier": "4K",
+   "delivered_edge": 3000,
+   "resolution_tier": "HD",
    "aspect_crops": {
     "16:9": [
      0.0,
@@ -1974,7 +1812,8 @@
      0.7794,
      1.0
     ]
-   }
+   },
+   "below_floor_ok": true
   },
   {
    "title": "Arlésiennes (Mistral)",
@@ -1996,20 +1835,20 @@
    ],
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/ae6ac285-6887-dd76-4570-d379c786dfae/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/ae6ac285-6887-dd76-4570-d379c786dfae/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Paul%20Gauguin%20-%20Arl%C3%A9siennes%20%28Mistral%29%20-%201934.391%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Paul%20Gauguin%20-%20Arl%C3%A9siennes%20%28Mistral%29%20-%201934.391%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
+   "credit_line": "https://www.artic.edu/artworks/19339",
+   "license_verified": "2026-09-22",
    "featured_rank": 40,
    "focal_point": [
     0.35,
     0.5
    ],
-   "delivered_edge": 7680,
-   "resolution_tier": "8K",
+   "delivered_edge": 2845,
+   "resolution_tier": "HD",
    "aspect_crops": {
     "16:9": [
      0.0,
@@ -2035,7 +1874,8 @@
      0.6433,
      1.0
     ]
-   }
+   },
+   "below_floor_ok": true
   },
   {
    "title": "Woman in Front of a Still Life by Cézanne",
@@ -2057,20 +1897,20 @@
    ],
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/38f866cb-9000-de5a-e655-d3fb4d8dc056/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/38f866cb-9000-de5a-e655-d3fb4d8dc056/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Paul%20Gauguin%20-%20Woman%20in%20front%20of%20a%20Still%20Life%20by%20C%C3%A9zanne%20-%201925.753%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Paul%20Gauguin%20-%20Woman%20in%20front%20of%20a%20Still%20Life%20by%20C%C3%A9zanne%20-%201925.753%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
+   "credit_line": "https://www.artic.edu/artworks/16648",
+   "license_verified": "2026-09-22",
    "featured_rank": 40,
    "focal_point": [
     0.42,
     0.3
    ],
-   "delivered_edge": 7680,
-   "resolution_tier": "8K",
+   "delivered_edge": 2250,
+   "resolution_tier": "HD",
    "aspect_crops": {
     "16:9": [
      0.0,
@@ -2096,7 +1936,8 @@
      0.9446,
      1.0
     ]
-   }
+   },
+   "below_floor_ok": true
   },
   {
    "title": "Bathers at Asnières",

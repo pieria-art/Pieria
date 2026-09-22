@@ -34,7 +34,7 @@ import hashlib
 import json
 import logging
 import re
-import shutil
+import subprocess
 from dataclasses import dataclass, field
 from io import BytesIO
 from pathlib import Path
@@ -66,6 +66,7 @@ logger = logging.getLogger("build-pack")
 REPO_ROOT = Path(__file__).resolve().parent.parent
 SEED_FILE = REPO_ROOT / "static" / "factory_seed.json"
 CATALOG_DIR = REPO_ROOT / "static" / "catalog"
+PINS_FILE = CATALOG_DIR / "_pack_pins.json"
 
 WIKIMEDIA_HOSTS = ("commons.wikimedia.org", "upload.wikimedia.org")
 THUMB_MAX_EDGE = 600
@@ -122,6 +123,152 @@ def load_seed_items() -> list[dict]:
         return []
     data = json.loads(SEED_FILE.read_text())
     return data if isinstance(data, list) else (data.get("items") or [])
+
+
+# --------------------------------------------------------------------------- pack pins (2026-09-22, option A)
+# ADR: 2026-09-22 option A — the SERVED catalog was re-sourced off artic.edu (its image host now 403s
+# API clients) to Wikimedia Commons, but ~124 of those works are already baked into the signed art
+# packs with their July AIC masters (up to 8K, CC0 straight from AIC) in art-pack/_Library. Rebuilding
+# from the new (Commons) catalog would re-download all of them at Commons' lower HD resolution and would
+# silently drop the ones that got parked into static/catalog/_pending_artic.json (no-match / too-small /
+# non-PD-Commons-licence). This pin file freezes the pre-re-source (HEAD, before the Commons swap) rows
+# for every artic.edu-sourced work, grouped by collection, so build_pack keeps shipping exactly what the
+# packs shipped in July for these works — the SERVED catalog (what the app displays) is unaffected.
+PINS_NOTE = (
+    "2026-09-22 option A — packs keep their July AIC masters for works the served catalog re-sourced "
+    "to Wikimedia Commons (artic.edu image host now 403s API clients). Rows here are the COMPLETE "
+    "original catalog rows as of the commit just before the re-source, keyed by collection id. "
+    "build_pack replaces the served row with the pinned row when both name the same work, and "
+    "re-appends any pinned row that no longer appears in the served collection at all (parked into "
+    "static/catalog/_pending_artic.json) so the pack doesn't silently drop it. See tools/build_pack.py "
+    "apply_pack_pins / generate_pack_pins."
+)
+
+
+def generate_pack_pins(ref: str = "HEAD") -> dict:
+    """Read-only, no network: for every static/catalog/<id>.json file AS OF `ref` (git show — never the
+    working tree), collect every item whose source_url contains 'artic.edu', verbatim and in original
+    order, grouped by collection id. Mirrors load_catalog_collections' file-selection rule (skip
+    `_`-prefixed / "index" files)."""
+    collections: dict[str, list[dict]] = {}
+    for f in sorted(CATALOG_DIR.glob("*.json")):
+        if f.name.startswith("_") or "index" in f.name:
+            continue
+        rel = f.relative_to(REPO_ROOT).as_posix()
+        try:
+            raw = subprocess.run(
+                ["git", "show", f"{ref}:{rel}"], cwd=REPO_ROOT,
+                capture_output=True, check=True, text=True,
+            ).stdout
+        except subprocess.CalledProcessError:
+            continue  # file didn't exist at ref
+        d = json.loads(raw)
+        cid = d.get("id") or f.stem
+        pinned = [it for it in d.get("items", []) if "artic.edu" in (it.get("source_url") or "")]
+        if pinned:
+            collections[cid] = pinned
+    return {"_note": PINS_NOTE, "collections": collections}
+
+
+def write_pack_pins(ref: str = "HEAD", dest: Path | None = None) -> dict:
+    """Generate + write static/catalog/_pack_pins.json. Reproducible: re-run any time against any ref."""
+    dest = dest if dest is not None else PINS_FILE
+    data = generate_pack_pins(ref)
+    dest.write_text(json.dumps(data, indent=1, ensure_ascii=False) + "\n")
+    total = sum(len(v) for v in data["collections"].values())
+    logger.info(f"wrote {dest} — {total} pinned row(s) across {len(data['collections'])} collection(s)")
+    return data
+
+
+def load_pack_pins(path: Path | None = None) -> dict[str, list[dict]]:
+    """{"_note": ..., "collections": {cid: [row, ...]}} -> {cid: [row, ...]}. Missing file -> {} (pins
+    are optional; their absence must not change behaviour). `path` defaults to the CURRENT value of
+    module-level PINS_FILE (read at call time, not import time) so tests can monkeypatch it."""
+    path = path if path is not None else PINS_FILE
+    if not path.exists():
+        return {}
+    data = json.loads(path.read_text())
+    return data.get("collections") or {}
+
+
+def _pin_identity_match(pin: dict, served: dict) -> bool:
+    """Stable identity for matching a pinned row to a served row. `_aic_accession` (when both sides
+    carry it) is the strongest signal; otherwise fall back to title + agent_name, which is what every
+    catalog row actually carries today."""
+    pin_acc, served_acc = pin.get("_aic_accession"), served.get("_aic_accession")
+    if pin_acc and served_acc:
+        return pin_acc == served_acc
+    return (pin.get("title") == served.get("title")
+            and pin.get("agent_name") == served.get("agent_name"))
+
+
+def apply_pack_pins(items: list[dict], pins: list[dict]) -> tuple[list[dict], int, int]:
+    """Replace each served item matching a pinned row with that pinned row (in place, same slot);
+    append any pinned row with no match in `items` (a parked work) at the end, in the pins' own
+    original order. Returns (merged_items, replaced_count, appended_count)."""
+    merged = list(items)
+    replaced = 0
+    appended_rows: list[dict] = []
+    for pin in pins:
+        idx = next((i for i, served in enumerate(merged) if _pin_identity_match(pin, served)), None)
+        if idx is not None:
+            merged[idx] = pin
+            replaced += 1
+        else:
+            appended_rows.append(pin)
+    merged.extend(appended_rows)
+    return merged, replaced, len(appended_rows)
+
+
+def compute_expected_masters(collections_filter: set[str] | None = None) -> dict[str, list[tuple[str, str]]]:
+    """Read-only, no network, no art-pack/ writes: for every item the served catalog (merged with pack
+    pins) would put in the pack, the (title, expected master_filename) pair build_pack would compute.
+    Used to prove pinning causes zero new downloads before ever running a real build.
+
+    MUST mirror ensure_master's dedup: the filename is keyed by source_url, and the FIRST work item
+    (in collection-load order, i.e. the same sorted() order load_catalog_collections/the real queue
+    use) to claim a given source_url names the file — a later item sharing that URL (e.g. the same
+    famous work also listed in a "masterpieces" highlight collection) reuses that name, never minting
+    its own collection-prefixed one."""
+    pins_by_collection = load_pack_pins()
+    url_to_filename: dict[str, str] = {}
+    out: dict[str, list[tuple[str, str]]] = {}
+    for col in load_catalog_collections(collections_filter):
+        cid = col["id"]
+        items = col.get("items", [])
+        pins = pins_by_collection.get(cid)
+        if pins:
+            items, _, _ = apply_pack_pins(items, pins)
+        rows = []
+        for it in items:
+            su = it.get("source_url")
+            if not su:
+                continue
+            title = it.get("title", "untitled")
+            filename = url_to_filename.get(su)
+            if filename is None:
+                filename = master_filename(cid, title, su)
+                url_to_filename[su] = filename
+            rows.append((title, filename))
+        out[cid] = rows
+    return out
+
+
+def check_pack_pins_coverage(library_dir: Path, collections_filter: set[str] | None = None) -> dict:
+    """Read-only proof: does every expected master (see compute_expected_masters) already exist in
+    `library_dir`? No downloads, no writes. Returns {"expected", "hits", "misses": [{"collection",
+    "title", "filename"}]}."""
+    expected = 0
+    hits = 0
+    misses: list[dict] = []
+    for cid, rows in compute_expected_masters(collections_filter).items():
+        for title, filename in rows:
+            expected += 1
+            if (library_dir / filename).exists():
+                hits += 1
+            else:
+                misses.append({"collection": cid, "title": title, "filename": filename})
+    return {"expected": expected, "hits": hits, "misses": misses}
 
 
 @dataclass
@@ -677,6 +824,22 @@ async def build(out: Path, *, scope: set[str], limit: int | None, collections_fi
     collections = load_catalog_collections(collections_filter) if "catalog" in scope else []
     seed_items = load_seed_items() if "seed" in scope else []
 
+    # Pack pins (2026-09-22 option A): swap in the pinned (pre-Commons-re-source) row wherever the
+    # served catalog and the pin name the same work, and re-append any pinned row parked out of the
+    # served catalog entirely — so a served-catalog re-source never changes what a pack ships.
+    pins_by_collection = load_pack_pins()
+    pin_replaced_total = pin_appended_total = 0
+    for col in collections:
+        pins = pins_by_collection.get(col["id"])
+        if not pins:
+            continue
+        col["items"], replaced, appended = apply_pack_pins(col.get("items", []), pins)
+        pin_replaced_total += replaced
+        pin_appended_total += appended
+        logger.info(f"  pins[{col['id']}]: {replaced} replaced, {appended} appended (parked)")
+    if pins_by_collection:
+        logger.info(f"pins: {pin_replaced_total} replaced, {pin_appended_total} appended in total")
+
     # Catalog items are queued first (they drive the manifest); seed items follow purely to warm
     # the dedup cache for any shared source_url and to bake seed art into the pack for first boot.
     # --limit caps the combined queue, so a quick test run stays small end-to-end.
@@ -717,10 +880,11 @@ async def build(out: Path, *, scope: set[str], limit: int | None, collections_fi
             "description": col.get("description", ""),
             "items": items_out,
         })
-        # Verbatim copy of the source catalog file, for any consumer that wants the original too.
-        src = CATALOG_DIR / f"{cid}.json"
-        if src.exists():
-            shutil.copy2(src, out / "_catalog" / f"{cid}.json")
+        # Copy of the catalog file AS USED for this build (pins already merged into col["items"]
+        # above), for any consumer that wants the source alongside the pack — must reflect what
+        # actually went into the pack, not the bare on-disk (possibly re-sourced) catalog file.
+        (out / "_catalog" / f"{cid}.json").write_text(
+            json.dumps(col, indent=1, ensure_ascii=False))
 
     manifest = {
         "version": "v1",
@@ -751,7 +915,17 @@ async def build(out: Path, *, scope: set[str], limit: int | None, collections_fi
 
 async def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--out", required=True, type=Path, help="pack output directory")
+    ap.add_argument("--out", required=False, type=Path, help="pack output directory")
+    ap.add_argument("--write-pins", action="store_true",
+                     help="regenerate static/catalog/_pack_pins.json from --pins-ref (default HEAD) "
+                          "and exit — no pack build, no network.")
+    ap.add_argument("--pins-ref", default="HEAD", help="git ref --write-pins reads catalog files from")
+    ap.add_argument("--check-pins", action="store_true",
+                     help="read-only: compute the expected master filename for every item the served "
+                          "catalog + pins would put in the pack and report hits/misses against "
+                          "--library-dir (default art-pack/_Library) — no downloads, no writes, exits.")
+    ap.add_argument("--library-dir", type=Path, default=REPO_ROOT / "art-pack" / "_Library",
+                     help="_Library dir --check-pins looks for expected masters in")
     ap.add_argument("--scope", default="catalog",
                     help="comma list: catalog,seed. Default 'catalog' — seed works aren't represented in "
                          "the manifest (the masterpieces live in catalog collections + Greatest Hits), so "
@@ -779,9 +953,22 @@ async def main() -> int:
                           "producing unsigned/'community'-tier manifests instead of failing.")
     args = ap.parse_args()
 
-    scope = {s.strip() for s in args.scope.split(",") if s.strip()}
     collections_filter = ({c.strip() for c in args.collections.split(",") if c.strip()}
                            if args.collections else None)
+
+    if args.write_pins:
+        write_pack_pins(args.pins_ref)
+        return 0
+    if args.check_pins:
+        report = check_pack_pins_coverage(args.library_dir, collections_filter)
+        print(f"expected: {report['expected']}  hits: {report['hits']}  misses: {len(report['misses'])}")
+        for m in report["misses"]:
+            print(f"  x MISS [{m['collection']}] {m['title']!r} -> {m['filename']}")
+        return 1 if report["misses"] else 0
+
+    if not args.out:
+        raise SystemExit("--out is required unless --write-pins or --check-pins")
+    scope = {s.strip() for s in args.scope.split(",") if s.strip()}
     signing_key = resolve_signing_key(args.signing_key, allow_unsigned=args.allow_unsigned)
 
     return await build(args.out, scope=scope, limit=args.limit, collections_filter=collections_filter,

@@ -489,20 +489,20 @@
    "tags": "water lilies, pond, nature, impressionism, french art, tranquil, reflections, garden",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/3c27b499-af56-f0d5-93b5-a7f2f1ad5813/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/3c27b499-af56-f0d5-93b5-a7f2f1ad5813/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Claude%20Monet%20-%20Water%20Lilies%20-%201906%2C%20Ryerson.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Claude%20Monet%20-%20Water%20Lilies%20-%201906%2C%20Ryerson.jpg?width=600",
    "focal_point": [
     0.5,
     0.7
    ],
    "featured_rank": 95,
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 7680,
-   "resolution_tier": "8K",
+   "credit_line": "Unknown sourceUnknown source",
+   "license_verified": "2026-09-22",
+   "delivered_edge": 2342,
+   "resolution_tier": "HD",
    "aspect_crops": {
     "16:9": [
      0.0,
@@ -528,7 +528,8 @@
      0.8605,
      1.0
     ]
-   }
+   },
+   "below_floor_ok": true
   },
   {
    "title": "Irises",

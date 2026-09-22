@@ -1539,20 +1539,20 @@
    ],
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/caac7478-b78f-a94d-a36c-fc5dde17e7c9/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/caac7478-b78f-a94d-a36c-fc5dde17e7c9/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20The%20Holy%20Family%20with%20Saints%20Elizabeth%20and%20John%20the%20Baptist%20-%201967.229%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20The%20Holy%20Family%20with%20Saints%20Elizabeth%20and%20John%20the%20Baptist%20-%201967.229%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
+   "credit_line": "https://www.artic.edu/artworks/27310",
+   "license_verified": "2026-09-22",
    "featured_rank": 58,
    "focal_point": [
     0.45,
     0.4
    ],
-   "delivered_edge": 7680,
-   "resolution_tier": "8K",
+   "delivered_edge": 2250,
+   "resolution_tier": "HD",
    "aspect_crops": {
     "16:9": [
      0.0,
@@ -1578,7 +1578,8 @@
      0.9709,
      1.0
     ]
-   }
+   },
+   "below_floor_ok": true
   },
   {
    "title": "Salome with the Head of Saint John the Baptist",
@@ -1598,46 +1599,21 @@
    ],
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/8eccb189-92f3-353a-3337-c0778c2680d9/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/8eccb189-92f3-353a-3337-c0778c2680d9/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Guido%20Reni%20-%20Salome%20with%20the%20Head%20of%20Saint%20John%20the%20Baptist%20-%201960.3%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Guido%20Reni%20-%20Salome%20with%20the%20Head%20of%20Saint%20John%20the%20Baptist%20-%201960.3%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
+   "credit_line": "https://www.artic.edu/artworks/11434",
+   "license_verified": "2026-09-22",
    "featured_rank": 52,
    "focal_point": [
     0.4,
     0.35
    ],
-   "delivered_edge": 7680,
-   "resolution_tier": "8K",
-   "aspect_crops": {
-    "16:9": [
-     0.0,
-     0.06,
-     1.0,
-     0.4498
-    ],
-    "9:16": [
-     0.0799,
-     0.0,
-     0.8918,
-     1.0
-    ],
-    "4:3": [
-     0.0,
-     0.0202,
-     1.0,
-     0.5398
-    ],
-    "3:4": [
-     0.0,
-     0.0301,
-     1.0,
-     0.9539
-    ]
-   }
+   "delivered_edge": 3000,
+   "resolution_tier": "HD",
+   "below_floor_ok": true
   },
   {
    "title": "Saint Romanus of Antioch and Saint Barulas",
@@ -1657,20 +1633,20 @@
    ],
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/5fa784d4-f5d4-cc88-2f8c-0d7bad4945c4/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/5fa784d4-f5d4-cc88-2f8c-0d7bad4945c4/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Francisco%20de%20Zurbar%C3%A1n%20-%20Saint%20Romanus%20of%20Antioch%20and%20Saint%20Barulas%20-%201947.793%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Francisco%20de%20Zurbar%C3%A1n%20-%20Saint%20Romanus%20of%20Antioch%20and%20Saint%20Barulas%20-%201947.793%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
+   "credit_line": "https://www.artic.edu/artworks/61665",
+   "license_verified": "2026-09-22",
    "featured_rank": 40,
    "focal_point": [
     0.5,
     0.28
    ],
-   "delivered_edge": 7680,
-   "resolution_tier": "8K",
+   "delivered_edge": 2250,
+   "resolution_tier": "HD",
    "aspect_crops": {
     "3:4": [
      0.0,
@@ -1696,7 +1672,8 @@
      1.0,
      0.6211
     ]
-   }
+   },
+   "below_floor_ok": true
   },
   {
    "title": "Landscape with Saint John on Patmos",
@@ -1710,20 +1687,20 @@
    "tags": "landscape, religious, classical, baroque, serene, saint john, patmos",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/aa870b0d-5a1b-660a-6dc6-56c12109cf6e/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/aa870b0d-5a1b-660a-6dc6-56c12109cf6e/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Nicolas%20Poussin%20-%20Landscape%20with%20Saint%20John%20on%20Patmos%20-%201930.500%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Nicolas%20Poussin%20-%20Landscape%20with%20Saint%20John%20on%20Patmos%20-%201930.500%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
    "focal_point": [
     0.62,
     0.82
    ],
    "featured_rank": 35,
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 6092,
-   "resolution_tier": "4K",
+   "credit_line": "https://www.artic.edu/artworks/5848",
+   "license_verified": "2026-09-22",
+   "delivered_edge": 3000,
+   "resolution_tier": "HD",
    "aspect_crops": {
     "9:16": [
      0.2999,
@@ -1743,66 +1720,8 @@
      0.755,
      1.0
     ]
-   }
-  },
-  {
-   "title": "The Feast in the House of Simon",
-   "agent_name": "El Greco and Workshop",
-   "agent_role": "Painter",
-   "creation_date": "1608",
-   "cultural_context": "Spanish Renaissance / Mannerism, Toledo",
-   "medium": "Oil on canvas",
-   "date_display": "c. 1608–14",
-   "description_narrative": "This large canvas depicts the biblical episode in which a sinful woman anoints Christ's feet, painted late in El Greco's career with the assistance of his Toledo workshop. It reflects the artist's mature style of visionary color and dramatically elongated figures.",
-   "tags": [
-    "El Greco",
-    "workshop painting",
-    "religious art",
-    "Toledo",
-    "Spanish Renaissance"
-   ],
-   "source": "Art Institute of Chicago",
-   "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/75886aaa-002a-2047-a05c-baf73f0ac093/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/75886aaa-002a-2047-a05c-baf73f0ac093/full/400,/0/default.jpg",
-   "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
-   "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
-   "featured_rank": 42,
-   "focal_point": [
-    0.5,
-    0.35
-   ],
-   "delivered_edge": 7680,
-   "resolution_tier": "8K",
-   "aspect_crops": {
-    "16:9": [
-     0.0,
-     0.2699,
-     1.0,
-     0.6638
-    ],
-    "9:16": [
-     0.0984,
-     0.0,
-     0.9016,
-     1.0
-    ],
-    "4:3": [
-     0.0,
-     0.1899,
-     1.0,
-     0.7151
-    ],
-    "3:4": [
-     0.0,
-     0.0298,
-     1.0,
-     0.9635
-    ]
-   }
+   },
+   "below_floor_ok": true
   },
   {
    "title": "Saint Martin and the Beggar",
@@ -1822,20 +1741,20 @@
    ],
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/52098776-6e2e-9683-e258-7b1cec8660dd/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/52098776-6e2e-9683-e258-7b1cec8660dd/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Domenico%20Theotok%C3%B3poulos%2C%20called%20El%20Greco%20-%20Saint%20Martin%20and%20the%20Beggar%20-%201949.1093%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Domenico%20Theotok%C3%B3poulos%2C%20called%20El%20Greco%20-%20Saint%20Martin%20and%20the%20Beggar%20-%201949.1093%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
+   "credit_line": "https://www.artic.edu/artworks/67362",
+   "license_verified": "2026-09-22",
    "featured_rank": 65,
    "focal_point": [
     0.62,
     0.17
    ],
-   "delivered_edge": 7680,
-   "resolution_tier": "8K",
+   "delivered_edge": 3000,
+   "resolution_tier": "HD",
    "aspect_crops": {
     "16:9": [
      0.0,
@@ -1861,7 +1780,8 @@
      1.0,
      0.8117
     ]
-   }
+   },
+   "below_floor_ok": true
   },
   {
    "title": "Saint Francis Kneeling in Meditation",
@@ -1881,20 +1801,20 @@
    ],
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/b703b636-976c-b35b-8a8e-f8df3f5ba003/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/b703b636-976c-b35b-8a8e-f8df3f5ba003/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Domenico%20Theotok%C3%B3poulos%2C%20called%20El%20Greco%20-%20Saint%20Francis%20Kneeling%20in%20Meditation%20-%201935.372%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Domenico%20Theotok%C3%B3poulos%2C%20called%20El%20Greco%20-%20Saint%20Francis%20Kneeling%20in%20Meditation%20-%201935.372%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
+   "credit_line": "https://www.artic.edu/artworks/21907",
+   "license_verified": "2026-09-22",
    "featured_rank": 48,
    "focal_point": [
     0.42,
     0.22
    ],
-   "delivered_edge": 7680,
-   "resolution_tier": "8K",
+   "delivered_edge": 2250,
+   "resolution_tier": "HD",
    "aspect_crops": {
     "9:16": [
      0.1479,
@@ -1914,7 +1834,8 @@
      0.9698,
      1.0
     ]
-   }
+   },
+   "below_floor_ok": true
   },
   {
    "title": "The Assumption of the Virgin",
@@ -1934,34 +1855,20 @@
    ],
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/47fd1564-93f5-f30b-7786-013421133b4a/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/47fd1564-93f5-f30b-7786-013421133b4a/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Domenikos%20Theotok%C3%B3poulos%2C%20called%20El%20Greco%20-%20The%20Assumption%20of%20the%20Virgin%20-%20Google%20Art%20Project.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Domenikos%20Theotok%C3%B3poulos%2C%20called%20El%20Greco%20-%20The%20Assumption%20of%20the%20Virgin%20-%20Google%20Art%20Project.jpg?width=600",
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
+   "credit_line": "0wG7A7al0WzGWg at Google Cultural Institute maximum zoom level",
+   "license_verified": "2026-09-22",
    "featured_rank": 62,
    "focal_point": [
     0.5,
     0.25
    ],
-   "delivered_edge": 7631,
-   "resolution_tier": "4K",
-   "aspect_crops": {
-    "9:16": [
-     0.0,
-     0.0201,
-     1.0,
-     0.9497
-    ],
-    "3:4": [
-     0.0,
-     0.1501,
-     1.0,
-     0.8472
-    ]
-   }
+   "delivered_edge": 5395,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Crucifixion",
@@ -1975,20 +1882,20 @@
    "tags": "crucifixion, religious art, Spanish Baroque, realism, tenebrism, devotional, dramatic",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/c8ee825f-bc8c-c76b-1f05-5d692d9a6b47/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/c8ee825f-bc8c-c76b-1f05-5d692d9a6b47/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Francisco%20de%20Zurbar%C3%A1n%20-%20The%20Crucifixion%20-%201954.15%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Francisco%20de%20Zurbar%C3%A1n%20-%20The%20Crucifixion%20-%201954.15%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
    "focal_point": [
     0.45,
     0.28
    ],
    "featured_rank": 45,
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 7680,
-   "resolution_tier": "8K",
+   "credit_line": "https://www.artic.edu/artworks/80084",
+   "license_verified": "2026-09-22",
+   "delivered_edge": 2250,
+   "resolution_tier": "HD",
    "aspect_crops": {
     "16:9": [
      0.0,
@@ -2014,7 +1921,8 @@
      1.0,
      0.8259
     ]
-   }
+   },
+   "below_floor_ok": true
   },
   {
    "title": "Cupid Chastised",
@@ -2028,20 +1936,20 @@
    "tags": "mythology, cupid, baroque, caravaggism, italian, oil painting, dramatic",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/0f951635-312c-0829-451b-553f461c5518/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/0f951635-312c-0829-451b-553f461c5518/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bartolomeo%20Manfredi%20-%20Cupid%20Chastised%20-%201947.58%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bartolomeo%20Manfredi%20-%20Cupid%20Chastised%20-%201947.58%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
    "focal_point": [
     0.5,
     0.27
    ],
    "featured_rank": 25,
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 7680,
-   "resolution_tier": "8K",
+   "credit_line": "https://www.artic.edu/artworks/59847",
+   "license_verified": "2026-09-22",
+   "delivered_edge": 3000,
+   "resolution_tier": "HD",
    "aspect_crops": {
     "16:9": [
      0.0,
@@ -2067,7 +1975,8 @@
      1.0,
      0.976
     ]
-   }
+   },
+   "below_floor_ok": true
   },
   {
    "title": "Don Gaspar de Guzmán (1587–1645), Count-Duke of Olivares",

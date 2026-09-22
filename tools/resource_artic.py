@@ -29,10 +29,15 @@ import urllib.error
 import urllib.parse
 import urllib.request
 from collections import defaultdict
+from datetime import date
 from pathlib import Path
 from urllib.parse import unquote
 
+from core.media import DISPLAY_MAX_EDGE
 from scout import MIN_DISPLAY_EDGE, _wikimedia_filepath, _wm_match  # URL builder, scorer, res gate
+from tools.audit_licenses import _em, _strip_html, classify  # same license convention as the audit gate
+from tools.build_pack import GRANDFATHER_MIN_EDGE  # hard-trash floor (below_floor_ok honored down to here)
+from tools.tag_resolution import tier_for  # same tier function the catalog pipeline uses everywhere else
 
 ROOT = Path(__file__).resolve().parent.parent
 CATALOG_DIR = ROOT / "static" / "catalog"
@@ -252,6 +257,76 @@ def _commons_imageinfo(filenames):
     return {f: None for f in filenames}
 
 
+def _commons_extmetadata(filenames):
+    """One extmetadata call for up to 50 files -> {filename: {license, license_url, credit_line}}.
+
+    Same fields/convention as tools.audit_licenses._commons_batch (LicenseShortName/LicenseUrl +
+    Attribution>Credit>Artist fallback for the credit line), but POST + urllib to match this
+    module's existing synchronous style, and scoped to just resolution_fields' own retry/backoff.
+    """
+    titles = "|".join(f"File:{f}" for f in filenames)
+    params = {"action": "query", "format": "json", "prop": "imageinfo",
+              "iiprop": "extmetadata", "maxlag": "5", "titles": titles}
+    body = urllib.parse.urlencode(params).encode()
+    for attempt in range(5):
+        try:
+            req = urllib.request.Request(COMMONS_API, data=body, headers={"User-Agent": UA})
+            with urllib.request.urlopen(req, timeout=45) as resp:  # noqa: S310 (trusted, fixed host)
+                data = json.load(resp)
+        except urllib.error.HTTPError as e:
+            wait = int(e.headers.get("Retry-After", 5)) if e.code == 429 else 2 ** attempt
+            print(f"  [commons license] {e.code}; backing off {wait}s", file=sys.stderr)
+            time.sleep(wait)
+            continue
+        if "error" in data and data["error"].get("code") == "maxlag":
+            time.sleep(5)
+            continue
+        out, want = {}, {_norm_fname(f): f for f in filenames}
+        for page in data.get("query", {}).get("pages", {}).values():
+            orig = want.get(_norm_fname(page.get("title", "").split(":", 1)[-1]))
+            if orig is None:
+                continue
+            ii = page.get("imageinfo")
+            em = (ii[0].get("extmetadata") or {}) if ii else {}
+            out[orig] = {
+                "license": _em(em, "LicenseShortName"),
+                "license_url": _em(em, "LicenseUrl") or "",
+                "credit_line": (_strip_html(_em(em, "Attribution")) or _strip_html(_em(em, "Credit"))
+                                or _strip_html(_em(em, "Artist")) or ""),
+            }
+        return out
+    return dict.fromkeys(filenames)
+
+
+def license_check(filenames, cache, refresh=False):
+    """Batch-check candidate files' redistribution licence via Commons extmetadata (unbound-only,
+    ADR-045): returns {filename: (verdict, detail, license_url, credit_line)}. verdict == "error"
+    on a fetch failure — callers must leave those items unchanged, never park them as unlicensed."""
+    lic = cache.setdefault("license", {})
+    # A failed fetch caches as None (see _commons_extmetadata) — retry those every run rather than
+    # freezing a transient error in as a permanent "unknown".
+    todo = sorted({f for f in filenames if refresh or lic.get(f) is None})
+    if todo:
+        print(f"[commons] license extmetadata for {len(todo)} files "
+              f"({(len(todo) + WM_BATCH - 1)//WM_BATCH} batches of {WM_BATCH})...", file=sys.stderr)
+    for b in range(0, len(todo), WM_BATCH):
+        res = _commons_extmetadata(todo[b:b + WM_BATCH])
+        lic.update({f: v for f, v in res.items() if v is not None})
+        save_cache(cache)
+        if b + WM_BATCH < len(todo):
+            time.sleep(WM_DELAY)
+
+    def verdict(fname):
+        meta = lic.get(fname)
+        if meta is None:
+            return "error", "no extmetadata response", "", ""
+        license_short = meta.get("license")
+        return (classify(license_short), license_short or "no license metadata returned",
+                meta.get("license_url", ""), meta.get("credit_line", ""))
+
+    return {f: verdict(f) for f in filenames}
+
+
 def verify_commons(filenames, cache, refresh=False):
     """Batch-verify candidate files via cheap metadata: real raster image + adequate resolution."""
     info = cache.setdefault("imageinfo", {})
@@ -276,6 +351,19 @@ def verify_commons(filenames, cache, refresh=False):
         return True, "ok"
 
     return {f: verdict(f) for f in filenames}
+
+
+def resolution_fields(native_edge: int):
+    """Grandfather-floor tiering for a re-sourced EXISTING catalog work (not new discovery):
+    honored down to GRANDFATHER_MIN_EDGE, trashed below it. Returns None if it must be parked,
+    else the additive fields to stamp on the item (mirrors tools/tag_resolution.py's tiers)."""
+    if native_edge < GRANDFATHER_MIN_EDGE:
+        return None
+    delivered_edge = min(native_edge, DISPLAY_MAX_EDGE)
+    fields = {"delivered_edge": delivered_edge, "resolution_tier": tier_for(delivered_edge)}
+    if delivered_edge < 3840:
+        fields["below_floor_ok"] = True
+    return fields
 
 
 # ---------------------------------------------------------------- plan + apply
@@ -305,15 +393,42 @@ def build_plan(refresh=False, limit=None):
 
     # Phase 2 — verify all candidate files at once (cheap metadata, never a render).
     verdicts = verify_commons([c["commons_file"] for c in candidates], cache, refresh)
+    imageinfo = cache.get("imageinfo", {})
     matched = []
     for c in candidates:
         ok, why = verdicts[c["commons_file"]]
-        if ok:
-            matched.append({**c,
-                            "new_source": _wikimedia_filepath(c["commons_file"], SOURCE_WIDTH),
-                            "new_thumb": _wikimedia_filepath(c["commons_file"], THUMB_WIDTH)})
-        else:
+        if not ok:
             parked.append({**c, "reason": f"verify-failed:{why}"})
+            continue
+        meta = imageinfo.get(c["commons_file"]) or {}
+        native_edge = max(meta.get("w", 0), meta.get("h", 0))
+        res_fields = resolution_fields(native_edge)
+        if res_fields is None:
+            parked.append({**c, "reason": f"below-hard-floor:{native_edge}px<{GRANDFATHER_MIN_EDGE}"})
+            continue
+        matched.append({**c, "new_source": _wikimedia_filepath(c["commons_file"], SOURCE_WIDTH),
+                        "new_thumb": _wikimedia_filepath(c["commons_file"], THUMB_WIDTH), **res_fields})
+
+    # Phase 3 — licence gate (ADR-045, unbound-only): a Commons mirror can carry a non-free
+    # licence (CC-BY/-SA on a photo of a 3D object, etc.) even when the underlying work is PD.
+    # Never ship those; park instead of stamping a false CC0/PD claim on them.
+    lic_verdicts = license_check([m["commons_file"] for m in matched], cache, refresh)
+    licensed, matched = matched, []
+    for m in licensed:
+        verdict, detail, license_url, credit_line = lic_verdicts[m["commons_file"]]
+        if verdict == "error":
+            # Transient fetch failure: never bake this as a verdict, and never park it either —
+            # parking removes the item from the shipped catalog, which a network hiccup does not
+            # justify. Leave it out of both matched/parked so apply_plan leaves it untouched
+            # (still pointing at artic.edu); the next run resolves it from a clean cache slot.
+            print(f"  [license] transient error, left unchanged: {m['title']!r} "
+                  f"({m['commons_file']}): {detail}", file=sys.stderr)
+            continue
+        if verdict != "pd":
+            parked.append({**m, "reason": f"license:{detail}"})
+            continue
+        matched.append({**m, "license_verdict": verdict, "license_basis": detail,
+                        "license_url": license_url, "credit_line": credit_line or m["artist"]})
     return items, matched, parked
 
 
@@ -321,7 +436,7 @@ def apply_plan(matched, parked):
     """Rewrite matched items in place; move parked items into _pending_artic.json; fix index.json."""
     by_file = defaultdict(lambda: {"rewrite": {}, "remove": set()})
     for m in matched:
-        by_file[m["file"]]["rewrite"][m["idx"]] = (m["new_source"], m["new_thumb"])
+        by_file[m["file"]]["rewrite"][m["idx"]] = m
     park_meta = {(p["file"], p["idx"]): p for p in parked}
     for p in parked:
         by_file[p["file"]]["remove"].add(p["idx"])
@@ -332,9 +447,21 @@ def apply_plan(matched, parked):
         path = CATALOG_DIR / fname
         data = json.loads(path.read_text())
         items = data.get("items", [])
-        for idx, (src, thumb) in ops["rewrite"].items():
-            items[idx]["source_url"] = src
-            items[idx]["thumbnail_url"] = thumb
+        for idx, m in ops["rewrite"].items():
+            items[idx]["source_url"] = m["new_source"]
+            items[idx]["thumbnail_url"] = m["new_thumb"]
+            items[idx]["delivered_edge"] = m["delivered_edge"]
+            items[idx]["resolution_tier"] = m["resolution_tier"]
+            if m.get("below_floor_ok"):
+                items[idx]["below_floor_ok"] = True
+            # Licence evidence (ADR-045, unbound-only) — same fields/convention as
+            # tools.audit_licenses --bake, computed here so a re-sourced item never ships with a
+            # stale museum-policy stamp that the actual Commons mirror was never checked against.
+            items[idx]["license_verdict"] = m["license_verdict"]
+            items[idx]["license_basis"] = m["license_basis"]
+            items[idx]["license_url"] = m["license_url"]
+            items[idx]["credit_line"] = m["credit_line"]
+            items[idx]["license_verified"] = date.today().isoformat()
         for idx in ops["remove"]:
             meta = park_meta.get((fname, idx), {})
             pending_out.append({**items[idx],

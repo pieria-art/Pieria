@@ -1588,20 +1588,20 @@
    "tags": "seascape, bathers, shoreline, tonalism, aestheticism, oil painting, 19th century, serene",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/5888c23a-635f-396a-117b-2223032c0201/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/5888c23a-635f-396a-117b-2223032c0201/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/James%20McNeill%20Whistler%20-%20Coast%20Scene%2C%20Bathers%20-%201933.208%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/James%20McNeill%20Whistler%20-%20Coast%20Scene%2C%20Bathers%20-%201933.208%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
    "focal_point": [
     0.55,
     0.27
    ],
    "featured_rank": 20,
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 6110,
-   "resolution_tier": "4K",
+   "credit_line": "https://www.artic.edu/artworks/14309",
+   "license_verified": "2026-09-22",
+   "delivered_edge": 3000,
+   "resolution_tier": "HD",
    "aspect_crops": {
     "16:9": [
      0.0,
@@ -1627,7 +1627,8 @@
      0.7548,
      1.0
     ]
-   }
+   },
+   "below_floor_ok": true
   },
   {
    "title": "Nocturne: Blue and Gold—Southampton Water",
@@ -1641,20 +1642,20 @@
    "tags": "nocturne, seascape, aestheticism, atmospheric, tonalism, blue and gold, tranquility",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/50034c7f-ce51-00f1-430e-a6f7efc233fc/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/50034c7f-ce51-00f1-430e-a6f7efc233fc/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/James%20McNeill%20Whistler%20-%20Nocturne%2C%20Blue%20and%20Gold%E2%80%94Southampton%20Water%20-%201900.52%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/James%20McNeill%20Whistler%20-%20Nocturne%2C%20Blue%20and%20Gold%E2%80%94Southampton%20Water%20-%201900.52%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
    "focal_point": [
     0.32,
     0.29
    ],
    "featured_rank": 35,
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 6442,
-   "resolution_tier": "4K",
+   "credit_line": "https://www.artic.edu/artworks/56905",
+   "license_verified": "2026-09-22",
+   "delivered_edge": 3000,
+   "resolution_tier": "HD",
    "aspect_crops": {
     "16:9": [
      0.0,
@@ -1680,7 +1681,8 @@
      0.5702,
      1.0
     ]
-   }
+   },
+   "below_floor_ok": true
   },
   {
    "title": "Capture of the Tripoli by the Enterprise",

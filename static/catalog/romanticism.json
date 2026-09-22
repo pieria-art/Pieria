@@ -17,20 +17,20 @@
    "tags": "landscape, American art, romanticism, sublime, nature, Niagara Falls, oil painting",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/18092196-50ae-3ff1-9205-1b3110e966c3/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/18092196-50ae-3ff1-9205-1b3110e966c3/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Distant%20View%20of%20Niagara%20Falls%201830%20Thomas%20Cole.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Distant%20View%20of%20Niagara%20Falls%201830%20Thomas%20Cole.jpg?width=600",
    "focal_point": [
     0.5,
     0.5
    ],
    "featured_rank": 30,
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 7680,
-   "resolution_tier": "8K",
+   "credit_line": "The Art Institute of Chicago",
+   "license_verified": "2026-09-22",
+   "delivered_edge": 2904,
+   "resolution_tier": "HD",
    "aspect_crops": {
     "16:9": [
      0.0,
@@ -56,7 +56,8 @@
      0.791,
      1.0
     ]
-   }
+   },
+   "below_floor_ok": true
   },
   {
    "title": "New England Scenery",
@@ -70,46 +71,21 @@
    "tags": "landscape, american art, hudson river school, romanticism, 19th century, nature, sublime",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/99e276fd-f076-f396-b5c1-b22c3ce62b45/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/99e276fd-f076-f396-b5c1-b22c3ce62b45/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Thomas%20Cole%20-%20New%20England%20Scenery%20-%201900.558%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Thomas%20Cole%20-%20New%20England%20Scenery%20-%201900.558%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
    "focal_point": [
     0.5,
     0.55
    ],
    "featured_rank": 28,
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 7680,
-   "resolution_tier": "8K",
-   "aspect_crops": {
-    "16:9": [
-     0.0,
-     0.3199,
-     1.0,
-     0.7605
-    ],
-    "9:16": [
-     0.0802,
-     0.0,
-     0.7982,
-     1.0
-    ],
-    "4:3": [
-     0.0,
-     0.1799,
-     1.0,
-     0.7674
-    ],
-    "3:4": [
-     0.0213,
-     0.0,
-     0.9786,
-     1.0
-    ]
-   }
+   "credit_line": "https://www.artic.edu/artworks/57163",
+   "license_verified": "2026-09-22",
+   "delivered_edge": 2250,
+   "resolution_tier": "HD",
+   "below_floor_ok": true
   },
   {
    "title": "Pergola with Oranges",
@@ -123,20 +99,20 @@
    "tags": "pergola, oranges, garden, romanticism, landscape, picturesque, vibrant",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/3236b056-f154-b3b6-3c37-6d70cac49bfe/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/3236b056-f154-b3b6-3c37-6d70cac49bfe/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Thomas%20Fearnley%20-%20Pergola%20with%20Oranges%20-%20Art%20Institute%20of%20Chicago%20-%202002.599.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Thomas%20Fearnley%20-%20Pergola%20with%20Oranges%20-%20Art%20Institute%20of%20Chicago%20-%202002.599.jpg?width=600",
    "focal_point": [
     0.52,
     0.6
    ],
    "featured_rank": 18,
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
-   "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 6483,
-   "resolution_tier": "4K",
+   "license_basis": "CC0",
+   "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "credit_line": "Art Institute of Chicago",
+   "license_verified": "2026-09-22",
+   "delivered_edge": 3000,
+   "resolution_tier": "HD",
    "aspect_crops": {
     "16:9": [
      0.0,
@@ -162,7 +138,8 @@
      0.8014,
      1.0
     ]
-   }
+   },
+   "below_floor_ok": true
   },
   {
    "title": "Coming Squall (Nahant Beach with a Summer Shower)",
@@ -338,20 +315,20 @@
    "tags": "seascape, marine, romanticism, atmospheric, fishing, boats, 19th century",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/8641479e-c93e-f1a8-9925-19be061706da/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/8641479e-c93e-f1a8-9925-19be061706da/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Joseph%20Mallord%20William%20Turner%20-%20Fishing%20Boats%20with%20Hucksters%20Bargaining%20for%20Fish%20-%201922.4472%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Joseph%20Mallord%20William%20Turner%20-%20Fishing%20Boats%20with%20Hucksters%20Bargaining%20for%20Fish%20-%201922.4472%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
    "focal_point": [
     0.27,
     0.5
    ],
    "featured_rank": 32,
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 7680,
-   "resolution_tier": "8K",
+   "credit_line": "https://www.artic.edu/artworks/4796",
+   "license_verified": "2026-09-22",
+   "delivered_edge": 3000,
+   "resolution_tier": "HD",
    "aspect_crops": {
     "16:9": [
      0.0,
@@ -377,7 +354,8 @@
      0.6296,
      1.0
     ]
-   }
+   },
+   "below_floor_ok": true
   },
   {
    "title": "Valley of Aosta: Snowstorm, Avalanche, and Thunderstorm",
@@ -391,20 +369,20 @@
    "tags": "romanticism, landscape, snowstorm, avalanche, thunderstorm, sublime, dramatic, nature",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/564e2e3f-eb93-88a7-d265-8fea006facff/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/564e2e3f-eb93-88a7-d265-8fea006facff/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Joseph%20Mallord%20William%20Turner%20-%20Valley%20of%20Aosta%2C%20Snowstorm%2C%20Avalanche%2C%20and%20Thunderstorm%20-%201947.513%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Joseph%20Mallord%20William%20Turner%20-%20Valley%20of%20Aosta%2C%20Snowstorm%2C%20Avalanche%2C%20and%20Thunderstorm%20-%201947.513%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
    "focal_point": [
     0.45,
     0.35
    ],
    "featured_rank": 42,
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 4914,
-   "resolution_tier": "4K",
+   "credit_line": "https://www.artic.edu/artworks/109938",
+   "license_verified": "2026-09-22",
+   "delivered_edge": 3000,
+   "resolution_tier": "HD",
    "aspect_crops": {
     "16:9": [
      0.0,
@@ -430,7 +408,8 @@
      0.7793,
      1.0
     ]
-   }
+   },
+   "below_floor_ok": true
   },
   {
    "title": "Wanderer above the Sea of Fog",
@@ -1059,20 +1038,20 @@
    ],
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/ae0793ac-8ace-6c4a-84d4-a33162ae6832/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/ae0793ac-8ace-6c4a-84d4-a33162ae6832/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Eug%C3%A8ne%20Delacroix%20-%20Combat%20du%20Giaour%20et%20Hassan%20%281826%29.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Eug%C3%A8ne%20Delacroix%20-%20Combat%20du%20Giaour%20et%20Hassan%20%281826%29.jpg?width=600",
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
+   "credit_line": "Art Institute of Chicago: online database: entry 110663",
+   "license_verified": "2026-09-22",
    "featured_rank": 48,
    "focal_point": [
     0.48,
     0.35
    ],
-   "delivered_edge": 7680,
-   "resolution_tier": "8K",
+   "delivered_edge": 5000,
+   "resolution_tier": "4K",
    "aspect_crops": {
     "16:9": [
      0.0,
@@ -1118,20 +1097,20 @@
    ],
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/1299b0e5-6a3d-8039-087b-35bf03caea1a/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/1299b0e5-6a3d-8039-087b-35bf03caea1a/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Eug%C3%A8ne%20Delacroix%20-%20Lion%20Hunt%20-%201922.404%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Eug%C3%A8ne%20Delacroix%20-%20Lion%20Hunt%20-%201922.404%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
+   "credit_line": "https://www.artic.edu/artworks/81505",
+   "license_verified": "2026-09-22",
    "featured_rank": 62,
    "focal_point": [
     0.45,
     0.28
    ],
-   "delivered_edge": 7680,
-   "resolution_tier": "8K",
+   "delivered_edge": 2916,
+   "resolution_tier": "HD",
    "aspect_crops": {
     "16:9": [
      0.0,
@@ -1157,7 +1136,8 @@
      0.7933,
      1.0
     ]
-   }
+   },
+   "below_floor_ok": true
   },
   {
    "title": "Friar Pedro Shoots El Maragato as His Horse Runs Off",
@@ -1177,20 +1157,20 @@
    ],
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/622998f1-73f9-4c96-08cf-60bda7c9ce4b/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/622998f1-73f9-4c96-08cf-60bda7c9ce4b/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Francisco%20Jos%C3%A9%20de%20Goya%20y%20Lucientes%20-%20Friar%20Pedro%20Shoots%20El%20Maragato%20as%20His%20Horse%20Runs%20Off%20-%201933.1075%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Francisco%20Jos%C3%A9%20de%20Goya%20y%20Lucientes%20-%20Friar%20Pedro%20Shoots%20El%20Maragato%20as%20His%20Horse%20Runs%20Off%20-%201933.1075%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
+   "credit_line": "https://www.artic.edu/artworks/16362",
+   "license_verified": "2026-09-22",
    "featured_rank": 38,
    "focal_point": [
     0.42,
     0.4
    ],
-   "delivered_edge": 5623,
-   "resolution_tier": "4K",
+   "delivered_edge": 2977,
+   "resolution_tier": "HD",
    "aspect_crops": {
     "4:3": [
      0.0,
@@ -1216,7 +1196,8 @@
      0.616,
      1.0
     ]
-   }
+   },
+   "below_floor_ok": true
   },
   {
    "title": "Peasants Bringing Home a Calf Born in the Fields",
@@ -1236,20 +1217,20 @@
    ],
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/7b0ea6ca-9424-050e-7e0e-3b67d2289480/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/7b0ea6ca-9424-050e-7e0e-3b67d2289480/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jean%20Fran%C3%A7ois%20Millet%20-%20Peasants%20Bringing%20Home%20a%20Calf%20Born%20in%20the%20Fields%20-%201894.1063%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jean%20Fran%C3%A7ois%20Millet%20-%20Peasants%20Bringing%20Home%20a%20Calf%20Born%20in%20the%20Fields%20-%201894.1063%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
+   "credit_line": "https://www.artic.edu/artworks/111648",
+   "license_verified": "2026-09-22",
    "featured_rank": 42,
    "focal_point": [
     0.42,
     0.42
    ],
-   "delivered_edge": 7680,
-   "resolution_tier": "8K",
+   "delivered_edge": 2822,
+   "resolution_tier": "HD",
    "aspect_crops": {
     "16:9": [
      0.0,
@@ -1275,7 +1256,8 @@
      0.718,
      1.0
     ]
-   }
+   },
+   "below_floor_ok": true
   },
   {
    "title": "Stoke-by-Nayland",
@@ -1289,20 +1271,20 @@
    "tags": "landscape, romanticism, england, nature, rural, atmospheric, 19th century",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/400ce9e8-2f67-44e2-dd68-e6c98880d27f/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/400ce9e8-2f67-44e2-dd68-e6c98880d27f/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/John%20Constable%20-%20Stoke-by-Nayland%20-%201922.4453%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/John%20Constable%20-%20Stoke-by-Nayland%20-%201922.4453%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
    "focal_point": [
     0.62,
     0.8
    ],
    "featured_rank": 35,
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 7680,
-   "resolution_tier": "8K",
+   "credit_line": "https://www.artic.edu/artworks/4758",
+   "license_verified": "2026-09-22",
+   "delivered_edge": 3000,
+   "resolution_tier": "HD",
    "aspect_crops": {
     "16:9": [
      0.0,
@@ -1322,7 +1304,8 @@
      0.9908,
      1.0
     ]
-   }
+   },
+   "below_floor_ok": true
   },
   {
    "title": "Alpine Scene",

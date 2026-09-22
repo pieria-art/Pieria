@@ -71,20 +71,20 @@
    "tags": "portrait, slavery, Ira Aldridge, acting, oil painting, 19th century, dramatic, realism",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/5490fd49-dd52-4fd7-7d41-d871dcffae55/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/5490fd49-dd52-4fd7-7d41-d871dcffae55/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/John%20Philip%20Simpson%20-%20The%20Captive%20Slave%20-%202008.188%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/John%20Philip%20Simpson%20-%20The%20Captive%20Slave%20-%202008.188%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
    "focal_point": [
     0.48,
     0.29
    ],
    "featured_rank": 25,
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 7680,
-   "resolution_tier": "8K",
+   "credit_line": "https://www.artic.edu/artworks/193664",
+   "license_verified": "2026-09-22",
+   "delivered_edge": 2250,
+   "resolution_tier": "HD",
    "aspect_crops": {
     "16:9": [
      0.0,
@@ -110,7 +110,8 @@
      0.9723,
      1.0
     ]
-   }
+   },
+   "below_floor_ok": true
   },
   {
    "title": "Portrait of a Man with Gray Hair",
@@ -339,46 +340,21 @@
    "tags": "young woman, portrait, doorway, dutch golden age, baroque, figure study, oil painting",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/91c51644-871f-cda9-82bb-94f4973ae339/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/91c51644-871f-cda9-82bb-94f4973ae339/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Samuel%20van%20Hoogstraten%20-%20Young%20woman%20at%20an%20open%20half-door%20%281645%29.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Samuel%20van%20Hoogstraten%20-%20Young%20woman%20at%20an%20open%20half-door%20%281645%29.jpg?width=600",
    "focal_point": [
     0.5,
     0.28
    ],
    "featured_rank": 20,
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 7680,
-   "resolution_tier": "8K",
-   "aspect_crops": {
-    "16:9": [
-     0.0,
-     0.0501,
-     1.0,
-     0.5196
-    ],
-    "9:16": [
-     0.163,
-     0.0,
-     0.837,
-     1.0
-    ],
-    "4:3": [
-     0.0,
-     0.0302,
-     1.0,
-     0.6561
-    ],
-    "3:4": [
-     0.0507,
-     0.0,
-     0.9493,
-     1.0
-    ]
-   }
+   "credit_line": "Art Institute of Chicago, online collection",
+   "license_verified": "2026-09-22",
+   "delivered_edge": 2500,
+   "resolution_tier": "HD",
+   "below_floor_ok": true
   },
   {
    "title": "The Child's Bath",
@@ -445,20 +421,20 @@
    "tags": "figure study, reading, woman, contemplative, realism, barbizon school, 19th century art, interior scene",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/1c2d32a7-790c-501a-e124-00f28cf5052d/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/1c2d32a7-790c-501a-e124-00f28cf5052d/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jean%20Baptiste%20Camille%20Corot%20-%20Interrupted%20Reading%20-%201922.410%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jean%20Baptiste%20Camille%20Corot%20-%20Interrupted%20Reading%20-%201922.410%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
    "focal_point": [
     0.55,
     0.2
    ],
    "featured_rank": 35,
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 7384,
-   "resolution_tier": "4K",
+   "credit_line": "https://www.artic.edu/artworks/81512",
+   "license_verified": "2026-09-22",
+   "delivered_edge": 3000,
+   "resolution_tier": "HD",
    "aspect_crops": {
     "16:9": [
      0.0,
@@ -484,7 +460,8 @@
      1.0,
      0.9693
     ]
-   }
+   },
+   "below_floor_ok": true
   },
   {
    "title": "Madame François Buron",
@@ -552,20 +529,20 @@
    "tags": "portrait, man, flower, early netherlandish, renaissance, flemish, oil painting, detailed",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/f731615e-ee25-f8e5-b957-69635e1e2d60/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/f731615e-ee25-f8e5-b957-69635e1e2d60/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Quentin%20Massys%20-%20Portrait%20of%20a%20Man%20with%20a%20Pink%20-%201894.1025%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Quentin%20Massys%20-%20Portrait%20of%20a%20Man%20with%20a%20Pink%20-%201894.1025%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
    "focal_point": [
     0.52,
     0.38
    ],
    "featured_rank": 25,
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 6688,
-   "resolution_tier": "4K",
+   "credit_line": "https://www.artic.edu/artworks/864",
+   "license_verified": "2026-09-22",
+   "delivered_edge": 3000,
+   "resolution_tier": "HD",
    "aspect_crops": {
     "16:9": [
      0.0,
@@ -591,7 +568,8 @@
      1.0,
      0.9374
     ]
-   }
+   },
+   "below_floor_ok": true
   },
   {
    "title": "Amédée-David, the Comte de Pastoret",
@@ -605,20 +583,20 @@
    "tags": "portrait, neoclassicism, french art, 19th century, oil painting, male portrait, formality, academic art",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/8d119fd0-2f57-f20e-a3f5-a573904001e9/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/8d119fd0-2f57-f20e-a3f5-a573904001e9/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jean%20Auguste%20Dominique%20Ingres%20-%20Am%C3%A9d%C3%A9e-David%2C%20the%20Comte%20de%20Pastoret%20-%201971.452%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jean%20Auguste%20Dominique%20Ingres%20-%20Am%C3%A9d%C3%A9e-David%2C%20the%20Comte%20de%20Pastoret%20-%201971.452%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
    "focal_point": [
     0.46,
     0.22
    ],
    "featured_rank": 30,
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 6633,
-   "resolution_tier": "4K",
+   "credit_line": "https://www.artic.edu/artworks/111317",
+   "license_verified": "2026-09-22",
+   "delivered_edge": 2250,
+   "resolution_tier": "HD",
    "aspect_crops": {
     "16:9": [
      0.0,
@@ -644,7 +622,8 @@
      0.9641,
      1.0
     ]
-   }
+   },
+   "below_floor_ok": true
   },
   {
    "title": "Merahi metua no Tehamana (Tehamana Has Many Parents or The Ancestors of Tehamana)",
@@ -711,20 +690,20 @@
    "tags": "portrait, Florentine, noble, Medici, Renaissance, Mannerism, formal, oil painting",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/9a29cc5d-3779-c9ab-2aa2-0df7b6c3f391/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/9a29cc5d-3779-c9ab-2aa2-0df7b6c3f391/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Alessandro%20Allori%20-%20Francesco%20de%27%20Medici%20-%201965.1179%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Alessandro%20Allori%20-%20Francesco%20de%27%20Medici%20-%201965.1179%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
    "focal_point": [
     0.45,
     0.21
    ],
    "featured_rank": 20,
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 7680,
-   "resolution_tier": "8K",
+   "credit_line": "https://www.artic.edu/artworks/24684",
+   "license_verified": "2026-09-22",
+   "delivered_edge": 3000,
+   "resolution_tier": "HD",
    "aspect_crops": {
     "16:9": [
      0.0,
@@ -750,7 +729,8 @@
      0.9895,
      1.0
     ]
-   }
+   },
+   "below_floor_ok": true
   },
   {
    "title": "Beggar with Oysters (Philosopher)",
@@ -926,20 +906,20 @@
    "tags": "portrait, oil painting, 18th century, French, woman, historical, realism",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/9ca3be44-a673-2ad9-f0d8-a8e28ee8d397/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/9ca3be44-a673-2ad9-f0d8-a8e28ee8d397/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jean%20Baptiste%20Fran%C3%A7ois%20D%C3%A9soria%20-%20Portrait%20of%20Constance%20Pipelet%20-%201939.533%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jean%20Baptiste%20Fran%C3%A7ois%20D%C3%A9soria%20-%20Portrait%20of%20Constance%20Pipelet%20-%201939.533%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
    "focal_point": [
     0.43,
     0.27
    ],
    "featured_rank": 15,
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 6000,
-   "resolution_tier": "4K",
+   "credit_line": "Art Institute of Chicago: online database: entry 31233",
+   "license_verified": "2026-09-22",
+   "delivered_edge": 3000,
+   "resolution_tier": "HD",
    "aspect_crops": {
     "16:9": [
      0.0,
@@ -965,7 +945,8 @@
      0.9954,
      1.0
     ]
-   }
+   },
+   "below_floor_ok": true
   },
   {
    "title": "Mrs. Potter Palmer",
@@ -979,20 +960,20 @@
    "tags": "portrait, woman, oil painting, realism, elegant, late 19th century, Swedish art, impressionistic brushwork",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/6f3dc71a-683d-7ad6-e24a-a97c4877f30d/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/6f3dc71a-683d-7ad6-e24a-a97c4877f30d/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Anders%20Zorn%20-%20Mrs.%20Potter%20Palmer%20-%201922.450%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Anders%20Zorn%20-%20Mrs.%20Potter%20Palmer%20-%201922.450%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
    "focal_point": [
     0.45,
     0.21
    ],
    "featured_rank": 30,
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 7680,
-   "resolution_tier": "8K",
+   "credit_line": "https://www.artic.edu/artworks/81576",
+   "license_verified": "2026-09-22",
+   "delivered_edge": 2250,
+   "resolution_tier": "HD",
    "aspect_crops": {
     "16:9": [
      0.0,
@@ -1018,7 +999,8 @@
      1.0,
      0.7366
     ]
-   }
+   },
+   "below_floor_ok": true
   },
   {
    "title": "John Thomlinson and His Family",
@@ -1915,20 +1897,20 @@
    ],
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/2d717e79-f94a-83fd-0e18-3e1a82f85310/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/2d717e79-f94a-83fd-0e18-3e1a82f85310/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Cosmo%20Alexander%20-%20Alexander%20Grant%20-%201977.2%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Cosmo%20Alexander%20-%20Alexander%20Grant%20-%201977.2%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
+   "credit_line": "https://www.artic.edu/artworks/93780",
+   "license_verified": "2026-09-22",
    "featured_rank": 14,
    "focal_point": [
     0.4,
     0.2
    ],
-   "delivered_edge": 7680,
-   "resolution_tier": "8K",
+   "delivered_edge": 2250,
+   "resolution_tier": "HD",
    "aspect_crops": {
     "16:9": [
      0.0,
@@ -1954,7 +1936,8 @@
      0.9687,
      1.0
     ]
-   }
+   },
+   "below_floor_ok": true
   },
   {
    "title": "Lucrezia di Lippo di Iacopo Guidi",
@@ -1973,13 +1956,13 @@
    ],
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/5d50e0e5-db32-4e02-eef7-6fbbae018d44/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/5d50e0e5-db32-4e02-eef7-6fbbae018d44/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sarto%2C%20Andrea%20del%20-%20The%20Wife%20of%20Domenico%20da%20Gambassi.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sarto%2C%20Andrea%20del%20-%20The%20Wife%20of%20Domenico%20da%20Gambassi.jpg?width=600",
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
+   "credit_line": "https://www.artic.edu/artworks/22270/the-wife-of-domenico-da-gambassi",
+   "license_verified": "2026-09-22",
    "featured_rank": 28,
    "focal_point": [
     0.48,
@@ -2031,20 +2014,20 @@
    ],
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/f9aacbc6-191c-3725-85bf-198612a51d25/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/f9aacbc6-191c-3725-85bf-198612a51d25/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/James%20McNeill%20Whistler%20-%20Portrait%20of%20Dr.%20William%20McNeill%20Whistler%20-%201977.235%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/James%20McNeill%20Whistler%20-%20Portrait%20of%20Dr.%20William%20McNeill%20Whistler%20-%201977.235%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
+   "credit_line": "https://www.artic.edu/artworks/111478",
+   "license_verified": "2026-09-22",
    "featured_rank": 36,
    "focal_point": [
     0.35,
     0.3
    ],
-   "delivered_edge": 6579,
-   "resolution_tier": "4K",
+   "delivered_edge": 3000,
+   "resolution_tier": "HD",
    "aspect_crops": {
     "16:9": [
      0.0,
@@ -2070,7 +2053,8 @@
      0.9707,
      1.0
     ]
-   }
+   },
+   "below_floor_ok": true
   },
   {
    "title": "Arrangement in Flesh Color and Brown: Portrait of Arthur Jerome Eddy",
@@ -2084,46 +2068,21 @@
    "tags": "portrait, oil painting, whistler, tonalism, aestheticism, fin de siècle, american art",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/43165650-0212-8897-0605-dc3fdda88c13/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/43165650-0212-8897-0605-dc3fdda88c13/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/James%20McNeill%20Whistler%20-%20Arrangement%20in%20Flesh%20Color%20and%20Brown%2C%20Portrait%20of%20Arthur%20Jerome%20Eddy%20-%201931.501%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/James%20McNeill%20Whistler%20-%20Arrangement%20in%20Flesh%20Color%20and%20Brown%2C%20Portrait%20of%20Arthur%20Jerome%20Eddy%20-%201931.501%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
    "focal_point": [
     0.45,
     0.1
    ],
    "featured_rank": 30,
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 7680,
-   "resolution_tier": "8K",
-   "aspect_crops": {
-    "16:9": [
-     0.0,
-     0.03,
-     1.0,
-     0.2775
-    ],
-    "9:16": [
-     0.0,
-     0.0401,
-     1.0,
-     0.8221
-    ],
-    "4:3": [
-     0.0,
-     0.0301,
-     1.0,
-     0.3599
-    ],
-    "3:4": [
-     0.0,
-     0.0301,
-     1.0,
-     0.6166
-    ]
-   }
+   "credit_line": "https://www.artic.edu/artworks/8958",
+   "license_verified": "2026-09-22",
+   "delivered_edge": 3000,
+   "resolution_tier": "HD",
+   "below_floor_ok": true
   },
   {
    "title": "Mrs. John Nicholson (Hannah Duncan) and John Nicholson, Jr.",
@@ -2299,20 +2258,20 @@
    "tags": "portrait, woman, romanticism, british art, oil painting, 19th century, elegance, refined",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/0052fc88-353e-db97-8741-b6b5ec6fb354/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/0052fc88-353e-db97-8741-b6b5ec6fb354/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sir%20Thomas%20Lawrence%20-%20Mrs.%20Jens%20Wolff%20-%201922.4461%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sir%20Thomas%20Lawrence%20-%20Mrs.%20Jens%20Wolff%20-%201922.4461%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
    "focal_point": [
     0.52,
     0.3
    ],
    "featured_rank": 28,
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 7185,
-   "resolution_tier": "4K",
+   "credit_line": "https://www.artic.edu/artworks/4773",
+   "license_verified": "2026-09-22",
+   "delivered_edge": 2250,
+   "resolution_tier": "HD",
    "aspect_crops": {
     "16:9": [
      0.0,
@@ -2338,7 +2297,8 @@
      0.9748,
      1.0
     ]
-   }
+   },
+   "below_floor_ok": true
   },
   {
    "title": "Dr. Joseph Klapp",
@@ -2460,46 +2420,21 @@
    "tags": "portraiture, 18th century, British art, oil painting, elegant, aristocratic, Georgian era",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/d763c113-194b-62a5-3e39-e2b479c5df47/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/d763c113-194b-62a5-3e39-e2b479c5df47/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Mrs.%20Philip%20Dupont%2C%20c.%201778%2C%20by%20Thomas%20Gainsborough%20-%20Art%20Institute%20of%20Chicago%20-%20DSC09480.JPG?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Mrs.%20Philip%20Dupont%2C%20c.%201778%2C%20by%20Thomas%20Gainsborough%20-%20Art%20Institute%20of%20Chicago%20-%20DSC09480.JPG?width=600",
    "focal_point": [
     0.48,
     0.36
    ],
    "featured_rank": 20,
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
-   "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 7680,
-   "resolution_tier": "8K",
-   "aspect_crops": {
-    "16:9": [
-     0.0,
-     0.0499,
-     1.0,
-     0.4973
-    ],
-    "9:16": [
-     0.1464,
-     0.0,
-     0.8536,
-     1.0
-    ],
-    "4:3": [
-     0.0,
-     0.0399,
-     1.0,
-     0.6364
-    ],
-    "3:4": [
-     0.0285,
-     0.0,
-     0.9715,
-     1.0
-    ]
-   }
+   "license_basis": "CC0",
+   "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "credit_line": "Daderot Author=Daderot, 10 October 2012",
+   "license_verified": "2026-09-22",
+   "delivered_edge": 3706,
+   "resolution_tier": "HD",
+   "below_floor_ok": true
   },
   {
    "title": "Riter Fitzgerald",
@@ -2513,20 +2448,20 @@
    "tags": "portrait, american realism, oil painting, male subject, 19th century, psychological, muted",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/0ba00909-2927-68ce-5c4d-a7534d18c4f4/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/0ba00909-2927-68ce-5c4d-a7534d18c4f4/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Thomas%20Eakins%20-%20Riter%20Fitzgerald%20-%201950.1511%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Thomas%20Eakins%20-%20Riter%20Fitzgerald%20-%201950.1511%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
    "focal_point": [
     0.38,
     0.3
    ],
    "featured_rank": 20,
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 7680,
-   "resolution_tier": "8K",
+   "credit_line": "https://www.artic.edu/artworks/72864",
+   "license_verified": "2026-09-22",
+   "delivered_edge": 2250,
+   "resolution_tier": "HD",
    "aspect_crops": {
     "16:9": [
      0.0,
@@ -2552,7 +2487,8 @@
      0.946,
      1.0
     ]
-   }
+   },
+   "below_floor_ok": true
   },
   {
    "title": "Portrait of Mary Adeline Williams",
@@ -2566,20 +2502,20 @@
    "tags": "portrait, realism, american art, oil painting, late 19th century, psychological, contemplative",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/8cb9f5ea-c955-96fd-c2d6-c720b0dbf7d4/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/8cb9f5ea-c955-96fd-c2d6-c720b0dbf7d4/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Thomas%20Eakins%20-%20Portrait%20of%20Mary%20Adeline%20Williams%20-%201939.548%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Thomas%20Eakins%20-%20Portrait%20of%20Mary%20Adeline%20Williams%20-%201939.548%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
    "focal_point": [
     0.42,
     0.28
    ],
    "featured_rank": 25,
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 4845,
-   "resolution_tier": "4K",
+   "credit_line": "https://www.artic.edu/artworks/31285",
+   "license_verified": "2026-09-22",
+   "delivered_edge": 3000,
+   "resolution_tier": "HD",
    "aspect_crops": {
     "16:9": [
      0.0,
@@ -2605,7 +2541,8 @@
      0.9504,
      1.0
     ]
-   }
+   },
+   "below_floor_ok": true
   },
   {
    "title": "Rêverie (Portrait of Gabrielle Borreau)",
@@ -2619,46 +2556,21 @@
    "tags": "portrait, realism, 19th century, contemplative, figure study, oil painting, french art",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/40d69445-feb4-d6d5-bcad-bb142856f0a6/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/40d69445-feb4-d6d5-bcad-bb142856f0a6/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Gustave%20Courbet%20-%20R%C3%AAverie%20%281862%29.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Gustave%20Courbet%20-%20R%C3%AAverie%20%281862%29.jpg?width=600",
    "focal_point": [
     0.52,
     0.32
    ],
    "featured_rank": 25,
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 7680,
-   "resolution_tier": "8K",
-   "aspect_crops": {
-    "16:9": [
-     0.0,
-     0.0501,
-     1.0,
-     0.766
-    ],
-    "9:16": [
-     0.129,
-     0.0,
-     0.5709,
-     1.0
-    ],
-    "4:3": [
-     0.0,
-     0.0201,
-     1.0,
-     0.9747
-    ],
-    "3:4": [
-     0.0554,
-     0.0,
-     0.6446,
-     1.0
-    ]
-   }
+   "credit_line": "Art Institute of Chicago, online collection",
+   "license_verified": "2026-09-22",
+   "delivered_edge": 2800,
+   "resolution_tier": "HD",
+   "below_floor_ok": true
   },
   {
    "title": "Mère Grégoire",
@@ -2672,46 +2584,21 @@
    "tags": "portrait, woman, realism, french realism, direct, naturalistic, oil painting",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/2e6d08c8-dac0-4f1c-3e56-de3539ceb905/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/2e6d08c8-dac0-4f1c-3e56-de3539ceb905/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Gustave%20Courbet%20-%20M%C3%A8re%20Gr%C3%A9goire%20-%201930.78%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Gustave%20Courbet%20-%20M%C3%A8re%20Gr%C3%A9goire%20-%201930.78%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
    "focal_point": [
     0.5,
     0.28
    ],
    "featured_rank": 25,
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 7680,
-   "resolution_tier": "8K",
-   "aspect_crops": {
-    "3:4": [
-     0.0,
-     0.0,
-     1.0,
-     1.0
-    ],
-    "16:9": [
-     0.0,
-     0.05,
-     1.0,
-     0.4702
-    ],
-    "9:16": [
-     0.0736,
-     0.0,
-     0.8264,
-     1.0
-    ],
-    "4:3": [
-     0.0,
-     0.03,
-     1.0,
-     0.5903
-    ]
-   }
+   "credit_line": "https://www.artic.edu/artworks/4428",
+   "license_verified": "2026-09-22",
+   "delivered_edge": 2250,
+   "resolution_tier": "HD",
+   "below_floor_ok": true
   }
  ]
 }

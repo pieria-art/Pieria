@@ -3095,5 +3095,483 @@
   "_park_reason": "no-trustworthy-match",
   "_aic_accession": "1928.1040",
   "_soft_commons_file": ""
+ },
+ {
+  "title": "The Feast in the House of Simon",
+  "agent_name": "El Greco and Workshop",
+  "agent_role": "Painter",
+  "creation_date": "1608",
+  "cultural_context": "Spanish Renaissance / Mannerism, Toledo",
+  "medium": "Oil on canvas",
+  "date_display": "c. 1608–14",
+  "description_narrative": "This large canvas depicts the biblical episode in which a sinful woman anoints Christ's feet, painted late in El Greco's career with the assistance of his Toledo workshop. It reflects the artist's mature style of visionary color and dramatically elongated figures.",
+  "tags": [
+   "El Greco",
+   "workshop painting",
+   "religious art",
+   "Toledo",
+   "Spanish Renaissance"
+  ],
+  "source": "Art Institute of Chicago",
+  "license": "Public Domain",
+  "source_url": "https://www.artic.edu/iiif/2/75886aaa-002a-2047-a05c-baf73f0ac093/full/2000,/0/default.jpg",
+  "thumbnail_url": "https://www.artic.edu/iiif/2/75886aaa-002a-2047-a05c-baf73f0ac093/full/400,/0/default.jpg",
+  "license_verdict": "pd",
+  "license_basis": "CC0 — AIC public-domain works",
+  "license_url": "",
+  "credit_line": "Collection of Art Institute of Chicago",
+  "license_verified": "2026-07-16",
+  "featured_rank": 42,
+  "focal_point": [
+   0.5,
+   0.35
+  ],
+  "delivered_edge": 7680,
+  "resolution_tier": "8K",
+  "aspect_crops": {
+   "16:9": [
+    0.0,
+    0.2699,
+    1.0,
+    0.6638
+   ],
+   "9:16": [
+    0.0984,
+    0.0,
+    0.9016,
+    1.0
+   ],
+   "4:3": [
+    0.0,
+    0.1899,
+    1.0,
+    0.7151
+   ],
+   "3:4": [
+    0.0,
+    0.0298,
+    1.0,
+    0.9635
+   ]
+  },
+  "_parked_from": "baroque",
+  "_park_reason": "verify-failed:too-small(960x1280)",
+  "_aic_accession": "1949.397",
+  "_soft_commons_file": "Le Repas chez Simon.jpg"
+ },
+ {
+  "title": "Woman on Rose Divan",
+  "agent_name": "Henri Matisse",
+  "agent_role": "Painter",
+  "creation_date": "1921",
+  "cultural_context": "Early French modernism, Matisse's Nice period",
+  "medium": "Oil on canvas",
+  "date_display": "1921",
+  "description_narrative": "Painted during Matisse's years in Nice, this work belongs to a series of odalisque-inspired interiors in which he posed models amid richly patterned, decorative settings drenched in Mediterranean light. The reclining figure and ornamental surroundings reflect Matisse's enduring interest in pattern, color, and the sensuous pleasures of painting.",
+  "tags": [
+   "matisse",
+   "modern-art",
+   "nice",
+   "interior",
+   "pattern",
+   "odalisque",
+   "color"
+  ],
+  "source": "Art Institute of Chicago",
+  "license": "Public Domain",
+  "source_url": "https://www.artic.edu/iiif/2/65e58fc4-4dd1-7149-b76b-94547745bece/full/2000,/0/default.jpg",
+  "thumbnail_url": "https://www.artic.edu/iiif/2/65e58fc4-4dd1-7149-b76b-94547745bece/full/400,/0/default.jpg",
+  "license_verdict": "pd",
+  "license_basis": "CC0 — AIC public-domain works",
+  "license_url": "",
+  "credit_line": "Collection of Art Institute of Chicago",
+  "license_verified": "2026-07-16",
+  "featured_rank": 42,
+  "focal_point": [
+   0.42,
+   0.45
+  ],
+  "delivered_edge": 6143,
+  "resolution_tier": "4K",
+  "aspect_crops": {
+   "16:9": [
+    0.0,
+    0.0999,
+    1.0,
+    0.7835
+   ],
+   "9:16": [
+    0.1501,
+    0.0,
+    0.6129,
+    1.0
+   ],
+   "4:3": [
+    0.0,
+    0.03,
+    1.0,
+    0.9414
+   ],
+   "3:4": [
+    0.1201,
+    0.0,
+    0.7372,
+    1.0
+   ]
+  },
+  "_parked_from": "modern-masters",
+  "_park_reason": "verify-failed:too-small(843x694)",
+  "_aic_accession": "1926.219",
+  "_soft_commons_file": "Femme au divan rose, par Henri Matisse.jpg"
+ },
+ {
+  "title": "At the Circus: The Bareback Rider (Au Cirque: Écuyère)",
+  "agent_name": "Henri de Toulouse-Lautrec",
+  "agent_role": "Painter",
+  "creation_date": "1888",
+  "cultural_context": "French Post-Impressionism, circus subjects",
+  "medium": "Oil on vellum",
+  "date_display": "1888",
+  "description_narrative": "Toulouse-Lautrec painted this circus performer on vellum, a support he favored for its smooth surface and slight translucency, capturing a bareback rider mid-performance with rapid, calligraphic brushwork. The subject reflects his lifelong fascination with the circus as a site of spectacle and physical performance.",
+  "tags": [
+   "toulouse-lautrec",
+   "post-impressionism",
+   "circus",
+   "performer",
+   "vellum",
+   "movement",
+   "paris"
+  ],
+  "source": "Art Institute of Chicago",
+  "license": "Public Domain",
+  "source_url": "https://www.artic.edu/iiif/2/f37b8965-3643-d101-a401-9c5f033cb312/full/2000,/0/default.jpg",
+  "thumbnail_url": "https://www.artic.edu/iiif/2/f37b8965-3643-d101-a401-9c5f033cb312/full/400,/0/default.jpg",
+  "license_verdict": "pd",
+  "license_basis": "CC0 — AIC public-domain works",
+  "license_url": "",
+  "credit_line": "Collection of Art Institute of Chicago",
+  "license_verified": "2026-07-16",
+  "featured_rank": 45,
+  "focal_point": [
+   0.55,
+   0.45
+  ],
+  "delivered_edge": 5134,
+  "resolution_tier": "4K",
+  "aspect_crops": {
+   "16:9": [
+    0.0,
+    0.22,
+    1.0,
+    0.7515
+   ],
+   "9:16": [
+    0.2023,
+    0.0,
+    0.7977,
+    1.0
+   ],
+   "4:3": [
+    0.0,
+    0.1461,
+    1.0,
+    0.8547
+   ],
+   "3:4": [
+    0.1032,
+    0.0,
+    0.897,
+    1.0
+   ]
+  },
+  "_parked_from": "post-impressionism",
+  "_park_reason": "no-trustworthy-match",
+  "_aic_accession": "2010.413",
+  "_soft_commons_file": ""
+ },
+ {
+  "title": "A Vanitas Still Life with a Flag, Candlestick, Musical Instruments, Books, Writing Paraphernalia, Globes, and Hourglass",
+  "agent_name": "Edwaert Collier",
+  "agent_role": "Artist",
+  "creation_date": "1662",
+  "cultural_context": "Dutch Golden Age, Dutch",
+  "medium": "Oil on canvas",
+  "date_display": "1662",
+  "description_narrative": "This intricate still life by Edwaert Collier meticulously arranges objects such as flags, musical instruments, books, and globes. These elements, alongside a candlestick and hourglass, serve as traditional memento mori, reminding the viewer of life's transience and the futility of worldly pursuits.",
+  "tags": "still life, vanitas, symbolic, memento mori, oil painting, dutch art, objects, allegory",
+  "source": "Art Institute of Chicago",
+  "license": "Public Domain",
+  "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/EDWAERT%20COLLIER%20VANITAS%20STILL%20LIFE.jpg?width=3840",
+  "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/EDWAERT%20COLLIER%20VANITAS%20STILL%20LIFE.jpg?width=600",
+  "focal_point": [
+   0.5,
+   0.55
+  ],
+  "featured_rank": 20,
+  "license_verdict": "pd",
+  "license_basis": "CC0 — AIC public-domain works",
+  "license_url": "",
+  "credit_line": "Collection of Art Institute of Chicago",
+  "license_verified": "2026-07-16",
+  "delivered_edge": 2000,
+  "resolution_tier": "HD",
+  "aspect_crops": {
+   "4:3": [
+    0.0,
+    0.0,
+    1.0,
+    1.0
+   ],
+   "16:9": [
+    0.0,
+    0.11,
+    1.0,
+    0.856
+   ],
+   "9:16": [
+    0.2399,
+    0.0,
+    0.6641,
+    1.0
+   ],
+   "3:4": [
+    0.1702,
+    0.0,
+    0.7358,
+    1.0
+   ]
+  },
+  "_parked_from": "still-life",
+  "_park_reason": "below-hard-floor:2000px<2160",
+  "_aic_accession": "",
+  "_soft_commons_file": "EDWAERT COLLIER VANITAS STILL LIFE.jpg"
+ },
+ {
+  "title": "Charing Cross Bridge, London",
+  "agent_name": "Claude Monet",
+  "agent_role": "Painter",
+  "creation_date": "1901",
+  "cultural_context": "French Impressionism, Monet's London series",
+  "medium": "Oil on canvas",
+  "date_display": "1901",
+  "description_narrative": "Monet painted this view of the Thames and Charing Cross Bridge from his room at the Savoy Hotel during extended stays in London around 1899 to 1901. He was fascinated by how the city's coal-smoke fog transformed sunlight into shifting veils of color over the water.",
+  "tags": [
+   "monet",
+   "impressionism",
+   "london",
+   "thames",
+   "bridge",
+   "fog",
+   "cityscape"
+  ],
+  "source": "Art Institute of Chicago",
+  "license": "Public Domain",
+  "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Monet%20-%20Charing%20Cross%20Bridge%2C%20London%2C%201901.jpg?width=3840",
+  "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Monet%20-%20Charing%20Cross%20Bridge%2C%20London%2C%201901.jpg?width=600",
+  "license_verdict": "pd",
+  "license_basis": "CC0 — AIC public-domain works",
+  "license_url": "",
+  "credit_line": "Collection of Art Institute of Chicago",
+  "license_verified": "2026-07-16",
+  "featured_rank": 62,
+  "focal_point": [
+   0.62,
+   0.35
+  ],
+  "delivered_edge": 3000,
+  "resolution_tier": "HD",
+  "aspect_crops": {
+   "16:9": [
+    0.0,
+    0.0897,
+    1.0,
+    0.8953
+   ],
+   "9:16": [
+    0.3536,
+    0.0,
+    0.7464,
+    1.0
+   ],
+   "4:3": [
+    0.03,
+    0.0,
+    0.961,
+    1.0
+   ],
+   "3:4": [
+    0.2882,
+    0.0,
+    0.8118,
+    1.0
+   ]
+  },
+  "below_floor_ok": true,
+  "_parked_from": "impressionism",
+  "_park_reason": "license:CC BY-SA 4.0",
+  "_aic_accession": "",
+  "_soft_commons_file": ""
+ },
+ {
+  "title": "Branch of the Seine near Giverny (Mist)",
+  "agent_name": "Claude Monet",
+  "agent_role": "Artist",
+  "creation_date": "1897",
+  "cultural_context": "Impressionism, French",
+  "medium": "Oil on canvas",
+  "date_display": "1897",
+  "description_narrative": "This serene oil painting captures a tranquil branch of the Seine River near Giverny, enveloped in a soft mist. Monet masterfully explores the transient effects of light and atmosphere on water and landscape, a hallmark of his late Impressionist style.",
+  "tags": "landscape, impressionism, river, mist, atmospheric, french, serene, nature",
+  "source": "Art Institute of Chicago",
+  "license": "Public Domain",
+  "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Monet%20-%20Branch%20of%20the%20Seine%20near%20Giverny%20%28Mist%29%2C%20from%20the%20series%20%E2%80%9CMornings%20on%20the%20Seine%E2%80%9D%2C%201897.jpg?width=3840",
+  "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Monet%20-%20Branch%20of%20the%20Seine%20near%20Giverny%20%28Mist%29%2C%20from%20the%20series%20%E2%80%9CMornings%20on%20the%20Seine%E2%80%9D%2C%201897.jpg?width=600",
+  "focal_point": [
+   0.3,
+   0.32
+  ],
+  "featured_rank": 35,
+  "license_verdict": "pd",
+  "license_basis": "CC0 — AIC public-domain works",
+  "license_url": "",
+  "credit_line": "Collection of Art Institute of Chicago",
+  "license_verified": "2026-07-16",
+  "delivered_edge": 3000,
+  "resolution_tier": "HD",
+  "aspect_crops": {
+   "16:9": [
+    0.0,
+    0.1501,
+    1.0,
+    0.7298
+   ],
+   "9:16": [
+    0.0999,
+    0.0,
+    0.6457,
+    1.0
+   ],
+   "4:3": [
+    0.0,
+    0.0802,
+    1.0,
+    0.8531
+   ],
+   "3:4": [
+    0.0598,
+    0.0,
+    0.7876,
+    1.0
+   ]
+  },
+  "below_floor_ok": true,
+  "_parked_from": "impressionism",
+  "_park_reason": "license:CC BY-SA 4.0",
+  "_aic_accession": "",
+  "_soft_commons_file": ""
+ },
+ {
+  "title": "Still Life with Geranium",
+  "agent_name": "Henri Matisse",
+  "agent_role": "Painter",
+  "creation_date": "1906",
+  "cultural_context": "Early French modernism, Fauvism",
+  "medium": "Oil on canvas",
+  "date_display": "1906",
+  "description_narrative": "Painted the year after Matisse and his circle were dubbed Fauves, or wild beasts, for their explosive use of color at the 1905 Salon d'Automne, this still life shows a potted geranium rendered in the bold, non-naturalistic palette that defined the short-lived Fauvist movement. Matisse used everyday domestic objects like this throughout his career as vehicles for his ongoing experiments with color and pattern.",
+  "tags": [
+   "matisse",
+   "fauvism",
+   "still-life",
+   "color",
+   "modern-art",
+   "flowers",
+   "france"
+  ],
+  "source": "Art Institute of Chicago",
+  "license": "Public Domain",
+  "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Henri%20matisse%2C%20il%20geranio%2C%201906.jpg?width=3840",
+  "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Henri%20matisse%2C%20il%20geranio%2C%201906.jpg?width=600",
+  "license_verdict": "pd",
+  "license_basis": "CC0 — AIC public-domain works",
+  "license_url": "",
+  "credit_line": "Collection of Art Institute of Chicago",
+  "license_verified": "2026-07-16",
+  "featured_rank": 80,
+  "focal_point": [
+   0.45,
+   0.5
+  ],
+  "delivered_edge": 2364,
+  "resolution_tier": "HD",
+  "below_floor_ok": true,
+  "_parked_from": "still-life",
+  "_park_reason": "license:CC BY-SA 4.0",
+  "_aic_accession": "",
+  "_soft_commons_file": ""
+ },
+ {
+  "title": "Apples",
+  "agent_name": "Henri Matisse",
+  "agent_role": "Artist",
+  "creation_date": "1916",
+  "cultural_context": "Modern Art, French",
+  "medium": "Oil on canvas",
+  "date_display": "1916",
+  "description_narrative": "Henri Matisse's 'Apples' is an oil on canvas painting created in 1916. It exemplifies the artist's continuous exploration of still life subjects.",
+  "tags": "still life, apples, oil painting, modern art, Henri Matisse",
+  "source": "Art Institute of Chicago",
+  "license": "Public Domain",
+  "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Henri%20matisse%2C%20mele%2C%201916.jpg?width=3840",
+  "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Henri%20matisse%2C%20mele%2C%201916.jpg?width=600",
+  "focal_point": [
+   0.45,
+   0.3
+  ],
+  "featured_rank": 35,
+  "license_verdict": "pd",
+  "license_basis": "CC0 — AIC public-domain works",
+  "license_url": "",
+  "credit_line": "Collection of Art Institute of Chicago",
+  "license_verified": "2026-07-16",
+  "delivered_edge": 2610,
+  "resolution_tier": "HD",
+  "below_floor_ok": true,
+  "_parked_from": "still-life",
+  "_park_reason": "license:CC BY-SA 4.0",
+  "_aic_accession": "",
+  "_soft_commons_file": ""
+ },
+ {
+  "title": "The Irish Question",
+  "agent_name": "De Scott Evans",
+  "agent_role": "Artist",
+  "creation_date": "1880s",
+  "cultural_context": "19th century American art",
+  "medium": "Oil on canvas",
+  "date_display": "1880s",
+  "description_narrative": "This intricate trompe l'oeil painting by De Scott Evans meticulously renders various documents and everyday objects, creating a convincing illusion of depth. The arrangement of a newspaper, pipe, and other ephemera subtly references the complex political and social issues surrounding the Irish question during the 1880s.",
+  "tags": "trompe l'oeil, political, illusion, still life, american, 19th century",
+  "source": "Art Institute of Chicago",
+  "license": "Public Domain",
+  "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/De%20scott%20evans%2C%20la%20questione%20irlandese%2C%201880-90%20ca.%20patate.jpg?width=3840",
+  "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/De%20scott%20evans%2C%20la%20questione%20irlandese%2C%201880-90%20ca.%20patate.jpg?width=600",
+  "focal_point": [
+   0.5,
+   0.55
+  ],
+  "featured_rank": 20,
+  "license_verdict": "pd",
+  "license_basis": "CC0 — AIC public-domain works",
+  "license_url": "",
+  "credit_line": "Collection of Art Institute of Chicago",
+  "license_verified": "2026-07-16",
+  "delivered_edge": 2244,
+  "resolution_tier": "HD",
+  "below_floor_ok": true,
+  "_parked_from": "still-life",
+  "_park_reason": "license:CC BY 3.0",
+  "_aic_accession": "",
+  "_soft_commons_file": ""
  }
 ]

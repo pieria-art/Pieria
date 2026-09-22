@@ -170,46 +170,21 @@
    "tags": "watercolor, seascape, ocean, nature, American art, late 19th century, realism",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/1de73bb7-52d6-e099-f4e1-763e201e78fa/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/1de73bb7-52d6-e099-f4e1-763e201e78fa/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Winslow%20Homer%20-%20The%20Water%20Fan.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Winslow%20Homer%20-%20The%20Water%20Fan.jpg?width=600",
    "focal_point": [
     0.39,
     0.4
    ],
    "featured_rank": 30,
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 7680,
-   "resolution_tier": "8K",
-   "aspect_crops": {
-    "16:9": [
-     0.0,
-     0.0999,
-     1.0,
-     0.9077
-    ],
-    "9:16": [
-     0.2801,
-     0.0,
-     0.6717,
-     1.0
-    ],
-    "4:3": [
-     0.0361,
-     0.0,
-     0.9645,
-     1.0
-    ],
-    "3:4": [
-     0.2,
-     0.0,
-     0.7223,
-     1.0
-    ]
-   }
+   "credit_line": "The Art Institute of Chicago",
+   "license_verified": "2026-09-22",
+   "delivered_edge": 2579,
+   "resolution_tier": "HD",
+   "below_floor_ok": true
   },
   {
    "title": "Life-Size Black Bass",
@@ -429,7 +404,7 @@
    "tags": "landscape, nature, american art, 19th century, realism, painting",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/6efc1bea-c900-28c5-e02a-c14189b10fb3/full/full/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Winslow%20Homer%20-%20Peach%20Blossoms%2C%201878.jpg?width=3840",
    "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Winslow%20Homer%20-%20Peach%20Blossoms%2C%201878.jpg?width=600",
    "focal_point": [
     0.52,
@@ -440,35 +415,10 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "1. The Athenaeum: Home page – Source – Image2. Art Institute of Chicago",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 6134,
-   "resolution_tier": "4K",
-   "aspect_crops": {
-    "16:9": [
-     0.0,
-     0.0799,
-     1.0,
-     0.9244
-    ],
-    "9:16": [
-     0.3127,
-     0.0,
-     0.6873,
-     1.0
-    ],
-    "4:3": [
-     0.0561,
-     0.0,
-     0.9442,
-     1.0
-    ],
-    "3:4": [
-     0.2701,
-     0.0,
-     0.7696,
-     1.0
-    ]
-   }
+   "license_verified": "2026-09-22",
+   "delivered_edge": 3000,
+   "resolution_tier": "HD",
+   "below_floor_ok": true
   },
   {
    "title": "Coast of Maine",
@@ -590,20 +540,20 @@
    "tags": "fishing, marine, coast, watercolor, drawing, American art, realism",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/3d6db404-4216-ae99-75cb-989e8e915305/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/3d6db404-4216-ae99-75cb-989e8e915305/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Winslow%20Homer%20-%20Fishing%20off%20Scarborough%2C%201882.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Winslow%20Homer%20-%20Fishing%20off%20Scarborough%2C%201882.jpg?width=600",
    "focal_point": [
     0.42,
     0.62
    ],
    "featured_rank": 28,
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 4063,
-   "resolution_tier": "4K",
+   "credit_line": "Art Institute of Chicago",
+   "license_verified": "2026-09-22",
+   "delivered_edge": 3000,
+   "resolution_tier": "HD",
    "aspect_crops": {
     "4:3": [
      0.0,
@@ -629,7 +579,8 @@
      0.6148,
      1.0
     ]
-   }
+   },
+   "below_floor_ok": true
   },
   {
    "title": "Adirondacks Guide",
@@ -908,20 +859,20 @@
    "tags": "portrait, oil painting, society portraiture, gilded age, elegance, late 19th century, realism, london society",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/074c1b1b-fe92-01ce-9e62-cc99369142dd/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/074c1b1b-fe92-01ce-9e62-cc99369142dd/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/John%20Singer%20Sargent%20-%20Mrs.%20George%20Swinton%20%28Elizabeth%20Ebsworth%29%20-%201922.4450%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/John%20Singer%20Sargent%20-%20Mrs.%20George%20Swinton%20%28Elizabeth%20Ebsworth%29%20-%201922.4450%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
    "focal_point": [
     0.5,
     0.2
    ],
    "featured_rank": 35,
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 6269,
-   "resolution_tier": "4K",
+   "credit_line": "https://www.artic.edu/artworks/4749",
+   "license_verified": "2026-09-22",
+   "delivered_edge": 3000,
+   "resolution_tier": "HD",
    "aspect_crops": {
     "16:9": [
      0.0,
@@ -947,7 +898,8 @@
      1.0,
      0.7381
     ]
-   }
+   },
+   "below_floor_ok": true
   },
   {
    "title": "Madame Paul Escudier (Louise Lefevre)",
@@ -961,20 +913,20 @@
    "tags": "portrait, woman, society portraiture, realism, elegant, 19th century, american art",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/c6da9f8c-643b-f331-0f8f-a9b6a844caf6/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/c6da9f8c-643b-f331-0f8f-a9b6a844caf6/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sargent%20-%20Madame%20Paul%20Escudier%20%28Louise%20Lefevre%29%2C%201882%2C%202007.391.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sargent%20-%20Madame%20Paul%20Escudier%20%28Louise%20Lefevre%29%2C%201882%2C%202007.391.jpg?width=600",
    "focal_point": [
     0.59,
     0.27
    ],
    "featured_rank": 28,
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 7680,
-   "resolution_tier": "8K",
+   "credit_line": "https://www.artic.edu/artists/36540/john-singer-sargent",
+   "license_verified": "2026-09-22",
+   "delivered_edge": 3000,
+   "resolution_tier": "HD",
    "aspect_crops": {
     "16:9": [
      0.0,
@@ -1000,7 +952,8 @@
      1.0,
      0.9507
     ]
-   }
+   },
+   "below_floor_ok": true
   },
   {
    "title": "Life Study (Study of an Egyptian Girl)",
@@ -1067,46 +1020,21 @@
    "tags": "venetian, glassblowing, workers, genre scene, realism, industrial, light, craftsmanship",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/8cdc812d-5db0-63a1-8579-eb64fc6884ca/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/8cdc812d-5db0-63a1-8579-eb64fc6884ca/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/John%20Singer%20Sargent%20-%20Venetian%20Glass%20Workers%20-%201933.1217%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/John%20Singer%20Sargent%20-%20Venetian%20Glass%20Workers%20-%201933.1217%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
    "focal_point": [
     0.86,
     0.46
    ],
    "featured_rank": 30,
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 7680,
-   "resolution_tier": "8K",
-   "aspect_crops": {
-    "16:9": [
-     0.0,
-     0.0599,
-     1.0,
-     0.9359
-    ],
-    "9:16": [
-     0.6201,
-     0.0,
-     0.9812,
-     1.0
-    ],
-    "4:3": [
-     0.0721,
-     0.0,
-     0.9282,
-     1.0
-    ],
-    "3:4": [
-     0.5001,
-     0.0,
-     0.9816,
-     1.0
-    ]
-   }
+   "credit_line": "https://www.artic.edu/artworks/110761",
+   "license_verified": "2026-09-22",
+   "delivered_edge": 3000,
+   "resolution_tier": "HD",
+   "below_floor_ok": true
   },
   {
    "title": "Mrs. Charles Gifford Dyer (Mary Anthony)",
@@ -1120,46 +1048,21 @@
    "tags": "portrait, oil painting, American art, female sitter, elegance, realism, society portraiture",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/59221fa2-45f9-5674-4fbd-9da3eb648d68/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/59221fa2-45f9-5674-4fbd-9da3eb648d68/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Chicago%20art%20inst%20singer%20sargent%20m%20dyer.JPG?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Chicago%20art%20inst%20singer%20sargent%20m%20dyer.JPG?width=600",
    "focal_point": [
     0.52,
     0.26
    ],
    "featured_rank": 26,
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 5934,
-   "resolution_tier": "4K",
-   "aspect_crops": {
-    "16:9": [
-     0.0,
-     0.0399,
-     1.0,
-     0.4291
-    ],
-    "9:16": [
-     0.0929,
-     0.0,
-     0.9061,
-     1.0
-    ],
-    "4:3": [
-     0.0,
-     0.0001,
-     1.0,
-     0.5189
-    ],
-    "3:4": [
-     0.0,
-     0.0203,
-     1.0,
-     0.9427
-    ]
-   }
+   "credit_line": "Own work",
+   "license_verified": "2026-09-22",
+   "delivered_edge": 2404,
+   "resolution_tier": "HD",
+   "below_floor_ok": true
   },
   {
    "title": "Rehearsal of the Pasdeloup Orchestra at the Cirque d'Hiver",
@@ -1173,20 +1076,20 @@
    "tags": "orchestra, rehearsal, music, parisian life, candid, realism, 19th century",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/f7ef1f0f-c5c9-6794-9283-2e7ebcde95cd/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/f7ef1f0f-c5c9-6794-9283-2e7ebcde95cd/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/John%20Singer%20Sargent%20-%20Rehearsal%20of%20the%20Pasdeloup%20Orchestra%20at%20the%20Cirque%20d%27Hiver%20-%2081.1972%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/John%20Singer%20Sargent%20-%20Rehearsal%20of%20the%20Pasdeloup%20Orchestra%20at%20the%20Cirque%20d%27Hiver%20-%2081.1972%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
    "focal_point": [
     0.62,
     0.78
    ],
    "featured_rank": 35,
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 5617,
-   "resolution_tier": "4K",
+   "credit_line": "https://www.artic.edu/artworks/121628",
+   "license_verified": "2026-09-22",
+   "delivered_edge": 3000,
+   "resolution_tier": "HD",
    "aspect_crops": {
     "16:9": [
      0.0,
@@ -1212,7 +1115,8 @@
      0.9723,
      1.0
     ]
-   }
+   },
+   "below_floor_ok": true
   },
   {
    "title": "Mrs. Charles Deering (Marion Denison Whipple)",
@@ -1226,20 +1130,20 @@
    "tags": "portrait, oil painting, woman, elegant, realist, late 19th century, american artist, society portrait",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/60d5826b-aaa0-68ba-9d6c-fc0bc55c2227/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/60d5826b-aaa0-68ba-9d6c-fc0bc55c2227/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/John%20Singer%20Sargent%20-%20Mrs.%20Charles%20Deering%20%28Marion%20Denison%20Whipple%29%20-%209.2002%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/John%20Singer%20Sargent%20-%20Mrs.%20Charles%20Deering%20%28Marion%20Denison%20Whipple%29%20-%209.2002%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
    "focal_point": [
     0.52,
     0.27
    ],
    "featured_rank": 26,
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 7680,
-   "resolution_tier": "8K",
+   "credit_line": "https://www.artic.edu/artworks/159722",
+   "license_verified": "2026-09-22",
+   "delivered_edge": 3000,
+   "resolution_tier": "HD",
    "aspect_crops": {
     "16:9": [
      0.0,
@@ -1265,7 +1169,8 @@
      0.9526,
      1.0
     ]
-   }
+   },
+   "below_floor_ok": true
   },
   {
    "title": "American Gothic",
@@ -2046,20 +1951,20 @@
    ],
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/7a314af6-336f-b6a4-809c-15659313a757/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/7a314af6-336f-b6a4-809c-15659313a757/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Mary%20Cassatt%20-%20After%20the%20Bullfight%20-%201969.332%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Mary%20Cassatt%20-%20After%20the%20Bullfight%20-%201969.332%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
+   "credit_line": "https://www.artic.edu/artworks/31816",
+   "license_verified": "2026-09-22",
    "featured_rank": 35,
    "focal_point": [
     0.55,
     0.25
    ],
-   "delivered_edge": 7680,
-   "resolution_tier": "8K",
+   "delivered_edge": 3000,
+   "resolution_tier": "HD",
    "aspect_crops": {
     "16:9": [
      0.0,
@@ -2085,7 +1990,8 @@
      0.9789,
      1.0
     ]
-   }
+   },
+   "below_floor_ok": true
   },
   {
    "title": "Love of Winter",
@@ -2105,19 +2011,19 @@
    ],
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/18ab0c35-e35c-0216-9afd-f93357920db1/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/18ab0c35-e35c-0216-9afd-f93357920db1/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/George%20Bellows%20-%20Love%20of%20Winter%2C%201914.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/George%20Bellows%20-%20Love%20of%20Winter%2C%201914.jpg?width=600",
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
+   "credit_line": "1. poulwebb.blogspot.de2./3. The Art Institute of Chicago",
+   "license_verified": "2026-09-22",
    "featured_rank": 48,
    "focal_point": [
     0.53,
     0.58
    ],
-   "delivered_edge": 5767,
+   "delivered_edge": 5000,
    "resolution_tier": "4K",
    "aspect_crops": {
     "16:9": [
@@ -2158,20 +2064,20 @@
    "tags": "winter, landscape, snow, ice, impressionism, american impressionism, serene, subtle",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/3ae75415-0551-ae17-c478-3b8687a6f246/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/3ae75415-0551-ae17-c478-3b8687a6f246/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/John%20Henry%20Twachtman%20-%20Icebound%20-%201917.200%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/John%20Henry%20Twachtman%20-%20Icebound%20-%201917.200%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
    "focal_point": [
     0.5,
     0.55
    ],
    "featured_rank": 30,
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 4707,
-   "resolution_tier": "4K",
+   "credit_line": "https://www.artic.edu/artworks/72801",
+   "license_verified": "2026-09-22",
+   "delivered_edge": 3000,
+   "resolution_tier": "HD",
    "aspect_crops": {
     "16:9": [
      0.0,
@@ -2197,7 +2103,8 @@
      0.8137,
      1.0
     ]
-   }
+   },
+   "below_floor_ok": true
   },
   {
    "title": "The Artist in His Studio",
@@ -2211,20 +2118,20 @@
    "tags": "artist, studio, interior, oil painting, 19th century, american art, british art",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/e01a4f76-d089-8e22-8431-3488db37a293/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/e01a4f76-d089-8e22-8431-3488db37a293/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/James%20McNeill%20Whistler%20-%20The%20Artist%20in%20His%20Studio%20-%201912.141%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/James%20McNeill%20Whistler%20-%20The%20Artist%20in%20His%20Studio%20-%201912.141%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
    "focal_point": [
     0.78,
     0.42
    ],
    "featured_rank": 25,
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 6679,
-   "resolution_tier": "4K",
+   "credit_line": "https://www.artic.edu/artworks/65709",
+   "license_verified": "2026-09-22",
+   "delivered_edge": 3000,
+   "resolution_tier": "HD",
    "aspect_crops": {
     "3:4": [
      0.0,
@@ -2250,7 +2157,8 @@
      1.0,
      0.814
     ]
-   }
+   },
+   "below_floor_ok": true
   },
   {
    "title": "Rip Van Winkle",
@@ -2318,20 +2226,20 @@
    "tags": "restaurant, urban life, genre scene, american art, ashcan school, early 20th century, social realism",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/b146368d-a855-63ac-6115-04b835c60bb0/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/b146368d-a855-63ac-6115-04b835c60bb0/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/William%20James%20Glackens%20-%20At%20Mouquin%27s%20-%201925.295%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/William%20James%20Glackens%20-%20At%20Mouquin%27s%20-%201925.295%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
    "focal_point": [
     0.4,
     0.23
    ],
    "featured_rank": 35,
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 5835,
-   "resolution_tier": "4K",
+   "credit_line": "https://www.artic.edu/artworks/15401",
+   "license_verified": "2026-09-22",
+   "delivered_edge": 3000,
+   "resolution_tier": "HD",
    "aspect_crops": {
     "3:4": [
      0.0,
@@ -2357,7 +2265,8 @@
      1.0,
      0.6256
     ]
-   }
+   },
+   "below_floor_ok": true
   },
   {
    "title": "The Advance-Guard, or The Military Sacrifice (The Ambush)",
@@ -2371,20 +2280,20 @@
    "tags": "western art, american west, military, frontier, horses, oil painting, realism, late 19th century",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
-   "source_url": "https://www.artic.edu/iiif/2/f1e03813-f9c7-f4f8-fbe8-a5eeae84fda4/full/2000,/0/default.jpg",
-   "thumbnail_url": "https://www.artic.edu/iiif/2/f1e03813-f9c7-f4f8-fbe8-a5eeae84fda4/full/400,/0/default.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frederic%20Remington%20-%20The%20Advance-Guard%2C%20or%20The%20Military%20Sacrifice%20%28The%20Ambush%29%20-%201982.802%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frederic%20Remington%20-%20The%20Advance-Guard%2C%20or%20The%20Military%20Sacrifice%20%28The%20Ambush%29%20-%201982.802%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
    "focal_point": [
     0.33,
     0.3
    ],
    "featured_rank": 35,
    "license_verdict": "pd",
-   "license_basis": "CC0 — AIC public-domain works",
+   "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Collection of Art Institute of Chicago",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 7680,
-   "resolution_tier": "8K",
+   "credit_line": "https://www.artic.edu/artworks/97910",
+   "license_verified": "2026-09-22",
+   "delivered_edge": 3000,
+   "resolution_tier": "HD",
    "aspect_crops": {
     "16:9": [
      0.0,
@@ -2410,7 +2319,8 @@
      0.5846,
      1.0
     ]
-   }
+   },
+   "below_floor_ok": true
   },
   {
    "title": "A Parisian Beggar Girl",
