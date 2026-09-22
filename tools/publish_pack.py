@@ -196,13 +196,44 @@ def slice_collection(pack: Path, col: dict, out: Path) -> dict | None:
     return row
 
 
-def publish(pack: Path, out: Path, core: set[str], only: set[str] | None = None) -> dict:
+def _gate_manifests(pack: Path, cols: list[dict]) -> list[tuple[str, str]]:
+    """Pre-publish refusal gate (devices now refuse any network-downloaded pack whose manifest isn't
+    registry-verified — core.lifespan.manifest_refusal_reason). Every manifest this call would publish
+    must pass that same check AND declare manifest['id'] == its collection id; a pack that would be
+    refused on-device must never reach packs.json or an uploadable artifact. Returns [(cid, reason)]
+    failures — empty means all clear."""
+    from core.lifespan import manifest_refusal_reason
+    failures: list[tuple[str, str]] = []
+    for col in cols:
+        cid = col["id"]
+        mpath = pack / col.get("manifest", f"_manifests/{cid}.json")
+        if not mpath.exists():
+            failures.append((cid, f"missing manifest {mpath.name}"))
+            continue
+        manifest = json.loads(mpath.read_text())
+        if manifest.get("id") != cid:
+            failures.append((cid, f"manifest id {manifest.get('id')!r} != collection id {cid!r}"))
+            continue
+        reason = manifest_refusal_reason(manifest, cid, require_verified=True)
+        if reason is not None:
+            failures.append((cid, reason))
+    return failures
+
+
+def publish(pack: Path, out: Path, core: set[str], only: set[str] | None = None,
+            *, allow_unverified: bool = False) -> dict:
     index = json.loads((pack / "pack-index.json").read_text())
+    cols = [c for c in index.get("collections", []) if not only or c["id"] in only]
+    if not allow_unverified:
+        failures = _gate_manifests(pack, cols)
+        if failures:
+            print("FAIL: refusing to publish — the following manifest(s) would be refused on-device:")
+            for cid, reason in failures:
+                print(f"  x {cid}: {reason}")
+            raise SystemExit(1)
     out.mkdir(parents=True, exist_ok=True)
     rows = []
-    for col in index.get("collections", []):
-        if only and col["id"] not in only:
-            continue
+    for col in cols:
         row = slice_collection(pack, col, out)
         if row is None:
             continue
@@ -252,6 +283,10 @@ def main() -> int:
     ap.add_argument("--covers-only", action="store_true",
                     help="regenerate covers/ + patch cover fields into an existing packs.json WITHOUT "
                          "re-taring (cheap R2 cover refresh: upload packs.json + covers/, tars untouched)")
+    ap.add_argument("--allow-unverified", action="store_true",
+                    help="DEV/TEST ONLY: skip the pre-publish device-refusal gate (every manifest must "
+                         "normally pass core.lifespan.manifest_refusal_reason(require_verified=True) "
+                         "before anything is written). Never use for a real publish.")
     args = ap.parse_args()
 
     if args.covers_only:
@@ -268,7 +303,7 @@ def main() -> int:
     core = {c.strip() for c in args.core.split(",") if c.strip()}
     only = {c.strip() for c in args.collections.split(",") if c.strip()} if args.collections else None
 
-    reg = publish(args.pack, args.out, core, only)
+    reg = publish(args.pack, args.out, core, only, allow_unverified=args.allow_unverified)
     core_rows = [r for r in reg["collections"] if r["core"]]
     core_mb = sum(r["bytes"] for r in core_rows) / 1e6
     total_mb = sum(r["bytes"] for r in reg["collections"]) / 1e6

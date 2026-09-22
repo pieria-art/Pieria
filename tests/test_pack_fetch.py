@@ -107,7 +107,7 @@ async def test_fetch_installs_collection_from_registry(tmp_path, monkeypatch):
     priv, pub = publisher.keygen()
     src = _build_source_pack(tmp_path, priv)
     dist = tmp_path / "dist"
-    publish_pack.publish(src, dist, core={"masterpieces"})
+    publish_pack.publish(src, dist, core={"masterpieces"}, allow_unverified=True)
     device = _bake_core(tmp_path, dist)
     _point_lifespan_at(monkeypatch, pub, device)
 
@@ -131,7 +131,7 @@ async def test_fetch_rejects_sha256_mismatch(tmp_path, monkeypatch):
     priv, pub = publisher.keygen()
     src = _build_source_pack(tmp_path, priv)
     dist = tmp_path / "dist"
-    publish_pack.publish(src, dist, core={"masterpieces"})
+    publish_pack.publish(src, dist, core={"masterpieces"}, allow_unverified=True)
     packs = json.loads((dist / "packs.json").read_text())
     for c in packs["collections"]:
         if c["id"] == "cartography":
@@ -158,7 +158,7 @@ async def test_fetch_retries_rate_limited_download(tmp_path, monkeypatch):
     priv, pub = publisher.keygen()
     src = _build_source_pack(tmp_path, priv)
     dist = tmp_path / "dist"
-    publish_pack.publish(src, dist, core={"masterpieces"})
+    publish_pack.publish(src, dist, core={"masterpieces"}, allow_unverified=True)
     device = _bake_core(tmp_path, dist)
     _point_lifespan_at(monkeypatch, pub, device)
 
@@ -199,7 +199,7 @@ async def test_fetch_unknown_collection(tmp_path, monkeypatch):
     priv, pub = publisher.keygen()
     src = _build_source_pack(tmp_path, priv)
     dist = tmp_path / "dist"
-    publish_pack.publish(src, dist, core={"masterpieces"})
+    publish_pack.publish(src, dist, core={"masterpieces"}, allow_unverified=True)
     device = tmp_path / "device"
     (device / "_manifests").mkdir(parents=True)
     _point_lifespan_at(monkeypatch, pub, device)
@@ -210,3 +210,233 @@ async def test_fetch_unknown_collection(tmp_path, monkeypatch):
         db, client, "https://packs.test/packs.json", "nonexistent")
     await client.aclose()
     assert not res["ok"] and "registry" in (res.get("error") or "")
+
+
+def _snapshot(device: Path) -> dict:
+    """{path: (mtime_ns, size)} for every file under the three shared/merge-target dirs — used to prove
+    a refused pack touched nothing (N1)."""
+    out = {}
+    for sub in ("_Library", "_catalog_thumbs", "_manifests"):
+        d = device / sub
+        if not d.is_dir():
+            continue
+        for f in d.rglob("*"):
+            if f.is_file():
+                st = f.stat()
+                out[str(f.relative_to(device))] = (st.st_mtime_ns, st.st_size)
+    return out
+
+
+def _no_leftover_temp_dirs(device: Path):
+    return not any(p.name.startswith(("_dl", "_x_")) for p in device.iterdir())
+
+
+@pytest.mark.asyncio
+async def test_fetch_refuses_untrusted_pack_and_merges_nothing(tmp_path, monkeypatch):
+    """N1: a collection signed by a key NOT in the registry's TRUSTED_KEYS must be refused BEFORE
+    anything is merged into ARTWORK_ROOT — not after (defense-in-depth in _install_collection is too
+    late; the real gate is pre-merge in _extract_collection)."""
+    priv, pub = publisher.keygen()
+    _other_priv, other_pub = publisher.keygen()  # unrelated key — registry will trust THIS one instead
+    src = _build_source_pack(tmp_path, priv)
+    dist = tmp_path / "dist"
+    publish_pack.publish(src, dist, core={"masterpieces"}, allow_unverified=True)
+    device = _bake_core(tmp_path, dist)
+    # TRUSTED_KEYS points at a DIFFERENT key than the one that actually signed the pack — cartography's
+    # manifest verifies (self-consistent signature) but assesses as 'community', so require_verified
+    # refuses it. The baked Core (masterpieces) already installed as community above _bake_core.
+    _point_lifespan_at(monkeypatch, other_pub, device)
+
+    db = _db()
+    lifespan_module.install_pack_subscriptions(db)
+    assert db.query(SubscriptionModel).count() == 1
+    before_subs = db.query(SubscriptionModel).count()
+    before = _snapshot(device)
+
+    client = httpx.AsyncClient(transport=_serve(dist))
+    res = await pack_fetch.install_collection_from_registry(
+        db, client, "https://packs.test/packs.json", "cartography")
+    await client.aclose()
+
+    assert not res["ok"], res
+    assert "trusted" in (res.get("error") or "") or "verif" in (res.get("error") or ""), res
+    assert db.query(SubscriptionModel).count() == before_subs
+    assert _snapshot(device) == before
+    assert _no_leftover_temp_dirs(device)
+
+
+@pytest.mark.asyncio
+async def test_fetch_refuses_manifest_id_mismatch_and_merges_nothing(tmp_path, monkeypatch):
+    """A tar whose manifest `id` doesn't match the collection id it was fetched as (e.g. a swapped/
+    mislabeled artifact) must be refused before anything is merged into ARTWORK_ROOT."""
+    priv, pub = publisher.keygen()
+    src = _build_source_pack(tmp_path, priv)
+    dist = tmp_path / "dist"
+    publish_pack.publish(src, dist, core={"masterpieces"}, allow_unverified=True)
+    device = _bake_core(tmp_path, dist)
+    _point_lifespan_at(monkeypatch, pub, device)
+
+    # Re-sign the cartography manifest with a DIFFERENT id but keep the collection id used to fetch it.
+    tar_path = dist / "cartography.tar"
+    work = tmp_path / "_idmismatch"
+    with tarfile.open(tar_path) as tf:
+        tf.extractall(work, filter="data")
+    man_path = work / "cartography" / "_manifests" / "cartography.json"
+    manifest = json.loads(man_path.read_text())
+    manifest["id"] = "not-cartography"
+    man_path.write_text(json.dumps(manifest))
+    tar_path.unlink()
+    with tarfile.open(tar_path, "w") as tf:
+        tf.add(work / "cartography", arcname="cartography")
+    shutil.rmtree(work)
+
+    packs = json.loads((dist / "packs.json").read_text())
+    new_sha = __import__("hashlib").sha256(tar_path.read_bytes()).hexdigest()
+    for c in packs["collections"]:
+        if c["id"] == "cartography":
+            c["sha256"] = new_sha
+    (dist / "packs.json").write_text(json.dumps(packs))
+
+    db = _db()
+    lifespan_module.install_pack_subscriptions(db)
+    before_subs = db.query(SubscriptionModel).count()
+    before = _snapshot(device)
+
+    client = httpx.AsyncClient(transport=_serve(dist))
+    res = await pack_fetch.install_collection_from_registry(
+        db, client, "https://packs.test/packs.json", "cartography")
+    await client.aclose()
+
+    assert not res["ok"], res
+    assert "not-cartography" in (res.get("error") or "") or "match" in (res.get("error") or ""), res
+    assert db.query(SubscriptionModel).count() == before_subs
+    assert _snapshot(device) == before
+    assert _no_leftover_temp_dirs(device)
+
+
+@pytest.mark.asyncio
+async def test_fetch_refuses_gzip_compressed_artifact(tmp_path, monkeypatch):
+    """core.pack_fetch opens the downloaded artifact with 'r:' (uncompressed only) — publish_pack emits
+    plain .tar, so a gzip-compressed artifact (a compression-bomb vector) must be refused outright."""
+    priv, pub = publisher.keygen()
+    src = _build_source_pack(tmp_path, priv)
+    dist = tmp_path / "dist"
+    publish_pack.publish(src, dist, core={"masterpieces"}, allow_unverified=True)
+    device = _bake_core(tmp_path, dist)
+    _point_lifespan_at(monkeypatch, pub, device)
+
+    # Recompress the legitimate cartography.tar as gzip, same collection contents.
+    tar_path = dist / "cartography.tar"
+    work = tmp_path / "_gz"
+    with tarfile.open(tar_path) as tf:
+        tf.extractall(work, filter="data")
+    tar_path.unlink()
+    with tarfile.open(tar_path, "w:gz") as tf:
+        tf.add(work / "cartography", arcname="cartography")
+    shutil.rmtree(work)
+
+    packs = json.loads((dist / "packs.json").read_text())
+    new_sha = __import__("hashlib").sha256(tar_path.read_bytes()).hexdigest()
+    for c in packs["collections"]:
+        if c["id"] == "cartography":
+            c["sha256"] = new_sha
+    (dist / "packs.json").write_text(json.dumps(packs))
+
+    db = _db()
+    lifespan_module.install_pack_subscriptions(db)
+    before_subs = db.query(SubscriptionModel).count()
+    before = _snapshot(device)
+
+    client = httpx.AsyncClient(transport=_serve(dist))
+    res = await pack_fetch.install_collection_from_registry(
+        db, client, "https://packs.test/packs.json", "cartography")
+    await client.aclose()
+
+    assert not res["ok"], res
+    assert db.query(SubscriptionModel).count() == before_subs
+    assert _snapshot(device) == before
+    assert _no_leftover_temp_dirs(device)
+
+
+@pytest.mark.asyncio
+async def test_fetch_refuses_artifact_over_the_extracted_size_cap(tmp_path, monkeypatch):
+    """A tar whose members sum past the extraction cap must be refused BEFORE extractall runs, even
+    though the download itself and its sha256 are legitimate."""
+    priv, pub = publisher.keygen()
+    src = _build_source_pack(tmp_path, priv)
+    dist = tmp_path / "dist"
+    publish_pack.publish(src, dist, core={"masterpieces"}, allow_unverified=True)
+    device = _bake_core(tmp_path, dist)
+    _point_lifespan_at(monkeypatch, pub, device)
+    monkeypatch.setattr(pack_fetch, "MAX_EXTRACTED_BYTES", 10)  # smaller than the real artifact
+
+    db = _db()
+    lifespan_module.install_pack_subscriptions(db)
+    before_subs = db.query(SubscriptionModel).count()
+    before = _snapshot(device)
+
+    client = httpx.AsyncClient(transport=_serve(dist))
+    res = await pack_fetch.install_collection_from_registry(
+        db, client, "https://packs.test/packs.json", "cartography")
+    await client.aclose()
+
+    assert not res["ok"], res
+    assert "cap" in (res.get("error") or ""), res
+    assert db.query(SubscriptionModel).count() == before_subs
+    assert _snapshot(device) == before
+    assert _no_leftover_temp_dirs(device)
+
+
+@pytest.mark.asyncio
+async def test_fetch_refuses_tampered_pack_and_merges_nothing(tmp_path, monkeypatch):
+    """N1: a collection signed by a TRUSTED key but whose manifest bytes were altered after signing
+    (tampered in transit / at rest on the host) must fail signature verification and be refused before
+    any merge into ARTWORK_ROOT."""
+    priv, pub = publisher.keygen()
+    src = _build_source_pack(tmp_path, priv)
+    dist = tmp_path / "dist"
+    publish_pack.publish(src, dist, core={"masterpieces"}, allow_unverified=True)
+    device = _bake_core(tmp_path, dist)
+    _point_lifespan_at(monkeypatch, pub, device)  # correct key IS trusted this time
+
+    # Tamper with the published cartography.tar: flip a byte in the manifest's signature so it no
+    # longer verifies over the (otherwise legitimate) canonical bytes, then re-tar and fix up the
+    # registry's sha256 so the download-integrity check (a DIFFERENT guard) still passes — isolating
+    # the signature check as the thing under test.
+    tar_path = dist / "cartography.tar"
+    work = tmp_path / "_tamper"
+    with tarfile.open(tar_path) as tf:
+        tf.extractall(work, filter="data")
+    man_path = work / "cartography" / "_manifests" / "cartography.json"
+    manifest = json.loads(man_path.read_text())
+    sig = manifest["signature"]
+    manifest["signature"] = sig[:-4] + ("A" if sig[-4] != "A" else "B") + sig[-3:]
+    man_path.write_text(json.dumps(manifest))
+    tar_path.unlink()
+    with tarfile.open(tar_path, "w") as tf:
+        tf.add(work / "cartography", arcname="cartography")
+    shutil.rmtree(work)
+
+    packs = json.loads((dist / "packs.json").read_text())
+    new_sha = __import__("hashlib").sha256(tar_path.read_bytes()).hexdigest()
+    for c in packs["collections"]:
+        if c["id"] == "cartography":
+            c["sha256"] = new_sha
+    (dist / "packs.json").write_text(json.dumps(packs))
+
+    db = _db()
+    lifespan_module.install_pack_subscriptions(db)
+    assert db.query(SubscriptionModel).count() == 1
+    before_subs = db.query(SubscriptionModel).count()
+    before = _snapshot(device)
+
+    client = httpx.AsyncClient(transport=_serve(dist))
+    res = await pack_fetch.install_collection_from_registry(
+        db, client, "https://packs.test/packs.json", "cartography")
+    await client.aclose()
+
+    assert not res["ok"], res
+    assert "signature" in (res.get("error") or ""), res
+    assert db.query(SubscriptionModel).count() == before_subs
+    assert _snapshot(device) == before
+    assert _no_leftover_temp_dirs(device)

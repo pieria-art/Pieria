@@ -7,6 +7,7 @@ import shutil
 import tarfile
 from pathlib import Path
 
+import pytest
 from PIL import Image
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
@@ -85,10 +86,11 @@ def _extract_into(tar_path: Path, dest_root: Path):
         f.rename(dest_root / "_manifests" / f.name)
 
 
-def test_publish_slices_registry_and_valid_artifacts(tmp_path):
-    priv, _pub = publisher.keygen()
+def test_publish_slices_registry_and_valid_artifacts(tmp_path, monkeypatch):
+    priv, pub = publisher.keygen()
     src = _build_source_pack(tmp_path, priv)
     out = tmp_path / "dist"
+    monkeypatch.setattr(federation, "TRUSTED_KEYS", {"pieria": pub})  # publish gate: manifest must be verified
     reg = publish_pack.publish(src, out, core={"masterpieces"})
 
     assert reg["core"] == ["masterpieces"]
@@ -115,10 +117,11 @@ def test_publish_slices_registry_and_valid_artifacts(tmp_path):
     assert any(n.startswith("cartography/_Library/") for n in names)
 
 
-def test_covers_only_patches_registry_without_retar(tmp_path):
-    priv, _pub = publisher.keygen()
+def test_covers_only_patches_registry_without_retar(tmp_path, monkeypatch):
+    priv, pub = publisher.keygen()
     src = _build_source_pack(tmp_path, priv)
     out = tmp_path / "dist"
+    monkeypatch.setattr(federation, "TRUSTED_KEYS", {"pieria": pub})  # publish gate: manifest must be verified
     publish_pack.publish(src, out, core={"masterpieces"})
 
     # Record the tars' identity, then blow away the covers to prove --covers-only rebuilds them...
@@ -150,6 +153,7 @@ def test_downloaded_collection_appends_without_reseeding(tmp_path, monkeypatch):
     priv, pub = publisher.keygen()
     src = _build_source_pack(tmp_path, priv)
     dist = tmp_path / "dist"
+    monkeypatch.setattr(federation, "TRUSTED_KEYS", {"pieria": pub})  # publish gate: manifest must be verified
     publish_pack.publish(src, dist, core={"masterpieces"})
 
     # Fresh device: bake ONLY the Core (masterpieces) — extract it as the on-disk pack.
@@ -245,6 +249,7 @@ def test_uninstall_default_reassigns_to_remaining_collection(tmp_path, monkeypat
     priv, pub = publisher.keygen()
     src = _build_source_pack(tmp_path, priv)  # masterpieces (default) + cartography
     dist = tmp_path / "dist"
+    monkeypatch.setattr(federation, "TRUSTED_KEYS", {"pieria": pub})  # publish gate: manifest must be verified
     publish_pack.publish(src, dist, core={"masterpieces", "cartography"})
     device = tmp_path / "device"
     _extract_into(dist / "masterpieces.tar", device)
@@ -337,3 +342,111 @@ def test_downloaded_collection_missing_manifest_returns_false(tmp_path, monkeypa
     _point_lifespan_at(monkeypatch, pub, device)
     db = _db()
     assert lifespan_module.install_downloaded_collection(db, "nope") is False
+
+
+# ── N1: the install path ENFORCES the signature, not just labels it ──────────────────────────────────
+
+def _signed_pack(tmp_path, monkeypatch):
+    priv, pub = publisher.keygen()
+    root = _build_source_pack(tmp_path, priv)
+    _point_lifespan_at(monkeypatch, pub, root)
+    return root
+
+
+def test_tampered_manifest_is_refused_everywhere(tmp_path, monkeypatch):
+    root = _signed_pack(tmp_path, monkeypatch)
+    mpath = root / "_manifests" / "cartography.json"
+    manifest = json.loads(mpath.read_text())
+    manifest["title"] = manifest["title"] + "!"          # one-character edit → signature no longer verifies
+    mpath.write_text(json.dumps(manifest))
+    db = _db()
+    assert lifespan_module._install_collection(db, "cartography", manifest) is None
+    assert lifespan_module.install_downloaded_collection(db, "cartography") is False
+    assert db.query(SubscriptionModel).count() == 0
+    assert db.query(ArtworkModel).count() == 0
+
+
+def test_downloaded_unsigned_or_untrusted_manifest_is_refused(tmp_path, monkeypatch):
+    root = _signed_pack(tmp_path, monkeypatch)
+    db = _db()
+    monkeypatch.setattr(federation, "TRUSTED_KEYS", {})  # validly signed, but not registry-trusted
+    assert lifespan_module.install_downloaded_collection(db, "cartography") is False
+    mpath = root / "_manifests" / "cartography.json"
+    manifest = json.loads(mpath.read_text())
+    manifest.pop("signature")                            # unsigned
+    mpath.write_text(json.dumps(manifest))
+    assert lifespan_module.install_downloaded_collection(db, "cartography") is False
+    assert db.query(SubscriptionModel).count() == 0
+
+
+# ── publish-time gate: a manifest devices would refuse must never reach packs.json / an artifact ────
+
+def test_publish_refuses_unsigned_manifest_and_writes_nothing(tmp_path, monkeypatch):
+    """No signing key at all -> unsigned manifests -> the gate refuses; nothing is written."""
+    root = tmp_path / "art-pack"
+    lib = root / "_Library"
+    lib.mkdir(parents=True)
+    (root / "_catalog_thumbs").mkdir(parents=True)
+    cols = [{"id": "masterpieces", "title": "Masterpieces", "description": "Best", "default": True,
+             "items": [_mi("Mona-Lisa", 99)]}]
+    build_pack._emit_v2_manifests(root, cols, signing_key=None, generated_at="2026-07-17")
+    manifest = json.loads((root / "_manifests" / "masterpieces.json").read_text())
+    Image.new("RGB", (30, 20), "red").save(lib / manifest["items"][0]["image"]["local_file"], "JPEG")
+
+    out = tmp_path / "dist"
+    with pytest.raises(SystemExit):
+        publish_pack.publish(root, out, core={"masterpieces"})
+    assert not out.exists()
+
+
+def test_publish_refuses_untrusted_publisher_and_writes_nothing(tmp_path, monkeypatch):
+    """Signed, but the key isn't the registry's trusted key for 'pieria' -> community, not verified."""
+    priv, pub = publisher.keygen()
+    src = _build_source_pack(tmp_path, priv)
+    monkeypatch.setattr(federation, "TRUSTED_KEYS", {})  # 'pieria' not registered at all
+    out = tmp_path / "dist"
+    with pytest.raises(SystemExit):
+        publish_pack.publish(src, out, core={"masterpieces"})
+    assert not out.exists()
+
+
+def test_publish_refuses_tampered_manifest_and_writes_nothing(tmp_path, monkeypatch):
+    priv, pub = publisher.keygen()
+    src = _build_source_pack(tmp_path, priv)
+    monkeypatch.setattr(federation, "TRUSTED_KEYS", {"pieria": pub})
+    mpath = src / "_manifests" / "cartography.json"
+    manifest = json.loads(mpath.read_text())
+    manifest["title"] = manifest["title"] + "!"   # tamper -> signature no longer verifies
+    mpath.write_text(json.dumps(manifest))
+    out = tmp_path / "dist"
+    with pytest.raises(SystemExit):
+        publish_pack.publish(src, out, core={"masterpieces"})
+    assert not out.exists()
+
+
+def test_publish_allow_unverified_bypasses_gate(tmp_path):
+    """--allow-unverified (dev/test escape hatch) still publishes an unsigned pack."""
+    root = tmp_path / "art-pack"
+    lib = root / "_Library"
+    lib.mkdir(parents=True)
+    (root / "_catalog_thumbs").mkdir(parents=True)
+    cols = [{"id": "masterpieces", "title": "Masterpieces", "description": "Best", "default": True,
+             "items": [_mi("Mona-Lisa", 99)]}]
+    build_pack._emit_v2_manifests(root, cols, signing_key=None, generated_at="2026-07-17")
+    manifest = json.loads((root / "_manifests" / "masterpieces.json").read_text())
+    Image.new("RGB", (30, 20), "red").save(lib / manifest["items"][0]["image"]["local_file"], "JPEG")
+
+    out = tmp_path / "dist"
+    reg = publish_pack.publish(root, out, core={"masterpieces"}, allow_unverified=True)
+    assert (out / "packs.json").exists()
+    assert reg["collections"][0]["id"] == "masterpieces"
+
+
+def test_publish_happy_path_verified_manifest(tmp_path, monkeypatch):
+    priv, pub = publisher.keygen()
+    src = _build_source_pack(tmp_path, priv)
+    monkeypatch.setattr(federation, "TRUSTED_KEYS", {"pieria": pub})
+    out = tmp_path / "dist"
+    reg = publish_pack.publish(src, out, core={"masterpieces"})
+    assert (out / "packs.json").exists()
+    assert {c["id"] for c in reg["collections"]} == {"masterpieces", "cartography"}

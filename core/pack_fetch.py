@@ -13,6 +13,8 @@ URL is public (no secret on the device, ADR-038 §5); URLs pass the federation S
 """
 import asyncio
 import hashlib
+import json
+import logging
 import tarfile
 import tempfile
 from pathlib import Path
@@ -24,10 +26,21 @@ import federation
 from config import SD_USER_AGENT
 from core import lifespan
 
+logger = logging.getLogger(__name__)
+
 # A single collection artifact is bounded (the whole 28-collection pack is ~15 GB); cap a download well
 # above the largest single collection so a hostile/oversized artifact can't fill the disk.
 MAX_ARTIFACT_BYTES = 4 * 1024 * 1024 * 1024  # 4 GB
 _CHUNK = 1024 * 1024
+
+# Extraction bomb guards, checked BEFORE extractall. tools/publish_pack.py emits plain (uncompressed)
+# .tar artifacts, so opening with "r:" (uncompressed-only) rejects a gzip/bz2/xz-compressed artifact
+# outright — a compression bomb can't expand past the on-disk download cap that way. Cap the sum of
+# member sizes at the same bound as the download itself (an uncompressed tar's members can't exceed
+# the bytes already on disk, but this also catches a crafted tar whose header sizes lie) and cap the
+# member count so a huge number of tiny entries can't exhaust inodes/memory during extraction.
+MAX_EXTRACTED_BYTES = MAX_ARTIFACT_BYTES
+MAX_MEMBERS = 100_000
 
 # The R2 pack host sits behind a Cloudflare rate-limit (ADR-038: a burst of `.tar` requests per IP →
 # HTTP 429 + a ~10s block). A device mid-install must back off and retry, not fail the whole collection
@@ -102,8 +115,17 @@ def _extract_collection(tar_path: Path, cid: str, artwork_root: Path) -> bool:
     # (Errno 18). `_`-prefixed so the boot filesystem-sync never mistakes it for a collection dir.
     with tempfile.TemporaryDirectory(dir=artwork_root, prefix="_dl") as tmp:
         tmpd = Path(tmp)
-        with tarfile.open(tar_path) as tf:
-            tf.extractall(tmpd, filter="data")
+        # "r:" refuses a compressed (gzip/bz2/xz) artifact outright — publish_pack emits plain .tar, and
+        # disallowing compression means a member's claimed size can't diverge from bytes actually read
+        # off disk, closing the compression-bomb class before extractall ever runs.
+        with tarfile.open(tar_path, "r:") as tf:
+            members = tf.getmembers()
+            if len(members) > MAX_MEMBERS:
+                raise ValueError(f"artifact has {len(members)} members, over the {MAX_MEMBERS} cap")
+            total = sum(m.size for m in members)
+            if total > MAX_EXTRACTED_BYTES:
+                raise ValueError(f"artifact extracts to {total} bytes, over the {MAX_EXTRACTED_BYTES} cap")
+            tf.extractall(tmpd, members=members, filter="data")
         inner = tmpd / cid
         if not inner.is_dir():
             # tolerate an unexpected top-level dir name — take the sole child
@@ -112,6 +134,16 @@ def _extract_collection(tar_path: Path, cid: str, artwork_root: Path) -> bool:
         man = inner / "_manifests" / f"{cid}.json"
         if not man.exists():
             return False
+        # N1: gate BEFORE merging anything into artwork_root. Extraction above lands only in the
+        # tempdir (deleted on context exit); nothing has touched artwork_root yet, so a refused pack
+        # leaves shared masters / the baked Core manifest untouched.
+        manifest = json.loads(man.read_text())
+        if manifest.get("id") not in (None, cid):
+            raise ValueError(f"pack refused: manifest id {manifest.get('id')!r} does not match {cid!r}")
+        reason = lifespan.manifest_refusal_reason(manifest, cid, require_verified=True)
+        if reason is not None:
+            logger.error(f"[PackFetch] {reason}")
+            raise ValueError(f"pack refused: {reason}")
         (artwork_root / "_Library").mkdir(parents=True, exist_ok=True)
         (artwork_root / "_manifests").mkdir(parents=True, exist_ok=True)
         (artwork_root / "_catalog_thumbs").mkdir(parents=True, exist_ok=True)

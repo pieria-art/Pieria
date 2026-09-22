@@ -285,3 +285,46 @@ def test_build_item_accepts_local_file():
     """publisher.build_item now carries image.local_file (first-party pack asset), full_url omitted."""
     it = publisher.build_item({"title": "X", "local_file": "x.jpg", "license": "Public Domain"})
     assert it["image"]["local_file"] == "x.jpg" and "full_url" not in it["image"]
+
+
+# --- resolve_signing_key gate: devices refuse any non-'verified' network pack, so a build without a
+# valid, registry-trusted key must fail loudly instead of silently emitting unverified manifests -------
+
+def test_resolve_signing_key_no_key_fails(monkeypatch):
+    monkeypatch.delenv(build_pack.SIGNING_KEY_ENV, raising=False)
+    with pytest.raises(SystemExit):
+        build_pack.resolve_signing_key(None, allow_unsigned=False)
+
+
+def test_resolve_signing_key_no_key_allow_unsigned(monkeypatch, caplog):
+    monkeypatch.delenv(build_pack.SIGNING_KEY_ENV, raising=False)
+    with caplog.at_level("WARNING"):
+        assert build_pack.resolve_signing_key(None, allow_unsigned=True) is None
+    assert any("UNSIGNED" in r.message for r in caplog.records)
+
+
+def test_resolve_signing_key_untrusted_publisher_id_fails(monkeypatch):
+    priv, pub = publisher.keygen()
+    monkeypatch.setenv(build_pack.SIGNING_KEY_ENV, priv)
+    monkeypatch.setattr(build_pack.federation, "TRUSTED_KEYS", {})  # 'pieria' not registered
+    with pytest.raises(SystemExit):
+        build_pack.resolve_signing_key(None, allow_unsigned=False)
+    # --allow-unsigned still proceeds (loud warning), signing with the untrusted key anyway
+    assert build_pack.resolve_signing_key(None, allow_unsigned=True) == priv
+
+
+def test_resolve_signing_key_registry_mismatch_fails(monkeypatch):
+    priv, _pub = publisher.keygen()
+    _other_priv, other_pub = publisher.keygen()
+    monkeypatch.setenv(build_pack.SIGNING_KEY_ENV, priv)
+    monkeypatch.setattr(build_pack.federation, "TRUSTED_KEYS", {"pieria": other_pub})  # wrong key on file
+    with pytest.raises(SystemExit):
+        build_pack.resolve_signing_key(None, allow_unsigned=False)
+    assert build_pack.resolve_signing_key(None, allow_unsigned=True) == priv
+
+
+def test_resolve_signing_key_happy_path(monkeypatch):
+    priv, pub = publisher.keygen()
+    monkeypatch.setenv(build_pack.SIGNING_KEY_ENV, priv)
+    monkeypatch.setattr(build_pack.federation, "TRUSTED_KEYS", {"pieria": pub})
+    assert build_pack.resolve_signing_key(None, allow_unsigned=False) == priv

@@ -235,16 +235,36 @@ def pre_seed_from_pack(db: Session) -> bool:
     return True
 
 
-def _install_collection(db: Session, cid: str, manifest: dict) -> str | None:
+def manifest_refusal_reason(manifest: dict, cid: str, *, require_verified: bool = False) -> str | None:
+    """Returns a human-readable refusal reason, or None if the manifest passes. Shared by
+    _install_collection (post-merge, defense in depth) and pack_fetch._extract_collection
+    (pre-merge, the real gate)."""
+    errors = validate_manifest(manifest)
+    if errors:
+        return f"{cid!r} manifest invalid, skipping: {errors[:3]}"
+    # N1: shape validation says nothing about authenticity. A present-but-invalid signature is tampering —
+    # refuse it everywhere (parity with federation.fetch_manifest). Anything that arrived over the network
+    # (require_verified) must also be registry-verified; only the baked/local Core may install as community.
+    trust = federation.assess_trust(manifest)
+    if manifest.get("signature") and not federation.verify_signature(manifest):
+        return f"{cid!r}: manifest signature does NOT verify — refusing (tampered?)"
+    if require_verified and trust != "verified":
+        return f"{cid!r}: downloaded manifest is not registry-verified ({trust}) — refusing"
+    return None
+
+
+def _install_collection(db: Session, cid: str, manifest: dict, *, require_verified: bool = False) -> str | None:
     """Install ONE collection's signed Manifest v2 as a verified LOCAL subscription + mint its playlist and
     ArtworkModels from the LOCAL masters (array order == fame order), zero-network. Idempotent: upserts the
     subscription, dedups artworks by source_url/filename, reuses the playlist by name. Returns the playlist
     title, or None if the manifest is invalid. Shared by boot (install_pack_subscriptions, the baked Core)
     and the runtime append path (install_downloaded_collection, ADR-040 #4 modular packs)."""
-    errors = validate_manifest(manifest)
-    if errors:
-        logger.warning(f"[PackInstall] {cid!r} manifest invalid, skipping: {errors[:3]}")
+    reason = manifest_refusal_reason(manifest, cid, require_verified=require_verified)
+    if reason is not None:
+        level = logger.error if "signature does NOT verify" in reason or "not registry-verified" in reason else logger.warning
+        level(f"[PackInstall] {reason}")
         return None
+    trust = federation.assess_trust(manifest)
 
     title = manifest.get("title") or cid
     pub = manifest.get("publisher") or {}
@@ -260,7 +280,7 @@ def _install_collection(db: Session, cid: str, manifest: dict) -> str | None:
     sub.publisher_id = pub.get("id")
     sub.publisher_name = pub.get("name")
     sub.publisher_url = pub.get("url")
-    sub.trust = federation.assess_trust(manifest)   # 'verified' iff the key is registry-trusted
+    sub.trust = trust   # 'verified' iff the key is registry-trusted
     sub.enabled = True
     sub.cached_manifest = json.dumps(manifest)
     sub.item_count = len(manifest.get("items", []))
@@ -370,7 +390,7 @@ def install_downloaded_collection(db: Session, cid: str) -> bool:
         logger.warning(f"[PackInstall] downloaded collection {cid!r}: no manifest at {mpath}")
         return False
     logger.info(f"[PackInstall] Appending downloaded collection {cid!r}...")
-    title = _install_collection(db, cid, json.loads(mpath.read_text()))
+    title = _install_collection(db, cid, json.loads(mpath.read_text()), require_verified=True)
     db.commit()
     return title is not None
 

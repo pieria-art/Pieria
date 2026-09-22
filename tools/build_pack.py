@@ -558,6 +558,45 @@ def _load_signing_key(cli_path: str | None) -> str | None:
     return (os.environ.get(SIGNING_KEY_ENV) or "").strip() or None
 
 
+def resolve_signing_key(cli_path: str | None, *, allow_unsigned: bool) -> str | None:
+    """Load + validate the signing key for a build (devices now REFUSE any network-downloaded pack
+    whose manifest isn't registry-verified — core/lifespan.py manifest_refusal_reason). Exits non-zero
+    (SystemExit) unless --allow-unsigned, on any of: no key available, publisher id not registered in
+    registry/trusted_publishers.json, or the key's public half not matching that registry entry — any
+    of those would make the build's manifests come out non-'verified'. --allow-unsigned is a dev/test
+    escape hatch that proceeds anyway with a loud warning."""
+    signing_key = _load_signing_key(cli_path)
+    pub_id = PACK_PUBLISHER["id"]
+    if signing_key is None:
+        msg = (f"no signing key available (no --signing-key and ${SIGNING_KEY_ENV} is unset) — "
+               f"manifests would be UNSIGNED and devices refuse unverified network packs")
+        if allow_unsigned:
+            logger.warning(f"** UNSIGNED BUILD ** {msg}. Proceeding (--allow-unsigned, DEV/TEST ONLY): "
+                            f"manifests will be unsigned 'community'-tier drafts.")
+            return None
+        raise SystemExit(f"FAIL: {msg}. Pass --allow-unsigned for a DEV/TEST unsigned build.")
+    public_key = publisher.public_from_private(signing_key)
+    trusted = federation.TRUSTED_KEYS
+    if pub_id not in trusted:
+        msg = f"publisher id {pub_id!r} is not registered in registry/trusted_publishers.json"
+        if allow_unsigned:
+            logger.warning(f"** UNVERIFIED BUILD ** {msg} — manifests will sign but stay 'community' "
+                            f"tier, not 'verified'. Proceeding (--allow-unsigned, DEV/TEST ONLY).")
+            return signing_key
+        raise SystemExit(f"FAIL: {msg} — signed manifests would not be 'verified'. "
+                          f"Pass --allow-unsigned for a DEV/TEST build anyway.")
+    if trusted[pub_id] != public_key:
+        msg = (f"signing key's public half does not match the registry/trusted_publishers.json entry "
+               f"for {pub_id!r}")
+        if allow_unsigned:
+            logger.warning(f"** UNVERIFIED BUILD ** {msg} — manifests will sign but stay 'community' "
+                            f"tier, not 'verified'. Proceeding (--allow-unsigned, DEV/TEST ONLY).")
+            return signing_key
+        raise SystemExit(f"FAIL: {msg} — signed manifests would not be 'verified'. "
+                          f"Pass --allow-unsigned for a DEV/TEST build anyway.")
+    return signing_key
+
+
 def _emit_v2_manifests(out: Path, manifest_collections: list[dict], *, signing_key: str | None,
                         generated_at: str | None) -> dict:
     """Write one signed Manifest v2 per collection to _manifests/<id>.json + a pack-index.json listing
@@ -733,14 +772,17 @@ async def main() -> int:
                           "timestamp-free manifest across reruns)")
     ap.add_argument("--signing-key", default=None,
                      help=f"path to a base64 Ed25519 private key file to sign the v2 manifests (ADR-044). "
-                          f"Omit to read ${SIGNING_KEY_ENV}, or leave both unset for unsigned "
-                          f"(community-tier) manifests. The verified Core pack needs the first-party key.")
+                          f"Omit to read ${SIGNING_KEY_ENV}. Required (registry-trusted) unless "
+                          f"--allow-unsigned — devices refuse an unverified network pack.")
+    ap.add_argument("--allow-unsigned", action="store_true",
+                     help="DEV/TEST ONLY: proceed without a valid, registry-trusted signing key, "
+                          "producing unsigned/'community'-tier manifests instead of failing.")
     args = ap.parse_args()
 
     scope = {s.strip() for s in args.scope.split(",") if s.strip()}
     collections_filter = ({c.strip() for c in args.collections.split(",") if c.strip()}
                            if args.collections else None)
-    signing_key = _load_signing_key(args.signing_key)
+    signing_key = resolve_signing_key(args.signing_key, allow_unsigned=args.allow_unsigned)
 
     return await build(args.out, scope=scope, limit=args.limit, collections_filter=collections_filter,
                         concurrency=args.concurrency, created=args.created, min_edge=args.min_edge,
