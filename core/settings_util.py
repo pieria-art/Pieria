@@ -12,6 +12,7 @@ import httpx
 from sqlalchemy.orm import Session
 
 from config import SD_USER_AGENT
+from core.downloads import guarded_stream
 from models import SettingsModel
 
 logger = logging.getLogger("artwork-display-api")
@@ -135,8 +136,13 @@ async def _catalog_remote_base(db: Session) -> Optional[str]:
 
 
 async def _fetch_remote_json(base: str, name: str):
+    """GET `<base>/<name>` from the admin-settable `catalog_url` override. N5: `base` is arbitrary
+    user/admin input with no SSRF guard before this fix, and `follow_redirects=True` let a redirect
+    bypass any guard added at the entry point — routed through guarded_stream (core/pack_fetch.py's
+    shared helper), which SSRF-validates the URL and every redirect hop before following it."""
     async with httpx.AsyncClient(headers={"User-Agent": SD_USER_AGENT}) as client:
-        r = await client.get(f"{base}/{name}", timeout=15.0, follow_redirects=True)
-        if r.status_code == 200:
-            return r.json()
-    raise RuntimeError(f"HTTP {r.status_code}")
+        async with guarded_stream(client, "GET", f"{base}/{name}", timeout=15.0) as r:
+            if r.status_code == 200:
+                await r.aread()
+                return r.json()
+            raise RuntimeError(f"HTTP {r.status_code}")

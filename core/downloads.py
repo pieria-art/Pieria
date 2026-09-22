@@ -3,6 +3,7 @@ paths — the one downloader those routes share, plus its focal-point parsing co
 """
 
 import asyncio
+from contextlib import asynccontextmanager
 from pathlib import Path
 
 import httpx
@@ -12,6 +13,41 @@ from PIL import Image
 import federation
 from config import LIBRARY_DIR, SD_USER_AGENT
 from epaper import ASPECT_CROP_KEYS, normalize_crop_box
+
+
+class TooManyRedirects(Exception):
+    """A guarded fetch followed more than `max_hops` redirects without resolving (N5)."""
+
+
+@asynccontextmanager
+async def guarded_stream(client: httpx.AsyncClient, method: str, url: str, *, max_hops: int = 5, **kwargs):
+    """Shared per-hop SSRF-validated redirect follower (N5, and the M1 policy this generalizes).
+
+    httpx's own `follow_redirects=True` trusts a 3xx `Location` blindly — a hostile/compromised (or,
+    for core.pack_fetch, simply registry-controlled) server can hand back a redirect into the house LAN
+    (127.0.0.1, router admin pages, cloud metadata) that the pre-request SSRF check on the ORIGINAL url
+    never sees. Instead: request with `follow_redirects=False`, SSRF-validate
+    (`federation._assert_public_url`) every hop BEFORE following it — including the first — and yield
+    the final response still open, exactly like `client.stream(...)`, for the caller to read/iterate
+    inside the `async with` block.
+
+    One policy, several callers: core/pack_fetch.py's registry + artifact fetches and
+    core/settings_util.py's remote-catalog-override fetch all route through this rather than each
+    growing (or forgetting) their own copy — `_download_image_to_library` below already had its own
+    hand-rolled version of this loop before this helper existed and is left as-is.
+    """
+    current = url
+    for _hop in range(max_hops + 1):
+        await asyncio.to_thread(federation._assert_public_url, current)   # C2: DNS off the loop
+        async with client.stream(method, current, follow_redirects=False, **kwargs) as resp:
+            if resp.status_code in (301, 302, 303, 307, 308):
+                loc = resp.headers.get("location")
+                if loc:
+                    current = str(resp.url.join(loc))   # resolve relative redirects against current URL
+                    continue
+            yield resp
+            return
+    raise TooManyRedirects(f"more than {max_hops} redirects resolving {url}")
 
 
 async def _download_image_to_library(source_url: str, *, filename: str,

@@ -16,8 +16,8 @@ from sqlalchemy.pool import StaticPool
 
 import federation
 import publisher
+from core import downloads, pack_fetch
 from core import lifespan as lifespan_module
-from core import pack_fetch
 from database import Base
 from models import ArtworkModel, SubscriptionModel
 from tools import build_pack, publish_pack
@@ -65,7 +65,7 @@ def _point_lifespan_at(monkeypatch, pub, root: Path):
     monkeypatch.setattr(lifespan_module, "LIBRARY_DIR", root / "_Library")
     monkeypatch.setattr(lifespan_module, "PACK_INDEX", root / "pack-index.json")
     monkeypatch.setattr(federation, "TRUSTED_KEYS", {"pieria": pub})
-    monkeypatch.setattr(pack_fetch.federation, "_assert_public_url", lambda url: None)  # test hosts aren't public
+    monkeypatch.setattr(federation, "_assert_public_url", lambda url: None)  # test hosts aren't public
 
 
 def _extract_into(tar_path: Path, dest_root: Path):
@@ -440,3 +440,203 @@ async def test_fetch_refuses_tampered_pack_and_merges_nothing(tmp_path, monkeypa
     assert db.query(SubscriptionModel).count() == before_subs
     assert _snapshot(device) == before
     assert _no_leftover_temp_dirs(device)
+
+
+def _retar_with_extra_library_file(dist: Path, cid: str, name: str, content: bytes):
+    """Smuggle an extra file into `<cid>`'s _Library, re-tar, and fix up packs.json's sha256 to match —
+    used to prove the merge allowlist (N3) without touching publish_pack's real output."""
+    tar_path = dist / f"{cid}.tar"
+    work = dist / f"_retar_{cid}"
+    if work.exists():
+        shutil.rmtree(work)
+    with tarfile.open(tar_path) as tf:
+        tf.extractall(work, filter="data")
+    (work / cid / "_Library" / name).write_bytes(content)
+    tar_path.unlink()
+    with tarfile.open(tar_path, "w") as tf:
+        tf.add(work / cid, arcname=cid)
+    shutil.rmtree(work)
+    packs = json.loads((dist / "packs.json").read_text())
+    new_sha = __import__("hashlib").sha256(tar_path.read_bytes()).hexdigest()
+    for c in packs["collections"]:
+        if c["id"] == cid:
+            c["sha256"] = new_sha
+    (dist / "packs.json").write_text(json.dumps(packs))
+
+
+@pytest.mark.asyncio
+async def test_fetch_merge_skips_disallowed_extension(tmp_path, monkeypatch):
+    """N3: only allowlisted image extensions are merged from a pack's _Library/_catalog_thumbs. An
+    .html member (e.g. planted by a hostile/malformed pack) must never land under ARTWORK_ROOT, which
+    is served as static /media with Content-Type set from the extension — first-party stored XSS
+    otherwise."""
+    priv, pub = publisher.keygen()
+    src = _build_source_pack(tmp_path, priv)
+    dist = tmp_path / "dist"
+    publish_pack.publish(src, dist, core={"masterpieces"}, allow_unverified=True)
+    device = _bake_core(tmp_path, dist)
+    _point_lifespan_at(monkeypatch, pub, device)
+    _retar_with_extra_library_file(dist, "cartography", "evil.html", b"<script>alert(1)</script>")
+
+    db = _db()
+    client = httpx.AsyncClient(transport=_serve(dist))
+    res = await pack_fetch.install_collection_from_registry(
+        db, client, "https://packs.test/packs.json", "cartography")
+    await client.aclose()
+
+    assert res["ok"], res
+    assert not (device / "_Library" / "evil.html").exists()
+    assert not any(p.suffix == ".html" for p in device.rglob("*"))
+
+
+@pytest.mark.asyncio
+async def test_fetch_merge_does_not_clobber_existing_library_file(tmp_path, monkeypatch):
+    """N3: an existing file under ARTWORK_ROOT/_Library (e.g. a user's own upload, or a different
+    collection's master, sharing a filename with the incoming pack) is never overwritten by a merge —
+    the installer dedups by filename downstream (core/lifespan.py:_install_collection), so skipping is
+    the correct semantic."""
+    priv, pub = publisher.keygen()
+    src = _build_source_pack(tmp_path, priv)
+    dist = tmp_path / "dist"
+    publish_pack.publish(src, dist, core={"masterpieces"}, allow_unverified=True)
+    device = _bake_core(tmp_path, dist)
+    _point_lifespan_at(monkeypatch, pub, device)
+
+    (device / "_Library").mkdir(parents=True, exist_ok=True)
+    existing = device / "_Library" / "map.jpg"   # collides with cartography's "Map" item filename
+    existing.write_bytes(b"PRE-EXISTING USER UPLOAD")
+
+    db = _db()
+    lifespan_module.install_pack_subscriptions(db)
+    client = httpx.AsyncClient(transport=_serve(dist))
+    res = await pack_fetch.install_collection_from_registry(
+        db, client, "https://packs.test/packs.json", "cartography")
+    await client.aclose()
+
+    assert res["ok"], res
+    assert existing.read_bytes() == b"PRE-EXISTING USER UPLOAD"
+
+
+@pytest.mark.asyncio
+async def test_fetch_rejects_missing_sha256(tmp_path, monkeypatch):
+    """N4: a registry entry that omits sha256 must be an ERROR, not a silent 'skip verification'."""
+    priv, pub = publisher.keygen()
+    src = _build_source_pack(tmp_path, priv)
+    dist = tmp_path / "dist"
+    publish_pack.publish(src, dist, core={"masterpieces"}, allow_unverified=True)
+    packs = json.loads((dist / "packs.json").read_text())
+    for c in packs["collections"]:
+        if c["id"] == "cartography":
+            c.pop("sha256", None)
+    (dist / "packs.json").write_text(json.dumps(packs))
+
+    device = tmp_path / "device"
+    (device / "_manifests").mkdir(parents=True)
+    _point_lifespan_at(monkeypatch, pub, device)
+
+    db = _db()
+    client = httpx.AsyncClient(transport=_serve(dist))
+    res = await pack_fetch.install_collection_from_registry(
+        db, client, "https://packs.test/packs.json", "cartography")
+    await client.aclose()
+
+    assert not res["ok"], res
+    assert "sha256" in (res.get("error") or ""), res
+    assert db.query(SubscriptionModel).count() == 0
+
+
+# --- N5: pack_fetch's registry GET must SSRF-guard every redirect hop, not just the original URL -----
+
+@pytest.mark.asyncio
+async def test_fetch_registry_refuses_redirect_to_private_host(monkeypatch):
+    def handler(request: httpx.Request) -> httpx.Response:
+        if request.url.host == "packs.test":
+            return httpx.Response(302, headers={"Location": "https://169.254.169.254/packs.json"})
+        return httpx.Response(200, json={"collections": []})
+
+    def guard(url):
+        from urllib.parse import urlparse
+        if urlparse(url).hostname == "169.254.169.254":
+            raise federation.FederationError("blocked: link-local")
+
+    monkeypatch.setattr(federation, "_assert_public_url", guard)
+    client = httpx.AsyncClient(transport=httpx.MockTransport(handler))
+    try:
+        with pytest.raises(federation.FederationError):
+            await pack_fetch.fetch_registry(client, "https://packs.test/packs.json")
+    finally:
+        await client.aclose()
+
+
+@pytest.mark.asyncio
+async def test_fetch_registry_follows_redirect_to_public_host(monkeypatch):
+    def handler(request: httpx.Request) -> httpx.Response:
+        if request.url.host == "packs.test":
+            return httpx.Response(302, headers={"Location": "https://cdn.test/packs.json"})
+        if request.url.host == "cdn.test":
+            return httpx.Response(200, json={"collections": [{"id": "x"}]})
+        return httpx.Response(404)
+
+    monkeypatch.setattr(federation, "_assert_public_url", lambda url: None)  # both hosts "public" here
+    client = httpx.AsyncClient(transport=httpx.MockTransport(handler))
+    try:
+        result = await pack_fetch.fetch_registry(client, "https://packs.test/packs.json")
+    finally:
+        await client.aclose()
+    assert result == {"collections": [{"id": "x"}]}
+
+
+@pytest.mark.asyncio
+async def test_fetch_registry_refuses_too_many_redirects(monkeypatch):
+    def handler(request: httpx.Request) -> httpx.Response:
+        n = int(request.url.params.get("n") or 0)
+        return httpx.Response(302, headers={"Location": f"https://packs.test/packs.json?n={n + 1}"})
+
+    monkeypatch.setattr(federation, "_assert_public_url", lambda url: None)
+    client = httpx.AsyncClient(transport=httpx.MockTransport(handler))
+    try:
+        with pytest.raises(downloads.TooManyRedirects):
+            await pack_fetch.fetch_registry(client, "https://packs.test/packs.json")
+    finally:
+        await client.aclose()
+
+
+# --- N5 (scope extension): core/settings_util.py's admin-settable catalog_url override had NO SSRF
+# guard at all, plus follow_redirects=True — same shared helper closes both.
+
+@pytest.mark.asyncio
+async def test_settings_fetch_remote_json_refuses_private_catalog_url(monkeypatch):
+    from core import settings_util
+
+    def guard(url):
+        from urllib.parse import urlparse
+        if urlparse(url).hostname == "169.254.169.254":
+            raise federation.FederationError("blocked: link-local")
+
+    monkeypatch.setattr(federation, "_assert_public_url", guard)
+
+    with pytest.raises(federation.FederationError):
+        await settings_util._fetch_remote_json("http://169.254.169.254", "index.json")
+
+
+@pytest.mark.asyncio
+async def test_settings_fetch_remote_json_refuses_redirect_to_private_host(monkeypatch):
+    from core import settings_util
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        if request.url.host == "catalog.test":
+            return httpx.Response(302, headers={"Location": "http://169.254.169.254/index.json"})
+        return httpx.Response(200, json={"collections": []})
+
+    def guard(url):
+        from urllib.parse import urlparse
+        if urlparse(url).hostname == "169.254.169.254":
+            raise federation.FederationError("blocked: link-local")
+
+    real_async_client = httpx.AsyncClient
+    monkeypatch.setattr(federation, "_assert_public_url", guard)
+    monkeypatch.setattr(settings_util.httpx, "AsyncClient",
+                        lambda **k: real_async_client(transport=httpx.MockTransport(handler)))
+
+    with pytest.raises(federation.FederationError):
+        await settings_util._fetch_remote_json("http://catalog.test", "index.json")
