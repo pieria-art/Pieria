@@ -174,6 +174,66 @@ def test_report_exit_code_and_text():
     assert code2 == 0 and "1 passed" in text2
 
 
+def test_run_checks_dedupes_identical_urls(monkeypatch):
+    # same URL referenced by two different catalog items (F7) -> one network call, two results
+    async def _noop():
+        return None
+
+    async def _nosleep(*a, **k):
+        return None
+
+    monkeypatch.setattr(vs, "_wm_throttle", _noop)
+    monkeypatch.setattr(vs.asyncio, "sleep", _nosleep)
+
+    calls = []
+
+    class _CountingClient:
+        async def get(self, url, **kw):
+            calls.append(url)
+            return _Resp(200, "image/jpeg", _img_bytes())
+
+    shared = "https://x/shared.jpg"
+    checks = [vs.UrlCheck("catalog", "c1", "A", "source", shared),
+             vs.UrlCheck("catalog", "c2", "B", "source", shared)]
+    results = asyncio.run(vs.run_checks(checks, client=_CountingClient(), budget_seconds=None))
+    assert len(calls) == 1                      # deduped: one network call for the shared URL
+    assert len(results) == 2                     # but every catalog item still gets a result
+    assert all(r.ok for r in results)
+    assert {r.uc.collection for r in results} == {"c1", "c2"}
+
+
+def test_run_checks_budget_exhausted_marks_unchecked(monkeypatch):
+    async def _noop():
+        return None
+
+    monkeypatch.setattr(vs, "_wm_throttle", _noop)
+    checks = [_uc("source", url="https://x/a.jpg"), _uc("thumbnail", url="https://x/b.jpg")]
+    # budget=0 -> the very first wait() round times out before anything can finish
+    results = asyncio.run(vs.run_checks(checks, client=_Client(_Resp(200)), budget_seconds=0.0))
+    assert len(results) == 2
+    assert all(r.unchecked and not r.ok for r in results)
+
+
+def test_report_unchecked_not_counted_as_failure_or_transient():
+    ok = vs.CheckResult(_uc("source"), True, "2200x1700")
+    unchecked = vs.CheckResult(_uc("thumbnail", url="https://x/u.jpg"),
+                               False, "budget exhausted before this URL was reached", unchecked=True)
+    text, code = vs.report([ok, unchecked])
+    assert code == 0
+    assert "1 unchecked" in text
+    assert "0 hard-fail" in text and "0 transient" in text
+    assert "UNCHECKED" in text
+
+
+def test_report_min_coverage_fails_run():
+    ok = vs.CheckResult(_uc("source"), True, "ok")
+    unchecked = vs.CheckResult(_uc("thumbnail", url="https://x/u.jpg"), False, "budget", unchecked=True)
+    text, code = vs.report([ok, unchecked], min_coverage=0.9)   # coverage is 1/2 = 50%
+    assert code == 1 and "min-coverage" in text
+    text2, code2 = vs.report([ok, unchecked], min_coverage=0.4)
+    assert code2 == 0
+
+
 def test_run_checks_integration(monkeypatch):
     async def _noop():
         return None

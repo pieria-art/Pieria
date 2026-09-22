@@ -113,7 +113,24 @@ which appends:
 Signed-off-by: Your Name <your.email@example.com>
 ```
 
-Use your real name and a real email address. That sign-off certifies the following:
+Use your real name and a real email address.
+
+**This is enforced by CI, not just asked for.** The `DCO` check runs on every pull request and fails
+the PR if any commit in it is missing a `Signed-off-by` trailer matching that commit's author. If it
+fails, fix it in place rather than opening a new PR:
+
+```bash
+# Fix just the last commit:
+git commit --amend -s --no-edit && git push --force-with-lease
+
+# Fix every commit on the branch:
+git rebase --signoff main && git push --force-with-lease
+```
+
+Maintainers sign off too — direct commits to `main` aren't run through the PR check, but `git commit -s`
+is still the habit, no exceptions.
+
+That sign-off certifies the following:
 
 ```
 Developer Certificate of Origin

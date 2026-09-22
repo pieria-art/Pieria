@@ -1,6 +1,7 @@
 pytest==8.2.2
 pytest-asyncio==0.23.7
 pytest-cov==5.0.0
+pytest-timeout==2.3.1
 respx==0.21.1
 # Dev-only linter/formatter (config in pyproject.toml). Never shipped — the Docker
 # image installs requirements.txt only.  ruff check .   |   ruff check --fix .

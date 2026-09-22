@@ -1,0 +1,80 @@
+# Enforces the Developer Certificate of Origin (ADR-072/074): every commit in a PR must carry a
+# `Signed-off-by:` trailer matching its author's name + email (see CONTRIBUTING.md). Only gates
+# pull_request — direct pushes to main are the maintainer's own commits, which they sign off too
+# (`git commit -s`), so there's no separate push-to-main run of this check.
+#
+# Plain git, no third-party action: fetch-depth 0 to have the full PR range, then walk
+# `git rev-list base..head`. Merge commits are skipped (no authored content of their own to certify).
+# Known bot authors (e.g. dependabot[bot]) are skipped because they can't run `git commit -s`
+# themselves and carry no individual authorship to certify — if that changes, tighten this.
+name: DCO
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  dco:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check Signed-off-by on every commit
+        env:
+          BASE: ${{ github.event.pull_request.base.sha }}
+          HEAD: ${{ github.event.pull_request.head.sha }}
+        run: |
+          set -euo pipefail
+
+          BOT_AUTHORS="dependabot[bot] github-actions[bot]"
+
+          missing=()
+
+          while IFS= read -r sha; do
+            [ -z "$sha" ] && continue
+
+            # Skip merge commits: nothing authored to certify.
+            parent_count=$(git rev-list --parents -n1 "$sha" | wc -w)
+            if [ "$parent_count" -gt 2 ]; then
+              continue
+            fi
+
+            author_name=$(git show -s --format='%an' "$sha")
+            author_email=$(git show -s --format='%ae' "$sha")
+
+            skip=false
+            for bot in $BOT_AUTHORS; do
+              if [ "$author_name" = "$bot" ]; then
+                skip=true
+                break
+              fi
+            done
+            $skip && continue
+
+            body=$(git show -s --format='%B' "$sha")
+            trailer="Signed-off-by: ${author_name} <${author_email}>"
+
+            if ! grep -qF "$trailer" <<< "$body"; then
+              subject=$(git show -s --format='%s' "$sha")
+              missing+=("${sha:0:12} ${subject} (author: ${author_name} <${author_email}>)")
+            fi
+          done < <(git rev-list "${BASE}..${HEAD}")
+
+          if [ "${#missing[@]}" -gt 0 ]; then
+            echo "::error::The following commits are missing a matching 'Signed-off-by:' trailer (DCO, ADR-072/074):"
+            for m in "${missing[@]}"; do
+              echo "  - $m"
+            done
+            echo
+            echo "Fix it:"
+            echo "  - Last commit only:  git commit --amend -s --no-edit && git push --force-with-lease"
+            echo "  - Whole branch:      git rebase --signoff main && git push --force-with-lease"
+            echo
+            echo "See CONTRIBUTING.md#developer-certificate-of-origin."
+            exit 1
+          fi
+
+          echo "All commits in ${BASE}..${HEAD} are signed off."

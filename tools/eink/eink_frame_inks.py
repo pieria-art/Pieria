@@ -243,7 +243,10 @@ def digital_index(n: int, *, white_point: float = 0.0, gamma: float = 1.4, fit: 
         chroma_floor_min=0.0, fit=fit, width=width, height=height, no_push=True,
         isolate=False, sat=0.55, v_lo=40, v_hi=245, centre=170,
     )
-    before = time.time()
+    # Filesystem mtimes come from the kernel's coarse clock and can trail time.time() by a few ms, so a
+    # file written AFTER this line can still carry an earlier mtime — a flaky false "stale". A stale file
+    # from an earlier run is seconds-to-days old; 1s of slack separates the two.
+    before = time.time() - 1.0
     eb.cmd_target(ns)
     matches = sorted(eb.OUT.glob(f"target_art{n:02d}_*_{width}x{height}.png"), key=lambda p: p.stat().st_mtime)
     if not matches:

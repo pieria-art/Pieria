@@ -70,6 +70,7 @@ class CheckResult:
     uc: UrlCheck
     ok: bool
     detail: str = ""
+    unchecked: bool = False   # True = budget-exhausted before this URL was reached (not a failure)
 
 
 def _is_wikimedia(url: str) -> bool:
@@ -241,11 +242,54 @@ async def check_url(client, uc: UrlCheck) -> CheckResult:
         return CheckResult(uc, False, f"error: {e.__class__.__name__}: {e}")
 
 
+def _dedup_checks(checks: list[UrlCheck]) -> tuple[list[UrlCheck], dict[str, list[UrlCheck]]]:
+    """Group checks that share an identical URL so the network is only asked once per URL (F7: the
+    same Wikimedia thumbnail is referenced by many catalog items). Checks with a pre-set error (bad
+    manifest / SSRF) or no URL never hit the network regardless, so they're left un-grouped — merging
+    them on url="" would smear distinct pre-network errors together.
+    Returns (one representative UrlCheck per unique URL + all passthrough checks, url -> full group)."""
+    groups: dict[str, list[UrlCheck]] = {}
+    order: list[str] = []
+    passthrough: list[UrlCheck] = []
+    for uc in checks:
+        if uc.error or not uc.url:
+            passthrough.append(uc)
+            continue
+        if uc.url not in groups:
+            groups[uc.url] = []
+            order.append(uc.url)
+        groups[uc.url].append(uc)
+    representatives = passthrough + [groups[u][0] for u in order]
+    return representatives, groups
+
+
+def _expand_results(checks: list[UrlCheck], unique_results: list[CheckResult]) -> list[CheckResult]:
+    """Fan the deduped results back out so every original UrlCheck (catalog item) gets a result,
+    even though only one of them was actually fetched over the network."""
+    by_url: dict[str, CheckResult] = {}
+    by_id: dict[int, CheckResult] = {}
+    for res in unique_results:
+        if res.uc.error or not res.uc.url:
+            by_id[id(res.uc)] = res
+        else:
+            by_url[res.uc.url] = res
+
+    out: list[CheckResult] = []
+    for uc in checks:
+        if uc.error or not uc.url:
+            out.append(by_id[id(uc)])
+            continue
+        base = by_url[uc.url]
+        out.append(base if base.uc is uc else CheckResult(uc, base.ok, base.detail, base.unchecked))
+    return out
+
+
 async def run_checks(checks: list[UrlCheck], *, client=None,
                      budget_seconds: float | None = DEFAULT_BUDGET_SECONDS,
                      progress: bool = True) -> list[CheckResult]:
     if not checks:
         return []
+    targets, _ = _dedup_checks(checks)
     sem = asyncio.Semaphore(MAX_CONCURRENCY)
     own = client is None
     if own:
@@ -264,12 +308,13 @@ async def run_checks(checks: list[UrlCheck], *, client=None,
                 await asyncio.sleep(POLITENESS_DELAY)
             return res
 
-    # group by host so per-host bursts cluster (Wikimedia ends up serialized regardless)
-    ordered = sorted(checks, key=lambda c: c.url)
+    # group by host so per-host bursts cluster (Wikimedia ends up serialized regardless); operates
+    # on deduped targets — one network check per unique URL, not per catalog item that references it
+    ordered = sorted(targets, key=lambda c: c.url)
     total = len(ordered)
     task_uc = {asyncio.create_task(one(uc)): uc for uc in ordered}
     pending = set(task_uc)
-    results: list[CheckResult] = []
+    unique_results: list[CheckResult] = []
     start = time.monotonic()
     try:
         while pending:
@@ -281,21 +326,21 @@ async def run_checks(checks: list[UrlCheck], *, client=None,
                 break   # timed out with nothing finishing this round -> budget is exhausted
             for t in done:
                 res = t.result()
-                results.append(res)
+                unique_results.append(res)
                 if progress:
                     status = "ok" if res.ok else "FAIL"
-                    print(f"  [{len(results)}/{total}] {status} {res.uc.origin}/{res.uc.collection} "
+                    print(f"  [{len(unique_results)}/{total}] {status} {res.uc.origin}/{res.uc.collection} "
                          f'{res.uc.kind} "{res.uc.title}" — {res.detail}', flush=True)
         if pending:
-            print(f"\nWALL-CLOCK BUDGET ({budget_seconds:.0f}s) exceeded with {len(pending)} check(s) "
-                 f"still in flight — marking them unreachable and moving on.", flush=True)
+            print(f"\nWALL-CLOCK BUDGET ({budget_seconds:.0f}s) exceeded with {len(pending)} unique URL(s) "
+                 f"still in flight — marking them unchecked and moving on.", flush=True)
             for t in pending:
                 t.cancel()
             await asyncio.gather(*pending, return_exceptions=True)
             for t in pending:
-                results.append(CheckResult(task_uc[t], False,
-                                           "error: TimeoutError: overall wall-clock budget exceeded"))
-        return results
+                unique_results.append(CheckResult(task_uc[t], False,
+                                           "budget exhausted before this URL was reached", unchecked=True))
+        return _expand_results(checks, unique_results)
     finally:
         if own:
             await client.aclose()
@@ -322,12 +367,18 @@ def _is_transient(detail: str) -> bool:
     return False
 
 
-def report(results: list[CheckResult], *, strict: bool = False) -> tuple[str, int]:
-    fails = [r for r in results if not r.ok]
+def report(results: list[CheckResult], *, strict: bool = False,
+          min_coverage: float = 0.0) -> tuple[str, int]:
+    total = len(results)
+    unchecked = [r for r in results if r.unchecked]
+    checked_total = total - len(unchecked)
+    fails = [r for r in results if not r.ok and not r.unchecked]
     hard = [r for r in fails if not _is_transient(r.detail)]
     transient = [r for r in fails if _is_transient(r.detail)]
-    total = len(results)
-    tol = 0 if strict else max(TRANSIENT_TOLERANCE_MIN, int(total * TRANSIENT_TOLERANCE_FRAC))
+    # tolerance is a fraction of what was actually checked — budget-exhausted URLs never got a
+    # chance to be transient or not, so they neither count as failures nor inflate the tolerance base
+    tol = 0 if strict else max(TRANSIENT_TOLERANCE_MIN, int(checked_total * TRANSIENT_TOLERANCE_FRAC))
+    coverage = (checked_total / total) if total else 1.0
 
     lines: list[str] = []
     if hard:
@@ -343,17 +394,34 @@ def report(results: list[CheckResult], *, strict: bool = False) -> tuple[str, in
         for r in transient:
             lines.append(f'  {"FAIL" if over else "warn"} [{r.uc.origin}/{r.uc.collection}] '
                          f'"{r.uc.title}" — {r.detail}')
+    if unchecked:
+        # budget-exhausted, NOT a failure: one summary line + a small sample, no per-URL FAIL spam,
+        # and these never count toward the transient tolerance above
+        lines.append(f"\n{len(unchecked)} URL(s) UNCHECKED — overall wall-clock budget exhausted "
+                     f"before they were reached (not counted as failures):")
+        for r in unchecked[:10]:
+            lines.append(f'  unchecked [{r.uc.origin}/{r.uc.collection}] "{r.uc.title}" ({r.uc.kind})')
+        if len(unchecked) > 10:
+            lines.append(f"  ... and {len(unchecked) - 10} more")
 
     total_c = Counter(r.uc.origin for r in results)
     okc = Counter(r.uc.origin for r in results if r.ok)
     lines.append("")
     for origin in sorted(total_c):
         lines.append(f"  {origin}: {okc[origin]}/{total_c[origin]} ok")
-    lines.append(f"\nchecked {total} urls — {total - len(fails)} passed, "
-                 f"{len(hard)} hard-fail, {len(transient)} transient (tolerance {tol})")
+    lines.append(f"\nchecked {checked_total}/{total} urls ({coverage * 100:.1f}% coverage) — "
+                 f"{checked_total - len(fails)} passed, {len(hard)} hard-fail, "
+                 f"{len(transient)} transient (tolerance {tol}), {len(unchecked)} unchecked")
+    if unchecked:
+        lines.append(f"WARNING: budget exhausted — only {coverage * 100:.1f}% of URLs were checked this run.")
+
     code = 1 if (hard or len(transient) > tol) else 0
     if code == 0 and transient:
         lines.append("PASS — transient blips within tolerance, not treated as rot.")
+    if coverage < min_coverage:
+        lines.append(f"FAIL — coverage {coverage * 100:.1f}% is below --min-coverage "
+                     f"{min_coverage * 100:.1f}%")
+        code = 1
     return "\n".join(lines), code
 
 
@@ -369,6 +437,9 @@ def main(argv=None) -> int:
                     help=f"overall wall-clock budget in seconds (default {DEFAULT_BUDGET_SECONDS:.0f}); "
                         "unfinished checks are reported unreachable, not left to hang")
     ap.add_argument("--quiet", action="store_true", help="suppress per-URL progress lines")
+    ap.add_argument("--min-coverage", type=float, default=0.0,
+                    help="fail the run if fewer than this fraction (0-1) of URLs were checked "
+                        "before the budget ran out (default 0: coverage never fails the run)")
     args = ap.parse_args(argv)
 
     scopes = ({"seed", "catalog", "subscriptions"} if args.scope == "all"
@@ -397,8 +468,9 @@ def main(argv=None) -> int:
     print(f"collected {len(checks)} URL(s) to check", flush=True)
 
     results = asyncio.run(run_checks(checks, budget_seconds=args.budget, progress=not args.quiet))
-    print(f"\nfinished checking — {len(results)}/{len(checks)} URL(s) resolved before the budget ran out", flush=True)
-    text, code = report(results, strict=args.strict)
+    checked = sum(1 for r in results if not r.unchecked)
+    print(f"\nfinished checking — {checked}/{len(results)} URL(s) resolved before the budget ran out", flush=True)
+    text, code = report(results, strict=args.strict, min_coverage=args.min_coverage)
 
     if args.json:
         print(json.dumps([{"origin": r.uc.origin, "collection": r.uc.collection, "title": r.uc.title,

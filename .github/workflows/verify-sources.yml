@@ -20,7 +20,7 @@ on:
 jobs:
   verify:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 180
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -28,4 +28,11 @@ jobs:
           python-version: "3.12"
       - run: pip install -r requirements.txt
       - name: Verify seed + catalog source URLs
-        run: python -m tools.verify_sources --scope seed,catalog
+        # F7 (2026-09-22): the 20-min default budget only covered ~1000/5792 URLs (~5687 after
+        # dedup) — Wikimedia dominates the set (~5130 unique URLs) and is deliberately serialized
+        # at WM_MIN_INTERVAL=1.2s, so a full pass needs ~103 min at best case. --budget 9600 (160
+        # min) leaves headroom inside the 180-min job timeout; --min-coverage 0.95 still fails the
+        # run if coverage drops well short of that. --quiet drops the per-URL ok/FAIL progress
+        # lines (thousands of them at this volume); the failure/transient/unchecked summary always
+        # prints regardless.
+        run: python -m tools.verify_sources --scope seed,catalog --budget 9600 --min-coverage 0.95 --quiet

@@ -302,13 +302,14 @@ def test_frames_table_matches_the_runsheet():
         assert f"--gamma {cfg['gamma']}" in cmd, f"{tag}: gamma mismatch against {cmd!r}"
 
 
-# --- D, established: pinned against the COMMITTED Pi session artefact (not a raw, not a vault file —
-# tracked in git, unlike session.jsonl above, so no skip is needed) -----------------------------------
+# --- D, established: pinned against the Pi session artefact (bench-eink/analysis/ is gitignored —
+# maintainer-local only, so a missing artefact skips rather than fails a clean checkout) --------------
 
-def test_pi_established_d_matches_the_committed_session_artefact():
-    """`PI_ESTABLISHED_D` (review pass 3, D1) must equal the "A" (shipping) key of the committed
-    `bench-eink/analysis/session_2026-09-20/*/inks.json` files from ADR-120's own bench-Pi session —
-    read the artefact, don't just restate the numbers a second time as a constant."""
+def test_pi_established_d_matches_the_local_session_artefact():
+    """`PI_ESTABLISHED_D` (review pass 3, D1) must equal the "A" (shipping) key of the LOCAL (gitignored,
+    maintainer-only, skipped on a clean checkout) `bench-eink/analysis/session_2026-09-20/*/inks.json`
+    files from ADR-120's own bench-Pi session — read the artefact, don't just restate the numbers a
+    second time as a constant."""
     import json as _json
 
     root = Path(__file__).resolve().parent.parent
@@ -317,7 +318,8 @@ def test_pi_established_d_matches_the_committed_session_artefact():
         "F10": root / "bench-eink/analysis/session_2026-09-20/masterpieces__caf-terrace-at-night/inks.json",
     }
     for tag, path in paths.items():
-        assert path.exists(), f"{path} missing — is ADR-120's session artefact still committed?"
+        if not path.exists():
+            pytest.skip(f"{path} not present on this checkout (bench-eink/analysis/ is gitignored)")
         row = _json.loads(path.read_text())["A"]
         assert row == efi.PI_ESTABLISHED_D[tag], f"{tag}: {row} != PI_ESTABLISHED_D[{tag}]"
 
