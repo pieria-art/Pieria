@@ -81,8 +81,11 @@ APPLIANCE_DIR = Path(os.getenv("APPLIANCE_DIR", "data/appliance"))
 # add extra LAN origins here only to drive the API cross-origin from another device.
 ALLOWED_ORIGINS = [o.strip() for o in os.getenv("SD_ALLOWED_ORIGINS", "").split(",") if o.strip()]
 
-# Optional shared secret gating the appliance update bridge (/api/appliance/update — the highest-
-# consequence action: it can force a host git reset+rebuild or reboot). Require-if-set: when this env
-# var is present the endpoint demands a matching X-Appliance-Token header; when absent it falls back to
-# the prior behavior (the Origin guard still blocks the hostile-browser-tab vector) and logs a warning.
+# Shared secret gating the appliance update bridge (/api/appliance/update — the highest-consequence
+# action: it can force a host git reset+rebuild or reboot). N6: fail CLOSED. The endpoint accepts EITHER
+# a same-origin browser request (the Origin allowlist check in app.py) OR a request carrying a matching
+# X-Appliance-Token header — a caller with neither (e.g. curl/any other LAN device, with no token set)
+# is refused outright, not waved through as "prior behavior". install.sh and sd-update each mint a
+# random token into .env on first run if one isn't already present, so an appliance box always ends up
+# with one configured; a warning is logged only in the (unexpected) case none is set at request time.
 APPLIANCE_UPDATE_TOKEN = os.getenv("SD_APPLIANCE_UPDATE_TOKEN", "").strip()

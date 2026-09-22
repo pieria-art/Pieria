@@ -210,8 +210,37 @@ eink_restart_if_enabled() {
   run systemctl restart sd-eink || true
 }
 
+# F3: `docker compose up -d --build` returns 0 as soon as the container STARTS, even if it then
+# crash-loops (e.g. an Alembic migration failure the entrypoint deliberately exits on) — a successful
+# `up -d` alone is not evidence the app is actually serving. Poll the SAME probe sd-watchdog uses
+# (SERVER_URL from the conf + /logo.svg) before trusting it. Attempt count/interval are overridable so
+# a test isn't stuck waiting 90 real seconds.
+WAIT_HEALTHY_ATTEMPTS="${WAIT_HEALTHY_ATTEMPTS:-36}"
+WAIT_HEALTHY_INTERVAL="${WAIT_HEALTHY_INTERVAL:-5}"
+wait_healthy() {
+  if [ "$DRY_RUN" = "1" ]; then
+    echo "+ [dry-run] wait_healthy (skipped)" >> "$LOG"
+    return 0
+  fi
+  local url probe i=0
+  url="$(conf_get SERVER_URL)"
+  [ -n "$url" ] || url="http://localhost:8000"
+  probe="${url%/}/logo.svg"
+  while [ "$i" -lt "$WAIT_HEALTHY_ATTEMPTS" ]; do
+    if curl -fsS --max-time 5 -o /dev/null "$probe" 2>/dev/null; then
+      echo "+ wait_healthy: $probe answered" >> "$LOG"
+      return 0
+    fi
+    i=$((i + 1))
+    [ "$i" -lt "$WAIT_HEALTHY_ATTEMPTS" ] && sleep "$WAIT_HEALTHY_INTERVAL"
+  done
+  echo "+ wait_healthy: $probe never answered" >> "$LOG"
+  return 1
+}
+
 rc=0
 DONE_MSG=""       # arms that finish with something worth saying set this; else "<action> completed"
+ERR_MSG=""        # arms that fail with something more specific than "<action> failed (exit N)" set this
 case "$ACTION" in
   update-app)
     # Pin the checkout, then rebuild the stack. sd-update runs as ROOT but the repo is owned by the
@@ -236,8 +265,98 @@ case "$ACTION" in
         exit 1
       fi
     fi
-    [ $rc -eq 0 ] && { ( cd "$REPO_ROOT" && run git "${GIT_SAFE[@]}" reset --hard "$TARGET" ) || rc=$?; }
-    [ $rc -eq 0 ] && { ( cd "$REPO_ROOT" && run "${COMPOSE[@]}" up -d --build ) || rc=$?; }
+    # F3: capture the pre-update commit AND snapshot the DB BEFORE the reset, so a crash-looping new
+    # version can be rolled back to a known-good state. sqlite3's online backup API is WAL-safe while
+    # the old container is still up. If the snapshot itself fails, abort right here — nothing has been
+    # touched yet (no reset), so there is nothing to roll back.
+    PREV_SHA=""
+    [ $rc -eq 0 ] && PREV_SHA="$(cd "$REPO_ROOT" && git "${GIT_SAFE[@]}" rev-parse HEAD 2>/dev/null)"
+
+    DB="$REPO_ROOT/data/artwork.db"
+    DB_SNAP="$REPO_ROOT/data/appliance/pre-update.db"
+    # Clear any stale snapshot left behind by an earlier, interrupted run (normally sd-update removes
+    # it itself at the end of every arm — see the final `rm -f "$DB_SNAP"` below — so one surviving
+    # here means a prior invocation never reached that line).
+    rm -f "$DB_SNAP"
+    # Record whether artwork.db existed BEFORE this update, so rollback knows whether "restore" means
+    # "put the snapshot back" or "there was never a DB here — remove whatever the new version created."
+    DB_EXISTED=0
+    if [ $rc -eq 0 ] && [ -f "$DB" ]; then
+      DB_EXISTED=1
+      run python3 -c "import sqlite3,sys; s=sqlite3.connect(sys.argv[1]); d=sqlite3.connect(sys.argv[2]); s.backup(d); d.close(); s.close()" \
+        "$DB" "$DB_SNAP" || rc=$?
+      [ $rc -eq 0 ] || ERR_MSG="could not snapshot the database — aborted before touching the checkout"
+    fi
+
+    # reset_ok marks the point of no return: once the checkout has actually moved, ANY later failure
+    # (the token mint, `up --build`, or wait_healthy) must trigger the rollback below. Before this
+    # point nothing has changed, so a failure here just falls through to the plain error report.
+    reset_ok=0
+    [ $rc -eq 0 ] && { ( cd "$REPO_ROOT" && run git "${GIT_SAFE[@]}" reset --hard "$TARGET" ) \
+      && reset_ok=1 || rc=$?; }
+
+    # F3/N6: existing boxes predate install.sh minting the update-bridge token — mint it here too,
+    # idempotently, before the rebuilt container needs it. Same one-liner install.sh uses.
+    if [ $rc -eq 0 ] && ! grep -q '^SD_APPLIANCE_UPDATE_TOKEN=' "$REPO_ROOT/.env" 2>/dev/null; then
+      ( umask 077; echo "SD_APPLIANCE_UPDATE_TOKEN=$(python3 -c 'import secrets; print(secrets.token_hex(16))')" >> "$REPO_ROOT/.env" ) || rc=$?
+    fi
+
+    # N7: status.json's updated_at only pauses the watchdog while it's < 30 min old (sd-watchdog), so a
+    # long fetch+build+health window on a slow Pi can outlast that and the watchdog resumes mid-build.
+    # Keep it fresh with progress writes, and reuse the apt-arm's heartbeat around the build itself.
+    if [ $rc -eq 0 ]; then
+      write_status running "building new version…"
+      heartbeat_start
+      ( cd "$REPO_ROOT" && run "${COMPOSE[@]}" up -d --build ) || rc=$?
+      heartbeat_stop
+    fi
+
+    # F3: don't trust the exit code above — confirm the app actually answers before reporting success.
+    if [ $rc -eq 0 ]; then
+      write_status running "waiting for the app to start…"
+      wait_healthy || rc=1
+    fi
+
+    # Restore-or-clear the DB for a rollback: if artwork.db existed before this update, put the
+    # snapshot back; if it didn't, the new version may have created one (e.g. via migration) that
+    # belongs to a version we're abandoning — remove it rather than leaving it behind.
+    restore_or_clear_db() {
+      if [ "$DB_EXISTED" = "1" ]; then
+        [ ! -f "$DB_SNAP" ] || { run cp "$DB_SNAP" "$DB" && run rm -f "$DB-wal" "$DB-shm"; }
+      else
+        run rm -f "$DB" "$DB-wal" "$DB-shm"
+      fi
+    }
+
+    # F3: roll back to PREV_SHA on ANY failure once the checkout actually moved, rather than leaving a
+    # shipped box's admin UI (and the container that serves it) unreachable with no shell to fix it from.
+    rollback() {
+      write_status running "new version failed to start — rolling back"
+      if ( cd "$REPO_ROOT" && run git "${GIT_SAFE[@]}" reset --hard "$PREV_SHA" ) \
+         && ( cd "$REPO_ROOT" && run "${COMPOSE[@]}" stop ) \
+         && restore_or_clear_db \
+         && { write_status running "rebuilding the previous version…"
+              heartbeat_start
+              ( cd "$REPO_ROOT" && run "${COMPOSE[@]}" up -d --build )
+              rc2=$?
+              heartbeat_stop
+              [ $rc2 -eq 0 ]; } \
+         && { write_status running "waiting for the previous version to start…"; wait_healthy; }; then
+        reload_kiosk
+        ERR_MSG="update failed to start; rolled back to the previous version"
+      else
+        ERR_MSG="update failed and rollback did not come back up (exit $rc)"
+      fi
+    }
+    if [ $rc -ne 0 ] && [ "$reset_ok" = "1" ]; then
+      rollback
+    elif [ $rc -ne 0 ] && [ -z "$ERR_MSG" ]; then
+      ERR_MSG="update failed to start (exit $rc)"
+    fi
+
+    # F3: the snapshot is a full copy of the DB, including any stored AI API key — never leave it
+    # behind, on ANY path (success, rolled back, or rollback failed).
+    rm -f "$DB_SNAP"
     [ $rc -eq 0 ] && reload_kiosk
     ;;
   update-scripts)
@@ -330,6 +449,11 @@ case "$ACTION" in
     ;;
   restart-app)
     ( cd "$REPO_ROOT" && run "${COMPOSE[@]}" restart ) || rc=$?
+    # F3: don't report success for a container that restarted but isn't answering.
+    if [ $rc -eq 0 ] && ! wait_healthy; then
+      rc=1
+      ERR_MSG="app restarted but is not responding"
+    fi
     # The reloaded container leaves the kiosk Canvas connected but with a stalled advance timer, so
     # the picture would sit frozen until the next cycle — relaunch it too.
     [ $rc -eq 0 ] && reload_kiosk
@@ -388,6 +512,16 @@ case "$ACTION" in
     # A containerd/docker upgrade restarts the daemon under us, which can leave the stack down.
     # `up -d` is idempotent and is the only thing that guarantees it is back.
     [ $rc -eq 0 ] && { ( cd "$REPO_ROOT" && run "${COMPOSE[@]}" up -d ) || rc=$?; }
+    # F3: `up -d` returning 0 only proves the container started, not that it's serving — confirm
+    # before reporting success (and before considering the reboot below).
+    if [ $rc -eq 0 ] && ! wait_healthy; then
+      if [ "$REBOOT" = "1" ]; then
+        echo "+ wait_healthy failed but a reboot is coming — proceeding without penalty" >> "$LOG"
+      else
+        rc=1
+        ERR_MSG="system packages updated but the app is not responding"
+      fi
+    fi
     # Re-check so the UI's count reflects reality now, not at 04:30 tomorrow.
     [ $rc -eq 0 ] && { run "$SD_OS_CHECK_BIN" "$REPO_ROOT" --no-update || true; }
 
@@ -471,7 +605,7 @@ esac
 if [ $rc -eq 0 ]; then
   write_status done "${DONE_MSG:-$ACTION completed}"
 else
-  write_status error "$ACTION failed (exit $rc)"
+  write_status error "${ERR_MSG:-$ACTION failed (exit $rc)}"
 fi
 
 rm -f "$REQ"      # consume the request so the .path re-arms for the next one

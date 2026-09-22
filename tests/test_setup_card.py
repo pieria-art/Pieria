@@ -8,11 +8,29 @@ import importlib.util
 import pathlib
 import subprocess
 
+import pytest
+from PIL import ImageFont
+
 _PATH = pathlib.Path(__file__).resolve().parents[1] / "deploy" / "appliance" / "bin" / "sd-setup-card"
 _spec = importlib.util.spec_from_loader("sd_setup_card",
                                         importlib.machinery.SourceFileLoader("sd_setup_card", str(_PATH)))
 sd_card = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(sd_card)
+
+
+def _skip_unless_layout_measurable():
+    """The two layout tests below (fit_font_px shrinking, ellipsize) only mean something if _font()
+    returns a font whose metrics actually track the requested size. That's true for a real TTF, and
+    true for PIL's bitmap default IF Pillow honours load_default(size=...) (>=10.1). On older Pillow
+    (e.g. python3-pil 9.4, Debian bookworm) with no DejaVu installed, size is genuinely unmeasurable —
+    skip rather than assert something the fallback can't provide (F4)."""
+    sd_card._font(20)  # trigger fallback detection as a side effect, same as real callers
+    if not sd_card.using_fallback_font():
+        return
+    try:
+        ImageFont.load_default(size=20)
+    except TypeError:
+        pytest.skip("no TTF found and this Pillow's load_default() can't honour size — layout unmeasurable")
 
 
 _IW_OUTPUT = """BSS aa:bb:cc:dd:ee:01(on wlan0)
@@ -77,6 +95,7 @@ def test_splash_is_self_contained_and_names_the_ssid():
 def test_fit_font_px_shrinks_until_the_longest_line_fits():
     """Guards the bug that shipped: the step column's width was computed and then discarded, so a long
     SSID printed straight through the QR box on a portrait panel."""
+    _skip_unless_layout_measurable()
     from PIL import Image, ImageDraw
     d = ImageDraw.Draw(Image.new("RGB", (10, 10)))
     short = ['Join the Wi-Fi network "Pieria-Setup"']
@@ -92,6 +111,7 @@ def test_ellipsize_guarantees_fit_when_shrinking_is_not_enough():
     """Shrinking bottoms out at the legibility floor, where a pathological SSID STILL overflowed (801px
     into a 600px column) — i.e. straight through the QR box again. Ellipsis is the hard guarantee; the
     QR itself still encodes the exact SSID."""
+    _skip_unless_layout_measurable()
     from PIL import Image, ImageDraw
     d = ImageDraw.Draw(Image.new("RGB", (10, 10)))
     font = sd_card._font(20)
@@ -101,6 +121,21 @@ def test_ellipsize_guarantees_fit_when_shrinking_is_not_enough():
     assert out.endswith("\u2026")
     # A string that already fits is returned untouched.
     assert sd_card.ellipsize(d, "short", font, 600) == "short"
+
+
+def test_missing_fonts_sets_fallback_flag_and_warns(monkeypatch, capsys):
+    """F4: when no candidate TTF exists, the fallback must be LOUD — a flag callers can check, and a
+    stderr warning — never silently tiny type."""
+    monkeypatch.setattr(sd_card, "_FONT_CANDIDATES", ["/nonexistent/one.ttf", "/nonexistent/two.ttf"])
+    monkeypatch.setattr(sd_card, "FONT_FALLBACK", False)
+    monkeypatch.setattr(sd_card, "_warned_missing_fonts", False)
+
+    sd_card._font(20)
+
+    assert sd_card.using_fallback_font() is True
+    err = capsys.readouterr().err
+    assert "WARNING" in err
+    assert "/nonexistent/one.ttf" in err and "/nonexistent/two.ttf" in err
 
 
 def test_portrait_canvas_stacks_so_text_cannot_hit_the_qr():

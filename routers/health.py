@@ -194,15 +194,16 @@ async def appliance_update(req: ApplianceUpdateRequest, request: Request,
     # guard already blocks a hostile browser tab; the shared-secret token additionally closes the
     # no-Origin path (curl / any other LAN device). Accept EITHER a valid token OR a trusted
     # (same-origin) Origin, so the same-origin admin GUI keeps working without holding the secret.
-    if config.APPLIANCE_UPDATE_TOKEN:
-        token_ok = bool(x_appliance_token) and secrets.compare_digest(
-            x_appliance_token, config.APPLIANCE_UPDATE_TOKEN)
-        origin_ok = _origin_allowed(request.headers.get("origin", ""), request.headers.get("host", ""))
-        if not (token_ok or origin_ok):
-            raise HTTPException(status_code=403, detail="appliance update requires a valid token")
-    elif not _appliance_token_warned:
-        logger.warning("SD_APPLIANCE_UPDATE_TOKEN is unset — /api/appliance/update is gated only by the "
-                       "cross-origin guard. Set it to require a shared secret from non-browser callers.")
+    # N6: fail CLOSED. With no token configured, a no-Origin caller (curl from any LAN device) used to fall
+    # straight through to 16 actions incl. poweroff/reopen-setup — and a shipped box has no shell to recover.
+    origin_ok = _origin_allowed(request.headers.get("origin", ""), request.headers.get("host", ""))
+    token_ok = bool(config.APPLIANCE_UPDATE_TOKEN) and bool(x_appliance_token) and secrets.compare_digest(
+        x_appliance_token, config.APPLIANCE_UPDATE_TOKEN)
+    if not (token_ok or origin_ok):
+        raise HTTPException(status_code=403, detail="appliance update requires a same-origin request or a valid token")
+    if not config.APPLIANCE_UPDATE_TOKEN and not _appliance_token_warned:
+        logger.warning("SD_APPLIANCE_UPDATE_TOKEN is unset — /api/appliance/update accepts same-origin "
+                       "browser requests only; non-browser callers are refused.")
         _appliance_token_warned = True
     ref = (req.ref or "").strip()
     if ref and not _REF_RE.match(ref):

@@ -251,7 +251,10 @@ def _read_existing(path: Path) -> str:
 def resolve_boot_conf_path() -> Path:
     """Where the real conf lives — Bookworm moved it from /boot to /boot/firmware."""
     firmware = Path("/boot/firmware")
-    return (firmware if firmware.is_dir() else Path("/boot")) / "pieria.conf"
+    try:
+        return (firmware if firmware.is_dir() else Path("/boot")) / "pieria.conf"
+    except OSError:   # F5: is_dir() raises on EACCES rather than returning False
+        return Path("/boot") / "pieria.conf"
 
 
 # --- HTTP server --------------------------------------------------------------

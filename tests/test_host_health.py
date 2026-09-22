@@ -176,7 +176,7 @@ def test_set_display_name_migrates_playback_and_commands_and_clears_the_old_row(
     ])
     db.commit()
 
-    resp = client.post("/api/appliance/update",
+    resp = client.post("/api/appliance/update", headers={"Origin": "http://testserver"},
                        json={"action": "set-display-name", "display_id": "New Name!"})
     assert resp.status_code == 200
 

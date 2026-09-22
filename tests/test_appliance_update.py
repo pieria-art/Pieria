@@ -14,7 +14,8 @@ from app import app
 def client(tmp_path, monkeypatch):
     # Point the bridge at a throwaway dir so tests never touch the real ./data.
     monkeypatch.setattr(config, "APPLIANCE_DIR", tmp_path / "appliance")
-    with TestClient(app) as c:
+    # The admin GUI is same-origin; send what a browser sends so the N6 fail-closed gate lets it through.
+    with TestClient(app, headers={"Origin": "http://testserver"}) as c:
         yield c
 
 
@@ -203,3 +204,23 @@ def test_support_bundle_downloads(appliance):
 def test_support_bundle_403_when_not_an_appliance(client, monkeypatch):
     monkeypatch.setattr(config, "IS_APPLIANCE", False)
     assert client.get("/api/appliance/support-bundle").status_code == 403
+
+
+# ── N6: the bridge fails CLOSED for non-browser callers ──────────────────────────────────────────────
+
+def _bare(**headers):
+    return TestClient(app, headers=headers)
+
+
+def test_no_origin_no_token_is_refused(appliance, monkeypatch):
+    monkeypatch.setattr(config, "APPLIANCE_UPDATE_TOKEN", "")
+    with _bare() as c:
+        assert c.post("/api/appliance/update", json={"action": "poweroff"}).status_code == 403
+
+
+def test_no_origin_with_valid_token_is_allowed(appliance, monkeypatch):
+    monkeypatch.setattr(config, "APPLIANCE_UPDATE_TOKEN", "s3cret")
+    with _bare(**{"X-Appliance-Token": "s3cret"}) as c:
+        assert c.post("/api/appliance/update", json={"action": "reboot"}).status_code == 200
+    with _bare(**{"X-Appliance-Token": "wrong"}) as c:
+        assert c.post("/api/appliance/update", json={"action": "reboot"}).status_code == 403

@@ -131,8 +131,23 @@ def test_build_conf_landscape_leaves_rotate_blank():
     assert "ALL_IN_ONE=0" in conf
 
 
-def test_resolve_boot_conf_path_targets_the_conf_file():
+def test_resolve_boot_conf_path_targets_the_conf_file(monkeypatch):
+    # Don't depend on /boot/firmware's real presence/permissions on the machine running the test —
+    # it doesn't exist on a dev box or CI runner, and can even raise PermissionError in some sandboxes
+    # (seen locally: stat'ing it denies access rather than reporting absence).
+    monkeypatch.setattr(sd_setup.Path, "is_dir", lambda self: False)
     assert sd_setup.resolve_boot_conf_path().name == "pieria.conf"
+
+
+def test_resolve_boot_conf_path_falls_back_on_permission_error(monkeypatch):
+    # F5: is_dir() can raise EACCES rather than returning False (seen in some sandboxes) — the
+    # except OSError branch must still land the conf at /boot, not propagate the error.
+    def _raise(self):
+        raise PermissionError("denied")
+    monkeypatch.setattr(sd_setup.Path, "is_dir", _raise)
+    path = sd_setup.resolve_boot_conf_path()
+    assert path.name == "pieria.conf"
+    assert path.parent == pathlib.Path("/boot")
 
 
 def test_orientation_preview_degrades_gracefully_without_wlr_randr(monkeypatch):

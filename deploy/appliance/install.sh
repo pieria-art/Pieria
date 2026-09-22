@@ -230,9 +230,14 @@ install -m 0644 "$SETUP_SRC/common.sh"    /usr/local/share/pieria/setup/common.s
 install -m 0644 "$SETUP_SRC/hostapd.conf" /usr/local/share/pieria/setup/hostapd.conf
 install -m 0644 "$SETUP_SRC/dnsmasq.conf" /usr/local/share/pieria/setup/dnsmasq.conf
 # python3-qrcode powers the setup card's scan-to-join QR; optional (the card degrades to
-# written instructions without it).
+# written instructions without it). fonts-dejavu-core is NOT optional in the same way: it's only a
+# Recommends of nothing we otherwise pull in, and without it sd-setup-card falls back to PIL's bitmap
+# default font, which ignores the requested size — the fit_font_px/ellipsize overflow guards go inert
+# and a long SSID prints straight through the QR box on the first thing a customer sees (F4).
 apt-get install -y --no-install-recommends hostapd dnsmasq iw python3-qrcode \
   || echo "    (hostapd/dnsmasq unavailable — the setup AP won't come up, but a pre-seeded conf still works)"
+apt-get install -y --no-install-recommends fonts-dejavu-core \
+  || echo "    WARNING: fonts-dejavu-core unavailable — the setup card's font sizing will be inert (F4)" >&2
 # MASK, don't merely disable. Debian's hostapd package enables its service on install, and a plain
 # `disable` was observed NOT to stick across install.sh re-runs — the captured 2026-07-22 image still
 # carried an enabled hostapd.service. It could not actually start (the unit carries
@@ -287,6 +292,9 @@ if [ "${ALL_IN_ONE:-0}" = "1" ]; then
     echo "    WARNING: GEMINI_API_KEY not set in config — AI features will be unavailable" >&2
     [ -f "$REPO_ROOT/.env" ] || ( umask 077; : > "$REPO_ROOT/.env" )
   fi
+  # N6: mint the update-bridge token so non-browser callers need a secret (the same-origin GUI doesn't).
+  grep -q '^SD_APPLIANCE_UPDATE_TOKEN=' "$REPO_ROOT/.env" \
+    || ( umask 077; echo "SD_APPLIANCE_UPDATE_TOKEN=$(python3 -c 'import secrets; print(secrets.token_hex(16))')" >> "$REPO_ROOT/.env" )
 
   # The image runs as non-root (uid 1000, Phase 1 C1). The bind-mounted data/ + Artwork/ MUST be owned
   # by 1000 or the container can't write the DB — migrations fail and every DB endpoint 500s (a box first

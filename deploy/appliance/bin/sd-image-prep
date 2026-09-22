@@ -189,7 +189,20 @@ wipe_secrets() {
     echo "  .env already empty"
   fi
 
-  # 2) The database — a key entered in Admin -> AI Engine is stored as the `ai_api_key` setting, and
+  # 2) sd-update's F3 rollback snapshot — a full copy of artwork.db taken mid-update, including
+  #    whatever AI API key was stored at the time. sd-update deletes it itself when an update arm
+  #    finishes, but a box captured mid-update (or from an older sd-update that didn't clean up) could
+  #    still have one lying around. Deleted HERE, before the key-check loop below: a stored key inside
+  #    this stray snapshot would otherwise make that loop refuse (exit 1) on data/appliance/*.db before
+  #    this deletion ever ran, and the loop's printed remediation (`rm -rf $root/data/*.db*`) doesn't
+  #    reach data/appliance/ anyway.
+  local snap="$root/data/appliance/pre-update.db"
+  if [ -f "$snap" ]; then
+    rm -f "$snap"
+    echo "  removed $snap (a stray update rollback snapshot — it could hold a stored API key)"
+  fi
+
+  # 3) The database — a key entered in Admin -> AI Engine is stored as the `ai_api_key` setting, and
   #    it takes PRECEDENCE over the env var (ai_client.py). Capturing a DB you smoke-tested with is
   #    therefore enough to leak it. Refuse rather than silently deleting someone's library.
   # GLOB, don't hardcode a filename. The first cut of this check looked for `pieria.db`; the

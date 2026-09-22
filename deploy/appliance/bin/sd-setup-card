@@ -48,16 +48,45 @@ _FONT_CANDIDATES = [
     "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
 ]
 
+# F4: set the first time _font() has to fall back off the TTF candidates, i.e. no real DejaVu was
+# found. Tests (and callers who care) read this to know whether fit_font_px/ellipsize can actually be
+# trusted to have measured a size-honouring font.
+FONT_FALLBACK = False
+_warned_missing_fonts = False
+
+
+def using_fallback_font() -> bool:
+    """True once _font() has had to fall back off the TTF candidate list at least once."""
+    return FONT_FALLBACK
+
 
 def _font(size: int, bold: bool = False):
-    """Best available TrueType, falling back to PIL's bitmap default. The default is tiny and ugly, but
-    a readable-but-ugly card beats a crash on a box with no fonts installed."""
+    """Best available TrueType, falling back to a size-honouring PIL default, then the bitmap default.
+
+    install.sh installs fonts-dejavu-core precisely so this fallback is never hit on a shipped box; if
+    it IS hit, that's loud (F4 — a silent tiny-font fallback made the setup card's overflow guards
+    inert, the first thing a customer sees)."""
+    global FONT_FALLBACK, _warned_missing_fonts
     for path in (_FONT_CANDIDATES if bold else reversed(_FONT_CANDIDATES)):
         try:
             return ImageFont.truetype(path, size)
         except OSError:
             continue
-    return ImageFont.load_default()
+    FONT_FALLBACK = True
+    if not _warned_missing_fonts:
+        print(
+            f"sd-setup-card: WARNING: none of {_FONT_CANDIDATES} found; falling back to PIL's default "
+            "font. Install fonts-dejavu-core (install.sh should have done this) — without it the setup "
+            "card's font-sizing guards may not honour requested sizes.",
+            file=sys.stderr,
+        )
+        _warned_missing_fonts = True
+    # Pillow >= 10.1 can size the bitmap default; older Pillow (e.g. python3-pil 9.4 on Debian
+    # bookworm) raises TypeError on the kwarg, and very old builds may not accept it at all.
+    try:
+        return ImageFont.load_default(size=size)
+    except (TypeError, OSError):
+        return ImageFont.load_default()
 
 
 def _wifi_qr(ssid: str, px: int):
