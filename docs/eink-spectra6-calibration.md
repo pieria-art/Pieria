@@ -84,7 +84,7 @@ from — arguably better than — `inky`'s own native dithering path. Same quali
 
 **What ships now is a constant:** white-point **0.75**, gamma **1.0**, applied as one LUT by
 `epaper._tone_lut()` before the dither. `_adaptive_gamma` is gone from `epaper.py`; it survives only as
-`tools/eink_calibrate.legacy_adaptive_gamma()` so historical baselines still reproduce.
+`tools/eink/eink_calibrate.legacy_adaptive_gamma()` so historical baselines still reproduce.
 
 **Why it was retired — two independent condemnations:**
 

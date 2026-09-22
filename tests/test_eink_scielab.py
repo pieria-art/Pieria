@@ -5,15 +5,24 @@ objective ADR-097 withdrew failed exactly that: it preferred a grey rectangle to
 rewarding the absence of a failure is not the same as rewarding a good image. It costs seconds to run
 and it is the check that would have caught two months of work in twenty minutes.
 """
+from pathlib import Path
+
 import numpy as np
 import pytest
 from PIL import Image
 
 import epaper as ep
-from tools import eink_color as ec
-from tools import eink_dither as ed
-from tools import eink_panel_model as pm
-from tools import eink_scielab as sl
+from tools.eink import eink_color as ec
+from tools.eink import eink_dither as ed
+from tools.eink import eink_panel_model as pm
+from tools.eink import eink_scielab as sl
+
+# art-pack/ is a built, gitignored distributable (never git — see .gitignore) that only exists on a
+# machine that has run the pack build. Tests that need a real artwork image are maintainer-local only.
+_LIB = Path(__file__).resolve().parent.parent / "art-pack" / "_Library"
+_NIGHT_WATCH = _LIB / "dutch-golden-age__the-night-watch__ff740524.jpg"
+_SUNFLOWERS = _LIB / "masterpieces__sunflowers__07310daa.jpg"
+_OLYMPIA = _LIB / "impressionism__olympia__e9572d40.jpg"
 
 
 @pytest.fixture()
@@ -45,7 +54,7 @@ def _swatch_era_registration():
     substantive, and they pass because their assertions are about a RANKING or a BOUND that holds
     under either palette, not because the palette doesn't reach them.
     """
-    from tools import eink_panel_model as _pm
+    from tools.eink import eink_panel_model as _pm
     with pytest.MonkeyPatch.context() as mp:
         mp.setattr(_pm, "_MEASURED_INK_XYZ", None)
         yield
@@ -125,6 +134,7 @@ def test_grain_fades_with_distance_but_tone_error_does_not(_swatch_era_registrat
     assert max(tone) / min(tone) < 1.10, f"a low-frequency offset must be ~distance-invariant: {tone}"
 
 
+@pytest.mark.skipif(not _NIGHT_WATCH.exists(), reason=f"art-pack library image not present under {_NIGHT_WATCH} (local-only)")
 def test_degenerate_renders_lose_to_real_ones(_swatch_era_registration):
     """⛔ THE ONE THAT MATTERS. ADR-097's objective preferred a grey rectangle to the picture.
 
@@ -149,6 +159,7 @@ def test_degenerate_renders_lose_to_real_ones(_swatch_era_registration):
             assert bad > good, f"at {d} m the objective prefers {name} ({bad:.2f}) to the render ({good:.2f})"
 
 
+@pytest.mark.skipif(not _SUNFLOWERS.exists(), reason=f"art-pack library image not present under {_SUNFLOWERS} (local-only)")
 def test_the_wide_negative_lobe_does_not_decide_anything():
     """The luminance channel's sigma3 = 4.336 deg exceeds the image at >= 2 m, so its value is set by
     the boundary condition. If dropping it reorders two candidates, the ordering was a padding
@@ -167,6 +178,7 @@ def test_the_wide_negative_lobe_does_not_decide_anything():
             f"at {d} m the ranking depends on the boundary-dominated lobe: {full} vs {trim}"
 
 
+@pytest.mark.skipif(not _OLYMPIA.exists(), reason=f"art-pack library image not present under {_OLYMPIA} (local-only)")
 def test_subsampling_the_difference_field_is_unbiased():
     """The compute saving must be a sample of the ANSWER, never a downsample of the IMAGE — the dither
     pattern is the signal. This bounds the error it introduces."""

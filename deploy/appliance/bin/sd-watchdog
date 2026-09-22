@@ -52,6 +52,13 @@ STATUS="$OUT_DIR/watchdog.json"
 # escalated to a reboot comes back with a clean count instead of immediately re-escalating (boot-loop
 # guard). Overridable for testing in an environment without a writable /run.
 STATE="${SD_WATCHDOG_STATE:-/run/sd-watchdog.fails}"
+# A SECOND, independent consecutive-fail counter for display-side faults (kiosk and/or e-ink), so a
+# display fault can never inflate the count that decides restart-container/reboot, and a server blip
+# can never inflate the count that decides relaunch-kiosk/give-up. Before this split, a single shared
+# counter meant an e-ink box with the server up and sd-eink down (sd-eink is deliberately `disabled`
+# during a bench panel session — it holds the SPI/GPIO lines) pinned `fails` above ESCALATE_AFTER with
+# no remedy, so the NEXT unrelated server blip jumped straight to reboot — the exact ADR-121 regression.
+STATE_DISPLAY="${SD_WATCHDOG_STATE_DISPLAY:-/run/sd-watchdog.display-fails}"
 REBOOTS="$OUT_DIR/watchdog-reboots.log"   # epoch per reboot (persistent → survives a reboot for the cap)
 COMPOSE=(-f docker-compose.yml -f deploy/appliance/compose/docker-compose.appliance.yml)
 
@@ -154,75 +161,141 @@ PY
   esac
 fi
 
+# --- display-surface detection --------------------------------------------------
+# A box's display surfaces are TWO INDEPENDENT booleans, not one flag — the bench conf can (and does)
+# carry ALL_IN_ONE=1, EINK_ENABLED=1 AND OUTPUT=HDMI-A-1 simultaneously, so "e-ink-only" and "HDMI+e-ink
+# dual box" are both real, expressible configurations, and conf flags alone can't tell them apart from
+# a plain kiosk box with a stale conf. has_kiosk comes from DRM connector state (any `connected`
+# /sys/class/drm/*/status): a box with no connected connector has nothing for cage/chromium to paint
+# onto, so kiosk_ok could never be 1 by design if probed — that pinned `fails` above ESCALATE_AFTER
+# forever, and the first server blip in WATCHDOG=enforce jumped straight to reboot, skipping
+# restart-container. has_eink is simply EINK_ENABLED=1 in the conf. Falls back to has_kiosk=1 (assume
+# a kiosk is expected — today's behaviour) if /sys/class/drm doesn't exist at all (dev box / CI).
+has_kiosk=1
+drm_glob="${SD_DRM_STATUS_GLOB:-/sys/class/drm/*/status}"
+saw_any_connector=0
+any_connected=0
+# shellcheck disable=SC2086 — intentional glob expansion
+for f in $drm_glob; do
+  [ -e "$f" ] || continue
+  saw_any_connector=1
+  [ "$(cat "$f" 2>/dev/null)" = "connected" ] && any_connected=1
+done
+[ "$saw_any_connector" = 1 ] && has_kiosk="$any_connected"
+has_eink=0
+[ "${EINK_ENABLED:-0}" = "1" ] && has_eink=1
+
 # --- probes -------------------------------------------------------------------
 server_ok=0
 curl -fsS --max-time 8 -o /dev/null "${SERVER_URL%/}/logo.svg" 2>/dev/null && server_ok=1
 
-kiosk_ok=0
-# [c] keeps pgrep from matching itself. The compositor AND a browser must be up.
-if pgrep -f "[c]age" >/dev/null 2>&1 && pgrep -f "[c]hromium" >/dev/null 2>&1; then
-  kiosk_ok=1
-fi
-
-# Paint probe: process-alive isn't enough — a Canvas that connected while the server was unhealthy stays
-# WS-connected (so it looks alive) but never starts its image loop (black screen). now-playing exposes
-# exactly that: our display is registered but its artwork is null. If cage+chromium are up but the display
-# isn't actually painting, a kiosk relaunch (browser reload) is the fix — which is what recovers it.
+# kiosk_ok/paint_ok/live_ok/advance_ok are the HDMI-kiosk surface — forced N/A (1) when has_kiosk=0 so
+# they can never hold `healthy` down and never (via display_ok below) drive relaunch-kiosk/give-up on
+# a box with no kiosk to relaunch. Untouched when has_kiosk=1 — byte-for-byte the original probes.
+kiosk_ok=1
 paint_ok=1
-if [ "$server_ok" = 1 ] && [ "$kiosk_ok" = 1 ]; then
-  paint_ok="$(curl -fsS --max-time 8 "${SERVER_URL%/}/api/remote/displays" 2>/dev/null \
-    | SD_DID="$DISPLAY_ID" python3 -c 'import os,sys,json
+live_ok=1
+advance_ok=1
+if [ "$has_kiosk" = 1 ]; then
+  kiosk_ok=0
+  # [c] keeps pgrep from matching itself. The compositor AND a browser must be up.
+  if pgrep -f "[c]age" >/dev/null 2>&1 && pgrep -f "[c]hromium" >/dev/null 2>&1; then
+    kiosk_ok=1
+  fi
+
+  # Paint probe: process-alive isn't enough — a Canvas that connected while the server was unhealthy stays
+  # WS-connected (so it looks alive) but never starts its image loop (black screen). now-playing exposes
+  # exactly that: our display is registered but its artwork is null. If cage+chromium are up but the display
+  # isn't actually painting, a kiosk relaunch (browser reload) is the fix — which is what recovers it.
+  if [ "$server_ok" = 1 ] && [ "$kiosk_ok" = 1 ]; then
+    paint_ok="$(curl -fsS --max-time 8 "${SERVER_URL%/}/api/remote/displays" 2>/dev/null \
+      | SD_DID="$DISPLAY_ID" python3 -c 'import os,sys,json
 try:
     d = json.load(sys.stdin); did = os.environ["SD_DID"]
     print(1 if any(x.get("display_id") == did and x.get("artwork") for x in d) else 0)
 except Exception:
     print(1)' 2>/dev/null || echo 1)"
+  fi
+
+  # Liveness + advance probes (2026-09-20). "Artwork non-null" was not enough: the prod Pi held ONE frame
+  # for a week with cage+chromium alive, the WebSocket open (protocol ping/pong needs no page JS), and
+  # now-playing populated — every probe above passed. The page itself now heart-beats over the socket, so
+  # `live` on /api/remote/displays means "the page's JS ran in the last 15s"; and now-playing must CHANGE
+  # at least every display_time. Both are decided by sd-watchdog-advance (pure logic, unit-tested); a
+  # failure of either, sustained, is a dead browser → relaunch-kiosk, the rung already wired below.
+  HELPER="${SD_WATCHDOG_HELPER:-$(dirname "$(readlink -f "$0")")/sd-watchdog-advance}"
+  if [ "$server_ok" = 1 ] && [ "$kiosk_ok" = 1 ] && [ -n "${DISPLAY_ID:-}" ] && [ -x "$HELPER" ]; then
+    read -r live_ok advance_ok < <(python3 "$HELPER" "$SERVER_URL" "$DISPLAY_ID" 2>/dev/null || echo "1 1")
+    case "$live_ok"    in 0|1) ;; *) live_ok=1 ;;    esac
+    case "$advance_ok" in 0|1) ;; *) advance_ok=1 ;; esac
+  fi
 fi
 
-# Liveness + advance probes (2026-09-20). "Artwork non-null" was not enough: the prod Pi held ONE frame
-# for a week with cage+chromium alive, the WebSocket open (protocol ping/pong needs no page JS), and
-# now-playing populated — every probe above passed. The page itself now heart-beats over the socket, so
-# `live` on /api/remote/displays means "the page's JS ran in the last 15s"; and now-playing must CHANGE
-# at least every display_time. Both are decided by sd-watchdog-advance (pure logic, unit-tested); a
-# failure of either, sustained, is a dead browser → relaunch-kiosk, the rung already wired below.
-live_ok=1
-advance_ok=1
-HELPER="${SD_WATCHDOG_HELPER:-$(dirname "$(readlink -f "$0")")/sd-watchdog-advance}"
-if [ "$server_ok" = 1 ] && [ "$kiosk_ok" = 1 ] && [ -n "${DISPLAY_ID:-}" ] && [ -x "$HELPER" ]; then
-  read -r live_ok advance_ok < <(python3 "$HELPER" "$SERVER_URL" "$DISPLAY_ID" 2>/dev/null || echo "1 1")
-  case "$live_ok"    in 0|1) ;; *) live_ok=1 ;;    esac
-  case "$advance_ok" in 0|1) ;; *) advance_ok=1 ;; esac
+# eink_live_ok is the e-ink surface — forced N/A (1) when has_eink=0. When present, reflects whether
+# the sd-eink systemd unit is actually running. NOT folded into an "advance" probe: sd-eink's own
+# heartbeat file is only rewritten on a "painted" tick, never on "unchanged" or "quiet" (quiet-hours
+# can span all night), so there is no fixed interval sd-watchdog can hold it to without re-deriving
+# quiet-hours state — not attempted here; treated as not-applicable for e-ink (see advance_ok above,
+# which already covers the always-N/A-for-eink case since it's only computed under has_kiosk).
+eink_live_ok=1
+if [ "$has_eink" = 1 ]; then
+  eink_live_ok=0
+  systemctl is-active --quiet sd-eink 2>/dev/null && eink_live_ok=1
 fi
+
+display_ok=1
+[ "$kiosk_ok" = 1 ] && [ "$paint_ok" = 1 ] && [ "$live_ok" = 1 ] && [ "$advance_ok" = 1 ] && [ "$eink_live_ok" = 1 ] || display_ok=0
 
 healthy=0
-[ "$server_ok" = 1 ] && [ "$kiosk_ok" = 1 ] && [ "$paint_ok" = 1 ] && [ "$live_ok" = 1 ] && [ "$advance_ok" = 1 ] && healthy=1
+[ "$server_ok" = 1 ] && [ "$display_ok" = 1 ] && healthy=1
 
 # --- hysteresis + escalation --------------------------------------------------
-fails="$(cat "$STATE" 2>/dev/null || echo 0)"
-case "$fails" in ''|*[!0-9]*) fails=0 ;; esac
+# TWO independent counters, so a display-side fault (kiosk or e-ink) can never inflate the count that
+# decides restart-container/reboot, and a server blip can never inflate the count that decides
+# relaunch-kiosk/give-up. fails_server moves only on server_ok=0 and resets the instant server_ok=1.
+# fails_display moves only when the server IS reachable but the display surface(s) present are not
+# (mirrors ADR-121's original "browser-level fault" branch), and resets the instant display_ok=1.
+fails_server="$(cat "$STATE" 2>/dev/null || echo 0)"
+case "$fails_server" in ''|*[!0-9]*) fails_server=0 ;; esac
+fails_display="$(cat "$STATE_DISPLAY" 2>/dev/null || echo 0)"
+case "$fails_display" in ''|*[!0-9]*) fails_display=0 ;; esac
 
 action="none"
 message="healthy"
 
-if [ "$healthy" = 1 ]; then
-  fails=0
+if [ "$server_ok" = 1 ]; then
+  fails_server=0
 else
-  fails=$((fails + 1))
-  # Pick the escalation rung. A browser-level fault (server reachable, but kiosk/paint/live/advance
-  # unhealthy) NEVER escalates past relaunch-kiosk — restart-container and reboot are reserved for the
-  # server being genuinely unreachable, sustained. ADR-121: the prod incident escalated a wedged-page
-  # fault straight through to reboot, and a reboot never fixed a paint fault — it only killed whatever
-  # else was running (an in-flight apt upgrade, six times in 50 minutes).
+  fails_server=$((fails_server + 1))
+fi
+if [ "$display_ok" = 1 ] || [ "$server_ok" = 0 ]; then
+  fails_display=0
+else
+  fails_display=$((fails_display + 1))
+fi
+
+if [ "$healthy" != 1 ]; then
+  # Pick the escalation rung. A browser/e-ink-level fault (server reachable, display surface(s) not)
+  # NEVER escalates past relaunch-kiosk — restart-container and reboot are reserved for the server
+  # being genuinely unreachable, sustained. ADR-121: the prod incident escalated a wedged-page fault
+  # straight through to reboot, and a reboot never fixed a paint fault — it only killed whatever else
+  # was running (an in-flight apt upgrade, six times in 50 minutes).
   want="none"
-  if [ "$fails" -ge "$FAIL_THRESHOLD" ]; then
-    if [ "$server_ok" = 0 ]; then
-      if [ "$fails" -ge "$ESCALATE_AFTER" ]; then
+  if [ "$server_ok" = 0 ]; then
+    if [ "$fails_server" -ge "$FAIL_THRESHOLD" ]; then
+      if [ "$fails_server" -ge "$ESCALATE_AFTER" ]; then
         want="reboot"
       else
         want="restart-container"
       fi
-    else
-      if [ "$fails" -ge "$ESCALATE_AFTER" ]; then
+    fi
+  elif [ "$has_kiosk" = 1 ]; then
+    # No kiosk surface (e-ink-only, has_kiosk=0): never select relaunch-kiosk or give-up — neither
+    # rung applies without a browser, and there is no fix wired here for an e-ink-side fault with the
+    # server reachable; `want` stays "none" and the unhealthy state is just reported (see message
+    # below) — fails_display still climbs so this is visible in the status JSON, but never escalates.
+    if [ "$fails_display" -ge "$FAIL_THRESHOLD" ]; then
+      if [ "$fails_display" -ge "$ESCALATE_AFTER" ]; then
         want="give-up"
       else
         want="relaunch-kiosk"
@@ -231,30 +304,42 @@ else
   fi
 
   if [ "$want" = "give-up" ]; then
-    # 3 relaunch-kiosk attempts (fails 3,4,5) didn't recover it — stop acting and just observe until
-    # the probes recover on their own or a human intervenes. Never reboot for this.
+    # 3 relaunch-kiosk attempts didn't recover it — stop acting and just observe until the probes
+    # recover on their own or a human intervenes. Never reboot for this.
     action="give-up"
-    message="giving up on kiosk relaunch; observe (fails=$fails, server reachable) — a reboot never fixed a paint fault"
+    message="giving up on kiosk relaunch; not escalating (fails=$fails_display, server reachable) — a reboot never fixed a paint fault"
   elif [ "$want" != "none" ]; then
+    fails_shown="$fails_server"
+    [ "$want" = "relaunch-kiosk" ] && fails_shown="$fails_display"
     if [ "$MODE" = "enforce" ]; then
       action="$want"
-      message="enforcing: $want (fails=$fails)"
+      message="enforcing: $want (fails=$fails_shown)"
       perform "$want"
     else
       action="observe:$want"
-      message="would $want (fails=$fails) — observe mode, no action taken"
+      message="would $want (fails=$fails_shown) — observe mode, no action taken"
     fi
   else
-    message="unhealthy (server_ok=$server_ok kiosk_ok=$kiosk_ok paint_ok=$paint_ok live_ok=$live_ok advance_ok=$advance_ok fails=$fails) — within hysteresis"
+    message="unhealthy (server_ok=$server_ok kiosk_ok=$kiosk_ok paint_ok=$paint_ok live_ok=$live_ok advance_ok=$advance_ok eink_live_ok=$eink_live_ok fails_server=$fails_server fails_display=$fails_display) — within hysteresis"
   fi
 fi
 
-printf '%s' "$fails" > "$STATE" 2>/dev/null || true
+printf '%s' "$fails_server" > "$STATE" 2>/dev/null || true
+printf '%s' "$fails_display" > "$STATE_DISPLAY" 2>/dev/null || true
 
 # --- status file for the Devices console --------------------------------------
+if [ "$has_kiosk" = 1 ] && [ "$has_eink" = 1 ]; then
+  display_kind="both"
+elif [ "$has_kiosk" = 1 ]; then
+  display_kind="kiosk"
+elif [ "$has_eink" = 1 ]; then
+  display_kind="eink"
+else
+  display_kind="none"
+fi
 tmp="$(mktemp "$OUT_DIR/.watchdog.XXXXXX" 2>/dev/null || echo "$STATUS.tmp")"
-printf '{"mode":"%s","checked_at":"%s","server_ok":%s,"kiosk_ok":%s,"paint_ok":%s,"live_ok":%s,"advance_ok":%s,"consecutive_fails":%s,"action":"%s","message":"%s"}\n' \
-  "$MODE" "$now_iso" "$server_ok" "$kiosk_ok" "$paint_ok" "$live_ok" "$advance_ok" "$fails" "$action" "$message" > "$tmp"
+printf '{"mode":"%s","checked_at":"%s","display":"%s","server_ok":%s,"kiosk_ok":%s,"paint_ok":%s,"live_ok":%s,"advance_ok":%s,"eink_live_ok":%s,"consecutive_fails_server":%s,"consecutive_fails_display":%s,"action":"%s","message":"%s"}\n' \
+  "$MODE" "$now_iso" "$display_kind" "$server_ok" "$kiosk_ok" "$paint_ok" "$live_ok" "$advance_ok" "$eink_live_ok" "$fails_server" "$fails_display" "$action" "$message" > "$tmp"
 mv -f "$tmp" "$STATUS" 2>/dev/null || true
 # mktemp makes 0600; the non-root container reads this for the Devices "Self-heal" tile — make it readable.
 chmod 0644 "$STATUS" 2>/dev/null || true

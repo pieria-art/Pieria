@@ -6,8 +6,8 @@ any palette, so they keep working if a colorimeter ever replaces `SPECTRA6_DITHE
 import numpy as np
 import pytest
 
-from tools import eink_color as ec
-from tools import eink_panel_model as pm
+from tools.eink import eink_color as ec
+from tools.eink import eink_panel_model as pm
 
 
 def test_hull_is_a_closed_polytope():

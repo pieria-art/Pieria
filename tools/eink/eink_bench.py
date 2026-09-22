@@ -32,14 +32,14 @@ step would silently re-order the corpus between `show N` and `record N` — labe
 features of image B, which is the one error a calibration harness must never make. Selection happens
 exactly once, in `corpus`, and every later command reads the frozen file.
 
-Everything else defers to tools.eink_calibrate (contact_sheet, predictors, FEATURES, the grid) so the
+Everything else defers to tools.eink.eink_calibrate (contact_sheet, predictors, FEATURES, the grid) so the
 render path stays byte-identical to the one `fit` was verified against. Run under sudo: config.py
 reads a root-owned .env, and the panel needs SPI.
 
-    sudo python3 -m tools.eink_bench corpus --n 20
-    sudo python3 -m tools.eink_bench show 1
-    sudo python3 -m tools.eink_bench record 1 C
-    python3 -m tools.eink_calibrate fit --labels bench-eink/labels.jsonl --holdout 5
+    sudo python3 -m tools.eink.eink_bench corpus --n 20
+    sudo python3 -m tools.eink.eink_bench show 1
+    sudo python3 -m tools.eink.eink_bench record 1 C
+    python3 -m tools.eink.eink_calibrate fit --labels bench-eink/labels.jsonl --holdout 5
 """
 from __future__ import annotations
 
@@ -52,7 +52,7 @@ from PIL import Image, ImageEnhance
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from tools import eink_calibrate as ec  # noqa: E402
+from tools.eink import eink_calibrate as ec  # noqa: E402
 
 OUT = Path("bench-eink")
 CORPUS = OUT / "corpus.json"
@@ -466,7 +466,7 @@ def cmd_status(args) -> None:
 # through the same crop path as `full` (minus the quantise), `full` writes current.json, and the page
 # follows it. The laptop is then just a browser and there is no cross-machine copy to fall out of sync.
 #
-#     sudo python3 -m tools.eink_bench reference          # regenerate, through the render's crop path
+#     sudo python3 -m tools.eink.eink_bench reference          # regenerate, through the render's crop path
 #     python3 -m http.server 8090 --directory bench-eink/reference
 #     # laptop browser -> http://<pi>:8090/   (press l to toggle follow)
 
@@ -806,7 +806,7 @@ def cmd_target(args) -> None:
     under different light stay comparable. See tools/eink_target.py for why this is per-photo rather
     than one measured camera offset.
     """
-    from tools import eink_target as et  # noqa: PLC0415
+    from tools.eink import eink_target as et  # noqa: PLC0415
     w, h = args.width, args.height
     if args.kind == "art":
         if args.n is None:

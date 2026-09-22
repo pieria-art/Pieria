@@ -1,5 +1,5 @@
 """
-tools/ink_span_scan.py — find masters that are mostly PAPER, so the crop re-derivation can be targeted
+tools/eink/ink_span_scan.py — find masters that are mostly PAPER, so the crop re-derivation can be targeted
 (maintainer tool — NOT part of the runtime image).
 
 WHY THIS EXISTS. ADR-087 changed what an `aspect_crops` box is for on a landscape panel: fill the
@@ -19,8 +19,8 @@ ask of every row and column: is this line blank paper? A line qualifies when it 
 and trailing runs of such lines are the margin; interior blank lines are not, because a work can have
 an empty sky in the middle of it.
 
-    python -m tools.ink_span_scan --library art-pack/_Library --out ink_span.json
-    python -m tools.ink_span_scan --library art-pack/_Library --collection audubon-birds-of-america
+    python -m tools.eink.ink_span_scan --library art-pack/_Library --out ink_span.json
+    python -m tools.eink.ink_span_scan --library art-pack/_Library --collection audubon-birds-of-america
 
 ⚠️ Scan the SAME bytes the renderer serves. `art-pack/_Library` masters are post-Tier-1 `crop_box`
 (the photographed-frame trim); `_catalog_thumbs` are pre-crop and live in a different coordinate

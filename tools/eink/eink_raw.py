@@ -43,8 +43,8 @@ WHY EACH DESIGN CHOICE EXISTS
 WHAT THIS IS NOT. A general-purpose raw converter. It exists to produce clean, camera-native-primary,
 scene-linear samples for a measurement rig — not a pleasing picture.
 
-    python -m tools.eink_raw info bench-eink/camera/nex6-samples-2026-09-01/DSC00238.ARW
-    python -m tools.eink_raw selftest
+    python -m tools.eink.eink_raw info bench-eink/camera/nex6-samples-2026-09-01/DSC00238.ARW
+    python -m tools.eink.eink_raw selftest
 """
 from __future__ import annotations
 

@@ -23,7 +23,7 @@ FIVE VARIANTS, per work, all shown in the MEASURED ink colours (`eink_panel_mode
 FRAMING is production's, reused whole from `eink_candidate` (`frame_work`, `resolve_work`,
 `variant_a_index`) — not re-implemented here.
 
-    python -m tools.eink_h121_compare --work 9 --work 52 \
+    python -m tools.eink.eink_h121_compare --work 9 --work 52 \
         --work Artwork/_Library/dutch-golden-age__the-night-watch__ff740524.jpg \
         --work Artwork/_Library/masterpieces__the-scream__867d895b.jpg \
         --work Artwork/_Library/american-art__american-gothic__bca4e65d.jpg \
@@ -41,11 +41,11 @@ import numpy as np
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 import epaper as ep  # noqa: E402
-from tools import eink_candidate as cand  # noqa: E402
-from tools import eink_color as ec  # noqa: E402
-from tools import eink_gamut as eg  # noqa: E402
-from tools import eink_h121 as h121  # noqa: E402
-from tools import eink_panel_model as pm  # noqa: E402
+from tools.eink import eink_candidate as cand  # noqa: E402
+from tools.eink import eink_color as ec  # noqa: E402
+from tools.eink import eink_gamut as eg  # noqa: E402
+from tools.eink import eink_h121 as h121  # noqa: E402
+from tools.eink import eink_panel_model as pm  # noqa: E402
 
 DEFAULT_W = cand.DEFAULT_W
 DEFAULT_H = cand.DEFAULT_H

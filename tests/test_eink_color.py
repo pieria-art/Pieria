@@ -8,7 +8,7 @@ empty repository and still mean something.
 import numpy as np
 import pytest
 
-from tools.eink_color import (
+from tools.eink.eink_color import (
     D65,
     ciede2000,
     lab_to_lch,

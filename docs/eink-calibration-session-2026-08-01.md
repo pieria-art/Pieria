@@ -24,7 +24,7 @@ under a bright lamp fits a gamma that is too low and washes out in a real room.
 
 ## Method
 
-`tools/eink_bench.py` — corpus frozen once, then `show N` / `record N LETTER` per image, driven
+`tools/eink/eink_bench.py` — corpus frozen once, then `show N` / `record N LETTER` per image, driven
 remotely over SSH while the judge stood at the panel calling letters. Contact sheet = 3x2 cells,
 production-fidelity dither, standard grid **γ1.2 / 1.5 / 1.8 / 2.1 / 2.4 / 2.7**.
 

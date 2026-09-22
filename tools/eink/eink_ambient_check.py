@@ -38,10 +38,10 @@ refuses to call it GO until you confirm the cap was off (`--cap-was-off`).
 → the per-block ratio B/A over the panel, and the worst deviation from the median ratio. That
 deviation IS the flat-field shape drift over the session, in the same % as the gate.
 
-    python -m tools.eink_ambient_check check --lit DSC00268.ARW --dark DSC00271.ARW
-    python -m tools.eink_ambient_check check --lit flat.ARW --dark amb1.ARW amb2.ARW amb3.ARW
-    python -m tools.eink_ambient_check compare --a flat_start.ARW --b flat_end.ARW
-    python -m tools.eink_ambient_check selftest
+    python -m tools.eink.eink_ambient_check check --lit DSC00268.ARW --dark DSC00271.ARW
+    python -m tools.eink.eink_ambient_check check --lit flat.ARW --dark amb1.ARW amb2.ARW amb3.ARW
+    python -m tools.eink.eink_ambient_check compare --a flat_start.ARW --b flat_end.ARW
+    python -m tools.eink.eink_ambient_check selftest
 """
 from __future__ import annotations
 
@@ -156,7 +156,7 @@ def shape_drift(blocks_a: np.ndarray, blocks_b: np.ndarray) -> tuple[np.ndarray,
 # --- file-backed helpers -------------------------------------------------------------------------
 
 def _load(path):
-    from tools import eink_raw
+    from tools.eink import eink_raw
     return eink_raw.decode(path)
 
 
@@ -171,7 +171,7 @@ def _locate_panel(frame, roi=None) -> tuple:
         return roi
     from PIL import Image
 
-    from tools.eink_measure import panel_bbox
+    from tools.eink.eink_measure import panel_bbox
     rgb = frame.rgb
     ref = np.percentile(rgb.reshape(-1, 3), 99.5, axis=0)
     img8 = np.clip(rgb / np.maximum(ref, 1e-9) * 255.0, 0, 255).astype(np.uint8)

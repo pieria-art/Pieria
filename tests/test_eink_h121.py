@@ -1,5 +1,5 @@
 """
-tests/test_eink_h121.py — H-121 (ADR-120's registered next hypothesis), tools/eink_h121.py.
+tests/test_eink_h121.py — H-121 (ADR-120's registered next hypothesis), tools/eink/eink_h121.py.
 
 H-121's entire claim is that a bounded-residual or clustered-mask realisation keeps the exact LOCAL
 MEAN of `eink_barycentric.decompose_clipped`'s weights while losing the per-pixel IGN grain the panel
@@ -9,11 +9,11 @@ built this file) so a threshold is a margin on an observed value, not a guess.
 import numpy as np
 import pytest
 
-from tools import eink_barycentric as eba
-from tools import eink_color as ec
-from tools import eink_gamut as eg
-from tools import eink_h121 as h121
-from tools import eink_panel_model as pm
+from tools.eink import eink_barycentric as eba
+from tools.eink import eink_color as ec
+from tools.eink import eink_gamut as eg
+from tools.eink import eink_h121 as h121
+from tools.eink import eink_panel_model as pm
 
 # Captured at COLLECTION time, before any test file's fixture has run — several sibling test files
 # (test_eink_optimise.py, test_eink_scielab.py, test_eink_panel_model.py) monkeypatch
@@ -180,7 +180,7 @@ def test_dither_clustered_matches_dither_with_the_same_mask():
     a different noise field — assert that identity directly rather than trusting the docstring."""
     img = _gradient_image(32, 48)
     tile = 8
-    from tools.eink_h121 import _tile_mask
+    from tools.eink.eink_h121 import _tile_mask
     noise = _tile_mask(h121.clustered_mask(tile), img.shape[0], img.shape[1]).reshape(-1)
     want = eba.dither(img, noise=noise)
     got = h121.dither_clustered(img, tile=tile)

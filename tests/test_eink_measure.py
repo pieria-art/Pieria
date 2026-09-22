@@ -17,8 +17,8 @@ np = pytest.importorskip("numpy", reason="measurement tooling is maintainer-only
 from PIL import Image  # noqa: E402
 
 import epaper as ep  # noqa: E402
-from tools import eink_measure as em  # noqa: E402
-from tools import eink_target as et  # noqa: E402
+from tools.eink import eink_measure as em  # noqa: E402
+from tools.eink import eink_target as et  # noqa: E402
 
 W, H = 800, 600
 
@@ -88,7 +88,7 @@ def test_panel_box_survives_perspective_without_splitting():
 
 def test_read_panel_accepts_already_rectified_float_array():
     """The eink_raw hook: a caller with already-rectified scene-linear float64 data (1.0 == sensor
-    saturation, `tools.eink_raw.RawFrame.rgb`'s own convention) must be able to skip rectify()
+    saturation, `tools.eink.eink_raw.RawFrame.rgb`'s own convention) must be able to skip rectify()
     entirely and still get sane normalise/measure output — this is the seam a raw-camera capture
     path plugs into, and it must work without ever having gone through an 8-bit PIL Image.
     """
@@ -121,7 +121,7 @@ def test_float_path_preserves_precision_the_8bit_path_collapses():
     """The whole point of closing GAP 2: a uint8 buffer cannot represent a difference smaller than
     one level, so two genuinely distinct patches collapse to the identical number once
     `apply_correction` rounds them. Build exactly that pair — two halves of a content quadrant
-    0.2/255 apart in `tools.eink_raw.RawFrame.rgb`'s own convention — and show the float path (this
+    0.2/255 apart in `tools.eink.eink_raw.RawFrame.rgb`'s own convention — and show the float path (this
     change) keeps them apart while the pre-existing 8-bit path (still exercised here, unchanged)
     genuinely does collapse them. A test that only shows "it runs" would not prove retained
     precision; this one demonstrates the specific number that would otherwise be lost.
@@ -319,12 +319,12 @@ def test_raw_cli_cleans_the_flat_field_with_its_own_trap_reading(monkeypatch, tm
 
     fake_raw = types.SimpleNamespace(decode=lambda p, dark_frame=None: _Frame())
     # BOTH of these are needed, and patching only sys.modules passes in isolation while failing in
-    # the full suite: `from tools import eink_raw` reads the ATTRIBUTE off the already-imported
-    # `tools` package, and only falls back to sys.modules when the submodule has not been imported
+    # the full suite: `from tools.eink import eink_raw` reads the ATTRIBUTE off the already-imported
+    # `tools.eink` package, and only falls back to sys.modules when the submodule has not been imported
     # yet. tests/test_eink_raw.py imports it, so in a full run the attribute wins.
-    import tools as _tools_pkg
-    monkeypatch.setitem(sys.modules, "tools.eink_raw", fake_raw)
-    monkeypatch.setattr(_tools_pkg, "eink_raw", fake_raw, raising=False)
+    import tools.eink as _tools_eink_pkg
+    monkeypatch.setitem(sys.modules, "tools.eink.eink_raw", fake_raw)
+    monkeypatch.setattr(_tools_eink_pkg, "eink_raw", fake_raw, raising=False)
     monkeypatch.setattr(em, "build_flat_field", spy_build)
     monkeypatch.setattr(em, "rectify_float", lambda a, w, h, roi=None: np.asarray(a, dtype=np.float64))
     monkeypatch.setattr(em, "read_panel", lambda *a, **k: {"corrected": None})
@@ -428,10 +428,10 @@ def test_raw_cli_decodes_a_raw_flat_with_its_own_dark_and_trap(monkeypatch, tmp_
         seen["flat_level"] = float(np.asarray(flat_photo)[100, 100, 0])
         return np.ones((h, w, 3), dtype=np.float64)
 
-    import tools as _tools_pkg
+    import tools.eink as _tools_eink_pkg
     fake_raw = types.SimpleNamespace(decode=fake_decode)
-    monkeypatch.setitem(sys.modules, "tools.eink_raw", fake_raw)
-    monkeypatch.setattr(_tools_pkg, "eink_raw", fake_raw, raising=False)
+    monkeypatch.setitem(sys.modules, "tools.eink.eink_raw", fake_raw)
+    monkeypatch.setattr(_tools_eink_pkg, "eink_raw", fake_raw, raising=False)
     monkeypatch.setattr(em, "build_flat_field", spy_build)
     monkeypatch.setattr(em, "rectify_float", lambda a, w, h, roi=None: np.asarray(a, dtype=np.float64))
     monkeypatch.setattr(em, "read_panel", lambda *a, **k: {"corrected": None})

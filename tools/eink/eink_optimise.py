@@ -37,9 +37,9 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
 import epaper as ep  # noqa: E402
-from tools import eink_color as ec  # noqa: E402
-from tools import eink_gamut as eg  # noqa: E402
-from tools import eink_panel_model as pm  # noqa: E402
+from tools.eink import eink_color as ec  # noqa: E402
+from tools.eink import eink_gamut as eg  # noqa: E402
+from tools.eink import eink_panel_model as pm  # noqa: E402
 
 LUT_N = 33
 PATCH = 64          # flat-patch size; the realised mean is converged by here (8x8 differs by 0.4%)

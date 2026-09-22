@@ -6,10 +6,10 @@ Renders each target on the Pi, waits for the panel, photographs it, reads it bac
 record per condition to bench-eink/panel_profile.jsonl — plus a rectified, corrected JPEG per capture
 so the panel's actual appearance can be LOOKED AT later, not only read as numbers.
 
-    python -m tools.eink_vault run --flat bench-eink/reference/flat.png
-    python -m tools.eink_vault run --flat ... --only inkmix,primaries
-    python -m tools.eink_vault dwell --flat ... --target tonefine
-    python -m tools.eink_vault ghost --flat ...
+    python -m tools.eink.eink_vault run --flat bench-eink/reference/flat.png
+    python -m tools.eink.eink_vault run --flat ... --only inkmix,primaries
+    python -m tools.eink.eink_vault dwell --flat ... --target tonefine
+    python -m tools.eink.eink_vault ghost --flat ...
 
 ⚠️ PACING, NOT A WEAR BUDGET. This tool used to be told that "colour e-ink has finite refresh
 cycles". That was unsourced: E Ink publishes NO lifetime, endurance, MTBF or update-count rating for
@@ -35,10 +35,10 @@ from PIL import Image, ImageEnhance
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from tools import eink_calibrate as ec  # noqa: E402
-from tools import eink_measure as em  # noqa: E402
-from tools import eink_readout as er  # noqa: E402
-from tools import eink_target as et  # noqa: E402
+from tools.eink import eink_calibrate as ec  # noqa: E402
+from tools.eink import eink_measure as em  # noqa: E402
+from tools.eink import eink_readout as er  # noqa: E402
+from tools.eink import eink_target as et  # noqa: E402
 
 OUT = Path("bench-eink")
 PROFILE = OUT / "panel_profile.jsonl"
@@ -219,7 +219,7 @@ def _ssh(cmd: str, args, timeout: int = 300) -> tuple:
 
 
 def _render(row, args) -> str:
-    cmd = (f"cd {args.repo} && sudo python3 -m tools.eink_bench target {row['kind']} "
+    cmd = (f"cd {args.repo} && sudo python3 -m tools.eink.eink_bench target {row['kind']} "
            + " ".join(row["flags"]))
     rc, out = _ssh(cmd, args)
     if rc != 0:
@@ -230,7 +230,7 @@ def _render(row, args) -> str:
 def _capture(dest: Path, args) -> None:
     dest.parent.mkdir(parents=True, exist_ok=True)
     p = subprocess.run(
-        [sys.executable, "-m", "tools.eink_measure", "capture", "--device", args.device,
+        [sys.executable, "-m", "tools.eink.eink_measure", "capture", "--device", args.device,
          "--size", "1920x1080", "--warmup", "14", "--settle", "--settle-delta", "3.0",
          "--settle-stable", "3", "--settle-tries", "30", "--out", str(dest)],
         check=False, capture_output=True, timeout=600, text=True)

@@ -21,6 +21,7 @@ from __future__ import annotations
 import argparse
 import asyncio
 import json
+import time
 from collections import Counter
 from dataclasses import dataclass
 from io import BytesIO
@@ -39,6 +40,19 @@ CATALOG_DIR = REPO_ROOT / "static" / "catalog"
 WIKIMEDIA_HOSTS = ("commons.wikimedia.org", "upload.wikimedia.org")
 MAX_CONCURRENCY = 4       # for non-Wikimedia hosts; Wikimedia is serialized via _wm_throttle
 POLITENESS_DELAY = 0.3    # seconds between non-Wikimedia requests
+
+# A single URL check must never be allowed to run unbounded (Cloudflare managed-challenge hosts,
+# notably artic.edu, can stall a TCP connection open rather than answering or erroring, and _get's
+# own internal retry/backoff loop can otherwise stack up to several minutes on one URL). This is a
+# hard ceiling around the *whole* check_url call (all its internal retries included).
+PER_URL_TIMEOUT = 60.0
+
+# Overall wall-clock ceiling for the whole run, comfortably inside the CI job's 30-minute timeout
+# (2026-08-31 postmortem: the job was silently hitting that timeout every week with zero log output
+# in between, because a handful of stalled hosts could consume the entire 30 minutes one by one).
+# Whatever hasn't finished when the budget expires is cancelled and reported as unreachable rather
+# than left to hang.
+DEFAULT_BUDGET_SECONDS = 20 * 60.0
 
 
 @dataclass
@@ -227,7 +241,9 @@ async def check_url(client, uc: UrlCheck) -> CheckResult:
         return CheckResult(uc, False, f"error: {e.__class__.__name__}: {e}")
 
 
-async def run_checks(checks: list[UrlCheck], *, client=None) -> list[CheckResult]:
+async def run_checks(checks: list[UrlCheck], *, client=None,
+                     budget_seconds: float | None = DEFAULT_BUDGET_SECONDS,
+                     progress: bool = True) -> list[CheckResult]:
     if not checks:
         return []
     sem = asyncio.Semaphore(MAX_CONCURRENCY)
@@ -239,15 +255,47 @@ async def run_checks(checks: list[UrlCheck], *, client=None) -> list[CheckResult
         async with sem:
             if uc.url and _is_wikimedia(uc.url):
                 await _wm_throttle()          # serialize Wikimedia to its polite interval
-            res = await check_url(client, uc)
+            try:
+                res = await asyncio.wait_for(check_url(client, uc), timeout=PER_URL_TIMEOUT)
+            except TimeoutError:
+                res = CheckResult(uc, False,
+                                  f"error: TimeoutError: exceeded {PER_URL_TIMEOUT:.0f}s per-URL budget")
             if uc.url and not _is_wikimedia(uc.url):
                 await asyncio.sleep(POLITENESS_DELAY)
             return res
 
+    # group by host so per-host bursts cluster (Wikimedia ends up serialized regardless)
+    ordered = sorted(checks, key=lambda c: c.url)
+    total = len(ordered)
+    task_uc = {asyncio.create_task(one(uc)): uc for uc in ordered}
+    pending = set(task_uc)
+    results: list[CheckResult] = []
+    start = time.monotonic()
     try:
-        # group by host so per-host bursts cluster (Wikimedia ends up serialized regardless)
-        ordered = sorted(checks, key=lambda c: c.url)
-        return list(await asyncio.gather(*(one(uc) for uc in ordered)))
+        while pending:
+            remaining = None if budget_seconds is None else max(0.0, budget_seconds - (time.monotonic() - start))
+            if remaining == 0.0:
+                break
+            done, pending = await asyncio.wait(pending, timeout=remaining, return_when=asyncio.FIRST_COMPLETED)
+            if not done:
+                break   # timed out with nothing finishing this round -> budget is exhausted
+            for t in done:
+                res = t.result()
+                results.append(res)
+                if progress:
+                    status = "ok" if res.ok else "FAIL"
+                    print(f"  [{len(results)}/{total}] {status} {res.uc.origin}/{res.uc.collection} "
+                         f'{res.uc.kind} "{res.uc.title}" — {res.detail}', flush=True)
+        if pending:
+            print(f"\nWALL-CLOCK BUDGET ({budget_seconds:.0f}s) exceeded with {len(pending)} check(s) "
+                 f"still in flight — marking them unreachable and moving on.", flush=True)
+            for t in pending:
+                t.cancel()
+            await asyncio.gather(*pending, return_exceptions=True)
+            for t in pending:
+                results.append(CheckResult(task_uc[t], False,
+                                           "error: TimeoutError: overall wall-clock budget exceeded"))
+        return results
     finally:
         if own:
             await client.aclose()
@@ -317,17 +365,25 @@ def main(argv=None) -> int:
     ap.add_argument("--json", action="store_true", help="emit machine-readable JSON results")
     ap.add_argument("--strict", action="store_true",
                     help="fail on ANY failure incl. transient blips (zero tolerance)")
+    ap.add_argument("--budget", type=float, default=DEFAULT_BUDGET_SECONDS,
+                    help=f"overall wall-clock budget in seconds (default {DEFAULT_BUDGET_SECONDS:.0f}); "
+                        "unfinished checks are reported unreachable, not left to hang")
+    ap.add_argument("--quiet", action="store_true", help="suppress per-URL progress lines")
     args = ap.parse_args(argv)
 
     scopes = ({"seed", "catalog", "subscriptions"} if args.scope == "all"
               else {s.strip() for s in args.scope.split(",") if s.strip()})
+    print(f"verify_sources: scope={sorted(scopes)} budget={args.budget:.0f}s", flush=True)
 
     checks: list[UrlCheck] = []
     if "seed" in scopes:
+        print("collecting seed URLs...", flush=True)
         checks += collect_seed()
     if "catalog" in scopes:
+        print("collecting catalog URLs...", flush=True)
         checks += collect_catalog()
     if "subscriptions" in scopes:
+        print("collecting subscription URLs (reading local DB)...", flush=True)
         from database import SessionLocal
         db = SessionLocal()
         try:
@@ -338,7 +394,10 @@ def main(argv=None) -> int:
     if args.limit:
         checks = checks[:args.limit]
 
-    results = asyncio.run(run_checks(checks))
+    print(f"collected {len(checks)} URL(s) to check", flush=True)
+
+    results = asyncio.run(run_checks(checks, budget_seconds=args.budget, progress=not args.quiet))
+    print(f"\nfinished checking — {len(results)}/{len(checks)} URL(s) resolved before the budget ran out", flush=True)
     text, code = report(results, strict=args.strict)
 
     if args.json:

@@ -1,4 +1,4 @@
-"""tools/eink_raw.py — pure-array logic checked against known-constructed data, plus a handful of
+"""tools/eink/eink_raw.py — pure-array logic checked against known-constructed data, plus a handful of
 checks against real Sony NEX-6 `.ARW` samples where those samples happen to be on disk.
 
 The pure-array tests must pass with NO sample files present: bin2x2/measure_black/find_clipped never
@@ -14,7 +14,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 np = pytest.importorskip("numpy", reason="raw ingest tooling is maintainer-only, numpy not shipped")
 pytest.importorskip("rawpy", reason="raw ingest tooling is maintainer-only, rawpy not shipped")
 
-from tools import eink_raw as er  # noqa: E402
+from tools.eink import eink_raw as er  # noqa: E402
 
 PATTERN = np.array([[0, 1], [3, 2]])   # this sensor's RGBG phase: (0,0)=R (0,1)=G (1,0)=G2 (1,1)=B
 

@@ -26,7 +26,7 @@ WHAT THE FIT MEANS. The 3x3 maps lamp-lit camera RGB to the chart's published D5
 XYZ comes out "as if lit by D50" to the extent the chart's pigments and the panel's electrophoretic inks
 share metamerism under this lamp — `eink_camera`'s residual caveat, in full, applies.
 
-    python -m tools.eink_shoot primaries bench-eink/analysis/shoot_2026-09-19.json
+    python -m tools.eink.eink_shoot primaries bench-eink/analysis/shoot_2026-09-19.json
 """
 from __future__ import annotations
 
@@ -41,12 +41,12 @@ import numpy as np
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 import epaper as ep  # noqa: E402
-from tools import eink_camera as ecam  # noqa: E402
-from tools import eink_chart as echart  # noqa: E402
-from tools import eink_color as ec  # noqa: E402
-from tools import eink_measure as em  # noqa: E402
-from tools import eink_raw  # noqa: E402
-from tools import eink_target as et  # noqa: E402
+from tools.eink import eink_camera as ecam  # noqa: E402
+from tools.eink import eink_chart as echart  # noqa: E402
+from tools.eink import eink_color as ec  # noqa: E402
+from tools.eink import eink_measure as em  # noqa: E402
+from tools.eink import eink_raw  # noqa: E402
+from tools.eink import eink_target as et  # noqa: E402
 
 INK_NAMES = et.INK_NAMES
 

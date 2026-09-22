@@ -7,7 +7,7 @@
 > 🆕 **A second corpus exists — 2026-09-19, NEX-6 raws with a ColorChecker and a light trap**
 > (`bench-eink/vault/raw/2026-09-19/`, 47 `.ARW`, gitignored). Unlike the 08-29 corpus below it IS
 > absolute colorimetry: the six inks in XYZ/Lab, ADR-116, `bench-eink/analysis/PRIMARIES_2026-09-19.md`,
-> manifest `shoot_2026-09-19.json`, reproduce with `python -m tools.eink_shoot primaries …`.
+> manifest `shoot_2026-09-19.json`, reproduce with `python -m tools.eink.eink_shoot primaries …`.
 > The "out of reach" column below is out of reach for THIS (08-29) corpus only.
 
 ## What this is, and what it is not
@@ -30,7 +30,7 @@ therefore markedly more robust than mean-colour readouts and are not bounded by 
 
 ## How to use it
 
-    python -m tools.eink_vault rederive --flat bench-eink/reference/flat.png
+    python -m tools.eink.eink_vault rederive --flat bench-eink/reference/flat.png
 
 **The raw captures are the asset; every number is re-derivable from them.** The rig — this camera
 lock, this flat field, this lighting, this geometry — cannot be recreated once it comes down. A

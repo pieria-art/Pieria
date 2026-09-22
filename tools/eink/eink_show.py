@@ -5,7 +5,7 @@ tools/eink_show.py — render ANY library image to the panel at a given recipe
 `eink_bench full N` can only reach the frozen 60-work bench corpus. This reaches anything in the
 library, which is what you need when a specific painting misbehaves and it is not one of the sixty.
 
-    sudo python3 -m tools.eink_show Artwork/_Library/dutch-golden-age__the-night-watch__*.jpg \
+    sudo python3 -m tools.eink.eink_show Artwork/_Library/dutch-golden-age__the-night-watch__*.jpg \
         --gamma 1.0 --white-point 0.88
 
 The lever chain is IDENTICAL to eink_bench.cmd_full — white-point, chroma, saturation, contrast,
@@ -32,9 +32,9 @@ from PIL import Image, ImageEnhance
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from tools import eink_bench as eb  # noqa: E402
-from tools import eink_calibrate as ec  # noqa: E402
-from tools import eink_target as et  # noqa: E402
+from tools.eink import eink_bench as eb  # noqa: E402
+from tools.eink import eink_calibrate as ec  # noqa: E402
+from tools.eink import eink_target as et  # noqa: E402
 
 
 def main() -> None:

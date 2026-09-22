@@ -14,7 +14,7 @@ import math
 from functools import lru_cache
 from pathlib import Path
 
-from PIL import Image, ImageEnhance, ImageOps
+from PIL import Image, ImageEnhance, ImageMath, ImageOps
 
 # --- Palettes -----------------------------------------------------------------
 # Nominal sRGB anchors per device family. Per-panel colour tuning is deferred
@@ -73,6 +73,18 @@ SPECTRA6_OUTPUT_PALETTE = [
 # The physics-first model re-decides this. CHANGING EITHER VALUE REQUIRES AN ADR.
 SPECTRA6_WHITE_POINT = 0.75
 SPECTRA6_GAMMA = 1.0
+
+# --- Toe curve candidate (bench-validated 2026-09-22, won two blind panel sessions) ----------------
+# INERT — gated by SPECTRA6_TOE_ENABLED. Production still ships the flat white-point/gamma LUT above
+# until an ADR flips this. LO=40 and KNEE=54 come from `usable_window.digital_low` in
+# `bench-eink/analysis/B1_transfer_function.json` — the panel's MEASURED usable floor, not a chosen
+# aesthetic constant. Above KNEE it is exactly the shipping linear scale (`min(255, y*WHITE_POINT)`,
+# same WHITE_POINT as above); below KNEE it lifts shadows on a gamma-2.2 toe instead of the flat LUT's
+# floor differently below KNEE.
+SPECTRA6_TOE_ENABLED = False
+SPECTRA6_TOE_LO = 40.0
+SPECTRA6_TOE_KNEE = 54.0
+SPECTRA6_TOE_GAMMA = 2.2
 
 # Requested extension -> (PIL format, media type).
 VALID_FORMATS = {
@@ -245,6 +257,49 @@ def _tone_lut(white_point: float, gamma: float) -> tuple:
     return tuple(out)
 
 
+def _spectra6_toe(img: Image.Image) -> Image.Image:
+    """Luminance-scalar toe curve — see SPECTRA6_TOE_ENABLED above for the constants and status.
+
+    Per pixel: `y = 0.2126R + 0.7152G + 0.0722B` (Rec.709 luma). Above KNEE, `target = min(255,
+    y*WHITE_POINT)` — shipping's existing linear scale. Below KNEE, `target = LO * (y/KNEE)**GAMMA` —
+    a gamma-2.2 curve down to 0, joining the linear branch at y=KNEE (both give ~LO there).
+
+    ⚠️ ALL THREE CHANNELS ARE SCALED BY THE SINGLE SCALAR `target / y` — this is NOT applied
+    per-channel via `.point()` like `_tone_lut`. `_tone_lut` gets away with `.point()` only because
+    white-point-scale + gamma=1.0 is a pure linear map, which preserves the R:G:B ratio by
+    construction. This curve has a KNEE (a join of two different curves), so it is not linear, and a
+    per-channel LUT would push each channel toward the knee at a different point in its own range —
+    measured +0.20 to +0.27 saturation and up to 9.4 degrees hue rotation in the shadows. Deriving one
+    scalar from luminance and applying it uniformly preserves the ratio exactly, by definition.
+
+    PIL-only, no numpy (the Pi render has none) — `ImageMath` does the per-pixel arithmetic at C
+    speed instead of a Python loop over pixels.
+
+    Guard: at y==0 the toe formula already yields target==0 (0**GAMMA == 0), so `target / max(y,
+    eps)` never divides a nonzero numerator by zero — the `max(y, eps)` only keeps the division
+    defined, it never has to rescue a runaway ratio.
+    """
+    r, g, b = (band.convert("F") for band in img.split())
+    y = ImageMath.eval("0.2126*r + 0.7152*g + 0.0722*b", r=r, g=g, b=b)
+    linear = ImageMath.eval("min(y * wp, 255.0)", y=y, wp=SPECTRA6_WHITE_POINT)
+    toe = ImageMath.eval(
+        "lo * (y / knee) ** gamma",
+        y=y, lo=SPECTRA6_TOE_LO, knee=SPECTRA6_TOE_KNEE, gamma=SPECTRA6_TOE_GAMMA,
+    )
+    above_knee = ImageMath.eval("float(y >= knee)", y=y, knee=SPECTRA6_TOE_KNEE)
+    target = ImageMath.eval(
+        "above*linear + (1.0-above)*toe", above=above_knee, linear=linear, toe=toe
+    )
+    scale = ImageMath.eval("target / max(y, eps)", target=target, y=y, eps=1e-6)
+
+    def _scaled(band):
+        return ImageMath.eval(
+            "max(min(band * scale + 0.5, 255.0), 0.0)", band=band, scale=scale
+        ).convert("L")
+
+    return Image.merge("RGB", (_scaled(r), _scaled(g), _scaled(b)))
+
+
 # --- Chroma correction: a HUE-CONDITIONED curve (bench-derived 2026-08-28, ADR-088) ---------------
 # The dither's colour failure is gamut compression toward the hull: LOW-chroma tones acquire false
 # colour because they must be rebuilt from vivid primaries, while genuinely saturated colour is
@@ -389,7 +444,10 @@ def render_for_epaper(
         # `enhance` gates the tone correction (default on). See SPECTRA6_WHITE_POINT above for why the
         # constant replaced the per-image `_adaptive_gamma`, and why 0.75 is interim.
         if enhance:
-            fitted = fitted.point(list(_tone_lut(SPECTRA6_WHITE_POINT, SPECTRA6_GAMMA)) * 3)
+            if SPECTRA6_TOE_ENABLED:
+                fitted = _spectra6_toe(fitted)
+            else:
+                fitted = fitted.point(list(_tone_lut(SPECTRA6_WHITE_POINT, SPECTRA6_GAMMA)) * 3)
         quantized = fitted.quantize(
             palette=_cached_palette_image("_spectra6_dither", SPECTRA6_DITHER_PALETTE),
             dither=Image.Dither.FLOYDSTEINBERG,

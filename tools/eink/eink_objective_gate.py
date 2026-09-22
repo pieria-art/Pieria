@@ -51,8 +51,8 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
 import epaper as ep  # noqa: E402
-from tools import eink_bench as eb  # noqa: E402
-from tools import eink_scurve as sc  # noqa: E402
+from tools.eink import eink_bench as eb  # noqa: E402
+from tools.eink import eink_scurve as sc  # noqa: E402
 
 LEVELS = [0.64, 0.76, 0.88]
 PANEL = (1600, 1200)

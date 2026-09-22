@@ -54,7 +54,7 @@ number, not improve on what it means.
   inks. Only a spectrophotometer measuring the panel directly removes this source of error; downstream
   code that quotes this residual as its accuracy budget is quoting the wrong thing.
 
-    python -m tools.eink_camera selftest
+    python -m tools.eink.eink_camera selftest
 """
 from __future__ import annotations
 
@@ -66,7 +66,7 @@ import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from tools.eink_color import ciede2000, lab_to_xyz, xyz_to_lab  # noqa: E402
+from tools.eink.eink_color import ciede2000, lab_to_xyz, xyz_to_lab  # noqa: E402
 
 #: D50, 2° observer, XYZ normalised to Y=100 — the reference illuminant the ColorChecker tables below
 #: are defined against. NOT the D65 used elsewhere in `eink_color` for sRGB/panel work: a ColorChecker
@@ -121,7 +121,7 @@ def solve_camera_matrix(patch_rgb, reference_lab: np.ndarray = CC24_LAB_AFTER_20
                          ) -> tuple[np.ndarray, dict]:
     """Solve the 3x3 camera-RGB -> XYZ matrix that best explains a photographed ColorChecker.
 
-    `patch_rgb` is (24, 3) float64 LINEAR camera RGB (see `tools.eink_raw.RawFrame.rgb`'s convention —
+    `patch_rgb` is (24, 3) float64 LINEAR camera RGB (see `tools.eink.eink_raw.RawFrame.rgb`'s convention —
     scene-linear, NOT gamma-encoded), one row per patch, in `reference_lab`'s row order (`CC24_NAMES`).
 
     A PLAIN LINEAR 3x3 least-squares fit, not a root-polynomial or higher-order model — see the module

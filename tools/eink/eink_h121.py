@@ -36,8 +36,8 @@ import numpy as np
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
-from tools import eink_barycentric as eba  # noqa: E402
-from tools import eink_color as ec  # noqa: E402
+from tools.eink import eink_barycentric as eba  # noqa: E402
+from tools.eink import eink_color as ec  # noqa: E402
 
 # --- Arm C: weight-residual diffusion ---------------------------------------------------------------
 
@@ -175,7 +175,7 @@ def spectral_low_freq_share(idx: np.ndarray, pitch_mm: float = 0.1690, view_mm: 
     similar RAW per-pixel toggle rate. This is the statistic that actually separates the two regimes.
     """
     idx = np.asarray(idx)
-    from tools import eink_panel_model as pm
+    from tools.eink import eink_panel_model as pm
     Y = pm.ink_xyz()[:, 1]
     sig = Y[idx].astype(np.float64)
     sig = sig - sig.mean()

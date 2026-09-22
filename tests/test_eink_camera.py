@@ -1,4 +1,4 @@
-"""tools/eink_camera.py — proving the solver recovers a known camera, and that the hardcoded
+"""tools/eink/eink_camera.py — proving the solver recovers a known camera, and that the hardcoded
 ColorChecker reference tables are not hiding a transcription typo.
 
 Everything here runs on synthetic data: a real photographed chart is a bench artefact this repo does
@@ -14,8 +14,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 np = pytest.importorskip("numpy", reason="camera colorimetry tooling is maintainer-only, numpy not shipped")
 
-from tools import eink_camera as ec  # noqa: E402
-from tools.eink_color import ciede2000, lab_to_xyz, xyz_to_lab  # noqa: E402
+from tools.eink import eink_camera as ec  # noqa: E402
+from tools.eink.eink_color import ciede2000, lab_to_xyz, xyz_to_lab  # noqa: E402
 
 TABLES = {"after_2014": ec.CC24_LAB_AFTER_2014, "before_2014": ec.CC24_LAB_BEFORE_2014}
 
@@ -195,7 +195,7 @@ def test_cmd_selftest_passes(capsys):
 def test_solve_camera_affine_recovers_a_known_pedestal_and_reads_zero_without_one():
     """The affine solver must recover an additive pedestal exactly on a synthetic chart, and — the
     half that can fail — report ~0 on a chart that has none, so a spurious pedestal is detectable."""
-    from tools.eink_camera import solve_camera_affine
+    from tools.eink.eink_camera import solve_camera_affine
     rgb = ec._synthesise_camera_rgb(ec.CC24_LAB_AFTER_2014, ec._TRUE_CAMERA_TO_XYZ)
     pedestal = np.array([0.8, 1.9, 1.1])
     M, p, report = solve_camera_affine(rgb + pedestal)

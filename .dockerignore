@@ -26,6 +26,11 @@ art-pack-*/
 # never tools/. Keep it out of the image (dead weight + smaller attack surface).
 tools/
 
+# E-ink measurement research corpus + docs — not imported at runtime, not needed on the appliance.
+# bench-eink/ alone was ~319MB baked into the shipped image before this line existed.
+bench-eink/
+docs/
+
 # Dev tooling, tests, coverage
 tests/
 requirements-dev.txt

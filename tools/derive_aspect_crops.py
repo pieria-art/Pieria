@@ -57,7 +57,7 @@ from pathlib import Path
 from PIL import Image
 
 # `epaper.py` lives at the repo root; tools/ scripts import it directly (house convention, see
-# tools/eink_firstlight.py). The sys.path insert makes this robust even off `python -m` from root.
+# tools/eink/eink_firstlight.py). The sys.path insert makes this robust even off `python -m` from root.
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from epaper import ASPECT_CROP_KEYS, normalize_crop_box  # noqa: E402
 from tools.tag_resolution import index_masters  # noqa: E402

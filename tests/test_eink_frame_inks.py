@@ -1,4 +1,4 @@
-"""tools/eink_frame_inks.py — the art-frame ink-readout instrument, checked on synthetic data.
+"""tools/eink/eink_frame_inks.py — the art-frame ink-readout instrument, checked on synthetic data.
 
 House style (matches every other e-ink test): synthetic fixtures only. A real photographed frame is a
 bench artefact this repo does not carry (the rig is torn down, ADR-116/117); what CAN be proven without
@@ -14,11 +14,11 @@ import pytest
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from tools import eink_camera as ecam  # noqa: E402
-from tools import eink_color as ec  # noqa: E402
-from tools import eink_frame_inks as efi  # noqa: E402
-from tools import eink_panel_model as pm  # noqa: E402
-from tools import eink_shoot as esh  # noqa: E402
+from tools.eink import eink_camera as ecam  # noqa: E402
+from tools.eink import eink_color as ec  # noqa: E402
+from tools.eink import eink_frame_inks as efi  # noqa: E402
+from tools.eink import eink_panel_model as pm  # noqa: E402
+from tools.eink import eink_shoot as esh  # noqa: E402
 
 # --- the palette swap --------------------------------------------------------------------------------
 
@@ -195,8 +195,8 @@ def test_digital_index_recovers_a_known_index_map(tmp_path, monkeypatch):
     from PIL import Image
 
     import epaper as ep
-    from tools import eink_bench as eb
-    from tools import eink_target as et
+    from tools.eink import eink_bench as eb
+    from tools.eink import eink_target as et
 
     w, h = 40, 30
     x0, y0, x1, y1 = 10, 5, 30, 25
@@ -226,8 +226,8 @@ def test_digital_index_refuses_a_stale_file(tmp_path, monkeypatch):
     from PIL import Image
 
     import epaper as ep
-    from tools import eink_bench as eb
-    from tools import eink_target as et
+    from tools.eink import eink_bench as eb
+    from tools.eink import eink_target as et
 
     w, h = 20, 20
     x0, y0, x1, y1 = 2, 2, 18, 18
@@ -254,8 +254,8 @@ def test_digital_index_refuses_a_non_palette_pixel(tmp_path, monkeypatch):
     from PIL import Image
 
     import epaper as ep
-    from tools import eink_bench as eb
-    from tools import eink_target as et
+    from tools.eink import eink_bench as eb
+    from tools.eink import eink_target as et
 
     w, h = 20, 20
     x0, y0, x1, y1 = 2, 2, 18, 18

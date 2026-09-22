@@ -27,7 +27,7 @@ viewer, the push list) a work's two renders carry only a session-local "L"/"R" l
 deterministic draw from `--seed` — so the same seed over the same work list reproduces the same
 assignment, but a human never sees "A" or "B" while judging.
 
-    python -m tools.eink_candidate --work 9 --work 52 --work 33 --work 15 --work 1 \
+    python -m tools.eink.eink_candidate --work 9 --work 52 --work 33 --work 15 --work 1 \
         --work Artwork/_Library/dutch-golden-age__the-night-watch__ff740524.jpg \
         --out bench-eink/analysis/session_2026-09-20 --seed 20260920
 """
@@ -46,10 +46,10 @@ from PIL import Image
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 import epaper as ep  # noqa: E402
-from tools import eink_barycentric as eba  # noqa: E402
-from tools import eink_bench as eb  # noqa: E402
-from tools import eink_gamut as eg  # noqa: E402
-from tools import eink_panel_model as pm  # noqa: E402
+from tools.eink import eink_barycentric as eba  # noqa: E402
+from tools.eink import eink_bench as eb  # noqa: E402
+from tools.eink import eink_gamut as eg  # noqa: E402
+from tools.eink import eink_panel_model as pm  # noqa: E402
 
 CORPUS = Path("bench-eink/corpus.json")
 

@@ -1,4 +1,4 @@
-"""tools/eink_ambient_check.py — the daytime-shoot gate (ADR-114).
+"""tools/eink/eink_ambient_check.py — the daytime-shoot gate (ADR-114).
 
 Pure-array logic checked against constructed data, plus one check against the real 2026-09-04
 ambient pair (DSC00268 lit / DSC00271 lamp-off) where those samples happen to be on disk: that pair
@@ -13,7 +13,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 np = pytest.importorskip("numpy", reason="rig tooling is maintainer-only, numpy not shipped")
 
-from tools import eink_ambient_check as ac  # noqa: E402
+from tools.eink import eink_ambient_check as ac  # noqa: E402
 
 LINEUP = Path(__file__).resolve().parent.parent / "bench-eink" / "camera" / "nex6-lineup-2026-09-04"
 LIT_0904 = LINEUP / "DSC00268.ARW"     # 30 s, lamp on (the tool scales the 20 s dark frame to it)

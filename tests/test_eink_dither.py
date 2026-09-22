@@ -9,9 +9,9 @@ import pytest
 from PIL import Image
 
 import epaper as ep
-from tools import eink_color as ec
-from tools import eink_dither as ed
-from tools import eink_panel_model as pm
+from tools.eink import eink_color as ec
+from tools.eink import eink_dither as ed
+from tools.eink import eink_panel_model as pm
 
 
 @pytest.fixture(scope="module")

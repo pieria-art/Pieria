@@ -59,7 +59,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import epaper as ep  # noqa: E402
 
 # The retired production heuristic, kept as a historical baseline only (ADR-098).
-from tools.eink_calibrate import legacy_adaptive_gamma as _legacy_adaptive_gamma  # noqa: E402
+from tools.eink.eink_calibrate import legacy_adaptive_gamma as _legacy_adaptive_gamma  # noqa: E402
 
 DITHER = np.array(ep.SPECTRA6_DITHER_PALETTE, dtype=float)
 INK_LUM = DITHER.mean(axis=1)

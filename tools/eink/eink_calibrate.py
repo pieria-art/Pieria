@@ -56,16 +56,16 @@ this tool can apply both to spectra6 so the bench can answer whether they belong
 USAGE
 -----
     # 1. What does the corpus actually look like, feature-wise?
-    python -m tools.eink_calibrate stats --auto-corpus 24
+    python -m tools.eink.eink_calibrate stats --auto-corpus 24
 
     # 2. Contact sheets to narrow the grid (one refresh = six candidates)
-    python -m tools.eink_calibrate sheet --auto-corpus 6 --gamma 1.0,1.3,1.6,1.9,2.2 --out bench/
+    python -m tools.eink.eink_calibrate sheet --auto-corpus 6 --gamma 1.0,1.3,1.6,1.9,2.2 --out bench/
 
     # 3. Full-panel renders of the finalists, judged at real size
-    python -m tools.eink_calibrate full --images a.jpg b.jpg --gamma 1.6,1.9 --out bench/
+    python -m tools.eink.eink_calibrate full --images a.jpg b.jpg --gamma 1.6,1.9 --out bench/
 
     # 4. On the bench Pi, push one to the panel
-    python -m tools.eink_calibrate push bench/sheet_01.png
+    python -m tools.eink.eink_calibrate push bench/sheet_01.png
 """
 
 from __future__ import annotations
@@ -276,7 +276,7 @@ def auto_corpus(n: int, scan_cap: int | None = None) -> list[Path]:
                 # The tiny feature differences this introduces are acceptable HERE and only here: this
                 # pass decides which images to SHOW, a farthest-point ordering that is robust to small
                 # perturbations. The features that reach the fit are recomputed at full fidelity from
-                # the chosen files (tools.eink_bench.cmd_corpus), so no approximate value is ever
+                # the chosen files (tools.eink.eink_bench.cmd_corpus), so no approximate value is ever
                 # trained on.
                 im.draft("RGB", (256, 256))
                 f = predictors(im)
@@ -492,7 +492,7 @@ def main() -> None:
                     print(f"    recorded {choice} → γ{grid[idx]['gamma']}")
                     break
                 print(f"    not one of {letters} (or s/q)")
-        print(f"\nlabels → {labels}\nnow:  python -m tools.eink_calibrate fit --labels {labels} --holdout 5")
+        print(f"\nlabels → {labels}\nnow:  python -m tools.eink.eink_calibrate fit --labels {labels} --holdout 5")
         return
 
     for i, img in enumerate(images, 1):

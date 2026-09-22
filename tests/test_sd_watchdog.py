@@ -45,6 +45,7 @@ class Harness:
         self.bindir = tmp_path / "bin"
         self.bindir.mkdir()
         self.state = tmp_path / "fails.state"
+        self.state_display = tmp_path / "fails-display.state"
         self.reboots = self.dir / "watchdog-reboots.log"
         self.uptime = tmp_path / "uptime"
         self.uptime.write_text("999999.0 0.0\n")     # long-booted by default
@@ -54,6 +55,13 @@ class Harness:
         self.displays_json.write_text("[]")
         self.pgrep_ok_file = tmp_path / "pgrep_ok"
         self.pgrep_ok_file.write_text("1")
+        self.eink_active_file = tmp_path / "eink_active"
+        self.eink_active_file.write_text("1")
+        # Default DRM glob: a fake sysfs with one CONNECTED connector, so existing (non-eink) tests
+        # keep their today's-behaviour path (has_kiosk=1) unless a test points this elsewhere.
+        self.drm_dir = tmp_path / "drm"
+        (self.drm_dir / "card1-HDMI-A-1").mkdir(parents=True)
+        (self.drm_dir / "card1-HDMI-A-1" / "status").write_text("connected")
         for name in SHIMMED:
             self._shim(name)
 
@@ -74,7 +82,15 @@ class Harness:
                 printf "%s\\n" "pgrep $*" >> "$SD_CALLS"
                 [ "$(cat "{self.pgrep_ok_file}")" = "1" ] && exit 0 || exit 1
                 """),
-            "systemctl": '#!/bin/sh\nprintf "%s\\n" "systemctl $*" >> "$SD_CALLS"\nexit 0\n',
+            "systemctl": textwrap.dedent(f"""\
+                #!/bin/sh
+                printf "%s\\n" "systemctl $*" >> "$SD_CALLS"
+                case "$*" in
+                  "is-active --quiet sd-eink")
+                    [ "$(cat "{self.eink_active_file}")" = "1" ] && exit 0 || exit 3 ;;
+                  *) exit 0 ;;
+                esac
+                """),
             "docker": '#!/bin/sh\nprintf "%s\\n" "docker $*" >> "$SD_CALLS"\nexit 0\n',
             "logger": '#!/bin/sh\nprintf "%s\\n" "logger $*" >> "$SD_CALLS"\nexit 0\n',
         }
@@ -93,6 +109,25 @@ class Harness:
         art = {"id": 1} if ok else None
         self.displays_json.write_text(json.dumps([{"display_id": display_id, "artwork": art}]))
 
+    def set_eink_active(self, ok):
+        self.eink_active_file.write_text("1" if ok else "0")
+
+    def set_connector(self, connected):
+        """True: one HDMI connector reads connected. False: it reads disconnected (still present —
+        distinct from the connector glob matching nothing at all, see `no_drm`)."""
+        (self.drm_dir / "card1-HDMI-A-1" / "status").write_text(
+            "connected" if connected else "disconnected"
+        )
+
+    def no_drm(self):
+        """Simulate /sys/class/drm not existing at all (dev box / CI) — glob matches nothing."""
+        self.drm_dir = self.root / "no-such-drm-dir"
+
+    def enable_eink(self, enabled=True):
+        lines = [l for l in self.conf.read_text().splitlines() if not l.startswith("EINK_ENABLED=")]
+        lines.append(f"EINK_ENABLED={'1' if enabled else '0'}")
+        self.conf.write_text("\n".join(lines) + "\n")
+
     def write_appliance_status(self, state, action="update-system", age_seconds=0):
         ts = (datetime.now(UTC) - timedelta(seconds=age_seconds)).isoformat()
         (self.dir / "status.json").write_text(json.dumps(
@@ -108,8 +143,10 @@ class Harness:
             "PATH": f"{self.bindir}:{os.environ['PATH']}",
             "SD_CALLS": str(self.calls),
             "SD_WATCHDOG_STATE": str(self.state),
+            "SD_WATCHDOG_STATE_DISPLAY": str(self.state_display),
             "SD_UPTIME_FILE": str(self.uptime),
             "SD_WATCHDOG_HELPER": str(self.bindir / "no-such-helper"),
+            "SD_DRM_STATUS_GLOB": str(self.drm_dir / "*" / "status"),
         }
         e.update(env)
         return subprocess.run(
@@ -135,6 +172,13 @@ class Harness:
     def fails(self):
         try:
             return int(self.state.read_text())
+        except (FileNotFoundError, ValueError):
+            return 0
+
+    @property
+    def fails_display(self):
+        try:
+            return int(self.state_display.read_text())
         except (FileNotFoundError, ValueError):
             return 0
 
@@ -174,7 +218,7 @@ def test_paint_fault_relaunches_at_3_4_5_then_gives_up_and_never_reboots(h):
     assert h.called.count("systemctl restart getty@tty1") == 3
     assert "docker" not in h.called
     assert "systemctl reboot" not in h.called
-    assert "giving up on kiosk relaunch; observe" in h.status["message"]
+    assert "giving up on kiosk relaunch; not escalating" in h.status["message"]
 
 
 def test_kiosk_dead_with_server_up_also_caps_at_relaunch_kiosk(h):
@@ -291,3 +335,174 @@ def test_a_done_appliance_action_does_not_pause(h):
     h.run()
     assert h.status["action"] == "none"
     assert "curl" in h.called
+
+
+# --- e-ink-only appliance (no HDMI kiosk) -------------------------------------------------------
+# The bug: kiosk_ok requires cage+chromium, which never run on an e-ink-only box, so `healthy` could
+# never be 1 and `fails` pinned above ESCALATE_AFTER forever — the first server blip then jumped
+# straight to reboot instead of trying restart-container first.
+
+def test_eink_only_box_stays_healthy_with_server_up(h):
+    h.enable_eink()
+    h.set_connector(False)          # no HDMI attached
+    h.set_server_ok(True)
+    h.set_eink_active(True)
+
+    st = h.tick()
+
+    assert st["action"] == "none"
+    assert st["display"] == "eink"
+    assert st["kiosk_ok"] == 1 and st["paint_ok"] == 1 and st["live_ok"] == 1 and st["advance_ok"] == 1
+    assert h.fails == 0
+    assert "systemctl restart" not in h.called
+    assert "docker" not in h.called
+    assert "systemctl reboot" not in h.called
+
+
+def test_eink_only_box_with_server_down_escalates_restart_container_before_reboot(h):
+    """The actual regression: server_ok probing is untouched by e-ink detection, so a server-down
+    box must still climb restart-container (fails 3-5) before reboot (fails 6+) — never straight to
+    reboot the way the pinned-fails bug caused."""
+    h.enable_eink()
+    h.set_connector(False)
+    h.set_server_ok(False)
+    h.set_eink_active(True)
+
+    actions = [h.tick()["action"] for _ in range(6)]
+
+    assert actions == [
+        "none", "none",
+        "restart-container", "restart-container", "restart-container",
+        "reboot",
+    ]
+    assert h.called.count("docker compose") == 3
+    assert "systemctl reboot" in h.called
+
+
+def test_eink_only_box_never_relaunches_kiosk_or_gives_up(h):
+    """sd-eink dead (server up, eink liveness fails) must never pick relaunch-kiosk/give-up — neither
+    rung applies without a browser. No fix is wired for this case; it stays "none" and unhealthy."""
+    h.enable_eink()
+    h.set_connector(False)
+    h.set_server_ok(True)
+    h.set_eink_active(False)
+
+    actions = [h.tick()["action"] for _ in range(8)]
+
+    assert set(actions) == {"none"}
+    assert "systemctl restart getty" not in h.called
+    assert "docker" not in h.called
+    assert "systemctl reboot" not in h.called
+
+
+# --- Gap 1: the two escalation ladders must not share a counter --------------------------------
+# sd-eink is deliberately `disabled` during every bench panel session (it holds the SPI/GPIO lines),
+# so "server up, sd-eink down" is not hypothetical. Before the fix this pinned the single shared
+# `fails` counter above ESCALATE_AFTER with no remedy, so the NEXT unrelated server blip jumped
+# straight to reboot, skipping restart-container — the exact ADR-121 regression, just narrower.
+
+def test_eink_liveness_fault_never_inflates_the_server_side_counter(h):
+    h.enable_eink()
+    h.set_connector(False)
+    h.set_server_ok(True)
+    h.set_eink_active(False)   # sd-eink down, server fine — climbs fails_display, never fails_server
+
+    for _ in range(10):
+        h.tick()
+    assert h.fails == 0             # server-side counter untouched
+    assert h.fails_display >= 10    # display-side counter free to climb — nothing consumes it (no
+                                     # kiosk to relaunch), but it must not leak into the server ladder
+
+    # The server now blips down for the first time: must still climb restart-container (fails 3-5)
+    # before reboot (fails 6+), starting fresh at 0 — NOT jump straight to reboot because fails_server
+    # was pinned by the (unrelated) e-ink fault above.
+    h.set_server_ok(False)
+    actions = [h.tick()["action"] for _ in range(6)]
+    assert actions == [
+        "none", "none",
+        "restart-container", "restart-container", "restart-container",
+        "reboot",
+    ]
+
+
+def test_hdmi_box_behaviour_is_unchanged_by_no_eink(h):
+    """A plain HDMI kiosk box (EINK_ENABLED unset/0) never runs the e-ink probe and must behave
+    exactly as before this work — the primary regression risk. Same scenario as
+    test_kiosk_dead_with_server_up_also_caps_at_relaunch_kiosk, restated with the DRM connector
+    explicitly connected to prove that path doesn't change anything for a non-eink box."""
+    h.set_connector(True)
+    h.set_server_ok(True)
+    h.set_kiosk_ok(False)
+    h.set_paint_ok(True)
+
+    for _ in range(5):
+        st = h.tick()
+    assert st["action"] == "relaunch-kiosk"
+    assert st["display"] == "kiosk"
+
+    st = h.tick()
+    assert st["action"] == "give-up"
+    assert "docker" not in h.called
+    assert "systemctl reboot" not in h.called
+
+
+# --- dual box: HDMI kiosk AND e-ink panel present together (Gap 2) -----------------------------
+# EINK_ENABLED=1 + a CONNECTED connector is a real, expressible configuration (the bench conf has
+# ALL_IN_ONE=1, EINK_ENABLED=1 AND OUTPUT=HDMI-A-1 simultaneously) — both surfaces must be probed
+# independently and both must be able to fail without masking each other.
+
+def test_dual_box_reports_both_and_probes_both_surfaces(h):
+    h.enable_eink()
+    h.set_connector(True)      # HDMI present
+    h.set_server_ok(True)
+    h.set_kiosk_ok(True)
+    h.set_paint_ok(True)
+    h.set_eink_active(True)    # sd-eink present and running
+
+    st = h.tick()
+
+    assert st["display"] == "both"
+    assert st["action"] == "none"
+    assert st["eink_live_ok"] == 1
+    assert h.fails == 0 and h.fails_display == 0
+
+
+def test_dual_box_dead_sd_eink_is_no_longer_invisible(h):
+    """Before the fix, a dual box's eink_only=0 classification meant it was probed purely as a kiosk
+    box and a dead sd-eink was never observed at all. Now the kiosk surface is healthy but the e-ink
+    surface is dead: display_ok must go unhealthy and it must show up in eink_live_ok, still capping
+    at relaunch-kiosk/give-up (no distinct e-ink remedy exists) rather than ever reaching the server
+    ladder (restart-container/reboot)."""
+    h.enable_eink()
+    h.set_connector(True)
+    h.set_server_ok(True)
+    h.set_kiosk_ok(True)
+    h.set_paint_ok(True)
+    h.set_eink_active(False)   # sd-eink dead
+
+    actions = [h.tick()["action"] for _ in range(6)]
+
+    assert actions == [
+        "none", "none",
+        "relaunch-kiosk", "relaunch-kiosk", "relaunch-kiosk",
+        "give-up",
+    ]
+    assert h.status["eink_live_ok"] == 0
+    assert "docker" not in h.called
+    assert "systemctl reboot" not in h.called
+
+
+def test_missing_sys_class_drm_falls_back_to_kiosk_behaviour(h):
+    """No /sys/class/drm at all (dev box / CI): has_kiosk falls back to 1 (assume a kiosk is
+    expected — today's behaviour) even with EINK_ENABLED=1, which independently sets has_eink=1 —
+    so this box reports "both", not "eink"."""
+    h.enable_eink()
+    h.no_drm()
+    h.set_server_ok(True)
+    h.set_kiosk_ok(False)
+    h.set_paint_ok(True)
+
+    for _ in range(5):
+        st = h.tick()
+    assert st["action"] == "relaunch-kiosk"
+    assert st["display"] == "both"

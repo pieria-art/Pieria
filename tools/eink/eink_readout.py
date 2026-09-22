@@ -27,7 +27,7 @@ from PIL import Image
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from tools import eink_target as et  # noqa: E402
+from tools.eink import eink_target as et  # noqa: E402
 
 
 def grid_offsets(img: Image.Image, w: int, h: int, cols: int, rows: int, gutter: int,
@@ -218,7 +218,7 @@ def readout_primaries_from_strip(img, w, h) -> dict:
     reading against a large content field of the same ink is the rig's own error bar — the two are
     the same ink in two places, so their disagreement is instrument error, not panel behaviour.
     """
-    from tools import eink_measure as em  # local import: readout is importable without a camera
+    from tools.eink import eink_measure as em  # local import: readout is importable without a camera
     rects = em.patch_rects(w, h, len(et.INK_NAMES))
     return {n: [round(float(v), 2) for v in em._mean_rgb(img, r)]
             for n, r in zip(et.STRIP_ORDER, rects)}
@@ -226,7 +226,7 @@ def readout_primaries_from_strip(img, w, h) -> dict:
 
 def readout_primaries(img, w, h) -> dict:
     """Large ink fields plus the strip, and the disagreement between them = instrument error."""
-    from tools import eink_measure as em  # noqa: PLC0415
+    from tools.eink import eink_measure as em  # noqa: PLC0415
     fields = em.measured_primaries(img, w, h)
     strip = readout_primaries_from_strip(img, w, h)
     agree = {n: round(max(abs(a - b) for a, b in zip(fields[n], strip[n])), 2)

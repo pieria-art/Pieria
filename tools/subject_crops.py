@@ -67,7 +67,7 @@ from tools.tag_resolution import index_masters  # noqa: E402
 
 # --- ink_mask ----------------------------------------------------------------------------
 MASK_PX = 800
-PAPER_MIN_LUM = 200.0             # 0..255; same paper rule tools/ink_span_scan.py starts from
+PAPER_MIN_LUM = 200.0             # 0..255; same paper rule tools/eink/ink_span_scan.py starts from
 SAT_MIN = 0.28                    # HSV saturation, 0..1 — catches colored ink on light paper.
                                    # Measured: aged/cream Audubon stock itself carries sat ~0.15-0.22
                                    # (a warm tint, not noise — a sharp density cliff sits at ~0.22),

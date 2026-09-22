@@ -24,7 +24,7 @@ clockwise: landscape row i runs DOWN portrait column i, and landscape column j i
 chart in that orientation — the six neutrals must come out as a strictly monotonic ladder, which a
 wrong rotation cannot produce.
 
-    python -m tools.eink_chart selftest
+    python -m tools.eink.eink_chart selftest
 """
 from __future__ import annotations
 
@@ -36,8 +36,8 @@ import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from tools.eink_camera import NEUTRAL_ROWS  # noqa: E402
-from tools.eink_measure import _perspective_coeffs  # noqa: E402
+from tools.eink.eink_camera import NEUTRAL_ROWS  # noqa: E402
+from tools.eink.eink_measure import _perspective_coeffs  # noqa: E402
 
 MINI_ROWS, MINI_COLS = 6, 4
 

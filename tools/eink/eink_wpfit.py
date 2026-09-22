@@ -23,8 +23,8 @@ for no more than one per ~180 s, so a run is bounded by the clock. "Colour e-ink
 cycles" was unsourced and is struck (ADR-113). Two refreshes per work is the floor; widening costs
 more wall-clock. Resume rather than restart.
 
-    python -m tools.eink_wpfit --flat bench-eink/reference/flat.png --works 1,4,9
-    python -m tools.eink_wpfit --flat ... --all          # every corpus work not yet measured
+    python -m tools.eink.eink_wpfit --flat bench-eink/reference/flat.png --works 1,4,9
+    python -m tools.eink.eink_wpfit --flat ... --all          # every corpus work not yet measured
 """
 from __future__ import annotations
 
@@ -39,7 +39,7 @@ from PIL import Image
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from tools import eink_measure as em  # noqa: E402
+from tools.eink import eink_measure as em  # noqa: E402
 
 OUT = Path("bench-eink")
 RESULTS = OUT / "wpfit.jsonl"
@@ -54,12 +54,12 @@ def _ssh(host_cmd: str, pi: str, key: str, known: str, timeout: int = 240) -> in
 
 
 def _render(n: int, wp: float, args) -> None:
-    _ssh(f"cd {args.repo} && sudo python3 -m tools.eink_bench target art --n {n} "
+    _ssh(f"cd {args.repo} && sudo python3 -m tools.eink.eink_bench target art --n {n} "
          f"--gamma 1.0 --white-point {wp}", args.pi, args.key, args.known)
 
 
 def _capture(dest: Path, args) -> None:
-    subprocess.run([sys.executable, "-m", "tools.eink_measure", "capture",
+    subprocess.run([sys.executable, "-m", "tools.eink.eink_measure", "capture",
                     "--device", args.device, "--size", "1920x1080", "--warmup", "14",
                     "--settle", "--settle-delta", "3.0", "--settle-stable", "3",
                     "--settle-tries", "30", "--out", str(dest)],

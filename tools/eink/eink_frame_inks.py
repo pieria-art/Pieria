@@ -11,11 +11,11 @@ NOT fix the defect and does NOT touch the shipping renderer (`epaper.py` is unto
 
 THE CHAIN — every stage reused, none reinvented:
 
-    raw .ARW --tools.eink_shoot.Shoot--> dark+trap-cleaned, rectified, SCALAR-flat-divided render-grid
-    frame (fraction of sensor full scale) --tools.eink_camera.solve_camera_affine (on-panel chart,
-    frame X2)--> camera matrix M + veiling-glare pedestal --tools.eink_shoot.adapt (Bradford,
+    raw .ARW --tools.eink.eink_shoot.Shoot--> dark+trap-cleaned, rectified, SCALAR-flat-divided render-grid
+    frame (fraction of sensor full scale) --tools.eink.eink_camera.solve_camera_affine (on-panel chart,
+    frame X2)--> camera matrix M + veiling-glare pedestal --tools.eink.eink_shoot.adapt (Bradford,
     D50->D65, the exact transform `eink_shoot primaries` uses for its palette hook)--> per-pixel
-    absolute XYZ, D65, same units as `eink_panel_model.ink_xyz()` --tools.eink_barycentric.decompose_
+    absolute XYZ, D65, same units as `eink_panel_model.ink_xyz()` --tools.eink.eink_barycentric.decompose_
     clipped (monkeypatching `eink_panel_model._MEASURED_INK_XYZ` swaps the palette it decomposes
     against)--> non-negative ink weights, vectorised, with the residual retained.
 
@@ -25,7 +25,7 @@ the D50->D65 Bradford step. This module wires those to a per-PIXEL image instead
 and adds the one genuinely new piece: per-pixel non-negative unmixing (`eink_barycentric.decompose_
 clipped`, which already solves this for images in linear light) plus the residual it deliberately keeps.
 
-    python -m tools.eink_frame_inks report bench-eink/analysis/shoot_2026-09-19.json \
+    python -m tools.eink.eink_frame_inks report bench-eink/analysis/shoot_2026-09-19.json \
         --out bench-eink/analysis/frame_inks_2026-09-19.json
 """
 from __future__ import annotations
@@ -41,11 +41,11 @@ import numpy as np
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
-from tools import eink_barycentric as eba  # noqa: E402
-from tools import eink_camera as ecam  # noqa: E402
-from tools import eink_color as ec  # noqa: E402
-from tools import eink_panel_model as pm  # noqa: E402
-from tools import eink_shoot as esh  # noqa: E402
+from tools.eink import eink_barycentric as eba  # noqa: E402
+from tools.eink import eink_camera as ecam  # noqa: E402
+from tools.eink import eink_color as ec  # noqa: E402
+from tools.eink import eink_panel_model as pm  # noqa: E402
+from tools.eink import eink_shoot as esh  # noqa: E402
 
 INK_NAMES = pm.INK_NAMES
 
@@ -70,7 +70,7 @@ def swatch_palette():
         pm._MEASURED_INK_XYZ = saved
 
 
-# --- camera matrix, reused from tools.eink_shoot ----------------------------------------------------
+# --- camera matrix, reused from tools.eink.eink_shoot ----------------------------------------------------
 def solve_matrix(sh: esh.Shoot, chart_frame: str = "X2"):
     """The on-panel-chart camera matrix + veiling-glare pedestal, exactly as `eink_shoot primaries`
     computes them (§2 of PRIMARIES_2026-09-19.md). Returns (M, pedestal_pct_fs, fit_report)."""
@@ -221,7 +221,7 @@ def derive_threshold_fraction(sh: esh.Shoot, M, ped, primaries_frame: str = "B1"
 # --- "D": the digital render's own index map, regenerated through the real CLI path -----------------
 def digital_index(n: int, *, white_point: float = 0.0, gamma: float = 1.4, fit: str = "cover",
                    width: int = 1600, height: int = 1200) -> np.ndarray:
-    """Regenerate `target art --n N ...` (via `tools.eink_bench.cmd_target`, not re-implemented) and
+    """Regenerate `target art --n N ...` (via `tools.eink.eink_bench.cmd_target`, not re-implemented) and
     read back its own ink-index map from the saved PNG's content-box pixels.
 
     `cmd_target` writes RGB, not an index map, but the RGB it writes is PURE `SPECTRA6_OUTPUT_PALETTE`
@@ -234,8 +234,8 @@ def digital_index(n: int, *, white_point: float = 0.0, gamma: float = 1.4, fit: 
     from PIL import Image  # noqa: PLC0415
 
     import epaper as ep  # noqa: PLC0415
-    from tools import eink_bench as eb  # noqa: PLC0415
-    from tools import eink_target as et  # noqa: PLC0415
+    from tools.eink import eink_bench as eb  # noqa: PLC0415
+    from tools.eink import eink_target as et  # noqa: PLC0415
 
     ns = argparse.Namespace(
         kind="art", n=n, gamma=gamma, saturation=1.0, chroma_gamma=1.0, white_point=white_point,
@@ -269,7 +269,7 @@ def digital_index(n: int, *, white_point: float = 0.0, gamma: float = 1.4, fit: 
 
 
 def digital_ink_fractions(n: int, **kw) -> dict:
-    from tools import eink_candidate as ecand  # noqa: PLC0415
+    from tools.eink import eink_candidate as ecand  # noqa: PLC0415
     return ecand.ink_fractions(digital_index(n, **kw))
 
 
@@ -343,7 +343,7 @@ def v3_bookend(sh: esh.Shoot, M, ped, threshold: float, ref: str = "F1", other: 
 
 
 def _content_box(sh: esh.Shoot):
-    from tools import eink_target as et  # noqa: PLC0415
+    from tools.eink import eink_target as et  # noqa: PLC0415
     return et.content_box(sh.w, sh.h)
 
 
@@ -390,7 +390,7 @@ def cmd_report(args) -> None:
     M, ped, fit = solve_matrix(sh, args.chart_frame)
     result["camera"] = {"M": M.tolist(), "pedestal_pct_fs": ped.tolist(),
                         "fit_mean_de00": fit["mean"], "fit_worst_de00": fit["worst"],
-                        "reused": "tools.eink_shoot.Shoot.chart_panel + eink_camera.solve_camera_affine "
+                        "reused": "tools.eink.eink_shoot.Shoot.chart_panel + eink_camera.solve_camera_affine "
                                   "(frame X2, the on-panel ColorChecker) — identical to `eink_shoot "
                                   "primaries`'s camera-matrix step"}
     write(result)

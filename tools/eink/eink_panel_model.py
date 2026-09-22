@@ -44,7 +44,7 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
 import epaper as ep  # noqa: E402
-from tools import eink_color as ec  # noqa: E402
+from tools.eink import eink_color as ec  # noqa: E402
 
 INK_NAMES = ("black", "white", "red", "yellow", "blue", "green")
 BLACK, WHITE = 0, 1

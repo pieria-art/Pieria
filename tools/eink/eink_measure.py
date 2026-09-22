@@ -34,9 +34,9 @@ SELF-TEST. `selftest` synthesises photographs — known perspective warp, known 
 noise — and checks the pipeline recovers the known truth. Built that way deliberately, so the code
 was validated before any hardware existed rather than debugged against a panel.
 
-    python -m tools.eink_measure selftest
-    python -m tools.eink_measure capture --device /dev/video0 --out shot.png
-    python -m tools.eink_measure read shot.png --target bench-eink/target_huegrid_1600x1200.png
+    python -m tools.eink.eink_measure selftest
+    python -m tools.eink.eink_measure capture --device /dev/video0 --out shot.png
+    python -m tools.eink.eink_measure read shot.png --target bench-eink/target_huegrid_1600x1200.png
 """
 from __future__ import annotations
 
@@ -52,7 +52,7 @@ from PIL import Image
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 import epaper as ep  # noqa: E402
-from tools import eink_target as et  # noqa: E402
+from tools.eink import eink_target as et  # noqa: E402
 
 DARK_MAX = 90          # a pixel this dark, after normalising the frame's own range, is "frame"
 DILATE_V_CELLS = 26    # VERTICAL bridging (coarse cells) used only to rejoin split bright regions
@@ -333,7 +333,7 @@ def rectify(photo: Image.Image, w: int, h: int, roi=None) -> Image.Image:
 def _geometry_proxy(arr: np.ndarray) -> Image.Image:
     """An 8-bit RGB stand-in for a float array, built ONLY so the existing PIL-based corner finders
     (`find_fiducials`/`refine_fiducials`) can run unchanged on data that arrives in some other
-    photometric convention (`tools.eink_raw.RawFrame.rgb`'s scene-linear 1.0-is-saturation, or
+    photometric convention (`tools.eink.eink_raw.RawFrame.rgb`'s scene-linear 1.0-is-saturation, or
     anything else).
 
     Safe because it feeds GEOMETRY ONLY, never photometry: fiducial/panel-box detection is a
@@ -402,7 +402,7 @@ def rectify_float(photo: np.ndarray, w: int, h: int, roi=None) -> np.ndarray:
 
     Returns an (h, w, 3) float64 array in WHATEVER units `photo` arrived in. Unlike `rectify()`,
     which always hands back an 8-bit PIL Image, this never rescales — so a caller's own convention
-    (e.g. `tools.eink_raw.RawFrame.rgb`, 1.0 == sensor saturation) survives unchanged into
+    (e.g. `tools.eink.eink_raw.RawFrame.rgb`, 1.0 == sensor saturation) survives unchanged into
     `read_panel`'s float entry point.
     """
     arr = np.asarray(photo, dtype=np.float64)
@@ -424,7 +424,7 @@ def rectify_float(photo: np.ndarray, w: int, h: int, roi=None) -> np.ndarray:
 # Everything from here down works in float64 on an EXPLICIT axis: 0.0-255.0, continuous — the same
 # numeric range this file has always used (the calibration strip anchors PANEL-RELATIVE output to
 # black=0/white=255), just no longer smuggled in implicitly via "whatever `.astype(float)` happened
-# to see after a PIL uint8 conversion." Making it explicit is what lets `tools.eink_raw.RawFrame.rgb`
+# to see after a PIL uint8 conversion." Making it explicit is what lets `tools.eink.eink_raw.RawFrame.rgb`
 # — scene-linear float64, its OWN convention of 1.0 == sensor saturation — join the same arithmetic:
 # it is lifted onto this axis ONCE, at read_panel's entry (see below), by the caller's convention,
 # not re-derived per function. RECTIFY stays PIL/8-bit-only on purpose — see read_panel's docstring
@@ -527,7 +527,7 @@ def _trap_level(photo, rect) -> np.ndarray:
     """Mean RGB inside the veiling-glare light trap's aperture — "whatever it reads" — converted onto
     THIS FILE'S OWN 0-255 axis regardless of source, so the result plugs straight into `read_panel`'s
     `trap=`/`build_flat_field`'s `trap=`. `photo` is a `PIL.Image` (already 0-255) or a raw scene-
-    linear ndarray (`tools.eink_raw.RawFrame.rgb`'s 1.0-is-saturation convention); unlike `_as_float_
+    linear ndarray (`tools.eink.eink_raw.RawFrame.rgb`'s 1.0-is-saturation convention); unlike `_as_float_
     rgb`, which leaves an ndarray's axis alone because it cannot know which convention it arrived in,
     this DOES rescale it — the caller here always knows, because it just decoded the raw file itself.
 
@@ -640,7 +640,7 @@ def build_flat_field(flat_photo: Image.Image, w: int, h: int, roi=None, smooth: 
         arr = np.asarray(flat_photo.convert("RGB")).astype(np.float64) - np.asarray(trap, dtype=float)
         flat_photo = Image.fromarray(np.clip(arr, 0, 255).astype(np.uint8), "RGB")
     rect = rectify(flat_photo, w, h, roi)
-    import tools.eink_target as _et
+    import tools.eink.eink_target as _et
     cx0, cy0, cx1, cy1 = _et.content_box(w, h)
     content_mean = float(np.asarray(rect.convert("L")).astype(float)[cy0:cy1, cx0:cx1].mean())
     if content_mean < 90:
@@ -676,7 +676,7 @@ def _build_flat_field_float(flat_arr, w: int, h: int, roi=None, smooth: int = 40
     if trap is not None:
         arr = arr - np.asarray(trap, dtype=float)
     rect = rectify_float(arr, w, h, roi)
-    import tools.eink_target as _et
+    import tools.eink.eink_target as _et
     cx0, cy0, cx1, cy1 = _et.content_box(w, h)
     content_mean = float(rect[cy0:cy1, cx0:cx1].mean())
     half = _et.FID_SIZE // 4
@@ -792,7 +792,7 @@ def read_panel(photo, w: int, h: int, roi=None, flat=None, reference=None,
                align_prior=None, trap=None) -> dict:
     """`photo` is normally the webcam rig's 8-bit PIL Image, rectified below exactly as before.
 
-    It may also be an already-rectified float64 ndarray in `tools.eink_raw.RawFrame.rgb`'s own
+    It may also be an already-rectified float64 ndarray in `tools.eink.eink_raw.RawFrame.rgb`'s own
     convention (scene-linear, 1.0 == sensor saturation) — the hook a raw-camera capture plugs into,
     produced by `rectify_float` below (RECTIFY itself stays PIL/8-bit-only; see its docstring for
     why). `reference=`/`roi=`, which both depend on rectify()'s PIL machinery, are not available on
@@ -906,7 +906,7 @@ def _synthesise_photo(target: Image.Image, warp: float, gain, off, noise: float,
     unaffected), models the additive OPTICAL VEILING GLARE a light trap would read: added to the
     whole frame BEFORE the camera's own gain/offset, because glare is stray light landing on the
     sensor ALONGSIDE the real scene light, not a property of the camera's own response curve — the
-    same distinction `tools.eink_raw` draws between the sensor's electronic offset and this.
+    same distinction `tools.eink.eink_raw` draws between the sensor's electronic offset and this.
     """
     rng = np.random.default_rng(seed)
     w, h = target.size
@@ -1075,7 +1075,7 @@ def score_against_reference(photo: Image.Image, ref: Image.Image, w: int, h: int
     and cannot, measure the range itself.
     """
     r = read_panel(photo, w, h, roi=roi, flat=flat)
-    import tools.eink_target as _et
+    import tools.eink.eink_target as _et
     cx0, cy0, cx1, cy1 = _et.content_box(w, h)
     panel = r["corrected"].crop((cx0, cy0, cx1, cy1))
     ref = ref.convert("RGB").resize(panel.size, Image.LANCZOS)
@@ -1207,7 +1207,7 @@ def cmd_capture(args) -> None:
           f"kept the last frame. The panel may still be refreshing, or something in shot is moving.")
 
 
-#: `.ARW` (Sony) / `.DNG` (generic raw) route through `tools.eink_raw` instead of `PIL.Image.open`.
+#: `.ARW` (Sony) / `.DNG` (generic raw) route through `tools.eink.eink_raw` instead of `PIL.Image.open`.
 #: EXTENSION-SNIFFING, NOT CONTENT-SNIFFING, is fine here: this is a maintainer CLI where the person
 #: running it supplies both the file and, implicitly, its format — unlike a web upload there is no
 #: untrusted-input reason to verify the real type from magic bytes, and a wrong extension fails loudly
@@ -1262,12 +1262,12 @@ def _report_read(r: dict, w: int, h: int, out: Path, primaries: bool) -> None:
 
 def _cmd_read_raw(args, path: Path) -> None:
     """The `.ARW`/`.DNG` branch of `cmd_read`. Split out (rather than branching inline) because it is
-    the only code in this file that needs `tools.eink_raw`, and therefore the only code that needs
+    the only code in this file that needs `tools.eink.eink_raw`, and therefore the only code that needs
     `rawpy` — imported HERE, lazily, so that reading a PNG (every existing test, and the Pi image,
     which never touches this function) never pays for an import that can fail.
     """
     try:
-        from tools import eink_raw
+        from tools.eink import eink_raw
     except ImportError as exc:
         raise SystemExit(
             f"reading a raw capture ({path.suffix}) needs the optional 'rawpy' dependency, which is "
@@ -1360,7 +1360,7 @@ def main() -> None:
                         "identical, and a flat-field reference was once captured mid-refresh as a "
                         "dark purple inversion state that then corrupted everything divided by it.")
     r = sub.add_parser("read", help="rectify + normalise a photograph and report "
-                                    "(.ARW/.DNG route through tools.eink_raw)")
+                                    "(.ARW/.DNG route through tools.eink.eink_raw)")
     r.add_argument("photo")
     r.add_argument("--target", default="", help="the rendered target, to take w/h from")
     r.add_argument("--width", type=int, default=1600)

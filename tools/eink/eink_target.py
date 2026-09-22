@@ -33,10 +33,10 @@ neighbouring content, so flat patches do not exercise error diffusion the way a 
 Patterns characterise the PANEL; the `art` target characterises the RENDER. Both are needed, and
 neither substitutes for the other.
 
-    sudo python3 -m tools.eink_bench target primaries
-    sudo python3 -m tools.eink_bench target ramp
-    sudo python3 -m tools.eink_bench target huegrid
-    sudo python3 -m tools.eink_bench target art --n 16 --gamma 1.4 --chroma-gamma 2.0 ...
+    sudo python3 -m tools.eink.eink_bench target primaries
+    sudo python3 -m tools.eink.eink_bench target ramp
+    sudo python3 -m tools.eink.eink_bench target huegrid
+    sudo python3 -m tools.eink.eink_bench target art --n 16 --gamma 1.4 --chroma-gamma 2.0 ...
 """
 from __future__ import annotations
 

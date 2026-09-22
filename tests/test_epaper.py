@@ -11,6 +11,9 @@ from epaper import (
     SPECTRA6_DITHER_PALETTE,
     SPECTRA6_GAMMA,
     SPECTRA6_OUTPUT_PALETTE,
+    SPECTRA6_TOE_GAMMA,
+    SPECTRA6_TOE_KNEE,
+    SPECTRA6_TOE_LO,
     SPECTRA6_WHITE_POINT,
     _cached_palette_image,
     _chromatic_ink_hues,
@@ -18,6 +21,7 @@ from epaper import (
     _flat_palette,
     _hue_error,
     _hue_error_fraction,
+    _spectra6_toe,
     _tone_lut,
     apply_chroma_curve,
     normalize_crop_box,
@@ -101,7 +105,7 @@ def test_spectra6_tone_recipe_is_the_declared_constant(tmp_path):
 
     0.75 is interim and label-derived; the physics-derived media-relative value is ~0.64. Pinning it
     here means changing it is a deliberate act that trips a test and needs an ADR, rather than a
-    silent edit. It replaced `_adaptive_gamma`, which now lives in tools/eink_calibrate.py as
+    silent edit. It replaced `_adaptive_gamma`, which now lives in tools/eink/eink_calibrate.py as
     `legacy_adaptive_gamma` and is not importable from epaper at all.
     """
     import epaper
@@ -150,6 +154,68 @@ def test_spectra6_enhance_false_skips_tone_correction(tmp_path):
     buf = io.BytesIO()
     q.save(buf, format="PNG", optimize=True)
     assert raw == buf.getvalue()
+
+
+def test_spectra6_toe_flag_off_is_byte_identical(monkeypatch, tmp_path):
+    # SPECTRA6_TOE_ENABLED must ship False, and flipping it off (the default) must be pixel-for-pixel
+    # what production has always done -- the toe curve is inert until an ADR turns it on.
+    import epaper
+
+    assert epaper.SPECTRA6_TOE_ENABLED is False  # the shipped default
+
+    src = _make_image(tmp_path, "toe_off.png")
+    before = render_for_epaper(src, 120, 120, palette="spectra6", fmt="png")
+
+    monkeypatch.setattr(epaper, "SPECTRA6_TOE_ENABLED", False)
+    render_for_epaper.cache_clear()
+    after = render_for_epaper(src, 120, 120, palette="spectra6", fmt="png")
+    assert before == after
+
+
+def test_spectra6_toe_preserves_channel_ratios(tmp_path):
+    # The whole point of the single-scalar form: R:G:B ratios must survive exactly (mod integer
+    # rounding), for a non-black pixel below AND above the knee. A per-channel .point() would not.
+    for rgb in [(200, 100, 50), (30, 30, 30), (10, 60, 5), (240, 60, 200)]:
+        img = Image.new("RGB", (1, 1), rgb)
+        out = _spectra6_toe(img).getpixel((0, 0))
+        r, g, b = rgb
+        y = 0.2126 * r + 0.7152 * g + 0.0722 * b
+        if y >= SPECTRA6_TOE_KNEE:
+            scale = min(255.0, y * SPECTRA6_WHITE_POINT) / y
+        else:
+            scale = (SPECTRA6_TOE_LO * (y / SPECTRA6_TOE_KNEE) ** SPECTRA6_TOE_GAMMA) / y
+        expected = tuple(min(255, int(c * scale + 0.5)) for c in rgb)
+        assert out == expected
+
+
+def test_spectra6_toe_above_knee_matches_shipping_linear_scale(tmp_path):
+    # Above KNEE the toe curve is DEFINED to be shipping's existing linear white-point scale, applied
+    # (here) as one scalar rather than per-channel -- for a pixel whose channels already share the
+    # scale (i.e. below the 255 clamp), the two must agree exactly.
+    rgb = (200, 100, 50)  # y ~= 117.65, well above KNEE=54, and 200*0.75=150 stays under 255
+    img = Image.new("RGB", (1, 1), rgb)
+    out = _spectra6_toe(img).getpixel((0, 0))
+    expected = tuple(min(255, int(round(c * SPECTRA6_WHITE_POINT))) for c in rgb)
+    assert out == expected
+
+
+def test_spectra6_toe_below_knee_hits_the_toe(tmp_path):
+    rgb = (30, 30, 30)  # y = 30, below KNEE=54
+    img = Image.new("RGB", (1, 1), rgb)
+    out = _spectra6_toe(img).getpixel((0, 0))
+    y = 30.0
+    target = SPECTRA6_TOE_LO * (y / SPECTRA6_TOE_KNEE) ** SPECTRA6_TOE_GAMMA
+    expected_channel = min(255, int(30 * (target / y) + 0.5))
+    assert out == (expected_channel, expected_channel, expected_channel)
+    # It must actually be the TOE branch, not the linear branch, below the knee:
+    linear_branch = min(255, int(round(30 * SPECTRA6_WHITE_POINT)))
+    assert expected_channel != linear_branch
+
+
+def test_spectra6_toe_near_black_does_not_divide_by_zero(tmp_path):
+    img = Image.new("RGB", (1, 1), (0, 0, 0))
+    out = _spectra6_toe(img).getpixel((0, 0))
+    assert out == (0, 0, 0)
 
 
 def test_grayscale_palette_is_only_gray(tmp_path):

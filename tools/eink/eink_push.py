@@ -1,15 +1,15 @@
 """
 tools/eink_push.py — push a single rendered PNG to the panel (maintainer tool, Pi-only).
 NOT part of the runtime image; NOT the same thing as `eink_client.py` (the always-on pull loop) —
-this is a one-shot manual push, for judging a `tools.eink_candidate` session frame by frame.
+this is a one-shot manual push, for judging a `tools.eink.eink_candidate` session frame by frame.
 
-    sudo python3 -m tools.eink_push bench-eink/analysis/session_2026-09-20/sunflowers/A_shipping.png
-    sudo python3 -m tools.eink_push ... --wait
+    sudo python3 -m tools.eink.eink_push bench-eink/analysis/session_2026-09-20/sunflowers/A_shipping.png
+    sudo python3 -m tools.eink.eink_push ... --wait
 
 The image is prepared for `set_image()` EXACTLY the way `eink_bench.cmd_full` prepares what it
 pushes: converted to RGB, then rotated 90 degrees if its dimensions don't match the panel's native
 `resolution` (a portrait composition rendered onto a physically landscape buffer, same as
-`EINK_ORIENTATION=portrait` does client-side) — so a candidate PNG from `tools.eink_candidate` pushes
+`EINK_ORIENTATION=portrait` does client-side) — so a candidate PNG from `tools.eink.eink_candidate` pushes
 identically to how production would have shown it.
 
 `inky` is a Pi-only dependency (SPI + the vendor driver) and is never installed off the panel — this
@@ -57,7 +57,7 @@ def push(path: Path, wait: bool = False) -> None:
 
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("png", help="path to a panel-ready PNG (e.g. from tools.eink_candidate)")
+    ap.add_argument("png", help="path to a panel-ready PNG (e.g. from tools.eink.eink_candidate)")
     ap.add_argument("--wait", action="store_true",
                     help=f"sleep {REFRESH_SECONDS}s after show() so the refresh has finished before returning")
     args = ap.parse_args()

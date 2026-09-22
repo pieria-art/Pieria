@@ -45,8 +45,8 @@ import numpy as np
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
-from tools import eink_color as ec  # noqa: E402
-from tools import eink_panel_model as pm  # noqa: E402
+from tools.eink import eink_color as ec  # noqa: E402
+from tools.eink import eink_panel_model as pm  # noqa: E402
 
 PITCH_MM = 270.4 / 1600.0                      # 0.1690 mm — measured, not the vendor's 200 ppi claim
 DISTANCES_M = (0.5, 1.0, 1.5, 2.0, 3.0)

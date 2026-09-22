@@ -7,9 +7,9 @@ import numpy as np
 import pytest
 
 import epaper as ep
-from tools import eink_color as ec
-from tools import eink_gamut as eg
-from tools import eink_panel_model as pm
+from tools.eink import eink_color as ec
+from tools.eink import eink_gamut as eg
+from tools.eink import eink_panel_model as pm
 
 
 @pytest.fixture(scope="module")

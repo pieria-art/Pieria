@@ -2,16 +2,25 @@
 
 Cheap fixtures: the 33^3 quantiser response is measured once per session (~5 s) and reused.
 """
+from pathlib import Path
+
 import numpy as np
 import pytest
 from PIL import Image
 
 import epaper as ep
-from tools import eink_color as ec
-from tools import eink_gamut as eg
-from tools import eink_optimise as eo
-from tools import eink_panel_model as pm
-from tools import eink_scielab as sl
+from tools.eink import eink_color as ec
+from tools.eink import eink_gamut as eg
+from tools.eink import eink_optimise as eo
+from tools.eink import eink_panel_model as pm
+from tools.eink import eink_scielab as sl
+
+# art-pack/ is a built, gitignored distributable (never git — see .gitignore) that only exists on a
+# machine that has run the pack build. Tests that need a real artwork image are maintainer-local only.
+_THE_KISS = (Path(__file__).resolve().parent.parent
+             / "art-pack" / "_Library" / "masterpieces__the-kiss__552e767a.jpg")
+_needs_the_kiss = pytest.mark.skipif(
+    not _THE_KISS.exists(), reason=f"art-pack library image not present under {_THE_KISS} (local-only)")
 
 
 @pytest.fixture(autouse=True, scope="module")
@@ -33,7 +42,7 @@ def _swatch_era_registration():
     and shared, so a partial un-pin would let a swatch-built `response` leak into a measured-expecting
     test (or vice versa) depending on pytest's collection order, which is exactly the contamination
     shape this item warns about. The whole file stays pinned; see the report for the measured numbers."""
-    from tools import eink_panel_model as _pm
+    from tools.eink import eink_panel_model as _pm
     with pytest.MonkeyPatch.context() as mp:
         mp.setattr(_pm, "_MEASURED_INK_XYZ", None)
         yield
@@ -67,6 +76,7 @@ def test_the_quantiser_response_shows_the_S2_defect(response):
     assert abs(excess[0]) < 1e-9 and excess[-1] <= 1e-9, "and vanish at the endpoints"
 
 
+@_needs_the_kiss
 def test_the_derived_pipeline_beats_production(response, work):
     """The identity check the plan demanded: if the physics-derived defaults lose to a hand-tuned
     constant, something upstream is wrong and no optimisation should be run."""
@@ -77,6 +87,7 @@ def test_the_derived_pipeline_beats_production(response, work):
     assert derived < production, f"derived {derived:.2f} must beat production {production:.2f}"
 
 
+@_needs_the_kiss
 def test_precompensation_helps_but_cannot_close_the_gap(response, work):
     """Registered prediction was 40-70% of the gap recovered. Measured: ~27%. The prediction was
     REFUTED, and `test_the_quantiser_response_is_not_onto` explains why — so the number is pinned here
@@ -121,6 +132,7 @@ def test_precompensation_converges(response):
     assert errs[-1] > 0.01, "and it must NOT converge to zero — the response is not onto"
 
 
+@_needs_the_kiss
 def test_pillow_color3dlut_matches_exact_application(response, work):
     """The shipping vehicle must be faithful to what was optimised, or the optimisation is of a
     different pipeline than the one that runs."""
@@ -131,6 +143,7 @@ def test_pillow_color3dlut_matches_exact_application(response, work):
     assert np.abs(pil.astype(int) - exact.astype(int)).max() <= 2
 
 
+@_needs_the_kiss
 def test_lut_resolution_is_not_the_limiting_factor(work):
     """If 17^3 and 33^3 agree, the residual error is not interpolation and a finer LUT is not the fix."""
     src, ref = work

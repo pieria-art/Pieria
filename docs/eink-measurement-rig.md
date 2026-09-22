@@ -1,8 +1,8 @@
 # The e-ink measurement rig
 
 > How to photograph the Spectra 6 panel so the result is a *measurement* rather than a picture.
-> Built 2026-08-28. Companion to `tools/eink_target.py` (renders targets) and
-> `tools/eink_measure.py` (reads photographs back).
+> Built 2026-08-28. Companion to `tools/eink/eink_target.py` (renders targets) and
+> `tools/eink/eink_measure.py` (reads photographs back).
 
 ## Why it exists
 
@@ -51,7 +51,7 @@ with at least one recorded disagreement (see the Milkmaid, `bench-eink/fullpanel
 ## Camera lock — and why read-back is mandatory
 
 ```
-python -m tools.eink_measure lock --device /dev/video0
+python -m tools.eink.eink_measure lock --device /dev/video0
 ```
 
 Auto exposure, auto white balance and autofocus each re-decide per frame, so with them on, two
@@ -90,7 +90,7 @@ as a lighting problem, not a camera problem.
 ## Capturing
 
 ```
-python -m tools.eink_measure capture --device /dev/video0 --settle --out bench-eink/shot.png
+python -m tools.eink.eink_measure capture --device /dev/video0 --settle --out bench-eink/shot.png
 ```
 
 ⚠️ **Wait for the panel, not for a stopwatch.** A Spectra 6 refresh takes **~22 s measured on this
@@ -107,10 +107,10 @@ Persistent failure to settle means something is moving in shot, or the light is 
 ## Targets
 
 ```
-sudo python3 -m tools.eink_bench target primaries    # what THIS panel's inks actually are
-sudo python3 -m tools.eink_bench target ramp         # tone response / where highlights stop separating
-sudo python3 -m tools.eink_bench target huegrid      # gamut survival across hue x saturation
-sudo python3 -m tools.eink_bench target art --n 16 [render flags]
+sudo python3 -m tools.eink.eink_bench target primaries    # what THIS panel's inks actually are
+sudo python3 -m tools.eink.eink_bench target ramp         # tone response / where highlights stop separating
+sudo python3 -m tools.eink.eink_bench target huegrid      # gamut survival across hue x saturation
+sudo python3 -m tools.eink.eink_bench target art --n 16 [render flags]
 ```
 
 Every target carries a black **registration frame** (four corners → homography) and a strip of **pure
@@ -132,7 +132,7 @@ do not exercise error diffusion the way a painting does. Patterns characterise t
 ## Reading a photograph
 
 ```
-python -m tools.eink_measure read shot.png --target bench-eink/target_primaries_1600x1200.png --primaries
+python -m tools.eink.eink_measure read shot.png --target bench-eink/target_primaries_1600x1200.png --primaries
 ```
 
 1. **Rectify** — the registration frame's corners give a homography onto the render's pixel grid.
@@ -151,7 +151,7 @@ python -m tools.eink_measure read shot.png --target bench-eink/target_primaries_
 
 ## Validation
 
-`python -m tools.eink_measure selftest` synthesises photographs with a *known* perspective warp,
+`python -m tools.eink.eink_measure selftest` synthesises photographs with a *known* perspective warp,
 camera colour distortion and noise, and requires the pipeline to recover the truth — worst ink error
 3.4/255 at 4% warp. Built this way deliberately, before the camera existed.
 
@@ -233,7 +233,7 @@ nothing for it; a **roof** over the rig at camera height, lens through a hole, l
    lens-cap frame (ADR-112's DSC00270), and shooting lit-then-dark is what makes `--cap-was-off`
    honest.
 
-       python -m tools.eink_ambient_check check --lit <lit.ARW> --dark <dark.ARW> --cap-was-off
+       python -m tools.eink.eink_ambient_check check --lit <lit.ARW> --dark <dark.ARW> --cap-was-off
 
    **GO ≤ 3%** · **BRACKET ≤ 10%** (start *and* end flat, ambient frame every ~30 min) · **NO-GO**
    above — bank the rig, wait for dark. The block map says *where* the room is mirrored: a bright band
@@ -242,7 +242,7 @@ nothing for it; a **roof** over the rig at camera height, lens through a hole, l
    preview); after the flat field nobody reaches in. Ambient and flat frames are **camera-only** — the
    panel is bistable, so they cost no refreshes. At the end, a second flat and
 
-       python -m tools.eink_ambient_check compare --a <flat_start.ARW> --b <flat_end.ARW>
+       python -m tools.eink.eink_ambient_check compare --a <flat_start.ARW> --b <flat_end.ARW>
 
    gives the session's flat-field shape drift in the same % as the gate.
 

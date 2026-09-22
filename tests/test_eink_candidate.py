@@ -1,5 +1,5 @@
 """
-tests/test_eink_candidate.py — ADR-084 candidate session tool (tools/eink_candidate.py).
+tests/test_eink_candidate.py — ADR-084 candidate session tool (tools/eink/eink_candidate.py).
 
 Small synthetic 64x48 images throughout (a real library master is unnecessary and slow); the DB-backed
 `eink_bench._db_crop_and_focal` / `_authored_box` are monkeypatched so no `data/artwork.db` is needed.
@@ -13,10 +13,10 @@ import pytest
 from PIL import Image
 
 import epaper as ep
-from tools import eink_candidate as cand
-from tools import eink_color as ec
-from tools import eink_panel_model as pm
-from tools import eink_push
+from tools.eink import eink_candidate as cand
+from tools.eink import eink_color as ec
+from tools.eink import eink_panel_model as pm
+from tools.eink import eink_push
 
 
 def _make_library_image(tmp_path, name="testcoll__test-title__deadbeef.jpg", size=(64, 48), seed=0):
