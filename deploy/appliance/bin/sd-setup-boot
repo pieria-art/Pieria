@@ -52,6 +52,14 @@ stop_ap()  { sd_stop_ap; }
 
 trap stop_ap EXIT
 
+# Generate the per-run setup PIN (finding N7) BEFORE anything paints, so the HDMI splash, the e-ink
+# card, and the wizard's HTTP gate all agree on the same PIN from the first frame. A failure here is
+# logged but not fatal to the boot: sd_setup.py fails CLOSED on a missing PIN file (serves an error page,
+# refuses every write) rather than ever running the wizard with no PIN check.
+if ! sd_generate_setup_pin >/dev/null; then
+  echo "sd-setup-boot: WARNING could not generate a setup PIN — the wizard will refuse to run until this box is restarted." >>"$AP_LOG"
+fi
+
 # Tell the HDMI screen it needs setting up. sd-kiosk-launch prefers this file over the normal splash,
 # which would otherwise show an admin URL built from the PLACEHOLDER SERVER_URL — a confident, wrong
 # address (ADR-058). Written for every box: HDMI is the default surface, e-ink the opt-in one.

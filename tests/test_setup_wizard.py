@@ -163,11 +163,17 @@ def test_orientation_preview_degrades_gracefully_without_wlr_randr(monkeypatch):
 
 # --- dry-run safety contract (integration) ------------------------------------
 
+#: A fixed PIN for tests that need commits to succeed — SetupConfig(pin=...) lets a test avoid
+#: depending on /run/pieria-setup-pin at all.
+TEST_PIN = "123456"
+
+
 @pytest.fixture
 def server(tmp_path):
     """A wizard server in dry-run, with the boot conf pointed at a path that must stay untouched."""
     boot_conf = tmp_path / "boot" / "pieria.conf"
-    cfg = sd_setup.SetupConfig(dry_run=True, all_in_one=False, boot_conf=boot_conf, output="HDMI-A-1")
+    cfg = sd_setup.SetupConfig(dry_run=True, all_in_one=False, boot_conf=boot_conf, output="HDMI-A-1",
+                               pin=TEST_PIN)
     cfg.preview_path = tmp_path / "preview" / "pieria.conf"
     httpd = ThreadingHTTPServer(("127.0.0.1", 0), sd_setup.make_handler(cfg))
     t = threading.Thread(target=httpd.serve_forever, daemon=True)
@@ -180,18 +186,25 @@ def server(tmp_path):
 def _post(base, path, payload):
     req = urllib.request.Request(base + path, data=json.dumps(payload).encode(),
                                  headers={"Content-Type": "application/json"}, method="POST")
-    with urllib.request.urlopen(req) as r:  # noqa: S310 — localhost test server
-        return r.status, json.loads(r.read())
+    try:
+        with urllib.request.urlopen(req) as r:  # noqa: S310 — localhost test server
+            return r.status, json.loads(r.read())
+    except urllib.error.HTTPError as e:
+        # urlopen raises on any non-2xx status; callers testing an error path (PIN rejection, lockout,
+        # bad fields) want the (status, body) pair just like a success, not an exception to catch.
+        return e.code, json.loads(e.read())
 
 
-def _get(base, path):
-    with urllib.request.urlopen(base + path) as r:  # noqa: S310
+def _get(base, path, headers=None):
+    req = urllib.request.Request(base + path, headers=headers or {})
+    with urllib.request.urlopen(req) as r:  # noqa: S310
         return r.status, r.read()
 
 
 def test_dry_run_commit_writes_preview_only_never_boot_conf(server):
     base, cfg = server
     status, data = _post(base, "/api/commit", {
+        "pin": TEST_PIN,
         "server_url": "http://localhost:8000", "display_id": "Den TV", "orientation": "90",
         "wifi_ssid": "HomeNet", "wifi_pass": "secret",
     })
@@ -227,12 +240,14 @@ def test_live_commit_writes_boot_conf_0644(tmp_path, monkeypatch):
     boot_conf.write_text("stale")            # pre-existing file...
     boot_conf.chmod(0o600)                    # ...with restrictive perms the commit must override
 
-    cfg = sd_setup.SetupConfig(dry_run=False, all_in_one=True, boot_conf=boot_conf, output="HDMI-A-1")
+    cfg = sd_setup.SetupConfig(dry_run=False, all_in_one=True, boot_conf=boot_conf, output="HDMI-A-1",
+                               pin=TEST_PIN)
     httpd = ThreadingHTTPServer(("127.0.0.1", 0), sd_setup.make_handler(cfg))
     t = threading.Thread(target=httpd.serve_forever, daemon=True)
     t.start()
     try:
         status, data = _post(f"http://127.0.0.1:{httpd.server_address[1]}", "/api/commit", {
+            "pin": TEST_PIN,
             "server_url": "http://localhost:8000", "display_id": "wall", "orientation": "landscape",
         })
     finally:
@@ -257,12 +272,14 @@ def test_live_commit_releases_wlan0_after_saving_wifi_and_before_reboot(tmp_path
 
     boot_conf = tmp_path / "boot" / "pieria.conf"
     boot_conf.parent.mkdir(parents=True)
-    cfg = sd_setup.SetupConfig(dry_run=False, all_in_one=True, boot_conf=boot_conf, output="HDMI-A-1")
+    cfg = sd_setup.SetupConfig(dry_run=False, all_in_one=True, boot_conf=boot_conf, output="HDMI-A-1",
+                               pin=TEST_PIN)
     httpd = ThreadingHTTPServer(("127.0.0.1", 0), sd_setup.make_handler(cfg))
     t = threading.Thread(target=httpd.serve_forever, daemon=True)
     t.start()
     try:
         status, _ = _post(f"http://127.0.0.1:{httpd.server_address[1]}", "/api/commit", {
+            "pin": TEST_PIN,
             "server_url": "http://localhost:8000", "display_id": "wall", "orientation": "landscape",
             "wifi_ssid": "HomeNet", "wifi_pass": "hunter2",
         })
@@ -280,6 +297,7 @@ def test_dry_run_commit_never_releases_wlan0(server, monkeypatch):
     monkeypatch.setattr(sd_setup, "_release_wlan0", lambda: called.append(1))
     base, _ = server
     status, data = _post(base, "/api/commit", {
+        "pin": TEST_PIN,
         "server_url": "http://localhost:8000", "display_id": "wall", "orientation": "landscape",
     })
     assert status == 200 and data["dry_run"] is True
@@ -498,3 +516,255 @@ def test_validate_rejects_a_bad_explicit_hostname_but_not_a_blank_one():
     assert "hostname" not in sd_setup.validate_fields(base)                       # blank is fine
     assert "hostname" not in sd_setup.validate_fields({**base, "hostname": "hub"})  # valid is fine
     assert "hostname" in sd_setup.validate_fields({**base, "hostname": "-nope-"})   # garbage is caught
+
+
+# --- setup PIN (N7) ------------------------------------------------------------
+
+_GOOD_FIELDS = {"server_url": "http://localhost:8000", "display_id": "wall", "orientation": "landscape"}
+
+
+def test_read_pin_none_when_file_absent(tmp_path, monkeypatch):
+    monkeypatch.setattr(sd_setup, "PIN_FILE", tmp_path / "nope")
+    assert sd_setup._read_pin() is None
+
+
+def test_read_pin_none_when_malformed(tmp_path, monkeypatch):
+    f = tmp_path / "pin"
+    f.write_text("12ab56")
+    monkeypatch.setattr(sd_setup, "PIN_FILE", f)
+    assert sd_setup._read_pin() is None
+
+
+def test_read_pin_reads_six_digits(tmp_path, monkeypatch):
+    f = tmp_path / "pin"
+    f.write_text("042017\n")
+    monkeypatch.setattr(sd_setup, "PIN_FILE", f)
+    assert sd_setup._read_pin() == "042017"
+
+
+def test_commit_without_pin_field_is_rejected_and_writes_nothing(server):
+    """No 'pin' in the body at all — must be treated exactly like a wrong PIN: 401, nothing written."""
+    base, cfg = server
+    status, data = _post(base, "/api/commit", _GOOD_FIELDS)
+    assert status == 401
+    assert data.get("pin_required") is True
+    assert not cfg.preview_path.exists()
+
+
+def test_commit_with_wrong_pin_is_rejected_and_writes_nothing(server):
+    base, cfg = server
+    status, data = _post(base, "/api/commit", {**_GOOD_FIELDS, "pin": "000000"})
+    assert status == 401
+    assert not cfg.preview_path.exists()
+
+
+def test_commit_with_correct_pin_succeeds(server):
+    base, cfg = server
+    status, data = _post(base, "/api/commit", {**_GOOD_FIELDS, "pin": TEST_PIN})
+    assert status == 200
+    assert data["dry_run"] is True
+
+
+def test_commit_fails_closed_when_no_pin_was_ever_generated(tmp_path):
+    """PIN_FILE missing entirely (e.g. an older boot script launched the wizard) must refuse the
+    commit outright — never silently accept it with no PIN check at all."""
+    boot_conf = tmp_path / "boot" / "pieria.conf"
+    cfg = sd_setup.SetupConfig(dry_run=True, all_in_one=False, boot_conf=boot_conf, output="HDMI-A-1",
+                               pin=None)
+    assert cfg.pin is None
+    ok, status, _ = cfg.check_pin(TEST_PIN)
+    assert ok is False and status == 503
+
+
+def test_root_page_fails_closed_without_a_pin(tmp_path):
+    """The wizard's own landing page must refuse to serve the form at all when no PIN exists for this
+    run — a page with no PIN gate behind it is worse than no page."""
+    boot_conf = tmp_path / "boot" / "pieria.conf"
+    cfg = sd_setup.SetupConfig(dry_run=True, all_in_one=False, boot_conf=boot_conf, output="HDMI-A-1",
+                               pin=None)
+    httpd = ThreadingHTTPServer(("127.0.0.1", 0), sd_setup.make_handler(cfg))
+    t = threading.Thread(target=httpd.serve_forever, daemon=True)
+    t.start()
+    try:
+        req = urllib.request.Request(f"http://127.0.0.1:{httpd.server_address[1]}/")
+        try:
+            urllib.request.urlopen(req)  # noqa: S310
+            assert False, "expected 503"
+        except urllib.error.HTTPError as e:
+            assert e.code == 503
+            assert b"unavailable" in e.read().lower()
+    finally:
+        httpd.shutdown()
+
+
+def test_pin_lockout_after_five_wrong_attempts(server):
+    """A 6-digit PIN over an open AP must not be brute-forceable within the AP's lifetime: 5 wrong
+    attempts locks out further attempts (right or wrong) for a cooldown window."""
+    base, cfg = server
+    for _ in range(4):
+        status, _ = _post(base, "/api/commit", {**_GOOD_FIELDS, "pin": "000000"})
+        assert status == 401
+    # 5th wrong attempt trips the lockout.
+    status, data = _post(base, "/api/commit", {**_GOOD_FIELDS, "pin": "000000"})
+    assert status == 429
+    assert "attempts" in data["error"].lower()
+    # And a 6th attempt — even with the CORRECT pin — is still locked out.
+    status, _ = _post(base, "/api/commit", {**_GOOD_FIELDS, "pin": TEST_PIN})
+    assert status == 429
+
+
+def test_pin_lockout_resets_on_success(server):
+    base, _ = server
+    for _ in range(4):
+        status, _ = _post(base, "/api/commit", {**_GOOD_FIELDS, "pin": "000000"})
+        assert status == 401
+    # 5th attempt correct — must NOT trip the lockout that 5 WRONG attempts would have.
+    status, _ = _post(base, "/api/commit", {**_GOOD_FIELDS, "pin": TEST_PIN})
+    assert status == 200
+
+
+def test_networks_endpoint_requires_pin(server):
+    """The scan leaks neighbouring SSIDs to anyone in AP range — gated behind the same PIN as commit."""
+    base, _ = server
+    try:
+        urllib.request.urlopen(base + "/api/networks")  # noqa: S310
+        assert False, "expected a non-200 without a pin"
+    except urllib.error.HTTPError as e:
+        assert e.code in (401, 503)
+
+    status, body = _get(base, "/api/networks", headers={"X-Setup-PIN": TEST_PIN})
+    assert status == 200
+    assert "networks" in json.loads(body)
+
+
+def test_networks_endpoint_via_query_string_is_refused(server):
+    """The PIN must NOT be accepted as a query string any more — only the X-Setup-PIN header. A query
+    string lands in access logs and browser history verbatim (finding N7-1)."""
+    base, _ = server
+    try:
+        urllib.request.urlopen(base + f"/api/networks?pin={TEST_PIN}")  # noqa: S310
+        assert False, "expected a non-200 for a query-string pin"
+    except urllib.error.HTTPError as e:
+        assert e.code in (401, 503)
+
+
+def test_networks_endpoint_missing_pin_is_refused(server):
+    base, _ = server
+    try:
+        _get(base, "/api/networks")
+        assert False, "expected a non-200 without any pin"
+    except urllib.error.HTTPError as e:
+        assert e.code in (401, 503)
+
+
+def test_log_message_redacts_a_pin_query_param(server, capsys):
+    """Even though /api/networks no longer accepts a query-string pin, log_message must still scrub one
+    defensively — the request line (including any query string) is written to stderr -> journal."""
+    base, _ = server
+    try:
+        urllib.request.urlopen(base + f"/api/networks?pin={TEST_PIN}")  # noqa: S310
+    except urllib.error.HTTPError:
+        pass
+    err = capsys.readouterr().err
+    assert TEST_PIN not in err
+    assert "pin=REDACTED" in err
+
+
+def test_captive_probe_still_works_without_any_pin(tmp_path):
+    """Captive-portal detection endpoints must keep working UNAUTHENTICATED even with no PIN at all —
+    phones need them to pop the portal, and they never touch config or Wi-Fi."""
+    boot_conf = tmp_path / "boot" / "pieria.conf"
+    cfg = sd_setup.SetupConfig(dry_run=True, all_in_one=False, boot_conf=boot_conf, output="HDMI-A-1",
+                               pin=None)
+    httpd = ThreadingHTTPServer(("127.0.0.1", 0), sd_setup.make_handler(cfg))
+    t = threading.Thread(target=httpd.serve_forever, daemon=True)
+    t.start()
+    try:
+        # Redirects to "/", which itself fails closed (503) — but the PROBE ITSELF is never gated: the
+        # redirect happens unconditionally, with no PIN check anywhere on that path.
+        try:
+            urllib.request.urlopen(f"http://127.0.0.1:{httpd.server_address[1]}/generate_204")  # noqa: S310
+            assert False, "expected 503 from the fail-closed root page"
+        except urllib.error.HTTPError as e:
+            assert e.code == 503
+    finally:
+        httpd.shutdown()
+
+
+def test_check_pin_uses_constant_time_compare(server, monkeypatch):
+    """Guards against a timing-side-channel regression: check_pin must go through
+    secrets.compare_digest, not a plain `==`."""
+    _, cfg = server
+    calls = []
+    real = sd_setup.secrets.compare_digest
+
+    def _tracked(a, b):
+        calls.append((a, b))
+        return real(a, b)
+    monkeypatch.setattr(sd_setup.secrets, "compare_digest", _tracked)
+    cfg.check_pin(TEST_PIN)
+    assert calls, "check_pin must call secrets.compare_digest"
+
+
+# --- _preserved_lines safety (Info finding, N7) --------------------------------
+
+def test_preserved_lines_drops_a_line_that_fails_safe_value_re(capsys):
+    existing = (
+        "EINK_ENABLED=1\n"
+        "EVIL=x; rm -rf /\n"          # shell metacharacters -> must be dropped, not preserved verbatim
+        "GOOD_KEY=fine-value_123\n"
+    )
+    out = sd_setup._preserved_lines(existing)
+    assert "EINK_ENABLED=1" in out
+    assert "GOOD_KEY=fine-value_123" in out
+    assert not any(line.startswith("EVIL=") for line in out)
+    assert "dropping unsafe preserved conf line" in capsys.readouterr().err
+
+
+def test_preserved_lines_drops_a_line_with_a_bad_key():
+    existing = "1BADKEY=value\nGOOD=ok\n"
+    out = sd_setup._preserved_lines(existing)
+    assert out == ["GOOD=ok"]
+
+
+# --- /api/orientation PIN gate + revert_after clamp (N7-2) ---------------------
+
+def test_orientation_without_pin_is_rejected(server, monkeypatch):
+    monkeypatch.setattr(sd_setup, "_apply_rotation", lambda *a, **k: pytest.fail("must not rotate"))
+    base, _ = server
+    status, data = _post(base, "/api/orientation", {"orientation": "90"})
+    assert status == 401
+    assert data.get("pin_required") is True
+
+
+def test_orientation_with_wrong_pin_is_rejected(server, monkeypatch):
+    monkeypatch.setattr(sd_setup, "_apply_rotation", lambda *a, **k: pytest.fail("must not rotate"))
+    base, _ = server
+    status, data = _post(base, "/api/orientation", {"orientation": "90", "pin": "000000"})
+    assert status == 401
+
+
+def test_orientation_with_correct_pin_succeeds(server, monkeypatch):
+    monkeypatch.setattr(sd_setup, "_apply_rotation", lambda *a, **k: {"mode": "ok"})
+    base, _ = server
+    status, data = _post(base, "/api/orientation", {"orientation": "90", "pin": TEST_PIN})
+    assert status == 200
+    assert data == {"mode": "ok"}
+
+
+@pytest.mark.parametrize("revert_after", [0, 4, 121, 3600, -5])
+def test_orientation_rejects_revert_after_out_of_range(server, monkeypatch, revert_after):
+    monkeypatch.setattr(sd_setup, "_apply_rotation", lambda *a, **k: pytest.fail("must not rotate"))
+    base, _ = server
+    status, data = _post(base, "/api/orientation",
+                         {"orientation": "90", "pin": TEST_PIN, "revert_after": revert_after})
+    assert status == 422
+
+
+@pytest.mark.parametrize("revert_after", [5, 30, 120])
+def test_orientation_accepts_revert_after_in_range(server, monkeypatch, revert_after):
+    monkeypatch.setattr(sd_setup, "_apply_rotation", lambda *a, **k: {"mode": "ok"})
+    base, _ = server
+    status, data = _post(base, "/api/orientation",
+                         {"orientation": "90", "pin": TEST_PIN, "revert_after": revert_after})
+    assert status == 200

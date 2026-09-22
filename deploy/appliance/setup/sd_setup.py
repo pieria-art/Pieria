@@ -22,10 +22,12 @@ import glob
 import json
 import os
 import re
+import secrets
 import shutil
 import subprocess
 import sys
 import threading
+import time
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 
@@ -129,6 +131,14 @@ _WIZARD_KEYS = {"SERVER_URL", "DISPLAY_ID", "MODE", "CYCLE_TIME", "ROTATE", "OUT
                 "WAIT_TIMEOUT", "ALL_IN_ONE", "GEMINI_API_KEY", "EINK_ORIENTATION", "HOSTNAME",
                 "TIMEZONE"}
 
+#: The SAME injection control as sd-conf.SAFE_VALUE_RE (deliberately duplicated, not imported —
+#: sd-conf is a separately-installed script and this file must stand alone). pieria.conf is
+#: `.`-sourced as shell by several scripts, so an unvalidated preserved VALUE is not a bad setting,
+#: it is code. No spaces, quotes, `$`, backticks, `;`, or newlines survive this as anything but a
+#: literal (finding N7-Info, 2026-09-22).
+_SAFE_VALUE_RE = re.compile(r"^[A-Za-z0-9_./:+@,-]*$")
+_PRESERVED_KEY_RE = re.compile(r"^[A-Za-z_][A-Za-z0-9_]*$")
+
 #: IANA zone names: Area/Location[/Sub], e.g. America/Chicago, America/Argentina/Buenos_Aires; also
 #: bare "UTC". Shape check only — existence is verified against the OS zoneinfo where present.
 _TIMEZONE_RE = re.compile(r"^[A-Za-z][A-Za-z0-9_+\-]*(/[A-Za-z0-9_+\-]+){0,2}$")
@@ -160,7 +170,7 @@ def _preserved_lines(existing: str) -> list:
     """Settings from an existing conf that the wizard must NOT clobber.
 
     The wizard emits a fixed key set, so a re-run silently DELETED everything else — EINK_ENABLED,
-    EINK_SATURATION, EINK_MIN_INTERVAL, WATCHDOG. An e-ink box that went through setup (or the ADR-057
+    EINK_MIN_INTERVAL, WATCHDOG. An e-ink box that went through setup (or the ADR-057
     recovery wizard) came back with its panel unconfigured and its watchdog reset, with nothing to
     indicate why. Found before it could bite on the bench, 2026-07-21.
     """
@@ -169,9 +179,18 @@ def _preserved_lines(existing: str) -> list:
         line = raw.strip()
         if not line or line.startswith("#") or "=" not in line:
             continue
-        key = line.split("=", 1)[0].strip()
-        if key and key not in _WIZARD_KEYS:
-            out.append(f"{key}={line.split('=', 1)[1].strip()}")
+        key, _, value = line.partition("=")
+        key, value = key.strip(), value.strip()
+        if not key or key in _WIZARD_KEYS:
+            continue
+        if not _PRESERVED_KEY_RE.match(key) or not _SAFE_VALUE_RE.match(value):
+            # Only reachable by someone who can already write the FAT boot partition (ADR-011
+            # physical-access risk) — but SAFE_VALUE_RE is the load-bearing control on a file that's
+            # `.`-sourced as shell, so a foreign line must clear it too, not ride through verbatim.
+            print(f"sd-setup: dropping unsafe preserved conf line for key {key!r} "
+                  "(value did not pass SAFE_VALUE_RE)", file=sys.stderr)
+            continue
+        out.append(f"{key}={value}")
     return out
 
 
@@ -267,11 +286,49 @@ _CAPTIVE_PROBES = {
     "/ncsi.txt", "/connecttest.txt", "/redirect", "/canonical.html", "/success.txt",
 }
 
+#: Served instead of the wizard when no setup PIN could be issued for this run (PIN_FILE missing or
+#: malformed). Fail CLOSED rather than silently running the wizard with no PIN gate at all.
+PIN_UNAVAILABLE_HTML = """<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Setup unavailable</title>
+<style>body{background:#0f172a;color:#f1f5f9;font-family:-apple-system,sans-serif;
+padding:40px 20px;max-width:440px;margin:0 auto;}
+h1{font-size:1.3rem;}</style></head>
+<body><h1>Setup is temporarily unavailable</h1>
+<p>This display couldn't generate a setup PIN, so the setup wizard can't run safely right now.</p>
+<p>Please restart the display and reconnect to <b>Pieria-Setup</b>.</p>
+</body></html>"""
+
+
+#: Written by common.sh's sd_generate_setup_pin BEFORE sd-setup-card paints the splash/e-ink card and
+#: BEFORE this wizard is launched — on both first boot (sd-setup-boot) and every recovery re-open
+#: (sd-net-recover). /run is tmpfs: the PIN dies with the boot, never touches the SD card, and this
+#: process (running as root) is the only reader (finding N7, 2026-09-22).
+PIN_FILE = Path("/run/pieria-setup-pin")
+
+
+def _read_pin() -> str | None:
+    """The setup PIN generated for this run, or None on any read/shape problem. None means the caller
+    FAILS CLOSED — serves an error page and refuses every PIN-gated request — rather than silently
+    accepting them with no PIN check. Every launch path must create this file before it starts the
+    wizard; a missing/malformed file is treated exactly like "no PIN issued"."""
+    try:
+        raw = PIN_FILE.read_text().strip()
+    except OSError:
+        return None
+    return raw if re.fullmatch(r"[0-9]{6}", raw) else None
+
+
+def _format_pin(pin: str) -> str:
+    """"123456" -> "123 456" — easier to read off a screen and read back aloud."""
+    return f"{pin[:3]} {pin[3:]}" if len(pin) == 6 else pin
+
 
 class SetupConfig:
     """Runtime knobs shared with the request handler."""
     def __init__(self, dry_run: bool, all_in_one: bool, boot_conf: Path, output: str,
-                 recovery: str = ""):
+                 recovery: str = "", pin: str | None = None):
         self.dry_run = dry_run
         self.all_in_one = all_in_one
         self.boot_conf = boot_conf
@@ -282,6 +339,35 @@ class SetupConfig:
         self.recovery = recovery
         self.preview_path = Path("/tmp/sd-setup-preview/pieria.conf")
         self._revert_timer: threading.Timer | None = None
+        # None (the default) means "read PIN_FILE now" — the production path. Tests pass an explicit
+        # value so they don't depend on /run. None here (missing/unreadable file) is the fail-closed
+        # state: every PIN-gated endpoint then refuses rather than accepting with no check.
+        self.pin = pin if pin is not None else _read_pin()
+        self._pin_fail_count = 0
+        self._pin_lock_until = 0.0
+        self._pin_lock = threading.Lock()
+
+    def check_pin(self, candidate) -> tuple[bool, int, str]:
+        """Constant-time PIN check shared by every PIN-gated endpoint (commit, network scan), with a
+        5-attempt / 60s lockout shared across them too — a 6-digit PIN over an open AP must not be
+        brute-forceable within the AP's own lifetime. Returns (ok, http_status, message)."""
+        if self.pin is None:
+            return False, 503, "Setup is unavailable — restart the display to get a new setup PIN."
+        with self._pin_lock:
+            now = time.monotonic()
+            if now < self._pin_lock_until:
+                remaining = int(self._pin_lock_until - now) + 1
+                return False, 429, f"Too many attempts — try again in {remaining}s."
+            ok = bool(candidate) and secrets.compare_digest(str(candidate), self.pin)
+            if ok:
+                self._pin_fail_count = 0
+                return True, 200, ""
+            self._pin_fail_count += 1
+            if self._pin_fail_count >= 5:
+                self._pin_lock_until = now + 60
+                self._pin_fail_count = 0
+                return False, 429, "Too many attempts — try again in 60s."
+            return False, 401, "Incorrect PIN — check the display and try again."
 
 
 def _preview_on_eink(orientation: str) -> bool:
@@ -408,7 +494,11 @@ def make_handler(cfg: SetupConfig):
         # the captive portal left NO evidence it had been reached at all — the same blindness that made
         # the AP bug undiagnosable (ADR-056). Keep it quiet, but not invisible.
         def log_message(self, fmt, *args):  # noqa: D401
-            sys.stderr.write(f"sd-setup: {self.address_string()} {fmt % args}\n")
+            # Defensive redaction: the PIN must never travel in a query string any more (it's a header
+            # now, see /api/networks below), but a stray future caller or proxy log line could still put
+            # `pin=` on the request line — scrub it here so the PIN never reaches the journal either way.
+            line = re.sub(r"pin=[^&\s\"]*", "pin=REDACTED", fmt % args)
+            sys.stderr.write(f"sd-setup: {self.address_string()} {line}\n")
 
         def _send(self, code, body, ctype="application/json"):
             data = body.encode() if isinstance(body, str) else body
@@ -434,8 +524,21 @@ def make_handler(cfg: SetupConfig):
         def do_GET(self):
             path = self.path.split("?", 1)[0]
             if path == "/":
-                self._send(200, WIZARD_HTML, "text/html; charset=utf-8")
+                if cfg.pin is None:
+                    self._send(503, PIN_UNAVAILABLE_HTML, "text/html; charset=utf-8")
+                else:
+                    self._send(200, WIZARD_HTML, "text/html; charset=utf-8")
             elif path == "/api/networks":
+                # The scan leaks neighbouring SSIDs to anyone in radio range of the open AP — gate it
+                # behind the same PIN as commit (N7). A phone that hasn't read the PIN off the screen
+                # yet simply falls back to typing the SSID by hand; nothing else in the wizard needs it.
+                # The PIN travels as a request HEADER, never a query string: a query string lands in
+                # access logs and browser history verbatim (finding N7-1); a header does not.
+                pin = self.headers.get("X-Setup-PIN", "")
+                ok, status, err = cfg.check_pin(pin)
+                if not ok:
+                    self._json(status, {"error": err})
+                    return
                 self._json(200, {"networks": _scanned_networks()})
             elif path == "/api/mode":
                 self._json(200, {"dry_run": cfg.dry_run, "all_in_one": cfg.all_in_one,
@@ -461,8 +564,25 @@ def make_handler(cfg: SetupConfig):
                     out["conf"] = build_conf(body, cfg.all_in_one, _read_existing(cfg.boot_conf))
                 self._json(200 if not errors else 422, out)
             elif path == "/api/orientation":
+                # Unauthenticated, this let a stranger in radio range of the open AP rotate someone's
+                # screen sight-unseen (finding N7-2) — gate it behind the same PIN + shared lockout as
+                # everything else. PIN travels in the POST body, same as /api/commit.
+                ok, status, err = cfg.check_pin(body.get("pin"))
+                if not ok:
+                    self._json(status, {"error": err, "pin_required": True})
+                    return
+                try:
+                    revert_after = int(body.get("revert_after", 30))
+                except (TypeError, ValueError):
+                    self._json(422, {"error": "revert_after must be a number of seconds."})
+                    return
+                # Clamp to what the UI actually offers (5..120s) — an unbounded value let a caller arm a
+                # revert timer that fires instantly or never, either of which can strand the display.
+                if not 5 <= revert_after <= 120:
+                    self._json(422, {"error": "revert_after must be between 5 and 120 seconds."})
+                    return
                 self._json(200, _apply_rotation(cfg.output, body.get("orientation", "landscape"),
-                                                int(body.get("revert_after", 30)), cfg))
+                                                revert_after, cfg))
             elif path == "/api/orientation/keep":
                 if cfg._revert_timer:
                     cfg._revert_timer.cancel()
@@ -476,6 +596,13 @@ def make_handler(cfg: SetupConfig):
             errors = validate_fields(fields)
             if errors:
                 self._json(422, {"errors": errors})
+                return
+            # PIN gate (N7): checked AFTER field validation (an obviously malformed form is rejected
+            # without spending a PIN attempt) but BEFORE anything is written — wrong PIN means nothing
+            # on disk changes, ever. Constant-time compare + shared lockout live in check_pin().
+            ok, status, err = cfg.check_pin(fields.get("pin"))
+            if not ok:
+                self._json(status, {"error": err, "pin_required": True})
                 return
             conf = build_conf(fields, cfg.all_in_one, _read_existing(cfg.boot_conf))
             ssid = (fields.get("wifi_ssid") or "").strip()
@@ -668,6 +795,11 @@ WIZARD_HTML = """<!DOCTYPE html>
   <div id="mode-banner" class="banner hidden"></div>
 
   <div class="card" id="form-card">
+    <label>Setup PIN <span style="text-transform:none;letter-spacing:0;color:var(--muted)">(shown on your screen)</span></label>
+    <input type="text" id="pin" inputmode="numeric" pattern="[0-9]*" autocomplete="one-time-code" maxlength="6" placeholder="123456">
+    <div class="err" id="err-pin"></div>
+    <div class="hint">Look at the display (HDMI or e-ink) you're setting up — it's showing a 6-digit PIN.</div>
+
     <label>Wi-Fi network <span style="text-transform:none;letter-spacing:0;color:var(--muted)">(skip if wired)</span></label>
     <select id="wifi_pick"><option value="">Scanning\u2026</option></select>
     <input type="text" id="wifi_ssid" class="hidden" placeholder="Your Wi-Fi name" autocomplete="off">
@@ -763,10 +895,18 @@ async function loadMode() {
 // The radio can only scan in station mode, so sd-setup-boot scans BEFORE raising the AP and caches the
 // result. Typing an SSID by hand is the single biggest source of a failed setup, so the list is the
 // default and free text is the fallback (hidden networks, or an empty/failed scan).
-async function loadNetworks() {
+async function loadNetworks(pin) {
   const pick = $('wifi_pick'), manual = $('wifi_ssid');
   let nets = [];
-  try { nets = (await fetch('/api/networks').then(r=>r.json())).networks || []; } catch(e){}
+  // The scan is PIN-gated (it leaks neighbouring SSIDs to anyone in AP range) — without a complete PIN
+  // yet we simply show no list and fall back to typing the SSID by hand, same as a failed/empty scan.
+  if (pin && pin.length === 6) {
+    try {
+      // Header, not a query string — a query string lands in access logs and browser history verbatim.
+      const r = await fetch('/api/networks', {headers: {'X-Setup-PIN': pin}});
+      if (r.ok) nets = (await r.json()).networks || [];
+    } catch(e){}
+  }
   pick.innerHTML = '';
   const blank = document.createElement('option');
   blank.value = ''; blank.textContent = nets.length ? 'Choose your network\u2026' : 'No networks found';
@@ -790,6 +930,14 @@ async function loadNetworks() {
       : 'Pick your network from the list \u2014 no typing, no typos.';
   };
   if (!nets.length) { pick.value = '__manual__'; pick.onchange(); }
+}
+
+function wirePin() {
+  $('pin').addEventListener('input', () => {
+    const v = $('pin').value.replace(/\\D/g,'').slice(0,6);
+    $('pin').value = v;
+    if (v.length === 6) loadNetworks(v);
+  });
 }
 
 function wireWifiExtras() {
@@ -831,6 +979,7 @@ function wireHostname(){
 
 function fields() {
   return {
+    pin: $('pin').value,
     wifi_ssid: $('wifi_ssid').value, wifi_pass: $('wifi_pass').value,
     all_in_one: $('all_in_one').value,
     server_url: $('server_url').value, display_id: $('display_id').value,
@@ -839,14 +988,14 @@ function fields() {
     timezone: $('timezone').value,
   };
 }
-function clearErrors(){ ['server_url','display_id','orientation','hostname','timezone'].forEach(f=>{ const e=$('err-'+f); e.style.display='none'; }); }
+function clearErrors(){ ['pin','server_url','display_id','orientation','hostname','timezone'].forEach(f=>{ const e=$('err-'+f); e.style.display='none'; }); }
 function showErrors(errs){ clearErrors(); for(const [f,m] of Object.entries(errs)){ const e=$('err-'+f); if(e){ e.textContent=m; e.style.display='block'; } } }
 
 $('try-rotate').onclick = async () => {
   $('rotate-status').textContent = 'Applying…';
   const r = await fetch('/api/orientation', {method:'POST',headers:{'Content-Type':'application/json'},
-    body: JSON.stringify({orientation: $('orientation').value})}).then(r=>r.json());
-  $('rotate-status').textContent = r.message || '';
+    body: JSON.stringify({orientation: $('orientation').value, pin: $('pin').value})}).then(r=>r.json());
+  $('rotate-status').textContent = r.message || r.error || '';
 };
 
 $('continue').onclick = async () => {
@@ -875,6 +1024,12 @@ $('commit').onclick = async () => {
     body: JSON.stringify(fields())});
   const data = await r.json();
   if (data.errors) { $('commit').disabled=false; $('commit-result').textContent='Please fix the form.'; return; }
+  if (data.error) {
+    $('commit').disabled = false;
+    $('commit-result').textContent = data.error;
+    if (data.pin_required) { $('err-pin').textContent = data.error; $('err-pin').style.display='block'; }
+    return;
+  }
   if (data.dry_run) {
     $('commit-result').innerHTML = '<span class="ok">✓ Dry run complete.</span> ' + data.message +
       '<br>Would write to: <code>' + data.would_write_to + '</code>' +
@@ -888,7 +1043,8 @@ $('commit').onclick = async () => {
 };
 
 loadMode();
-loadNetworks();
+loadNetworks('');
+wirePin();
 wireWifiExtras();
 wireHostname();
 refreshHostPreview();

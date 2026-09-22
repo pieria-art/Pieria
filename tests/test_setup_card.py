@@ -145,3 +145,59 @@ def test_portrait_canvas_stacks_so_text_cannot_hit_the_qr():
     assert sd_card.render_card(1600, 1200, "Pieria-Setup").size == (1600, 1200)   # landscape
     # An extreme name must still render both ways without raising.
     assert sd_card.render_card(1200, 1600, "X" * 60).size == (1200, 1600)
+
+
+# --- setup PIN (N7) -------------------------------------------------------------------------------
+
+def test_read_setup_pin_none_when_file_absent(tmp_path, monkeypatch):
+    monkeypatch.setattr(sd_card, "PIN_FILE", tmp_path / "nope")
+    assert sd_card._read_setup_pin() is None
+
+
+def test_read_setup_pin_none_when_malformed(tmp_path, monkeypatch):
+    f = tmp_path / "pin"
+    f.write_text("abcdef")
+    monkeypatch.setattr(sd_card, "PIN_FILE", f)
+    assert sd_card._read_setup_pin() is None
+
+
+def test_read_setup_pin_formats_with_a_space(tmp_path, monkeypatch):
+    f = tmp_path / "pin"
+    f.write_text("042017\n")
+    monkeypatch.setattr(sd_card, "PIN_FILE", f)
+    assert sd_card._read_setup_pin() == "042 017"
+
+
+@pytest.mark.parametrize("w,h", [(1600, 1200), (1200, 1600), (2200, 2480), (2480, 2200)])
+def test_render_card_shows_the_pin_at_hdmi_and_eink_sizes_without_overflow(tmp_path, monkeypatch, w, h):
+    """The PIN line must render at its own clearly-labelled line on both HDMI-ish and e-ink-ish canvas
+    sizes, in both orientations, without raising or overflowing — it reuses the same fit_font_px /
+    ellipsize guards as the step text."""
+    f = tmp_path / "pin"
+    f.write_text("042017")
+    monkeypatch.setattr(sd_card, "PIN_FILE", f)
+    img = sd_card.render_card(w, h, "Pieria-Setup")
+    assert img.size == (w, h)
+
+
+def test_render_card_omits_pin_line_gracefully_when_none_generated(tmp_path, monkeypatch):
+    """No PIN file (shouldn't happen in production — every launch path creates it first) must not crash
+    the card render; it simply omits the line."""
+    monkeypatch.setattr(sd_card, "PIN_FILE", tmp_path / "nope")
+    img = sd_card.render_card(1600, 1200, "Pieria-Setup")
+    assert img.size == (1600, 1200)
+
+
+def test_splash_includes_the_pin_when_present(tmp_path, monkeypatch):
+    f = tmp_path / "pin"
+    f.write_text("042017")
+    monkeypatch.setattr(sd_card, "PIN_FILE", f)
+    html = sd_card.render_splash("Pieria-Setup")
+    assert "Setup PIN" in html
+    assert "042 017" in html
+
+
+def test_splash_omits_pin_block_when_no_pin_generated(tmp_path, monkeypatch):
+    monkeypatch.setattr(sd_card, "PIN_FILE", tmp_path / "nope")
+    html = sd_card.render_splash("Pieria-Setup")
+    assert "Setup PIN" not in html

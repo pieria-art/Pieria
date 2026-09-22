@@ -107,6 +107,21 @@ def _wifi_qr(ssid: str, px: int):
 
 SCAN_CACHE = Path("/run/sd-setup/networks.json")
 
+#: Written by common.sh's sd_generate_setup_pin before either render path runs (finding N7). Read
+#: directly rather than taken as a CLI argument so the PIN never appears in `ps` output.
+PIN_FILE = Path("/run/pieria-setup-pin")
+
+
+def _read_setup_pin() -> str | None:
+    """The 6-digit PIN for THIS setup run, formatted "123 456", or None if it hasn't been generated
+    (or generation failed) — callers simply omit the PIN line rather than printing garbage; the wizard
+    itself fails closed independently when the same file is missing."""
+    try:
+        raw = PIN_FILE.read_text().strip()
+    except OSError:
+        return None
+    return f"{raw[:3]} {raw[3:]}" if re.fullmatch(r"[0-9]{6}", raw) else None
+
 
 def scan_networks(dev: str = "wlan0") -> list:
     """Nearby Wi-Fi via `iw`, NOT nmcli.
@@ -276,7 +291,20 @@ def render_card(width: int, height: int, ssid: str, recovery: bool = False) -> I
     d.text((margin, y), title, font=_font(S(72), bold=True), fill=BLACK)
     y += S(92)
     d.text((margin, y), sub, font=_font(S(36)), fill=BLACK)
-    y += S(28)
+    y += S(46)
+
+    # --- setup PIN (N7) --- printed as its own clearly-labelled line, sized like the steps below so it
+    # can never overflow into the divider or the QR box; reuses the same fit/ellipsize guards.
+    pin = _read_setup_pin()
+    if pin:
+        pin_label = f"Setup PIN: {pin}"
+        pin_px = fit_font_px(d, [pin_label], width - 2 * margin, start_px=S(48), min_px=S(26))
+        pin_font = _font(pin_px, bold=True)
+        pin_label = ellipsize(d, pin_label, pin_font, width - 2 * margin)
+        d.text((margin, y), pin_label, font=pin_font, fill=accent)
+        y += S(64)
+
+    y += S(20)
     d.line([margin, y + S(26), width - margin, y + S(26)], fill=BLACK, width=S(3))
     y += S(66)
 
@@ -374,7 +402,10 @@ SPLASH_HTML = """<!DOCTYPE html>
   .wrap {{ width:100%; max-width:150vmin; }}
   .eyebrow {{ color:var(--accent); font-weight:700; letter-spacing:.18em; font-size:2.7vmin; margin-bottom:1.6vmin; }}
   h1 {{ font-size:9.2vmin; line-height:1.04; margin:0 0 2vmin; font-weight:800; letter-spacing:-.02em; }}
-  .sub {{ color:var(--muted); font-size:3.8vmin; margin:0 0 5vmin; }}
+  .sub {{ color:var(--muted); font-size:3.8vmin; margin:0 0 3vmin; }}
+  .pin {{ display:inline-block; color:var(--accent); font-size:4vmin; font-weight:700; margin:0 0 5vmin;
+          border:0.3vmin solid var(--accent); border-radius:1.4vmin; padding:1.4vmin 2.6vmin; }}
+  .pin b {{ letter-spacing:0.15em; }}
   .cols {{ display:flex; gap:9vmin; align-items:flex-start; }}
   .steps {{ flex:1 1 auto; list-style:none; margin:0; padding:0; }}
   .steps li {{ display:flex; align-items:flex-start; gap:2.8vmin; margin-bottom:4vmin; font-size:4.1vmin; line-height:1.35; }}
@@ -396,6 +427,7 @@ SPLASH_HTML = """<!DOCTYPE html>
   <div class="eyebrow">PIERIA</div>
   <h1>{title}</h1>
   <p class="sub">{sub}</p>
+  {pin_block}
   <div class="cols">
     <ol class="steps">
       <li><span class="n">1</span><span>Join the Wi-Fi network <span class="ssid">{ssid}</span></span></li>
@@ -435,7 +467,10 @@ def render_splash(ssid: str, recovery: bool = False) -> str:
         b64 = base64.b64encode(buf.getvalue()).decode()
         qr_block = ('<div class="qr"><img alt="Scan to join" src="data:image/png;base64,'
                     + b64 + '"><span>Scan to join the network</span></div>')
-    return SPLASH_HTML.format(accent=accent, title=title, sub=sub, ssid=ssid, qr_block=qr_block)
+    pin = _read_setup_pin()
+    pin_block = f'<div class="pin">Setup PIN: <b>{pin}</b></div>' if pin else ""
+    return SPLASH_HTML.format(accent=accent, title=title, sub=sub, ssid=ssid, qr_block=qr_block,
+                              pin_block=pin_block)
 
 
 def _quantize_to_panel(img: Image.Image) -> Image.Image:

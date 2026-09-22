@@ -100,6 +100,12 @@ while true; do
   RECOVER_PROFILE="$(nmcli -t -f NAME,TYPE con show 2>/dev/null | awk -F: '$2 ~ /wireless/ {print $1; exit}')"
 
   if sd_start_ap "$LOG"; then
+    # Fresh PIN for THIS re-open (finding N7) — never reuse a prior run's, and generate it before either
+    # setup-card paint or the wizard itself so all three agree. A failure is logged but not fatal: the
+    # wizard fails CLOSED on a missing PIN file.
+    if ! sd_generate_setup_pin >/dev/null; then
+      say "WARNING could not generate a setup PIN — the wizard will refuse to run until this box is restarted."
+    fi
     /usr/local/bin/sd-setup-card --ssid Pieria-Setup --recovery \
       --html /run/sd-setup/setup-splash.html >>"$LOG" 2>&1 || true
     # Same reasoning as first-run setup: the panel is holding art and looks fine, so say what's wrong

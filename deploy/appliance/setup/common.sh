@@ -11,6 +11,24 @@ SD_SETUP_DIR=/usr/local/share/pieria/setup
 # there is no race to lose because NM has long since settled.
 SD_DROPIN=/etc/NetworkManager/conf.d/99-pieria-setup.conf
 SD_AP_ADDR=10.0.0.1/24
+# The per-run setup PIN (finding N7): the open AP is otherwise unauthenticated. /run is tmpfs, so the
+# PIN dies with the boot/process and never touches the SD card; sd_setup.py (root) is the only reader.
+SD_SETUP_PIN_FILE=/run/pieria-setup-pin
+
+# Generate a fresh CSPRNG 6-digit PIN and store it root-only (0600), printing it to stdout so the caller
+# can pass it straight to sd-setup-card. Called ONCE per wizard run — first boot (sd-setup-boot) AND
+# every recovery re-open (sd-net-recover) — BEFORE the setup card is painted and BEFORE the wizard
+# starts, so both surfaces and the HTTP gate always agree on the same PIN. A caller that gets a non-zero
+# return here must treat the PIN as unavailable — sd_setup.py fails CLOSED when the file is absent
+# rather than serving the wizard with no PIN gate.
+sd_generate_setup_pin() {
+  local pin
+  pin="$(python3 -c 'import secrets; print(f"{secrets.randbelow(1000000):06d}")' 2>/dev/null)" || return 1
+  [ -n "$pin" ] || return 1
+  ( umask 077; printf '%s\n' "$pin" > "$SD_SETUP_PIN_FILE" ) || return 1
+  chmod 600 "$SD_SETUP_PIN_FILE" || return 1
+  printf '%s\n' "$pin"
+}
 
 # Resolve the boot-partition conf path: honour an explicit argument, else probe the usual mounts.
 sd_resolve_conf() {
