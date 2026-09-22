@@ -457,3 +457,23 @@ def test_floor_min_keeps_colour_everywhere():
     stripped = apply_chroma_curve(src, 2.0, 0.7, 20.0, gap_normalised=True, floor_min=0.0)
     kept = apply_chroma_curve(src, 2.0, 0.7, 20.0, gap_normalised=True, floor_min=0.35)
     assert _mean_chroma(kept) > _mean_chroma(stripped)
+
+
+def test_spectra6_toe_is_bit_identical_to_shipping_above_the_knee():
+    # 🔑 The invariant that makes the toe a strict SUPERSET of shipping: every pixel at or above the
+    # knee must come out EXACTLY as `_tone_lut` would render it -- not within one count, exactly.
+    #
+    # This is not pedantry. `_tone_lut` rounds with Python's `round()` (banker's rounding); the toe's
+    # arithmetic rounds half UP, and the two disagree on 32 of the 256 byte values. A single count of
+    # difference is enough for Floyd-Steinberg to relocate dots across the whole frame: before this
+    # was fixed, works with below_knee < 0.001 -- which the curve provably cannot touch -- still
+    # differed from shipping in 24-50% of pixels. That made every toe render a tone change AND an
+    # unrelated dither-noise change, on every work in the library.
+    lut = _tone_lut(SPECTRA6_WHITE_POINT, SPECTRA6_GAMMA)
+    greys = [v for v in range(256) if v >= SPECTRA6_TOE_KNEE]
+    img = Image.new("RGB", (len(greys), 1))
+    for x, v in enumerate(greys):
+        img.putpixel((x, 0), (v, v, v))
+    out = _spectra6_toe(img)
+    for x, v in enumerate(greys):
+        assert out.getpixel((x, 0)) == (lut[v], lut[v], lut[v]), f"grey {v} diverged from shipping"

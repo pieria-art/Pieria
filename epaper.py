@@ -292,12 +292,30 @@ def _spectra6_toe(img: Image.Image) -> Image.Image:
     )
     scale = ImageMath.eval("target / max(y, eps)", target=target, y=y, eps=1e-6)
 
-    def _scaled(band):
-        return ImageMath.eval(
+    # 🔑 Above the knee this curve IS shipping's linear scale, so a pixel there must come out
+    # BIT-IDENTICAL to shipping — and `band * scale + 0.5` does not deliver that. `_tone_lut` rounds
+    # with Python's `round()`, which is banker's rounding; `+ 0.5` then truncating is round-half-up.
+    # They disagree on 32 of the 256 byte values, so ~1 pixel in 3 comes out +-1 on some channel —
+    # and Floyd-Steinberg turns a +-1 input change into a wholesale reshuffle of dot positions.
+    # Measured before this fix: works with below_knee < 0.001, which this curve provably cannot
+    # touch, still differed from shipping in 24-50% OF PIXELS. That made the toe a tone change AND
+    # an unrelated dither-noise change on every work in the library, including the ones it does
+    # nothing to. Taking the LUT's own output above the knee makes the toe a strict superset of
+    # shipping: a work with no below-knee content renders exactly as it does today.
+    shipping = img.point(list(_tone_lut(SPECTRA6_WHITE_POINT, SPECTRA6_GAMMA)) * 3)
+    sr, sg, sb = (band.convert("F") for band in shipping.split())
+
+    def _blend(band, ship):
+        # `.convert("L")` truncates, which is the round-half-up half of `+ 0.5`; do it BEFORE the
+        # blend so the toe branch carries its own rounding and the shipping branch carries the LUT's.
+        toed = ImageMath.eval(
             "max(min(band * scale + 0.5, 255.0), 0.0)", band=band, scale=scale
+        ).convert("L").convert("F")
+        return ImageMath.eval(
+            "above * ship + (1.0 - above) * toed", above=above_knee, ship=ship, toed=toed
         ).convert("L")
 
-    return Image.merge("RGB", (_scaled(r), _scaled(g), _scaled(b)))
+    return Image.merge("RGB", (_blend(r, sr), _blend(g, sg), _blend(b, sb)))
 
 
 # --- Chroma correction: a HUE-CONDITIONED curve (bench-derived 2026-08-28, ADR-088) ---------------
