@@ -12,7 +12,7 @@ import logging
 from pathlib import Path
 from typing import Optional
 
-from fastapi import APIRouter, Depends, File, Form, HTTPException, UploadFile
+from fastapi import APIRouter, Depends, File, Form, HTTPException, Request, UploadFile
 from fastapi.concurrency import run_in_threadpool
 from PIL import Image, ImageOps
 from pydantic import BaseModel
@@ -21,7 +21,7 @@ from sqlalchemy.orm import Session
 
 import ai_client
 from config import LIBRARY_DIR
-from core.media import warm_canvas_cache_async
+from core.media import check_user_upload_pixel_ceiling, read_capped_upload, warm_canvas_cache_async
 from core.playlists import _link_artwork_to_playlist
 from core.schemas import ArtworkSchema
 from database import get_db
@@ -48,6 +48,7 @@ def _get_or_create_playlist(db: Session, name: str, is_personal: bool = False) -
 
 @router.post("/upload/personal", response_model=ArtworkSchema)
 async def upload_personal_photo(
+    request: Request,
     file: UploadFile = File(...),
     caption: Optional[str] = Form(None),
     date: Optional[str] = Form(None),
@@ -61,12 +62,15 @@ async def upload_personal_photo(
     Links into the given playlist, or an auto-created "My Photos" playlist."""
     if not LIBRARY_DIR.exists():
         LIBRARY_DIR.mkdir(parents=True)
-    raw = await file.read()
+    # M4: same untrusted-upload cap as /upload — Content-Length pre-check + streamed read limit.
+    raw = await read_capped_upload(file, request)
 
     def _decode_and_store():
         # A1: decode + EXIF-transpose + encode + disk write are blocking — run in a thread.
         with Image.open(io.BytesIO(raw)) as src:
             fmt = (src.format or "JPEG").upper()
+            # M4: lower pixel ceiling for this untrusted-upload path only.
+            check_user_upload_pixel_ceiling(*src.size)
             img = ImageOps.exif_transpose(src)   # bake phone orientation; drops the EXIF tag
         ext = {"PNG": ".png", "WEBP": ".webp"}.get(fmt, ".jpg")
         stem = Path(file.filename or "").stem
@@ -87,6 +91,8 @@ async def upload_personal_photo(
 
     try:
         safe, w, h = await run_in_threadpool(_decode_and_store)
+    except HTTPException:
+        raise
     except Exception:
         raise HTTPException(400, detail="That file isn't a readable image.")
 

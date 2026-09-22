@@ -17,6 +17,7 @@ from fastapi import (
     File,
     Form,
     HTTPException,
+    Request,
     UploadFile,
 )
 from fastapi.concurrency import run_in_threadpool
@@ -29,7 +30,7 @@ from sqlalchemy.orm import Session
 import federation
 from agents import process_artwork
 from config import LIBRARY_DIR, strip_markdown
-from core.media import get_optimized_image
+from core.media import check_user_upload_pixel_ceiling, get_optimized_image, read_capped_upload
 from core.playback import placard_metadata
 from core.playlists import _link_artwork_to_playlist
 from core.schemas import ArtworkSchema
@@ -228,9 +229,11 @@ async def reorder_playlist(playlist_id: int, request: ReorderRequest, db: Sessio
     db.commit(); return {"status": "success"}
 
 @router.post("/upload", response_model=ArtworkSchema)
-async def upload_artwork(background_tasks: BackgroundTasks, file: UploadFile = File(...), playlist_id: Optional[int] = Form(None), db: Session = Depends(get_db)):
+async def upload_artwork(background_tasks: BackgroundTasks, request: Request, file: UploadFile = File(...), playlist_id: Optional[int] = Form(None), db: Session = Depends(get_db)):
     if not LIBRARY_DIR.exists(): LIBRARY_DIR.mkdir(parents=True)
-    raw = await file.read()
+    # M4: this is an untrusted LAN-uploaded body — cap it (Content-Length pre-check + streamed read
+    # limit, since the header alone isn't trustworthy) before it ever reaches Pillow.
+    raw = await read_capped_upload(file, request)
 
     def _decode_and_store():
         # NEVER build the on-disk path from the client-supplied filename (C1: it was written verbatim,
@@ -240,6 +243,9 @@ async def upload_artwork(background_tasks: BackgroundTasks, file: UploadFile = F
         # exact bytes. All of this (decode/transpose/encode + disk write) is blocking → run in a thread.
         with Image.open(io.BytesIO(raw)) as src:
             fmt = (src.format or "").upper()
+            # M4: a lower pixel ceiling than the global 200 MP decompression-bomb guard, for THIS
+            # untrusted-upload path only — server-side museum ingestion keeps its existing ceiling.
+            check_user_upload_pixel_ceiling(*src.size)
             ext = {"JPEG": ".jpg", "HEIF": ".jpg", "HEIC": ".jpg", "PNG": ".png", "WEBP": ".webp",
                    "GIF": ".gif", "BMP": ".bmp", "TIFF": ".tiff"}.get(fmt, f".{fmt.lower()}" if fmt else ".jpg")
             stem = Path(file.filename or "").stem
@@ -261,6 +267,8 @@ async def upload_artwork(background_tasks: BackgroundTasks, file: UploadFile = F
 
     try:
         fname, w, h = await run_in_threadpool(_decode_and_store)
+    except HTTPException:
+        raise
     except Exception:
         raise HTTPException(400, detail="That file isn't a readable image.")
     new_a = ArtworkModel(filename=fname, original_width=w, original_height=h, status='pending_review')

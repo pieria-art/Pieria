@@ -36,7 +36,12 @@ def _gai(ip):
 
 # --- SSRF guard -------------------------------------------------------------
 
-@pytest.mark.parametrize("ip", ["127.0.0.1", "10.0.0.5", "192.168.1.10", "169.254.169.254", "::1"])
+@pytest.mark.parametrize("ip", [
+    "127.0.0.1", "10.0.0.5", "192.168.1.10", "169.254.169.254", "::1",
+    "100.64.1.1",   # L1: CGNAT (RFC 6598) — the old private/loopback/link-local/reserved/multicast
+                    # blocklist missed this range entirely; `is_global` catches it.
+    "fc00::1",      # unique-local IPv6
+])
 def test_ssrf_guard_blocks_non_public(monkeypatch, ip):
     monkeypatch.setattr(federation.socket, "getaddrinfo", _gai(ip))
     with pytest.raises(FederationError):

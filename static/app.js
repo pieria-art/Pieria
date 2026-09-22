@@ -43,7 +43,7 @@ const API_BASE = (window.location.origin === 'null' || window.location.protocol 
 // 3. Targeted WebSocket Endpoint
 // Connects to /ws/[display_id] based on ?display= URL parameter
 const DISPLAY_ID = urlParams.get('display') || 'default';
-const WS_URL = `${window.location.protocol === 'https:' ? 'wss' : 'ws'}://${window.location.host}/ws/${DISPLAY_ID}`;
+const WS_URL = `${window.location.protocol === 'https:' ? 'wss' : 'ws'}://${window.location.host}/ws/${encodeURIComponent(DISPLAY_ID)}`;
 
 // Hide the mouse cursor on the display Canvas — reveal it briefly on movement, then
 // re-hide. A kiosk never moves the mouse, so the cursor stays gone (no stray pointer

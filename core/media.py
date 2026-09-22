@@ -10,12 +10,55 @@ import os
 from functools import lru_cache
 from pathlib import Path
 
+from fastapi import HTTPException, Request, UploadFile
 from fastapi.concurrency import run_in_threadpool
 from PIL import Image, ImageOps
 
 from config import ARTWORK_ROOT, LIBRARY_DIR
 
 logger = logging.getLogger("artwork-display-api")
+
+# M4: caps for USER uploads only (routers/library.py /upload, routers/studio.py /upload/personal) —
+# the untrusted-bytes path a LAN client controls directly, not server-side museum pack ingestion
+# (core/lifespan.py, tools/build_pack.py), which keeps its existing, higher ceiling.
+USER_UPLOAD_MAX_BYTES = 50 * 1024 * 1024   # 50 MB
+USER_UPLOAD_MAX_PIXELS = 80_000_000        # 80 MP — below the 200 MP decompression-bomb ceiling in agents.py
+
+
+async def read_capped_upload(file: UploadFile, request: Request, max_bytes: int | None = None) -> bytes:
+    """Read an UploadFile's body with a hard cap, for untrusted user uploads. Content-Length is checked
+    first as a fast pre-check, but never trusted alone (a client can omit/lie about it under chunked
+    transfer) — the real enforcement is the streamed read, which stops as soon as the cap is crossed
+    rather than buffering an arbitrarily large body into memory first.
+
+    `max_bytes` is read from the module default at call time (not bound as a default arg) so tests can
+    monkeypatch USER_UPLOAD_MAX_BYTES without exercising a real 50 MB body."""
+    if max_bytes is None:
+        max_bytes = USER_UPLOAD_MAX_BYTES
+    content_length = request.headers.get("content-length")
+    if content_length and content_length.isdigit() and int(content_length) > max_bytes:
+        raise HTTPException(413, detail=f"File too large (max {max_bytes // (1024 * 1024)} MB).")
+    buf = bytearray()
+    total = 0
+    while True:
+        chunk = await file.read(1024 * 1024)
+        if not chunk:
+            break
+        total += len(chunk)
+        if total > max_bytes:
+            raise HTTPException(413, detail=f"File too large (max {max_bytes // (1024 * 1024)} MB).")
+        buf.extend(chunk)
+    return bytes(buf)
+
+
+def check_user_upload_pixel_ceiling(width: int, height: int, max_pixels: int | None = None) -> None:
+    """Reject a user-uploaded image above `max_pixels` — a lower ceiling than the global 200 MP
+    decompression-bomb guard (agents.py), which still applies underneath this for every decode.
+    Read from the module default at call time (see read_capped_upload) so it's monkeypatchable."""
+    if max_pixels is None:
+        max_pixels = USER_UPLOAD_MAX_PIXELS
+    if width * height > max_pixels:
+        raise HTTPException(400, detail=f"Image is too large (max {max_pixels // 1_000_000} MP).")
 
 
 @lru_cache(maxsize=256)

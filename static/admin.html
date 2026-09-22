@@ -402,6 +402,7 @@
             <div class="action-bar">
                 <div id="library-upload-zone" class="upload-zone" onclick="document.getElementById('library-file-input').click()">
                     Drag & Drop or Click to Add to Library
+                    <br><small>Max 50 MB, 80 MP per image</small>
                     <input type="file" id="library-file-input" hidden multiple onchange="uploadFiles(this.files, null)">
                 </div>
                 <input type="search" id="library-filter" placeholder="🔍 Filter by title, artist, tag…" oninput="filterLibrary(this.value)" aria-label="Filter library" style="flex:1; min-width:0; margin-left:20px; padding:8px 12px; background:#0f172a; color:var(--text-color); border:1px solid var(--border-color); border-radius:6px;">
@@ -415,6 +416,7 @@
             <div class="action-bar">
                 <div id="upload-zone" class="upload-zone">
                     Upload New <span id="target-playlist-name">to a gallery</span>
+                    <br><small>Max 50 MB, 80 MP per image</small>
                     <input type="file" id="file-input" hidden multiple>
                 </div>
                 <div style="display:flex; gap:12px; margin-left:20px;">

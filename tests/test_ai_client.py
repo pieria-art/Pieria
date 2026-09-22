@@ -186,6 +186,31 @@ def test_chat_raises_on_http_error(monkeypatch):
         ai_client.chat("vision", [{"role": "user", "content": "hi"}], cfg=_cfg("gemini"))
 
 
+def test_chat_http_error_does_not_echo_upstream_body(monkeypatch, caplog):
+    # L4: the upstream error body may carry request-identifying detail; it must be logged
+    # server-side only (with any key-ish substring scrubbed by _KEYISH, same as record_failure),
+    # never handed back un-redacted in the exception message callers see.
+    secret_key = "sk-shouldnotleak-1234567890"
+    secret_body = f"upstream-detail {secret_key}"
+
+    class _Resp:
+        status_code = 401  # not in the retry set, so this doesn't sleep
+
+        def json(self):
+            raise ValueError("not json")
+        text = secret_body
+
+    monkeypatch.setattr(ai_client._http_client, "post", lambda *a, **k: _Resp())
+    with caplog.at_level("WARNING", logger="artwork-display-api.ai_client"):
+        with pytest.raises(ai_client.AIConfigError) as exc_info:
+            ai_client.chat("vision", [{"role": "user", "content": "hi"}], cfg=_cfg("gemini"))
+    assert secret_body not in str(exc_info.value)
+    assert "401" in str(exc_info.value)
+    assert secret_key not in "\n".join(r.getMessage() for r in caplog.records)
+    assert any("upstream-detail" in r.getMessage() and "<redacted>" in r.getMessage()
+               for r in caplog.records)
+
+
 def test_validate_config_roundtrips(monkeypatch):
     cap = _capture_post(monkeypatch)
     reply = ai_client.validate_config("openai", "https://api.openai.com/v1", "sk-x", "gpt-4o")

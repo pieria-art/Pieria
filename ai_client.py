@@ -401,13 +401,18 @@ def chat(
         break
 
     if resp.status_code != 200:
-        raise AIConfigError(f"Model API error {resp.status_code}: {resp.text[:300]}")
+        # L4: the upstream body can carry request-identifying detail (or, previously, an unredacted
+        # key — see the _KEYISH scrub above) — log it server-side only; callers get status + a generic
+        # message, not up to 300 chars of someone else's response body.
+        logger.warning(f"Model API error {resp.status_code}: {_KEYISH.sub('<redacted>', resp.text[:300])}")
+        raise AIConfigError(f"Model API error {resp.status_code}: the model endpoint returned an error.")
 
     try:
         data = resp.json()
         return data["choices"][0]["message"]["content"]
     except (KeyError, IndexError, ValueError) as e:
-        raise AIConfigError(f"Unexpected model response: {resp.text[:300]}") from e
+        logger.warning(f"Unexpected model response: {_KEYISH.sub('<redacted>', resp.text[:300])}")
+        raise AIConfigError("Unexpected model response: the model endpoint returned an unreadable reply.") from e
 
 
 def validate_config(provider: str, base_url: str, api_key: str, model: str) -> str:

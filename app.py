@@ -63,7 +63,7 @@ from core.lifespan import (
 
 # Derivative-image primitives (see core/media.py); tests/test_factory_reset.py + test_display_image.py
 # monkeypatch DERIVATIVES_DIR and import DISPLAY_MAX_EDGE off `app`.
-from core.media import DERIVATIVES_DIR, DISPLAY_MAX_EDGE  # noqa: F401,E402
+from core.media import DERIVATIVES_DIR, DISPLAY_MAX_EDGE, USER_UPLOAD_MAX_BYTES  # noqa: F401,E402
 
 # Origin/CORS trust checks used by the middleware below (see core/security.py).
 from core.security import (  # noqa: E402
@@ -102,6 +102,88 @@ from routers.studio import router as studio_router
 from routers.ws import router as ws_router
 
 app = FastAPI(title="Pieria", version=APP_VERSION, lifespan=lifespan)
+
+
+# --- M4: body-size cap enforced BEFORE Starlette parses/spools multipart (ADR-119 audit, 2026-09-22) --
+# core/media.py's read_capped_upload runs inside the route handler, but by then Starlette has already
+# parsed the multipart body (and, for large bodies, spooled it to disk) to hand FastAPI an UploadFile —
+# the handler-level cap is too late to bound that work. This is a raw ASGI middleware (not
+# BaseHTTPMiddleware, which itself buffers) sitting below routing: a Content-Length pre-check rejects
+# oversized requests with 413 before any body is read, and a running byte count over the receive
+# stream catches chunked/no-Content-Length bodies that lie about size. Scoped to the two upload routes
+# only — every other endpoint is untouched. The per-handler check in core/media.py stays as
+# defense-in-depth (e.g. a client whose declared boundary overhead undercounts).
+_CAPPED_UPLOAD_PATHS = frozenset({"/upload", "/upload/personal"})
+# Small multipart overhead allowance (boundary + per-part headers) atop the raw file cap.
+_UPLOAD_BODY_CAP = USER_UPLOAD_MAX_BYTES + 64 * 1024
+
+
+class UploadBodyCapMiddleware:
+    """Pure ASGI middleware — rejects an oversized POST to a capped upload path with 413 before the
+    body reaches Starlette's multipart parser."""
+
+    def __init__(self, app):
+        self.app = app
+
+    async def __call__(self, scope, receive, send):
+        if (scope["type"] != "http" or scope.get("method") != "POST"
+                or scope.get("path") not in _CAPPED_UPLOAD_PATHS):
+            await self.app(scope, receive, send)
+            return
+
+        headers = dict(scope.get("headers") or [])
+        content_length = headers.get(b"content-length")
+        if content_length is not None:
+            try:
+                if int(content_length) > _UPLOAD_BODY_CAP:
+                    await self._reject(send)
+                    return
+            except ValueError:
+                pass  # malformed header — the running-total check below still applies
+
+        # Drain + count the body ourselves so a chunked/no-Content-Length request can't lie about
+        # size; buffer what we've read so it can be replayed to the real app once we know it fits.
+        buffered = []
+        total = 0
+        while True:
+            message = await receive()
+            buffered.append(message)
+            if message["type"] != "http.request":
+                break
+            total += len(message.get("body", b"") or b"")
+            if total > _UPLOAD_BODY_CAP:
+                await self._reject(send)
+                return
+            if not message.get("more_body", False):
+                break
+
+        idx = 0
+
+        async def replay_receive():
+            nonlocal idx
+            if idx < len(buffered):
+                message = buffered[idx]
+                idx += 1
+                return message
+            return await receive()
+
+        await self.app(scope, replay_receive, send)
+
+    @staticmethod
+    async def _reject(send):
+        await send({
+            "type": "http.response.start",
+            "status": 413,
+            "headers": [(b"content-type", b"application/json")],
+        })
+        await send({
+            "type": "http.response.body",
+            "body": (f'{{"detail":"File too large (max {USER_UPLOAD_MAX_BYTES // (1024 * 1024)} MB)."}}'
+                      .encode()),
+        })
+
+
+app.add_middleware(UploadBodyCapMiddleware)
 
 # Leaf domain routers (Phase 1 + Phase 2 + Phase 3 + Phase 4 of the app-split refactor — see
 # .ai/refactor_app_split_plan.md).

@@ -102,6 +102,49 @@ def test_personal_upload_rejects_non_image(client):
     assert r.status_code == 400
 
 
+# --- M4: body-size cap + user-upload pixel ceiling ---------------------------
+
+def test_personal_upload_rejects_over_size_cap(client, monkeypatch):
+    import core.media as media
+    monkeypatch.setattr(media, "USER_UPLOAD_MAX_BYTES", 100)  # smaller than a real PNG
+    c, _ = client
+    r = _upload(c, caption="Big")
+    assert r.status_code == 413
+
+
+def test_personal_upload_allows_under_size_cap(client, monkeypatch):
+    import core.media as media
+    payload = _png_bytes()
+    monkeypatch.setattr(media, "USER_UPLOAD_MAX_BYTES", len(payload) + 1000)
+    c, _ = client
+    r = _upload(c, caption="Fits")
+    assert r.status_code == 200, r.text
+
+
+def test_personal_upload_rejects_over_pixel_ceiling(client, monkeypatch):
+    import core.media as media
+    monkeypatch.setattr(media, "USER_UPLOAD_MAX_PIXELS", 100)  # a 60x40 PNG is already over this
+    c, _ = client
+    r = _upload(c, caption="TooManyPixels")
+    assert r.status_code == 400
+
+
+def test_upload_museum_rejects_over_size_cap(client, monkeypatch):
+    import core.media as media
+    monkeypatch.setattr(media, "USER_UPLOAD_MAX_BYTES", 100)
+    c, _ = client
+    r = c.post("/upload", files={"file": ("art.png", _png_bytes(), "image/png")})
+    assert r.status_code == 413
+
+
+def test_upload_museum_rejects_over_pixel_ceiling(client, monkeypatch):
+    import core.media as media
+    monkeypatch.setattr(media, "USER_UPLOAD_MAX_PIXELS", 100)
+    c, _ = client
+    r = c.post("/upload", files={"file": ("art.png", _png_bytes(), "image/png")})
+    assert r.status_code == 400
+
+
 # --- HEIC (the iPhone default capture format) ---
 
 def _heic_bytes(size=(80, 60), color=(200, 100, 50)):

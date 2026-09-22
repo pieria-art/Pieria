@@ -2016,12 +2016,23 @@ function setupUploadZone() {
 }
 
 async function uploadFiles(files, playlistId) {
+    const failures = [];
     for (let file of files) {
         const fd = new FormData();
         fd.append('file', file);
         if (playlistId) fd.append('playlist_id', playlistId);
-        try { await fetch(`${API_BASE}/upload`, { method: 'POST', body: fd }); }
-        catch (error) { console.error('[Admin] Upload failed:', error); }
+        try {
+            const res = await fetch(`${API_BASE}/upload`, { method: 'POST', body: fd });
+            if (!res.ok) {
+                let detail = res.statusText;
+                try { detail = (await res.json()).detail || detail; } catch (_) { /* non-JSON body */ }
+                console.error(`[Admin] Upload failed for ${file.name}: ${res.status} ${detail}`);
+                failures.push(`${file.name}: ${detail}`);
+            }
+        } catch (error) { console.error('[Admin] Upload failed:', error); failures.push(`${file.name}: ${error}`); }
+    }
+    if (failures.length) {
+        showTransientNotice(`Upload failed — ${failures.join('; ')}`);
     }
     // Immediate refresh after upload completes
     await refreshData();

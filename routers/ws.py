@@ -12,10 +12,11 @@ import logging
 from datetime import UTC, datetime
 from typing import Optional
 
-from fastapi import APIRouter, Depends, WebSocket, WebSocketDisconnect
+from fastapi import APIRouter, Depends, HTTPException, WebSocket, WebSocketDisconnect
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
 
+from core import appliance_settings
 from core.connections import manager
 from core.playback import _display_now_playing, _is_live, known_displays
 from core.security import _origin_allowed
@@ -69,6 +70,15 @@ class RemoteChangeRequest(BaseModel):
 @router.post("/api/remote/change")
 async def remote_change_playlist(request: RemoteChangeRequest, db: Session = Depends(get_db)):
     """Targeted command to change a playlist, mode, or trigger navigation on a specific display."""
+    # H5r: display_id was the one place H5's validation didn't reach. Deliberately NOT
+    # appliance_settings.validate("DISPLAY_ID", ...) — that's sd-conf's conf-writer rule
+    # (lowercase [a-z0-9_-] only) for the one path that writes this into a shell-sourced conf file,
+    # and it fails CLOSED (refuses everything) whenever sd-conf isn't importable. This path never
+    # touches a shell or filesystem — it's logged/persisted/queried only — so it gets its own
+    # runtime validator that admits the ids real displays already use.
+    error = appliance_settings.validate_display_id_runtime(request.target_display)
+    if error:
+        raise HTTPException(400, detail=error)
     logger.info(f"Targeted Remote Command: {request.target_display} -> {request.action}")
 
     payload = {"action": request.action}
@@ -96,6 +106,12 @@ async def websocket_endpoint(websocket: WebSocket, display_id: str):
     # Origin, while native kiosk/CDP clients send none (allowed — the accepted LAN-presence model).
     origin = websocket.headers.get("origin", "")
     if origin and not _origin_allowed(origin, websocket.headers.get("host", "")):
+        await websocket.close(code=1008)
+        return
+    # H5r: display_id was still unvalidated here (H5 fixed the broadcast, not the path param) — same
+    # runtime validator as /api/remote/change (see comment there for why not appliance_settings.validate),
+    # closed with the WS policy-violation code (1008).
+    if appliance_settings.validate_display_id_runtime(display_id):
         await websocket.close(code=1008)
         return
     await manager.connect(websocket, display_id)

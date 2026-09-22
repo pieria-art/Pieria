@@ -52,6 +52,31 @@ def sanitize_display_id(raw: str) -> str:
     return sd_conf.sanitize_display_id(raw) if sd_conf else ""
 
 
+#: H5r fix: `validate("DISPLAY_ID", ...)` above is sd-conf's conf-writer rule (lowercase [a-z0-9_-]
+#: only, and it fails CLOSED — refuses everything — when sd-conf isn't importable). That's correct
+#: for the one path that writes DISPLAY_ID into a `.`-sourced shell conf file
+#: (set-display-name, above), but the WS path (routers/ws.py) only ever logs/stores/queries this
+#: value by ORM parameter — it never reaches a shell or a filesystem path. Existing displays
+#: legitimately use ids that rule rejects: help.html documents pointing a browser at
+#: `/?display=<name>` with any string (static/app.js:45 passes it through unchanged), and hand-edited
+#: DISPLAY_ID values in help.html. This validator protects what H5/H5r actually needed protected
+#: against here — log/DB injection via control characters and path-ish separators — not the shell
+#: conf-writer's stricter charset, and it must never depend on sd_conf being importable.
+_DISPLAY_ID_EXTRA_CHARS = " ._-"
+
+
+def validate_display_id_runtime(value: str) -> str | None:
+    """Error message, or None. Allows 1-64 chars of Unicode letters/digits, space, '.', '_', '-';
+    refuses empty/oversized values, control characters, and anything else. Does not depend on
+    sd_conf, so it never fails closed just because the appliance conf-writer isn't loadable."""
+    if not value or len(value) > 64:
+        return "invalid display id"
+    for ch in value:
+        if not (ch.isalnum() or ch in _DISPLAY_ID_EXTRA_CHARS):
+            return "invalid display id"
+    return None
+
+
 #: action -> [(request field, conf key, required)]. The endpoint copies ONLY these fields into
 #: request.json, so a crafted request can't smuggle an extra key past the host's `case` arm.
 ACTION_FIELDS = {

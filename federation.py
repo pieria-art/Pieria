@@ -1,8 +1,9 @@
 """Federation — safely fetch, validate, and cache subscribed Manifest v2 collections.
 
 Security posture (we index pointers, never host bytes; the user chose the URL):
-- http(s) only; an **SSRF guard** blocks hosts that resolve to private/loopback/link-local/reserved
-  addresses (no reaching internal services like cloud metadata or localhost).
+- http(s) only; an **SSRF guard** allowlists only globally-routable host IPs (`ipaddress.is_global`,
+  which also excludes CGNAT 100.64.0.0/10) plus explicit multicast/reserved refusals (no reaching
+  internal services like cloud metadata, localhost, or link-local).
 - **redirects disabled** (a 3xx could bounce past the SSRF check to an internal host).
 - **size cap + content-type/JSON check + timeout** (no zip-bombs / HTML / hangs).
 - **strict Manifest v2 validation** before anything is cached or shown.
@@ -107,8 +108,11 @@ def _assert_public_url(url: str) -> None:
         raise FederationError(f"cannot resolve host: {e}") from e
     for info in infos:
         ip = ipaddress.ip_address(info[4][0])
-        if (ip.is_private or ip.is_loopback or ip.is_link_local or ip.is_reserved
-                or ip.is_multicast or ip.is_unspecified):
+        # Allowlist, not a blocklist (L1): `is_global` already excludes private/loopback/link-local/
+        # reserved/unspecified AND CGNAT (100.64.0.0/10, RFC 6598) — the earlier blocklist enumerated
+        # ranges by name and missed CGNAT entirely. `is_global` alone is not enough on its own, though:
+        # some multicast/reserved ranges report is_global=True (e.g. 224.0.0.1), so those stay explicit.
+        if not ip.is_global or ip.is_multicast or ip.is_reserved or ip.is_unspecified:
             raise FederationError(f"host resolves to a non-public address ({ip}) — blocked")
 
 
