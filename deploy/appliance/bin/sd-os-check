@@ -28,6 +28,24 @@ import time
 from datetime import UTC, datetime
 from pathlib import Path
 
+#: sd-mailbox is the ONE way any root-run appliance script touches data/appliance/ — see its own
+#: docstring for the threat model (the container, uid 1000, can replace data/appliance with a
+#: symlink). Overridable so a test can point at a stub.
+MAILBOX_BIN = os.environ.get("SD_MAILBOX_BIN") or str(Path(__file__).resolve().parent / "sd-mailbox")
+
+
+def _mbox(repo_root, *args, input_bytes: bytes | None = None) -> subprocess.CompletedProcess:
+    # This runs on a nightly timer whose whole contract is "never fails the caller" (see module
+    # docstring) — a missing sd-mailbox binary (FileNotFoundError) or one that hangs past its timeout
+    # (subprocess.TimeoutExpired) must report as a failed mailbox call, not crash main() and leave a
+    # failed unit as the only signal instead of a report file saying why.
+    try:
+        return subprocess.run([MAILBOX_BIN, "--repo-root", str(repo_root), *args],
+                              input=input_bytes, capture_output=True, timeout=30)
+    except (FileNotFoundError, subprocess.TimeoutExpired) as e:
+        return subprocess.CompletedProcess(args=[MAILBOX_BIN, *args], returncode=1,
+                                           stdout=b"", stderr=str(e).encode())
+
 #: Packages whose upgrade genuinely needs a reboot to take effect.
 #: Chromium and cage are deliberately NOT here: a running kiosk picks up a new browser on relaunch,
 #: which is far cheaper than a reboot and is what `update-system` does anyway.
@@ -130,10 +148,17 @@ def acquire_apt_lock(timeout: int = 600):
 
 def _update_in_progress(appliance_dir: Path) -> bool:
     """Is sd-update mid-action? A nightly `apt-get update` during a full-upgrade is exactly the lock
-    contention this avoids."""
+    contention this avoids.
+
+    L6: status.json is the container's own mailbox file — read it through sd-mailbox (O_NOFOLLOW
+    dir-fd, refuses a symlinked data/appliance closed) rather than opening it by path."""
+    repo_root = appliance_dir.parent.parent
+    r = _mbox(repo_root, "read", "status.json")
+    if r.returncode != 0:
+        return False
     try:
-        data = json.loads((appliance_dir / "status.json").read_text())
-    except (OSError, ValueError):
+        data = json.loads(r.stdout)
+    except ValueError:
         return False
     return data.get("state") in ("queued", "running") and data.get("action") in (
         "update-system", "update-app", "update-scripts")
@@ -146,20 +171,18 @@ def _run_apt(args) -> subprocess.CompletedProcess:
 
 
 def write_report(appliance_dir: Path, report: dict) -> None:
-    appliance_dir.mkdir(parents=True, exist_ok=True)
-    out = appliance_dir / "os-updates.json"
-    tmp = out.with_suffix(".tmp")
-    tmp.write_text(json.dumps(report, indent=2) + "\n")
-    os.replace(tmp, out)
-    # Root writes it, the unprivileged container reads it (ADR-037).
-    try:
-        os.chown(out, 1000, 1000)
-    except (OSError, AttributeError):
-        pass
-    try:
-        os.chmod(out, 0o644)
-    except OSError:
-        pass
+    # L6: data/appliance/ is writable by the unprivileged container (uid 1000), and can even be
+    # REPLACED by it with a symlink to somewhere else entirely — chown/chmod BY PATH after a
+    # by-path rename would leave a TOCTOU window (or simply follow that symlink). sd-mailbox opens
+    # data/ then "appliance" with O_NOFOLLOW, creating the directory (owned 1000:1000) if missing and
+    # refusing closed if it's not a plain directory, then writes via a temp-file-in-the-same-dir +
+    # atomic rename with ownership/mode set on the fd before the rename.
+    repo_root = appliance_dir.parent.parent
+    data = (json.dumps(report, indent=2) + "\n").encode()
+    r = _mbox(repo_root, "write", "os-updates.json", "--mode", "0644", "--owner", "1000:1000",
+              input_bytes=data)
+    if r.returncode != 0:
+        raise OSError(r.stderr.decode(errors="replace").strip() or "sd-mailbox write failed")
 
 
 def main(argv=None) -> int:

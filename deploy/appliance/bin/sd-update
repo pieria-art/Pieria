@@ -46,6 +46,8 @@ fi
 # Sibling helpers, found next to THIS script wherever it was installed (the pattern sd-watchdog uses
 # for sd-watchdog-advance), each overridable so a test can point at a stub.
 BINDIR="$(dirname "$(readlink -f "$0")")"
+SD_MAILBOX_BIN="${SD_MAILBOX_BIN:-$BINDIR/sd-mailbox}"
+mbox() { "$SD_MAILBOX_BIN" --repo-root "$REPO_ROOT" "$@"; }
 SD_CONF_BIN="${SD_CONF_BIN:-$BINDIR/sd-conf}"
 SD_OS_CHECK_BIN="${SD_OS_CHECK_BIN:-$BINDIR/sd-os-check}"
 SD_SUPPORT_BIN="${SD_SUPPORT_BIN:-$BINDIR/sd-support-bundle}"
@@ -53,11 +55,14 @@ SD_ROTATE_BIN="${SD_ROTATE_BIN:-$BINDIR/sd-rotate-now}"
 SD_IMAGE_PREP_BIN="${SD_IMAGE_PREP_BIN:-$BINDIR/sd-image-prep}"
 SD_SYSTEMD_DIR="${SD_SYSTEMD_DIR:-/etc/systemd/system}"
 
-# Nothing queued (e.g. the .path re-fired on our own deletion of the request) — no-op.
-[ -r "$REQ" ] || exit 0
+# Nothing queued (e.g. the .path re-fired on our own deletion of the request) — no-op. Read via the
+# no-follow helper (not by path): request.json lives in the container-writable mailbox, so a bare
+# `open()` here would follow a symlink the container planted at that name.
+REQ_JSON="$(mbox read request.json 2>/dev/null)" || exit 0
+[ -n "$REQ_JSON" ] || exit 0
 
 # Parse the request WITHOUT trusting it as code.
-_get() { python3 -c "import json,sys; print(json.load(open(sys.argv[1])).get(sys.argv[2],''))" "$REQ" "$1" 2>/dev/null; }
+_get() { printf '%s' "$REQ_JSON" | python3 -c "import json,sys; print(json.load(sys.stdin).get(sys.argv[1],''))" "$1" 2>/dev/null; }
 ACTION="$(_get action)"
 NONCE="$(_get nonce)"
 REF="$(_get ref)"
@@ -72,26 +77,30 @@ REQUESTED_AT="$(_get requested_at)"
 # Root writes into the container's mailbox. ADR-037: hand every file back to uid 1000 and make it
 # world-readable, or the next GUI read is an EACCES nobody can explain (the exact class of fault
 # fixed for the DIRECTORY in sd-metrics, which left the FILES to be found later).
-handback() {
-  chown 1000:1000 "$1" 2>/dev/null || true
-  chmod 0644 "$1" 2>/dev/null || true
-}
+# L6: ownership/mode are set on the FD before the atomic rename (write_status, persist_log,
+# restore_db below) rather than by path afterwards — a by-path chown/chmod after the rename leaves a
+# TOCTOU window in which a container-side attacker (uid 1000, who owns this directory) can replant a
+# symlink at the target path; chmod in particular follows symlinks, so that window would let root
+# chmod an arbitrary file outside data/appliance/.
 
 write_status() {
   local state="$1" msg="${2:-}" tail_json="[]"
   if [ -n "$LOG" ] && [ -f "$LOG" ]; then
     tail_json="$(tail -n 40 "$LOG" 2>/dev/null | python3 -c "import json,sys; print(json.dumps(sys.stdin.read().splitlines()))")"
   fi
+  # L6: write via sd-mailbox, never by path. rename(2) inside the helper REPLACES whatever is at the
+  # destination name — including a symlink a container-side attacker planted there (e.g.
+  # status.json -> /etc/something) — rather than following it, and the whole operation happens through
+  # an fd opened O_NOFOLLOW on an already-verified data/appliance directory fd.
   SD_STATE="$state" SD_MSG="$msg" SD_TAIL="$tail_json" SD_ACT="$ACTION" SD_NON="$NONCE" \
-  SD_NOW="$(date -u +%Y-%m-%dT%H:%M:%SZ)" python3 - "$STATUS" <<'PY'
+  SD_NOW="$(date -u +%Y-%m-%dT%H:%M:%SZ)" python3 -c '
 import json, os, sys
-json.dump({
+print(json.dumps({
     "state": os.environ["SD_STATE"], "action": os.environ["SD_ACT"],
     "nonce": os.environ["SD_NON"], "message": os.environ["SD_MSG"],
     "log_tail": json.loads(os.environ["SD_TAIL"]), "updated_at": os.environ["SD_NOW"],
-}, open(sys.argv[1], "w"))
-PY
-  handback "$STATUS"
+}))
+' | mbox write status.json --mode 0644 --owner 1000:1000
 }
 
 # Whitelist — anything else is rejected before any work happens.
@@ -102,7 +111,7 @@ case "$ACTION" in
   check-os-updates|update-system|set-os-schedule) : ;;
   *)
     write_status error "unknown action: $ACTION"
-    rm -f "$REQ"
+    mbox rm request.json
     exit 1
     ;;
 esac
@@ -123,8 +132,11 @@ run() {
 # log where the admin UI (and a support bundle) can still read it after a reboot ate the status.
 persist_log() {
   [ -n "$LOG" ] && [ -f "$LOG" ] || return 0
-  install -m 0644 -o 1000 -g 1000 "$LOG" "$DIR/last-update.log" 2>/dev/null \
-    || { cp -f "$LOG" "$DIR/last-update.log" 2>/dev/null && handback "$DIR/last-update.log"; } || true
+  # L6: copy via sd-mailbox's copy-in, never by path — same reasoning as write_status. Its atomic
+  # rename replaces whatever is at last-update.log, including a symlink a container-side attacker
+  # planted there, rather than writing through it. $LOG itself is a root-private mktemp file, so
+  # reading it directly (as copy-in's source) is safe.
+  mbox copy-in "$LOG" last-update.log --mode 0644 --owner 1000:1000 2>/dev/null || true
   rm -f "$LOG"
 }
 
@@ -144,7 +156,7 @@ if [ -n "$REQUESTED_AT" ] && [ -n "$BOOT_EPOCH" ] && [ "$BOOT_EPOCH" != "0" ]; t
   if [ "$REQUESTED_EPOCH" != "0" ] && [ "$REQUESTED_EPOCH" -lt "$BOOT_EPOCH" ]; then
     echo "+ requested_at=$REQUESTED_AT predates this boot (epoch $BOOT_EPOCH) — a reboot happened before it finished" >> "$LOG"
     write_status error "interrupted by a reboot before it finished — run it again"
-    rm -f "$REQ"
+    mbox rm request.json
     persist_log
     exit 0
   fi
@@ -159,7 +171,11 @@ conf_set() {
 }
 
 conf_export() {
-  "$SD_CONF_BIN" --conf "$CONF" export --out "$DIR/conf.json" >> "$LOG" 2>&1 || true
+  # L6: conf.json lives in data/appliance/ (container-writable, uid 1000, replaceable wholesale with a
+  # symlink) — `sd-conf export --out PATH` writes BY PATH (mkstemp in that dir + chown/chmod by path),
+  # which would follow a swapped symlink. `--out -` streams the export to stdout instead, and the
+  # actual placement goes through mbox, same as every other write into this directory.
+  "$SD_CONF_BIN" --conf "$CONF" export --out - 2>>"$LOG" | mbox write conf.json --mode 0644 --owner 1000:1000 >>"$LOG" 2>&1 || true
 }
 
 conf_get() { "$SD_CONF_BIN" --conf "$CONF" get "$1" 2>/dev/null; }
@@ -261,7 +277,7 @@ case "$ACTION" in
         TARGET="refs/tags/${REF}"
       else
         write_status error "requested release '$REF' is not a known tag"
-        rm -f "$REQ"; persist_log
+        mbox rm request.json; persist_log
         exit 1
       fi
     fi
@@ -272,19 +288,63 @@ case "$ACTION" in
     PREV_SHA=""
     [ $rc -eq 0 ] && PREV_SHA="$(cd "$REPO_ROOT" && git "${GIT_SAFE[@]}" rev-parse HEAD 2>/dev/null)"
 
-    DB="$REPO_ROOT/data/artwork.db"
-    DB_SNAP="$REPO_ROOT/data/appliance/pre-update.db"
     # Clear any stale snapshot left behind by an earlier, interrupted run (normally sd-update removes
-    # it itself at the end of every arm — see the final `rm -f "$DB_SNAP"` below — so one surviving
-    # here means a prior invocation never reached that line).
-    rm -f "$DB_SNAP"
+    # it itself at the end of every arm — see the final `mbox rm pre-update.db` below — so one
+    # surviving here means a prior invocation never reached that line).
+    mbox rm pre-update.db
     # Record whether artwork.db existed BEFORE this update, so rollback knows whether "restore" means
     # "put the snapshot back" or "there was never a DB here — remove whatever the new version created."
+    # The source open here is intentionally the plain, path-based `sqlite3.connect(DB)` — reading a
+    # pre-existing artwork.db (symlink or not) into our OWN root-private snapshot is not the exposure;
+    # it is where the snapshot is WRITTEN and later RESTORED that must never follow a symlink, so the
+    # snapshot lands in a root-private tmp file first and is only handed into data/appliance/ (and,
+    # on restore, back into data/) through sd-mailbox's O_NOFOLLOW dir-fd writes below.
+    DB="$REPO_ROOT/data/artwork.db"
     DB_EXISTED=0
+    # Rollback regression fix: restore_db below used to write artwork.db back with a bare --mode 0644
+    # and NO --owner, so a restore on a shell-less box left the file root:root — the app (container
+    # USER 1000) then hits "readonly database" with no way to fix it. Record the DB's OWN owner/mode
+    # here, via sd-mailbox's O_NOFOLLOW-guarded stat (never a by-path stat, which would follow a
+    # symlink), and restore exactly those later. 1000:1000 0644 is the fallback if the stat fails for
+    # any reason (e.g. the DB vanished between the -f check and here).
+    DB_MODE="0644"
+    DB_OWNER="1000:1000"
     if [ $rc -eq 0 ] && [ -f "$DB" ]; then
       DB_EXISTED=1
-      run python3 -c "import sqlite3,sys; s=sqlite3.connect(sys.argv[1]); d=sqlite3.connect(sys.argv[2]); s.backup(d); d.close(); s.close()" \
-        "$DB" "$DB_SNAP" || rc=$?
+      read -r _db_mtime _db_size _db_type _db_mode _db_uid _db_gid < <(mbox --dir data stat artwork.db 2>/dev/null)
+      if [ -n "${_db_mode:-}" ] && [ -n "${_db_uid:-}" ] && [ -n "${_db_gid:-}" ]; then
+        DB_MODE="$_db_mode"
+        DB_OWNER="$_db_uid:$_db_gid"
+      fi
+      # N4/item 4: this backup used to read $DB by PATH as ROOT (sqlite3.connect) — the database is the
+      # container's own file (uid 1000), so a root read here is unnecessary privilege for a task that
+      # doesn't need it. Drop to uid/gid 1000 for the read+backup itself when running as root; $SNAP_TMP
+      # is chowned to 1000:1000 first so the dropped-privilege process can write into it. setpriv
+      # (util-linux, on Raspberry Pi OS bookworm by default) is preferred; runuser by the actual uid-1000
+      # username is the fallback. SD_SNAPSHOT_DROP_PRIV=0 skips the drop (tests running as root with no
+      # uid 1000 user, or a real root-required scenario).
+      SNAP_TMP="$(mktemp)"
+      SNAP_PY='import sqlite3,sys; s=sqlite3.connect(sys.argv[1]); d=sqlite3.connect(sys.argv[2]); s.backup(d); d.close(); s.close()'
+      if [ "$(id -u)" = "0" ] && [ "${SD_SNAPSHOT_DROP_PRIV:-1}" = "1" ]; then
+        chown 1000:1000 "$SNAP_TMP" 2>/dev/null || true
+        if command -v setpriv >/dev/null 2>&1; then
+          run setpriv --reuid=1000 --regid=1000 --clear-groups python3 -c "$SNAP_PY" "$DB" "$SNAP_TMP" || rc=$?
+        else
+          SNAP_UNAME="$(getent passwd 1000 2>/dev/null | cut -d: -f1)"
+          if [ -n "$SNAP_UNAME" ] && command -v runuser >/dev/null 2>&1; then
+            run runuser -u "$SNAP_UNAME" -- python3 -c "$SNAP_PY" "$DB" "$SNAP_TMP" || rc=$?
+          else
+            echo "+ WARNING: no setpriv and no resolvable uid-1000 user — snapshotting $DB as root" >> "$LOG"
+            run python3 -c "$SNAP_PY" "$DB" "$SNAP_TMP" || rc=$?
+          fi
+        fi
+      else
+        run python3 -c "$SNAP_PY" "$DB" "$SNAP_TMP" || rc=$?
+      fi
+      if [ $rc -eq 0 ]; then
+        mbox copy-in "$SNAP_TMP" pre-update.db --mode 0600 || rc=$?
+      fi
+      rm -f "$SNAP_TMP"
       [ $rc -eq 0 ] || ERR_MSG="could not snapshot the database — aborted before touching the checkout"
     fi
 
@@ -320,11 +380,53 @@ case "$ACTION" in
     # Restore-or-clear the DB for a rollback: if artwork.db existed before this update, put the
     # snapshot back; if it didn't, the new version may have created one (e.g. via migration) that
     # belongs to a version we're abandoning — remove it rather than leaving it behind.
+    # L6: restore goes entirely through sd-mailbox — the snapshot READ (pre-update.db under
+    # data/appliance/) and the restored-file WRITE (artwork.db under data/, via --dir data) are each
+    # O_NOFOLLOW dir-fd-guarded, never `cp` by path — both paths are under data/, which the container
+    # (uid 1000) can write into, so `cp` (which follows symlinks on both ends) could be redirected to
+    # overwrite an arbitrary file as root.
+    restore_db() {
+      local tmp is_link
+      # Refuse outright (leave it exactly as-is) if artwork.db is currently a symlink — mbox's
+      # dir-fd write would safely REPLACE that directory entry rather than write through it, but this
+      # path's contract is stronger: a symlinked artwork.db is refused, not silently swapped for a
+      # plain file, so an operator inspecting the box afterwards sees the untouched symlink as evidence.
+      is_link="$(python3 -c "
+import os, stat, sys
+dfd = os.open(sys.argv[1], os.O_DIRECTORY | os.O_NOFOLLOW)
+try:
+    st = os.stat(sys.argv[2], dir_fd=dfd, follow_symlinks=False)
+    print('1' if stat.S_ISLNK(st.st_mode) else '0')
+except FileNotFoundError:
+    print('0')
+finally:
+    os.close(dfd)
+" "$REPO_ROOT/data" artwork.db 2>/dev/null)"
+      if [ "$is_link" = "1" ]; then
+        echo "+ refusing to restore: data/artwork.db is a symlink" >&2
+        return 1
+      fi
+      tmp="$(mktemp)"
+      if mbox read pre-update.db > "$tmp" 2>/dev/null; then
+        # Regression fix: restore with the DB's OWN owner/mode, captured via sd-mailbox stat at
+        # snapshot time (DB_MODE/DB_OWNER above) — a bare --mode 0644 with no --owner left the
+        # restored file root:root, and the app (container USER 1000) can't open a root-owned DB on a
+        # shell-less box. Falls back to 1000:1000 0644 (set at declaration) if the stat never resolved.
+        mbox --dir data write artwork.db --mode "$DB_MODE" --owner "$DB_OWNER" < "$tmp"
+        local ok=$?
+        rm -f "$tmp"
+        return $ok
+      fi
+      rm -f "$tmp"
+      return 1
+    }
     restore_or_clear_db() {
       if [ "$DB_EXISTED" = "1" ]; then
-        [ ! -f "$DB_SNAP" ] || { run cp "$DB_SNAP" "$DB" && run rm -f "$DB-wal" "$DB-shm"; }
+        run restore_db && { run mbox --dir data rm artwork.db-wal; run mbox --dir data rm artwork.db-shm; }
       else
-        run rm -f "$DB" "$DB-wal" "$DB-shm"
+        run mbox --dir data rm artwork.db
+        run mbox --dir data rm artwork.db-wal
+        run mbox --dir data rm artwork.db-shm
       fi
     }
 
@@ -356,7 +458,7 @@ case "$ACTION" in
 
     # F3: the snapshot is a full copy of the DB, including any stored AI API key — never leave it
     # behind, on ANY path (success, rolled back, or rollback failed).
-    rm -f "$DB_SNAP"
+    mbox rm pre-update.db
     [ $rc -eq 0 ] && reload_kiosk
     ;;
   update-scripts)
@@ -393,7 +495,7 @@ case "$ACTION" in
       90|180|270) ROT="$ORIENTATION" ;;
       *)
         write_status error "invalid orientation: $ORIENTATION"
-        rm -f "$REQ"; persist_log
+        mbox rm request.json; persist_log
         exit 1
         ;;
     esac
@@ -429,11 +531,11 @@ case "$ACTION" in
     run "$SD_IMAGE_PREP_BIN" --enable-setup || rc=$?
     if [ $rc -ne 0 ]; then
       write_status error "could not re-open the setup wizard (exit $rc)"
-      rm -f "$REQ"; persist_log
+      mbox rm request.json; persist_log
       exit 1
     fi
     write_status done "rebooting into the setup wizard"
-    rm -f "$REQ"
+    mbox rm request.json
     if [ "$DRY_RUN" = "1" ]; then
       echo "[dry-run] systemctl reboot" >> "$LOG"
       persist_log
@@ -466,7 +568,7 @@ case "$ACTION" in
   poweroff)
     # Same ordering rule as reboot: after `systemctl poweroff` there is no "after".
     write_status done "powering off"
-    rm -f "$REQ"
+    mbox rm request.json
     if [ "$DRY_RUN" = "1" ]; then
       echo "[dry-run] systemctl poweroff" >> "$LOG"
       persist_log
@@ -483,7 +585,7 @@ case "$ACTION" in
   update-system)
     if ! apt_lock; then
       write_status error "another package operation is still running — try again in a few minutes"
-      rm -f "$REQ"; persist_log
+      mbox rm request.json; persist_log
       exit 1
     fi
     export DEBIAN_FRONTEND=noninteractive
@@ -527,7 +629,7 @@ case "$ACTION" in
 
     if [ $rc -eq 0 ] && [ "$REBOOT" = "1" ]; then
       write_status done "system updated — rebooting"
-      rm -f "$REQ"
+      mbox rm request.json
       if [ "$DRY_RUN" = "1" ]; then
         echo "[dry-run] systemctl reboot" >> "$LOG"
         persist_log
@@ -552,13 +654,13 @@ case "$ACTION" in
       [0-2][0-9]:[0-5][0-9]) : ;;
       *)
         write_status error "invalid time: $WHEN"
-        rm -f "$REQ"; persist_log
+        mbox rm request.json; persist_log
         exit 1
         ;;
     esac
     case "${WHEN%%:*}" in 00|01|02|03|04|05|06|07|08|09|1[0-9]|2[0-3]) : ;; *)
         write_status error "invalid time: $WHEN"
-        rm -f "$REQ"; persist_log
+        mbox rm request.json; persist_log
         exit 1
         ;;
     esac
@@ -590,7 +692,7 @@ case "$ACTION" in
     # Write the final status and consume the request BEFORE rebooting: after `systemctl reboot` there
     # is no "after" in which to do it, and the UI would poll a stale `running` forever.
     write_status done "rebooting"
-    rm -f "$REQ"
+    mbox rm request.json
     if [ "$DRY_RUN" = "1" ]; then
       echo "[dry-run] systemctl reboot" >> "$LOG"
       persist_log
@@ -608,5 +710,5 @@ else
   write_status error "${ERR_MSG:-$ACTION failed (exit $rc)}"
 fi
 
-rm -f "$REQ"      # consume the request so the .path re-arms for the next one
+mbox rm request.json      # consume the request so the .path re-arms for the next one
 persist_log

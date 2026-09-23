@@ -315,6 +315,59 @@ def test_snapshot_failure_aborts_before_touching_checkout(h):
     assert not h.snapshot_exists
 
 
+def test_rollback_refuses_to_restore_through_a_symlinked_artwork_db(h, tmp_path):
+    # L6: artwork.db lives under data/, which the unprivileged container can also reach — if it were
+    # replaced with a symlink, `cp "$DB_SNAP" "$DB"` would write the restored snapshot THROUGH the
+    # link, as root, to wherever the symlink points. restore_db must refuse instead.
+    outside = tmp_path / "outside.db"
+    con = sqlite3.connect(outside)
+    con.execute("CREATE TABLE meta (key TEXT PRIMARY KEY, value TEXT)")
+    con.execute("INSERT INTO meta VALUES ('version', 'do-not-touch')")
+    con.commit()
+    con.close()
+    outside.chmod(0o600)
+    before_mode = outside.stat().st_mode
+
+    h.db.unlink()
+    h.db.symlink_to(outside)
+
+    h.set_curl_mode("always_fail")   # forces rollback's restore_or_clear_db to run
+    h.request("update-app")
+    r = h.run()
+
+    assert r.returncode == 0
+    assert h.status["state"] == "error"
+    # The pre-update snapshot (taken by legitimately opening $DB through the symlink) holds
+    # "do-not-touch"; the docker mock's mutation then leaves the target at "post-migration". If
+    # restore_db actually restored the snapshot THROUGH the symlink, the target would revert to
+    # "do-not-touch" — it must instead be left exactly as the (unrelated) migration left it, proving
+    # restore_db refused to write to it at all.
+    con = sqlite3.connect(outside)
+    assert con.execute("SELECT value FROM meta WHERE key='version'").fetchone()[0] == "post-migration"
+    con.close()
+    assert outside.stat().st_mode == before_mode
+    assert h.db.is_symlink()          # never replaced
+    assert "refusing to restore" in h.log
+
+
+def test_rollback_restores_the_dbs_original_mode(h):
+    # item 3 regression fix: restore_db used to write artwork.db back with a bare --mode 0644 and no
+    # --owner, so a rollback on a shell-less box left the DB root:root/0644 regardless of what it was
+    # before — the container (USER 1000) then hits "readonly database" if the ORIGINAL mode was
+    # tighter. Give the pre-update DB a distinct mode (0640, not the 0644 fallback) and confirm the
+    # restored file comes back with that same mode — proving it was actually read via sd-mailbox stat
+    # and threaded through, not just defaulted. (Owner can't be observably asserted non-root in this
+    # harness — os.chown silently no-ops for a non-root caller — so mode is the discriminating check.)
+    h.db.chmod(0o640)
+    h.set_curl_mode("always_fail")   # forces rollback's restore_or_clear_db to run
+    h.request("update-app")
+    r = h.run()
+    assert r.returncode == 0
+    assert h.status["state"] == "error"
+    assert h.db_version == "pre-update"
+    assert h.db.stat().st_mode & 0o777 == 0o640
+
+
 def test_update_bridge_token_is_appended_to_env_exactly_once(h):
     h.set_curl_mode("always_ok")
     h.request("update-app")

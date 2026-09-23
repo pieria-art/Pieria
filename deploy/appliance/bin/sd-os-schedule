@@ -28,46 +28,45 @@ if [ "${OS_UPDATE_SCHEDULE:-off}" != "weekly" ]; then
   exit 0
 fi
 
-DIR="$REPO_ROOT/data/appliance"
-REQ="$DIR/request.json"
-STATUS="$DIR/status.json"
-mkdir -p "$DIR" 2>/dev/null || true
-chown 1000:1000 "$DIR" 2>/dev/null || true
+# L6/ADR-119: data/appliance/ is writable by the unprivileged container (uid 1000), and can even be
+# REPLACED by it with a symlink to somewhere else entirely — a bare `mkdir -p`/`chown`/`open(...,"w")`
+# BY PATH would create the dir (harmless) or follow the symlink and read/write/chown whatever it points
+# to, as root. Every touch of that directory goes through sd-mailbox, which opens data/ then "appliance"
+# with O_NOFOLLOW and refuses closed if that fails.
+BINDIR="$(dirname "$(readlink -f "$0")")"
+SD_MAILBOX_BIN="${SD_MAILBOX_BIN:-$BINDIR/sd-mailbox}"
+mbox() { "$SD_MAILBOX_BIN" --repo-root "$REPO_ROOT" "$@"; }
+mbox chown-dir 2>/dev/null || true
 
 # Don't stack on top of whatever the owner (or another timer) already started.
-if [ -r "$STATUS" ]; then
-  BUSY="$(python3 -c "import json,sys
+BUSY="$(mbox read status.json 2>/dev/null | python3 -c "import json,sys
 try:
-    d = json.load(open(sys.argv[1]))
+    d = json.load(sys.stdin)
     print('1' if d.get('state') in ('queued', 'running') else '0')
 except Exception:
-    print('0')" "$STATUS" 2>/dev/null || echo 0)"
-  if [ "$BUSY" = "1" ]; then
-    logger -t sd-os-schedule "an action is already in flight — skipping this week" 2>/dev/null || true
-    exit 0
-  fi
+    print('0')" 2>/dev/null || echo 0)"
+if [ "$BUSY" = "1" ]; then
+  logger -t sd-os-schedule "an action is already in flight — skipping this week" 2>/dev/null || true
+  exit 0
 fi
 
 # Status FIRST, then the request — the same ordering the endpoint uses, so the .path trigger always
 # finds a status to report. `source: schedule` is what lets the UI say why an upgrade it never asked
-# for is running.
-SD_STATUS="$STATUS" SD_REQ="$REQ" python3 - <<'PY'
-import json, os, secrets
-from datetime import UTC, datetime
+# for is running. Content is built here (pure computation, no path) and handed to sd-mailbox to place
+# — mode/owner are set on the open fd inside the helper, never by a chmod/chown that follows a symlink.
+NOW="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+NONCE="$(python3 -c 'import secrets; print(secrets.token_hex(8))')"
+SD_NOW="$NOW" SD_NONCE="$NONCE" python3 -c '
+import json, os
+print(json.dumps({"state": "queued", "action": "update-system", "nonce": os.environ["SD_NONCE"],
+                   "message": "queued by the weekly schedule", "log_tail": [],
+                   "queued_at": os.environ["SD_NOW"]}))
+' | mbox write status.json --mode 0644 --owner 1000:1000
 
-now = datetime.now(UTC).isoformat()
-nonce = secrets.token_hex(8)
-with open(os.environ["SD_STATUS"], "w") as fh:
-    json.dump({"state": "queued", "action": "update-system", "nonce": nonce,
-               "message": "queued by the weekly schedule", "log_tail": [], "queued_at": now}, fh)
-with open(os.environ["SD_REQ"], "w") as fh:
-    json.dump({"action": "update-system", "requested_at": now, "nonce": nonce,
-               "source": "schedule"}, fh)
-PY
+SD_NOW="$NOW" SD_NONCE="$NONCE" python3 -c '
+import json, os
+print(json.dumps({"action": "update-system", "requested_at": os.environ["SD_NOW"],
+                   "nonce": os.environ["SD_NONCE"], "source": "schedule"}))
+' | mbox write request.json --mode 0644 --owner 1000:1000
 
-# Root wrote both; the container reads them (ADR-037).
-for f in "$STATUS" "$REQ"; do
-  chown 1000:1000 "$f" 2>/dev/null || true
-  chmod 0644 "$f" 2>/dev/null || true
-done
 logger -t sd-os-schedule "queued the weekly system update" 2>/dev/null || true

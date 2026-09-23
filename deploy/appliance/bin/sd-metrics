@@ -27,14 +27,18 @@ if [ -z "$CONF" ]; then
   if [ -d /boot/firmware ]; then CONF="/boot/firmware/pieria.conf"; else CONF="/boot/pieria.conf"; fi
 fi
 
-OUT_DIR="$REPO_ROOT/data/appliance"
-OUT="$OUT_DIR/host_metrics.json"
-mkdir -p "$OUT_DIR"
-# The container is UNPRIVILEGED (uid 1000) and uses this directory as its mailbox to root — the update
+# The container is UNPRIVILEGED (uid 1000) and uses data/appliance as its mailbox to root — the update
 # bridge writes request.json/status.json here. We run as ROOT, so whichever of us creates the directory
 # first owns it, and root winning means the container gets EACCES and every "Update App" returns a 500.
 # Observed on the first flashed unit, 2026-07-21. Always hand ownership back.
-chown 1000:1000 "$OUT_DIR" 2>/dev/null || true
+#
+# L6: the container can also replace data/appliance ITSELF with a symlink (e.g. to /etc) — a bare
+# `mkdir -p`/`chown` by path would create the dir (harmless) or follow the symlink and chown whatever
+# it points to, as root. Every read/write/chown into this directory goes through sd-mailbox, which
+# opens data/ then "appliance" with O_NOFOLLOW and refuses closed if that fails.
+SD_MAILBOX_BIN="${SD_MAILBOX_BIN:-$(dirname "$(readlink -f "$0")")/sd-mailbox}"
+mbox() { "$SD_MAILBOX_BIN" --repo-root "$REPO_ROOT" "$@"; }
+mbox chown-dir 2>/dev/null || true
 
 THROTTLED=""
 TEMP=""
@@ -45,24 +49,37 @@ if command -v vcgencmd >/dev/null 2>&1; then
 fi
 
 # Write atomically so a concurrent reader never sees a half-written file.
-TMP="$(mktemp "$OUT_DIR/.host_metrics.XXXXXX")"
-printf '{"throttled": %s, "temp_c": %s}\n' \
+# L6: the temp file used to be `mktemp`'d IN data/appliance/ (container-writable, uid 1000) and then
+# `chmod`'d BY PATH before the mv-over — a container-side attacker can unlink that temp entry and
+# replant a symlink at the same path between the mktemp and the chmod; chmod follows symlinks, so that
+# window would let root chmod an arbitrary file outside data/appliance/. sd-mailbox's `write` sets the
+# mode on the OPEN FD instead (never by path), via the same pattern sd-update's write_status uses, then
+# atomically replaces the target — world-readable, since the non-root (uid 1000) container reads it
+# via host_health.
+CONTENT="$(printf '{"throttled": %s, "temp_c": %s}\n' \
   "$( [ -n "$THROTTLED" ] && printf '"%s"' "$THROTTLED" || printf 'null' )" \
-  "$( [ -n "$TEMP" ] && printf '%s' "$TEMP" || printf 'null' )" \
-  > "$TMP"
-mv -f "$TMP" "$OUT"
-# mktemp makes the file 0600; the non-root (uid 1000) container reads it via host_health, so make it
-# world-readable (root writes it, the container only reads).
-chmod 0644 "$OUT" 2>/dev/null || true
+  "$( [ -n "$TEMP" ] && printf '%s' "$TEMP" || printf 'null' )" )"
+printf '%s' "$CONTENT" | mbox write host_metrics.json --mode 0644 2>/dev/null || true
 
 # --- conf mirror for the container (ADR-119) -------------------------------------------------------
 # Re-export only when the mirror is missing or the conf is NEWER, so the 30s timer costs nothing in
 # the steady state but self-heals a hand-edited card on the next tick.
-CONF_JSON="$OUT_DIR/conf.json"
+#
+# L6: conf.json lives under data/appliance/, which the unprivileged container (uid 1000) can write into
+# or replace wholesale with a symlink — `sd-conf export --out PATH` writes BY PATH (mkstemp in that dir
+# + chown/chmod by path), which would follow a swapped symlink. `--out -` streams the export to stdout
+# instead; the actual placement goes through sd-mailbox, same as host_metrics.json above. The staleness
+# check itself used to be `[ ! -f "$CONF_JSON" ] || [ "$CONF" -nt "$CONF_JSON" ]` — also by path, also
+# following a symlink to decide freshness (and readable/statable by whatever it points to) — so it now
+# asks sd-mailbox for the mirror's own lstat'd mtime instead of stat'ing the (possibly symlinked) path.
 SD_CONF_BIN="${SD_CONF_BIN:-$(dirname "$(readlink -f "$0")")/sd-conf}"
 [ -x "$SD_CONF_BIN" ] || SD_CONF_BIN="/usr/local/bin/sd-conf"
 if [ -x "$SD_CONF_BIN" ] && [ -r "$CONF" ]; then
-  if [ ! -f "$CONF_JSON" ] || [ "$CONF" -nt "$CONF_JSON" ]; then
-    "$SD_CONF_BIN" --conf "$CONF" export --out "$CONF_JSON" 2>/dev/null || true
+  MIRROR_STAT="$(mbox stat conf.json 2>/dev/null)"
+  MIRROR_MTIME="${MIRROR_STAT%% *}"
+  case "$MIRROR_MTIME" in ''|*[!0-9]*) MIRROR_MTIME=0 ;; esac
+  CONF_MTIME="$(stat -c %Y "$CONF" 2>/dev/null || echo 0)"
+  if [ "$MIRROR_MTIME" -eq 0 ] || [ "$CONF_MTIME" -gt "$MIRROR_MTIME" ]; then
+    "$SD_CONF_BIN" --conf "$CONF" export --out - 2>/dev/null | mbox write conf.json --mode 0644 --owner 1000:1000 2>/dev/null || true
   fi
 fi

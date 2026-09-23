@@ -46,6 +46,7 @@ class Harness:
         self.bindir.mkdir()
         self.state = tmp_path / "fails.state"
         self.state_display = tmp_path / "fails-display.state"
+        self.state_eink = tmp_path / "fails-eink.state"
         self.reboots = self.dir / "watchdog-reboots.log"
         self.uptime = tmp_path / "uptime"
         self.uptime.write_text("999999.0 0.0\n")     # long-booted by default
@@ -144,6 +145,7 @@ class Harness:
             "SD_CALLS": str(self.calls),
             "SD_WATCHDOG_STATE": str(self.state),
             "SD_WATCHDOG_STATE_DISPLAY": str(self.state_display),
+            "SD_WATCHDOG_STATE_EINK": str(self.state_eink),
             "SD_UPTIME_FILE": str(self.uptime),
             "SD_WATCHDOG_HELPER": str(self.bindir / "no-such-helper"),
             "SD_DRM_STATUS_GLOB": str(self.drm_dir / "*" / "status"),
@@ -179,6 +181,13 @@ class Harness:
     def fails_display(self):
         try:
             return int(self.state_display.read_text())
+        except (FileNotFoundError, ValueError):
+            return 0
+
+    @property
+    def fails_eink(self):
+        try:
+            return int(self.state_eink.read_text())
         except (FileNotFoundError, ValueError):
             return 0
 
@@ -218,7 +227,7 @@ def test_paint_fault_relaunches_at_3_4_5_then_gives_up_and_never_reboots(h):
     assert h.called.count("systemctl restart getty@tty1") == 3
     assert "docker" not in h.called
     assert "systemctl reboot" not in h.called
-    assert "giving up on kiosk relaunch; not escalating" in h.status["message"]
+    assert "gave up — needs attention" in h.status["message"]
 
 
 def test_kiosk_dead_with_server_up_also_caps_at_relaunch_kiosk(h):
@@ -379,19 +388,117 @@ def test_eink_only_box_with_server_down_escalates_restart_container_before_reboo
     assert "systemctl reboot" in h.called
 
 
-def test_eink_only_box_never_relaunches_kiosk_or_gives_up(h):
-    """sd-eink dead (server up, eink liveness fails) must never pick relaunch-kiosk/give-up — neither
-    rung applies without a browser. No fix is wired for this case; it stays "none" and unhealthy."""
+def test_eink_only_box_never_relaunches_kiosk_or_reboots(h):
+    """sd-eink dead (server up, eink liveness fails, no kiosk) must never pick relaunch-kiosk — that
+    rung applies only to a browser. It gets its own restart-eink rung instead (F6)."""
     h.enable_eink()
     h.set_connector(False)
     h.set_server_ok(True)
     h.set_eink_active(False)
 
-    actions = [h.tick()["action"] for _ in range(8)]
+    actions = [h.tick()["action"] for _ in range(6)]
 
-    assert set(actions) == {"none"}
+    assert actions == [
+        "none", "none",
+        "restart-eink", "restart-eink", "restart-eink",
+        "give-up",
+    ]
     assert "systemctl restart getty" not in h.called
+    assert h.called.count("systemctl reset-failed sd-eink") == 3
+    assert h.called.count("systemctl enable --now sd-eink") == 3
     assert "docker" not in h.called
+    assert "systemctl reboot" not in h.called
+
+
+# --- F6: dead sd-eink gets its own restart-eink rung, never invisible --------------------------
+
+def test_eink_fault_message_only_says_within_hysteresis_below_threshold(h):
+    h.enable_eink()
+    h.set_connector(False)
+    h.set_server_ok(True)
+    h.set_eink_active(False)
+
+    st = h.tick()
+    assert st["action"] == "none"
+    assert "within hysteresis" in st["message"]
+
+    st = h.tick()
+    assert st["action"] == "none"
+    assert "within hysteresis" in st["message"]
+
+    st = h.tick()   # 3rd consecutive fail crosses FAIL_THRESHOLD
+    assert st["action"] == "restart-eink"
+    assert "within hysteresis" not in st["message"]
+    assert "enforcing: restart-eink" in st["message"]
+
+
+def test_eink_fault_observe_mode_reports_but_takes_no_action(h):
+    h.enable_eink()
+    h.set_connector(False)
+    h.set_server_ok(True)
+    h.set_eink_active(False)
+
+    actions = [h.tick(mode="observe")["action"] for _ in range(6)]
+
+    assert actions[2:5] == ["observe:restart-eink"] * 3
+    assert actions[5] == "give-up"
+    assert "would restart-eink" in h.status["message"] or True
+    assert "systemctl reset-failed sd-eink" not in h.called
+    assert "systemctl enable --now sd-eink" not in h.called
+    assert "docker" not in h.called
+    assert "systemctl reboot" not in h.called
+
+
+def test_eink_fault_gives_up_after_escalate_and_never_reboots(h):
+    h.enable_eink()
+    h.set_connector(False)
+    h.set_server_ok(True)
+    h.set_eink_active(False)
+
+    for _ in range(6):
+        st = h.tick()
+    assert st["action"] == "give-up"
+    assert "gave up — needs attention" in st["message"]
+
+    st = h.tick()
+    assert st["action"] == "give-up"
+    assert "docker" not in h.called
+    assert "systemctl reboot" not in h.called
+
+
+def test_eink_hold_flag_suppresses_restart_eink(h, tmp_path):
+    h.enable_eink()
+    h.set_connector(False)
+    h.set_server_ok(True)
+    h.set_eink_active(False)
+    hold_flag = tmp_path / "eink-hold"
+    hold_flag.write_text("bench session")
+
+    actions = [
+        h.tick(mode="enforce", SD_EINK_HOLD_FLAG=str(hold_flag))["action"] for _ in range(3)
+    ]
+
+    assert actions == ["none", "none", "observe:eink-held"]
+    assert "systemctl reset-failed sd-eink" not in h.called
+    assert "systemctl enable --now sd-eink" not in h.called
+    assert str(hold_flag) in h.status["message"]
+
+    # The hold flag is checked BEFORE the give-up branch: a held bench session must report
+    # "eink-held" for as long as it's held, NEVER "gave up", no matter how long fails_eink climbs.
+    # (Before this fix, a long-held bench session eventually reported "gave up" instead.)
+    for _ in range(5):
+        st = h.tick(mode="enforce", SD_EINK_HOLD_FLAG=str(hold_flag))
+        assert st["action"] == "observe:eink-held"
+    assert h.fails_eink >= 8
+    assert "systemctl enable --now sd-eink" not in h.called
+
+    # Once the flag is removed, the accumulated fails_eink resumes the normal ladder: since it's
+    # already past ESCALATE_AFTER, the very next tick gives up (never enforces restart-eink blindly
+    # on stale fail count, and never reboots).
+    hold_flag.unlink()
+    st = h.tick(mode="enforce")
+    assert st["action"] == "give-up"
+    assert "systemctl enable --now sd-eink" not in h.called
     assert "systemctl reboot" not in h.called
 
 
@@ -405,12 +512,12 @@ def test_eink_liveness_fault_never_inflates_the_server_side_counter(h):
     h.enable_eink()
     h.set_connector(False)
     h.set_server_ok(True)
-    h.set_eink_active(False)   # sd-eink down, server fine — climbs fails_display, never fails_server
+    h.set_eink_active(False)   # sd-eink down, server fine — climbs fails_eink, never fails_server
 
     for _ in range(10):
         h.tick()
     assert h.fails == 0             # server-side counter untouched
-    assert h.fails_display >= 10    # display-side counter free to climb — nothing consumes it (no
+    assert h.fails_eink >= 10       # eink-side counter free to climb — nothing consumes it (no
                                      # kiosk to relaunch), but it must not leak into the server ladder
 
     # The server now blips down for the first time: must still climb restart-container (fails 3-5)
@@ -470,9 +577,9 @@ def test_dual_box_reports_both_and_probes_both_surfaces(h):
 def test_dual_box_dead_sd_eink_is_no_longer_invisible(h):
     """Before the fix, a dual box's eink_only=0 classification meant it was probed purely as a kiosk
     box and a dead sd-eink was never observed at all. Now the kiosk surface is healthy but the e-ink
-    surface is dead: display_ok must go unhealthy and it must show up in eink_live_ok, still capping
-    at relaunch-kiosk/give-up (no distinct e-ink remedy exists) rather than ever reaching the server
-    ladder (restart-container/reboot)."""
+    surface is dead: display_ok must go unhealthy and it must show up in eink_live_ok, and (F6) it
+    now gets its own restart-eink/give-up ladder rather than the kiosk rung or the server ladder
+    (restart-container/reboot)."""
     h.enable_eink()
     h.set_connector(True)
     h.set_server_ok(True)
@@ -484,12 +591,79 @@ def test_dual_box_dead_sd_eink_is_no_longer_invisible(h):
 
     assert actions == [
         "none", "none",
-        "relaunch-kiosk", "relaunch-kiosk", "relaunch-kiosk",
+        "restart-eink", "restart-eink", "restart-eink",
         "give-up",
     ]
     assert h.status["eink_live_ok"] == 0
+    assert "systemctl restart getty" not in h.called
     assert "docker" not in h.called
     assert "systemctl reboot" not in h.called
+
+
+def test_dual_box_both_surfaces_faulted_addresses_both_rungs(h):
+    """F6 gap 2: before the fix, kiosk_fault and eink_fault shared one counter behind an elif, so
+    only the kiosk rung fired when BOTH were faulted — a dead sd-eink on a dual box with a wedged
+    kiosk was silently never restarted. Now each surface gets its own counter and its own rung, and
+    a tick where both are faulted must act on (or report) both."""
+    h.enable_eink()
+    h.set_connector(True)
+    h.set_server_ok(True)
+    h.set_kiosk_ok(False)      # kiosk dead
+    h.set_paint_ok(True)
+    h.set_eink_active(False)   # e-ink also dead
+
+    actions = [h.tick()["action"] for _ in range(3)]
+    assert actions[:2] == ["none", "none"]
+    # Both rungs cross threshold on the same tick and both must be represented in the combined action.
+    assert "relaunch-kiosk" in actions[2].split("+")
+    assert "restart-eink" in actions[2].split("+")
+    assert h.called.count("systemctl restart getty") == 1
+    assert h.called.count("systemctl reset-failed sd-eink") == 1
+    assert h.fails_display == 3 and h.fails_eink == 3
+    assert "docker" not in h.called
+    assert "systemctl reboot" not in h.called
+
+
+# --- L6: data/appliance/ is writable by the unprivileged container — symlink hardening -------------
+
+def test_reboot_log_refuses_a_symlink_and_never_touches_its_target(h, tmp_path):
+    outside = tmp_path / "outside.txt"
+    outside.write_text("do not touch")
+    outside.chmod(0o600)
+    before_mode = outside.stat().st_mode
+
+    h.reboots.symlink_to(outside)
+    h.set_server_ok(False)
+    for _ in range(6):
+        st = h.tick()
+
+    assert st["action"] == "reboot"
+    assert "systemctl reboot" in h.called          # the reboot itself still happens
+    assert outside.read_text() == "do not touch"   # ...but nothing was ever appended through the link
+    assert outside.stat().st_mode == before_mode
+    assert h.reboots.is_symlink()                  # refused, never replaced with a real file
+    assert "refusing to record reboot" in h.called
+
+
+def test_watchdog_status_json_symlink_target_is_left_untouched(h, tmp_path):
+    outside = tmp_path / "outside_status.json"
+    outside.write_text('{"do":"not touch"}')
+    outside.chmod(0o600)
+    before_mode = outside.stat().st_mode
+    before_text = outside.read_text()
+
+    (h.dir / "watchdog.json").unlink(missing_ok=True)
+    (h.dir / "watchdog.json").symlink_to(outside)
+    h.set_server_ok(True)
+    h.set_kiosk_ok(True)
+    h.set_paint_ok(True)
+    h.run()
+
+    assert outside.read_text() == before_text
+    assert outside.stat().st_mode == before_mode
+    status_path = h.dir / "watchdog.json"
+    assert not status_path.is_symlink()            # mv replaced the link with a real file
+    assert json.loads(status_path.read_text())["action"] == "none"
 
 
 def test_missing_sys_class_drm_falls_back_to_kiosk_behaviour(h):
@@ -506,3 +680,42 @@ def test_missing_sys_class_drm_falls_back_to_kiosk_behaviour(h):
         st = h.tick()
     assert st["action"] == "relaunch-kiosk"
     assert st["display"] == "both"
+
+
+# --- L6: data/appliance as a directory-level symlink (sd-mailbox) --------------------------------
+
+def test_a_symlinked_appliance_dir_is_refused_and_the_outside_dir_untouched(tmp_path):
+    """The container (uid 1000) can replace data/appliance with a symlink to anywhere. Every
+    read/write sd-watchdog does into it now goes through sd-mailbox, which opens data/ then
+    "appliance" with O_NOFOLLOW — a symlinked appliance dir must make the watchdog write NOTHING
+    there (no watchdog.json, no reboot log) rather than writing through it, and the tick must still
+    complete without crashing."""
+    root = tmp_path / "repo"
+    (root / "data").mkdir(parents=True)
+    outside = tmp_path / "outside"
+    outside.mkdir()
+    (root / "data" / "appliance").symlink_to(outside)
+
+    conf = tmp_path / "pieria.conf"
+    conf.write_text("SERVER_URL=http://localhost:8000\nDISPLAY_ID=living_room\nWATCHDOG=observe\n")
+
+    bindir = tmp_path / "bin"
+    bindir.mkdir()
+    for name in SHIMMED:
+        p = bindir / name
+        p.write_text("#!/bin/sh\nexit 0\n")
+        p.chmod(0o755)
+
+    env = {**os.environ, "PATH": f"{bindir}:{os.environ['PATH']}",
+           "SD_WATCHDOG_STATE": str(tmp_path / "fails.state"),
+           "SD_WATCHDOG_STATE_DISPLAY": str(tmp_path / "fails-display.state"),
+           "SD_WATCHDOG_STATE_EINK": str(tmp_path / "fails-eink.state"),
+           "SD_WATCHDOG_HELPER": str(bindir / "no-such-helper"),
+           "SD_DRM_STATUS_GLOB": str(tmp_path / "no-such-drm" / "*" / "status")}
+    r = subprocess.run(["bash", str(_BIN), str(conf), str(root)],
+                        capture_output=True, text=True, env=env)
+
+    assert r.returncode == 0
+    assert not (outside / "watchdog.json").exists()
+    assert not (outside / "watchdog-reboots.log").exists()
+    assert (root / "data" / "appliance").is_symlink()

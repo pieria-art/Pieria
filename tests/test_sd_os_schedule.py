@@ -90,6 +90,43 @@ def test_a_finished_action_does_not_block_the_schedule(box):
     assert (appliance / "request.json").exists()
 
 
+def test_a_symlinked_appliance_dir_is_refused_and_the_outside_dir_untouched(tmp_path):
+    # item 1/L6: this script used to mkdir -p/chown the DIRECTORY by path, and open(STATUS,"w") /
+    # open(REQ,"w") + chown + chmod the FILES by path — a container-side symlink at data/appliance (or
+    # at status.json/request.json within it) would have been followed, letting root write/chown/chmod
+    # wherever it pointed. Now every touch goes through sd-mailbox's O_NOFOLLOW dir-fd discipline.
+    root = tmp_path / "repo"
+    (root / "data").mkdir(parents=True)
+    outside = tmp_path / "outside"
+    outside.mkdir()
+    (root / "data" / "appliance").symlink_to(outside)
+    conf = tmp_path / "pieria.conf"
+    conf.write_text("OS_UPDATE_SCHEDULE=weekly\n")
+
+    r = _run(root, conf)
+    assert r.returncode == 0
+    assert list(outside.iterdir()) == []
+    assert (root / "data" / "appliance").is_symlink()   # never replaced
+
+
+def test_a_planted_status_json_symlink_is_not_followed(box, tmp_path):
+    root, conf = box
+    conf.write_text("OS_UPDATE_SCHEDULE=weekly\n")
+    appliance = root / "data" / "appliance"
+    outside = tmp_path / "outside-status.json"
+    outside.write_text('{"do":"not touch"}')
+    outside.chmod(0o600)
+    before_mode = outside.stat().st_mode
+    (appliance / "status.json").symlink_to(outside)
+
+    assert _run(root, conf).returncode == 0
+    assert outside.read_text() == '{"do":"not touch"}'
+    assert outside.stat().st_mode == before_mode
+    # sd-mailbox's atomic rename replaced the symlink itself with a real file.
+    assert not (appliance / "status.json").is_symlink()
+    assert (appliance / "request.json").exists()
+
+
 def test_the_timer_is_not_persistent(box):
     # A missed Sunday must be SKIPPED, never replayed at the next power-on — which would upgrade and
     # reboot the moment someone switched their art frame on.

@@ -35,8 +35,13 @@ if [ -z "$REPO_ROOT" ]; then
 fi
 
 OUT_DIR="$REPO_ROOT/data/appliance"
-OUT="$OUT_DIR/support-bundle.tar.gz"
 OVERRIDE="$REPO_ROOT/deploy/appliance/compose/docker-compose.appliance.yml"
+
+# L6: the container (uid 1000) can replace data/appliance ITSELF with a symlink (e.g. to /etc) — every
+# read/write this script does into it now goes through sd-mailbox, which opens data/ then "appliance"
+# with O_NOFOLLOW and refuses closed if that fails, rather than a bare `mkdir -p`/`cp` following it.
+SD_MAILBOX_BIN="${SD_MAILBOX_BIN:-$(dirname "$(readlink -f "$0")")/sd-mailbox}"
+mbox() { "$SD_MAILBOX_BIN" --repo-root "$REPO_ROOT" "$@"; }
 
 if [ -n "${SD_CONF:-}" ]; then
   CONF="$SD_CONF"
@@ -46,7 +51,6 @@ else
   CONF="/boot/pieria.conf"
 fi
 
-mkdir -p "$OUT_DIR"
 WORK="$(mktemp -d)"
 STAGE="$WORK/pieria-support"
 mkdir -p "$STAGE/appliance"
@@ -140,17 +144,30 @@ fi
 [ -f "$STAGE/env.keys" ] || echo "(no .env)" > "$STAGE/env.keys"
 
 # --- the bridge's own state ---------------------------------------------------------------------------
+# L6: these live in data/appliance/, writable by the unprivileged container (which can even replace the
+# DIRECTORY itself with a symlink) — read each one through sd-mailbox rather than `cp` by path, so a
+# planted symlink (file- or directory-level) is refused rather than followed, which would otherwise let
+# a container-side attacker point us at an arbitrary file and have its contents (read as root) land in
+# a bundle the user may paste into a public issue.
 for f in watchdog.json host_metrics.json update-check.json os-updates.json status.json conf.json \
          last-update.log watchdog-reboots.log; do
-  [ -r "$OUT_DIR/$f" ] && cp -f "$OUT_DIR/$f" "$STAGE/appliance/$f" 2>/dev/null || true
+  mbox read "$f" > "$STAGE/appliance/$f" 2>/dev/null || rm -f "$STAGE/appliance/$f"
 done
 
 # --- pack it ------------------------------------------------------------------------------------------
 date -u +"collected %Y-%m-%dT%H:%M:%SZ on $(hostname 2>/dev/null || echo unknown)" > "$STAGE/README.txt"
 TMP_TGZ="$WORK/bundle.tar.gz"
 ( cd "$WORK" && tar czf "$TMP_TGZ" pieria-support ) || { echo "sd-support-bundle: tar failed" >&2; exit 1; }
-# Atomic: the UI may be polling for this file, and a half-written tarball downloads as a corrupt one.
-mv -f "$TMP_TGZ" "$OUT"
-chown 1000:1000 "$OUT" 2>/dev/null || true
-chmod 0644 "$OUT" 2>/dev/null || true
-echo "sd-support-bundle: wrote $OUT ($(du -h "$OUT" 2>/dev/null | cut -f1))"
+# TMP_TGZ lives under WORK ($(mktemp -d), root-private, outside data/) so chown/chmod BY PATH on it
+# here is safe — the container can never touch this directory or replant anything at this path.
+chown 1000:1000 "$TMP_TGZ" 2>/dev/null || true
+chmod 0644 "$TMP_TGZ" 2>/dev/null || true
+# L6: the FINAL publish, however, is into data/appliance/ (container-writable, uid 1000, and
+# replaceable wholesale with a symlink) — so it goes through sd-mailbox's copy-in, which opens data/
+# then "appliance" with O_NOFOLLOW, copies the already-owned/moded tarball's bytes into a fresh temp
+# file IN THE VERIFIED DEST DIR, sets owner/mode again on that open fd (never by path), and
+# os.replace()s it over the target — which replaces whatever directory entry is there (symlink
+# included) rather than writing through it. Atomic: the UI may be polling for this file, and a
+# half-written tarball downloads as a corrupt one.
+mbox copy-in "$TMP_TGZ" support-bundle.tar.gz --mode 0644 --owner 1000:1000
+echo "sd-support-bundle: wrote $OUT_DIR/support-bundle.tar.gz ($(du -h "$TMP_TGZ" 2>/dev/null | cut -f1))"

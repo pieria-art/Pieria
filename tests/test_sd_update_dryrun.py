@@ -160,6 +160,37 @@ def test_status_json_is_world_readable(h):
     assert oct((h.dir / "status.json").stat().st_mode)[-3:] == "644"
 
 
+# --- L6: sd-update runs as root and writes into the container-writable mailbox — a container-side
+# attacker who plants a symlink there must not get a root write through it to an arbitrary path.
+
+def test_write_status_does_not_follow_a_status_json_symlink(h, tmp_path):
+    outside = tmp_path / "outside.txt"
+    outside.write_text("do not touch")
+    (h.dir / "status.json").symlink_to(outside)
+
+    h.request("relaunch-kiosk")
+    h.run()
+
+    assert outside.read_text() == "do not touch"          # the symlink's target was never written to
+    status_path = h.dir / "status.json"
+    assert not status_path.is_symlink()                   # rename replaced the link with a real file
+    assert json.loads(status_path.read_text())["state"] == "done"
+
+
+def test_persist_log_does_not_follow_a_last_update_log_symlink(h, tmp_path):
+    outside = tmp_path / "outside.log"
+    outside.write_text("do not touch")
+    (h.dir / "last-update.log").symlink_to(outside)
+
+    h.request("update-scripts")
+    h.run()
+
+    assert outside.read_text() == "do not touch"
+    log_path = h.dir / "last-update.log"
+    assert not log_path.is_symlink()
+    assert "install.sh" in log_path.read_text()
+
+
 # --- the existing arms still behave ---------------------------------------------------------------
 
 def test_reboot_writes_its_status_and_consumes_the_request_before_rebooting(h):
@@ -542,3 +573,47 @@ def test_the_schedule_reloads_systemd_so_the_dropin_takes_effect(h):
     h.request("set-os-schedule", schedule="weekly", time="02:15")
     h.run()
     assert "[dry-run] systemctl daemon-reload" in h.log
+
+
+# --- L6: data/appliance as a directory-level symlink (sd-mailbox) --------------------------------
+
+def test_a_symlinked_appliance_dir_is_refused_and_the_outside_dir_untouched(tmp_path):
+    """The app container (uid 1000) can replace data/appliance with a symlink to anywhere (e.g.
+    /etc). sd-update now does every read/write into that directory through sd-mailbox, which opens
+    data/ then "appliance" with O_NOFOLLOW — a symlinked appliance dir must make every arm refuse to
+    write there rather than writing through it, and the outside target must stay empty."""
+    root = tmp_path / "repo"
+    (root / "data").mkdir(parents=True)
+    outside = tmp_path / "outside"
+    outside.mkdir()
+    (root / "data" / "appliance").symlink_to(outside)
+
+    bindir = tmp_path / "bin"
+    bindir.mkdir()
+    for name in SHIMMED:
+        p = bindir / name
+        p.write_text("#!/bin/sh\nexit 0\n")
+        p.chmod(0o755)
+
+    conf = tmp_path / "pieria.conf"
+    conf.write_text(BASE_CONF)
+
+    # request.json can't be written into the (now symlinked) appliance dir via the harness's normal
+    # path, so drop it straight into the outside dir the symlink resolves to — sd-update reads it
+    # through sd-mailbox too, so a symlinked appliance dir means it never sees a request at all
+    # (mbox read fails closed) and no-ops.
+    (outside / "request.json").write_text('{"action": "relaunch-kiosk", "nonce": "n1"}')
+
+    env = {**os.environ, "PATH": f"{bindir}:{os.environ['PATH']}", "SD_CONF": str(conf),
+           "SD_SYSTEMD_DIR": str(tmp_path / "systemd"), "DRY_RUN": "1"}
+    r = subprocess.run(["bash", str(_BIN / "sd-update"), str(root)],
+                        capture_output=True, text=True, env=env)
+
+    assert r.returncode == 0
+    # Nothing was ever written into the outside dir: no status.json, no last-update.log, and the
+    # planted request.json is untouched (never consumed, since sd-update never saw it).
+    assert not (outside / "status.json").exists()
+    assert not (outside / "last-update.log").exists()
+    assert (outside / "request.json").exists()
+    # And the symlink itself was never replaced by sd-mailbox trying to (re)create the directory.
+    assert (root / "data" / "appliance").is_symlink()

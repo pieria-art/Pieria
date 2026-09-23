@@ -201,6 +201,19 @@ def test_cli_export_writes_a_conf_json_without_secrets(tmp_path):
     assert "sk-secret-value" not in out.read_text()
 
 
+def test_cli_export_out_dash_streams_to_stdout_and_writes_no_file(tmp_path):
+    # item 2: `--out -` is how sd-metrics/sd-update publish the mirror through sd-mailbox instead of
+    # sd-conf writing it by path (which would follow a symlink the container planted at conf.json).
+    conf = tmp_path / "pieria.conf"
+    conf.write_text(SAMPLE)
+    r = _cli("export", "--out", "-", conf=conf)
+    assert r.returncode == 0, r.stderr
+    data = json.loads(r.stdout)
+    assert data["values"]["DISPLAY_ID"] == "living_room"
+    assert "sk-secret-value" not in r.stdout
+    assert list(tmp_path.iterdir()) == [conf]   # nothing else was written to disk
+
+
 def test_write_atomic_leaves_no_temp_files_behind(tmp_path):
     conf = tmp_path / "pieria.conf"
     sc.write_atomic(conf, "A=1\n")

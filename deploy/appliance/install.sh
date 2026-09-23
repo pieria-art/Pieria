@@ -136,6 +136,9 @@ install -m 0755 "$BIN_SRC/sd-kiosk-launch"   /usr/local/bin/sd-kiosk-launch
 install -m 0755 "$BIN_SRC/sd-wait-for-server" /usr/local/bin/sd-wait-for-server
 install -m 0755 "$BIN_SRC/sd-rotate-keep"    /usr/local/bin/sd-rotate-keep
 install -m 0755 "$BIN_SRC/sd-metrics"        /usr/local/bin/sd-metrics
+# sd-mailbox is the single O_NOFOLLOW dir-fd guard for every root read/write into data/appliance (or
+# data/) — sd-update, sd-watchdog, sd-metrics, sd-os-check and sd-support-bundle all shell out to it.
+install -m 0755 "$BIN_SRC/sd-mailbox"        /usr/local/bin/sd-mailbox
 # sd-conf is the single conf validator/writer (ADR-119) — sd-update, sd-metrics and sd-image-prep all
 # shell out to it, and the container loads the SAME file to validate before it ever queues a request.
 install -m 0755 "$BIN_SRC/sd-conf"           /usr/local/bin/sd-conf

@@ -184,3 +184,77 @@ def test_the_report_is_world_readable_for_the_container(tmp_path, monkeypatch):
     appliance.mkdir(parents=True)
     oc.write_report(appliance, oc.build_report({"packages": [], "removals": []}))
     assert oct((appliance / "os-updates.json").stat().st_mode)[-3:] == "644"
+
+
+def test_write_report_does_not_follow_an_os_updates_json_symlink(tmp_path):
+    # L6: data/appliance/ is writable by the unprivileged container — os.chown/os.chmod BY PATH after
+    # the rename would be a TOCTOU window for a symlink replanted at os-updates.json.
+    appliance = tmp_path / "repo" / "data" / "appliance"
+    appliance.mkdir(parents=True)
+    outside = tmp_path / "outside.json"
+    outside.write_text('{"do":"not touch"}')
+    outside.chmod(0o600)
+    before_mode = outside.stat().st_mode
+    before_text = outside.read_text()
+
+    out = appliance / "os-updates.json"
+    out.symlink_to(outside)
+
+    oc.write_report(appliance, oc.build_report({"packages": [], "removals": []}))
+
+    assert outside.read_text() == before_text
+    assert outside.stat().st_mode == before_mode
+    assert not out.is_symlink()   # os.replace swapped the link for a real file
+    assert json.loads(out.read_text())["count"] == 0
+
+
+def test_a_symlinked_appliance_dir_is_refused_and_the_outside_dir_untouched(tmp_path, monkeypatch):
+    """The container can replace data/appliance ITSELF with a symlink (e.g. to /etc). write_report
+    and _update_in_progress now go through sd-mailbox, which opens data/ then "appliance" with
+    O_NOFOLLOW — a symlinked appliance dir must leave the outside target untouched, and main() must
+    still exit 0 (a red X belongs in the report, not a crashed timer — except there is no report to
+    write in this case, since the mailbox itself is unavailable)."""
+    root = tmp_path / "repo"
+    (root / "data").mkdir(parents=True)
+    outside = tmp_path / "outside"
+    outside.mkdir()
+    (root / "data" / "appliance").symlink_to(outside)
+
+    monkeypatch.setenv("SD_LOCK_FILE", str(tmp_path / "lock"))
+    monkeypatch.setattr(oc, "_run_apt", lambda args: (_ for _ in ()).throw(FileNotFoundError()))
+    assert oc.main([str(root)]) == 0
+    assert not (outside / "os-updates.json").exists()
+    assert (root / "data" / "appliance").is_symlink()
+
+
+def test_exits_0_when_sd_mailbox_itself_is_missing(tmp_path, monkeypatch):
+    # item 5: this runs on a nightly timer whose whole contract is "never fails the caller" — a
+    # missing sd-mailbox binary must not raise FileNotFoundError out of main() and leave a failed unit
+    # as the only signal.
+    appliance = tmp_path / "repo" / "data" / "appliance"
+    appliance.mkdir(parents=True)
+    monkeypatch.setattr(oc, "MAILBOX_BIN", str(tmp_path / "no-such-sd-mailbox"))
+    monkeypatch.setenv("SD_LOCK_FILE", str(tmp_path / "lock"))
+    monkeypatch.setattr(oc, "_run_apt", lambda args: (_ for _ in ()).throw(FileNotFoundError()))
+    assert oc.main([str(tmp_path / "repo")]) == 0
+    assert oc._update_in_progress(appliance) is False
+
+
+def test_exits_0_when_sd_mailbox_times_out(tmp_path, monkeypatch):
+    appliance = tmp_path / "repo" / "data" / "appliance"
+    appliance.mkdir(parents=True)
+    slow = tmp_path / "slow-sd-mailbox"
+    slow.write_text("#!/bin/sh\nsleep 5\n")
+    slow.chmod(0o755)
+    monkeypatch.setattr(oc, "MAILBOX_BIN", str(slow))
+
+    import subprocess
+    orig_run = subprocess.run
+
+    def _short_timeout_run(cmd, **kw):
+        kw["timeout"] = 0.2
+        return orig_run(cmd, **kw)
+    monkeypatch.setattr(subprocess, "run", _short_timeout_run)
+
+    r = oc._mbox(tmp_path / "repo", "read", "status.json")
+    assert r.returncode != 0

@@ -12,12 +12,24 @@
 # the previous escalation-by-fail-count-alone rebooted through an in-flight app update six times in
 # 50 minutes on the bench:
 #     fails 1-2  no action (hysteresis)
-#     fails 3-5  browser fault -> relaunch-kiosk   |  server down -> restart-container
-#     fails 6+   browser fault -> give up, observe |  server down -> reboot
+#     fails 3-5  browser fault -> relaunch-kiosk   |  e-ink fault -> restart-eink |  server down -> restart-container
+#     fails 6+   browser fault -> give up, observe |  e-ink fault -> give up      |  server down -> reboot
 # with a reboot cap (3 per 6h) and a 10-minute post-boot grace so a genuinely-broken box can't
 # boot-loop, or compound a crash-on-boot into something tighter than the timer's own 60s cadence. The
 # watchdog also PAUSES ENTIRELY — no probe, no action, fail counter untouched — while an Admin ->
 # Devices appliance action (sd-update's own status.json) is queued/running and under 30 minutes old.
+#
+# F6 (2026-09-22): a dead sd-eink (has_eink=1, server up, no kiosk) used to pick no action forever and
+# log nothing — a dead e-ink client looked identical to a healthy frame on the wall. restart-eink mirrors
+# relaunch-kiosk's ladder and gives up (never reboots) past ESCALATE_AFTER, same as the browser-fault
+# path — but e-ink gets its OWN fail counter (fails_eink / STATE_EINK), separate from the kiosk-side
+# fails_display, so a kiosk episode can never burn e-ink's restart attempts (or vice versa) and a dual
+# box (both surfaces present) can act on BOTH rungs independently when both are faulted, instead of one
+# masking the other behind an elif. The bench procedure deliberately `disable`s sd-eink while pushing to
+# the panel manually (it holds the SPI/GPIO lines) — if EINK_HOLD_FLAG exists (default
+# /run/pieria-eink-hold, override via SD_EINK_HOLD_FLAG) the watchdog reports the held state but never
+# touches sd-eink. That check runs BEFORE the give-up check: a held bench session must always report
+# "eink-held", never "gave up", no matter how long fails_eink has been climbing while held.
 #
 # MODE (pieria.conf  WATCHDOG=):
 #   observe  (default) — probe + log what it WOULD do, take NO action. Safe to run un-verified.
@@ -40,14 +52,30 @@ SERVER_URL="${SERVER_URL:-http://localhost:8000}"
 MODE="${WATCHDOG:-observe}"
 [ "$MODE" = "off" ] && exit 0
 
-OUT_DIR="$REPO_ROOT/data/appliance"
-mkdir -p "$OUT_DIR" 2>/dev/null || true
+# data/appliance is the container's mailbox to root.
 # The container is UNPRIVILEGED (uid 1000) and uses this directory as its mailbox to root — the update
 # bridge writes request.json/status.json here. We run as ROOT, so whichever of us creates the directory
 # first owns it, and root winning means the container gets EACCES and every "Update App" returns a 500.
 # Observed on the first flashed unit, 2026-07-21. Always hand ownership back.
-chown 1000:1000 "$OUT_DIR" 2>/dev/null || true
-STATUS="$OUT_DIR/watchdog.json"
+#
+# L6: the container can also replace data/appliance ITSELF with a symlink (e.g. to /etc) — a bare
+# `mkdir -p`/`chown` by path would create the dir (harmless) or follow the symlink and chown whatever
+# it points to, as root. Every read/write/chown into this directory now goes through sd-mailbox, which
+# opens data/ then "appliance" with O_NOFOLLOW and refuses closed if that fails.
+SD_MAILBOX_BIN="${SD_MAILBOX_BIN:-$(dirname "$(readlink -f "$0")")/sd-mailbox}"
+mbox() { "$SD_MAILBOX_BIN" --repo-root "$REPO_ROOT" "$@"; }
+mbox chown-dir 2>/dev/null || true
+STATUS="watchdog.json"
+# L6: writes to $STATUS used to `mktemp` IN data/appliance/ (container-writable, uid 1000) and then
+# `chmod` BY PATH before the mv-over — a container-side attacker can unlink that temp entry and
+# replant a symlink at the same path between the mktemp and the chmod; chmod follows symlinks, so that
+# window would let root chmod an arbitrary file outside data/appliance/. sd-mailbox's `write` sets the
+# mode on the OPEN FD instead (never by path), then atomically replaces the target — same pattern as
+# sd-update's write_status. Best-effort: on any failure this logs nothing louder than a skipped write;
+# it must never abort a watchdog tick.
+write_status_atomic() {
+  printf '%s' "$1" | mbox write "$STATUS" --mode 0644 2>/dev/null || true
+}
 # Consecutive-failure counter. Lives in /run ON PURPOSE: it must reset on reboot, so a box that
 # escalated to a reboot comes back with a clean count instead of immediately re-escalating (boot-loop
 # guard). Overridable for testing in an environment without a writable /run.
@@ -59,7 +87,10 @@ STATE="${SD_WATCHDOG_STATE:-/run/sd-watchdog.fails}"
 # during a bench panel session — it holds the SPI/GPIO lines) pinned `fails` above ESCALATE_AFTER with
 # no remedy, so the NEXT unrelated server blip jumped straight to reboot — the exact ADR-121 regression.
 STATE_DISPLAY="${SD_WATCHDOG_STATE_DISPLAY:-/run/sd-watchdog.display-fails}"
-REBOOTS="$OUT_DIR/watchdog-reboots.log"   # epoch per reboot (persistent → survives a reboot for the cap)
+# F6: e-ink's OWN counter, independent of STATE_DISPLAY (kiosk-only as of this fix) — see the F6
+# comment above for why a shared counter was a bug (a kiosk fault could burn e-ink's restart budget
+# and mask an independent e-ink fault on a dual box, and vice versa).
+STATE_EINK="${SD_WATCHDOG_STATE_EINK:-/run/sd-watchdog.eink-fails}"
 COMPOSE=(-f docker-compose.yml -f deploy/appliance/compose/docker-compose.appliance.yml)
 
 FAIL_THRESHOLD=3        # consecutive bad probes before acting (hysteresis)
@@ -75,6 +106,9 @@ REBOOT_WINDOW=$((6 * 3600))   # ... within this many seconds (boot-loop guard) �
 MIN_UPTIME_FOR_REBOOT=600     # never reboot within this many seconds of boot (avoid compounding a
                                # crash-on-boot into a tighter loop than the timer's own 60s cadence).
 UPTIME_FILE="${SD_UPTIME_FILE:-/proc/uptime}"   # overridable so a test can fake "just booted"
+# F6: bench panel sessions `disable` sd-eink to hold the SPI/GPIO lines for manual pushes — the
+# watchdog must never fight that. Presence alone suppresses restart-eink (content unchecked).
+EINK_HOLD_FLAG="${SD_EINK_HOLD_FLAG:-/run/pieria-eink-hold}"
 
 now="$(date +%s)"
 now_iso="$(date -Is 2>/dev/null || date)"
@@ -89,21 +123,25 @@ reboot_capped() {
     return 0
   fi
   # Boot-loop guard: refuse to reboot if we've already rebooted REBOOT_CAP times in REBOOT_WINDOW.
+  # L6: REBOOTS lives in data/appliance, which the unprivileged container (uid 1000) can write into —
+  # both the read (counting recent reboots) and the append go through sd-mailbox, which opens the
+  # (verified, non-symlink) directory once and then this name with O_NOFOLLOW, so even a
+  # TOCTOU-planted symlink can't redirect either operation (as root) to an arbitrary file.
   local recent=0
-  if [ -r "$REBOOTS" ]; then
-    recent="$(awk -v n="$now" -v w="$REBOOT_WINDOW" '$1 > n - w' "$REBOOTS" 2>/dev/null | wc -l)"
-  fi
+  recent="$(mbox read watchdog-reboots.log 2>/dev/null | awk -v n="$now" -v w="$REBOOT_WINDOW" '$1 > n - w' | wc -l)"
   if [ "$recent" -ge "$REBOOT_CAP" ]; then
     logger -t sd-watchdog "reboot cap reached ($recent in ${REBOOT_WINDOW}s) — refusing to reboot (boot-loop guard)"
     return 0
   fi
-  echo "$now" >> "$REBOOTS"
+  printf '%s\n' "$now" | mbox append watchdog-reboots.log 2>/dev/null \
+    || logger -t sd-watchdog "refusing to record reboot: watchdog-reboots.log is a symlink"
   systemctl reboot
 }
 
 perform() {
   case "$1" in
     relaunch-kiosk)    systemctl restart getty@tty1 2>/dev/null || pkill -f "[c]hromium" 2>/dev/null || true ;;
+    restart-eink)      systemctl reset-failed sd-eink 2>/dev/null; systemctl enable --now sd-eink 2>/dev/null || true ;;
     restart-container) ( cd "$REPO_ROOT" && docker compose "${COMPOSE[@]}" up -d ) 2>/dev/null || true ;;
     reboot)            reboot_capped ;;
   esac
@@ -117,16 +155,21 @@ perform() {
 # bridge's own status.json says an action is queued/running and recent, pause entirely — no probes,
 # no fail-counter change — until it finishes or goes stale (30 min: long enough for a real
 # full-upgrade, short enough that a genuinely stuck action doesn't disable self-heal forever).
-APPLIANCE_STATUS="$OUT_DIR/status.json"
 IN_FLIGHT_MAX_AGE=1800
-if [ -r "$APPLIANCE_STATUS" ]; then
-  read -r ia_state ia_age ia_action < <(python3 - "$APPLIANCE_STATUS" 2>/dev/null <<'PY'
+# L6: status.json is the container's own mailbox file, in the same O_NOFOLLOW-guarded directory as
+# everything else here — read it through sd-mailbox rather than opening it by path. Missing/unreadable
+# (mbox exits non-zero, empty stdin) falls through the same way a missing file did before: json.load
+# raises on empty input, caught below, reported as "not in flight".
+# A heredoc can't ALSO consume the piped mbox output — `python3 - <<PY` reads its PROGRAM from stdin,
+# which would eat the heredoc and leave nothing for sys.stdin at runtime. Use `-c` instead: the program
+# comes from argv, so stdin stays free for the piped JSON.
+read -r ia_state ia_age ia_action < <(mbox read status.json 2>/dev/null | python3 -c '
 import datetime
 import json
 import sys
 
 try:
-    d = json.load(open(sys.argv[1]))
+    d = json.load(sys.stdin)
 except Exception:
     print("", 999999, "")
     raise SystemExit(0)
@@ -144,22 +187,17 @@ if ts:
     except Exception:
         age = 999999
 print(state, age, action)
-PY
-)
-  case "$ia_age" in ''|*[!0-9]*) ia_age=999999 ;; esac
-  case "$ia_state" in
-    queued|running)
-      if [ "$ia_age" -lt "$IN_FLIGHT_MAX_AGE" ]; then
-        tmp="$(mktemp "$OUT_DIR/.watchdog.XXXXXX" 2>/dev/null || echo "$STATUS.tmp")"
-        printf '{"mode":"%s","checked_at":"%s","action":"%s","message":"%s"}\n' \
-          "$MODE" "$now_iso" "paused: $ia_action in flight" "paused: $ia_action in flight" > "$tmp"
-        mv -f "$tmp" "$STATUS" 2>/dev/null || true
-        chmod 0644 "$STATUS" 2>/dev/null || true
-        exit 0
-      fi
-      ;;
-  esac
-fi
+' 2>/dev/null)
+case "$ia_age" in ''|*[!0-9]*) ia_age=999999 ;; esac
+case "$ia_state" in
+  queued|running)
+    if [ "$ia_age" -lt "$IN_FLIGHT_MAX_AGE" ]; then
+      write_status_atomic "$(printf '{"mode":"%s","checked_at":"%s","action":"%s","message":"%s"}\n' \
+        "$MODE" "$now_iso" "paused: $ia_action in flight" "paused: $ia_action in flight")"
+      exit 0
+    fi
+    ;;
+esac
 
 # --- display-surface detection --------------------------------------------------
 # A box's display surfaces are TWO INDEPENDENT booleans, not one flag — the bench conf can (and does)
@@ -249,16 +287,28 @@ display_ok=1
 healthy=0
 [ "$server_ok" = 1 ] && [ "$display_ok" = 1 ] && healthy=1
 
+# Split, PER-SURFACE fault flags (F6 gap 1/2): kiosk_fault covers the HDMI/browser surface
+# (kiosk/paint/live/advance), eink_fault covers the e-ink surface alone. A dual box can have either,
+# both, or neither faulted independently — display_ok above (used only for the `healthy` verdict)
+# stays the OR of everything, but escalation must not.
+kiosk_fault=0
+[ "$has_kiosk" = 1 ] && { [ "$kiosk_ok" = 0 ] || [ "$paint_ok" = 0 ] || [ "$live_ok" = 0 ] || [ "$advance_ok" = 0 ]; } && kiosk_fault=1
+eink_fault=0
+[ "$has_eink" = 1 ] && [ "$eink_live_ok" = 0 ] && eink_fault=1
+
 # --- hysteresis + escalation --------------------------------------------------
-# TWO independent counters, so a display-side fault (kiosk or e-ink) can never inflate the count that
-# decides restart-container/reboot, and a server blip can never inflate the count that decides
-# relaunch-kiosk/give-up. fails_server moves only on server_ok=0 and resets the instant server_ok=1.
-# fails_display moves only when the server IS reachable but the display surface(s) present are not
-# (mirrors ADR-121's original "browser-level fault" branch), and resets the instant display_ok=1.
+# THREE independent counters, so no fault can inflate another rung's count: fails_server decides
+# restart-container/reboot, fails_display (kiosk-only, as of F6) decides relaunch-kiosk/give-up, and
+# fails_eink decides restart-eink/give-up. fails_server moves only on server_ok=0 and resets the
+# instant server_ok=1. fails_display/fails_eink move only when the server IS reachable but their own
+# surface is faulted, and each resets the instant its own surface recovers (or the server goes down —
+# a display-side count must not compound a genuine server outage).
 fails_server="$(cat "$STATE" 2>/dev/null || echo 0)"
 case "$fails_server" in ''|*[!0-9]*) fails_server=0 ;; esac
 fails_display="$(cat "$STATE_DISPLAY" 2>/dev/null || echo 0)"
 case "$fails_display" in ''|*[!0-9]*) fails_display=0 ;; esac
+fails_eink="$(cat "$STATE_EINK" 2>/dev/null || echo 0)"
+case "$fails_eink" in ''|*[!0-9]*) fails_eink=0 ;; esac
 
 action="none"
 message="healthy"
@@ -268,64 +318,108 @@ if [ "$server_ok" = 1 ]; then
 else
   fails_server=$((fails_server + 1))
 fi
-if [ "$display_ok" = 1 ] || [ "$server_ok" = 0 ]; then
-  fails_display=0
-else
+if [ "$server_ok" = 1 ] && [ "$kiosk_fault" = 1 ]; then
   fails_display=$((fails_display + 1))
+else
+  fails_display=0
+fi
+if [ "$server_ok" = 1 ] && [ "$eink_fault" = 1 ]; then
+  fails_eink=$((fails_eink + 1))
+else
+  fails_eink=0
 fi
 
 if [ "$healthy" != 1 ]; then
-  # Pick the escalation rung. A browser/e-ink-level fault (server reachable, display surface(s) not)
-  # NEVER escalates past relaunch-kiosk — restart-container and reboot are reserved for the server
-  # being genuinely unreachable, sustained. ADR-121: the prod incident escalated a wedged-page fault
-  # straight through to reboot, and a reboot never fixed a paint fault — it only killed whatever else
-  # was running (an in-flight apt upgrade, six times in 50 minutes).
-  want="none"
+  # Pick the escalation rung(s). A browser/e-ink-level fault (server reachable, display surface(s)
+  # not) NEVER escalates past relaunch-kiosk/restart-eink — restart-container and reboot are reserved
+  # for the server being genuinely unreachable, sustained. ADR-121: the prod incident escalated a
+  # wedged-page fault straight through to reboot, and a reboot never fixed a paint fault — it only
+  # killed whatever else was running (an in-flight apt upgrade, six times in 50 minutes). When the
+  # server itself is down, display-side rungs are not considered at all (their counters are already
+  # reset above) — that outage gets the server ladder exclusively.
+  want_server="none"
+  want_kiosk="none"
+  want_eink="none"
+
   if [ "$server_ok" = 0 ]; then
     if [ "$fails_server" -ge "$FAIL_THRESHOLD" ]; then
       if [ "$fails_server" -ge "$ESCALATE_AFTER" ]; then
-        want="reboot"
+        want_server="reboot"
       else
-        want="restart-container"
+        want_server="restart-container"
       fi
     fi
-  elif [ "$has_kiosk" = 1 ]; then
-    # No kiosk surface (e-ink-only, has_kiosk=0): never select relaunch-kiosk or give-up — neither
-    # rung applies without a browser, and there is no fix wired here for an e-ink-side fault with the
-    # server reachable; `want` stays "none" and the unhealthy state is just reported (see message
-    # below) — fails_display still climbs so this is visible in the status JSON, but never escalates.
-    if [ "$fails_display" -ge "$FAIL_THRESHOLD" ]; then
+  else
+    if [ "$kiosk_fault" = 1 ] && [ "$fails_display" -ge "$FAIL_THRESHOLD" ]; then
       if [ "$fails_display" -ge "$ESCALATE_AFTER" ]; then
-        want="give-up"
+        want_kiosk="give-up"
       else
-        want="relaunch-kiosk"
+        want_kiosk="relaunch-kiosk"
+      fi
+    fi
+    # F6: e-ink gets its own rung on its own counter — evaluated independently of kiosk_fault above,
+    # so a dual box with BOTH surfaces down addresses both. The hold-flag check runs BEFORE give-up:
+    # a held bench session must always report "eink-held", never "gave up", regardless of how long
+    # fails_eink has been climbing while held.
+    if [ "$eink_fault" = 1 ] && [ "$fails_eink" -ge "$FAIL_THRESHOLD" ]; then
+      if [ -e "$EINK_HOLD_FLAG" ]; then
+        want_eink="eink-held"
+      elif [ "$fails_eink" -ge "$ESCALATE_AFTER" ]; then
+        want_eink="give-up"
+      else
+        want_eink="restart-eink"
       fi
     fi
   fi
 
-  if [ "$want" = "give-up" ]; then
-    # 3 relaunch-kiosk attempts didn't recover it — stop acting and just observe until the probes
-    # recover on their own or a human intervenes. Never reboot for this.
-    action="give-up"
-    message="giving up on kiosk relaunch; not escalating (fails=$fails_display, server reachable) — a reboot never fixed a paint fault"
-  elif [ "$want" != "none" ]; then
-    fails_shown="$fails_server"
-    [ "$want" = "relaunch-kiosk" ] && fails_shown="$fails_display"
-    if [ "$MODE" = "enforce" ]; then
-      action="$want"
-      message="enforcing: $want (fails=$fails_shown)"
-      perform "$want"
-    else
-      action="observe:$want"
-      message="would $want (fails=$fails_shown) — observe mode, no action taken"
-    fi
+  action_parts=()
+  message_parts=()
+
+  apply_want() {
+    # $1=want $2=fails-count-to-report
+    case "$1" in
+      none) return ;;
+      give-up)
+        action_parts+=("give-up")
+        message_parts+=("gave up — needs attention (fails=$2, server reachable) — a reboot never fixed a display fault")
+        ;;
+      eink-held)
+        action_parts+=("observe:eink-held")
+        message_parts+=("sd-eink restart held (fails=$2): $EINK_HOLD_FLAG present — not touching sd-eink")
+        ;;
+      *)
+        if [ "$MODE" = "enforce" ]; then
+          action_parts+=("$1")
+          message_parts+=("enforcing: $1 (fails=$2)")
+          perform "$1"
+        else
+          action_parts+=("observe:$1")
+          message_parts+=("would $1 (fails=$2) — observe mode, no action taken")
+        fi
+        ;;
+    esac
+  }
+
+  apply_want "$want_server" "$fails_server"
+  apply_want "$want_kiosk" "$fails_display"
+  apply_want "$want_eink" "$fails_eink"
+
+  if [ "${#action_parts[@]}" -eq 0 ]; then
+    message="unhealthy (server_ok=$server_ok kiosk_ok=$kiosk_ok paint_ok=$paint_ok live_ok=$live_ok advance_ok=$advance_ok eink_live_ok=$eink_live_ok fails_server=$fails_server fails_display=$fails_display fails_eink=$fails_eink) — within hysteresis"
   else
-    message="unhealthy (server_ok=$server_ok kiosk_ok=$kiosk_ok paint_ok=$paint_ok live_ok=$live_ok advance_ok=$advance_ok eink_live_ok=$eink_live_ok fails_server=$fails_server fails_display=$fails_display) — within hysteresis"
+    action="$(IFS='+'; echo "${action_parts[*]}")"
+    # IFS='; ' as a join separator only ever uses IFS's FIRST character ('$*' expansion), so this
+    # silently joined with ';' alone — join explicitly with "; ".
+    message=""
+    for _mp in "${message_parts[@]}"; do
+      if [ -z "$message" ]; then message="$_mp"; else message="$message; $_mp"; fi
+    done
   fi
 fi
 
 printf '%s' "$fails_server" > "$STATE" 2>/dev/null || true
 printf '%s' "$fails_display" > "$STATE_DISPLAY" 2>/dev/null || true
+printf '%s' "$fails_eink" > "$STATE_EINK" 2>/dev/null || true
 
 # --- status file for the Devices console --------------------------------------
 if [ "$has_kiosk" = 1 ] && [ "$has_eink" = 1 ]; then
@@ -337,12 +431,8 @@ elif [ "$has_eink" = 1 ]; then
 else
   display_kind="none"
 fi
-tmp="$(mktemp "$OUT_DIR/.watchdog.XXXXXX" 2>/dev/null || echo "$STATUS.tmp")"
-printf '{"mode":"%s","checked_at":"%s","display":"%s","server_ok":%s,"kiosk_ok":%s,"paint_ok":%s,"live_ok":%s,"advance_ok":%s,"eink_live_ok":%s,"consecutive_fails_server":%s,"consecutive_fails_display":%s,"action":"%s","message":"%s"}\n' \
-  "$MODE" "$now_iso" "$display_kind" "$server_ok" "$kiosk_ok" "$paint_ok" "$live_ok" "$advance_ok" "$eink_live_ok" "$fails_server" "$fails_display" "$action" "$message" > "$tmp"
-mv -f "$tmp" "$STATUS" 2>/dev/null || true
-# mktemp makes 0600; the non-root container reads this for the Devices "Self-heal" tile — make it readable.
-chmod 0644 "$STATUS" 2>/dev/null || true
+write_status_atomic "$(printf '{"mode":"%s","checked_at":"%s","display":"%s","server_ok":%s,"kiosk_ok":%s,"paint_ok":%s,"live_ok":%s,"advance_ok":%s,"eink_live_ok":%s,"consecutive_fails_server":%s,"consecutive_fails_display":%s,"consecutive_fails_eink":%s,"action":"%s","message":"%s"}\n' \
+  "$MODE" "$now_iso" "$display_kind" "$server_ok" "$kiosk_ok" "$paint_ok" "$live_ok" "$advance_ok" "$eink_live_ok" "$fails_server" "$fails_display" "$fails_eink" "$action" "$message")"
 
 [ "$action" != "none" ] && logger -t sd-watchdog "$message"
 exit 0

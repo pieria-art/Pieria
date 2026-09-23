@@ -13,7 +13,7 @@ Importable (the app loads it with SourceFileLoader — `deploy/` IS in the conta
     sd-conf [--conf PATH] set KEY=VALUE [KEY=VALUE ...]   # validate ALL, then write atomically
     sd-conf [--conf PATH] get KEY
     sd-conf [--conf PATH] validate KEY VALUE              # exit 0 = ok, 2 = rejected
-    sd-conf [--conf PATH] export [--out PATH]             # non-secret mirror -> conf.json
+    sd-conf [--conf PATH] export [--out PATH|-]            # non-secret mirror -> conf.json (or stdout)
 
 Writing preserves comments, ordering, and every key it was not asked to change (ADR-059 #1) — a
 wizard re-run once deleted EINK_*/WATCHDOG by rendering a fixed key set, and that must not recur.
@@ -337,8 +337,17 @@ def main(argv=None) -> int:
         return 0
 
     if args.cmd == "export":
+        text = json.dumps(build_export(conf_path), indent=2) + "\n"
+        # "-" -> stdout: the mirror lives under data/appliance/, which the unprivileged container
+        # (uid 1000) can write into or replace wholesale with a symlink — writing it BY PATH here
+        # (mkstemp in that dir + os.chown/os.chmod by path in write_atomic/_handback) would follow a
+        # swapped symlink and let root chown/chmod an arbitrary file. Callers instead pipe this output
+        # into `sd-mailbox write conf.json`, which does the O_NOFOLLOW dir-fd dance.
+        if args.out == "-":
+            sys.stdout.write(text)
+            return 0
         out = Path(args.out) if args.out else (conf_path.parent / "conf.json")
-        write_atomic(out, json.dumps(build_export(conf_path), indent=2) + "\n")
+        write_atomic(out, text)
         return 0
 
     # set — validate EVERY pair before writing ANY of them, so a bad second key can never leave the

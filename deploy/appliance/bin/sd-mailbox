@@ -1,0 +1,320 @@
+#!/usr/bin/env python3
+"""sd-mailbox — the ONE way any root-run appliance script touches data/appliance/ (or data/ itself).
+
+Threat model (ADR-119 / L6 follow-up): the app container (uid 1000) bind-mounts only ./data, so it
+cannot replace $REPO_ROOT/data itself, but it CAN replace anything INSIDE it — including turning
+data/appliance into a symlink to /etc. A root script that does `chown $OUT_DIR` or writes "into
+data/appliance" by path follows that symlink and does root-owned damage wherever it points. Per-file
+atomic writes (temp+rename) do not fix this: the temp file is *also* created inside the (possibly
+symlinked) directory.
+
+The fix is directory-file-descriptor discipline: open $REPO_ROOT/data with O_NOFOLLOW, then open
+"appliance" *relative to that fd* with O_NOFOLLOW. If the container has swapped it for a symlink, the
+second open fails closed (ELOOP) instead of following it — root touches nothing. Every subsequent
+operation (write/append/read/rm/chown) happens via *_dir_fd against that already-verified fd, never by
+path, so there is no TOCTOU window between "we checked" and "we wrote".
+
+sd-update's DB snapshot/restore also needs this for files that live in data/ itself (artwork.db and
+friends), not data/appliance/ — pass --dir data to operate on the data/ dir's fd directly instead of
+opening "appliance" under it.
+
+Usage:
+  sd-mailbox --repo-root REPO_ROOT [--dir appliance|data] write   <name> [--mode 0644] [--owner U:G]
+  sd-mailbox --repo-root REPO_ROOT [--dir appliance|data] append  <name>
+  sd-mailbox --repo-root REPO_ROOT [--dir appliance|data] read    <name> [--max BYTES]
+  sd-mailbox --repo-root REPO_ROOT [--dir appliance|data] rm      <name>
+  sd-mailbox --repo-root REPO_ROOT [--dir appliance|data] copy-in <src_path> <name> [--mode] [--owner]
+  sd-mailbox --repo-root REPO_ROOT [--dir appliance|data] chown-dir [--owner U:G] [--mode 0755]
+  sd-mailbox --repo-root REPO_ROOT [--dir appliance|data] stat    <name>
+
+`stat` lstats `<name>` (via the dir fd — never by path, so it never follows a planted symlink) and
+prints "mtime size type mode uid gid" (type is one of file/dir/symlink/other; mode is 4-digit octal)
+on success; exits non-zero and prints nothing if the name is absent. Used by callers that need to know
+a mailbox file's freshness or identity (owner/mode preservation across a rollback, staleness checks)
+without reading its contents.
+
+Content convention: `write`/`append` read their content from STDIN (a real script file, not a heredoc,
+since a `python3 - <<HEREDOC` can't also consume stdin for content). `read` prints content to stdout.
+`copy-in` takes its source as a plain path argument (for callers with a root-private temp file already
+on disk, e.g. a tarball or a sqlite backup) — its OWN read is a normal open(), since the source is never
+under the container-writable directory.
+
+`<name>` must be a bare filename: no "/", no "..", not empty. Refused otherwise.
+"""
+from __future__ import annotations
+
+import argparse
+import fcntl
+import os
+import stat
+import sys
+
+#: Default cap for `read` (and the S_ISREG-checked source of `copy-in`, when it lives under data/) — a
+#: container-side attacker who can't redirect us off-directory (O_NOFOLLOW handles that) can still
+#: plant an enormous regular file at a mailbox name and try to make root read all of it into memory.
+#: Overridable per-call with --max.
+DEFAULT_MAX_READ = 64 * 1024 * 1024
+
+
+def die(msg: str) -> None:
+    print(f"sd-mailbox: {msg}", file=sys.stderr)
+    sys.exit(1)
+
+
+def validate_name(name: str) -> None:
+    if not name or name in (".", "..") or "/" in name or "\0" in name:
+        die(f"refusing unsafe name: {name!r}")
+
+
+def parse_owner(spec: str) -> tuple:
+    try:
+        u, g = spec.split(":", 1)
+        return int(u), int(g)
+    except (ValueError, AttributeError):
+        die(f"invalid --owner (want UID:GID): {spec!r}")
+
+
+def open_dir_noflw(path: str, *, dir_fd=None) -> int:
+    """Open a path component with O_DIRECTORY|O_NOFOLLOW — refuses a symlink or non-dir closed."""
+    return os.open(path, os.O_DIRECTORY | os.O_NOFOLLOW, dir_fd=dir_fd)
+
+
+def resolve_target_dir(repo_root: str, which: str, *, create_owner=(1000, 1000), create_mode=0o755) -> int:
+    """Returns an open dir fd for data/ (which == "data") or data/appliance/ (which == "appliance"),
+    verified at every step by O_NOFOLLOW — never by path after the first component."""
+    data_path = os.path.join(repo_root, "data")
+    try:
+        data_fd = open_dir_noflw(data_path)
+    except FileNotFoundError:
+        die(f"{data_path} does not exist — is REPO_ROOT correct?")
+    except OSError as e:
+        die(f"cannot open {data_path} safely: {e}")
+
+    if which == "data":
+        return data_fd
+
+    if which != "appliance":
+        die(f"invalid --dir: {which}")
+
+    try:
+        afd = open_dir_noflw("appliance", dir_fd=data_fd)
+    except FileNotFoundError:
+        try:
+            os.mkdir("appliance", create_mode, dir_fd=data_fd)
+        except FileExistsError:
+            pass  # raced with someone else creating it — fall through and open it
+        except OSError as e:
+            die(f"could not create data/appliance: {e}")
+        try:
+            afd = open_dir_noflw("appliance", dir_fd=data_fd)
+        except OSError as e:
+            die(f"data/appliance did not come up as a plain directory after mkdir: {e}")
+        try:
+            os.fchown(afd, *create_owner)
+            os.fchmod(afd, create_mode)
+        except (OSError, AttributeError):
+            pass  # best-effort (e.g. not running as root in a test)
+    except OSError as e:
+        # ELOOP (symlink) or ENOTDIR (exists as a plain file) both land here — refuse closed.
+        die(f"refusing: data/appliance is not a plain directory ({e}) — "
+            "the container may have replaced it with a symlink")
+    finally:
+        os.close(data_fd)
+    return afd
+
+
+def do_write(afd: int, name: str, content: bytes, mode: int, owner) -> None:
+    validate_name(name)
+    tmp = f".{name}.{os.getpid()}.{os.urandom(4).hex()}.tmp"
+    fd = os.open(tmp, os.O_WRONLY | os.O_CREAT | os.O_EXCL | os.O_NOFOLLOW, 0o600, dir_fd=afd)
+    try:
+        with os.fdopen(fd, "wb") as f:
+            f.write(content)
+            f.flush()
+            os.fsync(f.fileno())
+            os.fchmod(f.fileno(), mode)
+            if owner is not None:
+                try:
+                    os.fchown(f.fileno(), *owner)
+                except (OSError, AttributeError):
+                    pass
+        os.replace(tmp, name, src_dir_fd=afd, dst_dir_fd=afd)
+    except BaseException:
+        try:
+            os.unlink(tmp, dir_fd=afd)
+        except OSError:
+            pass
+        raise
+
+
+def do_append(afd: int, name: str, content: bytes) -> None:
+    validate_name(name)
+    # O_NONBLOCK so opening a FIFO planted at this name can't hang root waiting for a reader/writer —
+    # combined with O_NOFOLLOW it fails closed instead. fstat + S_ISREG then refuses anything that
+    # isn't a plain file (a FIFO that DID open, a device node, etc.) before any write is attempted.
+    fd = os.open(name, os.O_WRONLY | os.O_APPEND | os.O_CREAT | os.O_NONBLOCK | os.O_NOFOLLOW,
+                 0o644, dir_fd=afd)
+    try:
+        if not stat.S_ISREG(os.fstat(fd).st_mode):
+            die(f"refusing to append to {name!r}: not a plain file")
+        fcntl.fcntl(fd, fcntl.F_SETFL, fcntl.fcntl(fd, fcntl.F_GETFL) & ~os.O_NONBLOCK)
+        with os.fdopen(fd, "ab") as f:
+            f.write(content)
+            f.flush()
+            os.fsync(f.fileno())
+    except BaseException:
+        try:
+            os.close(fd)
+        except OSError:
+            pass
+        raise
+
+
+def do_read(afd: int, name: str, max_bytes: int = DEFAULT_MAX_READ) -> bytes:
+    validate_name(name)
+    # Same O_NONBLOCK/O_NOFOLLOW/S_ISREG discipline as do_append: a FIFO planted at this name must
+    # never hang (or feed unbounded data to) a root reader. Size is checked via fstat BEFORE reading —
+    # an oversize regular file is refused outright rather than read and then discarded.
+    fd = os.open(name, os.O_RDONLY | os.O_NONBLOCK | os.O_NOFOLLOW, dir_fd=afd)
+    try:
+        st = os.fstat(fd)
+        if not stat.S_ISREG(st.st_mode):
+            die(f"refusing to read {name!r}: not a plain file")
+        if st.st_size > max_bytes:
+            die(f"refusing to read {name!r}: {st.st_size} bytes exceeds the {max_bytes}-byte cap")
+        fcntl.fcntl(fd, fcntl.F_SETFL, fcntl.fcntl(fd, fcntl.F_GETFL) & ~os.O_NONBLOCK)
+        with os.fdopen(fd, "rb") as f:
+            return f.read()
+    except BaseException:
+        try:
+            os.close(fd)
+        except OSError:
+            pass
+        raise
+
+
+def do_stat(afd: int, name: str) -> str:
+    """"mtime size type mode uid gid" via lstat on the dir fd (never by path — never follows a
+    planted symlink). type is file/dir/symlink/other; mode is 4-digit octal. Raises
+    FileNotFoundError if the name is absent."""
+    validate_name(name)
+    st = os.stat(name, dir_fd=afd, follow_symlinks=False)
+    if stat.S_ISREG(st.st_mode):
+        kind = "file"
+    elif stat.S_ISDIR(st.st_mode):
+        kind = "dir"
+    elif stat.S_ISLNK(st.st_mode):
+        kind = "symlink"
+    else:
+        kind = "other"
+    return (f"{int(st.st_mtime)} {st.st_size} {kind} "
+            f"{stat.S_IMODE(st.st_mode):04o} {st.st_uid} {st.st_gid}")
+
+
+def do_rm(afd: int, name: str) -> None:
+    validate_name(name)
+    try:
+        os.unlink(name, dir_fd=afd)
+    except FileNotFoundError:
+        pass
+
+
+def do_copy_in(afd: int, src_path: str, name: str, mode: int, owner, max_bytes: int = DEFAULT_MAX_READ) -> None:
+    # Most callers pass a root-private mktemp source (a tarball, a sqlite snapshot) where this check is
+    # pure belt-and-suspenders — but a caller could pass a path under the container-writable data/ tree
+    # (e.g. a source the container itself produced), so the same S_ISREG + size-cap discipline as
+    # do_read applies here too: refuse a non-regular or oversize source rather than read it.
+    with open(src_path, "rb", buffering=0) as sf:
+        st = os.fstat(sf.fileno())
+        if not stat.S_ISREG(st.st_mode):
+            die(f"refusing to copy-in {src_path!r}: not a plain file")
+        if st.st_size > max_bytes:
+            die(f"refusing to copy-in {src_path!r}: {st.st_size} bytes exceeds the {max_bytes}-byte cap")
+        content = sf.read()
+    do_write(afd, name, content, mode, owner)
+
+
+def do_chown_dir(afd: int, owner, mode: int) -> None:
+    if owner is not None:
+        try:
+            os.fchown(afd, *owner)
+        except (OSError, AttributeError):
+            pass
+    try:
+        os.fchmod(afd, mode)
+    except OSError:
+        pass
+
+
+def main(argv=None) -> int:
+    ap = argparse.ArgumentParser(prog="sd-mailbox")
+    ap.add_argument("--repo-root", required=True)
+    ap.add_argument("--dir", choices=["appliance", "data"], default="appliance")
+    sub = ap.add_subparsers(dest="cmd", required=True)
+
+    p_write = sub.add_parser("write")
+    p_write.add_argument("name")
+    p_write.add_argument("--mode", default="0644")
+    p_write.add_argument("--owner", default=None)
+
+    p_append = sub.add_parser("append")
+    p_append.add_argument("name")
+
+    p_read = sub.add_parser("read")
+    p_read.add_argument("name")
+    p_read.add_argument("--max", dest="max_bytes", type=int, default=DEFAULT_MAX_READ)
+
+    p_rm = sub.add_parser("rm")
+    p_rm.add_argument("name")
+
+    p_copy = sub.add_parser("copy-in")
+    p_copy.add_argument("src_path")
+    p_copy.add_argument("name")
+    p_copy.add_argument("--mode", default="0644")
+    p_copy.add_argument("--owner", default=None)
+    p_copy.add_argument("--max", dest="max_bytes", type=int, default=DEFAULT_MAX_READ)
+
+    p_chown = sub.add_parser("chown-dir")
+    p_chown.add_argument("--owner", default="1000:1000")
+    p_chown.add_argument("--mode", default="0755")
+
+    p_stat = sub.add_parser("stat")
+    p_stat.add_argument("name")
+
+    args = ap.parse_args(argv)
+
+    afd = resolve_target_dir(args.repo_root, args.dir)
+    try:
+        if args.cmd == "write":
+            mode = int(args.mode, 8)
+            owner = parse_owner(args.owner) if args.owner else None
+            do_write(afd, args.name, sys.stdin.buffer.read(), mode, owner)
+        elif args.cmd == "append":
+            do_append(afd, args.name, sys.stdin.buffer.read())
+        elif args.cmd == "read":
+            try:
+                data = do_read(afd, args.name, args.max_bytes)
+            except (FileNotFoundError, OSError) as e:
+                die(f"cannot read {args.name}: {e}")
+            sys.stdout.buffer.write(data)
+        elif args.cmd == "rm":
+            do_rm(afd, args.name)
+        elif args.cmd == "copy-in":
+            mode = int(args.mode, 8)
+            owner = parse_owner(args.owner) if args.owner else None
+            do_copy_in(afd, args.src_path, args.name, mode, owner, args.max_bytes)
+        elif args.cmd == "chown-dir":
+            owner = parse_owner(args.owner) if args.owner else None
+            do_chown_dir(afd, owner, int(args.mode, 8))
+        elif args.cmd == "stat":
+            try:
+                print(do_stat(afd, args.name))
+            except (FileNotFoundError, OSError) as e:
+                die(f"cannot stat {args.name}: {e}")
+    finally:
+        os.close(afd)
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
