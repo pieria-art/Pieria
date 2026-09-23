@@ -175,7 +175,16 @@ conf_export() {
   # symlink) — `sd-conf export --out PATH` writes BY PATH (mkstemp in that dir + chown/chmod by path),
   # which would follow a swapped symlink. `--out -` streams the export to stdout instead, and the
   # actual placement goes through mbox, same as every other write into this directory.
-  "$SD_CONF_BIN" --conf "$CONF" export --out - 2>>"$LOG" | mbox write conf.json --mode 0644 --owner 1000:1000 >>"$LOG" 2>&1 || true
+  # Captured into a variable first: a failed or empty export must never publish an empty conf.json
+  # over a good one (the admin UI would then show every setting as blank/default).
+  local out rc_export
+  out="$("$SD_CONF_BIN" --conf "$CONF" export --out - 2>>"$LOG")"
+  rc_export=$?
+  if [ "$rc_export" -eq 0 ] && [ -n "$out" ]; then
+    printf '%s' "$out" | mbox write conf.json --mode 0644 --owner 1000:1000 >>"$LOG" 2>&1 || true
+  else
+    echo "+ conf export failed or empty (exit $rc_export) — not publishing conf.json" >> "$LOG"
+  fi
 }
 
 conf_get() { "$SD_CONF_BIN" --conf "$CONF" get "$1" 2>/dev/null; }
@@ -309,12 +318,36 @@ case "$ACTION" in
     # any reason (e.g. the DB vanished between the -f check and here).
     DB_MODE="0644"
     DB_OWNER="1000:1000"
+    # A ~18k-work library's DB can run well past sd-mailbox's 64 MB default read/copy-in cap — every
+    # update (and every rollback restore) would refuse forever. Threaded through every mbox
+    # copy-in/read of the DB snapshot below and in restore_db.
+    SD_DB_MAX_BYTES="${SD_DB_MAX_BYTES:-8589934592}"
     if [ $rc -eq 0 ] && [ -f "$DB" ]; then
       DB_EXISTED=1
       read -r _db_mtime _db_size _db_type _db_mode _db_uid _db_gid < <(mbox --dir data stat artwork.db 2>/dev/null)
-      if [ -n "${_db_mode:-}" ] && [ -n "${_db_uid:-}" ] && [ -n "${_db_gid:-}" ]; then
+      # Only trust the recorded mode/owner when the stat says this is actually a regular file — a
+      # symlink or other type falls back to the safe 1000:1000 0644 default declared above.
+      if [ "${_db_type:-}" = "file" ] && [ -n "${_db_mode:-}" ] && [ -n "${_db_uid:-}" ] && [ -n "${_db_gid:-}" ]; then
         DB_MODE="$_db_mode"
         DB_OWNER="$_db_uid:$_db_gid"
+      fi
+      # Check free space BEFORE snapshotting: a half-written snapshot (or a half-restored one, later)
+      # is worse than refusing up front. Require the DB's own size plus 10% headroom to be free on the
+      # data partition; unknown size or an unreadable df is treated as "can't verify" and allowed
+      # through rather than blocking on a check that itself failed.
+      _db_bytes="${_db_size:-0}"
+      case "$_db_bytes" in ''|*[!0-9]*) _db_bytes=0 ;; esac
+      if [ "$_db_bytes" -gt 0 ]; then
+        FREE_BYTES="$(df -kP "$REPO_ROOT/data" 2>/dev/null | awk 'NR==2 { print $4 * 1024 }')"
+        case "${FREE_BYTES:-}" in ''|*[!0-9]*) FREE_BYTES="" ;; esac
+        if [ -n "$FREE_BYTES" ]; then
+          REQUIRED_BYTES=$((_db_bytes + _db_bytes / 10))
+          if [ "$FREE_BYTES" -lt "$REQUIRED_BYTES" ]; then
+            rc=1
+            ERR_MSG="not enough free space to update safely"
+            echo "+ free space check failed: need ~$REQUIRED_BYTES bytes (DB $_db_bytes + 10%), have $FREE_BYTES bytes free on $REPO_ROOT/data" >> "$LOG"
+          fi
+        fi
       fi
       # N4/item 4: this backup used to read $DB by PATH as ROOT (sqlite3.connect) — the database is the
       # container's own file (uid 1000), so a root read here is unnecessary privilege for a task that
@@ -323,29 +356,31 @@ case "$ACTION" in
       # (util-linux, on Raspberry Pi OS bookworm by default) is preferred; runuser by the actual uid-1000
       # username is the fallback. SD_SNAPSHOT_DROP_PRIV=0 skips the drop (tests running as root with no
       # uid 1000 user, or a real root-required scenario).
-      SNAP_TMP="$(mktemp)"
-      SNAP_PY='import sqlite3,sys; s=sqlite3.connect(sys.argv[1]); d=sqlite3.connect(sys.argv[2]); s.backup(d); d.close(); s.close()'
-      if [ "$(id -u)" = "0" ] && [ "${SD_SNAPSHOT_DROP_PRIV:-1}" = "1" ]; then
-        chown 1000:1000 "$SNAP_TMP" 2>/dev/null || true
-        if command -v setpriv >/dev/null 2>&1; then
-          run setpriv --reuid=1000 --regid=1000 --clear-groups python3 -c "$SNAP_PY" "$DB" "$SNAP_TMP" || rc=$?
-        else
-          SNAP_UNAME="$(getent passwd 1000 2>/dev/null | cut -d: -f1)"
-          if [ -n "$SNAP_UNAME" ] && command -v runuser >/dev/null 2>&1; then
-            run runuser -u "$SNAP_UNAME" -- python3 -c "$SNAP_PY" "$DB" "$SNAP_TMP" || rc=$?
-          else
-            echo "+ WARNING: no setpriv and no resolvable uid-1000 user — snapshotting $DB as root" >> "$LOG"
-            run python3 -c "$SNAP_PY" "$DB" "$SNAP_TMP" || rc=$?
-          fi
-        fi
-      else
-        run python3 -c "$SNAP_PY" "$DB" "$SNAP_TMP" || rc=$?
-      fi
       if [ $rc -eq 0 ]; then
-        mbox copy-in "$SNAP_TMP" pre-update.db --mode 0600 || rc=$?
+        SNAP_TMP="$(mktemp)"
+        SNAP_PY='import sqlite3,sys; s=sqlite3.connect(sys.argv[1]); d=sqlite3.connect(sys.argv[2]); s.backup(d); d.close(); s.close()'
+        if [ "$(id -u)" = "0" ] && [ "${SD_SNAPSHOT_DROP_PRIV:-1}" = "1" ]; then
+          chown 1000:1000 "$SNAP_TMP" 2>/dev/null || true
+          if command -v setpriv >/dev/null 2>&1; then
+            run setpriv --reuid=1000 --regid=1000 --clear-groups python3 -c "$SNAP_PY" "$DB" "$SNAP_TMP" || rc=$?
+          else
+            SNAP_UNAME="$(getent passwd 1000 2>/dev/null | cut -d: -f1)"
+            if [ -n "$SNAP_UNAME" ] && command -v runuser >/dev/null 2>&1; then
+              run runuser -u "$SNAP_UNAME" -- python3 -c "$SNAP_PY" "$DB" "$SNAP_TMP" || rc=$?
+            else
+              echo "+ WARNING: no setpriv and no resolvable uid-1000 user — snapshotting $DB as root" >> "$LOG"
+              run python3 -c "$SNAP_PY" "$DB" "$SNAP_TMP" || rc=$?
+            fi
+          fi
+        else
+          run python3 -c "$SNAP_PY" "$DB" "$SNAP_TMP" || rc=$?
+        fi
+        if [ $rc -eq 0 ]; then
+          mbox copy-in "$SNAP_TMP" pre-update.db --mode 0600 --max "$SD_DB_MAX_BYTES" || rc=$?
+        fi
+        rm -f "$SNAP_TMP"
+        [ $rc -eq 0 ] || ERR_MSG="could not snapshot the database — aborted before touching the checkout"
       fi
-      rm -f "$SNAP_TMP"
-      [ $rc -eq 0 ] || ERR_MSG="could not snapshot the database — aborted before touching the checkout"
     fi
 
     # reset_ok marks the point of no return: once the checkout has actually moved, ANY later failure
@@ -407,7 +442,7 @@ finally:
         return 1
       fi
       tmp="$(mktemp)"
-      if mbox read pre-update.db > "$tmp" 2>/dev/null; then
+      if mbox read pre-update.db --max "$SD_DB_MAX_BYTES" > "$tmp" 2>/dev/null; then
         # Regression fix: restore with the DB's OWN owner/mode, captured via sd-mailbox stat at
         # snapshot time (DB_MODE/DB_OWNER above) — a bare --mode 0644 with no --owner left the
         # restored file root:root, and the app (container USER 1000) can't open a root-owned DB on a

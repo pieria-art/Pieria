@@ -80,6 +80,12 @@ if [ -x "$SD_CONF_BIN" ] && [ -r "$CONF" ]; then
   case "$MIRROR_MTIME" in ''|*[!0-9]*) MIRROR_MTIME=0 ;; esac
   CONF_MTIME="$(stat -c %Y "$CONF" 2>/dev/null || echo 0)"
   if [ "$MIRROR_MTIME" -eq 0 ] || [ "$CONF_MTIME" -gt "$MIRROR_MTIME" ]; then
-    "$SD_CONF_BIN" --conf "$CONF" export --out - 2>/dev/null | mbox write conf.json --mode 0644 --owner 1000:1000 2>/dev/null || true
+    # Capture into a variable first: a failed or empty export must never publish an empty conf.json
+    # over a good one (the admin UI would then show every setting as blank/default).
+    CONF_EXPORT_OUT="$("$SD_CONF_BIN" --conf "$CONF" export --out - 2>/dev/null)"
+    CONF_EXPORT_RC=$?
+    if [ "$CONF_EXPORT_RC" -eq 0 ] && [ -n "$CONF_EXPORT_OUT" ]; then
+      printf '%s' "$CONF_EXPORT_OUT" | mbox write conf.json --mode 0644 --owner 1000:1000 2>/dev/null || true
+    fi
   fi
 fi

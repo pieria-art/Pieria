@@ -396,6 +396,24 @@ def test_every_settings_arm_exports_conf_json_for_the_ui(h):
     assert not any("KEY" in k for k in exported["values"])    # never the Gemini key
 
 
+def test_conf_export_failure_does_not_publish_empty_conf_json(h):
+    # A previously-good conf.json must survive a broken `sd-conf export` untouched — publishing an
+    # empty file would make the admin UI show every setting as blank/default.
+    (h.dir / "conf.json").write_text('{"values": {"WATCHDOG": "observe"}}')
+    fake_conf_bin = h.stub("sd-conf", 'case "$*" in *export*) exit 1 ;; esac\nexit 0')
+    h.request("set-watchdog", watchdog="off")
+    h.run(SD_CONF_BIN=str(fake_conf_bin))
+    assert json.loads((h.dir / "conf.json").read_text())["values"]["WATCHDOG"] == "observe"
+
+
+def test_conf_export_empty_output_does_not_publish_empty_conf_json(h):
+    (h.dir / "conf.json").write_text('{"values": {"WATCHDOG": "observe"}}')
+    fake_conf_bin = h.stub("sd-conf", 'case "$*" in *export*) exit 0 ;; esac\nexit 0')
+    h.request("set-watchdog", watchdog="off")
+    h.run(SD_CONF_BIN=str(fake_conf_bin))
+    assert json.loads((h.dir / "conf.json").read_text())["values"]["WATCHDOG"] == "observe"
+
+
 # --- action arms (ADR-119) -----------------------------------------------------------------------
 
 def test_relaunch_kiosk_restarts_the_login_session(h):

@@ -70,6 +70,39 @@ def test_a_missing_conf_is_not_an_error(box):
     assert _run(root, "/nonexistent/pieria.conf").returncode == 0
 
 
+def test_a_broken_sd_conf_export_does_not_publish_an_empty_mirror(box, tmp_path):
+    # A previously-good conf.json must survive a broken `sd-conf export` — publishing an empty file
+    # would make the admin UI show every setting as blank/default instead of keeping the last-known-good
+    # mirror.
+    root, conf = box
+    out = root / "data" / "appliance" / "conf.json"
+    out.write_text('{"values": {"DISPLAY_ID": "living_room"}}')
+    fake_sd_conf = tmp_path / "sd-conf"
+    fake_sd_conf.write_text('#!/bin/sh\ncase "$*" in *export*) exit 1 ;; esac\nexit 0\n')
+    fake_sd_conf.chmod(0o755)
+    os.utime(conf, (out.stat().st_mtime + 10, out.stat().st_mtime + 10))
+    r = subprocess.run(["bash", str(_BIN / "sd-metrics"), str(root), str(conf)],
+                        capture_output=True, text=True,
+                        env={**os.environ, "SD_CONF_BIN": str(fake_sd_conf)})
+    assert r.returncode == 0
+    assert json.loads(out.read_text())["values"]["DISPLAY_ID"] == "living_room"
+
+
+def test_sd_conf_export_printing_nothing_does_not_publish_an_empty_mirror(box, tmp_path):
+    root, conf = box
+    out = root / "data" / "appliance" / "conf.json"
+    out.write_text('{"values": {"DISPLAY_ID": "living_room"}}')
+    fake_sd_conf = tmp_path / "sd-conf"
+    fake_sd_conf.write_text('#!/bin/sh\ncase "$*" in *export*) exit 0 ;; esac\nexit 0\n')
+    fake_sd_conf.chmod(0o755)
+    os.utime(conf, (out.stat().st_mtime + 10, out.stat().st_mtime + 10))
+    r = subprocess.run(["bash", str(_BIN / "sd-metrics"), str(root), str(conf)],
+                        capture_output=True, text=True,
+                        env={**os.environ, "SD_CONF_BIN": str(fake_sd_conf)})
+    assert r.returncode == 0
+    assert json.loads(out.read_text())["values"]["DISPLAY_ID"] == "living_room"
+
+
 def test_host_metrics_symlink_target_is_left_untouched(box, tmp_path):
     # L6: data/appliance/ is writable by the unprivileged container — a chmod-by-path after the
     # rename-over would be a TOCTOU window for a symlink replanted at host_metrics.json.

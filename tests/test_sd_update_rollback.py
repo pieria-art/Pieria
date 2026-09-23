@@ -350,6 +350,21 @@ def test_rollback_refuses_to_restore_through_a_symlinked_artwork_db(h, tmp_path)
     assert "refusing to restore" in h.log
 
 
+def test_not_enough_free_space_aborts_before_touching_the_checkout(h):
+    # A `df` reporting less free space than the DB size + 10% headroom must refuse the update up front,
+    # with a clear status, rather than starting a snapshot/reset that could half-write on a full disk.
+    h._shim("df", 'printf "Filesystem 1024-blocks Used Available Capacity Mounted\\n'
+                  'x 100 100 0 100%% x\\n"')
+    h.set_curl_mode("always_ok")
+    h.request("update-app")
+    r = h.run()
+    assert r.returncode == 0
+    assert h.status["state"] == "error"
+    assert "not enough free space to update safely" in h.status["message"]
+    assert "reset --hard" not in h.log
+    assert not h.snapshot_exists
+
+
 def test_rollback_restores_the_dbs_original_mode(h):
     # item 3 regression fix: restore_db used to write artwork.db back with a bare --mode 0644 and no
     # --owner, so a rollback on a shell-less box left the DB root:root/0644 regardless of what it was
