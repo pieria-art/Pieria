@@ -81,12 +81,14 @@ pre-populated library:
 cd ~/Pieria
 docker compose -f docker-compose.yml -f deploy/appliance/compose/docker-compose.appliance.yml down
 sudo rm -rf data/*.db* Artwork/*        # the DB is data/artwork.db (database.py)
+sudo rm -f data/appliance/*             # this box's status files (conf/watchdog/metrics/update-check)
 ```
 
 Leaving art baked in is a legitimate alternative (a "lean Core" image — faster to first paint, much
 bigger download). Decide deliberately; don't let it happen by accident.
 
-**Verify:** `du -sh Artwork/` is ~0, and the DB file is gone. The container image itself stays on the
+**Verify:** `du -sh Artwork/` is ~0, the DB file is gone, and `data/appliance/` is empty (its files regenerate
+on first boot; left in place they show a stranger this build box's state until then). The container image itself stays on the
 card — that is what makes first boot fast.
 
 ---

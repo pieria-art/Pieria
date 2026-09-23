@@ -88,6 +88,9 @@ GEMINI_API_KEY=
 # SERVER_URL for DISPLAY_ID's current image and blits it to the panel over SPI.
 # Works all-in-one (SERVER_URL=localhost) OR satellite (SERVER_URL=a remote hub).
 EINK_ENABLED=0
-EINK_MIN_INTERVAL=900     # cadence floor (s) — e-ink art is contemplative; refresh is ~30s
+# EINK_MIN_INTERVAL: cadence floor (s) — e-ink art is contemplative; refresh is ~30s.
+# (Keep comments on their own lines: an inline `# …` after a value is read as part of it.)
+EINK_MIN_INTERVAL=900
 # EINK_SATURATION removed (ADR-089 follow-up, 2026-09-22) — colour tuning is fixed in 1.0.
-EINK_ORIENTATION=         # blank = landscape 1600x1200 | portrait = 1200x1600
+# EINK_ORIENTATION: blank = landscape 1600x1200 | portrait = 1200x1600
+EINK_ORIENTATION=
