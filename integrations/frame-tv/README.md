@@ -4,6 +4,10 @@ Push **curated, open, no-subscription** Pieria art into a Samsung Frame TV's **A
 your local network — turning a Frame you already own into another Pieria display, with no
 Samsung account and no Art Store subscription.
 
+> **Beta.** This integration is built and tested against an emulated TV, but has **not yet been
+> verified on real Frame hardware**. It should work; if it doesn't on your Frame, please
+> [open an issue](https://github.com/pieria-art/Pieria/issues) with your model and year.
+
 ## Two ways to use it
 
 ### 1. Built in to the server (recommended)

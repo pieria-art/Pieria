@@ -143,7 +143,7 @@ frame how long (seconds) to deep-sleep before the next fetch; each GET advances 
 
 Thin clients that render the same curation brain on platforms people already run:
 
-- **[Samsung Frame TV](integrations/frame-tv/)** — push curated art into a Frame's **Art Mode** over
+- **[Samsung Frame TV](integrations/frame-tv/) (beta — not yet tested on a real Frame)** — push curated art into a Frame's **Art Mode** over
   your LAN (no Samsung account, no Art Store subscription). Configure it in **Settings → 🖼️ Samsung Frame TV**
   (IP, playlist, interval) and the server keeps the Frame updated, reusing the same curation brain.
   Turns a Frame you already own into another Pieria display.
