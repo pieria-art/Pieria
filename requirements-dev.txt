@@ -2,7 +2,10 @@ pytest==8.2.2
 pytest-asyncio==0.23.7
 pytest-cov==5.0.0
 pytest-timeout==2.3.1
-respx==0.21.1
+# 0.21.1 mocked requests via an httpx transport-pool code path that httpx 0.28 removed/changed, so
+# every respx.mock test 404'd unmocked once httpx was bumped for M3 (Starlette CVE fix) — bumped
+# alongside httpx to the current release, which restores the mocks.
+respx==0.23.1
 # Dev-only linter/formatter (config in pyproject.toml). Never shipped — the Docker
 # image installs requirements.txt only.  ruff check .   |   ruff check --fix .
 ruff==0.15.18

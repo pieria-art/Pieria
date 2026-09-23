@@ -280,17 +280,21 @@ def _spectra6_toe(img: Image.Image) -> Image.Image:
     defined, it never has to rescue a runaway ratio.
     """
     r, g, b = (band.convert("F") for band in img.split())
-    y = ImageMath.eval("0.2126*r + 0.7152*g + 0.0722*b", r=r, g=g, b=b)
-    linear = ImageMath.eval("min(y * wp, 255.0)", y=y, wp=SPECTRA6_WHITE_POINT)
-    toe = ImageMath.eval(
+    # Pillow 12 removed `ImageMath.eval` (deprecated since 9.5); `unsafe_eval` is the literal
+    # continuation of the same function under a name that flags the string-eval risk — this module
+    # only ever evaluates our own fixed expression strings, never user input, so the rename carries
+    # no behavior change (bit-identical, see tests/test_epaper.py).
+    y = ImageMath.unsafe_eval("0.2126*r + 0.7152*g + 0.0722*b", r=r, g=g, b=b)
+    linear = ImageMath.unsafe_eval("min(y * wp, 255.0)", y=y, wp=SPECTRA6_WHITE_POINT)
+    toe = ImageMath.unsafe_eval(
         "lo * (y / knee) ** gamma",
         y=y, lo=SPECTRA6_TOE_LO, knee=SPECTRA6_TOE_KNEE, gamma=SPECTRA6_TOE_GAMMA,
     )
-    above_knee = ImageMath.eval("float(y >= knee)", y=y, knee=SPECTRA6_TOE_KNEE)
-    target = ImageMath.eval(
+    above_knee = ImageMath.unsafe_eval("float(y >= knee)", y=y, knee=SPECTRA6_TOE_KNEE)
+    target = ImageMath.unsafe_eval(
         "above*linear + (1.0-above)*toe", above=above_knee, linear=linear, toe=toe
     )
-    scale = ImageMath.eval("target / max(y, eps)", target=target, y=y, eps=1e-6)
+    scale = ImageMath.unsafe_eval("target / max(y, eps)", target=target, y=y, eps=1e-6)
 
     # 🔑 Above the knee this curve IS shipping's linear scale, so a pixel there must come out
     # BIT-IDENTICAL to shipping — and `band * scale + 0.5` does not deliver that. `_tone_lut` rounds
@@ -308,10 +312,10 @@ def _spectra6_toe(img: Image.Image) -> Image.Image:
     def _blend(band, ship):
         # `.convert("L")` truncates, which is the round-half-up half of `+ 0.5`; do it BEFORE the
         # blend so the toe branch carries its own rounding and the shipping branch carries the LUT's.
-        toed = ImageMath.eval(
+        toed = ImageMath.unsafe_eval(
             "max(min(band * scale + 0.5, 255.0), 0.0)", band=band, scale=scale
         ).convert("L").convert("F")
-        return ImageMath.eval(
+        return ImageMath.unsafe_eval(
             "above * ship + (1.0 - above) * toed", above=above_knee, ship=ship, toed=toed
         ).convert("L")
 
