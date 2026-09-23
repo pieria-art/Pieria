@@ -917,9 +917,12 @@ async def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--out", required=False, type=Path, help="pack output directory")
     ap.add_argument("--write-pins", action="store_true",
-                     help="regenerate static/catalog/_pack_pins.json from --pins-ref (default HEAD) "
-                          "and exit — no pack build, no network.")
-    ap.add_argument("--pins-ref", default="HEAD", help="git ref --write-pins reads catalog files from")
+                     help="regenerate static/catalog/_pack_pins.json from --pins-ref and exit — no pack "
+                          "build, no network.")
+    # No default on purpose: the pins must come from the last commit BEFORE the artic re-source (bd25595).
+    # Defaulting to HEAD would silently capture the Commons rows and undo option A.
+    ap.add_argument("--pins-ref", default=None, help="git ref --write-pins reads catalog files from "
+                                                     "(required with --write-pins; the 1.0 pins use bd25595)")
     ap.add_argument("--check-pins", action="store_true",
                      help="read-only: compute the expected master filename for every item the served "
                           "catalog + pins would put in the pack and report hits/misses against "
@@ -957,6 +960,8 @@ async def main() -> int:
                            if args.collections else None)
 
     if args.write_pins:
+        if not args.pins_ref:
+            ap.error("--write-pins needs an explicit --pins-ref (the 1.0 pins use bd25595, never HEAD)")
         write_pack_pins(args.pins_ref)
         return 0
     if args.check_pins:
