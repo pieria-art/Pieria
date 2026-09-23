@@ -1,6 +1,7 @@
 # Pieria — System Architecture
 
-> **Version:** 0.9.1 · **Last Updated:** 2026-06-27
+> **Version:** 0.9.1 · **Last Updated:** 2026-09-20 _(header corrected 2026-09-22: it read 2026-06-27
+> against real edits through 09-20 — 85 days stale on the file every session aligns solutions against)_
 
 ---
 
