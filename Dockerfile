@@ -1,5 +1,10 @@
-# Use the official Python 3.11-slim image for a small footprint
-FROM python:3.11-slim
+# Use the official Python 3.11-slim image for a small footprint, on Debian BOOKWORM — the same Debian
+# release as Raspberry Pi OS on the appliance (the floating `3.11-slim` tag moved to trixie upstream; 1.0
+# deliberately stays on bookworm). Pinned by multi-arch index digest so the resolved patch level is
+# checkable from the repo: python:3.11.16-slim-bookworm as of 2026-09-22
+# (`docker buildx imagetools inspect python:3.11.16-slim-bookworm`), past the 3.11.13 floor that closes
+# the tarfile-extraction-filter CVE cluster (CVE-2024-12718, CVE-2025-4138/4330/4517).
+FROM python:3.11.16-slim-bookworm@sha256:a36c24f9cbdf4fd0f52d67f0823eeac19c2028c637cecc392d97f980d4fec56b
 
 # Set the working directory inside the container
 WORKDIR /app
