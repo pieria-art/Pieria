@@ -62,6 +62,13 @@ SD_USER_AGENT = "Pieria/1.0 (https://github.com/pieria-art/Pieria; art display) 
 # overridable per-install via the `pack_registry_url` setting (e.g. to point at a staging registry).
 PACK_REGISTRY_URL = os.getenv("SD_PACK_REGISTRY_URL", "https://packs.curwe.ai/packs.json")
 
+# Test/CI escape hatch (F1 hang, 2026-08-29): the OOB first-boot seed (core/lifespan.seed_from_registry)
+# reaches the real network at app startup, which a GH runner can't (403s forever) — starting a retry
+# loop that used to survive shutdown. Set by tests/conftest.py before `app` is imported so no test
+# TestClient ever spawns it; production never sets this. Tests that exercise the seed on purpose
+# (tests/test_oob_seed.py) monkeypatch it back off.
+DISABLE_BOOT_SEED = os.getenv("SD_DISABLE_BOOT_SEED", "").strip() == "1"
+
 # Deployment mode. Only the all-in-one appliance compose override sets SD_APPLIANCE_MODE=all-in-one;
 # the generic/MS-01 server and thin-client (display-only) topologies leave it unset. Gates the
 # host-health console + the GUI update bridge — surfaces that only make sense when the server runs

@@ -9,10 +9,19 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.pool import StaticPool
 
+import config
 from core import lifespan as L
 from core import pack_fetch
 from database import Base
 from models import PlaylistModel, SettingsModel, SubscriptionModel
+
+
+@pytest.fixture(autouse=True)
+def _seed_enabled(monkeypatch):
+    # tests/conftest.py sets SD_DISABLE_BOOT_SEED=1 globally (F1 hang guard) so no TestClient ever
+    # spawns the real OOB seed at startup. This file tests the seed itself, with the network fully
+    # stubbed, so opt back in for every test here.
+    monkeypatch.setattr(config, "DISABLE_BOOT_SEED", False)
 
 
 def _db():
@@ -204,3 +213,58 @@ async def test_seed_default_collection_installs_and_sets_default_playlist(monkey
     seeded = db.query(SettingsModel).filter(SettingsModel.setting_key == "pack_seeded").first()
     assert default.setting_value == "Masterpieces"
     assert seeded.setting_value == "v2:registry"
+
+
+def test_shutdown_does_not_hang_when_seed_retry_is_stuck(monkeypatch):
+    """Regression for the F1 hang (2026-08-29, CI run 35802297181): a live OOB seed retry loop — the
+    registry fetch fails forever, exactly like the real 403s GH runners got from packs.curwe.ai — must
+    not block app-lifespan shutdown. Runs the app's `lifespan` context manager (leader path forced) via
+    TestClient in a background thread so a real hang fails this test on a bounded join() instead of
+    wedging the suite."""
+    import threading
+    import time
+
+    from fastapi import FastAPI
+    from fastapi.testclient import TestClient
+
+    monkeypatch.setattr(L.fcntl, "flock", lambda *a, **k: None)  # force the leader path, no lock races
+    monkeypatch.setattr(L, "run_migrations", lambda: None)
+    monkeypatch.setattr(L, "sync_db_with_filesystem", lambda db: None)
+    monkeypatch.setattr(L, "install_pack_subscriptions", lambda db: False)
+    monkeypatch.setattr(L, "pre_seed_from_pack", lambda db: False)
+    monkeypatch.setattr(L, "SessionLocal", lambda: _db())
+    monkeypatch.setattr(L, "_SEED_RETRY_BACKOFF", (0,))  # spin fast, don't wait out real backoff
+
+    async def _async_noop(*_a, **_k):
+        return None
+    monkeypatch.setattr(L, "warm_all_canvas_cache", _async_noop)
+    monkeypatch.setattr(L, "_update_check_loop", _async_noop)
+    monkeypatch.setattr(L.frame_push, "frame_push_loop", _async_noop)
+
+    async def dead_registry(_client, _url):
+        raise RuntimeError("simulated 403 — registry unreachable, forever")
+    monkeypatch.setattr(pack_fetch, "fetch_registry", dead_registry)
+
+    mini_app = FastAPI(lifespan=L.lifespan)
+    result = {}
+
+    def _run():
+        try:
+            with TestClient(mini_app):
+                pass
+            result["ok"] = True
+        except Exception as e:  # noqa: BLE001 — surfaced via the assertion below, not swallowed
+            result["error"] = e
+
+    t = threading.Thread(target=_run, daemon=True)
+    t0 = time.monotonic()
+    t.start()
+    t.join(timeout=15)
+    elapsed = time.monotonic() - t0
+
+    assert not t.is_alive(), (
+        f"TestClient did not shut down within 15s ({elapsed:.1f}s elapsed) — the seed retry loop "
+        "wedged shutdown again (F1 regression)."
+    )
+    assert result.get("ok") is True, result.get("error")
+    assert elapsed < 10, f"shutdown took {elapsed:.1f}s — should be bounded by the 5s shutdown timeout"

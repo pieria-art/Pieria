@@ -651,7 +651,11 @@ async def seed_from_registry(db: Session) -> bool:
     registry lookup happens inside the loop, because "the network isn't up yet" is the single most likely
     thing to be wrong on a box's very first boot. Returns True once seeding is underway; the box owns art
     when it lands. Additional collections come via the Art Packs card."""
+    import config
     from config import PACK_REGISTRY_URL
+    if config.DISABLE_BOOT_SEED:
+        logger.info("[Seed] SD_DISABLE_BOOT_SEED set — skipping the OOB registry pull (test/CI mode).")
+        return False
     if db.query(SettingsModel).filter(SettingsModel.setting_key == "pack_seeded").first():
         return True  # already seeded (idempotent)
 
@@ -756,3 +760,20 @@ async def lifespan(app: FastAPI):
         logger.error(f"[Startup] Non-fatal error during initialization: {e}", exc_info=True)
 
     yield
+
+    # --- Shutdown: cancel + await our own background tasks, bounded (F1 hang, 2026-08-29) ----------
+    # Without this, nothing here ever asks the retry/warmer/pusher loops to stop — they just ride the
+    # process down. Under pytest's TestClient (an anyio blocking portal on its own event loop) that
+    # showed up as the portal thread stuck forever in asyncio.runners._cancel_all_tasks, because a task
+    # cancelled at process-teardown time can still be waiting on an uncancellable synchronous call
+    # (e.g. a to_thread DNS lookup) with nothing bounding how long shutdown waits for it. Cancel
+    # explicitly here, on our own schedule, with a hard cap — a task that won't die within it is
+    # abandoned rather than allowed to wedge shutdown.
+    if _BACKGROUND_TASKS:
+        pending = list(_BACKGROUND_TASKS)
+        for t in pending:
+            t.cancel()
+        try:
+            await asyncio.wait_for(asyncio.gather(*pending, return_exceptions=True), timeout=5)
+        except TimeoutError:
+            logger.warning("[Shutdown] background tasks still running after 5s; abandoning them.")
