@@ -45,8 +45,11 @@ async function init() {
     setupUploadZone();
     setupPlaylistInput(); // Add key listener
     initServerAddress();  // show the address to point displays/Pi/e-ink/Frame at
-    initDevicesCapability(); // un-hide the Devices tab only on an all-in-one appliance
-    initPublisherCapability(); // un-hide the Publisher tab only once an identity exists
+    const isDemo = await initDemoMode(); // hides mutating nav/controls on the public demo — see below
+    if (!isDemo) {
+        initDevicesCapability(); // un-hide the Devices tab only on an all-in-one appliance
+        initPublisherCapability(); // un-hide the Publisher tab only once an identity exists
+    }
     loadSubscriptions();  // federated collections panel (Settings management list)
     await loadPremiumSettings();
     await handleOAuthCallback();   // catch an OpenRouter OAuth redirect (?code=…)
@@ -286,6 +289,47 @@ function copyServerAddress() {
     if (c) { c.style.display = 'inline'; setTimeout(() => { c.style.display = 'none'; }, 1500); }
 }
 window.copyServerAddress = copyServerAddress;
+
+// --- Public demo mode (SD_DEMO_MODE=1, core/demo.py) -------------------------
+// GET /api/demo tells us whether this box is the public demo. When it is: add body.demo (CSS hook +
+// the few JS hides below), banner at the top, and hide the nav tabs / sidebar controls that only lead
+// to mutations the server-side gate already 403s (this is UX polish — the real backstop is the gate).
+async function initDemoMode() {
+    let demo;
+    try {
+        demo = await fetch(`${API_BASE}/api/demo`).then(r => r.json());
+    } catch (e) { return false; }
+    if (!demo || !demo.demo) return false;
+
+    document.body.classList.add('demo');
+
+    // Whole views that are nothing but mutation surfaces in demo mode.
+    const hideIds = ['nav-review', 'nav-settings', 'nav-devices', 'nav-publisher',
+                      'batch-enrich-btn'];
+    hideIds.forEach(id => { const el = document.getElementById(id); if (el) el.style.display = 'none'; });
+    document.querySelectorAll('a[href="/studio"], .new-playlist, .museum-bar, .upload-zone')
+        .forEach(el => { el.style.display = 'none'; });
+
+    // Top banner — built with createElement/textContent (never innerHTML) since repo_url/releases_url,
+    // though server-controlled constants here, still shouldn't set an unsanitized href via innerHTML.
+    const banner = document.createElement('div');
+    banner.id = 'demo-banner';
+    banner.style.cssText = 'background:var(--accent-tint,rgba(59,130,246,.12)); color:var(--text-color);'
+        + ' border-bottom:1px solid var(--border-color); padding:10px 18px; font-size:0.85rem;'
+        + ' display:flex; gap:14px; align-items:center; flex-wrap:wrap;';
+    const label = document.createElement('span');
+    label.textContent = "You're browsing the Pieria demo (read-only). Put it on your own wall →";
+    const repoLink = document.createElement('a');
+    repoLink.href = demo.repo_url; repoLink.target = '_blank'; repoLink.rel = 'noopener';
+    repoLink.textContent = 'GitHub';
+    const dlLink = document.createElement('a');
+    dlLink.href = demo.releases_url; dlLink.target = '_blank'; dlLink.rel = 'noopener';
+    dlLink.textContent = 'Download 1.0';
+    banner.append(label, repoLink, dlLink);
+    document.body.insertBefore(banner, document.body.firstChild);
+
+    return true;
+}
 
 // --- Devices (all-in-one appliance only) ------------------------------------
 // GET /api/health/host is 404 unless SD_APPLIANCE_MODE=all-in-one, so a successful

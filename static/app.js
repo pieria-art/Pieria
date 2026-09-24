@@ -118,6 +118,7 @@ async function init() {
     connectWS();
 
     showManageHint();
+    initDemoBadge();   // no-op unless SD_DEMO_MODE=1 (core/demo.py) — corner badge, never over the placard
 
     initNightSchedule();
 
@@ -168,6 +169,45 @@ function showManageHint() {
     hint.style.display = 'block';
     setTimeout(() => { hint.style.opacity = '0'; }, 7000);
     setTimeout(() => { hint.style.display = 'none'; }, 8000);
+}
+
+// --- Public demo mode (SD_DEMO_MODE=1, core/demo.py) ---------------------------------------------
+// A small top-right corner badge (never over the left-hand placard or the bottom-center controls) —
+// fades after ~8s of no activity, reappears on mouse-move/tap. Built entirely via createElement/
+// textContent (no innerHTML), matching admin.js's demo banner.
+async function initDemoBadge() {
+    let demo;
+    try {
+        demo = await fetch(`${API_BASE}/api/demo`).then(r => r.json());
+    } catch (e) { return; }
+    if (!demo || !demo.demo) return;
+
+    const badge = document.createElement('div');
+    badge.id = 'demo-badge';
+    badge.style.cssText = 'position:absolute; top:20px; right:20px; z-index:210;'
+        + ' background:rgba(15,23,42,0.85); color:#cbd5e1; padding:10px 16px; border-radius:10px;'
+        + ' font-family:"Inter",system-ui,-apple-system,sans-serif; font-size:0.8rem;'
+        + ' border:1px solid #334155; display:flex; gap:12px; opacity:1; transition:opacity 0.8s ease;';
+    const label = document.createElement('span');
+    label.textContent = 'Pieria demo';
+    const browseLink = document.createElement('a');
+    browseLink.href = '/admin'; browseLink.style.color = '#10b981'; browseLink.textContent = 'Browse the collection';
+    const ghLink = document.createElement('a');
+    ghLink.href = 'https://github.com/pieria-art/Pieria'; ghLink.target = '_blank'; ghLink.rel = 'noopener';
+    ghLink.style.color = '#10b981'; ghLink.textContent = 'GitHub';
+    badge.append(label, browseLink, ghLink);
+    document.body.appendChild(badge);
+
+    let fadeTimer;
+    const fadeOut = () => { badge.style.opacity = '0'; };
+    const reveal = () => {
+        badge.style.opacity = '1';
+        clearTimeout(fadeTimer);
+        fadeTimer = setTimeout(fadeOut, 8000);
+    };
+    window.addEventListener('mousemove', reveal, { passive: true });
+    window.addEventListener('touchstart', reveal, { passive: true });
+    reveal();
 }
 
 // Show/hide the "no art yet" overlay (replaces a silent black screen).

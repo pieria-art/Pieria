@@ -166,6 +166,11 @@ body.app-shell { display: flex; height: 100vh; overflow: hidden; }
     .app-shell main { padding: 56px 16px 0; }
 }
 
+/* --- Public demo mode (SD_DEMO_MODE=1) — admin.js sets body.demo + builds #demo-banner; this is just
+   the banner's own look (its hide/show logic for nav/controls is plain JS element hides, not CSS). */
+#demo-banner a { color: var(--accent-color); text-decoration: none; font-weight: 600; }
+#demo-banner a:hover { text-decoration: underline; }
+
 /* --- Device settings rows (admin -> Devices, ADR-119) ------------------------------------------
    A label / control+button row / hint stack, used for every setting on the appliance card. The row
    wraps rather than squeezing, so a long zone name and its Save button stay usable on a phone. */

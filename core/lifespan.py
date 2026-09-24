@@ -742,6 +742,14 @@ async def lifespan(app: FastAPI):
             # than live-downloading from museums.
             if not has_pack:
                 logger.info("[PackSeed] No pack and no seed underway — will retry next boot.")
+
+            # Public demo mode (SD_DEMO_MODE=1): install any SD_DEMO_PACKS collection that isn't
+            # already present, in the background, via the same on-demand registry installer the Art
+            # Packs card uses (core/demo.py). No-op when DEMO_MODE is off or SD_DEMO_PACKS is empty.
+            import config
+            if config.DEMO_MODE and config.DEMO_PACKS:
+                from core.demo import install_demo_packs
+                _spawn(install_demo_packs(config.DEMO_PACKS, config.DEMO_DEFAULT_PLAYLIST))
         finally:
             db.close()
 

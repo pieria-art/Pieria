@@ -1,0 +1,39 @@
+# Pieria — public demo (demo.pieria.org).
+#
+# A standalone compose file (not an override on the root docker-compose.yml — the demo box runs
+# nothing else). Bring up with:
+#   docker compose -f deploy/demo/docker-compose.demo.yml up -d
+#
+# The app is reachable ONLY through the Cloudflare Tunnel (no published ports on either service —
+# cloudflared dials OUT to Cloudflare's edge, so nothing needs to be opened inbound on this box at
+# all). core/demo.py's default-DENY gate (SD_DEMO_MODE=1) is what actually makes this safe to expose;
+# this file just wires the two containers together. No secrets live here — TUNNEL_TOKEN comes from an
+# env file already on the server, outside the checkout (see demo.env.example).
+services:
+  app:
+    build: ../..
+    container_name: pieria-demo
+    # No `ports:` — only cloudflared and its Docker-network peers can reach :8000.
+    environment:
+      - SD_DEMO_MODE=1
+      - SD_DEMO_PACKS=${SD_DEMO_PACKS:-masterpieces,impressionism}
+      - SD_DEMO_DEFAULT_PLAYLIST=${SD_DEMO_DEFAULT_PLAYLIST:-}
+    command: ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000", "--workers", "2"]
+    volumes:
+      - ./Artwork:/app/Artwork
+      - ./data:/app/data
+      - /etc/localtime:/etc/localtime:ro
+    restart: unless-stopped
+
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    container_name: pieria-demo-tunnel
+    command: tunnel run
+    env_file:
+      # TUNNEL_TOKEN only — minted in the Cloudflare Zero Trust dashboard, kept outside the checkout,
+      # root-600-style, already on the server. See demo.env.example for the placeholder name.
+      - path: ${DEMO_SECRETS_FILE:-/opt/pieria/secrets/demo.env}
+        required: true
+    depends_on:
+      - app
+    restart: unless-stopped

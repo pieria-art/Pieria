@@ -17,7 +17,9 @@ from fastapi.responses import Response
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
 
+import config
 from config import LIBRARY_DIR
+from core.demo import normalize_display_id
 from core.media import render_canvas_image
 from core.playback import _playlist_name_if_playable, select_next_image, touch_active_display
 from core.settings_util import _HHMM_RE, _load_schedule, _parse_hhmm, resolve_schedule_state
@@ -75,6 +77,7 @@ async def get_preferred_playlist(display_id: str, db: Session = Depends(get_db))
     """Which playlist a freshly-loaded display (no ?playlist= given) should show. Precedence:
     last-played for THIS display → the global `default_playlist` fallback → null (Canvas then picks the
     first non-empty). Only ever returns a playlist that still exists and has art."""
+    display_id = normalize_display_id(display_id)
     last = db.query(SettingsModel).filter(SettingsModel.setting_key == f"last_playlist:{display_id}").first()
     default = db.query(SettingsModel).filter(SettingsModel.setting_key == "default_playlist").first()
     name = (_playlist_name_if_playable(db, last.setting_value if last else None)
@@ -93,6 +96,8 @@ async def get_schedule_state(display_id: str, now: Optional[str] = Query(None), 
     """The display's current brightness/warmth/quiet, resolved server-side from the wall clock. The Canvas
     polls this (~60s) and applies a CSS overlay; the appliance CEC timer polls it for panel power. `now`
     (HH:MM) overrides the clock for testing / filming the warm-shift time-lapse without waiting for night."""
+    normalize_display_id(display_id)  # schedule state is global (unused below) — called anyway for
+    # parity with the other display-scoped routes, see normalize_display_id's docstring.
     when = datetime.now()
     if now:
         m = _parse_hhmm(now, -1)
@@ -111,6 +116,7 @@ async def get_next_image(
     db: Session = Depends(get_db)
 ):
     """Stateful next-image selection — thin route over core.playback.select_next_image."""
+    display_id = normalize_display_id(display_id)
     return await select_next_image(playlist_name, shuffle, display_id, direction, db)
 
 
@@ -210,6 +216,10 @@ def record_telemetry(payload: TelemetryHeartbeat, db: Session = Depends(get_db))
     """
     Phase 6: Ingests display metrics from Canvas clients.
     """
+    if config.DEMO_MODE:
+        # Allowed through the demo gate so the Canvas doesn't error, but a no-op — no DB write for an
+        # anonymous visitor's telemetry (core/demo.py §1).
+        return Response(status_code=204)
     artwork = db.query(ArtworkModel).filter(ArtworkModel.id == payload.artwork_id).first()
     if not artwork:
         raise HTTPException(status_code=404, detail="Artwork not found")
