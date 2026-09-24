@@ -158,6 +158,51 @@ wipe_network() {
   echo "  wiped saved Wi-Fi (NetworkManager system-connections)"
 }
 
+# --- kiosk Chromium profile: no build-box browser state on a distributable image (--full only) ------
+# ADR-083: a captured image can carry the kiosk user's Chromium profile — SingletonLock/Cookie/Socket
+# from a browser that was still running when this script powered off, plus cache and history that have
+# no business riding to a stranger's house. sd-kiosk-launch clears a stale lock at every relaunch, but
+# an image should still ship with no profile at all rather than lean on that runtime guard.
+KIOSK_USER="${KIOSK_USER:-kiosk}"
+
+_kiosk_home() {
+  getent passwd "$KIOSK_USER" 2>/dev/null | cut -d: -f6
+}
+
+wipe_kiosk_chromium_profile() {
+  local home profile
+  home="$(_kiosk_home)"
+  [ -n "$home" ] || return 0   # no kiosk user on this box — nothing to wipe
+
+  # Stop the kiosk FIRST: this runs on a live box, and the kiosk loop relaunches Chromium within 3s of
+  # any exit — which would write a fresh build-host SingletonLock straight back after the wipe. Stop
+  # the autologin getty (so nothing respawns the session), then end the kiosk user's processes; TERM
+  # first so Chromium can release its own lock. getty@tty1 stays enabled — it starts on the next boot.
+  systemctl --no-ask-password stop getty@tty1.service 2>/dev/null || true
+  pkill -TERM -u "$KIOSK_USER" 2>/dev/null || true
+  sleep 3
+  pkill -KILL -u "$KIOSK_USER" 2>/dev/null || true
+
+  profile="$home/.config/chromium"
+  [ -e "$profile" ] || return 0
+
+  case "$profile" in
+    */.config/chromium) ;;
+    *) echo "  WARNING: kiosk Chromium profile path '$profile' looks wrong — refusing to remove it" >&2
+       return 0 ;;
+  esac
+
+  if [ -L "$profile" ]; then
+    echo "  WARNING: $profile is a symlink — refusing to follow it out of the profile dir" >&2
+    return 0
+  fi
+
+  if [ -d "$profile" ] && [ -n "$(find "$profile" -mindepth 1 -print -quit 2>/dev/null)" ]; then
+    rm -rf --one-file-system "$profile"
+    echo "  removed kiosk Chromium profile ($profile) — no build-box browser state (locks/cache/history) ships"
+  fi
+}
+
 # --- resolve the app repo root (install.sh baked it into sd-app.service) --------------------------
 repo_root() {
   local r
@@ -351,6 +396,7 @@ case "${1:-}" in
     wipe_network
     wipe_identity
     lock_login
+    wipe_kiosk_chromium_profile
     clean_logs
     stamp_clock   # last: the floor should be as late as possible (see ADR-062)
     echo "Done. Power down now and capture the card (dd -> pishrink -> xz). Do NOT reboot this box"

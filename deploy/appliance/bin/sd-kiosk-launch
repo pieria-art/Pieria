@@ -169,8 +169,22 @@ if [ -n "$ROTATE" ] && [ "$ROTATE" != "normal" ]; then
   fi
 fi
 
+# Stale Chromium singleton lock (ADR-083): SingletonLock is a symlink encoding <hostname>-<pid> of
+# whoever last held the profile. A lock captured from the build box (this image's kiosk Chromium was
+# still running when sd-image-prep --full powered off) or left by a power loss belongs to a different
+# hostname once sd-hostname (ADR-070) renames this unit on first boot, and Chromium refuses to start
+# ("in use by another Chromium process on another computer"). No live chromium for this user means the
+# lock is stale by definition, so clear it before every (re)launch.
+PROFILE_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/chromium"
+clear_stale_chromium_lock() {
+  pgrep -u "$(id -u)" -x chromium >/dev/null 2>&1 && return 0
+  pgrep -u "$(id -u)" -x chromium-browser >/dev/null 2>&1 && return 0
+  rm -f "$PROFILE_DIR/SingletonLock" "$PROFILE_DIR/SingletonCookie" "$PROFILE_DIR/SingletonSocket"
+}
+
 # Crash-recovery: if cage or Chromium exits, relaunch after a short pause.
 while true; do
+  clear_stale_chromium_lock
   echo "sd-kiosk-launch: starting cage -> $TARGET (rotate=${ROTATE:-normal})" >&2
   cage -- "${APP[@]}" || true
   echo "sd-kiosk-launch: session exited, restarting in 3s" >&2

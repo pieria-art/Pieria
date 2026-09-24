@@ -63,3 +63,45 @@ def test_artwork_db_with_a_stored_key_refuses(tmp_path):
     assert r.returncode == 1
     assert "REFUSING TO CONTINUE" in r.stderr
     assert (root / "data" / "artwork.db").exists()  # refused, not silently deleted
+
+
+def _run_wipe_kiosk_chromium_profile(fake_home: pathlib.Path):
+    # Same override trick as _run_wipe_secrets: source the real script so wipe_kiosk_chromium_profile
+    # is the actual function body, but redefine _kiosk_home so it points at a tmp dir instead of
+    # shelling out to getent for a real "kiosk" system user.
+    # systemctl/pkill/sleep are stubbed: the real ones would stop THIS host's tty1 / signal a real user
+    # (or raise a polkit prompt) if the suite ever ran as root.
+    script = ('source "$BIN"; _kiosk_home() { printf "%s" "$FAKE_HOME"; }; '
+              'systemctl() { :; }; pkill() { :; }; sleep() { :; }; wipe_kiosk_chromium_profile')
+    env = {"BIN": str(_BIN), "FAKE_HOME": str(fake_home), "PATH": "/usr/bin:/bin"}
+    return subprocess.run(["bash", "-c", script, str(_BIN)],
+                          capture_output=True, text=True, env=env, timeout=30)
+
+
+def test_full_removes_planted_kiosk_chromium_profile(tmp_path):
+    home = tmp_path / "home" / "kiosk"
+    profile = home / ".config" / "chromium"
+    profile.mkdir(parents=True)
+    (profile / "SingletonLock").symlink_to("pieria-1234")
+    (profile / "Default").mkdir()
+
+    r = _run_wipe_kiosk_chromium_profile(home)
+
+    assert r.returncode == 0, r.stderr
+    assert not profile.exists()
+    assert "removed kiosk Chromium profile" in r.stdout
+
+
+def test_full_refuses_when_profile_dir_itself_is_a_symlink(tmp_path):
+    home = tmp_path / "home" / "kiosk"
+    (home / ".config").mkdir(parents=True)
+    real_target = tmp_path / "elsewhere"
+    real_target.mkdir()
+    (home / ".config" / "chromium").symlink_to(real_target)
+
+    r = _run_wipe_kiosk_chromium_profile(home)
+
+    assert r.returncode == 0, r.stderr
+    assert "WARNING" in r.stderr and "symlink" in r.stderr
+    assert (home / ".config" / "chromium").is_symlink()  # left alone, not followed
+    assert real_target.exists()  # the real dir it points to is untouched
