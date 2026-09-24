@@ -81,6 +81,7 @@ pre-populated library:
 cd ~/Pieria
 docker compose -f docker-compose.yml -f deploy/appliance/compose/docker-compose.appliance.yml down
 sudo rm -rf data/*.db* Artwork/*        # the DB is data/artwork.db (database.py)
+sudo systemctl stop sd-watchdog.timer sd-metrics.timer sd-os-check.timer sd-quiet-hours.timer sd-eink
 sudo rm -f data/appliance/*             # this box's status files (conf/watchdog/metrics/update-check)
 ```
 
@@ -135,6 +136,16 @@ sudo pishrink -Z ~/pieria-img/pieria-master.img ~/pieria-img/pieria-release.img.
 `pishrink` shrinks the filesystem to its used size (~59 G → ~6 G), injects a first-boot auto-expand,
 and runs `e2fsck -pf` on the way — which also cleans an unclean journal, though that is a safety net,
 not a licence to pull the plug in step 4.
+
+**Two laptop-side traps (2026-09-24, an Omarchy/Arch laptop):**
+- A desktop automounter (`udiskie --automount`, GVfs) mounts anything labelled `rootfs` — the card
+  *and* pishrink's loop device — so `e2fsck` aborts with "is mounted". Pause it for the capture
+  (`pkill udiskie`; restart with `setsid -f udiskie --automount --no-notify --no-tray`) and unmount
+  the card's partitions before `dd`.
+- A fresh ext4 mount can stay busy for a few seconds after a write, and pishrink unmounts exactly once
+  before its `e2fsck`/shrink. Stock pishrink failed three times in a row; a local copy that retries
+  those two unmounts (and aborts rather than shrinking a still-mounted filesystem) succeeded. Run it as
+  `sudo unshare -m --propagation private <pishrink> -Za …` — `sudo` also doesn't search `~/.local/bin`.
 
 **Verify:** the shrunk image is a plausible size, and `xz -t` passes on the compressed file.
 
