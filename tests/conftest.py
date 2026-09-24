@@ -56,6 +56,56 @@ def _block_real_network(request, monkeypatch):
     yield
 
 
+@pytest.fixture(autouse=True)
+def _isolate_backup_restore_paths(tmp_path, monkeypatch):
+    """Belt-and-braces, for EVERY test (not just backup/restore ones): a prior isolation gap let a full
+    suite run write multi-GB archives into the checkout's real data/_backups and rewrite its real
+    data/_restore status.json — some test somewhere exercised Backup & Restore without going through
+    tests/test_backup_restore.py's own `env` fixture. Redirect every path core.backup/core.restore/
+    core.restore_boot resolve, on every module that binds its own copy (this repo's established pattern
+    for derived path constants — see DERIVATIVES_DIR in other tests). A test that legitimately wants
+    THIS feature's own isolated tmp dirs (tests/test_backup_restore.py's `env` fixture) still gets them —
+    its own monkeypatch.setattr calls simply run after this one and win.
+
+    Deliberately does NOT touch database.SQLALCHEMY_DATABASE_URL (the whole app's DB, not just this
+    feature's) — that's a much bigger blast radius than what leaked, and every test that legitimately
+    needs a real DB already gets its own isolated one via `testing_session` or an app-level override."""
+    backup_dir = tmp_path / "_isolated_backups"
+    restore_dir = tmp_path / "_isolated_restore"
+    library_dir = tmp_path / "_isolated_library"
+    artwork_root = tmp_path / "_isolated_artwork_root"
+    db_url = f"sqlite:///{tmp_path / '_isolated_artwork.db'}"
+
+    import config
+    monkeypatch.setattr(config, "BACKUP_DIR", backup_dir)
+    monkeypatch.setattr(config, "RESTORE_DIR", restore_dir)
+
+    import core.backup as backup_module
+    monkeypatch.setattr(backup_module, "BACKUP_DIR", backup_dir)
+    monkeypatch.setattr(backup_module, "STATUS_FILE", backup_dir / "status.json")
+    monkeypatch.setattr(backup_module, "ARTWORK_ROOT", artwork_root)
+    monkeypatch.setattr(backup_module, "LIBRARY_DIR", library_dir)
+    monkeypatch.setattr(backup_module, "SQLALCHEMY_DATABASE_URL", db_url)
+
+    import core.restore as restore_module
+    monkeypatch.setattr(restore_module, "RESTORE_DIR", restore_dir)
+    monkeypatch.setattr(restore_module, "UPLOAD_PATH", restore_dir / "upload.tar")
+    monkeypatch.setattr(restore_module, "VALIDATED_DIR", restore_dir / "validated")
+    monkeypatch.setattr(restore_module, "STAGED_DIR", restore_dir / "staged")
+    monkeypatch.setattr(restore_module, "PRE_RESTORE_DB", restore_dir / "pre-restore.db")
+    monkeypatch.setattr(restore_module, "STATUS_FILE", restore_dir / "status.json")
+
+    import core.restore_boot as restore_boot_module
+    monkeypatch.setattr(restore_boot_module, "RESTORE_DIR", restore_dir)
+    monkeypatch.setattr(restore_boot_module, "STAGED_DIR", restore_dir / "staged")
+    monkeypatch.setattr(restore_boot_module, "PRE_RESTORE_DB", restore_dir / "pre-restore.db")
+    monkeypatch.setattr(restore_boot_module, "STATUS_FILE", restore_dir / "status.json")
+    monkeypatch.setattr(restore_boot_module, "ARTWORK_ROOT", artwork_root)
+    monkeypatch.setattr(restore_boot_module, "SQLALCHEMY_DATABASE_URL", db_url)
+
+    yield
+
+
 @pytest.fixture(scope="function")
 def testing_session():
     # Use an isolated, in-memory SQLite database

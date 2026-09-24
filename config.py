@@ -81,6 +81,14 @@ IS_APPLIANCE = APPLIANCE_MODE == "all-in-one"
 # /app/data, so the unprivileged container can write here and a root systemd watcher can read it.
 APPLIANCE_DIR = Path(os.getenv("APPLIANCE_DIR", "data/appliance"))
 
+# Admin Backup & Restore (ADR-138's reflash path). Both live under ./data (already bind-mounted +
+# gitignored/dockerignored wholesale) so nothing here ever ends up in the repo or the image. Split into
+# two dirs, not one, because they have different lifetimes: backups are ephemeral downloads (1h TTL,
+# single-use), staged restores persist across a container restart into core/restore_boot.py's boot-time
+# apply. Overridable so tests can point at a tmp dir instead of the real ./data.
+BACKUP_DIR = Path(os.getenv("SD_BACKUP_DIR", "data/_backups"))
+RESTORE_DIR = Path(os.getenv("SD_RESTORE_DIR", "data/_restore"))
+
 # --- Security posture (ADR-036: no-login LAN kiosk kept honest by scoped CORS + gated mutations) -----
 # The app has no auth by design (ADR-013/015) — the trust boundary is "you are a device on my LAN".
 # Wildcard CORS previously widened that to "any browser tab on the LAN", so state-changing requests now

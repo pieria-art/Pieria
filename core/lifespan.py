@@ -667,6 +667,116 @@ async def seed_from_registry(db: Session) -> bool:
     return True
 
 
+def _redownload_lock_path():
+    import config
+    return config.RESTORE_DIR / ".redownload.lock"
+
+
+def is_redownloading_packs() -> bool:
+    """Cross-worker: try a non-blocking acquire of the same lock _restore_pending_packs_loop holds; if
+    we can get it, nobody is running. The lock auto-releases if the holding process dies, so this can't
+    go permanently stale the way a status-file flag could."""
+    path = _redownload_lock_path()
+    if not path.exists():
+        return False
+    try:
+        with open(path, "r+") as fd:
+            try:
+                fcntl.flock(fd, fcntl.LOCK_EX | fcntl.LOCK_NB)
+            except BlockingIOError:
+                return True
+            fcntl.flock(fd, fcntl.LOCK_UN)
+            return False
+    except OSError:
+        return False
+
+
+async def _restore_pending_packs_loop() -> None:
+    """After a restore lands (core/restore_boot.py set the `restore_pending_packs` setting), pull each
+    installed collection's images back down — the backup archive deliberately never includes pack-owned
+    masters (core/backup.py's `_library_files_to_include`), so they have to come back from the registry.
+    Idempotent (install_collection_from_registry's extraction never overwrites) and retryable: a cid that
+    fails stays in the setting's list, so a later call of this same function (the UI's retry button hits
+    a route that re-spawns it) just re-attempts what's left. Cross-worker locked (the appliance runs 2
+    uvicorn workers, and the leader boot path + a manual retry could otherwise race) — a second caller
+    while one is already running is a silent no-op (the route in front of this returns 409 instead)."""
+    import config
+    from config import PACK_REGISTRY_URL
+
+    config.RESTORE_DIR.mkdir(parents=True, exist_ok=True)
+    lock_path = _redownload_lock_path()
+    lock_fd = open(lock_path, "w")
+    try:
+        fcntl.flock(lock_fd, fcntl.LOCK_EX | fcntl.LOCK_NB)
+    except BlockingIOError:
+        lock_fd.close()
+        logger.info("[RestorePacks] a redownload is already running elsewhere — skipping")
+        return
+
+    status_file = config.RESTORE_DIR / "status.json"
+
+    def _write_progress(**extra) -> None:
+        try:
+            current = json.loads(status_file.read_text()) if status_file.exists() else {}
+        except (OSError, ValueError):
+            current = {}
+        current.update(extra)
+        current["updated_at"] = datetime.now(UTC).isoformat()
+        config.RESTORE_DIR.mkdir(parents=True, exist_ok=True)
+        status_file.write_text(json.dumps(current))
+
+    try:
+        db = SessionLocal()
+        try:
+            row = db.query(SettingsModel).filter(SettingsModel.setting_key == "restore_pending_packs").first()
+            cids = json.loads(row.setting_value) if row and row.setting_value else []
+        finally:
+            db.close()
+        if not cids:
+            return
+
+        from core.pack_fetch import install_collection_from_registry, new_client
+        remaining = list(cids)
+        failed = []
+        _write_progress(state="redownloading_packs", remaining=remaining, total=len(cids))
+
+        async with new_client() as client:
+            for cid in list(cids):
+                db = SessionLocal()
+                try:
+                    result = await install_collection_from_registry(db, client, PACK_REGISTRY_URL, cid)
+                finally:
+                    db.close()
+                if result.get("ok"):
+                    remaining.remove(cid)
+                else:
+                    logger.warning(f"[RestorePacks] {cid}: {result.get('error')}")
+                    if cid not in failed:
+                        failed.append(cid)
+                _write_progress(state="redownloading_packs", remaining=remaining, total=len(cids))
+
+        db = SessionLocal()
+        try:
+            row = db.query(SettingsModel).filter(SettingsModel.setting_key == "restore_pending_packs").first()
+            if row:
+                row.setting_value = json.dumps(remaining)
+                db.commit()
+        finally:
+            db.close()
+
+        _write_progress(state="done" if not remaining else "done-with-errors",
+                        remaining=remaining, total=len(cids), failed=failed)
+    except Exception as e:  # noqa: BLE001 — a background loop must never wedge the status behind a crash
+        logger.error(f"[RestorePacks] loop failed: {e}", exc_info=True)
+        _write_progress(state="error", message=f"{type(e).__name__}: {e}")
+    finally:
+        try:
+            fcntl.flock(lock_fd, fcntl.LOCK_UN)
+        except OSError:
+            pass
+        lock_fd.close()
+
+
 async def _update_check_loop():
     """ADR-071: refresh the 'is there a newer release?' cache about once a day, so the admin UI shows a
     current answer without a live GitHub call on page load. Leader-only, best-effort, appliance-only."""
@@ -756,6 +866,17 @@ async def lifespan(app: FastAPI):
 
         # ADR-071: keep the update-availability cache warm (appliance-only; no-op elsewhere).
         _spawn(_update_check_loop())
+
+        # A restore just landed (core/restore_boot.py) and its pack images need re-downloading.
+        _spawn(_restore_pending_packs_loop())
+
+        # Sweep any backup archive/temp file that outlived its TTL or a crashed build — leader-only,
+        # startup-only (the router also sweeps on every backup/restore endpoint call).
+        try:
+            import core.backup as backup_module
+            backup_module.sweep_expired()
+        except Exception as e:  # noqa: BLE001 — a sweep failure must never block boot
+            logger.warning(f"[Startup] backup sweep_expired failed: {e}")
     except Exception as e:
         logger.error(f"[Startup] Non-fatal error during initialization: {e}", exc_info=True)
 

@@ -4,6 +4,8 @@
 [![Sources](https://github.com/pieria-art/Pieria/actions/workflows/verify-sources.yml/badge.svg)](https://github.com/pieria-art/Pieria/actions/workflows/verify-sources.yml)
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPLv3-blue.svg)](LICENSE)
 
+> **Pieria** */pie-EER-ee-uh/* — the land at the foot of Mount Olympus where, in Greek myth, the Muses were born.
+
 **Pieria** is an open-source, AI-powered digital art curator that turns any TV, monitor, or e-ink
 panel into a high-end museum display — with autonomous artwork analysis, museum-grade placards, and
 instant mobile remote control.
@@ -172,7 +174,7 @@ Pieria uses a strict priority system for settings like `cycle_time`, `mode`, and
 3.  **Global Defaults:** System-wide fallbacks.
 
 ## 📖 Documentation
-For URL parameters, the **Raspberry Pi appliance** how-to, **e-ink / "dumb" frame** setup, and hardware tips, visit the internal **Help & Docs** page at `http://localhost:8000/help` from your running server.
+For URL parameters, the **Raspberry Pi appliance** how-to, **e-ink / "dumb" frame** setup, and hardware tips, visit the internal **Help & Docs** page at `http://localhost:8000/help` from your running server. Reflashing or moving to new hardware? See **[Backup & Restore](docs/backup-restore.md)**.
 
 ## 🔐 Advanced: Enabling HTTPS (optional)
 

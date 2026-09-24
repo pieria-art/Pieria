@@ -1006,6 +1006,63 @@
                     </div>
                 </div>
 
+                <!-- Backup & Restore (ADR-138's reflash path) -->
+                <div style="background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 25px;">
+                    <h3 style="margin-top: 0; font-size: 0.9rem; color: var(--text-color);">💾 Backup &amp; Restore</h3>
+                    <p style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 6px;">
+                        Save your galleries, settings, My Photos and the works you've added to a single file.
+                        Collections you downloaded (packs) aren't included — they re-download automatically
+                        after a restore.
+                    </p>
+                    <p style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 18px;">
+                        Restoring replaces everything on this device with the backup.
+                    </p>
+
+                    <div style="display:grid; gap:10px; margin-bottom:22px;">
+                        <label style="display:flex; align-items:center; gap:10px; font-size:0.85rem; cursor:pointer;">
+                            <input type="checkbox" id="backup-include-secrets" onchange="onBackupIncludeSecretsChange()" style="width:auto; margin:0;">
+                            Include API keys &amp; publisher signing key
+                        </label>
+                        <div id="backup-passphrase-row" style="display:none; gap:10px;">
+                            <input type="password" id="backup-passphrase" autocomplete="new-password" placeholder="Passphrase (min. 12 characters)" style="width:100%; box-sizing:border-box; background:#0f172a; border:1px solid var(--border-color); color:white; padding:10px 12px; border-radius:6px; font-size:0.85rem;">
+                            <input type="password" id="backup-passphrase-confirm" autocomplete="new-password" placeholder="Confirm passphrase" style="width:100%; box-sizing:border-box; background:#0f172a; border:1px solid var(--border-color); color:white; padding:10px 12px; border-radius:6px; font-size:0.85rem;">
+                            <p style="font-size:0.72rem; color:#f59e0b; margin:0;">Without this passphrase the keys can't be recovered.</p>
+                        </div>
+                        <div style="display:flex; align-items:center; gap:14px; flex-wrap:wrap;">
+                            <button class="primary" id="backup-start-btn" onclick="startBackup()" style="padding:12px 22px; font-weight:600;">Create Backup</button>
+                            <span id="backup-progress" style="font-size:0.8rem; color:#94a3b8;"></span>
+                        </div>
+                        <a id="backup-download-link" href="#" style="display:none; font-size:0.85rem; color:var(--success-color);">⬇ Download backup</a>
+                    </div>
+
+                    <hr style="border:none; border-top:1px solid var(--border-color); margin:0 0 22px;">
+
+                    <h4 style="margin:0 0 14px; font-size:0.82rem; color:var(--text-color); text-transform:uppercase; letter-spacing:0.06rem;">Restore from a backup</h4>
+                    <div style="display:grid; gap:10px;">
+                        <input type="file" id="restore-file-input" accept=".tar" onchange="onRestoreFileChosen()" style="display:none;">
+                        <div style="display:flex; align-items:center; gap:14px; flex-wrap:wrap;">
+                            <button class="secondary" onclick="document.getElementById('restore-file-input').click()" style="padding:10px 18px;">Choose backup file…</button>
+                            <span id="restore-file-name" style="font-size:0.8rem; color:#94a3b8;">No file chosen.</span>
+                        </div>
+                        <span id="restore-upload-progress" style="font-size:0.8rem; color:#94a3b8;"></span>
+                        <div id="restore-summary" style="display:none; font-size:0.8rem; color:#94a3b8; background:#0f172a; border:1px solid var(--border-color); border-radius:8px; padding:12px;"></div>
+                        <div id="restore-secrets-row" style="display:none; gap:10px;">
+                            <input type="password" id="restore-passphrase" placeholder="Backup passphrase" style="width:100%; box-sizing:border-box; background:#0f172a; border:1px solid var(--border-color); color:white; padding:10px 12px; border-radius:6px; font-size:0.85rem;">
+                            <label style="display:flex; align-items:center; gap:10px; font-size:0.8rem; cursor:pointer;">
+                                <input type="checkbox" id="restore-skip-secrets" style="width:auto; margin:0;"> Restore without keys
+                            </label>
+                        </div>
+                        <div style="display:flex; align-items:center; gap:14px; flex-wrap:wrap;">
+                            <button class="secondary" id="restore-confirm-btn" onclick="confirmRestore()" style="display:none; padding:12px 20px; border-color:#dc2626; color:#dc2626; font-weight:600;">⚠️ Restore (replaces everything)</button>
+                            <span id="restore-result" style="font-size:0.8rem;"></span>
+                        </div>
+                        <div id="restore-packs-progress" style="display:none; font-size:0.8rem; color:#94a3b8;"></div>
+                        <div id="restore-device-settings" style="display:none; font-size:0.8rem; color:#94a3b8;">
+                            <button class="secondary" onclick="applyRestoredDeviceSettings()" style="padding:10px 16px;">Apply device settings from backup</button>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Danger Zone -->
                 <div style="background: var(--card-bg); border: 1px solid #dc2626; border-radius: 12px; padding: 25px;">
                     <h3 style="margin-top: 0; font-size: 0.9rem; color: #ef4444;">⚠ Danger Zone</h3>

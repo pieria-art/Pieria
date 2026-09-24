@@ -6,9 +6,11 @@
 # black screen). We `exec "$@"` so BOTH the dev CMD (uvicorn --workers 4) and the appliance compose's
 # `command:` override (uvicorn --workers 2) get migrated-first. SD_MIGRATIONS_DONE tells the app's
 # lifespan to skip its now-redundant run_migrations (which would re-introduce the multi-worker deadlock).
+# core.restore_boot also applies a staged admin restore (if any) before migrating — same single-process
+# window, for the same deadlock reason (see its docstring).
 set -e
 echo "[entrypoint] running DB migrations (single process, pre-workers)..."
-python -c "import db_migrate; db_migrate.run_migrations()"
+python -m core.restore_boot
 echo "[entrypoint] migrations complete; exec: $*"
 export SD_MIGRATIONS_DONE=1
 exec "$@"

@@ -186,6 +186,7 @@ function switchView(view) {
     if (view === 'museum') enterMuseum();
     if (view === 'devices') enterDevices();
     if (view === 'publisher') enterPublisher();
+    if (view === 'settings') refreshRestoreStatus();
 }
 
 // Mobile-only: toggle the slide-in sidebar drawer (no-op visual on desktop).
@@ -1480,6 +1481,275 @@ async function factoryReset() {
         }
     });
 }
+
+// -----------------------------------------------------------------------------------------------
+// Backup & Restore (ADR-138's reflash path)
+// -----------------------------------------------------------------------------------------------
+let _backupPoll = null;
+
+function onBackupIncludeSecretsChange() {
+    document.getElementById('backup-passphrase-row').style.display =
+        document.getElementById('backup-include-secrets').checked ? 'grid' : 'none';
+}
+window.onBackupIncludeSecretsChange = onBackupIncludeSecretsChange;
+
+// The download token lives ONLY here, in memory — GET /api/backup/status never carries it (it's
+// unauthenticated, a bare LAN poll target). A page reload loses this variable; there is deliberately
+// no way to recover a token for an already-built archive, so the poller below tells the admin to
+// start a fresh backup instead of pretending a "ready" state it sees is downloadable.
+let _backupToken = null;
+
+async function startBackup() {
+    const includeSecrets = document.getElementById('backup-include-secrets').checked;
+    const passphrase = document.getElementById('backup-passphrase').value;
+    if (includeSecrets) {
+        const confirmPass = document.getElementById('backup-passphrase-confirm').value;
+        if (passphrase.length < 12) { showToast('Passphrase must be at least 12 characters.', 'error'); return; }
+        if (passphrase !== confirmPass) { showToast('Passphrases do not match.', 'error'); return; }
+    }
+    document.getElementById('backup-download-link').style.display = 'none';
+    document.getElementById('backup-start-btn').disabled = true;
+    document.getElementById('backup-progress').textContent = 'Starting…';
+    _backupToken = null;
+    try {
+        const res = await fetch(`${API_BASE}/api/backup`, {
+            method: 'POST', headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ include_secrets: includeSecrets, passphrase: includeSecrets ? passphrase : null }),
+        });
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok) {
+            showToast(data.detail || 'Could not start the backup.', 'error');
+            document.getElementById('backup-start-btn').disabled = false;
+            return;
+        }
+        _backupToken = data.token || null;
+    } catch (e) {
+        showToast('Backup request failed. Check console.', 'error');
+        console.error('[Admin] startBackup failed:', e);
+        document.getElementById('backup-start-btn').disabled = false;
+        return;
+    }
+    if (_backupPoll) clearInterval(_backupPoll);
+    _backupPoll = setInterval(async () => {
+        let data;
+        try { data = await (await fetch(`${API_BASE}/api/backup/status`)).json(); }
+        catch { return; }
+        const el = document.getElementById('backup-progress');
+        if (data.state === 'building') {
+            el.textContent = `${data.message || 'Building…'} (${data.progress || 0}%)`;
+        } else if (data.state === 'ready') {
+            clearInterval(_backupPoll);
+            document.getElementById('backup-start-btn').disabled = false;
+            if (_backupToken) {
+                el.textContent = 'Backup ready.';
+                const link = document.getElementById('backup-download-link');
+                link.href = `${API_BASE}/api/backup/download/${_backupToken}`;
+                link.style.display = 'inline';
+            } else {
+                // Status alone can never carry the token (see the comment above) — this happens after
+                // a page reload mid-build, or a second tab/device polling this same status.
+                el.textContent = "A backup is ready, but this page doesn't hold its download link " +
+                    "(e.g. after a reload) — start a new backup to get one.";
+            }
+        } else if (data.state === 'error') {
+            clearInterval(_backupPoll);
+            el.textContent = '';
+            showToast(`Backup failed: ${data.message || 'unknown error'}`, 'error');
+            document.getElementById('backup-start-btn').disabled = false;
+        }
+    }, 1500);
+}
+window.startBackup = startBackup;
+
+let _restoreSummary = null;
+
+async function onRestoreFileChosen() {
+    const input = document.getElementById('restore-file-input');
+    const file = input.files[0];
+    if (!file) return;
+    document.getElementById('restore-file-name').textContent = file.name;
+    document.getElementById('restore-summary').style.display = 'none';
+    document.getElementById('restore-confirm-btn').style.display = 'none';
+    document.getElementById('restore-secrets-row').style.display = 'none';
+    document.getElementById('restore-upload-progress').textContent = `Uploading ${file.name}…`;
+    try {
+        const res = await fetch(`${API_BASE}/api/restore/upload`, { method: 'POST', body: file });
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok) {
+            document.getElementById('restore-upload-progress').textContent = '';
+            showToast(data.detail || 'Upload failed — not a valid backup.', 'error');
+            input.value = '';
+            return;
+        }
+        _restoreSummary = data;
+        document.getElementById('restore-upload-progress').textContent = '';
+        const summaryEl = document.getElementById('restore-summary');
+        summaryEl.style.display = 'block';
+        _renderRestoreSummary(summaryEl, data);
+        document.getElementById('restore-secrets-row').style.display = data.has_secrets ? 'grid' : 'none';
+        document.getElementById('restore-confirm-btn').style.display = 'inline-block';
+    } catch (e) {
+        document.getElementById('restore-upload-progress').textContent = '';
+        showToast('Upload failed. Check console.', 'error');
+        console.error('[Admin] onRestoreFileChosen failed:', e);
+    }
+}
+window.onRestoreFileChosen = onRestoreFileChosen;
+
+// Every field here comes from the uploaded archive's manifest.json, which is untrusted (archive-
+// supplied) data — even though validate_uploaded_archive() checks its shape, string fields like
+// hostname/app_version are free text. Built with createElement/textContent only, never innerHTML, so
+// nothing in the archive can ever be parsed as markup.
+function _renderRestoreSummary(el, data) {
+    el.textContent = '';
+    const line1 = document.createElement('div');
+    line1.appendChild(document.createTextNode('Backup from '));
+    const strong = document.createElement('strong');
+    strong.textContent = data.created_at ? new Date(data.created_at).toLocaleString() : 'an unknown time';
+    line1.appendChild(strong);
+    line1.appendChild(document.createTextNode(
+        ` (app ${String(data.app_version ?? '?')}, host ${String(data.hostname ?? '?')})`));
+    el.appendChild(line1);
+
+    const line2 = document.createElement('div');
+    line2.textContent = `${data.artwork_count ?? 0} artwork(s), ${data.library_file_count ?? 0} ` +
+        `library file(s), ${(data.packs || []).length} pack(s)`;
+    el.appendChild(line2);
+
+    if (data.has_secrets) {
+        const line3 = document.createElement('div');
+        line3.textContent = '🔑 Contains encrypted API keys.';
+        el.appendChild(line3);
+    }
+}
+
+async function confirmRestore() {
+    if (!(await confirmModal('This replaces everything on this device — artwork library, settings, and playlists — with the backup\'s. This cannot be undone.', { confirmText: 'Continue', danger: true }))) return;
+    const typed = await promptModal('Type RESTORE to confirm:', { placeholder: 'RESTORE', confirmText: 'Restore', danger: true });
+    if (typed !== 'RESTORE') {
+        if (typed !== null) showToast('Restore cancelled.');
+        return;
+    }
+    const skipSecrets = document.getElementById('restore-skip-secrets').checked;
+    const passphrase = document.getElementById('restore-passphrase').value;
+    const resultEl = document.getElementById('restore-result');
+    resultEl.textContent = 'Staging…';
+    try {
+        const res = await fetch(`${API_BASE}/api/restore/confirm`, {
+            method: 'POST', headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ passphrase: skipSecrets ? null : passphrase, skip_secrets: skipSecrets }),
+        });
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok) { resultEl.textContent = ''; showToast(data.detail || 'Restore failed.', 'error'); return; }
+        if (data.restart_required) {
+            resultEl.textContent = '✓ Staged. Restart this container to apply it (docker compose restart).';
+        } else if (data.restart_queued) {
+            resultEl.textContent = '✓ Staged — restarting now…';
+        } else {
+            resultEl.textContent = '✓ Staged. Restart the app manually to apply it (the update bridge was busy).';
+        }
+        document.getElementById('restore-confirm-btn').style.display = 'none';
+    } catch (e) {
+        resultEl.textContent = '';
+        showToast('Restore failed. Check console.', 'error');
+        console.error('[Admin] confirmRestore failed:', e);
+    }
+}
+window.confirmRestore = confirmRestore;
+
+async function refreshRestoreStatus() {
+    let data;
+    try { data = await (await fetch(`${API_BASE}/api/restore/status`)).json(); }
+    catch { return; }
+    const packsEl = document.getElementById('restore-packs-progress');
+    packsEl.textContent = '';
+    if (data.pending_packs && data.pending_packs.length) {
+        packsEl.style.display = 'block';
+        const span = document.createElement('span');
+        span.textContent = `Re-downloading pack art: ${data.pending_packs.length} remaining`;
+        const btn = document.createElement('button');
+        btn.className = 'secondary';
+        btn.textContent = 'Retry';
+        btn.style.marginLeft = '10px'; btn.style.padding = '6px 12px'; btn.style.fontSize = '0.75rem';
+        btn.addEventListener('click', retryPendingPacks);
+        packsEl.appendChild(span);
+        packsEl.appendChild(btn);
+    } else {
+        packsEl.style.display = 'none';
+    }
+    const confEl = document.getElementById('restore-device-settings');
+    confEl.style.display = (data.pending_conf && Object.keys(data.pending_conf).length) ? 'block' : 'none';
+}
+
+async function retryPendingPacks() {
+    const res = await fetch(`${API_BASE}/api/restore/retry-packs`, { method: 'POST' });
+    if (!res.ok) {
+        const e = await res.json().catch(() => ({}));
+        showToast(e.detail || 'Could not retry — check back shortly.', 'error');
+        return;
+    }
+    showToast('Retrying pack re-download…');
+    setTimeout(refreshRestoreStatus, 1500);
+}
+window.retryPendingPacks = retryPendingPacks;
+
+// Queues one appliance bridge action and waits for it to reach a terminal state (done/error/idle) —
+// unlike applianceAction() (which fires-and-forgets into the Devices tab's own #maint-status poller),
+// this card needs each action to actually FINISH before the next one starts, so it can report exactly
+// which one failed instead of racing several restarts/reboots against each other.
+async function _queueApplianceActionAndWait(action, extra, timeoutMs = 60000) {
+    try {
+        const res = await fetch(`${API_BASE}/api/appliance/update`, {
+            method: 'POST', headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ action, ...extra }),
+        });
+        if (!res.ok) return false;
+    } catch {
+        return false;
+    }
+    const deadline = Date.now() + timeoutMs;
+    while (Date.now() < deadline) {
+        await new Promise((resolve) => setTimeout(resolve, 1500));
+        let data;
+        try { data = await (await fetch(`${API_BASE}/api/appliance/update/status`)).json(); }
+        catch { continue; }   // transient (a restart/reboot action drops the server) — keep polling
+        if (data.state === 'done') return true;
+        if (data.state === 'error' || data.state === 'idle') return data.state !== 'error';
+    }
+    return false;   // timed out
+}
+
+async function applyRestoredDeviceSettings() {
+    let data;
+    try { data = await (await fetch(`${API_BASE}/api/restore/status`)).json(); }
+    catch { showToast('Could not read the pending device settings.', 'error'); return; }
+    const conf = data.pending_conf || {};
+    const steps = [];
+    if (conf.TIMEZONE) steps.push(['set-timezone', { timezone: conf.TIMEZONE }]);
+    if ('ROTATE' in conf) steps.push(['set-orientation', { orientation: conf.ROTATE || 'landscape' }]);
+    if (conf.WATCHDOG) steps.push(['set-watchdog', { watchdog: conf.WATCHDOG }]);
+    if (conf.OS_UPDATE_SCHEDULE) {
+        steps.push(['set-os-schedule', { schedule: conf.OS_UPDATE_SCHEDULE, time: conf.OS_UPDATE_TIME || '' }]);
+    }
+
+    const btn = document.querySelector('#restore-device-settings button');
+    if (btn) btn.disabled = true;
+    const failed = [];
+    for (const [action, extra] of steps) {
+        const ok = await _queueApplianceActionAndWait(action, extra);
+        if (!ok) failed.push(action);
+    }
+    if (btn) btn.disabled = false;
+
+    if (failed.length) {
+        showToast(`Some device settings failed to apply: ${failed.join(', ')}`, 'error');
+        return;   // restore_pending_conf is left intact so a retry click re-attempts everything
+    }
+    await fetch(`${API_BASE}/api/restore/pending-conf/clear`, { method: 'POST' });
+    showToast('Device settings applied.', 'success');
+    refreshRestoreStatus();
+}
+window.applyRestoredDeviceSettings = applyRestoredDeviceSettings;
 
 async function batchEnrich() {
     if (!aiConfigured) { nudgeConnectModel(); return; }

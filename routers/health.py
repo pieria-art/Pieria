@@ -181,30 +181,40 @@ def _migrate_display_id(db: Session, old_id: str, new_id: str) -> None:
 _REF_RE = __import__("re").compile(r"^v?\d+(\.\d+){0,3}(-[0-9A-Za-z.]+)?$")
 
 
-@router.post("/api/appliance/update")
-async def appliance_update(req: ApplianceUpdateRequest, request: Request,
-                           x_appliance_token: Optional[str] = Header(None),
-                           db: Session = Depends(get_db)):
+def require_trusted_request(request: Request, x_appliance_token: Optional[str],
+                            detail: str = "this request requires a same-origin request or a valid token"
+                            ) -> None:
+    """Fail-closed origin-or-token gate. Shared by every endpoint that can trigger a host-consequential
+    action OR return/consume a secret (the appliance update bridge, and Backup & Restore — a backup can
+    carry API keys, a restore can queue restart-app): the cross-origin guard in app.py already blocks a
+    hostile browser tab; the shared-secret token additionally closes the no-Origin path (curl / any
+    other LAN device). Accept EITHER a valid X-Appliance-Token OR a trusted (same-origin) Origin, so the
+    same-origin admin GUI keeps working without holding the secret. N6: fail CLOSED — with no token
+    configured, a no-Origin caller (curl from any LAN device) must be refused outright, not waved
+    through. Raises HTTPException(403) on refusal; returns None on success."""
     global _appliance_token_warned
-    if not config.IS_APPLIANCE:
-        raise HTTPException(status_code=403, detail="appliance update bridge not enabled")
-    if req.action not in ALLOWED_UPDATE_ACTIONS:
-        raise HTTPException(status_code=400, detail=f"unknown action: {req.action}")
-    # H6: this is the highest-consequence action (host git reset+rebuild / reboot). The cross-origin
-    # guard already blocks a hostile browser tab; the shared-secret token additionally closes the
-    # no-Origin path (curl / any other LAN device). Accept EITHER a valid token OR a trusted
-    # (same-origin) Origin, so the same-origin admin GUI keeps working without holding the secret.
-    # N6: fail CLOSED. With no token configured, a no-Origin caller (curl from any LAN device) used to fall
-    # straight through to 16 actions incl. poweroff/reopen-setup — and a shipped box has no shell to recover.
     origin_ok = _origin_allowed(request.headers.get("origin", ""), request.headers.get("host", ""))
     token_ok = bool(config.APPLIANCE_UPDATE_TOKEN) and bool(x_appliance_token) and secrets.compare_digest(
         x_appliance_token, config.APPLIANCE_UPDATE_TOKEN)
     if not (token_ok or origin_ok):
-        raise HTTPException(status_code=403, detail="appliance update requires a same-origin request or a valid token")
+        raise HTTPException(status_code=403, detail=detail)
     if not config.APPLIANCE_UPDATE_TOKEN and not _appliance_token_warned:
-        logger.warning("SD_APPLIANCE_UPDATE_TOKEN is unset — /api/appliance/update accepts same-origin "
+        logger.warning("SD_APPLIANCE_UPDATE_TOKEN is unset — this endpoint accepts same-origin "
                        "browser requests only; non-browser callers are refused.")
         _appliance_token_warned = True
+
+
+@router.post("/api/appliance/update")
+async def appliance_update(req: ApplianceUpdateRequest, request: Request,
+                           x_appliance_token: Optional[str] = Header(None),
+                           db: Session = Depends(get_db)):
+    if not config.IS_APPLIANCE:
+        raise HTTPException(status_code=403, detail="appliance update bridge not enabled")
+    if req.action not in ALLOWED_UPDATE_ACTIONS:
+        raise HTTPException(status_code=400, detail=f"unknown action: {req.action}")
+    # H6: this is the highest-consequence action (host git reset+rebuild / reboot).
+    require_trusted_request(request, x_appliance_token,
+                            detail="appliance update requires a same-origin request or a valid token")
     ref = (req.ref or "").strip()
     if ref and not _REF_RE.match(ref):
         raise HTTPException(status_code=400, detail=f"invalid release ref: {ref!r}")
@@ -218,18 +228,7 @@ async def appliance_update(req: ApplianceUpdateRequest, request: Request,
                             detail=f"{busy.get('action', 'an action')} is already "
                                    f"{busy.get('state')} — wait for it to finish")
 
-    nonce = secrets.token_hex(8)
-    now = datetime.now(UTC).isoformat()
-    config.APPLIANCE_DIR.mkdir(parents=True, exist_ok=True)
-    # Write the status FIRST (so the .path trigger always finds a status), then the request.
-    status = {"state": "queued", "action": req.action, "nonce": nonce,
-              "message": "queued", "log_tail": [], "queued_at": now}
-    (config.APPLIANCE_DIR / "status.json").write_text(json.dumps(status))
-    payload = {"action": req.action, "requested_at": now, "nonce": nonce}
-    if ref:
-        payload["ref"] = ref
-    payload.update(fields)
-    (config.APPLIANCE_DIR / "request.json").write_text(json.dumps(payload))
+    nonce = queue_appliance_action(req.action, fields, ref)
 
     # The host renames the display; the server-side state keyed on the OLD id is ours to carry over.
     # Done here rather than on the host because only the app can reach the database.
@@ -239,6 +238,27 @@ async def appliance_update(req: ApplianceUpdateRequest, request: Request,
 
     logger.info(f"Appliance update queued: {req.action}{f' -> {ref}' if ref else ''} (nonce {nonce})")
     return {"status": "queued", "nonce": nonce}
+
+
+def queue_appliance_action(action: str, fields: Optional[dict] = None, ref: Optional[str] = None) -> str:
+    """Write request.json + status.json for the root `sd-update` watcher to pick up — the same queuing
+    the GUI's /api/appliance/update uses, factored out so core/restore.py can queue `restart-app` after
+    staging a restore without going through the HTTP request/origin-check machinery above (that
+    machinery is for browser callers; an internal caller has already decided this action is warranted).
+    Caller must have already checked `_busy_status()` — this never checks it itself."""
+    nonce = secrets.token_hex(8)
+    now = datetime.now(UTC).isoformat()
+    config.APPLIANCE_DIR.mkdir(parents=True, exist_ok=True)
+    # Write the status FIRST (so the .path trigger always finds a status), then the request.
+    status = {"state": "queued", "action": action, "nonce": nonce,
+              "message": "queued", "log_tail": [], "queued_at": now}
+    (config.APPLIANCE_DIR / "status.json").write_text(json.dumps(status))
+    payload = {"action": action, "requested_at": now, "nonce": nonce}
+    if ref:
+        payload["ref"] = ref
+    payload.update(fields or {})
+    (config.APPLIANCE_DIR / "request.json").write_text(json.dumps(payload))
+    return nonce
 
 
 @router.get("/api/appliance/support-bundle")
