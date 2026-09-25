@@ -1926,7 +1926,7 @@ function artworkCardHTML(art, view) {
         ? `<button onclick="removeArtworkFromPlaylist(${art.id})" title="Remove from this gallery" aria-label="Remove from this gallery" style="color: #f59e0b;">✕</button>`
         : `<button onclick="deleteArtworkPermanently(${art.id})" title="Delete from library" aria-label="Delete from library" style="color: #ef4444;">✕</button>`;
     return `
-                <img src="${API_BASE}/artworks/${art.id}/thumbnail?f=${encodeURIComponent(art.filename)}" alt="${_esc(art.filename)}" onclick="openEdit(${art.id})" style="cursor: pointer;">
+                <img loading="lazy" decoding="async" src="${API_BASE}/artworks/${art.id}/thumbnail?f=${encodeURIComponent(art.filename)}" alt="${_esc(art.filename)}" onclick="openEdit(${art.id})" style="cursor: pointer;">
                 <div class="info">
                     <strong>${_esc(art.title || art.filename)}</strong> ${_resBadge(art.resolution_tier)}<br>
                     <small>${_esc(cardSubtitle(art))}</small>${art.is_seed ? '<br><span style="color: #10b981; font-weight: bold; font-size: 0.75rem;">🌱 Built-In</span>' : ''}
@@ -2000,7 +2000,7 @@ function openLibraryPicker() {
             _renderPickerCount();
         };
         card.innerHTML = `
-            <img src="${API_BASE}/artworks/${art.id}/thumbnail?f=${encodeURIComponent(art.filename)}">
+            <img loading="lazy" decoding="async" src="${API_BASE}/artworks/${art.id}/thumbnail?f=${encodeURIComponent(art.filename)}">
             <p>${_esc(art.title || art.filename)}</p>
         `;
         grid.appendChild(card);
@@ -2530,7 +2530,7 @@ function syncReviewCardFields(art) {
 // same approve/regenerate/sync wiring.
 function reviewFormHTML(art) {
     return `
-                <div class="review-image"><img src="${API_BASE}/artworks/${art.id}/thumbnail?f=${encodeURIComponent(art.filename || '')}"></div>
+                <div class="review-image"><img loading="lazy" decoding="async" src="${API_BASE}/artworks/${art.id}/thumbnail?f=${encodeURIComponent(art.filename || '')}"></div>
                 <div class="review-form">
                     <div class="form-group"><label>Title</label><input type="text" id="title-${art.id}" value="${_esc(art.title || '')}"></div>
                     <div class="form-group"><label>Agent/Artist</label><input type="text" id="agent-${art.id}" value="${_esc(art.agent_name || '')}"></div>
