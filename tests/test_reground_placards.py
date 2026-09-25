@@ -421,6 +421,187 @@ def test_validate_written_item_rejects_empty_narrative():
     assert not ok and "empty description_narrative" in reasons
 
 
+# --------------------------------------------------------------------------- date_display normalisation
+def _time_claim(time_str, precision, circa=False):
+    c = {"mainsnak": {"datavalue": {"value": {"time": time_str, "precision": precision}}}}
+    if circa:
+        c["qualifiers"] = {"P1480": [{}]}
+    return c
+
+
+def test_format_wikidata_date_year_precision():
+    assert rg.format_wikidata_date(_time_claim("+1873-01-01T00:00:00Z", 9)) == "1873"
+
+
+def test_format_wikidata_date_decade_precision():
+    assert rg.format_wikidata_date(_time_claim("+1878-00-00T00:00:00Z", 8)) == "1870s"
+
+
+def test_format_wikidata_date_century_precision():
+    assert rg.format_wikidata_date(_time_claim("+1850-00-00T00:00:00Z", 7)) == "19th century"
+
+
+def test_format_wikidata_date_circa_qualifier():
+    assert rg.format_wikidata_date(_time_claim("+1873-00-00T00:00:00Z", 9, circa=True)) == "c. 1873"
+
+
+def test_format_wikidata_date_day_precision_collapses_to_year_for_artworks():
+    claim = _time_claim("+1885-03-13T00:00:00Z", 11)
+    assert rg.format_wikidata_date(claim, allow_day_precision=False) == "1885"
+
+
+def test_format_wikidata_date_day_precision_kept_for_photos_and_space():
+    claim = _time_claim("+1969-07-20T00:00:00Z", 11)
+    assert rg.format_wikidata_date(claim, allow_day_precision=True) == "20 July 1969"
+
+
+# --------------------------------------------------------------------------- capture-timestamp rejection
+def test_capture_timestamp_rejects_time_of_day():
+    assert rg.looks_like_capture_timestamp("13 March 2008, 13:55:16")
+
+
+def test_capture_timestamp_rejects_year_at_or_after_upload():
+    assert rg.looks_like_capture_timestamp("2008", upload_year=2008)
+    assert rg.looks_like_capture_timestamp("2010", upload_year=2008)
+
+
+def test_capture_timestamp_rejects_year_after_death():
+    assert rg.looks_like_capture_timestamp("1920", death_year=1909)
+
+
+def test_capture_timestamp_accepts_plausible_creation_date():
+    assert not rg.looks_like_capture_timestamp("1885", upload_year=2015, death_year=1910)
+
+
+# --------------------------------------------------------------------------- garbled-date rejection
+def test_garbled_date_rejects_style_word_and_unbalanced_paren():
+    assert rg.looks_like_garbled_date("1632 Baroque (late 16th century")
+
+
+def test_garbled_date_rejects_text_with_no_year_or_century():
+    assert rg.looks_like_garbled_date("some description text")
+
+
+def test_garbled_date_accepts_clean_year_and_century_expressions():
+    assert not rg.looks_like_garbled_date("1873")
+    assert not rg.looks_like_garbled_date("19th century")
+    assert not rg.looks_like_garbled_date("between 1650 and 1699")
+
+
+# --------------------------------------------------------------------------- institution phrase extraction
+def test_extract_institution_phrase_finds_named_institution():
+    assert rg._extract_institution_phrase("Collection of the National Gallery of Art, Washington") \
+        == "National Gallery of Art"
+
+
+def test_extract_institution_phrase_none_for_plain_text():
+    assert rg._extract_institution_phrase("just a photo, no institution named") is None
+
+
+# --------------------------------------------------------------------------- is_artwork_entity (P144/P1877 target)
+def test_is_artwork_entity_true_for_a_painting(monkeypatch):
+    rg._ARTWORK_ENTITY_CACHE.clear()
+    rg._LABEL_CACHE.clear()
+    fx = _FakeFetcher([
+        ("\"ids\": \"Q1\"", {"entities": {"Q1": {"claims": {"P31": [
+            {"mainsnak": {"datavalue": {"value": {"id": "Q3305213"}}}}
+        ]}}}}),
+        ("Q3305213", {"entities": {"Q3305213": {"labels": {"en": {"value": "painting"}}}}}),
+    ])
+    assert asyncio.run(rg._is_artwork_entity(fx, "Q1")) is True
+
+
+def test_is_artwork_entity_false_for_a_theme(monkeypatch):
+    rg._ARTWORK_ENTITY_CACHE.clear()
+    rg._LABEL_CACHE.clear()
+    fx = _FakeFetcher([
+        ("\"ids\": \"Q2\"", {"entities": {"Q2": {"claims": {"P31": [
+            {"mainsnak": {"datavalue": {"value": {"id": "Q9998"}}}}
+        ]}}}}),
+        ("Q9998", {"entities": {"Q9998": {"labels": {"en": {"value": "narrative motif"}}}}}),
+    ])
+    assert asyncio.run(rg._is_artwork_entity(fx, "Q2")) is False
+
+
+# --------------------------------------------------------------------------- identity mismatch detection
+def test_identity_mismatch_detects_different_creator():
+    # wikidata.creator only — commons.Artist alone must NOT trigger this (it routinely names the
+    # photographer of a 2D reproduction, not the painter; see the mononym test below).
+    item = {"agent_name": "Gustav Klimt", "medium": "Oil on canvas"}
+    facts = [rg._fact("wikidata.creator", "Jacopo Amigoni", "Wikidata", "u", "CC0")]
+    result = rg.detect_identity_mismatch(item, facts)
+    assert result and any("Amigoni" in e for e in result["evidence"])
+
+
+def test_identity_mismatch_ignores_commons_artist_alone_photographer_credit():
+    # audit finding: Commons "Artist" on a reproduction photo can be the PHOTOGRAPHER (e.g. Didier
+    # Descouens), not the painter — must not false-positive when Wikidata isn't present to corroborate.
+    item = {"agent_name": "Gustav Klimt", "medium": "Oil on canvas"}
+    facts = [rg._fact("commons.Artist", "Didier Descouens", "Wikimedia Commons", "u", "CC BY-SA")]
+    assert rg.detect_identity_mismatch(item, facts) is None
+
+
+def test_identity_mismatch_tolerates_mononym_against_full_name():
+    # Rembrandt van Rijn (catalog) vs "Rembrandt" (Wikidata mononym) must NOT be flagged.
+    item = {"agent_name": "Rembrandt van Rijn", "medium": "Oil on canvas"}
+    facts = [rg._fact("wikidata.creator", "Rembrandt", "Wikidata", "u", "CC0")]
+    assert rg.detect_identity_mismatch(item, facts) is None
+
+
+def test_identity_mismatch_detects_after_artist_pattern():
+    item = {"agent_name": "J. M. W. Turner", "medium": "Oil on canvas"}
+    facts = [rg._fact("commons.Credit", "William Miller after Turner", "Wikimedia Commons", "u", "CC BY-SA")]
+    result = rg.detect_identity_mismatch(item, facts)
+    assert result and any("after Turner" in e for e in result["evidence"])
+
+
+def test_identity_mismatch_detects_print_technique_vs_oil_medium():
+    item = {"agent_name": "J. M. W. Turner", "medium": "Oil on canvas"}
+    facts = [rg._fact("commons.ObjectName", "Popular Graphic Arts engraving", "Wikimedia Commons", "u", "CC BY-SA")]
+    result = rg.detect_identity_mismatch(item, facts)
+    assert result and any("engraving" in e for e in result["evidence"])
+
+
+def test_identity_mismatch_none_when_consistent():
+    item = {"agent_name": "Winslow Homer", "medium": "Watercolor on paper"}
+    facts = [rg._fact("commons.Artist", "Winslow Homer", "Wikimedia Commons", "u", "CC BY-SA")]
+    assert rg.detect_identity_mismatch(item, facts) is None
+
+
+# --------------------------------------------------------------------------- import flags (image_title_mismatch)
+def test_run_import_collects_image_title_mismatch_flags(tmp_path, monkeypatch):
+    packets_dir = tmp_path / "packets" / "demo"
+    packets_dir.mkdir(parents=True)
+    written_dir = tmp_path / "written"
+    written_dir.mkdir()
+    out_catalog_dir = tmp_path / "catalog"
+
+    packet = {"title": "Campfire in the Adirondacks", "facts": [], "structured": {}}
+    (packets_dir / "campfire-adirondacks-0015.json").write_text(json.dumps(packet))
+
+    monkeypatch.setattr(rg, "PACKETS_DIR", tmp_path / "packets")
+    monkeypatch.setattr(rg, "WRITTEN_DIR", written_dir)
+    monkeypatch.setattr(rg, "OUT_CATALOG_DIR", out_catalog_dir)
+    monkeypatch.setattr(rg, "IMPORT_REPORT_PATH", tmp_path / "import_report.json")
+    monkeypatch.setattr(rg, "PACKET_INDEX_PATH", tmp_path / "packets_index.json")
+    (tmp_path / "packets_index.json").write_text(json.dumps({"campfire-adirondacks-0015": "demo"}))
+
+    class _FakeCatalogItem(dict):
+        pass
+
+    monkeypatch.setattr(rg, "load_catalog", lambda: {"demo": [dict(title="Campfire in the Adirondacks", agent_name="X")] * 16})
+
+    written = {"key": "campfire-adirondacks-0015", "title": "Campfire in the Adirondacks",
+               "description_narrative": "A hunter rests by tree roots.", "tags": "outdoors",
+               "claims": [], "flags": ["image_title_mismatch"]}
+    (written_dir / "batch_01.jsonl").write_text(json.dumps(written) + "\n")
+
+    report = rg.run_import()
+    assert report["flagged"] == [{"key": "campfire-adirondacks-0015", "collection": "demo",
+                                   "title": "Campfire in the Adirondacks"}]
+    assert report["passed"] == 1  # a flag never blocks the narrative import
+
+
 def test_medium_bucket_distinguishes_oil_from_watercolor_and_print():
     assert rg.medium_bucket("Oil on canvas") == "oil"
     assert rg.medium_bucket("Watercolor and gouache over graphite") == "watercolor"

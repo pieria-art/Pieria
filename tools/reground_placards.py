@@ -45,6 +45,7 @@ from pathlib import Path
 from PIL import Image
 
 import ai_client
+from tools import catalog_spec
 from tools.audit_placards import (
     AUDIT_DIR,
     CACHE_DIR,
@@ -73,6 +74,7 @@ PREVIEWS_DIR = REGROUND_DIR / "previews"
 BATCHES_DIR = REGROUND_DIR / "batches"
 WRITTEN_DIR = REGROUND_DIR / "written"
 IMPORT_REPORT_PATH = REGROUND_DIR / "import_report.json"
+IDENTITY_MISMATCHES_PATH = REGROUND_DIR / "identity_mismatches.json"
 PACKET_INDEX_PATH = REGROUND_DIR / "packets_index.json"
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -81,6 +83,7 @@ ART_PACK_MANIFESTS = ROOT / "art-pack" / "_manifests"
 
 WD_API = "https://www.wikidata.org/w/api.php"
 COMMONS_API = "https://commons.wikimedia.org/w/api.php"
+AIC_SEARCH = "https://api.artic.edu/api/v1/artworks/search"
 PREVIEW_MAX_PX = 1024
 
 # Wikidata properties consulted for the facts bundle. English-labelled claims only.
@@ -158,11 +161,72 @@ async def _commons_extmetadata(fx: Fetcher, filename: str) -> dict | None:
     ii = (page.get("imageinfo") or [{}])[0]
     meta = ii.get("extmetadata") or {}
     out = {}
-    for k in ("DateTimeOriginal", "ObjectName", "Artist", "Credit", "Medium", "ImageDescription"):
+    for k in ("DateTimeOriginal", "DateTime", "ObjectName", "Artist", "Credit", "Institution",
+              "Medium", "ImageDescription"):
         v = (meta.get(k) or {}).get("value")
         if v:
             out[k] = _clean_commons_text(str(v))
     return out or None
+
+
+# ----------------------------------------------------------------------- capture-timestamp rejection
+# Round 3 bug: Commons "DateTimeOriginal" sometimes holds the SCAN/UPLOAD timestamp, not the artwork's
+# creation date (e.g. "13 March 2008, 13:55:16" on a 19th-century Remington painting) — a time-of-day
+# component is the giveaway (nobody knows the hour a 19th-century painting was finished), as is a year
+# at/after the file's own upload year, or after the artist died.
+_TIME_OF_DAY_RE = re.compile(r"\b\d{1,2}:\d{2}(?::\d{2})?\b")
+
+
+def looks_like_capture_timestamp(text: str, upload_year: int | None = None,
+                                  death_year: int | None = None) -> bool:
+    if not text:
+        return False
+    if _TIME_OF_DAY_RE.search(text):
+        return True
+    y = _extract_year(text)
+    if y:
+        if upload_year and y >= upload_year:
+            return True
+        if death_year and y > death_year:
+            return True
+    return False
+
+
+# Round 3 #9: Commons DateTimeOriginal can survive `_clean_commons_text`'s QS/HTML stripping still
+# garbled — e.g. "1632 Baroque (late 16th century" (a style label bled into the date field, unbalanced
+# parenthesis left over from a template). Reject anything that doesn't read as a clean date expression.
+_STYLE_WORD_IN_DATE_RE = re.compile(
+    r"\b(Baroque|Renaissance|Rococo|Gothic|Romantic\w*|Impressionis\w*|Realis\w*|Neoclassic\w*|"
+    r"Modernis\w*|Mannerist\w*)\b", re.I,
+)
+
+
+def looks_like_garbled_date(text: str) -> bool:
+    if not text or not text.strip():
+        return True
+    if text.count("(") != text.count(")") or text.count("[") != text.count("]"):
+        return True
+    if _STYLE_WORD_IN_DATE_RE.search(text):
+        return True
+    if not _extract_year(text) and not re.search(r"\b\d{1,2}(st|nd|rd|th)\s+century\b", text, re.I):
+        return True  # no year and no century phrase — not a recognisable date at all
+    return False
+
+
+async def _creator_death_year(fx: Fetcher, creator_qid: str) -> int | None:
+    body, err = await fx.get_json(WD_API, {
+        "action": "wbgetentities", "ids": creator_qid, "props": "claims", "format": "json",
+    })
+    if not body:
+        return None
+    ent = (body.get("entities") or {}).get(creator_qid) or {}
+    vals = (ent.get("claims") or {}).get("P570") or []  # date of death
+    if not vals:
+        return None
+    dv = vals[0].get("mainsnak", {}).get("datavalue", {}).get("value", {})
+    if not isinstance(dv, dict) or "time" not in dv:
+        return None
+    return _extract_year(dv["time"])
 
 
 # Commons extmetadata date/artist/title fields routinely embed a hidden Wikidata "quick statement"
@@ -221,12 +285,75 @@ async def _cleveland_by_accession(fx: Fetcher, accession: str) -> dict | None:
     if not data:
         return None
     d = data[0]
-    return {
+    out = {
         "api": "Cleveland Open Access API (by accession)",
         "url": f"https://openaccess-api.clevelandart.org/api/artworks/{d.get('id')}",
         "title": d.get("title"), "creators": [c.get("description") for c in (d.get("creators") or [])],
         "creation_date": d.get("creation_date"), "technique": d.get("technique"), "culture": d.get("culture"),
     }
+    if d.get("share_license_status") == "CC0":
+        for k in ("description", "did_you_know"):
+            if d.get(k):
+                out[k] = re.sub(r"<[^>]+>", "", str(d[k])).strip()
+    return out
+
+
+async def _cleveland_extra_by_title(fx: Fetcher, title: str) -> dict | None:
+    """Round 3 #5: Cleveland's own `description`/`did_you_know` curatorial text, CC0 — but only when
+    THIS record's own `share_license_status` says so (some Cleveland records are not CC0)."""
+    body, err = await fx.get_json(CLEVELAND_SEARCH, {"q": title, "limit": 1})
+    data = (body or {}).get("data") or []
+    if not data or data[0].get("share_license_status") != "CC0":
+        return None
+    d = data[0]
+    out = {}
+    for k in ("description", "did_you_know"):
+        if d.get(k):
+            out[k] = re.sub(r"<[^>]+>", "", str(d[k])).strip()
+    return out or None
+
+
+async def _aic_record(fx: Fetcher, title: str) -> dict | None:
+    """Art Institute of Chicago's public API — same shape as _museum_record's dict so it flows through
+    the one fact-emission loop. `description`/`short_description` are CC BY 4.0 per AIC's own
+    license_text (measured 2026-09-25: "The `description` field ... is licensed under ... CC-By"), NOT
+    CC0 like the rest of the record — kept out of `facts`, returned under `_checkonly` instead."""
+    body, err = await fx.get_json(AIC_SEARCH, {
+        "q": title, "limit": 1,
+        "fields": "id,title,date_display,medium_display,description,short_description",
+    })
+    data = (body or {}).get("data") or []
+    if not data:
+        return None
+    d = data[0]
+    url = f"https://api.artic.edu/api/v1/artworks/{d.get('id')}"
+    out = {"api": "Art Institute of Chicago API", "url": url, "title": d.get("title")}
+    if d.get("date_display"):
+        out["objectDate"] = d["date_display"]
+    if d.get("medium_display"):
+        out["medium"] = d["medium_display"]
+    checkonly = []
+    for k in ("description", "short_description"):
+        if d.get(k):
+            checkonly.append(re.sub(r"<[^>]+>", "", str(d[k])).strip())
+    out["_checkonly"] = checkonly
+    return out
+
+
+# A run of capitalised words ending in an institution keyword, optionally followed by "of <Place>" —
+# e.g. "National Gallery of Art" out of a Credit sentence that doesn't match a known DOMAIN_INSTITUTIONS
+# entry (round 3 #3: current_repository from generic Commons Credit/Institution text).
+_INSTITUTION_PHRASE_RE = re.compile(
+    r"\b((?:[A-Z][\w&.'-]*\s+){0,6}(?:Museum|Galler\w*|Librar\w*|Archive\w*|University|Institut\w*|"
+    r"Foundation|Academy|Society)(?:\s+of\s+[A-Z][\w&.'-]*(?:\s+[A-Z][\w&.'-]*){0,3})?)\b"
+)
+
+
+def _extract_institution_phrase(text: str) -> str | None:
+    if not text:
+        return None
+    m = _INSTITUTION_PHRASE_RE.search(text)
+    return m.group(1).strip() if m else None
 
 
 async def _wikidata_by_accession(fx: Fetcher, accession: str, institution: str) -> str | None:
@@ -303,7 +430,89 @@ async def _labels_for_qids(fx: Fetcher, qids: list[str]) -> dict[str, str]:
     return {q: _LABEL_CACHE.get(q, q) for q in qids}
 
 
-async def _wikidata_full(fx: Fetcher, qid: str) -> dict:
+# Round 3 #7: is P144/P1877/P629's target itself a work of art (painting, sculpture, print,
+# photograph, …), or a theme/text/character it merely depicts or draws on (Old Testament, "Venus
+# Pudica")? Judged by that entity's own P31 (instance of) labels — cheap keyword match, not a QID
+# allowlist, so it generalises past the handful of classes anyone bothered to enumerate.
+_ARTWORK_CLASS_RE = re.compile(
+    r"\b(painting|sculpture|print|photograph|drawing|artwork|work of art|fresco|engraving|etching|"
+    r"lithograph|woodcut|woodblock|mosaic|tapestry|illustration|statue|bronze|panel painting|"
+    r"altarpiece|relief|bust|manuscript)\b", re.I,
+)
+_ARTWORK_ENTITY_CACHE: dict[str, bool] = {}
+
+
+async def _is_artwork_entity(fx: Fetcher, qid: str) -> bool:
+    if qid in _ARTWORK_ENTITY_CACHE:
+        return _ARTWORK_ENTITY_CACHE[qid]
+    body, err = await fx.get_json(WD_API, {
+        "action": "wbgetentities", "ids": qid, "props": "claims", "format": "json",
+    })
+    result = False
+    if body:
+        ent = (body.get("entities") or {}).get(qid) or {}
+        ids = []
+        for c in ((ent.get("claims") or {}).get("P31") or [])[:5]:
+            v = c.get("mainsnak", {}).get("datavalue", {}).get("value")
+            if isinstance(v, dict) and v.get("id"):
+                ids.append(v["id"])
+        if ids:
+            labels = await _labels_for_qids(fx, ids)
+            result = any(_ARTWORK_CLASS_RE.search(labels.get(i, "") or "") for i in ids)
+    _ARTWORK_ENTITY_CACHE[qid] = result
+    return result
+
+
+# ----------------------------------------------------------------------- Wikidata date normalisation
+# Round 3 bug: raw ISO dates ("1850-00-00", "1873-01-01") were leaking into date_display. Wikidata
+# zero-fills month/day it doesn't actually know ("00"), so the real signal is the claim's own
+# `precision` code, not the string shape. P1480 ("circa" qualifier) is honoured as a "c. " prefix.
+_MONTH_NAMES = ["", "January", "February", "March", "April", "May", "June", "July", "August",
+                "September", "October", "November", "December"]
+
+
+def _ordinal(n: int) -> str:
+    if 10 <= n % 100 <= 20:
+        suffix = "th"
+    else:
+        suffix = {1: "st", 2: "nd", 3: "rd"}.get(n % 10, "th")
+    return f"{n}{suffix}"
+
+
+def format_wikidata_date(claim: dict, allow_day_precision: bool = False) -> str | None:
+    """precision: 11=day, 10=month, 9=year, 8=decade, 7=century, <=6=millennium+. Day/month precision
+    is collapsed to a year UNLESS allow_day_precision (photos/space imagery, where a specific day is
+    both plausible and meaningful) — never for a generic artwork."""
+    dv = claim.get("mainsnak", {}).get("datavalue", {}).get("value")
+    if not isinstance(dv, dict) or "time" not in dv:
+        return None
+    m = re.match(r"^([+-])(\d+)-(\d{2})-(\d{2})T", dv["time"])
+    if not m:
+        return None
+    sign, y, mo, day = m.groups()
+    year = int(y) * (-1 if sign == "-" else 1)
+    precision = dv.get("precision", 9)
+    circa = bool((claim.get("qualifiers") or {}).get("P1480"))
+    prefix = "c. " if circa else ""
+
+    if precision >= 10 and allow_day_precision and mo != "00":
+        try:
+            if precision >= 11 and day != "00":
+                return f"{prefix}{int(day)} {_MONTH_NAMES[int(mo)]} {year}"
+            return f"{prefix}{_MONTH_NAMES[int(mo)]} {year}"
+        except (ValueError, IndexError):
+            pass
+    if precision >= 9:
+        return f"{prefix}{year}"
+    if precision == 8:
+        return f"{prefix}{(year // 10) * 10}s"
+    if precision == 7:
+        century = (year - 1) // 100 + 1 if year > 0 else (year // 100)
+        return f"{prefix}{_ordinal(century)} century"
+    return f"{prefix}{year}"  # millennium or coarser — best effort
+
+
+async def _wikidata_full(fx: Fetcher, qid: str, allow_day_precision: bool = False) -> dict:
     body, err = await fx.get_json(WD_API, {
         "action": "wbgetentities", "ids": qid, "props": "claims|sitelinks", "languages": "en", "format": "json",
     })
@@ -316,11 +525,21 @@ async def _wikidata_full(fx: Fetcher, qid: str) -> dict:
     # they can be resolved to labels in one or two batched calls instead of one-per-value.
     need_ids: list[str] = []
     for prop in list(CLAIM_PROPS) + list(VERSION_PROPS):
+        if prop == "P571":
+            continue  # date-valued, not QID-valued — handled separately below
         for c in (claims.get(prop) or [])[:5]:
             v = c.get("mainsnak", {}).get("datavalue", {}).get("value")
             if isinstance(v, dict) and v.get("id"):
                 need_ids.append(v["id"])
     labels = await _labels_for_qids(fx, need_ids) if need_ids else {}
+
+    def _resolved_label(qid_val: str) -> str | None:
+        """The batched label, or None if it never resolved to an English label — round 3: a fact must
+        never ship a bare, unresolved QID to a writer."""
+        lab = labels.get(qid_val)
+        if not lab or _BARE_QID_RE.match(lab.strip()):
+            return None
+        return lab
 
     out = {}
     for prop, key in CLAIM_PROPS.items():
@@ -329,33 +548,58 @@ async def _wikidata_full(fx: Fetcher, qid: str) -> dict:
         for c in vals[:5]:
             dv = c.get("mainsnak", {}).get("datavalue", {})
             v = dv.get("value")
-            if isinstance(v, dict) and v.get("id"):
-                vlabels.append(labels.get(v["id"], v["id"]))
-            elif isinstance(v, dict) and "time" in v:
-                vlabels.append(v["time"].lstrip("+").split("T")[0])
+            if prop == "P571":
+                formatted = format_wikidata_date(c, allow_day_precision)
+                if formatted:
+                    vlabels.append(formatted)
+            elif isinstance(v, dict) and v.get("id"):
+                lab = _resolved_label(v["id"])
+                if lab:
+                    vlabels.append(lab)
             elif isinstance(v, dict) and "amount" in v:
                 vlabels.append(v["amount"])
             elif isinstance(v, str):
                 vlabels.append(v)
         if vlabels:
             out[key] = vlabels
+    creator_qid = None
+    for c in (claims.get("P170") or [])[:1]:
+        v = c.get("mainsnak", {}).get("datavalue", {}).get("value")
+        if isinstance(v, dict) and v.get("id"):
+            creator_qid = v["id"]
     version = None
+    based_on_theme = None
     for prop, relation in VERSION_PROPS.items():
         vals = claims.get(prop) or []
         if not vals:
             continue
         dv = vals[0].get("mainsnak", {}).get("datavalue", {}).get("value", {})
         if isinstance(dv, dict) and dv.get("id"):
-            version = {"relation": relation, "of_qid": dv["id"],
-                       "of_label": labels.get(dv["id"], dv["id"]), "property": prop}
+            lab = _resolved_label(dv["id"])
+            if lab:  # never ship an unresolved QID as a "version of" target either
+                # Round 3 #7: P144/P1877/P629 often point at a THEME, not another physical artwork
+                # (Old Testament, "Venus Pudica", Book of Judith) — only call it is_version_of when the
+                # target is itself an instance/subclass of some kind of artwork.
+                if await _is_artwork_entity(fx, dv["id"]):
+                    version = {"relation": relation, "of_qid": dv["id"], "of_label": lab, "property": prop}
+                else:
+                    based_on_theme = {"relation": relation, "of_qid": dv["id"], "of_label": lab, "property": prop}
             break
     sitelinks = ent.get("sitelinks") or {}
-    return {"claims": out, "enwiki_title": sitelinks.get("enwiki", {}).get("title"), "is_version_of": version}
+    return {
+        "claims": out, "enwiki_title": sitelinks.get("enwiki", {}).get("title"),
+        "is_version_of": version, "based_on_theme": based_on_theme, "creator_qid": creator_qid,
+    }
 
 
 # ----------------------------------------------------------------------- facts bundle
-async def build_facts_bundle(fx: Fetcher, item: dict) -> dict:
+_MUSEUM_FACT_KEYS = ("objectDate", "medium", "culture", "classification", "creation_date",
+                     "technique", "description", "did_you_know")
+
+
+async def build_facts_bundle(fx: Fetcher, item: dict, collection: str | None = None) -> dict:
     """Resolve identity + assemble the typed facts bundle for one catalog item."""
+    allow_day_precision = catalog_spec.kind_for(collection or "") in ("photo", "space")
     match = await resolve_work(fx, item)
     facts: list[dict] = []
     check_only: list[str] = []
@@ -363,23 +607,47 @@ async def build_facts_bundle(fx: Fetcher, item: dict) -> dict:
     is_version_of = None
     wikipedia_lead = None
     commons_description = None
+    creator_qid = None
 
     if match:
-        wd = await _wikidata_full(fx, match["qid"])
+        wd = await _wikidata_full(fx, match["qid"], allow_day_precision)
         claims = wd.get("claims") or {}
         wd_url = f"https://www.wikidata.org/wiki/{match['qid']}"
         for key, labels in claims.items():
             facts.append(_fact(f"wikidata.{key}", labels, "Wikidata", wd_url, "CC0"))
         is_version_of = wd.get("is_version_of")
-        if wd.get("enwiki_title"):
+        creator_qid = wd.get("creator_qid")
+        if wd.get("based_on_theme"):
+            bot = wd["based_on_theme"]
+            facts.append(_fact("wikidata.based_on_theme", bot["of_label"], "Wikidata", wd_url, "CC0"))
+        # Round 3 #8: a Wikipedia lead is only trustworthy off a HIGH-confidence identity match — the
+        # search+creator-verify fallback (confidence "medium") landed on a wrong QID for at least one
+        # sampled work and pulled in an unrelated article's lead as check-only text.
+        if wd.get("enwiki_title") and match.get("confidence") == "high":
             lead = await _wikipedia_lead(fx, wd["enwiki_title"])
             if lead:
                 check_only.append(lead)
                 wikipedia_lead = lead
 
     museum = await _museum_record(fx, item)
+    # Round 3 #5: museums' own CC0 curatorial text, where the API provides it. Cleveland's search
+    # response already carries `description`/`did_you_know` (only trustworthy when that record's own
+    # `share_license_status` is CC0 — some Cleveland records are not).
+    if museum and item.get("source") == "Cleveland Museum of Art":
+        extra = await _cleveland_extra_by_title(fx, item.get("title") or "")
+        if extra:
+            museum.update(extra)
+    # AIC isn't covered by audit_placards._museum_record; add it here in the SAME shape so it flows
+    # through the one fact-emission loop below. Its `description`/`short_description` fields are CC BY
+    # 4.0 per AIC's own license_text (NOT CC0 like the rest of the record) — kept check-only, never a
+    # directly-quotable fact.
+    if not museum and item.get("source") == "Art Institute of Chicago":
+        museum = await _aic_record(fx, item.get("title") or "")
+        if museum:
+            for txt in museum.pop("_checkonly", []):
+                check_only.append(txt)
     if museum:
-        for key in ("objectDate", "medium", "culture", "classification", "creation_date", "technique"):
+        for key in _MUSEUM_FACT_KEYS:
             if museum.get(key):
                 facts.append(_fact(f"museum.{key}", museum[key], museum["api"], museum["url"], "CC0"))
         for key in ("creators",):
@@ -396,12 +664,26 @@ async def build_facts_bundle(fx: Fetcher, item: dict) -> dict:
         filename = urllib.parse.unquote(urllib.parse.urlparse(source_url).path.rsplit("/", 1)[-1])
         ext = await _commons_extmetadata(fx, filename)
         if ext:
+            upload_year = _extract_year(ext.get("DateTime") or "")
+            death_year = None
             for key, val in ext.items():
                 if key == "ImageDescription":
                     check_only.append(val)
                     commons_description = val
-                else:
-                    facts.append(_fact(f"commons.{key}", val, "Wikimedia Commons", source_url, "CC BY-SA"))
+                    continue
+                if key == "DateTimeOriginal":
+                    if death_year is None and creator_qid:
+                        death_year = await _creator_death_year(fx, creator_qid)
+                    if looks_like_capture_timestamp(val, upload_year, death_year):
+                        continue  # round 3 #2: drop — reads as a scan/upload timestamp, not a date
+                    if looks_like_garbled_date(val):
+                        continue  # round 3 #9: drop — not a clean date expression
+                facts.append(_fact(f"commons.{key}", val, "Wikimedia Commons", source_url, "CC BY-SA"))
+            # round 3 #3: a generic institution name in Credit/Institution text, when nothing more
+            # authoritative names one — lowest precedence, applied in resolve_structured_fields.
+            phrase = _extract_institution_phrase(" ".join(filter(None, [ext.get("Institution"), ext.get("Credit")])))
+            if phrase:
+                facts.append(_fact("commons.institution_credit", phrase, "Wikimedia Commons", source_url, "CC BY-SA"))
 
     # Round 2: when the item is Commons-sourced, also try the file's own Credit/accession to find the
     # museum's own record and/or a stronger identity match — fixes the "matched via P18 but its own
@@ -411,7 +693,7 @@ async def build_facts_bundle(fx: Fetcher, item: dict) -> dict:
         if credit_hit:
             mr = credit_hit.get("museum_record")
             if mr:
-                for key in ("objectDate", "medium", "culture", "classification", "creation_date", "technique"):
+                for key in _MUSEUM_FACT_KEYS:
                     if mr.get(key):
                         facts.append(_fact(f"museum2.{key}", mr[key], mr["api"], mr["url"], "CC0"))
                 facts.append(_fact("museum2.institution", credit_hit["institution"], mr["api"], mr["url"], "CC0"))
@@ -421,13 +703,16 @@ async def build_facts_bundle(fx: Fetcher, item: dict) -> dict:
                     "method": "commons credit institution+accession -> Wikidata P217/P195",
                     "confidence": "high",
                 }
-                wd = await _wikidata_full(fx, match["qid"])
+                wd = await _wikidata_full(fx, match["qid"], allow_day_precision)
                 claims = wd.get("claims") or {}
                 wd_url = f"https://www.wikidata.org/wiki/{match['qid']}"
                 for key, labels in claims.items():
                     if not any(f["key"] == f"wikidata.{key}" for f in facts):
                         facts.append(_fact(f"wikidata.{key}", labels, "Wikidata", wd_url, "CC0"))
                 is_version_of = is_version_of or wd.get("is_version_of")
+                if wd.get("based_on_theme") and not any(f["key"] == "wikidata.based_on_theme" for f in facts):
+                    facts.append(_fact("wikidata.based_on_theme", wd["based_on_theme"]["of_label"],
+                                        "Wikidata", wd_url, "CC0"))
 
     facts, conflicts = _detect_conflicts(facts)
     return {
@@ -472,6 +757,71 @@ def _extract_year(text: str) -> int | None:
     return int(m.group(1)) if m else None
 
 
+# ----------------------------------------------------------------------- identity mismatch (catalog integrity)
+# Round 3 #10: catch a work whose IMAGE plausibly doesn't match its catalog title/artist — Commons'
+# own ObjectName/Artist/Credit naming a different creator than the catalog (judith-i-0007: catalog
+# Klimt, Commons says Jacopo Amigoni), or a print/engraving "after" a painter rather than the painting
+# itself (shipwreck-0002: "William Miller after Turner"; battle-of-trafalgar-0020: Turner in the
+# catalog, LOC calls it a "Popular Graphic Arts" engraving). This is a red flag for a human, not
+# something the pipeline corrects on its own — surfaced via needs_review + a standalone report.
+_AFTER_ARTIST_RE = re.compile(r"\bafter\s+[A-Z][\w.'’-]+(?:\s+[A-Z][\w.'’-]+)*")
+_PRINT_MEDIUM_WORDS_RE = re.compile(
+    r"\b(engraving|engraved|print|lithograph\w*|etching|woodcut|woodblock)\b", re.I,
+)
+
+
+_NAME_PARTICLES = {"van", "der", "de", "von", "di", "le", "la", "den", "ter", "y", "af"}
+
+
+def _name_tokens(name: str) -> set[str]:
+    return {w for w in re.findall(r"[a-z']+", (name or "").lower()) if w not in _NAME_PARTICLES}
+
+
+def _names_plausibly_match(a: str, b: str) -> bool:
+    """True unless neither name shares a single meaningful token with the other — tolerant of a
+    mononym (Rembrandt van Rijn ~ "Rembrandt"), initials, and particle differences."""
+    ta, tb = _name_tokens(a), _name_tokens(b)
+    if not ta or not tb:
+        return True  # nothing to compare — never flag on absence
+    return bool(ta & tb)
+
+
+def detect_identity_mismatch(item: dict, facts: list[dict]) -> dict | None:
+    facts_by_key = {f["key"]: f for f in facts}
+    catalog_artist = item.get("agent_name") or ""
+    evidence: list[str] = []
+
+    def val_of(key):
+        f = facts_by_key.get(key)
+        if not f:
+            return None
+        v = f["value"]
+        return str(v[0] if isinstance(v, list) else v)
+
+    # Wikidata's creator only — commons.Artist is excluded here because it routinely names the
+    # PHOTOGRAPHER of a 2D reproduction rather than the original painter (a well-known Commons
+    # metadata quirk), which would otherwise false-positive constantly on well-attributed works.
+    wd_creator = val_of("wikidata.creator")
+    if wd_creator and catalog_artist and not _names_plausibly_match(catalog_artist, wd_creator):
+        evidence.append(f"wikidata.creator={wd_creator!r} names a different creator than catalog "
+                         f"agent_name={catalog_artist!r}")
+
+    for label in ("commons.ObjectName", "commons.Credit", "commons.Artist"):
+        text = val_of(label) or ""
+        if not text:
+            continue
+        m = _AFTER_ARTIST_RE.search(text)
+        if m:
+            evidence.append(f"{label}={text!r} says {m.group(0)!r} — may be a reproduction/print "
+                             f"after another artist's work, not the original")
+        pm = _PRINT_MEDIUM_WORDS_RE.search(text)
+        if pm and "oil" in (item.get("medium") or "").lower():
+            evidence.append(f"{label}={text!r} names a print technique ({pm.group(0)!r}) but "
+                             f"catalog medium is {item.get('medium')!r}")
+
+    return {"evidence": evidence} if evidence else None
+
+
 # ----------------------------------------------------------------------- structured fields (deterministic)
 # Precedence: museum record (title-keyed) > museum record (Commons-credit-keyed) > Wikidata > Commons
 # extmetadata > existing catalog value. current_repository is handled separately below (institution
@@ -493,6 +843,13 @@ def resolve_structured_fields(bundle: dict, existing_item: dict) -> tuple[dict, 
     needs_review = bool(bundle.get("conflicts"))
     if needs_review:
         notes.extend(c["detail"] for c in bundle["conflicts"])
+
+    mismatch = detect_identity_mismatch(existing_item, bundle["facts"])
+    if mismatch:
+        needs_review = True
+        fields["identity_mismatch_suspected"] = True
+        fields["identity_mismatch_evidence"] = mismatch["evidence"]
+        notes.extend(f"identity_mismatch_suspected: {e}" for e in mismatch["evidence"])
 
     def first_value(keys):
         for k, _ in keys:
@@ -547,12 +904,20 @@ def resolve_structured_fields(bundle: dict, existing_item: dict) -> tuple[dict, 
             break
     else:
         f = facts_by_key.get("wikidata.collection")
+        v = None
         if f:
             v = f["value"][0] if isinstance(f["value"], list) else f["value"]
-            if looks_like_institution_label(str(v)):
-                fields["current_repository"] = str(v).strip()
-            else:
+        if v and looks_like_institution_label(str(v)):
+            fields["current_repository"] = str(v).strip()
+        else:
+            if v:
                 notes.append(f"current_repository: rejected non-institution/unresolved candidate {v!r}")
+            # round 3 #3: last resort — a generic institution name lifted from Commons Credit/
+            # Institution text, only when nothing more authoritative named one.
+            cf = facts_by_key.get("commons.institution_credit")
+            if cf and looks_like_institution_label(str(cf["value"])):
+                fields["current_repository"] = str(cf["value"]).strip()
+                fields["current_repository_source"] = "Commons Credit text"
 
     # agent name (rarely overridden — catalog agent_name is usually already right; only replace on a
     # confirmed mismatch, never invent one)
@@ -816,6 +1181,8 @@ def build_packet(key: str, collection: str, item: dict, bundle: dict, fields: di
         },
         "is_version_of": bundle.get("is_version_of"),
         "needs_review": needs_review,
+        "identity_mismatch_suspected": bool(fields.get("identity_mismatch_suspected")),
+        "identity_mismatch_evidence": fields.get("identity_mismatch_evidence") or [],
         "image": str(preview_path) if preview_path else None,
     }
 
@@ -848,9 +1215,14 @@ async def run_packets(*, only_sample: bool, limit: int | None, collection: str |
         targets = targets[:limit]
 
     sem = asyncio.Semaphore(4)
-    report = {"collections": {}, "matched": 0, "needs_review_count": 0, "total": 0, "with_preview": 0}
+    report = {"collections": {}, "matched": 0, "needs_review_count": 0, "total": 0, "with_preview": 0,
+              "with_cc0_curatorial": 0, "facts_total": 0}
     packet_index: dict[str, str] = {}
     entries: list[dict] = []
+    mismatches: list[dict] = []
+
+    _CC0_CURATORIAL_KEYS = ("museum.description", "museum.did_you_know",
+                            "museum2.description", "museum2.did_you_know")
 
     async with httpx.AsyncClient(headers={"User-Agent": UA}, follow_redirects=True) as client:
         fx = Fetcher(client, sem)
@@ -864,7 +1236,7 @@ async def run_packets(*, only_sample: bool, limit: int | None, collection: str |
             if fact_path.exists() and packet_path.exists():
                 bundle = json.loads(fact_path.read_text())  # resume: skip re-fetching
             else:
-                bundle = await build_facts_bundle(fx, item)
+                bundle = await build_facts_bundle(fx, item, coll)
                 fact_path.write_text(json.dumps(bundle, indent=2, default=str))
             fields, needs_review, notes = resolve_structured_fields(bundle, item)
 
@@ -875,29 +1247,50 @@ async def run_packets(*, only_sample: bool, limit: int | None, collection: str |
             packet = build_packet(key, coll, item, bundle, fields, needs_review, preview)
             packet_path.parent.mkdir(parents=True, exist_ok=True)
             packet_path.write_text(json.dumps(packet, indent=1, ensure_ascii=False, default=str))
-            return coll, key, packet_path, bool(bundle.get("match")), needs_review, bool(preview)
+            has_cc0 = any(f["key"] in _CC0_CURATORIAL_KEYS for f in bundle["facts"])
+            mismatch = None
+            if fields.get("identity_mismatch_suspected"):
+                mismatch = {"key": key, "collection": coll, "title": item.get("title"),
+                            "agent_name": item.get("agent_name"), "medium": item.get("medium"),
+                            "evidence": fields.get("identity_mismatch_evidence") or []}
+            return (coll, key, packet_path, bool(bundle.get("match")), needs_review, bool(preview),
+                    has_cc0, len(bundle["facts"]), mismatch)
 
         results = await asyncio.gather(*(one(c, i) for c, i in targets))
 
-    for coll, key, packet_path, matched, needs_review, has_preview in results:
-        cstat = report["collections"].setdefault(coll, {"total": 0, "matched": 0, "needs_review": 0, "with_preview": 0})
+    for coll, key, packet_path, matched, needs_review, has_preview, has_cc0, n_facts, mismatch in results:
+        cstat = report["collections"].setdefault(
+            coll, {"total": 0, "matched": 0, "needs_review": 0, "with_preview": 0,
+                   "with_cc0_curatorial": 0, "facts_total": 0})
         cstat["total"] += 1
         cstat["matched"] += int(matched)
         cstat["needs_review"] += int(needs_review)
         cstat["with_preview"] += int(has_preview)
+        cstat["with_cc0_curatorial"] += int(has_cc0)
+        cstat["facts_total"] += n_facts
         report["total"] += 1
         report["matched"] += int(matched)
         report["needs_review_count"] += int(needs_review)
         report["with_preview"] += int(has_preview)
+        report["with_cc0_curatorial"] += int(has_cc0)
+        report["facts_total"] += n_facts
         rel = str(packet_path.relative_to(REGROUND_DIR))
         packet_index[key] = coll
         entries.append({"key": key, "collection": coll, "packet": rel})
+        if mismatch:
+            mismatches.append(mismatch)
+
+    for c, cstat in report["collections"].items():
+        cstat["facts_per_item"] = round(cstat["facts_total"] / cstat["total"], 2) if cstat["total"] else 0
+    report["facts_per_item"] = round(report["facts_total"] / report["total"], 2) if report["total"] else 0
 
     PACKET_INDEX_PATH.write_text(json.dumps(packet_index, indent=1))
     for i, batch in enumerate(build_batches(entries, batch_size), 1):
         (BATCHES_DIR / f"batch_{i:02d}.json").write_text(json.dumps(batch, indent=1))
     report["n_batches"] = len(build_batches(entries, batch_size))
     REPORT_PATH.write_text(json.dumps(report, indent=2))
+    IDENTITY_MISMATCHES_PATH.write_text(json.dumps(
+        {"count": len(mismatches), "items": mismatches}, indent=1, ensure_ascii=False))
     return report
 
 
@@ -975,7 +1368,7 @@ def run_import(batch_glob: str = "batch_*.jsonl"):
             if row.get("key"):
                 written_lines[row["key"]] = row
 
-    import_report = {"passed": 0, "failed": 0, "no_submission": 0, "items": []}
+    import_report = {"passed": 0, "failed": 0, "no_submission": 0, "items": [], "flagged": []}
     by_collection_new: dict[str, dict[int, dict]] = {}
 
     for key, coll in packet_index.items():
@@ -994,16 +1387,23 @@ def run_import(batch_glob: str = "batch_*.jsonl"):
             import_report["no_submission"] += 1
             import_report["items"].append({"key": key, "collection": coll, "status": "no_submission"})
         else:
+            # Round 3 #6: a writer may report a catalog-integrity problem independent of pass/fail —
+            # the image plausibly not matching the title (pilot found campfire-adirondacks-0015 shows a
+            # hunter by tree roots; bermuda-settlers-0110 shows boars). This never blocks the narrative.
+            flags = written.get("flags") or []
+            if "image_title_mismatch" in flags:
+                import_report["flagged"].append({"key": key, "collection": coll, "title": written.get("title") or packet.get("title")})
+
             ok, reasons = validate_written_item(written, packet)
             if ok:
                 base["description_narrative"] = written["description_narrative"]
                 if written.get("tags"):
                     base["tags"] = written["tags"]
                 import_report["passed"] += 1
-                import_report["items"].append({"key": key, "collection": coll, "status": "passed"})
+                import_report["items"].append({"key": key, "collection": coll, "status": "passed", "flags": flags})
             else:
                 import_report["failed"] += 1
-                import_report["items"].append({"key": key, "collection": coll, "status": "failed", "reasons": reasons})
+                import_report["items"].append({"key": key, "collection": coll, "status": "failed", "reasons": reasons, "flags": flags})
                 # failing items are NOT silently templated — narrative/tags stay as the existing
                 # catalog value; only the deterministic structured fields above are applied.
 
