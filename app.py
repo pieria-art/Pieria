@@ -46,10 +46,13 @@ import federation  # noqa: F401 — tests/test_federation.py + tests/test_publis
 
 # ARTWORK_ROOT + STATIC_DIR are used below (static mounts); LIBRARY_DIR is kept bound because
 # tests/test_display_image.py, test_factory_reset.py + test_playlist_resume.py monkeypatch it.
-from config import APP_VERSION, ARTWORK_ROOT, LIBRARY_DIR, STATIC_DIR  # noqa: F401
+from config import APP_VERSION, ARTWORK_ROOT, DEMO_MODE, LIBRARY_DIR, STATIC_DIR  # noqa: F401
 
 # Targeted WebSocket connection registry (shared by the ws + remote push paths).
 from core.connections import ConnectionManager, manager  # noqa: F401
+
+# Public demo mode (SD_DEMO_MODE=1) — default-DENY ASGI gate, no-op unless set. See core/demo.py.
+from core.demo import DemoModeMiddleware  # noqa: E402
 
 # SSRF-safe downloader (see core/downloads.py); tests/test_download.py imports it off `app`.
 from core.downloads import _download_image_to_library  # noqa: F401,E402
@@ -90,6 +93,7 @@ from routers.backup import router as backup_router
 from routers.catalog import _read_local_json  # noqa: F401  — re-exported for tests/test_cache.py
 from routers.catalog import router as catalog_router
 from routers.curation import router as curation_router
+from routers.demo import router as demo_router
 from routers.display import router as display_router
 from routers.federation import router as federation_router
 from routers.health import router as health_router
@@ -102,7 +106,10 @@ from routers.studio import PERSONAL_PLAYLIST_NAME  # noqa: F401  — re-exported
 from routers.studio import router as studio_router
 from routers.ws import router as ws_router
 
-app = FastAPI(title="Pieria", version=APP_VERSION, lifespan=lifespan)
+# Demo mode also turns off FastAPI's own introspection surface (/docs, /redoc, /openapi.json) — they're
+# not app routes core/demo.py's gate can pattern-match, so the only clean "off" is never registering them.
+_demo_docs_kwargs = {"docs_url": None, "redoc_url": None, "openapi_url": None} if DEMO_MODE else {}
+app = FastAPI(title="Pieria", version=APP_VERSION, lifespan=lifespan, **_demo_docs_kwargs)
 
 
 # --- M4: body-size cap enforced BEFORE Starlette parses/spools multipart (ADR-119 audit, 2026-09-22) --
@@ -186,6 +193,9 @@ class UploadBodyCapMiddleware:
 
 app.add_middleware(UploadBodyCapMiddleware)
 
+# --- Public demo mode (SD_DEMO_MODE=1) — default-DENY ASGI gate, no-op unless set (core/demo.py) -----
+app.add_middleware(DemoModeMiddleware)
+
 # Leaf domain routers (Phase 1 + Phase 2 + Phase 3 + Phase 4 of the app-split refactor — see
 # .ai/refactor_app_split_plan.md).
 # Order matches the (alphabetical) import block above; these are leaf domain routers with distinct
@@ -194,6 +204,7 @@ app.include_router(admin_router)
 app.include_router(backup_router)
 app.include_router(catalog_router)
 app.include_router(curation_router)
+app.include_router(demo_router)
 app.include_router(display_router)
 app.include_router(federation_router)
 app.include_router(health_router)

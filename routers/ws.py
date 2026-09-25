@@ -16,8 +16,10 @@ from fastapi import APIRouter, Depends, HTTPException, WebSocket, WebSocketDisco
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
 
+import config
 from core import appliance_settings
 from core.connections import manager
+from core.demo import normalize_display_id
 from core.playback import _display_now_playing, _is_live, known_displays
 from core.security import _origin_allowed
 from database import SessionLocal, get_db
@@ -51,6 +53,7 @@ async def get_display_now_playing(display_id: str, db: Session = Depends(get_db)
     """What one display is currently showing (artwork + collection). artwork is null until the display
     has served a frame. `active` is the strict live window, unchanged — /api/remote/displays widened its
     listing for sleeping e-ink, this did not, so nothing that asks "is this display reachable?" moved."""
+    display_id = normalize_display_id(display_id)
     row = db.query(ActiveDisplayModel).filter(ActiveDisplayModel.display_id == display_id).first()
     if not row:
         return {"display_id": display_id, "active": False, "playlist": None, "artwork": None}
@@ -114,6 +117,7 @@ async def websocket_endpoint(websocket: WebSocket, display_id: str):
     if appliance_settings.validate_display_id_runtime(display_id):
         await websocket.close(code=1008)
         return
+    display_id = normalize_display_id(display_id)
     await manager.connect(websocket, display_id)
 
     # Liveness is PAGE-OWNED (2026-09-20). The Canvas sends {"action":"heartbeat"} every 5s from its own
@@ -160,6 +164,11 @@ async def websocket_endpoint(websocket: WebSocket, display_id: str):
             data = await websocket.receive_json()
             if isinstance(data, dict) and data.get("action") == "heartbeat":
                 _page_heartbeat()          # liveness only — never echoed to the display's sockets
+                continue
+            if config.DEMO_MODE:
+                # Demo mode ignores every inbound message that isn't a heartbeat — with every display
+                # collapsed to the shared 'demo' id (normalize_display_id), an anonymous visitor's
+                # socket could otherwise inject a command straight onto every other demo viewer's screen.
                 continue
             await manager.send_personal_message(data, display_id)
     except WebSocketDisconnect:

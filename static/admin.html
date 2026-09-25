@@ -385,11 +385,11 @@
         </div>
 
         <div id="sidebar-playlists">
-            <button id="batch-enrich-btn" data-ai-action="1" class="secondary" style="width:100%; margin-bottom:20px; font-size:0.7rem;" onclick="batchEnrich()">Batch Enrich Library (RAG)</button>
+            <button id="batch-enrich-btn" data-ai-action="1" data-mutates="1" class="secondary" style="width:100%; margin-bottom:20px; font-size:0.7rem;" onclick="batchEnrich()">Batch Enrich Library (RAG)</button>
             <h2>Galleries</h2>
             <p style="font-size:0.72rem; color:#64748b; margin:-6px 0 10px;">Shows that play on your screens. Build one from any works in your Collections.</p>
             <ul id="playlist-list" class="playlist-list"></ul>
-            <div class="new-playlist">
+            <div class="new-playlist" data-mutates="1">
                 <input type="text" id="new-playlist-name" placeholder="New gallery name…">
                 <button onclick="createPlaylist()">+</button>
             </div>
@@ -400,13 +400,13 @@
         <!-- Library View -->
         <div id="view-library" class="hidden">
             <div class="action-bar">
-                <div id="library-upload-zone" class="upload-zone" onclick="document.getElementById('library-file-input').click()">
+                <div id="library-upload-zone" class="upload-zone" data-mutates="1" onclick="document.getElementById('library-file-input').click()">
                     Drag & Drop or Click to Add to Library
                     <br><small>Max 50 MB, 80 MP per image</small>
                     <input type="file" id="library-file-input" hidden multiple onchange="uploadFiles(this.files, null)">
                 </div>
                 <input type="search" id="library-filter" placeholder="🔍 Filter by title, artist, tag…" oninput="filterLibrary(this.value)" aria-label="Filter library" style="flex:1; min-width:0; margin-left:20px; padding:8px 12px; background:#0f172a; color:var(--text-color); border:1px solid var(--border-color); border-radius:6px;">
-                <button class="secondary" onclick="toggleSelectMode()" style="white-space:nowrap; margin-left:12px;">☑ Select</button>
+                <button class="secondary" data-mutates="1" onclick="toggleSelectMode()" style="white-space:nowrap; margin-left:12px;">☑ Select</button>
             </div>
             <div id="library-grid" class="artwork-grid"></div>
         </div>
@@ -414,14 +414,14 @@
         <!-- Playlist Management View -->
         <div id="view-playlists">
             <div class="action-bar">
-                <div id="upload-zone" class="upload-zone">
+                <div id="upload-zone" class="upload-zone" data-mutates="1">
                     Upload New <span id="target-playlist-name">to a gallery</span>
                     <br><small>Max 50 MB, 80 MP per image</small>
                     <input type="file" id="file-input" hidden multiple>
                 </div>
                 <div style="display:flex; gap:12px; margin-left:20px;">
-                    <button class="primary" onclick="openLibraryPicker()">Add from Library</button>
-                    <button class="secondary" onclick="toggleSelectMode()" style="white-space:nowrap;">☑ Select</button>
+                    <button class="primary" data-mutates="1" onclick="openLibraryPicker()">Add from Library</button>
+                    <button class="secondary" data-mutates="1" onclick="toggleSelectMode()" style="white-space:nowrap;">☑ Select</button>
                 </div>
             </div>
             <div id="artwork-grid" class="artwork-grid"></div>
@@ -434,7 +434,7 @@
                 <button class="secondary" onclick="this.parentElement.dataset.dismissed='1'; this.parentElement.style.display='none'" style="padding:4px 10px; font-size:0.75rem;">Dismiss</button>
             </div>
             <div id="review-toolbar" style="display:flex; justify-content:flex-end; margin-bottom:14px;">
-                <button class="secondary" onclick="toggleSelectMode()" style="white-space:nowrap;">☑ Select</button>
+                <button class="secondary" data-mutates="1" onclick="toggleSelectMode()" style="white-space:nowrap;">☑ Select</button>
             </div>
             <div id="review-list"></div>
         </div>
@@ -449,7 +449,7 @@
                 </p>
             </div>
 
-            <div class="museum-bar" style="position: sticky; top: 0; z-index: 20; background: var(--sidebar-bg); padding: 22px 25px; border-radius: 12px; border: 1px solid var(--border-color); margin: 0 0 20px;">
+            <div class="museum-bar" data-mutates="1" style="position: sticky; top: 0; z-index: 20; background: var(--sidebar-bg); padding: 22px 25px; border-radius: 12px; border: 1px solid var(--border-color); margin: 0 0 20px;">
                 <div style="display: flex; gap: 10px; flex-wrap: wrap; align-items: center;">
                     <input type="text" id="scout-search" placeholder="Search your collections — or anything across the world's museums…"
                            list="catalog-suggest" autocomplete="off"
@@ -1189,7 +1189,7 @@
     </div>
 
     <!-- Bulk multi-select action bar (Library / Collections) -->
-    <div id="bulk-bar" class="bulk-bar">
+    <div id="bulk-bar" class="bulk-bar" data-mutates="1">
         <span id="bulk-count">0 selected</span>
         <select id="bulk-add-target" onchange="bulkAddToCollection(this.value)"><option value="">Add to collection…</option></select>
         <button class="secondary" id="bulk-remove-btn" onclick="bulkRemoveFromCollection()">Remove from collection</button>
@@ -1200,7 +1200,7 @@
 
     <!-- Curated-catalog multi-select bar (Inc 3) — separate from #bulk-bar because catalog items are
          keyed by collection_id+item_index, not artwork ids, and add (not link/delete). -->
-    <div id="catalog-bulk-bar" class="bulk-bar">
+    <div id="catalog-bulk-bar" class="bulk-bar" data-mutates="1">
         <span id="catalog-bulk-count">0 selected</span>
         <select id="catalog-bulk-target"><option value="">Library only</option></select>
         <button class="success" id="catalog-bulk-add-btn" onclick="catalogBulkAdd()">Add selected</button>
@@ -1216,13 +1216,13 @@
             </div>
             <div class="edit-body">
                 <div class="edit-left">
-                    <div class="ratio-buttons" id="edit-ratios">
+                    <div class="ratio-buttons" id="edit-ratios" data-mutates="1">
                         <button onclick="editSetRatio(16/9, this)">16:9</button>
                         <button onclick="editSetRatio(9/16, this)">9:16</button>
                         <button onclick="editSetRatio(NaN, this)" class="active">Freeform</button>
                     </div>
                     <div class="edit-cropper-wrap"><img id="edit-cropper-image" src=""></div>
-                    <div class="edit-focal">
+                    <div class="edit-focal" data-mutates="1">
                         <label style="font-size:0.7rem; color:#94a3b8; text-transform:uppercase; letter-spacing:0.05rem;">Focus point</label>
                         <div class="edit-focal-wrap" id="edit-focal-wrap">
                             <img id="edit-focal-img" src=""><span class="edit-focal-dot" id="edit-focal-dot"></span>
@@ -1248,14 +1248,14 @@
                         </div>
                         <div class="edit-field"><label>Tags</label><input id="edit-f-tags" type="text"></div>
                         <div class="edit-field"><label>Description</label><textarea id="edit-f-description_narrative"></textarea></div>
-                        <button class="secondary" id="edit-reenrich" data-ai-action="1" onclick="editReenrich()" style="color:#3b82f6;">✨ Re-enrich with AI <span style="color:#94a3b8; font-size:0.72rem;">(→ Review Queue)</span></button>
+                        <button class="secondary" id="edit-reenrich" data-ai-action="1" data-mutates="1" onclick="editReenrich()" style="color:#3b82f6;">✨ Re-enrich with AI <span style="color:#94a3b8; font-size:0.72rem;">(→ Review Queue)</span></button>
                     </div>
                     <!-- Personal photo (jargon-free) -->
                     <div id="edit-personal" style="display:none;">
                         <div class="edit-field"><label>Caption</label>
                             <div style="display:flex; gap:8px;">
                                 <input id="edit-p-caption" type="text" placeholder="Add a caption…">
-                                <button class="secondary" id="edit-suggest" data-ai-action="1" onclick="editSuggest()" style="white-space:nowrap;">✨</button>
+                                <button class="secondary" id="edit-suggest" data-ai-action="1" data-mutates="1" onclick="editSuggest()" style="white-space:nowrap;">✨</button>
                             </div>
                         </div>
                         <div class="edit-field"><label>When (optional)</label><input id="edit-p-date" type="text" placeholder="e.g. Summer 2026"></div>
@@ -1264,10 +1264,10 @@
                 </div>
             </div>
             <div class="edit-foot">
-                <button class="secondary" id="edit-danger" style="color:#ef4444;">Delete</button>
+                <button class="secondary" id="edit-danger" data-mutates="1" style="color:#ef4444;">Delete</button>
                 <div style="flex:1;"></div>
                 <button class="secondary" onclick="closeEdit()">Cancel</button>
-                <button class="primary" onclick="saveEdit()">Save</button>
+                <button class="primary" data-mutates="1" onclick="saveEdit()">Save</button>
             </div>
         </div>
     </div>

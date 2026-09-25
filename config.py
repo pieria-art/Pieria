@@ -96,6 +96,23 @@ RESTORE_DIR = Path(os.getenv("SD_RESTORE_DIR", "data/_restore"))
 # add extra LAN origins here only to drive the API cross-origin from another device.
 ALLOWED_ORIGINS = [o.strip() for o in os.getenv("SD_ALLOWED_ORIGINS", "").split(",") if o.strip()]
 
+# --- Public demo mode (demo.pieria.org) -----------------------------------------------------------
+# SD_DEMO_MODE=1 puts the app behind a default-DENY ASGI gate (core/demo.py) so an anonymous internet
+# visitor gets a read-only browse of pre-baked art — no auth exists (ADR-013/015), so this is the ONLY
+# thing standing between the public internet and every mutating route. Off (default) -> zero behavior
+# change; every other route in this file is untouched by demo mode.
+DEMO_MODE = os.getenv("SD_DEMO_MODE", "").strip() == "1"
+
+# Comma-separated pack ids the lifespan leader installs (if not already present) when DEMO_MODE is on,
+# via the existing on-demand registry installer — e.g. "masterpieces,impressionism". Empty = no boot
+# bootstrap (an operator seeded the demo box by hand).
+DEMO_PACKS = [p.strip() for p in os.getenv("SD_DEMO_PACKS", "").split(",") if p.strip()]
+
+# Optional: the gallery `/` plays when demo mode is on (sets the `default_playlist` setting at boot,
+# same key the Canvas already reads via /api/displays/{id}/preferred-playlist). Empty = leave whatever
+# the installed pack(s) chose as default.
+DEMO_DEFAULT_PLAYLIST = os.getenv("SD_DEMO_DEFAULT_PLAYLIST", "").strip()
+
 # Shared secret gating the appliance update bridge (/api/appliance/update — the highest-consequence
 # action: it can force a host git reset+rebuild or reboot). N6: fail CLOSED. The endpoint accepts EITHER
 # a same-origin browser request (the Origin allowlist check in app.py) OR a request carrying a matching

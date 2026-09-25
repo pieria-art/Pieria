@@ -166,6 +166,17 @@ body.app-shell { display: flex; height: 100vh; overflow: hidden; }
     .app-shell main { padding: 56px 16px 0; }
 }
 
+/* --- Public demo mode (SD_DEMO_MODE=1) — admin.js sets body.demo + builds #demo-banner. Whole nav
+   tabs (Settings/Devices/Publisher/Review, My Photos) are hidden directly in JS (initDemoMode); every
+   individual mutation control that survives in a browsable view (edit/delete/crop/reorder/install/
+   remove pack/"Add to"/rename/approve/upload/new-gallery/batch-enrich/museum-search) is marked
+   data-mutates="1" where it's created (admin.html for static markup, admin.js template strings for
+   grid-rendered cards) — this ONE rule is the actual hide, so a control the server-side gate denies
+   also visually disappears without a matching per-control JS hide to keep in sync. */
+body.demo [data-mutates] { display: none !important; }
+#demo-banner a { color: var(--accent-color); text-decoration: none; font-weight: 600; }
+#demo-banner a:hover { text-decoration: underline; }
+
 /* --- Device settings rows (admin -> Devices, ADR-119) ------------------------------------------
    A label / control+button row / hint stack, used for every setting on the appliance card. The row
    wraps rather than squeezing, so a long zone name and its Save button stay usable on a phone. */
