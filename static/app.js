@@ -552,8 +552,6 @@ async function fetchAndTransition(direction = 1, isSkipped = false) {
         if (placardTimeout) clearTimeout(placardTimeout);
         document.body.classList.remove('placard-visible');
 
-        updatePlacard(data.metadata);
-
         // Automatic Placard Flow
         const waitTime = globalConfig.placard_wait !== null ? globalConfig.placard_wait : (data.placard_wait !== undefined ? data.placard_wait : DEFAULT_SETTINGS.placard_wait);
         const showTime = globalConfig.placard_show !== null ? globalConfig.placard_show : (data.placard_show !== undefined ? data.placard_show : DEFAULT_SETTINGS.placard_show);
@@ -561,7 +559,12 @@ async function fetchAndTransition(direction = 1, isSkipped = false) {
         // The placard is only scheduled to show once the new image has actually loaded onto the canvas
         // (performCrossfade's onload, gated on `gen` below) — never on a stale/discarded load, so a
         // rapid burst of advances converges on the last one: matching image + matching placard.
-        performCrossfade(currentImageUrl, data.crop, currentFocal, gen, () => showPlacardFlow(waitTime, showTime));
+        // The placard TEXT is swapped here too, not before: the old placard takes 0.8 s to fade out and would
+        // otherwise show the new title over the old image for that whole fade.
+        performCrossfade(currentImageUrl, data.crop, currentFocal, gen, () => {
+            updatePlacard(data.metadata);
+            showPlacardFlow(waitTime, showTime);
+        });
 
     } catch (error) { console.error('[Client] Transition Error:', error.message); }
     return gen;
