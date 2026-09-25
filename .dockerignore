@@ -16,6 +16,9 @@ __pycache__/
 artwork.db
 data/
 Artwork/
+# Demo deploy state if anyone points its volumes inside the checkout (compose default is /opt/pieria/demo).
+deploy/demo/data/
+deploy/demo/Artwork/
 
 # Built art-packs + per-collection slices — huge distributables (R2/.img), never the dev image context.
 art-pack/

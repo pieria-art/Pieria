@@ -21,9 +21,11 @@ services:
       - SD_DEMO_PACKS=${SD_DEMO_PACKS:-masterpieces,impressionism}
       - SD_DEMO_DEFAULT_PLAYLIST=${SD_DEMO_DEFAULT_PLAYLIST:-}
     command: ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000", "--workers", "2"]
+    # Library + DB live OUTSIDE the checkout: the build context is the repo root, and .dockerignore's
+    # `data/`/`Artwork/` only match at the root — a nested ./data would be COPY'd into the image.
     volumes:
-      - ./Artwork:/app/Artwork
-      - ./data:/app/data
+      - ${DEMO_ARTWORK_DIR:-/opt/pieria/demo/Artwork}:/app/Artwork
+      - ${DEMO_DATA_DIR:-/opt/pieria/demo/data}:/app/data
       - /etc/localtime:/etc/localtime:ro
     restart: unless-stopped
 
