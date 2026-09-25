@@ -6,58 +6,27 @@
 
 > **Pieria** */pie-EER-ee-uh/* — the land at the foot of Mount Olympus where, in Greek myth, the Muses were born.
 
-**Pieria** is an open-source, AI-powered digital art curator that turns any TV, monitor, or e-ink
-panel into a high-end museum display — with autonomous artwork analysis, museum-grade placards, and
-instant mobile remote control.
+**Museum art on any screen you own.** Pieria turns a TV, monitor or e-ink panel into a museum wall:
+2,800+ curated public-domain masterpieces, a museum placard for every work, slow Ken Burns motion.
+Open source, self-hosted, no subscription, no account — and nothing a vendor can switch off.
+
+**[▶ Live demo](https://demo.pieria.org)** · **[⬇ Download 1.0](https://github.com/pieria-art/Pieria/releases/latest)** · **[Get started](#-get-started--two-front-doors)** · **[Hardware](docs/hardware-profile.md)**
 
 ![A Pieria display showing Leonardo da Vinci's The Last Supper with an auto-generated museum placard and a QR code linking to more detail](static/docs/display.png)
 
 > *A live display: full-bleed artwork, an auto-generated museum placard, and a QR code for details.*
 
-**Own your art wall.** No subscription, no ads, no cloud account, no vendor that can switch it off. The
-polished art frames — Meural, Depict, Canvia — are closed, subscription-locked, and several have
-**bricked their customers' hardware** when the company moved on. Pieria is the opposite: it runs
-on hardware you already own (or a $35 Pi), keeps working with no internet, and is yours to keep. Flash
-one image, set it up from your phone, and a curated public-domain museum gallery is on the wall in
-minutes — **or** run the curation brain on a server you control and point any screen at it.
+### Why Pieria
 
-## ✨ Features
-
-*   **🕵️ Museum Art Scouts:** Effortlessly search and pull high-res masterpieces directly from world-class APIs (The Met, Art Institute of Chicago, SMK, Cleveland, Rijksmuseum) straight into your discovery queue — plus **NASA** space photography and **Wikimedia Commons** (the broadest public-domain pool, filtered to PD works at display-grade ≥2000px). All keyless. Supports premium integrations for Harvard Art Museums, Smithsonian, and Europeana.
-*   **🧠 Vision RAG Curator:** Automatically generates museum-grade VRA Core metadata for all artworks. The system features a built-in multilingual translation pipeline that automatically converts foreign metadata (e.g., Dutch Open Data from the Rijksmuseum) into fluent English using Gemini's visual grounding.
-*   **🏛 VRA Core Database:** Built on the established Visual Resources Association schema, securely housing rich metadata alongside dynamic crop data and playlists. Supports Many-to-Many relationships for flexible artwork-to-playlist mapping and custom sequencing.
-*   **📱 WebSocket Remote:** A mobile-first, no-refresh PWA remote to switch playlists, change modes, and trigger placards instantly.
-*   **📺 Multi-Display Support:** Targeted routing using unique display IDs allows a single server to manage different artwork streams across multiple TVs.
-*   **📦 Flash-and-go appliance (can't be bricked):** A pre-baked Raspberry Pi image sets itself up from your phone over a captive-portal Wi-Fi hotspot — no SSH, no config files. If setup is interrupted or Wi-Fi is wrong, it re-opens its own hotspot instead of black-screening. **Self-updating** without a terminal: the admin page notifies you when a new release ships (with notes) and updates on one click — you decide when, nothing auto-installs. No cloud account, no subscription, nothing a vendor can switch off.
-*   **🎨 Advanced Rendering:** Choose between cinematic Ken Burns pans, static user-defined crops, or blurred matte effects. The Ken Burns pan is **focal-point-aware** — every artwork carries a focal point (AI-derived, or tap-to-set) so off-center subjects, like a portrait's face, stay framed instead of being slowly panned out of view.
-*   **📸 My Photos (Studio):** A phone-first studio to put your *own* photos on the wall — multi-upload (with camera capture), optional AI captions (in a warm photo-album voice, with an honest on-device-vs-cloud privacy note), and tap-to-set framing. **iPhone HEIC photos work as-is** (auto-converted on upload). Your photos are stored **locally on your server** — never uploaded to anyone's cloud, never indexed — and shown with a clean caption (zero museum jargon).
-*   **⚖️ Hierarchical Config:** Precise control via URL parameters that override playlist and global defaults.
-*   **🔒 Human-in-the-Loop:** Audit and refine AI-generated content before it goes live. Finalize a live find with **inline review** — its card expands in place into an editable placard that the AI fills in as you watch, Approve right there with no tab-hop — or batch it in the dedicated **Review Queue** (with **☑ Select → Approve & Publish** for many at once).
-*   **🔌 Bring Your Own Model:** Configure the AI engine from the GUI — Google Gemini, OpenAI, Anthropic, OpenRouter (one-click sign-in), or a local Ollama/LM Studio server — all through one OpenAI-compatible backend. No code edits, validated live before saving.
-*   **🖼️ Curated Art — own whole collections:** A collection-first library you *own*, not just browse. Under **🏛️ Curated Art**, add an official **pack** — Impressionism, the Dutch Golden Age, Ukiyo-e, Baroque, Ancient Egypt, Maps & Cartography, the Cosmos, and more — with one **Download**: the whole collection fetches once, verifies its Ed25519 signature, and plays fully **offline**; **Remove** reclaims the disk (works shared with another collection, and your own photos, are kept). **2,800+ public-domain works across 28 collections**, sourced from world-class museums, NASA, Wikimedia Commons, and the Smithsonian (CC0), every image display-grade, with ready-made placards and **pre-baked focal points** (so subjects stay framed). A **Curated Art** search box (title/artist **autocomplete**) finds a specific piece across your collections — already-owned works show an **Added ✓** tag — and, when it comes up short, escalates the same query to a **live museum search**. *Advanced:* regenerate/expand the underlying catalog with the offline builder (`python -m tools.build_catalog`) and **host it on any static URL** (GitHub raw, an object store, any web server), pointed at via **Settings → 📚 Catalog Source**.
-*   **🌐 Federated Collections (beta):** Subscribe to a publisher's collection by URL and browse it alongside the bundled catalog, tagged **Official**, **Verified**, or **Community**. Feeds are an open [Manifest v2](docs/manifest-v2.md) format — we index pointers (images stay on the publisher's server), safety-check and validate every feed, and verify Ed25519 signatures for the *Verified* tier. Add one from the **➕ Subscribe** tile under **🏛️ Curated Art** (manage feeds under **Settings → 🌐 Subscriptions**). **Publishing your own?** Author and sign a collection in the **Publisher Studio** (`/publisher`) or from the command line (`python -m tools.build_manifest`) — see [How to publish](docs/how-to-publish.md).
-*   **💾 Persistent & Safe:** SQLite-backed state with automatic migrations and Docker volume persistence.
-
-## 🧭 Deployment Models
-
-Pieria is a **curation brain** you run once (a small Docker app) + **any screen** you point at
-it. The same server supports any mix of these at once — it's a versatile setup, not a single appliance:
-
-| Model | What it is | Best for |
-|-------|-----------|----------|
-| **Run the brain anywhere** | Docker on a server / NAS / mini-PC / old laptop; point any screen at it. | The foundation for everything below. |
-| **All-in-one Pi** | Server **and** display on one Raspberry Pi. | The simplest single, self-contained art frame. |
-| **Thin-client Pi → server** | Cheap Pis display; one central server curates. | Scaling to many rooms / whole-home. |
-| **Any browser / Smart TV** | Point a TV browser (or Fully Kiosk) at the display URL. | Reusing a TV you already own — no extra hardware. |
-| **e-ink / "dumb" frame** | Low-power frames fetch a server-rendered, dithered image on a schedule (image API — see the e-ink section below). | Battery e-ink, DIY ESP32/Waveshare, TRMNL (BYOS). |
-| **Multi-display** | One server drives many screens via unique `display` IDs. | A docent in every room, each remote-controllable. |
-
-> **Which board, how much RAM, what it costs?** See the **[Hardware Profile](docs/hardware-profile.md)** — validated sizing by output type (TV, e-ink, satellite), soak-tested thermals, and current board prices.
-
-![A quick tour of the admin dashboard: Curated Art, the collections grid, the full library, and galleries](static/docs/admin-tour.gif)
-
-The full, illustrated guide (with screenshots and walkthroughs for each) lives in the in-app
-**Help & Docs** page at `http://localhost:8000/help`.
+- **It can't be bricked.** Digital art frames keep dying with the companies behind them — Depict and
+  Electric Objects went dark and took their customers' frames with them; Meural is winding down.
+  Pieria runs entirely on your hardware, keeps working with no internet, and updates only when you
+  click. Once your art is downloaded, nothing of ours needs to exist for it to keep working.
+- **Any screen you already own.** A TV or monitor on a Raspberry Pi, any smart-TV browser, or a colour
+  e-ink panel. One image to flash, set up from your phone — no SSH, no config files.
+- **Real museum art, properly presented.** Curated collections from the Met, Rijksmuseum, SMK,
+  Cleveland, the Smithsonian, NASA and Wikimedia Commons — every image display-grade, every work with
+  a placard, all public domain and yours to keep offline.
 
 ## 🚀 Get Started — two front doors
 
@@ -120,6 +89,44 @@ OpenRouter** for one-click setup), and click **Test & Save** — validated live,
 > Prefer files? You can still pre-seed a default Gemini key with a `.env` (`GEMINI_API_KEY=…`) in the
 > project root before launch; the in-app setting overrides it when set. (A *distributed* appliance image
 > never ships a key — each owner adds their own.)
+
+## ✨ Features
+
+*   **🕵️ Museum Art Scouts:** Effortlessly search and pull high-res masterpieces directly from world-class APIs (The Met, Art Institute of Chicago, SMK, Cleveland, Rijksmuseum) straight into your discovery queue — plus **NASA** space photography and **Wikimedia Commons** (the broadest public-domain pool, filtered to PD works at display-grade ≥2000px). All keyless. Supports premium integrations for Harvard Art Museums, Smithsonian, and Europeana.
+*   **🧠 Vision RAG Curator:** Automatically generates museum-grade VRA Core metadata for all artworks. The system features a built-in multilingual translation pipeline that automatically converts foreign metadata (e.g., Dutch Open Data from the Rijksmuseum) into fluent English using Gemini's visual grounding.
+*   **🏛 VRA Core Database:** Built on the established Visual Resources Association schema, securely housing rich metadata alongside dynamic crop data and playlists. Supports Many-to-Many relationships for flexible artwork-to-playlist mapping and custom sequencing.
+*   **📱 WebSocket Remote:** A mobile-first, no-refresh PWA remote to switch playlists, change modes, and trigger placards instantly.
+*   **📺 Multi-Display Support:** Targeted routing using unique display IDs allows a single server to manage different artwork streams across multiple TVs.
+*   **📦 Flash-and-go appliance (can't be bricked):** A pre-baked Raspberry Pi image sets itself up from your phone over a captive-portal Wi-Fi hotspot — no SSH, no config files. If setup is interrupted or Wi-Fi is wrong, it re-opens its own hotspot instead of black-screening. **Self-updating** without a terminal: the admin page notifies you when a new release ships (with notes) and updates on one click — you decide when, nothing auto-installs. No cloud account, no subscription, nothing a vendor can switch off.
+*   **🎨 Advanced Rendering:** Choose between cinematic Ken Burns pans, static user-defined crops, or blurred matte effects. The Ken Burns pan is **focal-point-aware** — every artwork carries a focal point (AI-derived, or tap-to-set) so off-center subjects, like a portrait's face, stay framed instead of being slowly panned out of view.
+*   **📸 My Photos (Studio):** A phone-first studio to put your *own* photos on the wall — multi-upload (with camera capture), optional AI captions (in a warm photo-album voice, with an honest on-device-vs-cloud privacy note), and tap-to-set framing. **iPhone HEIC photos work as-is** (auto-converted on upload). Your photos are stored **locally on your server** — never uploaded to anyone's cloud, never indexed — and shown with a clean caption (zero museum jargon).
+*   **⚖️ Hierarchical Config:** Precise control via URL parameters that override playlist and global defaults.
+*   **🔒 Human-in-the-Loop:** Audit and refine AI-generated content before it goes live. Finalize a live find with **inline review** — its card expands in place into an editable placard that the AI fills in as you watch, Approve right there with no tab-hop — or batch it in the dedicated **Review Queue** (with **☑ Select → Approve & Publish** for many at once).
+*   **🔌 Bring Your Own Model:** Configure the AI engine from the GUI — Google Gemini, OpenAI, Anthropic, OpenRouter (one-click sign-in), or a local Ollama/LM Studio server — all through one OpenAI-compatible backend. No code edits, validated live before saving.
+*   **🖼️ Curated Art — own whole collections:** A collection-first library you *own*, not just browse. Under **🏛️ Curated Art**, add an official **pack** — Impressionism, the Dutch Golden Age, Ukiyo-e, Baroque, Ancient Egypt, Maps & Cartography, the Cosmos, and more — with one **Download**: the whole collection fetches once, verifies its Ed25519 signature, and plays fully **offline**; **Remove** reclaims the disk (works shared with another collection, and your own photos, are kept). **2,800+ public-domain works across 28 collections**, sourced from world-class museums, NASA, Wikimedia Commons, and the Smithsonian (CC0), every image display-grade, with ready-made placards and **pre-baked focal points** (so subjects stay framed). A **Curated Art** search box (title/artist **autocomplete**) finds a specific piece across your collections — already-owned works show an **Added ✓** tag — and, when it comes up short, escalates the same query to a **live museum search**. *Advanced:* regenerate/expand the underlying catalog with the offline builder (`python -m tools.build_catalog`) and **host it on any static URL** (GitHub raw, an object store, any web server), pointed at via **Settings → 📚 Catalog Source**.
+*   **🌐 Federated Collections (beta):** Subscribe to a publisher's collection by URL and browse it alongside the bundled catalog, tagged **Official**, **Verified**, or **Community**. Feeds are an open [Manifest v2](docs/manifest-v2.md) format — we index pointers (images stay on the publisher's server), safety-check and validate every feed, and verify Ed25519 signatures for the *Verified* tier. Add one from the **➕ Subscribe** tile under **🏛️ Curated Art** (manage feeds under **Settings → 🌐 Subscriptions**). **Publishing your own?** Author and sign a collection in the **Publisher Studio** (`/publisher`) or from the command line (`python -m tools.build_manifest`) — see [How to publish](docs/how-to-publish.md).
+*   **💾 Persistent & Safe:** SQLite-backed state with automatic migrations and Docker volume persistence.
+
+## 🧭 Deployment Models
+
+Pieria is a **curation brain** you run once (a small Docker app) + **any screen** you point at
+it. The same server supports any mix of these at once — it's a versatile setup, not a single appliance:
+
+| Model | What it is | Best for |
+|-------|-----------|----------|
+| **Run the brain anywhere** | Docker on a server / NAS / mini-PC / old laptop; point any screen at it. | The foundation for everything below. |
+| **All-in-one Pi** | Server **and** display on one Raspberry Pi. | The simplest single, self-contained art frame. |
+| **Thin-client Pi → server** | Cheap Pis display; one central server curates. | Scaling to many rooms / whole-home. |
+| **Any browser / Smart TV** | Point a TV browser (or Fully Kiosk) at the display URL. | Reusing a TV you already own — no extra hardware. |
+| **e-ink / "dumb" frame** | Low-power frames fetch a server-rendered, dithered image on a schedule (image API — see the e-ink section below). | Battery e-ink, DIY ESP32/Waveshare, TRMNL (BYOS). |
+| **Multi-display** | One server drives many screens via unique `display` IDs. | A docent in every room, each remote-controllable. |
+
+> **Which board, how much RAM, what it costs?** See the **[Hardware Profile](docs/hardware-profile.md)** — validated sizing by output type (TV, e-ink, satellite), soak-tested thermals, and current board prices.
+
+![A quick tour of the admin dashboard: Curated Art, the collections grid, the full library, and galleries](static/docs/admin-tour.gif)
+
+The full, illustrated guide (with screenshots and walkthroughs for each) lives in the in-app
+**Help & Docs** page at `http://localhost:8000/help`.
 
 ## 🖼️ e-ink & BYOS frames (image API)
 
