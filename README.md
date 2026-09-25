@@ -12,7 +12,7 @@ Open source, self-hosted, no subscription, no account — and nothing a vendor c
 
 **[▶ Live demo](https://demo.pieria.org)** · **[⬇ Download 1.0](https://github.com/pieria-art/Pieria/releases/latest)** · **[Get started](#-get-started--two-front-doors)** · **[Hardware](docs/hardware-profile.md)**
 
-![A Pieria display showing Leonardo da Vinci's The Last Supper with an auto-generated museum placard and a QR code linking to more detail](static/docs/display.png)
+![A Pieria display showing Vincent van Gogh's The Starry Night with a museum placard and a QR code linking to more detail](static/docs/hero-starry-night.jpg)
 
 > *A live display: full-bleed artwork, an auto-generated museum placard, and a QR code for details.*
 
