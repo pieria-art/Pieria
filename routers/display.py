@@ -78,7 +78,11 @@ async def get_preferred_playlist(display_id: str, db: Session = Depends(get_db))
     last-played for THIS display → the global `default_playlist` fallback → null (Canvas then picks the
     first non-empty). Only ever returns a playlist that still exists and has art."""
     display_id = normalize_display_id(display_id)
-    last = db.query(SettingsModel).filter(SettingsModel.setting_key == f"last_playlist:{display_id}").first()
+    # In demo mode, skip the "last played" lookup entirely — every display shares the "demo" id, so
+    # this would otherwise let one visitor's gallery switch win for everyone (core/playback.py never
+    # writes it in demo mode either; this is the read-side half of that same guarantee).
+    last = None if config.DEMO_MODE else db.query(SettingsModel).filter(
+        SettingsModel.setting_key == f"last_playlist:{display_id}").first()
     default = db.query(SettingsModel).filter(SettingsModel.setting_key == "default_playlist").first()
     name = (_playlist_name_if_playable(db, last.setting_value if last else None)
             or _playlist_name_if_playable(db, default.setting_value if default else None))

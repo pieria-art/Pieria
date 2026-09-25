@@ -7,10 +7,12 @@ the registry URL is public (ADR-038 §5). The baked Core is untouched; a pull on
 """
 import asyncio
 import logging
+import time
 
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
+import config
 from config import PACK_REGISTRY_URL
 from core import lifespan as lifespan_module
 from core import pack_fetch
@@ -24,6 +26,12 @@ logger = logging.getLogger("artwork-display-api.packs")
 _JOBS: dict[str, dict] = {}
 _FIELDS = ("id", "title", "category", "item_count", "bytes", "core", "cover", "min_tier")
 
+# Demo mode only (routers/packs.py's own concern, not core/demo.py's gate): GET /api/packs is on the
+# allowlist and gets hit by every visitor's browse-card load, so without a cache each one fetches the
+# registry fresh. A single-slot TTL cache is enough — a demo box has one registry URL in practice.
+_DEMO_CACHE_TTL_S = 600
+_demo_cache: dict = {"body": None, "expires": 0.0}
+
 
 def _registry_url(db: Session) -> str:
     row = db.query(SettingsModel).filter(SettingsModel.setting_key == "pack_registry_url").first()
@@ -33,7 +41,14 @@ def _registry_url(db: Session) -> str:
 @router.get("/api/packs")
 async def list_packs(db: Session = Depends(get_db)):
     """The registry annotated with per-collection install state (for the browse card). Degrades to an
-    `error` field + empty list when the registry can't be reached, so the card shows a friendly message."""
+    `error` field + empty list when the registry can't be reached, so the card shows a friendly message.
+
+    Demo mode: served from a 10-minute TTL cache (this route is on the demo allowlist, so every
+    visitor's browse-card load would otherwise re-fetch the registry), and a fetch failure never
+    surfaces the raw exception text to an anonymous caller."""
+    if config.DEMO_MODE and _demo_cache["body"] is not None and time.monotonic() < _demo_cache["expires"]:
+        return _demo_cache["body"]
+
     url = _registry_url(db)
     # cid -> trust for installed packs; every registry pack is Official (this is the signed pieria registry).
     installed = {s.url.split("pack:", 1)[1]: s.trust
@@ -42,6 +57,9 @@ async def list_packs(db: Session = Depends(get_db)):
     try:
         reg = await pack_fetch.fetch_registry(client, url)
     except Exception as e:  # noqa: BLE001 — surface an unreachable/invalid registry to the UI, don't 500
+        if config.DEMO_MODE:
+            logger.warning(f"[Demo] registry unreachable: {type(e).__name__}: {e}")
+            return {"registry_url": url, "error": "registry unavailable", "core": [], "collections": []}
         return {"registry_url": url, "error": f"{type(e).__name__}: {e}", "core": [], "collections": []}
     finally:
         await client.aclose()
@@ -56,7 +74,11 @@ async def list_packs(db: Session = Depends(get_db)):
         row["trust"] = installed.get(cid) or "official"
         row["job"] = _JOBS.get(cid, {}).get("state")
         cols.append(row)
-    return {"registry_url": url, "core": reg.get("core", []), "collections": cols}
+    body = {"registry_url": url, "core": reg.get("core", []), "collections": cols}
+    if config.DEMO_MODE:
+        _demo_cache["body"] = body
+        _demo_cache["expires"] = time.monotonic() + _DEMO_CACHE_TTL_S
+    return body
 
 
 async def _install_job(collection_id: str, url: str) -> None:

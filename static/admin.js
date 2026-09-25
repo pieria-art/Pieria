@@ -16,6 +16,7 @@ let currentView = 'playlists';
 let pollInterval = null;
 let sortableInstance = null;
 let currentSessionId = null;
+let isDemoMode = false;   // set by initDemoMode() below — module scope so refreshData()'s 5s poll can read it
 
 // Serialization Queue for API Actions
 let actionQueue = [];
@@ -50,16 +51,22 @@ async function init() {
         initDevicesCapability(); // un-hide the Devices tab only on an all-in-one appliance
         initPublisherCapability(); // un-hide the Publisher tab only once an identity exists
     }
-    loadSubscriptions();  // federated collections panel (Settings management list)
-    await loadPremiumSettings();
-    await handleOAuthCallback();   // catch an OpenRouter OAuth redirect (?code=…)
-    await loadAiSettings();
-    loadFrameSettings();   // non-blocking: populate the Frame TV panel
-    loadCatalogSource();   // non-blocking: populate the Catalog Source panel
-    loadDefaultPlaylist(); // non-blocking: populate the Default Playlist panel
-    loadNightSchedule();   // non-blocking: populate the Night & Quiet Hours panel
-    loadCatalogCount();    // non-blocking: show the Museum Art count without opening the view
-    loadPhotosCount();     // non-blocking: show the My Photos count
+    if (!isDemo) {
+        // Every one of these reads a /api/settings/*, /api/subscriptions, or /api/studio/* route —
+        // all denied by the demo gate (core/demo.py), and their panels are hidden anyway (Settings/
+        // Publisher/My Photos nav is gone). Skip them entirely in demo rather than firing 403s.
+        loadSubscriptions();  // federated collections panel (Settings management list)
+        await loadPremiumSettings();
+        await handleOAuthCallback();   // catch an OpenRouter OAuth redirect (?code=…)
+        await loadAiSettings();
+        loadFrameSettings();   // non-blocking: populate the Frame TV panel
+        loadCatalogSource();   // non-blocking: populate the Catalog Source panel
+        loadDefaultPlaylist(); // non-blocking: populate the Default Playlist panel
+        loadNightSchedule();   // non-blocking: populate the Night & Quiet Hours panel
+        loadPhotosCount();     // non-blocking: show the My Photos count
+    }
+    loadCatalogCount();    // non-blocking: show the Museum Art count without opening the view — /api/packs
+                            // is on the demo allowlist, so this one's fine to keep in demo mode.
 
     // Restore the view the user was last on (survives a browser refresh).
     let savedView = (() => { try { return localStorage.getItem('sd_admin_view'); } catch (e) { return null; } })();
@@ -146,13 +153,12 @@ function startPolling() {
 }
 
 async function refreshData() {
-    // We fetch in parallel for efficiency
-    await Promise.all([
-        fetchPlaylists(),
-        fetchLibrary(),
-        fetchReviewQueue(),
-        fetchDiscoveryQueue()
-    ]);
+    // We fetch in parallel for efficiency. Review/discovery are /artworks/pending + /api/discover/queue
+    // — both denied by the demo gate (core/demo.py) and their view is hidden — so skip them in demo
+    // rather than firing a 403 on every 5s poll tick forever.
+    const jobs = [fetchPlaylists(), fetchLibrary()];
+    if (!isDemoMode) jobs.push(fetchReviewQueue(), fetchDiscoveryQueue());
+    await Promise.all(jobs);
 }
 
 function switchView(view) {
@@ -300,15 +306,18 @@ async function initDemoMode() {
         demo = await fetch(`${API_BASE}/api/demo`).then(r => r.json());
     } catch (e) { return false; }
     if (!demo || !demo.demo) return false;
+    isDemoMode = true;
 
+    // body.demo is the CSS hook for every individual mutation control (see app.css's
+    // `body.demo [data-mutates]` rule) — those are marked at creation time, in admin.html for static
+    // markup and in the grid-template functions below for dynamically rendered cards.
     document.body.classList.add('demo');
 
-    // Whole views that are nothing but mutation surfaces in demo mode.
-    const hideIds = ['nav-review', 'nav-settings', 'nav-devices', 'nav-publisher',
-                      'batch-enrich-btn'];
+    // Whole nav tabs that are nothing but mutation surfaces (not just individual controls within an
+    // otherwise-browsable view) — hidden directly since there's no single element to attribute-mark.
+    const hideIds = ['nav-review', 'nav-settings', 'nav-devices', 'nav-publisher'];
     hideIds.forEach(id => { const el = document.getElementById(id); if (el) el.style.display = 'none'; });
-    document.querySelectorAll('a[href="/studio"], .new-playlist, .museum-bar, .upload-zone')
-        .forEach(el => { el.style.display = 'none'; });
+    document.querySelectorAll('a[href="/studio"]').forEach(el => { el.style.display = 'none'; });
 
     // Top banner — built with createElement/textContent (never innerHTML) since repo_url/releases_url,
     // though server-controlled constants here, still shouldn't set an unsanitized href via innerHTML.
@@ -951,13 +960,13 @@ function _collectionTile(c, coverBase) {
     const escTitle = _esc((c.title || '').replace(/'/g, ''));
     let action, dim = '', galleryLink = '';
     if (c.installed) {
-        action = `<button class="secondary" onclick="uninstallPack('${_esc(c.id)}', '${escTitle}', this)" style="border-color:#ef4444; color:#ef4444;">Remove</button>`;
+        action = `<button class="secondary" data-mutates="1" onclick="uninstallPack('${_esc(c.id)}', '${escTitle}', this)" style="border-color:#ef4444; color:#ef4444;">Remove</button>`;
         // Cross-link: an owned Collection seeded a Gallery of the same name — jump to it.
         galleryLink = `<br><small><a href="#" onclick="viewGallery('${escTitle}'); return false;" style="color:var(--accent-color); text-decoration:none;">🖼️ In your Galleries ↗</a></small>`;
     } else if (c.job === 'in_progress') {
         action = `<button class="secondary" disabled>Downloading…</button>`; dim = 'opacity:0.55;';
     } else {
-        action = `<button class="primary" onclick="installPack('${_esc(c.id)}', '${escTitle}', this)">Download</button>`; dim = 'opacity:0.72;';
+        action = `<button class="primary" data-mutates="1" onclick="installPack('${_esc(c.id)}', '${escTitle}', this)">Download</button>`; dim = 'opacity:0.72;';
     }
     const img = cover
         ? `<img loading="lazy" src="${cover}" alt="${_esc(c.title)}" style="background:#0f172a; ${dim}" onerror="this.style.visibility='hidden'">`
@@ -1608,7 +1617,7 @@ function artworkCardHTML(art, view) {
                     <strong>${_esc(art.title || art.filename)}</strong> ${_resBadge(art.resolution_tier)}<br>
                     <small>${_esc(cardSubtitle(art))}</small>${art.is_seed ? '<br><span style="color: #10b981; font-weight: bold; font-size: 0.75rem;">🌱 Built-In</span>' : ''}
                 </div>
-                <div class="actions" style="grid-template-columns: 1fr auto;">
+                <div class="actions" data-mutates="1" style="grid-template-columns: 1fr auto;">
                     <button onclick="openEdit(${art.id}, '${view}')">Edit</button>
                     ${removeBtn}
                 </div>`;
@@ -1953,14 +1962,14 @@ function renderSidebar() {
         li.innerHTML = `
             <div style="display:flex; justify-content:space-between; align-items:center; gap:6px;">
                 <strong>${_esc(p.name)}</strong>
-                <span style="display:flex; gap:8px; flex-shrink:0;">
+                <span data-mutates="1" style="display:flex; gap:8px; flex-shrink:0;">
                     <button class="pl-rename" data-id="${p.id}" title="Rename gallery" aria-label="Rename gallery" style="background:none; border:none; color:#94a3b8; cursor:pointer;">✎</button>
                     <button class="pl-delete" data-id="${p.id}" title="Delete gallery" aria-label="Delete gallery" style="background:none; border:none; color:#ef4444; cursor:pointer;">×</button>
                 </span>
             </div>
             <div style="font-size:0.75rem; color:#94a3b8; margin-top:5px;">${p.artworks?.length || 0} images</div>
-            ${p.source_collection ? `<div style="font-size:0.72rem; color:#64748b; margin-top:3px;">🏛️ from your <a href="#" onclick="event.stopPropagation(); switchView('museum'); return false;" style="color:#94a3b8; text-decoration:none;"><strong>${_esc(p.source_collection)}</strong></a> Collection${p.collection_modified ? ` · <span style="color:#f59e0b;">edited</span>` : ''}${p.collection_missing ? ` · <a href="#" onclick="event.stopPropagation(); restoreGallery(${p.id}); return false;" title="Re-add ${p.collection_missing} Collection work(s) you removed" style="color:var(--accent-color); text-decoration:none;">↻ Restore ${p.collection_missing}</a>` : ''}</div>` : ''}
-            <div class="playlist-meta" onclick="event.stopPropagation()" style="display: grid; grid-template-columns: 1fr 1fr; gap: 5px; margin-top: 10px;">
+            ${p.source_collection ? `<div style="font-size:0.72rem; color:#64748b; margin-top:3px;">🏛️ from your <a href="#" onclick="event.stopPropagation(); switchView('museum'); return false;" style="color:#94a3b8; text-decoration:none;"><strong>${_esc(p.source_collection)}</strong></a> Collection${p.collection_modified ? ` · <span style="color:#f59e0b;">edited</span>` : ''}${p.collection_missing ? ` · <a href="#" data-mutates="1" onclick="event.stopPropagation(); restoreGallery(${p.id}); return false;" title="Re-add ${p.collection_missing} Collection work(s) you removed" style="color:var(--accent-color); text-decoration:none;">↻ Restore ${p.collection_missing}</a>` : ''}</div>` : ''}
+            <div class="playlist-meta" data-mutates="1" onclick="event.stopPropagation()" style="display: grid; grid-template-columns: 1fr 1fr; gap: 5px; margin-top: 10px;">
                 <div style="grid-column: span 2; margin-bottom: 5px;">
                     <label style="display:block;">Default Mode:</label>
                     <select onchange="updatePlaylistSetting(${p.id}, {default_mode: this.value})" style="width:100%; background:#0f172a; color:white; border:1px solid var(--border-color); border-radius:4px; font-size:0.7rem;">
@@ -2144,8 +2153,9 @@ async function updatePlaylistSetting(id, settings) {
 }
 
 function setupSortable() {
+    if (sortableInstance) { sortableInstance.destroy(); sortableInstance = null; }
+    if (isDemoMode) return;   // POST /playlists/{id}/reorder is denied in demo — don't wire up drag at all
     const grid = document.getElementById('artwork-grid');
-    if (sortableInstance) sortableInstance.destroy();
     sortableInstance = new Sortable(grid, {
         animation: 150, ghostClass: 'sortable-ghost',
         onEnd: async () => {

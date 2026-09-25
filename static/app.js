@@ -103,6 +103,18 @@ let socket = null;
 let activeArtworkId = null;
 let activeImageStartTime = 0;
 
+// Public demo mode (SD_DEMO_MODE=1, core/demo.py) — checked once at boot, before the WS connects,
+// since the gate now refuses /ws/{id} outright in demo (a public visitor's socket cost a SQLite
+// commit per heartbeat frame plus a 1 Hz command poller — too cheap to grief at scale). Reused by
+// initDemoBadge() below so it doesn't re-fetch.
+let isDemoMode = false;
+async function fetchDemoStatus() {
+    try {
+        const demo = await fetch(`${API_BASE}/api/demo`).then(r => r.json());
+        isDemoMode = !!(demo && demo.demo);
+    } catch (e) { isDemoMode = false; }
+}
+
 async function init() {
 
     const requestedMode = urlParams.get('mode');
@@ -115,7 +127,8 @@ async function init() {
     initModeToggles();
     initNavButtons();
     initCustomDropdown();
-    connectWS();
+    await fetchDemoStatus();
+    if (!isDemoMode) connectWS();   // demo mode: no WS at all — see fetchDemoStatus above
 
     showManageHint();
     initDemoBadge();   // no-op unless SD_DEMO_MODE=1 (core/demo.py) — corner badge, never over the placard
@@ -175,12 +188,8 @@ function showManageHint() {
 // A small top-right corner badge (never over the left-hand placard or the bottom-center controls) —
 // fades after ~8s of no activity, reappears on mouse-move/tap. Built entirely via createElement/
 // textContent (no innerHTML), matching admin.js's demo banner.
-async function initDemoBadge() {
-    let demo;
-    try {
-        demo = await fetch(`${API_BASE}/api/demo`).then(r => r.json());
-    } catch (e) { return; }
-    if (!demo || !demo.demo) return;
+function initDemoBadge() {
+    if (!isDemoMode) return;
 
     const badge = document.createElement('div');
     badge.id = 'demo-badge';
@@ -199,9 +208,12 @@ async function initDemoBadge() {
     document.body.appendChild(badge);
 
     let fadeTimer;
-    const fadeOut = () => { badge.style.opacity = '0'; };
+    // pointer-events:none while faded so the invisible badge can't eat a click meant for the
+    // canvas/placard underneath it.
+    const fadeOut = () => { badge.style.opacity = '0'; badge.style.pointerEvents = 'none'; };
     const reveal = () => {
         badge.style.opacity = '1';
+        badge.style.pointerEvents = 'auto';
         clearTimeout(fadeTimer);
         fadeTimer = setTimeout(fadeOut, 8000);
     };

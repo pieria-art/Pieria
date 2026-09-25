@@ -17,6 +17,7 @@ from fastapi import HTTPException
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 
+import config
 import frame_push
 from config import LIBRARY_DIR
 from database import SessionLocal
@@ -71,8 +72,11 @@ async def select_next_image(
     if not p: raise HTTPException(404)
 
     # Remember the active playlist for this display so a reboot resumes it (not the first playlist).
-    # Guarded so it only writes on change; rides the session-state commit below.
-    if display_id and display_id != "default":
+    # Guarded so it only writes on change; rides the session-state commit below. Skipped in demo mode:
+    # every display collapses to the shared "demo" id (normalize_display_id), so writing this would
+    # let one visitor's gallery switch silently override SD_DEMO_DEFAULT_PLAYLIST for every other
+    # visitor — the default must keep winning for everyone, always.
+    if display_id and display_id != "default" and not config.DEMO_MODE:
         _lp_key = f"last_playlist:{display_id}"
         _lp_row = db.query(SettingsModel).filter(SettingsModel.setting_key == _lp_key).first()
         if _lp_row is None:

@@ -105,10 +105,6 @@ DEMO_PACKS = [p.strip() for p in os.getenv("SD_DEMO_PACKS", "").split(",") if p.
 # the installed pack(s) chose as default.
 DEMO_DEFAULT_PLAYLIST = os.getenv("SD_DEMO_DEFAULT_PLAYLIST", "").strip()
 
-# Concurrent demo WebSocket cap (core/demo.py) — a public box has no way to bound how many anonymous
-# tabs open /ws/{display_id}, so this is a blunt ceiling; env-overridable for a beefier VPS.
-DEMO_WS_MAX = int(os.getenv("SD_DEMO_WS_MAX", "200"))
-
 # Shared secret gating the appliance update bridge (/api/appliance/update — the highest-consequence
 # action: it can force a host git reset+rebuild or reboot). N6: fail CLOSED. The endpoint accepts EITHER
 # a same-origin browser request (the Origin allowlist check in app.py) OR a request carrying a matching

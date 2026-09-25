@@ -96,6 +96,45 @@ def test_list_packs_registry_unreachable_degrades(client, monkeypatch):
     assert d["collections"] == [] and "dns fail" in d["error"]
 
 
+def test_list_packs_demo_mode_masks_raw_error(client, monkeypatch):
+    """A reviewer flagged the raw exception text as too much detail for an anonymous demo caller."""
+    import config
+    monkeypatch.setattr(config, "DEMO_MODE", True)
+    packs_router._demo_cache["body"] = None  # a prior test's cached body must not short-circuit this one
+    packs_router._demo_cache["expires"] = 0.0
+
+    async def boom(_c, _u):
+        raise RuntimeError("some internal detail")
+    monkeypatch.setattr(pack_fetch, "fetch_registry", boom)
+    d = client.get("/api/packs").json()
+    assert d["error"] == "registry unavailable"
+    assert "some internal detail" not in d["error"]
+
+
+def test_list_packs_demo_mode_caches_across_calls(client, monkeypatch):
+    """GET /api/packs is on the demo allowlist and hit by every visitor's browse-card load; demo mode
+    must serve a 10-minute TTL cache rather than fetching the registry on every request."""
+    import config
+    monkeypatch.setattr(config, "DEMO_MODE", True)
+    packs_router._demo_cache["body"] = None
+    packs_router._demo_cache["expires"] = 0.0
+
+    calls = []
+
+    async def fake_fetch(_c, _u):
+        calls.append(1)
+        return _fake_registry()
+    monkeypatch.setattr(pack_fetch, "fetch_registry", fake_fetch)
+
+    first = client.get("/api/packs").json()
+    second = client.get("/api/packs").json()
+    assert len(calls) == 1  # second call served from cache, no re-fetch
+    assert first == second
+
+    packs_router._demo_cache["body"] = None
+    packs_router._demo_cache["expires"] = 0.0
+
+
 def test_install_endpoint_starts_and_dedups(client, db, monkeypatch):
     async def fake_install(_db, _client, _url, _cid):
         return {"ok": True, "trust": "verified", "installed": True}

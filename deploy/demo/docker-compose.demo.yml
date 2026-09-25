@@ -9,6 +9,8 @@
 # all). core/demo.py's default-DENY gate (SD_DEMO_MODE=1) is what actually makes this safe to expose;
 # this file just wires the two containers together. No secrets live here — TUNNEL_TOKEN comes from an
 # env file already on the server, outside the checkout (see demo.env.example).
+#
+# The cloudflared service's env_file uses the long form (path/required) — needs Compose >= 2.24.
 services:
   app:
     build: ../..
@@ -26,7 +28,9 @@ services:
     restart: unless-stopped
 
   cloudflared:
-    image: cloudflare/cloudflared:latest
+    # Pinned to a real current release (verified via `gh api repos/cloudflare/cloudflared/releases/latest`
+    # at write-time, 2026-09-24) rather than :latest — bump deliberately, don't float.
+    image: cloudflare/cloudflared:2026.9.3
     container_name: pieria-demo-tunnel
     command: tunnel run
     env_file:

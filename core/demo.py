@@ -13,7 +13,6 @@ Everything here is a no-op when `config.DEMO_MODE` is False; `config` is read fr
 imported by value) so tests can flip it per-test without an app restart.
 """
 
-import asyncio
 import json
 import logging
 import re
@@ -64,8 +63,6 @@ ALLOWED_ROUTES: tuple[tuple[frozenset, re.Pattern], ...] = (
 # so e.g. "/api/catalog/search" never falls through to the "/api/catalog/{collection_id}" pattern.
 _DENY_OVERRIDE = frozenset({"/api/catalog/search", "/api/catalog/suggest"})
 
-_WS_ALLOWED = _p(r"/ws/", _ID)
-
 _DEMO_DENIED_BODY = json.dumps({
     "detail": "Disabled in the Pieria demo — install your own: https://github.com/pieria-art/Pieria"
 }).encode()
@@ -115,7 +112,31 @@ def _is_static_asset(path: str) -> bool:
     name = path[1:].split("/", 1)[0]
     if "/" not in path[1:]:
         return name in _STATIC_FILES
-    return name in _STATIC_DIRS
+
+    if name not in _STATIC_DIRS:
+        return False
+    # The top-level-name check alone isn't enough: a REAL app route can share a path prefix with an
+    # allowed static directory without being one (e.g. FastAPI's own GET /docs/oauth2-redirect sits
+    # under the allowed "docs" images directory but is a live route, not a file on disk) — found by a
+    # reviewer via the sweep test. Require the target to actually be a file under STATIC_DIR: resolves
+    # symlinks too, so this also backstops _has_dotdot_segment against anything sneakier than a literal
+    # '..' (a symlink pointing outside STATIC_DIR, say) rather than trusting containment alone.
+    from config import STATIC_DIR
+    try:
+        candidate = (STATIC_DIR / path.lstrip("/")).resolve()
+        candidate.relative_to(STATIC_DIR.resolve())
+    except (ValueError, OSError):
+        return False
+    return candidate.is_file()
+
+
+def _has_dotdot_segment(path: str) -> bool:
+    """True if any '/'-separated segment is '.' or '..'. `_is_static_asset` above only looks at the
+    FIRST path segment (e.g. "catalog" in "/catalog/whatever") and trusts the rest — so without this
+    check, "/catalog/../studio.html" would pass (allowed top dir "catalog") while actually resolving,
+    once StaticFiles serves it, to the denied static/studio.html. Reject outright before any allow
+    check runs; no legitimate request from this app ever contains a dot segment."""
+    return any(seg in (".", "..") for seg in path.split("/"))
 
 
 # --- Content bootstrap (SD_DEMO_PACKS) ------------------------------------------------------------
@@ -158,11 +179,6 @@ async def install_demo_packs(pack_ids: list[str], default_playlist: str = "") ->
         db.close()
 
 
-# --- WebSocket concurrency cap ---------------------------------------------------------------------
-_ws_connections = 0
-_ws_lock = asyncio.Lock()
-
-
 class DemoModeMiddleware:
     """Pure ASGI middleware — default-DENY gate for demo mode, sitting below routing (see app.py's
     UploadBodyCapMiddleware for the same raw-ASGI pattern). Checked fresh per request; a complete
@@ -172,42 +188,47 @@ class DemoModeMiddleware:
         self.app = app
 
     async def __call__(self, scope, receive, send):
-        import config
-        if not config.DEMO_MODE or scope["type"] not in ("http", "websocket"):
+        scope_type = scope.get("type")
+        if scope_type == "lifespan":
+            # Always passes through, demo or not — this is app startup/shutdown, not a client request.
             await self.app(scope, receive, send)
             return
 
-        path = scope.get("path", "")
+        import config
+        if not config.DEMO_MODE:
+            await self.app(scope, receive, send)
+            return
 
-        if scope["type"] == "websocket":
-            if not _WS_ALLOWED.match(path):
-                await send({"type": "websocket.close", "code": 1008})
-                return
-            await self._call_ws_capped(scope, receive, send)
+        if scope_type == "websocket":
+            # No WebSocket surface in demo mode, full stop — not even /ws/{id}. A public visitor's
+            # socket cost a SQLite commit per {"action":"heartbeat"} frame plus its own 1 Hz
+            # command-poller task server-side; too cheap to grief at scale. The display doesn't need
+            # it either — static/app.js's rotation runs off /next-image on a client-side timer, never
+            # the socket (only remote-control push + liveness go over WS). Close before accept.
+            await send({"type": "websocket.close", "code": 1008})
+            return
+
+        if scope_type != "http":
+            # Unknown/unexpected ASGI scope type — refuse to bridge it through rather than assume it's
+            # safe just because it's neither http nor websocket.
             return
 
         method = scope.get("method", "GET")
+        path = scope.get("path", "")
+        if _has_dotdot_segment(path):
+            await self._deny(send)
+            return
         if _is_allowed_http(method, path) or (method in _GET and _is_static_asset(path)):
             await self.app(scope, receive, send)
             return
 
+        await self._deny(send)
+
+    @staticmethod
+    async def _deny(send):
         await send({
             "type": "http.response.start",
             "status": 403,
             "headers": [(b"content-type", b"application/json")],
         })
         await send({"type": "http.response.body", "body": _DEMO_DENIED_BODY})
-
-    async def _call_ws_capped(self, scope, receive, send):
-        import config
-        global _ws_connections
-        async with _ws_lock:
-            if _ws_connections >= config.DEMO_WS_MAX:
-                await send({"type": "websocket.close", "code": 1013})  # "try again later"
-                return
-            _ws_connections += 1
-        try:
-            await self.app(scope, receive, send)
-        finally:
-            async with _ws_lock:
-                _ws_connections -= 1
