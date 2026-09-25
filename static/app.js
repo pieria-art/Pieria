@@ -543,14 +543,25 @@ async function fetchAndTransition(direction = 1, isSkipped = false) {
             updateModeButtonUI();
         }
 
+        // E2: this call has won the race (gen === cycleGen) — the old artwork's placard is about to go
+        // stale, so drop it and any pending timers NOW, before the new image has even started loading.
+        // Without this, updatePlacard() below immediately swaps in the new metadata while the OLD
+        // placard is still on screen (or a stale timer is still counting down to show/hide it), so the
+        // viewer briefly — or, if the image load stalls/is clobbered by a still-newer advance, indefinitely
+        // — sees the new title over the old canvas image.
+        if (placardTimeout) clearTimeout(placardTimeout);
+        document.body.classList.remove('placard-visible');
+
         updatePlacard(data.metadata);
-        performCrossfade(currentImageUrl, data.crop, currentFocal);
 
         // Automatic Placard Flow
         const waitTime = globalConfig.placard_wait !== null ? globalConfig.placard_wait : (data.placard_wait !== undefined ? data.placard_wait : DEFAULT_SETTINGS.placard_wait);
         const showTime = globalConfig.placard_show !== null ? globalConfig.placard_show : (data.placard_show !== undefined ? data.placard_show : DEFAULT_SETTINGS.placard_show);
-        
-        showPlacardFlow(waitTime, showTime);
+
+        // The placard is only scheduled to show once the new image has actually loaded onto the canvas
+        // (performCrossfade's onload, gated on `gen` below) — never on a stale/discarded load, so a
+        // rapid burst of advances converges on the last one: matching image + matching placard.
+        performCrossfade(currentImageUrl, data.crop, currentFocal, gen, () => showPlacardFlow(waitTime, showTime));
 
     } catch (error) { console.error('[Client] Transition Error:', error.message); }
     return gen;
@@ -559,7 +570,7 @@ async function fetchAndTransition(direction = 1, isSkipped = false) {
 function showPlacardFlow(waitSec, showSec) {
     if (placardTimeout) clearTimeout(placardTimeout);
     document.body.classList.remove('placard-visible');
-    
+
     placardTimeout = setTimeout(() => {
         document.body.classList.add('placard-visible');
         placardTimeout = setTimeout(() => {
@@ -642,13 +653,18 @@ function updatePlacard(metadata) {
     });
 }
 
-function performCrossfade(imageUrl, cropData, focal) {
+function performCrossfade(imageUrl, cropData, focal, gen, onLoaded) {
     const targetLayerId = activeLayerId === 1 ? 2 : 1;
     const activeLayer = document.getElementById(`artwork-${activeLayerId}`);
     const targetLayer = document.getElementById(`artwork-${targetLayerId}`);
     const img = new Image();
     img.src = imageUrl;
     img.onload = () => {
+        // E2: this load is async and un-awaited by the caller, so a still-newer advance can start (and
+        // win) before it resolves. Without this check a slow-loading stale image can finish AFTER a
+        // faster newer one and clobber the canvas back to the wrong artwork — discard it instead; the
+        // newer transition's own performCrossfade call already painted (or will paint) the real image.
+        if (gen !== cycleGen) return;
         const matteLayer = document.getElementById('matte-layer');
         if (displayMode === 'contain-matte') matteLayer.style.backgroundImage = `url('${imageUrl}')`;
         targetLayer.style.backgroundImage = `url('${imageUrl}')`;
@@ -666,6 +682,7 @@ function performCrossfade(imageUrl, cropData, focal) {
         if (!isOptionsOpen && !isHovering) {
             document.body.classList.remove('controls-visible');
         }
+        if (onLoaded) onLoaded();
     };
 }
 
