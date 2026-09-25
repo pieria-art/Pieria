@@ -72,6 +72,7 @@ def _atomic_write(dst: Path, data: bytes) -> None:
     writes before either replace() landed."""
     fd, tmp_name = tempfile.mkstemp(dir=dst.parent, prefix=f"{dst.name}.", suffix=".tmp")
     try:
+        os.fchmod(fd, 0o644)  # mkstemp creates 0600; derivatives were (and should stay) world-readable
         with os.fdopen(fd, "wb") as f:
             f.write(data)
         os.replace(tmp_name, dst)
