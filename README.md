@@ -7,7 +7,7 @@
 > **Pieria** */pie-EER-ee-uh/* — the land at the foot of Mount Olympus where, in Greek myth, the Muses were born.
 
 **Museum art on any screen you own.** Pieria turns a TV, monitor or e-ink panel into a museum wall:
-2,800+ curated public-domain masterpieces, a museum placard for every work, slow Ken Burns motion.
+2,800+ curated public-domain masterpieces, a museum placard for every work, slow pan-and-zoom motion.
 Open source, self-hosted, no subscription, no account — and nothing a vendor can switch off.
 
 **[▶ Live demo](https://demo.pieria.org)** · **[⬇ Download 1.0](https://github.com/pieria-art/Pieria/releases/latest)** · **[Get started](#-get-started--two-front-doors)** · **[Hardware](docs/hardware-profile.md)**
@@ -19,7 +19,7 @@ Open source, self-hosted, no subscription, no account — and nothing a vendor c
 ### Why Pieria
 
 - **It can't be bricked.** Digital art frames keep dying with the companies behind them — Depict and
-  Electric Objects went dark and took their customers' frames with them; Meural is winding down.
+  Electric Objects went dark and took their customers' frames with them.
   Pieria runs entirely on your hardware, keeps working with no internet, and updates only when you
   click. Once your art is downloaded, nothing of ours needs to exist for it to keep working.
 - **Any screen you already own.** A TV or monitor on a Raspberry Pi, any smart-TV browser, or a colour
@@ -98,7 +98,7 @@ OpenRouter** for one-click setup), and click **Test & Save** — validated live,
 *   **📱 WebSocket Remote:** A mobile-first, no-refresh PWA remote to switch playlists, change modes, and trigger placards instantly.
 *   **📺 Multi-Display Support:** Targeted routing using unique display IDs allows a single server to manage different artwork streams across multiple TVs.
 *   **📦 Flash-and-go appliance (can't be bricked):** A pre-baked Raspberry Pi image sets itself up from your phone over a captive-portal Wi-Fi hotspot — no SSH, no config files. If setup is interrupted or Wi-Fi is wrong, it re-opens its own hotspot instead of black-screening. **Self-updating** without a terminal: the admin page notifies you when a new release ships (with notes) and updates on one click — you decide when, nothing auto-installs. No cloud account, no subscription, nothing a vendor can switch off.
-*   **🎨 Advanced Rendering:** Choose between cinematic Ken Burns pans, static user-defined crops, or blurred matte effects. The Ken Burns pan is **focal-point-aware** — every artwork carries a focal point (AI-derived, or tap-to-set) so off-center subjects, like a portrait's face, stay framed instead of being slowly panned out of view.
+*   **🎨 Advanced Rendering:** Choose between cinematic Ken Burns-style pans, static user-defined crops, or blurred matte effects. The pan is **focal-point-aware** — every artwork carries a focal point (AI-derived, or tap-to-set) so off-center subjects, like a portrait's face, stay framed instead of being slowly panned out of view.
 *   **📸 My Photos (Studio):** A phone-first studio to put your *own* photos on the wall — multi-upload (with camera capture), optional AI captions (in a warm photo-album voice, with an honest on-device-vs-cloud privacy note), and tap-to-set framing. **iPhone HEIC photos work as-is** (auto-converted on upload). Your photos are stored **locally on your server** — never uploaded to anyone's cloud, never indexed — and shown with a clean caption (zero museum jargon).
 *   **⚖️ Hierarchical Config:** Precise control via URL parameters that override playlist and global defaults.
 *   **🔒 Human-in-the-Loop:** Audit and refine AI-generated content before it goes live. Finalize a live find with **inline review** — its card expands in place into an editable placard that the AI fills in as you watch, Approve right there with no tab-hop — or batch it in the dedicated **Review Queue** (with **☑ Select → Approve & Publish** for many at once).
