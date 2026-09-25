@@ -598,7 +598,7 @@ def test_run_import_collects_image_title_mismatch_flags(tmp_path, monkeypatch):
 
     report = rg.run_import()
     assert report["flagged"] == [{"key": "campfire-adirondacks-0015", "collection": "demo",
-                                   "title": "Campfire in the Adirondacks"}]
+                                   "flags": ["image_title_mismatch"], "title": "Campfire in the Adirondacks"}]
     assert report["passed"] == 1  # a flag never blocks the narrative import
 
 
