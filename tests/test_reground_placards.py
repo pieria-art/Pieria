@@ -602,6 +602,240 @@ def test_run_import_collects_image_title_mismatch_flags(tmp_path, monkeypatch):
     assert report["passed"] == 1  # a flag never blocks the narrative import
 
 
+# --------------------------------------------------------------------------- field corrections (round 4)
+def test_validate_field_correction_accepts_grounded_value():
+    packet = {"facts": [rg._fact("commons.Credit", "Drawing, Storm Coming", "Wikimedia Commons", "u", "CC BY-SA")]}
+    ok, reason = rg.validate_field_correction({"value": "Charcoal on paper", "fact_keys": ["commons.Credit"]}, packet)
+    assert ok
+
+
+def test_validate_field_correction_rejects_unbacked_number():
+    packet = {"facts": [rg._fact("wikidata.inception", ["1873"], "Wikidata", "u", "CC0")]}
+    ok, reason = rg.validate_field_correction({"value": "1942", "fact_keys": ["wikidata.inception"]}, packet)
+    assert not ok
+
+
+def test_validate_field_correction_rejects_no_fact_keys():
+    ok, reason = rg.validate_field_correction({"value": "Charcoal", "fact_keys": []}, {"facts": []})
+    assert not ok and "no real fact_keys" in reason
+
+
+def test_apply_field_corrections_overrides_existing_catalog_value_only():
+    packet = {
+        "facts": [rg._fact("commons.Credit", "Drawing, Storm Coming", "Wikimedia Commons", "u", "CC BY-SA")],
+        "structured": {"medium": "Oil on canvas", "medium_source": "existing_catalog_value"},
+    }
+    written = {"field_corrections": {"medium": {"value": "Charcoal drawing", "fact_keys": ["commons.Credit"]}}}
+    base = {"medium": "Oil on canvas"}
+    applied, rejected = rg.apply_field_corrections(written, packet, base)
+    assert applied == {"medium": "Charcoal drawing"} and base["medium"] == "Charcoal drawing"
+
+
+def test_apply_field_corrections_never_overrides_a_verified_source():
+    packet = {
+        "facts": [rg._fact("museum.medium", "Oil on canvas", "Met API", "u", "CC0")],
+        "structured": {"medium": "Oil on canvas", "medium_source": "Met Collection API"},
+    }
+    written = {"field_corrections": {"medium": {"value": "Watercolor", "fact_keys": ["museum.medium"]}}}
+    base = {"medium": "Oil on canvas"}
+    applied, rejected = rg.apply_field_corrections(written, packet, base)
+    assert applied == {} and "medium" in rejected and base["medium"] == "Oil on canvas"
+
+
+def test_run_import_applies_correction_and_blanks_uncorrected_field_on_identity_mismatch(tmp_path, monkeypatch):
+    packets_dir = tmp_path / "packets" / "demo"
+    packets_dir.mkdir(parents=True)
+    written_dir = tmp_path / "written"
+    written_dir.mkdir()
+
+    packet = {
+        "title": "Storm Coming", "facts": [
+            {"key": "commons.Credit", "value": "Drawing, Storm Coming", "source": "Wikimedia Commons",
+             "source_url": "u", "licence": "CC BY-SA"},
+        ],
+        "structured": {"medium": "Oil on canvas", "medium_source": "existing_catalog_value",
+                        "date_display": "1925", "date_source": "existing_catalog_value"},
+    }
+    (packets_dir / "storm-coming-0125.json").write_text(json.dumps(packet))
+
+    monkeypatch.setattr(rg, "PACKETS_DIR", tmp_path / "packets")
+    monkeypatch.setattr(rg, "WRITTEN_DIR", written_dir)
+    monkeypatch.setattr(rg, "OUT_CATALOG_DIR", tmp_path / "catalog")
+    monkeypatch.setattr(rg, "IMPORT_REPORT_PATH", tmp_path / "import_report.json")
+    monkeypatch.setattr(rg, "PACKET_INDEX_PATH", tmp_path / "packets_index.json")
+    (tmp_path / "packets_index.json").write_text(json.dumps({"storm-coming-0125": "demo"}))
+    monkeypatch.setattr(rg, "load_catalog", lambda: {
+        "demo": [dict(title="Storm Coming", agent_name="X", medium="Oil on canvas", date_display="1925")] * 126
+    })
+
+    written = {
+        "key": "storm-coming-0125", "title": "Storm Coming",
+        "description_narrative": "A charcoal drawing of a storm.", "tags": "storm",
+        "claims": [], "flags": ["identity_mismatch"],
+        "field_corrections": {"medium": {"value": "Charcoal on paper", "fact_keys": ["commons.Credit"]}},
+    }
+    (written_dir / "batch_01.jsonl").write_text(json.dumps(written) + "\n")
+
+    report = rg.run_import()
+    item = report["items"][0]
+    assert item["corrections_applied"] == {"medium": "Charcoal on paper"}
+    assert item["blanked_fields"] == ["date_display"]  # medium was corrected, date_display was not
+    out = json.loads((tmp_path / "catalog" / "demo.json").read_text())["items"][125]
+    assert out["medium"] == "Charcoal on paper"
+    assert out["date_display"] == ""
+
+
+def test_run_import_identity_mismatch_drops_museum_sourced_fields_too(tmp_path, monkeypatch):
+    # addendum 2: hermit-thrush-0004 — the MATCH itself (Q64582791) was wrong, so every structured
+    # field it backed (even a "verified" museum-sourced one) must be dropped, not just the
+    # existing_catalog_value ones. Title + catalog artist are kept.
+    packets_dir = tmp_path / "packets" / "demo"
+    packets_dir.mkdir(parents=True)
+    written_dir = tmp_path / "written"
+    written_dir.mkdir()
+
+    packet = {
+        "title": "Hermit Thrush", "facts": [
+            {"key": "wikidata.inception", "value": ["1820"], "source": "Wikidata",
+             "source_url": "https://www.wikidata.org/wiki/Q64582791", "licence": "CC0"},
+        ],
+        "structured": {"medium": "Black chalk drawing", "medium_source": "National Gallery of Art API",
+                        "date_display": "1820", "date_source": "National Gallery of Art API",
+                        "current_repository": "National Gallery of Art"},
+    }
+    (packets_dir / "hermit-thrush-0004.json").write_text(json.dumps(packet))
+
+    monkeypatch.setattr(rg, "PACKETS_DIR", tmp_path / "packets")
+    monkeypatch.setattr(rg, "WRITTEN_DIR", written_dir)
+    monkeypatch.setattr(rg, "OUT_CATALOG_DIR", tmp_path / "catalog")
+    monkeypatch.setattr(rg, "IMPORT_REPORT_PATH", tmp_path / "import_report.json")
+    monkeypatch.setattr(rg, "PACKET_INDEX_PATH", tmp_path / "packets_index.json")
+    (tmp_path / "packets_index.json").write_text(json.dumps({"hermit-thrush-0004": "demo"}))
+    monkeypatch.setattr(rg, "load_catalog", lambda: {"demo": [dict(
+        title="Hermit Thrush", agent_name="John James Audubon",
+        medium="Black chalk drawing", date_display="1820", current_repository="National Gallery of Art",
+    )] * 5})
+
+    written = {
+        "key": "hermit-thrush-0004", "title": "Hermit Thrush",
+        "description_narrative": "A hand-coloured engraving of a hermit thrush.", "tags": "bird",
+        "claims": [], "flags": ["identity_mismatch"],
+    }
+    (written_dir / "batch_01.jsonl").write_text(json.dumps(written) + "\n")
+
+    report = rg.run_import()
+    entry = report["identity_suspect_fields_dropped"][0]
+    assert entry["key"] == "hermit-thrush-0004"
+    assert set(entry["fields_dropped"]) == {"medium", "date_display", "current_repository"}
+    assert entry["match_qids"] == ["Q64582791"]
+    out = json.loads((tmp_path / "catalog" / "demo.json").read_text())["items"][4]
+    assert out["medium"] == "" and out["date_display"] == "" and out["current_repository"] == ""
+    assert out["title"] == "Hermit Thrush" and out["agent_name"] == "John James Audubon"
+
+
+def test_run_import_reports_existing_catalog_value_counts(tmp_path, monkeypatch):
+    packets_dir = tmp_path / "packets" / "demo"
+    packets_dir.mkdir(parents=True)
+    (tmp_path / "written").mkdir()
+    packet = {"title": "X", "facts": [],
+              "structured": {"medium": "Oil on canvas", "medium_source": "existing_catalog_value"}}
+    (packets_dir / "x-0000.json").write_text(json.dumps(packet))
+
+    monkeypatch.setattr(rg, "PACKETS_DIR", tmp_path / "packets")
+    monkeypatch.setattr(rg, "WRITTEN_DIR", tmp_path / "written")
+    monkeypatch.setattr(rg, "OUT_CATALOG_DIR", tmp_path / "catalog")
+    monkeypatch.setattr(rg, "IMPORT_REPORT_PATH", tmp_path / "import_report.json")
+    monkeypatch.setattr(rg, "PACKET_INDEX_PATH", tmp_path / "packets_index.json")
+    (tmp_path / "packets_index.json").write_text(json.dumps({"x-0000": "demo"}))
+    monkeypatch.setattr(rg, "load_catalog", lambda: {"demo": [dict(title="X", agent_name="Y")]})
+
+    report = rg.run_import()
+    assert report["existing_catalog_value_counts"] == {"medium": 1}
+
+
+# --------------------------------------------------------------------------- duplicate-image detection
+def test_identity_suspect_keys_loaded_from_import_report(tmp_path, monkeypatch):
+    monkeypatch.setattr(rg, "IMPORT_REPORT_PATH", tmp_path / "import_report.json")
+    assert rg._identity_suspect_keys_from_import_report() == set()  # no file yet -> empty, not an error
+
+    (tmp_path / "import_report.json").write_text(json.dumps({
+        "identity_suspect_fields_dropped": [
+            {"key": "hermit-thrush-0004", "fields_dropped": ["medium"]},
+            {"key": "other-key-0001", "fields_dropped": ["date_display"]},
+        ],
+    }))
+    assert rg._identity_suspect_keys_from_import_report() == {"hermit-thrush-0004", "other-key-0001"}
+
+
+def test_extract_match_qids_dedupes_and_ignores_non_wikidata_facts():
+    packet = {"facts": [
+        {"key": "wikidata.inception", "value": ["1820"], "source": "Wikidata", "source_url": "https://www.wikidata.org/wiki/Q64582791"},
+        {"key": "wikidata.creator", "value": ["X"], "source": "Wikidata", "source_url": "https://www.wikidata.org/wiki/Q64582791"},
+        {"key": "museum.medium", "value": "Oil", "source": "Met API", "source_url": "https://example.com/123"},
+    ]}
+    assert rg._extract_match_qids(packet) == ["Q64582791"]
+
+
+def test_run_duplicate_images_groups_shared_preview_hashes(tmp_path, monkeypatch):
+    previews_a = tmp_path / "previews" / "demo"
+    previews_a.mkdir(parents=True)
+    (previews_a / "garden-wall-0052.jpg").write_bytes(b"same-bytes")
+    (previews_a / "garden-wall-0160.jpg").write_bytes(b"same-bytes")
+    (previews_a / "unique-0003.jpg").write_bytes(b"different-bytes")
+
+    monkeypatch.setattr(rg, "PREVIEWS_DIR", tmp_path / "previews")
+    monkeypatch.setattr(rg, "ART_PACK_LIBRARY", tmp_path / "no_such_library")  # forces preview fallback
+    monkeypatch.setattr(rg, "DUPLICATE_IMAGES_PATH", tmp_path / "duplicate_images.json")
+    monkeypatch.setattr(rg, "PACKET_INDEX_PATH", tmp_path / "packets_index.json")
+    (tmp_path / "packets_index.json").write_text(json.dumps({
+        "garden-wall-0052": "demo", "garden-wall-0160": "demo", "unique-0003": "demo",
+    }))
+    monkeypatch.setattr(rg, "load_catalog", lambda: {"demo": [
+        dict(title="Garden Wall", agent_name="A"), dict(title="Garden Wall", agent_name="B"),
+        dict(title="Something Else", agent_name="C"),
+    ]})
+    rg._manifest_cache.clear()
+
+    result = rg.run_duplicate_images()
+    assert result["n_duplicate_groups"] == 1
+    keys = {e["key"] for e in result["groups"][0]}
+    assert keys == {"garden-wall-0052", "garden-wall-0160"}
+
+
+# --------------------------------------------------------------------------- museum-match verification
+def test_museum_match_rejects_unrelated_title():
+    # audit finding: mount-washington-0007 (Homer painting) matched AIC's "Royal Flemish Vase" glass
+    # record on a fuzzy title search — must be rejected outright, regardless of creator.
+    item = {"title": "Mount Washington", "agent_name": "Winslow Homer"}
+    record = {"title": "Royal Flemish Vase", "artist_display": "Mount Washington Glass Company"}
+    ok, reason = rg.museum_match_verified(item, record)
+    assert not ok and "similarity" in reason
+
+
+def test_museum_match_accepts_matching_title_and_creator():
+    item = {"title": "The Herring Net", "agent_name": "Winslow Homer"}
+    record = {"title": "The Herring Net", "artistDisplayName": "Winslow Homer"}
+    ok, reason = rg.museum_match_verified(item, record)
+    assert ok
+
+
+def test_museum_match_rejects_matching_title_without_creator_corroboration():
+    item = {"title": "Landscape", "agent_name": "Winslow Homer"}
+    record = {"title": "Landscape", "artistDisplayName": "Someone Else Entirely"}
+    ok, reason = rg.museum_match_verified(item, record)
+    assert not ok and "creator" in reason
+
+
+def test_museum_match_explicit_id_skips_creator_requirement_but_not_title():
+    item = {"title": "Fish and Rocks", "agent_name": "Bada Shanren"}
+    record = {"title": "Fish and Rocks", "artistDisplayName": ""}
+    ok, reason = rg.museum_match_verified(item, record, explicit_id=True)
+    assert ok
+    record_wrong_title = {"title": "Completely Different Work", "artistDisplayName": ""}
+    ok2, reason2 = rg.museum_match_verified(item, record_wrong_title, explicit_id=True)
+    assert not ok2 and "similarity" in reason2
+
+
 def test_medium_bucket_distinguishes_oil_from_watercolor_and_print():
     assert rg.medium_bucket("Oil on canvas") == "oil"
     assert rg.medium_bucket("Watercolor and gouache over graphite") == "watercolor"

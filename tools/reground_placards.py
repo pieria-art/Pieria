@@ -28,6 +28,8 @@ from __future__ import annotations
 
 import argparse
 import asyncio
+import difflib
+import hashlib
 import io
 import json
 import logging
@@ -75,6 +77,8 @@ BATCHES_DIR = REGROUND_DIR / "batches"
 WRITTEN_DIR = REGROUND_DIR / "written"
 IMPORT_REPORT_PATH = REGROUND_DIR / "import_report.json"
 IDENTITY_MISMATCHES_PATH = REGROUND_DIR / "identity_mismatches.json"
+MUSEUM_MATCH_CHANGES_PATH = REGROUND_DIR / "museum_match_changes.json"
+DUPLICATE_IMAGES_PATH = REGROUND_DIR / "duplicate_images.json"
 PACKET_INDEX_PATH = REGROUND_DIR / "packets_index.json"
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -300,12 +304,15 @@ async def _cleveland_by_accession(fx: Fetcher, accession: str) -> dict | None:
 
 async def _cleveland_extra_by_title(fx: Fetcher, title: str) -> dict | None:
     """Round 3 #5: Cleveland's own `description`/`did_you_know` curatorial text, CC0 — but only when
-    THIS record's own `share_license_status` says so (some Cleveland records are not CC0)."""
+    THIS record's own `share_license_status` says so (some Cleveland records are not CC0), and this
+    fresh title search actually landed on (near enough) the same object as the caller's title."""
     body, err = await fx.get_json(CLEVELAND_SEARCH, {"q": title, "limit": 1})
     data = (body or {}).get("data") or []
     if not data or data[0].get("share_license_status") != "CC0":
         return None
     d = data[0]
+    if _title_similarity(title, d.get("title") or "") < _TITLE_SIM_THRESHOLD:
+        return None
     out = {}
     for k in ("description", "did_you_know"):
         if d.get(k):
@@ -320,14 +327,15 @@ async def _aic_record(fx: Fetcher, title: str) -> dict | None:
     CC0 like the rest of the record — kept out of `facts`, returned under `_checkonly` instead."""
     body, err = await fx.get_json(AIC_SEARCH, {
         "q": title, "limit": 1,
-        "fields": "id,title,date_display,medium_display,description,short_description",
+        "fields": "id,title,date_display,medium_display,artist_display,description,short_description",
     })
     data = (body or {}).get("data") or []
     if not data:
         return None
     d = data[0]
     url = f"https://api.artic.edu/api/v1/artworks/{d.get('id')}"
-    out = {"api": "Art Institute of Chicago API", "url": url, "title": d.get("title")}
+    out = {"api": "Art Institute of Chicago API", "url": url, "title": d.get("title"),
+           "artist_display": d.get("artist_display")}
     if d.get("date_display"):
         out["objectDate"] = d["date_display"]
     if d.get("medium_display"):
@@ -354,6 +362,41 @@ def _extract_institution_phrase(text: str) -> str | None:
         return None
     m = _INSTITUTION_PHRASE_RE.search(text)
     return m.group(1).strip() if m else None
+
+
+# ----------------------------------------------------------------------- museum-match verification
+# Round 4 addendum: a museum-API TITLE SEARCH (Met/Cleveland/AIC by q=title) can return the wrong
+# object entirely — mount-washington-0007 (Homer oil painting, 1869) matched AIC's record for
+# "Partially gilded and painted blown mold glass" that merely shares words with the title. Because
+# museum records sit at the TOP of the structured-field precedence, an unverified one is dangerous.
+# Require normalised title similarity AND (a corroborating creator OR an explicit identifier — an
+# accession/inventory number pulled off the Commons file itself, not a keyword search).
+_TITLE_SIM_THRESHOLD = 0.5
+
+
+def _title_similarity(a: str, b: str) -> float:
+    return difflib.SequenceMatcher(None, _norm(a or ""), _norm(b or "")).ratio()
+
+
+def _museum_record_creator_text(record: dict) -> str:
+    return (record.get("artistDisplayName") or record.get("artist_display")
+            or ", ".join(c for c in (record.get("creators") or []) if c) or "")
+
+
+def museum_match_verified(item: dict, record: dict, *, explicit_id: bool = False) -> tuple[bool, str]:
+    """(ok, reason). `explicit_id=True` for a lookup keyed by an accession/inventory number taken
+    directly off the Commons file — those skip the creator-corroboration requirement, but never the
+    title check (an explicit id can still be extracted from the wrong Credit line)."""
+    sim = _title_similarity(item.get("title") or "", record.get("title") or "")
+    if sim < _TITLE_SIM_THRESHOLD:
+        return False, f"title similarity {sim:.2f} < {_TITLE_SIM_THRESHOLD} ({item.get('title')!r} vs {record.get('title')!r})"
+    if explicit_id:
+        return True, "explicit identifier + title match"
+    record_creator = _museum_record_creator_text(record)
+    cat_tokens, rec_tokens = _name_tokens(item.get("agent_name") or ""), _name_tokens(record_creator)
+    if cat_tokens and rec_tokens and (cat_tokens & rec_tokens):
+        return True, "title + creator match"
+    return False, f"no corroborating creator (catalog {item.get('agent_name')!r} vs record {record_creator!r})"
 
 
 async def _wikidata_by_accession(fx: Fetcher, accession: str, institution: str) -> str | None:
@@ -630,6 +673,11 @@ async def build_facts_bundle(fx: Fetcher, item: dict, collection: str | None = N
                 wikipedia_lead = lead
 
     museum = await _museum_record(fx, item)
+    if museum:
+        ok, reason = museum_match_verified(item, museum)
+        if not ok:
+            logger.info(f"    · museum title-search match rejected for {item.get('title')!r}: {reason}")
+            museum = None
     # Round 3 #5: museums' own CC0 curatorial text, where the API provides it. Cleveland's search
     # response already carries `description`/`did_you_know` (only trustworthy when that record's own
     # `share_license_status` is CC0 — some Cleveland records are not).
@@ -642,10 +690,15 @@ async def build_facts_bundle(fx: Fetcher, item: dict, collection: str | None = N
     # 4.0 per AIC's own license_text (NOT CC0 like the rest of the record) — kept check-only, never a
     # directly-quotable fact.
     if not museum and item.get("source") == "Art Institute of Chicago":
-        museum = await _aic_record(fx, item.get("title") or "")
-        if museum:
-            for txt in museum.pop("_checkonly", []):
-                check_only.append(txt)
+        aic = await _aic_record(fx, item.get("title") or "")
+        if aic:
+            ok, reason = museum_match_verified(item, aic)
+            if ok:
+                museum = aic
+                for txt in museum.pop("_checkonly", []):
+                    check_only.append(txt)
+            else:
+                logger.info(f"    · AIC title-search match rejected for {item.get('title')!r}: {reason}")
     if museum:
         for key in _MUSEUM_FACT_KEYS:
             if museum.get(key):
@@ -692,6 +745,12 @@ async def build_facts_bundle(fx: Fetcher, item: dict, collection: str | None = N
         credit_hit = await resolve_via_commons_credit(fx, ext)
         if credit_hit:
             mr = credit_hit.get("museum_record")
+            if mr:
+                ok, reason = museum_match_verified(item, mr, explicit_id=True)
+                if not ok:
+                    logger.info(f"    · accession-based museum match rejected for {item.get('title')!r}: {reason}")
+                    mr = None
+                    credit_hit["museum_record"] = None
             if mr:
                 for key in _MUSEUM_FACT_KEYS:
                     if mr.get(key):
@@ -1355,6 +1414,73 @@ def validate_written_item(written: dict, packet: dict) -> tuple[bool, list[str]]
     return (not reasons), reasons
 
 
+# ----------------------------------------------------------------------- field corrections (round 4)
+# The writers can see the actual image; the pipeline can't. A structured field whose ONLY source is
+# `existing_catalog_value` (the old, unverified catalog — never museum/Wikidata) may be flatly wrong
+# (storm-coming-0125: catalog says "Oil on canvas", the image is a charcoal drawing and Commons' own
+# Credit says "Drawing, Storm Coming"). A writer may propose a correction, grounded in a fact just like
+# any other claim; it's accepted only if it's grounded AND the field it's replacing was never actually
+# verified in the first place.
+_CORRECTABLE_FIELD_SOURCE_KEY = {"medium": "medium_source", "date_display": "date_source"}
+_ALL_STRUCTURED_FIELDS = ("medium", "date_display", "current_repository", "physical_dimensions")
+_QID_IN_URL_RE = re.compile(r"/(Q\d+)$")
+
+
+def _extract_match_qids(packet: dict) -> list[str]:
+    """Every distinct Wikidata QID backing this packet's facts (there's normally exactly one — the
+    resolved match — but a Commons-credit-derived match can add a second)."""
+    qids: list[str] = []
+    for f in packet.get("facts") or []:
+        if f.get("source") == "Wikidata" and f.get("source_url"):
+            m = _QID_IN_URL_RE.search(f["source_url"])
+            if m and m.group(1) not in qids:
+                qids.append(m.group(1))
+    return qids
+
+
+def validate_field_correction(correction: dict, packet: dict) -> tuple[bool, str | None]:
+    value = str((correction or {}).get("value") or "").strip()
+    if not value:
+        return False, "empty value"
+    facts_by_key = {f["key"]: f for f in packet.get("facts") or []}
+    keys = (correction or {}).get("fact_keys") or []
+    real_keys = [k for k in keys if k in facts_by_key]
+    if not real_keys:
+        return False, "cites no real fact_keys"
+    cited_text = " ".join(
+        (", ".join(facts_by_key[k]["value"]) if isinstance(facts_by_key[k]["value"], list) else str(facts_by_key[k]["value"]))
+        for k in real_keys
+    ).lower()
+    for n in re.findall(r"\b\d{3,4}\b", value):
+        if n not in cited_text:
+            return False, f"number {n!r} in the correction is not found in its cited facts"
+    return True, None
+
+
+def apply_field_corrections(written: dict, packet: dict, base: dict) -> tuple[dict, dict]:
+    """Returns (applied: {field: value}, rejected: {field: reason})."""
+    applied, rejected = {}, {}
+    for field, correction in (written.get("field_corrections") or {}).items():
+        source_key = _CORRECTABLE_FIELD_SOURCE_KEY.get(field)
+        if not source_key:
+            rejected[field] = "not a correctable field"
+            continue
+        if packet["structured"].get(source_key) != "existing_catalog_value":
+            rejected[field] = f"current value is sourced from {packet['structured'].get(source_key)!r}, " \
+                               f"not existing_catalog_value — corrections only override unverified fields"
+            continue
+        ok, reason = validate_field_correction(correction, packet)
+        if not ok:
+            rejected[field] = reason
+            continue
+        value = str(correction["value"]).strip()
+        base[field] = value
+        if field == "date_display":
+            base["creation_date"] = value
+        applied[field] = value
+    return applied, rejected
+
+
 def run_import(batch_glob: str = "batch_*.jsonl"):
     catalog = load_catalog()
     packet_index = json.loads(PACKET_INDEX_PATH.read_text()) if PACKET_INDEX_PATH.exists() else {}
@@ -1368,7 +1494,8 @@ def run_import(batch_glob: str = "batch_*.jsonl"):
             if row.get("key"):
                 written_lines[row["key"]] = row
 
-    import_report = {"passed": 0, "failed": 0, "no_submission": 0, "items": [], "flagged": []}
+    import_report = {"passed": 0, "failed": 0, "no_submission": 0, "items": [], "flagged": [],
+                      "existing_catalog_value_counts": {}, "identity_suspect_fields_dropped": []}
     by_collection_new: dict[str, dict[int, dict]] = {}
 
     for key, coll in packet_index.items():
@@ -1381,6 +1508,13 @@ def run_import(batch_glob: str = "batch_*.jsonl"):
         for f in ("medium", "date_display", "creation_date", "current_repository", "physical_dimensions"):
             if packet["structured"].get(f):
                 base[f] = packet["structured"][f]
+
+        # Round 4 #3: how much of the catalog's structure is still just the old, unverified value —
+        # counted for every packet regardless of whether a writer has submitted for it yet.
+        for field, source_key in _CORRECTABLE_FIELD_SOURCE_KEY.items():
+            if packet["structured"].get(source_key) == "existing_catalog_value":
+                import_report["existing_catalog_value_counts"][field] = \
+                    import_report["existing_catalog_value_counts"].get(field, 0) + 1
 
         written = written_lines.get(key)
         if not written:
@@ -1396,18 +1530,53 @@ def run_import(batch_glob: str = "batch_*.jsonl"):
                 import_report["flagged"].append({"key": key, "collection": coll, "flags": integrity,
                                                  "title": written.get("title") or packet.get("title")})
 
+            # Round 4 #1: a writer-proposed correction to a structured field, grounded in a cited
+            # fact, accepted ONLY where the field's current value was never actually verified
+            # (existing_catalog_value) — never lets a writer override a museum/Wikidata-sourced value.
+            applied, rejected = apply_field_corrections(written, packet, base)
+            if applied or rejected:
+                import_report["items_with_corrections"] = import_report.get("items_with_corrections", 0) + 1
+
+            # Round 4 addendum 2: a confirmed identity mismatch means the MATCH itself is suspect, not
+            # just one field — hermit-thrush-0004's medium/date/repository all came from the wrong
+            # Wikidata entity (Q64582791). Drop every structured field regardless of its source
+            # (matched Wikidata/museum/Commons-of-the-match, or existing_catalog_value) unless an
+            # accepted correction backs it; ship title + catalog artist only. Superset of round 4 #2
+            # (which only dropped existing_catalog_value-sourced fields).
+            blanked = []
+            suspect_qids = []
+            if "identity_mismatch" in flags:
+                suspect_qids = _extract_match_qids(packet)
+                for field in _ALL_STRUCTURED_FIELDS:
+                    if field in applied:
+                        continue
+                    if base.get(field):
+                        base[field] = ""
+                        if field == "date_display":
+                            base["creation_date"] = ""
+                        blanked.append(field)
+                if blanked:
+                    import_report["identity_suspect_fields_dropped"].append({
+                        "key": key, "collection": coll, "fields_dropped": blanked, "match_qids": suspect_qids,
+                    })
+
             ok, reasons = validate_written_item(written, packet)
             if ok:
                 base["description_narrative"] = written["description_narrative"]
                 if written.get("tags"):
                     base["tags"] = written["tags"]
                 import_report["passed"] += 1
-                import_report["items"].append({"key": key, "collection": coll, "status": "passed", "flags": flags})
+                import_report["items"].append({"key": key, "collection": coll, "status": "passed", "flags": flags,
+                                                "corrections_applied": applied, "corrections_rejected": rejected,
+                                                "blanked_fields": blanked})
             else:
                 import_report["failed"] += 1
-                import_report["items"].append({"key": key, "collection": coll, "status": "failed", "reasons": reasons, "flags": flags})
+                import_report["items"].append({"key": key, "collection": coll, "status": "failed", "reasons": reasons,
+                                                "flags": flags, "corrections_applied": applied,
+                                                "corrections_rejected": rejected, "blanked_fields": blanked})
                 # failing items are NOT silently templated — narrative/tags stay as the existing
-                # catalog value; only the deterministic structured fields above are applied.
+                # catalog value; only the deterministic structured fields (+ any applied corrections /
+                # blanking above) are applied.
 
         by_collection_new.setdefault(coll, {})[idx] = base
 
@@ -1489,13 +1658,126 @@ async def run(*, only_sample: bool, limit: int | None, collection: str | None):
     return report
 
 
+# ----------------------------------------------------------------------- museum-match recheck (round 4)
+def _identity_suspect_keys_from_import_report() -> set[str]:
+    """Best-effort, backward compatible: if import_report.json exists and names keys whose identity
+    match was flagged suspect, force those into the recheck even if their resolved fields happen not
+    to differ (addendum 2 — "include those QIDs in the match-verification re-check")."""
+    if not IMPORT_REPORT_PATH.exists():
+        return set()
+    try:
+        rep = json.loads(IMPORT_REPORT_PATH.read_text())
+    except Exception:
+        return set()
+    return {e["key"] for e in (rep.get("identity_suspect_fields_dropped") or []) if e.get("key")}
+
+
+async def run_recheck_museum_matches(*, limit: int | None = None, force_keys: set[str] | None = None) -> dict:
+    """Re-resolve every item's facts bundle under the new museum_match_verified() gate and rewrite
+    ONLY the fact+packet files whose resolved structured fields actually changed — everything else,
+    including reground/written/, is left untouched. Lists the changed keys so writers know which ones
+    to redo. `force_keys` (default: auto-loaded from import_report.json's identity-mismatch-flagged
+    keys) are always reported even when unchanged, since their underlying Wikidata QID is suspect for
+    reasons this pass can't detect on its own (a writer's visual confirmation, not a title mismatch)."""
+    FACTS_DIR.mkdir(parents=True, exist_ok=True)
+    PACKETS_DIR.mkdir(parents=True, exist_ok=True)
+    packet_index = json.loads(PACKET_INDEX_PATH.read_text()) if PACKET_INDEX_PATH.exists() else {}
+    catalog = load_catalog()
+    items_to_check = list(packet_index.items())
+    if limit:
+        items_to_check = items_to_check[:limit]
+    force_keys = force_keys if force_keys is not None else _identity_suspect_keys_from_import_report()
+
+    sem = asyncio.Semaphore(4)
+
+    async with httpx.AsyncClient(headers={"User-Agent": UA}, follow_redirects=True) as client:
+        fx = Fetcher(client, sem)
+
+        async def one(key, coll):
+            idx = int(key.rsplit("-", 1)[-1])
+            item = catalog[coll][idx]
+            packet_path = PACKETS_DIR / coll / f"{key}.json"
+            fact_path = FACTS_DIR / coll / f"{idx:04d}.json"
+            old_packet = json.loads(packet_path.read_text()) if packet_path.exists() else {}
+            old_structured = old_packet.get("structured") or {}
+            old_qids = _extract_match_qids(old_packet)
+
+            new_bundle = await build_facts_bundle(fx, item, coll)
+            new_fields, needs_review, notes = resolve_structured_fields(new_bundle, item)
+            forced = key in force_keys
+            if new_fields == old_structured and not forced:
+                return None  # unchanged — nothing to rewrite
+
+            fact_path.parent.mkdir(parents=True, exist_ok=True)
+            fact_path.write_text(json.dumps(new_bundle, indent=2, default=str))
+            preview = build_preview_from_master(coll, item, key)
+            if not preview:
+                preview = await build_preview_from_url(client, sem, coll, item, key)
+            new_packet = build_packet(key, coll, item, new_bundle, new_fields, needs_review, preview)
+            packet_path.parent.mkdir(parents=True, exist_ok=True)
+            packet_path.write_text(json.dumps(new_packet, indent=1, ensure_ascii=False, default=str))
+            return {
+                "key": key, "collection": coll, "title": item.get("title"), "forced_identity_suspect": forced,
+                "old_medium": old_structured.get("medium"), "old_medium_source": old_structured.get("medium_source"),
+                "new_medium": new_fields.get("medium"), "new_medium_source": new_fields.get("medium_source"),
+                "old_date_display": old_structured.get("date_display"), "old_date_source": old_structured.get("date_source"),
+                "new_date_display": new_fields.get("date_display"), "new_date_source": new_fields.get("date_source"),
+                "old_match_qids": old_qids, "new_match_qids": _extract_match_qids(new_packet),
+            }
+
+        results = await asyncio.gather(*(one(k, c) for k, c in items_to_check))
+
+    changed = [r for r in results if r]
+    report = {"checked": len(items_to_check), "changed": len(changed),
+              "forced_identity_suspect_count": len(force_keys), "items": changed}
+    MUSEUM_MATCH_CHANGES_PATH.write_text(json.dumps(report, indent=1, ensure_ascii=False))
+    return report
+
+
+# ----------------------------------------------------------------------- duplicate-image detection (round 4)
+def run_duplicate_images() -> dict:
+    """Hash every item's local pack master (preferred) or its preview (fallback) and group keys that
+    share a hash — writers found byte-identical images filed under different catalog entries with
+    different attributions (garden-wall-0052 vs -0160)."""
+    packet_index = json.loads(PACKET_INDEX_PATH.read_text()) if PACKET_INDEX_PATH.exists() else {}
+    catalog = load_catalog()
+    by_hash: dict[str, list[dict]] = {}
+    for key, coll in packet_index.items():
+        idx = int(key.rsplit("-", 1)[-1])
+        items = catalog.get(coll) or []
+        item = items[idx] if idx < len(items) else {}
+        local_file = _manifest_local_file_map(coll).get(_norm(item.get("title") or ""))
+        digest = None
+        if local_file:
+            src = ART_PACK_LIBRARY / local_file
+            if src.exists():
+                digest = hashlib.sha256(src.read_bytes()).hexdigest()
+        if digest is None:
+            preview = PREVIEWS_DIR / coll / f"{key}.jpg"
+            if preview.exists():
+                digest = hashlib.sha256(preview.read_bytes()).hexdigest()
+        if digest is None:
+            continue
+        by_hash.setdefault(digest, []).append({
+            "key": key, "collection": coll, "title": item.get("title"), "agent_name": item.get("agent_name"),
+        })
+    groups = [v for v in by_hash.values() if len(v) > 1]
+    result = {"n_duplicate_groups": len(groups), "groups": groups}
+    DUPLICATE_IMAGES_PATH.write_text(json.dumps(result, indent=1, ensure_ascii=False))
+    return result
+
+
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--mode", choices=["facts", "packets", "import"], default="packets",
+    ap.add_argument("--mode", choices=["facts", "packets", "import", "recheck-museum", "duplicate-images"],
+                     default="packets",
                      help="facts: legacy single-pass (facts+template/model, round 1). "
                           "packets: write facts + writing packets + preview images + batches "
                           "(round 2, no API model — Claude subagents write the narratives). "
-                          "import: read reground/written/batch_NN.jsonl, validate, land the catalog.")
+                          "import: read reground/written/batch_NN.jsonl, validate, land the catalog. "
+                          "recheck-museum: re-verify museum matches (round 4), rewriting only the "
+                          "fact+packet files whose structured fields changed; never touches written/. "
+                          "duplicate-images: hash every item's master/preview and group shared hashes.")
     ap.add_argument("--only-sample", action="store_true", help="only the 150 audit-sample works")
     ap.add_argument("--limit", type=int, default=None)
     ap.add_argument("--collection", default=None)
@@ -1509,6 +1791,10 @@ def main():
             only_sample=args.only_sample, limit=args.limit, collection=args.collection,
             batch_size=args.batch_size,
         ))
+    elif args.mode == "recheck-museum":
+        report = asyncio.run(run_recheck_museum_matches(limit=args.limit))
+    elif args.mode == "duplicate-images":
+        report = run_duplicate_images()
     else:
         report = asyncio.run(run(only_sample=args.only_sample, limit=args.limit, collection=args.collection))
     print(json.dumps(report, indent=2))
