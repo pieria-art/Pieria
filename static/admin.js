@@ -323,10 +323,7 @@ async function initDemoMode() {
     // Top banner — built with createElement/textContent (never innerHTML) since repo_url/releases_url,
     // though server-controlled constants here, still shouldn't set an unsanitized href via innerHTML.
     const banner = document.createElement('div');
-    banner.id = 'demo-banner';
-    banner.style.cssText = 'background:var(--accent-tint,rgba(59,130,246,.12)); color:var(--text-color);'
-        + ' border-bottom:1px solid var(--border-color); padding:10px 18px; font-size:0.85rem;'
-        + ' display:flex; gap:14px; align-items:center; flex-wrap:wrap;';
+    banner.id = 'demo-banner';  // styled in app.css — fixed, because the admin <body> is a flex row
     const label = document.createElement('span');
     label.textContent = "You're browsing the Pieria demo (read-only). Put it on your own wall →";
     const repoLink = document.createElement('a');
@@ -334,7 +331,7 @@ async function initDemoMode() {
     repoLink.textContent = 'GitHub';
     const dlLink = document.createElement('a');
     dlLink.href = demo.releases_url; dlLink.target = '_blank'; dlLink.rel = 'noopener';
-    dlLink.textContent = 'Download 1.0';
+    dlLink.textContent = 'Download';
     banner.append(label, repoLink, dlLink);
     document.body.insertBefore(banner, document.body.firstChild);
 
