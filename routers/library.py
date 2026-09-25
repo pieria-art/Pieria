@@ -30,7 +30,13 @@ from sqlalchemy.orm import Session
 import federation
 from agents import process_artwork
 from config import LIBRARY_DIR, strip_markdown
-from core.media import check_user_upload_pixel_ceiling, get_optimized_image, read_capped_upload
+from core.media import (
+    check_user_upload_pixel_ceiling,
+    get_optimized_image,
+    lookup_artwork_filename,
+    read_capped_upload,
+    run_image_work,
+)
 from core.playback import placard_metadata
 from core.playlists import _link_artwork_to_playlist
 from core.schemas import ArtworkSchema
@@ -314,21 +320,22 @@ async def update_artwork_metadata(artwork_id: int, data: ArtworkApproval, db: Se
     db.commit(); db.refresh(art); return art
 
 @router.get("/artworks/{artwork_id}/thumbnail")
-async def get_artwork_thumbnail(artwork_id: int, db: Session = Depends(get_db)):
-    art = db.query(ArtworkModel).filter(ArtworkModel.id == artwork_id).first()
-    if not art: raise HTTPException(404)
-    path = LIBRARY_DIR / art.filename
-    # A1: Pillow decode/resize/encode is blocking — thread it so a cold admin grid (dozens of concurrent
-    # misses) doesn't serialize on the worker's event loop. Mirrors /display.jpg below.
-    data = await run_in_threadpool(get_optimized_image, path, (400, 400), quality=70)
+async def get_artwork_thumbnail(artwork_id: int):
+    # M6 (INFRA-D075 incident): no Depends(get_db) here — a FastAPI-injected session stays
+    # checked out from the pool for the whole request, and a cold admin grid firing ~100 of these
+    # concurrently exhausted the pool while every one sat in Pillow work. lookup_artwork_filename
+    # resolves the filename in a short session that's closed before any image work starts, and
+    # run_image_work bounds the concurrent decode/encode itself (SD_IMAGE_WORKERS).
+    filename = await run_in_threadpool(lookup_artwork_filename, artwork_id)
+    path = LIBRARY_DIR / filename
+    data = await run_image_work(get_optimized_image, path, (400, 400), quality=70)
     return Response(content=data, media_type="image/jpeg")
 
 @router.get("/artworks/{artwork_id}/preview")
-async def get_artwork_preview(artwork_id: int, db: Session = Depends(get_db)):
-    art = db.query(ArtworkModel).filter(ArtworkModel.id == artwork_id).first()
-    if not art: raise HTTPException(404)
-    path = LIBRARY_DIR / art.filename
-    data = await run_in_threadpool(get_optimized_image, path, (1920, 1080), quality=85)
+async def get_artwork_preview(artwork_id: int):
+    filename = await run_in_threadpool(lookup_artwork_filename, artwork_id)
+    path = LIBRARY_DIR / filename
+    data = await run_image_work(get_optimized_image, path, (1920, 1080), quality=85)
     return Response(content=data, media_type="image/jpeg")
 
 @router.get("/art/{artwork_id}", response_class=HTMLResponse)

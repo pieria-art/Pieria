@@ -21,7 +21,7 @@ import federation
 import frame_push
 from config import ARTWORK_ROOT, LIBRARY_DIR
 from core.downloads import _aspect_crops, _focal_xy
-from core.media import render_canvas_image
+from core.media import get_optimized_image, render_canvas_image
 from core.playback import _frame_select
 from core.settings_util import _upsert_setting
 from database import SessionLocal
@@ -66,25 +66,32 @@ PACK_INDEX = ARTWORK_ROOT / "pack-index.json"
 
 
 async def warm_all_canvas_cache() -> None:
-    """Leader boot task: pre-render the capped display image for every approved artwork so the Canvas
-    never stalls on first display (esp. huge museum originals on a Pi). Sequential — one encode at a
-    time — to avoid a CPU storm while the server is also serving; `render_canvas_image` skips anything
-    already cached, so reruns are cheap. Best-effort per item."""
+    """Leader boot task: pre-render the capped display image AND the admin-grid thumbnail for every
+    approved artwork, so neither the Canvas nor a cold admin grid stalls on first paint after a
+    restart (esp. huge museum originals on a Pi). Sequential — one encode at a time, low priority —
+    to avoid a CPU storm while the server is also serving; both `render_canvas_image` and
+    `get_optimized_image` skip anything already disk-cached (M4), so reruns are cheap. Best-effort
+    per item, per derivative — a failed thumbnail must not skip that artwork's display derivative."""
     db = SessionLocal()
     try:
         arts = (db.query(ArtworkModel.id, ArtworkModel.filename)
                 .filter(ArtworkModel.status == "approved").all())
     finally:
         db.close()
-    logger.info(f"[Warm] pre-rendering display derivatives for {len(arts)} artworks...")
+    logger.info(f"[Warm] pre-rendering display + thumbnail derivatives for {len(arts)} artworks...")
     done = 0
     for art_id, filename in arts:
+        path = LIBRARY_DIR / filename
         try:
-            await run_in_threadpool(render_canvas_image, LIBRARY_DIR / filename, art_id)
-            done += 1
+            await run_in_threadpool(render_canvas_image, path, art_id)
         except Exception as e:
-            logger.warning(f"[Warm] art {art_id} ({filename}): {e}")
-    logger.info(f"[Warm] display cache warm complete ({done}/{len(arts)}).")
+            logger.warning(f"[Warm] display derivative for art {art_id} ({filename}): {e}")
+        try:
+            await run_in_threadpool(get_optimized_image, path, (400, 400), quality=70)
+        except Exception as e:
+            logger.warning(f"[Warm] thumbnail for art {art_id} ({filename}): {e}")
+        done += 1
+    logger.info(f"[Warm] display + thumbnail cache warm complete ({done}/{len(arts)}).")
 
 def sync_db_with_filesystem(db: Session) -> None:
     if not ARTWORK_ROOT.exists():
@@ -792,6 +799,24 @@ async def _update_check_loop():
         await asyncio.sleep(24 * 3600)
 
 
+async def _wait_for_oob_pack_race(timeout: float = 90.0, poll_interval: float = 1.0) -> None:
+    """M6 (INFRA-D075 #6, 2026-09-25): a fresh demo box's OOB registry seed (seed_from_registry's
+    background `_oob_seed_loop`) and the SD_DEMO_PACKS installer (`install_demo_packs`) can both decide
+    to install the same collection (typically 'masterpieces') at the same moment — install_demo_packs's
+    "already installed?" check races the OOB loop's own install, so both can download + append it.
+    Poll `_oob_seed_satisfied` (cheap: one settings-table lookup) before the demo installer takes its
+    own look, so the common case (network reachable — always true for a public demo box) never overlaps
+    the two installers. Gives up after `timeout` and lets the demo installer proceed anyway — better a
+    rare double-append than a demo box that never gets its packs because R2 is unreachable."""
+    waited = 0.0
+    while waited < timeout:
+        if _oob_seed_satisfied():
+            return
+        await asyncio.sleep(poll_interval)
+        waited += poll_interval
+    logger.warning(f"[Demo] OOB seed still not landed after {timeout:.0f}s; starting SD_DEMO_PACKS anyway.")
+
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     """Lifecycle events for FastAPI application with multi-worker concurrency locks."""
@@ -857,15 +882,33 @@ async def lifespan(app: FastAPI):
             # already present, in the background, via the same on-demand registry installer the Art
             # Packs card uses (core/demo.py). No-op when DEMO_MODE is off or SD_DEMO_PACKS is empty.
             import config
+            demo_packs_task = None
             if config.DEMO_MODE and config.DEMO_PACKS:
                 from core.demo import install_demo_packs
-                _spawn(install_demo_packs(config.DEMO_PACKS, config.DEMO_DEFAULT_PLAYLIST))
+
+                async def _install_demo_packs_after_seed():
+                    # #6: wait for the OOB registry seed to land first (or give up after a bound) so
+                    # it and this installer never decide to fetch the same collection at once.
+                    await _wait_for_oob_pack_race()
+                    await install_demo_packs(config.DEMO_PACKS, config.DEMO_DEFAULT_PLAYLIST)
+
+                demo_packs_task = _spawn(_install_demo_packs_after_seed())
         finally:
             db.close()
 
-        # Pre-render the capped Canvas derivatives in the background so the display never stalls on
-        # the one-time encode of a huge original (leader-only; runs while the server serves traffic).
-        _spawn(warm_all_canvas_cache())
+        # Pre-render the capped Canvas derivatives + admin-grid thumbnails in the background so
+        # neither the display nor a cold admin grid stalls on the one-time encode of a huge original
+        # (leader-only; runs while the server serves traffic). In demo mode, wait for the SD_DEMO_PACKS
+        # installer to finish first — warming before its artworks exist would just miss them.
+        async def _warm_after_demo_packs():
+            if demo_packs_task is not None:
+                try:
+                    await demo_packs_task
+                except Exception as e:  # noqa: BLE001 — a failed demo install must never skip warming
+                    logger.warning(f"[Warm] SD_DEMO_PACKS installer errored before warm: {e}")
+            await warm_all_canvas_cache()
+
+        _spawn(_warm_after_demo_packs())
 
         # Leader-only: the Samsung Frame TV pusher. Running it solely in the leader avoids
         # firing it once per uvicorn worker. No-op until enabled in Settings → Frame TV.

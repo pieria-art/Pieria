@@ -16,6 +16,7 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy.pool import StaticPool
 
 import app as app_module
+import core.media as core_media
 import routers.display as routers_display
 from app import app
 from database import Base, get_db
@@ -30,7 +31,15 @@ def client(tmp_path, monkeypatch):
 
     engine = create_engine("sqlite://", connect_args={"check_same_thread": False}, poolclass=StaticPool)
     Base.metadata.create_all(bind=engine)
-    db = sessionmaker(bind=engine, autocommit=False, autoflush=False)()
+    session_factory = sessionmaker(bind=engine, autocommit=False, autoflush=False)
+    db = session_factory()
+
+    # M6 (INFRA-D075): the pull endpoint no longer takes Depends(get_db) for its selection/lookup or
+    # render steps — it opens its own short sessions via routers.display.SessionLocal, and
+    # /artworks/{id}/display.jpg (also exercised here) via core.media.lookup_artwork_filename's
+    # core.media.SessionLocal. Redirect both (established dual-patch pattern).
+    monkeypatch.setattr(routers_display, "SessionLocal", session_factory)
+    monkeypatch.setattr(core_media, "SessionLocal", session_factory)
 
     def _override_db():
         yield db

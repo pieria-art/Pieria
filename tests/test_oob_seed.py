@@ -268,3 +268,47 @@ def test_shutdown_does_not_hang_when_seed_retry_is_stuck(monkeypatch):
     )
     assert result.get("ok") is True, result.get("error")
     assert elapsed < 10, f"shutdown took {elapsed:.1f}s — should be bounded by the 5s shutdown timeout"
+
+
+# --- M6 #6: the demo-installer/OOB-seed race (2026-09-25) -------------------------------------------
+
+@pytest.mark.asyncio
+async def test_wait_for_oob_pack_race_returns_once_seed_satisfied(monkeypatch):
+    """A box where pack_seeded is already set (baked pack, or the OOB seed already landed) must not
+    wait at all."""
+    db = _db()
+    db.add(SettingsModel(setting_key="pack_seeded", setting_value="v2:registry"))
+    db.commit()
+    monkeypatch.setattr(L, "SessionLocal", lambda: db)
+
+    await L._wait_for_oob_pack_race(timeout=5, poll_interval=0.01)  # returns immediately, no waiting
+
+
+@pytest.mark.asyncio
+async def test_wait_for_oob_pack_race_waits_for_seed_then_returns(monkeypatch):
+    """The common demo-box case: the OOB seed is still mid-flight when the demo installer would
+    otherwise have raced it — this waits until pack_seeded lands, then proceeds."""
+    db = _db()
+    monkeypatch.setattr(L, "SessionLocal", lambda: db)
+
+    async def _land_seed_soon():
+        await asyncio.sleep(0.05)
+        db.add(SettingsModel(setting_key="pack_seeded", setting_value="v2:registry"))
+        db.commit()
+
+    landing = asyncio.create_task(_land_seed_soon())
+    await L._wait_for_oob_pack_race(timeout=5, poll_interval=0.01)
+    await landing
+
+    assert db.query(SettingsModel).filter(SettingsModel.setting_key == "pack_seeded").first() is not None
+
+
+@pytest.mark.asyncio
+async def test_wait_for_oob_pack_race_gives_up_after_timeout(monkeypatch):
+    """An unreachable registry (no network) must not block the demo installer forever — it gives up
+    after `timeout` and lets the installer proceed anyway."""
+    db = _db()
+    monkeypatch.setattr(L, "SessionLocal", lambda: db)
+
+    await L._wait_for_oob_pack_race(timeout=0.05, poll_interval=0.01)  # never satisfied — must return
+    assert db.query(SettingsModel).filter(SettingsModel.setting_key == "pack_seeded").first() is None

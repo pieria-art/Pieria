@@ -20,10 +20,10 @@ from sqlalchemy.orm import Session
 import config
 from config import LIBRARY_DIR
 from core.demo import normalize_display_id
-from core.media import render_canvas_image
+from core.media import lookup_artwork_filename, render_canvas_image, run_image_work
 from core.playback import _playlist_name_if_playable, select_next_image, touch_active_display
 from core.settings_util import _HHMM_RE, _load_schedule, _parse_hhmm, resolve_schedule_state
-from database import get_db
+from database import SessionLocal, get_db
 from epaper import (
     PALETTES,
     VALID_FORMATS,
@@ -39,15 +39,17 @@ router = APIRouter()
 
 
 @router.get("/artworks/{artwork_id}/display.jpg")
-async def get_artwork_display(artwork_id: int, db: Session = Depends(get_db)):
+async def get_artwork_display(artwork_id: int):
     """Resolution-capped image the Canvas loads instead of the full-res original
     (see render_canvas_image). Ends in .jpg → inherits the immutable media cache tier;
-    the ?v=<mtime> query the caller appends busts that cache when the source changes."""
-    art = db.query(ArtworkModel).filter(ArtworkModel.id == artwork_id).first()
-    if not art: raise HTTPException(404)
-    path = LIBRARY_DIR / art.filename
+    the ?v=<mtime> query the caller appends busts that cache when the source changes.
+
+    M6 (INFRA-D075 incident): no Depends(get_db) — see routers/library.py's thumbnail endpoint for
+    why a session must never be held across the Pillow render."""
+    filename = await run_in_threadpool(lookup_artwork_filename, artwork_id)
+    path = LIBRARY_DIR / filename
     if not path.exists(): raise HTTPException(404)
-    data = await run_in_threadpool(render_canvas_image, path, art.id)
+    data = await run_image_work(render_canvas_image, path, artwork_id)
     return Response(content=data, media_type="image/jpeg")
 
 
@@ -141,7 +143,6 @@ async def get_display_image(
                      "known_displays() keeps this display listed, so a client whose real sleep floor "
                      "is longer than 2x the playlist's display_time doesn't drop off /api/remote/displays "
                      "between its own pulls."),
-    db: Session = Depends(get_db),
 ):
     """
     Track B: stateless pull-on-wake image for e-ink / BYOS frames.
@@ -150,6 +151,11 @@ async def get_display_image(
     the chosen artwork cropped to w x h and Floyd–Steinberg-dithered to the device
     palette. Returns the bytes plus an `X-Refresh-After` header (the playlist's
     display_time) so the frame knows how long to deep-sleep. No WebSocket, no JS.
+
+    M6 (INFRA-D075 incident): no Depends(get_db) — the selection/lookup work below needs a session,
+    but the render (run_image_work → render_for_epaper) does not, so it runs with the session already
+    closed. touch_active_display gets its own short session afterward. See routers/library.py's
+    thumbnail endpoint for the incident this pattern guards against.
     """
     ext = ext.lower()
     if ext not in VALID_FORMATS:
@@ -157,28 +163,30 @@ async def get_display_image(
     if palette not in PALETTES:
         raise HTTPException(400, detail=f"Unknown palette. Options: {', '.join(PALETTES)}")
 
-    # Playlist binding is stateless (v1): explicit ?playlist=, else resolve one that can actually be
-    # PLAYED. This used to take `ORDER BY id LIMIT 1`, which is wrong the moment any empty playlist
-    # sorts first — and on a fresh out-of-box install it always does: seeding creates several empty
-    # starter galleries (ids 1-3) before the downloaded pack lands (id 4). The e-ink pull therefore
-    # 404'd forever on a brand-new device while /playlists and /artworks both looked perfectly healthy,
-    # and the panel just held its last frame. Found on the first real .img flash, 2026-07-21.
-    if not playlist:
-        playlist = _resolve_display_playlist(db, display_id)
+    with SessionLocal() as db:
+        # Playlist binding is stateless (v1): explicit ?playlist=, else resolve one that can actually be
+        # PLAYED. This used to take `ORDER BY id LIMIT 1`, which is wrong the moment any empty playlist
+        # sorts first — and on a fresh out-of-box install it always does: seeding creates several empty
+        # starter galleries (ids 1-3) before the downloaded pack lands (id 4). The e-ink pull therefore
+        # 404'd forever on a brand-new device while /playlists and /artworks both looked perfectly healthy,
+        # and the panel just held its last frame. Found on the first real .img flash, 2026-07-21.
         if not playlist:
-            raise HTTPException(404, detail="No playlist with any artwork yet")
+            playlist = _resolve_display_playlist(db, display_id)
+            if not playlist:
+                raise HTTPException(404, detail="No playlist with any artwork yet")
 
-    # Reuse the canonical selection brain (advances state once per fetch).
-    info = await select_next_image(
-        playlist_name=playlist, shuffle=shuffle, display_id=display_id, direction=1, db=db
-    )
+        # Reuse the canonical selection brain (advances state once per fetch).
+        info = await select_next_image(
+            playlist_name=playlist, shuffle=shuffle, display_id=display_id, direction=1, db=db
+        )
 
-    art = db.query(ArtworkModel).filter(ArtworkModel.id == info["metadata"]["id"]).first()
-    if not art:
-        raise HTTPException(404, detail="Selected artwork not found")
-    path = LIBRARY_DIR / art.filename
-    if not path.exists():
-        raise HTTPException(404, detail="Artwork file missing")
+        art = db.query(ArtworkModel).filter(ArtworkModel.id == info["metadata"]["id"]).first()
+        if not art:
+            raise HTTPException(404, detail="Selected artwork not found")
+        path = LIBRARY_DIR / art.filename
+        if not path.exists():
+            raise HTTPException(404, detail="Artwork file missing")
+        aspect_crops, focal_x, focal_y = art.aspect_crops, art.focal_x, art.focal_y
 
     try:
         # A1: crop + enhance + Floyd–Steinberg dither + encode is heavy and blocking — thread it so an
@@ -186,15 +194,16 @@ async def get_display_image(
         # Prefer an authored per-shape crop over the focal cover. Picked against the REQUESTED w/h,
         # so a portrait-hung panel asking for 1200x1600 gets the portrait composition, not a
         # landscape one. None (no crop data) => unchanged focal-cover behaviour.
-        crop_box = pick_crop_for_aspect(art.aspect_crops, w, h)
-        data = await run_in_threadpool(render_for_epaper, path, w, h, palette=palette, fit=fit,
-                                       focal=(art.focal_x, art.focal_y), fmt=ext,
-                                       crop_box=crop_box)
+        crop_box = pick_crop_for_aspect(aspect_crops, w, h)
+        data = await run_image_work(render_for_epaper, path, w, h, palette=palette, fit=fit,
+                                     focal=(focal_x, focal_y), fmt=ext,
+                                     crop_box=crop_box)
     except Exception as e:
         logger.error(f"[epaper] render failed for {path.name}: {e}", exc_info=True)
         raise HTTPException(500, detail="Render failed")
 
-    touch_active_display(db, display_id, refresh_s=interval)
+    with SessionLocal() as db:
+        touch_active_display(db, display_id, refresh_s=interval)
 
     return Response(
         content=data,

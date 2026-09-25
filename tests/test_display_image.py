@@ -36,7 +36,13 @@ def client(tmp_path, monkeypatch):
 
     engine = create_engine("sqlite://", connect_args={"check_same_thread": False}, poolclass=StaticPool)
     Base.metadata.create_all(bind=engine)
-    db = sessionmaker(bind=engine, autocommit=False, autoflush=False)()
+    session_factory = sessionmaker(bind=engine, autocommit=False, autoflush=False)
+    db = session_factory()
+
+    # M6 (INFRA-D075): /artworks/{id}/display.jpg no longer takes Depends(get_db) — it resolves the
+    # filename via core.media.lookup_artwork_filename's own short SessionLocal, so that binding needs
+    # redirecting too (established dual-patch pattern; see test_catalog.py / test_connection_manager.py).
+    monkeypatch.setattr(core_media, "SessionLocal", session_factory)
 
     def _override_db():
         yield db

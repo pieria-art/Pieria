@@ -15,8 +15,42 @@ from fastapi.concurrency import run_in_threadpool
 from PIL import Image, ImageOps
 
 from config import ARTWORK_ROOT, LIBRARY_DIR
+from database import SessionLocal
+from models import ArtworkModel
 
 logger = logging.getLogger("artwork-display-api")
+
+# INFRA-D075 production incident (2026-09-25): opening the admin grid fired ~100 concurrent
+# /artworks/{id}/thumbnail requests. Each handler queried the DB *then* awaited a slow Pillow
+# render while still holding that FastAPI-injected session — SQLAlchemy keeps a session's
+# connection checked out from the pool from first query until commit/rollback/close, so every one
+# of those ~100 renders held a pool connection for the whole decode. With pool size 5 + overflow 10,
+# the 16th concurrent request timed out (`QueuePool limit ... reached`), and the pool never
+# recovered even after the renders finished (see `_image_decode_semaphore` below for the accompanying
+# concurrency bound). Fix: any route that serves a derivative image must resolve what it needs from
+# the DB in a SHORT session (closed immediately) and do all Pillow work with no session open.
+def lookup_artwork_filename(artwork_id: int) -> str:
+    """Look up an artwork's filename in a short-lived session that's closed before the caller does any
+    slow image work. Raises HTTPException(404) if the artwork doesn't exist."""
+    with SessionLocal() as db:
+        art = db.query(ArtworkModel).filter(ArtworkModel.id == artwork_id).first()
+        if not art:
+            raise HTTPException(404)
+        return art.filename
+
+
+# M6: process-wide cap on concurrent Pillow decode/encode work (thumbnail/preview/Canvas/e-ink
+# derivatives) — a cold admin grid queues instead of thrashing a 2-vCPU box. Queued requests never
+# hold a DB session (guaranteed by lookup_artwork_filename above + the callers' short-session pattern).
+IMAGE_WORKERS = max(1, int(os.getenv("SD_IMAGE_WORKERS", "2")))
+_image_decode_semaphore = asyncio.Semaphore(IMAGE_WORKERS)
+
+
+async def run_image_work(fn, *args, **kwargs):
+    """Run blocking image work in the threadpool, bounded by `_image_decode_semaphore`. Callers must
+    not hold a DB session across this call."""
+    async with _image_decode_semaphore:
+        return await run_in_threadpool(fn, *args, **kwargs)
 
 # M4: caps for USER uploads only (routers/library.py /upload, routers/studio.py /upload/personal) —
 # the untrusted-bytes path a LAN client controls directly, not server-side museum pack ingestion
@@ -61,10 +95,29 @@ def check_user_upload_pixel_ceiling(width: int, height: int, max_pixels: int | N
         raise HTTPException(400, detail=f"Image is too large (max {max_pixels // 1_000_000} MP).")
 
 
+def _optimized_derivative_path(image_path: Path, size: tuple, quality: int, mtime: int) -> Path:
+    """M4 disk-cache path for a thumbnail/preview derivative — mirrors render_canvas_image's naming,
+    keyed by (source filename, size, quality, source mtime) so an in-place file replace gets a fresh
+    entry instead of serving stale bytes."""
+    return DERIVATIVES_DIR / f"opt-{image_path.name}-{size[0]}x{size[1]}-q{quality}-{mtime}.jpg"
+
+
 @lru_cache(maxsize=256)
 def _optimized_image_cached(image_path: Path, size: tuple, quality: int, mtime: int) -> bytes:
     """Resize + JPEG-compress for web delivery. `mtime` participates only in the cache key (A4): a file
-    replaced in place gets a fresh entry instead of serving stale bytes until process restart."""
+    replaced in place gets a fresh entry instead of serving stale bytes until process restart.
+
+    M4: the in-memory lru_cache is the first tier (per-process, capped, gone on restart); a disk-cache
+    tier under ARTWORK_ROOT/_derivatives/ backs it so a restart doesn't re-decode every grid tile from
+    the original — the boot warm-sweep (core/lifespan.py) and every subsequent restart's first hits
+    both read this file instead of re-rendering."""
+    dst = _optimized_derivative_path(image_path, size, quality, mtime)
+    if dst.exists():
+        try:
+            return dst.read_bytes()
+        except OSError:
+            pass  # fall through and re-render
+
     logger.info(f"[Image Processor] Optimizing: {image_path.name}")
     with Image.open(image_path) as img:
         if img.mode not in ("RGB", "L"):      # covers RGBA/P/LA/CMYK — "LA" used to crash the JPEG save
@@ -72,7 +125,18 @@ def _optimized_image_cached(image_path: Path, size: tuple, quality: int, mtime: 
         img.thumbnail(size, Image.Resampling.LANCZOS)
         buf = io.BytesIO()
         img.save(buf, format="JPEG", quality=quality)
-        return buf.getvalue()
+        data = buf.getvalue()
+
+    # Atomic publish (A3, mirrors render_canvas_image) — per-writer tmp name so concurrent renders of
+    # the same key never interleave a partial file; best-effort (a full disk must never fail the request).
+    try:
+        DERIVATIVES_DIR.mkdir(exist_ok=True)
+        tmp = dst.with_name(f"{dst.name}.{os.getpid()}.tmp")
+        tmp.write_bytes(data)
+        os.replace(tmp, dst)
+    except OSError as e:
+        logger.warning(f"[Image Processor] could not disk-cache {dst.name}: {e}")
+    return data
 
 
 def get_optimized_image(image_path: Path, size: tuple, quality: int = 85) -> bytes:

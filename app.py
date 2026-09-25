@@ -15,11 +15,7 @@ import logging
 
 import pillow_heif
 from dotenv import load_dotenv
-from fastapi import (
-    FastAPI,
-    Request,
-)
-from fastapi.responses import Response
+from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 
 # Load environment variables
@@ -216,34 +212,60 @@ app.include_router(settings_router)
 app.include_router(studio_router)
 app.include_router(ws_router)
 
-@app.middleware("http")
-async def inject_aggressive_cache_headers(request: Request, call_next):
-    response = await call_next(request)
-    # Target Pillow rendering routes, media library, and static assets
-    path = request.url.path
-    is_media_cacheable = (
-        (path.startswith("/artworks/") and ("thumbnail" in path or "preview" in path))
-        or path.startswith("/media/")
-        or path.endswith((".svg", ".png", ".jpg", ".webp"))
-    )
-    is_code_asset = path.endswith((".css", ".js", ".json"))
-    is_html_asset = path.endswith(".html") or path in ("/admin", "/remote", "/studio", "/help", "/")
+# M6 (INFRA-D075, 2026-09-25): these two were `@app.middleware("http")` (BaseHTTPMiddleware) —
+# converted to pure ASGI, matching UploadBodyCapMiddleware/DemoModeMiddleware above. Root cause of the
+# thumbnail-storm incident was sessions held across Pillow work (fixed at the endpoints — see
+# core/media.py's lookup_artwork_filename), but BaseHTTPMiddleware is ALSO a documented leak vector on
+# its own: it runs the downstream app in a separate anyio task from the one the ASGI server cancels on
+# client disconnect, so a disconnect mid-request can leave that inner task's `finally` blocks
+# (including a Depends(get_db) session's own close()) never run — silently leaking a pool connection
+# per disconnect regardless of what the endpoint does. Pure ASGI middleware runs in the SAME task as
+# the request, so a server-side cancellation on disconnect propagates straight through the endpoint's
+# own exception handling, same as having no middleware at all. Behavior (headers, CORS/origin rules)
+# and add_middleware ordering relative to UploadBodyCapMiddleware/DemoModeMiddleware are unchanged.
+class CacheHeadersMiddleware:
+    """Pure ASGI port of the former inject_aggressive_cache_headers — identical header logic."""
 
-    if path.startswith("/api/") or is_html_asset or path.startswith("/display/"):
-        # API/HTML and the per-display e-ink endpoint must never be cached.
-        # (/display/*.png must beat the is_media_cacheable .png rule below.)
-        response.headers["Cache-Control"] = "no-store, no-cache, must-revalidate"
-    elif is_media_cacheable:
-        # Images/media rarely change — cache aggressively
-        response.headers["Cache-Control"] = "public, max-age=31536000, immutable"
-    elif is_code_asset:
-        # JS/CSS/JSON change during development — short cache + revalidate
-        response.headers["Cache-Control"] = "public, max-age=60, must-revalidate"
-    # Security headers (L2). nosniff is defense-in-depth against the /media MIME-confusion XSS class
-    # (H1); Referrer-Policy keeps LAN paths out of any outbound Referer.
-    response.headers["X-Content-Type-Options"] = "nosniff"
-    response.headers["Referrer-Policy"] = "same-origin"
-    return response
+    def __init__(self, app):
+        self.app = app
+
+    async def __call__(self, scope, receive, send):
+        if scope["type"] != "http":
+            await self.app(scope, receive, send)
+            return
+
+        path = scope.get("path", "")
+        is_media_cacheable = (
+            (path.startswith("/artworks/") and ("thumbnail" in path or "preview" in path))
+            or path.startswith("/media/")
+            or path.endswith((".svg", ".png", ".jpg", ".webp"))
+        )
+        is_code_asset = path.endswith((".css", ".js", ".json"))
+        is_html_asset = path.endswith(".html") or path in ("/admin", "/remote", "/studio", "/help", "/")
+
+        async def send_wrapper(message):
+            if message["type"] == "http.response.start":
+                headers = list(message.get("headers", []))
+                if path.startswith("/api/") or is_html_asset or path.startswith("/display/"):
+                    # API/HTML and the per-display e-ink endpoint must never be cached.
+                    # (/display/*.png must beat the is_media_cacheable .png rule below.)
+                    headers.append((b"cache-control", b"no-store, no-cache, must-revalidate"))
+                elif is_media_cacheable:
+                    # Images/media rarely change — cache aggressively
+                    headers.append((b"cache-control", b"public, max-age=31536000, immutable"))
+                elif is_code_asset:
+                    # JS/CSS/JSON change during development — short cache + revalidate
+                    headers.append((b"cache-control", b"public, max-age=60, must-revalidate"))
+                # Security headers (L2). nosniff is defense-in-depth against the /media
+                # MIME-confusion XSS class (H1); Referrer-Policy keeps LAN paths out of any outbound
+                # Referer.
+                headers.append((b"x-content-type-options", b"nosniff"))
+                headers.append((b"referrer-policy", b"same-origin"))
+                message = dict(message)
+                message["headers"] = headers
+            await send(message)
+
+        await self.app(scope, receive, send_wrapper)
 
 
 # --- CORS + cross-origin state-change guard (ADR-036) ------------------------------------------------
@@ -261,35 +283,67 @@ async def inject_aggressive_cache_headers(request: Request, call_next):
 _MUTATING_METHODS = frozenset({"POST", "PUT", "PATCH", "DELETE"})
 
 
-@app.middleware("http")
-async def cors_and_origin_guard(request: Request, call_next):
-    origin = request.headers.get("origin", "")
-    host = request.headers.get("host", "")
-    path = request.url.path
-    allowed = _origin_allowed(origin, host)
-    # A CORS preflight advertises the real method it is clearing; judge against that, not OPTIONS.
-    effective_method = (request.headers.get("access-control-request-method", "GET").upper()
-                        if request.method == "OPTIONS" else request.method)
-    is_public_read = effective_method in ("GET", "HEAD") and path.startswith(_PUBLIC_FEED_GET_PREFIXES)
+class CorsAndOriginGuardMiddleware:
+    """Pure ASGI port of the former cors_and_origin_guard — identical CORS/origin logic."""
 
-    # The teeth: refuse a cross-origin state change from a browser tab (blocks the preflight too).
-    if effective_method in _MUTATING_METHODS and origin and not allowed:
-        return Response("cross-origin request blocked", status_code=403)
+    def __init__(self, app):
+        self.app = app
 
-    if request.method == "OPTIONS" and origin:
-        resp = Response(status_code=204)
-    else:
-        resp = await call_next(request)
+    async def __call__(self, scope, receive, send):
+        if scope["type"] != "http":
+            await self.app(scope, receive, send)
+            return
 
-    if origin and (is_public_read or allowed):
-        resp.headers["Access-Control-Allow-Origin"] = "*" if is_public_read else origin
-        resp.headers["Vary"] = "Origin"
-        if request.method == "OPTIONS":
-            resp.headers["Access-Control-Allow-Methods"] = "GET, POST, PUT, PATCH, DELETE, OPTIONS"
-            resp.headers["Access-Control-Allow-Headers"] = (
-                request.headers.get("access-control-request-headers") or "*")
-            resp.headers["Access-Control-Max-Age"] = "600"
-    return resp
+        headers_in = {k.decode("latin-1").lower(): v.decode("latin-1")
+                      for k, v in scope.get("headers") or []}
+        origin = headers_in.get("origin", "")
+        host = headers_in.get("host", "")
+        path = scope.get("path", "")
+        method = scope.get("method", "GET")
+        allowed = _origin_allowed(origin, host)
+        # A CORS preflight advertises the real method it is clearing; judge against that, not OPTIONS.
+        effective_method = (headers_in.get("access-control-request-method", "GET").upper()
+                            if method == "OPTIONS" else method)
+        is_public_read = effective_method in ("GET", "HEAD") and path.startswith(_PUBLIC_FEED_GET_PREFIXES)
+
+        # The teeth: refuse a cross-origin state change from a browser tab (blocks the preflight too).
+        if effective_method in _MUTATING_METHODS and origin and not allowed:
+            await send({
+                "type": "http.response.start",
+                "status": 403,
+                "headers": [(b"content-type", b"text/plain; charset=utf-8")],
+            })
+            await send({"type": "http.response.body", "body": b"cross-origin request blocked"})
+            return
+
+        extra_headers = []
+        if origin and (is_public_read or allowed):
+            extra_headers.append((b"access-control-allow-origin",
+                                   b"*" if is_public_read else origin.encode("latin-1")))
+            extra_headers.append((b"vary", b"Origin"))
+            if method == "OPTIONS":
+                extra_headers.append((b"access-control-allow-methods",
+                                       b"GET, POST, PUT, PATCH, DELETE, OPTIONS"))
+                req_headers = headers_in.get("access-control-request-headers") or "*"
+                extra_headers.append((b"access-control-allow-headers", req_headers.encode("latin-1")))
+                extra_headers.append((b"access-control-max-age", b"600"))
+
+        if method == "OPTIONS" and origin:
+            await send({"type": "http.response.start", "status": 204, "headers": list(extra_headers)})
+            await send({"type": "http.response.body", "body": b""})
+            return
+
+        async def send_wrapper(message):
+            if message["type"] == "http.response.start" and extra_headers:
+                message = dict(message)
+                message["headers"] = list(message.get("headers", [])) + extra_headers
+            await send(message)
+
+        await self.app(scope, receive, send_wrapper)
+
+
+app.add_middleware(CacheHeadersMiddleware)
+app.add_middleware(CorsAndOriginGuardMiddleware)
 
 
 # POST /api/admin/factory-reset now lives in routers/admin.py.
