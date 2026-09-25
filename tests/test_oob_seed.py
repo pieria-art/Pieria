@@ -312,3 +312,20 @@ async def test_wait_for_oob_pack_race_gives_up_after_timeout(monkeypatch):
 
     await L._wait_for_oob_pack_race(timeout=0.05, poll_interval=0.01)  # never satisfied — must return
     assert db.query(SettingsModel).filter(SettingsModel.setting_key == "pack_seeded").first() is None
+
+
+@pytest.mark.asyncio
+async def test_wait_for_oob_pack_race_skips_entirely_when_boot_seed_disabled(monkeypatch):
+    """M6 nit (reviewer): SD_DISABLE_BOOT_SEED means _oob_seed_loop never runs, so pack_seeded will
+    never land from it — the old code would still poll for the full timeout before giving up. Must
+    return immediately instead (well under one poll_interval), never touching the DB."""
+    monkeypatch.setattr(config, "DISABLE_BOOT_SEED", True)
+
+    def _boom():
+        raise AssertionError("SessionLocal called — should have short-circuited before any DB lookup")
+    monkeypatch.setattr(L, "SessionLocal", _boom)
+
+    import time
+    t0 = time.monotonic()
+    await L._wait_for_oob_pack_race(timeout=90, poll_interval=5)
+    assert time.monotonic() - t0 < 1

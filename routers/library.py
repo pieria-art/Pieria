@@ -34,6 +34,7 @@ from core.media import (
     check_user_upload_pixel_ceiling,
     get_optimized_image,
     lookup_artwork_filename,
+    peek_optimized_image,
     read_capped_upload,
     run_image_work,
 )
@@ -328,14 +329,16 @@ async def get_artwork_thumbnail(artwork_id: int):
     # run_image_work bounds the concurrent decode/encode itself (SD_IMAGE_WORKERS).
     filename = await run_in_threadpool(lookup_artwork_filename, artwork_id)
     path = LIBRARY_DIR / filename
-    data = await run_image_work(get_optimized_image, path, (400, 400), quality=70)
+    data = await run_image_work(get_optimized_image, path, (400, 400), quality=70,
+                                 cache_check=lambda: peek_optimized_image(path, (400, 400), 70))
     return Response(content=data, media_type="image/jpeg")
 
 @router.get("/artworks/{artwork_id}/preview")
 async def get_artwork_preview(artwork_id: int):
     filename = await run_in_threadpool(lookup_artwork_filename, artwork_id)
     path = LIBRARY_DIR / filename
-    data = await run_image_work(get_optimized_image, path, (1920, 1080), quality=85)
+    data = await run_image_work(get_optimized_image, path, (1920, 1080), quality=85,
+                                 cache_check=lambda: peek_optimized_image(path, (1920, 1080), 85))
     return Response(content=data, media_type="image/jpeg")
 
 @router.get("/art/{artwork_id}", response_class=HTMLResponse)

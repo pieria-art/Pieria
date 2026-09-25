@@ -12,7 +12,6 @@ from contextlib import asynccontextmanager
 from datetime import UTC, datetime
 
 from fastapi import FastAPI
-from fastapi.concurrency import run_in_threadpool
 from PIL import Image
 from sqlalchemy import delete, func, select
 from sqlalchemy.orm import Session
@@ -21,7 +20,7 @@ import federation
 import frame_push
 from config import ARTWORK_ROOT, LIBRARY_DIR
 from core.downloads import _aspect_crops, _focal_xy
-from core.media import get_optimized_image, render_canvas_image
+from core.media import get_optimized_image, render_canvas_image, run_image_work
 from core.playback import _frame_select
 from core.settings_util import _upsert_setting
 from database import SessionLocal
@@ -82,12 +81,15 @@ async def warm_all_canvas_cache() -> None:
     done = 0
     for art_id, filename in arts:
         path = LIBRARY_DIR / filename
+        # M6 nit: through run_image_work (the same SD_IMAGE_WORKERS semaphore live requests use), not
+        # a bare run_in_threadpool — a live thumbnail/display request now shares that budget instead
+        # of a boot warm-sweep being free to pile up unbounded threadpool work alongside it.
         try:
-            await run_in_threadpool(render_canvas_image, path, art_id)
+            await run_image_work(render_canvas_image, path, art_id)
         except Exception as e:
             logger.warning(f"[Warm] display derivative for art {art_id} ({filename}): {e}")
         try:
-            await run_in_threadpool(get_optimized_image, path, (400, 400), quality=70)
+            await run_image_work(get_optimized_image, path, (400, 400), quality=70)
         except Exception as e:
             logger.warning(f"[Warm] thumbnail for art {art_id} ({filename}): {e}")
         done += 1
@@ -807,7 +809,16 @@ async def _wait_for_oob_pack_race(timeout: float = 90.0, poll_interval: float = 
     Poll `_oob_seed_satisfied` (cheap: one settings-table lookup) before the demo installer takes its
     own look, so the common case (network reachable — always true for a public demo box) never overlaps
     the two installers. Gives up after `timeout` and lets the demo installer proceed anyway — better a
-    rare double-append than a demo box that never gets its packs because R2 is unreachable."""
+    rare double-append than a demo box that never gets its packs because R2 is unreachable.
+
+    M6 nit (reviewer, 2026-09-25): must NOT burn the full `timeout` when there's nothing to wait for.
+    A baked v1/v2 pack already satisfies `_oob_seed_satisfied` on the very first check below (no real
+    wait). But with `SD_DISABLE_BOOT_SEED` set (test/CI, or a box that's deliberately network-seed-off)
+    and no baked pack, `pack_seeded` would never land — `_oob_seed_loop` never even starts — so the
+    poll below would otherwise spin uselessly for the whole `timeout` before giving up. Short-circuit."""
+    import config
+    if config.DISABLE_BOOT_SEED:
+        return
     waited = 0.0
     while waited < timeout:
         if _oob_seed_satisfied():

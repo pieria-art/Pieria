@@ -45,7 +45,7 @@ async def test_warm_all_canvas_cache_prerenders_thumbnails_too(tmp_path, monkeyp
     thumb_files = list(derivatives.glob("opt-a.jpg-400x400-*"))
     assert thumb_files, "warm sweep did not pre-render the thumbnail derivative"
 
-    core_media._optimized_image_cached.cache_clear()
+    core_media._optimized_image_lru.clear()
     monkeypatch.setattr(Image, "open", lambda *a, **k: (_ for _ in ()).throw(AssertionError("re-decoded")))
     core_media.get_optimized_image(library / "a.jpg", (400, 400), quality=70)  # must hit disk, not Pillow
 

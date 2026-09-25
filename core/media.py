@@ -7,8 +7,11 @@ import asyncio
 import io
 import logging
 import os
-from functools import lru_cache
+import tempfile
+import threading
+from collections import OrderedDict
 from pathlib import Path
+from typing import Optional
 
 from fastapi import HTTPException, Request, UploadFile
 from fastapi.concurrency import run_in_threadpool
@@ -46,11 +49,38 @@ IMAGE_WORKERS = max(1, int(os.getenv("SD_IMAGE_WORKERS", "2")))
 _image_decode_semaphore = asyncio.Semaphore(IMAGE_WORKERS)
 
 
-async def run_image_work(fn, *args, **kwargs):
+async def run_image_work(fn, *args, cache_check=None, **kwargs):
     """Run blocking image work in the threadpool, bounded by `_image_decode_semaphore`. Callers must
-    not hold a DB session across this call."""
+    not hold a DB session across this call.
+
+    M6 nit (reviewer, 2026-09-25): `cache_check`, if given, is tried FIRST — a cheap, synchronous
+    probe (in-memory dict lookup, then at most one small disk read; see `peek_optimized_image` /
+    `peek_canvas_image`). A hit returns immediately, WITHOUT ever taking the semaphore, so a warm
+    derivative never queues behind someone else's cold render."""
+    if cache_check is not None:
+        hit = cache_check()
+        if hit is not None:
+            return hit
     async with _image_decode_semaphore:
         return await run_in_threadpool(fn, *args, **kwargs)
+
+
+def _atomic_write(dst: Path, data: bytes) -> None:
+    """Publish `data` to `dst` atomically (temp + os.replace) so a concurrent reader never sees a
+    partial file. M6 nit: `tempfile.mkstemp` (not a PID-based name) — two THREADS in the same worker
+    process share a pid, so a shared tmp name let concurrent renders of the same key interleave their
+    writes before either replace() landed."""
+    fd, tmp_name = tempfile.mkstemp(dir=dst.parent, prefix=f"{dst.name}.", suffix=".tmp")
+    try:
+        with os.fdopen(fd, "wb") as f:
+            f.write(data)
+        os.replace(tmp_name, dst)
+    except BaseException:
+        try:
+            os.unlink(tmp_name)
+        except OSError:
+            pass
+        raise
 
 # M4: caps for USER uploads only (routers/library.py /upload, routers/studio.py /upload/personal) —
 # the untrusted-bytes path a LAN client controls directly, not server-side museum pack ingestion
@@ -95,6 +125,38 @@ def check_user_upload_pixel_ceiling(width: int, height: int, max_pixels: int | N
         raise HTTPException(400, detail=f"Image is too large (max {max_pixels // 1_000_000} MP).")
 
 
+# M6 nit: the in-memory tier used to be a bare `@lru_cache`, which can't be peeked without calling
+# (and thus potentially rendering) the function — needed a real "is this cached?" probe for
+# `run_image_work`'s cache_check. A small hand-rolled LRU dict (move-to-end on hit, evict oldest on
+# overflow) gives the same per-process/capped/gone-on-restart behavior as lru_cache, but peekable.
+_OPT_CACHE_MAXSIZE = 256
+_optimized_image_lru: "OrderedDict[tuple, bytes]" = OrderedDict()
+_optimized_image_lru_lock = threading.Lock()
+
+
+def _optimized_cache_get(key: tuple) -> Optional[bytes]:
+    with _optimized_image_lru_lock:
+        val = _optimized_image_lru.get(key)
+        if val is not None:
+            _optimized_image_lru.move_to_end(key)
+        return val
+
+
+def _optimized_cache_put(key: tuple, value: bytes) -> None:
+    with _optimized_image_lru_lock:
+        _optimized_image_lru[key] = value
+        _optimized_image_lru.move_to_end(key)
+        while len(_optimized_image_lru) > _OPT_CACHE_MAXSIZE:
+            _optimized_image_lru.popitem(last=False)
+
+
+def _optimized_image_mtime(image_path: Path) -> int:
+    try:
+        return int(image_path.stat().st_mtime)
+    except OSError:
+        return 0
+
+
 def _optimized_derivative_path(image_path: Path, size: tuple, quality: int, mtime: int) -> Path:
     """M4 disk-cache path for a thumbnail/preview derivative — mirrors render_canvas_image's naming,
     keyed by (source filename, size, quality, source mtime) so an in-place file replace gets a fresh
@@ -102,21 +164,39 @@ def _optimized_derivative_path(image_path: Path, size: tuple, quality: int, mtim
     return DERIVATIVES_DIR / f"opt-{image_path.name}-{size[0]}x{size[1]}-q{quality}-{mtime}.jpg"
 
 
-@lru_cache(maxsize=256)
-def _optimized_image_cached(image_path: Path, size: tuple, quality: int, mtime: int) -> bytes:
-    """Resize + JPEG-compress for web delivery. `mtime` participates only in the cache key (A4): a file
-    replaced in place gets a fresh entry instead of serving stale bytes until process restart.
-
-    M4: the in-memory lru_cache is the first tier (per-process, capped, gone on restart); a disk-cache
-    tier under ARTWORK_ROOT/_derivatives/ backs it so a restart doesn't re-decode every grid tile from
-    the original — the boot warm-sweep (core/lifespan.py) and every subsequent restart's first hits
-    both read this file instead of re-rendering."""
+def peek_optimized_image(image_path: Path, size: tuple, quality: int = 85) -> Optional[bytes]:
+    """Cheap, synchronous cache probe (in-memory, then at most one small disk read) — no Pillow, safe
+    to call directly on the event loop. Returns None on a genuine miss, meaning the caller must render
+    (see `run_image_work`'s `cache_check`, which uses this to skip the decode semaphore on a hit)."""
+    mtime = _optimized_image_mtime(image_path)
+    key = (image_path, size, quality, mtime)
+    cached = _optimized_cache_get(key)
+    if cached is not None:
+        return cached
     dst = _optimized_derivative_path(image_path, size, quality, mtime)
     if dst.exists():
         try:
-            return dst.read_bytes()
+            data = dst.read_bytes()
         except OSError:
-            pass  # fall through and re-render
+            return None
+        _optimized_cache_put(key, data)
+        return data
+    return None
+
+
+def get_optimized_image(image_path: Path, size: tuple, quality: int = 85) -> bytes:
+    """Resize + JPEG-compress for web delivery. `mtime` participates only in the cache key (A4): a file
+    replaced in place gets a fresh entry instead of serving stale bytes until process restart.
+
+    M4: the in-memory dict is the first cache tier (per-process, capped, gone on restart); a disk-cache
+    tier under ARTWORK_ROOT/_derivatives/ backs it so a restart doesn't re-decode every grid tile from
+    the original — the boot warm-sweep (core/lifespan.py) and every subsequent restart's first hits
+    both read this file instead of re-rendering (see `peek_optimized_image` for the read side)."""
+    mtime = _optimized_image_mtime(image_path)
+    key = (image_path, size, quality, mtime)
+    cached = peek_optimized_image(image_path, size, quality)
+    if cached is not None:
+        return cached
 
     logger.info(f"[Image Processor] Optimizing: {image_path.name}")
     with Image.open(image_path) as img:
@@ -127,25 +207,25 @@ def _optimized_image_cached(image_path: Path, size: tuple, quality: int, mtime: 
         img.save(buf, format="JPEG", quality=quality)
         data = buf.getvalue()
 
-    # Atomic publish (A3, mirrors render_canvas_image) — per-writer tmp name so concurrent renders of
-    # the same key never interleave a partial file; best-effort (a full disk must never fail the request).
+    dst = _optimized_derivative_path(image_path, size, quality, mtime)
     try:
         DERIVATIVES_DIR.mkdir(exist_ok=True)
-        tmp = dst.with_name(f"{dst.name}.{os.getpid()}.tmp")
-        tmp.write_bytes(data)
-        os.replace(tmp, dst)
+        _atomic_write(dst, data)
+        # M6 nit: prune sibling derivatives for this (source name, size, quality) at a DIFFERENT
+        # mtime — an in-place edit/replace otherwise leaves an orphan on disk forever (unbounded
+        # growth; a real concern on a Pi's SD card). Mirrors render_canvas_image's pruning.
+        prefix = f"opt-{image_path.name}-{size[0]}x{size[1]}-q{quality}-"
+        for old in DERIVATIVES_DIR.glob(f"{prefix}*.jpg"):
+            if old != dst:
+                try:
+                    old.unlink()
+                except OSError:
+                    pass
     except OSError as e:
         logger.warning(f"[Image Processor] could not disk-cache {dst.name}: {e}")
+
+    _optimized_cache_put(key, data)
     return data
-
-
-def get_optimized_image(image_path: Path, size: tuple, quality: int = 85) -> bytes:
-    """mtime-keyed wrapper over the lru cache — see A4."""
-    try:
-        mtime = int(image_path.stat().st_mtime)
-    except OSError:
-        mtime = 0
-    return _optimized_image_cached(image_path, size, quality, mtime)
 
 # --- Canvas display image (resolution-capped) -------------------------------
 # The Canvas <img> previously loaded the full-res original via /media. Museum
@@ -160,6 +240,26 @@ DISPLAY_QUALITY = 90
 DERIVATIVES_DIR = ARTWORK_ROOT / "_derivatives"
 
 
+def _canvas_derivative_path(art_id: int, mtime: int) -> Path:
+    return DERIVATIVES_DIR / f"{art_id}-{mtime}-{DISPLAY_MAX_EDGE}.jpg"
+
+
+def peek_canvas_image(src: Path, art_id: int) -> Optional[bytes]:
+    """Cheap, synchronous cache probe for the Canvas display derivative — see `peek_optimized_image`
+    for why `run_image_work` wants this (a hit must never queue behind someone else's cold render)."""
+    try:
+        mtime = int(src.stat().st_mtime)
+    except OSError:
+        return None
+    dst = _canvas_derivative_path(art_id, mtime)
+    if dst.exists():
+        try:
+            return dst.read_bytes()
+        except OSError:
+            return None
+    return None
+
+
 def render_canvas_image(src: Path, art_id: int) -> bytes:
     """Resolution-capped, EXIF-baked JPEG for the Canvas; disk-cached per source mtime.
 
@@ -169,9 +269,12 @@ def render_canvas_image(src: Path, art_id: int) -> bytes:
     when the source actually exceeds it (smaller originals are re-encoded as-is)."""
     DERIVATIVES_DIR.mkdir(exist_ok=True)
     mtime = int(src.stat().st_mtime)
-    dst = DERIVATIVES_DIR / f"{art_id}-{mtime}-{DISPLAY_MAX_EDGE}.jpg"
+    dst = _canvas_derivative_path(art_id, mtime)
     if dst.exists():
-        return dst.read_bytes()
+        try:
+            return dst.read_bytes()
+        except OSError:
+            pass  # fall through and re-render
     with Image.open(src) as img:
         img = ImageOps.exif_transpose(img)   # bake orientation — a re-encode drops the EXIF tag
         if img.mode != "RGB":
@@ -186,12 +289,9 @@ def render_canvas_image(src: Path, art_id: int) -> bytes:
         if old != dst:
             try: old.unlink()
             except OSError: pass
-    # Atomic publish so a concurrent reader never sees a partial file. Per-writer tmp name (A3): the boot
-    # warm sweep and a lazy /display.jpg render can target the same dst — a shared .tmp would let their
-    # writes interleave before os.replace. os.replace is atomic, so last-writer-wins on identical bytes.
-    tmp = dst.with_name(f"{dst.name}.{os.getpid()}.tmp")
-    tmp.write_bytes(data)
-    os.replace(tmp, dst)
+    # Atomic publish (_atomic_write uses mkstemp — see its docstring for why a PID-based tmp name
+    # wasn't unique enough once two threads in the same worker could render the same key at once).
+    _atomic_write(dst, data)
     return data
 
 

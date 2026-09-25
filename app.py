@@ -213,16 +213,17 @@ app.include_router(studio_router)
 app.include_router(ws_router)
 
 # M6 (INFRA-D075, 2026-09-25): these two were `@app.middleware("http")` (BaseHTTPMiddleware) —
-# converted to pure ASGI, matching UploadBodyCapMiddleware/DemoModeMiddleware above. Root cause of the
-# thumbnail-storm incident was sessions held across Pillow work (fixed at the endpoints — see
-# core/media.py's lookup_artwork_filename), but BaseHTTPMiddleware is ALSO a documented leak vector on
-# its own: it runs the downstream app in a separate anyio task from the one the ASGI server cancels on
-# client disconnect, so a disconnect mid-request can leave that inner task's `finally` blocks
-# (including a Depends(get_db) session's own close()) never run — silently leaking a pool connection
-# per disconnect regardless of what the endpoint does. Pure ASGI middleware runs in the SAME task as
-# the request, so a server-side cancellation on disconnect propagates straight through the endpoint's
-# own exception handling, same as having no middleware at all. Behavior (headers, CORS/origin rules)
-# and add_middleware ordering relative to UploadBodyCapMiddleware/DemoModeMiddleware are unchanged.
+# converted to pure ASGI, matching UploadBodyCapMiddleware/DemoModeMiddleware above. NOTE: a reviewer's
+# load test showed BaseHTTPMiddleware did NOT leak pool connections on this FastAPI 0.141 / Starlette
+# 0.52 stack, so that was never the thumbnail-storm incident's actual cause — see
+# tests/test_middleware_pool_leak.py for the real mechanism (a synchronous DB query run directly inside
+# `async def`, blocking the whole event loop — including the continuations that would free the pool —
+# once the pool is exhausted; fixed by threading that query, core/media.py's lookup_artwork_filename).
+# This conversion is kept anyway: pure ASGI middleware runs in the SAME task as the request instead of a
+# separate one, which is both correct (a disconnect propagates straight through the endpoint's own
+# exception handling, same as no middleware at all, instead of via BaseHTTPMiddleware's extra task
+# indirection) and measurably faster. Behavior (headers, CORS/origin rules) and add_middleware ordering
+# relative to UploadBodyCapMiddleware/DemoModeMiddleware are unchanged.
 class CacheHeadersMiddleware:
     """Pure ASGI port of the former inject_aggressive_cache_headers — identical header logic."""
 
@@ -294,8 +295,15 @@ class CorsAndOriginGuardMiddleware:
             await self.app(scope, receive, send)
             return
 
-        headers_in = {k.decode("latin-1").lower(): v.decode("latin-1")
-                      for k, v in scope.get("headers") or []}
+        # M6 nit: FIRST occurrence wins on a duplicated header — matches Starlette's own
+        # Request.headers.get() (which the old BaseHTTPMiddleware version read), and RFC 9110's
+        # guidance to treat extra copies as suspect rather than silently preferring the last one. A
+        # naive dict comprehension over the raw ASGI header list would let the LAST copy win instead.
+        headers_in: dict[str, str] = {}
+        for k, v in scope.get("headers") or []:
+            key = k.decode("latin-1").lower()
+            if key not in headers_in:
+                headers_in[key] = v.decode("latin-1")
         origin = headers_in.get("origin", "")
         host = headers_in.get("host", "")
         path = scope.get("path", "")

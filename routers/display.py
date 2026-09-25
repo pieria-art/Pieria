@@ -20,7 +20,7 @@ from sqlalchemy.orm import Session
 import config
 from config import LIBRARY_DIR
 from core.demo import normalize_display_id
-from core.media import lookup_artwork_filename, render_canvas_image, run_image_work
+from core.media import lookup_artwork_filename, peek_canvas_image, render_canvas_image, run_image_work
 from core.playback import _playlist_name_if_playable, select_next_image, touch_active_display
 from core.settings_util import _HHMM_RE, _load_schedule, _parse_hhmm, resolve_schedule_state
 from database import SessionLocal, get_db
@@ -49,7 +49,8 @@ async def get_artwork_display(artwork_id: int):
     filename = await run_in_threadpool(lookup_artwork_filename, artwork_id)
     path = LIBRARY_DIR / filename
     if not path.exists(): raise HTTPException(404)
-    data = await run_image_work(render_canvas_image, path, artwork_id)
+    data = await run_image_work(render_canvas_image, path, artwork_id,
+                                 cache_check=lambda: peek_canvas_image(path, artwork_id))
     return Response(content=data, media_type="image/jpeg")
 
 
@@ -214,7 +215,9 @@ async def get_display_image(
             # ~30s panel refresh on an unchanged frame (eink_client dedupes on this; it falls
             # back to hashing the body if the header is ever absent).
             "ETag": '"' + hashlib.sha256(data).hexdigest()[:16] + '"',
-            "Cache-Control": "no-store, no-cache, must-revalidate",
+            # M6 nit: no explicit Cache-Control here — app.py's CacheHeadersMiddleware already forces
+            # "no-store, no-cache, must-revalidate" on every /display/* path; setting it here too gave
+            # the response two (identical, harmless, but sloppy) Cache-Control headers.
         },
     )
 
