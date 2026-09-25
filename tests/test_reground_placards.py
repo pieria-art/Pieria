@@ -7,6 +7,21 @@ import ai_client
 from tools import reground_placards as rg
 
 
+class _FakeFetcher:
+    """Records every get_json call and answers from a canned {url: body} map, keyed loosely by a
+    substring of the params (good enough for these narrow unit tests)."""
+    def __init__(self, responses):
+        self.responses = responses
+        self.calls = []
+
+    async def get_json(self, url, params=None):
+        self.calls.append((url, params))
+        for match, body in self.responses:
+            if match in json.dumps(params or {}):
+                return body, None
+        return None, "no_fixture"
+
+
 # --------------------------------------------------------------------------- accession-year guard
 def test_accession_number_shapes_are_detected():
     assert rg.looks_like_accession_number("1940.116")
@@ -218,6 +233,30 @@ def test_generate_narrative_falls_back_on_model_error(monkeypatch):
     monkeypatch.setattr(ai_client, "chat", boom)
     data, fell_back = asyncio.run(rg.generate_narrative(bundle, {}, asyncio.Semaphore(8)))
     assert data is None and fell_back is True
+
+
+# --------------------------------------------------------------------------- batched label lookup
+def test_labels_for_qids_makes_one_batched_call_not_one_per_id(monkeypatch):
+    rg._LABEL_CACHE.clear()
+    fx = _FakeFetcher([("Q1|Q2|Q3", {"entities": {
+        "Q1": {"labels": {"en": {"value": "Alpha"}}},
+        "Q2": {"labels": {"en": {"value": "Beta"}}},
+        "Q3": {},  # no English label -> falls back to the QID itself
+    }})])
+    labels = asyncio.run(rg._labels_for_qids(fx, ["Q1", "Q2", "Q3"]))
+    assert labels == {"Q1": "Alpha", "Q2": "Beta", "Q3": "Q3"}
+    assert len(fx.calls) == 1  # one request for all three ids, not three
+
+
+def test_labels_for_qids_uses_the_process_cache_on_a_repeat_id(monkeypatch):
+    rg._LABEL_CACHE.clear()
+    fx = _FakeFetcher([("Q9", {"entities": {"Q9": {"labels": {"en": {"value": "Once"}}}}})])
+    asyncio.run(rg._labels_for_qids(fx, ["Q9"]))
+    assert len(fx.calls) == 1
+    # second lookup for the same id (as another item's creator, say) must not hit the network again
+    labels = asyncio.run(rg._labels_for_qids(fx, ["Q9"]))
+    assert labels == {"Q9": "Once"}
+    assert len(fx.calls) == 1
 
 
 # --------------------------------------------------------------------------- medium bucketing

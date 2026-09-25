@@ -53,7 +53,6 @@ from tools.audit_placards import (
     WD_SPARQL,
     Fetcher,
     _commons_structured,  # noqa: F401  (re-exported for callers/tests that want it)
-    _label_for_qid,
     _museum_record,
     _norm,
     _slug,
@@ -278,6 +277,32 @@ def looks_like_institution_label(label: str) -> bool:
     return bool(_INSTITUTION_LABEL_RE.search(label))
 
 
+# In-process label cache, keyed by QID, shared across the whole run — many items share the same
+# creator/collection/genre entity, and a full-catalog run repeats the same handful of QIDs thousands
+# of times. Populated only via the batched fetch below.
+_LABEL_CACHE: dict[str, str] = {}
+
+
+async def _labels_for_qids(fx: Fetcher, qids: list[str]) -> dict[str, str]:
+    """Resolve many QIDs to English labels in as few requests as possible: wbgetentities accepts up
+    to 50 pipe-separated ids per call. This is the fix for a real throughput problem found while
+    running the full catalog — the original one-id-per-request _label_for_qid made a full-corpus run
+    (~2,800 items x up to ~35 label lookups each) collapse under Wikidata's rate limiting."""
+    todo = [q for q in dict.fromkeys(qids) if q and q not in _LABEL_CACHE]
+    for i in range(0, len(todo), 50):
+        chunk = todo[i:i + 50]
+        body, _ = await fx.get_json(WD_API, {
+            "action": "wbgetentities", "ids": "|".join(chunk), "props": "labels",
+            "languages": "en", "format": "json",
+        })
+        entities = (body or {}).get("entities") or {}
+        for q in chunk:
+            ent = entities.get(q) or {}
+            lab = ((ent.get("labels") or {}).get("en") or {}).get("value")
+            _LABEL_CACHE[q] = lab or q
+    return {q: _LABEL_CACHE.get(q, q) for q in qids}
+
+
 async def _wikidata_full(fx: Fetcher, qid: str) -> dict:
     body, err = await fx.get_json(WD_API, {
         "action": "wbgetentities", "ids": qid, "props": "claims|sitelinks", "languages": "en", "format": "json",
@@ -286,23 +311,34 @@ async def _wikidata_full(fx: Fetcher, qid: str) -> dict:
         return {"fetch_error": err}
     ent = (body.get("entities") or {}).get(qid) or {}
     claims = ent.get("claims") or {}
+
+    # First pass: collect every QID this item's claims reference (creator, collection, genre, …) so
+    # they can be resolved to labels in one or two batched calls instead of one-per-value.
+    need_ids: list[str] = []
+    for prop in list(CLAIM_PROPS) + list(VERSION_PROPS):
+        for c in (claims.get(prop) or [])[:5]:
+            v = c.get("mainsnak", {}).get("datavalue", {}).get("value")
+            if isinstance(v, dict) and v.get("id"):
+                need_ids.append(v["id"])
+    labels = await _labels_for_qids(fx, need_ids) if need_ids else {}
+
     out = {}
     for prop, key in CLAIM_PROPS.items():
         vals = claims.get(prop) or []
-        labels = []
+        vlabels = []
         for c in vals[:5]:
             dv = c.get("mainsnak", {}).get("datavalue", {})
             v = dv.get("value")
             if isinstance(v, dict) and v.get("id"):
-                labels.append(await _label_for_qid(fx, v["id"]))
+                vlabels.append(labels.get(v["id"], v["id"]))
             elif isinstance(v, dict) and "time" in v:
-                labels.append(v["time"].lstrip("+").split("T")[0])
+                vlabels.append(v["time"].lstrip("+").split("T")[0])
             elif isinstance(v, dict) and "amount" in v:
-                labels.append(v["amount"])
+                vlabels.append(v["amount"])
             elif isinstance(v, str):
-                labels.append(v)
-        if labels:
-            out[key] = labels
+                vlabels.append(v)
+        if vlabels:
+            out[key] = vlabels
     version = None
     for prop, relation in VERSION_PROPS.items():
         vals = claims.get(prop) or []
@@ -310,8 +346,8 @@ async def _wikidata_full(fx: Fetcher, qid: str) -> dict:
             continue
         dv = vals[0].get("mainsnak", {}).get("datavalue", {}).get("value", {})
         if isinstance(dv, dict) and dv.get("id"):
-            label = await _label_for_qid(fx, dv["id"])
-            version = {"relation": relation, "of_qid": dv["id"], "of_label": label, "property": prop}
+            version = {"relation": relation, "of_qid": dv["id"],
+                       "of_label": labels.get(dv["id"], dv["id"]), "property": prop}
             break
     sitelinks = ent.get("sitelinks") or {}
     return {"claims": out, "enwiki_title": sitelinks.get("enwiki", {}).get("title"), "is_version_of": version}
