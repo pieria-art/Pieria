@@ -264,3 +264,13 @@ async def clear_pending_conf(request: Request, x_appliance_token: Optional[str] 
     db.query(SettingsModel).filter(SettingsModel.setting_key == "restore_pending_conf").delete()
     db.commit()
     return {"cleared": True}
+
+
+@router.post("/api/restore/outcome/clear")
+async def clear_restore_outcome(request: Request, x_appliance_token: Optional[str] = Header(None)):
+    """Dismiss the boot-outcome banner (restored/restored_partial/failed) the admin card shows after a
+    restart — see core/restore_boot.py's `_write_outcome` for what writes it."""
+    require_trusted_request(request, x_appliance_token,
+                            detail="this requires a same-origin request or a valid token")
+    restore.clear_outcome()
+    return {"cleared": True}

@@ -1657,10 +1657,54 @@ async function confirmRestore() {
 }
 window.confirmRestore = confirmRestore;
 
+// Boot outcome (restored / restored_partial / failed) recorded by core/restore_boot.py under its own
+// outcome/outcome_message/finished_at keys — kept separate from `state` precisely so the pack-redownload
+// loop's own progress reporting (which read-modify-writes the same status.json right after boot) can
+// never clobber it. textContent only: outcome_message ultimately traces back to an exception string,
+// never markup.
+const _RESTORE_OUTCOME_STYLES = {
+    restored: { bg: 'rgba(34,197,94,0.12)', border: '#22c55e', prefix: '✓ Restore completed successfully.' },
+    restored_partial: { bg: 'rgba(245,158,11,0.12)', border: '#f59e0b',
+        prefix: '⚠ Restore completed, but:' },
+    failed: { bg: 'rgba(239,68,68,0.12)', border: '#ef4444',
+        prefix: '✗ Restore failed — this device was put back the way it was:' },
+};
+
+function _renderRestoreOutcome(el, data) {
+    el.textContent = '';
+    if (!data.outcome) { el.style.display = 'none'; return; }
+    const s = _RESTORE_OUTCOME_STYLES[data.outcome] || _RESTORE_OUTCOME_STYLES.failed;
+    el.style.display = 'flex';
+    el.style.alignItems = 'flex-start';
+    el.style.justifyContent = 'space-between';
+    el.style.gap = '14px';
+    el.style.background = s.bg;
+    el.style.border = `1px solid ${s.border}`;
+
+    const line = document.createElement('div');
+    line.textContent = data.outcome === 'restored' ? s.prefix : `${s.prefix} ${data.outcome_message || ''}`;
+    el.appendChild(line);
+
+    const dismiss = document.createElement('button');
+    dismiss.className = 'secondary';
+    dismiss.textContent = 'Dismiss';
+    dismiss.style.padding = '6px 12px'; dismiss.style.fontSize = '0.75rem'; dismiss.style.flexShrink = '0';
+    dismiss.addEventListener('click', dismissRestoreOutcome);
+    el.appendChild(dismiss);
+}
+
+async function dismissRestoreOutcome() {
+    try { await fetch(`${API_BASE}/api/restore/outcome/clear`, { method: 'POST' }); }
+    catch (e) { console.error('[Admin] dismissRestoreOutcome failed:', e); }
+    refreshRestoreStatus();
+}
+window.dismissRestoreOutcome = dismissRestoreOutcome;
+
 async function refreshRestoreStatus() {
     let data;
     try { data = await (await fetch(`${API_BASE}/api/restore/status`)).json(); }
     catch { return; }
+    _renderRestoreOutcome(document.getElementById('restore-outcome'), data);
     const packsEl = document.getElementById('restore-packs-progress');
     packsEl.textContent = '';
     if (data.pending_packs && data.pending_packs.length) {

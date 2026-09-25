@@ -1019,3 +1019,130 @@ def test_backup_never_touches_the_real_checkout_data_dir(env, client):
     assert after_backup == before_backup, f"leaked into the real data/_backups: {after_backup - before_backup}"
     assert after_restore == before_restore, f"leaked into the real data/_restore: {after_restore - before_restore}"
     assert not (real_backup_dir / f"{token}.tar").exists()
+
+
+# --- Round-5: boot outcome (restored/restored_partial/failed) survives the pack-redownload loop -------
+
+def test_write_outcome_sets_dedicated_fields(env):
+    restore_boot_module._write_outcome("restored", "restored", "restore completed successfully",
+                                       "2026-09-24T00:00:00Z")
+    status = json.loads((env["restore_dir"] / "status.json").read_text())
+    assert status["state"] == "restored"
+    assert status["outcome"] == "restored"
+    assert status["outcome_message"] == "restore completed successfully"
+    assert status["created_at"] == "2026-09-24T00:00:00Z"
+    assert "finished_at" in status and status["finished_at"]
+
+
+def test_boot_apply_success_sets_outcome_fields(env):
+    _stage_a_valid_restore(env)
+    restore_boot_module.apply_pending_restore()
+    status = json.loads((env["restore_dir"] / "status.json").read_text())
+    assert status["outcome"] == "restored"
+    assert status["outcome_message"]
+    assert status["finished_at"]
+
+
+def test_boot_apply_rollback_sets_failed_outcome(env, monkeypatch):
+    _stage_a_valid_restore(env)
+
+    def always_fails(*a, **kw):
+        raise RuntimeError("deterministic failure")
+
+    monkeypatch.setattr(restore_boot_module.db_migrate, "run_migrations", always_fails)
+    with pytest.raises(SystemExit):
+        restore_boot_module.apply_pending_restore()
+    status = json.loads((env["restore_dir"] / "status.json").read_text())
+    assert status["outcome"] == "failed"
+    assert "restore failed AND the rollback also failed" in status["outcome_message"]
+
+
+@pytest.mark.asyncio
+async def test_outcome_survives_pack_redownload_status_writes(env, monkeypatch):
+    """core/lifespan.py's _restore_pending_packs_loop read-modify-writes the SAME status.json right
+    after boot (progress on the pack redownload) — it must never clobber the outcome
+    core/restore_boot.py just recorded (the reviewer's exact bug: 'state' was the only place the
+    outcome lived, and the pack loop overwrites 'state' with its own progress values)."""
+    restore_boot_module._write_outcome("restored_partial", "restored_partial",
+                                       "copying the library failed", "2026-09-24T00:00:00Z")
+
+    from core import lifespan as lifespan_module
+    # _restore_pending_packs_loop reads/writes settings through its OWN `SessionLocal` (database.py's
+    # real one, bound to the real app DB by default) — point it at this test's isolated DB, same as the
+    # `env` fixture already does for core.backup/core.restore/core.restore_boot's own bound copies.
+    engine = create_engine(env["db_url"], connect_args={"check_same_thread": False})
+    test_session_local = sessionmaker(bind=engine)
+    monkeypatch.setattr(lifespan_module, "SessionLocal", test_session_local)
+
+    db = test_session_local()
+    db.add(SettingsModel(setting_key="restore_pending_packs", setting_value=json.dumps(["masterpieces"])))
+    db.commit()
+    db.close()
+
+    await lifespan_module._restore_pending_packs_loop()  # network is blocked in tests — fails fast
+
+    status = json.loads((env["restore_dir"] / "status.json").read_text())
+    assert status["outcome"] == "restored_partial"
+    assert status["outcome_message"] == "copying the library failed"
+    # The pack loop's OWN state progressed — proving it actually ran and wrote over `state` — yet the
+    # outcome fields (checked above) survived exactly that write.
+    assert status["state"] != "restored_partial"
+
+
+# --- Round-5: dismissing the outcome banner -------------------------------------------------------
+
+def test_clear_restore_outcome_requires_trusted_request(env):
+    with TestClient(app) as c:  # no Origin header
+        resp = c.post("/api/restore/outcome/clear")
+    assert resp.status_code == 403
+
+
+def test_clear_restore_outcome_removes_only_outcome_fields(env, client):
+    restore_boot_module._write_outcome("restored", "restored", "restore completed successfully",
+                                       "2026-09-24T00:00:00Z")
+    # Something else in status.json (as the pack-redownload loop would also have written) that must
+    # survive a clear.
+    status_path = env["restore_dir"] / "status.json"
+    status = json.loads(status_path.read_text())
+    status["remaining"] = ["masterpieces"]
+    status_path.write_text(json.dumps(status))
+
+    resp = client.post("/api/restore/outcome/clear")
+    assert resp.status_code == 200
+
+    status = client.get("/api/restore/status").json()
+    assert "outcome" not in status
+    assert "outcome_message" not in status
+    assert "finished_at" not in status
+    assert status.get("remaining") == ["masterpieces"]
+
+
+def test_restore_status_api_surfaces_outcome_fields(env, client):
+    restore_boot_module._write_outcome("failed", "failed", "the restore's database migration failed",
+                                       "2026-09-24T00:00:00Z")
+    status = client.get("/api/restore/status").json()
+    assert status["outcome"] == "failed"
+    assert status["outcome_message"] == "the restore's database migration failed"
+
+
+# --- Round-5: _merge_library never leaves a truncated file on a mid-copy failure -----------------------
+
+def test_merge_library_leaves_no_truncated_file_on_copy_failure(env, monkeypatch):
+    """A mid-copy OSError (ENOSPC) must never leave a truncated file sitting at the real destination —
+    copy-to-temp-name + os.replace() means the real file is either the untouched original or the
+    complete new one, never a partial write."""
+    staged_library = env["restore_dir"] / "staged" / "library"
+    staged_library.mkdir(parents=True)
+    (staged_library / "photo.jpg").write_bytes(b"staged-bytes")
+    dest_file = env["library_dir"] / "photo.jpg"
+    dest_file.write_bytes(b"original-bytes-must-survive-untouched")
+
+    def flaky_copy2(_src, _dst):
+        raise OSError(28, "No space left on device")
+
+    monkeypatch.setattr(restore_boot_module.shutil, "copy2", flaky_copy2)
+    with pytest.raises(OSError):
+        restore_boot_module._merge_library(staged_library)
+
+    assert dest_file.read_bytes() == b"original-bytes-must-survive-untouched"
+    assert not list(env["library_dir"].glob("*.restoring.tmp"))

@@ -16,9 +16,11 @@ pre-restore.db present with no live DB at all.
 """
 import json
 import logging
+import os
 import shutil
 import sqlite3
 import sys
+from datetime import UTC, datetime
 from pathlib import Path
 
 import db_migrate
@@ -63,6 +65,20 @@ def _checkpoint_and_drop_wal(db_path: Path) -> None:
 def _write_status(**fields) -> None:
     RESTORE_DIR.mkdir(parents=True, exist_ok=True)
     STATUS_FILE.write_text(json.dumps(fields))
+
+
+def _write_outcome(state: str, outcome: str, message: str, created_at) -> None:
+    """The terminal result of THIS boot's restore attempt — restored/restored_partial/failed. Written
+    under its own `outcome`/`outcome_message`/`finished_at` keys, deliberately separate from `state`:
+    core/lifespan.py's `_restore_pending_packs_loop` runs right after boot and read-modify-writes this
+    SAME status.json to report its own progress (`state: redownloading_packs` -> `done`), which would
+    silently clobber `state` if that were the only place the outcome lived — an admin who missed the
+    first few seconds after a restart would see the pack-redownload's state and never learn a
+    'restored_partial'/'failed' boot outcome happened at all. `_write_progress` there only ever sets
+    state/remaining/total/failed/updated_at, so it can never touch these three keys."""
+    _write_status(state=state, message=message, created_at=created_at,
+                 outcome=outcome, outcome_message=message,
+                 finished_at=datetime.now(UTC).isoformat())
 
 
 def _marker_path() -> Path:
@@ -112,14 +128,28 @@ def _set_settings(db_path: Path, values: dict) -> None:
 def _merge_library(staged_library: Path) -> None:
     """Different bind mounts (staged/ under ./data, _Library under ./Artwork) — copy, never rename.
     Overwrites a same-name file (the restore is a full replace). Idempotent — safe to re-run after a
-    crash mid-copy, since every file is just overwritten again."""
+    crash mid-copy, since every file is just overwritten again.
+
+    Each file copies to a temp name in the SAME dir, then os.replace()s over the real destination —
+    never shutil.copy2() straight onto it. A mid-copy failure (ENOSPC is the one that actually happens
+    here) would otherwise leave a truncated, half-written file sitting at the real filename, silently
+    corrupting whatever was there before (which, for a same-named file, might be a perfectly good
+    pre-restore original). The temp file is removed on failure; a leftover from an earlier crash is
+    just overwritten by the next attempt's own temp file of the same name."""
     if not staged_library.is_dir():
         return
     dest = ARTWORK_ROOT / "_Library"
     dest.mkdir(parents=True, exist_ok=True)
     for f in staged_library.iterdir():
-        if f.is_file():
-            shutil.copy2(f, dest / f.name)
+        if not f.is_file():
+            continue
+        tmp = dest / f".{f.name}.restoring.tmp"
+        try:
+            shutil.copy2(f, tmp)
+            os.replace(tmp, dest / f.name)
+        except OSError:
+            tmp.unlink(missing_ok=True)
+            raise
 
 
 def _rollback_to_pre_restore(db_path: Path) -> None:
@@ -145,11 +175,15 @@ def _resume_rolled_back(payload: dict) -> None:
     except Exception as rollback_err:
         logger.critical(f"[RestoreBoot] rollback migration still failing ({rollback_err}) — halting "
                         f"boot (ADR-035 fail-loud)")
-        _write_status(state="failed", message=f"restore failed AND rollback failed: {rollback_err}")
+        # The device isn't even booting past this point (ADR-035 halts it), so this outcome record is
+        # mostly for a human reading status.json/logs directly — the admin UI never gets a chance to
+        # poll a server that never came up.
+        _write_outcome("failed", "failed", f"restore failed AND the rollback also failed: {rollback_err}",
+                      payload.get("created_at"))
         sys.exit(1)
-    _write_status(state="failed",
-                  message=f"restore migration failed; rolled back to the original DB (created_at="
-                          f"{payload.get('created_at')!r})")
+    # The frontend prepends "Restore failed — this device was put back the way it was: " to this
+    # message (static/admin.js) — keep it a plain reason, not a repeat of that framing.
+    _write_outcome("failed", "failed", "the restore's database migration failed", payload.get("created_at"))
     shutil.rmtree(STAGED_DIR, ignore_errors=True)
 
 
@@ -261,14 +295,16 @@ def apply_pending_restore() -> None:
         PRE_RESTORE_DB.unlink(missing_ok=True)
         library_copy_error = payload.get("library_copy_error")
         if library_copy_error:
-            _write_status(state="restored_partial", created_at=payload.get("created_at"),
-                          message=f"restore applied, but copying the library failed and the staged "
-                                  f"library files were discarded (not retried): {library_copy_error} — "
-                                  f"some artwork files are missing; restore again to recover them")
+            _write_outcome("restored_partial", "restored_partial",
+                          f"restore applied, but copying the library failed and the staged library "
+                          f"files were discarded (not retried): {library_copy_error} — some artwork "
+                          f"files are missing; restore again to recover them",
+                          payload.get("created_at"))
             logger.warning("[RestoreBoot] Restore applied with a partial failure (library not copied); "
                            "migrations at head.")
         else:
-            _write_status(state="restored", created_at=payload.get("created_at"))
+            _write_outcome("restored", "restored", "restore completed successfully",
+                          payload.get("created_at"))
             logger.warning("[RestoreBoot] Restore applied successfully; migrations at head.")
 
 

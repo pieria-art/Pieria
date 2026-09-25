@@ -92,6 +92,30 @@ def is_busy() -> bool:
     return read_status().get("state") in _BUSY_STATES
 
 
+def clear_outcome() -> None:
+    """Dismiss the boot-outcome banner (core/restore_boot.py's `outcome`/`outcome_message`/
+    `finished_at` — restored/restored_partial/failed) without touching anything else in status.json,
+    e.g. an in-progress pack-redownload's own state/remaining/total must survive this."""
+    try:
+        current = json.loads(STATUS_FILE.read_text())
+    except (OSError, ValueError):
+        return
+    changed = False
+    for key in ("outcome", "outcome_message", "finished_at"):
+        if current.pop(key, None) is not None:
+            changed = True
+    if not changed:
+        return
+    RESTORE_DIR.mkdir(parents=True, exist_ok=True)
+    tmp = STATUS_FILE.with_suffix(".json.tmp")
+    tmp.write_text(json.dumps(current))
+    tmp.replace(STATUS_FILE)
+    try:
+        STATUS_FILE.chmod(0o600)
+    except OSError:
+        pass
+
+
 def _secure_mkdir(path: Path) -> None:
     path.mkdir(parents=True, exist_ok=True)
     try:
