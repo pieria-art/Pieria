@@ -1391,8 +1391,10 @@ def run_import(batch_glob: str = "batch_*.jsonl"):
             # the image plausibly not matching the title (pilot found campfire-adirondacks-0015 shows a
             # hunter by tree roots; bermuda-settlers-0110 shows boars). This never blocks the narrative.
             flags = written.get("flags") or []
-            if "image_title_mismatch" in flags:
-                import_report["flagged"].append({"key": key, "collection": coll, "title": written.get("title") or packet.get("title")})
+            integrity = [f for f in flags if f in ("image_title_mismatch", "identity_mismatch")]
+            if integrity:
+                import_report["flagged"].append({"key": key, "collection": coll, "flags": integrity,
+                                                 "title": written.get("title") or packet.get("title")})
 
             ok, reasons = validate_written_item(written, packet)
             if ok:
