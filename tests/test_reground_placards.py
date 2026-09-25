@@ -244,6 +244,144 @@ def test_commons_text_strips_label_quickstatement_annotation():
     assert rg._clean_commons_text(raw) == "Fish and Rocks"
 
 
+# --------------------------------------------------------------------------- Commons credit -> museum
+def test_find_institution_and_accession_from_cleveland_credit():
+    inst, acc = rg._find_institution_and_accession("https://clevelandart.org/art/1953.247")
+    assert inst == "Cleveland Museum of Art" and acc == "1953.247"
+
+
+def test_find_institution_and_accession_no_match_returns_none_none():
+    assert rg._find_institution_and_accession("just some free text, no museum url") == (None, None)
+
+
+# --------------------------------------------------------------------------- current_repository validity
+def test_institution_label_accepted_for_museum_gallery_library_names():
+    assert rg.looks_like_institution_label("Cleveland Museum of Art")
+    assert rg.looks_like_institution_label("National Gallery")
+    assert rg.looks_like_institution_label("Yale University Art Gallery")
+
+
+def test_institution_label_rejects_bare_qid_and_places():
+    assert not rg.looks_like_institution_label("Q214867")
+    assert not rg.looks_like_institution_label("Moon")
+    assert not rg.looks_like_institution_label("Paris")
+    assert not rg.looks_like_institution_label("")
+    assert not rg.looks_like_institution_label(None)
+
+
+def test_current_repository_never_a_bare_qid_or_a_wikidata_place():
+    # audit n=93 regression: Apollo 11 bootprint photo's P276 "location" is the Moon — must never
+    # land in current_repository, and a museum-API institution name is trusted directly.
+    bundle = {
+        "facts": [rg._fact("wikidata.collection", ["Moon"], "Wikidata", "u", "CC0")],
+        "conflicts": [], "is_version_of": None,
+    }
+    fields, _, notes = rg.resolve_structured_fields(bundle, {})
+    assert "current_repository" not in fields
+    assert any("rejected" in n for n in notes)
+
+
+def test_current_repository_accepts_museum2_institution_from_commons_credit_lookup():
+    bundle = {
+        "facts": [rg._fact("museum2.institution", "Cleveland Museum of Art", "Cleveland Open Access API (by accession)", "u", "CC0")],
+        "conflicts": [], "is_version_of": None,
+    }
+    fields, _, _ = rg.resolve_structured_fields(bundle, {})
+    assert fields["current_repository"] == "Cleveland Museum of Art"
+
+
+def test_medium_precedence_prefers_commons_credit_museum_record_over_wikidata():
+    # audit n=45 regression: Cleveland's own record (fetched via the Commons Credit accession) says
+    # handscroll; Wikidata's material claim must not win over it.
+    bundle = {
+        "facts": [
+            rg._fact("wikidata.made_from_material", ["ink on paper"], "Wikidata", "u", "CC0"),
+            rg._fact("museum2.technique", "Handscroll; ink on paper", "Cleveland Open Access API (by accession)", "u", "CC0"),
+        ],
+        "conflicts": [], "is_version_of": None,
+    }
+    fields, _, _ = rg.resolve_structured_fields(bundle, {})
+    assert fields["medium"] == "Handscroll; ink on paper"
+
+
+# --------------------------------------------------------------------------- item_key / batches
+def test_item_key_is_slug_plus_index_and_stable():
+    assert rg.item_key(45, "The Ray") == "ray-0045"  # _slug drops a leading article, like audit_placards
+    assert rg.item_key(0, "") == "untitled-0000"
+
+
+def test_build_batches_groups_collection_coherent_and_respects_size():
+    entries = [{"key": f"k{i}", "collection": "a" if i < 5 else "b"} for i in range(10)]
+    batches = rg.build_batches(entries, batch_size=4)
+    assert sum(len(b) for b in batches) == 10
+    assert len(batches) == 3
+    # first batch is entirely collection "a" (sorted by collection first)
+    assert all(e["collection"] == "a" for e in batches[0])
+
+
+# --------------------------------------------------------------------------- visual claim validation
+def test_visual_claim_accepts_generic_visible_description():
+    ok, reason = rg._visual_claim_ok("The scene shows a fisherman hauling a net at sea.", "The Herring Net", [])
+    assert ok and reason is None
+
+
+def test_visual_claim_rejects_a_year():
+    ok, reason = rg._visual_claim_ok("Painted around 1885 near the coast.", "The Herring Net", [])
+    assert not ok and "number" in reason
+
+
+def test_visual_claim_rejects_unbacked_proper_noun():
+    ok, reason = rg._visual_claim_ok("The boat sails past Gloucester harbor.", "Sunset", [])
+    assert not ok and "proper noun" in reason
+
+
+def test_visual_claim_accepts_proper_noun_present_in_title():
+    ok, reason = rg._visual_claim_ok("Gloucester harbor is calm at dusk.", "Sunset at Gloucester", [])
+    assert ok
+
+
+def test_visual_claim_accepts_proper_noun_present_in_facts():
+    facts = [rg._fact("wikidata.depicts", ["Gloucester harbor"], "Wikidata", "u", "CC0")]
+    ok, reason = rg._visual_claim_ok("Boats rest in Gloucester harbor.", "Untitled", facts)
+    assert ok
+
+
+# --------------------------------------------------------------------------- import validation
+def _packet(facts):
+    return {"title": "Two Sailboats", "facts": facts}
+
+
+def test_validate_written_item_passes_grounded_claims():
+    packet = _packet([rg._fact("wikidata.inception", ["1880"], "Wikidata", "u", "CC0")])
+    written = {"description_narrative": "Two Sailboats, 1880.", "tags": "boats",
+               "claims": [{"text": "Painted in 1880.", "fact_keys": ["wikidata.inception"], "visual": False}]}
+    ok, reasons = rg.validate_written_item(written, packet)
+    assert ok and not reasons
+
+
+def test_validate_written_item_rejects_unbacked_year_claim():
+    packet = _packet([rg._fact("wikidata.inception", ["1880"], "Wikidata", "u", "CC0")])
+    written = {"description_narrative": "Two Sailboats, 1883.", "tags": "boats",
+               "claims": [{"text": "Painted in 1883.", "fact_keys": ["wikidata.inception"], "visual": False}]}
+    ok, reasons = rg.validate_written_item(written, packet)
+    assert not ok and reasons
+
+
+def test_validate_written_item_rejects_visual_claim_with_proper_noun():
+    packet = _packet([])
+    written = {"description_narrative": "A scene at Prout's Neck.", "tags": "boats",
+               "claims": [{"text": "It shows Prout's Neck studio.", "fact_keys": [], "visual": True}]}
+    ok, reasons = rg.validate_written_item(written, packet)
+    assert not ok and reasons
+
+
+def test_validate_written_item_rejects_empty_narrative():
+    packet = _packet([])
+    written = {"description_narrative": "", "tags": "", "claims": []}
+    ok, reasons = rg.validate_written_item(written, packet)
+    assert not ok and "empty description_narrative" in reasons
+
+
 def test_medium_bucket_distinguishes_oil_from_watercolor_and_print():
     assert rg.medium_bucket("Oil on canvas") == "oil"
     assert rg.medium_bucket("Watercolor and gouache over graphite") == "watercolor"
