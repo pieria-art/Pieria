@@ -888,7 +888,8 @@ def detect_identity_mismatch(item: dict, facts: list[dict]) -> dict | None:
 _FIELD_SOURCES = {
     "medium": [("museum.medium", None), ("museum.technique", None), ("museum2.medium", None), ("museum2.technique", None), ("wikidata.made_from_material", None), ("commons.Medium", None)],
     "date_display": [("museum.objectDate", None), ("museum.creation_date", None), ("museum2.objectDate", None), ("museum2.creation_date", None), ("wikidata.inception", None), ("commons.DateTimeOriginal", None)],
-    "agent_name": [("museum.creators", None), ("wikidata.creator", None), ("commons.Artist", None)],
+    # agent_name deliberately NOT here — see the dedicated block below (round 5): it must never come
+    # from commons.Artist, so it can't share the generic first_value() precedence-list shape.
 }
 
 
@@ -978,10 +979,38 @@ def resolve_structured_fields(bundle: dict, existing_item: dict) -> tuple[dict, 
                 fields["current_repository"] = str(cf["value"]).strip()
                 fields["current_repository_source"] = "Commons Credit text"
 
-    # agent name (rarely overridden — catalog agent_name is usually already right; only replace on a
-    # confirmed mismatch, never invent one)
-    for v, src in first_value(_FIELD_SOURCES["agent_name"]):
-        fields.setdefault("agent_name_confirmed", v)
+    # agent name — round 5 bug fix: this MUST come only from the museum record's own creator field or
+    # Wikidata P170, never from commons.Artist (routinely the photographer/uploader — "Didier
+    # Descouens", "Elke Wetzig" — or even the holding INSTITUTION, e.g. "Rijksmuseum" on 100+ Hiroshige
+    # prints; 133 packets had a structured artist disagreeing with the catalog for exactly this
+    # reason). commons.Artist stays a fact for writers to see but is never used to set this field.
+    agent_val, agent_src = None, None
+    for key in ("museum.creators", "wikidata.creator"):
+        f = facts_by_key.get(key)
+        if not f:
+            continue
+        v = f["value"]
+        v = str(v[0] if isinstance(v, list) else v).strip()
+        if v:
+            agent_val, agent_src = v, f["source"]
+            break
+    if agent_val:
+        catalog_artist = (existing_item.get("agent_name") or "").strip()
+        if not catalog_artist or catalog_artist.lower() in ("unknown artist", "unknown"):
+            # nothing to disagree with — a real name where the catalog had none is a genuine gain.
+            fields["agent_name_confirmed"] = agent_val
+            fields["agent_name_source"] = agent_src
+        elif _names_plausibly_match(catalog_artist, agent_val):
+            # confirmed, not changed — keep the catalog's own spelling/form (e.g. "Rembrandt van
+            # Rijn"), don't replace it with a shorter/differently-formatted museum/Wikidata string.
+            fields["agent_name_confirmed"] = catalog_artist
+            fields["agent_name_source"] = f"existing_catalog_value (confirmed by {agent_src})"
+        else:
+            # disagreement — never overwrite; flag for a human instead of shipping a guess.
+            needs_review = True
+            fields["agent_name_disagreement"] = agent_val
+            notes.append(f"agent_name: {agent_src} says {agent_val!r}, catalog says "
+                         f"{catalog_artist!r} — kept catalog value, needs_review")
 
     # physical dimensions
     h = facts_by_key.get("wikidata.height")
@@ -1497,7 +1526,8 @@ def run_import(batch_glob: str = "batch_*.jsonl"):
                 written_lines[row["key"]] = row
 
     import_report = {"passed": 0, "failed": 0, "no_submission": 0, "items": [], "flagged": [],
-                      "existing_catalog_value_counts": {}, "identity_suspect_fields_dropped": []}
+                      "existing_catalog_value_counts": {}, "identity_suspect_fields_dropped": [],
+                      "medium_blanked": []}
     by_collection_new: dict[str, dict[int, dict]] = {}
 
     for key, coll in packet_index.items():
@@ -1510,6 +1540,12 @@ def run_import(batch_glob: str = "batch_*.jsonl"):
         for f in ("medium", "date_display", "creation_date", "current_repository", "physical_dimensions"):
             if packet["structured"].get(f):
                 base[f] = packet["structured"][f]
+        # Round 5: agent_name_confirmed is only ever set (see resolve_structured_fields) when it's a
+        # genuine gain (catalog had none) or agrees with the catalog's own spelling — a disagreement
+        # is recorded as agent_name_disagreement + needs_review and NEVER reaches this point, so this
+        # assignment can never write a bogus name.
+        if packet["structured"].get("agent_name_confirmed"):
+            base["agent_name"] = packet["structured"]["agent_name_confirmed"]
 
         # Round 4 #3: how much of the catalog's structure is still just the old, unverified value —
         # counted for every packet regardless of whether a writer has submitted for it yet.
@@ -1561,6 +1597,14 @@ def run_import(batch_glob: str = "batch_*.jsonl"):
                     import_report["identity_suspect_fields_dropped"].append({
                         "key": key, "collection": coll, "fields_dropped": blanked, "match_qids": suspect_qids,
                     })
+
+            # Round 5 addition: `medium_doubtful` — the image visibly contradicts an unverified medium
+            # but no fact states the right one (Toulouse-Lautrec crayon/gouache sketches catalogued
+            # "Oil on canvas"). Blank rather than guess; only when nothing already corrected it.
+            if "medium_doubtful" in flags and "medium" not in applied \
+                    and packet["structured"].get("medium_source") == "existing_catalog_value":
+                base["medium"] = ""
+                import_report["medium_blanked"].append({"key": key, "collection": coll})
 
             ok, reasons = validate_written_item(written, packet)
             if ok:

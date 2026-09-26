@@ -71,6 +71,74 @@ def test_precedence_prefers_museum_over_wikidata_over_commons():
     assert needs_review is True
 
 
+# --------------------------------------------------------------------------- agent_name (round 5)
+def _bundle(facts, conflicts=None):
+    return {"facts": facts, "conflicts": conflicts or [], "is_version_of": None}
+
+
+def test_agent_name_never_taken_from_commons_artist_photographer_credit():
+    # audit finding: commons.Artist is routinely the PHOTOGRAPHER/uploader, not the painter.
+    bundle = _bundle([rg._fact("commons.Artist", "Didier Descouens", "Wikimedia Commons", "u", "CC BY-SA")])
+    fields, needs_review, notes = rg.resolve_structured_fields(bundle, {"agent_name": "Gustav Klimt"})
+    assert fields.get("agent_name_confirmed") is None
+    assert "agent_name_disagreement" not in fields
+    assert needs_review is False
+
+
+def test_agent_name_never_taken_from_commons_artist_institution_credit():
+    # audit finding: commons.Artist can even be the holding INSTITUTION (Rijksmuseum on 100+ Hiroshige
+    # prints), not a person at all.
+    bundle = _bundle([rg._fact("commons.Artist", "Rijksmuseum", "Wikimedia Commons", "u", "CC BY-SA")])
+    fields, needs_review, notes = rg.resolve_structured_fields(bundle, {"agent_name": "Utagawa Hiroshige"})
+    assert fields.get("agent_name_confirmed") is None
+    assert needs_review is False
+
+
+def test_agent_name_filled_in_from_museum_record_when_catalog_has_none():
+    bundle = _bundle([rg._fact("museum.creators", ["Winslow Homer"], "Met API", "u", "CC0")])
+    fields, needs_review, notes = rg.resolve_structured_fields(bundle, {"agent_name": "Unknown Artist"})
+    assert fields["agent_name_confirmed"] == "Winslow Homer"
+    assert fields["agent_name_source"] == "Met API"
+    assert needs_review is False
+
+
+def test_agent_name_confirmed_keeps_catalogs_own_spelling_on_agreement():
+    bundle = _bundle([rg._fact("wikidata.creator", ["Rembrandt"], "Wikidata", "u", "CC0")])
+    fields, needs_review, notes = rg.resolve_structured_fields(bundle, {"agent_name": "Rembrandt van Rijn"})
+    assert fields["agent_name_confirmed"] == "Rembrandt van Rijn"  # not overwritten with the mononym
+    assert needs_review is False
+
+
+def test_agent_name_disagreement_flags_needs_review_and_keeps_catalog_value():
+    bundle = _bundle([rg._fact("wikidata.creator", ["Jacopo Amigoni"], "Wikidata", "u", "CC0")])
+    fields, needs_review, notes = rg.resolve_structured_fields(bundle, {"agent_name": "Gustav Klimt"})
+    assert fields.get("agent_name_confirmed") is None
+    assert fields.get("agent_name_disagreement") == "Jacopo Amigoni"
+    assert needs_review is True
+    assert any("Jacopo Amigoni" in n for n in notes)
+
+
+def test_run_import_writes_agent_name_confirmed_into_catalog(tmp_path, monkeypatch):
+    packets_dir = tmp_path / "packets" / "demo"
+    packets_dir.mkdir(parents=True)
+    (tmp_path / "written").mkdir()
+    packet = {"title": "Mystery Portrait", "facts": [],
+              "structured": {"agent_name_confirmed": "Frans Hals"}}
+    (packets_dir / "mystery-portrait-0000.json").write_text(json.dumps(packet))
+
+    monkeypatch.setattr(rg, "PACKETS_DIR", tmp_path / "packets")
+    monkeypatch.setattr(rg, "WRITTEN_DIR", tmp_path / "written")
+    monkeypatch.setattr(rg, "OUT_CATALOG_DIR", tmp_path / "catalog")
+    monkeypatch.setattr(rg, "IMPORT_REPORT_PATH", tmp_path / "import_report.json")
+    monkeypatch.setattr(rg, "PACKET_INDEX_PATH", tmp_path / "packets_index.json")
+    (tmp_path / "packets_index.json").write_text(json.dumps({"mystery-portrait-0000": "demo"}))
+    monkeypatch.setattr(rg, "load_catalog", lambda: {"demo": [dict(title="Mystery Portrait", agent_name="Unknown Artist")]})
+
+    rg.run_import()
+    out = json.loads((tmp_path / "catalog" / "demo.json").read_text())["items"][0]
+    assert out["agent_name"] == "Frans Hals"
+
+
 def test_conflict_detection_flags_medium_class_mismatch_not_average():
     facts = [
         rg._fact("museum.medium", "oil on canvas", "Met API", "u", "CC0"),
@@ -683,6 +751,58 @@ def test_run_import_applies_correction_and_blanks_uncorrected_field_on_identity_
     out = json.loads((tmp_path / "catalog" / "demo.json").read_text())["items"][125]
     assert out["medium"] == "Charcoal on paper"
     assert out["date_display"] == ""
+
+
+def test_run_import_medium_doubtful_blanks_unverified_medium(tmp_path, monkeypatch):
+    packets_dir = tmp_path / "packets" / "demo"
+    packets_dir.mkdir(parents=True)
+    (tmp_path / "written").mkdir()
+    packet = {"title": "Sketch", "facts": [],
+              "structured": {"medium": "Oil on canvas", "medium_source": "existing_catalog_value"}}
+    (packets_dir / "sketch-0009.json").write_text(json.dumps(packet))
+
+    monkeypatch.setattr(rg, "PACKETS_DIR", tmp_path / "packets")
+    monkeypatch.setattr(rg, "WRITTEN_DIR", tmp_path / "written")
+    monkeypatch.setattr(rg, "OUT_CATALOG_DIR", tmp_path / "catalog")
+    monkeypatch.setattr(rg, "IMPORT_REPORT_PATH", tmp_path / "import_report.json")
+    monkeypatch.setattr(rg, "PACKET_INDEX_PATH", tmp_path / "packets_index.json")
+    (tmp_path / "packets_index.json").write_text(json.dumps({"sketch-0009": "demo"}))
+    monkeypatch.setattr(rg, "load_catalog", lambda: {"demo": [dict(title="Sketch", agent_name="X", medium="Oil on canvas")] * 10})
+
+    written = {"key": "sketch-0009", "title": "Sketch", "description_narrative": "A crayon sketch.",
+               "tags": "sketch", "claims": [], "flags": ["medium_doubtful"]}
+    (tmp_path / "written" / "batch_01.jsonl").write_text(json.dumps(written) + "\n")
+
+    report = rg.run_import()
+    assert report["medium_blanked"] == [{"key": "sketch-0009", "collection": "demo"}]
+    out = json.loads((tmp_path / "catalog" / "demo.json").read_text())["items"][9]
+    assert out["medium"] == ""
+
+
+def test_run_import_medium_doubtful_ignored_when_medium_is_verified(tmp_path, monkeypatch):
+    packets_dir = tmp_path / "packets" / "demo"
+    packets_dir.mkdir(parents=True)
+    (tmp_path / "written").mkdir()
+    packet = {"title": "Sketch", "facts": [],
+              "structured": {"medium": "Oil on canvas", "medium_source": "Met Collection API"}}
+    (packets_dir / "sketch-0009.json").write_text(json.dumps(packet))
+
+    monkeypatch.setattr(rg, "PACKETS_DIR", tmp_path / "packets")
+    monkeypatch.setattr(rg, "WRITTEN_DIR", tmp_path / "written")
+    monkeypatch.setattr(rg, "OUT_CATALOG_DIR", tmp_path / "catalog")
+    monkeypatch.setattr(rg, "IMPORT_REPORT_PATH", tmp_path / "import_report.json")
+    monkeypatch.setattr(rg, "PACKET_INDEX_PATH", tmp_path / "packets_index.json")
+    (tmp_path / "packets_index.json").write_text(json.dumps({"sketch-0009": "demo"}))
+    monkeypatch.setattr(rg, "load_catalog", lambda: {"demo": [dict(title="Sketch", agent_name="X", medium="Oil on canvas")] * 10})
+
+    written = {"key": "sketch-0009", "title": "Sketch", "description_narrative": "A crayon sketch.",
+               "tags": "sketch", "claims": [], "flags": ["medium_doubtful"]}
+    (tmp_path / "written" / "batch_01.jsonl").write_text(json.dumps(written) + "\n")
+
+    report = rg.run_import()
+    assert report["medium_blanked"] == []
+    out = json.loads((tmp_path / "catalog" / "demo.json").read_text())["items"][9]
+    assert out["medium"] == "Oil on canvas"
 
 
 def test_run_import_identity_mismatch_drops_museum_sourced_fields_too(tmp_path, monkeypatch):
