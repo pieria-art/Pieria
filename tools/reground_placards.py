@@ -88,6 +88,12 @@ MUSEUM_MATCH_CHANGES_PATH = REGROUND_DIR / "museum_match_changes.json"
 DUPLICATE_IMAGES_PATH = REGROUND_DIR / "duplicate_images.json"
 PACKET_INDEX_PATH = REGROUND_DIR / "packets_index.json"
 BLANK_MASTERS_PATH = REGROUND_DIR / "blank_masters.json"
+DROPS_REPORT_PATH = REGROUND_DIR / "drops_report.json"
+# Default input for --mode apply-drops (~/pieria-img/curation/deferred_drops.json) — a curation-review
+# artifact, not a reground/ run artifact, so it deliberately lives beside applied.json rather than
+# under REGROUND_DIR, and is NOT re-derived by set_workdir below (it names a fixed input file, not a
+# per-run output path). Override per-call via run_apply_drops(drops_path=...) / --drops.
+DEFAULT_DROPS_PATH = Path.home() / "pieria-img" / "curation" / "deferred_drops.json"
 
 
 def set_workdir(path: Path) -> None:
@@ -96,7 +102,8 @@ def set_workdir(path: Path) -> None:
     bare names — this keeps that contract instead of threading a config object through everything."""
     global REGROUND_DIR, FACTS_DIR, OUT_CATALOG_DIR, REPORT_PATH, PACKETS_DIR, PREVIEWS_DIR, \
         BATCHES_DIR, WRITTEN_DIR, IMPORT_REPORT_PATH, IDENTITY_MISMATCHES_PATH, \
-        MUSEUM_MATCH_CHANGES_PATH, DUPLICATE_IMAGES_PATH, PACKET_INDEX_PATH, BLANK_MASTERS_PATH
+        MUSEUM_MATCH_CHANGES_PATH, DUPLICATE_IMAGES_PATH, PACKET_INDEX_PATH, BLANK_MASTERS_PATH, \
+        DROPS_REPORT_PATH
     REGROUND_DIR = Path(path)
     FACTS_DIR = REGROUND_DIR / "facts"
     OUT_CATALOG_DIR = REGROUND_DIR / "catalog"
@@ -111,6 +118,7 @@ def set_workdir(path: Path) -> None:
     DUPLICATE_IMAGES_PATH = REGROUND_DIR / "duplicate_images.json"
     PACKET_INDEX_PATH = REGROUND_DIR / "packets_index.json"
     BLANK_MASTERS_PATH = REGROUND_DIR / "blank_masters.json"
+    DROPS_REPORT_PATH = REGROUND_DIR / "drops_report.json"
 
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -1843,6 +1851,44 @@ _CORRECTABLE_FIELD_SOURCE_KEY = {"medium": "medium_source", "date_display": "dat
 _ALL_STRUCTURED_FIELDS = ("medium", "date_display", "current_repository", "physical_dimensions")
 _QID_IN_URL_RE = re.compile(r"/(Q\d+)$")
 
+# ----------------------------------------------------------------------- curated overrides (--curated)
+# A human already hand-curated these (collection, idx) pairs' listed fields directly in the served
+# catalog (static/catalog) — e.g. ~/pieria-img/curation/applied.json. Every field the import can
+# actually touch (header/structured fields) is PROTECTED against every downstream override path
+# (packet structured fill, a writer's field_correction, identity_mismatch blanking, medium_doubtful
+# blanking, header hygiene): whatever the pipeline would have written is discarded in favour of the
+# served-catalog value it started from, and the collision is recorded in
+# import_report["curated_conflicts"]. Narrative/tags/image/licence fields are never protected — they
+# either come from the writers (narrative/tags) or are never touched by run_import at all (image/licence).
+_TOUCHABLE_STRUCTURED_FIELDS = {
+    "title", "agent_name", "agent_role", "date_display", "creation_date", "medium",
+    "current_repository", "physical_dimensions",
+}
+_FIELD_SOURCE_KEY = {
+    "medium": "medium_source", "date_display": "date_source", "creation_date": "date_source",
+    "current_repository": "current_repository_source", "physical_dimensions": "physical_dimensions_source",
+    "agent_name": "agent_name_source",
+}
+
+
+def load_curated_protections(path: str | Path | None) -> dict[tuple[str, int], set[str]]:
+    """--curated PATH (default None -> {}): {(collection, idx): {protected field names}}, restricted
+    to fields run_import can actually touch — a curated changed_fields entry naming an image/licence
+    field (aspect_crops, credit_line, license*, source*, thumbnail_url, resolution_tier, delivered_edge,
+    focal_point) is simply not in this set, since the import never writes those anyway."""
+    if not path:
+        return {}
+    records = json.loads(Path(path).read_text())
+    out: dict[tuple[str, int], set[str]] = {}
+    for rec in records:
+        coll, idx = rec.get("collection"), rec.get("idx")
+        if coll is None or idx is None:
+            continue
+        fields = {f for f in (rec.get("changed_fields") or []) if f in _TOUCHABLE_STRUCTURED_FIELDS}
+        if fields:
+            out[(coll, idx)] = fields
+    return out
+
 
 def _extract_match_qids(packet: dict) -> list[str]:
     """Every distinct Wikidata QID backing this packet's facts (there's normally exactly one — the
@@ -2041,8 +2087,9 @@ def normalize_tags(written_tags, existing_tags) -> tuple[str | None, bool]:
     return ", ".join(tags), False
 
 
-def run_import(batch_glob: str = "batch_*.jsonl"):
+def run_import(batch_glob: str = "batch_*.jsonl", curated_path: str | Path | None = None):
     catalog = load_catalog()
+    curated_protections = load_curated_protections(curated_path)
     packet_index = json.loads(PACKET_INDEX_PATH.read_text()) if PACKET_INDEX_PATH.exists() else {}
     written_lines: dict[str, dict] = {}
     flags_dropped_total = 0
@@ -2062,7 +2109,7 @@ def run_import(batch_glob: str = "batch_*.jsonl"):
     import_report = {"passed": 0, "failed": 0, "no_submission": 0, "items": [], "flagged": [],
                       "existing_catalog_value_counts": {}, "identity_suspect_fields_dropped": [],
                       "medium_blanked": [], "header_hygiene_changes": [],
-                      "flags_dropped": flags_dropped_total, "tags_rejected": []}
+                      "flags_dropped": flags_dropped_total, "tags_rejected": [], "curated_conflicts": []}
     by_collection_new: dict[str, dict[int, dict]] = {}
 
     for key, coll in packet_index.items():
@@ -2072,15 +2119,36 @@ def run_import(batch_glob: str = "batch_*.jsonl"):
         packet = json.loads(packet_path.read_text())
         idx = int(key.rsplit("-", 1)[-1])
         base = dict(catalog[coll][idx])
+
+        protected_fields = curated_protections.get((coll, idx)) or set()
+        curated_snapshot = {f: base.get(f) for f in protected_fields}
+
+        def _protect(field: str, by: str) -> None:
+            """If `field` is curated-protected and this run just changed it, record the collision
+            in import_report["curated_conflicts"] and restore the served-catalog value immediately —
+            so every later step in this loop iteration sees (and can't further disturb) the curated
+            value, not just the final write."""
+            if field not in protected_fields:
+                return
+            curated_value = curated_snapshot[field]
+            if base.get(field) != curated_value:
+                import_report["curated_conflicts"].append({
+                    "key": key, "collection": coll, "field": field,
+                    "curated": curated_value, "would_have_been": base.get(field), "by": by,
+                })
+                base[field] = curated_value
+
         for f in ("medium", "date_display", "creation_date", "current_repository", "physical_dimensions"):
             if packet["structured"].get(f):
                 base[f] = packet["structured"][f]
+                _protect(f, f"structured:{packet['structured'].get(_FIELD_SOURCE_KEY.get(f, ''), 'unknown')}")
         # Round 5: agent_name_confirmed is only ever set (see resolve_structured_fields) when it's a
         # genuine gain (catalog had none) or agrees with the catalog's own spelling — a disagreement
         # is recorded as agent_name_disagreement + needs_review and NEVER reaches this point, so this
         # assignment can never write a bogus name.
         if packet["structured"].get("agent_name_confirmed"):
             base["agent_name"] = packet["structured"]["agent_name_confirmed"]
+            _protect("agent_name", f"structured:{packet['structured'].get('agent_name_source', 'unknown')}")
 
         # Round 4 #3: how much of the catalog's structure is still just the old, unverified value —
         # counted for every packet regardless of whether a writer has submitted for it yet.
@@ -2111,6 +2179,10 @@ def run_import(batch_glob: str = "batch_*.jsonl"):
             applied, rejected = apply_field_corrections(written, packet, base)
             if applied or rejected:
                 import_report["items_with_corrections"] = import_report.get("items_with_corrections", 0) + 1
+            for field in applied:
+                _protect(field, "field_correction")
+                if field == "date_display":
+                    _protect("creation_date", "field_correction")
 
             # Round 4 addendum 2: a confirmed identity mismatch means the MATCH itself is suspect, not
             # just one field — hermit-thrush-0004's medium/date/repository all came from the wrong
@@ -2127,9 +2199,12 @@ def run_import(batch_glob: str = "batch_*.jsonl"):
                         continue
                     if base.get(field):
                         base[field] = ""
+                        _protect(field, "identity_mismatch")
                         if field == "date_display":
                             base["creation_date"] = ""
-                        blanked.append(field)
+                            _protect("creation_date", "identity_mismatch")
+                        if not base.get(field):  # not restored by curated protection above
+                            blanked.append(field)
                 if blanked:
                     import_report["identity_suspect_fields_dropped"].append({
                         "key": key, "collection": coll, "fields_dropped": blanked, "match_qids": suspect_qids,
@@ -2141,7 +2216,9 @@ def run_import(batch_glob: str = "batch_*.jsonl"):
             if "medium_doubtful" in flags and "medium" not in applied \
                     and packet["structured"].get("medium_source") == "existing_catalog_value":
                 base["medium"] = ""
-                import_report["medium_blanked"].append({"key": key, "collection": coll})
+                _protect("medium", "medium_doubtful")
+                if not base.get("medium"):  # not restored by curated protection above
+                    import_report["medium_blanked"].append({"key": key, "collection": coll})
 
             ok, reasons = validate_written_item(written, packet)
             if ok:
@@ -2180,9 +2257,11 @@ def run_import(batch_glob: str = "batch_*.jsonl"):
                 new_val = ""
             if new_val != old_val:
                 base[field] = new_val
-                import_report["header_hygiene_changes"].append({
-                    "key": key, "collection": coll, "field": field, "old": old_val, "new": new_val,
-                })
+                _protect(field, "hygiene")
+                if base.get(field) != old_val:  # not restored by curated protection above
+                    import_report["header_hygiene_changes"].append({
+                        "key": key, "collection": coll, "field": field, "old": old_val, "new": new_val,
+                    })
 
         by_collection_new.setdefault(coll, {})[idx] = base
 
@@ -2373,6 +2452,64 @@ def run_duplicate_images() -> dict:
     return result
 
 
+# ----------------------------------------------------------------------- deferred drops (--mode apply-drops)
+def run_apply_drops(drops_path: str | Path | None = None) -> dict:
+    """Apply a set of previously-approved-but-deferred removals to OUT_CATALOG_DIR (the IMPORT's
+    output — this never touches static/catalog directly). Removing an item shifts every later index
+    in its collection, which is exactly why these were deferred rather than applied one at a time
+    during curation review; so every drop is verified — title, and agent_name when the record names
+    one — against the CURRENT item at its key's idx BEFORE anything is written, across every
+    collection in this call, and a single mismatch aborts the whole call with nothing written. Only
+    once every drop in every collection has verified does it remove them, per collection, in
+    descending index order (so an earlier deletion in the same collection never invalidates a later
+    one's already-verified index)."""
+    drops_path = Path(drops_path) if drops_path else DEFAULT_DROPS_PATH
+    drops = json.loads(Path(drops_path).read_text())
+
+    by_collection: dict[str, list[dict]] = {}
+    for d in drops:
+        coll = d["collection"]
+        idx = int(d["key"].rsplit("-", 1)[-1])
+        by_collection.setdefault(coll, []).append({**d, "idx": idx})
+
+    # Pass 1: load + verify every drop in every collection. Nothing is written or mutated here, so a
+    # failure anywhere aborts with the catalog untouched.
+    loaded: dict[str, tuple[Path, list]] = {}
+    for coll, items in by_collection.items():
+        path = OUT_CATALOG_DIR / f"{coll}.json"
+        data = json.loads(path.read_text())
+        full = data["items"]
+        for d in items:
+            idx = d["idx"]
+            if idx >= len(full):
+                raise ValueError(f"apply-drops abort: {d['key']!r} — idx {idx} out of range for "
+                                 f"{coll!r} (has {len(full)} items); nothing written")
+            actual = full[idx]
+            if (actual.get("title") or "") != (d.get("title") or ""):
+                raise ValueError(f"apply-drops abort: {d['key']!r} — title mismatch at {coll}[{idx}]: "
+                                 f"expected {d.get('title')!r}, found {actual.get('title')!r}; nothing written")
+            expected_agent = d.get("agent_name")
+            if expected_agent and (actual.get("agent_name") or "") != expected_agent:
+                raise ValueError(f"apply-drops abort: {d['key']!r} — agent_name mismatch at {coll}[{idx}]: "
+                                 f"expected {expected_agent!r}, found {actual.get('agent_name')!r}; nothing written")
+        loaded[coll] = (path, full)
+
+    # Pass 2: every drop in every collection verified — now remove + write, matching OUT_CATALOG_DIR's
+    # own existing format exactly (indent=1, ensure_ascii=False, {"items": [...]} — see run_import).
+    report = {"dropped": [], "collections": {}}
+    for coll, items in by_collection.items():
+        path, full = loaded[coll]
+        before = len(full)
+        for d in sorted(items, key=lambda d: d["idx"], reverse=True):
+            del full[d["idx"]]
+            report["dropped"].append({"key": d["key"], "collection": coll, "title": d.get("title")})
+        report["collections"][coll] = {"before": before, "after": len(full)}
+        path.write_text(json.dumps({"items": full}, indent=1, ensure_ascii=False))
+
+    DROPS_REPORT_PATH.write_text(json.dumps(report, indent=2))
+    return report
+
+
 # ----------------------------------------------------------------------- blank/near-uniform masters (round 10)
 def _edge_flat_band_frac(im) -> tuple[float, str]:
     """A TRUNCATED pack master (partial real image, remainder filled with flat black/white) can look
@@ -2515,7 +2652,7 @@ def run_blank_masters(limit: int | None = None, collection: str | None = None,
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--mode", choices=["facts", "packets", "import", "recheck-museum", "duplicate-images",
-                                        "blank-masters"],
+                                        "blank-masters", "apply-drops"],
                      default="packets",
                      help="facts: legacy single-pass (facts+template/model, round 1). "
                           "packets: write facts + writing packets + preview images + batches "
@@ -2524,7 +2661,9 @@ def main():
                           "recheck-museum: re-verify museum matches (round 4), rewriting only the "
                           "fact+packet files whose structured fields changed; never touches written/. "
                           "duplicate-images: hash every item's master/preview and group shared hashes. "
-                          "blank-masters: flag near-uniform/very-bright/very-dark resolved pack masters.")
+                          "blank-masters: flag near-uniform/very-bright/very-dark resolved pack masters. "
+                          "apply-drops: remove approved, previously-deferred drops from the IMPORT's "
+                          "OUT_CATALOG_DIR (never static/catalog), verifying title/agent_name first.")
     ap.add_argument("--only-sample", action="store_true", help="only the 150 audit-sample works")
     ap.add_argument("--limit", type=int, default=None)
     ap.add_argument("--collection", default=None)
@@ -2532,13 +2671,23 @@ def main():
     ap.add_argument("--workdir", default=None,
                      help="override REGROUND_DIR for this run only (default: $REGROUND_DIR or "
                           "~/pieria-img/reground — never /tmp, which a reboot can wipe)")
+    ap.add_argument("--curated", default=None,
+                     help="import mode only: path to a hand-curated corrections file (applied.json "
+                          "shape: [{collection, idx, changed_fields}]) whose listed header/structured "
+                          "fields are protected from every downstream import override and restored to "
+                          "the served-catalog value if disturbed (see import_report['curated_conflicts'])")
+    ap.add_argument("--drops", default=None,
+                     help="apply-drops mode only: path to the approved deferred-drops file "
+                          "(default: ~/pieria-img/curation/deferred_drops.json)")
     args = ap.parse_args()
 
     if args.workdir:
         set_workdir(Path(args.workdir).expanduser())
 
     if args.mode == "import":
-        report = run_import()
+        report = run_import(curated_path=args.curated)
+    elif args.mode == "apply-drops":
+        report = run_apply_drops(drops_path=args.drops)
     elif args.mode == "packets":
         report = asyncio.run(run_packets(
             only_sample=args.only_sample, limit=args.limit, collection=args.collection,

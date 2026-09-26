@@ -1771,3 +1771,373 @@ def test_run_import_keeps_existing_tags_when_submission_normalizes_to_empty(tmp_
     out = json.loads((tmp_path / "catalog" / "demo.json").read_text())["items"][0]
     assert out["tags"] == "boats, sea"
     assert report["tags_rejected"][0]["key"] == "two-sailboats-0000"
+
+
+# --------------------------------------------------------------------------- curated protection (--curated)
+def test_load_curated_protections_keeps_only_touchable_fields(tmp_path):
+    path = tmp_path / "applied.json"
+    path.write_text(json.dumps([
+        {"collection": "renaissance", "idx": 41, "changed_fields": [
+            "date_display", "creation_date", "medium", "license_url", "aspect_crops", "source_url",
+        ]},
+        {"collection": "post-impressionism", "idx": 125, "changed_fields": ["credit_line"]},
+    ]))
+    out = rg.load_curated_protections(str(path))
+    assert out[("renaissance", 41)] == {"date_display", "creation_date", "medium"}
+    assert ("post-impressionism", 125) not in out  # nothing left after filtering -> no entry at all
+
+
+def test_load_curated_protections_default_none_path_is_empty():
+    assert rg.load_curated_protections(None) == {}
+
+
+def test_curated_protection_blocks_structured_field_overwrite(tmp_path, monkeypatch):
+    # golden-age-illustration idx 10: curated date_display/creation_date=1897 must survive a packet
+    # structured fill that would otherwise land 1895 off a Commons DateTimeOriginal fact.
+    packets_dir = tmp_path / "packets" / "demo"
+    packets_dir.mkdir(parents=True)
+    (tmp_path / "written").mkdir()
+    curated_packet = {"title": "Curated Work", "facts": [],
+                       "structured": {"date_display": "1895", "creation_date": "1895",
+                                      "date_source": "Wikimedia Commons"}}
+    (packets_dir / "curated-work-0010.json").write_text(json.dumps(curated_packet))
+    plain_packet = {"title": "Plain Work", "facts": [],
+                     "structured": {"date_display": "1902", "creation_date": "1902",
+                                    "date_source": "Wikimedia Commons"}}
+    (packets_dir / "plain-work-0011.json").write_text(json.dumps(plain_packet))
+
+    monkeypatch.setattr(rg, "PACKETS_DIR", tmp_path / "packets")
+    monkeypatch.setattr(rg, "WRITTEN_DIR", tmp_path / "written")
+    monkeypatch.setattr(rg, "OUT_CATALOG_DIR", tmp_path / "catalog")
+    monkeypatch.setattr(rg, "IMPORT_REPORT_PATH", tmp_path / "import_report.json")
+    monkeypatch.setattr(rg, "PACKET_INDEX_PATH", tmp_path / "packets_index.json")
+    (tmp_path / "packets_index.json").write_text(json.dumps({
+        "curated-work-0010": "demo", "plain-work-0011": "demo",
+    }))
+    catalog_items = [dict(title="x", agent_name="x")] * 12
+    catalog_items[10] = dict(title="Curated Work", agent_name="X", date_display="1897", creation_date="1897")
+    catalog_items[11] = dict(title="Plain Work", agent_name="Y", date_display="1899", creation_date="1899")
+    monkeypatch.setattr(rg, "load_catalog", lambda: {"demo": catalog_items})
+
+    curated_path = tmp_path / "applied.json"
+    curated_path.write_text(json.dumps([
+        {"collection": "demo", "idx": 10, "changed_fields": ["date_display", "creation_date"]},
+    ]))
+
+    report = rg.run_import(curated_path=str(curated_path))
+    items = json.loads((tmp_path / "catalog" / "demo.json").read_text())["items"]
+    assert items[10]["date_display"] == "1897" and items[10]["creation_date"] == "1897"
+    assert items[11]["date_display"] == "1902" and items[11]["creation_date"] == "1902"  # non-curated: unaffected
+
+    conflicts = {c["field"]: c for c in report["curated_conflicts"]}
+    assert conflicts["date_display"]["curated"] == "1897"
+    assert conflicts["date_display"]["would_have_been"] == "1895"
+    assert conflicts["date_display"]["by"] == "structured:Wikimedia Commons"
+    assert conflicts["creation_date"]["would_have_been"] == "1895"
+
+
+def test_curated_protection_blocks_field_correction(tmp_path, monkeypatch):
+    # study-of-a-woman-nude-from-behind-0236: curated, museum-confirmed medium must survive a writer's
+    # grounded field_correction over an existing_catalog_value medium.
+    packets_dir = tmp_path / "packets" / "demo"
+    packets_dir.mkdir(parents=True)
+    written_dir = tmp_path / "written"
+    written_dir.mkdir()
+    packet = {
+        "title": "Study of a Woman", "facts": [
+            {"key": "commons.Credit", "value": "Drawing, charcoal on paper", "source": "Wikimedia Commons",
+             "source_url": "u", "licence": "CC BY-SA"},
+        ],
+        "structured": {"medium": "Oil on canvas", "medium_source": "existing_catalog_value"},
+    }
+    (packets_dir / "study-of-a-woman-0236.json").write_text(json.dumps(packet))
+
+    monkeypatch.setattr(rg, "PACKETS_DIR", tmp_path / "packets")
+    monkeypatch.setattr(rg, "WRITTEN_DIR", written_dir)
+    monkeypatch.setattr(rg, "OUT_CATALOG_DIR", tmp_path / "catalog")
+    monkeypatch.setattr(rg, "IMPORT_REPORT_PATH", tmp_path / "import_report.json")
+    monkeypatch.setattr(rg, "PACKET_INDEX_PATH", tmp_path / "packets_index.json")
+    (tmp_path / "packets_index.json").write_text(json.dumps({"study-of-a-woman-0236": "demo"}))
+    catalog_items = [dict(title="x", agent_name="x")] * 237
+    catalog_items[236] = dict(title="Study of a Woman", agent_name="X", medium="Oil on cardboard")
+    monkeypatch.setattr(rg, "load_catalog", lambda: {"demo": catalog_items})
+
+    written = {
+        "key": "study-of-a-woman-0236", "title": "Study of a Woman",
+        "description_narrative": "A charcoal study.", "tags": "study", "claims": [],
+        "field_corrections": {"medium": {"value": "Charcoal on paper", "fact_keys": ["commons.Credit"]}},
+    }
+    (written_dir / "batch_01.jsonl").write_text(json.dumps(written) + "\n")
+
+    curated_path = tmp_path / "applied.json"
+    curated_path.write_text(json.dumps([
+        {"collection": "demo", "idx": 236, "changed_fields": ["medium"]},
+    ]))
+
+    report = rg.run_import(curated_path=str(curated_path))
+    out = json.loads((tmp_path / "catalog" / "demo.json").read_text())["items"][236]
+    assert out["medium"] == "Oil on cardboard"  # curated value wins over the writer's correction
+
+    # the packet's own structured fill (still "Oil on canvas", existing_catalog_value) is ALSO
+    # blocked first, before the writer's field_correction is even applied — both are recorded.
+    by_source = {c["by"]: c for c in report["curated_conflicts"]}
+    assert by_source["structured:existing_catalog_value"]["would_have_been"] == "Oil on canvas"
+    conflict = by_source["field_correction"]
+    assert conflict["field"] == "medium"
+    assert conflict["curated"] == "Oil on cardboard"
+    assert conflict["would_have_been"] == "Charcoal on paper"
+
+
+def test_curated_protection_blocks_identity_mismatch_blanking(tmp_path, monkeypatch):
+    # ophelia-0012: a curated date must survive identity_mismatch's blanket structured-field blanking.
+    packets_dir = tmp_path / "packets" / "demo"
+    packets_dir.mkdir(parents=True)
+    written_dir = tmp_path / "written"
+    written_dir.mkdir()
+    packet = {
+        "title": "Ophelia", "facts": [
+            {"key": "wikidata.inception", "value": ["1820"], "source": "Wikidata",
+             "source_url": "https://www.wikidata.org/wiki/Q1", "licence": "CC0"},
+        ],
+        "structured": {"medium": "Oil on canvas", "medium_source": "Some Museum API",
+                        "date_display": "1852", "date_source": "existing_catalog_value"},
+    }
+    (packets_dir / "ophelia-0012.json").write_text(json.dumps(packet))
+
+    monkeypatch.setattr(rg, "PACKETS_DIR", tmp_path / "packets")
+    monkeypatch.setattr(rg, "WRITTEN_DIR", written_dir)
+    monkeypatch.setattr(rg, "OUT_CATALOG_DIR", tmp_path / "catalog")
+    monkeypatch.setattr(rg, "IMPORT_REPORT_PATH", tmp_path / "import_report.json")
+    monkeypatch.setattr(rg, "PACKET_INDEX_PATH", tmp_path / "packets_index.json")
+    (tmp_path / "packets_index.json").write_text(json.dumps({"ophelia-0012": "demo"}))
+    catalog_items = [dict(title="x", agent_name="x")] * 13
+    catalog_items[12] = dict(title="Ophelia", agent_name="John Everett Millais",
+                             medium="Oil on canvas", date_display="1852", current_repository="Tate")
+    monkeypatch.setattr(rg, "load_catalog", lambda: {"demo": catalog_items})
+
+    written = {
+        "key": "ophelia-0012", "title": "Ophelia",
+        "description_narrative": "A painting of Ophelia.", "tags": "ophelia", "claims": [],
+        "flags": ["identity_mismatch"],
+    }
+    (written_dir / "batch_01.jsonl").write_text(json.dumps(written) + "\n")
+
+    curated_path = tmp_path / "applied.json"
+    curated_path.write_text(json.dumps([
+        {"collection": "demo", "idx": 12, "changed_fields": ["date_display"]},
+    ]))
+
+    report = rg.run_import(curated_path=str(curated_path))
+    out = json.loads((tmp_path / "catalog" / "demo.json").read_text())["items"][12]
+    assert out["date_display"] == "1852"  # protected — survives identity_mismatch blanking
+    assert out["medium"] == ""            # not curated — blanked as normal
+    assert out["current_repository"] == ""
+
+    entry = report["identity_suspect_fields_dropped"][0]
+    assert set(entry["fields_dropped"]) == {"medium", "current_repository"}  # date_display excluded
+
+    conflict = report["curated_conflicts"][0]
+    assert conflict["field"] == "date_display"
+    assert conflict["curated"] == "1852"
+    assert conflict["would_have_been"] == ""
+    assert conflict["by"] == "identity_mismatch"
+
+
+def test_curated_protection_blocks_medium_doubtful_blanking(tmp_path, monkeypatch):
+    packets_dir = tmp_path / "packets" / "demo"
+    packets_dir.mkdir(parents=True)
+    (tmp_path / "written").mkdir()
+    packet = {"title": "Sketch", "facts": [],
+              "structured": {"medium": "Oil on canvas", "medium_source": "existing_catalog_value"}}
+    (packets_dir / "sketch-0009.json").write_text(json.dumps(packet))
+
+    monkeypatch.setattr(rg, "PACKETS_DIR", tmp_path / "packets")
+    monkeypatch.setattr(rg, "WRITTEN_DIR", tmp_path / "written")
+    monkeypatch.setattr(rg, "OUT_CATALOG_DIR", tmp_path / "catalog")
+    monkeypatch.setattr(rg, "IMPORT_REPORT_PATH", tmp_path / "import_report.json")
+    monkeypatch.setattr(rg, "PACKET_INDEX_PATH", tmp_path / "packets_index.json")
+    (tmp_path / "packets_index.json").write_text(json.dumps({"sketch-0009": "demo"}))
+    catalog_items = [dict(title="x", agent_name="x")] * 10
+    catalog_items[9] = dict(title="Sketch", agent_name="X", medium="Oil on canvas")
+    monkeypatch.setattr(rg, "load_catalog", lambda: {"demo": catalog_items})
+
+    written = {"key": "sketch-0009", "title": "Sketch", "description_narrative": "A crayon sketch.",
+               "tags": "sketch", "claims": [], "flags": ["medium_doubtful"]}
+    (tmp_path / "written" / "batch_01.jsonl").write_text(json.dumps(written) + "\n")
+
+    curated_path = tmp_path / "applied.json"
+    curated_path.write_text(json.dumps([
+        {"collection": "demo", "idx": 9, "changed_fields": ["medium"]},
+    ]))
+
+    report = rg.run_import(curated_path=str(curated_path))
+    assert report["medium_blanked"] == []  # blocked by curated protection
+    out = json.loads((tmp_path / "catalog" / "demo.json").read_text())["items"][9]
+    assert out["medium"] == "Oil on canvas"
+
+    conflict = report["curated_conflicts"][0]
+    assert conflict["field"] == "medium"
+    assert conflict["by"] == "medium_doubtful"
+    assert conflict["would_have_been"] == ""
+
+
+def test_curated_protection_default_off_matches_prior_behaviour(tmp_path, monkeypatch):
+    """No --curated passed -> behaviour is identical to before this feature existed."""
+    packets_dir = tmp_path / "packets" / "demo"
+    packets_dir.mkdir(parents=True)
+    (tmp_path / "written").mkdir()
+    packet = {"title": "Sketch", "facts": [],
+              "structured": {"medium": "Oil on canvas", "medium_source": "existing_catalog_value"}}
+    (packets_dir / "sketch-0009.json").write_text(json.dumps(packet))
+
+    monkeypatch.setattr(rg, "PACKETS_DIR", tmp_path / "packets")
+    monkeypatch.setattr(rg, "WRITTEN_DIR", tmp_path / "written")
+    monkeypatch.setattr(rg, "OUT_CATALOG_DIR", tmp_path / "catalog")
+    monkeypatch.setattr(rg, "IMPORT_REPORT_PATH", tmp_path / "import_report.json")
+    monkeypatch.setattr(rg, "PACKET_INDEX_PATH", tmp_path / "packets_index.json")
+    (tmp_path / "packets_index.json").write_text(json.dumps({"sketch-0009": "demo"}))
+    catalog_items = [dict(title="x", agent_name="x")] * 10
+    catalog_items[9] = dict(title="Sketch", agent_name="X", medium="Oil on canvas")
+    monkeypatch.setattr(rg, "load_catalog", lambda: {"demo": catalog_items})
+
+    written = {"key": "sketch-0009", "title": "Sketch", "description_narrative": "A crayon sketch.",
+               "tags": "sketch", "claims": [], "flags": ["medium_doubtful"]}
+    (tmp_path / "written" / "batch_01.jsonl").write_text(json.dumps(written) + "\n")
+
+    report = rg.run_import()
+    assert report["curated_conflicts"] == []
+    assert report["medium_blanked"] == [{"key": "sketch-0009", "collection": "demo"}]
+
+
+# --------------------------------------------------------------------------- apply-drops (--mode apply-drops)
+def _write_catalog(path, items):
+    path.write_text(json.dumps({"items": items}, indent=1, ensure_ascii=False))
+
+
+def test_apply_drops_removes_in_descending_index_order(tmp_path, monkeypatch):
+    out_catalog_dir = tmp_path / "catalog"
+    out_catalog_dir.mkdir()
+    items = [dict(title=f"Item {i}", agent_name="X") for i in range(5)]
+    _write_catalog(out_catalog_dir / "demo.json", items)
+
+    monkeypatch.setattr(rg, "OUT_CATALOG_DIR", out_catalog_dir)
+    monkeypatch.setattr(rg, "DROPS_REPORT_PATH", tmp_path / "drops_report.json")
+
+    drops_path = tmp_path / "drops.json"
+    drops_path.write_text(json.dumps([
+        {"key": "item-1-0001", "collection": "demo", "title": "Item 1", "agent_name": "X"},
+        {"key": "item-3-0003", "collection": "demo", "title": "Item 3", "agent_name": "X"},
+    ]))
+
+    report = rg.run_apply_drops(drops_path=str(drops_path))
+    remaining = json.loads((out_catalog_dir / "demo.json").read_text())["items"]
+    assert [i["title"] for i in remaining] == ["Item 0", "Item 2", "Item 4"]
+    assert report["collections"]["demo"] == {"before": 5, "after": 3}
+    assert {d["key"] for d in report["dropped"]} == {"item-1-0001", "item-3-0003"}
+    assert json.loads((tmp_path / "drops_report.json").read_text()) == report
+
+
+def test_apply_drops_matches_catalog_write_format(tmp_path, monkeypatch):
+    out_catalog_dir = tmp_path / "catalog"
+    out_catalog_dir.mkdir()
+    items = [dict(title="Café", agent_name="X")]
+    (out_catalog_dir / "demo.json").write_text(json.dumps({"items": items}, indent=1, ensure_ascii=False))
+
+    monkeypatch.setattr(rg, "OUT_CATALOG_DIR", out_catalog_dir)
+    monkeypatch.setattr(rg, "DROPS_REPORT_PATH", tmp_path / "drops_report.json")
+
+    # keep a second item so the file isn't emptied, to check indent/ensure_ascii on the surviving one
+    items.append(dict(title="Keep Me", agent_name="X"))
+    (out_catalog_dir / "demo.json").write_text(json.dumps({"items": items}, indent=1, ensure_ascii=False))
+
+    drops_path = tmp_path / "drops.json"
+    drops_path.write_text(json.dumps([{"key": "cafe-0000", "collection": "demo", "title": "Café", "agent_name": "X"}]))
+
+    rg.run_apply_drops(drops_path=str(drops_path))
+    raw = (out_catalog_dir / "demo.json").read_text()
+    assert raw == json.dumps({"items": [dict(title="Keep Me", agent_name="X")]}, indent=1, ensure_ascii=False)
+
+
+def test_apply_drops_aborts_without_writing_on_title_mismatch(tmp_path, monkeypatch):
+    out_catalog_dir = tmp_path / "catalog"
+    out_catalog_dir.mkdir()
+    items = [dict(title="Actual Title", agent_name="X") for _ in range(3)]
+    _write_catalog(out_catalog_dir / "demo.json", items)
+    before_raw = (out_catalog_dir / "demo.json").read_text()
+
+    monkeypatch.setattr(rg, "OUT_CATALOG_DIR", out_catalog_dir)
+    monkeypatch.setattr(rg, "DROPS_REPORT_PATH", tmp_path / "drops_report.json")
+
+    drops_path = tmp_path / "drops.json"
+    drops_path.write_text(json.dumps([
+        {"key": "wrong-title-0001", "collection": "demo", "title": "Wrong Title", "agent_name": "X"},
+    ]))
+
+    try:
+        rg.run_apply_drops(drops_path=str(drops_path))
+        assert False, "expected ValueError"
+    except ValueError as e:
+        assert "title mismatch" in str(e)
+    assert (out_catalog_dir / "demo.json").read_text() == before_raw
+    assert not (tmp_path / "drops_report.json").exists()
+
+
+def test_apply_drops_aborts_whole_call_when_one_of_several_collections_fails(tmp_path, monkeypatch):
+    # a bad drop in collection B must stop collection A from being written too, even though A's own
+    # drop is valid — verification runs for every collection before any write happens.
+    out_catalog_dir = tmp_path / "catalog"
+    out_catalog_dir.mkdir()
+    _write_catalog(out_catalog_dir / "a.json", [dict(title="A Item", agent_name="X")])
+    _write_catalog(out_catalog_dir / "b.json", [dict(title="B Item", agent_name="X")])
+    a_before = (out_catalog_dir / "a.json").read_text()
+
+    monkeypatch.setattr(rg, "OUT_CATALOG_DIR", out_catalog_dir)
+    monkeypatch.setattr(rg, "DROPS_REPORT_PATH", tmp_path / "drops_report.json")
+
+    drops_path = tmp_path / "drops.json"
+    drops_path.write_text(json.dumps([
+        {"key": "a-item-0000", "collection": "a", "title": "A Item", "agent_name": "X"},
+        {"key": "b-item-0000", "collection": "b", "title": "Wrong B Title", "agent_name": "X"},
+    ]))
+
+    try:
+        rg.run_apply_drops(drops_path=str(drops_path))
+        assert False, "expected ValueError"
+    except ValueError:
+        pass
+    assert (out_catalog_dir / "a.json").read_text() == a_before
+
+
+def test_apply_drops_agent_name_mismatch_aborts(tmp_path, monkeypatch):
+    out_catalog_dir = tmp_path / "catalog"
+    out_catalog_dir.mkdir()
+    _write_catalog(out_catalog_dir / "demo.json", [dict(title="Item", agent_name="Real Artist")])
+
+    monkeypatch.setattr(rg, "OUT_CATALOG_DIR", out_catalog_dir)
+    monkeypatch.setattr(rg, "DROPS_REPORT_PATH", tmp_path / "drops_report.json")
+
+    drops_path = tmp_path / "drops.json"
+    drops_path.write_text(json.dumps([
+        {"key": "item-0000", "collection": "demo", "title": "Item", "agent_name": "Wrong Artist"},
+    ]))
+
+    try:
+        rg.run_apply_drops(drops_path=str(drops_path))
+        assert False, "expected ValueError"
+    except ValueError as e:
+        assert "agent_name mismatch" in str(e)
+
+
+def test_apply_drops_default_path_used_when_none_given(tmp_path, monkeypatch):
+    out_catalog_dir = tmp_path / "catalog"
+    out_catalog_dir.mkdir()
+    _write_catalog(out_catalog_dir / "demo.json", [dict(title="Item", agent_name="X")])
+    monkeypatch.setattr(rg, "OUT_CATALOG_DIR", out_catalog_dir)
+    monkeypatch.setattr(rg, "DROPS_REPORT_PATH", tmp_path / "drops_report.json")
+
+    default_drops = tmp_path / "default_drops.json"
+    default_drops.write_text(json.dumps([{"key": "item-0000", "collection": "demo", "title": "Item", "agent_name": "X"}]))
+    monkeypatch.setattr(rg, "DEFAULT_DROPS_PATH", default_drops)
+
+    report = rg.run_apply_drops()
+    assert report["dropped"][0]["key"] == "item-0000"
