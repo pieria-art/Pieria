@@ -1975,10 +1975,77 @@ def normalize_credit_text(text: str, max_len: int = 80, shorten_to_orgs: bool = 
     return t
 
 
+# ----------------------------------------------------------------------- input normalisation
+def normalize_flags(raw_flags) -> tuple[list[str], str | None, int]:
+    """Normalise a writer row's raw `flags` field into (flags, evidence, dropped_count).
+    Each entry is normally a plain string flag, but a writer may instead submit an object
+    like {"key": "identity_mismatch", "evidence": "..."} — normalise those to their "key"
+    and keep any "evidence" text (joined if more than one object flag carries it). Entries
+    that are neither a string nor an object with a usable string "key" are dropped and
+    counted rather than silently ignored."""
+    flags: list[str] = []
+    evidence_parts: list[str] = []
+    dropped = 0
+    for f in raw_flags or []:
+        if isinstance(f, str):
+            key = f
+        elif isinstance(f, dict):
+            key = f.get("key")
+            if not isinstance(key, str) or not key:
+                dropped += 1
+                continue
+            ev = f.get("evidence")
+            if isinstance(ev, str) and ev.strip():
+                evidence_parts.append(ev.strip())
+        else:
+            dropped += 1
+            continue
+        if key not in flags:
+            flags.append(key)
+    evidence = " | ".join(evidence_parts) if evidence_parts else None
+    return flags, evidence, dropped
+
+
+def normalize_tags(written_tags, existing_tags) -> tuple[str | None, bool]:
+    """Normalise a writer's submitted `tags` (a comma-separated string OR a list — writers
+    submit both shapes) into the catalog's stored representation: a comma-separated string,
+    de-duplicated case-insensitively (first occurrence wins), matching the existing tags'
+    casing convention (lowercased only if the existing tags are already all-lowercase).
+    Returns (normalized_string, rejected); rejected=True (normalized_string is None) means
+    the submission produced an empty tag set and the caller should keep the existing value."""
+    if isinstance(written_tags, str):
+        raw = written_tags.split(",")
+    elif isinstance(written_tags, list):
+        raw = written_tags
+    else:
+        return None, True
+    tags: list[str] = []
+    seen: set[str] = set()
+    for t in raw:
+        t = str(t).strip()
+        if not t:
+            continue
+        key = t.lower()
+        if key in seen:
+            continue
+        seen.add(key)
+        tags.append(t)
+    if not tags:
+        return None, True
+    if isinstance(existing_tags, list):
+        existing = [str(s).strip() for s in existing_tags if str(s).strip()]
+    else:
+        existing = [s.strip() for s in (existing_tags or "").split(",") if s.strip()]
+    if existing and all(s == s.lower() for s in existing):
+        tags = [t.lower() for t in tags]
+    return ", ".join(tags), False
+
+
 def run_import(batch_glob: str = "batch_*.jsonl"):
     catalog = load_catalog()
     packet_index = json.loads(PACKET_INDEX_PATH.read_text()) if PACKET_INDEX_PATH.exists() else {}
     written_lines: dict[str, dict] = {}
+    flags_dropped_total = 0
     for f in sorted(WRITTEN_DIR.glob(batch_glob)):
         for line in f.read_text().splitlines():
             line = line.strip()
@@ -1986,11 +2053,16 @@ def run_import(batch_glob: str = "batch_*.jsonl"):
                 continue
             row = json.loads(line)
             if row.get("key"):
+                flags, evidence, dropped = normalize_flags(row.get("flags"))
+                row["flags"] = flags
+                row["_flag_evidence"] = evidence
+                flags_dropped_total += dropped
                 written_lines[row["key"]] = row
 
     import_report = {"passed": 0, "failed": 0, "no_submission": 0, "items": [], "flagged": [],
                       "existing_catalog_value_counts": {}, "identity_suspect_fields_dropped": [],
-                      "medium_blanked": [], "header_hygiene_changes": []}
+                      "medium_blanked": [], "header_hygiene_changes": [],
+                      "flags_dropped": flags_dropped_total, "tags_rejected": []}
     by_collection_new: dict[str, dict[int, dict]] = {}
 
     for key, coll in packet_index.items():
@@ -2026,10 +2098,12 @@ def run_import(batch_glob: str = "batch_*.jsonl"):
             # the image plausibly not matching the title (pilot found campfire-adirondacks-0015 shows a
             # hunter by tree roots; bermuda-settlers-0110 shows boars). This never blocks the narrative.
             flags = written.get("flags") or []
+            flag_evidence = written.get("_flag_evidence")
             integrity = [f for f in flags if f in ("image_title_mismatch", "identity_mismatch")]
             if integrity:
                 import_report["flagged"].append({"key": key, "collection": coll, "flags": integrity,
-                                                 "title": written.get("title") or packet.get("title")})
+                                                 "title": written.get("title") or packet.get("title"),
+                                                 "flag_evidence": flag_evidence})
 
             # Round 4 #1: a writer-proposed correction to a structured field, grounded in a cited
             # fact, accepted ONLY where the field's current value was never actually verified
@@ -2073,16 +2147,22 @@ def run_import(batch_glob: str = "batch_*.jsonl"):
             if ok:
                 base["description_narrative"] = written["description_narrative"]
                 if written.get("tags"):
-                    base["tags"] = written["tags"]
+                    new_tags, tags_rejected = normalize_tags(written["tags"], base.get("tags"))
+                    if tags_rejected:
+                        import_report["tags_rejected"].append({"key": key, "collection": coll})
+                    else:
+                        base["tags"] = new_tags
                 import_report["passed"] += 1
                 import_report["items"].append({"key": key, "collection": coll, "status": "passed", "flags": flags,
+                                                "flag_evidence": flag_evidence,
                                                 "corrections_applied": applied, "corrections_rejected": rejected,
                                                 "blanked_fields": blanked})
             else:
                 import_report["failed"] += 1
                 import_report["items"].append({"key": key, "collection": coll, "status": "failed", "reasons": reasons,
-                                                "flags": flags, "corrections_applied": applied,
-                                                "corrections_rejected": rejected, "blanked_fields": blanked})
+                                                "flags": flags, "flag_evidence": flag_evidence,
+                                                "corrections_applied": applied, "corrections_rejected": rejected,
+                                                "blanked_fields": blanked})
                 # failing items are NOT silently templated — narrative/tags stay as the existing
                 # catalog value; only the deterministic structured fields (+ any applied corrections /
                 # blanking above) are applied.

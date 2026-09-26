@@ -707,7 +707,8 @@ def test_run_import_collects_image_title_mismatch_flags(tmp_path, monkeypatch):
 
     report = rg.run_import()
     assert report["flagged"] == [{"key": "campfire-adirondacks-0015", "collection": "demo",
-                                   "flags": ["image_title_mismatch"], "title": "Campfire in the Adirondacks"}]
+                                   "flags": ["image_title_mismatch"], "title": "Campfire in the Adirondacks",
+                                   "flag_evidence": None}]
     assert report["passed"] == 1  # a flag never blocks the narrative import
 
 
@@ -1640,3 +1641,133 @@ def test_blank_master_detector_ignores_small_letterbox_bar(tmp_path):
     stats = rg._image_grayscale_stats(path)
     tags = rg._blank_master_tags(stats)
     assert "truncated_band" not in tags
+
+
+# --------------------------------------------------------------------------- flags normalisation
+def test_normalize_flags_passes_through_plain_strings():
+    flags, evidence, dropped = rg.normalize_flags(["identity_mismatch", "medium_doubtful"])
+    assert flags == ["identity_mismatch", "medium_doubtful"]
+    assert evidence is None
+    assert dropped == 0
+
+
+def test_normalize_flags_converts_object_flag_and_keeps_evidence():
+    flags, evidence, dropped = rg.normalize_flags(
+        [{"key": "identity_mismatch", "evidence": "sitter's medals don't match the record"}]
+    )
+    assert flags == ["identity_mismatch"]
+    assert evidence == "sitter's medals don't match the record"
+    assert dropped == 0
+
+
+def test_normalize_flags_joins_evidence_from_multiple_object_flags():
+    flags, evidence, dropped = rg.normalize_flags([
+        {"key": "identity_mismatch", "evidence": "wrong medals"},
+        {"key": "medium_doubtful", "evidence": "looks like charcoal"},
+    ])
+    assert flags == ["identity_mismatch", "medium_doubtful"]
+    assert evidence == "wrong medals | looks like charcoal"
+    assert dropped == 0
+
+
+def test_normalize_flags_drops_garbage_shapes_and_counts_them():
+    flags, evidence, dropped = rg.normalize_flags(["identity_mismatch", 42, {"evidence": "no key"}, None])
+    assert flags == ["identity_mismatch"]
+    assert dropped == 3
+
+
+def test_normalize_flags_dedupes_preserving_first_order():
+    flags, _, _ = rg.normalize_flags(["identity_mismatch", {"key": "identity_mismatch"}])
+    assert flags == ["identity_mismatch"]
+
+
+def test_run_import_blanks_fields_on_object_shaped_identity_mismatch_flag(tmp_path, monkeypatch):
+    packets_dir = tmp_path / "packets" / "demo"
+    packets_dir.mkdir(parents=True)
+    (tmp_path / "written").mkdir()
+    packet = {"title": "Mystery Portrait", "facts": [],
+              "structured": {"medium_source": "existing_catalog_value"}}
+    (packets_dir / "mystery-portrait-0000.json").write_text(json.dumps(packet))
+    written_row = {"key": "mystery-portrait-0000", "description_narrative": "A portrait.", "tags": "portrait",
+                   "claims": [], "flags": [{"key": "identity_mismatch", "evidence": "sitter doesn't match"}]}
+    (tmp_path / "written" / "batch_0.jsonl").write_text(json.dumps(written_row) + "\n")
+
+    monkeypatch.setattr(rg, "PACKETS_DIR", tmp_path / "packets")
+    monkeypatch.setattr(rg, "WRITTEN_DIR", tmp_path / "written")
+    monkeypatch.setattr(rg, "OUT_CATALOG_DIR", tmp_path / "catalog")
+    monkeypatch.setattr(rg, "IMPORT_REPORT_PATH", tmp_path / "import_report.json")
+    monkeypatch.setattr(rg, "PACKET_INDEX_PATH", tmp_path / "packets_index.json")
+    (tmp_path / "packets_index.json").write_text(json.dumps({"mystery-portrait-0000": "demo"}))
+    monkeypatch.setattr(rg, "load_catalog", lambda: {"demo": [dict(
+        title="Mystery Portrait", agent_name="Unknown Artist", medium="Oil on canvas",
+        date_display="1880", creation_date="1880", current_repository="Some Museum",
+        physical_dimensions="10x10", tags="portrait",
+    )]})
+
+    report = rg.run_import()
+    out = json.loads((tmp_path / "catalog" / "demo.json").read_text())["items"][0]
+    assert out["medium"] == "" and out["current_repository"] == ""
+    assert report["flagged"][0]["flag_evidence"] == "sitter doesn't match"
+    assert report["identity_suspect_fields_dropped"][0]["key"] == "mystery-portrait-0000"
+
+
+# --------------------------------------------------------------------------- tags normalisation
+def test_normalize_tags_string_and_list_land_identically():
+    from_string, rejected_a = rg.normalize_tags("gull, seabird, coast", "old tags")
+    from_list, rejected_b = rg.normalize_tags(["gull", "seabird", "coast"], "old tags")
+    assert from_string == from_list == "gull, seabird, coast"
+    assert not rejected_a and not rejected_b
+
+
+def test_normalize_tags_dedupes_case_insensitively_preserving_first_order():
+    tags, rejected = rg.normalize_tags("Gull, gull, Seabird", "Mixed, Case")
+    assert tags == "Gull, Seabird"
+    assert not rejected
+
+
+def test_normalize_tags_lowercases_when_existing_catalog_tags_are_lowercase():
+    tags, rejected = rg.normalize_tags("Gull, Seabird", "gull, coast")
+    assert tags == "gull, seabird"
+    assert not rejected
+
+
+def test_normalize_tags_keeps_case_when_existing_catalog_tags_are_mixed_case():
+    tags, rejected = rg.normalize_tags("gull, seabird", "Gull, Coast")
+    assert tags == "gull, seabird"
+    assert not rejected
+
+
+def test_normalize_tags_rejects_empty_result_and_signals_keep_existing():
+    tags, rejected = rg.normalize_tags("   ,  ,", "gull, coast")
+    assert tags is None and rejected
+
+
+def test_normalize_tags_rejects_garbage_shape():
+    tags, rejected = rg.normalize_tags(123, "gull, coast")
+    assert tags is None and rejected
+
+
+def test_run_import_keeps_existing_tags_when_submission_normalizes_to_empty(tmp_path, monkeypatch):
+    packets_dir = tmp_path / "packets" / "demo"
+    packets_dir.mkdir(parents=True)
+    (tmp_path / "written").mkdir()
+    packet = {"title": "Two Sailboats", "facts": [], "structured": {}}
+    (packets_dir / "two-sailboats-0000.json").write_text(json.dumps(packet))
+    written_row = {"key": "two-sailboats-0000", "description_narrative": "Two Sailboats.",
+                   "tags": " , , ", "claims": [], "flags": []}
+    (tmp_path / "written" / "batch_0.jsonl").write_text(json.dumps(written_row) + "\n")
+
+    monkeypatch.setattr(rg, "PACKETS_DIR", tmp_path / "packets")
+    monkeypatch.setattr(rg, "WRITTEN_DIR", tmp_path / "written")
+    monkeypatch.setattr(rg, "OUT_CATALOG_DIR", tmp_path / "catalog")
+    monkeypatch.setattr(rg, "IMPORT_REPORT_PATH", tmp_path / "import_report.json")
+    monkeypatch.setattr(rg, "PACKET_INDEX_PATH", tmp_path / "packets_index.json")
+    (tmp_path / "packets_index.json").write_text(json.dumps({"two-sailboats-0000": "demo"}))
+    monkeypatch.setattr(rg, "load_catalog", lambda: {"demo": [dict(
+        title="Two Sailboats", agent_name="Winslow Homer", tags="boats, sea",
+    )]})
+
+    report = rg.run_import()
+    out = json.loads((tmp_path / "catalog" / "demo.json").read_text())["items"][0]
+    assert out["tags"] == "boats, sea"
+    assert report["tags_rejected"][0]["key"] == "two-sailboats-0000"
