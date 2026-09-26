@@ -67,7 +67,13 @@ from tools.audit_placards import (
 logging.basicConfig(level=logging.INFO, format="%(message)s")
 logger = logging.getLogger("reground")
 
-REGROUND_DIR = AUDIT_DIR.parent / "reground"
+# Round 9: NEVER /tmp — the original scratchpad-derived location (AUDIT_DIR.parent / "reground") lived
+# on tmpfs and a laptop reboot wiped facts/packets/previews/batches/catalog/cache entirely; only the
+# writers' narratives survived, because they happened to be backed up outside it by hand. Durable by
+# default, its own independent env var (not derived from AUDIT_DIR — the two are siblings under
+# ~/pieria-img/, not parent/child). `set_workdir()` below lets --workdir override every derived path
+# at runtime, for tests and for pointing a single run somewhere else without touching the environment.
+REGROUND_DIR = Path(os.environ.get("REGROUND_DIR", str(Path.home() / "pieria-img" / "reground")))
 FACTS_DIR = REGROUND_DIR / "facts"
 OUT_CATALOG_DIR = REGROUND_DIR / "catalog"
 REPORT_PATH = REGROUND_DIR / "report.json"
@@ -80,6 +86,29 @@ IDENTITY_MISMATCHES_PATH = REGROUND_DIR / "identity_mismatches.json"
 MUSEUM_MATCH_CHANGES_PATH = REGROUND_DIR / "museum_match_changes.json"
 DUPLICATE_IMAGES_PATH = REGROUND_DIR / "duplicate_images.json"
 PACKET_INDEX_PATH = REGROUND_DIR / "packets_index.json"
+
+
+def set_workdir(path: Path) -> None:
+    """Override REGROUND_DIR and every path derived from it, at runtime (the --workdir CLI flag).
+    Module-level globals, not a class, because every function in this file already reads them as
+    bare names — this keeps that contract instead of threading a config object through everything."""
+    global REGROUND_DIR, FACTS_DIR, OUT_CATALOG_DIR, REPORT_PATH, PACKETS_DIR, PREVIEWS_DIR, \
+        BATCHES_DIR, WRITTEN_DIR, IMPORT_REPORT_PATH, IDENTITY_MISMATCHES_PATH, \
+        MUSEUM_MATCH_CHANGES_PATH, DUPLICATE_IMAGES_PATH, PACKET_INDEX_PATH
+    REGROUND_DIR = Path(path)
+    FACTS_DIR = REGROUND_DIR / "facts"
+    OUT_CATALOG_DIR = REGROUND_DIR / "catalog"
+    REPORT_PATH = REGROUND_DIR / "report.json"
+    PACKETS_DIR = REGROUND_DIR / "packets"
+    PREVIEWS_DIR = REGROUND_DIR / "previews"
+    BATCHES_DIR = REGROUND_DIR / "batches"
+    WRITTEN_DIR = REGROUND_DIR / "written"
+    IMPORT_REPORT_PATH = REGROUND_DIR / "import_report.json"
+    IDENTITY_MISMATCHES_PATH = REGROUND_DIR / "identity_mismatches.json"
+    MUSEUM_MATCH_CHANGES_PATH = REGROUND_DIR / "museum_match_changes.json"
+    DUPLICATE_IMAGES_PATH = REGROUND_DIR / "duplicate_images.json"
+    PACKET_INDEX_PATH = REGROUND_DIR / "packets_index.json"
+
 
 ROOT = Path(__file__).resolve().parent.parent
 ART_PACK_LIBRARY = ROOT / "art-pack" / "_Library"
@@ -2226,7 +2255,13 @@ def main():
     ap.add_argument("--limit", type=int, default=None)
     ap.add_argument("--collection", default=None)
     ap.add_argument("--batch-size", type=int, default=100)
+    ap.add_argument("--workdir", default=None,
+                     help="override REGROUND_DIR for this run only (default: $REGROUND_DIR or "
+                          "~/pieria-img/reground — never /tmp, which a reboot can wipe)")
     args = ap.parse_args()
+
+    if args.workdir:
+        set_workdir(Path(args.workdir).expanduser())
 
     if args.mode == "import":
         report = run_import()

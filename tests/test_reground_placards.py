@@ -2,6 +2,7 @@
 
 import asyncio
 import json
+from pathlib import Path
 
 import ai_client
 from tools import reground_placards as rg
@@ -420,6 +421,37 @@ def test_medium_precedence_prefers_commons_credit_museum_record_over_wikidata():
 
 
 # --------------------------------------------------------------------------- item_key / batches
+# --------------------------------------------------------------------------- workdir configurability (round 9)
+def test_default_reground_dir_is_not_tmp():
+    # regression: a laptop reboot wiped a /tmp-based scratchpad and took facts/packets/previews/
+    # batches/catalog/cache with it — the default must be durable and outside /tmp.
+    assert "/tmp" not in str(rg.REGROUND_DIR)
+    assert str(rg.REGROUND_DIR).startswith(str(Path.home()))
+
+
+def test_default_audit_dir_is_not_tmp():
+    from tools import audit_placards
+    assert "/tmp" not in str(audit_placards.AUDIT_DIR)
+    assert str(audit_placards.AUDIT_DIR).startswith(str(Path.home()))
+
+
+def test_set_workdir_overrides_every_derived_path(tmp_path):
+    original = rg.REGROUND_DIR
+    try:
+        rg.set_workdir(tmp_path / "custom-reground")
+        assert rg.REGROUND_DIR == tmp_path / "custom-reground"
+        assert rg.FACTS_DIR == tmp_path / "custom-reground" / "facts"
+        assert rg.PACKETS_DIR == tmp_path / "custom-reground" / "packets"
+        assert rg.PREVIEWS_DIR == tmp_path / "custom-reground" / "previews"
+        assert rg.BATCHES_DIR == tmp_path / "custom-reground" / "batches"
+        assert rg.WRITTEN_DIR == tmp_path / "custom-reground" / "written"
+        assert rg.OUT_CATALOG_DIR == tmp_path / "custom-reground" / "catalog"
+        assert rg.PACKET_INDEX_PATH == tmp_path / "custom-reground" / "packets_index.json"
+        assert rg.IMPORT_REPORT_PATH == tmp_path / "custom-reground" / "import_report.json"
+    finally:
+        rg.set_workdir(original)
+
+
 def test_item_key_is_slug_plus_index_and_stable():
     assert rg.item_key(45, "The Ray") == "ray-0045"  # _slug drops a leading article, like audit_placards
     assert rg.item_key(0, "") == "untitled-0000"

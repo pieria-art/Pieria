@@ -20,6 +20,7 @@ import argparse
 import asyncio
 import hashlib
 import json
+import os
 import random
 import re
 import sys
@@ -32,10 +33,10 @@ import httpx
 ROOT = Path(__file__).resolve().parent.parent
 CATALOG_DIR = ROOT / "static" / "catalog"
 MANIFEST_DIR = ROOT / "Artwork" / "_manifests"
-AUDIT_DIR = Path(
-    "/tmp/claude-1000/-home-josh-ai-workspace-Pieria/"
-    "3fb8b02f-3565-4a06-b509-d55d6488147a/scratchpad/audit"
-)
+# Round 9: NEVER /tmp — a laptop reboot wipes tmpfs, and it took the entire cache + facts + packets +
+# regenerated catalog with it (the writers' narratives survived only because they'd been backed up
+# outside it by hand). Durable by default, outside the repo; still overridable per-run via env.
+AUDIT_DIR = Path(os.environ.get("AUDIT_DIR", str(Path.home() / "pieria-img" / "audit")))
 EVIDENCE_DIR = AUDIT_DIR / "evidence"
 CACHE_DIR = AUDIT_DIR / "cache"
 
