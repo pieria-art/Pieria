@@ -1396,46 +1396,14 @@
    "tags": "hudson river school, landscape, catskills, friendship, american wilderness, romanticism",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Lionel%20Percy%20Smythe%20-%20Kindred%20spirits.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Lionel%20Percy%20Smythe%20-%20Kindred%20spirits.jpg?width=600",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Kindred%20Spirits%20by%20Asher%20Brown%20Durand%2C%201849.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Kindred%20Spirits%20by%20Asher%20Brown%20Durand%2C%201849.jpg?width=600",
    "license_verdict": "pd",
-   "license_basis": "Public domain",
-   "license_url": "",
-   "credit_line": "Dorotheum: Info about artwork",
-   "license_verified": "2026-07-16",
-   "featured_rank": 72,
-   "focal_point": [
-    0.35,
-    0.35
-   ],
-   "delivered_edge": 4409,
-   "resolution_tier": "4K",
-   "aspect_crops": {
-    "16:9": [
-     0.0,
-     0.0999,
-     1.0,
-     0.4971
-    ],
-    "9:16": [
-     0.1018,
-     0.0,
-     0.8982,
-     1.0
-    ],
-    "4:3": [
-     0.0,
-     0.1299,
-     1.0,
-     0.6596
-    ],
-    "3:4": [
-     0.0,
-     0.0291,
-     1.0,
-     0.9709
-    ]
-   }
+   "license_basis": "CC0",
+   "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "credit_line": "Crystal Bridges Museum of American Art 2010.106; Wikidata Q12406964",
+   "license_verified": "2026-09-26",
+   "featured_rank": 72
   },
   {
    "title": "The Gross Clinic",
@@ -6494,10 +6462,10 @@
    "title": "Storm Coming",
    "agent_name": "Winslow Homer",
    "agent_role": "Painter",
-   "creation_date": "c. 1890",
+   "creation_date": "",
    "cultural_context": "American Realism, New England marine painting, 19th century",
-   "medium": "Oil on canvas",
-   "date_display": "c. 1890",
+   "medium": "Black chalk on laid paper",
+   "date_display": "",
    "description_narrative": "Storm Coming shows Homer's command of the sea, in which fishermen and their vessels are set against the vast, indifferent power of the Atlantic. It exemplifies the artist's mature marine style, developed at his studio on Prout's Neck, Maine, where he lived among the fishing communities he painted.",
    "tags": "marine,seascape,fishing,New England,Winslow Homer",
    "source": "Wikimedia Commons",
@@ -7220,8 +7188,8 @@
    "agent_role": "Painter",
    "creation_date": "c. 1875",
    "cultural_context": "American Realism, post-Civil War genre painting, 19th century",
-   "medium": "Oil on canvas",
-   "date_display": "c. 1875",
+   "medium": "Brush and watercolor, graphite on cream wove paper",
+   "date_display": "1880",
    "description_narrative": "Two Girls in a Rowboat belongs to Homer's genre paintings of American rural and childhood life, produced in the years following the Civil War as the artist built his reputation beyond illustration. It reflects a nostalgic vision of an agrarian country then rapidly giving way to industry.",
    "tags": "genre,rural life,American Realism,Winslow Homer",
    "source": "Wikimedia Commons",
@@ -8315,7 +8283,7 @@
    "agent_role": "Painter",
    "creation_date": "1880",
    "cultural_context": "American Realism, post-Civil War genre painting, 19th century",
-   "medium": "Oil on canvas",
+   "medium": "Watercolor on paper",
    "date_display": "1880",
    "description_narrative": "The Garden Wall belongs to Homer's genre paintings of American rural and childhood life, produced in the years following the Civil War as the artist built his reputation beyond illustration. It reflects a nostalgic vision of an agrarian country then rapidly giving way to industry.",
    "tags": "genre,rural life,American Realism,Winslow Homer",

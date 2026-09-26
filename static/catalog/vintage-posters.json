@@ -11,52 +11,20 @@
    "agent_role": "Artist",
    "creation_date": "",
    "cultural_context": "Art Nouveau, French",
-   "medium": "Color lithograph",
+   "medium": "Colour lithograph (poster)",
    "date_display": "1894",
    "description_narrative": "Alphonse Mucha's \"Gismonda\" is a renowned lithographic poster created for the celebrated actress Sarah Bernhardt. It dramatically features Bernhardt in an opulent, Byzantine-inspired costume, characteristic of Mucha's Art Nouveau style.",
    "tags": "art nouveau, poster, sarah bernhardt, lithograph, decorative, theatrical, portrait",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Alphonse%20Mucha%20-%20Poster%20for%20Victorien%20Sardou%27s%20Gismonda%20starring%20Sarah%20Bernhardt%20-%20Original.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Alphonse%20Mucha%20-%20Poster%20for%20Victorien%20Sardou%27s%20Gismonda%20starring%20Sarah%20Bernhardt%20-%20Original.jpg?width=600",
-   "focal_point": [
-    0.5,
-    0.27
-   ],
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/24.%20Alfons%20Mucha%2C%20Plak%C3%A1t%20Gismonda.%20Sarah%20Bernhardt%2C%201894%2C%20Um%C4%9Bleckopr%C5%AFmyslov%C3%A9%20muzeum%20v%20Praze.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/24.%20Alfons%20Mucha%2C%20Plak%C3%A1t%20Gismonda.%20Sarah%20Bernhardt%2C%201894%2C%20Um%C4%9Bleckopr%C5%AFmyslov%C3%A9%20muzeum%20v%20Praze.jpg?width=600",
    "featured_rank": 70,
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "This file comes from Gallica Digital Library and is available under the digital ID btv1b53140689b/f1",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 4794,
-   "resolution_tier": "4K",
-   "aspect_crops": {
-    "16:9": [
-     0.0,
-     0.0,
-     1.0,
-     0.4093
-    ],
-    "9:16": [
-     0.2062,
-     0.0873,
-     0.7921,
-     0.8452
-    ],
-    "4:3": [
-     0.0,
-     0.0003,
-     1.0,
-     0.546
-    ],
-    "3:4": [
-     0.1923,
-     0.08,
-     0.9692,
-     0.8337
-    ]
-   }
+   "credit_line": "Museum of Decorative Arts in Prague, 1894 poster; Category:Gismonda poster (Mucha)",
+   "license_verified": "2026-09-26"
   },
   {
    "title": "Moulin Rouge: La Goulue",
@@ -219,57 +187,32 @@
    }
   },
   {
-   "title": "Jane Avril",
+   "title": "Jane Avril (Jardin de Paris)",
    "agent_name": "Henri de Toulouse-Lautrec",
    "agent_role": "Artist",
-   "creation_date": "",
+   "creation_date": "1893",
    "cultural_context": "Belle Époque, Post-Impressionism, French",
-   "medium": "Color lithograph",
+   "medium": "Colour lithograph poster",
    "date_display": "1893",
    "description_narrative": "Henri de Toulouse-Lautrec's poster immortalizes the French can-can dancer Jane Avril, a prominent figure of Parisian nightlife. Characterized by its bold lines and striking color contrasts, the artwork captures the energy and allure of fin-de-siècle entertainment.",
    "tags": "parisian nightlife, can-can dancer, art nouveau, poster art, Belle Époque, entertainment, bohemian, vibrant",
-   "source": "Wikimedia Commons",
+   "source": "Bibliothèque nationale de France (Gallica)",
    "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/%28Albi%29%20Buste%20de%20Jane%20Avril%20sur%20une%20vague%201898%20-%20Antoine%20Bourdelle%20-%20Inv.94.1.1.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/%28Albi%29%20Buste%20de%20Jane%20Avril%20sur%20une%20vague%201898%20-%20Antoine%20Bourdelle%20-%20Inv.94.1.1.jpg?width=600",
-   "focal_point": [
-    0.62,
-    0.4
-   ],
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jane%20Avril%2C%20Jardin%2C%20de%20Paris%20estampe%2C%20affiche%20%282e%20%C3%A9tat%29%2C%20HTL%2093%20monogramme%20de%20Toulouse-Lautrec.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jane%20Avril%2C%20Jardin%2C%20de%20Paris%20estampe%2C%20affiche%20%282e%20%C3%A9tat%29%2C%20HTL%2093%20monogramme%20de%20Toulouse-Lautrec.jpg?width=600",
    "featured_rank": 75,
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Own work",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 6966,
-   "resolution_tier": "4K",
-   "aspect_crops": {
-    "16:9": [
-     0.0,
-     0.2,
-     1.0,
-     0.7259
-    ],
-    "9:16": [
-     0.2799,
-     0.0,
-     0.8817,
-     1.0
-    ],
-    "4:3": [
-     0.0,
-     0.0801,
-     1.0,
-     0.7813
-    ],
-    "3:4": [
-     0.0999,
-     0.0,
-     0.9022,
-     1.0
-    ]
-   }
+   "credit_line": "BnF Gallica, HTL 93 monogram, Chaix printer, second state \"Jardin de Paris\"",
+   "license_verified": "2026-09-26",
+   "needs_frame_crop": true,
+   "crop_box": [
+    0.049,
+    0.057,
+    0.941,
+    0.949
+   ]
   },
   {
    "title": "Reine de Joie",
@@ -647,54 +590,22 @@
    "title": "Rêverie",
    "agent_name": "Alphonse Mucha",
    "agent_role": "Artist",
-   "creation_date": "",
+   "creation_date": "1898",
    "cultural_context": "Art Nouveau, European",
    "medium": "Color lithograph",
-   "date_display": "1897",
+   "date_display": "1898",
    "description_narrative": "Alphonse Mucha's 'Rêverie' is a striking lithograph from 1897, depicting a serene female figure enveloped in the artist's signature intricate Art Nouveau ornamentation. Originally created as an advertisement and decorative panel, it exemplifies the elegance and flowing lines characteristic of the era.",
    "tags": "art nouveau, symbolism, female figure, decorative art, lithograph, fin de siècle, contemplation, graphic design",
-   "source": "Wikimedia Commons",
+   "source": "Bibliothèque nationale de France (Gallica)",
    "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Alfons%20Mucha%20-%20R%C3%AAverie%2C%201898.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Alfons%20Mucha%20-%20R%C3%AAverie%2C%201898.jpg?width=600",
-   "focal_point": [
-    0.5,
-    0.3
-   ],
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/F.%20Champenois%20imprimeur-%C3%A9diteur.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/F.%20Champenois%20imprimeur-%C3%A9diteur.jpg?width=600",
    "featured_rank": 40,
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "[1][2]",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 3938,
-   "resolution_tier": "4K",
-   "aspect_crops": {
-    "16:9": [
-     0.0,
-     0.1201,
-     1.0,
-     0.5452
-    ],
-    "9:16": [
-     0.1278,
-     0.0,
-     0.8722,
-     1.0
-    ],
-    "4:3": [
-     0.0,
-     0.0801,
-     1.0,
-     0.6469
-    ],
-    "3:4": [
-     0.0038,
-     0.0,
-     0.9962,
-     1.0
-    ]
-   }
+   "credit_line": "BnF Gallica btv1b90051807, period impression lettered \"F. Champenois Imprimeur-Éditeur ... 1898\"",
+   "license_verified": "2026-09-26"
   },
   {
    "title": "The Seasons: Spring",

@@ -2157,7 +2157,7 @@
    "agent_role": "Painter",
    "creation_date": "c. 1900-1906",
    "cultural_context": "Post-Impressionism, French",
-   "medium": "Oil on canvas",
+   "medium": "Watercolor and graphite on paper",
    "date_display": "c. 1900-06",
    "description_narrative": "One of Cézanne's late still lifes, this composition balances a blue pot against fruit and drapery in the artist's characteristic tilted, multi-perspective arrangement. It dates from the final years of his career, now in the J. Paul Getty Museum.",
    "tags": "still life, blue pot, drapery, late period, getty museum",
@@ -6563,10 +6563,10 @@
    "title": "Pot and Soup Tureen",
    "agent_name": "Paul Cézanne",
    "agent_role": "Painter",
-   "creation_date": "c. 1877",
+   "creation_date": "1888–90",
    "cultural_context": "Post-Impressionism, French",
-   "medium": "Oil on canvas",
-   "date_display": "c. 1877",
+   "medium": "Pencil and watercolour on paper",
+   "date_display": "1888–90",
    "description_narrative": "This still life pairs a pot and a soup tureen on a tabletop, an early study in the compositional structure Cézanne would refine across his career. The rounded vessels are balanced against a plain background.",
    "tags": "still life, pot, soup tureen, tabletop, early period",
    "source": "Wikimedia Commons",
@@ -7403,12 +7403,12 @@
    }
   },
   {
-   "title": "A Modern Olympia",
+   "title": "Olympia",
    "agent_name": "Paul Cézanne",
    "agent_role": "Painter",
    "creation_date": "c. 1877",
    "cultural_context": "Post-Impressionism, French",
-   "medium": "Oil on canvas",
+   "medium": "Graphite and watercolor on paper",
    "date_display": "c. 1877",
    "description_narrative": "This composition reworks Manet's Olympia, showing a reclining nude woman attended by a maid and observed by a seated male figure, rendered in swirling, loosely brushed color. It reflects Cézanne's early engagement with contemporary Salon controversy and his admiration for Manet.",
    "tags": "figure composition, nude, homage, manet, allegory",
@@ -8195,54 +8195,22 @@
    "title": "Self-Portrait",
    "agent_name": "Paul Cézanne",
    "agent_role": "Painter",
-   "creation_date": "c. 1880-1881",
+   "creation_date": "1878–80",
    "cultural_context": "Post-Impressionism, French",
    "medium": "Oil on canvas",
-   "date_display": "c. 1880-81",
+   "date_display": "1878–80",
    "description_narrative": "This self-portrait shows Cézanne rendered with the small, directional brushstrokes he adopted under the influence of Impressionism in the early 1880s. It belongs to a long sequence of self-portraits he painted throughout his career.",
    "tags": "self-portrait, figure study, introspective, early impressionist period",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Paul%20C%C3%A9zanne%20-%20Self-Portrait%20-%20Google%20Art%20Project%20%2827718094%29.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Paul%20C%C3%A9zanne%20-%20Self-Portrait%20-%20Google%20Art%20Project%20%2827718094%29.jpg?width=600",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Paul%20C%C3%A9zanne%20-%20Self-Portrait%20-%20Google%20Art%20Project.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Paul%20C%C3%A9zanne%20-%20Self-Portrait%20-%20Google%20Art%20Project.jpg?width=600",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "7wF4HYRiej54YQ at Google Cultural Institute maximum zoom level",
-   "license_verified": "2026-07-16",
-   "featured_rank": 48,
-   "focal_point": [
-    0.5,
-    0.3
-   ],
-   "delivered_edge": 4001,
-   "resolution_tier": "4K",
-   "aspect_crops": {
-    "16:9": [
-     0.0,
-     0.1,
-     1.0,
-     0.5753
-    ],
-    "9:16": [
-     0.17,
-     0.0,
-     0.8357,
-     1.0
-    ],
-    "4:3": [
-     0.0,
-     0.08,
-     1.0,
-     0.7138
-    ],
-    "3:4": [
-     0.05,
-     0.0,
-     0.9376,
-     1.0
-    ]
-   }
+   "credit_line": "The Phillips Collection 0288, \"Portrait de l'artiste\"; Wikidata Q23939459 (Google Art Project)",
+   "license_verified": "2026-09-26",
+   "featured_rank": 48
   },
   {
    "title": "The Garden at Les Lauves",
@@ -10817,7 +10785,7 @@
    "title": "Fishing Boats on the Beach at Saintes-Maries-de-la-Mer",
    "agent_name": "Vincent van Gogh",
    "agent_role": "Painter",
-   "creation_date": "1888",
+   "creation_date": "June 1888",
    "cultural_context": "Post-Impressionism, Dutch",
    "medium": "Oil on canvas",
    "date_display": "June 1888",
@@ -10825,46 +10793,14 @@
    "tags": "fishing boats, beach, saintes-maries-de-la-mer, van gogh museum",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Vincent%20van%20Gogh%20-%20Fishing%20Boats%20at%20Saintes-Maries-de-la-Mer.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Vincent%20van%20Gogh%20-%20Fishing%20Boats%20at%20Saintes-Maries-de-la-Mer.jpg?width=600",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Vincent%20van%20Gogh%20-%20Vissersboten%20op%20het%20strand%20van%20Les%20Saintes-Maries-de-la-Mer%20-%20Google%20Art%20Project.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Vincent%20van%20Gogh%20-%20Vissersboten%20op%20het%20strand%20van%20Les%20Saintes-Maries-de-la-Mer%20-%20Google%20Art%20Project.jpg?width=600",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Saint Louis Art Museum, online collection",
-   "license_verified": "2026-07-16",
-   "featured_rank": 70,
-   "focal_point": [
-    0.35,
-    0.28
-   ],
-   "delivered_edge": 4584,
-   "resolution_tier": "4K",
-   "aspect_crops": {
-    "16:9": [
-     0.0,
-     0.1301,
-     1.0,
-     0.8719
-    ],
-    "9:16": [
-     0.1618,
-     0.0,
-     0.5883,
-     1.0
-    ],
-    "4:3": [
-     0.0,
-     0.0051,
-     1.0,
-     0.9942
-    ],
-    "3:4": [
-     0.1199,
-     0.0,
-     0.6887,
-     1.0
-    ]
-   }
+   "credit_line": "Van Gogh Museum s0028V1962; Wikidata Q2884896 (Google Art Project)",
+   "license_verified": "2026-09-26",
+   "featured_rank": 70
   },
   {
    "title": "Blossoming Chestnut Branches",
@@ -11250,46 +11186,14 @@
    "tags": "saintes-maries-de-la-mer, landscape, mediterranean, provence",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Van%20Gogh%20-%20Blick%20auf%20Saites-Maries.jpeg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Van%20Gogh%20-%20Blick%20auf%20Saites-Maries.jpeg?width=600",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Van%20Gogh%20-%20Blick%20auf%20Saites-Maries1.jpeg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Van%20Gogh%20-%20Blick%20auf%20Saites-Maries1.jpeg?width=600",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Copied from an art book",
-   "license_verified": "2026-07-16",
-   "featured_rank": 42,
-   "focal_point": [
-    0.5,
-    0.35
-   ],
-   "delivered_edge": 3870,
-   "resolution_tier": "4K",
-   "aspect_crops": {
-    "16:9": [
-     0.0,
-     0.0996,
-     1.0,
-     0.9005
-    ],
-    "9:16": [
-     0.42,
-     0.0,
-     0.815,
-     1.0
-    ],
-    "4:3": [
-     0.0478,
-     0.0,
-     0.9842,
-     1.0
-    ],
-    "3:4": [
-     0.3566,
-     0.0,
-     0.8833,
-     1.0
-    ]
-   }
+   "credit_line": "Kröller-Müller Museum KM 106.327 (F416); Wikidata Q9372580",
+   "license_verified": "2026-09-26",
+   "featured_rank": 42
   },
   {
    "title": "A Meadow in the Mountains: Le Mas de Saint-Paul",
@@ -11409,46 +11313,14 @@
    "tags": "street, saintes-maries-de-la-mer, village, provence",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Van%20Gogh%20-%20Gasse%20in%20Saintes-Maries.jpeg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Van%20Gogh%20-%20Gasse%20in%20Saintes-Maries.jpeg?width=600",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Van%20Gogh%20-%20Gasse%20in%20Saintes-Maries2.jpeg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Van%20Gogh%20-%20Gasse%20in%20Saintes-Maries2.jpeg?width=600",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Copied from an art book",
-   "license_verified": "2026-07-16",
-   "featured_rank": 40,
-   "focal_point": [
-    0.45,
-    0.45
-   ],
-   "delivered_edge": 3864,
-   "resolution_tier": "4K",
-   "aspect_crops": {
-    "16:9": [
-     0.0,
-     0.0599,
-     1.0,
-     0.9391
-    ],
-    "9:16": [
-     0.24,
-     0.0,
-     0.5999,
-     1.0
-    ],
-    "4:3": [
-     0.0699,
-     0.0,
-     0.9229,
-     1.0
-    ],
-    "3:4": [
-     0.18,
-     0.0,
-     0.6599,
-     1.0
-    ]
-   }
+   "credit_line": "F420/JH1462, private collection; Wikidata Q28146931",
+   "license_verified": "2026-09-26",
+   "featured_rank": 40
   },
   {
    "title": "Orchard with Blossoming Apricot Trees",
@@ -11557,13 +11429,13 @@
    }
   },
   {
-   "title": "Wheat Field with Cypresses",
+   "title": "Wheat Field with Cypresses (drawing)",
    "agent_name": "Vincent van Gogh",
    "agent_role": "Painter",
-   "creation_date": "1889",
+   "creation_date": "June 1889",
    "cultural_context": "Post-Impressionism, Dutch",
-   "medium": "Oil on canvas",
-   "date_display": "September 1889",
+   "medium": "Black chalk and pen and ink on paper",
+   "date_display": "June 1889",
    "description_narrative": "A windswept wheat field with a dark cypress tree rising against a cloud-filled sky, painted at Saint-Rémy and considered by van Gogh one of his best summer canvases.",
    "tags": "wheat field, cypress, saint-remy, landscape, provence",
    "source": "Wikimedia Commons",
@@ -12392,7 +12264,7 @@
    "agent_role": "Painter",
    "creation_date": "1896",
    "cultural_context": "Post-Impressionism, French",
-   "medium": "Oil on canvas",
+   "medium": "Oil on cardboard",
    "date_display": "1896",
    "description_narrative": "A half-length nude study of a woman seen from behind, part of Toulouse-Lautrec's extensive body of work depicting women in private, unposed moments. Such studies fed into his larger paintings of brothel and boudoir life in the 1890s.",
    "tags": "Toulouse-Lautrec, nude study, figure painting, Albi, 1896",
@@ -12752,13 +12624,13 @@
    }
   },
   {
-   "title": "The Theatre Box",
+   "title": "La Grande Loge (The Large Theatre Box)",
    "agent_name": "Henri de Toulouse-Lautrec",
    "agent_role": "Painter",
    "creation_date": "1897",
    "cultural_context": "Post-Impressionism, French",
-   "medium": "Oil on canvas",
-   "date_display": "c. 1897",
+   "medium": "Color lithograph",
+   "date_display": "1897",
    "description_narrative": "A scene set in a theatre box (loge), a subject Toulouse-Lautrec explored in several works capturing the social ritual of Parisian theatre-going. Such box scenes let him juxtapose fashionable spectators with the stage they had come to watch.",
    "tags": "Toulouse-Lautrec, theatre, loge, Parisian society, genre painting",
    "source": "Wikimedia Commons",
@@ -13805,7 +13677,7 @@
    "agent_role": "Painter",
    "creation_date": "1881",
    "cultural_context": "Post-Impressionism, French",
-   "medium": "Oil on canvas",
+   "medium": "Oil on board",
    "date_display": "1881",
    "description_narrative": "An early portrait, painted in oil on board, of a woman referred to as 'the Black Countess,' created when Toulouse-Lautrec was about seventeen. The painting is held at the Fogg Art Museum, Harvard University.",
    "tags": "Toulouse-Lautrec, portrait, early work, Fogg Art Museum, Harvard, 1881",

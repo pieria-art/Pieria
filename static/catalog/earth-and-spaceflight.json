@@ -60,56 +60,24 @@
   },
   {
    "title": "Earthrise",
-   "agent_name": "NASA / Goddard Space Flight Center / Arizona State University",
+   "agent_name": "William Anders / NASA (Apollo 8)",
    "agent_role": "Artist",
-   "creation_date": "",
+   "creation_date": "1968-12-24",
    "cultural_context": "Space Age, Global",
    "medium": "Photograph",
-   "date_display": "1968",
+   "date_display": "24 December 1968",
    "description_narrative": "This iconic photograph, captured during the Apollo 8 mission, depicts Earth rising dramatically above the lunar horizon. It offers a profound view of our planet as a fragile, vibrant sphere in the vastness of space, shifting human perspective on our home.",
    "tags": "space, earth, moon, iconic, photography, apollo 8, scientific, 1960s",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Earthrise%20over%20Compton%20crater%20-LRO%20full%20res.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Earthrise%20over%20Compton%20crater%20-LRO%20full%20res.jpg?width=600",
-   "focal_point": [
-    0.47,
-    0.27
-   ],
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/NASA%20Earthrise%20AS08-14-2383%20Apollo%208%201968-12-24.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/NASA%20Earthrise%20AS08-14-2383%20Apollo%208%201968-12-24.jpg?width=600",
    "featured_rank": 92,
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "http://lroc.sese.asu.edu/posts/895",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 7680,
-   "resolution_tier": "8K",
-   "aspect_crops": {
-    "16:9": [
-     0.0,
-     0.1066,
-     1.0,
-     0.4934
-    ],
-    "9:16": [
-     0.1111,
-     0.0,
-     0.9289,
-     1.0
-    ],
-    "4:3": [
-     0.0,
-     0.0921,
-     1.0,
-     0.6079
-    ],
-    "3:4": [
-     0.0,
-     0.0415,
-     1.0,
-     0.9586
-    ]
-   }
+   "credit_line": "NASA AS08-14-2383, Apollo 8, photographed by William Anders; Wikidata Q843864",
+   "license_verified": "2026-09-26"
   },
   {
    "title": "Pale Blue Dot",
@@ -166,56 +134,24 @@
   },
   {
    "title": "Buzz Aldrin on the Moon Apollo 11",
-   "agent_name": "Buzz Aldrin",
+   "agent_name": "Neil Armstrong",
    "agent_role": "Artist",
-   "creation_date": "",
+   "creation_date": "20 July 1969",
    "cultural_context": "Space Age, American",
    "medium": "Photograph",
-   "date_display": "1969",
+   "date_display": "20 July 1969",
    "description_narrative": "This iconic photograph captures astronaut Buzz Aldrin on the lunar surface during the historic Apollo 11 mission. It vividly portrays a human presence on the Moon, reflecting the immense achievement of space exploration.",
    "tags": "space exploration, moon landing, apollo 11, buzz aldrin, astronaut, historic, photography",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Buzz%20Aldrin%27s%20bootprint%20on%20the%20Moon%2C%20AS11-40-5877%20%2821472308758%29.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Buzz%20Aldrin%27s%20bootprint%20on%20the%20Moon%2C%20AS11-40-5877%20%2821472308758%29.jpg?width=600",
-   "focal_point": [
-    0.5,
-    0.6
-   ],
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/A%20Man%20on%20the%20Moon%2C%20AS11-40-5903.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/A%20Man%20on%20the%20Moon%2C%20AS11-40-5903.jpg?width=600",
    "featured_rank": 85,
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Project Apollo Archive, AS11-40-5877",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 3949,
-   "resolution_tier": "4K",
-   "aspect_crops": {
-    "16:9": [
-     0.0,
-     0.3005,
-     1.0,
-     0.8595
-    ],
-    "9:16": [
-     0.217,
-     0.0,
-     0.783,
-     1.0
-    ],
-    "4:3": [
-     0.0,
-     0.1774,
-     1.0,
-     0.9227
-    ],
-    "3:4": [
-     0.1227,
-     0.0,
-     0.8774,
-     1.0
-    ]
-   }
+   "credit_line": "NASA AS11-40-5903, photographed by Neil Armstrong",
+   "license_verified": "2026-09-26"
   },
   {
    "title": "Bruce McCandless spacewalk",
@@ -229,46 +165,14 @@
    "tags": "spacewalk, astronaut, space, NASA, exploration, outer space, technology, human achievement",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/STS41B-35-1613%20-%20Bruce%20McCandless%20II%20during%20EVA%20%28Raw%20scan%29.tif?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/STS41B-35-1613%20-%20Bruce%20McCandless%20II%20during%20EVA%20%28Raw%20scan%29.tif?width=600",
-   "focal_point": [
-    0.63,
-    0.26
-   ],
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bruce%20McCandless%20II%20during%20EVA%20in%201984.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bruce%20McCandless%20II%20during%20EVA%20in%201984.jpg?width=600",
    "featured_rank": 75,
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "JSC Gateway to Astronaut Photography of Earth",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 5900,
-   "resolution_tier": "4K",
-   "aspect_crops": {
-    "16:9": [
-     0.0,
-     0.0,
-     1.0,
-     0.5434
-    ],
-    "9:16": [
-     0.2089,
-     0.0,
-     0.7911,
-     1.0
-    ],
-    "4:3": [
-     0.0,
-     0.0,
-     1.0,
-     0.7246
-    ],
-    "3:4": [
-     0.1118,
-     0.0,
-     0.8882,
-     1.0
-    ]
-   }
+   "credit_line": "NASA GPN-2000-001156, STS41B-35-1613, Bruce McCandless II during EVA in 1984",
+   "license_verified": "2026-09-26"
   },
   {
    "title": "The Earth seen from Apollo 17",
@@ -538,56 +442,24 @@
   },
   {
    "title": "Hubble Space Telescope in Orbit",
-   "agent_name": "NASA/MSFC/David Higginbotham/Emmett Given",
+   "agent_name": "NASA (STS-125 crew)",
    "agent_role": "Artist",
-   "creation_date": "",
+   "creation_date": "2009-05-19",
    "cultural_context": "Space Age, American",
    "medium": "Photograph",
-   "date_display": "Late 20th - early 21st century",
+   "date_display": "19 May 2009",
    "description_narrative": "This image captures the iconic Hubble Space Telescope as it orbits Earth, a pivotal instrument in astronomical discovery. Launched in 1990, Hubble has provided breathtaking views of the universe and critical data for scientific research.",
    "tags": "space, astronomy, hubble telescope, earth orbit, scientific research, technology, documentary",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/James%20Webb%20Space%20Telescope%20Mirror37.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/James%20Webb%20Space%20Telescope%20Mirror37.jpg?width=600",
-   "focal_point": [
-    0.4,
-    0.42
-   ],
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/View%20of%20Hubble%20after%20Being%20Released%20from%20the%20Shuttle%20Atlantis%20%2828223588012%29.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/View%20of%20Hubble%20after%20Being%20Released%20from%20the%20Shuttle%20Atlantis%20%2828223588012%29.jpg?width=600",
    "featured_rank": 40,
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "http://www.jwst.nasa.gov/images_mirror45.html",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 4256,
-   "resolution_tier": "4K",
-   "aspect_crops": {
-    "16:9": [
-     0.0,
-     0.0798,
-     1.0,
-     0.9252
-    ],
-    "9:16": [
-     0.2629,
-     0.0,
-     0.6371,
-     1.0
-    ],
-    "4:3": [
-     0.0564,
-     0.0,
-     0.9436,
-     1.0
-    ],
-    "3:4": [
-     0.35,
-     0.0,
-     0.849,
-     1.0
-    ]
-   }
+   "credit_line": "NASA HST Flickr, STS-125 (SM4), 19 May 2009",
+   "license_verified": "2026-09-26"
   }
  ]
 }

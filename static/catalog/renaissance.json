@@ -1480,7 +1480,7 @@
    "title": "The Lamentation over the Dead Christ",
    "agent_name": "Andrea Mantegna",
    "agent_role": "Painter",
-   "creation_date": "1480",
+   "creation_date": "c. 1480",
    "cultural_context": "Italian Early Renaissance, Mantua",
    "medium": "Tempera on canvas",
    "date_display": "c. 1480",
@@ -1496,46 +1496,14 @@
    ],
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/%28Venice%29%20Lamentation%20over%20the%20Dead%20Christ%20-%20Girolamo%20Romanino%20-%20gallerie%20Accademia%20Venice.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/%28Venice%29%20Lamentation%20over%20the%20Dead%20Christ%20-%20Girolamo%20Romanino%20-%20gallerie%20Accademia%20Venice.jpg?width=600",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Lamentaci%C3%B3n%20sobre%20Cristo%20muerto%2C%20por%20Andrea%20Mantegna.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Lamentaci%C3%B3n%20sobre%20Cristo%20muerto%2C%20por%20Andrea%20Mantegna.jpg?width=600",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Own work",
-   "license_verified": "2026-07-16",
-   "featured_rank": 40,
-   "focal_point": [
-    0.45,
-    0.55
-   ],
-   "delivered_edge": 4941,
-   "resolution_tier": "4K",
-   "aspect_crops": {
-    "16:9": [
-     0.0,
-     0.0797,
-     1.0,
-     0.6553
-    ],
-    "9:16": [
-     0.1451,
-     0.0,
-     0.6949,
-     1.0
-    ],
-    "4:3": [
-     0.0,
-     0.0298,
-     1.0,
-     0.7972
-    ],
-    "3:4": [
-     0.0835,
-     0.0,
-     0.8165,
-     1.0
-    ]
-   }
+   "credit_line": "Pinacoteca di Brera, inv. 352; Wikidata Q546297",
+   "license_verified": "2026-09-26",
+   "featured_rank": 40
   },
   {
    "title": "Virgin and Child with the Young Saint John the Baptist",
@@ -2194,54 +2162,22 @@
    "title": "Mystic Nativity",
    "agent_name": "Sandro Botticelli",
    "agent_role": "Painter",
-   "creation_date": "1500",
+   "creation_date": "c. 1500",
    "cultural_context": "Italian Renaissance",
-   "medium": "Tempera on panel",
-   "date_display": "1500",
+   "medium": "Oil on canvas",
+   "date_display": "c. 1500",
    "description_narrative": "A visionary depiction of the Nativity combining earthly and celestial realms, signed and dated by Botticelli with an unusual Greek inscription referencing apocalyptic prophecy. It is held in the National Gallery, London.",
    "tags": "Nativity, apocalypse, National Gallery London, religious painting, signed work",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Botticelli%20Nativity.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Botticelli%20Nativity.jpg?width=600",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sandro%20Botticelli%20-%20Mystische%20Geburt%201500.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sandro%20Botticelli%20-%20Mystische%20Geburt%201500.jpg?width=600",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "[1], 2011-06-21",
-   "license_verified": "2026-07-16",
-   "featured_rank": 75,
-   "focal_point": [
-    0.45,
-    0.68
-   ],
-   "delivered_edge": 6785,
-   "resolution_tier": "4K",
-   "aspect_crops": {
-    "16:9": [
-     0.0,
-     0.42,
-     1.0,
-     0.9066
-    ],
-    "9:16": [
-     0.1749,
-     0.0,
-     0.8251,
-     1.0
-    ],
-    "4:3": [
-     0.0,
-     0.2,
-     1.0,
-     0.8488
-    ],
-    "3:4": [
-     0.0666,
-     0.0,
-     0.9335,
-     1.0
-    ]
-   }
+   "credit_line": "National Gallery, London, NG1034; Wikidata Q974674",
+   "license_verified": "2026-09-26",
+   "featured_rank": 75
   },
   {
    "title": "The Virgin and Child with Saint John and Two Angels (Studio of Botticelli)",
@@ -3291,48 +3227,22 @@
    "title": "Tarquin and Lucretia",
    "agent_name": "Titian",
    "agent_role": "Painter",
-   "creation_date": "1571",
+   "creation_date": "c. 1570",
    "cultural_context": "Italian Renaissance",
    "medium": "Oil on canvas",
-   "date_display": "c. 1571",
+   "date_display": "c. 1570",
    "description_narrative": "The Roman prince Tarquin threatens Lucretia with a dagger in a violent, close-cropped composition from Titian's dramatic late period. Multiple versions exist; this one is held in the Musee des Beaux-Arts de Bordeaux.",
    "tags": "Italian Renaissance, mythology, Roman history, violence, late style",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Titien%20-%20Tarquin%20et%20Lucr%C3%A8ce%2001.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Titien%20-%20Tarquin%20et%20Lucr%C3%A8ce%2001.jpg?width=600",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Titien%20-%20Tarquin%20et%20Lucr%C3%A8ce%2002.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Titien%20-%20Tarquin%20et%20Lucr%C3%A8ce%2002.jpg?width=600",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Own work by Tylwyth Eldar. Taken on 30 October 2024, 11:46:33.",
-   "license_verified": "2026-07-16",
-   "featured_rank": 62,
-   "focal_point": [
-    0.62,
-    0.28
-   ],
-   "delivered_edge": 4623,
-   "resolution_tier": "4K",
-   "aspect_crops": {
-    "9:16": [
-     0.1512,
-     0.0,
-     0.8488,
-     1.0
-    ],
-    "4:3": [
-     0.0,
-     0.1499,
-     1.0,
-     0.7547
-    ],
-    "3:4": [
-     0.035,
-     0.0,
-     0.965,
-     1.0
-    ]
-   }
+   "credit_line": "Musée des Beaux-Arts de Bordeaux, Bx E 42; Wikidata Q18822501",
+   "license_verified": "2026-09-26",
+   "featured_rank": 62
   },
   {
    "title": "Mars, Venus and Cupid",

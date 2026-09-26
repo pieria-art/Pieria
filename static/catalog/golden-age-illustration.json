@@ -599,13 +599,13 @@
    }
   },
   {
-   "title": "Poster for Scribner's Magazine",
+   "title": "The Century: Midsummer Holiday Number, August",
    "agent_name": "Maxfield Parrish",
    "agent_role": "Illustrator",
-   "creation_date": "1895",
-   "date_display": "1895",
+   "creation_date": "1897",
+   "date_display": "1897",
    "cultural_context": "American Illustration",
-   "medium": "Color lithograph",
+   "medium": "Color lithograph (Les Maîtres de l'Affiche, pl. 123)",
    "description_narrative": "This plate was reproduced in Les Maîtres de l'affiche, the landmark French portfolio series that anthologized the finest poster art of the 1890s alongside work by Toulouse-Lautrec and Alphonse Mucha. Its inclusion signals how quickly Maxfield Parrish's magazine advertising posters crossed the Atlantic to be recognized as fine art in their own right. The plate preserves a design created for Scribner's Magazine, part of the wave of American poster advertising that helped define the golden age of illustration.",
    "tags": [
     "parrish",
@@ -2035,7 +2035,7 @@
    }
   },
   {
-   "title": "Frontispiece, Stories from the Pentamerone",
+   "title": "The Prince and Zoza, with the Story-Tellers (Frontispiece, Stories from the Pentamerone)",
    "agent_name": "Warwick Goble",
    "agent_role": "Illustrator",
    "creation_date": "1911",
@@ -2053,47 +2053,23 @@
    ],
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Stories%20from%20the%20Pentamerone-0000.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Stories%20from%20the%20Pentamerone-0000.jpg?width=600",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Stories%20from%20the%20Pentamerone-0005.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Stories%20from%20the%20Pentamerone-0005.jpg?width=600",
    "kind": "illustration",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "File:Stories from the Pentamerone.djvu",
-   "license_verified": "2026-07-16",
+   "credit_line": "Stories from the Pentamerone (1911), plate facing p.7, \"The Prince and Zoza, with the Story-Tellers\"",
+   "license_verified": "2026-09-26",
    "featured_rank": 46,
-   "focal_point": [
-    0.5,
-    0.4
-   ],
-   "delivered_edge": 5946,
-   "resolution_tier": "4K",
-   "aspect_crops": {
-    "3:4": [
-     0.0,
-     0.0,
-     1.0,
-     1.0
-    ],
-    "16:9": [
-     0.0,
-     0.3001,
-     1.0,
-     0.7229
-    ],
-    "9:16": [
-     0.1259,
-     0.0,
-     0.8741,
-     1.0
-    ],
-    "4:3": [
-     0.0,
-     0.1601,
-     1.0,
-     0.7239
-    ]
-   }
+   "source_rotate": 270,
+   "needs_frame_crop": true,
+   "crop_box": [
+    0.189,
+    0.155,
+    0.92,
+    0.906
+   ]
   },
   {
    "title": "Mission Building",

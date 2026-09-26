@@ -131,6 +131,67 @@ def test_apply_crop_box_rejects_bad_boxes(box):
     assert build_pack._apply_crop_box(_jpeg(1000, 1000), box) is None
 
 
+# --- source_rotate step (rotate a sideways-printed source BEFORE the frame crop) ------------------
+
+def _asym_jpeg(w: int, h: int) -> bytes:
+    """An asymmetric marker image: distinct quadrant colours so a rotation's direction is verifiable
+    (top-left red, top-right green, bottom-left blue, bottom-right white)."""
+    img = Image.new("RGB", (w, h), (255, 255, 255))
+    half_w, half_h = w // 2, h // 2
+    for x in range(w):
+        for y in range(h):
+            if x < half_w and y < half_h:
+                img.putpixel((x, y), (255, 0, 0))
+            elif x >= half_w and y < half_h:
+                img.putpixel((x, y), (0, 255, 0))
+            elif x < half_w and y >= half_h:
+                img.putpixel((x, y), (0, 0, 255))
+    buf = BytesIO()
+    img.save(buf, format="JPEG")
+    return buf.getvalue()
+
+
+def test_apply_source_rotate_90ccw_maps_quadrants():
+    """rotate(90, expand=True) is counter-clockwise: PIL turns the image so the top-right corner
+    swings to the top-left. Verify on a small asymmetric marker (avoids JPEG-noise pixel sampling)."""
+    raw = _asym_jpeg(40, 20)   # red TL, green TR, blue BL, white BR
+    out = build_pack._apply_source_rotate(raw, 90)
+    assert out is not None
+    with Image.open(BytesIO(out)) as im:
+        w, h = im.size
+        assert (w, h) == (20, 40)   # dimensions swap
+        rgb = im.convert("RGB")
+
+        def _close(px, target, tol=6):
+            return all(abs(a - b) <= tol for a, b in zip(px, target))
+
+        # PIL rotate(90) CCW: original top-right (green) ends up at new top-left
+        assert _close(rgb.getpixel((2, 2)), (0, 255, 0))
+        # original top-left (red) ends up at new bottom-left
+        assert _close(rgb.getpixel((2, h - 6)), (255, 0, 0))
+
+
+@pytest.mark.parametrize("degrees", [None, 0, 45, "90", -90])
+def test_apply_source_rotate_ignores_invalid_values(degrees):
+    """Anything other than 90/180/270 is ignored — caller keeps the untouched raw."""
+    assert build_pack._apply_source_rotate(_jpeg(100, 50), degrees) is None
+
+
+def test_prepare_master_rotates_before_crop_box():
+    """crop_box for a rotated source is authored in POST-rotation coordinates: a box selecting the
+    right half of the rotated (20x40) image must land on the correct pixels."""
+    raw = _asym_jpeg(40, 20)
+    wi = build_pack.WorkItem(kind="catalog", collection_id="impressionism", item={
+        "source_url": "https://example.org/sideways.jpg", "title": "Sideways Plate",
+        "source_rotate": 90, "needs_frame_crop": True, "crop_box": [0.0, 0.5, 1.0, 1.0],
+    })
+    res = build_pack._prepare_master(raw, wi, floor=1)
+    assert res.cropped is True and res.data is not None
+    with Image.open(BytesIO(res.data)) as im:
+        w, h = im.size
+        assert abs(w - 20) <= 1 and abs(h - 20) <= 1
+
+
 def _build_state(tmp_path):
     return build_pack.BuildState(
         pack_dir=tmp_path,

@@ -123,46 +123,14 @@
    "tags": "world map, cartography, exploration, Renaissance, geography, historical, Americas",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Reprodu%C3%A7%C3%A3o%20de%20Carta%20-%20Universalis%20Cosmographia%20%28Waldseem%C3%BCller%2C%20Martin%29%20-%201%20%281%29%2C%20Acervo%20do%20Museu%20Paulista%20da%20USP.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Reprodu%C3%A7%C3%A3o%20de%20Carta%20-%20Universalis%20Cosmographia%20%28Waldseem%C3%BCller%2C%20Martin%29%20-%201%20%281%29%2C%20Acervo%20do%20Museu%20Paulista%20da%20USP.jpg?width=600",
-   "focal_point": [
-    0.45,
-    0.45
-   ],
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Waldseemuller%20map%202.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Waldseemuller%20map%202.jpg?width=600",
    "featured_rank": 55,
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Museu Paulista",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 7216,
-   "resolution_tier": "4K",
-   "aspect_crops": {
-    "3:4": [
-     0.0767,
-     0.1493,
-     0.8467,
-     0.9194
-    ],
-    "16:9": [
-     0.0,
-     0.1653,
-     1.0,
-     0.5872
-    ],
-    "9:16": [
-     0.0867,
-     0.0,
-     0.8367,
-     1.0
-    ],
-    "4:3": [
-     0.0,
-     0.165,
-     1.0,
-     0.7275
-    ]
-   }
+   "credit_line": "Library of Congress g3200.ct000725C; Wikidata Q195801 (full 12-sheet map)",
+   "license_verified": "2026-09-26"
   },
   {
    "title": "Nova Totius Terrarum Orbis Geographica",

@@ -480,6 +480,30 @@ def _cap_master(raw: bytes) -> bytes | None:
         return None
 
 
+_SOURCE_ROTATE_DEGREES = (90, 180, 270)
+
+
+def _apply_source_rotate(raw: bytes, degrees) -> bytes | None:
+    """Rotate a raw master counter-clockwise by `degrees` (90/180/270 only) BEFORE any frame crop, so a
+    `crop_box` on a sideways-printed source can be authored in post-rotation coordinates. Anything else
+    (missing, 0, or an unsupported value) is ignored — caller keeps the untouched raw. Mirrors
+    `_apply_crop_box`'s shape: re-encoded JPEG bytes out, or None on no-op/failure."""
+    if degrees not in _SOURCE_ROTATE_DEGREES:
+        return None
+    try:
+        with Image.open(BytesIO(raw)) as img:
+            img = ImageOps.exif_transpose(img)
+            if img.mode != "RGB":
+                img = img.convert("RGB")
+            rotated = img.rotate(degrees, expand=True)
+            buf = BytesIO()
+            rotated.save(buf, format="JPEG", quality=DISPLAY_QUALITY, progressive=True)
+            return buf.getvalue()
+    except Exception as e:
+        logger.info(f"    x could not apply source_rotate: {e}")
+        return None
+
+
 def _apply_crop_box(raw: bytes, crop_box) -> bytes | None:
     """Crop the frame/mat/wall away from a master using a pre-baked normalized art rectangle
     crop_box=[x0,y0,x1,y1] (0..1). AI produces the box against the catalog thumbnail; because it is
@@ -545,6 +569,9 @@ class _MasterResult:
 def _prepare_master(raw: bytes, wi: WorkItem, floor: int) -> _MasterResult:
     """Frame-crop (if flagged) → floor-probe → cap. This is build_pack's memory peak (full-native decode),
     so the caller runs it in a bounded worker thread. No stats/IO side-effects — the caller owns those."""
+    rotated_bytes = _apply_source_rotate(raw, wi.item.get("source_rotate"))
+    if rotated_bytes is not None:
+        raw = rotated_bytes
     cropped = False
     if wi.item.get("needs_frame_crop"):
         crop_bytes = _apply_crop_box(raw, wi.item.get("crop_box"))

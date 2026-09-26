@@ -1278,12 +1278,12 @@
   },
   {
    "title": "The Six Immortal Poets (Rokkasen)",
-   "agent_name": "Katsushika Hokusai",
+   "agent_name": "Kitagawa Utamaro",
    "agent_role": "Printmaker",
    "creation_date": "1810",
    "cultural_context": "Ukiyo-e, Edo Japan",
    "medium": "Color woodblock print",
-   "date_display": "early 19th century",
+   "date_display": "c. 1795",
    "description_narrative": "The 'Rokkasen' were six celebrated waka poets of the 9th century, a favorite subject for ukiyo-e artists to depict together in scenes of literary refinement. This print is held in the Library of Congress collection.",
    "tags": "Ukiyo-e, Rokkasen, classical poets, Library of Congress",
    "source": "Wikimedia Commons",
@@ -7984,46 +7984,14 @@
    "tags": "ukiyo-e, woodblock print, hiroshige, edo, tsukiji, temple",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/NDL-DC%201307041%2003-Utagawa%20Hiroshige-%E6%9D%B1%E9%83%BD%E5%90%8D%E6%89%80%20%E7%AF%89%E5%9C%B0%E8%A5%BF%E5%BE%A1%E5%A0%82%E4%B9%8B%E5%9B%B3%E3%83%BB%E7%AF%89%E5%9C%B0%E8%A5%BF%E5%BE%A1%E5%A0%82%E4%B9%8B%E5%9B%B3-crd.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/NDL-DC%201307041%2003-Utagawa%20Hiroshige-%E6%9D%B1%E9%83%BD%E5%90%8D%E6%89%80%20%E7%AF%89%E5%9C%B0%E8%A5%BF%E5%BE%A1%E5%A0%82%E4%B9%8B%E5%9B%B3%E3%83%BB%E7%AF%89%E5%9C%B0%E8%A5%BF%E5%BE%A1%E5%A0%82%E4%B9%8B%E5%9B%B3-crd.jpg?width=600",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/NDL-DC%201307041-Utagawa%20Hiroshige-%E6%9D%B1%E9%83%BD%E5%90%8D%E6%89%80%20%E7%AF%89%E5%9C%B0%E8%A5%BF%E5%BE%A1%E5%A0%82%E4%B9%8B%E5%9B%B3%E3%83%BB%E7%AF%89%E5%9C%B0%E8%A5%BF%E5%BE%A1%E5%A0%82%E4%B9%8B%E5%9B%B3-cmb.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/NDL-DC%201307041-Utagawa%20Hiroshige-%E6%9D%B1%E9%83%BD%E5%90%8D%E6%89%80%20%E7%AF%89%E5%9C%B0%E8%A5%BF%E5%BE%A1%E5%A0%82%E4%B9%8B%E5%9B%B3%E3%83%BB%E7%AF%89%E5%9C%B0%E8%A5%BF%E5%BE%A1%E5%A0%82%E4%B9%8B%E5%9B%B3-cmb.jpg?width=600",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "National Diet Library Digital Collections: Persistent ID 1307041",
-   "license_verified": "2026-07-16",
-   "featured_rank": 25,
-   "focal_point": [
-    0.5,
-    0.35
-   ],
-   "delivered_edge": 4382,
-   "resolution_tier": "4K",
-   "aspect_crops": {
-    "16:9": [
-     0.0,
-     0.1501,
-     1.0,
-     0.5309
-    ],
-    "9:16": [
-     0.085,
-     0.0,
-     0.916,
-     1.0
-    ],
-    "4:3": [
-     0.0,
-     0.1002,
-     1.0,
-     0.6078
-    ],
-    "3:4": [
-     0.0,
-     0.0303,
-     1.0,
-     0.9327
-    ]
-   }
+   "credit_line": "NDL Digital Collections, persistent ID 1307041 (combined triptych)",
+   "license_verified": "2026-09-26",
+   "featured_rank": 25
   },
   {
    "title": "Panoramic View of Eitai Bridge",
@@ -11972,7 +11940,7 @@
    }
   },
   {
-   "title": "Kijin (Demon Deity)",
+   "title": "Court Figure (Kijin zu)",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
    "creation_date": "1858",

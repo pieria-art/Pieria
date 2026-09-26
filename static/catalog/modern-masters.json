@@ -397,46 +397,14 @@
    ],
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/%28Venice%29%20Judith%20with%20the%20head%20of%20Holofernes%20by%20Jacopo%20Amigoni.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/%28Venice%29%20Judith%20with%20the%20head%20of%20Holofernes%20by%20Jacopo%20Amigoni.jpg?width=600",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Judith%201%20%28cropped%29.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Judith%201%20%28cropped%29.jpg?width=600",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Own work",
-   "license_verified": "2026-07-16",
-   "featured_rank": 89,
-   "focal_point": [
-    0.68,
-    0.3
-   ],
-   "delivered_edge": 5600,
-   "resolution_tier": "4K",
-   "aspect_crops": {
-    "16:9": [
-     0.0,
-     0.0801,
-     1.0,
-     0.6345
-    ],
-    "9:16": [
-     0.2997,
-     0.0,
-     0.8703,
-     1.0
-    ],
-    "4:3": [
-     0.0,
-     0.0302,
-     1.0,
-     0.7694
-    ],
-    "3:4": [
-     0.1296,
-     0.0,
-     0.8904,
-     1.0
-    ]
-   }
+   "credit_line": "Belvedere, Vienna, inv. 4737; Wikidata Q2324643",
+   "license_verified": "2026-09-26",
+   "featured_rank": 89
   },
   {
    "title": "Jeanne Hébuterne with Yellow Sweater",
@@ -516,46 +484,14 @@
    ],
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Odilon%20Redon%20-%20The%20Buddha%20-%201961.279%20-%20Cleveland%20Museum%20of%20Art.tif?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Odilon%20Redon%20-%20The%20Buddha%20-%201961.279%20-%20Cleveland%20Museum%20of%20Art.tif?width=600",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Odilon%20Redon%20-%20Buddha%20-%20Google%20Art%20Project.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Odilon%20Redon%20-%20Buddha%20-%20Google%20Art%20Project.jpg?width=600",
    "license_verdict": "pd",
-   "license_basis": "CC0",
-   "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
-   "credit_line": "https://clevelandart.org/art/1961.279",
-   "license_verified": "2026-07-16",
-   "featured_rank": 35,
-   "focal_point": [
-    0.35,
-    0.35
-   ],
-   "delivered_edge": 4276,
-   "resolution_tier": "4K",
-   "aspect_crops": {
-    "16:9": [
-     0.0,
-     0.2798,
-     1.0,
-     0.6682
-    ],
-    "9:16": [
-     0.0501,
-     0.0,
-     0.8649,
-     1.0
-    ],
-    "4:3": [
-     0.0,
-     0.1498,
-     1.0,
-     0.6676
-    ],
-    "3:4": [
-     0.0,
-     0.0199,
-     1.0,
-     0.9403
-    ]
-   }
+   "license_basis": "Public domain",
+   "license_url": "",
+   "credit_line": "Musée d'Orsay RF 34555, \"Le Bouddha\"; Wikidata Q23681758 (Google Art Project)",
+   "license_verified": "2026-09-26",
+   "featured_rank": 35
   },
   {
    "title": "Woman in a Striped Dress",

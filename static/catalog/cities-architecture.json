@@ -694,47 +694,15 @@
    ],
    "source": "Library of Congress",
    "license": "Public Domain (Library of Congress; no known restrictions)",
-   "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsca/52500/52536u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/52500/52536v.jpg",
+   "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsca/52500/52538u.tif",
+   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/52500/52538v.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
    "license_url": "",
    "credit_line": "Collection of Library of Congress",
-   "license_verified": "2026-07-16",
-   "featured_rank": 45,
-   "focal_point": [
-    0.5,
-    0.35
-   ],
-   "delivered_edge": 7351,
-   "resolution_tier": "4K",
-   "aspect_crops": {
-    "16:9": [
-     0.0,
-     0.1181,
-     1.0,
-     0.8819
-    ],
-    "9:16": [
-     0.293,
-     0.0,
-     0.7072,
-     1.0
-    ],
-    "4:3": [
-     0.0091,
-     0.0,
-     0.9909,
-     1.0
-    ],
-    "3:4": [
-     0.2239,
-     0.0,
-     0.7761,
-     1.0
-    ]
-   }
+   "license_verified": "2026-09-26",
+   "featured_rank": 45
   },
   {
    "title": "Detroit Museum of Art",

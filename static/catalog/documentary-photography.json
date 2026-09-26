@@ -70,46 +70,14 @@
    "tags": "migration, documentary photography, great depression, black and white, journey, social realism, hardship",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Toward%20Los%20Angeles%2C%20California%2C%208b31801a.tif?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Toward%20Los%20Angeles%2C%20California%2C%208b31801a.tif?width=600",
-   "focal_point": [
-    0.32,
-    0.45
-   ],
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Toward%20Los%20Angeles%2C%20California%20LOC%203549663710.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Toward%20Los%20Angeles%2C%20California%20LOC%203549663710.jpg?width=600",
    "featured_rank": 25,
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "This image is available from the United States Library of Congress's Prints and Photographs division under the digital ID fsa.8b31801.This tag does not indicate the copyright status of the attached work. A normal copyright tag is still required. See Commons:Licensing.",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 4849,
-   "resolution_tier": "4K",
-   "aspect_crops": {
-    "16:9": [
-     0.0,
-     0.1759,
-     1.0,
-     0.7241
-    ],
-    "9:16": [
-     0.2114,
-     0.0,
-     0.7886,
-     1.0
-    ],
-    "4:3": [
-     0.0,
-     0.0846,
-     1.0,
-     0.8154
-    ],
-    "3:4": [
-     0.1152,
-     0.0,
-     0.8848,
-     1.0
-    ]
-   }
+   "credit_line": "LOC Flickr Commons restoration, LC-DIG-fsa-8b31801; supersedes the earlier TIF-decode-broken edit",
+   "license_verified": "2026-09-26"
   },
   {
    "title": "Tractored Out, Childress County Texas",
@@ -231,44 +199,12 @@
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Floyd%20Burroughs%2C%20cotton%20sharecropper.%20Hale%20County%2C%20Alabama%2C%208c52247a.tif?width=3840",
    "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Floyd%20Burroughs%2C%20cotton%20sharecropper.%20Hale%20County%2C%20Alabama%2C%208c52247a.tif?width=600",
-   "focal_point": [
-    0.5,
-    0.33
-   ],
    "featured_rank": 55,
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "https://www.loc.gov/item/2017762300/",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 7680,
-   "resolution_tier": "8K",
-   "aspect_crops": {
-    "16:9": [
-     0.0,
-     0.125,
-     1.0,
-     0.575
-    ],
-    "9:16": [
-     0.1484,
-     0.0,
-     0.8516,
-     1.0
-    ],
-    "4:3": [
-     0.0,
-     0.05,
-     1.0,
-     0.65
-    ],
-    "3:4": [
-     0.0312,
-     0.0,
-     0.9688,
-     1.0
-    ]
-   }
+   "credit_line": "This image is available from the United States Library of Congress's Prints and Photographs division under the digital ID fsa.8c52247.This tag does not indicate the copyright status of the attached work. A normal copyright tag is still required. See Commons:Licensing.",
+   "license_verified": "2026-09-26"
   },
   {
    "title": "Allie Mae Burroughs",

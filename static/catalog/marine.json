@@ -118,52 +118,20 @@
    "agent_role": "Artist",
    "creation_date": "",
    "cultural_context": "Romanticism, British",
-   "medium": "Engraving",
+   "medium": "Oil on canvas",
    "date_display": "1805",
    "description_narrative": "This dramatic painting captures the overwhelming power of nature as a ship founders in a tumultuous sea. Desperate figures cling to debris and struggle for survival amidst the crashing waves, conveying a profound sense of human vulnerability against the sublime forces of the ocean.",
    "tags": "shipwreck, marine art, romanticism, disaster, stormy sea, sublime, tragedy",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Shipwreck%20engraving%20by%20William%20Miller%20after%20Turner.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Shipwreck%20engraving%20by%20William%20Miller%20after%20Turner.jpg?width=600",
-   "focal_point": [
-    0.5,
-    0.5
-   ],
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Joseph%20Mallord%20William%20Turner%20076.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Joseph%20Mallord%20William%20Turner%20076.jpg?width=600",
    "featured_rank": 45,
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "engraving",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 4262,
-   "resolution_tier": "4K",
-   "aspect_crops": {
-    "16:9": [
-     0.0,
-     0.1001,
-     1.0,
-     0.8259
-    ],
-    "9:16": [
-     0.482,
-     0.0,
-     0.918,
-     1.0
-    ],
-    "4:3": [
-     0.0,
-     0.0001,
-     1.0,
-     0.9679
-    ],
-    "3:4": [
-     0.3699,
-     0.0,
-     0.9511,
-     1.0
-    ]
-   }
+   "credit_line": "Tate N00476; Wikidata Q18687275 (Yorck Project)",
+   "license_verified": "2026-09-26"
   },
   {
    "title": "Dutch Boats in a Gale",
@@ -1071,46 +1039,14 @@
    "tags": "turner, trafalgar, nelson, naval battle, royal navy, romanticism",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Battle%20of%20Trafalgar%20LCCN2003681698.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Battle%20of%20Trafalgar%20LCCN2003681698.jpg?width=600",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Battle%20of%20Trafalgar%2C%2021%20October%201805%20RMG%20BHC0565.tiff?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Battle%20of%20Trafalgar%2C%2021%20October%201805%20RMG%20BHC0565.tiff?width=600",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Library of Congress Catalog: http://lccn.loc.gov/2003681698 Image download: https://cdn.loc.gov/service/pnp/cph/3a10000/3a11000/3a11900/3a11943r.jpg Original url: http://hdl.loc.gov/loc.pnp/pga.0307",
-   "license_verified": "2026-07-16",
-   "featured_rank": 70,
-   "focal_point": [
-    0.48,
-    0.35
-   ],
-   "delivered_edge": 7680,
-   "resolution_tier": "8K",
-   "aspect_crops": {
-    "16:9": [
-     0.0367,
-     0.0,
-     0.9633,
-     1.0
-    ],
-    "9:16": [
-     0.4499,
-     0.0,
-     0.7431,
-     1.0
-    ],
-    "4:3": [
-     0.2,
-     0.0,
-     0.895,
-     1.0
-    ],
-    "3:4": [
-     0.42,
-     0.0,
-     0.811,
-     1.0
-    ]
-   }
+   "credit_line": "Royal Museums Greenwich BHC0565",
+   "license_verified": "2026-09-26",
+   "featured_rank": 70
   },
   {
    "title": "Fishermen at Sea",
@@ -1238,46 +1174,14 @@
    ],
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Francis%20Seymour%20Haden%20-%20Calais%20Pier%20-%201921.372%20-%20Cleveland%20Museum%20of%20Art.tif?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Francis%20Seymour%20Haden%20-%20Calais%20Pier%20-%201921.372%20-%20Cleveland%20Museum%20of%20Art.tif?width=600",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Joseph%20Mallord%20William%20Turner%20024.jpg?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Joseph%20Mallord%20William%20Turner%20024.jpg?width=600",
    "license_verdict": "pd",
-   "license_basis": "CC0",
-   "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
-   "credit_line": "https://clevelandart.org/art/1921.372",
-   "license_verified": "2026-07-16",
-   "featured_rank": 34,
-   "focal_point": [
-    0.45,
-    0.45
-   ],
-   "delivered_edge": 6882,
-   "resolution_tier": "4K",
-   "aspect_crops": {
-    "16:9": [
-     0.0,
-     0.1001,
-     1.0,
-     0.7959
-    ],
-    "9:16": [
-     0.2001,
-     0.0,
-     0.6549,
-     1.0
-    ],
-    "4:3": [
-     0.0,
-     0.0302,
-     1.0,
-     0.9578
-    ],
-    "3:4": [
-     0.1598,
-     0.0,
-     0.7662,
-     1.0
-    ]
-   }
+   "license_basis": "Public domain",
+   "license_url": "",
+   "credit_line": "National Gallery, London, NG472; Wikidata Q3794814",
+   "license_verified": "2026-09-26",
+   "featured_rank": 34
   },
   {
    "title": "Peace – Burial at Sea",
@@ -1408,7 +1312,7 @@
    "creation_date": "1814",
    "cultural_context": "American Romanticism (Marine)",
    "medium": "Oil on canvas",
-   "date_display": "1814",
+   "date_display": "c. 1814",
    "description_narrative": "Birch, a leading early American marine painter, commemorated Commodore Oliver Hazard Perry's decisive 1813 naval victory over the British fleet on Lake Erie during the War of 1812. He painted several versions of the battle scene, prized for their careful rigging detail and dramatic gunsmoke.",
    "tags": [
     "birch",
@@ -1421,46 +1325,14 @@
    ],
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Perry%27s%20victory%20-%20T.%20Birch.%20LCCN2004661378.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Perry%27s%20victory%20-%20T.%20Birch.%20LCCN2004661378.jpg?width=600",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/%27Perry%27s%20Victory%20on%20Lake%20Erie%27%20by%20Thomas%20Birch%2C%20c.%201814.JPG?width=3840",
+   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/%27Perry%27s%20Victory%20on%20Lake%20Erie%27%20by%20Thomas%20Birch%2C%20c.%201814.JPG?width=600",
    "license_verdict": "pd",
-   "license_basis": "Public domain",
-   "license_url": "",
-   "credit_line": "Library of Congress Catalog: https://lccn.loc.gov/2004661378 Image download: https://cdn.loc.gov/service/pnp/ppmsca/23100/23121v.jpg Original url: https://www.loc.gov/pictures/item/2004661378/",
-   "license_verified": "2026-07-16",
-   "featured_rank": 38,
-   "focal_point": [
-    0.42,
-    0.4
-   ],
-   "delivered_edge": 7680,
-   "resolution_tier": "8K",
-   "aspect_crops": {
-    "16:9": [
-     0.09,
-     0.0,
-     0.9025,
-     1.0
-    ],
-    "9:16": [
-     0.28,
-     0.0,
-     0.537,
-     1.0
-    ],
-    "4:3": [
-     0.1498,
-     0.0,
-     0.7592,
-     1.0
-    ],
-    "3:4": [
-     0.2701,
-     0.0,
-     0.6129,
-     1.0
-    ]
-   }
+   "license_basis": "CC0",
+   "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "credit_line": "Pennsylvania Academy of the Fine Arts; Wikidata Q110763733",
+   "license_verified": "2026-09-26",
+   "featured_rank": 38
   },
   {
    "title": "Lumber Schooners at Evening on Penobscot Bay",

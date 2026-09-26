@@ -5409,13 +5409,13 @@
    }
   },
   {
-   "title": "Seated Bather",
+   "title": "Seated Bather (Baigneuse assise)",
    "agent_name": "Pierre-Auguste Renoir",
    "agent_role": "Painter",
    "creation_date": "1914",
    "cultural_context": "Impressionism, French",
-   "medium": "Oil on canvas",
-   "date_display": "c. 1914",
+   "medium": "Softground etching",
+   "date_display": "c. 1905",
    "description_narrative": "A late-career nude study shows a bather seated outdoors, rendered in the warm, saturated palette and fuller forms characteristic of Renoir's final years. Held at the Cleveland Museum of Art.",
    "tags": "bather, nude, late work, Cleveland Museum of Art, seated figure",
    "source": "Wikimedia Commons",
@@ -8572,10 +8572,10 @@
    "title": "Self-Portrait",
    "agent_name": "Edgar Degas",
    "agent_role": "Painter",
-   "creation_date": "c. 1855-1856",
+   "creation_date": "c. 1857–58",
    "cultural_context": "Realism, French",
    "medium": "Oil on paper mounted on canvas",
-   "date_display": "c. 1855–56",
+   "date_display": "c. 1857–58",
    "description_narrative": "One of several self-portraits Degas made as a young man in his early twenties, before he had developed the modern-life subjects for which he later became known. It shows the influence of his academic training and admiration for Ingres.",
    "tags": "self-portrait, early work, Clark Art Institute, Realism, youth",
    "source": "Wikimedia Commons",
@@ -8585,41 +8585,16 @@
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "",
-   "credit_line": "Clark Art Institute",
-   "license_verified": "2026-07-16",
+   "credit_line": "Clark Art Institute 1955.544, \"Autoportrait au chapeau mou\"; Wikidata Q104773672",
+   "license_verified": "2026-09-26",
    "featured_rank": 38,
-   "focal_point": [
-    0.42,
-    0.35
-   ],
-   "delivered_edge": 6956,
-   "resolution_tier": "4K",
-   "aspect_crops": {
-    "16:9": [
-     0.0,
-     0.0498,
-     1.0,
-     0.4427
-    ],
-    "9:16": [
-     0.0973,
-     0.0,
-     0.9027,
-     1.0
-    ],
-    "4:3": [
-     0.0,
-     0.0299,
-     1.0,
-     0.5537
-    ],
-    "3:4": [
-     0.0,
-     0.0,
-     1.0,
-     0.9312
-    ]
-   }
+   "needs_frame_crop": true,
+   "crop_box": [
+    0.045,
+    0.03,
+    0.97,
+    0.915
+   ]
   },
   {
    "title": "Ludovic Lepic Holding His Dog",
@@ -8839,8 +8814,8 @@
    "agent_role": "Painter",
    "creation_date": "c. 1874",
    "cultural_context": "Impressionism, French",
-   "medium": "Oil on canvas, unfinished",
-   "date_display": "c. 1874",
+   "medium": "Pastel over charcoal on buff paper",
+   "date_display": "about 1884",
    "description_narrative": "A partially unfinished portrait study of a young woman in a blue dress, showing Degas's underlying construction of a composition. Unfinished works like this one reveal his working method more directly than his completed portraits.",
    "tags": "portrait, unfinished, blue dress, young woman, working method",
    "source": "Wikimedia Commons",
@@ -11063,10 +11038,10 @@
    "title": "Seated Violin Player",
    "agent_name": "Edgar Degas",
    "agent_role": "Painter",
-   "creation_date": "c. 1879-1880",
+   "creation_date": "1872",
    "cultural_context": "Impressionism, French",
-   "medium": "Oil on canvas",
-   "date_display": "c. 1879–80",
+   "medium": "Oil (essence) over graphite on paper",
+   "date_display": "1872",
    "description_narrative": "A study of an orchestra musician seated with his violin, related to Degas's series of works depicting musicians and the Paris Opéra orchestra pit. Music-making was, alongside ballet, one of his recurring performance subjects.",
    "tags": "musician, violin, orchestra, Paris Opéra, study",
    "source": "Wikimedia Commons",
