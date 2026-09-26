@@ -381,7 +381,7 @@ def test_current_repository_never_a_bare_qid_or_a_wikidata_place():
     # land in current_repository, and a museum-API institution name is trusted directly.
     bundle = {
         "facts": [rg._fact("wikidata.collection", ["Moon"], "Wikidata", "u", "CC0")],
-        "conflicts": [], "is_version_of": None,
+        "conflicts": [], "is_version_of": None, "match": {"confidence": "high"},
     }
     fields, _, notes = rg.resolve_structured_fields(bundle, {})
     assert "current_repository" not in fields
@@ -1001,7 +1001,7 @@ def test_physical_dimensions_drops_implausible_wikidata_value():
             rg._fact("wikidata.height", ["1600.0"], "Wikidata", "u", "CC0"),
             rg._fact("wikidata.width", ["1400.0"], "Wikidata", "u", "CC0"),
         ],
-        "conflicts": [], "is_version_of": None,
+        "conflicts": [], "is_version_of": None, "match": {"confidence": "high"},
     }
     fields, needs_review, notes = rg.resolve_structured_fields(bundle, {}, "watercolours")
     assert "physical_dimensions" not in fields
@@ -1014,7 +1014,7 @@ def test_physical_dimensions_accepts_plausible_wikidata_value():
             rg._fact("wikidata.height", ["45.0"], "Wikidata", "u", "CC0"),
             rg._fact("wikidata.width", ["35.0"], "Wikidata", "u", "CC0"),
         ],
-        "conflicts": [], "is_version_of": None,
+        "conflicts": [], "is_version_of": None, "match": {"confidence": "high"},
     }
     fields, needs_review, notes = rg.resolve_structured_fields(bundle, {}, "watercolours")
     assert fields["physical_dimensions"] == "45.0 x 35.0 cm"
@@ -1136,6 +1136,221 @@ def test_date_display_accepts_plausible_existing_catalog_value():
         bundle, {"creation_date": "1885-01-01", "date_display": "1885-01-01"}, "impressionism")
     assert fields["date_display"] == "1885"
     assert fields["date_source"] == "existing_catalog_value"
+
+
+# --------------------------------------------------------------------------- round 8: aggregator blocklist
+def test_is_aggregator_or_agency_flags_known_names():
+    for name in ("Google Cultural Institute", "Google Art Project", "Bridgeman Art Library",
+                 "Bridgeman Images", "Wikimedia Commons", "Flickr", "Project Apollo Archive",
+                 "Art Renewal Center", "WikiArt", "Web Gallery of Art", "Yorck Project"):
+        assert rg.is_aggregator_or_agency(name), name
+
+
+def test_is_aggregator_or_agency_false_for_real_institutions():
+    assert not rg.is_aggregator_or_agency("Yale Center for British Art")
+    assert not rg.is_aggregator_or_agency("The Phillips Collection")
+
+
+def test_extract_institution_phrase_rejects_aggregator():
+    assert rg._extract_institution_phrase("via Google Cultural Institute") is None
+
+
+def test_extract_institution_phrase_cleans_trailing_junk():
+    assert rg._extract_institution_phrase("Cleveland Museum of Art. See the full record.") \
+        == "Cleveland Museum of Art"
+    assert rg._extract_institution_phrase("Library of Congress Catalog") == "Library of Congress"
+
+
+def test_clean_institution_text_strips_leading_junk_phrases():
+    assert rg._clean_institution_text("drawings in the Yale Center for British Art") \
+        == "Yale Center for British Art"
+    assert rg._clean_institution_text("photographs in the National Archives") == "National Archives"
+
+
+def test_looks_like_institution_label_rejects_aggregator():
+    assert not rg.looks_like_institution_label("Google Cultural Institute")
+
+
+# --------------------------------------------------------------------------- round 8: title-only match gating
+def test_medium_ignores_wikidata_when_match_is_title_only():
+    bundle = {
+        "facts": [rg._fact("wikidata.made_from_material", ["pastel"], "Wikidata", "u", "CC0")],
+        "conflicts": [], "is_version_of": None, "match": {"confidence": "medium"},
+    }
+    fields, needs_review, notes = rg.resolve_structured_fields(bundle, {})
+    assert "medium" not in fields
+    assert any("title-only match" in n for n in notes)
+
+
+def test_medium_uses_wikidata_when_match_is_high_confidence():
+    bundle = {
+        "facts": [rg._fact("wikidata.made_from_material", ["pastel"], "Wikidata", "u", "CC0")],
+        "conflicts": [], "is_version_of": None, "match": {"confidence": "high"},
+    }
+    fields, needs_review, notes = rg.resolve_structured_fields(bundle, {})
+    assert fields["medium"] == "pastel"
+
+
+def test_current_repository_ignores_wikidata_collection_when_title_only():
+    bundle = {
+        "facts": [rg._fact("wikidata.collection", ["Metropolitan Museum of Art"], "Wikidata", "u", "CC0")],
+        "conflicts": [], "is_version_of": None, "match": {"confidence": "medium"},
+    }
+    fields, needs_review, notes = rg.resolve_structured_fields(bundle, {})
+    assert "current_repository" not in fields
+
+
+def test_dimensions_ignore_wikidata_when_title_only():
+    bundle = {
+        "facts": [
+            rg._fact("wikidata.height", ["105.4"], "Wikidata", "u", "CC0"),
+            rg._fact("wikidata.width", ["72.4"], "Wikidata", "u", "CC0"),
+        ],
+        "conflicts": [], "is_version_of": None, "match": {"confidence": "medium"},
+    }
+    fields, needs_review, notes = rg.resolve_structured_fields(bundle, {})
+    assert "physical_dimensions" not in fields
+
+
+# --------------------------------------------------------------------------- round 8: dimension floor by medium
+def test_dimension_plausible_uses_higher_floor_for_paintings():
+    assert not rg._dimension_plausible(3.2, "post-impressionism", "Oil on canvas")
+    assert rg._dimension_plausible(3.2, "post-impressionism", "Ink on paper")  # non-painting floor is lower
+    assert rg._dimension_plausible(45.0, "post-impressionism", "Oil on canvas")
+
+
+# --------------------------------------------------------------------------- round 8: date conflict precedence
+def test_date_conflict_excludes_wikidata_prefers_commons():
+    # toilers-of-the-sea-0125: Wikidata says 1847, Commons+museum agree on 1873 -> must never ship 1847.
+    bundle = {
+        "facts": [
+            rg._fact("wikidata.inception", ["1847"], "Wikidata", "u", "CC0"),
+            rg._fact("commons.DateTimeOriginal", "1873", "Wikimedia Commons", "u", "CC BY-SA"),
+        ],
+        "conflicts": [{"field": "date", "detail": "date spread 26 yrs"}], "is_version_of": None,
+        "match": {"confidence": "high"},
+    }
+    fields, needs_review, notes = rg.resolve_structured_fields(bundle, {})
+    assert fields["date_display"] == "1873"
+    assert any("ignored wikidata.inception" in n for n in notes)
+
+
+def test_date_conflict_blanks_when_only_wikidata_available():
+    bundle = {
+        "facts": [rg._fact("wikidata.inception", ["1847"], "Wikidata", "u", "CC0")],
+        "conflicts": [{"field": "date", "detail": "date spread 26 yrs"}], "is_version_of": None,
+        "match": {"confidence": "high"},
+    }
+    fields, needs_review, notes = rg.resolve_structured_fields(bundle, {})
+    assert "date_display" not in fields
+
+
+# --------------------------------------------------------------------------- round 8: photo-archive guard
+def test_photo_archive_guard_rejects_loc_for_nonphoto_object():
+    assert rg._is_photo_archive_of_a_nonphoto_object("Library of Congress", "Fresco")
+    assert rg._is_photo_archive_of_a_nonphoto_object("Library of Congress", None)
+
+
+def test_photo_archive_guard_allows_loc_for_a_photograph():
+    assert not rg._is_photo_archive_of_a_nonphoto_object("Library of Congress", "Gelatin silver print")
+
+
+def test_photo_archive_guard_ignores_non_archive_institutions():
+    assert not rg._is_photo_archive_of_a_nonphoto_object("Yale Center for British Art", "Oil on canvas")
+
+
+def test_current_repository_rejects_loc_credit_text_for_a_mural():
+    bundle = {
+        "facts": [rg._fact("museum.medium", "Fresco", "Met API", "u", "CC0"),
+                  rg._fact("commons.institution_credit", "Library of Congress", "Wikimedia Commons", "u", "CC BY-SA")],
+        "conflicts": [], "is_version_of": None, "match": {"confidence": "high"},
+    }
+    fields, needs_review, notes = rg.resolve_structured_fields(bundle, {})
+    assert "current_repository" not in fields
+    assert any("archive of the PHOTOGRAPH" in n for n in notes)
+
+
+# --------------------------------------------------------------------------- round 8: commons structured QID override
+def test_commons_structured_data_overrides_a_search_match():
+    # house-in-provence-0130: search matched a Barnes painting (Q_WRONG); the Commons file's own
+    # structured data (P6243/P180) links the real Indianapolis one (Q5914606) -> that must win.
+    fx = _FakeFetcher([
+        ("commonswiki", {"entities": {"M1": {"claims": {"P6243": [
+            {"mainsnak": {"datavalue": {"value": {"id": "Q5914606"}}}}
+        ]}}}}),
+    ])
+    item = {"source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/House%20in%20Provence.jpg"}
+    match = {"qid": "Q_WRONG", "method": "wbsearchentities + creator-verified", "confidence": "medium"}
+    new_match = asyncio.run(rg._apply_commons_structured_override(fx, item, match))
+    assert new_match["qid"] == "Q5914606"
+    assert new_match["confidence"] == "high"
+
+
+def test_commons_structured_override_keeps_high_confidence_match_untouched():
+    fx = _FakeFetcher([])
+    item = {"source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/X.jpg"}
+    match = {"qid": "Q1", "method": "P18 exact commons-file match", "confidence": "high"}
+    new_match = asyncio.run(rg._apply_commons_structured_override(fx, item, match))
+    assert new_match == match
+
+
+def test_commons_structured_override_noop_when_no_match():
+    fx = _FakeFetcher([])
+    item = {"source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/X.jpg"}
+    assert asyncio.run(rg._apply_commons_structured_override(fx, item, None)) is None
+
+
+# --------------------------------------------------------------------------- round 8: attribution qualifier
+def test_attribution_qualifier_detected_school_of():
+    facts_by_key_source = [rg._fact("commons.ObjectName", "School of Raphael, Portrait", "Wikimedia Commons", "u", "CC BY-SA")]
+    bundle = {
+        "facts": [rg._fact("wikidata.creator", ["Raphael"], "Wikidata", "u", "CC0")] + facts_by_key_source,
+        "conflicts": [], "is_version_of": None, "match": {"confidence": "high"},
+    }
+    fields, needs_review, notes = rg.resolve_structured_fields(bundle, {"agent_name": "Raphael"})
+    assert fields["agent_name_confirmed"] == "School of Raphael"
+    assert needs_review is True
+
+
+def test_attribution_qualifier_detected_german_schule_convention():
+    bundle = {
+        "facts": [
+            rg._fact("wikidata.creator", ["Raphael"], "Wikidata", "u", "CC0"),
+            rg._fact("commons.ObjectName", "Schule, Raffael", "Wikimedia Commons", "u", "CC BY-SA"),
+        ],
+        "conflicts": [], "is_version_of": None, "match": {"confidence": "high"},
+    }
+    fields, needs_review, notes = rg.resolve_structured_fields(bundle, {"agent_name": "Raphael"})
+    assert fields["agent_name_confirmed"] == "School of Raffael"
+    assert needs_review is True
+
+
+def test_no_attribution_qualifier_keeps_plain_confirmed_name():
+    bundle = {
+        "facts": [rg._fact("wikidata.creator", ["Winslow Homer"], "Wikidata", "u", "CC0")],
+        "conflicts": [], "is_version_of": None, "match": {"confidence": "high"},
+    }
+    fields, needs_review, notes = rg.resolve_structured_fields(bundle, {"agent_name": "Winslow Homer"})
+    assert fields["agent_name_confirmed"] == "Winslow Homer"
+    assert needs_review is False
+
+
+# --------------------------------------------------------------------------- round 8: agent_name garbage
+def test_looks_like_garbage_agent_name_flags_short_and_stopword_only():
+    assert rg._looks_like_garbage_agent_name("and")
+    assert rg._looks_like_garbage_agent_name("of")
+    assert rg._looks_like_garbage_agent_name("NA")
+    assert rg._looks_like_garbage_agent_name(", and")
+
+
+def test_looks_like_garbage_agent_name_false_for_real_name():
+    assert not rg._looks_like_garbage_agent_name("NASA")
+    assert not rg._looks_like_garbage_agent_name("Rembrandt")
+
+
+def test_normalize_credit_text_keeps_trailing_abbreviation_period_in_agent_name():
+    # regression: round 7's trailing-punctuation cleanup ate this; round 8 fixes it for good.
+    assert rg.normalize_credit_text("NASA/JPL-Caltech/Univ. of Ariz.") == "NASA/JPL-Caltech/Univ. of Ariz."
 
 
 def test_medium_bucket_distinguishes_oil_from_watercolor_and_print():

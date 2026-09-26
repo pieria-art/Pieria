@@ -380,12 +380,44 @@ _INSTITUTION_PHRASE_RE = re.compile(
     r"Foundation|Academy|Society)(?:\s+of\s+[A-Z][\w&.'-]*(?:\s+[A-Z][\w&.'-]*){0,3})?)\b"
 )
 
+# Round 8 #1: these are image AGGREGATORS/AGENCIES/ARCHIVES — they license or host a photo of a work,
+# they never HOLD it. "Google Cultural Institute" in particular is institution-shaped enough to slip
+# past _INSTITUTION_PHRASE_RE/looks_like_institution_label, which is exactly the bug (devils-bridge-
+# st-gotthards-pass-0059, luncheon-of-the-boating-party-0020, farmyard-0098, boy-in-flowers…-0144 all
+# had it as current_repository instead of the real holder).
+_AGGREGATOR_BLOCKLIST_RE = re.compile(
+    r"\b(Google (?:Cultural Institute|Art Project)|Bridgeman (?:Art Library|Images)|Wikimedia|"
+    r"Wikimedia Commons|\bCommons\b|Flickr|Project Apollo Archive|Art Renewal Center|WikiArt|"
+    r"Web Gallery of Art|Yorck Project)\b", re.I,
+)
+# Trailing/leading junk a Commons Credit sentence leaves behind after the institution name itself —
+# "Library of Congress Catalog", "...See the full record.", "'s Prints and Photographs Division".
+_TRAILING_JUNK_RE = re.compile(
+    r"(\.\s*See\b.*$|\s+Catalog\w*$|'s\s+Prints?\b.*$)", re.I,
+)
+_LEADING_JUNK_RE = re.compile(r"^(drawings?\s+in\s+the\s+|photographs?\s+in\s+the\s+)", re.I)
+
+
+def is_aggregator_or_agency(name: str) -> bool:
+    return bool(name) and bool(_AGGREGATOR_BLOCKLIST_RE.search(name))
+
+
+def _clean_institution_text(name: str) -> str:
+    name = _LEADING_JUNK_RE.sub("", name or "").strip()
+    name = _TRAILING_JUNK_RE.sub("", name).strip()
+    return name
+
 
 def _extract_institution_phrase(text: str) -> str | None:
     if not text:
         return None
     m = _INSTITUTION_PHRASE_RE.search(text)
-    return m.group(1).strip() if m else None
+    if not m:
+        return None
+    phrase = _clean_institution_text(m.group(1))
+    if not phrase or is_aggregator_or_agency(phrase):
+        return None
+    return phrase
 
 
 # ----------------------------------------------------------------------- museum-match verification
@@ -467,6 +499,8 @@ _INSTITUTION_LABEL_RE = re.compile(
 
 def looks_like_institution_label(label: str) -> bool:
     if not label or _BARE_QID_RE.match(label.strip()):
+        return False
+    if is_aggregator_or_agency(label):
         return False
     return bool(_INSTITUTION_LABEL_RE.search(label))
 
@@ -717,10 +751,28 @@ _MUSEUM_FACT_KEYS = ("objectDate", "medium", "culture", "classification", "creat
                      "technique", "description", "did_you_know", "dimensions")
 
 
+async def _apply_commons_structured_override(fx: Fetcher, item: dict, match: dict | None) -> dict | None:
+    """Round 8 addendum (a): the Commons FILE's own structured data (P6243 digital-representation-of /
+    P180 depicts) names a QID directly — that beats a search/title match every time, since a search
+    can land on a plausible-sounding but wrong item (house-in-provence-0130 matched a Barnes painting
+    by title while the file's own structured data links the real Indianapolis one). Only overrides a
+    non-high-confidence match — a P18-exact match already IS this same signal."""
+    source_url = item.get("source_url") or ""
+    if not match or match.get("confidence") == "high" or "commons.wikimedia.org" not in source_url:
+        return match
+    filename = urllib.parse.unquote(urllib.parse.urlparse(source_url).path.rsplit("/", 1)[-1])
+    structured_qid, note = await _commons_structured(fx, filename)
+    if structured_qid and structured_qid != match["qid"]:
+        return {"qid": structured_qid, "method": f"commons structured data overrides search match ({note})",
+                "confidence": "high"}
+    return match
+
+
 async def build_facts_bundle(fx: Fetcher, item: dict, collection: str | None = None) -> dict:
     """Resolve identity + assemble the typed facts bundle for one catalog item."""
     allow_day_precision = catalog_spec.kind_for(collection or "") in ("photo", "space")
     match = await resolve_work(fx, item)
+    match = await _apply_commons_structured_override(fx, item, match)
     facts: list[dict] = []
     check_only: list[str] = []
     conflicts: list[dict] = []
@@ -917,6 +969,16 @@ _PRINT_MEDIUM_WORDS_RE = re.compile(
     r"\b(engraving|engraved|print|lithograph\w*|etching|woodcut|woodblock)\b", re.I,
 )
 
+# Round 8 addendum (e): Commons/museum text may qualify a bare master's name — "School of Raphael",
+# "Workshop of Rembrandt", or (a Staatliche Museen zu Berlin convention) "Schule, Raffael" — meaning
+# the actual attribution is weaker than the catalog's bare "Raphael"/"Rembrandt". Detected only to
+# REFINE an already-agreeing name, never to introduce a name the catalog didn't already have.
+_ATTRIBUTION_QUALIFIER_RE = re.compile(
+    r"\b(school of|workshop of|circle of|studio of|attributed to|follower of|manner of)\s+"
+    r"([A-Z][\w.’'\-]+(?:\s+[A-Z][\w.’'\-]+)*)", re.I,
+)
+_SCHULE_QUALIFIER_RE = re.compile(r"\bSchule,\s*([A-Z][\w.’'\-]+(?:\s+[A-Z][\w.’'\-]+)*)", re.I)
+
 
 _NAME_PARTICLES = {"van", "der", "de", "von", "di", "le", "la", "den", "ter", "y", "af"}
 
@@ -974,12 +1036,35 @@ def detect_identity_mismatch(item: dict, facts: list[dict]) -> dict | None:
 # physical_dimensions plausibility guard (round 6) doesn't apply here.
 _LARGE_OBJECT_COLLECTIONS = {"cartography", "sculpture-antiquity", "cities-architecture", "ancient-egypt"}
 _DIMENSION_MIN_CM, _DIMENSION_MAX_CM = 0.5, 1500.0
+# Round 8 #3: a painting a few centimetres a side is implausible regardless of the general floor
+# (garden-at-les-lauves-0157 "2.6 x 3.2 cm" — that's a thumbnail crop's dimensions, not the canvas).
+_PAINTING_LIKE_BUCKETS = {"oil", "watercolor"}
+_PAINTING_DIMENSION_MIN_CM = 5.0
 
 
-def _dimension_plausible(cm: float, collection: str | None) -> bool:
+def _dimension_plausible(cm: float, collection: str | None, medium: str | None = None) -> bool:
     if collection in _LARGE_OBJECT_COLLECTIONS:
         return True
-    return _DIMENSION_MIN_CM <= cm <= _DIMENSION_MAX_CM
+    floor = _DIMENSION_MIN_CM
+    if medium_bucket(medium or "") in _PAINTING_LIKE_BUCKETS:
+        floor = _PAINTING_DIMENSION_MIN_CM
+    return floor <= cm <= _DIMENSION_MAX_CM
+
+
+# Round 8 addendum (c): an archive that holds only a PHOTOGRAPH of some other object (a mural, a
+# building, a statue) is never that object's repository — mission-building-0035 (LoC) is the classic
+# case. Only rejected when the resolved medium ISN'T itself photographic (LoC legitimately holds the
+# photograph when the placarded object is the photograph itself).
+_PHOTO_ARCHIVE_RE = re.compile(r"\bLibrary of Congress\b|\bNational Archives\b", re.I)
+_PHOTOGRAPHIC_MEDIUM_RE = re.compile(
+    r"\bphoto|\bnegative\b|glass plate|photochrom|halftone|gelatin silver|albumen\b", re.I,
+)
+
+
+def _is_photo_archive_of_a_nonphoto_object(candidate: str, medium: str | None) -> bool:
+    if not candidate or not _PHOTO_ARCHIVE_RE.search(candidate):
+        return False
+    return not _PHOTOGRAPHIC_MEDIUM_RE.search(medium or "")
 
 
 # ----------------------------------------------------------------------- structured fields (deterministic)
@@ -1012,8 +1097,19 @@ def resolve_structured_fields(bundle: dict, existing_item: dict, collection: str
         fields["identity_mismatch_evidence"] = mismatch["evidence"]
         notes.extend(f"identity_mismatch_suspected: {e}" for e in mismatch["evidence"])
 
-    def first_value(keys):
+    # Round 8 #2: a TITLE-ONLY Wikidata match (wbsearchentities + creator-verified — confidence
+    # "medium", never P18/an explicit accession identifier) only corroborates creator/date. Different
+    # physical impressions/casts of the "same" work share a Wikidata item family loosely at best —
+    # bather-drying-herself-0232 matched a DIFFERENT Degas pastel than the one pictured;
+    # redtailed-hawk-0063 pulled another impression's holder+dimensions entirely. Repository,
+    # dimensions and medium from wikidata.* are excluded unless the match is confidence=="high".
+    high_confidence_match = (bundle.get("match") or {}).get("confidence") == "high"
+    date_conflict = any(c.get("field") == "date" for c in (bundle.get("conflicts") or []))
+
+    def first_value(keys, exclude=()):
         for k, _ in keys:
+            if k in exclude:
+                continue
             f = facts_by_key.get(k)
             if not f:
                 continue
@@ -1024,8 +1120,12 @@ def resolve_structured_fields(bundle: dict, existing_item: dict, collection: str
                 continue
             yield v, f["source"]
 
+    medium_exclude = () if high_confidence_match else ("wikidata.made_from_material",)
+    if not high_confidence_match and facts_by_key.get("wikidata.made_from_material"):
+        notes.append("medium: ignored wikidata.made_from_material — title-only match, not exemplar-specific")
+
     # medium
-    for v, src in first_value(_FIELD_SOURCES["medium"]):
+    for v, src in first_value(_FIELD_SOURCES["medium"], exclude=medium_exclude):
         fields["medium"] = v
         fields["medium_source"] = src
         break
@@ -1035,9 +1135,16 @@ def resolve_structured_fields(bundle: dict, existing_item: dict, collection: str
             fields["medium_source"] = "existing_catalog_value"
             notes.append("medium: no retrieved fact, kept existing catalog value")
 
-    # date — accession-year guard applied before acceptance
+    # date — accession-year guard applied before acceptance. Round 8 addendum (b): once a "date"
+    # conflict is flagged (sources disagree by >25yrs), Wikidata's inception is EXCLUDED rather than
+    # winning on precedence order — toilers-of-the-sea-0125 shipped Wikidata's 1847 over Commons+
+    # museum's agreeing 1873. On a genuine conflict: museum > commons > blank; never the outlier.
     dropped_accession = False
-    for v, src in first_value(_FIELD_SOURCES["date_display"]):
+    date_exclude = ("wikidata.inception",) if date_conflict else ()
+    if date_conflict and facts_by_key.get("wikidata.inception"):
+        notes.append("date: ignored wikidata.inception — conflicts with museum/Commons dating, "
+                     "preferring the more authoritative source instead of the outlier")
+    for v, src in first_value(_FIELD_SOURCES["date_display"], exclude=date_exclude):
         if looks_like_accession_number(v):
             dropped_accession = True
             continue
@@ -1071,34 +1178,76 @@ def resolve_structured_fields(bundle: dict, existing_item: dict, collection: str
         needs_review = needs_review or "date_display" not in fields
 
     # current repository — museum-API-sourced institution name trusted outright; a Wikidata P195
-    # collection label only if it actually looks like an institution (never a bare QID, never a place).
+    # collection label only if it actually looks like an institution (never a bare QID, never a
+    # place) AND the match is confidence=="high" (round 8 #2 — a title-only match's P195 belongs to
+    # whichever exemplar Wikidata happened to pick, not necessarily the one pictured). Round 8 #1: an
+    # aggregator/agency/archive-of-images (Google Cultural Institute, Bridgeman, Commons, Flickr…) is
+    # never a real holder, however institution-shaped the phrase reads.
     for key in ("museum.institution", "museum2.institution"):
         f = facts_by_key.get(key)
-        if f and str(f["value"]).strip():
+        if f and str(f["value"]).strip() and not is_aggregator_or_agency(str(f["value"])):
             fields["current_repository"] = str(f["value"]).strip()
             break
     else:
-        f = facts_by_key.get("wikidata.collection")
         v = None
-        if f:
-            v = f["value"][0] if isinstance(f["value"], list) else f["value"]
-        if v and looks_like_institution_label(str(v)):
+        if high_confidence_match:
+            f = facts_by_key.get("wikidata.collection")
+            if f:
+                v = f["value"][0] if isinstance(f["value"], list) else f["value"]
+        elif facts_by_key.get("wikidata.collection"):
+            notes.append("current_repository: ignored wikidata.collection — title-only match, "
+                         "not exemplar-specific")
+        if v and looks_like_institution_label(str(v)) and not is_aggregator_or_agency(str(v)):
             fields["current_repository"] = str(v).strip()
         else:
             if v:
                 notes.append(f"current_repository: rejected non-institution/unresolved candidate {v!r}")
-            # round 3 #3: last resort — a generic institution name lifted from Commons Credit/
-            # Institution text, only when nothing more authoritative named one.
+            # round 3 #3 / round 8 #1: last resort — a generic institution name lifted from Commons
+            # Credit/Institution text, only when nothing more authoritative named one, it isn't an
+            # aggregator/agency, and (round 8 addendum c) it isn't a photo archive holding only a
+            # PHOTOGRAPH of some other object (a mural/building) rather than the object itself.
             cf = facts_by_key.get("commons.institution_credit")
-            if cf and looks_like_institution_label(str(cf["value"])):
-                fields["current_repository"] = str(cf["value"]).strip()
-                fields["current_repository_source"] = "Commons Credit text"
+            if cf:
+                candidate = str(cf["value"]).strip()
+                if looks_like_institution_label(candidate) and not is_aggregator_or_agency(candidate):
+                    if _is_photo_archive_of_a_nonphoto_object(candidate, fields.get("medium")):
+                        notes.append(f"current_repository: rejected {candidate!r} — an archive of the "
+                                     f"PHOTOGRAPH, not the depicted (non-photographic) object")
+                    else:
+                        fields["current_repository"] = candidate
+                        fields["current_repository_source"] = "Commons Credit text"
 
     # agent name — round 5 bug fix: this MUST come only from the museum record's own creator field or
     # Wikidata P170, never from commons.Artist (routinely the photographer/uploader — "Didier
     # Descouens", "Elke Wetzig" — or even the holding INSTITUTION, e.g. "Rijksmuseum" on 100+ Hiroshige
     # prints; 133 packets had a structured artist disagreeing with the catalog for exactly this
     # reason). commons.Artist stays a fact for writers to see but is never used to set this field.
+    def _attribution_target_matches(catalog_artist: str, name: str) -> bool:
+        if _names_plausibly_match(catalog_artist, name):
+            return True
+        # tolerant of a transliteration/spelling variant (Commons SMB "Schule, Raffael" vs catalog
+        # "Raphael") — plain token-overlap alone misses this.
+        return difflib.SequenceMatcher(None, _norm(catalog_artist), _norm(name)).ratio() >= 0.7
+
+    def _detect_attribution_qualifier(catalog_artist: str) -> str | None:
+        for key in ("commons.ObjectName", "commons.Artist", "commons.Credit"):
+            f = facts_by_key.get(key)
+            if not f:
+                continue
+            text = str(f["value"][0] if isinstance(f["value"], list) else f["value"])
+            m = _ATTRIBUTION_QUALIFIER_RE.search(text)
+            qualifier = "school of"
+            if m:
+                qualifier, name = m.group(1).lower(), m.group(2)
+            else:
+                m2 = _SCHULE_QUALIFIER_RE.search(text)
+                if not m2:
+                    continue
+                name = m2.group(1)
+            if catalog_artist and _attribution_target_matches(catalog_artist, name):
+                return f"{qualifier.capitalize()} {name.strip()}"
+        return None
+
     agent_val, agent_src = None, None
     for key in ("museum.creators", "wikidata.creator"):
         f = facts_by_key.get(key)
@@ -1117,9 +1266,19 @@ def resolve_structured_fields(bundle: dict, existing_item: dict, collection: str
             fields["agent_name_source"] = agent_src
         elif _names_plausibly_match(catalog_artist, agent_val):
             # confirmed, not changed — keep the catalog's own spelling/form (e.g. "Rembrandt van
-            # Rijn"), don't replace it with a shorter/differently-formatted museum/Wikidata string.
-            fields["agent_name_confirmed"] = catalog_artist
-            fields["agent_name_source"] = f"existing_catalog_value (confirmed by {agent_src})"
+            # Rijn"), don't replace it with a shorter/differently-formatted museum/Wikidata string —
+            # UNLESS Commons/museum text qualifies it ("School of Raphael" — round 8 addendum e),
+            # which is a real weakening of the attribution the bare confirmed name would hide.
+            qualified = _detect_attribution_qualifier(catalog_artist)
+            if qualified:
+                fields["agent_name_confirmed"] = qualified
+                fields["agent_name_source"] = "Commons attribution qualifier"
+                needs_review = True
+                notes.append(f"agent_name: qualified attribution detected — {qualified!r} "
+                             f"(catalog said {catalog_artist!r})")
+            else:
+                fields["agent_name_confirmed"] = catalog_artist
+                fields["agent_name_source"] = f"existing_catalog_value (confirmed by {agent_src})"
         else:
             # disagreement — never overwrite; flag for a human instead of shipping a guess.
             needs_review = True
@@ -1134,13 +1293,19 @@ def resolve_structured_fields(bundle: dict, existing_item: dict, collection: str
     # source value or unit could still slip through, so a plausibility guard drops anything outside a
     # sane range for a hand-held object (0.5-1500 cm per side) unless the collection is one where a
     # genuinely large object is expected (building/monument/wall map).
+    got_museum_dims = False
     for key in ("museum.dimensions", "museum2.dimensions"):
         f = facts_by_key.get(key)
         if f and str(f["value"]).strip():
             fields["physical_dimensions"] = str(f["value"]).strip()
             fields["physical_dimensions_source"] = f["source"]
+            got_museum_dims = True
             break
-    else:
+    if not got_museum_dims and not high_confidence_match:
+        if facts_by_key.get("wikidata.height") or facts_by_key.get("wikidata.width"):
+            notes.append("physical_dimensions: ignored wikidata height/width — title-only match, "
+                         "not exemplar-specific")
+    elif not got_museum_dims:
         h = facts_by_key.get("wikidata.height")
         w = facts_by_key.get("wikidata.width")
         if h or w:
@@ -1151,13 +1316,13 @@ def resolve_structured_fields(bundle: dict, existing_item: dict, collection: str
                     return None
             hv, wv = _to_float(h), _to_float(w)
             sides = [x for x in (hv, wv) if x is not None]
-            if sides and all(_dimension_plausible(x, collection) for x in sides):
+            if sides and all(_dimension_plausible(x, collection, fields.get("medium")) for x in sides):
                 parts = [f"{x:.1f}" for x in (hv, wv) if x is not None]
                 fields["physical_dimensions"] = " x ".join(parts) + " cm"
                 fields["physical_dimensions_source"] = "Wikidata"
             elif sides:
                 notes.append(f"physical_dimensions: dropped implausible Wikidata value(s) {sides} cm "
-                              f"(guard: 0.5-1500cm unless building/monument/map)")
+                              f"(guard: painting floor 5cm, else 0.5-1500cm unless building/monument/map)")
 
     return fields, needs_review, notes
 
@@ -1678,6 +1843,19 @@ _COMMONS_BOILERPLATE_RES = [
 ]
 
 
+# Round 8 #4: a credit blob can clean down to a stub too short or too empty of meaning to be a name.
+_AGENT_STOPWORDS_ONLY_RE = re.compile(
+    r"^(?:and|or|the|a|an|by|of|in|with|,|;|\.|-|\s)+$", re.I,
+)
+
+
+def _looks_like_garbage_agent_name(value: str) -> bool:
+    v = (value or "").strip()
+    if len(v) < 3:
+        return True
+    return bool(_AGENT_STOPWORDS_ONLY_RE.match(v))
+
+
 def normalize_credit_text(text: str, max_len: int = 80, shorten_to_orgs: bool = True) -> str:
     """Strip Image:/Credit: prefixes, URLs, parenthetical URL asides, and Commons "featured
     picture"/"nominate it" boilerplate; collapse to the first real paragraph; if still too long,
@@ -1700,10 +1878,11 @@ def normalize_credit_text(text: str, max_len: int = 80, shorten_to_orgs: bool = 
     t = re.sub(r",\s*,", ",", t)         # two removed asides back-to-back -> double comma
     t = re.sub(r"\s+", " ", t).strip()
     # Trailing-punctuation cleanup (a dangling ", " or "; " left by a removed aside) only applies to
-    # credit text — a title/institution name can legitimately END in a period ("Jr.", an abbreviated
-    # name), which .strip(punctuation) would silently eat.
+    # credit text, and NEVER eats a trailing period — round 7 first tried stripping "." here too and
+    # it silently ate a legitimate abbreviation ("Univ. of Ariz." -> "Univ. of Ariz", helix-nebula-
+    # 0012); a title/institution name can also legitimately end in one ("Jr.").
     if shorten_to_orgs:
-        t = t.strip(" ,;.-")
+        t = t.strip(" ,;-")
     if shorten_to_orgs and len(t) > max_len:
         orgs = list(dict.fromkeys(_ORG_TOKEN_RE.findall(t)))
         if orgs:
@@ -1831,6 +2010,11 @@ def run_import(batch_glob: str = "batch_*.jsonl"):
         for field, shorten in (("agent_name", True), ("current_repository", False), ("title", False)):
             old_val = base.get(field)
             new_val = normalize_credit_text(old_val, shorten_to_orgs=shorten) if old_val else old_val
+            if field == "agent_name" and new_val and _looks_like_garbage_agent_name(new_val):
+                # Round 8 #4: a credit blob can clean down to a meaningless fragment (cosmic-reef-0020
+                # "and" — a leftover conjunction from "NASA, ESA, and STScI") — blank rather than ship
+                # nonsense, never invent a real name in its place.
+                new_val = ""
             if new_val != old_val:
                 base[field] = new_val
                 import_report["header_hygiene_changes"].append({
