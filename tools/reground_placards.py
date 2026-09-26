@@ -1698,7 +1698,12 @@ def normalize_credit_text(text: str, max_len: int = 80, shorten_to_orgs: bool = 
     t = re.sub(r"\s+", " ", t)
     t = re.sub(r"\s+,", ",", t)          # a removed "(url)" often leaves "word , word"
     t = re.sub(r",\s*,", ",", t)         # two removed asides back-to-back -> double comma
-    t = re.sub(r"\s+", " ", t).strip(" ,;.-")
+    t = re.sub(r"\s+", " ", t).strip()
+    # Trailing-punctuation cleanup (a dangling ", " or "; " left by a removed aside) only applies to
+    # credit text — a title/institution name can legitimately END in a period ("Jr.", an abbreviated
+    # name), which .strip(punctuation) would silently eat.
+    if shorten_to_orgs:
+        t = t.strip(" ,;.-")
     if shorten_to_orgs and len(t) > max_len:
         orgs = list(dict.fromkeys(_ORG_TOKEN_RE.findall(t)))
         if orgs:

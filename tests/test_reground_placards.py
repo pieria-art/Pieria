@@ -1064,6 +1064,14 @@ def test_normalize_credit_text_title_never_shortened_to_orgs_or_truncated():
     assert out == raw
 
 
+def test_normalize_credit_text_never_eats_a_titles_trailing_period():
+    # regression: "Mrs. John Nicholson (Hannah Duncan) and John Nicholson, Jr." lost its final period
+    # to the credit-text trailing-punctuation cleanup, which must only apply to agent_name.
+    title = "Mrs. John Nicholson (Hannah Duncan) and John Nicholson, Jr."
+    assert rg.normalize_credit_text(title, shorten_to_orgs=False) == title
+    assert rg.normalize_credit_text("Portrait of Aechje Claesdr.", shorten_to_orgs=False) == "Portrait of Aechje Claesdr."
+
+
 def test_normalize_credit_text_passthrough_for_clean_value():
     assert rg.normalize_credit_text("Winslow Homer") == "Winslow Homer"
     assert rg.normalize_credit_text("") == ""
