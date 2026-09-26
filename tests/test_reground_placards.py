@@ -1035,6 +1035,84 @@ def test_physical_dimensions_prefers_museum_record_over_wikidata():
     assert fields["physical_dimensions_source"] == "Cleveland Open Access API"
 
 
+# --------------------------------------------------------------------------- header hygiene (round 7)
+def test_normalize_credit_text_strips_commons_featured_picture_boilerplate():
+    raw = ("NASA, ESA, and the Hubble Heritage Team\n\n"
+           "This is a featured picture on Wikimedia Commons (Featured pictures) and is considered "
+           "one of the finest images. If you have an image of similar or higher quality, please "
+           "nominate it here.")
+    assert rg.normalize_credit_text(raw) == "NASA, ESA, and the Hubble Heritage Team"
+
+
+def test_normalize_credit_text_strips_image_prefix_and_url_parenthetical():
+    raw = ("Image: \n\nNational Aeronautics and Space Administration "
+           "(a U.S. federal government agency; https://www.nasa.gov)")
+    assert rg.normalize_credit_text(raw) == "NASA"
+
+
+def test_normalize_credit_text_shortens_long_credit_to_leading_orgs():
+    raw = "NASA, ESA, CSA, and STScI; image processing by a very long team of many named individuals here"
+    out = rg.normalize_credit_text(raw, max_len=40)
+    assert out == "NASA, ESA, CSA, STScI"
+
+
+def test_normalize_credit_text_title_never_shortened_to_orgs_or_truncated():
+    # title/current_repository get the same boilerplate/URL stripping but are never truncated —
+    # only agent_name may be shortened when still too long after cleaning.
+    raw = "A perfectly ordinary but somewhat long title that exceeds the eighty character maximum length limit"
+    out = rg.normalize_credit_text(raw, shorten_to_orgs=False)
+    assert out == raw
+
+
+def test_normalize_credit_text_passthrough_for_clean_value():
+    assert rg.normalize_credit_text("Winslow Homer") == "Winslow Homer"
+    assert rg.normalize_credit_text("") == ""
+    assert rg.normalize_credit_text(None) is None
+
+
+# --------------------------------------------------------------------------- raw ISO date normalisation (round 7)
+def test_normalize_iso_date_string_reduces_artwork_date_to_year():
+    assert rg._normalize_iso_date_string("1889-07-14", "impressionism") == "1889"
+
+
+def test_normalize_iso_date_string_keeps_day_precision_for_space_and_photo():
+    assert rg._normalize_iso_date_string("1969-07-20", "earth-and-spaceflight") == "20 July 1969"
+
+
+def test_normalize_iso_date_string_passthrough_non_iso_value():
+    assert rg._normalize_iso_date_string("c. 1870s", "impressionism") == "c. 1870s"
+
+
+def test_date_display_drops_existing_catalog_value_after_artist_death():
+    # regression: "Farmyard in Normandy" catalogued "2024-04-10" — really a Commons upload date on a
+    # 19th-century painting.
+    bundle = {"facts": [], "conflicts": [], "is_version_of": None, "creator_death_year": 1875,
+              "commons_upload_year": None}
+    fields, needs_review, notes = rg.resolve_structured_fields(
+        bundle, {"creation_date": "2024-04-10", "date_display": "2024-04-10"}, "impressionism")
+    assert "date_display" not in fields
+    assert needs_review is True
+    assert any("upload/post-mortem" in n for n in notes)
+
+
+def test_date_display_drops_existing_catalog_value_at_or_after_upload_year():
+    bundle = {"facts": [], "conflicts": [], "is_version_of": None, "creator_death_year": None,
+              "commons_upload_year": 2015}
+    fields, needs_review, notes = rg.resolve_structured_fields(
+        bundle, {"creation_date": "2020-01-01", "date_display": "2020-01-01"}, "impressionism")
+    assert "date_display" not in fields
+    assert needs_review is True
+
+
+def test_date_display_accepts_plausible_existing_catalog_value():
+    bundle = {"facts": [], "conflicts": [], "is_version_of": None, "creator_death_year": 1890,
+              "commons_upload_year": 2015}
+    fields, needs_review, notes = rg.resolve_structured_fields(
+        bundle, {"creation_date": "1885-01-01", "date_display": "1885-01-01"}, "impressionism")
+    assert fields["date_display"] == "1885"
+    assert fields["date_source"] == "existing_catalog_value"
+
+
 def test_medium_bucket_distinguishes_oil_from_watercolor_and_print():
     assert rg.medium_bucket("Oil on canvas") == "oil"
     assert rg.medium_bucket("Watercolor and gouache over graphite") == "watercolor"

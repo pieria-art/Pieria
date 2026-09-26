@@ -588,6 +588,27 @@ def format_wikidata_date(claim: dict, allow_day_precision: bool = False) -> str 
     return f"{prefix}{year}"  # millennium or coarser — best effort
 
 
+# Round 7 #2: a raw "YYYY-MM-DD" reaching date_display/creation_date (typically an
+# existing_catalog_value straight from the pre-reground catalog) gets the same day/year rule as a
+# Wikidata claim — a specific day is only meaningful for a photograph or space-imagery item.
+_RAW_ISO_DATE_RE = re.compile(r"^(\d{4})-(\d{2})-(\d{2})$")
+
+
+def _normalize_iso_date_string(value: str, collection: str | None) -> str:
+    if not value:
+        return value
+    m = _RAW_ISO_DATE_RE.match(value.strip())
+    if not m:
+        return value
+    year, month, day = m.groups()
+    if catalog_spec.kind_for(collection or "") in ("photo", "space") and month != "00" and day != "00":
+        try:
+            return f"{int(day)} {_MONTH_NAMES[int(month)]} {int(year)}"
+        except (ValueError, IndexError):
+            pass
+    return str(int(year))
+
+
 async def _wikidata_full(fx: Fetcher, qid: str, allow_day_precision: bool = False) -> dict:
     body, err = await fx.get_json(WD_API, {
         "action": "wbgetentities", "ids": qid, "props": "claims|sitelinks", "languages": "en", "format": "json",
@@ -688,6 +709,7 @@ async def build_facts_bundle(fx: Fetcher, item: dict, collection: str | None = N
     wikipedia_lead = None
     commons_description = None
     creator_qid = None
+    creator_death_year = None
 
     if match:
         wd = await _wikidata_full(fx, match["qid"], allow_day_precision)
@@ -697,6 +719,11 @@ async def build_facts_bundle(fx: Fetcher, item: dict, collection: str | None = N
             facts.append(_fact(f"wikidata.{key}", labels, "Wikidata", wd_url, "CC0"))
         is_version_of = wd.get("is_version_of")
         creator_qid = wd.get("creator_qid")
+        # Round 7: computed once, up front, so the "does this date land after the artist died"
+        # guard is available for ANY date_display (not just commons.DateTimeOriginal) — including an
+        # existing_catalog_value fallback that's itself a leaked upload/scan date.
+        if creator_qid:
+            creator_death_year = await _creator_death_year(fx, creator_qid)
         if wd.get("based_on_theme"):
             bot = wd["based_on_theme"]
             facts.append(_fact("wikidata.based_on_theme", bot["of_label"], "Wikidata", wd_url, "CC0"))
@@ -750,21 +777,19 @@ async def build_facts_bundle(fx: Fetcher, item: dict, collection: str | None = N
 
     source_url = item.get("source_url") or ""
     ext = None
+    commons_upload_year = None
     if "commons.wikimedia.org" in source_url:
         filename = urllib.parse.unquote(urllib.parse.urlparse(source_url).path.rsplit("/", 1)[-1])
         ext = await _commons_extmetadata(fx, filename)
         if ext:
-            upload_year = _extract_year(ext.get("DateTime") or "")
-            death_year = None
+            commons_upload_year = _extract_year(ext.get("DateTime") or "")
             for key, val in ext.items():
                 if key == "ImageDescription":
                     check_only.append(val)
                     commons_description = val
                     continue
                 if key == "DateTimeOriginal":
-                    if death_year is None and creator_qid:
-                        death_year = await _creator_death_year(fx, creator_qid)
-                    if looks_like_capture_timestamp(val, upload_year, death_year):
+                    if looks_like_capture_timestamp(val, commons_upload_year, creator_death_year):
                         continue  # round 3 #2: drop — reads as a scan/upload timestamp, not a date
                     if looks_like_garbled_date(val):
                         continue  # round 3 #9: drop — not a clean date expression
@@ -815,6 +840,7 @@ async def build_facts_bundle(fx: Fetcher, item: dict, collection: str | None = N
         "match": match, "facts": facts, "conflicts": conflicts,
         "is_version_of": is_version_of, "check_only_texts": check_only,
         "wikipedia_lead": wikipedia_lead, "commons_description": commons_description,
+        "creator_death_year": creator_death_year, "commons_upload_year": commons_upload_year,
     }
 
 
@@ -989,15 +1015,29 @@ def resolve_structured_fields(bundle: dict, existing_item: dict, collection: str
         if looks_like_accession_number(v):
             dropped_accession = True
             continue
+        v = _normalize_iso_date_string(v, collection)
         fields["date_display"] = v
         fields["creation_date"] = v
         fields["date_source"] = src
         break
     else:
-        if existing_item.get("creation_date") and not looks_like_accession_number(existing_item["creation_date"]):
-            fields["date_display"] = existing_item.get("date_display") or existing_item["creation_date"]
-            fields["creation_date"] = existing_item["creation_date"]
-            fields["date_source"] = "existing_catalog_value"
+        existing_date = existing_item.get("creation_date")
+        if existing_date and not looks_like_accession_number(existing_date):
+            # Round 7: the ORIGINAL catalog's own date can itself be a leaked upload/scan timestamp
+            # (e.g. "Farmyard in Normandy" catalogued "2024-04-10" — a Commons upload date, not a 19th
+            # century painting's creation date). Same guard as commons.DateTimeOriginal, applied here
+            # because this value skips that check entirely (it's the pre-existing catalog field, not
+            # something we just fetched from Commons).
+            if looks_like_capture_timestamp(existing_date, bundle.get("commons_upload_year"),
+                                            bundle.get("creator_death_year")):
+                notes.append(f"date: dropped existing_catalog_value {existing_date!r} — reads as an "
+                             f"upload/post-mortem date, not a creation date")
+                needs_review = True
+            else:
+                fields["date_display"] = _normalize_iso_date_string(
+                    existing_item.get("date_display") or existing_date, collection)
+                fields["creation_date"] = _normalize_iso_date_string(existing_date, collection)
+                fields["date_source"] = "existing_catalog_value"
         elif existing_item.get("creation_date"):
             dropped_accession = True
     if dropped_accession:
@@ -1585,6 +1625,63 @@ def apply_field_corrections(written: dict, packet: dict, base: dict) -> tuple[di
     return applied, rejected
 
 
+# ----------------------------------------------------------------------- header hygiene (round 7)
+# NASA/space-agency Commons credit fields leak straight into the pre-reground catalog's agent_name
+# unmangled — a multi-line credit blob ending in Commons' own "featured picture … nominate it"
+# boilerplate (Ring Nebula), or "Image: \n\nNational Aeronautics and Space Administration (a U.S.
+# federal government agency; https://…)" (Stephan's Quintet). This is landing-step sanitisation:
+# deterministic, no model, applied to whatever ends up in the header regardless of its source.
+_CREDIT_PREFIX_RE = re.compile(r"^\s*(image|credit)\s*:\s*", re.I)
+_URL_RE = re.compile(r"https?://\S+")
+_PAREN_WITH_URL_RE = re.compile(r"\([^()]*https?://[^()]*\)")
+_ORG_ALIASES = [
+    (re.compile(r"National Aeronautics and Space Administration", re.I), "NASA"),
+    (re.compile(r"European Space Agency", re.I), "ESA"),
+    (re.compile(r"Canadian Space Agency", re.I), "CSA"),
+    (re.compile(r"Space Telescope Science Institute", re.I), "STScI"),
+    (re.compile(r"European Southern Observatory", re.I), "ESO"),
+    (re.compile(r"Jet Propulsion Laboratory", re.I), "JPL"),
+    (re.compile(r"California Institute of Technology", re.I), "Caltech"),
+]
+_ORG_TOKEN_RE = re.compile(r"\b(NASA|ESA|STScI|ESO|JPL|Caltech|JAXA|Roscosmos|CSA|Hubble)\b")
+_COMMONS_BOILERPLATE_RES = [
+    re.compile(r"this is a featured picture on wikimedia commons[^.]*\.?", re.I),
+    re.compile(r"if you have an image of (?:a )?similar or higher quality[^.]*\.?", re.I),
+    re.compile(r"\bnominate it\b[^.]*\.?", re.I),
+    re.compile(r"\bfeatured pictures?\b\s*(?:\([^)]*\))?", re.I),
+]
+
+
+def normalize_credit_text(text: str, max_len: int = 80, shorten_to_orgs: bool = True) -> str:
+    """Strip Image:/Credit: prefixes, URLs, parenthetical URL asides, and Commons "featured
+    picture"/"nominate it" boilerplate; collapse to the first real paragraph; if still too long,
+    reduce to the leading organisation names (agent_name only — never for a title)."""
+    if not text:
+        return text
+    t = text.strip()
+    t = _CREDIT_PREFIX_RE.sub("", t)
+    # Boilerplate commonly follows a blank line after the real credit — keep only the first paragraph.
+    paragraphs = [p.strip() for p in re.split(r"\n\s*\n", t) if p.strip()]
+    t = paragraphs[0] if paragraphs else t
+    for alias_re, repl in _ORG_ALIASES:
+        t = alias_re.sub(repl, t)
+    t = _PAREN_WITH_URL_RE.sub("", t)
+    t = _URL_RE.sub("", t)
+    for pat in _COMMONS_BOILERPLATE_RES:
+        t = pat.sub("", t)
+    t = re.sub(r"\s+", " ", t)
+    t = re.sub(r"\s+,", ",", t)          # a removed "(url)" often leaves "word , word"
+    t = re.sub(r",\s*,", ",", t)         # two removed asides back-to-back -> double comma
+    t = re.sub(r"\s+", " ", t).strip(" ,;.-")
+    if shorten_to_orgs and len(t) > max_len:
+        orgs = list(dict.fromkeys(_ORG_TOKEN_RE.findall(t)))
+        if orgs:
+            t = ", ".join(orgs)
+        else:
+            t = t[:max_len].rsplit(" ", 1)[0].strip() + "…"
+    return t
+
+
 def run_import(batch_glob: str = "batch_*.jsonl"):
     catalog = load_catalog()
     packet_index = json.loads(PACKET_INDEX_PATH.read_text()) if PACKET_INDEX_PATH.exists() else {}
@@ -1600,7 +1697,7 @@ def run_import(batch_glob: str = "batch_*.jsonl"):
 
     import_report = {"passed": 0, "failed": 0, "no_submission": 0, "items": [], "flagged": [],
                       "existing_catalog_value_counts": {}, "identity_suspect_fields_dropped": [],
-                      "medium_blanked": []}
+                      "medium_blanked": [], "header_hygiene_changes": []}
     by_collection_new: dict[str, dict[int, dict]] = {}
 
     for key, coll in packet_index.items():
@@ -1696,6 +1793,18 @@ def run_import(batch_glob: str = "batch_*.jsonl"):
                 # failing items are NOT silently templated — narrative/tags stay as the existing
                 # catalog value; only the deterministic structured fields (+ any applied corrections /
                 # blanking above) are applied.
+
+        # Round 7 #1: header hygiene — applied unconditionally (even with no writer submission yet),
+        # since the pollution is in the pre-reground catalog value itself, not something a writer
+        # introduced. agent_name may be shortened to leading org names if still too long; title never is.
+        for field, shorten in (("agent_name", True), ("current_repository", False), ("title", False)):
+            old_val = base.get(field)
+            new_val = normalize_credit_text(old_val, shorten_to_orgs=shorten) if old_val else old_val
+            if new_val != old_val:
+                base[field] = new_val
+                import_report["header_hygiene_changes"].append({
+                    "key": key, "collection": coll, "field": field, "old": old_val, "new": new_val,
+                })
 
         by_collection_new.setdefault(coll, {})[idx] = base
 
