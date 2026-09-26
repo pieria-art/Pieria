@@ -843,3 +843,10 @@ def test_medium_bucket_distinguishes_oil_from_watercolor_and_print():
     assert rg.medium_bucket("Bronze") == "sculpture_bronze"
     assert rg.medium_bucket("Marble") == "sculpture_marble"
     assert rg.medium_bucket("") is None
+
+
+def test_visual_claim_exempts_capital_after_sentence_break():
+    # Claims can hold two sentences; "She"/"Deep" opening the second sentence aren't proper nouns.
+    assert rg._visual_claim_ok("A woman reads. She smiles.", "X", [])[0]
+    assert rg._visual_claim_ok("A town at dusk. Deep blue water.", "X", [])[0]
+    assert not rg._visual_claim_ok("A woman in Venetian dress.", "X", [])[0]

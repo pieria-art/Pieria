@@ -1374,13 +1374,15 @@ def _visual_claim_ok(text: str, title: str, facts: list[dict]) -> tuple[bool, st
         for val in vals:
             for w in re.findall(r"[A-Za-z']+", str(val)):
                 allowed_words.add(w.lower())
-    for word in re.findall(r"\b[A-Z][a-zA-Z']*\b", text or ""):
+    for m in re.finditer(r"\b[A-Z][a-zA-Z']*\b", text or ""):
+        word = m.group(0)
         if word.lower() in _VISUAL_STOPWORDS:
             continue
         if re.match(r"^[A-Z][a-z']*$", word) and word.lower() not in allowed_words:
-            # A capitalised word not sentence-initial, or repeated capitalisation, reads as a proper
-            # noun; sentence-initial capitals are exempt (checked separately below).
-            if not text.startswith(word):
+            # A capitalised word that isn't sentence-initial reads as a proper noun. Sentence-initial
+            # capitals — the claim's first word, or the first word after . ! ? (claims can hold two
+            # sentences) — are exempt.
+            if not re.search(r"(^|[.!?][\"'”’)]*\s+)[\"'“‘(]*$", text[:m.start()]):
                 return False, f"visual claim names a proper noun not in the title/facts: {word!r}"
     return True, None
 
