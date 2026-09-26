@@ -294,6 +294,7 @@ async def _cleveland_by_accession(fx: Fetcher, accession: str) -> dict | None:
         "url": f"https://openaccess-api.clevelandart.org/api/artworks/{d.get('id')}",
         "title": d.get("title"), "creators": [c.get("description") for c in (d.get("creators") or [])],
         "creation_date": d.get("creation_date"), "technique": d.get("technique"), "culture": d.get("culture"),
+        "dimensions": d.get("measurements"),
     }
     if d.get("share_license_status") == "CC0":
         for k in ("description", "did_you_know"):
@@ -317,6 +318,8 @@ async def _cleveland_extra_by_title(fx: Fetcher, title: str) -> dict | None:
     for k in ("description", "did_you_know"):
         if d.get(k):
             out[k] = re.sub(r"<[^>]+>", "", str(d[k])).strip()
+    if d.get("measurements"):
+        out["dimensions"] = d["measurements"]
     return out or None
 
 
@@ -327,7 +330,7 @@ async def _aic_record(fx: Fetcher, title: str) -> dict | None:
     CC0 like the rest of the record — kept out of `facts`, returned under `_checkonly` instead."""
     body, err = await fx.get_json(AIC_SEARCH, {
         "q": title, "limit": 1,
-        "fields": "id,title,date_display,medium_display,artist_display,description,short_description",
+        "fields": "id,title,date_display,medium_display,artist_display,dimensions,description,short_description",
     })
     data = (body or {}).get("data") or []
     if not data:
@@ -340,6 +343,8 @@ async def _aic_record(fx: Fetcher, title: str) -> dict | None:
         out["objectDate"] = d["date_display"]
     if d.get("medium_display"):
         out["medium"] = d["medium_display"]
+    if d.get("dimensions"):
+        out["dimensions"] = d["dimensions"]
     checkonly = []
     for k in ("description", "short_description"):
         if d.get(k):
@@ -506,6 +511,34 @@ async def _is_artwork_entity(fx: Fetcher, qid: str) -> bool:
     return result
 
 
+# ----------------------------------------------------------------------- Wikidata quantity (dimensions)
+# Round 6 bug: P2048/P2049 (height/width) were shipped as the RAW Wikidata quantity `amount` string
+# ("+1272") with its unit (mm/cm/in/m — a QID on the same datavalue) silently ignored, then blindly
+# suffixed " cm" downstream — "+1272 x +1121 cm" on a small watercolour was really 127.2 x 112.1 cm
+# (mm) or similar unit confusion. Wikidata's own default unit for P2048/P2049 when none is given is cm.
+_WD_LENGTH_UNIT_TO_CM = {
+    "Q174789": 0.1,     # millimetre
+    "Q174728": 1.0,     # centimetre
+    "Q11573": 100.0,    # metre (canonical item; P2048/P2049 usually cite this one)
+    "Q7727": 100.0,     # metre (alternate item some data uses)
+    "Q218593": 2.54,    # inch
+}
+
+
+def wikidata_quantity_to_cm(dv: dict) -> float | None:
+    amount = dv.get("amount")
+    if amount is None:
+        return None
+    try:
+        val = float(str(amount).lstrip("+"))
+    except ValueError:
+        return None
+    unit = dv.get("unit") or ""
+    qid = unit.rsplit("/", 1)[-1] if unit else None
+    factor = _WD_LENGTH_UNIT_TO_CM.get(qid, 1.0)  # unknown/missing unit -> Wikidata's own cm default
+    return abs(val) * factor
+
+
 # ----------------------------------------------------------------------- Wikidata date normalisation
 # Round 3 bug: raw ISO dates ("1850-00-00", "1873-01-01") were leaking into date_display. Wikidata
 # zero-fills month/day it doesn't actually know ("00"), so the real signal is the claim's own
@@ -595,6 +628,10 @@ async def _wikidata_full(fx: Fetcher, qid: str, allow_day_precision: bool = Fals
                 formatted = format_wikidata_date(c, allow_day_precision)
                 if formatted:
                     vlabels.append(formatted)
+            elif prop in ("P2048", "P2049") and isinstance(v, dict) and "amount" in v:
+                cm = wikidata_quantity_to_cm(v)
+                if cm is not None:
+                    vlabels.append(f"{cm:.1f}")
             elif isinstance(v, dict) and v.get("id"):
                 lab = _resolved_label(v["id"])
                 if lab:
@@ -637,7 +674,7 @@ async def _wikidata_full(fx: Fetcher, qid: str, allow_day_precision: bool = Fals
 
 # ----------------------------------------------------------------------- facts bundle
 _MUSEUM_FACT_KEYS = ("objectDate", "medium", "culture", "classification", "creation_date",
-                     "technique", "description", "did_you_know")
+                     "technique", "description", "did_you_know", "dimensions")
 
 
 async def build_facts_bundle(fx: Fetcher, item: dict, collection: str | None = None) -> dict:
@@ -881,6 +918,18 @@ def detect_identity_mismatch(item: dict, facts: list[dict]) -> dict | None:
     return {"evidence": evidence} if evidence else None
 
 
+# Collections where a genuinely large object is expected (a building, a monument, a wall map) — the
+# physical_dimensions plausibility guard (round 6) doesn't apply here.
+_LARGE_OBJECT_COLLECTIONS = {"cartography", "sculpture-antiquity", "cities-architecture", "ancient-egypt"}
+_DIMENSION_MIN_CM, _DIMENSION_MAX_CM = 0.5, 1500.0
+
+
+def _dimension_plausible(cm: float, collection: str | None) -> bool:
+    if collection in _LARGE_OBJECT_COLLECTIONS:
+        return True
+    return _DIMENSION_MIN_CM <= cm <= _DIMENSION_MAX_CM
+
+
 # ----------------------------------------------------------------------- structured fields (deterministic)
 # Precedence: museum record (title-keyed) > museum record (Commons-credit-keyed) > Wikidata > Commons
 # extmetadata > existing catalog value. current_repository is handled separately below (institution
@@ -893,7 +942,7 @@ _FIELD_SOURCES = {
 }
 
 
-def resolve_structured_fields(bundle: dict, existing_item: dict) -> tuple[dict, bool, list[str]]:
+def resolve_structured_fields(bundle: dict, existing_item: dict, collection: str | None = None) -> tuple[dict, bool, list[str]]:
     """Deterministically fill medium / date_display+creation_date / current_repository /
     physical_dimensions / agent_name from the facts bundle by source precedence. The model never
     touches these. Returns (fields, needs_review, notes)."""
@@ -1012,13 +1061,37 @@ def resolve_structured_fields(bundle: dict, existing_item: dict) -> tuple[dict, 
             notes.append(f"agent_name: {agent_src} says {agent_val!r}, catalog says "
                          f"{catalog_artist!r} — kept catalog value, needs_review")
 
-    # physical dimensions
-    h = facts_by_key.get("wikidata.height")
-    w = facts_by_key.get("wikidata.width")
-    if h or w:
-        hv = (h["value"][0] if h else None)
-        wv = (w["value"][0] if w else None)
-        fields["physical_dimensions"] = " x ".join(x for x in (hv, wv) if x) + " cm"
+    # physical dimensions — round 6: prefer a museum record's own dimensions text (e.g. Cleveland's/
+    # AIC's own measurements, already unit-correct) over a computed Wikidata value. The Wikidata path
+    # was shipping raw quantity amounts with the unit silently ignored ("+1272 x +1121 cm" on a small
+    # watercolour); wikidata_quantity_to_cm() now converts mm/in/m -> cm before this point, but a bad
+    # source value or unit could still slip through, so a plausibility guard drops anything outside a
+    # sane range for a hand-held object (0.5-1500 cm per side) unless the collection is one where a
+    # genuinely large object is expected (building/monument/wall map).
+    for key in ("museum.dimensions", "museum2.dimensions"):
+        f = facts_by_key.get(key)
+        if f and str(f["value"]).strip():
+            fields["physical_dimensions"] = str(f["value"]).strip()
+            fields["physical_dimensions_source"] = f["source"]
+            break
+    else:
+        h = facts_by_key.get("wikidata.height")
+        w = facts_by_key.get("wikidata.width")
+        if h or w:
+            def _to_float(f):
+                try:
+                    return float(f["value"][0]) if f else None
+                except (TypeError, ValueError):
+                    return None
+            hv, wv = _to_float(h), _to_float(w)
+            sides = [x for x in (hv, wv) if x is not None]
+            if sides and all(_dimension_plausible(x, collection) for x in sides):
+                parts = [f"{x:.1f}" for x in (hv, wv) if x is not None]
+                fields["physical_dimensions"] = " x ".join(parts) + " cm"
+                fields["physical_dimensions_source"] = "Wikidata"
+            elif sides:
+                notes.append(f"physical_dimensions: dropped implausible Wikidata value(s) {sides} cm "
+                              f"(guard: 0.5-1500cm unless building/monument/map)")
 
     return fields, needs_review, notes
 
@@ -1143,7 +1216,7 @@ async def generate_narrative(bundle: dict, fields: dict, model_sem: asyncio.Sema
 # ----------------------------------------------------------------------- per-item pipeline
 async def process_item(fx: Fetcher, model_sem: asyncio.Semaphore, item: dict, collection: str) -> dict:
     bundle = await build_facts_bundle(fx, item)
-    fields, needs_review, notes = resolve_structured_fields(bundle, item)
+    fields, needs_review, notes = resolve_structured_fields(bundle, item, collection)
 
     new_item = dict(item)
     for key in ("medium", "date_display", "creation_date", "current_repository", "physical_dimensions"):
@@ -1326,7 +1399,7 @@ async def run_packets(*, only_sample: bool, limit: int | None, collection: str |
             else:
                 bundle = await build_facts_bundle(fx, item, coll)
                 fact_path.write_text(json.dumps(bundle, indent=2, default=str))
-            fields, needs_review, notes = resolve_structured_fields(bundle, item)
+            fields, needs_review, notes = resolve_structured_fields(bundle, item, coll)
 
             preview = build_preview_from_master(coll, item, key)
             if not preview:
@@ -1749,7 +1822,7 @@ async def run_recheck_museum_matches(*, limit: int | None = None, force_keys: se
             old_qids = _extract_match_qids(old_packet)
 
             new_bundle = await build_facts_bundle(fx, item, coll)
-            new_fields, needs_review, notes = resolve_structured_fields(new_bundle, item)
+            new_fields, needs_review, notes = resolve_structured_fields(new_bundle, item, coll)
             forced = key in force_keys
             if new_fields == old_structured and not forced:
                 return None  # unchanged — nothing to rewrite

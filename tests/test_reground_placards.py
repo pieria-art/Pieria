@@ -956,6 +956,85 @@ def test_museum_match_explicit_id_skips_creator_requirement_but_not_title():
     assert not ok2 and "similarity" in reason2
 
 
+# --------------------------------------------------------------------------- dimension unit conversion (round 6)
+def test_wikidata_quantity_to_cm_converts_millimetres():
+    dv = {"amount": "+1272", "unit": "http://www.wikidata.org/entity/Q174789"}  # mm
+    assert rg.wikidata_quantity_to_cm(dv) == 127.2
+
+
+def test_wikidata_quantity_to_cm_converts_metres():
+    dv = {"amount": "+1.2", "unit": "http://www.wikidata.org/entity/Q11573"}  # m
+    assert rg.wikidata_quantity_to_cm(dv) == 120.0
+
+
+def test_wikidata_quantity_to_cm_converts_inches():
+    dv = {"amount": "+10", "unit": "http://www.wikidata.org/entity/Q218593"}  # in
+    assert rg.wikidata_quantity_to_cm(dv) == 25.4
+
+
+def test_wikidata_quantity_to_cm_defaults_to_cm_when_unit_missing():
+    dv = {"amount": "+45.5"}
+    assert rg.wikidata_quantity_to_cm(dv) == 45.5
+
+
+def test_wikidata_quantity_to_cm_strips_sign():
+    dv = {"amount": "-30", "unit": "http://www.wikidata.org/entity/Q174728"}  # cm
+    assert rg.wikidata_quantity_to_cm(dv) == 30.0
+
+
+def test_dimension_plausible_rejects_out_of_range_for_ordinary_collections():
+    assert not rg._dimension_plausible(1600.0, "watercolours")
+    assert not rg._dimension_plausible(0.2, "watercolours")
+    assert rg._dimension_plausible(45.0, "watercolours")
+
+
+def test_dimension_plausible_allows_large_objects_for_exempt_collections():
+    assert rg._dimension_plausible(3000.0, "cities-architecture")
+    assert rg._dimension_plausible(3000.0, "cartography")
+
+
+def test_physical_dimensions_drops_implausible_wikidata_value():
+    # regression: boy-on-a-ram-0031's "+1272 x +1121 cm" — a raw mm amount already leaked past
+    # wikidata_quantity_to_cm somehow (e.g. a bad source value) must still be caught by the guard.
+    bundle = {
+        "facts": [
+            rg._fact("wikidata.height", ["1600.0"], "Wikidata", "u", "CC0"),
+            rg._fact("wikidata.width", ["1400.0"], "Wikidata", "u", "CC0"),
+        ],
+        "conflicts": [], "is_version_of": None,
+    }
+    fields, needs_review, notes = rg.resolve_structured_fields(bundle, {}, "watercolours")
+    assert "physical_dimensions" not in fields
+    assert any("implausible" in n for n in notes)
+
+
+def test_physical_dimensions_accepts_plausible_wikidata_value():
+    bundle = {
+        "facts": [
+            rg._fact("wikidata.height", ["45.0"], "Wikidata", "u", "CC0"),
+            rg._fact("wikidata.width", ["35.0"], "Wikidata", "u", "CC0"),
+        ],
+        "conflicts": [], "is_version_of": None,
+    }
+    fields, needs_review, notes = rg.resolve_structured_fields(bundle, {}, "watercolours")
+    assert fields["physical_dimensions"] == "45.0 x 35.0 cm"
+    assert fields["physical_dimensions_source"] == "Wikidata"
+
+
+def test_physical_dimensions_prefers_museum_record_over_wikidata():
+    bundle = {
+        "facts": [
+            rg._fact("wikidata.height", ["45.0"], "Wikidata", "u", "CC0"),
+            rg._fact("wikidata.width", ["35.0"], "Wikidata", "u", "CC0"),
+            rg._fact("museum.dimensions", "29.6 x 158.4 cm (11 5/8 x 62 3/8 in.)", "Cleveland Open Access API", "u", "CC0"),
+        ],
+        "conflicts": [], "is_version_of": None,
+    }
+    fields, needs_review, notes = rg.resolve_structured_fields(bundle, {}, "asian-art")
+    assert fields["physical_dimensions"] == "29.6 x 158.4 cm (11 5/8 x 62 3/8 in.)"
+    assert fields["physical_dimensions_source"] == "Cleveland Open Access API"
+
+
 def test_medium_bucket_distinguishes_oil_from_watercolor_and_print():
     assert rg.medium_bucket("Oil on canvas") == "oil"
     assert rg.medium_bucket("Watercolor and gouache over graphite") == "watercolor"
