@@ -122,7 +122,8 @@ textarea { resize: vertical; min-height: 60px; }
    Full app shell — sidebar + drawer (admin-style). Opt in with class="app-shell"
    on <body>. Used by Help so it stops breaking on mobile.
    =========================================================================== */
-body.app-shell { display: flex; height: 100vh; overflow: hidden; }
+/* dvh, not vh: on a phone vh assumes the URL bar is hidden, so the pane bottoms sit under it. */
+body.app-shell { display: flex; height: 100vh; height: 100dvh; overflow: hidden; }
 .app-shell aside {
     width: 320px; background-color: var(--sidebar-bg); border-right: 1px solid var(--border-color);
     display: flex; flex-direction: column; padding: 20px; overflow-y: auto;
@@ -163,7 +164,7 @@ body.app-shell { display: flex; height: 100vh; overflow: hidden; }
     .app-shell .sidebar-backdrop { position: fixed; inset: 0; z-index: 65; background: rgba(0, 0, 0, 0.55); }
     body.app-shell:not(.sidebar-open) .sidebar-backdrop { display: none; }
     body.app-shell.sidebar-open .sidebar-backdrop { display: block; }
-    .app-shell main { padding: 56px 16px 0; }
+    .app-shell main { padding: 56px 16px calc(96px + env(safe-area-inset-bottom, 0px)); }
 }
 
 /* --- Public demo mode (SD_DEMO_MODE=1) — admin.js sets body.demo + builds #demo-banner. Whole nav

@@ -20,6 +20,9 @@
             margin: 0;
             display: flex;
             height: 100vh;
+            /* dvh = the height actually visible right now. Plain vh on a phone is the height with the URL
+               bar hidden, so while the bar shows, the bottom of every scroll pane sits under it. */
+            height: 100dvh;
             /* Fixed app-shell: the document never scrolls. Each pane (sidebar, main)
                scrolls internally instead, so there is only ever one scrollbar per pane
                (prevents the stacked document + main scrollbars on the right). */
@@ -225,7 +228,7 @@
         /* --- Unified full-screen Edit landing --- */
         .edit-overlay { display: none; position: fixed; inset: 0; background: rgba(2,6,20,0.92); z-index: 1100; padding: 24px; overflow-y: auto; }
         .edit-overlay.open { display: flex; align-items: flex-start; justify-content: center; }
-        .edit-panel { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 14px; width: min(1100px, 100%); margin: auto; display: flex; flex-direction: column; max-height: calc(100vh - 48px); }
+        .edit-panel { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 14px; width: min(1100px, 100%); margin: auto; display: flex; flex-direction: column; max-height: calc(100vh - 48px); max-height: calc(100dvh - 48px); }
         .edit-head { display: flex; align-items: center; justify-content: space-between; padding: 16px 22px; border-bottom: 1px solid var(--border-color); }
         .edit-head h3 { margin: 0; font-size: 1.05rem; color: var(--accent-color); }
         .edit-body { display: flex; gap: 24px; padding: 22px; overflow-y: auto; }
@@ -323,7 +326,8 @@
             body:not(.sidebar-open) .sidebar-backdrop { display: none; }
             body.sidebar-open .sidebar-backdrop { display: block; }
 
-            main { padding: 56px 16px 0; }      /* clear the fixed top bar */
+            /* clear the fixed top bar; bottom room so the last control scrolls clear of the browser toolbar */
+            main { padding: 56px 16px calc(96px + env(safe-area-inset-bottom, 0px)); }
             .action-bar { padding-top: 20px; }
             .review-form { grid-template-columns: 1fr; }  /* stack form fields */
             .mission-control { padding: 18px !important; }
