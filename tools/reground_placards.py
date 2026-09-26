@@ -493,7 +493,8 @@ async def resolve_via_commons_credit(fx: Fetcher, ext: dict) -> dict | None:
 # outright (it came from that institution's own record, not a generic Wikidata place property).
 _BARE_QID_RE = re.compile(r"^Q\d+$")
 _INSTITUTION_LABEL_RE = re.compile(
-    r"\b(museum|gallery|librar|archive|university|institut|foundation|collection|academy|society)", re.I
+    r"\b(museum|gallery|librar|archive|university|institut|foundation|collection|academy|society|"
+    r"cent(?:er|re))", re.I
 )
 
 

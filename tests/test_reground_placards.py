@@ -368,6 +368,14 @@ def test_institution_label_accepted_for_museum_gallery_library_names():
     assert rg.looks_like_institution_label("Yale University Art Gallery")
 
 
+def test_institution_label_accepts_center_and_centre():
+    # regression: devils-bridge-st-gotthards-pass-0059 / tours-sunset-looking-backwards-0074's real
+    # holder, "Yale Center for British Art", was rejected outright — "Center"/"Centre" wasn't in the
+    # institution-keyword list at all.
+    assert rg.looks_like_institution_label("Yale Center for British Art")
+    assert rg.looks_like_institution_label("Pompidou Centre")
+
+
 def test_institution_label_rejects_bare_qid_and_places():
     assert not rg.looks_like_institution_label("Q214867")
     assert not rg.looks_like_institution_label("Moon")
