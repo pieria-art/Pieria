@@ -5,6 +5,7 @@ import json
 from pathlib import Path
 
 import ai_client
+from tools import build_pack
 from tools import reground_placards as rg
 
 
@@ -1407,3 +1408,235 @@ def test_visual_claim_exempts_capital_after_sentence_break():
     assert rg._visual_claim_ok("A woman reads. She smiles.", "X", [])[0]
     assert rg._visual_claim_ok("A town at dusk. Deep blue water.", "X", [])[0]
     assert not rg._visual_claim_ok("A woman in Venetian dress.", "X", [])[0]
+
+
+# --------------------------------------------------------------------------- pack-master resolution by INDEX (round 10)
+# The bug: _manifest_local_file_map mapped pack masters by _norm(title) only, and _norm strips leading
+# articles + last-wins on collision, so every same-titled item in a collection (Whistler "The Artist in
+# His Studio" vs Sargent "An Artist in His Studio") got the SAME master. Fixed by resolving via catalog
+# INDEX through build_pack's own deterministic filename derivation (compute_expected_masters_indexed).
+
+def _setup_build_pack_catalog(monkeypatch, tmp_path, catalog: dict, pins: dict | None = None):
+    """Write a fake static/catalog/ tree (+ optional pins), point tools.build_pack at it, and reset
+    reground_placards' expected-masters cache so _pack_master_for recomputes against this fake data."""
+    catalog_dir = tmp_path / "catalog"
+    catalog_dir.mkdir(parents=True, exist_ok=True)
+    for cid, items in catalog.items():
+        (catalog_dir / f"{cid}.json").write_text(json.dumps({"id": cid, "items": items}))
+    monkeypatch.setattr(build_pack, "CATALOG_DIR", catalog_dir)
+    pins_path = tmp_path / "_pack_pins.json"
+    if pins:
+        pins_path.write_text(json.dumps({"_note": "test", "collections": pins}))
+    else:
+        pins_path = tmp_path / "no_pins_here.json"
+    monkeypatch.setattr(build_pack, "PINS_FILE", pins_path)
+    rg._expected_masters_cache = None
+    rg.title_mismatches.clear()
+    rg._manifest_cache.clear()
+    monkeypatch.setattr(rg, "ART_PACK_LIBRARY", tmp_path / "library")
+    monkeypatch.setattr(rg, "ART_PACK_MANIFESTS", tmp_path / "manifests")
+
+
+def _write_manifest(collection: str, entries: list[tuple], manifests_dir: Path):
+    manifests_dir.mkdir(parents=True, exist_ok=True)
+    (manifests_dir / f"{collection}.json").write_text(json.dumps({
+        "items": [{"title": t, "image": {"local_file": lf}} for t, lf in entries]
+    }))
+
+
+def _write_library_file(library_dir: Path, filename: str, content: bytes = b"fake-master"):
+    library_dir.mkdir(parents=True, exist_ok=True)
+    (library_dir / filename).write_bytes(content)
+
+
+def test_pack_master_for_resolves_same_titled_items_to_different_masters(tmp_path, monkeypatch):
+    items = [
+        {"title": "The Artist in His Studio", "agent_name": "Whistler", "source_url": "https://x/whistler.jpg"},
+        {"title": "An Artist in His Studio", "agent_name": "Sargent", "source_url": "https://x/sargent.jpg"},
+    ]
+    _setup_build_pack_catalog(monkeypatch, tmp_path, {"demo": items})
+    fn0 = build_pack.master_filename("demo", items[0]["title"], items[0]["source_url"])
+    fn1 = build_pack.master_filename("demo", items[1]["title"], items[1]["source_url"])
+    assert fn0 != fn1
+    _write_manifest("demo", [(items[0]["title"], fn0), (items[1]["title"], fn1)], rg.ART_PACK_MANIFESTS)
+    _write_library_file(rg.ART_PACK_LIBRARY, fn0, b"whistler-bytes")
+    _write_library_file(rg.ART_PACK_LIBRARY, fn1, b"sargent-bytes")
+
+    resolved0 = rg._pack_master_for("demo", 0, items[0]["title"])
+    resolved1 = rg._pack_master_for("demo", 1, items[1]["title"])
+    assert resolved0 == fn0
+    assert resolved1 == fn1
+    assert resolved0 != resolved1  # the bug: both used to resolve to the SAME (last-wins) master
+
+
+def test_pack_master_for_none_source_url_keeps_later_indices_aligned(tmp_path, monkeypatch):
+    items = [
+        {"title": "No Source", "agent_name": "A"},
+        {"title": "Has Source", "agent_name": "B", "source_url": "https://x/b.jpg"},
+    ]
+    _setup_build_pack_catalog(monkeypatch, tmp_path, {"demo": items})
+    fn1 = build_pack.master_filename("demo", items[1]["title"], items[1]["source_url"])
+    _write_manifest("demo", [(items[1]["title"], fn1)], rg.ART_PACK_MANIFESTS)
+    _write_library_file(rg.ART_PACK_LIBRARY, fn1)
+
+    assert rg._pack_master_for("demo", 0, items[0]["title"]) is None
+    assert rg._pack_master_for("demo", 1, items[1]["title"]) == fn1
+
+
+def test_pack_master_for_pinned_row_resolves_to_pin_filename_in_slot(tmp_path, monkeypatch):
+    served = [{"title": "Replace Me", "agent_name": "A", "source_url": "https://commons.example/replace.jpg"}]
+    pin = {"title": "Replace Me", "agent_name": "A",
+           "source_url": "https://www.artic.edu/iiif/2/replace/full/max/0/default.jpg"}
+    _setup_build_pack_catalog(monkeypatch, tmp_path, {"demo": served}, pins={"demo": [pin]})
+    fn = build_pack.master_filename("demo", pin["title"], pin["source_url"])
+    _write_manifest("demo", [(pin["title"], fn)], rg.ART_PACK_MANIFESTS)
+    _write_library_file(rg.ART_PACK_LIBRARY, fn)
+
+    assert rg._pack_master_for("demo", 0, "Replace Me") == fn
+
+
+def test_pack_master_for_shared_source_url_resolves_to_first_collections_filename(tmp_path, monkeypatch):
+    shared_url = "https://commons.example/shared.jpg"
+    title = "Shared Work"
+    _setup_build_pack_catalog(monkeypatch, tmp_path, {
+        "aaa-collection": [{"title": title, "agent_name": "X", "source_url": shared_url}],
+        "zzz-collection": [{"title": title, "agent_name": "X", "source_url": shared_url}],
+    })
+    fn = build_pack.master_filename("aaa-collection", title, shared_url)  # aaa sorts/loads first
+    _write_manifest("aaa-collection", [(title, fn)], rg.ART_PACK_MANIFESTS)
+    _write_manifest("zzz-collection", [(title, fn)], rg.ART_PACK_MANIFESTS)
+    _write_library_file(rg.ART_PACK_LIBRARY, fn)
+
+    assert rg._pack_master_for("aaa-collection", 0, title) == fn
+    assert rg._pack_master_for("zzz-collection", 0, title) == fn
+
+
+def test_pack_master_for_none_when_filename_absent_from_manifest(tmp_path, monkeypatch):
+    items = [{"title": "Orphan", "agent_name": "A", "source_url": "https://x/orphan.jpg"}]
+    _setup_build_pack_catalog(monkeypatch, tmp_path, {"demo": items})
+    fn = build_pack.master_filename("demo", items[0]["title"], items[0]["source_url"])
+    _write_library_file(rg.ART_PACK_LIBRARY, fn)  # library has it, manifest never mentions it
+    _write_manifest("demo", [], rg.ART_PACK_MANIFESTS)
+
+    assert rg._pack_master_for("demo", 0, items[0]["title"]) is None
+
+
+def test_pack_master_for_none_when_filename_absent_from_library(tmp_path, monkeypatch):
+    items = [{"title": "Ghost", "agent_name": "A", "source_url": "https://x/ghost.jpg"}]
+    _setup_build_pack_catalog(monkeypatch, tmp_path, {"demo": items})
+    fn = build_pack.master_filename("demo", items[0]["title"], items[0]["source_url"])
+    _write_manifest("demo", [(items[0]["title"], fn)], rg.ART_PACK_MANIFESTS)
+    # no library file written
+
+    assert rg._pack_master_for("demo", 0, items[0]["title"]) is None
+
+
+def test_pack_master_for_logs_title_mismatch_without_rejecting(tmp_path, monkeypatch):
+    items = [{"title": "Catalog Title", "agent_name": "A", "source_url": "https://x/a.jpg"}]
+    _setup_build_pack_catalog(monkeypatch, tmp_path, {"demo": items})
+    fn = build_pack.master_filename("demo", items[0]["title"], items[0]["source_url"])
+    _write_manifest("demo", [("Different Manifest Title", fn)], rg.ART_PACK_MANIFESTS)
+    _write_library_file(rg.ART_PACK_LIBRARY, fn)
+
+    resolved = rg._pack_master_for("demo", 0, "Catalog Title")
+    assert resolved == fn  # a pin can legitimately retitle a slot — never rejected on this basis alone
+    assert len(rg.title_mismatches) == 1
+    assert rg.title_mismatches[0]["manifest_title"] == "Different Manifest Title"
+
+
+def test_catalog_item_order_matches_build_pack_served_order(tmp_path, monkeypatch):
+    """reground's load_catalog() (audit_placards, keyed by file stem) and build_pack's
+    load_catalog_collections (keyed by the file's own 'id') MUST iterate the same items in the same
+    order for a given collection id, since _pack_master_for treats a served-catalog index from one as
+    an index into the other's derived filename list."""
+    from tools import audit_placards
+
+    items = [{"title": f"Work {i}", "agent_name": "A", "source_url": f"https://x/{i}.jpg"} for i in range(5)]
+    _setup_build_pack_catalog(monkeypatch, tmp_path, {"demo": items})
+    monkeypatch.setattr(audit_placards, "CATALOG_DIR", tmp_path / "catalog")
+
+    from_audit = rg.load_catalog()["demo"]
+    from_build_pack = next(c for c in build_pack.load_catalog_collections(None) if c["id"] == "demo")["items"]
+    assert [it["title"] for it in from_audit] == [it["title"] for it in from_build_pack]
+
+
+# --------------------------------------------------------------------------- blank-master detector (round 10)
+def test_blank_master_detector_flags_uniform_images_not_noisy(tmp_path):
+    import random
+
+    from PIL import Image
+
+    white_path = tmp_path / "white.jpg"
+    Image.new("RGB", (64, 64), (255, 255, 255)).save(white_path, quality=95)
+
+    grey_path = tmp_path / "grey.jpg"
+    Image.new("RGB", (64, 64), (128, 128, 128)).save(grey_path, quality=95)
+
+    noisy_path = tmp_path / "noisy.jpg"
+    rng = random.Random(42)
+    im = Image.new("RGB", (64, 64))
+    im.putdata([(rng.randrange(256), rng.randrange(256), rng.randrange(256)) for _ in range(64 * 64)])
+    im.save(noisy_path, quality=100)
+
+    white_stats = rg._image_grayscale_stats(white_path)
+    grey_stats = rg._image_grayscale_stats(grey_path)
+    noisy_stats = rg._image_grayscale_stats(noisy_path)
+
+    white_tags = rg._blank_master_tags(white_stats)
+    grey_tags = rg._blank_master_tags(grey_stats)
+    noisy_tags = rg._blank_master_tags(noisy_stats)
+
+    assert "near_uniform" in white_tags
+    assert "very_bright" in white_tags
+    assert "near_uniform" in grey_tags
+    assert "very_bright" not in grey_tags and "very_dark" not in grey_tags
+    assert not noisy_tags
+
+
+def _noisy_grey_block(rng, w, h):
+    return [rng.randrange(256) for _ in range(w * h)]
+
+
+def test_blank_master_detector_flags_truncated_bottom_band(tmp_path):
+    """The McCandless-spacewalk case: a noisy top portion + a flat black fill for the rest of the
+    frame — whole-image mean/std/modal_frac blend the two and miss it, so the edge-anchored band scan
+    must catch it on its own."""
+    import random
+
+    from PIL import Image
+
+    rng = random.Random(7)
+    w, h = 64, 100
+    top_h = 30  # 30% noisy, 70% flat black — well above the 8% band threshold
+    pixels = _noisy_grey_block(rng, w, top_h) + [0] * (w * (h - top_h))
+    im = Image.new("L", (w, h))
+    im.putdata(pixels)
+    path = tmp_path / "truncated.jpg"
+    im.save(path, quality=100)
+
+    stats = rg._image_grayscale_stats(path)
+    tags = rg._blank_master_tags(stats)
+    assert "truncated_band" in tags
+    assert stats["band_edge"] == "bottom"
+    assert stats["band_frac"] >= 0.08
+
+
+def test_blank_master_detector_ignores_small_letterbox_bar(tmp_path):
+    """A small (3%) flat letterbox/border strip on an otherwise noisy photo is normal and must NOT be
+    flagged — only a band covering >=8% of the dimension counts as truncation."""
+    import random
+
+    from PIL import Image
+
+    rng = random.Random(11)
+    w, h = 64, 100
+    bar_h = 3  # 3% — below the 8% threshold
+    pixels = _noisy_grey_block(rng, w, h - bar_h) + [10] * (w * bar_h)
+    im = Image.new("L", (w, h))
+    im.putdata(pixels)
+    path = tmp_path / "letterboxed.jpg"
+    im.save(path, quality=100)
+
+    stats = rg._image_grayscale_stats(path)
+    tags = rg._blank_master_tags(stats)
+    assert "truncated_band" not in tags

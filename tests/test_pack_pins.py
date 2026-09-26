@@ -188,6 +188,23 @@ def test_compute_expected_masters_dedups_shared_source_url_across_collections(tm
     assert aaa_fn == zzz_fn == build_pack.master_filename("aaa-collection", "Shared Work", shared_url)
 
 
+def test_compute_expected_masters_indexed_aligns_with_served_order(tmp_path, monkeypatch):
+    """reground_placards.py resolves a served-catalog item to its pack master by INDEX into this list —
+    an item without source_url must leave a None placeholder so later indices stay aligned, and pins
+    must replace in-slot rather than shifting anything."""
+    catalog_dir = tmp_path / "catalog"
+    _write_catalog(catalog_dir, "demo", [
+        {"title": "No Source", "agent_name": "A"},
+        {"title": "Has Source", "agent_name": "B", "source_url": "https://commons.example/b.jpg"},
+    ])
+    monkeypatch.setattr(build_pack, "CATALOG_DIR", catalog_dir)
+    monkeypatch.setattr(build_pack, "PINS_FILE", tmp_path / "no_pins.json")
+
+    indexed = build_pack.compute_expected_masters_indexed()
+    assert indexed["demo"][0] is None
+    assert indexed["demo"][1] == build_pack.master_filename("demo", "Has Source", "https://commons.example/b.jpg")
+
+
 def test_check_pack_pins_coverage_reports_hits_and_misses(tmp_path, monkeypatch):
     catalog_dir = tmp_path / "catalog"
     _write_catalog(catalog_dir, "demo", [

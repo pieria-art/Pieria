@@ -220,37 +220,62 @@ def apply_pack_pins(items: list[dict], pins: list[dict]) -> tuple[list[dict], in
     return merged, replaced, len(appended_rows)
 
 
-def compute_expected_masters(collections_filter: set[str] | None = None) -> dict[str, list[tuple[str, str]]]:
-    """Read-only, no network, no art-pack/ writes: for every item the served catalog (merged with pack
-    pins) would put in the pack, the (title, expected master_filename) pair build_pack would compute.
-    Used to prove pinning causes zero new downloads before ever running a real build.
+def _compute_masters_full(collections_filter: set[str] | None = None) -> dict[str, list[tuple[str, str | None]]]:
+    """Shared derivation behind compute_expected_masters / compute_expected_masters_indexed: one
+    (title, filename-or-None) row per MERGED item (pins replace in-slot; parked pins are appended after
+    the served items), in merged order — None where source_url is missing, so an index into this list
+    lines up with load_catalog_collections' served+pinned order.
 
     MUST mirror ensure_master's dedup: the filename is keyed by source_url, and the FIRST work item
     (in collection-load order, i.e. the same sorted() order load_catalog_collections/the real queue
     use) to claim a given source_url names the file — a later item sharing that URL (e.g. the same
     famous work also listed in a "masterpieces" highlight collection) reuses that name, never minting
-    its own collection-prefixed one."""
+    its own collection-prefixed one. The dedup is deliberately GLOBAL across every collection processed
+    in one call — pass no collections_filter when index alignment with the full served catalog matters
+    (e.g. tools/reground_placards.py)."""
     pins_by_collection = load_pack_pins()
     url_to_filename: dict[str, str] = {}
-    out: dict[str, list[tuple[str, str]]] = {}
+    out: dict[str, list[tuple[str, str | None]]] = {}
     for col in load_catalog_collections(collections_filter):
         cid = col["id"]
         items = col.get("items", [])
         pins = pins_by_collection.get(cid)
         if pins:
             items, _, _ = apply_pack_pins(items, pins)
-        rows = []
+        rows: list[tuple[str, str | None]] = []
         for it in items:
             su = it.get("source_url")
-            if not su:
-                continue
             title = it.get("title", "untitled")
+            if not su:
+                rows.append((title, None))
+                continue
             filename = url_to_filename.get(su)
             if filename is None:
                 filename = master_filename(cid, title, su)
                 url_to_filename[su] = filename
             rows.append((title, filename))
         out[cid] = rows
+    return out
+
+
+def compute_expected_masters_indexed(collections_filter: set[str] | None = None) -> dict[str, list[str | None]]:
+    """Read-only, no network: for every MERGED item in merged order (see _compute_masters_full), the
+    expected master_filename, or None where source_url is missing. Index i corresponds to the served
+    catalog's item i (pins replace in-slot; parked pins land beyond the served range) — used by
+    tools/reground_placards.py to resolve a catalog item to its pack master by INDEX rather than by
+    title, since two items in a collection can share a (post-normalisation) title."""
+    return {cid: [fn for _title, fn in rows] for cid, rows in _compute_masters_full(collections_filter).items()}
+
+
+def compute_expected_masters(collections_filter: set[str] | None = None) -> dict[str, list[tuple[str, str]]]:
+    """Read-only, no network, no art-pack/ writes: for every item the served catalog (merged with pack
+    pins) would put in the pack, the (title, expected master_filename) pair build_pack would compute —
+    items without a source_url are dropped (unlike compute_expected_masters_indexed, this has no use
+    for index alignment). Used to prove pinning causes zero new downloads before ever running a real
+    build."""
+    out: dict[str, list[tuple[str, str]]] = {}
+    for cid, rows in _compute_masters_full(collections_filter).items():
+        out[cid] = [(title, fn) for title, fn in rows if fn is not None]
     return out
 
 

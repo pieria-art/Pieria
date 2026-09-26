@@ -36,6 +36,7 @@ import logging
 import os
 import re
 import urllib.parse
+from concurrent.futures import ThreadPoolExecutor
 
 import httpx
 from dotenv import load_dotenv
@@ -86,6 +87,7 @@ IDENTITY_MISMATCHES_PATH = REGROUND_DIR / "identity_mismatches.json"
 MUSEUM_MATCH_CHANGES_PATH = REGROUND_DIR / "museum_match_changes.json"
 DUPLICATE_IMAGES_PATH = REGROUND_DIR / "duplicate_images.json"
 PACKET_INDEX_PATH = REGROUND_DIR / "packets_index.json"
+BLANK_MASTERS_PATH = REGROUND_DIR / "blank_masters.json"
 
 
 def set_workdir(path: Path) -> None:
@@ -94,7 +96,7 @@ def set_workdir(path: Path) -> None:
     bare names — this keeps that contract instead of threading a config object through everything."""
     global REGROUND_DIR, FACTS_DIR, OUT_CATALOG_DIR, REPORT_PATH, PACKETS_DIR, PREVIEWS_DIR, \
         BATCHES_DIR, WRITTEN_DIR, IMPORT_REPORT_PATH, IDENTITY_MISMATCHES_PATH, \
-        MUSEUM_MATCH_CHANGES_PATH, DUPLICATE_IMAGES_PATH, PACKET_INDEX_PATH
+        MUSEUM_MATCH_CHANGES_PATH, DUPLICATE_IMAGES_PATH, PACKET_INDEX_PATH, BLANK_MASTERS_PATH
     REGROUND_DIR = Path(path)
     FACTS_DIR = REGROUND_DIR / "facts"
     OUT_CATALOG_DIR = REGROUND_DIR / "catalog"
@@ -108,6 +110,7 @@ def set_workdir(path: Path) -> None:
     MUSEUM_MATCH_CHANGES_PATH = REGROUND_DIR / "museum_match_changes.json"
     DUPLICATE_IMAGES_PATH = REGROUND_DIR / "duplicate_images.json"
     PACKET_INDEX_PATH = REGROUND_DIR / "packets_index.json"
+    BLANK_MASTERS_PATH = REGROUND_DIR / "blank_masters.json"
 
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -1514,9 +1517,11 @@ def item_key(idx: int, title: str) -> str:
 _manifest_cache: dict[str, dict[str, str]] = {}
 
 
-def _manifest_local_file_map(collection: str) -> dict[str, str]:
-    """title (normalised) -> art-pack/_Library filename, from that collection's signed manifest —
-    read individually, never a recursive copy of the pack tree."""
+def _manifest_index(collection: str) -> dict[str, str]:
+    """art-pack/_Library filename -> title, from that collection's signed manifest — read individually,
+    never a recursive copy of the pack tree. Keyed by filename (not title) so the resolver below can
+    verify a build_pack-derived filename actually landed in the pack, and separately sanity-check the
+    manifest's own title against the catalog's."""
     if collection in _manifest_cache:
         return _manifest_cache[collection]
     out: dict[str, str] = {}
@@ -1527,21 +1532,69 @@ def _manifest_local_file_map(collection: str) -> dict[str, str]:
             for it in data.get("items", []):
                 lf = (it.get("image") or {}).get("local_file")
                 title = it.get("title")
-                if lf and title:
-                    out[_norm(title)] = lf
+                if lf:
+                    out[lf] = title
         except Exception as e:
             logger.info(f"    · manifest read failed for {collection}: {e}")
     _manifest_cache[collection] = out
     return out
 
 
-def build_preview_from_master(collection: str, item: dict, key: str) -> Path | None:
+# Round 10: the bug this fixes — the OLD _manifest_local_file_map mapped pack masters by _norm(title)
+# ONLY, and _norm strips leading articles + last-wins on collision, so every same-titled entry in a
+# collection (Whistler "The Artist in His Studio" vs Sargent "An Artist in His Studio"; 3x "The
+# Flowers"; 4x "Bathers"; two "Penitent Magdalene"s) got the SAME master — wrong previews, placards
+# written from the wrong image, false duplicate-image groups. Fixed by resolving by catalog INDEX via
+# build_pack's own deterministic filename derivation instead: a title can collide, an index cannot.
+_expected_masters_cache: dict[str, list[str | None]] | None = None
+title_mismatches: list[dict] = []  # {collection, idx, catalog_title, manifest_title, filename} — surfaced, never rejected
+_pack_resolve_stats = {"resolved": 0, "unresolved": 0}
+
+
+def _get_expected_masters() -> dict[str, list[str | None]]:
+    global _expected_masters_cache
+    if _expected_masters_cache is None:
+        from tools.build_pack import compute_expected_masters_indexed
+        # No collections_filter: the dedup (shared source_url -> one filename) is global across every
+        # collection, exactly like a real build_pack run over the whole catalog — a filtered call here
+        # could name a different (later-claiming) filename for a shared work.
+        _expected_masters_cache = compute_expected_masters_indexed()
+    return _expected_masters_cache
+
+
+def _pack_master_for(collection: str, idx: int, title: str | None = None) -> str | None:
+    """Resolve the served-catalog item at (collection, idx) to its pack master filename, via
+    build_pack's own deterministic derivation — never by title (see round-10 note above). Accepted only
+    if the filename appears in that collection's signed manifest AND exists in ART_PACK_LIBRARY;
+    otherwise None (callers fall back to the URL preview). `title`, when given, drives a sanity check —
+    a mismatch against the manifest's own title is logged + recorded in `title_mismatches`, never
+    rejected (a pin can legitimately retitle a slot)."""
+    rows = _get_expected_masters().get(collection) or []
+    filename = rows[idx] if 0 <= idx < len(rows) else None
+    if not filename:
+        _pack_resolve_stats["unresolved"] += 1
+        return None
+    manifest_title = _manifest_index(collection).get(filename)
+    if manifest_title is None or not (ART_PACK_LIBRARY / filename).exists():
+        _pack_resolve_stats["unresolved"] += 1
+        return None
+    if title and _norm(manifest_title or "") != _norm(title):
+        logger.info(f"    · title mismatch {collection}[{idx}]: catalog={title!r} manifest={manifest_title!r}")
+        title_mismatches.append({
+            "collection": collection, "idx": idx, "catalog_title": title,
+            "manifest_title": manifest_title, "filename": filename,
+        })
+    _pack_resolve_stats["resolved"] += 1
+    return filename
+
+
+def build_preview_from_master(collection: str, item: dict, key: str, idx: int) -> Path | None:
     """Downscale from the local pack master if this work has one. Reads ONE file directly — never
     lists/copies the (16GB) _Library tree."""
     out_path = PREVIEWS_DIR / collection / f"{key}.jpg"
     if out_path.exists():
         return out_path
-    local_file = _manifest_local_file_map(collection).get(_norm(item.get("title") or ""))
+    local_file = _pack_master_for(collection, idx, item.get("title"))
     if not local_file:
         return None
     src = ART_PACK_LIBRARY / local_file
@@ -1662,7 +1715,7 @@ async def run_packets(*, only_sample: bool, limit: int | None, collection: str |
                 fact_path.write_text(json.dumps(bundle, indent=2, default=str))
             fields, needs_review, notes = resolve_structured_fields(bundle, item, coll)
 
-            preview = build_preview_from_master(coll, item, key)
+            preview = build_preview_from_master(coll, item, key, idx)
             if not preview:
                 preview = await build_preview_from_url(client, sem, coll, item, key)
 
@@ -2183,7 +2236,7 @@ async def run_recheck_museum_matches(*, limit: int | None = None, force_keys: se
 
             fact_path.parent.mkdir(parents=True, exist_ok=True)
             fact_path.write_text(json.dumps(new_bundle, indent=2, default=str))
-            preview = build_preview_from_master(coll, item, key)
+            preview = build_preview_from_master(coll, item, key, idx)
             if not preview:
                 preview = await build_preview_from_url(client, sem, coll, item, key)
             new_packet = build_packet(key, coll, item, new_bundle, new_fields, needs_review, preview)
@@ -2219,7 +2272,7 @@ def run_duplicate_images() -> dict:
         idx = int(key.rsplit("-", 1)[-1])
         items = catalog.get(coll) or []
         item = items[idx] if idx < len(items) else {}
-        local_file = _manifest_local_file_map(coll).get(_norm(item.get("title") or ""))
+        local_file = _pack_master_for(coll, idx, item.get("title"))
         digest = None
         if local_file:
             src = ART_PACK_LIBRARY / local_file
@@ -2240,9 +2293,149 @@ def run_duplicate_images() -> dict:
     return result
 
 
+# ----------------------------------------------------------------------- blank/near-uniform masters (round 10)
+def _edge_flat_band_frac(im) -> tuple[float, str]:
+    """A TRUNCATED pack master (partial real image, remainder filled with flat black/white) can look
+    unremarkable in whole-image mean/std/modal stats (they blend the real content with the fill) — the
+    McCandless spacewalk master that caught this had a noisy top third and a flat black bottom two
+    thirds, mean 32 / std 49 / modal_frac 0.67, none of which trip near_uniform. Instead: walk inward
+    from each of the four edges and measure the longest run of rows/columns that are each internally
+    flat (max-min<=2) AND agree with each other (within ±2 of the first flat row/col's value) — a run
+    anchored at an edge is a fill band, not coincidental local flatness in the middle of a photo.
+    Returns (band_frac, edge) for whichever edge has the largest band, band_frac in [0, 1]."""
+    w, h = im.size
+    px = list(im.getdata())
+
+    def row_minmax(y):
+        vals = px[y * w:(y + 1) * w]
+        return min(vals), max(vals)
+
+    def col_minmax(x):
+        vals = px[x::w]
+        return min(vals), max(vals)
+
+    def run_len(get, order):
+        ref = None
+        count = 0
+        for i in order:
+            lo, hi = get(i)
+            if hi - lo > 2:
+                break
+            val = (lo + hi) / 2
+            if ref is None:
+                ref = val
+            elif abs(val - ref) > 2:
+                break
+            count += 1
+        return count
+
+    bands = {
+        "bottom": run_len(row_minmax, range(h - 1, -1, -1)) / h,
+        "top": run_len(row_minmax, range(h)) / h,
+        "left": run_len(col_minmax, range(w)) / w,
+        "right": run_len(col_minmax, range(w - 1, -1, -1)) / w,
+    }
+    edge = max(bands, key=bands.get)
+    return bands[edge], edge
+
+
+def _image_grayscale_stats(path: Path, max_edge: int = 512) -> dict:
+    """Open ONE file, decode as cheaply as possible at <=max_edge (Image.draft hints the JPEG decoder
+    to downscale during decode; thumbnail() then finishes it), and return grayscale mean/stddev/modal
+    fraction from the pixel histogram (no numpy dependency), plus the edge-anchored flat-band fraction
+    (see _edge_flat_band_frac) for truncated-master detection."""
+    with Image.open(path) as im:
+        im.draft("L", (max_edge, max_edge))  # no-op / ignored for non-JPEG; safe either way
+        im = im.convert("L")
+        im.thumbnail((max_edge, max_edge), Image.Resampling.LANCZOS)
+        hist = im.histogram()
+        n = im.width * im.height
+        if n == 0:
+            return {"mean": 0.0, "std": 0.0, "modal_frac": 0.0, "band_frac": 0.0, "band_edge": None}
+        mean = sum(i * c for i, c in enumerate(hist)) / n
+        var = sum(((i - mean) ** 2) * c for i, c in enumerate(hist)) / n
+        std = var ** 0.5
+        modal_idx = max(range(256), key=lambda i: hist[i])
+        lo, hi = max(0, modal_idx - 8), min(255, modal_idx + 8)
+        modal_frac = sum(hist[lo:hi + 1]) / n
+        band_frac, band_edge = _edge_flat_band_frac(im)
+        return {"mean": mean, "std": std, "modal_frac": modal_frac,
+                "band_frac": band_frac, "band_edge": band_edge}
+
+
+def _blank_master_tags(stats: dict) -> list[str]:
+    tags = []
+    if stats["std"] < 6 or stats["modal_frac"] > 0.95:
+        tags.append("near_uniform")
+    if stats["mean"] > 245:
+        tags.append("very_bright")
+    if stats["mean"] < 10:
+        tags.append("very_dark")
+    if stats.get("band_frac", 0.0) >= 0.08:
+        tags.append("truncated_band")
+    return tags
+
+
+def run_blank_masters(limit: int | None = None, collection: str | None = None,
+                       max_workers: int = 4) -> dict:
+    """For every served-catalog item with a resolved pack master (see _pack_master_for), open the
+    master, downscale to <=512px, and flag near-uniform / very-bright / very-dark images — writers'
+    placards were being grounded from masters that were blank or near-blank (e.g. an all-white scan)
+    with no signal that anything was wrong. Tags, not a verdict: a legitimately dark deep-space photo
+    (e.g. a McCandless spaceflight EVA shot) is expected to trip very_dark."""
+    catalog = load_catalog()
+    colls = [collection] if collection else list(catalog.keys())
+    targets = [(c, i, catalog[c][i]) for c in colls for i in range(len(catalog[c]))]
+    if limit:
+        targets = targets[:limit]
+
+    resolved: list[tuple[str, int, dict, str]] = []
+    unresolved = 0
+    for coll, idx, item in targets:
+        filename = _pack_master_for(coll, idx, item.get("title"))
+        if filename:
+            resolved.append((coll, idx, item, filename))
+        else:
+            unresolved += 1
+
+    def check(entry: tuple[str, int, dict, str]) -> dict | None:
+        coll, idx, item, filename = entry
+        try:
+            stats = _image_grayscale_stats(ART_PACK_LIBRARY / filename)
+        except Exception as e:
+            logger.info(f"    · blank-master check failed for {coll}[{idx}] {filename}: {e}")
+            return None
+        tags = _blank_master_tags(stats)
+        if not tags:
+            return None
+        return {
+            "collection": coll, "idx": idx, "key": item_key(idx, item.get("title") or ""),
+            "title": item.get("title"), "file": filename,
+            "mean": stats["mean"], "std": stats["std"], "modal_frac": stats["modal_frac"],
+            "band_frac": stats["band_frac"], "edge": stats["band_edge"], "tags": tags,
+        }
+
+    flagged: list[dict] = []
+    with ThreadPoolExecutor(max_workers=max_workers) as ex:
+        for result in ex.map(check, resolved):
+            if result:
+                flagged.append(result)
+
+    # most-suspicious first: whichever of "concentrated on one grey value" (near_uniform) or "large
+    # edge-anchored flat band" (truncated_band) is more extreme, tie-broken by lowest spread.
+    flagged.sort(key=lambda f: (-max(f["modal_frac"], f["band_frac"]), f["std"]))
+
+    result = {"checked": len(resolved), "unresolved": unresolved, "flagged": flagged}
+    BLANK_MASTERS_PATH.parent.mkdir(parents=True, exist_ok=True)
+    BLANK_MASTERS_PATH.write_text(json.dumps(result, indent=1, ensure_ascii=False))
+    logger.info(f"blank-masters: checked {len(resolved)}, unresolved {unresolved}, flagged {len(flagged)}")
+    return result
+
+
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--mode", choices=["facts", "packets", "import", "recheck-museum", "duplicate-images"],
+    ap.add_argument("--mode", choices=["facts", "packets", "import", "recheck-museum", "duplicate-images",
+                                        "blank-masters"],
                      default="packets",
                      help="facts: legacy single-pass (facts+template/model, round 1). "
                           "packets: write facts + writing packets + preview images + batches "
@@ -2250,7 +2443,8 @@ def main():
                           "import: read reground/written/batch_NN.jsonl, validate, land the catalog. "
                           "recheck-museum: re-verify museum matches (round 4), rewriting only the "
                           "fact+packet files whose structured fields changed; never touches written/. "
-                          "duplicate-images: hash every item's master/preview and group shared hashes.")
+                          "duplicate-images: hash every item's master/preview and group shared hashes. "
+                          "blank-masters: flag near-uniform/very-bright/very-dark resolved pack masters.")
     ap.add_argument("--only-sample", action="store_true", help="only the 150 audit-sample works")
     ap.add_argument("--limit", type=int, default=None)
     ap.add_argument("--collection", default=None)
@@ -2274,6 +2468,8 @@ def main():
         report = asyncio.run(run_recheck_museum_matches(limit=args.limit))
     elif args.mode == "duplicate-images":
         report = run_duplicate_images()
+    elif args.mode == "blank-masters":
+        report = run_blank_masters(limit=args.limit, collection=args.collection)
     else:
         report = asyncio.run(run(only_sample=args.only_sample, limit=args.limit, collection=args.collection))
     print(json.dumps(report, indent=2))
