@@ -1083,6 +1083,23 @@ def test_normalize_iso_date_string_passthrough_non_iso_value():
     assert rg._normalize_iso_date_string("c. 1870s", "impressionism") == "c. 1870s"
 
 
+def test_death_year_by_artist_name_falls_back_when_no_work_match(monkeypatch):
+    rg._LABEL_CACHE.clear()
+    fx = _FakeFetcher([
+        ("wbsearchentities", {"search": [{"id": "Q296"}]}),
+        ("\"ids\": \"Q296\"", {"entities": {"Q296": {"claims": {"P570": [
+            {"mainsnak": {"datavalue": {"value": {"time": "+1926-12-05T00:00:00Z"}}}}
+        ]}}}}),
+    ])
+    year = asyncio.run(rg._death_year_by_artist_name(fx, "Claude Monet"))
+    assert year == 1926
+
+
+def test_death_year_by_artist_name_returns_none_for_unknown_artist():
+    fx = _FakeFetcher([])
+    assert asyncio.run(rg._death_year_by_artist_name(fx, "Unknown Artist")) is None
+
+
 def test_date_display_drops_existing_catalog_value_after_artist_death():
     # regression: "Farmyard in Normandy" catalogued "2024-04-10" — really a Commons upload date on a
     # 19th-century painting.

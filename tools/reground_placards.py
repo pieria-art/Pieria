@@ -233,6 +233,25 @@ async def _creator_death_year(fx: Fetcher, creator_qid: str) -> int | None:
     return _extract_year(dv["time"])
 
 
+async def _death_year_by_artist_name(fx: Fetcher, name: str) -> int | None:
+    """Fallback for when the WORK itself has no confident Wikidata match but the catalog's own
+    agent_name is a real, well-known artist (round 7: "Farmyard in Normandy" — Monet, died 1926 — had
+    no work-level match, so the death-year guard on its bogus "2024-04-10" catalog date never even
+    ran). Top wbsearchentities hit only — imprecise for an obscure name, but adequate for this one
+    yes/no question ("could this genuinely be that artist's date"), and never used for attribution."""
+    name = (name or "").strip()
+    if not name or name.lower() in ("unknown artist", "unknown"):
+        return None
+    body, err = await fx.get_json(WD_API, {
+        "action": "wbsearchentities", "search": name, "language": "en", "type": "item",
+        "limit": 1, "format": "json",
+    })
+    cands = (body or {}).get("search") or []
+    if not cands:
+        return None
+    return await _creator_death_year(fx, cands[0]["id"])
+
+
 # Commons extmetadata date/artist/title fields routinely embed a hidden Wikidata "quick statement"
 # bot annotation right after the human-readable text — e.g. "December 1888date QS:P571,+1888-12-00T00
 # :00:00Z/10" or "Fish and Rocks"label QS:Len,"Fish and Rocks"" — strip it, plus HTML tags, so a
@@ -735,6 +754,13 @@ async def build_facts_bundle(fx: Fetcher, item: dict, collection: str | None = N
             if lead:
                 check_only.append(lead)
                 wikipedia_lead = lead
+
+    if creator_death_year is None and item.get("agent_name"):
+        # The WORK itself may have no confident match at all (so no creator_qid) while the catalog's
+        # agent_name is still a real, identifiable artist — "Farmyard in Normandy" never matched, so
+        # the date-after-death guard below would otherwise never see Monet's 1926 death year and would
+        # wave through its bogus "2024-04-10" catalog date.
+        creator_death_year = await _death_year_by_artist_name(fx, item["agent_name"])
 
     museum = await _museum_record(fx, item)
     if museum:
