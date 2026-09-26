@@ -460,7 +460,7 @@ _BOOK_CITATION_RE = re.compile(r"\bISBN\b", re.I)
 _AGGREGATOR_BLOCKLIST_RE = re.compile(
     r"\b(Google (?:Cultural Institute|Art Project)|Bridgeman (?:Art Library|Images)|Wikimedia|"
     r"Wikimedia Commons|\bCommons\b|Flickr|Project Apollo Archive|Art Renewal Center|WikiArt|"
-    r"Web Gallery of Art|Yorck Project)\b", re.I,
+    r"Web Gallery of Art|Yorck Project|AMICA Library|Google Arts)\b", re.I,
 )
 # Trailing/leading junk a Commons Credit sentence leaves behind after the institution name itself —
 # "Library of Congress Catalog", "...See the full record.", "'s Prints and Photographs Division".

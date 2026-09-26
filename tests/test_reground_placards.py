@@ -1515,7 +1515,8 @@ def test_date_display_accepts_plausible_existing_catalog_value():
 def test_is_aggregator_or_agency_flags_known_names():
     for name in ("Google Cultural Institute", "Google Art Project", "Bridgeman Art Library",
                  "Bridgeman Images", "Wikimedia Commons", "Flickr", "Project Apollo Archive",
-                 "Art Renewal Center", "WikiArt", "Web Gallery of Art", "Yorck Project"):
+                 "Art Renewal Center", "WikiArt", "Web Gallery of Art", "Yorck Project",
+                 "The AMICA Library", "Museum of Art3. Google Arts"):
         assert rg.is_aggregator_or_agency(name), name
 
 
