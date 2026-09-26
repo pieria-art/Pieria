@@ -3,6 +3,11 @@
 fastapi==0.141.1
 starlette==0.52.1
 uvicorn==0.30.1
+# uvicorn needs a WebSocket library or it answers every /ws/ upgrade with a 404. fastapi 0.111 pulled
+# one in transitively (uvicorn[standard]); the 0.141 bump dropped it silently and 1.0 shipped with no
+# display socket — no heartbeat, no remote, watchdog "gave up" (TestClient doesn't need it, so tests
+# stayed green). Pinned explicitly; tests/test_ws_runtime_dep.py guards it.
+websockets==13.1
 pydantic==2.13.5
 # The only range pin in this file; bounded to fastapi's own floor (>=0.0.18) plus an explicit ceiling
 # so an appliance that rebuilds itself unattended can't drift onto an untested next-major release.
