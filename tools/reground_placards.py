@@ -412,13 +412,45 @@ async def _aic_record(fx: Fetcher, title: str) -> dict | None:
     return out
 
 
-# A run of capitalised words ending in an institution keyword, optionally followed by "of <Place>" —
-# e.g. "National Gallery of Art" out of a Credit sentence that doesn't match a known DOMAIN_INSTITUTIONS
-# entry (round 3 #3: current_repository from generic Commons Credit/Institution text).
+# A run of capitalised words ending in an institution keyword, optionally followed by "of <Place>" (or a
+# bare proper noun — "Museum Barberini" has no "of") — e.g. "National Gallery of Art" out of a Credit
+# sentence that doesn't match a known DOMAIN_INSTITUTIONS entry (round 3 #3: current_repository from
+# generic Commons Credit/Institution text). Round 13: NO period in the word-character classes — a
+# footnote/sentence boundary ("...National Gallery of Art. Please see...") was previously bridged
+# because `.` sat inside `[\w&.'-]`, so the run kept extending across the full stop into the next
+# sentence ("National Gallery of Art. Please"). Dropping `.` here means a following sentence can never
+# be absorbed, since the required `\s+` before each further word never gets past the intervening period.
 _INSTITUTION_PHRASE_RE = re.compile(
-    r"\b((?:[A-Z][\w&.'-]*\s+){0,6}(?:Museum|Galler\w*|Librar\w*|Archive\w*|University|Institut\w*|"
-    r"Foundation|Academy|Society)(?:\s+of\s+[A-Z][\w&.'-]*(?:\s+[A-Z][\w&.'-]*){0,3})?)\b"
+    r"\b((?:[A-Z][\w&'-]*\s+){0,6}(?:Museum|Galler\w*|Librar\w*|Archive\w*|University|Institut\w*|"
+    r"Foundation|Academy|Society)(?:\s+(?:of\s+)?[A-Z][\w&'-]*(?:\s+[A-Z][\w&'-]*){0,3})?)\b"
 )
+# Round 13: a bare single generic word ("Gallery", "Museum", "Collection"...) names no institution at
+# all — reject it outright rather than shipping it as current_repository (Hay Wain: "Gallery" was really
+# just the substring "Gallery" inside a gallerix.ru URL slug "National-Gallery-London-4"; Museum
+# Barberini used to truncate to "Museum" before the optional-"of" fix above).
+_GENERIC_SINGLE_WORD_INSTITUTIONS = {
+    "gallery", "museum", "collection", "archive", "archives", "library", "libraries",
+    "foundation", "academy", "society", "institute", "university", "center", "centre",
+}
+# Round 13: a credit that names a PUBLISHER/catalogue/exhibition rather than the holding institution
+# ("published by the...", "A Catalogue Raisonné", "exhibition catalogue") — reject a phrase whose
+# immediately preceding text reads that way, so we don't ship the publisher as current_repository.
+_PUBLISHER_CONTEXT_RE = re.compile(
+    r"\b(published by|publisher|catalogue raisonn\w*|catalog raisonn\w*|exhibition catalog\w*)\b", re.I,
+)
+# Round 13: "X via somesite.com" / "...photo collection at somesite.com" is a photo-agency/aggregator
+# credit line ("Erich Lessing Culture and Fine Arts Archives via artsy.net"; "Vatican Museum Complete
+# indexed photo collection at WorldHistoryPics.com") — the named phrase is a photo credit, never the
+# holding institution, however institution-shaped it reads (Liberty Leading the People: "Fine Arts
+# Archives").
+_VIA_AGGREGATOR_RE = re.compile(
+    r"\b(?:via|(?:photo\s+)?collection at)\s+[\w.-]+\.(?:com|net|org|ru|de|fr|uk)\b", re.I,
+)
+_BARE_URL_RE = re.compile(r"https?://\S+")
+# Round 13: "Scanned from <author>: <title>, <Museum>, <year>, ISBN ..." — a book citation, where the
+# named institution is the CATALOGUE's publisher, not the work's holder (The Beguiling of Merlin: "...
+# Metropolitan Museum of Art, 1998, ISBN 0870998595" — real holder is Lady Lever Art Gallery).
+_BOOK_CITATION_RE = re.compile(r"\bISBN\b", re.I)
 
 # Round 8 #1: these are image AGGREGATORS/AGENCIES/ARCHIVES — they license or host a photo of a work,
 # they never HOLD it. "Google Cultural Institute" in particular is institution-shaped enough to slip
@@ -433,7 +465,7 @@ _AGGREGATOR_BLOCKLIST_RE = re.compile(
 # Trailing/leading junk a Commons Credit sentence leaves behind after the institution name itself —
 # "Library of Congress Catalog", "...See the full record.", "'s Prints and Photographs Division".
 _TRAILING_JUNK_RE = re.compile(
-    r"(\.\s*See\b.*$|\s+Catalog\w*$|'s\s+Prints?\b.*$)", re.I,
+    r"(\.\s*See\b.*$|\s+Catalog\w*$|'s\s+Prints?\b.*$|\s+Digital\s+Image\w*$)", re.I,
 )
 _LEADING_JUNK_RE = re.compile(r"^(drawings?\s+in\s+the\s+|photographs?\s+in\s+the\s+)", re.I)
 
@@ -445,18 +477,36 @@ def is_aggregator_or_agency(name: str) -> bool:
 def _clean_institution_text(name: str) -> str:
     name = _LEADING_JUNK_RE.sub("", name or "").strip()
     name = _TRAILING_JUNK_RE.sub("", name).strip()
+    # Round 13: strip a trailing footnote-reference digit ("Courtauld Gallery1" -> "Courtauld Gallery"),
+    # never a digit that's part of the institution's own name (none in this domain do that).
+    name = re.sub(r"\d+$", "", name).strip()
     return name
 
 
 def _extract_institution_phrase(text: str) -> str | None:
     if not text:
         return None
+    text = _BARE_URL_RE.sub(" ", text)
+    if _VIA_AGGREGATOR_RE.search(text):
+        return None  # round 13: whole credit line is a photo-agency/aggregator credit
+    if _BOOK_CITATION_RE.search(text):
+        return None  # round 13: a book citation names its publisher, not the work's holder
     m = _INSTITUTION_PHRASE_RE.search(text)
     if not m:
         return None
+    # Round 13: scope the publisher-context check to the CURRENT sentence only (back to the nearest
+    # preceding full stop) — a footnote for something else entirely earlier in the same Credit string
+    # ("1. J. Rewald ... A Catalogue Raisonné2. National Gallery of Art, ...") must not veto a real
+    # institution named in its own following sentence.
+    sentence_start = text.rfind(".", 0, m.start(1)) + 1
+    window = text[sentence_start:m.start(1)]
+    if _PUBLISHER_CONTEXT_RE.search(window):
+        return None  # round 13: names a publisher/catalogue/exhibition, not the holder
     phrase = _clean_institution_text(m.group(1))
     if not phrase or is_aggregator_or_agency(phrase):
         return None
+    if len(phrase.split()) == 1 and phrase.lower() in _GENERIC_SINGLE_WORD_INSTITUTIONS:
+        return None  # round 13: a bare generic word names no institution
     return phrase
 
 
@@ -1014,11 +1064,18 @@ _PRINT_MEDIUM_WORDS_RE = re.compile(
 # "Workshop of Rembrandt", or (a Staatliche Museen zu Berlin convention) "Schule, Raffael" — meaning
 # the actual attribution is weaker than the catalog's bare "Raphael"/"Rembrandt". Detected only to
 # REFINE an already-agreeing name, never to introduce a name the catalog didn't already have.
+# Round 13 (C): added "after"/"possibly" — "After Peter Paul Rubens", "After Raphael" (catalog title
+# says "after Titian"), "Possibly Frans Hals" are the same kind of weakened attribution.
+# Round 13b: the qualifier keyword is matched case-insensitively but the CAPTURED name never was — a
+# bare `re.I` flag on the whole pattern makes `[A-Z]` match a lowercase letter too, so "After the bath
+# by Edgar Degas" (a Commons FILE TITLE that happens to start with "After", not an attribution at all)
+# captured "the bath by Edgar Degas" as if it were a qualified name. `(?i:...)` scopes case-insensitivity
+# to the keyword alternation only; the capture group stays a real, case-sensitive proper-noun run.
 _ATTRIBUTION_QUALIFIER_RE = re.compile(
-    r"\b(school of|workshop of|circle of|studio of|attributed to|follower of|manner of)\s+"
-    r"([A-Z][\w.’'\-]+(?:\s+[A-Z][\w.’'\-]+)*)", re.I,
+    r"(?i:\b(school of|workshop of|circle of|studio of|attributed to|follower of|manner of|after|possibly))\s+"
+    r"([A-Z][\w.’'\-]+(?:\s+[A-Z][\w.’'\-]+)*)"
 )
-_SCHULE_QUALIFIER_RE = re.compile(r"\bSchule,\s*([A-Z][\w.’'\-]+(?:\s+[A-Z][\w.’'\-]+)*)", re.I)
+_SCHULE_QUALIFIER_RE = re.compile(r"(?i:\bSchule),\s*([A-Z][\w.’'\-]+(?:\s+[A-Z][\w.’'\-]+)*)")
 
 
 _NAME_PARTICLES = {"van", "der", "de", "von", "di", "le", "la", "den", "ter", "y", "af"}
@@ -1035,6 +1092,104 @@ def _names_plausibly_match(a: str, b: str) -> bool:
     if not ta or not tb:
         return True  # nothing to compare — never flag on absence
     return bool(ta & tb)
+
+
+_QUALIFIER_PREFIX_STRIP_RE = re.compile(
+    r"^(school of|workshop of|circle of|studio of|attributed to|follower of|manner of|after|possibly|"
+    r"the|sir|dr\.?|mr\.?|mrs\.?)\s+",
+    re.I,
+)
+_GENERATION_SUFFIX_RE = re.compile(r"\s+the\s+(elder|younger)\s*$", re.I)
+
+
+def _is_different_person_same_surname(a: str, b: str) -> bool:
+    """Round 13 (C): "Jan Hals" vs "Frans Hals", "Joan" vs "Willem Blaeu", "Henri-Joseph" vs
+    "Pierre-Joseph Redouté" all share a surname (and sometimes a middle name) token, so plain
+    `_names_plausibly_match` calls them a match — but they are different, real people, and must be
+    flagged for manual review rather than silently confirmed/replaced. Detected only when both names
+    give a real (non-initial) FIRST given-name token and those first tokens differ, with the surname
+    (last token) agreeing — a hyphenated given name ("Henri-Joseph") tokenises to two words, so its
+    first word is what's compared. A qualifier prefix ("Attributed to Winslow Homer") or "the Elder"/
+    "the Younger" generation suffix is stripped first so it's never mistaken for a given name/surname;
+    a multi-person credit string ("Jan Brueghel and Peter Paul Rubens", "NASA, ESA, ...") is skipped
+    entirely — this check is only meaningful one identity at a time."""
+    def _strip_qualifiers(s):
+        s = _QUALIFIER_PREFIX_STRIP_RE.sub("", (s or "").strip())
+        return _GENERATION_SUFFIX_RE.sub("", s)
+
+    a, b = _strip_qualifiers(a), _strip_qualifiers(b)
+    if re.search(r"\band\b|,", a, re.I) or re.search(r"\band\b|,", b, re.I):
+        return False
+    # `_norm` (module-level, from tools.audit_placards) folds accents/case so a pure spelling variant
+    # ("Elisabeth Vigee Le Brun" vs "Élisabeth Vigée Le Brun") is never mistaken for a different
+    # person — but it DELETES (not replaces) a hyphen, which would otherwise fuse "Jean-Baptiste" into
+    # one token unlike the same name written "Jean Baptiste", so hyphens become spaces first.
+    ta = [w for w in _norm(a.replace("-", " ")).split() if w not in _NAME_PARTICLES]
+    tb = [w for w in _norm(b.replace("-", " ")).split() if w not in _NAME_PARTICLES]
+    if len(ta) < 2 or len(tb) < 2:
+        return False  # a mononym gives nothing to disagree on
+    if ta[-1] != tb[-1]:
+        return False  # different surname entirely — that's the ordinary disagreement path
+    first_a, first_b = ta[0], tb[0]
+    if len(first_a) <= 1 or len(first_b) <= 1:
+        return False  # an initial is compatible with any given name
+    given_a, given_b = {w.lower() for w in ta[:-1]}, {w.lower() for w in tb[:-1]}
+    if first_a in given_b or first_b in given_a:
+        return False  # a full birth name vs. common name ("Hilaire Germain Edgar Degas" ~ "Edgar
+        # Degas") — one given name is a subset of the other's, not a different person
+    return first_a != first_b
+
+
+# Round 13b (item 2): a candidate agent_name pulled off museum.creators/wikidata.creator must never
+# ship if it's obviously not a clean personal/organisation name — empty, a URL, a newline, an HTML
+# entity remnant ("amp"), a photo-credit/caption fragment ("Drawn from nature", "Engraved"), or a
+# library-catalog "Surname, Given" citation LIST (2+ such pairs chained together — a single "Surname,
+# Given" is tolerated, since that's just one person's name in inverted form, but a run of them is a
+# citation list masquerading as one string, e.g. "Cellarius, Andreas, Schenk, Peter, Valck, G. (Gerard),
+# and Loon, J. Van"). In every case the caller keeps the existing catalog value instead.
+_BAD_AGENT_NAME_RE = re.compile(
+    r"https?://|\n|\bamp\b|drawn from nature|\bengraved\b", re.I,
+)
+_CITATION_PAIR_RE = re.compile(r"[A-Za-z'\-]+,\s*[A-Z]")
+
+
+def _agent_name_is_suspect(name: str) -> bool:
+    if not name or not name.strip():
+        return True
+    if _BAD_AGENT_NAME_RE.search(name):
+        return True
+    return len(_CITATION_PAIR_RE.findall(name)) >= 2
+
+
+# Round 13b (item 3): known space-agency full names/acronyms, matched in this order so the acronym list
+# comes out in the credit's own first-occurrence order (never invented — only agencies actually named).
+_SPACE_AGENCY_PATTERNS = [
+    (re.compile(r"national aeronautics and space administration|\bnasa\b", re.I), "NASA"),
+    (re.compile(r"european space agency|\besa\b", re.I), "ESA"),
+    (re.compile(r"canadian space agency|\bcsa\b", re.I), "CSA"),
+    (re.compile(r"space telescope science institute|\bstsci\b", re.I), "STScI"),
+]
+
+
+def _clean_space_agency_credit(text: str) -> str | None:
+    """Returns a clean ", "-joined acronym list (first-occurrence order, deduplicated) when at least
+    TWO distinct known space agencies are recognisable in `text`, else None — a single incidental
+    acronym mention isn't treated as a "multi-agency credit" worth rewriting."""
+    if not text:
+        return None
+    hits: list[tuple[int, str]] = []
+    for pattern, acronym in _SPACE_AGENCY_PATTERNS:
+        m = pattern.search(text)
+        if m:
+            hits.append((m.start(), acronym))
+    if len(hits) < 2:
+        return None
+    hits.sort(key=lambda h: h[0])
+    ordered: list[str] = []
+    for _, acronym in hits:
+        if acronym not in ordered:
+            ordered.append(acronym)
+    return ", ".join(ordered) if len(ordered) >= 2 else None
 
 
 def detect_identity_mismatch(item: dict, facts: list[dict]) -> dict | None:
@@ -1073,6 +1228,29 @@ def detect_identity_mismatch(item: dict, facts: list[dict]) -> dict | None:
     return {"evidence": evidence} if evidence else None
 
 
+# Round 13 (B): collections where a work is routinely a PRINT with many separate impressions in many
+# collections — Audubon plates (Pittsburgh scans), ukiyo-e (NDL/BnF/LOC scans), posters, illustration —
+# plus any work whose medium itself names a print technique. Wikidata's collection/dimensions for these
+# belong to whichever impression Wikidata's item happens to describe, not necessarily the SCANNED
+# EXEMPLAR the placard is about ("now held by the Vanderbilt Museum of Art" over a Pittsburgh scan).
+_MULTI_IMPRESSION_COLLECTIONS = {
+    "audubon-birds-of-america", "ukiyo-e", "vintage-posters", "golden-age-illustration",
+}
+_PRINT_TECHNIQUE_RE = re.compile(
+    r"\b(engraving|engraved|etching|etched|aquatint|lithograph\w*|woodblock\w*|woodcut\w*|print)\b", re.I,
+)
+# A print's exemplar date may legitimately differ a little from Wikidata's inception (edition years,
+# posthumous printings) — only a >5yr gap is treated as a real disagreement (tighter than the general
+# 25yr conflict threshold, because print exemplars/impressions vary far more than paintings do).
+_PRINT_DATE_DISAGREEMENT_YEARS = 5
+
+
+def _is_multi_impression_work(collection: str | None, medium: str | None) -> bool:
+    if collection in _MULTI_IMPRESSION_COLLECTIONS:
+        return True
+    return bool(_PRINT_TECHNIQUE_RE.search(medium or ""))
+
+
 # Collections where a genuinely large object is expected (a building, a monument, a wall map) — the
 # physical_dimensions plausibility guard (round 6) doesn't apply here.
 _LARGE_OBJECT_COLLECTIONS = {"cartography", "sculpture-antiquity", "cities-architecture", "ancient-egypt"}
@@ -1106,6 +1284,23 @@ def _is_photo_archive_of_a_nonphoto_object(candidate: str, medium: str | None) -
     if not candidate or not _PHOTO_ARCHIVE_RE.search(candidate):
         return False
     return not _PHOTOGRAPHIC_MEDIUM_RE.search(medium or "")
+
+
+def _credit_is_wrong_national_gallery(candidate: str, facts_by_key: dict) -> bool:
+    """Round 13: The Fighting Temeraire's own Commons Credit field literally says "National Gallery of
+    Art" (Washington) though it hangs in the National Gallery, London — a real Commons data mistake, not
+    a fact about a different institution. Reject the credit-derived candidate whenever Wikidata's own
+    collection/location names the bare "National Gallery" (no "of Art")."""
+    if candidate.strip().lower() != "national gallery of art":
+        return False
+    for key in ("wikidata.collection", "wikidata.location"):
+        f = facts_by_key.get(key)
+        if not f:
+            continue
+        v = f["value"][0] if isinstance(f["value"], list) else f["value"]
+        if str(v).strip().lower() == "national gallery":
+            return True
+    return False
 
 
 # ----------------------------------------------------------------------- structured fields (deterministic)
@@ -1176,12 +1371,42 @@ def resolve_structured_fields(bundle: dict, existing_item: dict, collection: str
             fields["medium_source"] = "existing_catalog_value"
             notes.append("medium: no retrieved fact, kept existing catalog value")
 
+    # Round 13 (B): a print/multi-impression work's repository and dimensions must come only from the
+    # SCANNED EXEMPLAR, never from a Wikidata item's collection/dimensions unless that's the exemplar's
+    # own institution — so for these works, wikidata.collection/height/width are treated the same as a
+    # title-only (medium-confidence) match even when the identity match itself came back "high".
+    multi_impression = _is_multi_impression_work(collection, fields.get("medium") or existing_item.get("medium"))
+    high_confidence_repo_dims = high_confidence_match and not multi_impression
+    if multi_impression and high_confidence_match:
+        notes.append("repository/dimensions: treated as title-only (not exemplar-specific) — "
+                      "multi-impression work (print technique or a multi-impression collection)")
+
     # date — accession-year guard applied before acceptance. Round 8 addendum (b): once a "date"
     # conflict is flagged (sources disagree by >25yrs), Wikidata's inception is EXCLUDED rather than
     # winning on precedence order — toilers-of-the-sea-0125 shipped Wikidata's 1847 over Commons+
     # museum's agreeing 1873. On a genuine conflict: museum > commons > blank; never the outlier.
+    # Round 13 (B): for a multi-impression work, a much tighter 5yr (not 25yr) gap between Wikidata's
+    # inception and the exemplar's OWN Commons date already counts as a disagreement — the exemplar's
+    # date wins and the item is flagged for review.
+    def _fact_year(key):
+        f = facts_by_key.get(key)
+        if not f:
+            return None
+        v = f["value"]
+        return _extract_year(str(v[0] if isinstance(v, list) else v))
+
     dropped_accession = False
-    date_exclude = ("wikidata.inception",) if date_conflict else ()
+    print_date_conflict = False
+    if multi_impression:
+        wd_year = _fact_year("wikidata.inception")
+        exemplar_year = _fact_year("commons.DateTimeOriginal")
+        if wd_year and exemplar_year and abs(wd_year - exemplar_year) > _PRINT_DATE_DISAGREEMENT_YEARS:
+            print_date_conflict = True
+            needs_review = True
+            notes.append(f"date: multi-impression exemplar date {exemplar_year} disagrees with "
+                         f"wikidata.inception {wd_year} by >{_PRINT_DATE_DISAGREEMENT_YEARS}yrs — "
+                         f"preferring the exemplar's own date")
+    date_exclude = ("wikidata.inception",) if (date_conflict or print_date_conflict) else ()
     if date_conflict and facts_by_key.get("wikidata.inception"):
         notes.append("date: ignored wikidata.inception — conflicts with museum/Commons dating, "
                      "preferring the more authoritative source instead of the outlier")
@@ -1231,13 +1456,14 @@ def resolve_structured_fields(bundle: dict, existing_item: dict, collection: str
             break
     else:
         v = None
-        if high_confidence_match:
+        if high_confidence_repo_dims:
             f = facts_by_key.get("wikidata.collection")
             if f:
                 v = f["value"][0] if isinstance(f["value"], list) else f["value"]
         elif facts_by_key.get("wikidata.collection"):
-            notes.append("current_repository: ignored wikidata.collection — title-only match, "
-                         "not exemplar-specific")
+            notes.append("current_repository: ignored wikidata.collection — "
+                         + ("multi-impression work, not exemplar-specific"
+                            if multi_impression else "title-only match, not exemplar-specific"))
         if v and looks_like_institution_label(str(v)) and not is_aggregator_or_agency(str(v)):
             fields["current_repository"] = str(v).strip()
         else:
@@ -1254,6 +1480,15 @@ def resolve_structured_fields(bundle: dict, existing_item: dict, collection: str
                     if _is_photo_archive_of_a_nonphoto_object(candidate, fields.get("medium")):
                         notes.append(f"current_repository: rejected {candidate!r} — an archive of the "
                                      f"PHOTOGRAPH, not the depicted (non-photographic) object")
+                    elif _credit_is_wrong_national_gallery(candidate, facts_by_key):
+                        # Round 13: Commons Credit text routinely says "National Gallery of Art"
+                        # (Washington) even for works actually held by "National Gallery" (London) — a
+                        # known Commons metadata mistake, not a different institution. Never ship it
+                        # when Wikidata's own collection/location names the plain "National Gallery".
+                        notes.append(f"current_repository: rejected Commons Credit {candidate!r} — "
+                                     f"Wikidata names plain 'National Gallery' (London); never mapped "
+                                     f"to National Gallery of Art (Washington)")
+                        needs_review = True
                     else:
                         fields["current_repository"] = candidate
                         fields["current_repository_source"] = "Commons Credit text"
@@ -1263,14 +1498,22 @@ def resolve_structured_fields(bundle: dict, existing_item: dict, collection: str
     # Descouens", "Elke Wetzig" — or even the holding INSTITUTION, e.g. "Rijksmuseum" on 100+ Hiroshige
     # prints; 133 packets had a structured artist disagreeing with the catalog for exactly this
     # reason). commons.Artist stays a fact for writers to see but is never used to set this field.
-    def _attribution_target_matches(catalog_artist: str, name: str) -> bool:
-        if _names_plausibly_match(catalog_artist, name):
-            return True
-        # tolerant of a transliteration/spelling variant (Commons SMB "Schule, Raffael" vs catalog
-        # "Raphael") — plain token-overlap alone misses this.
-        return difflib.SequenceMatcher(None, _norm(catalog_artist), _norm(name)).ratio() >= 0.7
-
+    #
+    # Round 13b: co-creator joining (round 13 C) is REMOVED — reviewed against static/catalog and found
+    # to be joining Wikidata's multiple, often ALTERNATIVE/disputed P170 attributions as if they were
+    # collaborators ("Pieter Claesz, Clara Peeters, and Floris van Dyck"; "Rembrandt, Jan Lievens, and
+    # Jan Gillisz van Vliet") and, via commons.Artist, real garbage ("Cellarius, Andreas, Schenk, Peter,
+    # Valck, G. (Gerard), and Loon, J. Van", "Bibliographisches Institut (Leipzig, Germany) and Haeckel,
+    # Ernst"). Back to the PRINCIPAL creator only — genuine collaborations are curated by hand instead
+    # (see --agent-overrides / ~/pieria-img/curation/agent_overrides.json).
     def _detect_attribution_qualifier(catalog_artist: str) -> str | None:
+        """Round 13b: the qualified name must be EXACTLY (accent/case-insensitive) the catalog's own
+        principal artist — never a fuzzy/partial match, so trailing title words or unrelated text can
+        never leak in ("After the bath by Edgar Degas" is a Commons FILE TITLE, not a qualifier — see
+        the regex fix above; this equality check is the second line of defence)."""
+        if not catalog_artist:
+            return None
+        norm_catalog = _norm(catalog_artist)
         for key in ("commons.ObjectName", "commons.Artist", "commons.Credit"):
             f = facts_by_key.get(key)
             if not f:
@@ -1285,7 +1528,7 @@ def resolve_structured_fields(bundle: dict, existing_item: dict, collection: str
                 if not m2:
                     continue
                 name = m2.group(1)
-            if catalog_artist and _attribution_target_matches(catalog_artist, name):
+            if _norm(name) == norm_catalog:
                 return f"{qualifier.capitalize()} {name.strip()}"
         return None
 
@@ -1296,36 +1539,56 @@ def resolve_structured_fields(bundle: dict, existing_item: dict, collection: str
             continue
         v = f["value"]
         v = str(v[0] if isinstance(v, list) else v).strip()
-        if v:
+        if v and not _agent_name_is_suspect(v):
             agent_val, agent_src = v, f["source"]
             break
+
     if agent_val:
         catalog_artist = (existing_item.get("agent_name") or "").strip()
         if not catalog_artist or catalog_artist.lower() in ("unknown artist", "unknown"):
             # nothing to disagree with — a real name where the catalog had none is a genuine gain.
             fields["agent_name_confirmed"] = agent_val
             fields["agent_name_source"] = agent_src
-        elif _names_plausibly_match(catalog_artist, agent_val):
-            # confirmed, not changed — keep the catalog's own spelling/form (e.g. "Rembrandt van
-            # Rijn"), don't replace it with a shorter/differently-formatted museum/Wikidata string —
-            # UNLESS Commons/museum text qualifies it ("School of Raphael" — round 8 addendum e),
-            # which is a real weakening of the attribution the bare confirmed name would hide.
-            qualified = _detect_attribution_qualifier(catalog_artist)
-            if qualified:
-                fields["agent_name_confirmed"] = qualified
-                fields["agent_name_source"] = "Commons attribution qualifier"
-                needs_review = True
-                notes.append(f"agent_name: qualified attribution detected — {qualified!r} "
-                             f"(catalog said {catalog_artist!r})")
-            else:
-                fields["agent_name_confirmed"] = catalog_artist
-                fields["agent_name_source"] = f"existing_catalog_value (confirmed by {agent_src})"
         else:
-            # disagreement — never overwrite; flag for a human instead of shipping a guess.
-            needs_review = True
-            fields["agent_name_disagreement"] = agent_val
-            notes.append(f"agent_name: {agent_src} says {agent_val!r}, catalog says "
-                         f"{catalog_artist!r} — kept catalog value, needs_review")
+            # Round 13 (C): a shared surname with a DIFFERENT given name ("Jan Hals" vs catalog
+            # "Frans Hals") must never auto-confirm/replace — it's a different, real person.
+            different_person = _is_different_person_same_surname(catalog_artist, agent_val)
+            genuine_match = (not different_person) and _names_plausibly_match(catalog_artist, agent_val)
+            if genuine_match:
+                # confirmed, not changed — keep the catalog's own spelling/form (e.g. "Rembrandt van
+                # Rijn"), don't replace it with a shorter/differently-formatted museum/Wikidata string —
+                # UNLESS Commons/museum text qualifies it ("School of Raphael" — round 8 addendum e),
+                # which is a real weakening of the attribution the bare confirmed name would hide.
+                qualified = _detect_attribution_qualifier(catalog_artist)
+                if qualified:
+                    fields["agent_name_confirmed"] = qualified
+                    fields["agent_name_source"] = "Commons attribution qualifier"
+                    needs_review = True
+                    notes.append(f"agent_name: qualified attribution detected — {qualified!r} "
+                                 f"(catalog said {catalog_artist!r})")
+                else:
+                    fields["agent_name_confirmed"] = catalog_artist
+                    fields["agent_name_source"] = f"existing_catalog_value (confirmed by {agent_src})"
+            else:
+                # disagreement — never overwrite; flag for a human instead of shipping a guess.
+                needs_review = True
+                fields["agent_name_disagreement"] = agent_val
+                reason = (" (same surname, different given name)" if different_person else "")
+                notes.append(f"agent_name: {agent_src} says {agent_val!r}{reason}, catalog says "
+                             f"{catalog_artist!r} — kept catalog value, needs_review")
+
+    # Round 13b (item 3): a multi-agency space-image credit ("Image: National Aeronautics and Space
+    # Administration ... European space agency ... Canadian Space Agency ... Space Telescope Science
+    # Institute ...") is common in the cosmos collection and often IS the raw catalog agent_name,
+    # newlines/URLs and all. Clean it to a short acronym list whenever >=2 known agencies are
+    # recognisable in the EXISTING catalog value — never invents an agency that isn't actually named,
+    # and never touches a value the block above already resolved.
+    if "agent_name_confirmed" not in fields and "agent_name_disagreement" not in fields:
+        cleaned = _clean_space_agency_credit(existing_item.get("agent_name") or "")
+        if cleaned:
+            fields["agent_name_confirmed"] = cleaned
+            fields["agent_name_source"] = "space-agency credit cleanup"
+            notes.append(f"agent_name: cleaned multi-agency credit to {cleaned!r}")
 
     # physical dimensions — round 6: prefer a museum record's own dimensions text (e.g. Cleveland's/
     # AIC's own measurements, already unit-correct) over a computed Wikidata value. The Wikidata path
@@ -1342,10 +1605,11 @@ def resolve_structured_fields(bundle: dict, existing_item: dict, collection: str
             fields["physical_dimensions_source"] = f["source"]
             got_museum_dims = True
             break
-    if not got_museum_dims and not high_confidence_match:
+    if not got_museum_dims and not high_confidence_repo_dims:
         if facts_by_key.get("wikidata.height") or facts_by_key.get("wikidata.width"):
-            notes.append("physical_dimensions: ignored wikidata height/width — title-only match, "
-                         "not exemplar-specific")
+            notes.append("physical_dimensions: ignored wikidata height/width — "
+                         + ("multi-impression work, not exemplar-specific"
+                            if multi_impression else "title-only match, not exemplar-specific"))
     elif not got_museum_dims:
         h = facts_by_key.get("wikidata.height")
         w = facts_by_key.get("wikidata.width")
@@ -1890,6 +2154,26 @@ def load_curated_protections(path: str | Path | None) -> dict[tuple[str, int], s
     return out
 
 
+# Round 13b (item 4): a small, hand-curated set of genuine collaborations (Wikidata's multiple P170
+# values are usually alternative/disputed attributions, not collaborators, so round 13b removed
+# automatic co-creator joining — see resolve_structured_fields). Entries are keyed by the PRE-DROP
+# index (the packet key's own `-NNNN` — same indexing item_key()/the packets/ tree use), and applied
+# only after the title is verified to still match, so a later re-curation of the underlying catalog
+# can never silently misapply an override written against a different work.
+def load_agent_overrides(path: str | Path | None) -> dict[tuple[str, int], dict]:
+    """--agent-overrides PATH (default None -> {}): {(collection, pre_idx): {"title", "agent_name"}}."""
+    if not path:
+        return {}
+    records = json.loads(Path(path).read_text())
+    out: dict[tuple[str, int], dict] = {}
+    for rec in records:
+        coll, idx = rec.get("collection"), rec.get("pre_idx")
+        if coll is None or idx is None or not rec.get("agent_name"):
+            continue
+        out[(coll, idx)] = {"title": rec.get("title") or "", "agent_name": rec["agent_name"]}
+    return out
+
+
 def _extract_match_qids(packet: dict) -> list[str]:
     """Every distinct Wikidata QID backing this packet's facts (there's normally exactly one — the
     resolved match — but a Commons-credit-derived match can add a second)."""
@@ -2087,9 +2371,11 @@ def normalize_tags(written_tags, existing_tags) -> tuple[str | None, bool]:
     return ", ".join(tags), False
 
 
-def run_import(batch_glob: str = "batch_*.jsonl", curated_path: str | Path | None = None):
+def run_import(batch_glob: str = "batch_*.jsonl", curated_path: str | Path | None = None,
+               agent_overrides_path: str | Path | None = None):
     catalog = load_catalog()
     curated_protections = load_curated_protections(curated_path)
+    agent_overrides = load_agent_overrides(agent_overrides_path)
     packet_index = json.loads(PACKET_INDEX_PATH.read_text()) if PACKET_INDEX_PATH.exists() else {}
     written_lines: dict[str, dict] = {}
     flags_dropped_total = 0
@@ -2109,7 +2395,8 @@ def run_import(batch_glob: str = "batch_*.jsonl", curated_path: str | Path | Non
     import_report = {"passed": 0, "failed": 0, "no_submission": 0, "items": [], "flagged": [],
                       "existing_catalog_value_counts": {}, "identity_suspect_fields_dropped": [],
                       "medium_blanked": [], "header_hygiene_changes": [],
-                      "flags_dropped": flags_dropped_total, "tags_rejected": [], "curated_conflicts": []}
+                      "flags_dropped": flags_dropped_total, "tags_rejected": [], "curated_conflicts": [],
+                      "agent_overrides_applied": [], "agent_overrides_title_mismatch": []}
     by_collection_new: dict[str, dict[int, dict]] = {}
 
     for key, coll in packet_index.items():
@@ -2120,7 +2407,25 @@ def run_import(batch_glob: str = "batch_*.jsonl", curated_path: str | Path | Non
         idx = int(key.rsplit("-", 1)[-1])
         base = dict(catalog[coll][idx])
 
-        protected_fields = curated_protections.get((coll, idx)) or set()
+        protected_fields = set(curated_protections.get((coll, idx)) or set())
+
+        # Round 13b (item 4): a manual agent_name override, applied only once its title is verified
+        # against the CURRENT catalog value — a title that no longer matches means the underlying
+        # catalog entry moved/changed since the override was written, so it's skipped, never guessed.
+        override = agent_overrides.get((coll, idx))
+        if override:
+            if _norm(override["title"]) == _norm(base.get("title") or ""):
+                base["agent_name"] = override["agent_name"]
+                protected_fields = protected_fields | {"agent_name"}
+                import_report["agent_overrides_applied"].append({
+                    "key": key, "collection": coll, "agent_name": override["agent_name"],
+                })
+            else:
+                import_report["agent_overrides_title_mismatch"].append({
+                    "key": key, "collection": coll, "override_title": override["title"],
+                    "catalog_title": base.get("title"),
+                })
+
         curated_snapshot = {f: base.get(f) for f in protected_fields}
 
         def _protect(field: str, by: str) -> None:
@@ -2252,9 +2557,10 @@ def run_import(batch_glob: str = "batch_*.jsonl", curated_path: str | Path | Non
             new_val = normalize_credit_text(old_val, shorten_to_orgs=shorten) if old_val else old_val
             if field == "agent_name" and new_val and _looks_like_garbage_agent_name(new_val):
                 # Round 8 #4: a credit blob can clean down to a meaningless fragment (cosmic-reef-0020
-                # "and" — a leftover conjunction from "NASA, ESA, and STScI") — blank rather than ship
-                # nonsense, never invent a real name in its place.
-                new_val = ""
+                # "and" — a leftover conjunction from "NASA, ESA, and STScI"). Round 13b: never ship
+                # that as an EMPTY agent_name either — a blank header field is worse than the original
+                # unhygienic value, so leave the field untouched (keep old_val) instead of blanking it.
+                new_val = old_val
             if new_val != old_val:
                 base[field] = new_val
                 _protect(field, "hygiene")
@@ -2679,13 +2985,20 @@ def main():
     ap.add_argument("--drops", default=None,
                      help="apply-drops mode only: path to the approved deferred-drops file "
                           "(default: ~/pieria-img/curation/deferred_drops.json)")
+    ap.add_argument("--agent-overrides", default=None,
+                     help="import mode only: path to a hand-curated agent_name overrides file "
+                          "(agent_overrides.json shape: [{collection, pre_idx, title, agent_name}]) — "
+                          "genuine multi-creator collaborations round 13 stopped inferring automatically; "
+                          "applied only once each entry's title is verified against the catalog, and "
+                          "protected the same way --curated fields are (import_report["
+                          "'agent_overrides_applied'/'agent_overrides_title_mismatch'])")
     args = ap.parse_args()
 
     if args.workdir:
         set_workdir(Path(args.workdir).expanduser())
 
     if args.mode == "import":
-        report = run_import(curated_path=args.curated)
+        report = run_import(curated_path=args.curated, agent_overrides_path=args.agent_overrides)
     elif args.mode == "apply-drops":
         report = run_apply_drops(drops_path=args.drops)
     elif args.mode == "packets":

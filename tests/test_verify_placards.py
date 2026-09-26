@@ -164,6 +164,115 @@ def test_packet_index_unmatched(tmp_path):
     assert reason == "unmatched"
 
 
+# --------------------------------------------------------------------------- round 13 (D): exact drop mapping
+def test_item_key_matches_slug_plus_zero_padded_index():
+    assert vp.item_key(0, "New Map") == "new-map-0000"
+    assert vp.item_key(232, "Mandarin Duck") == "mandarin-duck-0232"
+
+
+def test_pre_drop_index_no_drops_is_identity():
+    assert vp.pre_drop_index(0, []) == 0
+    assert vp.pre_drop_index(5, []) == 5
+
+
+def test_pre_drop_index_single_drop_before_target():
+    # pre-drop array 0..9, index 2 removed: post 2 -> pre 3, post 4 -> pre 6... (only one drop here)
+    assert vp.pre_drop_index(0, [2]) == 0
+    assert vp.pre_drop_index(2, [2]) == 3
+    assert vp.pre_drop_index(3, [2]) == 4
+
+
+def test_pre_drop_index_multiple_drops_in_one_collection():
+    # pre-drop indices 2 and 5 removed.
+    assert vp.pre_drop_index(0, [2, 5]) == 0
+    assert vp.pre_drop_index(1, [2, 5]) == 1
+    assert vp.pre_drop_index(2, [2, 5]) == 3
+    assert vp.pre_drop_index(3, [2, 5]) == 4
+    assert vp.pre_drop_index(4, [2, 5]) == 6
+    assert vp.pre_drop_index(5, [2, 5]) == 7
+
+
+def test_pre_drop_index_drops_before_and_after_target():
+    # dropped indices straddle the target from both sides.
+    assert vp.pre_drop_index(1, [0, 3, 7]) == 2
+    assert vp.pre_drop_index(6, [0, 3, 7]) == 9
+
+
+def test_load_deferred_drops_groups_by_collection_and_sorts(tmp_path):
+    data = [
+        {"key": "aristotle-with-a-bust-of-homer-0063", "collection": "dutch-golden-age"},
+        {"key": "two-mandarin-ducks-0189", "collection": "ukiyo-e"},  # gitleaks:allow (catalog key, not a secret)
+        {"key": "mandarin-duck-in-snow-0138", "collection": "ukiyo-e"},
+    ]
+    p = tmp_path / "deferred_drops.json"
+    p.write_text(json.dumps(data))
+    m = vp.load_deferred_drops(p)
+    assert m["dutch-golden-age"] == [63]
+    assert m["ukiyo-e"] == [138, 189]
+
+
+@pytest.mark.asyncio
+async def test_run_uses_exact_key_mapping_for_same_titled_works_when_drops_given(tmp_path):
+    # Four same-titled works in one collection (like Cézanne's four "Bathers") must each resolve to
+    # their OWN packet, not collapse onto one by title matching, once a drops file maps the indices.
+    catalog_dir = _write_catalog(tmp_path, "post-impressionism", [
+        _item("Bathers", agent_name="Paul Cézanne"),
+        _item("Bathers", agent_name="Paul Cézanne"),
+        _item("Bathers", agent_name="Paul Cézanne"),
+        _item("Bathers", agent_name="Paul Cézanne"),
+    ])
+    for i in range(4):
+        _write_packet(tmp_path, "post-impressionism", f"bathers-{i:04d}", title="Bathers", agent_name="Paul Cézanne")
+    drops_path = tmp_path / "deferred_drops.json"
+    drops_path.write_text(json.dumps([]))  # no drops in this collection — index-aligned
+    output_dir = tmp_path / "verify"
+
+    chat = FakeChat([GOOD_VERDICT] * 4)
+    result = await vp.run(catalog_dir, tmp_path / "packets", output_dir, chat, concurrency=2, drops=drops_path)
+
+    assert result["attempted"] == 4
+    for i in range(4):
+        assert (output_dir / "post-impressionism" / f"bathers-{i:04d}.json").exists()
+
+
+@pytest.mark.asyncio
+async def test_run_exact_key_mapping_accounts_for_a_drop_before_the_target(tmp_path):
+    # Pre-drop there were 3 items (0,1,2); item 1 was dropped, so post-drop item 1 is really pre-drop 2.
+    catalog_dir = _write_catalog(tmp_path, "cartography", [
+        _item("Map A", agent_name="John Speed"),
+        _item("Map C", agent_name="John Speed"),
+    ])
+    _write_packet(tmp_path, "cartography", "map-a-0000", title="Map A", agent_name="John Speed")
+    _write_packet(tmp_path, "cartography", "map-c-0002", title="Map C", agent_name="John Speed")
+    drops_path = tmp_path / "deferred_drops.json"
+    drops_path.write_text(json.dumps([
+        {"key": "map-b-0001", "collection": "cartography"},
+    ]))
+    output_dir = tmp_path / "verify"
+
+    chat = FakeChat([GOOD_VERDICT] * 2)
+    result = await vp.run(catalog_dir, tmp_path / "packets", output_dir, chat, concurrency=2, drops=drops_path)
+
+    assert result["attempted"] == 2
+    assert (output_dir / "cartography" / "map-a-0000.json").exists()
+    assert (output_dir / "cartography" / "map-c-0002.json").exists()
+
+
+@pytest.mark.asyncio
+async def test_run_exact_key_mapping_reports_unmatched_when_packet_missing(tmp_path):
+    catalog_dir = _write_catalog(tmp_path, "cartography", [_item("Orphan Map", agent_name="Agent")])
+    drops_path = tmp_path / "deferred_drops.json"
+    drops_path.write_text(json.dumps([]))
+    output_dir = tmp_path / "verify"
+
+    chat = FakeChat([])
+    result = await vp.run(catalog_dir, tmp_path / "packets", output_dir, chat, concurrency=2, drops=drops_path)
+
+    assert result["attempted"] == 0
+    assert len(result["unmatched"]) == 1
+    assert "exact-key-missing" in result["unmatched"][0]["reason"]
+
+
 # ----------------------------------------------------------------------------------------- run/resume
 @pytest.mark.asyncio
 async def test_run_writes_output_and_records_unmatched(tmp_path):

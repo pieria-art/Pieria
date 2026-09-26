@@ -55,6 +55,50 @@ def _norm(s: str) -> str:
     return re.sub(r"\s+", " ", s).strip()
 
 
+def _slug(title: str) -> str:
+    """Copied from tools.audit_placards._slug (not imported — see module docstring)."""
+    s = _norm(title).replace(" ", "-")
+    return re.sub(r"-+", "-", s)
+
+
+def item_key(idx: int, title: str) -> str:
+    """Copied from tools.reground_placards.item_key (not imported — see module docstring)."""
+    return f"{_slug(title) or 'untitled'}-{idx:04d}"
+
+
+# ------------------------------------------------------------------------------ deferred-drops mapping
+# Round 13 (D): the import output (packets/) is index-aligned with the pre-drop catalog EXCEPT for the
+# items curation deferred (~/pieria-img/curation/deferred_drops.json), whose removal shifts every later
+# item's positional index down by one per drop. Given that drops file, a post-drop catalog index can be
+# mapped back EXACTLY to the pre-drop index item_key() was built from — no title-matching heuristics,
+# no risk of same-titled works (Cézanne's four "Bathers", ...) colliding on one packet.
+def load_deferred_drops(drops_path: Path) -> dict[str, list[int]]:
+    """Returns {collection: sorted [pre-drop indices dropped in that collection]}, parsed from each
+    drop's `key` field (`<slug>-<NNNN>`, NNNN = the pre-drop index)."""
+    data = json.loads(drops_path.read_text())
+    by_collection: dict[str, list[int]] = {}
+    for row in data:
+        m = re.search(r"-(\d{4})$", row.get("key") or "")
+        if not m:
+            continue
+        by_collection.setdefault(row["collection"], []).append(int(m.group(1)))
+    for coll in by_collection:
+        by_collection[coll].sort()
+    return by_collection
+
+
+def pre_drop_index(post_idx: int, dropped: list[int]) -> int:
+    """Map a post-drop catalog index back to its pre-drop index, given that collection's SORTED list
+    of pre-drop indices that were dropped. Each dropped index at or before the (growing) candidate
+    shifts it up by one — this must be applied in ascending order so multiple drops before OR after
+    the target index (and drops interleaved with each other) all compound correctly."""
+    pre = post_idx
+    for d in dropped:
+        if d <= pre:
+            pre += 1
+    return pre
+
+
 # --------------------------------------------------------------------------------------- catalog I/O
 def load_catalog_items(catalog_dir: Path, collection_filter: str | None = None):
     """Yield (collection, item_dict) for every work in every `<collection>.json` in catalog_dir.
@@ -62,6 +106,14 @@ def load_catalog_items(catalog_dir: Path, collection_filter: str | None = None):
     Catalog files may hold either a bare list of items or {"items": [...]} — same shape as
     static/catalog.
     """
+    for collection, _post_idx, item in load_catalog_items_indexed(catalog_dir, collection_filter):
+        yield collection, item
+
+
+def load_catalog_items_indexed(catalog_dir: Path, collection_filter: str | None = None):
+    """Yield (collection, post_drop_index, item_dict) — post_drop_index is the item's own 0-based
+    position within its collection's (already post-drop) catalog file, needed to map back to the
+    pre-drop index via `pre_drop_index()`."""
     for f in sorted(catalog_dir.glob("*.json")):
         collection = f.stem
         if collection_filter and collection != collection_filter:
@@ -70,8 +122,8 @@ def load_catalog_items(catalog_dir: Path, collection_filter: str | None = None):
         items = data.get("items") if isinstance(data, dict) else data
         if items is None:
             items = data if isinstance(data, list) else []
-        for item in items:
-            yield collection, item
+        for post_idx, item in enumerate(items):
+            yield collection, post_idx, item
 
 
 # ------------------------------------------------------------------------------------- packet lookup
@@ -227,26 +279,41 @@ async def run(
     collection: str | None = None,
     sample: Path | None = None,
     concurrency: int = 2,
+    drops: Path | None = None,
 ) -> dict[str, Any]:
     """Verify every (matched, not-yet-done) work; returns a run summary dict.
 
     Resumable: a work whose output file already exists is skipped without calling the model.
+
+    `drops`, when given, is ~/pieria-img/curation/deferred_drops.json: it maps each post-drop catalog
+    index EXACTLY back to its packet via the pre-drop index (round 13 D) — same-titled works in one
+    collection (Cézanne's four "Bathers", ...) are then never collapsed onto a single packet by title
+    matching. Without it, PacketIndex's title(+agent) matching is used as before.
     """
     index = PacketIndex(packets_dir)
     sample_filter = _load_sample_filter(sample) if sample else None
+    drops_map = load_deferred_drops(drops) if drops else None
 
     todo: list[tuple[str, dict, Path]] = []
     unmatched: list[dict] = []
     skipped_done = 0
 
-    for coll, item in load_catalog_items(catalog_dir, collection):
+    for coll, post_idx, item in load_catalog_items_indexed(catalog_dir, collection):
         title = item.get("title") or ""
         if sample_filter is not None and (coll, _norm(title)) not in sample_filter:
             continue
-        packet_path, reason = index.find(coll, title, item.get("agent_name") or "")
-        if packet_path is None:
-            unmatched.append({"collection": coll, "title": title, "reason": reason})
-            continue
+        if drops_map is not None:
+            pre_idx = pre_drop_index(post_idx, drops_map.get(coll, []))
+            key = item_key(pre_idx, title)
+            packet_path = packets_dir / coll / f"{key}.json"
+            if not packet_path.exists():
+                unmatched.append({"collection": coll, "title": title, "reason": f"exact-key-missing:{key}"})
+                continue
+        else:
+            packet_path, reason = index.find(coll, title, item.get("agent_name") or "")
+            if packet_path is None:
+                unmatched.append({"collection": coll, "title": title, "reason": reason})
+                continue
         packet = load_packet(packet_path)
         key = packet.get("key") or packet_path.stem
         out_path = _output_path(output_dir, coll, key)
@@ -350,6 +417,8 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--collection", type=str, default=None)
     ap.add_argument("--sample", type=Path, default=None)
     ap.add_argument("--concurrency", type=int, default=2)
+    ap.add_argument("--drops", type=Path, default=None,
+                     help="deferred_drops.json — maps catalog index to packet exactly (round 13 D)")
     ap.add_argument("--summary", action="store_true", help="aggregate existing output and write flagged.json")
     args = ap.parse_args(argv)
 
@@ -371,6 +440,7 @@ def main(argv: list[str] | None = None) -> int:
             collection=args.collection,
             sample=args.sample,
             concurrency=args.concurrency,
+            drops=args.drops,
         )
     )
     print(

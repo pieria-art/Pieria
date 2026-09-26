@@ -120,6 +120,196 @@ def test_agent_name_disagreement_flags_needs_review_and_keeps_catalog_value():
     assert any("Jacopo Amigoni" in n for n in notes)
 
 
+# --------------------------------------------------------------------------- round 13 (C): co-creators + qualifiers
+def test_after_qualifier_is_carried_into_agent_name():
+    bundle = _bundle([
+        rg._fact("wikidata.creator", ["Titian"], "Wikidata", "u", "CC0"),
+        rg._fact("commons.ObjectName", "After Titian: a copy", "Wikimedia Commons", "u", "CC BY-SA"),
+    ])
+    fields, needs_review, notes = rg.resolve_structured_fields(bundle, {"agent_name": "Titian"})
+    assert fields["agent_name_confirmed"] == "After Titian"
+    assert needs_review is True
+
+
+def test_possibly_qualifier_is_carried_into_agent_name():
+    bundle = _bundle([
+        rg._fact("wikidata.creator", ["Frans Hals"], "Wikidata", "u", "CC0"),
+        rg._fact("commons.Credit", "Possibly Frans Hals, oil on panel", "Wikimedia Commons", "u", "CC BY-SA"),
+    ])
+    fields, needs_review, notes = rg.resolve_structured_fields(bundle, {"agent_name": "Frans Hals"})
+    assert fields["agent_name_confirmed"] == "Possibly Frans Hals"
+
+
+def test_museum_creators_list_uses_only_the_principal_first_value_no_joining():
+    # Round 13b: co-creator joining is REMOVED — Wikidata's/a museum record's multiple creator values
+    # are often ALTERNATIVE/disputed attributions, not real collaborators, so only the first (principal)
+    # value is ever used; genuine collaborations are curated by hand (--agent-overrides).
+    bundle = _bundle([
+        rg._fact("museum.creators", ["Peter Paul Rubens", "Anthony van Dyck"], "Some Museum API", "u", "CC0"),
+    ])
+    fields, needs_review, notes = rg.resolve_structured_fields(bundle, {"agent_name": "Peter Paul Rubens"})
+    assert fields["agent_name_confirmed"] == "Peter Paul Rubens"
+    assert not any("co-creator" in n for n in notes)
+
+
+def test_commons_artist_is_never_used_for_agent_name_even_when_it_names_catalog_artist():
+    # Round 13b: commons.Artist is never a source for agent_name at all (round 5 rule, restored) —
+    # no fact here comes from museum.creators/wikidata.creator, so nothing is confirmed or changed.
+    bundle = _bundle([
+        rg._fact("commons.Artist", "Utagawa Kunisada and Utagawa Hiroshige", "Wikimedia Commons", "u", "CC BY-SA"),
+    ])
+    fields, _, notes = rg.resolve_structured_fields(bundle, {"agent_name": "Utagawa Kunisada"})
+    assert "agent_name_confirmed" not in fields
+    assert "agent_name_disagreement" not in fields
+
+
+def test_commons_artist_library_citation_format_is_not_split_into_fake_co_creators():
+    # "Surname, Given, dates, and role" is ONE person in library-catalog form, not four co-creators.
+    bundle = _bundle([
+        rg._fact("commons.Artist", "Kitagawa, Utamaro, 1753?-1806, and artist",
+                 "Wikimedia Commons", "u", "CC BY-SA"),
+    ])
+    fields, needs_review, notes = rg.resolve_structured_fields(bundle, {"agent_name": "Kitagawa Utamaro"})
+    assert fields.get("agent_name_confirmed") != "Kitagawa, Utamaro, 1753?-1806, and artist"
+    assert "1753" not in (fields.get("agent_name_confirmed") or "")
+
+
+def test_commons_artist_alone_never_used_when_it_doesnt_name_catalog_artist():
+    # commons.Artist routinely names the photographer/uploader — must not be used as a source at all
+    # when it disagrees outright with the catalog's own artist.
+    bundle = _bundle([
+        rg._fact("commons.Artist", "Didier Descouens", "Wikimedia Commons", "u", "CC BY-SA"),
+    ])
+    fields, needs_review, notes = rg.resolve_structured_fields(bundle, {"agent_name": "Gustav Klimt"})
+    assert "agent_name_confirmed" not in fields
+    assert "agent_name_disagreement" not in fields
+    assert needs_review is False
+
+
+def test_same_surname_different_given_name_is_flagged_not_auto_confirmed():
+    bundle = _bundle([rg._fact("wikidata.creator", ["Jan Hals"], "Wikidata", "u", "CC0")])
+    fields, needs_review, notes = rg.resolve_structured_fields(bundle, {"agent_name": "Frans Hals"})
+    assert fields.get("agent_name_confirmed") is None
+    assert fields.get("agent_name_disagreement") == "Jan Hals"
+    assert needs_review is True
+    assert any("different given name" in n for n in notes)
+
+
+def test_is_different_person_same_surname_examples():
+    assert rg._is_different_person_same_surname("Frans Hals", "Jan Hals")
+    assert rg._is_different_person_same_surname("Willem Blaeu", "Joan Blaeu")
+    assert rg._is_different_person_same_surname("Pierre-Joseph Redouté", "Henri-Joseph Redouté")
+    assert not rg._is_different_person_same_surname("Rembrandt van Rijn", "Rembrandt")
+    assert not rg._is_different_person_same_surname("Rubens", "Peter Paul Rubens")
+
+
+def test_is_different_person_same_surname_ignores_false_positives():
+    # a hyphen vs. space in the SAME name must never read as a different given name.
+    assert not rg._is_different_person_same_surname(
+        "Jean Baptiste Camille Corot", "Jean-Baptiste Camille Corot")
+    # a full birth name vs. the common name is the same person.
+    assert not rg._is_different_person_same_surname(
+        "Hilaire Germain Edgar Degas", "Edgar Degas")
+    # a title/article prefix must not be mistaken for a given name.
+    assert not rg._is_different_person_same_surname("Sir Henry Raeburn", "Henry Raeburn")
+    assert not rg._is_different_person_same_surname("The Limbourg Brothers", "Limbourg Brothers")
+    # a spelling/accent variant is the same person.
+    assert not rg._is_different_person_same_surname(
+        "Elisabeth Louise Vigee Le Brun", "Élisabeth Louise Vigée Le Brun")
+    # a multi-person credit string is never compared this way.
+    assert not rg._is_different_person_same_surname(
+        "Jan Brueghel and Peter Paul Rubens", "Jan Brueghel the Elder")
+
+
+# --------------------------------------------------------------------------- round 13b: agent_name safety net
+def test_agent_name_is_suspect_rejects_known_garbage():
+    bad_names = [
+        "",
+        "   ",
+        "Cellarius, Andreas, Schenk, Peter, Valck, G. (Gerard), and Loon, J. Van",
+        "Bibliographisches Institut (Leipzig, Germany) and Haeckel, Ernst",
+        "William Morris / Morris, amp, and Co. / Philip Webb",
+        "Drawn from nature by John James Audubon F R S. F L S. Engraved, Printed and amp",
+        "https://commons.wikimedia.org/wiki/User:Someone",
+        "Two names\nsplit across lines",
+    ]
+    for bad in bad_names:
+        assert rg._agent_name_is_suspect(bad), bad
+
+
+def test_agent_name_is_suspect_accepts_real_names():
+    good_names = ["Rembrandt van Rijn", "Peter Paul Rubens", "J.M.W. Turner", "Smith, Jr."]
+    for good in good_names:
+        assert not rg._agent_name_is_suspect(good), good
+
+
+def test_suspect_museum_creators_value_never_confirmed_keeps_catalog_value():
+    bundle = _bundle([
+        rg._fact("wikidata.creator",
+                 ["Cellarius, Andreas, Schenk, Peter, Valck, G. (Gerard), and Loon, J. Van"],
+                 "Wikidata", "u", "CC0"),
+    ])
+    fields, needs_review, notes = rg.resolve_structured_fields(bundle, {"agent_name": "Andreas Cellarius"})
+    assert "agent_name_confirmed" not in fields
+    assert "agent_name_disagreement" not in fields
+
+
+def test_clean_space_agency_credit_stephans_quintet():
+    text = ("Image: \n\nNational Aeronautics and Space Administration  (a U.S. federal government "
+            "agency; https://www.nasa.gov/)\nEuropean space agency (https://www.esa.int/), Canadian "
+            "Space Agency (https://www.asc-csa.gc.ca/eng/)\nSpace Telescope Science Institute "
+            "(https://www.stsci.edu/, science operations center for the Hubble Space Telescope)")
+    assert rg._clean_space_agency_credit(text) == "NASA, ESA, CSA, STScI"
+
+
+def test_clean_space_agency_credit_none_when_fewer_than_two_agencies():
+    assert rg._clean_space_agency_credit(", and") is None
+    assert rg._clean_space_agency_credit("") is None
+    assert rg._clean_space_agency_credit("NASA astronaut Buzz Aldrin") is None
+
+
+def test_stephans_quintet_agent_name_cleaned_from_existing_catalog_value():
+    bundle = _bundle([])  # no museum/wikidata creator facts at all — cosmos images rarely match
+    existing = {"agent_name": (
+        "Image: \n\nNational Aeronautics and Space Administration  (a U.S. federal government agency; "
+        "https://www.nasa.gov/)\nEuropean space agency (https://www.esa.int/), Canadian Space Agency "
+        "(https://www.asc-csa.gc.ca/eng/)\nSpace Telescope Science Institute (https://www.stsci.edu/, "
+        "science operations center for the Hubble Space Telescope)"
+    )}
+    fields, needs_review, notes = rg.resolve_structured_fields(bundle, existing)
+    assert fields["agent_name_confirmed"] == "NASA, ESA, CSA, STScI"
+
+
+def test_cosmic_reef_keeps_catalog_value_when_no_clean_agency_list_derivable():
+    bundle = _bundle([])
+    fields, needs_review, notes = rg.resolve_structured_fields(bundle, {"agent_name": ", and"})
+    assert "agent_name_confirmed" not in fields
+    assert fields.get("agent_name_confirmed") != ""
+
+
+def test_run_import_header_hygiene_never_blanks_agent_name_to_empty(tmp_path, monkeypatch):
+    # Round 13b: cosmic-reef-0020's raw catalog agent_name ", and" cleans down to the meaningless
+    # fragment "and" — must be left as the ORIGINAL value, never blanked to "".
+    packets_dir = tmp_path / "packets" / "cosmos"
+    packets_dir.mkdir(parents=True)
+    (tmp_path / "written").mkdir()
+    packet = {"title": "Cosmic Reef", "facts": [], "structured": {}}
+    (packets_dir / "cosmic-reef-0020.json").write_text(json.dumps(packet))
+
+    monkeypatch.setattr(rg, "PACKETS_DIR", tmp_path / "packets")
+    monkeypatch.setattr(rg, "WRITTEN_DIR", tmp_path / "written")
+    monkeypatch.setattr(rg, "OUT_CATALOG_DIR", tmp_path / "catalog")
+    monkeypatch.setattr(rg, "IMPORT_REPORT_PATH", tmp_path / "import_report.json")
+    monkeypatch.setattr(rg, "PACKET_INDEX_PATH", tmp_path / "packets_index.json")
+    (tmp_path / "packets_index.json").write_text(json.dumps({"cosmic-reef-0020": "cosmos"}))
+    monkeypatch.setattr(rg, "load_catalog", lambda: {
+        "cosmos": [dict(title="Cosmic Reef", agent_name=", and")] * 21})
+
+    rg.run_import()
+    out = json.loads((tmp_path / "catalog" / "cosmos.json").read_text())["items"][20]
+    assert out["agent_name"] == ", and"
+
+
 def test_run_import_writes_agent_name_confirmed_into_catalog(tmp_path, monkeypatch):
     packets_dir = tmp_path / "packets" / "demo"
     packets_dir.mkdir(parents=True)
@@ -139,6 +329,83 @@ def test_run_import_writes_agent_name_confirmed_into_catalog(tmp_path, monkeypat
     rg.run_import()
     out = json.loads((tmp_path / "catalog" / "demo.json").read_text())["items"][0]
     assert out["agent_name"] == "Frans Hals"
+
+
+def test_load_agent_overrides_keyed_by_collection_and_pre_idx(tmp_path):
+    p = tmp_path / "agent_overrides.json"
+    p.write_text(json.dumps([
+        {"collection": "dutch-golden-age", "pre_idx": 97, "title": "The Meagre Company",
+         "agent_name": "Frans Hals and Pieter Codde"},
+        {"collection": "bad", "agent_name": "no idx, skipped"},
+    ]))
+    out = rg.load_agent_overrides(p)
+    assert out[("dutch-golden-age", 97)] == {
+        "title": "The Meagre Company", "agent_name": "Frans Hals and Pieter Codde"}
+    assert len(out) == 1
+
+
+def test_load_agent_overrides_empty_when_no_path():
+    assert rg.load_agent_overrides(None) == {}
+
+
+def test_run_import_applies_agent_override_when_title_matches(tmp_path, monkeypatch):
+    packets_dir = tmp_path / "packets" / "dutch-golden-age"
+    packets_dir.mkdir(parents=True)
+    (tmp_path / "written").mkdir()
+    packet = {"title": "The Meagre Company", "facts": [], "structured": {}}
+    (packets_dir / "meagre-company-0097.json").write_text(json.dumps(packet))
+
+    monkeypatch.setattr(rg, "PACKETS_DIR", tmp_path / "packets")
+    monkeypatch.setattr(rg, "WRITTEN_DIR", tmp_path / "written")
+    monkeypatch.setattr(rg, "OUT_CATALOG_DIR", tmp_path / "catalog")
+    monkeypatch.setattr(rg, "IMPORT_REPORT_PATH", tmp_path / "import_report.json")
+    monkeypatch.setattr(rg, "PACKET_INDEX_PATH", tmp_path / "packets_index.json")
+    (tmp_path / "packets_index.json").write_text(
+        json.dumps({"meagre-company-0097": "dutch-golden-age"}))
+    monkeypatch.setattr(rg, "load_catalog", lambda: {
+        "dutch-golden-age": [dict(title="The Meagre Company", agent_name="Frans Hals")] * 98})
+
+    overrides_path = tmp_path / "agent_overrides.json"
+    overrides_path.write_text(json.dumps([
+        {"collection": "dutch-golden-age", "pre_idx": 97, "title": "The Meagre Company",
+         "agent_name": "Frans Hals and Pieter Codde"},
+    ]))
+
+    report = rg.run_import(agent_overrides_path=overrides_path)
+    out = json.loads((tmp_path / "catalog" / "dutch-golden-age.json").read_text())["items"][97]
+    assert out["agent_name"] == "Frans Hals and Pieter Codde"
+    assert report["agent_overrides_applied"][0]["key"] == "meagre-company-0097"
+    assert not report["agent_overrides_title_mismatch"]
+
+
+def test_run_import_skips_agent_override_when_title_no_longer_matches(tmp_path, monkeypatch):
+    packets_dir = tmp_path / "packets" / "dutch-golden-age"
+    packets_dir.mkdir(parents=True)
+    (tmp_path / "written").mkdir()
+    packet = {"title": "A Different Painting Now", "facts": [], "structured": {}}
+    (packets_dir / "meagre-company-0097.json").write_text(json.dumps(packet))
+
+    monkeypatch.setattr(rg, "PACKETS_DIR", tmp_path / "packets")
+    monkeypatch.setattr(rg, "WRITTEN_DIR", tmp_path / "written")
+    monkeypatch.setattr(rg, "OUT_CATALOG_DIR", tmp_path / "catalog")
+    monkeypatch.setattr(rg, "IMPORT_REPORT_PATH", tmp_path / "import_report.json")
+    monkeypatch.setattr(rg, "PACKET_INDEX_PATH", tmp_path / "packets_index.json")
+    (tmp_path / "packets_index.json").write_text(
+        json.dumps({"meagre-company-0097": "dutch-golden-age"}))
+    monkeypatch.setattr(rg, "load_catalog", lambda: {
+        "dutch-golden-age": [dict(title="A Different Painting Now", agent_name="Someone Else")] * 98})
+
+    overrides_path = tmp_path / "agent_overrides.json"
+    overrides_path.write_text(json.dumps([
+        {"collection": "dutch-golden-age", "pre_idx": 97, "title": "The Meagre Company",
+         "agent_name": "Frans Hals and Pieter Codde"},
+    ]))
+
+    report = rg.run_import(agent_overrides_path=overrides_path)
+    out = json.loads((tmp_path / "catalog" / "dutch-golden-age.json").read_text())["items"][97]
+    assert out["agent_name"] == "Someone Else"
+    assert not report["agent_overrides_applied"]
+    assert report["agent_overrides_title_mismatch"][0]["key"] == "meagre-company-0097"
 
 
 def test_conflict_detection_flags_medium_class_mismatch_not_average():
@@ -419,6 +686,70 @@ def test_medium_precedence_prefers_commons_credit_museum_record_over_wikidata():
     }
     fields, _, _ = rg.resolve_structured_fields(bundle, {})
     assert fields["medium"] == "Handscroll; ink on paper"
+
+
+# --------------------------------------------------------------------------- round 13 (B): multi-impression prints
+def test_is_multi_impression_work_by_collection_name():
+    assert rg._is_multi_impression_work("audubon-birds-of-america", "oil on canvas")
+    assert rg._is_multi_impression_work("ukiyo-e", None)
+    assert not rg._is_multi_impression_work("impressionism", "oil on canvas")
+
+
+def test_is_multi_impression_work_by_print_medium():
+    assert rg._is_multi_impression_work("impressionism", "hand-colored engraving")
+    assert rg._is_multi_impression_work(None, "woodblock print")
+    assert not rg._is_multi_impression_work(None, "oil on canvas")
+
+
+def test_multi_impression_repository_ignores_wikidata_collection_even_on_high_confidence_match():
+    # a Pittsburgh-scanned Audubon plate must not take a DIFFERENT holder's collection off Wikidata,
+    # even though the identity match itself came back high confidence.
+    bundle = {
+        "facts": [rg._fact("wikidata.collection", ["Vanderbilt Museum of Art"], "Wikidata", "u", "CC0")],
+        "conflicts": [], "is_version_of": None, "match": {"confidence": "high"},
+    }
+    fields, _, notes = rg.resolve_structured_fields(bundle, {}, collection="audubon-birds-of-america")
+    assert "current_repository" not in fields
+    assert any("multi-impression" in n for n in notes)
+
+
+def test_multi_impression_dimensions_ignore_wikidata_even_on_high_confidence_match():
+    bundle = {
+        "facts": [
+            rg._fact("wikidata.height", ["55.0"], "Wikidata", "u", "CC0"),
+            rg._fact("wikidata.width", ["70.0"], "Wikidata", "u", "CC0"),
+        ],
+        "conflicts": [], "is_version_of": None, "match": {"confidence": "high"},
+    }
+    fields, _, notes = rg.resolve_structured_fields(bundle, {}, collection="ukiyo-e")
+    assert "physical_dimensions" not in fields
+    assert any("multi-impression" in n for n in notes)
+
+
+def test_multi_impression_prefers_exemplar_date_over_wikidata_beyond_5yr_gap():
+    bundle = {
+        "facts": [
+            rg._fact("wikidata.inception", ["1826"], "Wikidata", "u", "CC0"),
+            rg._fact("commons.DateTimeOriginal", "1838", "Wikimedia Commons", "u", "CC BY-SA"),
+        ],
+        "conflicts": [], "is_version_of": None, "match": {"confidence": "high"},
+    }
+    fields, needs_review, notes = rg.resolve_structured_fields(bundle, {}, collection="audubon-birds-of-america")
+    assert fields.get("date_display") == "1838"
+    assert needs_review is True
+    assert any("disagrees with" in n for n in notes)
+
+
+def test_multi_impression_keeps_wikidata_date_within_5yr_gap():
+    bundle = {
+        "facts": [
+            rg._fact("wikidata.inception", ["1834"], "Wikidata", "u", "CC0"),
+            rg._fact("commons.DateTimeOriginal", "1838", "Wikimedia Commons", "u", "CC BY-SA"),
+        ],
+        "conflicts": [], "is_version_of": None, "match": {"confidence": "high"},
+    }
+    fields, needs_review, _ = rg.resolve_structured_fields(bundle, {}, collection="audubon-birds-of-america")
+    assert fields.get("date_display") == "1834"
 
 
 # --------------------------------------------------------------------------- item_key / batches
@@ -1209,6 +1540,77 @@ def test_clean_institution_text_strips_leading_junk_phrases():
     assert rg._clean_institution_text("photographs in the National Archives") == "National Archives"
 
 
+# --------------------------------------------------------------------------- round 13: institution credit hygiene
+def test_extract_institution_phrase_stops_at_sentence_boundary():
+    # was "National Gallery of Art. Please" before the period was removed from the phrase char classes.
+    assert rg._extract_institution_phrase(
+        "This file was donated to Wikimedia Commons as part of a project by the National Gallery of "
+        "Art. Please see the Gallery's Open Access Policy."
+    ) == "National Gallery of Art"
+
+
+def test_extract_institution_phrase_cuts_across_footnote_citation():
+    # was "A Catalogue Raisonné2. National Gallery of Art" — the leading footnote must not be absorbed.
+    assert rg._extract_institution_phrase(
+        "1. J. Rewald, The Paintings of Paul Cézanne: A Catalogue Raisonné2. National Gallery of Art, "
+        "Washington, D.C."
+    ) == "National Gallery of Art"
+
+
+def test_extract_institution_phrase_strips_trailing_footnote_digit():
+    assert rg._extract_institution_phrase(
+        "2. Courtauld Gallery1. Transferred from en.wikipedia to Commons."
+    ) == "Courtauld Gallery"
+
+
+def test_extract_institution_phrase_keeps_name_without_of_clause():
+    assert rg._extract_institution_phrase("Museum Barberini") == "Museum Barberini"
+
+
+def test_extract_institution_phrase_rejects_bare_generic_word():
+    assert rg._extract_institution_phrase("Museum") is None
+    assert rg._extract_institution_phrase("Gallery") is None
+    assert rg._extract_institution_phrase("Collection") is None
+
+
+def test_extract_institution_phrase_ignores_keyword_inside_a_url_slug():
+    # gallerix.ru/album/National-Gallery-London-4/... previously yielded bare "Gallery".
+    assert rg._extract_institution_phrase(
+        "https://en.gallerix.ru/album/National-Gallery-London-4/pic/glrx-1082704135"
+    ) is None
+
+
+def test_extract_institution_phrase_rejects_photo_agency_via_credit():
+    assert rg._extract_institution_phrase(
+        "Erich Lessing Culture and Fine Arts Archives via artsy.net"
+    ) is None
+
+
+def test_extract_institution_phrase_rejects_book_citation_publisher():
+    assert rg._extract_institution_phrase(
+        "Scanned from Wildman, Stephen: Edward Burne-Jones: Victorian Artist-Dreamer, Metropolitan "
+        "Museum of Art, 1998, ISBN 0870998595"
+    ) is None
+
+
+def test_extract_institution_phrase_rejects_photo_site_collection_at_credit():
+    assert rg._extract_institution_phrase(
+        '"School of Athens" by Raphael, Raphael Rooms, Vatican Museum Complete indexed photo '
+        'collection at WorldHistoryPics.com.'
+    ) is None
+
+
+def test_extract_institution_phrase_strips_trailing_digital_image_junk():
+    assert rg._extract_institution_phrase("Museum of Modern Art Digital Image") == "Museum of Modern Art"
+
+
+def test_credit_is_wrong_national_gallery_rejects_when_wikidata_says_plain_national_gallery():
+    facts_by_key = {"wikidata.collection": {"value": ["National Gallery"]}}
+    assert rg._credit_is_wrong_national_gallery("National Gallery of Art", facts_by_key)
+    assert not rg._credit_is_wrong_national_gallery("Cleveland Museum of Art", facts_by_key)
+    assert not rg._credit_is_wrong_national_gallery("National Gallery of Art", {})
+
+
 def test_looks_like_institution_label_rejects_aggregator():
     assert not rg.looks_like_institution_label("Google Cultural Institute")
 
@@ -1354,7 +1756,11 @@ def test_attribution_qualifier_detected_school_of():
     assert needs_review is True
 
 
-def test_attribution_qualifier_detected_german_schule_convention():
+def test_attribution_qualifier_requires_exact_match_not_spelling_variant():
+    # Round 13b: the qualified name must be EXACTLY (accent/case-insensitive) the catalog's own
+    # principal artist — "Raffael" (German transliteration) is no longer close enough to "Raphael" to
+    # qualify (this is a deliberate tightening from round 8's fuzzy-match version: too loose a match
+    # let "After the bath by Edgar Degas" — a Commons FILE TITLE — masquerade as an attribution).
     bundle = {
         "facts": [
             rg._fact("wikidata.creator", ["Raphael"], "Wikidata", "u", "CC0"),
@@ -1363,8 +1769,38 @@ def test_attribution_qualifier_detected_german_schule_convention():
         "conflicts": [], "is_version_of": None, "match": {"confidence": "high"},
     }
     fields, needs_review, notes = rg.resolve_structured_fields(bundle, {"agent_name": "Raphael"})
-    assert fields["agent_name_confirmed"] == "School of Raffael"
+    assert fields["agent_name_confirmed"] == "Raphael"
+    assert needs_review is False
+
+
+def test_attribution_qualifier_still_fires_on_exact_accent_case_insensitive_match():
+    bundle = {
+        "facts": [
+            rg._fact("wikidata.creator", ["Raphael"], "Wikidata", "u", "CC0"),
+            rg._fact("commons.ObjectName", "Schule, RAPHAEL", "Wikimedia Commons", "u", "CC BY-SA"),
+        ],
+        "conflicts": [], "is_version_of": None, "match": {"confidence": "high"},
+    }
+    fields, needs_review, notes = rg.resolve_structured_fields(bundle, {"agent_name": "Raphael"})
+    assert fields["agent_name_confirmed"] == "School of RAPHAEL"
     assert needs_review is True
+
+
+def test_attribution_qualifier_never_leaks_title_text_after_the_qualifier_word():
+    # "After the bath by Edgar Degas" is a Commons FILE TITLE (starts with "After" as a plain English
+    # word), not an attribution qualifier — must not produce "After The Bath By Edgar Degas".
+    bundle = {
+        "facts": [
+            rg._fact("wikidata.creator", ["Edgar Degas"], "Wikidata", "u", "CC0"),
+            rg._fact("commons.ObjectName",
+                     "After the bath by Edgar Degas, c. 1886 - Galleria nazionale d'arte moderna",
+                     "Wikimedia Commons", "u", "CC BY-SA"),
+        ],
+        "conflicts": [], "is_version_of": None, "match": {"confidence": "high"},
+    }
+    fields, needs_review, notes = rg.resolve_structured_fields(bundle, {"agent_name": "Edgar Degas"})
+    assert fields["agent_name_confirmed"] == "Edgar Degas"
+    assert needs_review is False
 
 
 def test_no_attribution_qualifier_keeps_plain_confirmed_name():
