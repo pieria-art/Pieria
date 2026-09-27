@@ -64,6 +64,7 @@ from tools.audit_placards import (
     load_catalog,
     resolve_work,
 )
+from tools.verify_placards import load_deferred_drops, pre_drop_index
 
 logging.basicConfig(level=logging.INFO, format="%(message)s")
 logger = logging.getLogger("reground")
@@ -124,6 +125,9 @@ def set_workdir(path: Path) -> None:
 ROOT = Path(__file__).resolve().parent.parent
 ART_PACK_LIBRARY = ROOT / "art-pack" / "_Library"
 ART_PACK_MANIFESTS = ROOT / "art-pack" / "_manifests"
+# --mode land's target — the SERVED catalog (never OUT_CATALOG_DIR, which is the import's own output).
+# Not re-derived by set_workdir: it names the repo's static assets, not a per-run reground/ path.
+STATIC_CATALOG_DIR = ROOT / "static" / "catalog"
 
 WD_API = "https://www.wikidata.org/w/api.php"
 COMMONS_API = "https://commons.wikimedia.org/w/api.php"
@@ -2816,6 +2820,138 @@ def run_apply_drops(drops_path: str | Path | None = None) -> dict:
     return report
 
 
+# ----------------------------------------------------------------------- land re-grounded catalog (--mode land)
+# Fields whose change is worth counting in the --dry-run summary — narrative/model-touched fields plus
+# the two structured fields the writers most often correct, and title (a change here is a mismatch, not
+# an expected edit — see the assertion below, but still worth surfacing in the per-field tally).
+LAND_CHANGE_FIELDS = [
+    "description_narrative", "tags", "medium", "date_display", "current_repository", "agent_name", "title",
+]
+
+
+def _static_collections(static_dir: Path) -> dict[str, dict]:
+    """{collection: parsed static/catalog/<collection>.json} for every file there that is an actual
+    served COLLECTION — a dict carrying an "items" key — excluding index.json / _pack_pins.json /
+    _pending_artic.json, which live in the same directory but aren't collections."""
+    out = {}
+    for f in sorted(static_dir.glob("*.json")):
+        try:
+            data = json.loads(f.read_text())
+        except (OSError, json.JSONDecodeError):
+            continue
+        if isinstance(data, dict) and "items" in data:
+            out[f.stem] = data
+    return out
+
+
+def _merge_landed_item(static_item: dict, reground_item: dict) -> dict:
+    """The reground item's VALUES win throughout, but key ORDER follows the static item's for every
+    key the two share; any key reground adds that static never had (e.g. current_repository) is
+    appended at the end, in reground's own order."""
+    merged = {}
+    for key in static_item:
+        if key in reground_item:
+            merged[key] = reground_item[key]
+    for key in reground_item:
+        if key not in static_item:
+            merged[key] = reground_item[key]
+    return merged
+
+
+def run_land(*, static_dir: Path | None = None, drops_path: str | Path | None = None,
+             dry_run: bool = False) -> dict:
+    """Land OUT_CATALOG_DIR's re-grounded items into the served static/catalog/<collection>.json files,
+    preserving each file's own top-level keys/order and each item's own key order (new keys appended).
+    Reground is index-aligned to static EXCEPT the deferred drops already removed from reground's
+    output, so item i there is matched back to static's pre_drop_index(i, drops for that collection).
+
+    Refuses (writes nothing at all) if any collection's reground item count != static count minus that
+    collection's drops, or if any static collection has no reground file. A title mismatch between a
+    matched pair does NOT abort the run (static already carries curated titles, so a mismatch should be
+    rare) — it's asserted, collected, and reported instead.
+    """
+    static_dir = Path(static_dir) if static_dir is not None else STATIC_CATALOG_DIR
+    drops_path = Path(drops_path) if drops_path is not None else DEFAULT_DROPS_PATH
+    drops_map = load_deferred_drops(drops_path) if drops_path.exists() else {}
+
+    static_by_coll = _static_collections(static_dir)
+    reground_files = {f.stem: f for f in sorted(OUT_CATALOG_DIR.glob("*.json"))}
+
+    missing_reground = sorted(c for c in static_by_coll if c not in reground_files)
+    if missing_reground:
+        return {"refused": True, "dry_run": dry_run,
+                "reason": "static collection(s) with no reground file", "collections": missing_reground}
+
+    missing_static = sorted(c for c in reground_files if c not in static_by_coll)
+    if missing_static:
+        return {"refused": True, "dry_run": dry_run,
+                "reason": "reground collection(s) with no static file", "collections": missing_static}
+
+    # Pass 1: load every collection, verify counts. A single mismatch refuses the WHOLE call.
+    loaded: dict[str, tuple[dict, list, list, list[int]]] = {}
+    count_mismatches = []
+    for coll, reground_path in reground_files.items():
+        static_data = static_by_coll[coll]
+        static_items = static_data["items"]
+        reground_data = json.loads(reground_path.read_text())
+        reground_items = reground_data["items"] if isinstance(reground_data, dict) else reground_data
+        dropped = drops_map.get(coll, [])
+        expected = len(static_items) - len(dropped)
+        if len(reground_items) != expected:
+            count_mismatches.append({"collection": coll, "reground_count": len(reground_items),
+                                      "static_count": len(static_items), "drops": len(dropped),
+                                      "expected": expected})
+            continue
+        loaded[coll] = (static_data, static_items, reground_items, dropped)
+
+    if count_mismatches:
+        return {"refused": True, "dry_run": dry_run, "reason": "item count mismatch",
+                "collections": count_mismatches}
+
+    # Pass 2: every collection verified — build the merged output. Nothing written yet.
+    report = {"refused": False, "dry_run": dry_run, "collections": {}, "title_mismatches": []}
+    plan: dict[str, tuple[Path, dict]] = {}
+    for coll, (static_data, static_items, reground_items, dropped) in loaded.items():
+        new_items = list(static_items)
+        changed = dict.fromkeys(LAND_CHANGE_FIELDS, 0)
+        for i, r_item in enumerate(reground_items):
+            pre_idx = pre_drop_index(i, dropped)
+            s_item = static_items[pre_idx]
+            if (r_item.get("title") or "") != (s_item.get("title") or ""):
+                report["title_mismatches"].append({
+                    "collection": coll, "pre_idx": pre_idx,
+                    "static_title": s_item.get("title"), "reground_title": r_item.get("title"),
+                })
+            for field in LAND_CHANGE_FIELDS:
+                if s_item.get(field) != r_item.get(field):
+                    changed[field] += 1
+            new_items[pre_idx] = _merge_landed_item(s_item, r_item)
+
+        new_data = dict(static_data)
+        new_data["items"] = new_items
+        plan[coll] = (static_dir / f"{coll}.json", new_data)
+        report["collections"][coll] = {
+            "items_before": len(reground_items), "items_after": len(new_items), "changed": changed,
+        }
+
+    if dry_run:
+        for coll in sorted(plan):
+            stat = report["collections"][coll]
+            changed_str = ", ".join(f"{k}={v}" for k, v in stat["changed"].items() if v)
+            print(f"{coll}: before={stat['items_before']} after={stat['items_after']} "
+                  f"changed=[{changed_str}]")
+        if report["title_mismatches"]:
+            print(f"title mismatches: {len(report['title_mismatches'])}")
+            for m in report["title_mismatches"]:
+                print(f"  {m['collection']}[{m['pre_idx']}]: {m['static_title']!r} != {m['reground_title']!r}")
+        return report
+
+    for coll, (path, new_data) in plan.items():
+        path.write_text(json.dumps(new_data, indent=1, ensure_ascii=False))
+
+    return report
+
+
 # ----------------------------------------------------------------------- blank/near-uniform masters (round 10)
 def _edge_flat_band_frac(im) -> tuple[float, str]:
     """A TRUNCATED pack master (partial real image, remainder filled with flat black/white) can look
@@ -2958,7 +3094,7 @@ def run_blank_masters(limit: int | None = None, collection: str | None = None,
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--mode", choices=["facts", "packets", "import", "recheck-museum", "duplicate-images",
-                                        "blank-masters", "apply-drops"],
+                                        "blank-masters", "apply-drops", "land"],
                      default="packets",
                      help="facts: legacy single-pass (facts+template/model, round 1). "
                           "packets: write facts + writing packets + preview images + batches "
@@ -2969,7 +3105,9 @@ def main():
                           "duplicate-images: hash every item's master/preview and group shared hashes. "
                           "blank-masters: flag near-uniform/very-bright/very-dark resolved pack masters. "
                           "apply-drops: remove approved, previously-deferred drops from the IMPORT's "
-                          "OUT_CATALOG_DIR (never static/catalog), verifying title/agent_name first.")
+                          "OUT_CATALOG_DIR (never static/catalog), verifying title/agent_name first. "
+                          "land: write OUT_CATALOG_DIR's re-grounded items into static/catalog, "
+                          "preserving static's top-level + item key order; use --dry-run to preview.")
     ap.add_argument("--only-sample", action="store_true", help="only the 150 audit-sample works")
     ap.add_argument("--limit", type=int, default=None)
     ap.add_argument("--collection", default=None)
@@ -2983,8 +3121,10 @@ def main():
                           "fields are protected from every downstream import override and restored to "
                           "the served-catalog value if disturbed (see import_report['curated_conflicts'])")
     ap.add_argument("--drops", default=None,
-                     help="apply-drops mode only: path to the approved deferred-drops file "
+                     help="apply-drops/land mode: path to the approved deferred-drops file "
                           "(default: ~/pieria-img/curation/deferred_drops.json)")
+    ap.add_argument("--dry-run", action="store_true",
+                     help="land mode only: print the per-collection summary and write nothing")
     ap.add_argument("--agent-overrides", default=None,
                      help="import mode only: path to a hand-curated agent_name overrides file "
                           "(agent_overrides.json shape: [{collection, pre_idx, title, agent_name}]) — "
@@ -3001,6 +3141,8 @@ def main():
         report = run_import(curated_path=args.curated, agent_overrides_path=args.agent_overrides)
     elif args.mode == "apply-drops":
         report = run_apply_drops(drops_path=args.drops)
+    elif args.mode == "land":
+        report = run_land(drops_path=args.drops, dry_run=args.dry_run)
     elif args.mode == "packets":
         report = asyncio.run(run_packets(
             only_sample=args.only_sample, limit=args.limit, collection=args.collection,

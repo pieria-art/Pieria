@@ -2578,3 +2578,184 @@ def test_apply_drops_default_path_used_when_none_given(tmp_path, monkeypatch):
 
     report = rg.run_apply_drops()
     assert report["dropped"][0]["key"] == "item-0000"
+
+
+# --------------------------------------------------------------------------------------- land (--mode land)
+def _write_static(path, items, **extra_top):
+    data = {"id": path.stem, "title": path.stem, "description": "d", "source": "s", "license": "l",
+            **extra_top, "items": items}
+    path.write_text(json.dumps(data, indent=1, ensure_ascii=False))
+
+
+def _write_reground(path, items):
+    path.write_text(json.dumps({"items": items}, indent=1, ensure_ascii=False))
+
+
+def _land_env(tmp_path, monkeypatch):
+    static_dir = tmp_path / "static"
+    out_dir = tmp_path / "catalog"
+    static_dir.mkdir()
+    out_dir.mkdir()
+    monkeypatch.setattr(rg, "OUT_CATALOG_DIR", out_dir)
+    return static_dir, out_dir
+
+
+def test_land_preserves_top_level_keys_and_order(tmp_path, monkeypatch):
+    static_dir, out_dir = _land_env(tmp_path, monkeypatch)
+    _write_static(static_dir / "demo.json", [dict(title="A", medium="Oil")])
+    _write_reground(out_dir / "demo.json", [dict(title="A", medium="Oil on canvas")])
+
+    rg.run_land(static_dir=static_dir, drops_path=tmp_path / "no-drops.json")
+
+    raw = (static_dir / "demo.json").read_text()
+    out = json.loads(raw)
+    assert list(out.keys()) == ["id", "title", "description", "source", "license", "items"]
+    assert out["items"][0]["medium"] == "Oil on canvas"
+    assert not raw.endswith("\n")
+
+
+def test_land_preserves_item_key_order_and_appends_new_keys(tmp_path, monkeypatch):
+    static_dir, out_dir = _land_env(tmp_path, monkeypatch)
+    _write_static(static_dir / "demo.json", [dict(title="A", medium="Oil", agent_name="X")])
+    _write_reground(out_dir / "demo.json", [
+        dict(agent_name="X", current_repository="The Met", title="A", medium="Oil on canvas"),
+    ])
+
+    rg.run_land(static_dir=static_dir, drops_path=tmp_path / "no-drops.json")
+
+    item = json.loads((static_dir / "demo.json").read_text())["items"][0]
+    assert list(item.keys()) == ["title", "medium", "agent_name", "current_repository"]
+    assert item["current_repository"] == "The Met"
+
+
+def test_land_maps_through_deferred_drops(tmp_path, monkeypatch):
+    static_dir, out_dir = _land_env(tmp_path, monkeypatch)
+    # static has 3 items; item at pre-drop index 1 was dropped, so reground has only 2, index-aligned
+    # to the SURVIVING pre-drop positions 0 and 2.
+    _write_static(static_dir / "demo.json", [
+        dict(title="Keep 0", medium="Oil"), dict(title="Dropped 1", medium="Oil"),
+        dict(title="Keep 2", medium="Oil"),
+    ])
+    _write_reground(out_dir / "demo.json", [
+        dict(title="Keep 0", medium="Oil on panel"), dict(title="Keep 2", medium="Oil on canvas"),
+    ])
+    drops_path = tmp_path / "drops.json"
+    drops_path.write_text(json.dumps([
+        {"key": "dropped-1-0001", "collection": "demo", "title": "Dropped 1", "agent_name": ""},
+    ]))
+
+    report = rg.run_land(static_dir=static_dir, drops_path=drops_path)
+
+    items = json.loads((static_dir / "demo.json").read_text())["items"]
+    assert [i["title"] for i in items] == ["Keep 0", "Dropped 1", "Keep 2"]
+    assert items[0]["medium"] == "Oil on panel"
+    assert items[1]["medium"] == "Oil"  # untouched — reground never carried this dropped item
+    assert items[2]["medium"] == "Oil on canvas"
+    assert report["collections"]["demo"]["items_before"] == 2
+    assert report["collections"]["demo"]["items_after"] == 3
+
+
+def test_land_refuses_and_writes_nothing_on_count_mismatch(tmp_path, monkeypatch):
+    static_dir, out_dir = _land_env(tmp_path, monkeypatch)
+    _write_static(static_dir / "demo.json", [dict(title="A"), dict(title="B")])
+    _write_reground(out_dir / "demo.json", [dict(title="A")])  # missing one, no drops recorded
+    before = (static_dir / "demo.json").read_text()
+
+    report = rg.run_land(static_dir=static_dir, drops_path=tmp_path / "no-drops.json")
+
+    assert report["refused"] is True
+    assert report["reason"] == "item count mismatch"
+    assert (static_dir / "demo.json").read_text() == before
+
+
+def test_land_refuses_whole_run_when_one_of_several_collections_mismatches(tmp_path, monkeypatch):
+    static_dir, out_dir = _land_env(tmp_path, monkeypatch)
+    _write_static(static_dir / "a.json", [dict(title="A")])
+    _write_static(static_dir / "b.json", [dict(title="B1"), dict(title="B2")])
+    _write_reground(out_dir / "a.json", [dict(title="A")])          # fine on its own
+    _write_reground(out_dir / "b.json", [dict(title="B1")])         # mismatched, no drops
+    a_before = (static_dir / "a.json").read_text()
+
+    report = rg.run_land(static_dir=static_dir, drops_path=tmp_path / "no-drops.json")
+
+    assert report["refused"] is True
+    assert (static_dir / "a.json").read_text() == a_before  # "a" never written either
+
+
+def test_land_refuses_when_static_collection_has_no_reground_file(tmp_path, monkeypatch):
+    static_dir, out_dir = _land_env(tmp_path, monkeypatch)
+    _write_static(static_dir / "demo.json", [dict(title="A")])
+    _write_static(static_dir / "orphan.json", [dict(title="B")])
+    _write_reground(out_dir / "demo.json", [dict(title="A")])
+
+    report = rg.run_land(static_dir=static_dir, drops_path=tmp_path / "no-drops.json")
+
+    assert report["refused"] is True
+    assert report["reason"] == "static collection(s) with no reground file"
+    assert "orphan" in report["collections"]
+
+
+def test_land_ignores_non_collection_static_files(tmp_path, monkeypatch):
+    static_dir, out_dir = _land_env(tmp_path, monkeypatch)
+    _write_static(static_dir / "demo.json", [dict(title="A")])
+    (static_dir / "index.json").write_text(json.dumps({"version": 1, "collections": []}))
+    (static_dir / "_pack_pins.json").write_text(json.dumps({"_note": "x", "collections": {}}))
+    _write_reground(out_dir / "demo.json", [dict(title="A")])
+
+    report = rg.run_land(static_dir=static_dir, drops_path=tmp_path / "no-drops.json")
+
+    assert report["refused"] is False
+    assert list(report["collections"].keys()) == ["demo"]
+
+
+def test_land_byte_format_no_trailing_newline_and_unicode(tmp_path, monkeypatch):
+    static_dir, out_dir = _land_env(tmp_path, monkeypatch)
+    _write_static(static_dir / "demo.json", [dict(title="Café")])
+    _write_reground(out_dir / "demo.json", [dict(title="Café", medium="Huile sur toile")])
+
+    rg.run_land(static_dir=static_dir, drops_path=tmp_path / "no-drops.json")
+
+    raw = (static_dir / "demo.json").read_text(encoding="utf-8")
+    assert "Caf\\u00e9" not in raw  # ensure_ascii=False
+    assert "Café" in raw
+    assert not raw.endswith("\n")
+    expected = json.dumps(json.loads(raw), indent=1, ensure_ascii=False)
+    assert raw == expected
+
+
+def test_land_asserts_and_reports_title_mismatch_without_aborting(tmp_path, monkeypatch):
+    static_dir, out_dir = _land_env(tmp_path, monkeypatch)
+    _write_static(static_dir / "demo.json", [dict(title="Original Title")])
+    _write_reground(out_dir / "demo.json", [dict(title="Different Title")])
+
+    report = rg.run_land(static_dir=static_dir, drops_path=tmp_path / "no-drops.json")
+
+    assert report["refused"] is False
+    assert report["title_mismatches"] == [{
+        "collection": "demo", "pre_idx": 0,
+        "static_title": "Original Title", "reground_title": "Different Title",
+    }]
+    # still landed despite the mismatch
+    assert json.loads((static_dir / "demo.json").read_text())["items"][0]["title"] == "Different Title"
+
+
+def test_land_dry_run_writes_nothing_and_reports_changed_field_counts(tmp_path, monkeypatch, capsys):
+    static_dir, out_dir = _land_env(tmp_path, monkeypatch)
+    _write_static(static_dir / "demo.json", [
+        dict(title="A", medium="Oil", tags=["x"]), dict(title="B", medium="Oil", tags=["y"]),
+    ])
+    _write_reground(out_dir / "demo.json", [
+        dict(title="A", medium="Oil on canvas", tags=["x"]),  # medium changed
+        dict(title="B", medium="Oil", tags=["y"]),            # unchanged
+    ])
+    before = (static_dir / "demo.json").read_text()
+
+    report = rg.run_land(static_dir=static_dir, drops_path=tmp_path / "no-drops.json", dry_run=True)
+
+    assert report["dry_run"] is True
+    assert (static_dir / "demo.json").read_text() == before  # nothing written
+    assert report["collections"]["demo"]["changed"]["medium"] == 1
+    assert report["collections"]["demo"]["changed"]["tags"] == 0
+    out = capsys.readouterr().out
+    assert "demo:" in out
+    assert "before=2 after=2" in out
