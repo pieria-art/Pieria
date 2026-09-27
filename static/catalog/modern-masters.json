@@ -408,7 +408,8 @@
    "credit_line": "Belvedere, Vienna, inv. 4737; Wikidata Q2324643",
    "license_verified": "2026-09-26",
    "featured_rank": 89,
-   "physical_dimensions": "84.0 x 42.0 cm"
+   "physical_dimensions": "84.0 x 42.0 cm",
+   "below_floor_ok": true
   },
   {
    "title": "Jeanne Hébuterne with Yellow Sweater",

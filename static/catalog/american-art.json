@@ -1454,7 +1454,8 @@
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "credit_line": "Crystal Bridges Museum of American Art 2010.106; Wikidata Q12406964",
    "license_verified": "2026-09-26",
-   "featured_rank": 72
+   "featured_rank": 72,
+   "below_floor_ok": true
   },
   {
    "title": "The Gross Clinic",

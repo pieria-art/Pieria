@@ -132,7 +132,8 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "Tate N00476; Wikidata Q18687275 (Yorck Project)",
-   "license_verified": "2026-09-26"
+   "license_verified": "2026-09-26",
+   "below_floor_ok": true
   },
   {
    "title": "Dutch Boats in a Gale",
@@ -1321,7 +1322,8 @@
    "credit_line": "Pennsylvania Academy of the Fine Arts; Wikidata Q110763733",
    "license_verified": "2026-09-26",
    "featured_rank": 38,
-   "current_repository": "Pennsylvania Academy of the Fine Arts"
+   "current_repository": "Pennsylvania Academy of the Fine Arts",
+   "below_floor_ok": true
   },
   {
    "title": "Lumber Schooners at Evening on Penobscot Bay",

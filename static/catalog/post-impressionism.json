@@ -11444,7 +11444,8 @@
    "license_verified": "2026-09-26",
    "featured_rank": 42,
    "current_repository": "Kröller-Müller Museum",
-   "physical_dimensions": "64.0 x 53.0 cm"
+   "physical_dimensions": "64.0 x 53.0 cm",
+   "below_floor_ok": true
   },
   {
    "title": "A Meadow in the Mountains: Le Mas de Saint-Paul",
@@ -11571,7 +11572,8 @@
    "license_url": "",
    "credit_line": "F420/JH1462, private collection; Wikidata Q28146931",
    "license_verified": "2026-09-26",
-   "featured_rank": 40
+   "featured_rank": 40,
+   "below_floor_ok": true
   },
   {
    "title": "Orchard with Blossoming Apricot Trees",

@@ -172,7 +172,8 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "NASA GPN-2000-001156, STS41B-35-1613, Bruce McCandless II during EVA in 1984",
-   "license_verified": "2026-09-26"
+   "license_verified": "2026-09-26",
+   "below_floor_ok": true
   },
   {
    "title": "The Earth seen from Apollo 17",
@@ -459,7 +460,8 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "NASA HST Flickr, STS-125 (SM4), 19 May 2009",
-   "license_verified": "2026-09-26"
+   "license_verified": "2026-09-26",
+   "below_floor_ok": true
   }
  ]
 }

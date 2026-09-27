@@ -1494,7 +1494,8 @@
    "credit_line": "Pinacoteca di Brera, inv. 352; Wikidata Q546297",
    "license_verified": "2026-09-26",
    "featured_rank": 40,
-   "physical_dimensions": "68.0 x 81.0 cm"
+   "physical_dimensions": "68.0 x 81.0 cm",
+   "below_floor_ok": true
   },
   {
    "title": "Virgin and Child with the Young Saint John the Baptist",
