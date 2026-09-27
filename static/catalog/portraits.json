@@ -13,8 +13,8 @@
    "cultural_context": "Dutch Golden Age, Baroque, Dutch",
    "medium": "Oil on canvas",
    "date_display": "1644",
-   "description_narrative": "This 1644 oil on canvas, titled 'Portrait of an Artist,' captures a figure characteristic of 17th-century European portraiture. Attributed to a follower of Frans Hals, it exemplifies the detailed yet lively brushwork often associated with the Dutch Golden Age.",
-   "tags": "portrait, oil painting, 17th century, dutch golden age, baroque, frans hals follower, european art",
+   "description_narrative": "A man in a wide-brimmed black hat looks over his shoulder with a faint, knowing smile, one arm akimbo. Loose, confident brushwork in the white collar and dark coat gives the portrait an easy, spontaneous energy.",
+   "tags": "dutch golden age, loose brushwork, wide-brimmed hat, informal portrait",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Follower%20of%20Frans%20Hals%20-%20Portrait%20of%20an%20Artist%20-%201894.1023%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
@@ -57,7 +57,9 @@
      0.9732,
      1.0
     ]
-   }
+   },
+   "current_repository": "Art Institute of Chicago",
+   "physical_dimensions": "82.6 × 64.8 cm (32 1/2 × 25 1/2 in.); Framed: 109 × 91.5 × 3.5 cm (42 7/8 × 36 × 1 3/8 in.)"
   },
   {
    "title": "The Captive Slave (Ira Aldridge)",
@@ -67,8 +69,8 @@
    "cultural_context": "19th Century, British",
    "medium": "Oil on canvas",
    "date_display": "1827",
-   "description_narrative": "This 1827 oil on canvas by John Philip Simpson portrays Ira Aldridge, an African American actor, in a poignant dramatic role as a captive slave. The artwork captures a moment of intense emotion, reflecting themes of bondage and human dignity.",
-   "tags": "portrait, slavery, Ira Aldridge, acting, oil painting, 19th century, dramatic, realism",
+   "description_narrative": "A man in a torn red garment sits with his wrists shackled together, chains coiled beside him. He gazes upward, his expression caught between sorrow and resolve, rendered against a plain, dark background that leaves nothing to soften the scene.",
+   "tags": "manacles, red garment, dramatic lighting, emotive gaze, 19th century portraiture",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/John%20Philip%20Simpson%20-%20The%20Captive%20Slave%20-%202008.188%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
@@ -111,7 +113,9 @@
      1.0
     ]
    },
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "current_repository": "Art Institute of Chicago",
+   "physical_dimensions": "127 × 101.5 cm (50 × 40 in.); Framed: 167.1 × 141.7 cm (65 3/4 × 55 3/4 in.)"
   },
   {
    "title": "Portrait of a Man with Gray Hair",
@@ -121,8 +125,8 @@
    "cultural_context": "Georgian era, Scottish",
    "medium": "Oil on canvas",
    "date_display": "1810–20",
-   "description_narrative": "Sir Henry Raeburn's \"Portrait of a Man with Gray Hair\" exemplifies the artist's masterful use of oil on canvas to capture individual character. This work showcases Raeburn's distinctive style, focusing on the sitter's presence and the subtle play of light and shadow.",
-   "tags": "portrait, man, georgian, scottish, oil painting, realism, dignified",
+   "description_narrative": "A man with soft grey hair and a ruddy complexion emerges from deep shadow, his dark coat nearly merging with the background. Loose, confident brushwork picks out the folds of his white cravat and the quiet intensity of his gaze.",
+   "tags": "scottish portraiture, grey hair, dark palette, georgian era",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sir%20Henry%20Raeburn%20-%20Portrait%20of%20a%20Man%20with%20Gray%20Hair%20-%201962.961%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
@@ -165,7 +169,9 @@
      0.9598,
      1.0
     ]
-   }
+   },
+   "current_repository": "Art Institute of Chicago",
+   "physical_dimensions": "73.6 × 62.8 cm (29 × 24 3/4 in.); Framed: 96.6 × 84.5 × 8.3 cm (38 × 33 1/4 × 3 1/4 in.)"
   },
   {
    "title": "Édouard Manet",
@@ -173,10 +179,10 @@
    "agent_role": "Artist",
    "creation_date": "1867",
    "cultural_context": "19th century French art, Realism",
-   "medium": "Oil on canvas",
+   "medium": "oil paint",
    "date_display": "1867",
-   "description_narrative": "Henri Fantin-Latour's 1867 oil portrait captures Édouard Manet, a pivotal figure in 19th-century French art, with a direct and contemplative gaze. This work exemplifies Fantin-Latour's skill in intimate portraiture, rendering a fellow artist with notable realism and psychological depth.",
-   "tags": "portrait, oil painting, 19th century, french art, realism, artist portrait, contemplative",
+   "description_narrative": "Edouard Manet is shown in three-quarter profile wearing a tall black top hat, a gloved hand resting on his walking cane. His full reddish beard and mustache are carefully groomed, painted in warm, muted browns against a plain backdrop.",
+   "tags": "top hat, beard, realism, muted palette, portrait",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Henri%20Fantin-Latour%20-%20%C3%89douard%20Manet%20-%201905.207%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
@@ -219,7 +225,9 @@
      1.0,
      0.6126
     ]
-   }
+   },
+   "current_repository": "Art Institute of Chicago",
+   "physical_dimensions": "117.5 x 90.0 cm"
   },
   {
    "title": "Madame de Pastoret and Her Son",
@@ -229,8 +237,8 @@
    "cultural_context": "Neoclassicism, French",
    "medium": "Oil on canvas",
    "date_display": "1791–92",
-   "description_narrative": "Jacques Louis David's unfinished portrait from 1791–92 captures Madame de Pastoret and her son in a composition characteristic of Neoclassical elegance. The work reveals a tender maternal bond, presented with a formal yet intimate gaze typical of French portraiture of the late 18th century.",
-   "tags": "portrait, neoclassical, mother and child, family, French art, 18th century, tenderness, oil painting",
+   "description_narrative": "A woman in a flowing white dress sits beside a wicker cradle, winding a length of cloth in her hands while a sleeping infant rests inside. Her softly curled hair and calm, direct gaze anchor the otherwise plain, warmly lit room.",
+   "tags": "mother and infant, cradle, white dress, neoclassicism, french portraiture",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jacques%20Louis%20David%20-%20Madame%20de%20Pastoret%20and%20Her%20Son%20-%201967.228%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
@@ -273,7 +281,9 @@
      1.0,
      0.9878
     ]
-   }
+   },
+   "current_repository": "Art Institute of Chicago",
+   "physical_dimensions": "129.8 × 96.6 cm (51 1/8 × 38 in.); French: 156.3 × 123.6 cm (61 1/2 × 48 5/8 in.)"
   },
   {
    "title": "Old Man with a Gold Chain",
@@ -283,8 +293,8 @@
    "cultural_context": "Dutch Golden Age, Dutch",
    "medium": "Oil on panel",
    "date_display": "1631",
-   "description_narrative": "Rembrandt van Rijn’s 1631 oil on panel portrays an elderly man, his face illuminated and meticulously rendered. A prominent gold chain adorns his neck, highlighting the subject's status or wealth.",
-   "tags": "portrait, oil painting, old man, dutch golden age, realism, baroque, dignified",
+   "description_narrative": "An old man in a dark cloak and plumed velvet cap turns slightly toward the light, a heavy gold chain and medallion crossing his chest over a steel gorget. Deep shadow surrounds his weathered, deeply lined face.",
+   "tags": "dutch golden age, gold chain, gorget, plumed cap, chiaroscuro",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20Harmensz.%20van%20Rijn%20-%20Old%20Man%20with%20a%20Gold%20Chain%20-%20Google%20Art%20Project.jpg?width=3840",
@@ -326,7 +336,9 @@
      0.9143,
      1.0
     ]
-   }
+   },
+   "current_repository": "Art Institute of Chicago",
+   "physical_dimensions": "83.1 × 75.7 cm (32 3/4 × 29 3/4 in.); Framed: 105.1 × 99.5 cm (41 3/8 × 39 3/16 in.)"
   },
   {
    "title": "Young Woman at an Open Half-Door",
@@ -336,8 +348,8 @@
    "cultural_context": "Dutch Golden Age, Baroque",
    "medium": "Oil on canvas",
    "date_display": "1645",
-   "description_narrative": "This oil on canvas depicts a young woman standing at an open half-door, illuminated by light. Created in 1645 by the Workshop of Rembrandt van Rijn, it showcases the characteristic use of light and shadow.",
-   "tags": "young woman, portrait, doorway, dutch golden age, baroque, figure study, oil painting",
+   "description_narrative": "A young woman leans on a wooden half-door, her red-beaded necklace and lace collar catching the light against her plain brown dress. Her gaze drifts downward, hands resting loosely on the worn wooden ledge in front of her.",
+   "tags": "half-door, genre scene, informal portrait, dutch golden age",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Samuel%20van%20Hoogstraten%20-%20Young%20woman%20at%20an%20open%20half-door%20%281645%29.jpg?width=3840",
@@ -354,7 +366,9 @@
    "license_verified": "2026-09-22",
    "delivered_edge": 2500,
    "resolution_tier": "HD",
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "current_repository": "Art Institute of Chicago",
+   "physical_dimensions": "102.5 × 85.1 cm (40 3/8 × 33 1/2 in.); Framed: 121.6 × 104.4 × 5.7 cm (47 7/8 × 41 1/8 × 2 1/4 in.)"
   },
   {
    "title": "The Child's Bath",
@@ -364,8 +378,8 @@
    "cultural_context": "Impressionism, American",
    "medium": "Oil on canvas",
    "date_display": "1893",
-   "description_narrative": "Mary Cassatt's 'The Child's Bath' captures a tender moment of a woman bathing a young child, emphasizing the intimacy and routine of domestic life. Through soft colors and a close perspective, Cassatt highlights the emotional bond and quiet dignity of her subjects.",
-   "tags": "mother and child, domestic scene, impressionism, american art, 19th century, oil painting, intimacy, everyday life",
+   "description_narrative": "A woman bathes a young child's feet in a large basin, cradling the child securely against her striped robe. The high, tilted viewpoint and bold pattern of the rug and wallpaper give the tender, everyday moment an unusually flattened, graphic quality.",
+   "tags": "mother and child, bath time, bold pattern, domestic scene, impressionism",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Mary%20Cassatt%20-%20The%20Child%27s%20Bath%20-%20Google%20Art%20Project.jpg?width=3840",
@@ -407,7 +421,9 @@
      1.0,
      0.9371
     ]
-   }
+   },
+   "current_repository": "Art Institute of Chicago",
+   "physical_dimensions": "101.3 × 67.3 cm (39 15/16 × 26 1/2 in.)"
   },
   {
    "title": "Interrupted Reading",
@@ -417,8 +433,8 @@
    "cultural_context": "Barbizon School, French",
    "medium": "Oil on canvas, mounted on board",
    "date_display": "c. 1870",
-   "description_narrative": "Jean-Baptiste-Camille Corot's 'Interrupted Reading' depicts a woman, engrossed in a book, momentarily looking up from her pages. This intimate figure study exemplifies Corot's characteristic blend of natural observation and poetic serenity, inviting quiet contemplation.",
-   "tags": "figure study, reading, woman, contemplative, realism, barbizon school, 19th century art, interior scene",
+   "description_narrative": "A woman pauses over an open book, her head propped on one hand as she looks out with a faint, thoughtful smile. A beaded headband and coral necklace stand out against her simple white blouse and loosely painted brown skirt.",
+   "tags": "barbizon school, reading, contemplative, headband, informal portrait",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jean%20Baptiste%20Camille%20Corot%20-%20Interrupted%20Reading%20-%201922.410%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
@@ -461,7 +477,9 @@
      0.9693
     ]
    },
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "current_repository": "Art Institute of Chicago",
+   "physical_dimensions": "92.5 × 65.1 cm (36 5/16 × 25 5/8 in.); Framed: 130.9 × 104.2 × 14 cm (51 1/2 × 41 × 5 1/2 in.)"
   },
   {
    "title": "Madame François Buron",
@@ -471,8 +489,8 @@
    "cultural_context": "18th Century, French",
    "medium": "Oil on canvas",
    "date_display": "1769",
-   "description_narrative": "This early work by Jacques Louis David portrays Madame François Buron, executed in oil on canvas. The painting showcases the emerging talent of a master who would soon redefine French art.",
-   "tags": "portraiture, 18th century, french art, oil painting, david, pre-neoclassical",
+   "description_narrative": "A woman in an elaborately ruffled and striped gown looks up from two open books, one hand still raised to her powdered hair. A black ribbon choker and playful half-smile give the portrait a lively, informal feel.",
+   "tags": "18th century, ruffled gown, powdered hair, books, informal portrait",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jacques%20Louis%20David%20-%20Madame%20Fran%C3%A7ois%20Buron%20-%201963.205%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
@@ -515,7 +533,9 @@
      0.9549,
      1.0
     ]
-   }
+   },
+   "current_repository": "Art Institute of Chicago",
+   "physical_dimensions": "66.3 × 55.5 cm (26 1/8 × 21 7/8 in.); Framed: 92.4 × 81.6 × 10.2 cm (36 3/8 × 32 1/8 × 4 in.)"
   },
   {
    "title": "Portrait of a Man with a Pink",
@@ -525,8 +545,8 @@
    "cultural_context": "Early Netherlandish Renaissance, Flemish",
    "medium": "Oil on panel",
    "date_display": "1500–10",
-   "description_narrative": "Quentin Massys's oil on panel portrait features a man holding a pink flower, rendered with precise detail characteristic of the artist's style. This work exemplifies early 16th-century Netherlandish portraiture, capturing the subject's gaze and individual features.",
-   "tags": "portrait, man, flower, early netherlandish, renaissance, flemish, oil painting, detailed",
+   "description_narrative": "A man in a black cap and dark tunic holds a small white flower between two fingers, his gaze directed just past the viewer. Soft light models his weathered face against a plain blue background.",
+   "tags": "early netherlandish, flower symbolism, portrait, blue background",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Quentin%20Massys%20-%20Portrait%20of%20a%20Man%20with%20a%20Pink%20-%201894.1025%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
@@ -569,7 +589,9 @@
      0.9374
     ]
    },
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "current_repository": "Art Institute of Chicago",
+   "physical_dimensions": "43.8 × 29.2 cm (17 1/4 × 11 1/2 in.); Framed: 51.8 × 36.9 × 4.5 cm (20 3/8 × 14 1/2 × 1 3/4 in.)"
   },
   {
    "title": "Amédée-David, the Comte de Pastoret",
@@ -579,8 +601,8 @@
    "cultural_context": "Neoclassicism, French",
    "medium": "Oil on canvas",
    "date_display": "1823–26",
-   "description_narrative": "Jean Auguste Dominique Ingres masterfully captures Amédée-David, the Comte de Pastoret, in this oil on canvas. The portrait exemplifies Ingres's Neoclassical precision and refined brushwork, emphasizing the subject's dignified presence.",
-   "tags": "portrait, neoclassicism, french art, 19th century, oil painting, male portrait, formality, academic art",
+   "description_narrative": "Amedee-David de Pastoret stands with one hand resting on the hilt of his sword and the other tucked into his black jacket, a Legion of Honour medal pinned at his throat. His tousled curls and steady gaze contrast with the crisp, sculptural precision of his tailored clothes.",
+   "tags": "neoclassicism, sword, legion of honour, formal portrait, tailored dress",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jean%20Auguste%20Dominique%20Ingres%20-%20Am%C3%A9d%C3%A9e-David%2C%20the%20Comte%20de%20Pastoret%20-%201971.452%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
@@ -623,7 +645,9 @@
      1.0
     ]
    },
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "current_repository": "Art Institute of Chicago",
+   "physical_dimensions": "103 × 83.5 cm (40 1/2 × 32 3/4 in.); Framed: 129.6 × 110.2 cm (51 × 43 3/8 in.)"
   },
   {
    "title": "Merahi metua no Tehamana (Tehamana Has Many Parents or The Ancestors of Tehamana)",
@@ -633,8 +657,8 @@
    "cultural_context": "Post-Impressionism, Symbolism, French",
    "medium": "Oil on jute canvas",
    "date_display": "1893",
-   "description_narrative": "This portrait depicts Tehamana, a young Tahitian woman, adorned with traditional Tahitian and European elements, reflecting Gauguin's fascination with Polynesian culture. The work utilizes flattened forms and bold outlines, characteristic of the artist's Post-Impressionist style.",
-   "tags": "tahitian, portrait, woman, post-impressionism, symbolism, exoticism, spirituality, serene",
+   "description_narrative": "A young woman in a blue-and-white striped dress holds a woven fan close to her body, a red flower tucked behind her ear. Golden fruit rests in the corner beside her, while carved figures and rows of undeciphered script fill the wall behind her.",
+   "tags": "tahiti, striped dress, fan, symbolism, post-impressionism",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Paul%20Gauguin%20-%20The%20Ancestors%20of%20Tehamana%20OR%20Tehamana%20Has%20Many%20Parents%20%28Merahi%20metua%20no%20Tehamana%29%20-%20Google%20Art%20Project.jpg?width=3840",
@@ -676,18 +700,20 @@
      1.0,
      0.9546
     ]
-   }
+   },
+   "current_repository": "Art Institute of Chicago",
+   "physical_dimensions": "75 × 53 cm (29 1/2 × 20 7/8 in.); Framed: 98.8 × 76.6 × 8.3 cm (38 7/8 × 30 1/8 × 3 1/4 in.)"
   },
   {
    "title": "Francesco de' Medici",
-   "agent_name": "Alessandro Allori",
+   "agent_name": "Attributed to Alessandro Allori",
    "agent_role": "Artist",
    "creation_date": "c. 1560",
    "cultural_context": "Mannerism, Italian",
    "medium": "Oil on panel",
    "date_display": "c. 1560",
-   "description_narrative": "This portrait depicts Francesco de' Medici, a significant figure in Florentine history, painted by Alessandro Allori. Created around 1560, the oil on panel work reflects the elegant and formal portraiture of the late Renaissance period.",
-   "tags": "portrait, Florentine, noble, Medici, Renaissance, Mannerism, formal, oil painting",
+   "description_narrative": "A young man in an ornately embroidered red doublet stands at a table, a small gold medallion held between his fingers. His dark, close-cropped hair and steady gaze are set against an almost black background, with only a glimpse of an ornate chair visible behind him.",
+   "tags": "mannerism, medici, red doublet, gold medallion, italian renaissance",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Alessandro%20Allori%20-%20Francesco%20de%27%20Medici%20-%201965.1179%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
@@ -730,7 +756,9 @@
      1.0
     ]
    },
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "current_repository": "Art Institute of Chicago",
+   "physical_dimensions": "97.9 × 76.4 cm (38 1/2 × 30 1/8 in.); Framed: 117.7 × 96.9 × 10.2 cm (46 3/8 × 38 1/8 × 4 in.)"
   },
   {
    "title": "Beggar with Oysters (Philosopher)",
@@ -740,8 +768,8 @@
    "cultural_context": "French Realism, modern art precursor",
    "medium": "Oil on canvas",
    "date_display": "1865–67",
-   "description_narrative": "This portrait depicts a figure, often identified as a philosopher or beggar, engaged with a meal of oysters. Manet's brushwork and direct gaze challenge traditional academic painting, reflecting everyday life.",
-   "tags": "beggar, philosopher, realism, modern art, portrait, oysters, 19th century",
+   "description_narrative": "A bearded man wrapped in a heavy blue cloak and wearing a wide dark green hat stands against a bare, shadowy ground. A small scatter of oyster shells lies at his feet, the only object breaking the plain expanse of floor.",
+   "tags": "realism, beggar, still life detail, dark palette, genre portrait",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/%C3%89douard%20Manet%20-%20Beggar%20with%20Oysters%20%28Philosopher%29%20-%201931.504%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
@@ -784,7 +812,9 @@
      1.0,
      0.7773
     ]
-   }
+   },
+   "current_repository": "Art Institute of Chicago",
+   "physical_dimensions": "188 × 111 cm (74 × 43 5/16 in.); Framed: 223.3 × 145.5 × 17.5 cm (87 7/8 × 57 1/4 × 6 7/8 in.)"
   },
   {
    "title": "Polynesian Woman with Children",
@@ -794,8 +824,8 @@
    "cultural_context": "Post-Impressionism, French",
    "medium": "Oil on linen canvas",
    "date_display": "1901",
-   "description_narrative": "Paul Gauguin's oil on linen canvas depicts a Polynesian woman surrounded by children, set against a vibrant tropical landscape. Painted in 1901, this work exemplifies Gauguin's distinctive use of bold colors and simplified forms to portray scenes of Tahitian life.",
-   "tags": "polynesian, woman, children, tahiti, post-impressionism, symbolism, tropical, landscape",
+   "description_narrative": "A seated woman holds a young child on her lap while an older girl beside her cradles a small white dog. Painted in cool blues and greens, the three figures fill the canvas with quiet, unhurried closeness.",
+   "tags": "tahiti, mother and children, cool palette, post-impressionism, family group",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Polynesian%20Woman%20with%20Children%201901%20Paul%20Gauguin.jpg?width=3840",
@@ -838,7 +868,9 @@
      0.9943,
      1.0
     ]
-   }
+   },
+   "current_repository": "Art Institute of Chicago",
+   "physical_dimensions": "97 × 74 cm (38 3/16 × 29 1/8 in.); Framed: 111.2 × 88.3 × 5.8 cm (43 3/4 × 34 3/4 × 2 1/4 in.)"
   },
   {
    "title": "Portrait of General José Manuel Romero",
@@ -848,8 +880,8 @@
    "cultural_context": "Romanticism, Spanish",
    "medium": "Oil on canvas",
    "date_display": "c. 1810",
-   "description_narrative": "This oil on canvas, painted by Francisco José de Goya y Lucientes around 1810, depicts General José Manuel Romero. Goya, a prominent Spanish master, captures the military figure with a powerful and direct gaze.",
-   "tags": "portrait, general, military, oil painting, goya, spanish art, 19th century",
+   "description_narrative": "A man in a black uniform heavily embroidered with gold stands against total darkness, a wide red sash crossing his chest and medals pinned at his shoulder. Delicate lace cuffs and a red medal ribbon add small notes of color to the otherwise somber palette.",
+   "tags": "gold embroidery, red sash, military portrait, dark background, spanish romanticism",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Francisco%20Jos%C3%A9%20de%20Goya%20y%20Lucientes%20-%20Portrait%20of%20General%20Jos%C3%A9%20Manuel%20Romero%20-%201970.1036%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
@@ -892,7 +924,9 @@
      0.9775,
      1.0
     ]
-   }
+   },
+   "current_repository": "Art Institute of Chicago",
+   "physical_dimensions": "105.5 × 87.7 cm (41 1/2 × 34 1/2 in.); Framed: 136.6 × 114.7 cm (53 3/4 × 45 1/8 in.)"
   },
   {
    "title": "Portrait of Constance Pipelet",
@@ -902,8 +936,8 @@
    "cultural_context": "Late 18th Century, French",
    "medium": "Oil on canvas",
    "date_display": "1797",
-   "description_narrative": "This 1797 oil on canvas depicts Constance Pipelet with a direct gaze, reflecting the portraiture styles of the late 18th century. The artist, Jean Baptiste François Désoria, captures her likeness with precise detail and a refined palette.",
-   "tags": "portrait, oil painting, 18th century, French, woman, historical, realism",
+   "description_narrative": "A young woman with curled auburn hair tied in a red ribbon sits in a plain white dress cinched with a blue sash. Her calm, direct gaze and softly lit skin stand out against a hazy blue sky and distant hills.",
+   "tags": "neoclassicism, red ribbon, white dress, outdoor backdrop, french portraiture",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jean%20Baptiste%20Fran%C3%A7ois%20D%C3%A9soria%20-%20Portrait%20of%20Constance%20Pipelet%20-%201939.533%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
@@ -946,7 +980,9 @@
      1.0
     ]
    },
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "current_repository": "Art Institute of Chicago",
+   "physical_dimensions": "130 × 99.1 cm (51 1/4 × 39 in.)"
   },
   {
    "title": "Mrs. Potter Palmer",
@@ -956,8 +992,8 @@
    "cultural_context": "Swedish, Late 19th Century",
    "medium": "Oil on canvas",
    "date_display": "1893",
-   "description_narrative": "This striking oil on canvas portrait depicts Mrs. Potter Palmer, rendered with Anders Zorn's characteristic skill in capturing the vitality of his sitters. Created in 1893, the work showcases Zorn's mastery of brushwork and his ability to convey both elegance and presence.",
-   "tags": "portrait, woman, oil painting, realism, elegant, late 19th century, Swedish art, impressionistic brushwork",
+   "description_narrative": "A woman in a shimmering white gown and tiara stands beside a sunlit window, a fan held loosely in one gloved hand. Loose, bravura brushwork captures the sheen of her satin dress against the dim room behind her.",
+   "tags": "society portrait, white gown, tiara, bravura brushwork, gilded age",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Anders%20Zorn%20-%20Mrs.%20Potter%20Palmer%20-%201922.450%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
@@ -1000,7 +1036,9 @@
      0.7366
     ]
    },
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "current_repository": "Art Institute of Chicago",
+   "physical_dimensions": "258 × 141.2 cm (101 5/8 × 55 5/8 in.); Framed: 266.1 × 149.6 × 10.2 cm (104 3/4 × 58 7/8 × 4 in.)"
   },
   {
    "title": "John Thomlinson and His Family",
@@ -1010,8 +1048,8 @@
    "cultural_context": "18th century, British",
    "medium": "Oil on canvas",
    "date_display": "1745",
-   "description_narrative": "This oil on canvas painting by Arthur Devis depicts John Thomlinson and his family. Created in 1745, it captures a family group in a domestic setting.",
-   "tags": "portrait, family, group portrait, oil painting, 18th century, British, domestic scene",
+   "description_narrative": "A family of five gathers in an elegantly furnished parlor: a seated gentleman near his writing table, two women in pale gowns, and a young boy reaching to take the hand of a woman in blue. A patterned carpet, marble fireplace, and terrestrial globe furnish the room around them.",
+   "tags": "conversation piece, family group, georgian interior, 18th century, globe",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Arthur%20Devis%20-%20John%20Thomlinson%20and%20His%20Family%20-%201956.130%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
@@ -1054,7 +1092,9 @@
      0.7617,
      1.0
     ]
-   }
+   },
+   "current_repository": "Art Institute of Chicago",
+   "physical_dimensions": "60.9 × 101.9 cm (24 × 40 1/8 in.); Framed: 81.3 × 122 × 11.5 cm (32 × 48 × 4 1/2 in.)"
   },
   {
    "title": "Portrait of a Noblewoman Dressed in Mourning",
@@ -1064,8 +1104,8 @@
    "cultural_context": "Baroque, Italian",
    "medium": "Oil on canvas",
    "date_display": "c. 1600",
-   "description_narrative": "This striking oil on canvas by Jacopo da Empoli depicts a noblewoman draped in black, her somber attire signifying a period of mourning. Created around 1600, the portrait captures a sense of quiet dignity and personal loss.",
-   "tags": "portrait, noblewoman, mourning, Baroque, Italian, oil painting, grief, somber",
+   "description_narrative": "A woman in heavy black mourning dress stands beside a small crucifix on a draped table, one hand resting on her chest and the other holding a folded cloth. A dark curtain and plain wall frame her still, composed figure.",
+   "tags": "mourning dress, italian baroque, crucifix, formal portrait",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jacopo%20da%20Empoli%20-%20Portrait%20of%20a%20Noblewoman%20Dressed%20in%20Mourning%20-%201960.1%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
@@ -1108,7 +1148,9 @@
      1.0,
      0.7535
     ]
-   }
+   },
+   "current_repository": "Art Institute of Chicago",
+   "physical_dimensions": "221 × 122.5 cm (87 × 48 1/4 in.); Framed: 243.9 × 147.4 × 5.1 cm (96 × 58 × 2 in.)"
   },
   {
    "title": "Helena Tromper Du Bois",
@@ -1118,8 +1160,8 @@
    "cultural_context": "Flemish Baroque",
    "medium": "Oil on canvas",
    "date_display": "c. 1631",
-   "description_narrative": "This oil on canvas depicts Helena Tromper Du Bois, a subject of Anthony van Dyck's brush. Van Dyck, celebrated for his elegant portraits, masterfully captured the likeness and status of his sitters during the Baroque era.",
-   "tags": "portrait, flemish, baroque, woman, elegance, 17th century",
+   "description_narrative": "Helena Tromper is shown half-length in black satin, an elaborate lace collar spilling over her shoulders and lace cuffs framing her folded hands. Small gold earrings and a fine necklace catch the light against the warm brown backdrop.",
+   "tags": "flemish baroque, lace collar, black satin, half-length portrait, formal dress",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Anthony%20van%20Dyck%20-%20Helena%20Leonora%20Sieveri%20-%201894.1027%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
@@ -1162,18 +1204,20 @@
      0.9586,
      1.0
     ]
-   }
+   },
+   "current_repository": "Art Institute of Chicago",
+   "physical_dimensions": "99.1 × 88.4 cm (39 × 34 13/16 in.); Framed: 142.2 × 125.1 × 10.1 cm (56 × 49 1/4 × 4 in.)"
   },
   {
    "title": "Self-Portrait",
    "agent_name": "Frédéric Bazille",
    "agent_role": "Artist",
-   "creation_date": "1865–66",
+   "creation_date": "1860s",
    "cultural_context": "Early Impressionism, French",
-   "medium": "Oil on canvas",
-   "date_display": "1865–66",
-   "description_narrative": "Frédéric Bazille captures his own likeness in this introspective oil on canvas, completed during a pivotal period in his early career. The direct gaze and naturalistic rendering reflect the artistic innovations emerging in mid-19th century France.",
-   "tags": "self-portrait, male, artist, 19th century, oil painting, early impressionism, france, naturalism",
+   "medium": "oil paint",
+   "date_display": "1860s",
+   "description_narrative": "Frederic Bazille turns to look over his shoulder, a paint-laden palette held against his hip and a fine brush in hand. His dark waistcoat and crisp white shirtsleeves stand out sharply against the plain, shadowed studio background.",
+   "tags": "self-portrait, early impressionism, palette and brush, studio setting",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Fr%C3%A9d%C3%A9ric%20Bazille%20-%20Self-Portrait%20-%201962.336%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
@@ -1216,7 +1260,9 @@
      1.0,
      0.8907
     ]
-   }
+   },
+   "current_repository": "Art Institute of Chicago",
+   "physical_dimensions": "108.9 x 71.1 cm"
   },
   {
    "title": "Portrait of a Woman with a Man at a Casement",
@@ -1226,8 +1272,8 @@
    "cultural_context": "Paintings",
    "medium": "Tempera on wood",
    "date_display": "ca. 1440",
-   "description_narrative": "Fra Filippo Lippi masterfully painted this tempera on wood, depicting a prominent woman with a man in the background. Titled \"Portrait of a Woman with a Man at a Casement,\" this artwork presents two figures positioned near a window.",
-   "tags": "portrait, woman, man, tempera, Renaissance, Italian, figural",
+   "description_narrative": "A woman in profile wears an elaborately jeweled headdress and gold-buttoned red gown, her hands folded before her. Through a window behind her, a man leans in from an adjoining room, his hand raised, framed by a view of a distant landscape.",
+   "tags": "casement window, jeweled headdress, profile portrait, early renaissance, tempera",
    "source": "The Metropolitan Museum of Art",
    "license": "Public Domain",
    "source_url": "https://images.metmuseum.org/CRDImages/ep/original/DP159891.jpg",
@@ -1269,18 +1315,19 @@
      1.0,
      0.9138
     ]
-   }
+   },
+   "current_repository": "The Metropolitan Museum of Art"
   },
   {
    "title": "Portrait of Doge Leonardo Loredan",
    "agent_name": "Giovanni Bellini",
    "agent_role": "Painter",
-   "creation_date": "1501-1502",
+   "creation_date": "circa from 1501 until 1502",
    "cultural_context": "Early Renaissance, Venetian",
    "medium": "Oil on panel",
-   "date_display": "c. 1501–1502",
-   "description_narrative": "Venice's newly elected Doge is rendered in his gold-brocaded ceremonial cap and mantle with a stillness and precision that recalls Netherlandish portraiture. Bellini's crisp modeling of light on fabric and flesh set a new standard for Venetian state portraiture.",
-   "tags": "renaissance, portrait, venetian, ceremonial, dignified, bellini, doge",
+   "date_display": "circa from 1501 until 1502",
+   "description_narrative": "A man wears an ornate horned cap and a damask robe patterned with gold foliage, buttoned with a row of carved toggles. His composed, weathered face is set firmly against a flat blue background, the paint built up in fine, controlled detail.",
+   "tags": "doge's cap, damask robe, formal portrait, blue background, venetian renaissance",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Giovanni%20Bellini%2C%20portrait%20of%20Doge%20Leonardo%20Loredan.jpg?width=3840",
@@ -1322,7 +1369,8 @@
      1.0,
      0.9707
     ]
-   }
+   },
+   "current_repository": "National Gallery"
   },
   {
    "title": "Portrait of Baldassare Castiglione",
@@ -1330,10 +1378,10 @@
    "agent_role": "Painter",
    "creation_date": "1514-1515",
    "cultural_context": "High Renaissance, Italian",
-   "medium": "Oil on canvas",
+   "medium": "paint",
    "date_display": "c. 1514–1515",
-   "description_narrative": "The author of The Book of the Courtier gazes calmly out in soft grays and blacks, his intelligent, composed expression matching the ideal of courtly refinement he wrote about. Raphael's muted palette and psychological restraint influenced generations of portraitists, including Rembrandt.",
-   "tags": "renaissance, portrait, italian, refined, understated, raphael, courtier",
+   "description_narrative": "Seen here in a muted grayscale reproduction, a bearded man in a soft, voluminous cap looks out with steady, deep-set eyes. A pleated white collar spills over his dark cloak, the only sharp passage of light in an otherwise softly modeled portrait.",
+   "tags": "renaissance portrait, grayscale reproduction, pleated collar, soft modeling",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Schule%2C%20Raffael%20%281483%20-%201520%29%20-%20Portrait%20of%20Count%20Baldassare%20Castiglione%20-%20251%20-%20Gem%C3%A4ldegalerie.jpg?width=3840",
@@ -1385,8 +1433,8 @@
    "cultural_context": "Northern Renaissance, German",
    "medium": "Oil on panel",
    "date_display": "1533",
-   "description_narrative": "Two richly dressed French envoys stand beside a table of scientific and musical instruments, with a wildly distorted skull stretched across the foreground floor as a memento mori visible only from an oblique angle. Holbein's technical virtuosity turns a diplomatic portrait into an elaborate meditation on mortality and knowledge.",
-   "tags": "renaissance, portrait, german, anamorphic, symbolic, holbein, memento mori",
+   "description_narrative": "Two richly dressed men stand at either side of a table piled with globes, a lute, and instruments for reckoning time and the stars, all set against a heavy green damask curtain. Across the patterned floor at their feet stretches a strange, elongated smear of grey that cuts diagonally through the scene.",
+   "tags": "double portrait, still life objects, damask curtain, globes, northern renaissance",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Hans%20Holbein%20the%20Younger%20-%20The%20Ambassadors%20-%20Google%20Art%20Project.jpg?width=3840",
@@ -1434,12 +1482,12 @@
    "title": "Portrait of Henry VIII",
    "agent_name": "Hans Holbein the Younger",
    "agent_role": "Painter",
-   "creation_date": "c. 1537",
+   "creation_date": "1540",
    "cultural_context": "Northern Renaissance, German",
-   "medium": "Oil on panel",
-   "date_display": "c. 1537",
-   "description_narrative": "The English king stands in a wide, imposing stance, his broad shoulders and jeweled costume filling the panel with an aura of absolute authority. Holbein's court portrait became the definitive visual image of Henry VIII, endlessly copied throughout the Tudor era.",
-   "tags": "renaissance, portrait, royal, german, imposing, holbein, tudor",
+   "medium": "oil paint",
+   "date_display": "1540",
+   "description_narrative": "Henry VIII stands in a gold brocade robe trimmed with dark fur, a heavy jeweled chain crossing his chest over a red-and-gold doublet. Inscriptions naming his age flank his head against a deep blue background, his bearded face set in a level, unflinching stare.",
+   "tags": "tudor portraiture, gold brocade, jeweled chain, blue background",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Hans%20Holbein%20the%20Younger%20%28attributed%29%2C%20Portrait%20of%20Henry%20VIII%2C%20c.%201537.%20Oil%20on%20panel.%20Palazzo%20Barberini%2C%20Galleria%20Nazionale%20d%E2%80%99Arte%20Antica%2C%20Rome.jpg?width=3840",
@@ -1481,7 +1529,8 @@
      0.9456,
      1.0
     ]
-   }
+   },
+   "physical_dimensions": "88.5 x 74.5 cm"
   },
   {
    "title": "Portrait of a Man in a Red Turban",
@@ -1491,8 +1540,8 @@
    "cultural_context": "Northern Renaissance, Flemish",
    "medium": "Oil on panel",
    "date_display": "1433",
-   "description_narrative": "A man in an elaborately folded red chaperon meets the viewer's gaze directly against a plain dark ground, possibly a self-portrait of the artist. Van Eyck's precise inscription and virtuoso rendering of cloth and stubble mark one of the earliest true self-portraits in Western painting.",
-   "tags": "renaissance, portrait, flemish, precise, early, van eyck, self-portrait",
+   "description_narrative": "A man's face emerges from near-total darkness, lit sharply to reveal every crease and stubbled hair. A voluminous red turban, wound in thick folds, dominates the composition above his steady, appraising gaze.",
+   "tags": "red turban, self-portrait, chiaroscuro, northern renaissance",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Portrait%20of%20a%20Man%20in%20a%20red%20turban%20%28by%20Jan%20van%20Eyck%29.jpg?width=3840",
@@ -1538,8 +1587,8 @@
    "cultural_context": "Northern Renaissance, Flemish",
    "medium": "Oil on panel",
    "date_display": "1434",
-   "description_narrative": "A merchant and his wife stand hand in hand in a richly furnished chamber, a convex mirror on the back wall reflecting the room and two additional figures in the doorway. Dense with symbolic detail, from the single candle to the small dog, it remains one of the most scrutinized domestic portraits ever painted.",
-   "tags": "renaissance, portrait, flemish, symbolic, domestic, van eyck, double portrait",
+   "description_narrative": "A couple stand hand in hand in a richly furnished chamber, a small dog at their feet and a round mirror reflecting the room behind them. The woman's voluminous green gown and the man's fur-trimmed robe are rendered in exacting, almost microscopic detail, down to the brass chandelier overhead.",
+   "tags": "double portrait, domestic interior, mirror, fur trim, northern renaissance",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Van%20Eyck%20-%20Arnolfini%20Portrait.jpg?width=3840",
@@ -1581,7 +1630,8 @@
      1.0,
      0.9874
     ]
-   }
+   },
+   "current_repository": "National Gallery"
   },
   {
    "title": "Infanta Margarita Teresa in a Blue Dress",
@@ -1589,10 +1639,10 @@
    "agent_role": "Painter",
    "creation_date": "1659",
    "cultural_context": "Baroque, Spanish",
-   "medium": "Oil on canvas",
+   "medium": "oil paint",
    "date_display": "1659",
-   "description_narrative": "The young Spanish princess stands stiffly in an enormous silver-blue gown, her small figure nearly swallowed by court fashion and formal etiquette. Velázquez's loose, atmospheric brushwork on the fabric contrasts with the child's composed, direct gaze.",
-   "tags": "baroque, portrait, spanish, royal, court, velazquez, childhood",
+   "description_narrative": "A young girl in an enormous blue and silver gown stands beside a dark fur muff, her long blonde hair loose beneath a small dark bow. Behind her, a table holds carved lion figurines and a mirror, hinting at the formality of a royal household.",
+   "tags": "infanta, blue gown, baroque, spanish court, royal portrait",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Diego%20Rodriguez%20de%20Silva%20y%20Vel%C3%A1zquez%20-%20Infanta%20Margarita%20Teresa%20in%20a%20Blue%20Dress%20-%20Google%20Art%20Project.jpg?width=3840",
@@ -1634,26 +1684,20 @@
      0.9459,
      1.0
     ]
-   }
+   },
+   "current_repository": "Kunsthistorisches Museum",
+   "physical_dimensions": "127.0 x 107.0 cm"
   },
   {
    "title": "Charles I at the Hunt",
    "agent_name": "Anthony van Dyck",
    "agent_role": "Painter",
-   "creation_date": "1635",
+   "creation_date": "c. 1635",
    "cultural_context": "Flemish Baroque at the English court",
    "medium": "Oil on canvas",
    "date_display": "c. 1635",
-   "description_narrative": "Van Dyck presents King Charles I informally at rest during a hunt, one hand on a cane, as a courtier holds his horse. The low viewpoint and elegant pose lend an air of effortless majesty to the notably short monarch.",
-   "tags": [
-    "van dyck",
-    "charles i",
-    "portrait",
-    "royal",
-    "louvre",
-    "hunt",
-    "flemish baroque"
-   ],
+   "description_narrative": "A man in a white satin doublet and red breeches stands casually beside a grey horse beneath a spreading tree, cane in hand and hat tilted back. Behind him, two attendants and the horse's handler wait, the relaxed pose set against a soft, sunlit sky.",
+   "tags": "equestrian scene, hunting dress, outdoor portrait, flemish baroque",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Charles%20I%20of%20England.jpg?width=3840",
@@ -1701,20 +1745,12 @@
    "title": "Portrait of Pope Innocent X",
    "agent_name": "Diego Velazquez",
    "agent_role": "Painter",
-   "creation_date": "1650",
+   "creation_date": "17th century",
    "cultural_context": "Spanish Baroque, Rome",
    "medium": "Oil on canvas",
-   "date_display": "1650",
-   "description_narrative": "Painted during Velazquez's second stay in Italy, this portrait fixes the pope with an unflinching, penetrating realism that the sitter himself reportedly found too truthful. Widely counted among the greatest portraits ever made, it later obsessed the painter Francis Bacon.",
-   "tags": [
-    "velazquez",
-    "pope",
-    "portrait",
-    "spanish baroque",
-    "doria pamphilj",
-    "realism",
-    "papal"
-   ],
+   "date_display": "17th century",
+   "description_narrative": "Pope Innocent X sits in a gilded chair, his red silk mozzetta and cape rendered in shifting layers of crimson against a deep red curtain. His penetrating gaze and slightly parted lips give the portrait a startling, almost confrontational immediacy.",
+   "tags": "baroque, papal portrait, red vestments, gilded chair, spanish baroque",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Retrato%20del%20Papa%20Inocencio%20X.%20Roma%2C%20by%20Diego%20Vel%C3%A1zquez.jpg?width=3840",
@@ -1762,20 +1798,12 @@
    "title": "Portrait of Pope Julius II",
    "agent_name": "Raphael",
    "agent_role": "Painter",
-   "creation_date": "1511-1512",
+   "creation_date": "1511",
    "cultural_context": "Italian High Renaissance, Rome",
    "medium": "Oil on poplar panel",
-   "date_display": "1511-1512",
-   "description_narrative": "Raphael broke with convention by showing the pope seated and inwardly absorbed rather than in rigid formal majesty, setting the template for papal portraiture for two centuries. The unusual beard was grown by Julius as a vow tied to the fortunes of the papal states.",
-   "tags": [
-    "raphael",
-    "pope",
-    "portrait",
-    "high renaissance",
-    "national gallery",
-    "julius ii",
-    "papal"
-   ],
+   "date_display": "1511",
+   "description_narrative": "Pope Julius II sits deep in thought, his long white beard spilling over a heavy red velvet cape trimmed in white fur. His ringed fingers grip a cloth in his lap, set against a plain green background that leaves the softly modeled figure fully in focus.",
+   "tags": "high renaissance, papal portrait, white beard, velvet cape, green background",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Raphael%20and%20Workshop%20-%20Portrait%20of%20Pope%20Julius%20II%20-%20Google%20Art%20Project.jpg?width=3840",
@@ -1823,20 +1851,12 @@
    "title": "Self-Portrait in a Straw Hat",
    "agent_name": "Elisabeth Louise Vigee Le Brun",
    "agent_role": "Painter",
-   "creation_date": "1782",
+   "creation_date": "c. 1782",
    "cultural_context": "French pre-Revolutionary portraiture",
    "medium": "Oil on canvas",
-   "date_display": "after 1782",
-   "description_narrative": "The artist depicts herself outdoors with a palette in hand and a feathered straw hat, directly inspired by a Rubens portrait she had admired in Antwerp. Her unpowdered hair and natural presentation were a fresh, informal statement in the years just before the Revolution.",
-   "tags": [
-    "vigee le brun",
-    "self-portrait",
-    "female artist",
-    "straw hat",
-    "national gallery",
-    "rubens",
-    "french"
-   ],
+   "date_display": "c. 1782",
+   "description_narrative": "This is a later version of the artist's self-portrait with a palette: she looks out from beneath a wide straw hat trimmed with flowers and a curling feather, palette and brushes in hand. Soft clouds and blue sky fill the background behind her pink-and-black dress.",
+   "tags": "self-portrait, straw hat, artist at work, later version, rococo",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Self-portrait%20in%20a%20Straw%20Hat%20by%20Elisabeth-Louise%20Vig%C3%A9e-Lebrun%20%282%29.jpg?width=3840",
@@ -1888,13 +1908,8 @@
    "cultural_context": "Colonial American portraiture",
    "medium": "Oil on canvas",
    "date_display": "1770",
-   "description_narrative": "Scottish-born portraitist Cosmo Alexander painted this likeness of Alexander Grant while working as an itinerant painter in Britain's American colonies. Alexander is historically notable as an early teacher of the young Gilbert Stuart, who became America's foremost portraitist.",
-   "tags": [
-    "Cosmo Alexander",
-    "colonial American portrait",
-    "18th century",
-    "Scottish painter"
-   ],
+   "description_narrative": "A young man in a richly gold-embroidered red coat and waistcoat holds a small red book in one hand, his hat tucked beneath the other arm. Behind him, a stone balustrade opens onto a distant landscape of trees and hills.",
+   "tags": "red coat, gold embroidery, 18th century, balustrade, formal portrait",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Cosmo%20Alexander%20-%20Alexander%20Grant%20-%201977.2%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
@@ -1937,23 +1952,20 @@
      1.0
     ]
    },
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "current_repository": "Art Institute of Chicago",
+   "physical_dimensions": "127.7 × 101.6 cm (50 1/4 × 40 in.)"
   },
   {
    "title": "Lucrezia di Lippo di Iacopo Guidi",
    "agent_name": "Andrea del Sarto",
    "agent_role": "Painter",
-   "creation_date": "1525",
+   "creation_date": "1525–28",
    "cultural_context": "Florentine High Renaissance",
    "medium": "Oil on panel",
    "date_display": "1525–28",
-   "description_narrative": "Andrea del Sarto, one of the leading painters of the High Renaissance in Florence, painted this pendant portrait of a Florentine woman alongside a companion portrait of her husband. The sitter's identity and social standing are conveyed through the careful rendering of her dress and composed bearing.",
-   "tags": [
-    "Andrea del Sarto",
-    "Florentine Renaissance",
-    "pendant portrait",
-    "16th century"
-   ],
+   "description_narrative": "A woman's profile is set within a circular medallion bordered by a dark red panel, her white headscarf and simple blue-grey dress rendered with quiet restraint. A thin cord necklace is just visible at her throat.",
+   "tags": "tondo, profile portrait, renaissance, medallion format, restrained palette",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sarto%2C%20Andrea%20del%20-%20The%20Wife%20of%20Domenico%20da%20Gambassi.jpg?width=3840",
@@ -1995,23 +2007,20 @@
      0.7934,
      1.0
     ]
-   }
+   },
+   "current_repository": "Art Institute of Chicago",
+   "physical_dimensions": "22.5 × 15.9 cm (8 7/8 × 6 1/4 in.)"
   },
   {
    "title": "Portrait of Dr. William McNeill Whistler",
    "agent_name": "James McNeill Whistler",
    "agent_role": "Painter",
-   "creation_date": "1871",
+   "creation_date": "1871–73",
    "cultural_context": "American Aestheticism",
    "medium": "Oil on panel",
    "date_display": "1871–73",
-   "description_narrative": "James McNeill Whistler painted this portrait of his half-brother, William McNeill Whistler, a physician who served as a Confederate surgeon during the American Civil War. The restrained palette and tonal harmony reflect Whistler's mature aesthetic philosophy of 'art for art's sake.'",
-   "tags": [
-    "James McNeill Whistler",
-    "family portrait",
-    "American art",
-    "Aestheticism"
-   ],
+   "description_narrative": "A bearded man in a wide-brimmed dark hat and loose white coat is rendered in soft, blended brushwork against a warm brown ground. A black cravat is the only sharp accent in an otherwise muted, almost monochrome study.",
+   "tags": "tonalism, soft brushwork, monochrome study, bearded sitter",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/James%20McNeill%20Whistler%20-%20Portrait%20of%20Dr.%20William%20McNeill%20Whistler%20-%201977.235%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
@@ -2054,7 +2063,9 @@
      1.0
     ]
    },
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "current_repository": "Art Institute of Chicago",
+   "physical_dimensions": "43.7 × 34.8 cm (17 3/16 × 13 11/16 in.)"
   },
   {
    "title": "Arrangement in Flesh Color and Brown: Portrait of Arthur Jerome Eddy",
@@ -2064,8 +2075,8 @@
    "cultural_context": "Tonalism, American",
    "medium": "Oil on canvas",
    "date_display": "1894",
-   "description_narrative": "This striking oil portrait, titled \"Arrangement in Flesh Color and Brown,\" captures Arthur Jerome Eddy with an emphasis on color harmony rather than detailed representation. Created by James McNeill Whistler in 1894, it exemplifies his innovative approach to portraiture as a study in tonal relationships and artistic arrangement.",
-   "tags": "portrait, oil painting, whistler, tonalism, aestheticism, fin de siècle, american art",
+   "description_narrative": "Arthur Jerome Eddy stands full-length in a dark coat against a nearly bare brown ground, his figure emerging softly from the muted tones around him. He holds his hat in one gloved hand, the whole portrait built from close, tonal harmonies rather than sharp contrast.",
+   "tags": "tonalism, full-length portrait, muted palette, brown harmony",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/James%20McNeill%20Whistler%20-%20Arrangement%20in%20Flesh%20Color%20and%20Brown%2C%20Portrait%20of%20Arthur%20Jerome%20Eddy%20-%201931.501%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
@@ -2082,7 +2093,9 @@
    "license_verified": "2026-09-22",
    "delivered_edge": 3000,
    "resolution_tier": "HD",
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "current_repository": "Art Institute of Chicago",
+   "physical_dimensions": "210.7 × 93.3 cm (82 15/16 × 36 3/4 in.)"
   },
   {
    "title": "Mrs. John Nicholson (Hannah Duncan) and John Nicholson, Jr.",
@@ -2092,8 +2105,8 @@
    "cultural_context": "Late 18th Century, American",
    "medium": "Oil on canvas",
    "date_display": "1790",
-   "description_narrative": "This double portrait by Charles Willson Peale depicts Hannah Duncan Nicholson and her son, John Nicholson, Jr., capturing a tender familial moment. Painted in oil on canvas in 1790, it exemplifies Peale's skill in rendering lifelike figures and intimate domestic scenes.",
-   "tags": "portrait, mother and child, family, 18th century, american art, oil painting, realism, domestic scene",
+   "description_narrative": "A woman with dark curled hair holds a young child dressed in white on her lap, the child clutching a sprig of flowers. The child's wide-brimmed blue hat with a black plume adds a playful note to the otherwise composed portrait, framed by a distant autumn landscape.",
+   "tags": "mother and child, american portraiture, plumed hat, autumn landscape, 18th century",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Charles%20Willson%20Peale%20-%20Mrs.%20John%20Nicholson%20%28Hannah%20Duncan%29%20and%20John%20Nicholson%2C%20Jr.%20-%201952.1001%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
@@ -2136,7 +2149,9 @@
      0.9949,
      1.0
     ]
-   }
+   },
+   "current_repository": "Art Institute of Chicago",
+   "physical_dimensions": "91.5 × 69.3 cm (36 × 27 5/16 in.)"
   },
   {
    "title": "James Vibert, Sculptor",
@@ -2146,8 +2161,8 @@
    "cultural_context": "Early 20th century",
    "medium": "Oil on canvas",
    "date_display": "1907",
-   "description_narrative": "Ferdinand Hodler's 1907 oil on canvas presents a portrait titled 'James Vibert, Sculptor'. The painting depicts the sculptor James Vibert, created by Hodler, and serves as an example of his portraiture.",
-   "tags": "portraiture, male subject, sculptor, oil painting, 1907, ferdinand hodler",
+   "description_narrative": "A man with a full, wiry red beard and piercing pale eyes looks out against a flat yellow-green background. His open dark jacket reveals a loosely rendered white shirt, the simplified forms and bold color giving the portrait a striking, graphic directness.",
+   "tags": "symbolism, red beard, flat background, graphic style, early 20th century",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Ferdinand%20Hodler%20-%20James%20Vibert%2C%20Sculptor%20-%201926.212%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
@@ -2190,7 +2205,9 @@
      0.8746,
      1.0
     ]
-   }
+   },
+   "current_repository": "Art Institute of Chicago",
+   "physical_dimensions": "64.7 × 66 cm (25 1/2 × 26 in.)"
   },
   {
    "title": "James William Wallack",
@@ -2200,8 +2217,8 @@
    "cultural_context": "19th century, British-American",
    "medium": "Oil on canvas",
    "date_display": "1835–40",
-   "description_narrative": "This oil on canvas painting by Charles Robert Leslie depicts James William Wallack. Created between 1835 and 1840, it showcases Leslie's skill as a portraitist.",
-   "tags": "portrait, oil painting, 19th century, male figure, charles robert leslie, james william wallack, american art, british art",
+   "description_narrative": "James William Wallack is shown from the shoulders up, dark curly hair framing a faintly amused expression. His high white collar and loosely knotted cravat stand out against a plain, dark brown background.",
+   "tags": "19th century portraiture, actor, high collar, dark background",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Charles%20Robert%20Leslie%20-%20James%20William%20Wallack%20-%201923.359%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
@@ -2244,7 +2261,9 @@
      0.9524,
      1.0
     ]
-   }
+   },
+   "current_repository": "Art Institute of Chicago",
+   "physical_dimensions": "76.8 × 64 cm (30 1/4 × 25 3/16 in.)"
   },
   {
    "title": "Isabella Wolff",
@@ -2254,8 +2273,8 @@
    "cultural_context": "Romanticism, British, 19th century",
    "medium": "Oil on canvas",
    "date_display": "1803–15",
-   "description_narrative": "Sir Thomas Lawrence's oil on canvas portrait depicts Isabella Wolff, capturing her refined presence with remarkable detail. Created between 1803 and 1815, this work exemplifies the artist's celebrated ability to convey character and elegance through his brushwork.",
-   "tags": "portrait, woman, romanticism, british art, oil painting, 19th century, elegance, refined",
+   "description_narrative": "A woman in a flowing white gown and gold-trimmed turban leans over a large open book resting on a red-draped table. A pink rose is tucked at her waist, and a sculpture is glimpsed in the shadows behind her.",
+   "tags": "romanticism, turban, illuminated book, rose, british portraiture",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sir%20Thomas%20Lawrence%20-%20Mrs.%20Jens%20Wolff%20-%201922.4461%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
@@ -2298,7 +2317,9 @@
      1.0
     ]
    },
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "current_repository": "Art Institute of Chicago",
+   "physical_dimensions": "128.2 × 102.4 cm (50 1/2 × 40 5/16 in.); Framed: 156.2 × 130.5 cm (61 1/2 × 51 3/8 in.)"
   },
   {
    "title": "Dr. Joseph Klapp",
@@ -2308,8 +2329,8 @@
    "cultural_context": "American, 19th century",
    "medium": "Oil on canvas",
    "date_display": "1814",
-   "description_narrative": "Painted by Thomas Sully in 1814, this oil on canvas depicts Dr. Joseph Klapp. The work serves as a formal portrait, representative of American painting from the early 19th century.",
-   "tags": "portrait, oil painting, American, 19th century, formal, doctor, realism",
+   "description_narrative": "A seated man rests his chin thoughtfully on one hand, a red leather-bound volume propped nearby. His dark coat and the plain, warmly lit background focus attention entirely on his contemplative expression.",
+   "tags": "american portraiture, seated pose, contemplative, book, early 19th century",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Thomas%20Sully%20-%20Dr.%20Joseph%20Klapp%20-%201950.1363%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
@@ -2352,7 +2373,9 @@
      0.9797,
      1.0
     ]
-   }
+   },
+   "current_repository": "Art Institute of Chicago",
+   "physical_dimensions": "91.4 × 71.1 cm (36 × 28 in.)"
   },
   {
    "title": "Mrs. Klapp (Anna Milnor)",
@@ -2362,8 +2385,8 @@
    "cultural_context": "American, Early 19th Century",
    "medium": "Oil on canvas",
    "date_display": "1814",
-   "description_narrative": "Thomas Sully's 1814 oil on canvas presents a portrait of Mrs. Klapp, also known as Anna Milnor. This work exemplifies the artist's refined approach to capturing individual likeness through the medium of paint.",
-   "tags": "portrait, oil painting, American art, 19th century, realism, woman, Thomas Sully",
+   "description_narrative": "A woman in a high-necked white dress with a ruffled collar sits with her hands folded, a pale shawl draped over one shoulder. Loose curls frame her face, painted with soft, warm lighting against a plain brown backdrop.",
+   "tags": "american portraiture, ruffled collar, soft lighting, early 19th century",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Thomas%20Sully%20-%20Mrs.%20Klapp%20%28Anna%20Milnor%29%20-%201950.1362%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
@@ -2406,7 +2429,9 @@
      0.9954,
      1.0
     ]
-   }
+   },
+   "current_repository": "Art Institute of Chicago",
+   "physical_dimensions": "92.1 × 71.5 cm (36 1/4 × 28 1/8 in.)"
   },
   {
    "title": "Sarah Dupont",
@@ -2416,8 +2441,8 @@
    "cultural_context": "18th Century, British art",
    "medium": "Oil on canvas",
    "date_display": "c. 1777–79",
-   "description_narrative": "Thomas Gainsborough was a prominent English portrait and landscape painter of the 18th century. This oil painting captures a likeness, reflecting the artist's characteristic elegant style and mastery of brushwork.",
-   "tags": "portraiture, 18th century, British art, oil painting, elegant, aristocratic, Georgian era",
+   "description_narrative": "A woman in an elaborately ruffled lace bonnet looks out with a faint, direct gaze, a large bow tied beneath her chin. Loose, feathery brushstrokes render her greying curls and the soft lace trim against a plain dark background.",
+   "tags": "british portraiture, lace bonnet, feathery brushwork, dark background",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Mrs.%20Philip%20Dupont%2C%20c.%201778%2C%20by%20Thomas%20Gainsborough%20-%20Art%20Institute%20of%20Chicago%20-%20DSC09480.JPG?width=3840",
@@ -2434,7 +2459,9 @@
    "license_verified": "2026-09-22",
    "delivered_edge": 3706,
    "resolution_tier": "HD",
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "current_repository": "Art Institute of Chicago",
+   "physical_dimensions": "77.2 × 64.5 cm (30 3/8 × 25 3/8 in.); Framed: 95.3 × 84.5 × 8.9 cm (37 1/2 × 33 1/4 × 3 1/2 in.)"
   },
   {
    "title": "Riter Fitzgerald",
@@ -2444,8 +2471,8 @@
    "cultural_context": "American Realism, late 19th century",
    "medium": "Oil on canvas",
    "date_display": "1895",
-   "description_narrative": "Thomas Eakins's 1895 portrait of Riter Fitzgerald exemplifies his commitment to capturing individual presence rather than idealizing his subjects. Through a muted palette and direct gaze, Eakins reveals a quiet intensity in the sitter.",
-   "tags": "portrait, american realism, oil painting, male subject, 19th century, psychological, muted",
+   "description_narrative": "A man in a dark suit reclines in a tasseled armchair, one leg crossed and a book open on his lap. Shelves of leather-bound volumes fill the shadowed room behind him, with more books stacked loosely on the patterned rug.",
+   "tags": "american realism, library setting, reclining pose, books, dark interior",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Thomas%20Eakins%20-%20Riter%20Fitzgerald%20-%201950.1511%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
@@ -2488,7 +2515,9 @@
      1.0
     ]
    },
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "current_repository": "Art Institute of Chicago",
+   "physical_dimensions": "193.7 × 163.2 cm (76 1/4 × 64 1/4 in.)"
   },
   {
    "title": "Portrait of Mary Adeline Williams",
@@ -2498,8 +2527,8 @@
    "cultural_context": "American Realism, late 19th century",
    "medium": "Oil on canvas",
    "date_display": "1899",
-   "description_narrative": "Thomas Eakins's 1899 oil on canvas depicts Mary Adeline Williams with a characteristic directness and psychological insight. His work is celebrated for its unvarnished realism, capturing the sitter's individual presence with a precise eye.",
-   "tags": "portrait, realism, american art, oil painting, late 19th century, psychological, contemplative",
+   "description_narrative": "A woman in a dark, pleated blouse and high lace collar looks out with a level, unadorned gaze. Painted almost entirely in browns and blacks, the portrait leaves her face as the sole point of light in the composition.",
+   "tags": "american realism, plain palette, lace collar, direct gaze",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Thomas%20Eakins%20-%20Portrait%20of%20Mary%20Adeline%20Williams%20-%201939.548%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
@@ -2542,7 +2571,9 @@
      1.0
     ]
    },
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "current_repository": "Art Institute of Chicago",
+   "physical_dimensions": "61 × 50.8 cm (24 × 20 1/16 in.)"
   },
   {
    "title": "Rêverie (Portrait of Gabrielle Borreau)",
@@ -2552,8 +2583,8 @@
    "cultural_context": "Realism, French",
    "medium": "Oil on paper, mounted on canvas",
    "date_display": "1862",
-   "description_narrative": "This intimate portrait by Gustave Courbet depicts Gabrielle Borreau in a contemplative pose. Painted in 1862, the work captures a moment of quiet introspection.",
-   "tags": "portrait, realism, 19th century, contemplative, figure study, oil painting, french art",
+   "description_narrative": "A young woman with loose, flowing brown hair tucks a strand behind her ear, gazing off to the side with a faint smile. A thin cross necklace catches the light at her throat, set against a hazy sunset sky and distant water.",
+   "tags": "realism, flowing hair, sunset backdrop, pensive gaze, informal portrait",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Gustave%20Courbet%20-%20R%C3%AAverie%20%281862%29.jpg?width=3840",
@@ -2570,7 +2601,9 @@
    "license_verified": "2026-09-22",
    "delivered_edge": 2800,
    "resolution_tier": "HD",
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "current_repository": "Art Institute of Chicago",
+   "physical_dimensions": "63.5 × 77 cm (25 × 30 5/16 in.); Framed: 98.5 × 112.4 cm (38 3/4 × 44 1/4 in.)"
   },
   {
    "title": "Mère Grégoire",
@@ -2580,8 +2613,8 @@
    "cultural_context": "Realism, French",
    "medium": "Oil on canvas",
    "date_display": "1855, reworked 1857–59",
-   "description_narrative": "Gustave Courbet's 'Mère Grégoire' is an oil on canvas portrait depicting an older woman. This work exemplifies Courbet's commitment to portraying everyday people with directness and realism.",
-   "tags": "portrait, woman, realism, french realism, direct, naturalistic, oil painting",
+   "description_narrative": "A woman in a black dress and lace collar leans on a marble-topped table, a small vase of flowers beside her. She holds something delicate between her fingers, her profile turned upward with a faint, knowing smile.",
+   "tags": "realism, lace collar, marble table, flowers, profile",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Gustave%20Courbet%20-%20M%C3%A8re%20Gr%C3%A9goire%20-%201930.78%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
@@ -2598,7 +2631,9 @@
    "license_verified": "2026-09-22",
    "delivered_edge": 2250,
    "resolution_tier": "HD",
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "current_repository": "Art Institute of Chicago",
+   "physical_dimensions": "129 × 97.5 cm (50 3/4 × 38 3/8 in.); Framed: 168 × 137.2 × 16.2 cm (66 1/8 × 54 × 6 3/8 in.)"
   }
  ]
 }

@@ -13,8 +13,8 @@
    "cultural_context": "American Romanticism, Hudson River School",
    "medium": "Oil on wood panel",
    "date_display": "1830",
-   "description_narrative": "Thomas Cole's Distant View of Niagara Falls, painted in 1830 with oil on wood panel, presents a sweeping vista of the iconic natural wonder. This work exemplifies Cole's profound engagement with the American landscape, often imbued with a sense of the sublime and picturesque.",
-   "tags": "landscape, American art, romanticism, sublime, nature, Niagara Falls, oil painting",
+   "description_narrative": "Two figures stand on a rocky outcrop framed by blazing autumn foliage, looking out over the falls as mist rises into a brooding sky. The horseshoe of falling water glows pale against dark storm clouds gathering above the gorge. The painting depicts Niagara Falls.",
+   "tags": "niagara falls, autumn foliage, waterfall, sublime landscape, oil painting, hudson river school",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Distant%20View%20of%20Niagara%20Falls%201830%20Thomas%20Cole.jpg?width=3840",
@@ -57,7 +57,9 @@
      1.0
     ]
    },
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "current_repository": "Art Institute of Chicago",
+   "physical_dimensions": "47.9 × 60.6 cm (18 7/8 × 23 7/8 in.)"
   },
   {
    "title": "New England Scenery",
@@ -67,8 +69,8 @@
    "cultural_context": "Hudson River School, American Romanticism, 19th Century American",
    "medium": "Oil on canvas",
    "date_display": "1839",
-   "description_narrative": "Thomas Cole's 'New England Scenery' captures the wild grandeur of the American landscape. This 1839 oil on canvas work exemplifies the romantic vision of nature central to Cole's artistic output.",
-   "tags": "landscape, american art, hudson river school, romanticism, 19th century, nature, sublime",
+   "description_narrative": "A wagon crosses a small wooden bridge in the valley below, dwarfed by a rocky outcrop and a sweeping tree that frames the foreground. A white church steeple rises among distant farms, the whole rolling landscape bathed in the soft glow of a setting sun.",
+   "tags": "pastoral landscape, sunset, bridge, church steeple, oil painting",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Thomas%20Cole%20-%20New%20England%20Scenery%20-%201900.558%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
@@ -85,7 +87,9 @@
    "license_verified": "2026-09-22",
    "delivered_edge": 2250,
    "resolution_tier": "HD",
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "current_repository": "Art Institute of Chicago",
+   "physical_dimensions": "57.1 × 46.7 cm (22 1/2 × 18 3/8 in.)"
   },
   {
    "title": "Pergola with Oranges",
@@ -95,8 +99,8 @@
    "cultural_context": "Romanticism, Norwegian",
    "medium": "Oil on paper, mounted on canvas",
    "date_display": "c. 1834",
-   "description_narrative": "Thomas Fearnley's 'Pergola with Oranges' depicts a sun-drenched architectural structure adorned with citrus fruits. This oil painting on paper, later mounted on canvas, captures a serene moment through its vibrant depiction of light and nature.",
-   "tags": "pergola, oranges, garden, romanticism, landscape, picturesque, vibrant",
+   "description_narrative": "Sunlight dapples a stone-pillared walkway lined with orange trees heavy with fruit, their shadows raking across the pale columns. A terracotta pot of pink roses sits in the foreground, while a lone figure in white pauses near an archway at the far end of the path.",
+   "tags": "pergola, orange trees, garden, sunlight, oil painting, architecture",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Thomas%20Fearnley%20-%20Pergola%20with%20Oranges%20-%20Art%20Institute%20of%20Chicago%20-%202002.599.jpg?width=3840",
@@ -139,7 +143,9 @@
      1.0
     ]
    },
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "current_repository": "Art Institute of Chicago",
+   "physical_dimensions": "28 × 37 cm (11 × 14 1/2 in.); Framed: 47.7 × 54.7 cm (18 3/4 × 21 1/2 in.)"
   },
   {
    "title": "Coming Squall (Nahant Beach with a Summer Shower)",
@@ -149,8 +155,8 @@
    "cultural_context": "Early American Landscape Painting, American Romanticism",
    "medium": "Oil on canvas mounted on cradled panel",
    "date_display": "1835",
-   "description_narrative": "This oil painting captures the dramatic moment of a summer squall approaching Nahant Beach, showcasing the powerful forces of nature. Dark, heavy clouds loom over an agitated sea, conveying the impending weather event with striking realism.",
-   "tags": "landscape, seascape, storm, nature, romanticism, early american, dramatic",
+   "description_narrative": "A curling wave breaks along a rocky beach as gulls skim low over the water, a lone sailboat cutting through the swell farther out. Above, towering clouds trail visible streaks of rain toward the horizon while sunlight still catches the wet sand underfoot.",
+   "tags": "seascape, storm clouds, beach, sailboat, birds, oil painting",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Thomas%20Doughty%20-%20Coming%20Squall%20%28Nahant%20Beach%20with%20a%20Summer%20Shower%29%20-%202005.159%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
@@ -193,7 +199,9 @@
      0.5958,
      1.0
     ]
-   }
+   },
+   "current_repository": "Art Institute of Chicago",
+   "physical_dimensions": "52.1 × 71.4 cm (20 1/2 × 28 1/8 in.)"
   },
   {
    "title": "Summit of the Sierras",
@@ -203,8 +211,8 @@
    "cultural_context": "American Art, Hudson River School",
    "medium": "Gouache over graphite, on cream laid paper",
    "date_display": "1872/75",
-   "description_narrative": "Thomas Moran's 'Summit of the Sierras' masterfully captures the rugged grandeur of the American West using gouache over graphite. This work vividly portrays the majestic peaks of the Sierra Nevada mountains, reflecting the sublime beauty of the natural landscape.",
-   "tags": "landscape, american west, sierra nevada, mountains, gouache, romanticism, sublime",
+   "description_narrative": "A wind-bent pine clings to a rocky outcrop in the foreground, dwarfed by row upon row of jagged, snow-capped peaks fading into the mist. A lone bird glides through the vast space between the near cliff and the distant range.",
+   "tags": "sierra nevada, mountains, snow peaks, gouache, wilderness, sublime landscape",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Summit%20of%20the%20Sierras%20by%20Thomas%20Moran.jpg?width=3840",
@@ -247,7 +255,9 @@
      1.0,
      0.9679
     ]
-   }
+   },
+   "current_repository": "Art Institute of Chicago",
+   "physical_dimensions": "36 × 25 cm (14 3/16 × 9 7/8 in.)"
   },
   {
    "title": "Landscape with Dog",
@@ -257,8 +267,8 @@
    "cultural_context": "American, early 19th century, Romanticism",
    "medium": "Oil on composition board",
    "date_display": "1832",
-   "description_narrative": "Thomas Doughty's \"Landscape with Dog\" depicts a serene natural scene, characteristic of early American landscape painting. Executed in oil on composition board in 1832, it invites contemplation of an untamed yet inviting wilderness.",
-   "tags": "landscape, american landscape, nature, dog, serene, oil painting, romanticism",
+   "description_narrative": "A white hunting dog stands alert on a wooded path, one paw raised as if pointing toward something beyond the frame. Autumn-tinged leaves frame a hazy view of distant hills and water beneath a cloud-streaked sky.",
+   "tags": "dog, hunting dog, forest, autumn, oil painting, animal art",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Thomas%20Doughty%20-%20Landscape%20with%20Dog%20-%201990.485%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
@@ -301,7 +311,9 @@
      0.8103,
      1.0
     ]
-   }
+   },
+   "current_repository": "Art Institute of Chicago",
+   "physical_dimensions": "24.8 × 29.2 cm (9 3/4 × 11 1/2 in.)"
   },
   {
    "title": "Fishing Boats with Hucksters Bargaining for Fish",
@@ -311,8 +323,8 @@
    "cultural_context": "Romanticism, British",
    "medium": "Oil on canvas",
    "date_display": "1837–38",
-   "description_narrative": "Joseph Mallord William Turner’s \"Fishing Boats with Hucksters Bargaining for Fish\" captures a dynamic maritime scene. The artwork showcases his distinctive use of light and atmosphere to depict the bustling activity surrounding fishing vessels.",
-   "tags": "seascape, marine, romanticism, atmospheric, fishing, boats, 19th century",
+   "description_narrative": "A crowded fishing boat rides choppy swells, its pale sail billowing as figures gather around baskets on deck. A small rowboat drifts nearby while another vessel works the water in the distance, storm clouds breaking open to a patch of blue sky.",
+   "tags": "fishing boats, seascape, choppy sea, marine art, oil painting, dramatic sky",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Joseph%20Mallord%20William%20Turner%20-%20Fishing%20Boats%20with%20Hucksters%20Bargaining%20for%20Fish%20-%201922.4472%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
@@ -355,7 +367,9 @@
      1.0
     ]
    },
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "current_repository": "Art Institute of Chicago",
+   "physical_dimensions": "174.5 × 224.9 cm (68 3/4 × 88 1/2 in.); Framed: 216.6 × 268 cm (85 1/4 × 105 1/2 in.)"
   },
   {
    "title": "Valley of Aosta: Snowstorm, Avalanche, and Thunderstorm",
@@ -365,8 +379,8 @@
    "cultural_context": "Romanticism, British",
    "medium": "Oil on canvas",
    "date_display": "1836–37",
-   "description_narrative": "This dramatic oil painting by J.M.W. Turner captures the overwhelming power of nature within the rugged Alpine landscape of the Aosta Valley. The scene dynamically combines a snowstorm, an avalanche, and a thunderstorm, illustrating the sublime forces at play.",
-   "tags": "romanticism, landscape, snowstorm, avalanche, thunderstorm, sublime, dramatic, nature",
+   "description_narrative": "A vortex of storm and snow engulfs the mountains, pale avalanche clouds cascading down dark, jagged peaks. In the lower corner, tiny figures huddle together with scattered belongings and a dog, dwarfed by the churning violence above. The painting depicts a snowstorm and avalanche in the Aosta Valley.",
+   "tags": "avalanche, snowstorm, sublime landscape, oil painting, turbulent sky, dramatic scale",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Joseph%20Mallord%20William%20Turner%20-%20Valley%20of%20Aosta%2C%20Snowstorm%2C%20Avalanche%2C%20and%20Thunderstorm%20-%201947.513%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
@@ -409,18 +423,20 @@
      1.0
     ]
    },
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "current_repository": "Art Institute of Chicago",
+   "physical_dimensions": "92.2 × 123 cm (36 1/4 × 48 in.); Framed: 116.9 × 147.4 × 11.8 cm (46 × 58 × 4 5/8 in.)"
   },
   {
    "title": "Wanderer above the Sea of Fog",
    "agent_name": "Caspar David Friedrich",
    "agent_role": "Painter",
-   "creation_date": "1818",
+   "creation_date": "c. 1818",
    "cultural_context": "Romanticism, German",
    "medium": "Oil on canvas",
-   "date_display": "1818",
-   "description_narrative": "A quintessential piece of Romanticism. A man stands upon a rocky precipice with his back to the viewer, gazing out over a landscape covered in a thick sea of fog. It evokes a feeling of the sublime and the profound scale of nature.",
-   "tags": "fog, mountains, romanticism, sublime, landscape, wanderer",
+   "date_display": "c. 1818",
+   "description_narrative": "Seen from behind, a man stands atop a rocky summit, cane in hand, gazing out over a vast sea of fog. Jagged rock formations pierce the mist on either side, their peaks the only solid ground in an otherwise dissolving landscape. The painting depicts a man standing on a mountain.",
+   "tags": "solitary figure, fog, mountains, oil painting, sublime, back view",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Caspar%20David%20Friedrich%20-%20Wanderer%20above%20the%20Sea%20of%20Fog.jpeg?width=3840",
@@ -472,8 +488,8 @@
    "cultural_context": "Romanticism, French",
    "medium": "Oil on canvas",
    "date_display": "1830",
-   "description_narrative": "Commemorating the July Revolution of 1830, the allegorical figure of Liberty strides over barricades and fallen fighters, holding the tricolour flag aloft. It combines the idealism of classical art with the gritty reality of modern war.",
-   "tags": "revolution, liberty, flag, france, romanticism, battle",
+   "description_narrative": "A bare-breasted woman strides over a barricade of rubble, tricolor flag raised high in one hand and a musket in the other, leading a ragged crowd of armed men. Fallen figures lie in the foreground as smoke drifts toward a hazy skyline of city rooftops. The painting depicts a Paris uprising at a barricade.",
+   "tags": "revolution, allegory, flag, barricade, history painting, oil painting",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Eug%C3%A8ne%20Delacroix%20-%20Le%2028%20Juillet.%20La%20Libert%C3%A9%20guidant%20le%20peuple.jpg?width=3840",
@@ -521,12 +537,12 @@
    "title": "The Raft of the Medusa",
    "agent_name": "Théodore Géricault",
    "agent_role": "Painter",
-   "creation_date": "1818-1819",
+   "creation_date": "1819",
    "cultural_context": "Romanticism, French",
    "medium": "Oil on canvas",
-   "date_display": "1818–19",
-   "description_narrative": "Géricault based this monumental shipwreck scene on a real 1816 disaster in which survivors of the frigate Méduse drifted for thirteen days on a makeshift raft, resorting to starvation and mutiny. Its raw depiction of suffering and political scandal made it an inaugural masterpiece of French Romanticism.",
-   "tags": "gericault, shipwreck, raft, romanticism, disaster, survival, french painting",
+   "date_display": "1819",
+   "description_narrative": "Survivors cling to a raft's makeshift mast and rigging, straining to wave cloth at a ship barely visible on the horizon. Lifeless bodies are strewn across the foreground planks as churning waves and a stormy, streaked sky close in around the raft. The painting depicts survivors adrift after a shipwreck.",
+   "tags": "shipwreck, survival, disaster, oil painting, dramatic, dark palette",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Th%C3%A9odore%20G%C3%A9ricault%20-%20The%20Raft%20of%20the%20Medusa%20-%20WGA08630.jpg?width=3840",
@@ -578,8 +594,8 @@
    "cultural_context": "Romanticism / Gothic, Swiss-British",
    "medium": "Oil on canvas",
    "date_display": "1781",
-   "description_narrative": "A goblin-like incubus crouches on the chest of a sleeping woman while a wild-eyed horse peers through the curtains, an unsettling image of dream and desire that scandalized and thrilled London audiences. Fuseli's proto-Romantic vision of the unconscious mind became one of the most reproduced images of its era.",
-   "tags": "fuseli, nightmare, gothic, dream, incubus, romanticism, horror",
+   "description_narrative": "A woman in white lies sprawled backward across a bed, one arm hanging limp toward the floor. A squat, grinning incubus crouches on her chest while a wild-eyed, ghostly horse head pushes through the curtains behind them, its pale form glowing against the darkness. The painting depicts a nightmare brought on by sleep paralysis.",
+   "tags": "gothic, nightmare, incubus, dream, dark background, oil painting",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Johann%20Heinrich%20F%C3%BCssli%20-%20The%20Nightmare%2055.5.A-d1-2019-04-15.jpg?width=3840",
@@ -631,8 +647,8 @@
    "cultural_context": "Romanticism, British",
    "medium": "Oil on canvas",
    "date_display": "1821",
-   "description_narrative": "Constable depicted a horse-drawn wagon fording the River Stour near his childhood home in Suffolk, capturing the changeable English sky and rural life with unprecedented naturalism. Poorly received in England at first, it won a gold medal in Paris and profoundly influenced French Romantic and Barbizon painters.",
-   "tags": "constable, suffolk, countryside, river stour, romanticism, rural england",
+   "description_narrative": "A horse-drawn wagon fords a shallow river beside a weathered thatched cottage, its walls softened by climbing vines. A small dog watches from the bank as towering clouds pile up over the open meadow beyond, sunlight breaking through in patches.",
+   "tags": "rural landscape, cottage, river, wagon, dog, oil painting",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/John-constable-the-hay-wain.jpg?width=3840",
@@ -674,12 +690,12 @@
    "title": "Rain, Steam and Speed - The Great Western Railway",
    "agent_name": "Joseph Mallord William Turner",
    "agent_role": "Painter",
-   "creation_date": "1844",
+   "creation_date": "1843",
    "cultural_context": "Romanticism, British",
    "medium": "Oil on canvas",
-   "date_display": "1844",
-   "description_narrative": "A steam locomotive races across the Maidenhead railway bridge, dissolving into swirling rain and light in one of Turner's boldest meditations on modern industry overtaking nature. Its near-abstract handling of atmosphere anticipated Impressionism decades before the movement existed.",
-   "tags": "turner, railway, steam locomotive, industrial age, romanticism, atmosphere",
+   "date_display": "1843",
+   "description_narrative": "A dark locomotive plunges through swirling rain and mist, its form dissolving into loose, energetic brushstrokes that blur the boundary between sky and track. A stone arched bridge crosses the river at left, tiny figures barely visible in the haze below. The painting depicts a locomotive crossing a railway bridge over the River Thames.",
+   "tags": "locomotive, railway, rain, motion, oil painting, industrial",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rain%20Steam%20and%20Speed%20the%20Great%20Western%20Railway.jpg?width=3840",
@@ -731,8 +747,8 @@
    "cultural_context": "Romanticism, British",
    "medium": "Oil on canvas",
    "date_display": "1839",
-   "description_narrative": "A grand old warship that fought at Trafalgar is towed by a small, sooty steam tug to be broken up for scrap, its ghostly white sails glowing against a blazing sunset. Turner's elegy for the age of sail mourns the passing of a heroic era before industrial modernity.",
-   "tags": "turner, warship, trafalgar, sunset, romanticism, steam tug, british navy",
+   "description_narrative": "A ghostly pale sailing ship, its masts bare, is towed by a small dark steam tug trailing black smoke across a blazing sunset. The moon hangs faint in the pale sky opposite, the whole scene mirrored in the still water below. The painting depicts the warship HMS Temeraire.",
+   "tags": "sunset, ship, steam tug, maritime, oil painting, twilight",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Fighting%20Temeraire%2C%20JMW%20Turner%2C%20National%20Gallery.jpg?width=3840",
@@ -780,20 +796,12 @@
    "title": "The Death of Sardanapalus",
    "agent_name": "Eugène Delacroix",
    "agent_role": "Painter",
-   "creation_date": "1827",
+   "creation_date": "1844",
    "cultural_context": "French Romanticism",
-   "medium": "Oil on canvas",
-   "date_display": "1827",
-   "description_narrative": "Inspired by Lord Byron's play, Delacroix depicted the legendary Assyrian king ordering the destruction of his possessions, concubines, and horses as his besieged palace burns around him. Its swirling composition and violent color scandalized critics at the 1827 Salon and it remains a landmark of French Romantic painting, held by the Louvre.",
-   "tags": [
-    "delacroix",
-    "romanticism",
-    "orientalism",
-    "death",
-    "french",
-    "louvre",
-    "byron"
-   ],
+   "medium": "oil paint",
+   "date_display": "1844",
+   "description_narrative": "A bearded ruler reclines impassively on a crimson bed strewn with jewels and fine fabric, watching the chaos unfold around him. Below, a soldier grips a struggling nude woman while a horse and jumbled riches crowd the shadowy foreground, the whole scene lit in deep reds and golds.",
+   "tags": "chaos, violence, richly colored, dramatic, oil painting, orientalism",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Ferdinand-Victor-Eug%C3%A8ne%20Delacroix%2C%20French%20-%20The%20Death%20of%20Sardanapalus%20-%20Google%20Art%20Project.jpg?width=3840",
@@ -835,26 +843,19 @@
      0.7911,
      1.0
     ]
-   }
+   },
+   "current_repository": "Philadelphia Museum of Art"
   },
   {
    "title": "Women of Algiers in their Apartment",
    "agent_name": "Eugène Delacroix",
    "agent_role": "Painter",
-   "creation_date": "1834",
+   "creation_date": "1833",
    "cultural_context": "French Romanticism / Orientalism",
-   "medium": "Oil on canvas",
-   "date_display": "1834",
-   "description_narrative": "Painted after Delacroix visited North Africa in 1832, this interior scene of Algerian women at leisure was among the first Orientalist paintings by a European artist to depict a Muslim domestic space he had actually observed. It profoundly influenced later artists including Renoir, Matisse, and Picasso, and hangs in the Louvre.",
-   "tags": [
-    "delacroix",
-    "romanticism",
-    "orientalism",
-    "algeria",
-    "interior",
-    "french",
-    "louvre"
-   ],
+   "medium": "graphite",
+   "date_display": "1833",
+   "description_narrative": "Two seated women in flowing robes are rendered in graphite, one hunched forward with her face turned down, the other reclining against a bolster with her feet bare. Faint foxing spots speckle the aged paper around the two figure studies.",
+   "tags": "drawing, graphite, figure study, sketch, seated figures",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Eug%C3%A8ne%20Delacroix%2C%20Women%20of%20Algiers%2C%201833%2C%20NGA%206491.jpg?width=3840",
@@ -896,7 +897,9 @@
      0.7376,
      1.0
     ]
-   }
+   },
+   "current_repository": "drawings in the National Gallery of Art",
+   "physical_dimensions": "20.7 x 33.5 cm"
   },
   {
    "title": "The Cornfield",
@@ -904,18 +907,10 @@
    "agent_role": "Painter",
    "creation_date": "1826",
    "cultural_context": "British Romanticism",
-   "medium": "Oil on canvas",
+   "medium": "oil paint",
    "date_display": "1826",
-   "description_narrative": "Constable depicted a boy pausing to drink from a stream on a lane through the Suffolk countryside near his childhood home, a scene combining closely observed nature with nostalgic sentiment. Presented to the National Gallery, London shortly after his death, it became one of the paintings most associated with his legacy.",
-   "tags": [
-    "constable",
-    "romanticism",
-    "landscape",
-    "countryside",
-    "british",
-    "suffolk",
-    "pastoral"
-   ],
+   "description_narrative": "A dog herds a small flock of sheep along a sunken lane between towering trees, while a figure lies at the bank's edge in the shade. Loose, textured brushstrokes capture dappled light breaking through the leaves toward a hazy view of open fields beyond.",
+   "tags": "rural landscape, sheep, dog, lane, trees, oil sketch, pastoral",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/John%20Constable%20-%20The%20Cornfield%20-%202009.53%20-%20Indianapolis%20Museum%20of%20Art.jpg?width=3840",
@@ -967,16 +962,8 @@
    "cultural_context": "French Romanticism",
    "medium": "Oil on canvas",
    "date_display": "1812",
-   "description_narrative": "Painted when Géricault was only twenty-one, this dynamic portrait of a mounted officer of Napoleon's Imperial Guard, rearing amid smoke and cannon fire, announced the arrival of French Romantic painting at the Salon of 1812. It hangs today in the Louvre.",
-   "tags": [
-    "gericault",
-    "romanticism",
-    "military",
-    "horse",
-    "napoleon",
-    "french",
-    "louvre"
-   ],
+   "description_narrative": "A cavalry officer on a rearing white horse twists in his saddle, saber raised and cloak billowing, a leopard-skin cloth draped beneath him. Smoke and distant troops fill the background, the horse's wild eye and flared nostrils echoing the tension of the charge.",
+   "tags": "cavalry, military, horse, dynamic pose, battle scene, oil painting, romanticism",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/An%20Officer%20of%20the%20Imperial%20Horse%20Guards%20Charging%20-%20G%C3%A9ricault%20%28Louvre%20INV%204885%29.jpg?width=3840",
@@ -1028,14 +1015,8 @@
    "cultural_context": "French Romanticism",
    "medium": "Oil on canvas",
    "date_display": "1826",
-   "description_narrative": "Delacroix based this violent, swirling composition on a scene from Lord Byron's narrative poem 'The Giaour,' depicting a duel between a Christian avenger and a Turkish pasha. The painting exemplifies the Romantic fascination with literary drama, exotic settings, and dynamic movement.",
-   "tags": [
-    "Eugene Delacroix",
-    "Romanticism",
-    "Lord Byron",
-    "Orientalism",
-    "19th century France"
-   ],
+   "description_narrative": "Two horsemen in flowing robes clash mid-charge, one raising a pistol, the other a curved sword, their mounts rearing amid churning dust. Below them a fallen fighter is pinned to the ground, while smoke and more riders fill the distance. The painting depicts a battle inspired by Lord Byron's poem The Giaour.",
+   "tags": "battle scene, horses, orientalism, combat, dynamic, oil painting",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Eug%C3%A8ne%20Delacroix%20-%20Combat%20du%20Giaour%20et%20Hassan%20%281826%29.jpg?width=3840",
@@ -1077,24 +1058,20 @@
      0.7093,
      1.0
     ]
-   }
+   },
+   "current_repository": "Art Institute of Chicago",
+   "physical_dimensions": "59.6 × 73.4 cm (23 1/2 × 28 7/8 in.); Framed: 87.4 × 101.3 cm (34 3/8 × 39 7/8 in.)"
   },
   {
    "title": "Lion Hunt",
    "agent_name": "Eugène Delacroix",
    "agent_role": "Painter",
-   "creation_date": "1860",
+   "creation_date": "1860–61",
    "cultural_context": "French Romanticism",
    "medium": "Oil on canvas",
    "date_display": "1860–61",
-   "description_narrative": "Delacroix returned repeatedly to the subject of lion hunts late in his career, inspired by his 1832 trip to North Africa and by Rubens's earlier treatments of the theme. This turbulent composition of struggling men, horses, and lions survives as a fragment of a larger, partially destroyed canvas.",
-   "tags": [
-    "Eugene Delacroix",
-    "Romanticism",
-    "lion hunt",
-    "North Africa",
-    "19th century France"
-   ],
+   "description_narrative": "Lions maul a fallen horse and a struggling hunter at close range while mounted riders wheel and thrust spears into the fray. The chaotic tangle of bodies, blades, and manes fills the foreground beneath a turbulent, cloud-heavy sky.",
+   "tags": "lion hunt, chaos, orientalism, dynamic composition, oil painting, dramatic",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Eug%C3%A8ne%20Delacroix%20-%20Lion%20Hunt%20-%201922.404%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
@@ -1137,24 +1114,20 @@
      1.0
     ]
    },
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "current_repository": "Art Institute of Chicago",
+   "physical_dimensions": "76.5 × 98.5 cm (30 × 38 1/2 in.); Framed: 105.5 × 125.8 cm (41 1/2 × 49 1/2 in.)"
   },
   {
    "title": "Friar Pedro Shoots El Maragato as His Horse Runs Off",
    "agent_name": "Francisco Goya",
    "agent_role": "Painter",
-   "creation_date": "1806",
+   "creation_date": "c. 1806",
    "cultural_context": "Spanish proto-Romanticism",
    "medium": "Oil on panel",
    "date_display": "c. 1806",
-   "description_narrative": "This panel is one of six small paintings by Goya narrating the true story of a monk who overpowered and captured a notorious Spanish bandit, El Maragato, in 1806. The series' compressed, cinematic storytelling and stark realism anticipate the dramatic intensity of Goya's later work.",
-   "tags": [
-    "Francisco Goya",
-    "Spanish Romanticism",
-    "narrative painting",
-    "banditry",
-    "19th century"
-   ],
+   "description_narrative": "A robed friar fires a smoking pistol at close range as a man in yellow breeches staggers backward, arms flung wide. Behind them a grey horse bolts across the bare landscape, its rider's spot suddenly empty.",
+   "tags": "gunshot, confrontation, horse, dramatic scene, oil on panel, narrative painting",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Francisco%20Jos%C3%A9%20de%20Goya%20y%20Lucientes%20-%20Friar%20Pedro%20Shoots%20El%20Maragato%20as%20His%20Horse%20Runs%20Off%20-%201933.1075%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
@@ -1197,7 +1170,9 @@
      1.0
     ]
    },
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "current_repository": "Art Institute of Chicago",
+   "physical_dimensions": "29.2 × 38.5 cm (11 1/2 × 15 5/8 in.); Framed: 41.3 × 51.4 × 6.4 cm (16 1/4 × 20 1/4 × 2 1/2 in.)"
   },
   {
    "title": "Peasants Bringing Home a Calf Born in the Fields",
@@ -1207,14 +1182,8 @@
    "cultural_context": "French Barbizon school",
    "medium": "Oil on canvas",
    "date_display": "1864",
-   "description_narrative": "Millet painted this scene of French peasants carrying a newborn calf home from the fields, dignifying rural labor as a subject worthy of serious art. The painting reflects the Barbizon school's sympathetic focus on the everyday lives of the French peasantry.",
-   "tags": [
-    "Jean-Francois Millet",
-    "Barbizon school",
-    "rural life",
-    "French painting",
-    "19th century"
-   ],
+   "description_narrative": "Two farmhands carry a newborn calf on a bed of straw between them, while its mother follows close behind, straining toward her calf. Children peer out from a stone farmhouse doorway as the group makes its way home along a dirt path.",
+   "tags": "rural life, farm, calf, oil painting, genre scene, countryside",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jean%20Fran%C3%A7ois%20Millet%20-%20Peasants%20Bringing%20Home%20a%20Calf%20Born%20in%20the%20Fields%20-%201894.1063%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
@@ -1257,7 +1226,9 @@
      1.0
     ]
    },
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "current_repository": "Art Institute of Chicago",
+   "physical_dimensions": "81.1 × 100 cm (31 15/16 × 39 3/8 in.); Framed: 120.1 × 138.5 × 19.1 cm (47 1/4 × 54 1/2 × 7 1/2 in.)"
   },
   {
    "title": "Stoke-by-Nayland",
@@ -1267,8 +1238,8 @@
    "cultural_context": "English Romanticism, 19th century",
    "medium": "Oil on canvas",
    "date_display": "1836",
-   "description_narrative": "John Constable's \"Stoke-by-Nayland\" depicts a familiar rural English landscape, rendered with his characteristic attention to natural light and atmospheric conditions. This oil on canvas masterwork captures the vastness of the Suffolk countryside under a dynamic sky, reflecting Constable's deep connection to his native region.",
-   "tags": "landscape, romanticism, england, nature, rural, atmospheric, 19th century",
+   "description_narrative": "A horse-drawn cart stands harnessed near a farm gate, a dog and figures resting in the shade of tall, wind-tossed trees. In the distance, a church tower rises above a cluster of cottages beneath a vast, cloud-filled sky. The painting depicts Stoke-by-Nayland.",
+   "tags": "rural landscape, church tower, farm cart, oil painting, dramatic sky",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/John%20Constable%20-%20Stoke-by-Nayland%20-%201922.4453%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
@@ -1305,7 +1276,9 @@
      1.0
     ]
    },
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "current_repository": "Art Institute of Chicago",
+   "physical_dimensions": "126 × 169 cm (49 5/8 × 66 1/2 in.); Framed: 170.2 × 212.1 × 16.6 cm (67 × 83 1/2 × 6 1/2 in.)"
   },
   {
    "title": "Alpine Scene",
@@ -1315,8 +1288,8 @@
    "cultural_context": "19th Century, French Romanticism",
    "medium": "Oil on canvas",
    "date_display": "1865",
-   "description_narrative": "Gustave Doré's 'Alpine Scene' from 1865 captures the majestic beauty of mountainous landscapes through oil on canvas. This painting exemplifies his ability to render dramatic natural environments with intricate detail and atmospheric depth.",
-   "tags": "landscape, alpine, mountains, oil painting, 19th century, romanticism, french, sublime",
+   "description_narrative": "Slender pine trunks rise in tight ranks, their canopy opening to a pale sky where a hazy valley stretches into the distance. A lone traveler in red, tiny against the scale of the forest, pauses near a stump on the sunlit path ahead.",
+   "tags": "pine forest, landscape, alpine, sublime, oil painting, atmospheric perspective, solitary figure",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Gustave%20Dor%C3%A9%20-%20Alpine%20Scene%20-%201967.588%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
@@ -1359,7 +1332,9 @@
      1.0,
      0.941
     ]
-   }
+   },
+   "current_repository": "Art Institute of Chicago",
+   "physical_dimensions": "195.5 × 130 cm (77 × 51 1/8 in.)"
   },
   {
    "title": "The Storm",
@@ -1369,8 +1344,8 @@
    "cultural_context": "Paintings",
    "medium": "Oil on canvas",
    "date_display": "1880",
-   "description_narrative": "Pierre-Auguste Cot's 'The Storm,' created in 1880, captures a moment of dramatic intensity and emotional fervor. This oil on canvas masterpiece is a quintessential example of academic painting, renowned for its technical skill and evocative storytelling.",
-   "tags": "academic art, French painting, 19th century, drama, romance, oil painting, figure painting",
+   "description_narrative": "A barefoot couple runs together, holding a billowing golden cloth over their heads as shelter from the wind. Her sheer white dress and his bare torso are caught mid-motion against a dark, stormy sky streaked with a flash of light.",
+   "tags": "couple, running, wind, storm, academic art, oil painting",
    "source": "The Metropolitan Museum of Art",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/1880%20Pierre%20Auguste%20Cot%20-%20The%20StormFXD.jpg?width=3840",
@@ -1412,7 +1387,8 @@
      1.0,
      0.9403
     ]
-   }
+   },
+   "current_repository": "The Metropolitan Museum of Art"
   },
   {
    "title": "The Third of May 1808",
@@ -1422,8 +1398,8 @@
    "cultural_context": "Romanticism, Spanish",
    "medium": "Oil on canvas",
    "date_display": "1814",
-   "description_narrative": "Goya's iconic depiction of Spanish resistance fighters facing a French firing squad during the Peninsular War. Painted in 1814 to commemorate the Madrid uprising of May 2-3, 1808, it hangs in the Museo del Prado.",
-   "tags": "Peninsular War, execution, Madrid uprising, Prado, history painting, Spanish Romanticism",
+   "description_narrative": "Arms thrown wide, a man in a white shirt faces a line of soldiers with raised rifles, a lantern on the ground the only source of light in the near-total darkness. Bloodied bodies lie sprawled in the foreground, while more condemned men wait their turn on the hillside beyond.",
+   "tags": "execution, night scene, dark palette, historical painting, oil painting, dramatic lighting",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/El%20Tres%20de%20Mayo%2C%20by%20Francisco%20de%20Goya%2C%20from%20Prado%20thin%20black%20margin.jpg?width=3840",
@@ -1475,8 +1451,8 @@
    "cultural_context": "Romanticism, Spanish",
    "medium": "Oil on panel",
    "date_display": "c. 1808–1812",
-   "description_narrative": "A small oil panel depicting a masked carnival procession that traditionally marks the end of Spain's pre-Lenten festivities. It belongs to a group of genre panels Goya painted for the Real Academia de Bellas Artes de San Fernando in Madrid.",
-   "tags": "carnival, festival, masks, genre scene, Real Academia, Madrid",
+   "description_narrative": "A raucous crowd in masks and costume dances beneath a towering black banner painted with a grinning face, trees looming behind them against a bright sky. In the foreground, two women in white spin arm in arm while other revelers sprawl and gather at their feet. The scene depicts a carnival crowd.",
+   "tags": "carnival, masks, crowd scene, festival, oil painting, satire, grotesque",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/GOYA%20-%20Entierro%20de%20la%20Sardina%20%28Real%20Academia%20de%20Bellas%20Artes%20de%20San%20Fernando%2C%201812-14%29.jpg?width=3840",
@@ -1519,12 +1495,12 @@
    "title": "The Doctor",
    "agent_name": "Francisco de Goya",
    "agent_role": "Painter",
-   "creation_date": "c. 1780",
+   "creation_date": "1780",
    "cultural_context": "Romanticism, Spanish",
    "medium": "Oil on canvas",
-   "date_display": "c. 1780",
-   "description_narrative": "A small genre panel showing a physician attending a patient, part of a set of cabinet paintings Goya produced early in his career. The work is held by the National Galleries of Scotland.",
-   "tags": "genre scene, physician, cabinet painting, National Galleries of Scotland, everyday life",
+   "date_display": "1780",
+   "description_narrative": "Warming his hands over a bowl of glowing coals, a man in a flowing orange-red robe leans on a cane propped against his leg. Two companions in black flat-brimmed hats look on behind him, while open books lie scattered at his feet beneath a bare, wintry tree.",
+   "tags": "genre scene, warming hands, brazier, robe, oil painting, outdoor scene",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Francisco%20de%20Goya%20-%20El%20M%C3%A9dico%20%28The%20Doctor%29%20-%20NG%201628%20-%20National%20Galleries%20of%20Scotland.jpg?width=3840",
@@ -1572,12 +1548,12 @@
    "title": "Portrait of Doña Isabel de Porcel",
    "agent_name": "Francisco de Goya",
    "agent_role": "Painter",
-   "creation_date": "c. 1805",
+   "creation_date": "1800s",
    "cultural_context": "Romanticism, Spanish",
    "medium": "Oil on canvas",
-   "date_display": "c. 1805",
-   "description_narrative": "A portrait of the Spanish noblewoman Isabel Lobo de Porcel, shown in a black mantilla in the maja fashion of the day. The painting is held in the National Gallery, London.",
-   "tags": "portrait, mantilla, maja, Spanish nobility, National Gallery London",
+   "date_display": "1800s",
+   "description_narrative": "A woman with chestnut hair gazes to the side, a black lace mantilla framing her face and cascading over her shoulders. Her rose-toned gown, trimmed with dark lace, contrasts with the plain, shadowy background that isolates her figure. The portrait depicts a seated woman wearing a mantilla.",
+   "tags": "portrait, mantilla, spanish fashion, oil painting, elegant",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Portrait%20of%20Do%C3%B1a%20Isabel%20de%20Porcel%20by%20Francisco%20Goya.jpg?width=3840",
@@ -1625,12 +1601,12 @@
    "title": "Allegory of Love (Cupid and Psyche)",
    "agent_name": "Francisco de Goya",
    "agent_role": "Painter",
-   "creation_date": "c. 1805",
+   "creation_date": "(1798 - 1805)",
    "cultural_context": "Romanticism, Spanish",
    "medium": "Oil on canvas",
-   "date_display": "c. 1805",
-   "description_narrative": "A mythological allegory traditionally identified with the story of Cupid and Psyche, though the exact subject remains debated among scholars. It is attributed to Goya's later mythological output.",
-   "tags": "mythology, Cupid, Psyche, allegory, mythological painting",
+   "date_display": "(1798 - 1805)",
+   "description_narrative": "A winged youth in a flowing red mantle leans over a woman reclining on a pale bed, her arm raised to touch her hair. Dramatic light catches their pale skin against near-total darkness, throwing the two figures into sharp relief while the setting around them stays unseen.",
+   "tags": "nocturne, chiaroscuro, dramatic lighting, reclining figure, winged figure, oil painting, romanticism",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Francisco%20de%20Goya%20-%20Allegory%20of%20Love%2C%20Cupid%20and%20Psyche%20%28%3F%29%20-%20Google%20Art%20Project.jpg?width=3840",
@@ -1678,12 +1654,12 @@
    "title": "Boy on a Ram",
    "agent_name": "Francisco de Goya",
    "agent_role": "Painter",
-   "creation_date": "c. 1786-1787",
+   "creation_date": "1786",
    "cultural_context": "Romanticism, Spanish",
    "medium": "Oil on canvas",
-   "date_display": "c. 1786–1787",
-   "description_narrative": "A tender genre scene of a child riding a ram, painted as one of a series of cabinet pictures for the Duke and Duchess of Osuna. It captures Goya's early interest in scenes of childhood.",
-   "tags": "childhood, genre scene, Osuna commission, animals, 18th century",
+   "date_display": "1786",
+   "description_narrative": "A boy in a wide white hat and rose-trimmed jacket sits astride a dark, curl-horned ram, a small bell hanging from its collar. He raises a switch in one hand while the ram plants its hooves on a sandy path, hazy blue hills rolling away behind them.",
+   "tags": "childhood, portrait, ram, pastoral, oil painting, playful",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Francisco%20Jos%C3%A9%20de%20Goya%20y%20Lucientes%20-%20Boy%20on%20a%20Ram%20-%20Google%20Art%20Project.jpg?width=3840",
@@ -1735,8 +1711,8 @@
    "cultural_context": "Romanticism, Spanish",
    "medium": "Oil on canvas",
    "date_display": "c. 1806–1807",
-   "description_narrative": "A surviving fragment of a larger composition depicting pupils of Madrid's Pestalozzian teaching academy. The piece is held at the Meadows Museum, Southern Methodist University.",
-   "tags": "education, fragment, Meadows Museum, genre scene, children",
+   "description_narrative": "A tightly packed group of boys crowds around a stone workbench, one hammering at a block while another holds a large wooden set square. Behind them, a boy climbs among leafy branches, the whole scene cropped close as if cut from a larger composition.",
+   "tags": "students, education, oil painting, genre scene, children, fragment",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Students%20from%20the%20Pestalozzian%20Academy%20%28fragment%29%2C%20by%20Francisco%20Jos%C3%A9%20de%20Goya%20y%20Lucientes%2C%20Spanish%2C%20c.%201806-1807%2C%20oil%20on%20canvas%20-%20Meadows%20Museum%20-%20Southern%20Methodist%20University%20-%20DSC05331.jpg?width=3840",
@@ -1784,12 +1760,12 @@
    "title": "Saint Gregory the Great, Pope",
    "agent_name": "Francisco de Goya",
    "agent_role": "Painter",
-   "creation_date": "c. 1797",
+   "creation_date": "1790s",
    "cultural_context": "Romanticism, Spanish",
-   "medium": "Oil on canvas",
-   "date_display": "c. 1797",
-   "description_narrative": "A devotional portrait of Pope Gregory I rendered in Goya's characteristic somber palette. The painting reflects Goya's religious commissions of the late 1790s.",
-   "tags": "religious painting, pope, saint, devotional art, 18th century",
+   "medium": "oil paint",
+   "date_display": "1790s",
+   "description_narrative": "A bearded pope, crowned with an ornate triple tiara, bends over a large open book to write with a quill pen. His richly patterned gold and white vestments catch the light against an otherwise plain, dark background. The painting depicts Pope Gregory I.",
+   "tags": "religious portrait, pope, devotional, oil painting, tiara",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Francisco%20de%20Goya%20-%20Saint%20Gregory%20the%20Great%2C%20Pope%20-%20Google%20Art%20Project.jpg?width=3840",
@@ -1825,18 +1801,20 @@
      1.0,
      0.8076
     ]
-   }
+   },
+   "current_repository": "Museum of Romanticism",
+   "physical_dimensions": "116.0 x 191.5 cm"
   },
   {
    "title": "A Woman and Two Children by a Fountain",
    "agent_name": "Francisco de Goya",
    "agent_role": "Painter",
-   "creation_date": "c. 1786",
+   "creation_date": "1786",
    "cultural_context": "Romanticism, Spanish",
    "medium": "Oil on canvas",
-   "date_display": "c. 1786",
-   "description_narrative": "A genre scene of a woman with two children gathered at a fountain, painted as part of Goya's series of tapestry-cartoon-related cabinet pictures. It reflects his early focus on everyday Spanish life.",
-   "tags": "genre scene, fountain, family, everyday life, 18th century",
+   "date_display": "1786",
+   "description_narrative": "A woman in a white headscarf holds a young boy's hand near a stone well, while another boy in a wide hat carries a ceramic jug toward them. Terracotta pitchers rest on the ground beside a rustic thatched building, set against a bright, cloud-filled sky.",
+   "tags": "genre scene, fountain, family, village life, oil painting, rustic",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Francisco%20de%20Goya%20-%20Una%20mujer%20y%20dos%20ni%C3%B1os%20junto%20a%20una%20fuente.jpg?width=3840",
@@ -1884,12 +1862,12 @@
    "title": "Scene from the Inquisition",
    "agent_name": "Francisco de Goya",
    "agent_role": "Painter",
-   "creation_date": "c. 1808-1812",
+   "creation_date": "1812",
    "cultural_context": "Romanticism, Spanish",
-   "medium": "Oil on canvas",
-   "date_display": "c. 1808–1812",
-   "description_narrative": "A small oil panel depicting a tribunal of the Spanish Inquisition seated before a group of condemned penitents. It belongs to a set of genre panels critical of Spanish institutions.",
-   "tags": "Inquisition, tribunal, social critique, genre panel, Spanish history",
+   "medium": "oil paint",
+   "date_display": "1812",
+   "description_narrative": "Figures in tall conical hats sit before a tribunal of robed judges reading aloud from a book beneath a vaulted, shadowy hall. A single candle illuminates the crowded scene, the packed rows of onlookers fading into darkness at the edges. The painting depicts an auto-da-fé held by the Inquisition.",
+   "tags": "inquisition, tribunal, dark interior, oil painting, historical scene",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Francisco%20de%20Goya%20-%20Escena%20de%20Inquisici%C3%B3n%20-%20Google%20Art%20Project.jpg?width=3840",
@@ -1931,18 +1909,20 @@
      0.697,
      1.0
     ]
-   }
+   },
+   "current_repository": "Royal Academy of Fine Arts of San Fernando",
+   "physical_dimensions": "46.0 x 73.0 cm"
   },
   {
    "title": "The Baptism of Christ",
    "agent_name": "Francisco de Goya",
    "agent_role": "Painter",
-   "creation_date": "c. 1808",
+   "creation_date": "between 1775 and 1780",
    "cultural_context": "Romanticism, Spanish",
    "medium": "Oil on canvas",
-   "date_display": "c. 1808",
-   "description_narrative": "A religious oil sketch depicting John the Baptist baptizing Christ in the Jordan River. It is a preparatory modello associated with Goya's religious commissions.",
-   "tags": "religious painting, baptism, Christ, modello, biblical scene",
+   "date_display": "between 1775 and 1780",
+   "description_narrative": "A beam of golden light descends from a white dove overhead, catching the moment a robed figure pours water over the bowed head of a kneeling man at the water's edge. Christ kneels with clasped hands while the other man, draped in red, stands holding a tall reed cross wrapped with a white banner.",
+   "tags": "baptism, biblical scene, dove, chiaroscuro, oil painting, religious art",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bautismo%20de%20Cristo.%20Goya.tif?width=3840",
@@ -1990,12 +1970,12 @@
    "title": "The Madhouse",
    "agent_name": "Francisco de Goya",
    "agent_role": "Painter",
-   "creation_date": "c. 1812-1819",
+   "creation_date": "1814",
    "cultural_context": "Romanticism, Spanish",
-   "medium": "Oil on canvas",
-   "date_display": "c. 1812–1819",
-   "description_narrative": "A small oil panel showing inmates confined within an asylum courtyard, part of a series of genre panels Goya painted late in his career for the Real Academia de Bellas Artes de San Fernando. The work reflects his enduring interest in madness and social marginalization.",
-   "tags": "asylum, madness, genre panel, Real Academia, social critique",
+   "medium": "oil paint",
+   "date_display": "1814",
+   "description_narrative": "Nude and half-dressed men fill a barred, vaulted chamber, some wearing improvised crowns and gesturing wildly while others huddle or lie sprawled on the stone floor. A shaft of light from the high, grated window is the only source of illumination in the shadowy room. The painting depicts the inhabitants of a psychiatric hospital.",
+   "tags": "asylum, psychological, oil on panel, dark interior, social critique, figures",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Francisco%20de%20Goya%20-%20La%20casa%20de%20locos%20-%20Google%20Art%20Project.jpg?width=3840",
@@ -2037,18 +2017,20 @@
      0.8107,
      1.0
     ]
-   }
+   },
+   "current_repository": "Royal Academy of Fine Arts of San Fernando",
+   "physical_dimensions": "45.0 x 72.0 cm"
   },
   {
    "title": "The Bewitched Man",
    "agent_name": "Francisco de Goya",
    "agent_role": "Painter",
-   "creation_date": "c. 1798",
+   "creation_date": "circa 1798",
    "cultural_context": "Romanticism, Spanish",
    "medium": "Oil on canvas",
-   "date_display": "c. 1798",
-   "description_narrative": "A scene from a comic play about superstition, showing a terrified man surrounded by braying donkeys he believes are demons. It is one of six paintings Goya produced illustrating scenes from popular Spanish theatre.",
-   "tags": "theatre scene, superstition, donkeys, National Gallery London, satire",
+   "date_display": "circa 1798",
+   "description_narrative": "A man in a wide black hat and long coat pours oil from a jug onto a small flame held by a crouching goblin, his face frozen in alarm. Ghostly, oversized donkeys loom out of the darkness behind him, their pale forms rearing against the gloom.",
+   "tags": "superstition, donkeys, candlelight, dark scene, oil painting, folklore, theatrical",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Francisco%20de%20Goya%2C%20The%20Bewitched%20Man.JPG?width=3840",
@@ -2090,12 +2072,12 @@
    "title": "Portrait of Miguel de Múzquiz y Goyeneche, Count of Gausa",
    "agent_name": "Francisco de Goya",
    "agent_role": "Painter",
-   "creation_date": "c. 1780s",
+   "creation_date": "circa 1783",
    "cultural_context": "Romanticism, Spanish",
    "medium": "Oil on canvas",
-   "date_display": "c. 1780s",
-   "description_narrative": "A formal portrait of the Spanish statesman Miguel de Múzquiz, who served as Secretary of the Treasury under King Charles III. The sitter is shown in the dress and insignia befitting his ministerial rank.",
-   "tags": "portrait, Spanish nobility, statesman, 18th century, court painting",
+   "date_display": "circa 1783",
+   "description_narrative": "An older man in a powdered wig and richly embroidered blue coat stands against a plain dark background, a pale sash crossing his chest and two medals pinned at his breast. He holds a folded, handwritten letter in one hand, his other arm tucked beneath a dark cloak.",
+   "tags": "portrait, nobility, sash, medals, oil painting, formal dress",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Francisco%20de%20Goya%20y%20Lucientes%20%281746%E2%80%931828%29%20%E2%80%93%20Miguel%20de%20M%C3%BAzquiz%20y%20Goyeneche%2C%20I%20Conde%20de%20Gausa.tif?width=3840",
@@ -2150,12 +2132,12 @@
    "title": "Poetry and Poets",
    "agent_name": "Francisco de Goya",
    "agent_role": "Painter",
-   "creation_date": "early 19th century",
+   "creation_date": "1808",
    "cultural_context": "Romanticism, Spanish",
-   "medium": "Oil on canvas",
-   "date_display": "early 19th century",
-   "description_narrative": "An allegorical composition evoking the muse of poetry among poets, held in the collection of the Nationalmuseum in Stockholm. It reflects Goya's later interest in literary and allegorical subjects.",
-   "tags": "allegory, poetry, muses, Nationalmuseum Stockholm, literature",
+   "medium": "oil paint",
+   "date_display": "1808",
+   "description_narrative": "A laurel-crowned woman in a star-spangled blue mantle sits enthroned on a rocky summit, cherubs at her feet playing a flute, tambourine, and horn. A winged horse rears atop a distant peak at left, while pale, ghostly figures gather in the clouds to either side.",
+   "tags": "allegory, muses, mythological figures, oil painting, cherubs",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Poetry%20and%20Poets%20%28Francisco%20Goya%20Y%20Lucientes%29%20-%20Nationalmuseum%20-%2022642.tif?width=3840",
@@ -2197,18 +2179,19 @@
      0.8342,
      1.0
     ]
-   }
+   },
+   "physical_dimensions": "298.0 x 326.0 cm"
   },
   {
    "title": "Saint Isabel of Portugal Healing the Wounds of a Sick Woman",
    "agent_name": "Francisco de Goya",
    "agent_role": "Painter",
-   "creation_date": "c. 1798-1800",
+   "creation_date": "1799",
    "cultural_context": "Romanticism, Spanish",
    "medium": "Oil on canvas",
-   "date_display": "c. 1798–1800",
-   "description_narrative": "A devotional scene showing the sainted Portuguese queen tending the wounds of an ailing woman, an act of charity central to her legend. It was painted as part of Goya's religious commissions around 1800.",
-   "tags": "religious painting, saint, charity, healing, devotional art",
+   "date_display": "1799",
+   "description_narrative": "A crowned woman bends over a seated woman with bared shoulders, gently tending to her wounds as onlookers gather close around them. Dim, warm light falls across the group from a window at left, deepening into near-total shadow toward the edges of the room.",
+   "tags": "healing, charity, crown, dark interior, oil painting, devotional",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Goya%20y%20Lucientes%2C%20Francisco%20-%20Saint%20Isabel%20of%20Portugal%20Healing%20the%20Wounds%20of%20a%20Sick%20Woman%20-%20Google%20Art%20Project.jpg?width=3840",
@@ -2256,12 +2239,12 @@
    "title": "Saint Hermenegild in Prison",
    "agent_name": "Francisco de Goya",
    "agent_role": "Painter",
-   "creation_date": "c. 1798-1800",
+   "creation_date": "1799",
    "cultural_context": "Romanticism, Spanish",
    "medium": "Oil on canvas",
-   "date_display": "c. 1798–1800",
-   "description_narrative": "A devotional depiction of the Visigothic prince Hermenegild, venerated as a martyr after his imprisonment and death for refusing to renounce his Catholic faith. The painting was likely produced as a companion to other saintly subjects from the same period.",
-   "tags": "religious painting, saint, martyrdom, prison, devotional art",
+   "date_display": "1799",
+   "description_narrative": "A crowned figure stands bare-chested in a shadowy cell, gazing upward as one man grips a blade behind him and another kneels at his feet. Pale light filters through a barred window at left, the only illumination in the otherwise engulfing darkness.",
+   "tags": "martyrdom, prison scene, crown, dark interior, oil painting, dramatic lighting",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Goya%20y%20Lucientes%2C%20Francisco%20-%20St%20Hermenegild%20in%20Prision%20-%20Google%20Art%20Project.jpg?width=3840",
@@ -2309,12 +2292,12 @@
    "title": "Time (Time and the Old Women)",
    "agent_name": "Francisco de Goya",
    "agent_role": "Painter",
-   "creation_date": "c. 1810",
+   "creation_date": "1810s",
    "cultural_context": "Romanticism, Spanish",
-   "medium": "Oil on canvas",
-   "date_display": "c. 1810",
-   "description_narrative": "An allegorical composition personifying Time alongside aging figures, reflecting Goya's darker meditations on mortality and vanity in his mature period. It exemplifies the somber, satirical tone of his later allegorical works.",
-   "tags": "allegory, time, old age, vanity, mortality, satire",
+   "medium": "oil paint",
+   "date_display": "1810s",
+   "description_narrative": "Two elaborately dressed old women sit close together, one holding up a sign, while a winged figure looms behind them wielding a broom overhead. Their powdered faces and fine gowns contrast with the ghostly, grey figure poised to sweep them away. The painting depicts an allegory of Time.",
+   "tags": "allegory, vanity, old age, oil painting, satire, dark humor",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Francisco%20Goya%20-%20The%20Time%20-%20c.%201810.jpg?width=3840",
@@ -2356,18 +2339,19 @@
      1.0,
      0.9302
     ]
-   }
+   },
+   "physical_dimensions": "181.0 x 125.0 cm"
   },
   {
    "title": "Monk Talking to an Old Woman",
    "agent_name": "Francisco de Goya",
    "agent_role": "Painter",
-   "creation_date": "early 19th century",
+   "creation_date": "1820s",
    "cultural_context": "Romanticism, Spanish",
    "medium": "Oil on canvas",
-   "date_display": "early 19th century",
-   "description_narrative": "A genre scene depicting a friar in conversation with an elderly woman, rendered in Goya's loose, expressive late style. It reflects his continued fascination with everyday character studies in his final years.",
-   "tags": "genre scene, monk, old age, character study, late style",
+   "date_display": "1820s",
+   "description_narrative": "Two faces emerge from near-total darkness, pressed close together: a wild-eyed old woman in a blue headscarf and a gaunt man leaning toward her, mouth open as if mid-sentence. Loose, urgent brushwork gives their expressions a raw, unsettled intensity.",
+   "tags": "portrait, dark background, expressive, character study, oil painting",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Francisco%20Jos%C3%A9%20de%20Goya%20y%20Lucientes%20-%20Monk%20Talking%20to%20an%20Old%20Woman%20-%20Google%20Art%20Project.jpg?width=3840",
@@ -2403,18 +2387,19 @@
      0.8322,
      1.0
     ]
-   }
+   },
+   "current_repository": "Princeton Art Museum"
   },
   {
    "title": "Nantes, from the Île Feydeau",
    "agent_name": "J. M. W. Turner",
    "agent_role": "Painter",
-   "creation_date": "c. 1829",
+   "creation_date": "1830",
    "cultural_context": "English Romanticism, Loire River tour, early 19th century",
    "medium": "Watercolor and gouache on paper",
-   "date_display": "c. 1829",
-   "description_narrative": "Turner renders the quays and shipping of Nantes on the Loire in luminous, atmospheric washes, the town dissolving into golden haze along the water. Made during his tour of the Loire valley, it later informed engravings for his popular illustrated travel annuals.",
-   "tags": "Turner, Loire, Nantes, France, river, harbor, watercolor, Romanticism",
+   "date_display": "1830",
+   "description_narrative": "Market women in white bonnets gather on the steps of a riverside quay, baskets of produce spread before them, while boats loaded with goods drift on the water below. Grand buildings and a church tower line the far bank, fading into a hazy, cloud-streaked sky.",
+   "tags": "market scene, river quay, watercolor, cityscape, figures",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/J.%20M.%20W.%20Turner%20-%20Nantes%20from%20the%20Ile%20Feydeau%20%281830%29.jpg?width=3840",
@@ -2466,8 +2451,8 @@
    "cultural_context": "English Romanticism, sublime history painting, early 19th century",
    "medium": "Oil on canvas",
    "date_display": "1835",
-   "description_narrative": "Turner witnessed the catastrophic 1834 fire that destroyed the old Palace of Westminster and translated the spectacle into a swirling vision of flame, smoke, and reflected light over the Thames. The painting exemplifies his late fascination with fire and dissolving form as vehicles for the Romantic sublime.",
-   "tags": "Turner, fire, Parliament, London, Thames, disaster, sublime, night, oil painting",
+   "description_narrative": "Flames tear across the night sky above the river, their orange glare mirrored in the water below. Crowds gather in silhouette along the near bank to watch as boats drift past the burning skyline, smoke billowing over a distant bridge. The painting depicts the burning of the Houses of Parliament.",
+   "tags": "fire, thames, night scene, disaster, oil painting, sublime, silhouette",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Joseph%20Mallord%20William%20Turner%20-%20The%20Burning%20of%20the%20Houses%20of%20Lords%20and%20Commons%2C%2016%20October%201834%20-%201942.647%20-%20Cleveland%20Museum%20of%20Art.jpg?width=3840",
@@ -2509,18 +2494,19 @@
      0.6569,
      1.0
     ]
-   }
+   },
+   "current_repository": "Cleveland Museum of Art"
   },
   {
    "title": "Whalley Bridge and Abbey, Lancashire: Dyers Washing and Drying Cloth",
    "agent_name": "J. M. W. Turner",
    "agent_role": "Painter",
-   "creation_date": "c. 1799",
+   "creation_date": "1811",
    "cultural_context": "English Romanticism, topographical watercolor tradition, late 18th century",
-   "medium": "Watercolor on paper",
-   "date_display": "c. 1799",
-   "description_narrative": "A young Turner records the ruined abbey and packhorse bridge at Whalley with cloth-dyers at work along the riverbank, blending picturesque ruin with everyday rural industry. The watercolor reflects his early career as a topographical draughtsman touring the English counties.",
-   "tags": "Turner, Lancashire, Whalley Abbey, watercolor, ruins, river, picturesque",
+   "medium": "oil paint",
+   "date_display": "1811",
+   "description_narrative": "A three-arched stone bridge spans the river, its reflection nearly still in the shallow water below. Cattle wade near the far bank while cloth lies spread on the sandy shore to dry, tall umbrella pines rising against the sky at right.",
+   "tags": "stone bridge, river, cattle, drying cloth, pastoral, trees",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Joseph%20Mallord%20William%20Turner%20-%20Whalley%20Bridge%20and%20Abbey%2C%20Lancashire%2C%20Dyers%20washing%20and%20drying%20cloth%20-%20DM-020-1449%20-%20Dordrechts%20Museum.jpg?width=3840",
@@ -2562,7 +2548,9 @@
      0.72,
      1.0
     ]
-   }
+   },
+   "current_repository": "Dordrechts Museum",
+   "physical_dimensions": "61.2 x 92.0 cm"
   },
   {
    "title": "Bonneville, Savoy, with Mont Blanc",
@@ -2570,10 +2558,10 @@
    "agent_role": "Painter",
    "creation_date": "1803",
    "cultural_context": "English Romanticism, Alpine Grand Tour, early 19th century",
-   "medium": "Oil on canvas",
+   "medium": "oil paint",
    "date_display": "1803",
-   "description_narrative": "Painted after Turner's first Continental journey following the Peace of Amiens, this view of the Savoyard town of Bonneville sets peasant travelers against the distant, snow-capped bulk of Mont Blanc. It marks his early ambition to rival Claude and Poussin in grand Alpine landscape.",
-   "tags": "Turner, Bonneville, Savoy, Mont Blanc, Alps, oil painting, landscape",
+   "description_narrative": "Layered green mountains fall back toward a distant snow-capped peak, glimpsed through a gap in the range. A stone bridge of several arches spans the river before a small town clustered around a round tower, while sheep graze and two women rest on the near bank. The painting depicts the town of Bonneville in Savoy with Mont Blanc in the distance.",
+   "tags": "alpine landscape, mont blanc, river valley, mountains, pastoral, stone bridge, grand tour",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Joseph%20Mallord%20William%20Turner%20-%20Bonneville%2C%20Savoy%20-%201985.97.FA%20-%20Dallas%20Museum%20of%20Art.jpg?width=3840",
@@ -2615,7 +2603,9 @@
      0.7797,
      1.0
     ]
-   }
+   },
+   "current_repository": "Dallas Museum of Art",
+   "physical_dimensions": "92.0 x 123.0 cm"
   },
   {
    "title": "Dort, or Dordrecht: The Dort Packet-Boat from Rotterdam Becalmed",
@@ -2623,10 +2613,10 @@
    "agent_role": "Painter",
    "creation_date": "1818",
    "cultural_context": "English Romanticism, Dutch marine tradition, early 19th century",
-   "medium": "Oil on canvas",
+   "medium": "oil paint",
    "date_display": "1818",
-   "description_narrative": "A becalmed ferry and cluster of fishing boats sit motionless under a hazy golden sky on the River Maas at Dordrecht, Turner's homage to the seventeenth-century Dutch marine painter Aelbert Cuyp. The picture's still light and glassy water were praised in their day as a virtuoso demonstration of atmospheric painting.",
-   "tags": "Turner, Dordrecht, Netherlands, marine, boats, Cuyp, oil painting, calm",
+   "description_narrative": "A crowded sailing boat sits becalmed on glassy, golden water, its tall sails hanging slack under a hazy, cloud-streaked sky. A small rowboat glides alongside, while a distant town skyline barely breaks the horizon. The painting depicts the harbor at Dordrecht.",
+   "tags": "becalmed, sailing boat, dutch harbor, golden light, marine art, oil painting",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Joseph%20Mallord%20William%20Turner%20-%20Dort%20or%20Dordrecht-%20The%20Dort%20Packet-Boat%20from%20Rotterdam%20Becalmed%20-%20Google%20Art%20Project.jpg?width=3840",
@@ -2668,18 +2658,20 @@
      0.7217,
      1.0
     ]
-   }
+   },
+   "current_repository": "Yale Center for British Art",
+   "physical_dimensions": "157.5 x 233.7 cm"
   },
   {
    "title": "The Lake, Petworth: Sunset, Fighting Bucks",
    "agent_name": "J. M. W. Turner",
    "agent_role": "Painter",
-   "creation_date": "c. 1829",
+   "creation_date": "1829",
    "cultural_context": "English Romanticism, Petworth House series, early 19th century",
    "medium": "Oil on canvas",
-   "date_display": "c. 1829",
-   "description_narrative": "Painted for his patron Lord Egremont, this view of the lake at Petworth House dissolves the Sussex parkland into a glowing sunset haze, with two stags clashing in the foreground. It belongs to Turner's intimate series of Petworth landscapes celebrated for their poetic, almost abstract handling of light.",
-   "tags": "Turner, Petworth, sunset, deer, parkland, lake, oil painting, Romanticism",
+   "date_display": "1829",
+   "description_narrative": "Deer graze and wander across a wide parkland under a glowing, pastel sunset sky. A still lake reflects the fading light in the middle distance, framed by tall trees at either edge of the composition.",
+   "tags": "deer, parkland, sunset, oil painting, pastoral, panoramic",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Lake%2C%20Petworth.%20Sunset%2C%20Fighting%20Bucks%20-%20Petworth%20House%202026-03-03.jpg?width=3840",
@@ -2738,8 +2730,8 @@
    "cultural_context": "English Romanticism, late Swiss watercolors, mid-19th century",
    "medium": "Watercolor on paper",
    "date_display": "1842",
-   "description_narrative": "Mount Rigi rises above Lake Lucerne, its rock face catching the deep red glow of sunset while the water below is rendered in near-abstract veils of color. One of Turner's most celebrated late watercolors, it shows him pushing landscape toward pure light and atmosphere.",
-   "tags": "Turner, Rigi, Switzerland, Lake Lucerne, sunset, watercolor, Alps",
+   "description_narrative": "A mountain glows rosy pink against a pale sky, its slopes reflected in the still waters of the lake below. A small boat crowded with passengers crosses the foreground, its wake barely disturbing the glassy surface.",
+   "tags": "mountain, sunrise, lake, watercolor, boats, alpine",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/J.%20M.%20W.%20Turner%20-%20The%20Red%20Rigi%20-%20Google%20Art%20Project.jpg?width=3840",
@@ -2787,12 +2779,12 @@
    "title": "Melrose Abbey",
    "agent_name": "J. M. W. Turner",
    "agent_role": "Painter",
-   "creation_date": "c. 1822",
+   "creation_date": "1831",
    "cultural_context": "English Romanticism, Scottish Border antiquities, early 19th century",
    "medium": "Watercolor on paper",
-   "date_display": "c. 1822",
-   "description_narrative": "Turner depicts the ruined Gothic tracery of Melrose Abbey in the Scottish Borders, a site made famous by Sir Walter Scott's poetry. The watercolor was made as an illustration for an engraved series on Scott's Border country, pairing architectural ruin with romantic literary association.",
-   "tags": "Turner, Melrose, Scotland, abbey, ruins, watercolor, Walter Scott",
+   "date_display": "1831",
+   "description_narrative": "A horse-drawn cart pauses on a hillside overlooking a broad, winding river valley, while a group of top-hatted men rest among the trees at right. A hazy town spreads along the far bank beneath layered blue mountains, the whole scene bathed in soft midday light.",
+   "tags": "river valley, panoramic landscape, watercolor, wagon, figures, atmospheric",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Joseph%20Mallord%20William%20Turner%20-%20Melrose%20-%20Google%20Art%20Project.jpg?width=3840",
@@ -2844,8 +2836,8 @@
    "cultural_context": "English Romanticism, late imaginative landscape, mid-19th century",
    "medium": "Oil on fabric",
    "date_display": "after 1846",
-   "description_narrative": "Inspired by Shakespeare's fairy queen from Romeo and Juliet, Turner conjures a dreamlike grotto of swirling color populated by tiny dancing figures. Exhibited in the final decade of his career, it shows the artist dissolving landscape into near-abstract fields of light and pigment.",
-   "tags": "Turner, Queen Mab, fairy, fantasy, Shakespeare, oil painting, late style",
+   "description_narrative": "A ruined archway and hilltop fortress loom hazily over dark water, with pale, indistinct figures gathered at the shore below. Made after 1846 by an imitator of J. M. W. Turner, this oil on fabric is a reduced copy of a composition Turner exhibited that year.",
+   "tags": "turner, imitator, ruins, fantasy landscape, romanticism, oil on fabric, gothic",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Joseph%20Mallord%20William%20Turner%20-%20Queen%20Mab%27s%20Cave%20-%201916.1036%20-%20Cleveland%20Museum%20of%20Art.jpg?width=3840",
@@ -2888,7 +2880,8 @@
      1.0
     ]
    },
-   "current_repository": "Cleveland Museum of Art"
+   "current_repository": "Cleveland Museum of Art",
+   "physical_dimensions": "Unframed: 73 x 89.5 cm (28 3/4 x 35 1/4 in.)"
   },
   {
    "title": "Rockets and Blue Lights (Close at Hand) to Warn Steamboats of Shoal Water",
@@ -2896,10 +2889,10 @@
    "agent_role": "Painter",
    "creation_date": "1840",
    "cultural_context": "English Romanticism, late marine painting, mid-19th century",
-   "medium": "Oil on canvas",
+   "medium": "oil paint",
    "date_display": "1840",
-   "description_narrative": "A paddle steamer fires warning flares through driving surf and spray to alert other vessels to dangerous shallows, the scene rendered in Turner's characteristic whirlwind of light and weather. The painting captures his fascination with modern steam technology confronting the raw power of the sea.",
-   "tags": "Turner, steamboat, storm, sea, rockets, marine, oil painting, sublime",
+   "description_narrative": "A brilliant flare bursts through a swirling, storm-darkened sky, its light reflected on the churning surf below. Figures gather on the shore at left, watching as ships struggle barely visible amid the waves and dark, whirling clouds above.",
+   "tags": "storm, flare, seascape, oil painting, dramatic sky, maritime signal",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/J.M.W.%20Turner%27s%20Rockets%20and%20Blue%20Lights%20(Close%20at%20Hand)%20to%20Warn%20Steamboats%20of%20Shoal%20Water.jpg?width=3840",
@@ -2942,18 +2935,20 @@
      0.7597,
      1.0
     ]
-   }
+   },
+   "current_repository": "Clark Art Institute",
+   "physical_dimensions": "92.1 x 122.2 cm"
   },
   {
    "title": "Llanthony Abbey, Monmouthshire",
    "agent_name": "J. M. W. Turner",
    "agent_role": "Painter",
-   "creation_date": "c. 1794",
+   "creation_date": "c. 1792",
    "cultural_context": "English Romanticism, picturesque ruin watercolors, late 18th century",
-   "medium": "Watercolor on paper",
-   "date_display": "c. 1794",
-   "description_narrative": "A young Turner captures the roofless nave of Llanthony Priory in the Welsh Black Mountains, tiny figures dwarfed beneath its towering Gothic arches. The watercolor typifies the 1790s vogue for picturesque monastic ruins that launched his early career.",
-   "tags": "Turner, Llanthony Abbey, Wales, ruins, watercolor, picturesque, Gothic",
+   "medium": "watercolor paint",
+   "date_display": "c. 1792",
+   "description_narrative": "A ruined stone abbey nestles at the foot of misty mountains, its broken arches still tracing the shape of its windows. A figure with a dog pauses on the rocks above a rushing stream, small against the scale of the wooded hillside.",
+   "tags": "ruins, abbey, gothic, watercolor, mountains, picturesque",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Joseph%20Mallord%20William%20Turner%20-%20Llanthony%20Abbey%2C%20Monmouthshire%20-%20Google%20Art%20Project.jpg?width=3840",
@@ -3003,10 +2998,10 @@
    "agent_role": "Painter",
    "creation_date": "1831",
    "cultural_context": "English Romanticism, imaginary classical landscape, early 19th century",
-   "medium": "Oil on canvas",
+   "medium": "oil paint",
    "date_display": "1831",
-   "description_narrative": "Turner invents a sunlit vision of an ancient Roman harbor and palace, loosely tied to the emperor Caligula's legendary bridge across the Bay of Baiae. Exhibited at the Royal Academy in 1831, it reflects his lifelong dialogue with the classical landscapes of Claude Lorrain.",
-   "tags": "Turner, Rome, classical, Claude Lorrain, ruins, harbor, oil painting",
+   "description_narrative": "Crumbling classical ruins rise out of a golden haze, their columns and archways silhouetted against a pale sky. Figures wade in the shallow water below while a seated woman rests beneath tall trees at right, the whole scene bathed in soft, atmospheric light.",
+   "tags": "classical ruins, golden light, imaginary landscape, atmospheric, oil painting, romanticism",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Joseph%20Mallord%20William%20Turner%20-%20Caligula%27s%20Palace%20and%20Bridge%20-%20Google%20Art%20Project.jpg?width=3840",
@@ -3048,18 +3043,19 @@
      0.6566,
      1.0
     ]
-   }
+   },
+   "physical_dimensions": "246.4 x 137.2 cm"
   },
   {
    "title": "The Moselle Bridge, Coblenz",
    "agent_name": "J. M. W. Turner",
    "agent_role": "Painter",
-   "creation_date": "c. 1839",
+   "creation_date": "c. 1842",
    "cultural_context": "English Romanticism, Rhine and Moselle tour watercolors, mid-19th century",
-   "medium": "Watercolor on paper",
-   "date_display": "c. 1839",
-   "description_narrative": "Turner depicts the old bridge over the Moselle at Koblenz where it meets the Rhine, boats and townsfolk small beneath a luminous evening sky. The watercolor comes from his later German river tours, prized for their jewel-like color and command of reflected light.",
-   "tags": "Turner, Moselle, Coblenz, Rhine, Germany, bridge, watercolor",
+   "medium": "watercolor paint",
+   "date_display": "c. 1842",
+   "description_narrative": "A long, multi-arched stone bridge stretches faintly across the river, its reflection barely traced in pale washes of pink and ochre. A hazy fortress rises at left while small boats drift near the far bank, all dissolving into a nearly blank, sunlit sky.",
+   "tags": "watercolor, bridge, river, atmospheric, faint washes",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Joseph%20Mallord%20William%20Turner%20-%20The%20Moselle%20Bridge%2C%20Coblenz%20-%20Google%20Art%20Project.jpg?width=3840",
@@ -3101,7 +3097,9 @@
      0.7818,
      1.0
     ]
-   }
+   },
+   "current_repository": "Yale Center for British Art",
+   "physical_dimensions": "48.6 x 61.6 cm"
   },
   {
    "title": "Dido Building Carthage",
@@ -3109,10 +3107,10 @@
    "agent_role": "Painter",
    "creation_date": "1815",
    "cultural_context": "English Romanticism, classical history landscape, early 19th century",
-   "medium": "Oil on canvas",
+   "medium": "oil paint",
    "date_display": "1815",
-   "description_narrative": "Queen Dido directs the construction of her new city of Carthage as the sun rises in blinding splendor over the harbor, a scene drawn from Virgil's Aeneid. Turner considered this his masterpiece and deliberately painted it as a direct rival to Claude Lorrain's classical seaport landscapes.",
-   "tags": "Turner, Dido, Carthage, Virgil, classical, harbor, oil painting, sunrise",
+   "description_narrative": "A hazy sun hangs low over a classical harbor, its light reflected in the still water between grand colonnaded buildings on either bank. Figures gather on the marble steps at left near ships moored in the port, while a tree-crowned promontory rises at right. The painting depicts the founding of Carthage by Dido.",
+   "tags": "classical harbor, golden light, architecture, history painting, oil painting, atmospheric",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Turner%20-%20Dido.jpg?width=3840",
@@ -3154,7 +3152,9 @@
      0.744,
      1.0
     ]
-   }
+   },
+   "current_repository": "National Gallery",
+   "physical_dimensions": "155.5 x 232.0 cm"
   },
   {
    "title": "Devil's Bridge, St Gotthard's Pass",
@@ -3162,10 +3162,10 @@
    "agent_role": "Painter",
    "creation_date": "c. 1804",
    "cultural_context": "English Romanticism, Alpine sublime, early 19th century",
-   "medium": "Watercolor on paper",
+   "medium": "watercolor paint",
    "date_display": "c. 1804",
-   "description_narrative": "Tiny travelers and mules cross the perilous stone span of the Teufelsbrücke as it clings to a sheer Alpine gorge, dwarfed by jagged peaks and plunging torrents. The watercolor grew out of Turner's 1802 Alpine tour, which supplied him with sublime mountain imagery for years afterward.",
-   "tags": "Turner, Devil's Bridge, St Gotthard, Alps, Switzerland, watercolor, sublime",
+   "description_narrative": "A faint rainbow arcs through drifting mist above a steep, rocky gorge, its rugged cliffs rendered in warm ochre washes. Below, a mountain stream rushes over stones and fallen branches, the scene hazy with atmosphere and scale.",
+   "tags": "watercolor, gorge, rainbow, alpine landscape, mist, mountain stream",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Joseph%20Mallord%20William%20Turner%20-%20Devil%27s%20Bridge%2C%20Saint%20Gotthard%27s%20Pass%20-%20Google%20Art%20Project.jpg?width=3840",
@@ -3195,18 +3195,20 @@
      1.0,
      0.9741
     ]
-   }
+   },
+   "current_repository": "Yale Center for British Art",
+   "physical_dimensions": "105.7 x 75.9 cm"
   },
   {
    "title": "Evening Landscape, with Castle and Bridge in Yorkshire",
    "agent_name": "J. M. W. Turner",
    "agent_role": "Painter",
-   "creation_date": "c. 1816",
+   "creation_date": "1790s",
    "cultural_context": "English Romanticism, Yorkshire patron commissions, early 19th century",
-   "medium": "Oil on canvas",
-   "date_display": "c. 1816",
-   "description_narrative": "A ruined castle and stone bridge stand silhouetted against a warm, fading evening sky over a Yorkshire river, painted for one of Turner's northern patrons. The picture reflects his ongoing work in Yorkshire for collectors such as Walter Fawkes of Farnley Hall.",
-   "tags": "Turner, Yorkshire, castle, bridge, evening, oil painting, landscape",
+   "medium": "watercolor paint",
+   "date_display": "1790s",
+   "description_narrative": "A dark, arched stone bridge sits silhouetted beneath a looming, tree-covered hill, its shape dissolving into evening shadow. Warm light still glows faintly in the sky above, mirrored in the still water of the foreground.",
+   "tags": "silhouette, twilight, stone bridge, watercolor, atmospheric",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Joseph%20Mallord%20William%20Turner%20-%20Evening%20Landscape%20with%20Castle%20and%20Bridge%20in%20Yorkshire%20-%20Google%20Art%20Project.jpg?width=3840",
@@ -3248,7 +3250,9 @@
      0.7246,
      1.0
     ]
-   }
+   },
+   "current_repository": "Yale Center for British Art",
+   "physical_dimensions": "18.7 x 26.7 cm"
   },
   {
    "title": "Calais Pier, with French Poissards Preparing for Sea: An English Packet Arriving",
@@ -3256,10 +3260,10 @@
    "agent_role": "Painter",
    "creation_date": "1803",
    "cultural_context": "English Romanticism, early marine painting, early 19th century",
-   "medium": "Oil on canvas",
+   "medium": "oil paint",
    "date_display": "1803",
-   "description_narrative": "Turner recreates the rough Channel crossing that greeted his own arrival in France, with fishwives and sailors battling wind and surf beside the pier while an English packet boat fights its way into harbor. Exhibited at the Royal Academy in 1803, it announced his ambition as a marine painter of stormy, dramatic weather.",
-   "tags": "Turner, Calais, Channel, storm, pier, marine, oil painting, France",
+   "description_narrative": "Heavy swells toss fishing boats crowded with people against a wooden pier, their sails straining under a churning sky. A shaft of blue breaks through towering storm clouds above, while onlookers crowd the jetty's edge to watch the boats fight their way in. The scene depicts sailing vessels arriving at a pier during a storm.",
+   "tags": "storm, seascape, pier, sailing boats, marine art, oil painting, choppy sea",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Joseph%20Mallord%20William%20Turner%20024.jpg?width=3840",
@@ -3295,18 +3299,20 @@
      0.8392,
      1.0
     ]
-   }
+   },
+   "current_repository": "National Gallery",
+   "physical_dimensions": "172.0 x 240.0 cm"
   },
   {
    "title": "Sun Rising through Vapour: Fishermen Cleaning and Selling Fish",
    "agent_name": "J. M. W. Turner",
    "agent_role": "Painter",
-   "creation_date": "1807",
+   "creation_date": "1800s",
    "cultural_context": "English Romanticism, Dutch-inspired marine and genre painting, early 19th century",
-   "medium": "Oil on canvas",
-   "date_display": "1807",
-   "description_narrative": "A pale morning sun burns through mist over a fishing beach as figures sort and sell the catch beside moored boats, painted in homage to the calm Dutch marine scenes of Willem van de Velde. Turner so valued the picture that he requested it be hung beside a Claude Lorrain seaport in the National Gallery after his death.",
-   "tags": "Turner, sunrise, fishermen, mist, coast, oil painting, Dutch influence",
+   "medium": "oil paint",
+   "date_display": "1800s",
+   "description_narrative": "A hazy sun rises behind ships anchored offshore, its glow reflected in the calm, sandy shallows. On the beach at right, fishermen sort their catch beside baskets of fish while others look on from a weathered wooden pier.",
+   "tags": "fishermen, sunrise, harbor, oil painting, coastal scene, marine art",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Joseph%20Mallord%20William%20Turner%20049.jpg?width=3840",
@@ -3342,7 +3348,9 @@
      0.8032,
      1.0
     ]
-   }
+   },
+   "current_repository": "National Gallery",
+   "physical_dimensions": "91.5 x 122.4 cm"
   },
   {
    "title": "What You Will!",
@@ -3350,10 +3358,10 @@
    "agent_role": "Painter",
    "creation_date": "1822",
    "cultural_context": "English Romanticism, literary fancy picture, early 19th century",
-   "medium": "Oil on canvas",
+   "medium": "oil paint",
    "date_display": "1822",
-   "description_narrative": "Figures in fanciful costume gather in a wooded park setting in this playful subject picture whose title borrows the alternate name of Shakespeare's Twelfth Night. It shows Turner experimenting with lighter, decorative genre subjects alongside his grander landscapes.",
-   "tags": "Turner, Shakespeare, fancy picture, figures, park, oil painting",
+   "description_narrative": "Elegantly dressed figures in bonnets and fine gowns gather beneath autumn-toned trees around a garden statue and marble bust. Further back, sculpted figures embrace atop stone pedestals, the whole park bathed in soft, golden light.",
+   "tags": "fete galante, park scene, figures, statues, oil painting, autumn",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Joseph%20Mallord%20William%20Turner%20-%20What%20You%20Will%5E%20-%202007.8.107%20-%20Clark%20Art%20Institute.tiff?width=3840",
@@ -3402,18 +3410,19 @@
      0.9239,
      1.0
     ]
-   }
+   },
+   "current_repository": "Clark Art Institute"
   },
   {
    "title": "The Château de St. Michael, Bonneville, Savoy",
    "agent_name": "J. M. W. Turner",
    "agent_role": "Painter",
-   "creation_date": "1803",
+   "creation_date": "1800s",
    "cultural_context": "English Romanticism, Alpine Grand Tour, early 19th century",
-   "medium": "Oil on canvas",
-   "date_display": "1803",
-   "description_narrative": "A companion view to Turner's other Bonneville picture, this composition places the fortified château against the same dramatic backdrop of the Savoy Alps. Painted after his 1802 Continental tour, it reflects his early effort to establish himself as a painter of grand Alpine scenery.",
-   "tags": "Turner, Bonneville, Savoy, château, Alps, oil painting, France",
+   "medium": "oil paint",
+   "date_display": "1800s",
+   "description_narrative": "A weathered stone tower rises at the edge of a dirt road that winds toward layered mountains fading into haze. A woman rests against a low wall in the foreground shade, dwarfed by the scale of the valley and the billowing clouds above. The painting depicts mountains and trees near Bonneville.",
+   "tags": "mountain landscape, stone tower, alps, atmospheric, oil painting, romanticism",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Joseph%20Mallord%20William%20Turner%20-%20Chateau%20de%20St.%20Michael%2C%20Bonneville%2C%20Savoy%20-%20Google%20Art%20Project.jpg?width=3840",
@@ -3455,18 +3464,20 @@
      0.6798,
      1.0
     ]
-   }
+   },
+   "current_repository": "Yale Center for British Art",
+   "physical_dimensions": "91.4 x 121.9 cm"
   },
   {
    "title": "Lausanne: Sunset",
    "agent_name": "J. M. W. Turner",
    "agent_role": "Painter",
-   "creation_date": "c. 1841",
+   "creation_date": "between 1841 and 1842",
    "cultural_context": "English Romanticism, late Swiss tour watercolors, mid-19th century",
    "medium": "Watercolor on paper",
-   "date_display": "c. 1841",
-   "description_narrative": "The rooftops and cathedral of Lausanne emerge from a haze of golden and violet light above Lake Geneva, painted during Turner's final decade of prolific Swiss travel. These late watercolors are prized as some of the most radically atmospheric work of his career.",
-   "tags": "Turner, Lausanne, Switzerland, sunset, Lake Geneva, watercolor",
+   "date_display": "between 1841 and 1842",
+   "description_narrative": "A spired cathedral glows deep orange against a hazy sunset sky, its silhouette rising above a bustling market crowd rendered in loose, warm washes. Trees darken at left while a gentle hillside slopes away to the right.",
+   "tags": "sunset, cathedral, watercolor, market scene, atmospheric",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Horror%20und%20Delight-Turner-Lausanne-%20Sunset%20DSC2129.jpg?width=3840",
@@ -3521,12 +3532,12 @@
    "title": "Tummel Bridge, Perthshire",
    "agent_name": "J. M. W. Turner",
    "agent_role": "Painter",
-   "creation_date": "c. 1801",
+   "creation_date": "1800s",
    "cultural_context": "English Romanticism, Scottish Highlands tour, early 19th century",
-   "medium": "Watercolor on paper",
-   "date_display": "c. 1801",
-   "description_narrative": "A stone bridge spans the River Tummel amid the wild hills of Perthshire, drawn from Turner's early tour of the Scottish Highlands. The watercolor shows his growing interest in rugged, untamed mountain scenery beyond the conventional English picturesque.",
-   "tags": "Turner, Tummel, Perthshire, Scotland, Highlands, bridge, watercolor",
+   "medium": "oil paint",
+   "date_display": "1800s",
+   "description_narrative": "A two-arched stone bridge spans a shallow, rock-strewn river beneath dark, roiling storm clouds. Cattle wade in the shallows at right while figures pick their way among boulders in the foreground, dwarfed by the surrounding hills.",
+   "tags": "stone bridge, highlands, storm clouds, watercolor, river landscape",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Joseph%20Mallord%20William%20Turner%20-%20Tummel%20Bridge%2C%20Perthshire%20-%20Google%20Art%20Project.jpg?width=3840",
@@ -3568,18 +3579,20 @@
      0.7216,
      1.0
     ]
-   }
+   },
+   "current_repository": "Yale Center for British Art",
+   "physical_dimensions": "28.9 x 46.7 cm"
   },
   {
    "title": "Geneva, the Jura Mountains and Isle Rousseau, Sunset",
    "agent_name": "J. M. W. Turner",
    "agent_role": "Painter",
-   "creation_date": "c. 1841",
+   "creation_date": "1841",
    "cultural_context": "English Romanticism, late Swiss tour watercolors, mid-19th century",
    "medium": "Watercolor on paper",
-   "date_display": "c. 1841",
-   "description_narrative": "Lake Geneva glows under a setting sun with the Jura range and the little Île Rousseau silhouetted in the distance, a subject tied to the memory of philosopher Jean-Jacques Rousseau. It belongs to Turner's late series of luminous Swiss lake views made for the dealer Thomas Griffith.",
-   "tags": "Turner, Geneva, Switzerland, Jura Mountains, sunset, watercolor, lake",
+   "date_display": "1841",
+   "description_narrative": "A small tree-covered island sits at the center of a still lake, its reflection dissolving into golden light. Hazy blue mountains rise beyond, while distant sailboats and quiet figures near a quayside are washed in the soft glow of sunset.",
+   "tags": "sunset, lake, watercolor, mountains, island, atmospheric",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Horror%20und%20Delight-Turner-Geneva%2C%20the%20Jura%20Mountains%20and%20Isle%20Rousseau%2C%20Sunset%20DSC2125.jpg?width=3840",
@@ -3638,8 +3651,8 @@
    "cultural_context": "English Romanticism, late Venetian marine painting, mid-19th century",
    "medium": "Oil on canvas",
    "date_display": "1843",
-   "description_narrative": "A Venetian fishing boat named Sol di Venezia sets out at dawn, its painted sail catching the first light as the city dissolves into shimmering haze behind it. One of Turner's late Venice pictures, it exemplifies his mature dissolution of solid form into pure color and light.",
-   "tags": "Turner, Venice, boat, sunrise, sea, oil painting, late style",
+   "description_narrative": "A gondola's painted sail, marked with a golden sun, catches the light as it glides across still, honey-colored water. Venice's towers dissolve into haze on the horizon, while smaller boats drift on either side beneath a pale, luminous sky.",
+   "tags": "venice, sailboat, golden light, oil painting, atmospheric, marine art",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Joseph%20Mallord%20William%20Turner%20-%20The%20Sun%20of%20Venice%20Going%20to%20Sea%20-%20Google%20Art%20Project.jpg?width=3840",
@@ -3691,8 +3704,8 @@
    "cultural_context": "English Romanticism, early topographical watercolor, late 18th century",
    "medium": "Watercolor on paper",
    "date_display": "c. 1796",
-   "description_narrative": "A wide, calm sweep of the River Thames unfolds beneath an expansive English sky, an early example of Turner's topographical watercolor practice before his turn to grander Romantic subjects. The panoramic format reveals his precocious skill at composing broad, atmospheric river views.",
-   "tags": "Turner, Thames, river, England, watercolor, panorama, early work",
+   "description_narrative": "Seen from a high vantage point, the river winds below a multi-arched bridge, its banks lined with trees and scattered houses. A tall dark tree and a fence trace the near ridge, framed beneath a vast, cloud-filled sky.",
+   "tags": "panoramic view, river, watercolor, bridge, landscape",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Panoramic%20View%20of%20the%20Thames%2C%20by%20J.%20M.%20W.%20Turner%2C%20c.%201796%2C%20watercolor%20on%20paper%20-%20Blanton%20Museum%20of%20Art%20-%20Austin%2C%20Texas%20-%20DSC08435.jpg?width=3840",
@@ -3734,12 +3747,12 @@
    "title": "The Rainbow: Osterspai and Filsen",
    "agent_name": "J. M. W. Turner",
    "agent_role": "Painter",
-   "creation_date": "c. 1817",
+   "creation_date": "1817",
    "cultural_context": "English Romanticism, Rhine tour watercolors, early 19th century",
    "medium": "Watercolor on paper",
-   "date_display": "c. 1817",
-   "description_narrative": "A rainbow arcs over the Rhine near the villages of Osterspai and Filsen, storm light and sun breaking together above the river and its vine-covered hills. The watercolor comes from Turner's 1817 Rhine tour, commissioned by his patron Walter Fawkes.",
-   "tags": "Turner, Rhine, Germany, rainbow, river, watercolor, Fawkes",
+   "date_display": "1817",
+   "description_narrative": "A vivid rainbow arcs over a wide river valley, spanning from dark storm clouds at left to sunlit hills at right. Figures gather on the near bank beside a small moored boat, the wet sand reflecting the muted colors of the sky.",
+   "tags": "rainbow, river landscape, watercolor, storm, atmospheric",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Joseph%20Mallord%20William%20Turner%20-%20The%20Rainbow-%20Osterspai%20and%20Filsen%20-%20Google%20Art%20Project.jpg?width=3840",
@@ -3789,10 +3802,10 @@
    "agent_role": "Painter",
    "creation_date": "1828",
    "cultural_context": "English Romanticism, yachting and marine painting, early 19th century",
-   "medium": "Oil on canvas",
+   "medium": "oil paint",
    "date_display": "1828",
-   "description_narrative": "Yachts race across the Solent before the turreted silhouette of East Cowes Castle, the Isle of Wight home of Turner's friend, the architect John Nash. The picture captures the fashionable sport of regatta sailing with Turner's characteristic dash of wind, spray, and shifting light.",
-   "tags": "Turner, Cowes, Isle of Wight, yacht, regatta, sailing, oil painting",
+   "description_narrative": "Billowing pale sails crowd a choppy stretch of sea, one yacht heeling hard as it beats to windward past a scatter of smaller boats. A red buoy bobs in the foreground surf, while distant masts and low buildings blur along the horizon. The scene depicts a yacht regatta near East Cowes Castle.",
+   "tags": "regatta, sailing yachts, seascape, marine art, oil painting",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/East%20Cowes%20Castle%2C%20the%20Seat%20of%20J.%20Nash%2C%20Esq.%2C%20the%20Regatta%20Beating%20to%20Windward%2C%20Turner%20-%20Indianapolis%20Museum%20of%20Art%20-%20DSC00677.JPG?width=3840",
@@ -3841,7 +3854,8 @@
      0.8938,
      1.0
     ]
-   }
+   },
+   "physical_dimensions": "90.2 x 120.7 cm"
   },
   {
    "title": "View off Margate, Evening",
@@ -3851,8 +3865,8 @@
    "cultural_context": "English Romanticism, late coastal watercolors, mid-19th century",
    "medium": "Oil on canvas",
    "date_display": "c. 1840",
-   "description_narrative": "Fishing vessels ride a calm evening sea off the Kent coast at Margate, a place Turner knew intimately from childhood visits and later years spent painting its ever-changing sky. The watercolor's soft, glowing tonality is characteristic of his late seaside studies.",
-   "tags": "Turner, Margate, coast, evening, boats, watercolor, sea",
+   "description_narrative": "A small boat with a golden sail cuts through calm, muted waters near the shore, a larger ship's silhouette barely visible in the distance. Figures and a dog gather on the sandy beach at right, the whole scene washed in soft, overcast light.",
+   "tags": "seascape, sailboat, beach, evening light, coastal scene",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Joseph%20Mallord%20William%20Turner%20-%20View%20off%20Margate%2C%20Evening%20-%202007.8.117%20-%20Clark%20Art%20Institute.tiff?width=4318",
@@ -3876,12 +3890,12 @@
    "title": "The Schöllenen Gorge from the Devil's Bridge, Pass of St Gotthard",
    "agent_name": "J. M. W. Turner",
    "agent_role": "Painter",
-   "creation_date": "c. 1843",
+   "creation_date": "1802",
    "cultural_context": "English Romanticism, late Swiss Alpine tour watercolors, mid-19th century",
    "medium": "Watercolor on paper",
-   "date_display": "c. 1843",
-   "description_narrative": "Sheer granite walls funnel a churning mountain torrent through the Schöllenen Gorge below the Devil's Bridge, one of the most dramatic passages on the St Gotthard route. Made during Turner's later Alpine travels, it revisits a site he had first sketched decades earlier with renewed painterly intensity.",
-   "tags": "Turner, Schollenen Gorge, St Gotthard, Alps, Switzerland, watercolor, sublime",
+   "date_display": "1802",
+   "description_narrative": "A narrow, arcaded roadway clings to a sheer rock face, winding above a plunging gorge choked with mist. Towering cliffs press in from both sides, their jagged silhouettes nearly swallowed by heavy cloud.",
+   "tags": "gorge, mountain pass, watercolor, alpine, atmospheric",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Horror%20und%20Delight-Turner-The%20Sch%C3%B6llenen%20Gorge%20from%20the%20Devil%27s%20Bridge%2C%20Pass%20of%20St%20Gotthard%20DSC2107.jpg?width=3840",
@@ -3930,12 +3944,12 @@
    "title": "Tours: Sunset, Looking Backwards",
    "agent_name": "J. M. W. Turner",
    "agent_role": "Painter",
-   "creation_date": "c. 1830",
+   "creation_date": "19th century",
    "cultural_context": "English Romanticism, Loire River tour watercolors, early 19th century",
-   "medium": "Watercolor on paper",
-   "date_display": "c. 1830",
-   "description_narrative": "The city of Tours recedes along the Loire in a glowing haze of sunset color, the view looking back upstream as if from a departing boat. It is one of a series Turner made touring the Loire valley, later engraved for his illustrated travel annuals.",
-   "tags": "Turner, Tours, Loire, France, sunset, river, watercolor",
+   "medium": "watercolor paint",
+   "date_display": "19th century",
+   "description_narrative": "A riverside street bustles with figures and a loaded donkey beside tall, sun-faded buildings, while covered barges crowd the water's edge. A hazy sun glows low over the river, silhouetting a distant bridge and cathedral spires.",
+   "tags": "riverside town, watercolor, figures, boats, atmospheric",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Joseph%20Mallord%20William%20Turner%20-%20Tours-%20Sunset-%20Looking%20Backwards%20-%20Google%20Art%20Project.jpg?width=3840",
@@ -3965,18 +3979,20 @@
      0.9295,
      1.0
     ]
-   }
+   },
+   "current_repository": "Yale Center for British Art",
+   "physical_dimensions": "12.4 x 18.7 cm"
   },
   {
    "title": "Scarborough Town and Castle: Morning, Boys Catching Crabs",
    "agent_name": "J. M. W. Turner",
    "agent_role": "Painter",
-   "creation_date": "c. 1809",
+   "creation_date": "circa 1810",
    "cultural_context": "English Romanticism, England and Wales coastal watercolors, early 19th century",
    "medium": "Watercolor on paper",
-   "date_display": "c. 1809",
-   "description_narrative": "Boys hunt for crabs on the sands below Scarborough's clifftop castle as the morning light spreads across the Yorkshire coast. The watercolor was made for engraving in Turner's ambitious 'Picturesque Views in England and Wales' series documenting the nation's scenery.",
-   "tags": "Turner, Scarborough, Yorkshire, coast, castle, children, watercolor",
+   "date_display": "circa 1810",
+   "description_narrative": "Children crouch together on the wet sand, poking at a tide pool while a masted ship rests beached at right, figures moving around its hull. Rocky cliffs rise at left, where laundry hangs to dry, and a distant hilltop ruin overlooks the town across the bay.",
+   "tags": "coastal scene, watercolor, children, beach, ship, castle ruins",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/J.M.W.%20Turner%20-%20Scarborough%20town%20and%20castle-%20morning-%20boys%20catching%20crabs%20-%20Google%20Art%20Project.jpg?width=3840",
@@ -4022,8 +4038,8 @@
    "cultural_context": "English Romanticism, topographical antiquarian illustration, early 19th century",
    "medium": "Watercolor on paper",
    "date_display": "c. 1818",
-   "description_narrative": "Turner frames the parish church of Kirkby Lonsdale through overhanging trees, small figures wandering among the churchyard's gravestones in soft northern light. The watercolor was made to illustrate Thomas Dunham Whitaker's history of Richmondshire in Yorkshire.",
-   "tags": "Turner, Kirkby Lonsdale, churchyard, Yorkshire, watercolor, topography",
+   "description_narrative": "Children play among weathered gravestones in the foreground, one boy crouching to hold another as the group laughs beneath a canopy of trees. Beyond the churchyard wall, a river winds through a hazy valley toward distant blue hills.",
+   "tags": "churchyard, children playing, river valley, watercolor, topographical, pastoral",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Joseph%20Mallord%20William%20Turner%20-%20Kirkby%20Lonsdale%20Churchyard%20%28c.1818%29.jpg?width=3840",
@@ -4065,7 +4081,8 @@
      0.5487,
      1.0
     ]
-   }
+   },
+   "physical_dimensions": "29.2 x 42.2 cm"
   },
   {
    "title": "Bell Rock Lighthouse",
@@ -4073,10 +4090,10 @@
    "agent_role": "Painter",
    "creation_date": "1819",
    "cultural_context": "English Romanticism, maritime engineering subject, early 19th century",
-   "medium": "Watercolor on paper",
+   "medium": "paper",
    "date_display": "1819",
-   "description_narrative": "Robert Stevenson's newly built lighthouse rises from stormy seas on the treacherous Bell Rock off the Scottish coast, waves crashing against its base under a turbulent sky. Turner was commissioned by Stevenson himself to commemorate the engineering feat in this dramatic maritime watercolor.",
-   "tags": "Turner, Bell Rock, lighthouse, Scotland, storm, sea, watercolor",
+   "description_narrative": "Waves crash violently against the Bell Rock Lighthouse, spray leaping past its lantern room, while a small sailing ship struggles through the storm nearby. Dark, turbulent clouds and churning water dwarf the tower on all sides. The watercolor depicts the lighthouse standing in the North Sea.",
+   "tags": "lighthouse, storm, seascape, watercolor, sailing ship, dramatic waves",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Joseph%20Mallord%20William%20Turner%20-%20Bell%20Rock%20Lighthouse%20-%20Google%20Art%20Project.jpg?width=3840",
@@ -4118,7 +4135,8 @@
      0.8948,
      1.0
     ]
-   }
+   },
+   "physical_dimensions": "30.6 x 45.5 cm"
   },
   {
    "title": "The Evening of the Deluge",
@@ -4128,8 +4146,8 @@
    "cultural_context": "English Romanticism, late color-theory series, mid-19th century",
    "medium": "Oil on canvas",
    "date_display": "c. 1843",
-   "description_narrative": "Animals and figures swirl toward an ark-like vessel beneath a darkening, storm-charged sky in this apocalyptic vision of the biblical flood. Painted as a pendant exploring Goethe's theory of color, it belongs to Turner's late series probing light, darkness, and moral allegory.",
-   "tags": "Turner, Deluge, flood, biblical, apocalyptic, oil painting, late style",
+   "description_narrative": "A dense flock of birds streams across a hazy, glowing sun, swirling above a shadowy landscape thick with mist. A serpentine creature rises from the water at right, while huddled figures shelter beneath a dark, tent-like form below.",
+   "tags": "apocalyptic, swirling composition, atmospheric, biblical, oil painting, late style",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Joseph%20Mallord%20William%20Turner%2C%20The%20Evening%20of%20the%20Deluge%2C%20c.%201843%2C%20NGA%2046064.jpg?width=3840",
@@ -4171,7 +4189,8 @@
      0.8738,
      1.0
     ]
-   }
+   },
+   "current_repository": "National Gallery of Art"
   },
   {
    "title": "The Bass Rock",
@@ -4181,8 +4200,8 @@
    "cultural_context": "English Romanticism, Scottish coastal watercolors, early 19th century",
    "medium": "Watercolor on paper",
    "date_display": "c. 1824",
-   "description_narrative": "The great volcanic island of the Bass Rock looms out of the Firth of Forth, seabirds wheeling above its cliffs and sailing vessels dwarfed beneath it. The watercolor was made for an engraved series on the antiquities and scenery of Scotland.",
-   "tags": "Turner, Bass Rock, Scotland, Firth of Forth, coast, watercolor",
+   "description_narrative": "A storm-darkened sky presses down on the Bass Rock, its pale cliffs rising sheer from a churning sea. In the foreground, a small boat battles the waves, dwarfed by the looming rock and gathering clouds.",
+   "tags": "seascape, storm, watercolor, rock formation, coastal, dramatic sky",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Bass%20Rock%20-%20JMW%20Turner.jpg?width=3840",
@@ -4237,12 +4256,12 @@
    "title": "Ancient Rome: Agrippina Landing with the Ashes of Germanicus",
    "agent_name": "J. M. W. Turner",
    "agent_role": "Painter",
-   "creation_date": "1839",
+   "creation_date": "1837",
    "cultural_context": "English Romanticism, imaginary classical reconstruction, early 19th century",
-   "medium": "Oil on canvas",
-   "date_display": "1839",
-   "description_narrative": "Turner reconstructs an idealized ancient Rome in golden light as Agrippina disembarks bearing the ashes of her husband Germanicus, a scene drawn from Tacitus. Exhibited at the Royal Academy in 1839, it reflects his ongoing rivalry with Claude Lorrain in monumental classical landscape.",
-   "tags": "Turner, Ancient Rome, Agrippina, classical, history painting, oil painting",
+   "medium": "oil paint",
+   "date_display": "1837",
+   "description_narrative": "Classical temples and a great arched bridge dissolve into a golden, sunlit haze above a crowded river landing. Boats and figures cluster along the near bank, while veiled figures in pale robes stand apart on steps at right, their color a sharp note in the otherwise dreamlike scene. Turner painted this imagined view of ancient Rome as a history painting.",
+   "tags": "ancient rome, golden light, river, classical architecture, history painting, romanticism, atmospheric",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Joseph%20Mallord%20William%20Turner%20-%20Ancient%20Rome%3B%20Agrippina%20Landing%20with%20the%20Ashes%20of%20Germanicus%20-%20Google%20Art%20Project.jpg?width=3840",
@@ -4284,18 +4303,19 @@
      0.7798,
      1.0
     ]
-   }
+   },
+   "physical_dimensions": "121.9 x 91.4 cm"
   },
   {
    "title": "Saint-Maurice, Valais",
    "agent_name": "J. M. W. Turner",
    "agent_role": "Painter",
-   "creation_date": "c. 1836",
+   "creation_date": "c. 1820",
    "cultural_context": "English Romanticism, Alpine tour watercolors, early-to-mid 19th century",
-   "medium": "Watercolor on paper",
-   "date_display": "c. 1836",
-   "description_narrative": "The fortified bridge and gorge at Saint-Maurice, gateway to the Swiss canton of Valais, are rendered amid towering cliffs and a rushing river. The subject reflects Turner's repeated journeys through this narrow Alpine passage during his Swiss tours.",
-   "tags": "Turner, Saint-Maurice, Valais, Switzerland, Alps, watercolor, bridge",
+   "medium": "watercolor paint",
+   "date_display": "c. 1820",
+   "description_narrative": "A single stone arch carries a small chapel-topped bridge across a rocky gorge, dark rock rising sharply on one side. A wading bird stands in the shallow stream below, dwarfed by the terraced mountainside stretching into the distance.",
+   "tags": "watercolor, stone bridge, gorge, alpine landscape, mountain pass",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Turner%20Saint-Maurice%20IMG%205306.jpg?width=3840",

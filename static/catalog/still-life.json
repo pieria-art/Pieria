@@ -13,8 +13,8 @@
    "cultural_context": "Symbolism, French",
    "medium": "Oil on canvas",
    "date_display": "1905",
-   "description_narrative": "This oil on canvas by Odilon Redon presents a vibrant arrangement of flowers in a still life composition. Executed in 1905, it reflects the artist's later period of rich color and evocative forms.",
-   "tags": "still life, flowers, oil painting, symbolist, evocative, vibrant, 20th century",
+   "description_narrative": "A loose bouquet of poppies, anemones, and wildflowers rises from a simple brown vase into a haze of indistinct color, more atmosphere than background. Butterflies drift among the blooms as if the flowers themselves were dissolving into color and light.",
+   "tags": "still life, flowers, oil on canvas, symbolism, butterflies, redon, dreamlike",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Odilon%20Redon%20-%20Still%20Life%20with%20Flowers%20-%201988.141.22%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
@@ -57,7 +57,9 @@
      0.9522
     ]
    },
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "current_repository": "Art Institute of Chicago",
+   "physical_dimensions": "92.7 × 65.5 cm (36 1/2 × 25 3/4 in.); Framed: 111.2 × 84.2 × 6.7 cm (43 3/4 × 33 1/8 × 2 5/8 in.)"
   },
   {
    "title": "Still Life with Flowers",
@@ -65,10 +67,10 @@
    "agent_role": "Artist",
    "creation_date": "1881",
    "cultural_context": "19th Century, French",
-   "medium": "Oil on canvas",
+   "medium": "oil paint",
    "date_display": "1881",
-   "description_narrative": "This oil on canvas painting by Henri Fantin-Latour masterfully depicts a traditional still life composition focused on a vibrant bouquet of flowers. Executed in 1881, the artwork showcases the artist's signature attention to detail and texture, capturing the delicate beauty of the blossoms.",
-   "tags": "still life, flowers, oil painting, realism, 19th century, floral, nature",
+   "description_narrative": "A dense bouquet of white, purple, pink, and orange blossoms overflows a dark vessel set on a wooden tabletop, spilling loose stems and petals beyond its rim. Henri Fantin-Latour painted this still life in oil in 1881; it belongs to the Art Institute of Chicago.",
+   "tags": "still life, flowers, oil painting, 19th century, french art, realism",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Henri%20Fantin-Latour%20-%20Still%20Life%20with%20Flowers%20-%201988.260%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
@@ -111,18 +113,19 @@
      1.0
     ]
    },
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "current_repository": "Art Institute of Chicago"
   },
   {
    "title": "Trompe-l'Oeil Still Life with a Flower Garland and a Curtain",
-   "agent_name": "Adriaen van der Spelt",
+   "agent_name": "Adriaen van der Spelt and Frans van Mieris the Elder",
    "agent_role": "Artist",
    "creation_date": "1658",
    "cultural_context": "Dutch Golden Age",
    "medium": "Oil on panel",
    "date_display": "1658",
-   "description_narrative": "Adriaen van der Spelt's *Trompe-l'Oeil Still Life with a Flower Garland and a Curtain* masterfully employs illusionistic techniques to deceive the viewer's eye. This oil on panel painting presents a detailed flower garland and a seemingly drawn-back curtain, creating a three-dimensional effect.",
-   "tags": "still life, trompe l'oeil, illusionistic, flowers, curtain, Dutch, realism",
+   "description_narrative": "A shimmering blue silk curtain, hung from a real-looking brass rod, appears to have been drawn back to reveal a bouquet of roses, tulips, and poppies painted below. The trick is the whole point: the curtain and its rings are as carefully rendered as the flowers they seem to protect.",
+   "tags": "still life, oil on panel, trompe l'oeil, flowers, dutch golden age, curtain",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Adriaen%20van%20der%20Spelt%20-%20Trompe-l%27Oeil%20Still%20Life%20with%20a%20Flower%20Garland%20and%20a%20Curtain%20-%201949.585%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
@@ -165,7 +168,9 @@
      1.0
     ]
    },
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "current_repository": "Art Institute of Chicago",
+   "physical_dimensions": "46.5 × 63.9 cm (18 1/4 × 25 1/8 in.); Framed: 69.2 × 86.7 × 8.3 cm (27 1/4 × 34 1/8 × 3 1/4 in.)"
   },
   {
    "title": "Magnolias on Light Blue Velvet Cloth",
@@ -175,8 +180,8 @@
    "cultural_context": "American, late 19th century",
    "medium": "Oil on canvas",
    "date_display": "1885–95",
-   "description_narrative": "Martin Johnson Heade captures the delicate beauty of magnolias arranged upon a light blue velvet cloth. The work emphasizes the pristine white petals and the rich texture of the drapery, creating a moment of serene stillness.",
-   "tags": "still life, flower painting, magnolias, nature, american art, oil painting, serene",
+   "description_narrative": "Three magnolia blossoms lie fully open on a dark velvet cloth, their waxy white petals rendered with almost photographic precision against glossy green leaves, some already curling brown at the edges. A single closed bud waits beside them, the whole arrangement lit as if under glass.",
+   "tags": "still life, magnolia, flowers, oil on canvas, velvet, botanical realism",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Martin%20Johnson%20Heade%20-%20Magnolias%20on%20Light%20Blue%20Velvet%20Cloth%20-%201983.791%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
@@ -193,7 +198,9 @@
    "license_verified": "2026-09-22",
    "delivered_edge": 3000,
    "resolution_tier": "HD",
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "current_repository": "Art Institute of Chicago",
+   "physical_dimensions": "38.6 × 61.8 cm (15 1/4 × 24 3/8 in.)"
   },
   {
    "title": "For Sunday's Dinner",
@@ -203,8 +210,8 @@
    "cultural_context": "American, Late 19th Century",
    "medium": "Oil on canvas",
    "date_display": "1888",
-   "description_narrative": "William Michael Harnett's 'For Sunday's Dinner' presents a meticulously arranged still life, showcasing everyday objects and foodstuffs. This oil on canvas masterfully employs trompe l'oeil techniques to create an illusion of tangible reality, inviting viewers to closely inspect its detailed surfaces.",
-   "tags": "still life, realism, trompe l'oeil, everyday objects, food, domestic, american art, late 19th century",
+   "description_narrative": "A plucked chicken hangs upside down by its bound feet against a dark wooden door, its skin catching the light while a few stray feathers still cling to the surface. Painted brass hinges and a keyhole plate complete the deception, the whole scene rendered so precisely it seems to project off the canvas.",
+   "tags": "still life, trompe l'oeil, oil on canvas, plucked chicken, wood door, american realism",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/William%20Michael%20Harnett%20-%20For%20Sunday%27s%20Dinner%20-%20Google%20Art%20Project.jpg?width=3840",
@@ -246,7 +253,9 @@
      1.0,
      0.8689
     ]
-   }
+   },
+   "current_repository": "Art Institute of Chicago",
+   "physical_dimensions": "94.3 × 53.6 cm (37 1/8 × 21 1/8 in.)"
   },
   {
    "title": "Still Life with Dead Game, Fruits, and Vegetables in a Market",
@@ -256,8 +265,8 @@
    "cultural_context": "Baroque, Flemish",
    "medium": "Oil on canvas",
    "date_display": "1614",
-   "description_narrative": "This expansive oil painting by Frans Snyders depicts a lavish market scene overflowing with dead game, a variety of fruits, and an assortment of vegetables. The composition showcases a mastery of texture and abundance, typical of the opulent still life tradition.",
-   "tags": "still life, dead game, market scene, fruits, vegetables, baroque, flemish art, opulence",
+   "description_narrative": "A gray-bearded vendor in a red coat doffs his hat over a market stall piled almost past reading: a hanging deer carcass, a swan with wings spread wide, a peacock, rabbits, and a boar's head jostle against baskets of fruit and heads of cauliflower and leek, while a boy peers up from the crowd below.",
+   "tags": "still life, game market, oil on canvas, flemish baroque, deer, swan, vendor",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frans%20Snyders%20-%20Still%20Life%20with%20Dead%20Game%2C%20Fruits%2C%20and%20Vegetables%20in%20a%20Market%20-%201981.182%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
@@ -274,7 +283,9 @@
    "license_verified": "2026-09-22",
    "delivered_edge": 3000,
    "resolution_tier": "HD",
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "current_repository": "Art Institute of Chicago",
+   "physical_dimensions": "212 × 308 cm (83 1/2 × 121 1/4 in.); Framed: 251.5 × 348 × 10.2 cm (99 × 137 × 4 in.)"
   },
   {
    "title": "Just Dessert",
@@ -284,8 +295,8 @@
    "cultural_context": "American Realism, late 19th century",
    "medium": "Oil on canvas",
    "date_display": "1891",
-   "description_narrative": "William Michael Harnett's \"Just Dessert\" is an oil on canvas painting from 1891. Harnett was renowned for his meticulously rendered still life compositions, often employing trompe l'oeil techniques to create the illusion of reality.",
-   "tags": "still life, trompe l'oeil, american art, 19th century, realism, oil painting",
+   "description_narrative": "A cluster of green grapes spills off a marble ledge, draped between a copper pail, a rope-wrapped blue jar, and a pewter tankard. A halved coconut and a small wooden crate stamped \"Smyrna\" hint at goods carried a long way, while a leafy branch rises between the vessels like an afterthought of green.",
+   "tags": "still life, oil on canvas, tabletop arrangement, grapes, copper pail, coconut",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/William%20Michael%20Harnett%20-%20Just%20Dessert%20-%201942.50%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
@@ -328,7 +339,9 @@
      1.0
     ]
    },
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "current_repository": "Art Institute of Chicago",
+   "physical_dimensions": "56.6 × 68 cm (22 1/4 × 26 3/4 in.)"
   },
   {
    "title": "Still Life with Monkey, Fruits, and Flowers",
@@ -338,8 +351,8 @@
    "cultural_context": "Rococo, French",
    "medium": "Oil on canvas",
    "date_display": "1724",
-   "description_narrative": "Jean-Baptiste Oudry's 'Still Life with Monkey, Fruits, and Flowers' showcases a vibrant array of natural elements, anchored by a lively monkey amidst abundant produce and blossoms. This richly detailed oil painting captures the texture and vitality of its subjects, demonstrating the artist's skill in animal and still-life genres.",
-   "tags": "still life, monkey, fruits, flowers, rococo, animal painting, nature, baroque",
+   "description_narrative": "A monkey leans over a stone balustrade, tail curled high, and reaches its long arm down to pilfer grapes from a silver basket of fruit below. Pink hollyhocks climb a garden wall on one side, an urn of flowers sits on the ledge, and a split melon and peaches spill across the foreground.",
+   "tags": "still life, monkey, oil on canvas, rococo, fruit, garden setting, flowers",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jean-Baptiste%20Oudry%20-%20Still%20Life%20with%20Monkey%2C%20Fruits%2C%20and%20Flowers%20-%201977.486%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
@@ -382,7 +395,9 @@
      1.0
     ]
    },
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "current_repository": "Art Institute of Chicago",
+   "physical_dimensions": "141.6 × 144.8 cm (55 3/4 × 57 in.); Framed: 172.8 × 175.3 × 12.7 cm (68 × 69 × 5 in.)"
   },
   {
    "title": "Still Life",
@@ -390,10 +405,10 @@
    "agent_role": "Artist",
    "creation_date": "c. 1625",
    "cultural_context": "Dutch Golden Age, Dutch",
-   "medium": "Oil on panel",
+   "medium": "oil paint",
    "date_display": "c. 1625",
-   "description_narrative": "This still life by Pieter Claesz meticulously renders everyday objects, often including pewter, glass, and foodstuffs, inviting close observation of texture and light. Such works, painted with subtle tonality, exemplify the quiet domesticity and material prosperity often depicted in Dutch Golden Age art.",
-   "tags": "still life, realism, dutch golden age, objects, domestic scene, oil painting",
+   "description_narrative": "A pie sits cut open on a black plate, its dark filling exposed next to curls of sliced lemon peel. A tall, ornate wine glass and a large pewter pitcher anchor the table, while bread, nuts, and olives spread across a white cloth trimmed with lace at one corner.",
+   "tags": "still life, oil on panel, dutch golden age, banquet piece, pewter pitcher, pie",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pieter%20Claesz%20-%20Still%20Life%20-%201935.300%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
@@ -436,7 +451,9 @@
      1.0
     ]
    },
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "current_repository": "Art Institute of Chicago",
+   "physical_dimensions": "48.0 x 76.9 cm"
   },
   {
    "title": "Thistles",
@@ -446,8 +463,8 @@
    "cultural_context": "American, Late 19th Century",
    "medium": "Oil on canvas",
    "date_display": "1883–89",
-   "description_narrative": "John Singer Sargent's 'Thistles' offers a detailed study of the plant, rendered in oil on canvas. Painted between 1883 and 1889, this work exemplifies the artist's expressive brushwork and keen observation of nature.",
-   "tags": "thistles, botanical study, nature, oil painting, american art, late 19th century",
+   "description_narrative": "Dried, pale thistle stalks tangle across a rust-red ground in quick, sketch-like strokes, more impression than inventory of any single plant. The loose, almost calligraphic brushwork turns a patch of dead weeds into a study of texture and light.",
+   "tags": "still life, oil on canvas, thistles, loose brushwork, impressionism, botanical study",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/John%20Singer%20Sargent%20-%20Thistles%20-%201996.446%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
@@ -490,7 +507,9 @@
      0.7933,
      1.0
     ]
-   }
+   },
+   "current_repository": "Art Institute of Chicago",
+   "physical_dimensions": "55.9 × 71.8 cm (22 × 28 1/4 in.)"
   },
   {
    "title": "Roses in a Bowl",
@@ -500,8 +519,8 @@
    "cultural_context": "19th century, French",
    "medium": "Oil on canvas",
    "date_display": "1881",
-   "description_narrative": "Henri Fantin-Latour's 'Roses in a Bowl' captures the delicate beauty of a floral arrangement with meticulous detail. This oil on canvas painting from 1881 exemplifies the artist's mastery of still life, presenting the roses with a soft, naturalistic elegance.",
-   "tags": "roses, flowers, still life, naturalism, realism, elegant, painting",
+   "description_narrative": "Cream and pink roses cluster in a dark bowl that all but disappears into the deep brown background, so that the blooms seem to float in shadow. A separate white rose lies loose on the table in the foreground, its stem and leaves catching a little more light than the bouquet above.",
+   "tags": "still life, roses, flowers, oil on canvas, dark background, bouquet",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Henri%20Fantin-Latour%20-%20Roses%20in%20a%20Bowl%20-%201964.203%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
@@ -544,7 +563,9 @@
      0.7159,
      1.0
     ]
-   }
+   },
+   "current_repository": "Art Institute of Chicago",
+   "physical_dimensions": "26.2 × 31.4 cm (10 5/16 × 12 3/8 in.)"
   },
   {
    "title": "Wine, Cheese, and Fruit",
@@ -554,8 +575,8 @@
    "cultural_context": "19th Century, American",
    "medium": "Oil on canvas",
    "date_display": "1857",
-   "description_narrative": "John F. Francis's 1857 oil painting presents a detailed still life arrangement of wine, cheese, and various fruits. The careful rendering of textures and forms invites contemplation of the depicted culinary items.",
-   "tags": "still life, food, wine, cheese, fruit, oil painting, 19th century, realism",
+   "description_narrative": "Six glasses of wine, poured to different levels, crowd a table already loaded with two bottles, a white pitcher, cheese and crackers, and a raised dish of wafers. A porcelain bowl heaped with grapes, apples, oranges, and cracked walnuts spills its shells across the cloth on the right.",
+   "tags": "still life, oil on canvas, wine glasses, fruit, cheese, american art, tabletop",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/John%20F.%20Francis%20-%20Wine%2C%20Cheese%2C%20and%20Fruit%20-%201994.239%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
@@ -572,7 +593,9 @@
    "license_verified": "2026-09-22",
    "delivered_edge": 3000,
    "resolution_tier": "HD",
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "current_repository": "Art Institute of Chicago",
+   "physical_dimensions": "63.5 × 76.2 cm (25 × 30 in.)"
   },
   {
    "title": "Lights of Other Days",
@@ -582,8 +605,8 @@
    "cultural_context": "American Art, Early 20th Century",
    "medium": "Oil on canvas",
    "date_display": "1906",
-   "description_narrative": "John Frederick Peto created 'Lights of Other Days' in 1906 using oil on canvas. This artwork, part of the Art Institute of Chicago's collection, invites contemplation of the past through its evocative title.",
-   "tags": "painting, american art, early 20th century, nostalgia, memory, reflection",
+   "description_narrative": "A cluttered wooden shelf holds a jumble of obsolete lighting: a battered oil lantern, brass candlesticks still fitted with stubs of candle, a glass dome, and a tin lamp with its door hanging open. A dented cup dangles precariously off the shelf's edge, as if the whole collection were about to spill into the dark room below.",
+   "tags": "still life, oil on canvas, lanterns, candlesticks, clutter, american realism, dim interior",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/John%20Frederick%20Peto%20-%20Lights%20of%20Other%20Days%20-%201956.125%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
@@ -620,18 +643,20 @@
      0.5849,
      1.0
     ]
-   }
+   },
+   "current_repository": "Art Institute of Chicago",
+   "physical_dimensions": "77.5 × 115 cm (30 1/2 × 45 1/4 in.)"
   },
   {
    "title": "Basket of Fruit (Canestra di Frutta)",
    "agent_name": "Caravaggio",
    "agent_role": "Painter",
-   "creation_date": "c. 1599",
+   "creation_date": "between circa 1597 and circa 1600",
    "cultural_context": "Baroque, Italian",
    "medium": "Oil on canvas",
-   "date_display": "c. 1599",
-   "description_narrative": "A woven basket of fruit and leaves, some already spotted and withering, sits alone against a bare golden background with startling illusionistic precision. Widely considered the first pure still life in Italian art, it announced Caravaggio's unflinching naturalism even in a minor genre.",
-   "tags": "still life, baroque, italian, naturalistic, fruit, caravaggio, precise",
+   "date_display": "between circa 1597 and circa 1600",
+   "description_narrative": "A woven basket teeters at the very edge of a table, set against nothing but bare, golden wall. Look closely and the fruit is not perfect: an apple carries a worm hole, and the vine leaves curl and brown at their tips, a quietly honest note of decay amid the grapes, figs, and peaches.",
+   "tags": "still life, fruit basket, oil on canvas, baroque, botanical detail, wicker basket",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Basket%20of%20Fruit-Caravaggio%20%28c.1595%29.jpg?width=3840",
@@ -683,8 +708,8 @@
    "cultural_context": "Dutch Golden Age",
    "medium": "Oil on copper",
    "date_display": "1619",
-   "description_narrative": "An impossibly precise bouquet of tulips, roses, and other blooms from different seasons fills a porcelain vase, each petal and insect rendered with jewel-like clarity. Bosschaert helped establish the Dutch flower still life as a genre prized for both botanical accuracy and luxury display.",
-   "tags": "still life, dutch golden age, flowers, precise, botanical, bosschaert, luxury",
+   "description_narrative": "A striped, flame-patterned tulip crowns a tight bouquet packed into a blue-and-white porcelain vase painted with leaves and blossoms of its own. Roses, a marigold, white narcissus, and a small brown butterfly perched at the edge fill in the rest, each flower rendered with the same crisp, individual attention.",
+   "tags": "still life, flowers, oil on copper, tulip, dutch golden age, porcelain vase, butterfly",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Stilleven%20met%20bloemen%20in%20een%20Wan-li%20vaas%2C%20SK-A-1522.jpg?width=3840",
@@ -736,8 +761,8 @@
    "cultural_context": "Dutch Golden Age (late), Flower Painting",
    "medium": "Oil on panel",
    "date_display": "1722",
-   "description_narrative": "A cascading arrangement of roses, poppies, and morning glories spills from a sculpted urn, catching droplets of dew and the occasional insect with extraordinary refinement. Van Huysum was celebrated across Europe as the most technically dazzling flower painter of his generation.",
-   "tags": "still life, flowers, dutch, luminous, refined, van huysum, decorative",
+   "description_narrative": "An orange crown imperial towers over a lavish bouquet packed into a terracotta urn carved with a classical relief. Roses, striped tulips, and poppies cascade down toward a bird's nest with three small eggs tucked at the base, while a butterfly hovers at the upper left of the arrangement.",
+   "tags": "still life, flowers, oil on panel, dutch golden age, van huysum, bird's nest, butterfly",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jan%20van%20Huysum%20%28Dutch%20-%20Vase%20of%20Flowers%20-%20Google%20Art%20Project.jpg?width=3840",
@@ -785,12 +810,12 @@
    "title": "Still Life with Lobster",
    "agent_name": "Willem Kalf",
    "agent_role": "Painter",
-   "creation_date": "1650-1653",
+   "creation_date": "c. 1653",
    "cultural_context": "Dutch Golden Age, Pronkstilleven",
-   "medium": "Oil on canvas",
-   "date_display": "c. 1650–1653",
-   "description_narrative": "A boiled lobster, a Chinese porcelain bowl, and a gleaming silver dish are arranged in dramatic candlelit contrast against deep shadow. Kalf's opulent \"pronkstilleven\" (ostentatious still life) style displayed the imported luxuries flowing through Amsterdam's golden-age trade.",
-   "tags": "still life, dutch golden age, luxury, dramatic lighting, opulent, kalf, pronkstilleven",
+   "medium": "oil paint",
+   "date_display": "c. 1653",
+   "description_narrative": "A bright red lobster stands out sharply against the near-black background, its claws draped over the edge of a silver platter. Behind it a silver-mounted drinking horn and a pair of glasses catch what little light there is, while a richly patterned cloth and a spiral of lemon peel soften the display's cold formality.",
+   "tags": "still life, oil on canvas, dutch golden age, pronkstilleven, lobster, drinking horn",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Willem%20Kalf%2C%20Still%20Life%20with%20Drinking-Horn%2C%20c.%201653%2C%20oil%20on%20canvas%2C%20National%20Gallery.png?width=3840",
@@ -832,7 +857,9 @@
      0.8368,
      1.0
     ]
-   }
+   },
+   "current_repository": "National Gallery",
+   "physical_dimensions": "86.4 x 102.2 cm"
   },
   {
    "title": "Banquet Piece with Mince Pie",
@@ -840,18 +867,10 @@
    "agent_role": "Painter",
    "creation_date": "1635",
    "cultural_context": "Dutch Golden Age still life, Haarlem",
-   "medium": "Oil on canvas",
+   "medium": "oil paint",
    "date_display": "1635",
-   "description_narrative": "Heda's largest known still life spreads a partly eaten meal across a rumpled cloth, its toppled goblet and snuffed candle serving as quiet reminders of life's transience. It epitomizes the restrained, near-monochrome breakfast-piece tradition he pioneered in Haarlem.",
-   "tags": [
-    "heda",
-    "still life",
-    "vanitas",
-    "monochrome",
-    "breakfast piece",
-    "national gallery of art",
-    "pewter"
-   ],
+   "description_narrative": "A pewter jug, a tall gilt covered cup, and a squat silver salt cellar with its lid propped open stand among pewter plates on a linen-draped table, beside a peeled lemon and an unlit candle. Painted by Willem Claesz. Heda in 1635, this Dutch Golden Age still life favors muted browns, silvers, and golds.",
+   "tags": "still life, dutch golden age, heda, pewter, salt cellar, gilt cup, vanitas",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Willem%20Claesz%20Heda%20-%20Banquet%20Piece%20with%20Mince%20Pie%20-%20Google%20Art%20Project.jpg?width=3840",
@@ -894,26 +913,19 @@
      1.0
     ]
    },
-   "current_repository": "National Gallery of Art, Washington"
+   "current_repository": "National Gallery of Art, Washington",
+   "physical_dimensions": "106.7 x 111.1 cm"
   },
   {
    "title": "Still Life with Flowers on a Marble Tabletop",
    "agent_name": "Rachel Ruysch",
    "agent_role": "Painter",
-   "creation_date": "1716",
+   "creation_date": "1698",
    "cultural_context": "Dutch Golden Age flower painting, Amsterdam",
    "medium": "Oil on canvas",
-   "date_display": "1716",
-   "description_narrative": "A dense bouquet combines more than ten flower species that bloom in different seasons, assembled from individual studies into a botanically impossible arrangement. Insects rendered with near-scientific precision crawl among the blooms, a hallmark of Ruysch's celebrated flower pieces.",
-   "tags": [
-    "rachel ruysch",
-    "still life",
-    "flowers",
-    "bouquet",
-    "rijksmuseum",
-    "female artist",
-    "insects"
-   ],
+   "date_display": "1698",
+   "description_narrative": "White and pink roses tumble over the edge of a marble tabletop while an iris and orange poppies rise above a dense mass of greenery. Life keeps intruding on the arrangement: a small white butterfly clings to a leaf, a caterpillar inches across the stone, and a single wheat stalk crosses the bouquet's base.",
+   "tags": "still life, flowers, oil on canvas, dutch golden age, rachel ruysch, insects, roses",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Still%20Life%20with%20Bouquet%20of%20Flowers%20%28SM%20540%29.png?width=3840",
@@ -961,20 +973,12 @@
    "title": "The Ray",
    "agent_name": "Jean-Baptiste-Simeon Chardin",
    "agent_role": "Painter",
-   "creation_date": "1728",
+   "creation_date": "1731",
    "cultural_context": "French Rococo-era still life, Paris",
-   "medium": "Oil on canvas",
-   "date_display": "1728",
-   "description_narrative": "A gutted skate hangs on a hook, its pale flesh split open into an almost human grimace, above a still life of a cat, oysters, and kitchen vessels. Chardin submitted the painting as his reception piece to the Academie in 1728, and it was later admired by Matisse and Cezanne.",
-   "tags": [
-    "chardin",
-    "still life",
-    "fish",
-    "skate",
-    "louvre",
-    "kitchen",
-    "french"
-   ],
+   "medium": "oil paint",
+   "date_display": "1731",
+   "description_narrative": "A gutted ray hangs from a hook at the top of the composition, its pale underside turned outward so that its odd, almost face-like markings stare down at the table below. A dead chicken dangles off the table's edge, its head hanging past the stone ledge, while a copper pot, a jug, eggs, and green onions fill out a scene of ordinary kitchen goods.",
+   "tags": "still life, oil on canvas, chardin, fish, kitchen scene, copper pot",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Still%20Life%20with%20Ray%20and%20Basket%20of%20Onions%20-%20Jean%20Sim%C3%A9on%20Chardin%20-%20Google%20Cultural%20Institute.jpg?width=3840",
@@ -1016,26 +1020,19 @@
      0.9732,
      1.0
     ]
-   }
+   },
+   "physical_dimensions": "40.5 x 32.0 cm"
   },
   {
    "title": "Still Life with Cheeses, Almonds and Pretzels",
    "agent_name": "Clara Peeters",
    "agent_role": "Painter",
-   "creation_date": "1615",
+   "creation_date": "c. 1615",
    "cultural_context": "Flemish Baroque still life, Antwerp",
    "medium": "Oil on panel",
    "date_display": "c. 1615",
-   "description_narrative": "A stack of cheeses, a dish of almonds, pretzels, and bread are arranged with luxury imports of Wanli porcelain and Venetian glass that signal Antwerp's trading wealth. Peeters hid her signature on a bridal knife and worked tiny self-portraits into the reflections on a metal jug.",
-   "tags": [
-    "clara peeters",
-    "still life",
-    "cheese",
-    "flemish",
-    "mauritshuis",
-    "female artist",
-    "breakfast piece"
-   ],
+   "description_narrative": "Two wedges of cheese lean against each other, one pale and crumbling, one dark-rinded, with a wedge already cut and stacked on top. A stoneware jug with a hinged lid and a stemmed glass of wine flank the cheese, while a coiled pretzel and a blue-and-white dish of almonds and dried fruit fill the foreground.",
+   "tags": "still life, oil on panel, flemish baroque, cheese, pretzel, stoneware jug",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Clara%20Peeters%20-%20Still%20Life%20with%20Cheeses%2C%20Almonds%20and%20Pretzels%20-%201203%20-%20Mauritshuis.jpg?width=3840",
@@ -1086,17 +1083,9 @@
    "creation_date": "1675",
    "cultural_context": "Dutch Golden Age still life",
    "medium": "Oil on canvas",
-   "date_display": "c. 1675",
-   "description_narrative": "Ripe fruit, a bird's nest of eggs, wheat, and grapes are set against a dark thicket where ants devour a fish and a lizard lies dead, forming an allegory of the cycle of life. Mignon trained under Jan Davidsz. de Heem, whose dense compositions clearly shaped this work.",
-   "tags": [
-    "mignon",
-    "still life",
-    "allegory",
-    "nest",
-    "national gallery of art",
-    "fruit",
-    "vanitas"
-   ],
+   "date_display": "1675",
+   "description_narrative": "A basket overflows with grapes, peaches, plums, and melon beneath a tree where finches perch and a bird's nest cradles a clutch of eggs in the foliage. Strung fish hang at the right while a frog and a small lizard explore the forest floor below.",
+   "tags": "still life, oil on canvas, dutch golden age, birds, fish, forest floor, fruit basket",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Abraham%20Mignon%2C%20Still%20Life%20with%20Fruit%2C%20Fish%2C%20and%20a%20Nest%2C%20c.%201675%2C%20NGA%2071024.jpg?width=3840",
@@ -1138,7 +1127,8 @@
      0.969,
      1.0
     ]
-   }
+   },
+   "current_repository": "National Gallery of Art"
   },
   {
    "title": "Fruit Still Life with Shells and Tulip",
@@ -1146,18 +1136,10 @@
    "agent_role": "Painter",
    "creation_date": "1620",
    "cultural_context": "Dutch Golden Age still life, Utrecht",
-   "medium": "Oil on panel",
+   "medium": "oil paint",
    "date_display": "1620",
-   "description_narrative": "A Chinese Wanli porcelain bowl of quinces, pomegranates, apricots, and grapes is set beside exotic sea shells and a single tulip, reflecting the reach of Dutch global trade. This early signed work by van der Ast shows the training he received in the studio of Ambrosius Bosschaert.",
-   "tags": [
-    "van der ast",
-    "still life",
-    "shells",
-    "tulip",
-    "mauritshuis",
-    "porcelain",
-    "fruit"
-   ],
+   "description_narrative": "A blue-and-white porcelain plate piled with citrons, grapes, and peaches sits on a rust-orange cloth scattered with seashells and a single white tulip. A dragonfly perches on the fruit and a butterfly rests near the flower, small living details that animate the quiet arrangement.",
+   "tags": "still life, fruit, seashells, tulip, oil on panel, dutch golden age, insects",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Balthasar%20van%20der%20Ast%20-%20Fruit%20Still%20Life%20with%20Shells%20and%20Tulip%20-%201066%20-%20Mauritshuis.jpg?width=3840",
@@ -1199,7 +1181,8 @@
      0.7669,
      1.0
     ]
-   }
+   },
+   "physical_dimensions": "46.0 x 64.0 cm"
   },
   {
    "title": "Fish (Still Life)",
@@ -1209,16 +1192,8 @@
    "cultural_context": "French Realism, precursor to Impressionism",
    "medium": "Oil on canvas",
    "date_display": "1864",
-   "description_narrative": "Manet painted this arrangement of fish, oysters, and other seafood in a style that pays homage to seventeenth-century Dutch and Spanish still-life painting while using the fluid, direct brushwork that made him a hero to the younger Impressionist generation. Still life gave Manet a vehicle to display his technical bravura apart from the controversies that often surrounded his figure paintings.",
-   "tags": [
-    "manet",
-    "still-life",
-    "seafood",
-    "realism",
-    "dutch-influence",
-    "paris",
-    "19th-century"
-   ],
+   "description_narrative": "A large silvery fish curls across a white cloth, its tail flicked skyward, next to a small red fish, a coiled eel, and a heap of oysters. A gleaming copper pot and a bright lemon with a knife balance the cool grays and pinks of the catch with warm, reflective color.",
+   "tags": "still life, fish, oysters, oil on canvas, kitchen scene, copper pot",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/%C3%89douard%20Manet%20-%20Fish%20%28Still%20Life%29%20-%201942.311%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
@@ -1261,7 +1236,9 @@
      1.0
     ]
    },
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "current_repository": "Art Institute of Chicago",
+   "physical_dimensions": "73.5 × 92.4 cm (28 15/16 × 36 3/8 in.); Framed: 108.6 × 127 × 12.7 cm (42 3/4 × 50 × 5 in.)"
   },
   {
    "title": "Still Life with Fruit and Wine Jug",
@@ -1271,16 +1248,8 @@
    "cultural_context": "Precursor to Post-Impressionism, influence on van Gogh",
    "medium": "Oil on panel",
    "date_display": "1874",
-   "description_narrative": "Adolphe Monticelli painted this richly textured still life using thick, encrusted layers of paint and jewel-like color that anticipated the expressive brushwork of Post-Impressionism. Vincent van Gogh deeply admired Monticelli's work, copying his paintings and citing him as a formative influence on his own approach to color and paint application.",
-   "tags": [
-    "monticelli",
-    "still-life",
-    "van-gogh-influence",
-    "impasto",
-    "color",
-    "provence",
-    "19th-century"
-   ],
+   "description_narrative": "Pears and an apple sit on a plate beside a white ceramic jug, the paint laid on so thickly it reads almost as relief. A richly patterned cloth, its reds and greens blurred into loose dabs, covers the table and dominates the composition as much as the fruit itself.",
+   "tags": "still life, oil on panel, fruit, impasto, patterned cloth, jug",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Adolphe%20Joseph%20Thomas%20Monticelli%20-%20Still%20Life%20with%20Fruit%20and%20Wine%20Jug%20-%201988.261%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
@@ -1323,7 +1292,9 @@
      1.0
     ]
    },
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "current_repository": "Art Institute of Chicago",
+   "physical_dimensions": "48.2 × 59.7 cm (19 × 23 1/2 in.); Framed: 66.9 × 79.4 × 7.7 cm (26 3/8 × 31 1/4 × 3 in.)"
   },
   {
    "title": "Calf's Head and Ox Tongue",
@@ -1333,8 +1304,8 @@
    "cultural_context": "Impressionism, French",
    "medium": "Oil on canvas",
    "date_display": "c. 1882",
-   "description_narrative": "This painting presents a starkly realistic still life featuring a butchered calf's head and an ox tongue, rendered with unflinching detail. Gustave Caillebotte's meticulous brushwork captures the textures and forms of the meat, reflecting his mastery of realistic depiction.",
-   "tags": "still life, realism, meat, food, detailed, oil painting, 19th century",
+   "description_narrative": "A skinned calf's head and a raw ox tongue hang side by side from butcher's hooks, painted with loose, vigorous strokes that turn pale flesh and torn red muscle into passages of pure color. A chain looped below the rail is the only other prop, the scene as blunt and unglamorous as any Parisian market stall.",
+   "tags": "still life, butcher shop, oil on canvas, impressionism, meat, loose brushwork",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Gustave%20Caillebotte%20-%20Calf%27s%20Head%20and%20Ox%20Tongue%20-%201999.561%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
@@ -1377,7 +1348,9 @@
      1.0,
      0.9855
     ]
-   }
+   },
+   "current_repository": "Art Institute of Chicago",
+   "physical_dimensions": "73 × 54 cm (29 × 21 in.); Framed: 87.7 × 69.3 × 7.7 cm (34 1/2 × 27 1/4 × 3 in.)"
   }
  ]
 }

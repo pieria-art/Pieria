@@ -2926,12 +2926,16 @@ def run_land(*, static_dir: Path | None = None, drops_path: str | Path | None = 
                 if s_item.get(field) != r_item.get(field):
                     changed[field] += 1
             new_items[pre_idx] = _merge_landed_item(s_item, r_item)
+        # The deferred drops are approved removals: they must leave the served catalog too, not just
+        # the import output (they were kept here by mistake on the first landing, 2026-09-27).
+        dropped_set = set(dropped)
+        new_items = [it for j, it in enumerate(new_items) if j not in dropped_set]
 
         new_data = dict(static_data)
         new_data["items"] = new_items
         plan[coll] = (static_dir / f"{coll}.json", new_data)
         report["collections"][coll] = {
-            "items_before": len(reground_items), "items_after": len(new_items), "changed": changed,
+            "items_before": len(static_items), "items_after": len(new_items), "changed": changed,
         }
 
     if dry_run:

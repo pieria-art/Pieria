@@ -2647,12 +2647,12 @@ def test_land_maps_through_deferred_drops(tmp_path, monkeypatch):
     report = rg.run_land(static_dir=static_dir, drops_path=drops_path)
 
     items = json.loads((static_dir / "demo.json").read_text())["items"]
-    assert [i["title"] for i in items] == ["Keep 0", "Dropped 1", "Keep 2"]
+    # the approved drop leaves the served catalog too (regression: the first real landing kept all 8)
+    assert [i["title"] for i in items] == ["Keep 0", "Keep 2"]
     assert items[0]["medium"] == "Oil on panel"
-    assert items[1]["medium"] == "Oil"  # untouched — reground never carried this dropped item
-    assert items[2]["medium"] == "Oil on canvas"
-    assert report["collections"]["demo"]["items_before"] == 2
-    assert report["collections"]["demo"]["items_after"] == 3
+    assert items[1]["medium"] == "Oil on canvas"
+    assert report["collections"]["demo"]["items_before"] == 3
+    assert report["collections"]["demo"]["items_after"] == 2
 
 
 def test_land_refuses_and_writes_nothing_on_count_mismatch(tmp_path, monkeypatch):

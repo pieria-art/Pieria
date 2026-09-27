@@ -13,8 +13,8 @@
    "cultural_context": "Paintings",
    "medium": "Oil on canvas",
    "date_display": "1653",
-   "description_narrative": "Rembrandt's 1653 oil painting depicts Aristotle, a philosopher, gazing intently at a bust of the epic poet Homer. The interplay of light and shadow highlights Aristotle's contemplative expression, suggesting a profound engagement with artistic legacy or philosophical inquiry.",
-   "tags": "aristotle, homer, philosophy, portrait, dutch golden age, baroque, contemplation, oil painting",
+   "description_narrative": "A man in a dark tunic and full white sleeves rests one hand gently on the head of a marble bust, a heavy gold chain crossing his chest and a wide black hat shading his face. The Metropolitan Museum of Art dates this painting to 1653.",
+   "tags": "portrait, gold chain, marble bust, chiaroscuro, dutch golden age, oil on canvas",
    "source": "The Metropolitan Museum of Art",
    "license": "Public Domain",
    "source_url": "https://images.metmuseum.org/CRDImages/ep/original/DP-30758-001.jpg",
@@ -56,18 +56,19 @@
      0.8911,
      1.0
     ]
-   }
+   },
+   "current_repository": "The Metropolitan Museum of Art"
   },
   {
    "title": "Portrait of a Man (\"The Auctioneer\")",
    "agent_name": "Rembrandt",
    "agent_role": "Artist",
-   "creation_date": "probably ca. 1658–62",
+   "creation_date": "",
    "cultural_context": "Paintings",
-   "medium": "Oil on canvas",
-   "date_display": "probably ca. 1658–62",
-   "description_narrative": "This compelling oil on canvas by Rembrandt captures the likeness of a man, possibly an auctioneer, with an intense and thoughtful gaze. Painted in the artist's mature style, it exemplifies his mastery in conveying psychological depth through light and shadow.",
-   "tags": "portrait, man, dutch golden age, oil painting, realism, psychological, solemn",
+   "medium": "",
+   "date_display": "",
+   "description_narrative": "A bearded man in a dark, fur-trimmed robe and broad-brimmed hat holds a sheaf of papers, his gaze steady and appraising. Deep shadow envelops the room around him, leaving only his face, hands, and a pale cuff caught in warm light.",
+   "tags": "portrait, rembrandt, man with papers, fur trim, broad hat, dutch golden age, chiaroscuro",
    "source": "The Metropolitan Museum of Art",
    "license": "Public Domain",
    "source_url": "https://images.metmuseum.org/CRDImages/ep/original/DP145912.jpg",
@@ -120,8 +121,8 @@
    "cultural_context": "Paintings",
    "medium": "Oil on wood",
    "date_display": "1640",
-   "description_narrative": "This portrait by Rembrandt depicts Herman Doomer, a prominent cabinetmaker of his time. Painted in 1640 using oil on wood, it showcases the artist's mastery of capturing individual character.",
-   "tags": "portrait, baroque, dutch golden age, realism, man, oil painting",
+   "description_narrative": "A man with a thin mustache and goatee looks out from beneath a wide black hat, a crisply pleated white ruff framing his neck above a plain brown coat. The Metropolitan Museum of Art dates this portrait to 1640.",
+   "tags": "portrait, ruff collar, wide-brimmed hat, dutch golden age, oil on wood, dark background",
    "source": "The Metropolitan Museum of Art",
    "license": "Public Domain",
    "source_url": "https://images.metmuseum.org/CRDImages/ep/original/DP145921.jpg",
@@ -164,7 +165,8 @@
      1.0,
      0.5834
     ]
-   }
+   },
+   "current_repository": "The Metropolitan Museum of Art"
   },
   {
    "title": "Portrait of Gerard de Lairesse",
@@ -174,8 +176,8 @@
    "cultural_context": "Paintings",
    "medium": "Oil on canvas",
    "date_display": "1665–67",
-   "description_narrative": "Rembrandt's 'Portrait of Gerard de Lairesse' is a compelling oil on canvas painting, completed between 1665 and 1667. This work showcases the artist's mastery in capturing the individuality and presence of his subject through a striking use of light and shadow.",
-   "tags": "portrait, man, rembrandt, dutch golden age, baroque, oil painting, realism",
+   "description_narrative": "A young man with long curling hair and a broad-brimmed hat holds a sheaf of papers loosely in both hands, his fur-trimmed cloak catching warm light against a shadowed interior.",
+   "tags": "portrait, rembrandt, young man, fur-trimmed cloak, papers, dutch golden age, chiaroscuro",
    "source": "The Metropolitan Museum of Art",
    "license": "Public Domain",
    "source_url": "https://images.metmuseum.org/CRDImages/rl/original/DP121332.jpg",
@@ -218,7 +220,8 @@
      0.9816,
      1.0
     ]
-   }
+   },
+   "current_repository": "The Metropolitan Museum of Art"
   },
   {
    "title": "Self-Portrait",
@@ -228,8 +231,8 @@
    "cultural_context": "Paintings",
    "medium": "Oil on canvas",
    "date_display": "1660",
-   "description_narrative": "This powerful self-portrait by Rembrandt captures the artist in his later years, revealing a profound introspection through his masterful use of light and shadow. The painting serves as a testament to his enduring artistic genius and a moving record of his personal journey.",
-   "tags": "self-portrait, oil painting, rembrandt, dutch golden age, baroque, masterwork, portraiture, introspection",
+   "description_narrative": "Wearing a dark beret and a mustard-brown robe, a man with a lined face and steady gaze looks directly out at the viewer, one hand resting against a round object tucked at his side.",
+   "tags": "self-portrait, rembrandt, beret, dutch golden age, direct gaze, metropolitan museum",
    "source": "The Metropolitan Museum of Art",
    "license": "Public Domain",
    "source_url": "https://images.metmuseum.org/CRDImages/ep/original/DP-16323-001.jpg",
@@ -271,7 +274,8 @@
      0.9548,
      1.0
     ]
-   }
+   },
+   "current_repository": "The Metropolitan Museum of Art"
   },
   {
    "title": "Hendrickje Stoffels (1626–1663)",
@@ -281,8 +285,8 @@
    "cultural_context": "Paintings",
    "medium": "Oil on canvas",
    "date_display": "mid-1650s",
-   "description_narrative": "Rembrandt's oil on canvas painting portrays Hendrickje Stoffels, dated to the mid-1650s. This work is a notable example of the artist's portraiture from this period.",
-   "tags": "portrait, oil painting, Dutch Golden Age, Baroque, Rembrandt, 17th century",
+   "description_narrative": "A woman in a dark, richly textured cloak rests one hand lightly at her chest, her gaze lowered in quiet thought against an almost entirely dark background, warm light catching only her face and hands. The Metropolitan Museum of Art dates this portrait to the mid-1650s.",
+   "tags": "portrait, chiaroscuro, quiet pose, dutch golden age, oil on canvas, dark background",
    "source": "The Metropolitan Museum of Art",
    "license": "Public Domain",
    "source_url": "https://images.metmuseum.org/CRDImages/ep/original/DP145920.jpg",
@@ -325,60 +329,8 @@
      0.9246,
      1.0
     ]
-   }
-  },
-  {
-   "title": "Bellona",
-   "agent_name": "Rembrandt (Rembrandt van Rijn)",
-   "agent_role": "Artist",
-   "creation_date": "1633",
-   "cultural_context": "Paintings",
-   "medium": "Oil on canvas",
-   "date_display": "1633",
-   "description_narrative": "Rembrandt's 1633 oil on canvas depicts Bellona, the Roman goddess of war. This work showcases the artist's early command of dramatic light and characterization.",
-   "tags": "baroque, dutch golden age, mythology, goddess, oil painting, rembrandt, figure painting, war",
-   "source": "The Metropolitan Museum of Art",
-   "license": "Public Domain",
-   "source_url": "https://images.metmuseum.org/CRDImages/ep/original/DP146454.jpg",
-   "thumbnail_url": "https://images.metmuseum.org/CRDImages/ep/web-large/DP146454.jpg",
-   "focal_point": [
-    0.45,
-    0.28
-   ],
-   "featured_rank": 25,
-   "license_verdict": "pd",
-   "license_basis": "CC0 — Met Open Access",
-   "license_url": "",
-   "credit_line": "Collection of The Metropolitan Museum of Art",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 3861,
-   "resolution_tier": "4K",
-   "aspect_crops": {
-    "16:9": [
-     0.0,
-     0.0499,
-     1.0,
-     0.4815
-    ],
-    "9:16": [
-     0.1302,
-     0.0,
-     0.8632,
-     1.0
-    ],
-    "4:3": [
-     0.0,
-     0.0199,
-     1.0,
-     0.5955
-    ],
-    "3:4": [
-     0.0113,
-     0.0,
-     0.9887,
-     1.0
-    ]
-   }
+   },
+   "current_repository": "The Metropolitan Museum of Art"
   },
   {
    "title": "Man in a Turban",
@@ -388,8 +340,8 @@
    "cultural_context": "Paintings",
    "medium": "Oil on canvas",
    "date_display": "1632",
-   "description_narrative": "Rembrandt's 'Man in a Turban' is a striking oil on canvas portrait from 1632. It exemplifies the artist's masterful use of light and shadow to create a sense of depth and character.",
-   "tags": "portrait, oil painting, dutch golden age, rembrandt, chiaroscuro, baroque, man",
+   "description_narrative": "An elderly man in a voluminous grey silk turban, fastened with a jeweled brooch and tassel, wears a gold-embroidered robe beneath a heavy fur-trimmed cloak. The Metropolitan Museum of Art dates this portrait to 1632.",
+   "tags": "portrait, turban, fur-trimmed cloak, dutch golden age, oil on canvas, rich fabric",
    "source": "The Metropolitan Museum of Art",
    "license": "Public Domain",
    "source_url": "https://images.metmuseum.org/CRDImages/ep/original/DP146479.jpg",
@@ -431,7 +383,8 @@
      0.9606,
      1.0
     ]
-   }
+   },
+   "current_repository": "The Metropolitan Museum of Art"
   },
   {
    "title": "Lucas van Uffel (died 1637)",
@@ -441,8 +394,8 @@
    "cultural_context": "Paintings",
    "medium": "Oil on canvas",
    "date_display": "ca. 1622",
-   "description_narrative": "This striking portrait captures Lucas van Uffel, a prominent merchant and art collector, with a discerning gaze. Anthony van Dyck masterfully uses oil on canvas to convey the sitter's status and intellectual depth.",
-   "tags": "portrait, male figure, Baroque, oil painting, Flemish, formal, refined",
+   "description_narrative": "Turning to face the viewer, a man in a black robe with a delicate lace collar rests one hand on a chair back, a pair of dividers in the other; a marble bust and a terrestrial globe sit on the draped table behind him. The Metropolitan Museum of Art dates this portrait to about 1622.",
+   "tags": "portrait, globe, marble bust, lace collar, dutch golden age, oil on canvas",
    "source": "The Metropolitan Museum of Art",
    "license": "Public Domain",
    "source_url": "https://images.metmuseum.org/CRDImages/ep/original/DP-27908-001.jpg",
@@ -484,7 +437,8 @@
      0.9524,
      1.0
     ]
-   }
+   },
+   "current_repository": "The Metropolitan Museum of Art"
   },
   {
    "title": "A Maid Asleep",
@@ -494,8 +448,8 @@
    "cultural_context": "Paintings",
    "medium": "Oil on canvas",
    "date_display": "ca. 1656–57",
-   "description_narrative": "This painting depicts a young maid asleep at a table, her posture suggesting a momentary lapse from her duties. Vermeer's meticulous attention to light and domestic detail creates a quiet, contemplative scene typical of his work.",
-   "tags": "genre painting, domestic scene, quiet, oil painting, dutch golden age, interior, figure study",
+   "description_narrative": "A woman dozes at a table with her head propped on one hand, a jug and a basket of fruit spilling across a richly patterned carpet in front of her, an open doorway leading to another sunlit room beyond. Vermeer painted this scene around 1656.",
+   "tags": "sleeping figure, interior scene, still life, vermeer, dutch golden age, oil on canvas",
    "source": "The Metropolitan Museum of Art",
    "license": "Public Domain",
    "source_url": "https://images.metmuseum.org/CRDImages/ep/original/DP355525.jpg",
@@ -537,7 +491,8 @@
      0.8903,
      1.0
     ]
-   }
+   },
+   "current_repository": "The Metropolitan Museum of Art"
   },
   {
    "title": "Study of a Young Woman",
@@ -547,8 +502,8 @@
    "cultural_context": "Paintings",
    "medium": "Oil on canvas",
    "date_display": "ca. 1665–67",
-   "description_narrative": "Johannes Vermeer captures a quiet moment with this intimate study of a young woman, her gaze direct yet enigmatic. Painted in oil on canvas, the work exemplifies the artist's masterful use of light and subtle brushwork to convey a sense of presence.",
-   "tags": "young woman, figure study, Dutch Golden Age, oil painting, realism, intimate, portrait",
+   "description_narrative": "A young woman turns her head to meet the viewer's gaze, a pale blue-grey wrap draped loosely over her shoulders and a tan scarf trailing behind her. She emerges from an almost featureless dark background, lit softly from one side.",
+   "tags": "portrait, vermeer, young woman, dark background, soft light, dutch golden age, metropolitan museum",
    "source": "The Metropolitan Museum of Art",
    "license": "Public Domain",
    "source_url": "https://images.metmuseum.org/CRDImages/ep/original/DP353256.jpg",
@@ -590,7 +545,8 @@
      0.9197,
      1.0
     ]
-   }
+   },
+   "current_repository": "The Metropolitan Museum of Art"
   },
   {
    "title": "The Crucifixion with the Virgin and Saint John",
@@ -600,8 +556,8 @@
    "cultural_context": "Paintings",
    "medium": "Oil on canvas",
    "date_display": "ca. 1624–25",
-   "description_narrative": "Hendrick ter Brugghen's 'The Crucifixion with the Virgin and Saint John' depicts the somber biblical scene with dramatic intensity. Painted in oil on canvas, the work showcases the artist's masterful use of light and shadow to evoke emotional depth.",
-   "tags": "religious, biblical, crucifixion, dutch golden age, caravaggism, sacred art, emotional",
+   "description_narrative": "A pale figure hangs on the cross above a skull and scattered bones, a grieving woman in rose and grey clasping her hands at left while a younger man in red and green looks upward at right. Hendrick ter Brugghen painted this crucifixion scene around 1625.",
+   "tags": "religious painting, crucifixion, chiaroscuro, hendrick ter brugghen, dutch golden age, oil on canvas",
    "source": "The Metropolitan Museum of Art",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Hendrick%20ter%20Brugghen%20The%20Crucifixion%20with%20the%20Virgin%20and%20Saint%20John.jpg?width=3840",
@@ -643,7 +599,9 @@
      1.0,
      0.9447
     ]
-   }
+   },
+   "current_repository": "The Metropolitan Museum of Art",
+   "physical_dimensions": "154.9 x 102.2 cm"
   },
   {
    "title": "Young Man and Woman in an Inn",
@@ -653,8 +611,8 @@
    "cultural_context": "Paintings",
    "medium": "Oil on canvas",
    "date_display": "1623",
-   "description_narrative": "Frans Hals's 'Young Man and Woman in an Inn' from 1623 captures a lively genre scene. This oil on canvas work showcases the artist's characteristic brushwork and engagement with everyday life.",
-   "tags": "genre painting, Dutch Golden Age, oil painting, inn, tavern scene, casual, early 17th century",
+   "description_narrative": "Frans Hals painted this genre portrait in 1623; it belongs to the Metropolitan Museum of Art. A laughing man in a wide, feathered hat raises a glass overhead while a smiling woman rests her hand on his shoulder, a small dog nestled at her side.",
+   "tags": "frans hals, dutch golden age, genre painting, portrait, oil painting, tavern scene, 17th century, met museum",
    "source": "The Metropolitan Museum of Art",
    "license": "Public Domain",
    "source_url": "https://images.metmuseum.org/CRDImages/ep/original/DP145899.jpg",
@@ -697,7 +655,8 @@
      0.9955,
      1.0
     ]
-   }
+   },
+   "current_repository": "The Metropolitan Museum of Art"
   },
   {
    "title": "Boy with a Lute",
@@ -707,8 +666,8 @@
    "cultural_context": "Paintings",
    "medium": "Oil on canvas",
    "date_display": "ca. 1625",
-   "description_narrative": "Frans Hals captures a lively young musician in \"Boy with a Lute,\" characteristic of his dynamic portraiture. This oil on canvas work exemplifies the artist's masterful brushwork and expressive style during the Dutch Golden Age.",
-   "tags": "boy, lute, portrait, dutch golden age, baroque, expressive, music",
+   "description_narrative": "A boy in a dark beret grins over his shoulder, one hand raised mid-gesture, cradling a lute against a red sleeve while an orange and small ball rest on the table before him. This portrait, painted around 1625, is attributed to Frans Hals, though some scholars connect it to Judith Leyster.",
+   "tags": "portrait, musician, lute, laughing, dutch golden age, oil on canvas",
    "source": "The Metropolitan Museum of Art",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frans%20Hals%20-%20Boy%20with%20a%20Lute%20-%20The%20Metropolitan%20Museum%20of%20Art.jpg?width=3840",
@@ -750,7 +709,8 @@
      0.9588,
      1.0
     ]
-   }
+   },
+   "current_repository": "The Metropolitan Museum of Art"
   },
   {
    "title": "Petrus Scriverius (1576–1660)",
@@ -760,8 +720,8 @@
    "cultural_context": "Paintings",
    "medium": "Oil on wood",
    "date_display": "1626",
-   "description_narrative": "This oil painting by Frans Hals depicts Petrus Scriverius, a prominent figure from the 17th century. Created in 1626, it showcases Hals's characteristic lively brushwork and keen observation.",
-   "tags": "portrait, oil painting, dutch golden age, baroque, male portrait, 17th century, frans hals",
+   "description_narrative": "Set within a painted oval, an older man with a high forehead and a full, greying beard gazes past the viewer, one hand resting lightly at his chest. A delicately rendered lace ruff frames his face, catching the light against the dark folds of his cloak.",
+   "tags": "portrait, frans hals, oval frame, lace ruff, older man, dutch golden age, oil on wood",
    "source": "The Metropolitan Museum of Art",
    "license": "Public Domain",
    "source_url": "https://images.metmuseum.org/CRDImages/ep/original/DP247208.jpg",
@@ -803,18 +763,19 @@
      1.0,
      0.6352
     ]
-   }
+   },
+   "current_repository": "The Metropolitan Museum of Art"
   },
   {
    "title": "The Smokers",
    "agent_name": "Adriaen Brouwer",
    "agent_role": "Artist",
-   "creation_date": "ca. 1636",
+   "creation_date": "",
    "cultural_context": "Paintings",
-   "medium": "Oil on wood",
-   "date_display": "ca. 1636",
-   "description_narrative": "Adriaen Brouwer's \"The Smokers\" depicts a group of men gathered in a dimly lit interior, their expressions animated as they indulge in tobacco and drink. This genre scene, rendered with a keen eye for detail and character, captures a moment of rustic conviviality characteristic of the artist's work.",
-   "tags": "genre scene, Dutch Golden Age, smokers, tavern, everyday life, realism, oil painting, 17th century",
+   "medium": "",
+   "date_display": "",
+   "description_narrative": "A wide-eyed man reacts with an open mouth as he is handed a jug across a crowded tavern table, smoke curling above a huddle of laughing companions. A rustic broom, ceramic jug, and basket clutter the floor in the foreground.",
+   "tags": "genre scene, tavern, smoking, pipe, dutch golden age, drinking scene, flemish genre",
    "source": "The Metropolitan Museum of Art",
    "license": "Public Domain",
    "source_url": "https://images.metmuseum.org/CRDImages/ep/original/DP-15904-001.jpg",
@@ -856,7 +817,8 @@
      0.9683,
      1.0
     ]
-   }
+   },
+   "current_repository": ""
   },
   {
    "title": "Landschap met stenen brug",
@@ -866,8 +828,8 @@
    "cultural_context": "Dutch Golden Age, Dutch",
    "medium": "Oil on panel",
    "date_display": "c. 1637-1640",
-   "description_narrative": "Rembrandt van Rijn's 'Landschap met stenen brug' depicts a dramatic scene with a storm gathering over a river and a sturdy stone arch bridge. The artist masterfully uses light and shadow to create a sense of impending drama and profound atmosphere within the Dutch landscape.",
-   "tags": "landscape, bridge, river, storm, dutch golden age, baroque, dramatic, chiaroscuro",
+   "description_narrative": "A low stone bridge arches over a quiet river, small boats with rowers passing beneath it, trees and rooftops clustered along the bank under a sky split between soft daylight and heavy, dark cloud.",
+   "tags": "landscape, stone bridge, river, dramatic sky, dutch golden age, oil on panel",
    "source": "Rijksmuseum",
    "license": "Public Domain",
    "source_url": "https://iiif.micr.io/hodeb/full/max/0/default.jpg",
@@ -919,8 +881,8 @@
    "cultural_context": "Dutch Golden Age, Baroque, Dutch",
    "medium": "Oil on canvas",
    "date_display": "1642",
-   "description_narrative": "Rembrandt's 'The Night Watch' depicts the company of Captain Frans Banninck Cocq and Lieutenant Willem van Ruytenburch moving out, renowned for its dramatic use of light and shadow. This monumental group portrait is a masterpiece of the Dutch Golden Age, celebrated for its dynamic composition and psychological depth.",
-   "tags": "dutch golden age, group portrait, baroque, militia, dramatic, masterpiece, civic guard",
+   "description_narrative": "A militia company spills into the street in a blaze of movement: a captain in black and a lieutenant in gold-and-cream step forward as light falls unevenly across drummers, pikemen, and a small girl in a pale gown glowing at the edge of the crowd. Deep shadow swallows the background, so the group seems to erupt out of darkness.",
+   "tags": "militia, group portrait, chiaroscuro, dutch golden age, civic guard, drummer, dramatic light, baroque",
    "source": "Rijksmuseum",
    "license": "Public Domain",
    "source_url": "https://iiif.micr.io/PJEZO/full/max/0/default.jpg",
@@ -968,12 +930,12 @@
    "title": "Girl with a Pearl Earring",
    "agent_name": "Johannes Vermeer",
    "agent_role": "Painter",
-   "creation_date": "1665",
+   "creation_date": "c. 1665",
    "cultural_context": "Dutch Golden Age",
    "medium": "Oil on canvas",
    "date_display": "c. 1665",
-   "description_narrative": "Often referred to as the 'Mona Lisa of the North', this tronie depicts a European girl wearing an exotic dress, an oriental turban, and what appears to be a very large pearl as an earring. It is a masterclass in the use of light.",
-   "tags": "portrait, dutch golden age, pearl, turban, female",
+   "description_narrative": "Turning over her shoulder, a young woman meets the viewer's gaze, a blue and gold turban wrapped around her head and a single pearl catching the light at her ear, the background falling away into darkness. Vermeer painted this portrait around 1665.",
+   "tags": "portrait, pearl earring, turban, chiaroscuro, vermeer, dutch golden age",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Johannes%20Vermeer%20-%20Girl%20with%20a%20Pearl%20Earring%20-%20670%20-%20Mauritshuis.jpg?width=3840",
@@ -1021,12 +983,12 @@
    "title": "The Milkmaid",
    "agent_name": "Johannes Vermeer",
    "agent_role": "Painter",
-   "creation_date": "1658",
+   "creation_date": "circa 1660",
    "cultural_context": "Dutch Golden Age",
    "medium": "Oil on canvas",
-   "date_display": "c. 1657–58",
-   "description_narrative": "A kitchen maid carefully pours milk from a jug into an earthenware bowl, bathed in soft natural light from a window. Vermeer elevates an ordinary domestic scene into a meditation on quiet dignity and the beauty of everyday life.",
-   "tags": "domestic, light, milk, kitchen, dutch golden age, still life",
+   "date_display": "circa 1660",
+   "description_narrative": "A woman in a yellow bodice and blue apron carefully pours milk from a jug into a bowl, a basket of bread and a small foot warmer nearby, wicker and metal vessels hanging on the plain wall behind her. Vermeer painted this scene around 1660.",
+   "tags": "domestic scene, pouring milk, kitchen, vermeer, dutch golden age, oil on canvas",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Johannes%20Vermeer%20-%20Het%20melkmeisje%20-%20Google%20Art%20Project.jpg?width=3840",
@@ -1074,12 +1036,12 @@
    "title": "View of Delft",
    "agent_name": "Johannes Vermeer",
    "agent_role": "Painter",
-   "creation_date": "1660-1661",
+   "creation_date": "c. 1660s",
    "cultural_context": "Dutch Golden Age",
-   "medium": "Oil on canvas",
-   "date_display": "c. 1660–1661",
-   "description_narrative": "Vermeer renders his native city across the Schie river beneath a dramatic sky of shifting light and cloud, its brick facades touched with small, luminous highlights. Marcel Proust famously called it \"the most beautiful painting in the world,\" praising a tiny patch of yellow wall.",
-   "tags": "dutch golden age, cityscape, luminous, delft, atmospheric, vermeer, sky",
+   "medium": "oil paint",
+   "date_display": "c. 1660s",
+   "description_narrative": "A walled town rises across still water beneath a vast, dramatically clouded sky, its spires and red-tiled roofs mirrored faintly in the harbor below. Small boats rest at anchor near the shore, where a few figures in dark cloaks pause at the water's edge.",
+   "tags": "cityscape, vermeer, dutch golden age, harbor, clouds, mauritshuis, delft",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Johannes%20Vermeer%20-%20View%20of%20Delft%20-%2092%20-%20Mauritshuis.jpg?width=3840",
@@ -1121,18 +1083,19 @@
      0.8151,
      1.0
     ]
-   }
+   },
+   "physical_dimensions": "96.5 x 115.7 cm"
   },
   {
    "title": "Woman Holding a Balance",
    "agent_name": "Johannes Vermeer",
    "agent_role": "Painter",
-   "creation_date": "1662-1663",
+   "creation_date": "1665",
    "cultural_context": "Dutch Golden Age",
-   "medium": "Oil on canvas",
-   "date_display": "c. 1662–1663",
-   "description_narrative": "A woman pauses mid-gesture, holding an empty balance scale before a painting of the Last Judgment on the wall behind her, weighing earthly goods against spiritual reckoning. Soft window light and Vermeer's characteristic stillness turn a quiet domestic moment into meditation.",
-   "tags": "dutch golden age, interior, quiet, symbolic, luminous, domestic, vermeer",
+   "medium": "oil paint",
+   "date_display": "1665",
+   "description_narrative": "A woman in a fur-trimmed blue jacket and white cap stands quietly at a table scattered with pearls and gold, holding an empty balance scale level between her fingers. Behind her hangs a large, darkly toned painting, its dim figures forming a hazy backdrop to her stillness.",
+   "tags": "genre scene, vermeer, balance scale, pearls, dutch golden age, interior light, stillness",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Johannes%20Vermeer%20-%20Woman%20Holding%20a%20Balance%20-%20Google%20Art%20Project.jpg?width=3840",
@@ -1174,7 +1137,9 @@
      0.908,
      1.0
     ]
-   }
+   },
+   "current_repository": "Widener Collection",
+   "physical_dimensions": "42.5 x 38.0 cm"
   },
   {
    "title": "The Anatomy Lesson of Dr. Nicolaes Tulp",
@@ -1184,8 +1149,8 @@
    "cultural_context": "Dutch Golden Age",
    "medium": "Oil on canvas",
    "date_display": "1632",
-   "description_narrative": "Dr. Tulp demonstrates the tendons of a cadaver's forearm to a cluster of attentive surgeons, their varied expressions captured with a young Rembrandt's already remarkable psychological acuity. The group portrait broke from static convention, unifying the figures around a single dramatic action.",
-   "tags": "dutch golden age, group portrait, anatomical, dramatic, amsterdam, rembrandt, scientific",
+   "description_narrative": "A group of men in starched ruffs lean in close around a pale corpse laid out on a table, one man in a broad black hat probing the exposed tendons of its forearm with forceps while the others study the dissection or consult their papers. Rembrandt painted this scene, now in the Mauritshuis.",
+   "tags": "anatomy lesson, group portrait, dissection, rembrandt, dutch golden age, oil on canvas",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20van%20Rijn%20-%20The%20Anatomy%20Lesson%20of%20Dr%20Nicolaes%20Tulp%20-%20146%20-%20Mauritshuis.jpg?width=3840",
@@ -1233,12 +1198,12 @@
    "title": "The Jewish Bride",
    "agent_name": "Rembrandt van Rijn",
    "agent_role": "Painter",
-   "creation_date": "1665",
+   "creation_date": "1634",
    "cultural_context": "Dutch Golden Age",
-   "medium": "Oil on canvas",
-   "date_display": "c. 1665",
-   "description_narrative": "A man's hand rests tenderly on a woman's chest, likely portraying a biblical or historical couple, rendered in thick, glowing impasto that seems to radiate warmth from within. Van Gogh reportedly said he would give ten years of his life to sit before it for a fortnight.",
-   "tags": "dutch golden age, tender, intimate, impasto, warm, rembrandt, double portrait",
+   "medium": "etching with drypoint and engraving",
+   "date_display": "1634",
+   "description_narrative": "Rendered entirely in fine, cross-hatched black lines, a seated woman with long, loosely flowing hair holds a folded paper, an arched stone doorway sketched in behind her. Rembrandt van Rijn made this etching, worked with drypoint and engraving, in 1634; the Cleveland Museum of Art catalogues it as 'The Great Jewish Bride'.",
+   "tags": "etching, drypoint, monochrome, portrait, rembrandt, dutch golden age",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20van%20Rijn%20-%20The%20Great%20Jewish%20Bride%20-%201926.477%20-%20Cleveland%20Museum%20of%20Art.tif?width=3840",
@@ -1280,18 +1245,20 @@
      0.981,
      1.0
     ]
-   }
+   },
+   "current_repository": "Cleveland Museum of Art",
+   "physical_dimensions": "Sheet: 23.1 x 18 cm (9 1/8 x 7 1/16 in.); Platemark: 22.1 x 17 cm (8 11/16 x 6 11/16 in.)"
   },
   {
    "title": "Winter Landscape with Skaters",
-   "agent_name": "Hendrick Avercamp",
+   "agent_name": "Follower of Hendrick Avercamp",
    "agent_role": "Painter",
-   "creation_date": "c. 1608",
+   "creation_date": "17th century",
    "cultural_context": "Dutch Golden Age",
-   "medium": "Oil on panel",
-   "date_display": "c. 1608",
-   "description_narrative": "A frozen canal teems with skaters, sledders, and townsfolk of every class, rendered in crisp detail beneath a pale winter sky. Avercamp, deaf and mute from birth, became the era's leading specialist in these lively frozen tableaux of everyday Dutch life.",
-   "tags": "dutch golden age, winter, ice skating, lively, panoramic, genre, avercamp",
+   "medium": "oil paint",
+   "date_display": "17th century",
+   "description_narrative": "Dozens of small figures skate, sled, and gather across a frozen waterway lined with thatched cottages and haystacks, a red flag marking one rooftop. A dark bank of cloud looms over one side of the scene, contrasting with pale winter light on the other.",
+   "tags": "landscape, winter, ice skating, dutch golden age, frozen river, genre scene, avercamp circle",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Hendrick%20Avercamp%20follower%20-%20Winter%20Landscape%20with%20Skaters%2C%201067-1279.jpg?width=3840",
@@ -1333,18 +1300,19 @@
      0.852,
      1.0
     ]
-   }
+   },
+   "physical_dimensions": "22.4 x 27.9 cm"
   },
   {
    "title": "Malle Babbe",
    "agent_name": "Frans Hals",
    "agent_role": "Painter",
-   "creation_date": "1633-1635",
+   "creation_date": "c. 1640s",
    "cultural_context": "Dutch Golden Age",
    "medium": "Oil on canvas",
-   "date_display": "c. 1633–1635",
-   "description_narrative": "A cackling woman clutches a tankard with an owl perched on her shoulder, painted with the loose, rapid brushwork that made Hals famous for capturing fleeting expression. The sitter, likely a resident of Haarlem's almshouse, is rendered with startling immediacy rather than idealization.",
-   "tags": "dutch golden age, genre, expressive, loose brushwork, haarlem, hals, character study",
+   "date_display": "c. 1640s",
+   "description_narrative": "A woman in a white bonnet and ruff grins with an unrestrained, almost wild expression, a tankard at her elbow and an owl perched on her shoulder. Frans Hals painted this figure around the 1640s.",
+   "tags": "portrait, owl, tankard, expressive, frans hals, dutch golden age",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frans%20Hals%20Malle%20Babbe%20about%201640-1646%20Gem%C3%A4ldegalerie%20Berlin%209387.jpg?width=3840",
@@ -1394,10 +1362,10 @@
    "agent_role": "Painter",
    "creation_date": "1654",
    "cultural_context": "Dutch Golden Age",
-   "medium": "Oil on panel",
+   "medium": "oil paint",
    "date_display": "1654",
-   "description_narrative": "A small goldfinch, tethered by a thin chain to its feeder, is rendered against a pale wall with an almost photographic economy of brushwork. Fabritius, a pupil of Rembrandt, died in the Delft gunpowder explosion the same year, leaving few surviving works.",
-   "tags": "dutch golden age, bird, minimal, trompe-l'oeil, delft, fabritius, tender",
+   "description_narrative": "A small, red-faced finch perches on a curved feeding trough mounted to a plain wall, a thin chain looped around its leg, painted against a pale, almost bare background. Carel Fabritius signed and dated this small panel in 1654.",
+   "tags": "bird painting, goldfinch, minimalist, carel fabritius, dutch golden age, oil on panel",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Carel%20Fabritius%20-%20The%20Goldfinch%20-%20605%20-%20Mauritshuis.jpg?width=3840",
@@ -1439,26 +1407,19 @@
      1.0,
      0.9332
     ]
-   }
+   },
+   "physical_dimensions": "33.5 x 22.8 cm"
   },
   {
    "title": "The Art of Painting",
    "agent_name": "Johannes Vermeer",
    "agent_role": "Painter",
-   "creation_date": "1666-1668",
+   "creation_date": "c. 1660s",
    "cultural_context": "Dutch Golden Age, Delft",
    "medium": "Oil on canvas",
-   "date_display": "c. 1666-1668",
-   "description_narrative": "An allegory of painting shows an artist at his easel before a model posed as Clio, the muse of history, in a light-filled studio hung with a map of the Netherlands. Vermeer never sold the work, keeping it as a showpiece of his art throughout his life.",
-   "tags": [
-    "vermeer",
-    "dutch golden age",
-    "allegory",
-    "studio",
-    "kunsthistorisches",
-    "muse",
-    "interior"
-   ],
+   "date_display": "c. 1660s",
+   "description_narrative": "Seen from behind, a painter in a black slashed doublet and red-and-white hose works at his easel, while his model stands near a wall map in a blue dress, holding a book and a long brass horn, a gilded chandelier hanging overhead. Vermeer painted this scene in the 1660s.",
+   "tags": "artist studio, painter, allegory, interior scene, vermeer, dutch golden age",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jan%20Vermeer%20-%20The%20Art%20of%20Painting%20-%20Google%20Art%20Project.jpg?width=3840",
@@ -1508,18 +1469,10 @@
    "agent_role": "Painter",
    "creation_date": "1624",
    "cultural_context": "Dutch Golden Age, Haarlem",
-   "medium": "Oil on canvas",
+   "medium": "oil paint",
    "date_display": "1624",
-   "description_narrative": "This half-length portrait of an unidentified man, who is not actually laughing but wears a confident half-smile beneath an upturned moustache, is celebrated for the dazzling detail of his embroidered costume. The popular title was coined by the Victorian public long after Hals painted it.",
-   "tags": [
-    "frans hals",
-    "dutch golden age",
-    "portrait",
-    "cavalier",
-    "wallace collection",
-    "costume",
-    "smile"
-   ],
+   "description_narrative": "A man in an intricately embroidered black doublet tilts his head with a knowing half-smile beneath a broad black hat, his waxed mustache upturned and a wide lace ruff framing his throat. Frans Hals painted this portrait of Tieleman Roosterman in 1624.",
+   "tags": "portrait, lace ruff, embroidered doublet, smiling, frans hals, dutch golden age",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frans%20Hals%20%E2%80%93%20The%20Laughing%20Cavalier.jpg?width=3840",
@@ -1561,26 +1514,20 @@
      0.9459,
      1.0
     ]
-   }
+   },
+   "current_repository": "Wallace Collection",
+   "physical_dimensions": "83.0 x 67.3 cm"
   },
   {
    "title": "Belshazzar's Feast",
    "agent_name": "Rembrandt van Rijn",
    "agent_role": "Painter",
-   "creation_date": "1636-1638",
+   "creation_date": "circa 1635-1638",
    "cultural_context": "Dutch Golden Age, Amsterdam",
    "medium": "Oil on canvas",
-   "date_display": "c. 1636-1638",
-   "description_narrative": "Rembrandt captures the Book of Daniel's moment of terror as glowing Hebrew words appear on the wall and King Belshazzar recoils, upsetting his banquet. The inscription was supplied by Rembrandt's learned neighbor Menasseh ben Israel and arranged in unusual columns.",
-   "tags": [
-    "rembrandt",
-    "dutch golden age",
-    "biblical",
-    "belshazzar",
-    "national gallery",
-    "chiaroscuro",
-    "feast"
-   ],
+   "date_display": "circa 1635-1638",
+   "description_narrative": "A richly turbaned, crowned king recoils mid-gesture at a banquet table, staring up at glowing letters that hang unexplained in the air above him while his startled guests spill wine and clutch at each other. Rembrandt painted this dramatic feast scene around 1635 to 1638.",
+   "tags": "biblical scene, feast, dramatic lighting, turban, rembrandt, dutch golden age",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt-BelsazarFXD.jpg?width=3840",
@@ -1631,18 +1578,10 @@
    "agent_role": "Painter",
    "creation_date": "1658",
    "cultural_context": "Dutch Golden Age, Delft",
-   "medium": "Oil on canvas",
+   "medium": "oil paint",
    "date_display": "1658",
-   "description_narrative": "A woman and child stand in a sunlit brick courtyard beside a passage that opens onto a glimpse of the street, an image of quiet domestic order. Signed and dated on the archway, it exemplifies de Hooch's mastery of light, texture, and receding architectural space.",
-   "tags": [
-    "pieter de hooch",
-    "dutch golden age",
-    "courtyard",
-    "delft",
-    "domestic",
-    "national gallery",
-    "interior"
-   ],
+   "description_narrative": "Through a brick archway, a woman stands in a hallway beyond, while in the foreground courtyard a mother reaches toward a small girl near a wooden shed and a water pail, ivy climbing the weathered brick walls. Pieter de Hooch painted this Delft courtyard in 1658.",
+   "tags": "courtyard, domestic scene, brick architecture, pieter de hooch, dutch golden age, genre painting",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pieter%20de%20Hooch%20-%20The%20Courtyard%20of%20a%20House%20in%20Delft.jpg?width=3840",
@@ -1684,7 +1623,9 @@
      0.9249,
      1.0
     ]
-   }
+   },
+   "current_repository": "National Gallery",
+   "physical_dimensions": "74.0 x 60.0 cm"
   },
   {
    "title": "The Young Bull",
@@ -1692,18 +1633,10 @@
    "agent_role": "Painter",
    "creation_date": "1647",
    "cultural_context": "Dutch Golden Age, The Hague",
-   "medium": "Oil on canvas",
+   "medium": "oil paint",
    "date_display": "1647",
-   "description_narrative": "Potter painted this near life-size bull standing in a meadow with a farmer and other livestock when he was only twenty-two years old. Its monumental scale elevated animal painting, traditionally a low-ranked genre, into an ambitious subject in its own right.",
-   "tags": [
-    "paulus potter",
-    "dutch golden age",
-    "animal",
-    "bull",
-    "mauritshuis",
-    "meadow",
-    "livestock"
-   ],
+   "description_narrative": "A young bull stands nearly at life size in the foreground, its white-faced companion cow settled at its feet with two sheep dozing nearby, while a farmhand rests a hand against a gnarled tree and a bird wheels overhead. Paulus Potter completed this animal study in 1647, part of the Dutch Golden Age's genre of animal art.",
+   "tags": "bull, cattle, farmhand, pastoral, animal art, dutch golden age, meadow, livestock",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Paulus%20Potter%20-%20The%20Bull%20-%20136%20-%20Mauritshuis.jpg?width=3840",
@@ -1733,7 +1666,8 @@
      0.9433,
      1.0
     ]
-   }
+   },
+   "physical_dimensions": "235.5 x 339.0 cm"
   },
   {
    "title": "The Abduction of Europa",
@@ -1741,10 +1675,10 @@
    "agent_role": "Painter",
    "creation_date": "1632",
    "cultural_context": "Dutch Golden Age",
-   "medium": "Oil on canvas",
+   "medium": "oil paint",
    "date_display": "1632",
-   "description_narrative": "Rembrandt depicts the Greek myth of Zeus, disguised as a white bull, carrying the Phoenician princess Europa out to sea while her companions watch helplessly from shore. The painting is notable as Rembrandt's only work set in a dramatic seascape, combining mythological narrative with the atmospheric lighting effects that define his early Amsterdam period.",
-   "tags": "mythology, Zeus, Europa, seascape, abduction, Amsterdam period",
+   "description_narrative": "A girl in a golden robe is carried into the surf on the back of a pale animal, twisting back toward the shore where her companions fling up their arms in alarm; an ornate, gilded carriage waits under the trees, a walled city and ships visible across the water. Rembrandt painted this mythological scene, the abduction of Europa by Zeus in the form of a bull, in 1632.",
+   "tags": "mythological painting, abduction, seascape, rembrandt, dutch golden age, oil on panel",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20-%20The%20Abduction%20of%20Europa%20-%20Google%20Art%20Project.jpg?width=3840",
@@ -1774,7 +1708,9 @@
      1.0,
      0.9757
     ]
-   }
+   },
+   "current_repository": "J. Paul Getty Museum",
+   "physical_dimensions": "64.6 x 78.7 cm"
   },
   {
    "title": "Judith at the Banquet of Holofernes (Artemisia)",
@@ -1782,10 +1718,10 @@
    "agent_role": "Painter",
    "creation_date": "1634",
    "cultural_context": "Dutch Golden Age",
-   "medium": "Oil on canvas",
+   "medium": "oil paint",
    "date_display": "1634",
-   "description_narrative": "A richly dressed woman receives a golden goblet from a servant in this Old Testament scene, long mistitled 'Artemisia' before scholars identified the subject as the biblical heroine Judith at Holofernes's banquet. The painting showcases Rembrandt's mastery of opulent fabric, jewelry, and controlled candlelit color at the height of his early success.",
-   "tags": "biblical scene, Judith, Old Testament, Prado, opulence, chiaroscuro",
+   "description_narrative": "A woman in a gleaming white and gold gown, pearls in her hair, stands with one hand at her chest as an attendant offers her a covered cup, another figure watching from the shadows beside a table draped in patterned red cloth. Rembrandt painted this scene in 1634, its central figure variously identified with Saskia van Uylenburgh, Sophonisba, and Artemisia of Caria.",
+   "tags": "history painting, banquet scene, pearls, rembrandt, dutch golden age, oil on canvas",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Judith%20at%20the%20Banquet%20of%20Holofernes%20%28previously%20known%20as%20Artemisia%29%2C%20by%20Rembrandt%2C%20from%20Prado%20in%20Google%20Earth.jpg?width=3840",
@@ -1827,18 +1763,19 @@
      0.8278,
      1.0
     ]
-   }
+   },
+   "physical_dimensions": "143.0 x 154.7 cm"
   },
   {
    "title": "The Return of the Prodigal Son",
    "agent_name": "Rembrandt van Rijn",
    "agent_role": "Painter",
-   "creation_date": "1668",
+   "creation_date": "circa 1668",
    "cultural_context": "Dutch Golden Age",
    "medium": "Oil on canvas",
-   "date_display": "c. 1668",
-   "description_narrative": "In one of Rembrandt's final and most profound works, a ragged, kneeling son is embraced by his forgiving father as onlookers watch in silence. Painted in the last year of the artist's life, it distills a lifetime of psychological insight into the biblical parable of unconditional forgiveness.",
-   "tags": "biblical parable, forgiveness, father and son, late Rembrandt, Hermitage, emotion",
+   "date_display": "circa 1668",
+   "description_narrative": "A ragged, barefoot young man kneels and buries his face against an elderly man's robe, whose weathered hands rest gently on his son's back in a gesture of forgiveness. Three onlookers stand at the edge of the scene, watching in near silence from the shadows.",
+   "tags": "reunion, forgiveness, rembrandt, biblical scene, dutch golden age, dramatic light, kneeling figure, red robe",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20Harmensz%20van%20Rijn%20-%20Return%20of%20the%20Prodigal%20Son%20-%20Google%20Art%20Project.jpg?width=3840",
@@ -1883,9 +1820,9 @@
    "creation_date": "1659",
    "cultural_context": "Dutch Golden Age",
    "medium": "Oil on canvas",
-   "date_display": "c. 1659",
-   "description_narrative": "Rembrandt turns his unflinching gaze on himself in this later self-portrait, painted when age and financial hardship had deepened his interest in candid self-examination. Loose, richly loaded brushwork replaces the polished finish of his youth, a hallmark of his mature style.",
-   "tags": "self-portrait, old age, introspection, mature style, impasto",
+   "date_display": "1659",
+   "description_narrative": "A man with tousled grey curls and a weathered face wears a dark cap and a plain, worn coat, one shoulder softly lit while the rest of the figure recedes into shadow.",
+   "tags": "self-portrait, rembrandt, grey curls, dutch golden age, dark cap, chiaroscuro",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20van%20Rijn%20-%20Self-Portrait%20-%20Google%20Art%20Project.jpg?width=3840",
@@ -1937,8 +1874,8 @@
    "cultural_context": "Dutch Golden Age",
    "medium": "Oil on canvas",
    "date_display": "1638",
-   "description_narrative": "A small figure tends to an injured traveler in the foreground of this brooding landscape, one of the few pure landscapes Rembrandt ever painted. Dramatic clouds and raking light dominate the composition, subordinating the biblical narrative to the mood of the natural world.",
-   "tags": "landscape, biblical parable, Good Samaritan, dramatic sky, rare genre",
+   "description_narrative": "A gnarled, wind-bent tree dominates a stormy landscape, dark clouds massing overhead as small figures on horseback move along a path near a distant waterfall and rolling hills. Rembrandt painted this landscape in 1638.",
+   "tags": "landscape, storm clouds, tree, dramatic lighting, rembrandt, dutch golden age",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Landscape%20with%20the%20Good%20Samaritan%20-%20Rembrandt.jpg?width=3840",
@@ -1986,12 +1923,12 @@
    "title": "Portrait of a Seated Woman with Spectacles and a Book",
    "agent_name": "Rembrandt van Rijn",
    "agent_role": "Painter",
-   "creation_date": "1655",
+   "creation_date": "1637",
    "cultural_context": "Dutch Golden Age",
-   "medium": "Oil on canvas",
-   "date_display": "c. 1655",
-   "description_narrative": "An elderly woman pauses over an open book, her spectacles pushed low on her nose, in this intimate study of old age and quiet contemplation. The loose, warm brushwork typical of Rembrandt's mature period lends the sitter a sense of lived-in dignity.",
-   "tags": "old age, reading, spectacles, portrait, mature style",
+   "medium": "oil paint",
+   "date_display": "1637",
+   "description_narrative": "An elderly woman sits with a pair of spectacles held loosely in one hand and a small clasped book resting on her lap, her broad pleated collar framing a face turned slightly aside.",
+   "tags": "portrait, rembrandt, elderly woman, spectacles, book, ruff collar, dutch golden age, chiaroscuro",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20-%20Portrait%20of%20a%20seated%20woman%20with%20spectacles%20and%20a%20book.jpg?width=3840",
@@ -2033,18 +1970,20 @@
      0.9492,
      1.0
     ]
-   }
+   },
+   "current_repository": "Andrew W. Mellon collection",
+   "physical_dimensions": "109.7 x 91.5 cm"
   },
   {
    "title": "Man in Oriental Costume",
    "agent_name": "Rembrandt van Rijn",
    "agent_role": "Painter",
-   "creation_date": "1632",
+   "creation_date": "circa 1635",
    "cultural_context": "Dutch Golden Age",
    "medium": "Oil on canvas",
-   "date_display": "1632",
-   "description_narrative": "A richly turbaned figure in exotic dress exemplifies Rembrandt's early fascination with imagined 'Oriental' costume, a taste for the exotic shared widely among Dutch collectors of the period. Such costume studies allowed the artist to explore rich textures and dramatic lighting outside the constraints of formal portraiture.",
-   "tags": "costume study, turban, exoticism, tronie, Amsterdam period",
+   "date_display": "circa 1635",
+   "description_narrative": "A bearded man wears a feathered, jewel-banded turban and a maroon robe beneath a heavy fur-trimmed cloak, one hand resting at his waist. This portrait, painted around 1635, is attributed to Govert Flink or Rembrandt.",
+   "tags": "portrait, turban, feather plume, fur-trimmed cloak, dutch golden age, oil on canvas",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Man%20in%20Oriental%20Costume%20%282%29.jpg?width=3840",
@@ -2094,10 +2033,10 @@
    "agent_role": "Painter",
    "creation_date": "1631",
    "cultural_context": "Dutch Golden Age",
-   "medium": "Oil on canvas",
+   "medium": "oil paint",
    "date_display": "1631",
-   "description_narrative": "An aged woman in deep red robes reads intently from a large book, likely representing the biblical prophetess Hannah. The painting is a superb early example of Rembrandt's skill at rendering wrinkled skin and worn fabric with equal tenderness.",
-   "tags": "prophetess Hannah, old age, reading, Rijksmuseum, biblical figure",
+   "description_narrative": "Wrapped in a heavy red robe and a gold-threaded headscarf, an elderly woman bends over a large open book, her face lit warmly against deep shadow. She is identified as the prophetess Anna.",
+   "tags": "portrait, elderly woman, reading, rembrandt, biblical figure, chiaroscuro, dutch golden age, book",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Oude%20lezende%20vrouw%2C%20waarschijnlijk%20de%20profetes%20Hanna%20Rijksmuseum%20SK-A-3066.jpeg?width=3840",
@@ -2139,7 +2078,8 @@
      0.9703,
      1.0
     ]
-   }
+   },
+   "physical_dimensions": "60.0 x 48.0 cm"
   },
   {
    "title": "Self-Portrait in Oriental Dress",
@@ -2149,8 +2089,8 @@
    "cultural_context": "Dutch Golden Age",
    "medium": "Oil on canvas",
    "date_display": "1631",
-   "description_narrative": "Rembrandt casts himself as an exotic potentate, wearing a turban, gold chain, and richly embroidered robe, reflecting the Dutch fascination with 'Oriental' costume as a vehicle for artistic display. The theatrical self-fashioning reveals the young artist's ambition to demonstrate his range beyond conventional portraiture.",
-   "tags": "self-portrait, costume, turban, Petit Palais, theatricality",
+   "description_narrative": "A man wears an elaborate dark turban pinned with a jewel and topped by a tall feather, his richly draped cloak fastened at the shoulder with gold braid.",
+   "tags": "self-portrait, rembrandt, turban, feather plume, dutch golden age, costume study, gold braid",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20-%20Portrait%20de%20l%27artiste%20en%20costume%20oriental%20-%20mus%C3%A9e%20des%20Beaux-Arts%20de%20la%20ville%20de%20Paris%20-%203.jpg?width=3840",
@@ -2200,10 +2140,10 @@
    "agent_role": "Painter",
    "creation_date": "1656",
    "cultural_context": "Dutch Golden Age",
-   "medium": "Oil on canvas",
+   "medium": "oil paint",
    "date_display": "1656",
-   "description_narrative": "The aged patriarch Jacob crosses his hands to bless his grandsons in reverse birth order, a tender Old Testament scene rendered with warm, glowing color. Painted in Rembrandt's late period, it is celebrated for its intimate, golden-lit portrayal of family and faith.",
-   "tags": "biblical scene, Jacob, blessing, family, late Rembrandt, Kassel",
+   "description_narrative": "Propped up in bed, an elderly man rests his hand on the bowed head of a kneeling child while a turbaned man steadies him and a richly dressed woman looks on, a deep red blanket spread across the foreground. Rembrandt painted this biblical scene, Jacob blessing the children of Joseph, in 1656.",
+   "tags": "biblical scene, deathbed blessing, warm lighting, rembrandt, dutch golden age, oil on canvas",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20van%20Rijn%20-%20Jacob%20blessing%20Ephraim%20and%20Manasseh%20%28Gem%C3%A4ldegalerie%20Alte%20Meister%20Kassel%29.jpg?width=3840",
@@ -2245,7 +2185,8 @@
      0.7177,
      1.0
     ]
-   }
+   },
+   "physical_dimensions": "173.0 x 209.0 cm"
   },
   {
    "title": "Young Woman in Profile, with a Fan",
@@ -2253,10 +2194,10 @@
    "agent_role": "Painter",
    "creation_date": "1632",
    "cultural_context": "Dutch Golden Age",
-   "medium": "Oil on canvas",
+   "medium": "oil paint",
    "date_display": "1632",
-   "description_narrative": "A young woman is shown in strict profile holding a feathered fan, a formal pose that recalls Renaissance portrait medals more than typical Dutch portraiture. The precise, elegant rendering reflects the polished finish of Rembrandt's earliest years in Amsterdam.",
-   "tags": "profile portrait, fan, young woman, early Amsterdam period",
+   "description_narrative": "Turned in strict profile, a young woman with copper-red hair looks to the side, a pearl earring and necklace catching the light against her dark, gold-trimmed gown as she holds a closed fan. Rembrandt painted this portrait in 1632.",
+   "tags": "profile portrait, rembrandt, pearls, fan, dutch golden age, 17th century, portrait",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20van%20Rijn%20-%20Jonge%20vrouw%20en%20profil%20%281632%29.jpg?width=3840",
@@ -2298,7 +2239,8 @@
      1.0,
      0.5947
     ]
-   }
+   },
+   "physical_dimensions": "72.0 x 55.0 cm"
   },
   {
    "title": "Portrait of a Clergyman",
@@ -2306,10 +2248,10 @@
    "agent_role": "Painter",
    "creation_date": "1637",
    "cultural_context": "Dutch Golden Age",
-   "medium": "Oil on canvas",
-   "date_display": "c. 1637",
-   "description_narrative": "A minister in sober black dress and a broad white collar gazes out with quiet authority, a type of portrait much in demand among the Dutch Reformed clergy of Rembrandt's day. The restrained palette and searching characterization typify his portraiture of the later 1630s.",
-   "tags": "clergyman, portrait, Dutch Reformed, Antwerp, black dress",
+   "medium": "oil paint",
+   "date_display": "1637",
+   "description_narrative": "A balding, bearded man in black stands with quiet authority, his starched white ruff catching the light as one hand rests against a pair of gloves tucked at his side. He is identified as Eleazar Swalmius.",
+   "tags": "portrait, rembrandt, ruff collar, dutch golden age, black robe, clergyman, eleazar swalmius",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20-%20Portret%20van%20een%20predikant%20-%20705%20-%20Royal%20Museum%20of%20Fine%20Arts%20Antwerp.tiff?width=3840",
@@ -2351,18 +2293,20 @@
      0.9596,
      1.0
     ]
-   }
+   },
+   "current_repository": "Royal Museum of Fine Arts Antwerp",
+   "physical_dimensions": "132.0 x 109.0 cm"
   },
   {
    "title": "Bust of an Old Bearded Man Wearing a Golden Chain with a Cross",
    "agent_name": "Rembrandt van Rijn",
    "agent_role": "Painter",
-   "creation_date": "1633",
+   "creation_date": "1630",
    "cultural_context": "Dutch Golden Age",
-   "medium": "Oil on canvas",
-   "date_display": "c. 1633",
-   "description_narrative": "An elderly, richly bearded man wears an elaborate gold chain and cross in this character study, or 'tronie,' rather than a portrait of a specific named sitter. Rembrandt used such studies to experiment with old age, exotic costume, and dramatic light rather than to record a likeness.",
-   "tags": "tronie, old man, gold chain, character study, costume",
+   "medium": "oil paint",
+   "date_display": "1630",
+   "description_narrative": "An elderly man in a dark velvet beret and cloak gazes out from an octagonal panel, his white beard catching the light, a double gold chain looped over his shoulders and ending in a jeweled cross. Rembrandt's workshop painted this bust around 1630.",
+   "tags": "portrait, elderly man, gold chain, octagonal panel, dutch golden age, oil on panel",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20-%20Bust%20of%20an%20old%20bearded%20man%20wearing%20a%20golden%20chain%20with%20a%20cross.jpg?width=3840",
@@ -2404,7 +2348,8 @@
      0.9522,
      1.0
     ]
-   }
+   },
+   "physical_dimensions": "67.4 x 55.9 cm"
   },
   {
    "title": "Self-Portrait (early)",
@@ -2414,8 +2359,8 @@
    "cultural_context": "Dutch Golden Age",
    "medium": "Oil on canvas",
    "date_display": "c. 1630",
-   "description_narrative": "A young Rembrandt studies his own face with wide-eyed intensity, part of a long series of self-portraits he produced throughout his career to experiment with expression and light. This early example shows the tousled hair and unguarded curiosity of the artist still establishing his reputation in Leiden and Amsterdam.",
-   "tags": "self-portrait, youth, early period, expression study",
+   "description_narrative": "In this small, close-cropped portrait, a young man with a mop of curly reddish-brown hair and a bare hint of white collar turns his face into soft, low light, the rest of the composition dissolving into shadow.",
+   "tags": "self-portrait, rembrandt, young man, curly hair, dutch golden age, small scale, chiaroscuro",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Self-Portrait%20-%20Rembrandt.jpg?width=3840",
@@ -2465,10 +2410,10 @@
    "agent_role": "Painter",
    "creation_date": "1633",
    "cultural_context": "Dutch Golden Age",
-   "medium": "Oil on canvas",
+   "medium": "oil paint",
    "date_display": "1633",
-   "description_narrative": "Rembrandt portrays the Roman goddess of war in gleaming armor and an ornate helmet, a rare mythological subject from his early Amsterdam years. The painting demonstrates his virtuoso rendering of metal, fur, and jewels in service of an allegorical figure.",
-   "tags": "mythology, Bellona, goddess of war, armor, Metropolitan Museum",
+   "description_narrative": "A woman in polished armor and a plumed helmet stands in three-quarter view, one hand resting on her hip and the other holding a shield bearing a monstrous, snake-haired face. Rembrandt painted this Roman war goddess in 1633, her rich brocade skirt and gold trim catching the light against a dim, arched interior.",
+   "tags": "portrait, mythology, armor, rembrandt, dutch golden age, oil painting",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bellona%2C%20by%20Rembrandt%20van%20Rijn.jpg?width=3840",
@@ -2510,18 +2455,20 @@
      0.9883,
      1.0
     ]
-   }
+   },
+   "current_repository": "Metropolitan Museum of Art",
+   "physical_dimensions": "127.0 x 97.5 cm"
   },
   {
    "title": "Man in a Fur-Lined Coat",
    "agent_name": "Rembrandt van Rijn",
    "agent_role": "Painter",
-   "creation_date": "1655",
+   "creation_date": "1656",
    "cultural_context": "Dutch Golden Age",
-   "medium": "Oil on canvas",
-   "date_display": "c. 1655",
-   "description_narrative": "A man in a heavy fur-trimmed coat and gold chain is rendered with the loose, richly textured brushwork typical of Rembrandt's later portraiture. The sitter's identity is unrecorded, but the confident handling of costume and light reflects the artist's mature command of paint.",
-   "tags": "portrait, fur coat, mature style, unidentified sitter",
+   "medium": "oil paint",
+   "date_display": "1656",
+   "description_narrative": "A man with long, loosely curling hair wears a fur-trimmed brown coat over a red tunic, a gold chain at his throat and a hat held in one hand as he grips a cane in the other. Rembrandt painted this portrait in 1656.",
+   "tags": "portrait, fur-lined coat, gold chain, rembrandt, dutch golden age, oil on canvas",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20Harmensz.%20van%20Rijn%20-%20Man%20in%20a%20Fur-lined%20Coat%20-%20Google%20Art%20Project.jpg?width=3840",
@@ -2563,7 +2510,9 @@
      0.985,
      1.0
     ]
-   }
+   },
+   "current_repository": "Toledo Museum of Art",
+   "physical_dimensions": "114.9 x 88.3 cm"
   },
   {
    "title": "Saint Paul",
@@ -2571,10 +2520,10 @@
    "agent_role": "Painter",
    "creation_date": "1659",
    "cultural_context": "Dutch Golden Age",
-   "medium": "Oil on canvas",
+   "medium": "oil paint",
    "date_display": "1659",
-   "description_narrative": "An elderly man in a turban, holding a sword and book, represents Saint Paul in this late devotional character study, painted in the meditative, densely worked manner of Rembrandt's final decade. The rough, heavily loaded paint surface reflects the artist's increasing interest in texture over polish.",
-   "tags": "Saint Paul, apostle, National Gallery London, late Rembrandt, religious figure",
+   "description_narrative": "An older man in a red cap and dark robe sits in shadow, his hands loosely clasped over the edge of pages tucked beneath his arm. He is identified in the collection record as Saint Paul.",
+   "tags": "portrait, rembrandt, apostle, red cap, dutch golden age, chiaroscuro, national gallery",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%2C%20The%20Apostle%20Paul%2C%201659%2C%20The%20National%20Gallery%2C%20London.jpg?width=3840",
@@ -2616,18 +2565,20 @@
      0.9449,
      1.0
     ]
-   }
+   },
+   "current_repository": "National Gallery",
+   "physical_dimensions": "102.0 x 85.5 cm"
   },
   {
    "title": "Portrait of Margaretha de Geer, Wife of Jacob Trip",
    "agent_name": "Rembrandt van Rijn",
    "agent_role": "Painter",
-   "creation_date": "1661",
+   "creation_date": "c. 1661",
    "cultural_context": "Dutch Golden Age",
-   "medium": "Oil on canvas",
+   "medium": "oil paint",
    "date_display": "c. 1661",
-   "description_narrative": "An elderly, formidable woman in an old-fashioned ruff and black gown stares out with unflinching directness, one of a pair of portraits Rembrandt made of the wealthy De Geer-Trip family. The heavy, sculptural brushwork gives the sitter an almost monumental presence.",
-   "tags": "portrait, elderly woman, ruff, wealthy patron, National Gallery London",
+   "description_narrative": "An elderly woman stands in black with a peaked white cap and a broad pleated ruff, a handkerchief held loosely in one hand while the other rests on a chair beside her. She is identified as Margaretha de Geer.",
+   "tags": "portrait, rembrandt, elderly woman, ruff collar, national gallery, dutch golden age, margaretha de geer, black gown",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/61017Portrait%20of%20Margaretha%20de%20Geer.jpg?width=3840",
@@ -2669,7 +2620,9 @@
      1.0,
      0.5922
     ]
-   }
+   },
+   "current_repository": "National Gallery",
+   "physical_dimensions": "130.5 x 97.5 cm"
   },
   {
    "title": "The Laughing Man",
@@ -2677,10 +2630,10 @@
    "agent_role": "Painter",
    "creation_date": "1629",
    "cultural_context": "Dutch Golden Age",
-   "medium": "Oil on canvas",
-   "date_display": "c. 1629-1630",
-   "description_narrative": "A man in armor breaks into a broad, toothy grin, an unusual and vivid character study traditionally attributed to Rembrandt's early Leiden years. The painting captures a fleeting expression rarely attempted in the formal portraiture of the period.",
-   "tags": "tronie, laughter, armor, Leiden period, expression study",
+   "medium": "oil paint",
+   "date_display": "1629",
+   "description_narrative": "Framed in a small oval, a man's face breaks into a wide, gap-toothed laugh, his curling hair loose around a metal gorget at his throat. Rembrandt painted this small portrait in 1629.",
+   "tags": "portrait, laughing, gorget, small format, rembrandt, dutch golden age",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20-%20The%20laughing%20man.jpg?width=3840",
@@ -2722,7 +2675,8 @@
      0.9672,
      1.0
     ]
-   }
+   },
+   "physical_dimensions": "15.3 x 12.2 cm"
   },
   {
    "title": "Two African Men",
@@ -2730,10 +2684,10 @@
    "agent_role": "Painter",
    "creation_date": "1661",
    "cultural_context": "Dutch Golden Age",
-   "medium": "Oil on canvas",
+   "medium": "oil paint",
    "date_display": "1661",
-   "description_narrative": "Two Black men are shown in close, informal proximity in this rare double character study, notable as one of the few Dutch Golden Age paintings to give sustained, individualized attention to Black sitters. Rembrandt's characteristically loose, empathetic brushwork treats both men with equal dignity and presence.",
-   "tags": "double portrait, character study, Mauritshuis, late Rembrandt",
+   "description_narrative": "Two men are shown close together, one smiling faintly as he glances aside, the other resting his head near his companion's shoulder in quiet shadow. Both wear loosely draped cloaks, rendered with broad, visible brushwork typical of a character study.",
+   "tags": "tronie, rembrandt, character study, dutch golden age, mauritshuis, loose brushwork",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20Harmensz.%20van%20Rijn%20157.jpg?width=3840",
@@ -2775,7 +2729,8 @@
      0.9637,
      1.0
     ]
-   }
+   },
+   "physical_dimensions": "77.8 x 64.4 cm"
   },
   {
    "title": "Andromeda Chained to the Rocks",
@@ -2783,10 +2738,10 @@
    "agent_role": "Painter",
    "creation_date": "1630",
    "cultural_context": "Dutch Golden Age",
-   "medium": "Oil on canvas",
-   "date_display": "c. 1630-1631",
-   "description_narrative": "The mythological princess Andromeda stands chained and vulnerable to a rocky cliff, awaiting rescue from a sea monster, in one of Rembrandt's earliest nude studies. The painting is notable for its unidealized, naturalistic treatment of the female body, a departure from the classical nudes of Italian painting.",
-   "tags": "mythology, Andromeda, nude study, early Rembrandt, Mauritshuis",
+   "medium": "oil paint",
+   "date_display": "1630",
+   "description_narrative": "A nude woman stands with her wrists shackled and raised above her head, her face turned anxiously to one side against a dark rocky outcrop. Rembrandt painted this scene of Andromeda chained to the rocks in 1630.",
+   "tags": "mythological painting, chained figure, nude, dramatic lighting, rembrandt, dutch golden age",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Andromeda%2C%20Rembrandt%20van%20Rijn%2C%201630-1631%2C%20Mauritshuis%2C%20The%20Hague.jpg?width=3840",
@@ -2828,7 +2783,8 @@
      1.0,
      0.9798
     ]
-   }
+   },
+   "physical_dimensions": "34.0 x 24.5 cm"
   },
   {
    "title": "The Abduction of Ganymede",
@@ -2836,10 +2792,10 @@
    "agent_role": "Painter",
    "creation_date": "1635",
    "cultural_context": "Dutch Golden Age",
-   "medium": "Oil on canvas",
+   "medium": "oil paint",
    "date_display": "1635",
-   "description_narrative": "In a startling departure from classical tradition, Rembrandt depicts the Trojan boy Ganymede not as an idealized youth but as a terrified, wailing infant being carried off by an eagle. The unsettling, unheroic realism reflects the artist's characteristic instinct to humanize even mythological subjects.",
-   "tags": "mythology, Ganymede, eagle, Dresden, unconventional depiction",
+   "description_narrative": "A huge dark eagle grips a plump, crying child in its talons and beak, hauling him upward into a churning, stormy sky. Rembrandt painted this unsettling scene of Ganymede's abduction in 1635.",
+   "tags": "mythological painting, eagle, abduction, dramatic, rembrandt, dutch golden age",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20-%20The%20Abduction%20of%20Ganymede%20-%20Google%20Art%20Project.jpg?width=3840",
@@ -2881,18 +2837,19 @@
      1.0,
      0.9802
     ]
-   }
+   },
+   "physical_dimensions": "177.0 x 129.0 cm"
   },
   {
    "title": "Young Woman in Fantasy Costume (Saskia)",
    "agent_name": "Rembrandt van Rijn",
    "agent_role": "Painter",
-   "creation_date": "1635",
+   "creation_date": "1633",
    "cultural_context": "Dutch Golden Age",
-   "medium": "Oil on canvas",
-   "date_display": "c. 1635",
-   "description_narrative": "A young woman, often identified as Rembrandt's wife Saskia van Uylenburgh, is dressed in elaborate invented finery rather than contemporary Dutch clothing, a fashion for costume portraiture popular among Amsterdam's elite. The lavish jewelry and fabric let Rembrandt display his virtuoso handling of texture and light.",
-   "tags": "Saskia van Uylenburgh, fantasy costume, portrait, Rijksmuseum",
+   "medium": "oil paint",
+   "date_display": "1633",
+   "description_narrative": "In this oval bust portrait, a young woman gazes out with a faint smile, her hair swept up beneath a beaded, feathered headdress and a string of pearls at her throat. Rembrandt painted the sitter, traditionally identified as Saskia van Uylenburgh, around 1633.",
+   "tags": "portrait, rembrandt, saskia, headdress, pearls, dutch golden age, bust portrait",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jonge%20vrouw%20in%20gefantaseerde%20kleding%20Rijksmuseum%20SK-A-4057.jpeg?width=3840",
@@ -2934,7 +2891,8 @@
      0.9594,
      1.0
     ]
-   }
+   },
+   "physical_dimensions": "65.0 x 48.0 cm"
   },
   {
    "title": "Portrait of Marten Looten",
@@ -2944,8 +2902,8 @@
    "cultural_context": "Dutch Golden Age",
    "medium": "Oil on canvas",
    "date_display": "1632",
-   "description_narrative": "The Amsterdam grain merchant Marten Looten is portrayed holding a letter bearing his own name, a common device Rembrandt used to identify sitters discreetly within the composition. The crisp, restrained style reflects the young artist's newly established reputation as Amsterdam's leading portraitist.",
-   "tags": "portrait, merchant, Amsterdam, LACMA, early period",
+   "description_narrative": "A young man in a broad-brimmed black hat and a crisp white collar presses one hand to his chest while the other holds a folded letter inscribed with fine, looping handwriting.",
+   "tags": "portrait, rembrandt, young man, black hat, letter, white collar, dutch golden age, lacma",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Maerten%20Looten%2C%20by%20Rembrandt%20van%20Rijn.jpg?width=3840",
@@ -2993,12 +2951,12 @@
    "title": "Minerva",
    "agent_name": "Rembrandt van Rijn",
    "agent_role": "Painter",
-   "creation_date": "1635",
+   "creation_date": "1630s",
    "cultural_context": "Dutch Golden Age",
-   "medium": "Oil on canvas",
-   "date_display": "c. 1635",
-   "description_narrative": "The Roman goddess of wisdom appears in gleaming armor and a plumed helmet, seated before books and a shield in a composition rich with allegorical detail. Rembrandt's handling of gold ornament and heavy drapery underscores the goddess's authority and learning.",
-   "tags": "mythology, Minerva, goddess of wisdom, allegory, armor",
+   "medium": "oil paint",
+   "date_display": "1630s",
+   "description_narrative": "A young woman wears an ornate crown and a red cloak trimmed in gold, standing before a dim backdrop where a helmet and shield rest half-hidden in shadow. Rembrandt painted this figure in the 1630s.",
+   "tags": "allegorical portrait, crown, red cloak, dutch golden age, rembrandt, tronie",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20-%20Minerva%20-%20Google%20Art%20Project.jpg?width=3840",
@@ -3040,7 +2998,8 @@
      0.9629,
      1.0
     ]
-   }
+   },
+   "physical_dimensions": "60.5 x 49.0 cm"
   },
   {
    "title": "Flora (Saskia van Uylenburgh in Arcadian Costume)",
@@ -3050,8 +3009,8 @@
    "cultural_context": "Dutch Golden Age",
    "medium": "Oil on canvas",
    "date_display": "1635",
-   "description_narrative": "Rembrandt's wife Saskia poses as Flora, the Roman goddess of flowers and spring, crowned with a wreath and holding a flowering staff. The painting belongs to a series of pastoral 'Flora' portraits Rembrandt made of Saskia during the happiest years of their marriage.",
-   "tags": "Saskia van Uylenburgh, Flora, goddess, pastoral costume, National Gallery London",
+   "description_narrative": "Crowned with a wreath of greenery, a woman in an embroidered gold and green gown holds a tall staff in one hand and a spray of flowers in the other, set within an elaborately carved gilt frame. Rembrandt painted this costumed portrait in 1635.",
+   "tags": "allegorical portrait, floral wreath, gilt frame, rembrandt, dutch golden age, oil on canvas",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Saskia%20van%20Uylenburgh%20in%20Arcadian%20Costume.jpg?width=3840",
@@ -3099,12 +3058,12 @@
    "title": "The Rape of Proserpina",
    "agent_name": "Rembrandt van Rijn",
    "agent_role": "Painter",
-   "creation_date": "1631",
+   "creation_date": "1632",
    "cultural_context": "Dutch Golden Age",
-   "medium": "Oil on canvas",
-   "date_display": "c. 1631",
-   "description_narrative": "Pluto seizes the struggling goddess Proserpina and drags her into his chariot to the underworld, a violent mythological abduction rendered with dramatic diagonal energy. The painting's tumbling composition and vivid expressions of terror are characteristic of Rembrandt's dynamic early narrative scenes.",
-   "tags": "mythology, Proserpina, Pluto, abduction, Gemäldegalerie Berlin",
+   "medium": "oil paint",
+   "date_display": "1632",
+   "description_narrative": "A woman in a pale gold gown is hauled backward into a horse-drawn chariot as it plunges toward a churning river, her cry lost against a dramatic, cloud-streaked sky. Attendants grasp at her trailing drapery from the water's edge, straining against the chariot's momentum.",
+   "tags": "mythology, abduction, rembrandt, dramatic sky, dutch golden age, chariot, mythological painting, dramatic light",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20-%20The%20Rape%20of%20Proserpine%20-%20Google%20Art%20Project.jpg?width=3840",
@@ -3146,7 +3105,8 @@
      0.8711,
      1.0
     ]
-   }
+   },
+   "physical_dimensions": "84.8 x 79.7 cm"
   },
   {
    "title": "Portrait of Aechje Claesdr.",
@@ -3154,10 +3114,10 @@
    "agent_role": "Painter",
    "creation_date": "1634",
    "cultural_context": "Dutch Golden Age",
-   "medium": "Oil on canvas",
+   "medium": "oil paint",
    "date_display": "1634",
-   "description_narrative": "An older Amsterdam woman is portrayed in fine dress and a starched ruff, one of many burgher portraits Rembrandt produced during his prolific early years in the city. The careful attention to lace and fabric reflects the demands of his affluent clientele.",
-   "tags": "portrait, Amsterdam burgher, ruff, Mauritshuis, early period",
+   "description_narrative": "Set in an oval frame, an elderly woman in black with a sheer white cap and a wide pleated ruff gazes downward, her lined face softly lit against a warm brown background.",
+   "tags": "portrait, rembrandt, elderly woman, oval frame, ruff collar, dutch golden age, national gallery, sober palette",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20Harmensz.%20van%20Rijn%20108.jpg?width=3840",
@@ -3199,18 +3159,20 @@
      0.9717,
      1.0
     ]
-   }
+   },
+   "current_repository": "National Gallery",
+   "physical_dimensions": "71.1 x 55.9 cm"
   },
   {
    "title": "The Apostle Paul",
    "agent_name": "Rembrandt van Rijn",
    "agent_role": "Painter",
-   "creation_date": "1657",
+   "creation_date": "c. 1657",
    "cultural_context": "Dutch Golden Age",
-   "medium": "Oil on canvas",
+   "medium": "oil paint",
    "date_display": "c. 1657",
-   "description_narrative": "An elderly, turbaned figure holding a sword and manuscript represents the Apostle Paul in this meditative half-length study from Rembrandt's late period. The painting, held by the National Gallery of Art in Washington, reflects the artist's continuing interest in weathered, contemplative faces rendered in thick, expressive paint.",
-   "tags": "Saint Paul, apostle, National Gallery of Art Washington, late period, religious figure",
+   "description_narrative": "A bearded man in a dark robe sits with his head resting against his hand, deep in thought, a sword propped against his chair and an open book before him. Rembrandt painted this figure of the Apostle Paul around 1657.",
+   "tags": "religious painting, portrait, contemplative, rembrandt, dutch golden age, oil on canvas",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Saint%20Paul%2C%20Rembrandt%20van%20Rijn%20%28and%20Workshop%3F%29%2C%20c.%201657.jpg?width=3840",
@@ -3252,7 +3214,9 @@
      0.9702,
      1.0
     ]
-   }
+   },
+   "current_repository": "National Gallery of Art",
+   "physical_dimensions": "131.5 x 104.4 cm"
   },
   {
    "title": "A Woman in Bed",
@@ -3260,10 +3224,10 @@
    "agent_role": "Painter",
    "creation_date": "1647",
    "cultural_context": "Dutch Golden Age",
-   "medium": "Oil on canvas",
-   "date_display": "c. 1647",
-   "description_narrative": "A woman draws back a curtain and reaches out from a canopied bed, her face lit by an unseen source, in one of Rembrandt's most intimate and enigmatic paintings. Long thought to depict Sarah awaiting Tobias on their wedding night, the scene's hushed, candlelit mood exemplifies his mature interest in psychological nuance.",
-   "tags": "intimate scene, bedchamber, biblical allusion, National Galleries Scotland",
+   "medium": "oil paint",
+   "date_display": "1647",
+   "description_narrative": "A woman reclines against pillows in a loose white shift, one arm raised to draw back a heavy red curtain as she glances toward something unseen. A jeweled band catches the light in her hair, and warm shadow gathers around the bed.",
+   "tags": "portrait, rembrandt, bed, red curtain, dutch golden age, chiaroscuro, scottish national gallery",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20%28Rembrandt%20van%20Rijn%29%20-%20A%20Woman%20in%20Bed%20-%20Google%20Art%20Project.jpg?width=3840",
@@ -3305,18 +3269,19 @@
      0.9536,
      1.0
     ]
-   }
+   },
+   "physical_dimensions": "81.1 x 67.8 cm"
   },
   {
    "title": "The Philosopher",
-   "agent_name": "Rembrandt van Rijn",
+   "agent_name": "Workshop of Rembrandt",
    "agent_role": "Painter",
    "creation_date": "c. 1653",
    "cultural_context": "Dutch Golden Age",
    "medium": "Oil on panel",
    "date_display": "c. 1653",
-   "description_narrative": "An old man sits absorbed in thought beside a glowing hearth and a spiral staircase that recedes into shadow, one of Rembrandt's most poetic explorations of contemplative solitude. The painting's deep architectural space and dramatic interior light have made it one of his most admired early works.",
-   "tags": "philosopher, meditation, interior, Louvre, chiaroscuro",
+   "description_narrative": "This tronie — a character study, not a named portrait — is attributed to the workshop of Rembrandt van Rijn, painted around 1653 in oil on panel and later held in the Charles Sedelmeyer collection. It shows a bearded man in a broad dark hat and gold chain, one hand raised near his chest, against a plain dark background.",
+   "tags": "tronie, dutch golden age, rembrandt workshop, oil on panel, portrait study, chiaroscuro",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20-%20The%20Philosopher.jpg?width=3840",
@@ -3359,71 +3324,19 @@
      1.0
     ]
    },
-   "current_repository": "National Gallery of Art"
-  },
-  {
-   "title": "Aristotle with a Bust of Homer",
-   "agent_name": "Rembrandt van Rijn",
-   "agent_role": "Painter",
-   "creation_date": "1653",
-   "cultural_context": "Dutch Golden Age",
-   "medium": "Oil on canvas",
-   "date_display": "1653",
-   "description_narrative": "The philosopher Aristotle rests his hand thoughtfully on a bust of the poet Homer, weighing worldly wealth against intellectual legacy, in one of Rembrandt's most celebrated mature works. Painted for a Sicilian patron, it showcases his rich, glowing color and psychological depth at the height of his career.",
-   "tags": "Aristotle, Homer, philosophy, Metropolitan Museum, mature style",
-   "source": "Wikimedia Commons",
-   "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20-%20Aristotle%20with%20a%20Bust%20of%20Homer%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20-%20Aristotle%20with%20a%20Bust%20of%20Homer%20-%20Google%20Art%20Project.jpg?width=600",
-   "license_verdict": "pd",
-   "license_basis": "Public domain",
-   "license_url": "",
-   "credit_line": "Google Arts &amp; Culture — lwEkk2dA5kBGjg",
-   "license_verified": "2026-07-16",
-   "featured_rank": 85,
-   "focal_point": [
-    0.58,
-    0.25
-   ],
-   "delivered_edge": 4000,
-   "resolution_tier": "4K",
-   "aspect_crops": {
-    "16:9": [
-     0.0,
-     0.0798,
-     1.0,
-     0.6172
-    ],
-    "9:16": [
-     0.0501,
-     0.0,
-     0.6389,
-     1.0
-    ],
-    "4:3": [
-     0.0,
-     0.0498,
-     1.0,
-     0.7662
-    ],
-    "3:4": [
-     0.0599,
-     0.0,
-     0.8451,
-     1.0
-    ]
-   }
+   "current_repository": "National Gallery of Art",
+   "physical_dimensions": "61.5 x 49.5 cm"
   },
   {
    "title": "Saint Bartholomew",
    "agent_name": "Rembrandt van Rijn",
    "agent_role": "Painter",
-   "creation_date": "1661",
+   "creation_date": "1657",
    "cultural_context": "Dutch Golden Age",
-   "medium": "Oil on canvas",
-   "date_display": "1661",
-   "description_narrative": "The apostle Bartholomew holds the knife of his martyrdom while gazing out with calm resolve, one of a series of apostle studies Rembrandt painted late in his career. The restrained composition focuses entirely on the sitter's weathered face and hands, rendered in richly worked, textured paint.",
-   "tags": "Saint Bartholomew, apostle, martyrdom, Getty Museum, late period",
+   "medium": "oil paint",
+   "date_display": "1657",
+   "description_narrative": "A bearded man in a plain brown robe rests one arm on the back of a chair, a long knife blade catching the light in his other hand. Deep shadow fills the background, leaving only his weathered face and hands illuminated. He is identified as Bartholomew the Apostle.",
+   "tags": "portrait, apostle, rembrandt, knife, dutch golden age, chiaroscuro, religious figure",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%2051030.jpg?width=3840",
@@ -3465,7 +3378,9 @@
      0.9624,
      1.0
     ]
-   }
+   },
+   "current_repository": "Timken Museum of Art",
+   "physical_dimensions": "122.7 x 99.7 cm"
   },
   {
    "title": "The Girl with the Wine Glass",
@@ -3475,8 +3390,8 @@
    "cultural_context": "Dutch Golden Age",
    "medium": "Oil on canvas",
    "date_display": "c. 1659–60",
-   "description_narrative": "A smiling young woman accepts a glass of wine from a suitor while a second man looks on from the shadows, a lively genre scene of courtship and temptation. The elaborate stained-glass window and richly patterned carpet display Vermeer's early fascination with intricate surface detail.",
-   "tags": "genre scene, courtship, wine, stained glass, Braunschweig",
+   "description_narrative": "A woman in a shining red satin gown accepts a wine glass from a standing man in a dark cloak and stiff white ruff, while another man slumps at the table behind them, head propped on his hand; a coat of arms glows in a stained-glass window at left. Vermeer painted this scene in 1659.",
+   "tags": "genre scene, wine glass, red dress, stained glass, vermeer, dutch golden age",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Johannes%20Vermeer%20-%20The%20Girl%20with%20the%20Wine%20Glass%20-%20Google%20Art%20Project.jpg?width=3840",
@@ -3525,12 +3440,12 @@
    "title": "Lady Seated at a Virginal",
    "agent_name": "Johannes Vermeer",
    "agent_role": "Painter",
-   "creation_date": "1672",
+   "creation_date": "c. 1670s",
    "cultural_context": "Dutch Golden Age",
-   "medium": "Oil on canvas",
-   "date_display": "c. 1670-1672",
-   "description_narrative": "A woman in a yellow satin jacket plays a virginal, turning to meet the viewer's gaze, in one of Vermeer's last known paintings. The composition's quiet intimacy and glowing light are hallmarks of his mature domestic interiors.",
-   "tags": "music, virginal, domestic interior, late Vermeer, National Gallery London",
+   "medium": "oil paint",
+   "date_display": "c. 1670s",
+   "description_narrative": "A woman in gleaming teal satin sits at a keyboard instrument, a bass viol and its bow propped against a chair to one side, a gilt-framed painting of figures hanging on the wall behind her. Vermeer painted this scene in the 1670s.",
+   "tags": "musician, virginal, interior scene, satin dress, vermeer, dutch golden age",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jan%20Vermeer%20van%20Delft%20-%20Jonge%20vrouw%20aan%20een%20virginaal%20%28ca.%201670-72%29.jpg?width=3840",
@@ -3572,18 +3487,20 @@
      0.9227,
      1.0
     ]
-   }
+   },
+   "current_repository": "National Gallery",
+   "physical_dimensions": "51.5 x 45.5 cm"
   },
   {
    "title": "Lady Standing at a Virginal",
    "agent_name": "Johannes Vermeer",
    "agent_role": "Painter",
-   "creation_date": "1672",
+   "creation_date": "c. 1670s",
    "cultural_context": "Dutch Golden Age",
-   "medium": "Oil on canvas",
-   "date_display": "c. 1670-1672",
-   "description_narrative": "A woman stands at a keyboard instrument beside a painting of Cupid, a companion piece to Vermeer's 'Lady Seated at a Virginal.' The pairing of standing and seated musicians reflects the artist's late interest in variations on a single domestic theme.",
-   "tags": "music, virginal, domestic interior, late Vermeer, companion painting",
+   "medium": "oil paint",
+   "date_display": "c. 1670s",
+   "description_narrative": "A woman in blue and cream stands beside a keyboard instrument, a small landscape and a larger gilt-framed painting of a cherub hanging above her, a blue upholstered chair and black-and-white tiles filling the room. Vermeer painted this scene in the 1670s.",
+   "tags": "musician, virginal, interior scene, tiled floor, vermeer, dutch golden age",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jan%20Vermeer%20van%20Delft%20-%20Jonge%20vrouw%20staande%20bij%20een%20virginaal%20%28ca.%201670-72%29.jpg?width=3840",
@@ -3625,7 +3542,9 @@
      0.9264,
      1.0
     ]
-   }
+   },
+   "current_repository": "National Gallery",
+   "physical_dimensions": "51.7 x 45.2 cm"
   },
   {
    "title": "The Glass of Wine",
@@ -3635,8 +3554,8 @@
    "cultural_context": "Dutch Golden Age",
    "medium": "Oil on canvas",
    "date_display": "c. 1658–60",
-   "description_narrative": "A woman drains a glass of wine while a gentleman stands watchfully beside her, a moralizing genre scene about temptation set within a sunlit Delft interior. Light pouring through a leaded window illuminates every fold of fabric and grain of wood in Vermeer's meticulous style.",
-   "tags": "genre scene, wine, courtship, interior light, Gemäldegalerie Berlin",
+   "description_narrative": "A standing man in a wide black hat and grey cloak pours wine from a white jug, while a seated woman in salmon pink lifts a glass to her lips beside a table set with a lute; a coat of arms glows in the stained-glass window at left. This work, painted around 1658 to 1660, is attributed to Jan Vermeer van Haarlem the Elder or Johannes Vermeer.",
+   "tags": "genre scene, wine pouring, stained glass, interior, dutch golden age, oil on canvas",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jan%20Vermeer%20van%20Delft%20-%20Het%20glas%20wijn%20%281658-60%29.jpg?width=3840",
@@ -3689,8 +3608,8 @@
    "cultural_context": "Dutch Golden Age",
    "medium": "Oil on panel",
    "date_display": "c. 1669",
-   "description_narrative": "A young woman in a flamboyant red hat and blue-grey cloak turns toward the viewer, her open mouth suggesting she has just been addressed. Painted on a wood panel rather than canvas, it is one of Vermeer's smallest and most experimental works, with unusually bold, loose brushwork.",
-   "tags": "tronie, red hat, panel painting, National Gallery of Art Washington",
+   "description_narrative": "A young woman glances over her shoulder from beneath a broad, plush red hat, its brim catching the light. Loose brushwork models her flushed cheeks and parted lips against a shadowy tapestry backdrop. A blue velvet wrap falls loosely from her shoulder, its folds picking up soft highlights.",
+   "tags": "portrait, red hat, tronie, chiaroscuro, dutch golden age",
    "source": "National Gallery of Art, Washington",
    "license": "Public Domain",
    "source_url": "https://api.nga.gov/iiif/b705a403-3496-42e8-abf5-a37e34c32198/full/3840,/0/default.jpg",
@@ -3709,12 +3628,12 @@
    "title": "The Geographer",
    "agent_name": "Johannes Vermeer",
    "agent_role": "Painter",
-   "creation_date": "1669",
+   "creation_date": "1668",
    "cultural_context": "Dutch Golden Age",
    "medium": "Oil on canvas",
-   "date_display": "1669",
-   "description_narrative": "A scholar leans over a table scattered with charts and a globe, dividers in hand, caught mid-thought as he gazes toward a window. The painting is a pendant to Vermeer's 'The Astronomer' and reflects the Dutch Golden Age fascination with scientific discovery and exploration.",
-   "tags": "scholar, geography, science, Städel Museum, pendant painting",
+   "date_display": "1668",
+   "description_narrative": "A man in a loose blue robe leans over a table scattered with charts, a pair of dividers in his hand, a globe resting atop the cabinet behind him and daylight falling through a leaded window. Vermeer painted this scholar in 1668.",
+   "tags": "interior scene, scholar, globe, window light, vermeer, dutch golden age",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Johannes%20Vermeer%20-%20The%20Geographer%20-%20Google%20Art%20Project.jpg?width=3840",
@@ -3762,12 +3681,12 @@
    "title": "The Guitar Player",
    "agent_name": "Johannes Vermeer",
    "agent_role": "Painter",
-   "creation_date": "1672",
+   "creation_date": "c. 1672",
    "cultural_context": "Dutch Golden Age",
    "medium": "Oil on canvas",
    "date_display": "c. 1672",
-   "description_narrative": "A young woman plucks a guitar with an animated smile, her curled hair and ermine-trimmed jacket catching the light, in one of Vermeer's rare paintings showing a sitter in active motion. The livelier pose and brighter palette mark a departure from his more static, contemplative interiors.",
-   "tags": "music, guitar, portrait, Kenwood House, late Vermeer",
+   "description_narrative": "A woman with ringlet curls and a pearl necklace plucks at a guitar, her yellow fur-trimmed jacket catching the light, a framed landscape painting hanging on the wall behind her and books stacked nearby. Vermeer painted this scene around 1672.",
+   "tags": "musician, guitar, portrait, interior scene, vermeer, dutch golden age",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Johannes%20Vermeer%20-%20The%20Guitar%20Player%20%28ca.%201672%29.jpg?width=3840",
@@ -3815,12 +3734,12 @@
    "title": "Mistress and Maid",
    "agent_name": "Johannes Vermeer",
    "agent_role": "Painter",
-   "creation_date": "1667",
+   "creation_date": "1666",
    "cultural_context": "Dutch Golden Age",
    "medium": "Oil on canvas",
-   "date_display": "c. 1666-1667",
-   "description_narrative": "A maid interrupts her seated mistress with an urgent letter, freezing the scene at a moment of narrative tension rare in Vermeer's typically serene interiors. The unfinished-looking dark background, unusual for the artist, has intrigued scholars for generations.",
-   "tags": "genre scene, letter, mistress and maid, Frick Collection, narrative tension",
+   "date_display": "1666",
+   "description_narrative": "A woman pauses mid-thought, fingers pressed to her chin, as a maid leans in to offer her a letter, papers scattered across the table between them. The moment feels caught mid-motion, as if whatever she was doing has just been interrupted.",
+   "tags": "genre scene, letter, domestic interior, vermeer, dutch golden age, candlelight, yellow satin, interrupted moment",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Johannes%20Vermeer%20-%20Mistress%20and%20Maid%20-%20Google%20Arts%20Project.jpg?width=3840",
@@ -3868,12 +3787,12 @@
    "title": "Allegory of the Catholic Faith",
    "agent_name": "Johannes Vermeer",
    "agent_role": "Painter",
-   "creation_date": "1672",
+   "creation_date": "1670s",
    "cultural_context": "Dutch Golden Age",
-   "medium": "Oil on canvas",
-   "date_display": "c. 1670-1672",
-   "description_narrative": "A woman personifying Faith sits amid symbolic objects including a crushed serpent, a globe, and a chalice, in Vermeer's most overtly allegorical and religious painting. Likely commissioned for a Catholic patron in Delft's clandestine Catholic community, it departs sharply from his usual restrained domestic scenes.",
-   "tags": "allegory, Catholic faith, religious symbolism, Metropolitan Museum, Delft Catholics",
+   "medium": "oil paint",
+   "date_display": "1670s",
+   "description_narrative": "A woman in blue and white sits with one hand pressed to her chest and her foot resting on a globe, gazing upward beneath a painting of the crucifixion, a crucifix and open book on the table beside her. Vermeer painted this allegory in the 1670s.",
+   "tags": "allegory, religious symbolism, interior scene, vermeer, dutch golden age, oil on canvas",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Johannes%20Vermeer%2C%20Allegory%20of%20the%20Catholic%20Faith%2C%20The%20Metropolitan%20Museum%20of%20Art.jpg?width=3840",
@@ -3915,18 +3834,20 @@
      0.9818,
      1.0
     ]
-   }
+   },
+   "current_repository": "Metropolitan Museum of Art",
+   "physical_dimensions": "114.3 x 88.9 cm"
   },
   {
    "title": "Woman with a Lute",
    "agent_name": "Johannes Vermeer",
    "agent_role": "Painter",
-   "creation_date": "1663",
+   "creation_date": "1662",
    "cultural_context": "Dutch Golden Age",
-   "medium": "Oil on canvas",
-   "date_display": "c. 1662-1663",
-   "description_narrative": "A woman tunes a lute while gazing out a sunlit window, her yellow fur-trimmed jacket a recurring garment in several Vermeer interiors. The painting's soft focus and glowing light exemplify the artist's mastery of atmospheric domestic scenes.",
-   "tags": "music, lute, window light, domestic interior, Metropolitan Museum",
+   "medium": "oil paint",
+   "date_display": "1662",
+   "description_narrative": "A woman in a fur-trimmed yellow jacket leans toward a curtained window, tuning a lute balanced against her shoulder as if waiting for the light, or a companion, to arrive. A large wall map looms behind her in shadow.",
+   "tags": "genre scene, vermeer, lute, musician, wall map, dutch golden age, metropolitan museum",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Vermeer%20-%20Woman%20with%20a%20Lute%20near%20a%20window.jpg?width=3840",
@@ -3968,18 +3889,20 @@
      0.9254,
      1.0
     ]
-   }
+   },
+   "current_repository": "Metropolitan Museum of Art",
+   "physical_dimensions": "51.4 x 45.7 cm"
   },
   {
    "title": "Woman in Blue Reading a Letter",
    "agent_name": "Johannes Vermeer",
    "agent_role": "Painter",
-   "creation_date": "1663",
+   "creation_date": "1664",
    "cultural_context": "Dutch Golden Age",
    "medium": "Oil on canvas",
-   "date_display": "c. 1663",
-   "description_narrative": "A pregnant woman stands absorbed in a letter against a plain wall, a map of the Netherlands hanging behind her, in one of Vermeer's most quietly powerful single-figure compositions. The deep ultramarine blue of her jacket, made from costly ground lapis lazuli, is among the finest examples of the artist's legendary color sense.",
-   "tags": "letter reading, ultramarine, map, Rijksmuseum, domestic interior",
+   "date_display": "1664",
+   "description_narrative": "A woman in a loose blue jacket stands absorbed in a letter held in both hands, her lips slightly parted as she reads. A large, timeworn map fills the wall behind her, and two chairs with a cluttered table sit in shadow at the room's edge.",
+   "tags": "genre scene, vermeer, letter, blue jacket, wall map, dutch golden age, rijksmuseum",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Brieflezende%20vrouw%2C%20SK-C-251.jpg?width=3840",
@@ -4027,12 +3950,12 @@
    "title": "Diana and her Nymphs",
    "agent_name": "Johannes Vermeer",
    "agent_role": "Painter",
-   "creation_date": "1654",
+   "creation_date": "c. 1650s",
    "cultural_context": "Dutch Golden Age",
-   "medium": "Oil on canvas",
-   "date_display": "c. 1653-1654",
-   "description_narrative": "The goddess Diana sits attended by her nymphs after the hunt, one of only three history paintings securely attributed to Vermeer and his earliest known signed work. Its muted palette and hushed mood already hint at the quiet stillness that would define his later domestic scenes.",
-   "tags": "mythology, Diana, nymphs, early Vermeer, Mauritshuis",
+   "medium": "oil paint",
+   "date_display": "c. 1650s",
+   "description_narrative": "A seated woman in golden yellow has her foot gently washed by a kneeling companion, other women in rose and blue resting nearby with a small dog at their feet, one bare-backed figure turned away beneath a tree. Vermeer painted this scene of Diana and her nymphs in the 1650s.",
+   "tags": "mythological painting, bathing scene, nymphs, vermeer, dutch golden age, oil on canvas",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Johannes%20Vermeer%20-%20Diana%20and%20her%20Nymphs%20-%20406%20-%20Mauritshuis.jpg?width=3840",
@@ -4074,7 +3997,8 @@
      0.8364,
      1.0
     ]
-   }
+   },
+   "physical_dimensions": "97.8 x 104.6 cm"
   },
   {
    "title": "The Little Street (View of Houses in Delft)",
@@ -4083,9 +4007,9 @@
    "creation_date": "1658",
    "cultural_context": "Dutch Golden Age",
    "medium": "Oil on canvas",
-   "date_display": "c. 1658",
-   "description_narrative": "A row of modest brick houses along a Delft street is rendered with quiet precision, women and children going about small daily tasks in doorways and courtyards. It is Vermeer's only surviving painting of an exterior street scene, prized for its intimate, unidealized view of everyday urban life.",
-   "tags": "street scene, Delft, townscape, Rijksmuseum, daily life",
+   "date_display": "1658",
+   "description_narrative": "A red brick facade rises above a quiet street, its shutters half open; a woman sews in a doorway at right while two children crouch on the step nearby, and another figure bends over work in a passage at left beside a leafy tree. Vermeer painted this street view in 1658.",
+   "tags": "street scene, brick facade, domestic life, delft, vermeer, dutch golden age",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Gezicht%20op%20huizen%20in%20Delft%2C%20bekend%20als%20%E2%80%98Het%20straatje%E2%80%99%20Gezicht%20op%20huizen%20in%20Delft%2C%20bekend%20als%20%27Het%20straatje%27%2C%20SK-A-2860.jpg?width=3840",
@@ -4135,10 +4059,10 @@
    "agent_role": "Painter",
    "creation_date": "1664",
    "cultural_context": "Dutch Golden Age",
-   "medium": "Oil on canvas",
-   "date_display": "c. 1662-1664",
-   "description_narrative": "A young woman gazes into an unseen mirror as she ties a pearl necklace at her throat, sunlight from a window illuminating her face and yellow jacket. The painting exemplifies Vermeer's recurring theme of women absorbed in private, everyday moments of vanity and self-reflection.",
-   "tags": "pearl necklace, mirror, vanity, domestic interior, Gemäldegalerie Berlin",
+   "medium": "oil paint",
+   "date_display": "1664",
+   "description_narrative": "A young woman in a fur-trimmed yellow jacket lifts a length of ribbon to her collar, pearl drops glinting at her ears as she gazes toward an unseen mirror. Soft daylight falls across a bare white wall behind her, and a mustard-yellow curtain frames the window at her side.",
+   "tags": "genre scene, vermeer, pearl earrings, yellow jacket, dutch golden age, daylight, gemaldegalerie berlin",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jan%20Vermeer%20van%20Delft%20-%20Young%20Woman%20with%20a%20Pearl%20Necklace%20-%20Google%20Art%20Project.jpg?width=3840",
@@ -4180,18 +4104,19 @@
      0.9329,
      1.0
     ]
-   }
+   },
+   "physical_dimensions": "55.0 x 45.0 cm"
   },
   {
    "title": "Officer and Laughing Girl",
    "agent_name": "Johannes Vermeer",
    "agent_role": "Painter",
-   "creation_date": "1657",
+   "creation_date": "1658",
    "cultural_context": "Dutch Golden Age",
-   "medium": "Oil on canvas",
-   "date_display": "c. 1657",
-   "description_narrative": "A soldier in a wide-brimmed hat sits with his back to the viewer, engaged in animated conversation with a smiling young woman across a table. The dramatic scale contrast between the large foreground soldier and the smaller woman, achieved with a camera-obscura-like perspective, is one of Vermeer's most distinctive spatial experiments.",
-   "tags": "genre scene, soldier, courtship, perspective, Frick Collection",
+   "medium": "oil paint",
+   "date_display": "1658",
+   "description_narrative": "A soldier in a broad black hat and scarlet coat, seen mostly from behind, leans toward a smiling young woman who holds a glass of wine between her fingers. A large wall map fills the space behind her, depicting Holland and West Friesland.",
+   "tags": "genre scene, vermeer, soldier, wine glass, courtship, wall map, dutch golden age, interior light",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Johannes%20Vermeer%20-%20De%20Soldaat%20en%20het%20Lachende%20Meisje%20-%20Google%20Art%20Project.jpg?width=3840",
@@ -4233,18 +4158,20 @@
      0.907,
      1.0
     ]
-   }
+   },
+   "current_repository": "The Frick Collection",
+   "physical_dimensions": "50.5 x 46.0 cm"
   },
   {
    "title": "The Music Lesson",
    "agent_name": "Johannes Vermeer",
    "agent_role": "Painter",
-   "creation_date": "1665",
+   "creation_date": "1662",
    "cultural_context": "Dutch Golden Age",
-   "medium": "Oil on canvas",
-   "date_display": "c. 1662-1665",
-   "description_narrative": "A woman practices at a virginal while a gentleman stands attentively behind her, their reflection visible in a mirror above the instrument. The painting's deep, carefully constructed perspective and cool light are considered among Vermeer's most technically accomplished interior scenes.",
-   "tags": "music, virginal, mirror, Royal Collection, perspective",
+   "medium": "oil paint",
+   "date_display": "1662",
+   "description_narrative": "A woman in a black bodice stands at a keyboard instrument with her back turned, while a man in dark dress looks on beside her. Above them a gilt-framed mirror catches a faint reflection of the sunlit room, and a viola da gamba lies abandoned on the black-and-white tiled floor.",
+   "tags": "genre scene, music lesson, virginal, interior, mirror, dutch golden age, checkered floor, vermeer",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Johannes%20Vermeer%20-%20Lady%20at%20the%20Virginal%20with%20a%20Gentleman%2C%20%27The%20Music%20Lesson%27%20-%20Google%20Art%20Project.jpg?width=3840",
@@ -4286,18 +4213,20 @@
      0.9316,
      1.0
     ]
-   }
+   },
+   "current_repository": "Royal Collection",
+   "physical_dimensions": "74.1 x 64.6 cm"
   },
   {
    "title": "The Love Letter",
    "agent_name": "Johannes Vermeer",
    "agent_role": "Painter",
-   "creation_date": "1670",
+   "creation_date": "1668",
    "cultural_context": "Dutch Golden Age",
    "medium": "Oil on canvas",
-   "date_display": "c. 1669-1670",
-   "description_narrative": "Glimpsed through a doorway as if by a passing observer, a maid hands her seated mistress a letter, the two women framed by a curtain and a marine painting suggesting the theme of a lover's absence. The layered, receding space is one of Vermeer's most sophisticated compositional devices.",
-   "tags": "letter, maid, doorway view, Rijksmuseum, layered composition",
+   "date_display": "1668",
+   "description_narrative": "Framed by an open doorway, a woman holding a cittern looks up at a maid who presents her with a letter, a laundry basket and broom left on the checkered floor and a small seascape hanging among the paintings behind them. Vermeer painted this scene in 1668.",
+   "tags": "letter delivery, doorway, musician, interior scene, vermeer, dutch golden age",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Vermeer%2C%20Johannes%20-%20The%20Loveletter.jpg?width=3840",
@@ -4345,12 +4274,12 @@
    "title": "The Astronomer",
    "agent_name": "Johannes Vermeer",
    "agent_role": "Painter",
-   "creation_date": "1668",
+   "creation_date": "1664",
    "cultural_context": "Dutch Golden Age",
    "medium": "Oil on canvas",
-   "date_display": "1668",
-   "description_narrative": "A scholar reaches toward a celestial globe on his study table, absorbed in the pursuit of astronomical knowledge, in a pendant piece to Vermeer's 'The Geographer.' It is one of only two paintings Vermeer signed and dated, reflecting the era's growing enthusiasm for science.",
-   "tags": "scholar, astronomy, globe, Louvre, pendant painting",
+   "date_display": "1664",
+   "description_narrative": "A man in a loose patterned robe leans across a table draped in a richly woven cloth, reaching to touch a celestial globe, window light falling across his face and hands. Vermeer painted this study of an astronomer around 1664.",
+   "tags": "interior scene, celestial globe, window light, vermeer, dutch golden age, oil on canvas",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Der%20Astronom%20Hajotthu%20version.jpg?width=3840",
@@ -4398,12 +4327,12 @@
    "title": "Lady Writing a Letter with her Maid",
    "agent_name": "Johannes Vermeer",
    "agent_role": "Painter",
-   "creation_date": "1671",
+   "creation_date": "1670",
    "cultural_context": "Dutch Golden Age",
    "medium": "Oil on canvas",
-   "date_display": "c. 1670-1672",
-   "description_narrative": "A seated woman pauses mid-letter while her maid waits patiently by a curtained window, a composition that inverts the maid-mistress dynamic seen in Vermeer's other letter paintings. Dramatic light and shadow give the scene a heightened emotional stillness typical of his later work.",
-   "tags": "letter writing, maid, domestic interior, National Gallery of Ireland",
+   "date_display": "1670",
+   "description_narrative": "A seated woman writes at a table draped in patterned red cloth while her maid stands behind, arms folded, gazing toward a curtained window; a large, dark painting of several figures hangs on the wall above them. Vermeer painted this scene in 1670.",
+   "tags": "letter writing, maid, interior scene, vermeer, dutch golden age, oil on canvas",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/DublinVermeer.jpg?width=3840",
@@ -4453,10 +4382,10 @@
    "agent_role": "Painter",
    "creation_date": "1656",
    "cultural_context": "Dutch Golden Age",
-   "medium": "Oil on canvas",
+   "medium": "oil paint",
    "date_display": "1656",
-   "description_narrative": "A young woman accepts a coin from a leering man while an older procuress and a third figure look on, a lively brothel scene depicting a common theme in Dutch genre painting. It is Vermeer's earliest dated genre work and the first to reveal his fully developed interest in domestic narrative.",
-   "tags": "genre scene, brothel, procuress, Gemäldegalerie Dresden, early Vermeer",
+   "description_narrative": "A man in black raises a glass and grins out at the viewer while, beside him, another in a red coat and feathered hat curls an arm around a young woman in butter-yellow, a coin seemingly passing between the figures. A patterned rug and a blue-and-white jug crowd the table below the scene's flushed, candlelit intimacy.",
+   "tags": "genre scene, vermeer, tavern, coins, wine glass, dutch golden age, jug, figures",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Johannes%20Vermeer%20-%20The%20Procuress%20-%20Google%20Art%20Project.jpg?width=3840",
@@ -4498,18 +4427,19 @@
      0.919,
      1.0
     ]
-   }
+   },
+   "physical_dimensions": "143.0 x 130.0 cm"
   },
   {
    "title": "Girl Reading a Letter at an Open Window",
    "agent_name": "Johannes Vermeer",
    "agent_role": "Painter",
-   "creation_date": "1659",
+   "creation_date": "c. 1650s",
    "cultural_context": "Dutch Golden Age",
    "medium": "Oil on canvas",
-   "date_display": "c. 1657-1659",
-   "description_narrative": "A young woman reads a letter in profile beside an open window, her reflection faintly visible in the glass, in one of Vermeer's earliest and most influential single-figure interiors. Recent conservation revealed a painted Cupid on the rear wall, long hidden beneath overpaint, confirming the letter's romantic subject.",
-   "tags": "letter reading, window light, reflection, Gemäldegalerie Dresden, restoration discovery",
+   "date_display": "c. 1650s",
+   "description_narrative": "A young woman in a gold bodice reads intently by an open window, its red curtain drawn back, a heavy green drape framing the room and a bowl of fruit spilling across a patterned cloth in the foreground. Vermeer painted this quiet scene in the 1650s.",
+   "tags": "interior scene, letter reading, window light, still life, vermeer, dutch golden age",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Johannes%20Vermeer%20-%20Girl%20Reading%20a%20Letter%20by%20an%20Open%20Window%20-%20Google%20Art%20Project.jpg?width=3840",
@@ -4557,12 +4487,12 @@
    "title": "A Lady Writing",
    "agent_name": "Johannes Vermeer",
    "agent_role": "Painter",
-   "creation_date": "1665",
+   "creation_date": "1660s",
    "cultural_context": "Dutch Golden Age",
    "medium": "Oil on canvas",
-   "date_display": "c. 1665",
-   "description_narrative": "A young woman in a fur-trimmed yellow jacket looks up from her writing table, caught mid-thought with pen in hand. The intimate scale and warm, golden light exemplify Vermeer's genius for elevating an ordinary domestic moment into quiet monumentality.",
-   "tags": "letter writing, portrait, yellow jacket, National Gallery of Art Washington",
+   "date_display": "1660s",
+   "description_narrative": "A woman in a fur-trimmed yellow jacket pauses mid-sentence, quill in hand, small bows gathered in her hair and a dark, indistinct painting hanging on the wall behind her. Vermeer painted this scene in the 1660s.",
+   "tags": "letter writing, interior scene, quill pen, yellow jacket, vermeer, dutch golden age",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Johannes%20Vermeer%20-%20A%20Lady%20Writing%20-%20Google%20Art%20Project.jpg?width=3840",
@@ -4610,12 +4540,12 @@
    "title": "Christ in the House of Martha and Mary",
    "agent_name": "Johannes Vermeer",
    "agent_role": "Painter",
-   "creation_date": "1655",
+   "creation_date": "from 1654 until 1655",
    "cultural_context": "Dutch Golden Age",
    "medium": "Oil on canvas",
-   "date_display": "c. 1654-1656",
-   "description_narrative": "Christ gently redirects Martha's complaint about her sister Mary's inattentiveness to household chores, in Vermeer's largest painting and one of only a handful of religious history scenes from his early career. The dramatic scale and biblical subject stand apart from the intimate domestic interiors for which he later became famous.",
-   "tags": "biblical scene, Martha and Mary, early Vermeer, Scottish National Gallery, history painting",
+   "date_display": "from 1654 until 1655",
+   "description_narrative": "A woman leans in to offer a basket of bread while a seated figure gazes up, chin resting on her hand, listening to a robed man who gestures gently as he speaks. Vermeer painted this biblical scene between 1654 and 1655.",
+   "tags": "biblical scene, interior, figures, vermeer, dutch golden age, oil on canvas",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Johannes%20%28Jan%29%20Vermeer%20-%20Christ%20in%20the%20House%20of%20Martha%20and%20Mary%20-%20Google%20Art%20Project.jpg?width=3840",
@@ -4667,8 +4597,8 @@
    "cultural_context": "Dutch Golden Age",
    "medium": "Oil on canvas",
    "date_display": "1611",
-   "description_narrative": "The Haarlem archdeacon Jacobus Zaffius is portrayed in a stiff ruff and fur-trimmed robe, in what is generally considered Frans Hals's earliest surviving dated painting. Though more formal and tightly rendered than his later work, it already shows the acute characterization that would define his mature portraiture.",
-   "tags": "portrait, clergyman, Haarlem, earliest dated work, Frans Hals Museum",
+   "description_narrative": "An elderly man with a full white beard and moustache wears a black cap and a heavy fur-collared cloak, a small coat of arms painted on the wall behind him.",
+   "tags": "portrait, frans hals, elderly man, fur-trimmed cloak, coat of arms, dutch golden age, black cap",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Hals%20Frans%20-%20Zaffius%2C%20Jacobus%20Hendricksz%20-%20Google%20Art%20Project.jpg?width=3840",
@@ -4720,8 +4650,8 @@
    "cultural_context": "Dutch Golden Age",
    "medium": "Oil on canvas",
    "date_display": "1639",
-   "description_narrative": "An elderly Haarlem woman is portrayed in a starched millstone ruff and black gown, her hands folded in composed dignity. The crisp linen and confident, economical brushwork are hallmarks of Hals's mature portrait style.",
-   "tags": "portrait, elderly woman, ruff, Haarlem, Rijksmuseum",
+   "description_narrative": "An elderly woman sits with a large clasped book braced against her lap, one hand resting on its cover and the other draped over the arm of her chair. A gold-and-black coat of arms hangs on the wall above her shoulder, and her wide pleated ruff and starched cap catch the room's low light.",
+   "tags": "portrait, frans hals, elderly woman, seated, coat of arms, book, dutch golden age, ruff collar",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Portret%20van%20Maritge%20Claesdr%20Vooght%20%281577-1644%29%2C%20SK-C-139.jpg?width=3840",
@@ -4771,10 +4701,10 @@
    "agent_role": "Painter",
    "creation_date": "1625",
    "cultural_context": "Dutch Golden Age",
-   "medium": "Oil on canvas",
+   "medium": "oil paint",
    "date_display": "1625",
-   "description_narrative": "The wealthy Haarlem brewer Jacob Olycan is shown in fine lace and a gleaming doublet, a pendant to Hals's portrait of his wife, Aletta Hanemans. The confident pose and lavish costume reflect Olycan's prominent standing in Haarlem society.",
-   "tags": "portrait, Haarlem brewer, pendant portrait, Mauritshuis",
+   "description_narrative": "A young man in an elaborately patterned black doublet with slashed sleeves stands with one hand resting confidently at his hip, his broad ruff and delicate cuffs catching crisp white light. He is identified as Jacob Pietersz Olycan.",
+   "tags": "portrait, frans hals, young man, black doublet, ruff collar, dutch golden age, jacob olycan, mauritshuis",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frans%20Hals%20-%20Portrait%20of%20Jacob%20Olycan%20%281596-1638%29%20-%20459%20-%20Mauritshuis.jpg?width=3840",
@@ -4816,18 +4746,19 @@
      0.984,
      1.0
     ]
-   }
+   },
+   "physical_dimensions": "124.8 x 97.5 cm"
   },
   {
    "title": "Catharina Hooft and her Nurse",
    "agent_name": "Frans Hals",
    "agent_role": "Painter",
-   "creation_date": "1620",
+   "creation_date": "1619/20",
    "cultural_context": "Dutch Golden Age",
    "medium": "Oil on canvas",
-   "date_display": "c. 1619-1620",
-   "description_narrative": "A wealthy Amsterdam toddler in an elaborate gold-embroidered gown is held by her attentive nurse, who offers her an apple. The painting is among Hals's earliest and most charming excursions into portraying childhood with unusual warmth and immediacy.",
-   "tags": "portrait, child, nurse, Gemäldegalerie Berlin, family life",
+   "date_display": "1619/20",
+   "description_narrative": "A smiling woman in a starched white cap and wide ruff holds up a small golden rattle for a richly dressed child beside her, the child's bonnet and gown embroidered in gold thread and trimmed with fine lace. Frans Hals painted this double portrait around 1619.",
+   "tags": "portrait, mother and child, lace ruff, frans hals, dutch golden age, oil on canvas",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bildnis%20der%20Catharina%20Hooft%20mit%20ihrer%20Amme-WUS03330.jpg?width=3840",
@@ -4875,12 +4806,12 @@
    "title": "Family Portrait in a Landscape",
    "agent_name": "Frans Hals",
    "agent_role": "Painter",
-   "creation_date": "1623",
+   "creation_date": "ca. 1623/25 and 1628",
    "cultural_context": "Dutch Golden Age",
    "medium": "Oil on canvas",
-   "date_display": "c. 1620s",
-   "description_narrative": "A prosperous Haarlem family gathers in a park-like landscape, a fashionable format for group portraiture in the period. Hals painted the family's animated figures while his collaborator, Salomon de Bray, is thought to have contributed the surrounding landscape setting.",
-   "tags": "family portrait, landscape, collaboration, group portrait, Haarlem",
+   "date_display": "ca. 1623/25 and 1628",
+   "description_narrative": "A woman in a stiff lace ruff turns with a warm smile toward a young girl beside her, whose own lace-trimmed bonnet and collar catch the light against a dark, wooded backdrop. Frans Hals and Salomon de Bray worked on this family portrait between about 1623 and 1628.",
+   "tags": "family portrait, lace collar, dutch golden age, frans hals, oil on canvas, mother and daughter",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bildnis%20der%20Familie%20van%20Campen%20in%20einer%20Landschaft%20%28Frans%20Hals%20and%20Salomon%20de%20Bray%29-WUS03410.jpg?width=3840",
@@ -4932,8 +4863,8 @@
    "cultural_context": "Dutch Golden Age",
    "medium": "Oil on canvas",
    "date_display": "1616",
-   "description_narrative": "A Leiden fish merchant and amateur poet is portrayed holding a herring and bread, references to his trade and to a well-known satirical poem he composed. The painting is one of Hals's earliest surviving portraits, already showing his gift for capturing personality through gesture and expression.",
-   "tags": "portrait, merchant, Leiden, early work, Museum Boijmans Van Beuningen",
+   "description_narrative": "An older man with windswept grey hair and a wide ruffled collar holds up a silvery fish, gripping it firmly by the tail as he turns with a faint, knowing smile.",
+   "tags": "portrait, frans hals, fish, ruff collar, older man, dutch golden age, genre portrait, grey hair",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bildnis%20des%20Pieter%20Cornelisz%20van%20der%20Mersch%20%28Frans%20Hals%29-WUS03711.jpg?width=3840",
@@ -4985,8 +4916,8 @@
    "cultural_context": "Dutch Golden Age",
    "medium": "Oil on canvas",
    "date_display": "1627",
-   "description_narrative": "The officers of Haarlem's St. George civic guard company gather around a banquet table in a dazzling display of individual characterization within a unified group composition. Hals's virtuosic handling of the officers' orange sashes, lace collars, and animated expressions made this one of the great achievements of Dutch group portraiture.",
-   "tags": "civic guard, group portrait, banquet, Haarlem, Frans Hals Museum",
+   "description_narrative": "A mustached man in a broad, starched ruff cuts into a piece of meat with a knife, seated close among fellow guardsmen in plumed hats and gold-trimmed coats at a laden table. Frans Hals painted this banquet scene in 1627.",
+   "tags": "group portrait, feast, ruff collar, frans hals, dutch golden age, oil on canvas",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frans%20hals%2C%20banchetto%20degli%20ufficiali%20della%20guardia%20civica%20di%20s.%20giorgio%2C%201624-27%2C%2006.jpg?width=3840",
@@ -5038,8 +4969,8 @@
    "cultural_context": "Dutch Golden Age",
    "medium": "Oil on canvas",
    "date_display": "1639",
-   "description_narrative": "A later, larger civic guard group portrait shows the officers and sergeants of the same Haarlem militia company arranged with even greater compositional complexity than Hals's earlier banquet scene. Painted as Hals approached sixty, it demonstrates his continued mastery of large-scale group composition.",
-   "tags": "civic guard, group portrait, Haarlem, militia, Frans Hals Museum",
+   "description_narrative": "Rendered in loose, confident brushwork, an officer in black with a wide lace collar and a broad orange sash turns to look past the viewer, one gloved hand raised near his chest. Behind him another guardsman in matching black leans in, mustache curling into an easy smile.",
+   "tags": "group portrait, civic guard, frans hals, orange sash, militia, lace collar, dutch golden age, loose brushwork",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frans%20hals%2C%20ufficiali%20e%20subalterni%20della%20guardia%20civica%20di%20s.%20giorgio%2C%201639%2C%2004.jpg?width=3840",
@@ -5085,14 +5016,14 @@
   },
   {
    "title": "Portrait of an Elderly Lady",
-   "agent_name": "Frans Hals",
+   "agent_name": "Possibly Frans Hals",
    "agent_role": "Painter",
-   "creation_date": "1633",
+   "creation_date": "1628",
    "cultural_context": "Dutch Golden Age",
-   "medium": "Oil on canvas",
-   "date_display": "1633",
-   "description_narrative": "An unidentified elderly woman is portrayed in a black dress and white ruff, her direct, unsentimental gaze characteristic of Hals's mature approach to portraiture. The loose, confident brushwork in the lace and linen reveals the free technique that made him famous among his contemporaries.",
-   "tags": "portrait, elderly woman, ruff, Yale University Art Gallery",
+   "medium": "oil paint",
+   "date_display": "1628",
+   "description_narrative": "An elderly woman in a dark, fur-trimmed gown wears a pointed white diadem cap and a crisp pleated ruff, a small red book held in one weathered hand.",
+   "tags": "portrait, elderly woman, diadem cap, frans hals, book, dutch golden age, fur trim",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frans%20Hals%20-%20An%20Old%20Lady%20-%201957.18.4%20-%20Yale%20University%20Art%20Gallery.jpg?width=3840",
@@ -5134,18 +5065,20 @@
      0.9583,
      1.0
     ]
-   }
+   },
+   "current_repository": "Yale University Art Gallery",
+   "physical_dimensions": "73.7 x 59.1 cm"
   },
   {
    "title": "The Meagre Company",
-   "agent_name": "Frans Hals",
+   "agent_name": "Frans Hals and Pieter Codde",
    "agent_role": "Painter",
-   "creation_date": "1637",
+   "creation_date": "1630s",
    "cultural_context": "Dutch Golden Age",
-   "medium": "Oil on canvas",
-   "date_display": "1633-1637",
-   "description_narrative": "This large Amsterdam civic guard portrait was begun by Hals but left unfinished when he refused to travel from Haarlem to Amsterdam to complete it, and was ultimately finished by the painter Pieter Codde. The painting's nickname, 'The Meagre Company,' reflects the guardsmen's notably slender figures compared to other militia portraits.",
-   "tags": "civic guard, group portrait, Amsterdam, collaboration, Rijksmuseum",
+   "medium": "canvas",
+   "date_display": "1630s",
+   "description_narrative": "A long row of militia guardsmen in black coats and crisp white ruffs stand shoulder to shoulder with pikes and halberds, one figure in gold-trimmed white at the far left gesturing broadly beside a man in a wide black hat and orange sash. Frans Hals began this civic guard portrait in the 1630s and Pieter Codde completed it.",
+   "tags": "group portrait, militia, civic guard, pikes, frans hals, dutch golden age",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frans%20Hals%2C%20De%20magere%20compagnie.jpg?width=3840",
@@ -5188,18 +5121,19 @@
      0.6734,
      1.0
     ]
-   }
+   },
+   "physical_dimensions": "209.0 x 429.0 cm"
   },
   {
    "title": "Fisherman Playing the Violin",
    "agent_name": "Frans Hals",
    "agent_role": "Painter",
-   "creation_date": "1630",
+   "creation_date": "c. 1630",
    "cultural_context": "Dutch Golden Age",
    "medium": "Oil on canvas",
    "date_display": "c. 1630",
-   "description_narrative": "A weathered fisher boy plays a violin against a windswept dune landscape, part of a series of genre 'fisher children' paintings Hals produced depicting the working children of the Dutch coast. The rough, ruddy features and simple dress contrast sharply with his polished portraits of wealthy patrons.",
-   "tags": "genre painting, fisherman, violin, coastal life, Frans Hals Museum",
+   "description_narrative": "A weathered, gray-haired man grins broadly as he draws a bow across his violin, a white ruff at his throat and the ruins of a stone tower rising behind him against a pale sky. Frans Hals painted this smiling violinist around 1630.",
+   "tags": "portrait, violinist, smiling, ruined tower, frans hals, dutch golden age",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frans%20hals%2C%20pescatore%20che%20suona%20il%20violino%2C%201630%20ca.%2002.jpg?width=3840",
@@ -5251,8 +5185,8 @@
    "cultural_context": "Dutch Golden Age",
    "medium": "Oil on canvas",
    "date_display": "c. 1630",
-   "description_narrative": "Two boys, one holding sheet music, sing together with open-mouthed enthusiasm in this lively genre scene of childhood music-making. The original painting was destroyed in a fire in Berlin in 1945, and it now survives only through photographs and copies.",
-   "tags": "genre painting, children, music, singing, lost painting",
+   "description_narrative": "Two boys open their mouths in song, one leaning close to guide the other's tune. This workshop production, attributed to the circle of Frans Hals, is dated to around 1626. A boisterous, unpolished energy marks the pair's shared performance.",
+   "tags": "genre painting, children, singing, music, dutch golden age, oil on canvas",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frans%20Hals%20-%20Twee%20zingende%20jongens%2C%201626.jpg?width=3840",
@@ -5305,8 +5239,8 @@
    "cultural_context": "Dutch Golden Age",
    "medium": "Oil on canvas",
    "date_display": "c. 1626-1628",
-   "description_narrative": "A young man gestures toward a human skull, a vanitas symbol reminding the viewer of the transience of life and worldly vanity. Hals combines the moralizing tradition of vanitas imagery with his characteristically vivid, animated portrait style.",
-   "tags": "vanitas, skull, moral symbolism, portrait, memento mori",
+   "description_narrative": "A bearded man in a black doublet with a stiff lace ruff turns to meet the viewer's eye while cradling a human skull in his palm. Faint lettering and a small coat of arms are inscribed on the wall behind him, adding a sober note to the portrait.",
+   "tags": "portrait, memento mori, skull, frans hals, lace ruff, dutch golden age, vanitas",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bildnis%20eines%20Mannes%20mit%20Totensch%C3%A4del%20%28Frans%20Hals%29-WUS03347.jpg?width=3840",
@@ -5361,12 +5295,12 @@
    "title": "Saint Luke the Evangelist",
    "agent_name": "Frans Hals",
    "agent_role": "Painter",
-   "creation_date": "1625",
+   "creation_date": "circa 1625",
    "cultural_context": "Dutch Golden Age",
    "medium": "Oil on canvas",
-   "date_display": "c. 1623-1625",
-   "description_narrative": "The evangelist Luke is portrayed with his traditional symbol, the ox, in one of a rare set of four Evangelist paintings from Hals's early career. The series stands apart from the rest of his oeuvre for its explicitly religious subject matter, unusual for a painter who worked mainly in Calvinist Haarlem.",
-   "tags": "Saint Luke, evangelist, religious painting, early Hals, rare subject",
+   "date_display": "circa 1625",
+   "description_narrative": "A balding, bearded man in white and red robes leans over a large open book, quill in hand, an ox's horned head emerging from the shadows beside him.",
+   "tags": "portrait, evangelist, frans hals, religious art, dutch golden age, writing, ox",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Der%20Evangelist%20Lukas%20%28Frans%20Hals%29-WUS03443.jpg?width=3840",
@@ -5421,12 +5355,12 @@
    "title": "Portrait of Vincent Laurensz van der Vinne",
    "agent_name": "Frans Hals",
    "agent_role": "Painter",
-   "creation_date": "1658",
+   "creation_date": "1650",
    "cultural_context": "Dutch Golden Age",
    "medium": "Oil on canvas",
-   "date_display": "c. 1655-1660",
-   "description_narrative": "The Haarlem painter Vincent Laurensz van der Vinne, a pupil of Hals's contemporaries, is portrayed with the loose, direct brushwork typical of Hals's later portraiture. The informal characterization reflects the close-knit community of Haarlem artists in the mid-seventeenth century.",
-   "tags": "portrait, Haarlem painter, mature Hals, artist community",
+   "date_display": "1650",
+   "description_narrative": "A man with loose, shoulder-length dark hair turns to meet the viewer's gaze, a plain white collar and a touch of lace at his throat standing out against his olive-toned coat. He is identified as Vincent van der Vinne.",
+   "tags": "portrait, frans hals, young man, lace collar, small portrait, dutch golden age, vincent van der vinne",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Portrait%20of%20Vincent%20Laurensz%20van%20der%20Vinne%20%28Frans%20Hals%29-WUS03787.jpg?width=3840",
@@ -5481,12 +5415,12 @@
    "title": "The Lute Player",
    "agent_name": "Frans Hals",
    "agent_role": "Painter",
-   "creation_date": "1625",
+   "creation_date": "1623",
    "cultural_context": "Dutch Golden Age",
-   "medium": "Oil on canvas",
-   "date_display": "c. 1620-1625",
-   "description_narrative": "A grinning street musician tilts his head while playing a lute, embodying the boisterous, good-humored genre figures for which Hals became famous. The rapid, visible brushstrokes give the impression of a scene captured in a fleeting instant.",
-   "tags": "genre painting, musician, lute, Louvre, tronie",
+   "medium": "oil paint",
+   "date_display": "1623",
+   "description_narrative": "A young man in a striped red and black cap grins up and to the side, plucking a lute with an exuberant, almost theatrical expression. Frans Hals painted this lively figure around 1623.",
+   "tags": "musician, lute, jester, smiling, frans hals, dutch golden age",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Le%20Bouffon%20au%20luth%20-%20Frans%20Hals%20-%20Mus%C3%A9e%20du%20Louvre%20Peintures%20RF%201984%2032.jpg?width=3840",
@@ -5529,18 +5463,19 @@
      0.9282,
      1.0
     ]
-   }
+   },
+   "physical_dimensions": "70.0 x 62.0 cm"
   },
   {
    "title": "Portrait of a Standing Woman",
    "agent_name": "Frans Hals",
    "agent_role": "Painter",
-   "creation_date": "1630",
+   "creation_date": "circa 1612",
    "cultural_context": "Dutch Golden Age",
    "medium": "Oil on canvas",
-   "date_display": "c. 1630s",
-   "description_narrative": "An unidentified woman stands in a black dress with a white lace collar, her hands composed in a gesture of quiet formality typical of Dutch bourgeois portraiture. Hals's fluid, economical brushwork animates the crisp linen and dark fabric despite the sitter's still pose.",
-   "tags": "portrait, woman, black dress, lace collar, bourgeois portraiture",
+   "date_display": "circa 1612",
+   "description_narrative": "A woman in deep burgundy velvet and a black overgown stands with a gold chain looped between her fingers, her lace-edged ruff and sheer cap catching soft light against a dark background.",
+   "tags": "portrait, frans hals, standing woman, burgundy velvet, ruff collar, gold chain, dutch golden age, dark background",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bildnis%20einer%20stehenden%20Frau%20%28Frans%20Hals%29-WUS03349.jpg?width=3840",
@@ -5597,10 +5532,10 @@
    "agent_role": "Painter",
    "creation_date": "1625",
    "cultural_context": "Dutch Golden Age",
-   "medium": "Oil on canvas",
-   "date_display": "c. 1623-1625",
-   "description_narrative": "The youngest of the four evangelists is shown with his traditional eagle symbol, part of the same rare early series as Hals's 'Saint Luke.' The paintings are notable exceptions within an oeuvre otherwise devoted almost entirely to portraiture and genre scenes.",
-   "tags": "Saint John, evangelist, religious painting, early Hals, rare subject",
+   "medium": "oil paint",
+   "date_display": "1625",
+   "description_narrative": "A young man in a flowing pink robe and red cloak looks upward with parted lips, pen poised over an open book as a dark bird perches at his shoulder. He is identified as John the Evangelist.",
+   "tags": "portrait, evangelist, frans hals, religious art, dutch golden age, red cloak, getty museum",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frans%20Hals%20%28Dutch%20-%20Saint%20John%20the%20Evangelist%20-%20Google%20Art%20Project.jpg?width=3840",
@@ -5642,18 +5577,20 @@
      0.9803,
      1.0
     ]
-   }
+   },
+   "current_repository": "J. Paul Getty Museum",
+   "physical_dimensions": "70.0 x 55.0 cm"
   },
   {
    "title": "Fisher Boy in a Landscape",
    "agent_name": "Frans Hals",
    "agent_role": "Painter",
-   "creation_date": "1632",
+   "creation_date": "Circa 1630",
    "cultural_context": "Dutch Golden Age",
    "medium": "Oil on canvas",
-   "date_display": "c. 1630-1632",
-   "description_narrative": "A tousled-haired boy from a Dutch fishing community is portrayed against a windswept dune landscape, part of Hals's series of genre paintings depicting the coastal poor with unusual empathy. The rough textures of the boy's clothing are rendered with the same free, vigorous brushwork Hals brought to his wealthy patrons.",
-   "tags": "genre painting, fisher boy, coastal landscape, childhood",
+   "date_display": "Circa 1630",
+   "description_narrative": "A boy in a bright red cap and a red vest under his dark jacket sits before a stretch of dunes and open sea, a woven basket slung over his shoulder, his gaze meeting the viewer with a faint, gap-toothed smile. Frans Hals painted this fisher boy around 1630.",
+   "tags": "portrait, fisher boy, coastal landscape, red cap, frans hals, dutch golden age",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frans%20Hals%20-%20Vissersjongen.jpg?width=3840",
@@ -5702,12 +5639,12 @@
    "title": "Peeckelhaering",
    "agent_name": "Frans Hals",
    "agent_role": "Painter",
-   "creation_date": "1629",
+   "creation_date": "1628",
    "cultural_context": "Dutch Golden Age",
    "medium": "Oil on canvas",
-   "date_display": "c. 1628-1630",
-   "description_narrative": "A grinning, disheveled man raises a tankard in this portrayal of Peeckelhaering, a popular comic stock character of Dutch and German theater associated with drinking and buffoonery. The exuberant pose and flushed features exemplify Hals's talent for capturing raucous good humor.",
-   "tags": "genre painting, stock character, drinking scene, theater, Leipzig",
+   "date_display": "1628",
+   "description_narrative": "A grinning man in a plumed cap and a bright orange doublet studded with oversized buttons turns to catch the viewer's eye, one hand raised as if mid-gesture. He is identified in the collection record as a jester.",
+   "tags": "portrait, jester, frans hals, orange costume, comic figure, dutch golden age, plumed cap",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pekelharing%20%28Frans%20Hals%29-WUS03433.jpg?width=3840",
@@ -5758,9 +5695,9 @@
    "creation_date": "1625",
    "cultural_context": "Dutch Golden Age",
    "medium": "Oil on canvas",
-   "date_display": "c. 1623-1625",
-   "description_narrative": "A boy holds a flute and opens his mouth as if singing, part of Hals's recurring genre theme of youthful musicians captured mid-performance. The painting's spontaneous energy and rosy-cheeked immediacy reflect the artist's gift for animating everyday figures.",
-   "tags": "genre painting, musician, flute, childhood, Berlin",
+   "date_display": "1625",
+   "description_narrative": "A boy in a wide feathered hat sings with his mouth open, one hand raised and fingers splayed as he grips a wooden flute in the other, an open book propped in front of him.",
+   "tags": "genre scene, frans hals, boy, flute, feathered hat, dutch golden age, music",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frans%20Hals%20-%20Singing%20Boy%20with%20Flute%20-%20Google%20Art%20Project.jpg?width=3840",
@@ -5811,10 +5748,10 @@
    "agent_role": "Painter",
    "creation_date": "1627",
    "cultural_context": "Dutch Golden Age",
-   "medium": "Oil on canvas",
-   "date_display": "c. 1626-1627",
-   "description_narrative": "The Haarlem preacher Johannes Acronius is portrayed in sober black clerical dress with a broad white ruff, exuding calm intellectual authority. The restrained palette suits the sitter's status as a respected minister of the Dutch Reformed Church.",
-   "tags": "portrait, clergyman, Haarlem, Gemäldegalerie Berlin",
+   "medium": "oil paint",
+   "date_display": "1627",
+   "description_narrative": "Set within a painted oval, a bearded man in a black robe and pleated ruff holds an open document, one finger raised to mark his place as he glances up from reading. He is identified as Johannes Acronius.",
+   "tags": "portrait, frans hals, oval frame, reading, ruff collar, dutch golden age, johannes acronius",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frans%20Hals%20%281582-83%20-%201666%29%20-%20Bildnis%20des%20Johannes%20Acronius%20%281565-1627%29%20-%20767%20-%20Gem%C3%A4ldegalerie.jpg?width=3840",
@@ -5856,18 +5793,19 @@
      0.9243,
      1.0
     ]
-   }
+   },
+   "physical_dimensions": "19.3 x 17.1 cm"
   },
   {
    "title": "Portrait of a Man",
    "agent_name": "Frans Hals",
    "agent_role": "Painter",
-   "creation_date": "1660",
+   "creation_date": "1627",
    "cultural_context": "Dutch Golden Age",
-   "medium": "Oil on canvas",
-   "date_display": "c. 1650s-1660s",
-   "description_narrative": "An unidentified gentleman is portrayed with the dark, restrained palette and rapid, sketch-like brushwork characteristic of Hals's late style. The economy of means, achieved with only a few deft strokes to suggest lace and hair, was considered radically modern by later admirers such as the Impressionists.",
-   "tags": "portrait, late Hals, restrained palette, Gemäldegalerie Berlin",
+   "medium": "oil paint",
+   "date_display": "1627",
+   "description_narrative": "This portrait catches a mustached man in a crisp lace ruff and dark doublet, one hand extended as if mid-gesture, rendered with a close, intimate scale. It is painted in oil on a small copper support rather than canvas or panel.",
+   "tags": "portrait, frans hals, miniature, copper support, lace ruff, oval, dutch golden age, intimate scale",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frans%20Hals%20%281582-83%20-%201666%29%20-%20Portrait%20of%20a%20Man%20-%20766%20-%20Gem%C3%A4ldegalerie.jpg?width=3840",
@@ -5909,18 +5847,19 @@
      1.0,
      0.954
     ]
-   }
+   },
+   "physical_dimensions": "20.0 x 14.0 cm"
   },
   {
    "title": "Portrait of a Woman Holding a Book",
    "agent_name": "Frans Hals",
    "agent_role": "Painter",
-   "creation_date": "1625",
+   "creation_date": "1639",
    "cultural_context": "Dutch Golden Age",
-   "medium": "Oil on canvas",
-   "date_display": "c. 1625-1630",
-   "description_narrative": "A Haarlem woman is shown half-length holding a book, her plain dark dress and starched ruff typical of Dutch bourgeois portraiture of the period. The confident, fluid rendering of the ruff and cuffs is characteristic of Hals's assured handling of fabric and lace.",
-   "tags": "portrait, woman, book, ruff, Haarlem",
+   "medium": "oil paint",
+   "date_display": "1639",
+   "description_narrative": "An elderly woman in a fur-trimmed black gown and a soft white bonnet holds a small red book in one hand, her lace-edged ruff framing a composed, direct gaze. She is identified as Maritge Claesdr Vooght.",
+   "tags": "portrait, frans hals, elderly woman, fur trim, bonnet, book, dutch golden age, maritge claesdr vooght",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frans%20Hals%20-%20portrait%20of%20Maritge%20Claesdr.%20Olycan%20-%20half-length%20holding%20a%20book.jpg?width=3840",
@@ -5962,7 +5901,8 @@
      0.9503,
      1.0
     ]
-   }
+   },
+   "physical_dimensions": "128.0 x 94.5 cm"
   }
  ]
 }

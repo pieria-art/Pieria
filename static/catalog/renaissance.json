@@ -13,8 +13,8 @@
    "cultural_context": "Early Renaissance, Italian",
    "medium": "Tempera on panel",
    "date_display": "1475–85",
-   "description_narrative": "Sandro Botticelli's 'Virgin and Child with an Angel' is a delicate tempera on panel painting created between 1475 and 1485. It depicts a tender moment between the Virgin Mary, the Christ Child, and a watchful angel.",
-   "tags": "religious art, renaissance, italian, madonna, sacred, serene, tempera painting",
+   "description_narrative": "Mary holds the Christ child close, his hand reaching up to touch her face as she looks down at him with a gentle smile. An angel with folded hands gazes up at the pair from the left, beside a small vase of flowers, while an arched window behind them frames a distant landscape and a round rose window. Botticelli painted this devotional panel between 1475 and 1485; it belongs to the Art Institute of Chicago.",
+   "tags": "madonna, christ child, angel, tempera panel, devotional painting",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sandro%20Botticelli%20-%20Virgin%20and%20Child%20with%20an%20Angel%20-%201954.283%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
@@ -57,7 +57,9 @@
      0.9584
     ]
    },
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "current_repository": "Art Institute of Chicago",
+   "physical_dimensions": "85.8 × 59.1 cm (33 3/4 × 23 1/4 in.); Framed: 106.7 × 80.1 × 7.7 cm (42 × 31 1/2 × 3 in.)"
   },
   {
    "title": "Virgin and Child with Two Angels",
@@ -67,8 +69,8 @@
    "cultural_context": "Italian Renaissance, Florentine",
    "medium": "Tempera on panel",
    "date_display": "1485–95",
-   "description_narrative": "Sandro Botticelli's \"Virgin and Child with Two Angels\" depicts Mary tenderly holding the infant Christ, accompanied by two celestial figures. This tempera on panel artwork showcases the delicate forms and devotional sentiment characteristic of the artist's Florentine Renaissance style.",
-   "tags": "religious art, renaissance, virgin and child, tempera, florentine, devotional, serene, italian art",
+   "description_narrative": "Two winged angels in flowing rose robes present the standing Christ Child to his mother beneath a dark canopy of trees, its branches parting in places to reveal a pale, distant landscape. Painted within a round tondo panel, the composition draws the eye toward her downcast gaze and the child's outstretched arms.",
+   "tags": "virgin and child, angels, tempera panel, tondo, florentine renaissance, devotional, religious art",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sandro%20Botticelli%20-%20Virgin%20and%20Child%20with%20Two%20Angels%20-%201954.282%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
@@ -111,7 +113,9 @@
      0.8421,
      1.0
     ]
-   }
+   },
+   "current_repository": "Art Institute of Chicago",
+   "physical_dimensions": "Diam.: 34.4 cm (13 1/2 in.); Framed: Diam.: 44.5 cm (17 1/2 in.)"
   },
   {
    "title": "Allegory of Venus and Cupid",
@@ -121,8 +125,8 @@
    "cultural_context": "Venetian Renaissance",
    "medium": "Oil on canvas",
    "date_display": "c. 1600",
-   "description_narrative": "This oil on canvas, titled \"Allegory of Venus and Cupid,\" depicts classical mythological figures associated with love and desire. Created around 1600 by an imitator of Titian, it reflects themes popular in Renaissance Venetian art.",
-   "tags": "mythology, allegory, classical, renaissance, venetian, love, oil painting, human figures",
+   "description_narrative": "A nude woman and a clothed woman face each other closely, their hands joined around a pair of arrows, while a winged child looks up between them. Behind them, dim figures raise a basket of doves and a cluster of grapes against a dark blue sky. This allegory of Venus and Cupid was painted around 1600 by a follower of Titian; it belongs to the Art Institute of Chicago.",
+   "tags": "allegory, venus and cupid, mythology, figures, oil painting, venetian",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Imitator%20of%20Titian%20-%20Allegory%20of%20Venus%20and%20Cupid%2C%20c.%201600.jpg?width=3840",
@@ -153,18 +157,20 @@
      1.0,
      0.9256
     ]
-   }
+   },
+   "current_repository": "Art Institute of Chicago",
+   "physical_dimensions": "129.9 × 155.3 cm (51 1/8 × 61 1/8 in.)"
   },
   {
    "title": "Portrait of a Lady",
    "agent_name": "Follower of Titian",
    "agent_role": "Artist",
-   "creation_date": "c. 1550",
+   "creation_date": "16th century",
    "cultural_context": "High Renaissance, Italian",
-   "medium": "Oil on canvas",
-   "date_display": "c. 1550",
-   "description_narrative": "This oil on canvas depicts a dignified lady, rendered with the rich colors and subtle modeling characteristic of Venetian Renaissance portraiture. Created around 1550, it reflects the artistic style of Titian's workshop or a close follower.",
-   "tags": "portrait, oil painting, renaissance, lady, venetian art, sixteenth century",
+   "medium": "oil paint",
+   "date_display": "16th century",
+   "description_narrative": "A woman gazes calmly outward, one hand raised to her chest with fingers lightly touching a bit of lace at her collar. Loose curls frame her face, and a white lace cuff is the only bright note against her deep brown dress and the near-black background. This portrait, from Titian's circle, dates to the 16th century; it belongs to the Art Institute of Chicago.",
+   "tags": "portrait, woman, lace, dark background, oil painting, venetian",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Titian%20-%20Portrait%20of%20a%20Lady%20-%201954.301%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
@@ -207,7 +213,9 @@
      0.9626,
      1.0
     ]
-   }
+   },
+   "current_repository": "Art Institute of Chicago",
+   "physical_dimensions": "63.5 x 51.8 cm"
   },
   {
    "title": "Scenes from the Life of Saint John the Baptist",
@@ -217,8 +225,8 @@
    "cultural_context": "Early Renaissance, Italian",
    "medium": "Tempera on panel (poplar)",
    "date_display": "1490/95",
-   "description_narrative": "This tempera on panel artwork, 'Scenes from the Life of Saint John the Baptist,' was created by Bartolomeo di Giovanni. Dating from around 1490–95, it vividly depicts significant moments from the saint's life.",
-   "tags": "religious, narrative, early renaissance, italian, tempera, saint john the baptist",
+   "description_narrative": "A long panel unfolds three scenes across a checkerboard-tiled courtyard: at left, small groups gather in a rocky landscape; at center, women attend a new mother in bed indoors, one holding an infant and another approaching with a vessel; at right, elderly figures with walking sticks greet a woman at a grand doorway. Bartolomeo di Giovanni painted this narrative panel in 1490/95; it belongs to the Art Institute of Chicago.",
+   "tags": "narrative panel, saint john the baptist, architecture, tempera panel, early renaissance",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bartolommeo%20di%20Giovanni%20-%20Scenes%20from%20the%20Life%20of%20Saint%20John%20the%20Baptist%20-%201937.996%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
@@ -261,7 +269,9 @@
      1.0
     ]
    },
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "current_repository": "Art Institute of Chicago",
+   "physical_dimensions": "74 × 150.4 cm (29 3/16 × 59 3/16 in.); Framed: 88 × 164 cm (34 5/8 × 64 9/16 in.)"
   },
   {
    "title": "The Nativity",
@@ -271,8 +281,8 @@
    "cultural_context": "High Renaissance, Italian",
    "medium": "Oil on panel",
    "date_display": "1504–7",
-   "description_narrative": "Fra Bartolommeo's 'The Nativity' depicts the birth of Jesus Christ, a central event in Christian theology. This oil on panel painting showcases the artist's High Renaissance style and devotion.",
-   "tags": "nativity, religious art, christianity, renaissance, high renaissance, italian art, sacred, oil painting",
+   "description_narrative": "A man kneels in a deep red robe, hands raised, opposite a woman in blue who bends in prayer over a swaddled infant lying in the grass between them. Above them, three angels hover with wide pink-lined wings, and two more angels stand quietly at her shoulder. A wide valley opens behind the group, dotted with buildings, hills, and tiny distant figures on horseback. Fra Bartolomeo painted this Nativity between 1504 and 1507; it belongs to the Art Institute of Chicago.",
+   "tags": "nativity, mary and joseph, angels, christ child, religious scene, oil painting",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Fra%20Bartolommeo%20-%20The%20Nativity%20-%202005.49%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
@@ -315,7 +325,9 @@
      0.9771
     ]
    },
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "current_repository": "Art Institute of Chicago",
+   "physical_dimensions": "34 × 24.5 cm (13 3/8 × 9 5/8 in.); Framed: 52.7 × 35.6 cm (20 3/4 × 14 1/16 in.)"
   },
   {
    "title": "Alessandro de' Medici",
@@ -325,8 +337,8 @@
    "cultural_context": "Mannerism, Italian",
    "medium": "Oil on panel",
    "date_display": "1534–35",
-   "description_narrative": "Pontormo's oil on panel portrait captures Alessandro de' Medici, Duke of Florence, with a penetrating gaze, reflecting his powerful status. This work exemplifies the distinctive Mannerist style prevalent in the mid-16th century Italian Renaissance.",
-   "tags": "portrait, mannerism, italian renaissance, medici, nobility, oil painting, 16th century",
+   "description_narrative": "A young man gazes slightly off to the side, his dark hair framing a pale, intently lit face against a nearly black background. He wears a dark cloak over chainmail, with a sliver of white collar and red trim visible at the neck. Pontormo painted this portrait of Alessandro de' Medici in the mid-1530s; it belongs to the Art Institute of Chicago.",
+   "tags": "portrait, medici, mannerism, chainmail, young man, oil painting",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pontormo%2C%20%28Jacopo%20Carrucci%29%20-%20Alessandro%20de%27%20Medici%20-%201933.1002%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
@@ -343,18 +355,20 @@
    "license_verified": "2026-09-22",
    "delivered_edge": 3000,
    "resolution_tier": "HD",
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "current_repository": "Art Institute of Chicago",
+   "physical_dimensions": "35.3 × 25.8 cm (13 7/8 × 10 1/8 in.); Framed: 47.7 × 42 × 6.1 cm (18 3/4 × 16 1/2 × 2 3/8 in.)"
   },
   {
    "title": "Christ Carrying the Cross",
    "agent_name": "Sebastiano del Piombo",
    "agent_role": "Artist",
-   "creation_date": "c. 1515–17",
+   "creation_date": "1510s",
    "cultural_context": "High Renaissance, Italian",
    "medium": "Oil on panel",
-   "date_display": "c. 1515–17",
-   "description_narrative": "Sebastiano del Piombo captures the dramatic moment of Christ carrying the cross towards his crucifixion, a powerful depiction of suffering and resolve. This oil on panel painting by Sebastiano del Piombo vividly portrays Christ's arduous journey, highlighting the profound emotional weight of the event.",
-   "tags": "christ, crucifixion, religious art, high renaissance, italian, suffering, dramatic, oil painting",
+   "date_display": "1510s",
+   "description_narrative": "Christ, crowned with thorns and dressed in white, bears the weight of a large wooden cross that cuts diagonally across the composition. Two men crowd close behind him — one bareheaded, the other in a dark metal helmet — while a small landscape with a distant crowd is visible through a gap at the right edge. Sebastiano del Piombo painted this close, half-length scene in the 1510s; it belongs to the Art Institute of Chicago.",
+   "tags": "christ, crucifixion narrative, religious scene, oil panel, high renaissance, close composition",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sebastiano%20del%20Piombo%20-%20Christ%20Carrying%20the%20Cross%20-%202016.15%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
@@ -397,7 +411,8 @@
      1.0
     ]
    },
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "current_repository": "Art Institute of Chicago"
   },
   {
    "title": "The Crucifixion",
@@ -407,8 +422,8 @@
    "cultural_context": "Italian Renaissance",
    "medium": "Tempera on panel",
    "date_display": "c. 1487",
-   "description_narrative": "Carlo Crivelli's 'The Crucifixion', painted around 1487, depicts the central Christian narrative with his characteristic tempera on panel technique. This work exemplifies his meticulous detail and expressive figural style, typical of the late 15th century.",
-   "tags": "religious, renaissance, tempera, italian, biblical, narrative, devotional, early renaissance",
+   "description_narrative": "Christ hangs on the cross beneath a small sign reading INRI, his head haloed and tilted toward a grieving woman at left. A young man in green and rose robes stands at right, gesturing toward the scene, while a bare skull rests at the foot of the cross among scattered rocks. Carlo Crivelli painted this crucifixion around 1487; it belongs to the Art Institute of Chicago.",
+   "tags": "crucifixion, christ, religious scene, tempera panel, early renaissance, skull",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Carlo%20Crivelli%20-%20The%20Crucifixion%20-%201929.862%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
@@ -451,7 +466,9 @@
      1.0,
      0.9853
     ]
-   }
+   },
+   "current_repository": "Art Institute of Chicago",
+   "physical_dimensions": "75.0 x 55.2 cm"
   },
   {
    "title": "Saint John the Baptist Entering the Wilderness",
@@ -461,8 +478,8 @@
    "cultural_context": "Italian Renaissance, Sienese",
    "medium": "Tempera on panel",
    "date_display": "1455–60",
-   "description_narrative": "Giovanni di Paolo depicts Saint John the Baptist embarking on his spiritual journey into the wilderness in this tempera on panel painting. The artwork showcases the artist's distinctive style, characterized by its vibrant color and intricate narrative detail.",
-   "tags": "religious, early renaissance, sienese school, tempera, narrative, spiritual, wilderness",
+   "description_narrative": "A haloed figure in a pink robe seems to float down a steep, craggy mountain path, hands clasped in a gesture of resolve. Below, another haloed figure in matching pink steps through the archway of a small white building, with a walled city and neat checkerboard fields spreading across the valley beyond. Giovanni di Paolo painted this panel between 1455 and 1460; it belongs to the Art Institute of Chicago.",
+   "tags": "saint john the baptist, wilderness, mountain landscape, tempera panel, religious scene",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Giovanni%20di%20Paolo%20-%20Saint%20John%20the%20Baptist%20Entering%20the%20Wilderness%20-%20Google%20Art%20Project.jpg?width=3840",
@@ -504,7 +521,9 @@
      1.0,
      0.883
     ]
-   }
+   },
+   "current_repository": "Art Institute of Chicago",
+   "physical_dimensions": "68.5 × 36.2 cm (27 × 14 1/4 in.); Framed: 79.4 × 47.7 × 8 cm (31 1/4 × 18 3/4 × 3 1/8 in.)"
   },
   {
    "title": "Ecce Agnus Dei",
@@ -514,8 +533,8 @@
    "cultural_context": "Sienese Renaissance, Italian",
    "medium": "Tempera on panel",
    "date_display": "1455–60",
-   "description_narrative": "Giovanni di Paolo's 'Ecce Agnus Dei' depicts John the Baptist gesturing towards Jesus Christ, emphasizing Christ's role as the Lamb of God. This tempera on panel painting exemplifies the distinct narrative and spiritual intensity of Sienese art.",
-   "tags": "religious, biblical, sienese, quattrocento, tempera, italian, devotional, early renaissance",
+   "description_narrative": "A haloed man in a rose mantle gestures toward another haloed figure standing at right in a pink robe with hands raised in blessing. A cluster of onlookers in orange and blue robes crowds close at left, while jagged grey rock formations and a walled town rise beneath a reddish sky. Giovanni di Paolo painted this panel between 1455 and 1460; it belongs to the Art Institute of Chicago.",
+   "tags": "john the baptist, christ, religious scene, tempera panel, sienese, landscape",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Giovanni%20di%20Paolo%20-%20Ecce%20Agnus%20Dei%20-%20Google%20Art%20Project.jpg?width=3840",
@@ -545,7 +564,9 @@
      1.0,
      0.9687
     ]
-   }
+   },
+   "current_repository": "Art Institute of Chicago",
+   "physical_dimensions": "68.5 × 39.5 cm (27 × 15 1/2 in.); Framed: 80.1 × 53.4 × 8.9 cm (31 1/2 × 21 × 3 1/2 in.)"
   },
   {
    "title": "The Assassination and Funeral of Julius Caesar",
@@ -555,8 +576,8 @@
    "cultural_context": "Early Renaissance, Italian",
    "medium": "Tempera on panel, transferred to canvas mounted on pressed hardboard and cradled",
    "date_display": "1455/60",
-   "description_narrative": "This painting vividly depicts the dramatic assassination and subsequent funeral of Julius Caesar, a pivotal event in Roman history. Created by the Workshop of Apollonio di Giovanni, this tempera on panel artwork captures the narrative intensity of these historical moments.",
-   "tags": "roman history, julius caesar, assassination, funeral, renaissance, italian art, narrative, historical",
+   "description_narrative": "A long, narrow panel unfolds two scenes side by side: at left, richly dressed men in gold and red gather indoors around a fallen figure, while at right a much larger crowd fills a colonnaded courtyard, some in swirling, athletic poses. At the far right, mourners in dark robes cluster around a draped bier beneath a canopy. This narrative panel dates from the mid-15th century; it belongs to the Art Institute of Chicago.",
+   "tags": "cassone panel, roman history, crowd scene, procession, narrative painting, tempera",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Workshop%20of%20Apollonio%20di%20Giovanni%20-%20The%20Assassination%20and%20Funeral%20of%20Julius%20Caesar%20-%201974.393%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
@@ -599,7 +620,9 @@
      0.73,
      1.0
     ]
-   }
+   },
+   "current_repository": "Art Institute of Chicago",
+   "physical_dimensions": "39.5 × 126.7 cm (15 1/2 × 49 7/8 in.); Framed: 67.4 × 152.4 × 7.7 cm (26 1/2 × 60 × 3 in.)"
   },
   {
    "title": "The Last Communion of Saint Jerome",
@@ -609,8 +632,8 @@
    "cultural_context": "Paintings",
    "medium": "Tempera and gold on wood",
    "date_display": "early 1490s",
-   "description_narrative": "Botticelli's 'The Last Communion of Saint Jerome' depicts the aged saint receiving his final communion before death, a poignant moment of devotion. Rendered in tempera and gold on wood, this painting exemplifies the meticulous craftsmanship characteristic of its era.",
-   "tags": "religious, devotional, christian, saint jerome, renaissance, italian, tempera",
+   "description_narrative": "A gaunt, kneeling old man receives the host from a bishop in a rose-colored cope, his hands raised in supplication and his beard long and unkempt. Behind them, an altar holds a small crucifix flanked by tall palm fronds, and two young acolytes in white hold lit candles at the far left. Monks in dark robes look on from the right, all gathered inside a plain, timbered chapel.",
+   "tags": "saint jerome, last communion, religious scene, tempera panel, monks, altar",
    "source": "The Metropolitan Museum of Art",
    "license": "Public Domain",
    "source_url": "https://images.metmuseum.org/CRDImages/ep/original/DP-24049-001.jpg",
@@ -652,7 +675,8 @@
      0.9965,
      1.0
     ]
-   }
+   },
+   "current_repository": "The Metropolitan Museum of Art"
   },
   {
    "title": "The Annunciation",
@@ -662,8 +686,8 @@
    "cultural_context": "Paintings",
    "medium": "Tempera and gold on wood",
    "date_display": "ca. 1490",
-   "description_narrative": "Botticelli's 'The Annunciation' depicts the pivotal biblical moment when the Archangel Gabriel announces to Mary that she will conceive the Son of God. Rendered with tempera and gold on wood, this work exemplifies the luminous artistry of the Early Renaissance.",
-   "tags": "annunciation, religious, christian art, renaissance, italian, tempera, devotional",
+   "description_narrative": "A winged angel kneels before a haloed woman in a colonnaded interior, gold leaf catching light along his feathers and her halo. The panel is painted in tempera and gold on wood, dated to around 1490, and belongs to the Metropolitan Museum of Art.",
+   "tags": "annunciation, angel, religious art, tempera, gold leaf, renaissance, interior",
    "source": "The Metropolitan Museum of Art",
    "license": "Public Domain",
    "source_url": "https://images.metmuseum.org/CRDImages/rl/original/DP267397.jpg",
@@ -693,18 +717,19 @@
      0.936,
      1.0
     ]
-   }
+   },
+   "current_repository": "The Metropolitan Museum of Art"
   },
   {
    "title": "Mona Lisa",
    "agent_name": "Leonardo da Vinci",
    "agent_role": "Painter",
-   "creation_date": "1503-1519",
+   "creation_date": "1500s",
    "cultural_context": "High Renaissance, Italian",
    "medium": "Oil on poplar panel",
-   "date_display": "1503–1519",
-   "description_narrative": "The most famous painting in the world. It depicts Lisa Gherardini, wife of Francesco del Giocondo, sitting in front of an imaginary landscape. Her enigmatic expression and the masterful use of sfumato make it a masterpiece of the Renaissance.",
-   "tags": "portrait, renaissance, sfumato, enigmatic, female",
+   "date_display": "1500s",
+   "description_narrative": "A woman in dark robes sits with her hands folded, a faint smile playing across her face as she gazes steadily outward. Behind her, a hazy, winding landscape of rocky cliffs, a bridge, and distant water recedes into blue-green atmosphere. Leonardo da Vinci painted this portrait in the early 1500s; it belongs to the Louvre.",
+   "tags": "portrait, mona lisa, sfumato, landscape background, oil painting",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Mona%20Lisa%2C%20by%20Leonardo%20da%20Vinci%2C%20from%20C2RMF.jpg?width=3840",
@@ -752,12 +777,12 @@
    "title": "The Birth of Venus",
    "agent_name": "Sandro Botticelli",
    "agent_role": "Painter",
-   "creation_date": "1485",
+   "creation_date": "1480s",
    "cultural_context": "Italian Renaissance, Florentine",
    "medium": "Tempera on canvas",
-   "date_display": "c. 1484–86",
-   "description_narrative": "The goddess Venus emerges from the sea as a fully grown woman, arriving at the shore on a giant scallop shell. One of the world's most famous and appreciated works of art, it has become a landmark of Italian Renaissance painting.",
-   "tags": "mythology, venus, renaissance, goddess, shell, classical",
+   "date_display": "1480s",
+   "description_narrative": "Venus stands nude on a giant scallop shell, her long hair swept by the wind as she drifts to shore. At left, two windswept figures embrace mid-air, scattering pink blossoms as they blow her toward land, while at right a robed woman waits to wrap a floral cloak around her. Botticelli painted this in the 1480s; it belongs to the Uffizi Gallery.",
+   "tags": "birth of venus, mythology, venus, shell, wind figures, tempera, renaissance",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Birth%20of%20Venus%20%28Botticelli%29%201.jpg?width=3840",
@@ -805,12 +830,12 @@
    "title": "The Creation of Adam",
    "agent_name": "Michelangelo",
    "agent_role": "Painter, Sculptor",
-   "creation_date": "1512",
+   "creation_date": "1511",
    "cultural_context": "High Renaissance, Italian",
-   "medium": "Fresco",
-   "date_display": "c. 1508–12",
-   "description_narrative": "The most famous section of the Sistine Chapel ceiling. God reaches out to give life to Adam, their fingers nearly touching. This single gesture has become one of the most replicated religious images and an enduring icon of humanity.",
-   "tags": "fresco, sistine chapel, genesis, god, adam, renaissance",
+   "medium": "fresco",
+   "date_display": "1511",
+   "description_narrative": "God, borne aloft in a swirl of drapery and attendant figures, reaches out to touch the outstretched hand of Adam, who lies reclining on a green hillside below. The scene sits within the painted architecture of the Sistine Chapel ceiling, framed by nude figures and bronze-toned medallions on either side. Michelangelo painted this fresco around 1511.",
+   "tags": "creation of adam, fresco, sistine chapel, religious scene, ceiling painting",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sistine%20Chapel%20ceiling%2C%20Creation%20of%20Adam.jpg?width=3840",
@@ -852,18 +877,19 @@
      0.72,
      1.0
     ]
-   }
+   },
+   "physical_dimensions": "155.0 x 270.0 cm"
   },
   {
    "title": "The School of Athens",
    "agent_name": "Raphael",
    "agent_role": "Painter",
-   "creation_date": "1511",
+   "creation_date": "1512",
    "cultural_context": "High Renaissance, Italian",
    "medium": "Fresco",
-   "date_display": "1509–11",
-   "description_narrative": "A fresco in the Apostolic Palace in the Vatican depicting a congregation of the greatest philosophers, mathematicians, and scientists of antiquity, with Plato and Aristotle at the center. It is considered a masterpiece of perspective and one of the greatest achievements of Renaissance art.",
-   "tags": "philosophy, plato, aristotle, fresco, renaissance, architecture",
+   "date_display": "1512",
+   "description_narrative": "Raphael painted this fresco in 1512, part of the High Renaissance. It depicts a grand hall filled with classical philosophers gathered beneath vaulted archways, some conversing in groups, others reading or writing on the marble steps.",
+   "tags": "fresco, high renaissance, philosophy, architecture, classical antiquity, raphael, group portrait",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/%22School%20of%20Athens%22%20by%20Raphael%2C%20Raphael%20Rooms%2C%20Vatican%20Museum%20%2848466167851%29.jpg?width=3840",
@@ -911,12 +937,12 @@
    "title": "The Last Supper",
    "agent_name": "Leonardo da Vinci",
    "agent_role": "Painter",
-   "creation_date": "1495-1498",
+   "creation_date": "from 1495 until 1498",
    "cultural_context": "High Renaissance, Italian",
    "medium": "Tempera and oil on plaster",
-   "date_display": "c. 1495–1498",
-   "description_narrative": "Painted on the refectory wall of Santa Maria delle Grazie in Milan, Leonardo captures the instant Christ announces that one of the Twelve Apostles will betray him, freezing each figure mid-reaction. Its rigorous perspective and psychological drama made it one of the most studied and reproduced compositions in Western art.",
-   "tags": "renaissance, religious, fresco, italian, dramatic, iconic, milan",
+   "date_display": "from 1495 until 1498",
+   "description_narrative": "Christ sits at the center of a long table, palms open, as the twelve apostles react around him in small clustered groups, some recoiling, others leaning in to speak. Three arched windows behind him open onto a distant hazy landscape, and the table is scattered with bread, dishes, and cups. This mural was painted between 1495 and 1498.",
+   "tags": "last supper, christ, apostles, religious scene, mural, renaissance",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Last%20Supper%20-%20Leonardo%20Da%20Vinci%20-%20High%20Resolution%2032x16.jpg?width=3840",
@@ -964,12 +990,12 @@
    "title": "Primavera",
    "agent_name": "Sandro Botticelli",
    "agent_role": "Painter",
-   "creation_date": "1477-1482",
+   "creation_date": "between 1480 and 1485",
    "cultural_context": "Early Renaissance, Florentine",
    "medium": "Tempera on panel",
-   "date_display": "c. 1477–1482",
-   "description_narrative": "A procession of mythological figures - Venus, the Three Graces, Flora, and Mercury - drifts through an orange grove in one of the most celebrated allegories of the Florentine Renaissance. Botticelli's linear grace and flowering meadow have made it an emblem of Renaissance humanism.",
-   "tags": "renaissance, mythology, allegory, florentine, springtime, elegant, botticelli",
+   "date_display": "between 1480 and 1485",
+   "description_narrative": "Nine figures move through a dark grove of orange trees: a man in red reaches up with a sword at left, three women in sheer white robes join hands in a dance beside him, and a woman with flowers scattered across her patterned gown strides in from the right, pursued by a pale blue-toned figure. At center, a woman in red and white gestures gently, a blindfolded winged child aiming an arrow just above her head. This allegorical scene is by Sandro Botticelli, painted between 1480 and 1485.",
+   "tags": "primavera, mythology, allegory, dancing figures, tempera panel",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Botticelli-primavera.jpg?width=3840",
@@ -1017,12 +1043,12 @@
    "title": "Venus of Urbino",
    "agent_name": "Titian",
    "agent_role": "Painter",
-   "creation_date": "1538",
+   "creation_date": "c. 1538",
    "cultural_context": "High Renaissance, Venetian",
    "medium": "Oil on canvas",
-   "date_display": "1538",
-   "description_narrative": "A reclining nude gazes directly at the viewer from a sumptuous Venetian interior, her pose derived from Giorgione but charged with new immediacy and warmth. The painting became the touchstone for centuries of reclining-nude compositions, from Manet's Olympia onward.",
-   "tags": "renaissance, venetian, nude, sensual, domestic, titian, masterpiece",
+   "date_display": "c. 1538",
+   "description_narrative": "A nude woman reclines on a white sheet, one hand holding a small bouquet of roses and the other resting lightly at her hip, meeting the viewer's gaze directly. A small dog sleeps curled at the foot of the bed, while in the background two women search through a chest beneath a window opening onto a column and potted plant. Titian painted this in 1538; it belongs to the Uffizi Gallery.",
+   "tags": "venus of urbino, reclining nude, interior, small dog, oil painting",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tizian%20Venus%20von%20Urbino%201538%20Sammlung%20Uffizien.jpg?width=3840",
@@ -1070,12 +1096,12 @@
    "title": "Bacchus and Ariadne",
    "agent_name": "Titian",
    "agent_role": "Painter",
-   "creation_date": "1520-1523",
+   "creation_date": "1520s",
    "cultural_context": "High Renaissance, Venetian",
    "medium": "Oil on canvas",
-   "date_display": "1520–1523",
-   "description_narrative": "Bacchus leaps from his chariot toward the abandoned Ariadne in a whirl of leopards, satyrs, and brilliant ultramarine sky. Painted for the Duke of Ferrara's private study, it remains one of the most vividly colored mythological scenes of the Italian Renaissance.",
-   "tags": "renaissance, mythology, venetian, dynamic, colorful, titian, movement",
+   "date_display": "1520s",
+   "description_narrative": "Bacchus leaps from his chariot in mid-air, his pink cloak billowing behind him as he catches sight of a woman on the shore who turns back in alarm, one hand raised. Two spotted wildcats pull the chariot, and behind them revelers carrying cymbals fill the procession under a brilliant blue sky. Titian painted this mythological scene between 1520 and 1523; it belongs to the National Gallery.",
+   "tags": "mythology, bacchus, ariadne, procession, wildcats, oil painting, renaissance",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/%22Bacchus%20and%20Ariadne%22%20by%20Titian%20-%20National%20Gallery%2C%20London%20-%20Joy%20of%20Museums.jpg?width=3840",
@@ -1123,12 +1149,12 @@
    "title": "The Wedding at Cana",
    "agent_name": "Paolo Veronese",
    "agent_role": "Painter",
-   "creation_date": "1563",
+   "creation_date": "1560s",
    "cultural_context": "Late Renaissance, Venetian",
    "medium": "Oil on canvas",
-   "date_display": "1563",
-   "description_narrative": "Christ's first miracle, turning water into wine, unfolds amid a vast banquet of over a hundred contemporary Venetian figures, musicians, and architecture. At nearly ten meters wide, it stands among the largest and most theatrically staged paintings of the Renaissance.",
-   "tags": "renaissance, religious, venetian, banquet, monumental, crowded, veronese",
+   "date_display": "1560s",
+   "description_narrative": "Veronese fills this immense canvas with a crowded Venetian banquet: musicians tune instruments in the foreground while servants pour wine from tall jugs and dogs wander beneath the tables. Grand classical columns and a balustrade lined with onlookers rise against a cloud-streaked sky. The scene reimagines the biblical wedding at Cana as a lavish feast on a canvas spanning nearly ten meters across.",
+   "tags": "banquet, venetian, oil on canvas, religious art, mannerism, crowd scene, architecture",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Veronese%2C%20The%20Marriage%20at%20Cana%20%281563%29.jpg?width=3840",
@@ -1176,12 +1202,12 @@
    "title": "The Last Judgment",
    "agent_name": "Michelangelo",
    "agent_role": "Painter",
-   "creation_date": "1536-1541",
+   "creation_date": "16th century",
    "cultural_context": "High Renaissance, Italian",
    "medium": "Fresco",
-   "date_display": "1536–1541",
-   "description_narrative": "Covering the altar wall of the Sistine Chapel, Christ presides over the resurrection of the dead, the saved ascending and the damned cast down in a swirling mass of muscular bodies. Its sculptural intensity and unflinching nudity provoked controversy even as it cemented Michelangelo's reputation as the supreme master of the human form.",
-   "tags": "renaissance, religious, fresco, sistine chapel, dramatic, monumental, michelangelo",
+   "date_display": "16th century",
+   "description_narrative": "Christ stands at the center raising one arm in judgment, encircled by a dense mass of nude figures ascending toward heaven on the left and tumbling downward on the right. Near the top, angels strain to carry a large wooden cross and a column, while at the bottom a crucified figure and a boat of huddled souls appear above a row of candles. Michelangelo painted this fresco in the 16th century; it belongs to the Vatican Museums.",
+   "tags": "last judgment, fresco, sistine chapel, religious scene, crowd of figures",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Last%20Judgement%20%28Michelangelo%29.jpg?width=3840",
@@ -1229,20 +1255,12 @@
    "title": "Virgin of the Rocks",
    "agent_name": "Leonardo da Vinci",
    "agent_role": "Painter",
-   "creation_date": "1483-1486",
+   "creation_date": "circa 1491/92 and August 1506",
    "cultural_context": "Italian High Renaissance, Milan",
    "medium": "Oil on panel, transferred to canvas",
-   "date_display": "c. 1483-1486",
-   "description_narrative": "The Louvre's version of Leonardo's altarpiece, one of two nearly identical compositions he painted, showing the Virgin, the infant Christ, the young John the Baptist, and an angel in a shadowy grotto. It is a defining demonstration of Leonardo's sfumato technique, with figures modeled in soft gradations of light and shade rather than hard outlines.",
-   "tags": [
-    "leonardo",
-    "sfumato",
-    "madonna",
-    "louvre",
-    "high renaissance",
-    "grotto",
-    "religious"
-   ],
+   "date_display": "circa 1491/92 and August 1506",
+   "description_narrative": "Mary kneels in a rocky grotto, one hand raised over an infant at left who bears a reed cross, while the Christ Child sits at right beside a watchful, folded-wing angel. Jagged stone pinnacles frame a hazy view of water and distant blue peaks, their edges dissolving into soft shadow. The painting depicts the Virgin Mary with the Christ Child.",
+   "tags": "virgin mary, christ child, john the baptist, angel, rocky grotto, renaissance, devotional",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Leonardo%20da%20Vinci%20-%20Virgin%20of%20the%20Rocks%20%28National%20Gallery%20London%29%2002.jpg?width=3840",
@@ -1284,26 +1302,19 @@
      1.0,
      0.9438
     ]
-   }
+   },
+   "current_repository": "National Gallery"
   },
   {
    "title": "The Sistine Madonna",
    "agent_name": "Raphael",
    "agent_role": "Painter",
-   "creation_date": "1512-1514",
+   "creation_date": "c. 1510s",
    "cultural_context": "Italian High Renaissance, Rome",
-   "medium": "Oil on canvas",
-   "date_display": "c. 1512-1514",
-   "description_narrative": "Commissioned by Pope Julius II as an altarpiece for the church of San Sisto in Piacenza, the painting shows the Madonna descending through parted curtains with the Christ Child, flanked by Saint Sixtus and Saint Barbara. The two winged putti daydreaming at the base of the composition became independently famous, endlessly reproduced on their own.",
-   "tags": [
-    "raphael",
-    "madonna",
-    "putti",
-    "altarpiece",
-    "high renaissance",
-    "dresden",
-    "religious"
-   ],
+   "medium": "oil paint",
+   "date_display": "c. 1510s",
+   "description_narrative": "Mary stands on a bed of clouds holding the Christ child, flanked by a kneeling man in a gold and white robe at left and a woman in green and gold at right. Below them, two winged children rest their chins on their folded arms, gazing upward, while heavy green curtains part on either side to frame the scene. Raphael painted this altarpiece around 1512 to 1513; it belongs to the Staatliche Kunstsammlungen Dresden.",
+   "tags": "sistine madonna, mary and christ child, putti, altarpiece, oil painting",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Raphael%20-%20The%20Sistine%20Madonna%20-%20Google%20Arts%20%26%20Culture.jpg?width=3840",
@@ -1345,26 +1356,19 @@
      1.0,
      0.9909
     ]
-   }
+   },
+   "physical_dimensions": "269.5 x 201.0 cm"
   },
   {
    "title": "Pallas and the Centaur",
    "agent_name": "Sandro Botticelli",
    "agent_role": "Painter",
-   "creation_date": "1482",
+   "creation_date": "c. 1482",
    "cultural_context": "Italian Early Renaissance, Florence",
-   "medium": "Tempera on canvas",
+   "medium": "oil paint",
    "date_display": "c. 1482",
-   "description_narrative": "The armed figure of Pallas Athena restrains a centaur by the hair, widely read as an allegory of reason subduing base instinct. Her gown is patterned with the interlaced diamond-ring emblem of the Medici, tying the work to the family's patronage.",
-   "tags": [
-    "botticelli",
-    "mythology",
-    "athena",
-    "centaur",
-    "allegory",
-    "uffizi",
-    "medici"
-   ],
+   "description_narrative": "A woman in an olive-branch-patterned gown grips a centaur by his hair, holding him still as he looks up with a wary, pleading expression. She carries a tall halberd in her other hand, while the centaur holds a bow and arrows against ancient ruined columns behind them. This mythological scene is by Sandro Botticelli, painted around 1482; it belongs to the Uffizi Gallery.",
+   "tags": "mythology, pallas, centaur, allegory, tempera, renaissance",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pallade%20col%20Centauro%2C%20Sandro%20Botticelli%20%281482%29.jpg?width=3840",
@@ -1413,26 +1417,20 @@
      1.0,
      0.9723
     ]
-   }
+   },
+   "current_repository": "Uffizi Gallery",
+   "physical_dimensions": "205.0 x 147.5 cm"
   },
   {
    "title": "The Battle of San Romano",
    "agent_name": "Paolo Uccello",
    "agent_role": "Painter",
-   "creation_date": "1438-1440",
+   "creation_date": "c. 1456",
    "cultural_context": "Italian Early Renaissance, Florence",
    "medium": "Egg tempera with oil on poplar panel",
-   "date_display": "c. 1438-1440",
-   "description_narrative": "The National Gallery's panel, one of three depicting the 1432 battle between Florence and Siena, shows Florentine commander Niccolo da Tolentino leading the cavalry charge. Broken lances and fallen soldiers are arranged along calculated orthogonal lines, an early showcase of Renaissance linear perspective.",
-   "tags": [
-    "uccello",
-    "battle",
-    "perspective",
-    "cavalry",
-    "florence",
-    "national gallery",
-    "early renaissance"
-   ],
+   "date_display": "c. 1456",
+   "description_narrative": "Lances crisscross at sharp angles above a dense crush of knights on armored horses, their trappings in bold red, white, and gold patterns. In the middle distance, tiny figures duel and hunt across a patterned brown countryside, while broken lances and a fallen rider lie scattered in the foreground. This battle scene, showing the Battle of San Romano, was painted by Paolo Uccello around 1456.",
+   "tags": "battle scene, cavalry, lances, early renaissance, tempera panel",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Uccello%20%E2%80%94%20the%20Battle%20of%20San%20Romano.jpg?width=3840",
@@ -1482,18 +1480,10 @@
    "agent_role": "Painter",
    "creation_date": "c. 1480",
    "cultural_context": "Italian Early Renaissance, Mantua",
-   "medium": "Tempera on canvas",
+   "medium": "tempera",
    "date_display": "c. 1480",
-   "description_narrative": "Mantegna presents the body of the dead Christ in extreme foreshortening, drawing the viewer almost to the soles of his feet in a radical compositional experiment. The Virgin Mary, Saint John, and Mary Magdalene mourn at the edge of the marble slab in a stark, emotionally intense scene.",
-   "tags": [
-    "mantegna",
-    "foreshortening",
-    "lamentation",
-    "christ",
-    "brera",
-    "perspective",
-    "religious"
-   ],
+   "description_narrative": "The dead Christ lies foreshortened on a marble slab, his pierced feet closest to the viewer, as two mourners weep quietly at his side. Andrea Mantegna painted this Lamentation in tempera around 1483. It is held in the Pinacoteca di Brera.",
+   "tags": "mantegna, lamentation, christ, foreshortening, tempera, religious, renaissance, brera",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Lamentaci%C3%B3n%20sobre%20Cristo%20muerto%2C%20por%20Andrea%20Mantegna.jpg?width=3840",
@@ -1503,24 +1493,19 @@
    "license_url": "",
    "credit_line": "Pinacoteca di Brera, inv. 352; Wikidata Q546297",
    "license_verified": "2026-09-26",
-   "featured_rank": 40
+   "featured_rank": 40,
+   "physical_dimensions": "68.0 x 81.0 cm"
   },
   {
    "title": "Virgin and Child with the Young Saint John the Baptist",
    "agent_name": "Correggio",
    "agent_role": "Painter",
-   "creation_date": "1515",
+   "creation_date": "c. 1515",
    "cultural_context": "High Renaissance, Parma school",
    "medium": "Oil on panel",
    "date_display": "c. 1515",
-   "description_narrative": "Painted early in Correggio's career, this intimate panel shows the soft modeling and gentle sentiment that would define his mature style as a leading painter of the Parma school. The composition places the infant Christ and the young Saint John the Baptist in tender interaction with the Virgin.",
-   "tags": [
-    "Correggio",
-    "Parma school",
-    "High Renaissance",
-    "Virgin and Child",
-    "panel painting"
-   ],
+   "description_narrative": "Mary smiles gently down at the Christ child seated on her lap, who reaches out toward a young boy kneeling before them with a small reed cross. A leafy trellis heavy with fruit rises behind her on one side, while a soft landscape with distant hills and water opens on the other. Correggio painted this around 1515; it belongs to the Art Institute of Chicago.",
+   "tags": "madonna, christ child, saint john the baptist, landscape, oil panel",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Correggio%20-%20Virgin%20and%20Child%20with%20the%20Young%20Saint%20John%20the%20Baptist%20-%201965.688%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
@@ -1563,24 +1548,20 @@
      1.0
     ]
    },
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "current_repository": "Art Institute of Chicago",
+   "physical_dimensions": "64.2 × 50.2 cm (25 1/4 × 19 3/4 in.); Framed: 79.4 × 63.9 × 8.3 cm (31 1/4 × 25 1/8 × 3 1/4 in.)"
   },
   {
    "title": "Tarquin and Lucretia",
    "agent_name": "Tintoretto",
    "agent_role": "Painter",
-   "creation_date": "1578",
+   "creation_date": "1578–80",
    "cultural_context": "Venetian Renaissance / Mannerism",
    "medium": "Oil on canvas",
    "date_display": "1578–80",
-   "description_narrative": "Tintoretto depicted the ancient Roman legend of Tarquin's assault on Lucretia with the dramatic diagonal composition and dynamic movement characteristic of Venetian Mannerism. The subject was popular among Renaissance patrons as an exemplar of virtue and honor.",
-   "tags": [
-    "Tintoretto",
-    "Venetian Renaissance",
-    "Mannerism",
-    "mythology",
-    "Lucretia"
-   ],
+   "description_narrative": "A muscular man grips a woman by the wrist and hair, pulling her back as she twists away, one hand raised in protest, pearls scattered loose at her throat. Rich red and dark velvet drapery tumbles across the bed around them, with a sword lying discarded on the floor below. Tintoretto painted this dramatic scene between 1578 and 1580; it belongs to the Art Institute of Chicago.",
+   "tags": "tarquin and lucretia, mannerism, dramatic scene, oil painting, roman history",
    "source": "Art Institute of Chicago",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tintoretto%20-%20Tarquin%20and%20Lucretia%20-%201949.203%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
@@ -1630,7 +1611,9 @@
      1.0
     ]
    },
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "current_repository": "Art Institute of Chicago",
+   "physical_dimensions": "175 × 151.5 cm (68 7/8 × 59 5/8 in.); Framed: 203.9 × 181 × 8.3 cm (80 1/4 × 71 1/4 × 3 1/4 in.)"
   },
   {
    "title": "Annunciation",
@@ -1640,8 +1623,8 @@
    "cultural_context": "Early Renaissance, Italian",
    "medium": "Tempera on panel",
    "date_display": "c. 1430s",
-   "description_narrative": "Fra Angelico masterfully depicts the pivotal moment of the Annunciation, where the Archangel Gabriel conveys the divine message to the Virgin Mary. The scene is imbued with serene beauty and spiritual grace, characterized by the artist's use of radiant colors and delicate forms.",
-   "tags": "early renaissance, christian art, religious, annunciation, mary, gabriel, italian, spiritual",
+   "description_narrative": "A haloed angel with rainbow-colored wings kneels before a blue-robed woman inside an arched cloister that opens onto a garden. Wikimedia Commons identifies the scene as an Annunciation by Fra Angelico.",
+   "tags": "annunciation, angel, religious art, cloister, fra angelico, renaissance",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Fra%20Angelico%20-%20Annunciation.jpg?width=3840",
@@ -1693,8 +1676,8 @@
    "cultural_context": "Early Netherlandish, Northern Renaissance",
    "medium": "Oil on panel",
    "date_display": "1432",
-   "description_narrative": "Jan van Eyck's iconic Ghent Altarpiece, specifically the 'Adoration of the Mystic Lamb' panel, is a pivotal work in art history. This complex, multi-paneled artwork is renowned for its meticulous detail, vibrant colors, and profound theological narrative.",
-   "tags": "religious art, altarpiece, early netherlandish, christianity, northern renaissance, adoration, sacred, detailed",
+   "description_narrative": "A white lamb stands on an altar at the center of a wide green meadow, blood flowing from its breast into a chalice, as a dove radiates light directly above. Crowds converge from both sides — prophets and patriarchs with books at left, robed figures with palm branches at right — while bishops in red and gold and a line of other clergy gather in the distance. An octagonal fountain flows in the immediate foreground.",
+   "tags": "adoration, lamb, altarpiece, crowd scene, meadow, religious scene",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://upload.wikimedia.org/wikipedia/commons/a/a8/Hubert_van_Eyck_004.jpg",
@@ -1746,8 +1729,8 @@
    "cultural_context": "Paintings",
    "medium": "Oil on wood",
    "date_display": "ca. 1445",
-   "description_narrative": "Petrus Christus's 'The Annunciation' depicts the pivotal biblical moment when the Archangel Gabriel announces to Mary that she will conceive Jesus. This significant oil on wood panel exemplifies the detailed artistry of early Netherlandish painting.",
-   "tags": "annunciation, biblical, religious, oil painting, early netherlandish, sacred, petrus christus",
+   "description_narrative": "A blue-robed woman stands in a vaulted stone doorway, an open book in her hands, as a red-robed angel kneels just outside on the threshold. Behind the angel, a tall arched window opens onto a distant riverside town, and a ray of light touches down near the woman's feet carrying a small dove. Ornate tile work runs along the floor between them.",
+   "tags": "annunciation, doorway, angel, riverside view, tile floor, religious scene",
    "source": "The Metropolitan Museum of Art",
    "license": "Public Domain",
    "source_url": "https://images.metmuseum.org/CRDImages/ep/original/DT1479.jpg",
@@ -1800,8 +1783,8 @@
    "cultural_context": "Paintings",
    "medium": "Oil on wood",
    "date_display": "1530s",
-   "description_narrative": "Bronzino's 'Portrait of a Young Man,' painted in oil on wood during the 1530s, exemplifies the artist's refined style and meticulous detail. The sitter's composed expression and elegant demeanor reflect the sophisticated portraiture characteristic of the period.",
-   "tags": "portrait, young man, mannerism, italian renaissance, elegant, intense, sophisticated",
+   "description_narrative": "A young man in an elaborately slashed black doublet stands with one hand on his hip, the other resting on a red marble plinth beside a small book. A black beret sits at an angle on his head, and a doorway and carved stone corbel frame the cool grey interior behind him. This portrait was painted in the 1530s; it belongs to The Metropolitan Museum of Art.",
+   "tags": "portrait, young man, mannerism, doublet, oil painting, interior",
    "source": "The Metropolitan Museum of Art",
    "license": "Public Domain",
    "source_url": "https://images.metmuseum.org/CRDImages/ep/original/DP-14286-011.jpg",
@@ -1843,7 +1826,8 @@
      0.9775,
      1.0
     ]
-   }
+   },
+   "current_repository": "The Metropolitan Museum of Art"
   },
   {
    "title": "Jacob Willemsz van Veen (1456–1535), the Artist's Father",
@@ -1853,8 +1837,8 @@
    "cultural_context": "Paintings",
    "medium": "Oil on wood",
    "date_display": "1532",
-   "description_narrative": "Maarten van Heemskerck captures his father, Jacob Willemsz van Veen, in this striking portrait. Executed in oil on wood in 1532, the work offers a personal glimpse into the artist's family.",
-   "tags": "portrait, old master, oil painting, father, renaissance, 16th century, dutch art",
+   "description_narrative": "An elderly man with grey hair and a weathered, deeply lined face turns slightly toward the viewer, wearing a large dark fur cap and a black cloak fastened with three buttons. Below the portrait, a painted banner carries a lengthy inscription in ornate lettering, ending in a date. This portrait was painted in 1532; it belongs to The Metropolitan Museum of Art.",
+   "tags": "portrait, elderly man, fur cap, inscription, oil painting, dutch renaissance",
    "source": "The Metropolitan Museum of Art",
    "license": "Public Domain",
    "source_url": "https://images.metmuseum.org/CRDImages/ep/original/DP-38857-001.jpg",
@@ -1896,7 +1880,8 @@
      1.0,
      0.9347
     ]
-   }
+   },
+   "current_repository": "The Metropolitan Museum of Art"
   },
   {
    "title": "Hermann von Wedigh III (died 1560)",
@@ -1906,8 +1891,8 @@
    "cultural_context": "Paintings",
    "medium": "Oil and gold on oak",
    "date_display": "1532",
-   "description_narrative": "Hans Holbein the Younger masterfully depicted Hermann von Wedigh III in this striking oil and gold on oak portrait. Painted in 1532, this work exemplifies Holbein's meticulous realism and attention to detail.",
-   "tags": "portrait, renaissance, northern renaissance, 16th century, german, oil painting, formal, realism",
+   "description_narrative": "A young man in a black coat trimmed with fur and a matching cap rests his folded hands on a green-covered table, a small leather-bound book beside him and another tucked in his sleeve. Gold lettering on the deep blue background records his age and the year of the painting. Hans Holbein the Younger painted this portrait in 1532; it belongs to The Metropolitan Museum of Art.",
+   "tags": "portrait, young man, northern renaissance, oil painting, inscription",
    "source": "The Metropolitan Museum of Art",
    "license": "Public Domain",
    "source_url": "https://images.metmuseum.org/CRDImages/ep/original/DP164836.jpg",
@@ -1950,18 +1935,19 @@
      0.9882,
      1.0
     ]
-   }
+   },
+   "current_repository": "The Metropolitan Museum of Art"
   },
   {
    "title": "Portrait of Giuliano de' Medici",
    "agent_name": "Sandro Botticelli",
    "agent_role": "Painter",
-   "creation_date": "c. 1478-1480",
+   "creation_date": "between circa 1478 and circa 1480",
    "cultural_context": "Italian Renaissance",
    "medium": "Tempera on panel",
-   "date_display": "c. 1478–1480",
-   "description_narrative": "A posthumous portrait of Giuliano de' Medici, brother of Lorenzo the Magnificent, who was assassinated in the Pazzi conspiracy of 1478. Botticelli painted several versions of this memorial portrait for the Medici family.",
-   "tags": "portrait, Medici family, Florence, memorial portrait, Renaissance nobility",
+   "date_display": "between circa 1478 and circa 1480",
+   "description_narrative": "A man in profile wears a deep red robe against an open doorway, half-closed eyes cast downward and dark curling hair framing his face. A small brown bird perches quietly at the base of the portrait, tucked into the corner beside his shoulder. This is a portrait of Giuliano de' Medici, painted by Botticelli between about 1478 and 1480; it belongs to the National Gallery of Art.",
+   "tags": "portrait, giuliano de medici, profile, tempera panel, renaissance",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Giuliano%20de%27%20Medici%20by%20Sandro%20Botticelli.jpeg?width=3840",
@@ -2003,18 +1989,19 @@
      1.0,
      0.9171
     ]
-   }
+   },
+   "current_repository": "National Gallery of Art"
   },
   {
    "title": "Portrait of a Youth",
    "agent_name": "Sandro Botticelli",
    "agent_role": "Painter",
-   "creation_date": "c. 1482-1485",
+   "creation_date": "c. 1483",
    "cultural_context": "Italian Renaissance",
-   "medium": "Tempera on panel",
-   "date_display": "c. 1482–1485",
-   "description_narrative": "A refined portrait of an unidentified young Florentine man, characteristic of Botticelli's elegant linear portrait style. Such portraits reflect the growing fashion for individual likenesses among Florence's elite.",
-   "tags": "portrait, Florence, young man, Renaissance fashion, likeness",
+   "medium": "tempera",
+   "date_display": "c. 1483",
+   "description_narrative": "A young man with long wavy hair and a red cap gazes steadily at the viewer, one hand raised to his chest against a dark background. Sandro Botticelli painted this portrait in tempera around 1483. It is part of the Andrew W. Mellon collection.",
+   "tags": "portrait, botticelli, youth, renaissance, tempera, red cap, male figure, italian",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Botticelli-Portrait%20of%20a%20Youth.jpg?width=3840",
@@ -2056,18 +2043,20 @@
      1.0,
      0.5617
     ]
-   }
+   },
+   "current_repository": "Andrew W. Mellon collection",
+   "physical_dimensions": "43.5 x 46.2 cm"
   },
   {
    "title": "Venus and the Three Graces Presenting Gifts to a Young Woman",
    "agent_name": "Sandro Botticelli",
    "agent_role": "Painter",
-   "creation_date": "c. 1483-1485",
+   "creation_date": "1480s",
    "cultural_context": "Italian Renaissance",
    "medium": "Fresco (detached), from the Villa Lemmi",
-   "date_display": "c. 1483–1485",
-   "description_narrative": "A fresco originally painted for the Villa Lemmi near Florence, showing Venus and the Three Graces bestowing gifts on a young bride. It now resides in the Musée du Louvre in Paris.",
-   "tags": "fresco, Venus, Three Graces, Villa Lemmi, Louvre, wedding allegory",
+   "date_display": "1480s",
+   "description_narrative": "A cluster of women in flowing pastel robes gather at left, one holding a blank tablet, as they approach a woman in a rich red gown who reaches out to accept a folded cloth. A small child in orange walks toward them at the lower right, and the painted plaster surface itself is cracked and worn with age. Botticelli painted this fresco in the 1480s; it belongs to the Louvre.",
+   "tags": "fresco, women, allegory, wedding scene, early renaissance",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/V%C3%A9nus%20et%20les%20trois%20Gr%C3%A2ces%20offrant%20des%20pr%C3%A9sents%20%C3%A0%20une%20jeune%20fille%20-%20Sandro%20Botticelli%20-%20Mus%C3%A9e%20du%20Louvre%20Peintures%20RF%20321.jpg?width=3840",
@@ -2110,12 +2099,12 @@
    "title": "Adoration of the Magi (Uffizi)",
    "agent_name": "Sandro Botticelli",
    "agent_role": "Painter",
-   "creation_date": "c. 1475",
+   "creation_date": "between circa 1474 and circa 1476",
    "cultural_context": "Italian Renaissance",
    "medium": "Tempera on panel",
-   "date_display": "c. 1475",
-   "description_narrative": "A celebrated altarpiece in which Botticelli portrayed members of the Medici family as the biblical Magi and included a self-portrait among the onlookers. It was painted for the church of Santa Maria Novella in Florence and now hangs in the Uffizi.",
-   "tags": "Adoration of the Magi, Medici family, self-portrait, Uffizi, altarpiece",
+   "date_display": "between circa 1474 and circa 1476",
+   "description_narrative": "A woman sits enthroned beneath a ruined timber shelter, holding an infant as an elderly kneeling king reaches to kiss his foot. A crowd of richly dressed onlookers in red, blue, and gold fills the foreground and both sides, some turning to converse while others gaze toward the holy family. Crumbling stone walls and classical columns frame the scene under a pale sky. This Adoration of the Magi is by Sandro Botticelli, painted between about 1474 and 1476.",
+   "tags": "adoration of the magi, crowd scene, medici, ruins, religious scene, tempera panel",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sandro%20Botticelli%20-%20Adorazione%20dei%20Magi%20-%20Google%20Art%20Project.jpg?width=3840",
@@ -2167,8 +2156,8 @@
    "cultural_context": "Italian Renaissance",
    "medium": "Oil on canvas",
    "date_display": "c. 1500",
-   "description_narrative": "A visionary depiction of the Nativity combining earthly and celestial realms, signed and dated by Botticelli with an unusual Greek inscription referencing apocalyptic prophecy. It is held in the National Gallery, London.",
-   "tags": "Nativity, apocalypse, National Gallery London, religious painting, signed work",
+   "description_narrative": "Rows of angels dance hand in hand beneath a golden arch above a thatched stable, where shepherds and animals gather around a swaddled infant while small winged devils flee into rocky crevices below. Botticelli painted this Mystic Nativity in 1500; it now hangs in the National Gallery.",
+   "tags": "nativity, angels, religious art, botticelli, renaissance, apocalypse imagery",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sandro%20Botticelli%20-%20Mystische%20Geburt%201500.jpg?width=3840",
@@ -2178,18 +2167,19 @@
    "license_url": "",
    "credit_line": "National Gallery, London, NG1034; Wikidata Q974674",
    "license_verified": "2026-09-26",
-   "featured_rank": 75
+   "featured_rank": 75,
+   "current_repository": "National Gallery"
   },
   {
    "title": "The Virgin and Child with Saint John and Two Angels (Studio of Botticelli)",
    "agent_name": "Sandro Botticelli",
    "agent_role": "Painter",
-   "creation_date": "c. 1490-1500",
+   "creation_date": "1495",
    "cultural_context": "Italian Renaissance",
-   "medium": "Tempera on panel",
-   "date_display": "c. 1490–1500",
-   "description_narrative": "A devotional panel of the Madonna and Child with the infant Saint John the Baptist and two attendant angels, produced by Botticelli's workshop. It is held in the National Gallery, London.",
-   "tags": "Madonna, workshop painting, Saint John, angels, National Gallery London",
+   "medium": "egg tempera",
+   "date_display": "1495",
+   "description_narrative": "In a circular composition, two winged angels reach up to lower a golden crown onto a woman's head as she holds a child, who reaches toward a young haloed boy kneeling at right. Roses climb a trellis behind them, and the angels' red and gold robes echo the flowers' color. This panel is from the workshop of Sandro Botticelli, made around 1495; it belongs to the National Gallery.",
+   "tags": "madonna, coronation, angels, saint john, tempera panel, tondo",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sandro%20Botticelli%20%281444-1445-1510%29%20%28studio%20of%29%20-%20The%20Virgin%20and%20Child%20with%20Saint%20John%20and%20Two%20Angels%20-%20NG226%20-%20National%20Gallery.jpg?width=3840",
@@ -2231,18 +2221,20 @@
      0.8788,
      1.0
     ]
-   }
+   },
+   "current_repository": "National Gallery",
+   "physical_dimensions": "114.3 x 113.0 cm"
   },
   {
    "title": "Fortitude",
    "agent_name": "Sandro Botticelli",
    "agent_role": "Painter",
-   "creation_date": "1470",
+   "creation_date": "1475",
    "cultural_context": "Italian Renaissance",
    "medium": "Tempera on panel",
-   "date_display": "1470",
-   "description_narrative": "An allegorical personification of the virtue Fortitude, Botticelli's earliest documented independent panel painting. It was commissioned for the Merchants' Tribunal in Florence as part of a series of the Seven Virtues.",
-   "tags": "allegory, virtue, Fortitude, Uffizi, early work",
+   "date_display": "1475",
+   "description_narrative": "A woman in ornate armor and a flowing red robe sits enthroned, holding a ceremonial rod and gazing outward with a solemn expression. Sandro Botticelli painted this personification of Fortitude in tempera on panel around 1475. It is held in the Uffizi Gallery.",
+   "tags": "fortitude, botticelli, allegory, virtue, renaissance, tempera, uffizi, armor",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Botticelli%20-%20Fortitude.jpg?width=3840",
@@ -2284,12 +2276,12 @@
    "title": "Madonna and Child with Five Angels",
    "agent_name": "Sandro Botticelli",
    "agent_role": "Painter",
-   "creation_date": "c. 1470",
+   "creation_date": "1470s",
    "cultural_context": "Italian Renaissance",
-   "medium": "Tempera on panel",
-   "date_display": "c. 1470",
-   "description_narrative": "A devotional composition of the Virgin and Child surrounded by five attendant angels. The painting is held in the Musée du Louvre in Paris.",
-   "tags": "Madonna, angels, Louvre, devotional painting, early work",
+   "medium": "tempera",
+   "date_display": "1470s",
+   "description_narrative": "Mary, wrapped in deep blue, holds the Christ child on her lap as he reaches toward fruit offered by a winged angel at left. Three more angels crowd close at right, one holding a leafy sprig, their pale faces turned toward the holy pair. Botticelli painted this devotional panel in the 1470s; it is part of the Louvre's collection.",
+   "tags": "madonna, christ child, angels, tempera panel, devotional painting, louvre",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Botticelli%20Louvre%2011.jpg?width=3840",
@@ -2331,18 +2323,19 @@
      1.0,
      0.9384
     ]
-   }
+   },
+   "physical_dimensions": "58.0 x 40.0 cm"
   },
   {
    "title": "Bardi Altarpiece (Madonna and Child with Saints John the Baptist and John the Evangelist)",
    "agent_name": "Sandro Botticelli",
    "agent_role": "Painter",
-   "creation_date": "1484-1485",
+   "creation_date": "from 1484 until 1485",
    "cultural_context": "Italian Renaissance",
    "medium": "Tempera on panel",
-   "date_display": "1484–1485",
-   "description_narrative": "An altarpiece commissioned by the Bardi family showing the enthroned Madonna and Child flanked by Saints John the Baptist and John the Evangelist. It is held in the Gemäldegalerie in Berlin.",
-   "tags": "altarpiece, Madonna, Bardi family, Gemäldegalerie Berlin, saints",
+   "date_display": "from 1484 until 1485",
+   "description_narrative": "The enthroned Madonna holds an infant who reaches toward her, flanked by two haloed saints — one lean and weathered in a rough fur mantle with a reed cross, the other elderly with a flowing beard, holding a book. Dense foliage, lilies, and small vases of flowers rise behind the throne, and a tiny painted crucifix rests on a ledge below. This altarpiece, attributed to Sandro Botticelli, was painted between 1484 and 1485.",
+   "tags": "altarpiece, madonna, saints, tempera panel, religious scene, florentine renaissance",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sandro%20Botticelli%20-%20Madonna%20with%20Saints%20-%20Google%20Art%20ProjectFXD.jpg?width=3840",
@@ -2391,12 +2384,12 @@
    "title": "Adoration of the Christ Child with Saint John (Botticelli or Workshop)",
    "agent_name": "Sandro Botticelli",
    "agent_role": "Painter",
-   "creation_date": "c. 1490s",
+   "creation_date": "c. 1490",
    "cultural_context": "Italian Renaissance",
    "medium": "Tempera on panel",
-   "date_display": "c. 1490s",
-   "description_narrative": "A devotional composition showing the Christ Child adored by the Virgin and the young Saint John the Baptist, with authorship debated between Botticelli himself and his workshop. Such devotional panels were popular for private worship in Renaissance Florence.",
-   "tags": "Nativity, Madonna, Saint John, devotional painting, workshop attribution",
+   "date_display": "c. 1490",
+   "description_narrative": "Mary kneels in the foreground, hands joined in prayer as she gazes down at the infant Christ lying on a bed of straw and cloth. Behind them, a young figure in a red robe stands holding a small reed cross, framed by rocky outcrops that open onto a distant, hazy river landscape. This adoration scene is attributed to Sandro Botticelli or his workshop, made around 1490; it belongs to the Landesmuseum Hannover.",
+   "tags": "adoration, madonna, christ child, saint john, tempera panel, religious scene, workshop attribution",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Adoration%20of%20Christ%20with%20Saint%20John%2C%20by%20Sandro%20Botticelli%20or%20workshop.jpg?width=3840",
@@ -2444,12 +2437,12 @@
    "title": "The Calumny of Apelles (detail: Truth)",
    "agent_name": "Sandro Botticelli",
    "agent_role": "Painter",
-   "creation_date": "c. 1494-1495",
+   "creation_date": "circa 1495",
    "cultural_context": "Italian Renaissance",
    "medium": "Tempera on panel",
-   "date_display": "c. 1494–1495",
-   "description_narrative": "A detail from Botticelli's allegorical masterpiece 'The Calumny of Apelles,' showing the personification of Truth pointing toward heaven. The full composition, held in the Uffizi, was inspired by a lost ancient Greek painting described in classical texts.",
-   "tags": "allegory, Calumny of Apelles, Truth, Uffizi, classical revival",
+   "date_display": "circa 1495",
+   "description_narrative": "A nude woman points upward with one hand while gesturing toward herself with the other, her long hair unbound, standing before classical statues set in shell-topped niches. Beside her, a hooded old woman in black stands hunched, arms crossed, gazing sideways. This is a detail from The Calumny of Apelles, painted by Botticelli around 1495.",
+   "tags": "allegory, truth, calumny of apelles, classical sculpture, tempera panel, detail",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sandro%20Botticelli%20024.jpg?width=3840",
@@ -2499,10 +2492,10 @@
    "agent_role": "Painter",
    "creation_date": "c. 1490-1500",
    "cultural_context": "Italian Renaissance",
-   "medium": "Tempera on panel",
+   "medium": "paint",
    "date_display": "c. 1490–1500",
-   "description_narrative": "A devotional panel of the Madonna and Child with the infant Saint John the Baptist, attributed to the school of Botticelli. It is held in the Gemäldegalerie in Berlin.",
-   "tags": "Madonna, Saint John, school attribution, Gemäldegalerie Berlin, devotional painting",
+   "description_narrative": "In this black-and-white reproduction, Mary sits with the Christ child in her lap, his hand raised to touch his own chin as he looks toward a young boy nestled close beside them. A rolling landscape with a tree and birds in flight opens at the left, while both Mary and the child carry faint haloes. This devotional panel is from the school of Botticelli; it belongs to the Gemäldegalerie Berlin.",
+   "tags": "madonna, christ child, saint john, monochrome, tempera panel",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Schule%2C%20Sandro%20Botticelli%20%281445%20-%201510%29%20-%20Virgin%20and%20Child%20with%20young%20st.%20John%20-%20I.172%20-%20Gem%C3%A4ldegalerie.jpg?width=3840",
@@ -2552,10 +2545,10 @@
    "agent_role": "Painter",
    "creation_date": "c. 1485-1492",
    "cultural_context": "Italian Renaissance",
-   "medium": "Tempera on panel",
+   "medium": "paint",
    "date_display": "c. 1485–1492",
-   "description_narrative": "A devotional depiction of the Archangel Gabriel announcing to the Virgin Mary that she will bear the Son of God, produced by Botticelli's workshop. It is held in the Gemäldegalerie in Berlin.",
-   "tags": "Annunciation, Virgin Mary, workshop painting, Gemäldegalerie Berlin, religious painting",
+   "description_narrative": "A winged angel kneels at left, one hand raised in greeting and the other holding a flowering branch, while a woman kneels opposite with her hand pressed to her chest, eyes lowered. Between them, an arched opening frames a distant bridge and hills, and a curtained bed is visible in a side chamber at right. This Annunciation is from the workshop of Sandro Botticelli; it belongs to the Gemäldegalerie in Berlin.",
+   "tags": "annunciation, angel, mary, architecture, workshop attribution, religious scene",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Werkstatt%2C%20Sandro%20Botticelli%20%281445%20-%201510%29%20-%20Annunciation%20to%20Mary%20-%201117%20-%20Gem%C3%A4ldegalerie.jpg?width=3840",
@@ -2603,12 +2596,12 @@
    "title": "Young Man Before the Seven Liberal Arts",
    "agent_name": "Sandro Botticelli",
    "agent_role": "Painter",
-   "creation_date": "c. 1483-1485",
+   "creation_date": "1480s",
    "cultural_context": "Italian Renaissance",
-   "medium": "Tempera on panel",
-   "date_display": "c. 1483–1485",
-   "description_narrative": "A fresco from the Villa Lemmi cycle, believed to portray Lorenzo Tornabuoni being presented to the personifications of the Seven Liberal Arts. It is the companion piece to Botticelli's 'Venus and the Three Graces' fresco and is now in the Musée du Louvre.",
-   "tags": "fresco, Villa Lemmi, Liberal Arts, Tornabuoni, Louvre",
+   "medium": "fresco",
+   "date_display": "1480s",
+   "description_narrative": "A young man steps forward to greet a semicircle of women personifying the Liberal Arts, one enthroned above the rest in flowing red drapery. The plaster surface is worn and patched with loss along the lower edge, visible evidence of its life as a wall fresco. Painted at Villa Lemmi near Florence, it was later transferred to the Louvre.",
+   "tags": "fresco, liberal arts, allegory, florentine, renaissance, villa lemmi, procession",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sandro%20Botticelli%20028.jpg?width=3840",
@@ -2650,18 +2643,19 @@
      0.8171,
      1.0
     ]
-   }
+   },
+   "physical_dimensions": "237.0 x 269.0 cm"
   },
   {
    "title": "Pastoral Concert",
    "agent_name": "Titian",
    "agent_role": "Painter",
-   "creation_date": "1509",
+   "creation_date": "c. 1510s",
    "cultural_context": "Italian Renaissance",
-   "medium": "Oil on canvas",
-   "date_display": "c. 1509",
-   "description_narrative": "Two elegantly dressed young men make music in a landscape alongside two nude women who seem invisible to them, an enigmatic pastoral allegory. Long debated between Titian and his mentor Giorgione, the painting is now generally attributed to the young Titian and hangs in the Louvre.",
-   "tags": "Italian Renaissance, Venetian painting, pastoral, allegory, Louvre",
+   "medium": "oil paint",
+   "date_display": "c. 1510s",
+   "description_narrative": "Two clothed young men sit close together in conversation, one cradling a lute, while a nude woman pours water from a glass vessel into a stone well at left and another nude woman with a flute sits at right, gazing away. Trees frame the scene, and a distant shepherd tends sheep on a hillside path. This pastoral scene is attributed to Titian and Giorgione, painted around 1510; it belongs to the Louvre.",
+   "tags": "pastoral concert, nude figures, lute, landscape, venetian, oil painting",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Le%20Concert%20champ%C3%AAtre%2C%20by%20Titian%2C%20from%20C2RMF%20retouched.jpg?width=3840",
@@ -2697,18 +2691,19 @@
      0.797,
      1.0
     ]
-   }
+   },
+   "physical_dimensions": "105.0 x 136.5 cm"
   },
   {
    "title": "Venus with an Organ Player",
    "agent_name": "Titian",
    "agent_role": "Painter",
-   "creation_date": "1550",
+   "creation_date": "c. 1555",
    "cultural_context": "Italian Renaissance",
    "medium": "Oil on canvas",
-   "date_display": "c. 1550",
-   "description_narrative": "A reclining nude Venus is watched by a seated organist who turns to gaze at her, one of several variations on this composition Titian's workshop produced. This version is held by the Gemaldegalerie in Berlin.",
-   "tags": "Italian Renaissance, Venus, nude, mythology, Berlin",
+   "date_display": "c. 1555",
+   "description_narrative": "A nude woman reclines against red pillows, a winged child nestled against her shoulder with one arm around her, while at left an organist at his pipes turns to look back at her. Beyond them, a wide landscape with hills and small buildings unfolds under a cloud-streaked sky. Titian painted this around 1555; it belongs to the Museo del Prado.",
+   "tags": "venus, organ player, cupid, landscape, oil painting",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tizian%20-%20Venus%20with%20the%20Organ%20Player%20%28Gem%C3%A4ldegalerie%20Berlin%29%20-%20Google%20Art%20Project.jpg?width=3840",
@@ -2756,12 +2751,12 @@
    "title": "Girl in a Fur",
    "agent_name": "Titian",
    "agent_role": "Painter",
-   "creation_date": "1535",
+   "creation_date": "c. 1535",
    "cultural_context": "Italian Renaissance",
-   "medium": "Oil on canvas",
+   "medium": "oil paint",
    "date_display": "c. 1535",
-   "description_narrative": "A young woman is shown draped in a fur wrap that slips from one shoulder, a portrait praised for its sensuous handling of texture and skin. The canvas belongs to the Kunsthistorisches Museum in Vienna.",
-   "tags": "Italian Renaissance, portraiture, Vienna, sensuality",
+   "description_narrative": "A young woman turns to meet the viewer's gaze, one bare shoulder emerging from a dark fur wrap she clutches at her chest. A string of pearls circles her neck, and a jeweled band holds back her hair, catching the only real light in an otherwise deeply shadowed portrait. Titian painted this around 1535; it belongs to the Kunsthistorisches Museum.",
+   "tags": "portrait, fur, pearls, young woman, oil painting, venetian",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tiziano%20Vecellio%2Ccalled%20Titian%20-%20Girl%20in%20a%20Fur%20-%20Google%20Art%20Project.jpg?width=3840",
@@ -2803,7 +2798,9 @@
      1.0,
      0.8961
     ]
-   }
+   },
+   "current_repository": "Kunsthistorisches Museum",
+   "physical_dimensions": "95.5 x 63.7 cm"
   },
   {
    "title": "Portrait of Alfonso I d'Este",
@@ -2813,8 +2810,8 @@
    "cultural_context": "Italian Renaissance",
    "medium": "Oil on canvas",
    "date_display": "c. 1530",
-   "description_narrative": "Titian served as court painter to the Duke of Ferrara, Alfonso I d'Este, producing several likenesses of him over the course of their long patronage relationship. This portrait belongs to the Fondation Bemberg in Toulouse.",
-   "tags": "Italian Renaissance, portraiture, Ferrara, Este family, Toulouse",
+   "description_narrative": "A heavyset, bearded man in a red velvet robe trimmed with dark fur rests one hand on a wide-brimmed hat and the other on the hilt of a sword at his waist. A gold embroidered sleeve peeks from beneath his outer robe, and his gaze is direct and steady. This is a portrait of Alfonso I d'Este by Titian.",
+   "tags": "portrait, alfonso deste, nobility, oil painting, este family",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bemberg%20Fondation%20Toulouse%20-%20Portrait%20d%27Alphonse%20dEste%20-%20Titien%20Inv.1053.jpg?width=3840",
@@ -2862,12 +2859,12 @@
    "title": "Diana and Actaeon",
    "agent_name": "Titian",
    "agent_role": "Painter",
-   "creation_date": "1559",
+   "creation_date": "1550s",
    "cultural_context": "Italian Renaissance",
    "medium": "Oil on canvas",
-   "date_display": "1556-1559",
-   "description_narrative": "The hunter Actaeon stumbles upon the goddess Diana bathing with her nymphs, the moment before he is transformed into a stag and killed by his own hounds. Painted for Philip II of Spain, it is jointly owned by the National Gallery, London, and the National Galleries of Scotland.",
-   "tags": "Italian Renaissance, mythology, Diana, Philip II, poesie",
+   "date_display": "1550s",
+   "description_narrative": "A hunter pulls back a red curtain to reveal Diana and her nymphs bathing beside a stone fountain in a wooded glade, as a startled attendant ducks behind a pillar. Titian painted this mythological scene in oil on canvas in the 1550s. It is held in the National Gallery of Scotland.",
+   "tags": "mythology, diana, actaeon, titian, renaissance, oil painting, nymphs, nudes",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tizian%20Diana%20Aktaion.jpg?width=3840",
@@ -2903,18 +2900,19 @@
      0.8938,
      1.0
     ]
-   }
+   },
+   "current_repository": "National Gallery of Scotland"
   },
   {
    "title": "Diana and Callisto",
    "agent_name": "Titian",
    "agent_role": "Painter",
-   "creation_date": "1559",
+   "creation_date": "1550s",
    "cultural_context": "Italian Renaissance",
-   "medium": "Oil on canvas",
-   "date_display": "1556-1559",
-   "description_narrative": "Diana discovers her nymph Callisto's pregnancy and banishes her from her chaste retinue, a companion piece to 'Diana and Actaeon' from Titian's mythological 'poesie' series for Philip II. It is likewise shared by the National Gallery, London, and the National Galleries of Scotland.",
-   "tags": "Italian Renaissance, mythology, Diana, Philip II, poesie",
+   "medium": "oil paint",
+   "date_display": "1550s",
+   "description_narrative": "A crowned woman points accusingly at a distraught nymph being restrained by companions at the center. Around them, more nymphs bathe and gather near a stone fountain topped by a small statue, while an archer with a hunting dog stands at the far right beneath a swath of golden drapery. Titian painted this scene in the 1550s; it belongs to the National Gallery.",
+   "tags": "mythology, diana, callisto, nymphs, fountain, oil painting, renaissance",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tizian%20015%20%282%29.jpg?width=3840",
@@ -2956,18 +2954,20 @@
      0.8457,
      1.0
     ]
-   }
+   },
+   "current_repository": "National Gallery",
+   "physical_dimensions": "187.5 x 205.5 cm"
   },
   {
    "title": "Nymph and Shepherd",
    "agent_name": "Titian",
    "agent_role": "Painter",
-   "creation_date": "1575",
+   "creation_date": "c. 1570s",
    "cultural_context": "Italian Renaissance",
-   "medium": "Oil on canvas",
-   "date_display": "c. 1575",
-   "description_narrative": "A reclining nude nymph and a bagpipe-playing shepherd occupy a shadowy landscape in one of Titian's last and most loosely, expressively painted works. It hangs in the Kunsthistorisches Museum in Vienna.",
-   "tags": "Italian Renaissance, late style, pastoral, Vienna, mythology",
+   "medium": "oil paint",
+   "date_display": "c. 1570s",
+   "description_narrative": "A nude woman reclines on an animal pelt in a shadowy clearing, her body turned away as a young shepherd holding a pipe leans close beside her. A blasted, leafless tree trunk rises behind them, and small grazing animals dot the pale hillside in the distance. Titian painted this pastoral scene around the 1570s; it belongs to the Kunsthistorisches Museum.",
+   "tags": "pastoral, nymph, shepherd, reclining nude, landscape, oil painting",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tiziano%20Vecellio%2C%20called%20Titian%20-%20Nymph%20and%20Shepherd%20-%20Google%20Art%20Project.jpg?width=3840",
@@ -3009,18 +3009,20 @@
      0.8215,
      1.0
     ]
-   }
+   },
+   "current_repository": "Kunsthistorisches Museum",
+   "physical_dimensions": "149.6 x 187.0 cm"
   },
   {
    "title": "Portrait of Philip II",
    "agent_name": "Titian",
    "agent_role": "Painter",
-   "creation_date": "1551",
+   "creation_date": "16th century",
    "cultural_context": "Italian Renaissance",
-   "medium": "Oil on canvas",
-   "date_display": "c. 1551",
-   "description_narrative": "Titian portrays the future king of Spain in armor, a formal state portrait produced during Philip's visit to Italy that established the iconography later state portraitists would follow. Several autograph and workshop versions of this composition survive in major collections.",
-   "tags": "Italian Renaissance, portraiture, Philip II, Spain, state portrait",
+   "medium": "oil paint",
+   "date_display": "16th century",
+   "description_narrative": "A young man in an elaborately padded black doublet trimmed with fur and gold studs rests one hand on a red-draped table, the other resting on the hilt of a sword. A fine gold chain hangs at his throat above a white fur collar, and his expression is composed and reserved. This portrait of Philip II of Spain, from the workshop of Titian, dates to the 16th century; it belongs to the Museo del Prado.",
+   "tags": "portrait, philip ii, spanish court, oil painting, state portrait",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Philip%20II%20portrait%20by%20Titian.jpg?width=3840",
@@ -3062,18 +3064,19 @@
      0.9762,
      1.0
     ]
-   }
+   },
+   "physical_dimensions": "103.0 x 82.0 cm"
   },
   {
    "title": "The Bacchanal of the Andrians",
    "agent_name": "Titian",
    "agent_role": "Painter",
-   "creation_date": "1523",
+   "creation_date": "c. 1520s",
    "cultural_context": "Italian Renaissance",
    "medium": "Oil on canvas",
-   "date_display": "c. 1523-1526",
-   "description_narrative": "The inhabitants of the mythical island of Andros revel in drunken abandon around a river said to flow with wine, painted as part of a cycle of mythological scenes for Alfonso d'Este's private study. It hangs today in the Museo del Prado, Madrid.",
-   "tags": "Italian Renaissance, mythology, Bacchanal, Prado, Este",
+   "date_display": "c. 1520s",
+   "description_narrative": "A crowd of revelers drinks and dances beneath tall trees, one man raising a silver ewer overhead while a boy pours wine at their feet. In the foreground, a nude woman sleeps sprawled across the grass, oblivious to the music and movement around her, and a ship sails calmly on the sea behind. Titian painted this bacchanal between about 1523 and 1526.",
+   "tags": "bacchanal, mythology, revelers, nude figure, landscape, oil painting",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bacchanal%20of%20the%20Andrians%20by%20Titian%20in%20the%20Prado%20Museum.jpg?width=3840",
@@ -3119,14 +3122,14 @@
   },
   {
    "title": "An Idyll: A Mother and a Halberdier in a Wooded Landscape",
-   "agent_name": "Titian",
+   "agent_name": "Attributed to Titian",
    "agent_role": "Painter",
-   "creation_date": "1565",
+   "creation_date": "c. 16th century",
    "cultural_context": "Italian Renaissance",
-   "medium": "Oil on canvas",
-   "date_display": "c. 1565",
-   "description_narrative": "A woman nursing an infant sits beside a soldier bearing a halberd in a shaded woodland clearing, a quiet pastoral scene from Titian's later career. The painting is held by the Harvard Art Museums.",
-   "tags": "Italian Renaissance, pastoral, landscape, Harvard Art Museums, late style",
+   "medium": "oil paint",
+   "date_display": "c. 16th century",
+   "description_narrative": "A woman in a pale dress sits beneath a leafy tree, a nude infant nestled in her lap, while at right a young soldier in armor stands holding a tall halberd topped with a small pennant. Behind them, a cluster of farm buildings and a tower rise on a gentle hillside under a soft evening sky. This pastoral scene is attributed to Titian, painted in the 16th century; it belongs to the Harvard Art Museums.",
+   "tags": "pastoral scene, mother and child, soldier, landscape, oil painting, renaissance",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Titian%20-%20An%20Idyll%20%28Harvard%20Art%20Museums%29.jpg?width=3840",
@@ -3168,18 +3171,19 @@
      0.8225,
      1.0
     ]
-   }
+   },
+   "current_repository": "Harvard Art Museums"
   },
   {
    "title": "Penitent Magdalene",
    "agent_name": "Titian",
    "agent_role": "Painter",
-   "creation_date": "1565",
+   "creation_date": "c. 1540",
    "cultural_context": "Italian Renaissance",
-   "medium": "Oil on canvas",
-   "date_display": "c. 1565",
-   "description_narrative": "Mary Magdalene gazes upward in tearful repentance, her flowing hair her only covering, a subject Titian painted in numerous variants throughout his career. This version is held by the Musee des Beaux-Arts de Bordeaux.",
-   "tags": "Italian Renaissance, Mary Magdalene, repentance, Bordeaux, religious",
+   "medium": "oil paint",
+   "date_display": "c. 1540",
+   "description_narrative": "A woman with long, loose red-gold hair looks upward with parted lips, one hand pressed to her bare chest in a gesture of penitence. Her hair falls in thick waves nearly covering her body, and a small silver vase sits on a ledge beside her, with a patch of stormy blue sky visible behind. Titian and his workshop painted this around 1540; it belongs to the Musée des Beaux-Arts de Bordeaux.",
+   "tags": "penitent magdalene, religious figure, portrait, oil painting, renaissance",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bordeaux%20-%20Madeleine%20p%C3%A9nitente%2002.jpg?width=3840",
@@ -3222,7 +3226,8 @@
      1.0,
      0.9952
     ]
-   }
+   },
+   "physical_dimensions": "87.0 x 64.0 cm"
   },
   {
    "title": "Tarquin and Lucretia",
@@ -3230,10 +3235,10 @@
    "agent_role": "Painter",
    "creation_date": "c. 1570",
    "cultural_context": "Italian Renaissance",
-   "medium": "Oil on canvas",
+   "medium": "oil paint",
    "date_display": "c. 1570",
-   "description_narrative": "The Roman prince Tarquin threatens Lucretia with a dagger in a violent, close-cropped composition from Titian's dramatic late period. Multiple versions exist; this one is held in the Musee des Beaux-Arts de Bordeaux.",
-   "tags": "Italian Renaissance, mythology, Roman history, violence, late style",
+   "description_narrative": "A man lunges forward with a dagger while a nude woman recoils against piled white bedclothes, one arm thrown up to ward him off. The scene renders the Roman legend of Tarquin and Lucretia, painted by Titian in the 1570s and now held by the Musée des Beaux-Arts de Bordeaux.",
+   "tags": "italian renaissance, mythology, roman history, titian, oil painting, violence",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Titien%20-%20Tarquin%20et%20Lucr%C3%A8ce%2002.jpg?width=3840",
@@ -3243,18 +3248,19 @@
    "license_url": "",
    "credit_line": "Musée des Beaux-Arts de Bordeaux, Bx E 42; Wikidata Q18822501",
    "license_verified": "2026-09-26",
-   "featured_rank": 62
+   "featured_rank": 62,
+   "physical_dimensions": "193.0 x 143.0 cm"
   },
   {
    "title": "Mars, Venus and Cupid",
    "agent_name": "Titian",
    "agent_role": "Painter",
-   "creation_date": "1530",
+   "creation_date": "c. 1550",
    "cultural_context": "Italian Renaissance",
-   "medium": "Oil on canvas",
-   "date_display": "c. 1530",
-   "description_narrative": "Venus, seated with her son Cupid, gazes at Mars, who admires his reflection in her mirror, a playful mythological allegory of love and vanity. The painting is held by the Hermitage Museum in Saint Petersburg.",
-   "tags": "Italian Renaissance, mythology, Venus, Mars, Hermitage",
+   "medium": "oil paint",
+   "date_display": "c. 1550",
+   "description_narrative": "A bearded man in armor leans in to kiss a reclining nude woman, her hand resting on his head as they embrace beneath a leafy tree. Below them, a helmet and sword rest against fabric, while at right a winged child flies off holding a bow, quiver, and arrow. Titian painted this mythological scene around 1550; it belongs to the Kunsthistorisches Museum.",
+   "tags": "mythology, mars and venus, embrace, cupid, oil painting, renaissance",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Titian.MarsVenusandAmor01.jpg?width=3840",
@@ -3296,18 +3302,20 @@
      0.6833,
      1.0
     ]
-   }
+   },
+   "current_repository": "Kunsthistorisches Museum",
+   "physical_dimensions": "97.0 x 109.0 cm"
   },
   {
    "title": "Portrait of a Man",
    "agent_name": "Titian",
    "agent_role": "Painter",
-   "creation_date": "1550",
+   "creation_date": "c. 16th century",
    "cultural_context": "Italian Renaissance",
-   "medium": "Oil on canvas",
-   "date_display": "c. 1550",
-   "description_narrative": "A richly dressed sitter of unknown identity is rendered with Titian's characteristic warmth of color and psychological presence. The portrait is held by the Indianapolis Museum of Art.",
-   "tags": "Italian Renaissance, portraiture, Indianapolis Museum of Art",
+   "medium": "oil paint",
+   "date_display": "c. 16th century",
+   "description_narrative": "A bearded man in a dark, fur-trimmed coat glances slightly to one side, his loose white collar catching soft light against the deep shadow behind him. His hair falls in soft waves to his shoulders, and his expression is calm and reserved. Titian painted this portrait in the 16th century.",
+   "tags": "portrait, bearded man, dark background, oil painting, venetian",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tiziano%2C%20ritratto%20indianapolis.jpg?width=3840",
@@ -3349,18 +3357,19 @@
      0.9869,
      1.0
     ]
-   }
+   },
+   "physical_dimensions": "59.5 x 45.5 cm"
   },
   {
    "title": "Venus with an Organ Player and a Dog",
    "agent_name": "Titian",
    "agent_role": "Painter",
-   "creation_date": "1550",
+   "creation_date": "circa 1550",
    "cultural_context": "Italian Renaissance",
    "medium": "Oil on canvas",
-   "date_display": "c. 1550",
-   "description_narrative": "In this variant of Titian's popular reclining-Venus composition, a small dog rests at the goddess's feet as an organist looks on. The painting is held by the Museo del Prado, Madrid.",
-   "tags": "Italian Renaissance, Venus, mythology, Prado",
+   "date_display": "circa 1550",
+   "description_narrative": "An organist glances over his shoulder at a nude woman reclining beside him, a winged child resting against her shoulder. A small white dog sits at the foot of the bed, and heavy red drapery hangs above while a distant landscape opens through the space behind the organ pipes. This painting is attributed to Titian, made around 1550.",
+   "tags": "venus, organ player, dog, cupid, oil painting",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tizian%20096.jpg?width=3840",
@@ -3408,12 +3417,12 @@
    "title": "The Triumph of Love",
    "agent_name": "Titian",
    "agent_role": "Painter",
-   "creation_date": "1544",
+   "creation_date": "c. 1545",
    "cultural_context": "Italian Renaissance",
-   "medium": "Oil on canvas",
-   "date_display": "c. 1543-1546",
-   "description_narrative": "Cupid stands triumphantly astride a lion in this allegorical composition celebrating the power of love over even the fiercest creatures. The painting reflects Titian's engagement with classical allegory during the 1540s.",
-   "tags": "Italian Renaissance, allegory, Cupid, mythology",
+   "medium": "oil paint",
+   "date_display": "c. 1545",
+   "description_narrative": "A winged child stands triumphant atop a crouching lion, one foot planted on its back, bow raised in one hand and an arrow in the other. A quiver of arrows hangs at his hip, and a wide, hazy landscape with a distant town and hills fills the circular background. Titian painted this tondo around 1545; it belongs to the Ashmolean Museum.",
+   "tags": "triumph of love, cupid, allegory, tondo, landscape",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Titian%20-%20The%20Triumph%20of%20Love%2C%20c.%201543%20-%201546.jpg?width=3840",
@@ -3455,7 +3464,9 @@
      0.875,
      1.0
     ]
-   }
+   },
+   "current_repository": "Ashmolean Museum",
+   "physical_dimensions": "88.3 x 88.3 cm"
   }
  ]
 }
