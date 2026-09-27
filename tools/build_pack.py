@@ -35,6 +35,7 @@ import json
 import logging
 import re
 import subprocess
+import unicodedata
 from dataclasses import dataclass, field
 from io import BytesIO
 from pathlib import Path
@@ -138,10 +139,13 @@ PINS_NOTE = (
     "2026-09-22 option A — packs keep their July AIC masters for works the served catalog re-sourced "
     "to Wikimedia Commons (artic.edu image host now 403s API clients). Rows here are the COMPLETE "
     "original catalog rows as of the commit just before the re-source, keyed by collection id. "
-    "build_pack replaces the served row with the pinned row when both name the same work, and "
-    "re-appends any pinned row that no longer appears in the served collection at all (parked into "
-    "static/catalog/_pending_artic.json) so the pack doesn't silently drop it. See tools/build_pack.py "
-    "apply_pack_pins / generate_pack_pins."
+    "build_pack merges a pin's IMAGE fields onto the served row (title/placard/etc. stay the served "
+    "row's current, re-grounded content — see _PIN_IMAGE_FIELDS) when both name the same work. "
+    "2026-09-27 (ADR-140/141, Josh): a pinned row that no longer appears in the served collection at "
+    "all (parked into static/catalog/_pending_artic.json) is kept HERE as the recovery path if that "
+    "AIC work is ever re-sourced back into the served catalog, but it is NOT shipped in packs — it "
+    "predates ADR-140's re-grounding, so it would be the only unverified placard in an otherwise "
+    "re-grounded pack. See tools/build_pack.py apply_pack_pins / generate_pack_pins."
 )
 
 
@@ -191,40 +195,92 @@ def load_pack_pins(path: Path | None = None) -> dict[str, list[dict]]:
     return data.get("collections") or {}
 
 
+def _normalize_name(s: str) -> str:
+    """casefold + strip combining accents, so 'agent_name' comparisons are accent/case-insensitive."""
+    nfkd = unicodedata.normalize("NFKD", s)
+    return "".join(c for c in nfkd if not unicodedata.combining(c)).casefold()
+
+
+def _name_contains_phrase(haystack: str, needle: str) -> bool:
+    """True if `needle` appears in `haystack` as a whole-word phrase (accent/case-insensitive) — e.g.
+    the pin's unqualified 'El Greco' matches the served catalog's honestly-qualified 'Workshop of El
+    Greco', but never as a bare substring across word boundaries."""
+    if not needle:
+        return False
+    h, n = _normalize_name(haystack), _normalize_name(needle)
+    return re.search(r"(?<!\w)" + re.escape(n) + r"(?!\w)", h) is not None
+
+
 def _pin_identity_match(pin: dict, served: dict) -> bool:
     """Stable identity for matching a pinned row to a served row. `_aic_accession` (when both sides
-    carry it) is the strongest signal; otherwise fall back to title + agent_name, which is what every
-    catalog row actually carries today."""
+    carry it) is the strongest signal; otherwise fall back to title match plus an agent_name match —
+    exact, OR the served agent_name containing the pin's agent_name as a whole-word phrase. The phrase
+    fallback exists because ADR-140's re-grounding gave some served rows honest qualifiers/collaborators
+    the July pin doesn't carry ('El Greco' -> 'Workshop of El Greco', 'Alessandro Allori' -> 'Attributed
+    to Alessandro Allori', 'Adriaen van der Spelt' -> 'Adriaen van der Spelt and Frans van Mieris the
+    Elder') — without it those pins would stop matching and be re-appended as duplicate parked rows."""
     pin_acc, served_acc = pin.get("_aic_accession"), served.get("_aic_accession")
     if pin_acc and served_acc:
         return pin_acc == served_acc
-    return (pin.get("title") == served.get("title")
-            and pin.get("agent_name") == served.get("agent_name"))
+    if pin.get("title") != served.get("title"):
+        return False
+    pin_agent, served_agent = pin.get("agent_name") or "", served.get("agent_name") or ""
+    return pin_agent == served_agent or _name_contains_phrase(served_agent, pin_agent)
+
+
+# Fields a matched pin overrides ON TOP OF the served row (2026-09-22 option A, revised 2026-09-27 for
+# ADR-140). Pins were captured before ADR-140's full re-grounding (new placards, header fields sourced
+# from records, attribution qualifiers, current_repository), so a whole-row swap would ship the OLD
+# placard text for every pinned work. Only these image-SOURCING fields legitimately differ between "the
+# July AIC master" and "the post-re-source Commons row" — everything else (title, agent_name,
+# agent_role, dates, medium, current_repository, physical_dimensions, description_narrative, tags,
+# cultural_context, featured_rank, ...) must stay the served row's current content.
+_PIN_IMAGE_FIELDS = (
+    "source_url", "thumbnail_url", "source", "credit_line", "license", "license_basis", "license_url",
+    "license_verdict", "license_verified", "focal_point", "aspect_crops", "delivered_edge",
+    "resolution_tier", "crop_box", "needs_frame_crop", "source_rotate",
+)
+
+
+def _merge_pin_into_served(pin: dict, served: dict) -> dict:
+    """The merged row for a matched pin: the SERVED row (current, re-grounded content) with only
+    `_PIN_IMAGE_FIELDS` overridden from the pin, when the pin carries that field (source_rotate is
+    optional and often absent)."""
+    merged = dict(served)
+    for key in _PIN_IMAGE_FIELDS:
+        if key in pin:
+            merged[key] = pin[key]
+    return merged
 
 
 def apply_pack_pins(items: list[dict], pins: list[dict]) -> tuple[list[dict], int, int]:
-    """Replace each served item matching a pinned row with that pinned row (in place, same slot);
-    append any pinned row with no match in `items` (a parked work) at the end, in the pins' own
-    original order. Returns (merged_items, replaced_count, appended_count)."""
+    """Merge each served item matching a pinned row with that pin's image fields (see
+    _merge_pin_into_served), in place, same slot. A pinned row with no match in `items` is a PARKED
+    work (its title/agent_name is no longer in the served catalog) — Josh decided 2026-09-27
+    (ADR-140/141) these must NOT ship in packs: they were captured before ADR-140's re-grounding, so
+    they'd be the only unverified placards in an otherwise re-grounded pack. They stay in
+    _pack_pins.json as the recovery path (if the AIC work is ever re-sourced back into the served
+    catalog) but are skipped here, logged at info level, and no longer appended. Returns
+    (merged_items, replaced_count, parked_skipped_count)."""
     merged = list(items)
     replaced = 0
-    appended_rows: list[dict] = []
+    parked_skipped = 0
     for pin in pins:
         idx = next((i for i, served in enumerate(merged) if _pin_identity_match(pin, served)), None)
         if idx is not None:
-            merged[idx] = pin
+            merged[idx] = _merge_pin_into_served(pin, merged[idx])
             replaced += 1
         else:
-            appended_rows.append(pin)
-    merged.extend(appended_rows)
-    return merged, replaced, len(appended_rows)
+            parked_skipped += 1
+            logger.info(f"    pin parked, not shipped: {pin.get('title')!r} — {pin.get('agent_name')!r}")
+    return merged, replaced, parked_skipped
 
 
 def _compute_masters_full(collections_filter: set[str] | None = None) -> dict[str, list[tuple[str, str | None]]]:
     """Shared derivation behind compute_expected_masters / compute_expected_masters_indexed: one
-    (title, filename-or-None) row per MERGED item (pins replace in-slot; parked pins are appended after
-    the served items), in merged order — None where source_url is missing, so an index into this list
-    lines up with load_catalog_collections' served+pinned order.
+    (title, filename-or-None) row per MERGED item (pins replace in-slot; parked pins with no served
+    match are SKIPPED, not shipped — ADR-140/141), in merged order — None where source_url is missing,
+    so an index into this list lines up with load_catalog_collections' served order.
 
     MUST mirror ensure_master's dedup: the filename is keyed by source_url, and the FIRST work item
     (in collection-load order, i.e. the same sorted() order load_catalog_collections/the real queue
@@ -260,10 +316,11 @@ def _compute_masters_full(collections_filter: set[str] | None = None) -> dict[st
 
 def compute_expected_masters_indexed(collections_filter: set[str] | None = None) -> dict[str, list[str | None]]:
     """Read-only, no network: for every MERGED item in merged order (see _compute_masters_full), the
-    expected master_filename, or None where source_url is missing. Index i corresponds to the served
-    catalog's item i (pins replace in-slot; parked pins land beyond the served range) — used by
-    tools/reground_placards.py to resolve a catalog item to its pack master by INDEX rather than by
-    title, since two items in a collection can share a (post-normalisation) title."""
+    expected master_filename, or None where source_url is missing. Index i corresponds exactly to the
+    served catalog's item i (pins replace in-slot; unmatched/parked pins are skipped, not appended, so
+    the length never exceeds the served catalog) — used by tools/reground_placards.py to resolve a
+    catalog item to its pack master by INDEX rather than by title, since two items in a collection can
+    share a (post-normalisation) title."""
     return {cid: [fn for _title, fn in rows] for cid, rows in _compute_masters_full(collections_filter).items()}
 
 
@@ -876,21 +933,22 @@ async def build(out: Path, *, scope: set[str], limit: int | None, collections_fi
     collections = load_catalog_collections(collections_filter) if "catalog" in scope else []
     seed_items = load_seed_items() if "seed" in scope else []
 
-    # Pack pins (2026-09-22 option A): swap in the pinned (pre-Commons-re-source) row wherever the
-    # served catalog and the pin name the same work, and re-append any pinned row parked out of the
-    # served catalog entirely — so a served-catalog re-source never changes what a pack ships.
+    # Pack pins (2026-09-22 option A; 2026-09-27 ADR-140/141): merge in the pin's image fields wherever
+    # the served catalog and the pin name the same work, so a served-catalog re-source never changes
+    # what a pack ships. Pins parked out of the served catalog entirely are SKIPPED, not shipped — they
+    # predate ADR-140's re-grounding and would be the only unverified placards in the pack.
     pins_by_collection = load_pack_pins()
-    pin_replaced_total = pin_appended_total = 0
+    pin_replaced_total = pin_parked_total = 0
     for col in collections:
         pins = pins_by_collection.get(col["id"])
         if not pins:
             continue
-        col["items"], replaced, appended = apply_pack_pins(col.get("items", []), pins)
+        col["items"], replaced, parked = apply_pack_pins(col.get("items", []), pins)
         pin_replaced_total += replaced
-        pin_appended_total += appended
-        logger.info(f"  pins[{col['id']}]: {replaced} replaced, {appended} appended (parked)")
+        pin_parked_total += parked
+        logger.info(f"  pins[{col['id']}]: {replaced} replaced, {parked} parked (skipped, not shipped)")
     if pins_by_collection:
-        logger.info(f"pins: {pin_replaced_total} replaced, {pin_appended_total} appended in total")
+        logger.info(f"pins: {pin_replaced_total} replaced, {pin_parked_total} parked (skipped) in total")
 
     # Catalog items are queued first (they drive the manifest); seed items follow purely to warm
     # the dedup cache for any shared source_url and to bake seed art into the pack for first boot.

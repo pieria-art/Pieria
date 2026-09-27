@@ -19,27 +19,29 @@ def test_apply_pack_pins_replaces_served_row_by_identity():
         {"title": "Untouched Work", "agent_name": "Someone Else", "source_url": "https://commons.example/y.jpg"},
     ]
     pin = {"title": "Apollo and Marsyas", "agent_name": "Hans Thoma", "source_url": "https://www.artic.edu/iiif/2/abc/full/max/0/default.jpg"}
-    merged, replaced, appended = build_pack.apply_pack_pins(served, [pin])
+    merged, replaced, parked = build_pack.apply_pack_pins(served, [pin])
     assert replaced == 1
-    assert appended == 0
+    assert parked == 0
     assert len(merged) == 2
     assert merged[0]["source_url"].startswith("https://www.artic.edu")  # pinned row replaced in place
     assert merged[1] == served[1]  # non-pinned row untouched
 
 
-def test_apply_pack_pins_appends_parked_row_not_in_served():
+def test_apply_pack_pins_skips_parked_row_not_in_served():
+    """ADR-140/141 (2026-09-27, Josh): a pin with no served match is parked — NOT shipped in packs, since
+    it predates ADR-140's re-grounding and would be the only unverified placard. It stays out of the
+    merged list entirely (still recoverable from _pack_pins.json itself, just not appended here)."""
     served = [{"title": "Still Here", "agent_name": "A", "source_url": "https://commons.example/a.jpg"}]
     parked_pin = {"title": "The Gulf Stream", "agent_name": "Winslow Homer",
                   "source_url": "https://www.artic.edu/iiif/2/gulf/full/max/0/default.jpg"}
-    merged, replaced, appended = build_pack.apply_pack_pins(served, [parked_pin])
+    merged, replaced, parked = build_pack.apply_pack_pins(served, [parked_pin])
     assert replaced == 0
-    assert appended == 1
-    assert len(merged) == 2
-    assert merged[0] == served[0]           # unaffected
-    assert merged[-1] == parked_pin          # appended at the end
+    assert parked == 1
+    assert len(merged) == 1
+    assert merged == served  # unaffected — parked pin not appended, not shipped
 
 
-def test_apply_pack_pins_mix_of_replace_and_append_preserves_others():
+def test_apply_pack_pins_mix_of_replace_and_skip_preserves_others():
     served = [
         {"title": "A", "agent_name": "X", "source_url": "u1"},
         {"title": "B", "agent_name": "Y", "source_url": "u2"},
@@ -47,11 +49,11 @@ def test_apply_pack_pins_mix_of_replace_and_append_preserves_others():
     ]
     pins = [
         {"title": "B", "agent_name": "Y", "source_url": "pinned-u2"},   # replaces
-        {"title": "Parked", "agent_name": "W", "source_url": "u4"},      # appended
+        {"title": "Parked", "agent_name": "W", "source_url": "u4"},      # skipped, not shipped
     ]
-    merged, replaced, appended = build_pack.apply_pack_pins(served, pins)
-    assert replaced == 1 and appended == 1
-    assert [it["title"] for it in merged] == ["A", "B", "C", "Parked"]
+    merged, replaced, parked = build_pack.apply_pack_pins(served, pins)
+    assert replaced == 1 and parked == 1
+    assert [it["title"] for it in merged] == ["A", "B", "C"]
     assert merged[1]["source_url"] == "pinned-u2"
     assert merged[0] == served[0] and merged[2] == served[2]
 
@@ -67,6 +69,70 @@ def test_pin_identity_falls_back_to_title_and_agent_when_no_accession():
     pin = {"title": "The Gulf Stream", "agent_name": "Winslow Homer", "_aic_accession": "1933.1241"}
     assert build_pack._pin_identity_match(pin, served) is True
     assert build_pack._pin_identity_match({"title": "Other", "agent_name": "Winslow Homer"}, served) is False
+
+
+# --------------------------------------------------------------------------- ADR-140 qualified-name matching
+
+@pytest.mark.parametrize("pin_agent, served_agent", [
+    ("El Greco", "Workshop of El Greco"),
+    ("Alessandro Allori", "Attributed to Alessandro Allori"),
+    ("Adriaen van der Spelt", "Adriaen van der Spelt and Frans van Mieris the Elder"),
+])
+def test_pin_identity_matches_served_qualified_or_collaboration_name(pin_agent, served_agent):
+    pin = {"title": "Some Work", "agent_name": pin_agent}
+    served = {"title": "Some Work", "agent_name": served_agent}
+    assert build_pack._pin_identity_match(pin, served) is True
+
+
+def test_pin_identity_does_not_match_different_artist_same_title():
+    pin = {"title": "Some Work", "agent_name": "Titian"}
+    served = {"title": "Some Work", "agent_name": "Tintoretto"}
+    assert build_pack._pin_identity_match(pin, served) is False
+
+
+# --------------------------------------------------------------------------- apply_pack_pins: image-only merge
+
+def test_apply_pack_pins_merges_image_fields_only_keeps_served_content():
+    served = [{
+        "title": "Re-grounded Work", "agent_name": "Workshop of El Greco", "agent_role": "painter",
+        "creation_date": "1600", "medium": "oil on canvas", "current_repository": "Museum X",
+        "description_narrative": "new placard text", "tags": ["new-tag"], "featured_rank": 3,
+        "source_url": "https://commons.example/new.jpg", "thumbnail_url": "https://commons.example/new_thumb.jpg",
+        "source": "wikimedia", "credit_line": "Commons credit", "license": "CC0", "license_basis": "pd-old",
+        "license_url": "https://commons.example/license", "license_verdict": "ok", "license_verified": True,
+        "focal_point": [0.1, 0.1], "aspect_crops": {"square": "x"}, "delivered_edge": 2000,
+        "resolution_tier": "hd", "crop_box": None, "needs_frame_crop": False,
+    }]
+    pin = {
+        "title": "Re-grounded Work", "agent_name": "El Greco",
+        "source_url": "https://www.artic.edu/iiif/2/x/full/max/0/default.jpg",
+        "thumbnail_url": "https://www.artic.edu/thumb.jpg", "source": "artic.edu",
+        "credit_line": "AIC credit", "license": "CC0", "license_basis": "pd-aic",
+        "license_url": "https://www.artic.edu/license", "license_verdict": "ok", "license_verified": True,
+        "focal_point": [0.5, 0.5], "aspect_crops": {"square": "y"}, "delivered_edge": 8000,
+        "resolution_tier": "4k", "crop_box": [0, 0, 1, 1], "needs_frame_crop": True,
+        "source_rotate": 90,
+    }
+    merged, replaced, parked = build_pack.apply_pack_pins(served, [pin])
+    assert replaced == 1 and parked == 0
+    row = merged[0]
+    # content fields untouched — the served (re-grounded) values survive
+    for field in ("agent_name", "agent_role", "creation_date", "medium", "current_repository",
+                  "description_narrative", "tags", "featured_rank"):
+        assert row[field] == served[0][field]
+    # image fields come from the pin
+    for field in build_pack._PIN_IMAGE_FIELDS:
+        assert row[field] == pin[field]
+    assert row["source_rotate"] == 90  # present-in-pin optional field also carried
+
+
+def test_apply_pack_pins_missing_optional_image_field_keeps_served_value():
+    served = [{"title": "T", "agent_name": "A", "source_url": "old.jpg", "needs_frame_crop": True}]
+    pin = {"title": "T", "agent_name": "A", "source_url": "new.jpg"}  # no needs_frame_crop key
+    merged, replaced, _ = build_pack.apply_pack_pins(served, [pin])
+    assert replaced == 1
+    assert merged[0]["source_url"] == "new.jpg"
+    assert merged[0]["needs_frame_crop"] is True  # not overridden — pin didn't carry the field
 
 
 # --------------------------------------------------------------------------- load_pack_pins
@@ -122,7 +188,7 @@ async def test_build_absent_pins_file_behaves_unchanged(tmp_path, monkeypatch):
 
 
 @pytest.mark.asyncio
-async def test_build_applies_pins_replace_and_append(tmp_path, monkeypatch):
+async def test_build_applies_pins_replace_and_skips_parked(tmp_path, monkeypatch):
     catalog_dir = tmp_path / "catalog"
     _write_catalog(catalog_dir, "demo", [
         {"title": "Replace Me", "agent_name": "A", "source_url": "https://commons.example/replace.jpg", "focal_point": [0.5, 0.5]},
@@ -158,15 +224,15 @@ async def test_build_applies_pins_replace_and_append(tmp_path, monkeypatch):
     manifest = json.loads((out / "pack-manifest.json").read_text())
     items = manifest["collections"][0]["items"]
     by_title = {it["title"]: it for it in items}
-    assert set(by_title) == {"Replace Me", "Untouched", "Parked Work"}
+    # ADR-140/141 (2026-09-27): "Parked Work" has no served match, so it is NOT shipped in the pack.
+    assert set(by_title) == {"Replace Me", "Untouched"}
     assert by_title["Replace Me"]["source_url"] == pin_replace["source_url"]  # replaced
     assert by_title["Untouched"]["source_url"] == "https://example.org/untouched.jpg"  # unaffected
-    assert by_title["Parked Work"]["source_url"] == pin_parked["source_url"]  # appended
 
     # the _catalog/<id>.json copy build_pack writes must reflect what actually went into the pack
     catalog_copy = json.loads((out / "_catalog" / "demo.json").read_text())
     copy_titles = {it["title"] for it in catalog_copy["items"]}
-    assert copy_titles == {"Replace Me", "Untouched", "Parked Work"}
+    assert copy_titles == {"Replace Me", "Untouched"}
 
 
 # --------------------------------------------------------------------------- compute_expected_masters / coverage
