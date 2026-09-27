@@ -109,6 +109,11 @@ async def check_for_update(force: bool = False) -> dict:
     """Return the current update status, using the cache unless `force` (and even then, not more often
     than every 15 min). Never raises."""
     cached = _read_cache()
+    # A cache written by an older version is stale by definition: it would keep reporting the old
+    # "current" (and hide anything released since) until the next real check — and the throttle
+    # below used to block that check too. So: refresh immediately after an update.
+    if cached and cached.get("current") != config.APP_VERSION:
+        cached = None
     if cached and not force:
         return cached
     # Rate-limit even forced checks so a user hammering "check now" can't spam GitHub.

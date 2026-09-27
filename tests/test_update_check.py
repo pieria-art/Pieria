@@ -117,6 +117,7 @@ async def test_forced_check_is_throttled_so_a_button_masher_cant_spam_github(app
 
 @pytest.mark.asyncio
 async def test_unforced_check_reads_the_cache_without_hitting_github(appliance_dir, monkeypatch):
+    monkeypatch.setattr(config, "APP_VERSION", "1.0.0")   # the cache was written by THIS version
     (appliance_dir).mkdir(parents=True, exist_ok=True)
     (appliance_dir / "update-check.json").write_text(json.dumps(
         {"current": "1.0.0", "latest": "v1.0.0", "update_available": False, "checked_at": "2026-01-01T00:00:00+00:00"}))
@@ -126,3 +127,27 @@ async def test_unforced_check_reads_the_cache_without_hitting_github(appliance_d
     monkeypatch.setattr(uc, "_fetch_latest_release", must_not_call)
     r = await uc.check_for_update(force=False)
     assert r["latest"] == "v1.0.0"
+
+
+@pytest.mark.asyncio
+async def test_cache_from_an_older_version_is_refreshed_even_when_throttled(appliance_dir, monkeypatch):
+    # Regression (prod Pi, 2026-09-27): after updating 1.0.1 -> 1.0.2 the admin kept saying "current 1.0.1"
+    # and "Check now" (throttled against that cache) never found 1.0.3.
+    appliance_dir.mkdir(parents=True, exist_ok=True)
+    from datetime import UTC, datetime
+    (appliance_dir / "update-check.json").write_text(json.dumps(
+        {"current": "1.0.1", "latest": "v1.0.2", "update_available": True,
+         "checked_at": datetime.now(UTC).isoformat()}))            # fresh — would normally throttle
+    monkeypatch.setattr(config, "APP_VERSION", "1.0.2")
+    calls = {"n": 0}
+
+    async def latest():
+        calls["n"] += 1
+        return {"tag": "v1.0.3", "name": "1.0.3", "notes": "", "url": ""}
+    monkeypatch.setattr(uc, "_fetch_latest_release", latest)
+    r = await uc.check_for_update(force=True)
+    assert calls["n"] == 1
+    assert r["current"] == "1.0.2" and r["latest"] == "v1.0.3" and r["update_available"] is True
+    assert not r.get("throttled")
+    r2 = await uc.check_for_update(force=False)                # unforced reads also see the live version
+    assert r2["current"] == "1.0.2"
