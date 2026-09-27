@@ -3622,7 +3622,37 @@
    "featured_rank": 78,
    "current_repository": "National Gallery of Art, Washington",
    "width": 12070,
-   "height": 15257
+   "height": 15257,
+   "focal_point": [
+    0.45,
+    0.33
+   ],
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1075,
+     1.0,
+     0.5525
+    ],
+    "9:16": [
+     0.0944,
+     0.0,
+     0.8056,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0334,
+     1.0,
+     0.6266
+    ],
+    "3:4": [
+     0.0,
+     0.0,
+     0.9481,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Geographer",

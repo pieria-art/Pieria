@@ -8387,7 +8387,37 @@
    "license_verified": "2026-09-26",
    "featured_rank": 48,
    "current_repository": "The Phillips Collection",
-   "physical_dimensions": "61.0 x 47.0 cm"
+   "physical_dimensions": "61.0 x 47.0 cm",
+   "focal_point": [
+    0.5,
+    0.35
+   ],
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1301,
+     1.0,
+     0.5699
+    ],
+    "9:16": [
+     0.1403,
+     0.0,
+     0.8597,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0568,
+     1.0,
+     0.6432
+    ],
+    "3:4": [
+     0.0203,
+     0.0,
+     0.9797,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Garden at Les Lauves",
@@ -11041,7 +11071,37 @@
    "license_verified": "2026-09-26",
    "featured_rank": 70,
    "current_repository": "Van Gogh Museum",
-   "physical_dimensions": "65.0 x 81.0 cm"
+   "physical_dimensions": "65.0 x 81.0 cm",
+   "focal_point": [
+    0.28,
+    0.62
+   ],
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.2721,
+     1.0,
+     0.9679
+    ],
+    "9:16": [
+     0.0526,
+     0.0,
+     0.5074,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0722,
+     1.0,
+     1.0
+    ],
+    "3:4": [
+     0.0,
+     0.0,
+     0.6063,
+     1.0
+    ]
+   }
   },
   {
    "title": "Blossoming Chestnut Branches",
@@ -11445,7 +11505,37 @@
    "featured_rank": 42,
    "current_repository": "Kröller-Müller Museum",
    "physical_dimensions": "64.0 x 53.0 cm",
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "focal_point": [
+    0.5,
+    0.35
+   ],
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1175,
+     1.0,
+     0.5825
+    ],
+    "9:16": [
+     0.1598,
+     0.0,
+     0.8402,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.04,
+     1.0,
+     0.66
+    ],
+    "3:4": [
+     0.0464,
+     0.0,
+     0.9536,
+     1.0
+    ]
+   }
   },
   {
    "title": "A Meadow in the Mountains: Le Mas de Saint-Paul",
@@ -11573,7 +11663,37 @@
    "credit_line": "F420/JH1462, private collection; Wikidata Q28146931",
    "license_verified": "2026-09-26",
    "featured_rank": 40,
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "focal_point": [
+    0.45,
+    0.55
+   ],
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.209,
+     1.0,
+     0.891
+    ],
+    "9:16": [
+     0.2181,
+     0.0,
+     0.6819,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0905,
+     1.0,
+     1.0
+    ],
+    "3:4": [
+     0.1407,
+     0.0,
+     0.7593,
+     1.0
+    ]
+   }
   },
   {
    "title": "Orchard with Blossoming Apricot Trees",

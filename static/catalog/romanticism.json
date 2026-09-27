@@ -3275,28 +3275,34 @@
    "license_verified": "2026-07-16",
    "featured_rank": 59,
    "focal_point": [
-    0.45,
-    0.55
+    0.55,
+    0.62
    ],
    "delivered_edge": 5878,
    "resolution_tier": "4K",
    "aspect_crops": {
     "16:9": [
      0.0,
-     0.0501,
+     0.2176,
      1.0,
-     0.8324
+     1.0
     ],
     "4:3": [
-     0.0207,
+     0.0414,
      0.0,
-     0.9793,
+     1.0,
      1.0
     ],
     "3:4": [
-     0.3,
+     0.2804,
      0.0,
-     0.8392,
+     0.8196,
+     1.0
+    ],
+    "9:16": [
+     0.3478,
+     0.0,
+     0.7522,
      1.0
     ]
    },
@@ -3884,7 +3890,37 @@
     1.0,
     1.0
    ],
-   "current_repository": "Clark Art Institute, Williamstown, Massachusetts"
+   "current_repository": "Clark Art Institute, Williamstown, Massachusetts",
+   "focal_point": [
+    0.68,
+    0.55
+   ],
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1266,
+     1.0,
+     0.9734
+    ],
+    "9:16": [
+     0.4932,
+     0.0,
+     0.8668,
+     1.0
+    ],
+    "4:3": [
+     0.1143,
+     0.0,
+     1.0,
+     1.0
+    ],
+    "3:4": [
+     0.4309,
+     0.0,
+     0.9291,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Schöllenen Gorge from the Devil's Bridge, Pass of St Gotthard",

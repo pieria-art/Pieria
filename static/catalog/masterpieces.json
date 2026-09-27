@@ -134,7 +134,37 @@
    "license_verified": "2026-09-27",
    "width": 3859,
    "height": 2594,
-   "current_repository": "Metropolitan Museum of Art"
+   "current_repository": "Metropolitan Museum of Art",
+   "focal_point": [
+    0.38,
+    0.4
+   ],
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0,
+     1.0,
+     0.8368
+    ],
+    "9:16": [
+     0.1909,
+     0.0,
+     0.5691,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0,
+     0.8963,
+     1.0
+    ],
+    "3:4": [
+     0.1279,
+     0.0,
+     0.6321,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Starry Night",

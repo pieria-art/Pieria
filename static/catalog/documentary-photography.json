@@ -79,7 +79,37 @@
    "license_url": "",
    "credit_line": "LOC Flickr Commons restoration, LC-DIG-fsa-8b31801; supersedes the earlier TIF-decode-broken edit",
    "license_verified": "2026-09-26",
-   "current_repository": "United States Library of Congress"
+   "current_repository": "United States Library of Congress",
+   "focal_point": [
+    0.32,
+    0.55
+   ],
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.277,
+     1.0,
+     0.823
+    ],
+    "9:16": [
+     0.0302,
+     0.0,
+     0.6098,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1861,
+     1.0,
+     0.9139
+    ],
+    "3:4": [
+     0.0,
+     0.0,
+     0.7728,
+     1.0
+    ]
+   }
   },
   {
    "title": "Tractored Out, Childress County Texas",
@@ -209,7 +239,37 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "This image is available from the United States Library of Congress's Prints and Photographs division under the digital ID fsa.8c52247.This tag does not indicate the copyright status of the attached work. A normal copyright tag is still required. See Commons:Licensing.",
-   "license_verified": "2026-09-26"
+   "license_verified": "2026-09-26",
+   "focal_point": [
+    0.45,
+    0.33
+   ],
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.105,
+     1.0,
+     0.555
+    ],
+    "9:16": [
+     0.0984,
+     0.0,
+     0.8016,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.03,
+     1.0,
+     0.63
+    ],
+    "3:4": [
+     0.0,
+     0.0,
+     0.9375,
+     1.0
+    ]
+   }
   },
   {
    "title": "Allie Mae Burroughs",

@@ -24,7 +24,37 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "Museum of Decorative Arts in Prague, 1894 poster; Category:Gismonda poster (Mucha)",
-   "license_verified": "2026-09-26"
+   "license_verified": "2026-09-26",
+   "focal_point": [
+    0.5,
+    0.25
+   ],
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1479,
+     1.0,
+     0.3521
+    ],
+    "9:16": [
+     0.0,
+     0.0,
+     1.0,
+     0.6455
+    ],
+    "4:3": [
+     0.0,
+     0.1138,
+     1.0,
+     0.3862
+    ],
+    "3:4": [
+     0.0,
+     0.0079,
+     1.0,
+     0.4921
+    ]
+   }
   },
   {
    "title": "Moulin Rouge: La Goulue",
@@ -213,7 +243,37 @@
     0.941,
     0.949
    ],
-   "current_repository": "Gallica Digital Library"
+   "current_repository": "Gallica Digital Library",
+   "focal_point": [
+    0.35,
+    0.35
+   ],
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1459,
+     1.0,
+     0.5541
+    ],
+    "9:16": [
+     0.0,
+     0.0,
+     0.7753,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0779,
+     1.0,
+     0.6221
+    ],
+    "3:4": [
+     0.0,
+     0.0,
+     1.0,
+     0.9674
+    ]
+   }
   },
   {
    "title": "Reine de Joie",
@@ -609,7 +669,37 @@
    "license_url": "",
    "credit_line": "BnF Gallica btv1b90051807, period impression lettered \"F. Champenois Imprimeur-Éditeur ... 1898\"",
    "license_verified": "2026-09-26",
-   "current_repository": "Gallica Digital Library"
+   "current_repository": "Gallica Digital Library",
+   "focal_point": [
+    0.5,
+    0.3
+   ],
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0897,
+     1.0,
+     0.5103
+    ],
+    "9:16": [
+     0.1238,
+     0.0,
+     0.8762,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0196,
+     1.0,
+     0.5804
+    ],
+    "3:4": [
+     0.0,
+     0.0,
+     1.0,
+     0.9969
+    ]
+   }
   },
   {
    "title": "The Seasons: Spring",

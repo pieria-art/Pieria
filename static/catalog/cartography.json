@@ -130,7 +130,37 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "Library of Congress g3200.ct000725C; Wikidata Q195801 (full 12-sheet map)",
-   "license_verified": "2026-09-26"
+   "license_verified": "2026-09-26",
+   "focal_point": [
+    0.5,
+    0.5
+   ],
+   "aspect_crops": {
+    "16:9": [
+     0.0079,
+     0.0,
+     0.9921,
+     1.0
+    ],
+    "9:16": [
+     0.3443,
+     0.0,
+     0.6557,
+     1.0
+    ],
+    "4:3": [
+     0.1309,
+     0.0,
+     0.8691,
+     1.0
+    ],
+    "3:4": [
+     0.2924,
+     0.0,
+     0.7076,
+     1.0
+    ]
+   }
   },
   {
    "title": "Nova Totius Terrarum Orbis Geographica",

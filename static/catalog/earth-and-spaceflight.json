@@ -77,7 +77,37 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "NASA AS08-14-2383, Apollo 8, photographed by William Anders; Wikidata Q843864",
-   "license_verified": "2026-09-26"
+   "license_verified": "2026-09-26",
+   "focal_point": [
+    0.62,
+    0.42
+   ],
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1393,
+     1.0,
+     0.7007
+    ],
+    "9:16": [
+     0.3382,
+     0.0,
+     0.9018,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0457,
+     1.0,
+     0.7943
+    ],
+    "3:4": [
+     0.2443,
+     0.0,
+     0.9957,
+     1.0
+    ]
+   }
   },
   {
    "title": "Pale Blue Dot",
@@ -151,7 +181,37 @@
    "license_basis": "Public domain",
    "license_url": "",
    "credit_line": "NASA AS11-40-5903, photographed by Neil Armstrong",
-   "license_verified": "2026-09-26"
+   "license_verified": "2026-09-26",
+   "focal_point": [
+    0.52,
+    0.48
+   ],
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.2457,
+     1.0,
+     0.7143
+    ],
+    "9:16": [
+     0.1824,
+     0.0,
+     0.8576,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1675,
+     1.0,
+     0.7925
+    ],
+    "3:4": [
+     0.0699,
+     0.0,
+     0.9701,
+     1.0
+    ]
+   }
   },
   {
    "title": "Bruce McCandless spacewalk",
@@ -173,7 +233,37 @@
    "license_url": "",
    "credit_line": "NASA GPN-2000-001156, STS41B-35-1613, Bruce McCandless II during EVA in 1984",
    "license_verified": "2026-09-26",
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "focal_point": [
+    0.55,
+    0.35
+   ],
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0687,
+     1.0,
+     0.6312
+    ],
+    "9:16": [
+     0.2688,
+     0.0,
+     0.8313,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0,
+     1.0,
+     0.75
+    ],
+    "3:4": [
+     0.175,
+     0.0,
+     0.925,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Earth seen from Apollo 17",
@@ -461,7 +551,37 @@
    "license_url": "",
    "credit_line": "NASA HST Flickr, STS-125 (SM4), 19 May 2009",
    "license_verified": "2026-09-26",
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "focal_point": [
+    0.48,
+    0.45
+   ],
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0266,
+     1.0,
+     0.8734
+    ],
+    "9:16": [
+     0.2932,
+     0.0,
+     0.6668,
+     1.0
+    ],
+    "4:3": [
+     0.0371,
+     0.0,
+     0.9229,
+     1.0
+    ],
+    "3:4": [
+     0.2309,
+     0.0,
+     0.7291,
+     1.0
+    ]
+   }
   }
  ]
 }

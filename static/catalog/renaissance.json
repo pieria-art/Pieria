@@ -1495,7 +1495,37 @@
    "license_verified": "2026-09-26",
    "featured_rank": 40,
    "physical_dimensions": "68.0 x 81.0 cm",
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "focal_point": [
+    0.55,
+    0.4
+   ],
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0673,
+     1.0,
+     0.7327
+    ],
+    "9:16": [
+     0.3122,
+     0.0,
+     0.7878,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0,
+     1.0,
+     0.8871
+    ],
+    "3:4": [
+     0.233,
+     0.0,
+     0.867,
+     1.0
+    ]
+   }
   },
   {
    "title": "Virgin and Child with the Young Saint John the Baptist",
@@ -2169,7 +2199,37 @@
    "credit_line": "National Gallery, London, NG1034; Wikidata Q974674",
    "license_verified": "2026-09-26",
    "featured_rank": 75,
-   "current_repository": "National Gallery"
+   "current_repository": "National Gallery",
+   "focal_point": [
+    0.5,
+    0.62
+   ],
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.4259,
+     1.0,
+     0.8141
+    ],
+    "9:16": [
+     0.0924,
+     0.0,
+     0.9076,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.3613,
+     1.0,
+     0.8787
+    ],
+    "3:4": [
+     0.0,
+     0.08,
+     1.0,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Virgin and Child with Saint John and Two Angels (Studio of Botticelli)",
@@ -3250,7 +3310,37 @@
    "credit_line": "Musée des Beaux-Arts de Bordeaux, Bx E 42; Wikidata Q18822501",
    "license_verified": "2026-09-26",
    "featured_rank": 62,
-   "physical_dimensions": "193.0 x 143.0 cm"
+   "physical_dimensions": "193.0 x 143.0 cm",
+   "focal_point": [
+    0.45,
+    0.35
+   ],
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1427,
+     1.0,
+     0.5573
+    ],
+    "9:16": [
+     0.0683,
+     0.0,
+     0.8317,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0737,
+     1.0,
+     0.6263
+    ],
+    "3:4": [
+     0.0,
+     0.0,
+     1.0,
+     0.9826
+    ]
+   }
   },
   {
    "title": "Mars, Venus and Cupid",

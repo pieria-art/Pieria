@@ -8577,7 +8577,37 @@
     0.97,
     0.915
    ],
-   "current_repository": "Clark Art Institute"
+   "current_repository": "Clark Art Institute",
+   "focal_point": [
+    0.45,
+    0.32
+   ],
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1147,
+     1.0,
+     0.5253
+    ],
+    "9:16": [
+     0.0647,
+     0.0,
+     0.8353,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0463,
+     1.0,
+     0.5937
+    ],
+    "3:4": [
+     0.0,
+     0.0,
+     1.0,
+     0.9731
+    ]
+   }
   },
   {
    "title": "Ludovic Lepic Holding His Dog",

@@ -1455,7 +1455,37 @@
    "credit_line": "Crystal Bridges Museum of American Art 2010.106; Wikidata Q12406964",
    "license_verified": "2026-09-26",
    "featured_rank": 72,
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "focal_point": [
+    0.37,
+    0.5
+   ],
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.27,
+     1.0,
+     0.73
+    ],
+    "9:16": [
+     0.0261,
+     0.0,
+     0.7139,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1933,
+     1.0,
+     0.8067
+    ],
+    "3:4": [
+     0.0,
+     0.0,
+     0.9169,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Gross Clinic",

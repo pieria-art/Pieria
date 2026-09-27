@@ -409,7 +409,37 @@
    "license_verified": "2026-09-26",
    "featured_rank": 89,
    "physical_dimensions": "84.0 x 42.0 cm",
-   "below_floor_ok": true
+   "below_floor_ok": true,
+   "focal_point": [
+    0.5,
+    0.28
+   ],
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1419,
+     1.0,
+     0.4181
+    ],
+    "9:16": [
+     0.0,
+     0.0,
+     1.0,
+     0.8732
+    ],
+    "4:3": [
+     0.0,
+     0.0958,
+     1.0,
+     0.4642
+    ],
+    "3:4": [
+     0.0,
+     0.0,
+     1.0,
+     0.6549
+    ]
+   }
   },
   {
    "title": "Jeanne Hébuterne with Yellow Sweater",
@@ -486,7 +516,37 @@
    "credit_line": "Musée d'Orsay RF 34555, \"Le Bouddha\"; Wikidata Q23681758 (Google Art Project)",
    "license_verified": "2026-09-26",
    "featured_rank": 35,
-   "physical_dimensions": "90.0 x 73.0 cm"
+   "physical_dimensions": "90.0 x 73.0 cm",
+   "focal_point": [
+    0.28,
+    0.55
+   ],
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.3296,
+     1.0,
+     0.7704
+    ],
+    "9:16": [
+     0.0,
+     0.0,
+     0.7177,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.2561,
+     1.0,
+     0.8439
+    ],
+    "3:4": [
+     0.0,
+     0.0,
+     0.9569,
+     1.0
+    ]
+   }
   },
   {
    "title": "Woman in a Striped Dress",

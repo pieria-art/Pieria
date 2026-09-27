@@ -3519,7 +3519,37 @@
    "license_url": "",
    "credit_line": "Sanssouci Picture Gallery GK I 5438; Wikidata Q2419166 (Google Art Project)",
    "license_verified": "2026-09-26",
-   "featured_rank": 78
+   "featured_rank": 78,
+   "focal_point": [
+    0.42,
+    0.5
+   ],
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1211,
+     1.0,
+     0.8789
+    ],
+    "9:16": [
+     0.2112,
+     0.0,
+     0.6288,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0,
+     0.9898,
+     1.0
+    ],
+    "3:4": [
+     0.1416,
+     0.0,
+     0.6984,
+     1.0
+    ]
+   }
   },
   {
    "title": "Sick Bacchus",
@@ -3593,7 +3623,37 @@
    "license_url": "",
    "credit_line": "Wikidata Q2338417 (Google Art Project full composition)",
    "license_verified": "2026-09-26",
-   "featured_rank": 72
+   "featured_rank": 72,
+   "focal_point": [
+    0.48,
+    0.55
+   ],
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.2412,
+     1.0,
+     0.8588
+    ],
+    "9:16": [
+     0.2239,
+     0.0,
+     0.7361,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1382,
+     1.0,
+     0.9618
+    ],
+    "3:4": [
+     0.1385,
+     0.0,
+     0.8215,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Inspiration of Saint Matthew",
