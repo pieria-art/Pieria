@@ -192,6 +192,42 @@ def test_prepare_master_rotates_before_crop_box():
         assert abs(w - 20) <= 1 and abs(h - 20) <= 1
 
 
+# --- 16-bit greyscale conversion (LOC-style TIFF masters must not clip to white) -------------------
+
+def _gradient_i16(w: int, h: int) -> Image.Image:
+    """A synthetic 16-bit greyscale gradient spanning the full 0..65535 range, standing in for a
+    16-bit LOC TIFF scan."""
+    n = w * h
+    data = [int(i * 65535 / (n - 1)) for i in range(n)]
+    img = Image.new("I;16", (w, h))
+    img.putdata(data)
+    return img
+
+
+def test_to_rgb8_scales_16bit_instead_of_clipping():
+    """Plain .convert("RGB") on I;16 reinterprets samples as 8-bit and clips everything above 255 to
+    white, blowing the mean toward 255. The fix must scale down first, landing near the true midtone
+    mean (~127) for a uniform 0..65535 gradient."""
+    img = _gradient_i16(64, 64)
+    rgb = build_pack._to_rgb8(img)
+    assert rgb.mode == "RGB"
+    gray = rgb.convert("L")
+    mean = sum(gray.getdata()) / (64 * 64)
+    assert 110 <= mean <= 145
+
+
+def test_cap_master_handles_16bit_greyscale_tiff():
+    """End-to-end: _cap_master on a 16-bit greyscale TIFF must not collapse to a near-white image."""
+    buf = BytesIO()
+    _gradient_i16(64, 64).save(buf, format="TIFF")
+    out = build_pack._cap_master(buf.getvalue())
+    assert out is not None
+    with Image.open(BytesIO(out)) as im:
+        gray = im.convert("L")
+        mean = sum(gray.getdata()) / (im.width * im.height)
+        assert mean <= 200   # far from the near-white (~255) clipped-bug result
+
+
 def _build_state(tmp_path):
     return build_pack.BuildState(
         pack_dir=tmp_path,

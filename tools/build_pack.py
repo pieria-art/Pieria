@@ -515,6 +515,32 @@ async def _fetch_bytes(client: httpx.AsyncClient, url: str, *, retries: int = 3)
 
 
 # --------------------------------------------------------------------------- image processing
+_I16_MODES = ("I;16", "I;16B", "I;16L")
+
+
+def _to_rgb8(img: Image.Image) -> Image.Image:
+    """Convert to RGB, correctly downscaling 16-/32-bit integer and float modes to 8-bit first.
+    Pillow's plain `.convert("RGB")` on "I;16"/"I;16B"/"I;16L"/"I"/"F" reinterprets the raw sample
+    values as 8-bit and CLIPS anything above 255 to white — for a 16-bit greyscale scan (e.g. a LOC
+    TIFF) that's almost the entire image, since real pixel values run into the thousands. Fix: scale
+    into 0..255 first (divide by 256 for the 16-bit-ranged modes; for a generic "I"/"F" that isn't
+    16-bit-ranged, rescale by the image's own observed max) via `point()`, THEN convert L -> RGB. 8-bit
+    modes (L, RGB, RGBA, P, ...) are untouched so existing outputs stay byte-identical."""
+    # NOTE: use true division (`/`), not `//` — point()'s scale/offset fast path only recognizes
+    # affine lambdas, and floor division isn't one (raises TypeError); mode is left to default and
+    # converted to "L" as a separate step, since passing mode= here can silently no-op for I;16.
+    if img.mode in _I16_MODES:
+        return img.point(lambda v: v / 256).convert("L").convert("RGB")
+    if img.mode in ("I", "F"):
+        lo, hi = img.getextrema()
+        if img.mode == "I" and hi <= 255:
+            # already 8-bit-ranged despite the wide mode
+            return img.convert("L").convert("RGB")
+        span = (hi - lo) or 1
+        return img.point(lambda v: (v - lo) * 255 / span).convert("L").convert("RGB")
+    return img.convert("RGB")
+
+
 def _cap_master(raw: bytes) -> bytes | None:
     """The render_canvas_image capping recipe (core/media.py), applied once at build time instead of
     lazily at request time: exif-transpose, RGB, cap to DISPLAY_MAX_EDGE, progressive JPEG."""
@@ -526,7 +552,7 @@ def _cap_master(raw: bytes) -> bytes | None:
             img.draft("RGB", (DISPLAY_MAX_EDGE, DISPLAY_MAX_EDGE))
             img = ImageOps.exif_transpose(img)
             if img.mode != "RGB":
-                img = img.convert("RGB")
+                img = _to_rgb8(img)
             if max(img.size) > DISPLAY_MAX_EDGE:
                 img.thumbnail((DISPLAY_MAX_EDGE, DISPLAY_MAX_EDGE), Image.Resampling.LANCZOS)
             buf = BytesIO()
@@ -551,7 +577,7 @@ def _apply_source_rotate(raw: bytes, degrees) -> bytes | None:
         with Image.open(BytesIO(raw)) as img:
             img = ImageOps.exif_transpose(img)
             if img.mode != "RGB":
-                img = img.convert("RGB")
+                img = _to_rgb8(img)
             rotated = img.rotate(degrees, expand=True)
             buf = BytesIO()
             rotated.save(buf, format="JPEG", quality=DISPLAY_QUALITY, progressive=True)
@@ -574,7 +600,7 @@ def _apply_crop_box(raw: bytes, crop_box) -> bytes | None:
         with Image.open(BytesIO(raw)) as img:
             img = ImageOps.exif_transpose(img)
             if img.mode != "RGB":
-                img = img.convert("RGB")
+                img = _to_rgb8(img)
             w, h = img.size
             left, upper = round(x0 * w), round(y0 * h)
             right, lower = round(x1 * w), round(y1 * h)
@@ -594,7 +620,7 @@ def _derive_thumbnail(raw: bytes) -> bytes | None:
         with Image.open(BytesIO(raw)) as img:
             img = ImageOps.exif_transpose(img)
             if img.mode != "RGB":
-                img = img.convert("RGB")
+                img = _to_rgb8(img)
             img.thumbnail((THUMB_MAX_EDGE, THUMB_MAX_EDGE), Image.Resampling.LANCZOS)
             buf = BytesIO()
             img.save(buf, format="JPEG", quality=THUMB_QUALITY)
