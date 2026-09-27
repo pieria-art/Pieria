@@ -107,6 +107,25 @@ OpenRouter** for one-click setup), and click **Test & Save** — validated live,
 *   **🌐 Federated Collections (beta):** Subscribe to a publisher's collection by URL and browse it alongside the bundled catalog, tagged **Official**, **Verified**, or **Community**. Feeds are an open [Manifest v2](docs/manifest-v2.md) format — we index pointers (images stay on the publisher's server), safety-check and validate every feed, and verify Ed25519 signatures for the *Verified* tier. Add one from the **➕ Subscribe** tile under **🏛️ Curated Art** (manage feeds under **Settings → 🌐 Subscriptions**). **Publishing your own?** Author and sign a collection in the **Publisher Studio** (`/publisher`) or from the command line (`python -m tools.build_manifest`) — see [How to publish](docs/how-to-publish.md).
 *   **💾 Persistent & Safe:** SQLite-backed state with automatic migrations and Docker volume persistence.
 
+## 🔎 How the curated catalog was checked
+
+Every placard in the curated catalog was rebuilt from the records of the museums and archives that hold
+the works: museum open-access collections, Wikidata, and Wikimedia Commons. The facts on a placard's
+header (date, medium, holding institution, dimensions) come straight from those records, never from an AI
+model. AI writes only the short description, and each factual claim in it has to cite one of those records.
+An automated check rejects any claim that doesn't.
+
+Then the whole catalog, all 2,840 works, went through an extensive review. AI agents verified every
+placard against its sources, and a person assessed two rounds of corrections covering more than 100 works,
+each checked against the holding museum's own record before it was approved. The corrections included the
+wrong version of a painting, a modern reprint standing in for an Edo-period print, missing attributions such
+as "Workshop of" or "After", and mistaken mediums and dates.
+
+Even so, we can't promise every detail is right. Museum records, Wikidata and Commons sometimes disagree,
+and many works exist in several versions or impressions. If you think something is wrong, please
+[open a catalog correction](https://github.com/pieria-art/Pieria/issues/new?template=catalog-correction.yml)
+with your counter-evidence (the holding institution's own record is best) and the correction you suggest.
+
 ## 🧭 Deployment Models
 
 Pieria is a **curation brain** you run once (a small Docker app) + **any screen** you point at

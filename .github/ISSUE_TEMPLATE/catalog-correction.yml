@@ -1,0 +1,54 @@
+name: Catalog correction
+description: Something about a curated artwork is wrong — its image, title, artist, date, medium, museum, or placard text.
+title: "[Catalog] "
+labels: ["catalog"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping keep the catalog accurate. Every work was checked against the records of the
+        museum or archive that holds it, but those sources sometimes disagree, so evidence is what lets us
+        fix things quickly. The holding institution's own collection record is the best evidence there is.
+  - type: input
+    id: work
+    attributes:
+      label: Which work?
+      description: Title and artist as shown on the placard, and the collection it's in.
+      placeholder: "The Philosopher — Workshop of Rembrandt (Dutch Golden Age)"
+    validations:
+      required: true
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What's wrong?
+      multiple: true
+      options:
+        - The image shows a different work (or a copy, another version, a reproduction)
+        - Title
+        - Artist or attribution (e.g. it should say "Workshop of" or "Attributed to")
+        - Date
+        - Medium
+        - Museum / holding institution
+        - Something the placard text says
+        - Image quality (cropped, frame or colour card visible, low resolution)
+        - Licence or rights
+        - Something else
+    validations:
+      required: true
+  - type: textarea
+    id: correction
+    attributes:
+      label: What it says now, and what it should say
+      placeholder: |
+        Now: Medium — Oil on canvas
+        Should be: Oil on wood
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+      description: Links that support the correction — the holding museum's record first, then Wikidata, Wikimedia Commons, or a catalogue raisonné.
+      placeholder: "https://www.metmuseum.org/art/collection/search/…"
+    validations:
+      required: true
