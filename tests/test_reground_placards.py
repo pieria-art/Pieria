@@ -2759,3 +2759,137 @@ def test_land_dry_run_writes_nothing_and_reports_changed_field_counts(tmp_path, 
     out = capsys.readouterr().out
     assert "demo:" in out
     assert "before=2 after=2" in out
+
+
+# --------------------------------------------------------------------------- extra facts (--extra-facts DIR)
+def test_split_release_text_short_text_is_one_chunk():
+    assert rg._split_release_text("A short release.  ") == ["A short release."]
+
+
+def test_split_release_text_empty_is_no_chunks():
+    assert rg._split_release_text("") == []
+    assert rg._split_release_text(None) == []
+
+
+def test_split_release_text_splits_long_text_at_sentence_boundaries():
+    sentence = "This is one sentence about a nebula and its colors and its stars. "
+    text = sentence * 20  # well over 1200 chars
+    chunks = rg._split_release_text(text, max_len=200)
+    assert len(chunks) > 1
+    for c in chunks:
+        assert len(c) <= 200
+        assert c.endswith(".")  # never cut mid-sentence
+    # rejoining recovers the same sentences (whitespace-normalized)
+    assert " ".join(chunks) == " ".join(text.split())
+
+
+def test_load_extra_facts_reads_matching_json_files(tmp_path):
+    (tmp_path / "1.json").write_text(json.dumps({
+        "n": 1, "title": "Cosmic Cliffs", "release_url": "https://nasa/cliffs", "text": "Hello world.",
+        "credit_line": "NASA, ESA, CSA, STScI",
+    }))
+    (tmp_path / "not-a-record.json").write_text(json.dumps({"n": 2}))  # no release_url/text -> skipped
+    recs = rg.load_extra_facts(tmp_path)
+    assert len(recs) == 1
+    assert recs[0]["n"] == 1
+
+
+def test_load_extra_facts_missing_dir_returns_empty():
+    assert rg.load_extra_facts(None) == []
+    assert rg.load_extra_facts("/no/such/dir") == []
+
+
+def test_index_extra_facts_matches_by_release_url():
+    extra = [{"n": 1, "title": "Wrong Title", "release_url": "https://nasa/x", "text": "t"}]
+    catalog_items = [
+        {"title": "Something Else", "attribution_url": "https://nasa/x"},
+        {"title": "Another", "attribution_url": "https://nasa/y"},
+    ]
+    matched = rg.index_extra_facts_by_catalog(extra, catalog_items)
+    assert matched == {0: extra[0]}
+
+
+def test_index_extra_facts_falls_back_to_normalized_title():
+    extra = [{"n": 1, "title": "The Cosmic Cliffs", "release_url": "https://nasa/missing", "text": "t"}]
+    catalog_items = [{"title": "Cosmic Cliffs", "attribution_url": ""}]
+    matched = rg.index_extra_facts_by_catalog(extra, catalog_items)
+    assert matched == {0: extra[0]}
+
+
+def test_index_extra_facts_unmatched_is_dropped():
+    extra = [{"n": 1, "title": "Nothing Like It", "release_url": "https://nasa/none", "text": "t"}]
+    catalog_items = [{"title": "Totally Different", "attribution_url": "https://nasa/other"}]
+    assert rg.index_extra_facts_by_catalog(extra, catalog_items) == {}
+
+
+def test_extra_facts_for_item_builds_release_text_url_and_credit():
+    rec = {"n": 1, "title": "T", "release_url": "https://nasa/x", "text": "Short release text.",
+           "credit_line": "NASA, ESA"}
+    facts = rg._extra_facts_for_item(rec)
+    by_key = {f["key"]: f for f in facts}
+    assert by_key["nasa.release_text"]["value"] == "Short release text."
+    assert by_key["nasa.release_text"]["licence"] == "PDM-1.0"
+    assert by_key["nasa.release_text"]["source"] == "NASA release"
+    assert by_key["nasa.release_url"]["value"] == "https://nasa/x"
+    assert by_key["nasa.credit"]["value"] == "NASA, ESA"
+
+
+def test_extra_facts_for_item_splits_long_text_into_numbered_keys():
+    rec = {"n": 1, "title": "T", "release_url": "https://nasa/x",
+           "text": ("Sentence about stars and dust. " * 60), "credit_line": None}
+    facts = rg._extra_facts_for_item(rec)
+    keys = [f["key"] for f in facts if f["key"].startswith("nasa.release_text")]
+    assert keys == [f"nasa.release_text.{i}" for i in range(1, len(keys) + 1)]
+    assert not any(f["key"] == "nasa.credit" for f in facts)  # no credit_line -> no fact
+
+
+def test_extra_facts_for_item_none_record_is_no_facts():
+    assert rg._extra_facts_for_item(None) == []
+
+
+def test_build_facts_bundle_folds_in_extra_fact(monkeypatch):
+    async def _run():
+        fx = _FakeFetcher([])
+        monkeypatch.setattr(rg, "resolve_work", lambda *a, **k: _async(None))
+        monkeypatch.setattr(rg, "_museum_record", lambda *a, **k: _async(None))
+        item = {"title": "Cosmic Cliffs", "source_url": "", "agent_name": None, "source": None}
+        extra_fact = {"n": 1, "title": "Cosmic Cliffs", "release_url": "https://nasa/x",
+                      "text": "The release text.", "credit_line": "NASA"}
+        bundle = await rg.build_facts_bundle(fx, item, "cosmos", extra_fact=extra_fact)
+        keys = {f["key"] for f in bundle["facts"]}
+        assert "nasa.release_text" in keys
+        assert "nasa.release_url" in keys
+        assert "nasa.credit" in keys
+    asyncio.run(_run())
+
+
+def _async(value):
+    async def _coro(*a, **k):
+        return value
+    return _coro()
+
+
+# --------------------------------------------------------------------------- packets_index merge (--collection clobber fix)
+def test_merge_packet_index_unfiltered_run_replaces_outright():
+    existing = {"a-0000": "demo", "b-0000": "other"}
+    new_entries = {"c-0000": "demo"}
+    merged = rg.merge_packet_index(existing, new_entries, filtered_collection=None)
+    assert merged == new_entries
+
+
+def test_merge_packet_index_filtered_run_keeps_other_collections():
+    existing = {"a-0000": "demo", "b-0000": "cosmos"}
+    new_entries = {"c-0000": "cosmos", "d-0000": "cosmos"}
+    merged = rg.merge_packet_index(existing, new_entries, filtered_collection="cosmos")
+    # "demo" entry untouched; cosmos's old entry dropped and replaced by the fresh ones
+    assert merged == {"a-0000": "demo", "c-0000": "cosmos", "d-0000": "cosmos"}
+
+
+def test_merge_packet_index_filtered_run_drops_stale_keys_for_that_collection():
+    # a row that was renumbered/renamed within the filtered collection must not survive as a stale
+    # dangling key once the fresh run no longer produces it.
+    existing = {"old-key-0003": "cosmos", "keep-0000": "demo"}
+    new_entries = {"new-key-0003": "cosmos"}
+    merged = rg.merge_packet_index(existing, new_entries, filtered_collection="cosmos")
+    assert "old-key-0003" not in merged
+    assert merged == {"keep-0000": "demo", "new-key-0003": "cosmos"}

@@ -841,6 +841,98 @@ async def _wikidata_full(fx: Fetcher, qid: str, allow_day_precision: bool = Fals
     }
 
 
+# ----------------------------------------------------------------------- extra facts (--extra-facts DIR)
+# Cosmos rebuild 2026-09-27: 88 NASA/STScI/JPL/Chandra works gained their official release text (US
+# government work -> public domain). Unlike the check-only CC BY-SA Commons/Wikipedia text elsewhere in
+# this module, PDM-1.0 text is a directly-quotable/paraphrasable FACT, so it rides the normal facts
+# bundle (nasa.release_text[.N] / nasa.release_url / nasa.credit) straight into the packet.
+_NASA_RELEASE_CHUNK_MAX = 1200
+
+
+def _split_release_text(text: str, max_len: int = _NASA_RELEASE_CHUNK_MAX) -> list[str]:
+    """Whitespace-normalize, then split into <= max_len chunks at sentence boundaries (never mid-
+    sentence) so nasa.release_text(.N) facts each read as complete prose."""
+    text = re.sub(r"\s+", " ", text or "").strip()
+    if len(text) <= max_len:
+        return [text] if text else []
+    sentences = re.split(r"(?<=[.!?])\s+", text)
+    chunks: list[str] = []
+    cur = ""
+    for sent in sentences:
+        candidate = f"{cur} {sent}".strip() if cur else sent
+        if len(candidate) > max_len and cur:
+            chunks.append(cur)
+            cur = sent
+        else:
+            cur = candidate
+    if cur:
+        chunks.append(cur)
+    return chunks
+
+
+def load_extra_facts(path: str | Path | None) -> list[dict]:
+    """--extra-facts DIR: one {n, title, release_url, text, credit_line} JSON per file. Order doesn't
+    matter — matching (below) is keyed off release_url/title, not filename."""
+    if not path:
+        return []
+    d = Path(path).expanduser()
+    if not d.is_dir():
+        return []
+    out = []
+    for fp in sorted(d.glob("*.json")):
+        try:
+            data = json.loads(fp.read_text())
+        except (json.JSONDecodeError, OSError):
+            continue
+        if data.get("release_url") and data.get("text"):
+            out.append(data)
+    return out
+
+
+def index_extra_facts_by_catalog(extra_facts: list[dict], catalog_items: list[dict]) -> dict[int, dict]:
+    """Match each extra-facts record to a catalog row's index: release_url == the row's
+    attribution_url, falling back to normalized title. Returns {idx: extra_fact_record}."""
+    by_url: dict[str, int] = {}
+    by_title: dict[str, int] = {}
+    for idx, item in enumerate(catalog_items):
+        url = (item.get("attribution_url") or "").strip()
+        if url:
+            by_url.setdefault(url, idx)
+        title = _norm(item.get("title") or "")
+        if title:
+            by_title.setdefault(title, idx)
+    matched: dict[int, dict] = {}
+    for rec in extra_facts:
+        url = (rec.get("release_url") or "").strip()
+        idx = by_url.get(url)
+        if idx is None:
+            idx = by_title.get(_norm(rec.get("title") or ""))
+        if idx is not None:
+            matched[idx] = rec
+    return matched
+
+
+def _extra_facts_for_item(rec: dict | None) -> list[dict]:
+    """nasa.release_text[.N] / nasa.release_url / nasa.credit for one matched extra-facts record.
+    Public-domain NASA release text (PDM-1.0) — unlike the check-only CC BY-SA text elsewhere here,
+    this one is licensed for direct use/paraphrase, so it's a normal fact, not check-only."""
+    if not rec:
+        return []
+    facts: list[dict] = []
+    url = rec.get("release_url") or ""
+    chunks = _split_release_text(rec.get("text") or "")
+    if len(chunks) == 1:
+        facts.append(_fact("nasa.release_text", chunks[0], "NASA release", url, "PDM-1.0"))
+    else:
+        for i, chunk in enumerate(chunks, 1):
+            facts.append(_fact(f"nasa.release_text.{i}", chunk, "NASA release", url, "PDM-1.0"))
+    if url:
+        facts.append(_fact("nasa.release_url", url, "NASA release", url, "PDM-1.0"))
+    if rec.get("credit_line"):
+        facts.append(_fact("nasa.credit", rec["credit_line"], "NASA release", url, "PDM-1.0"))
+    return facts
+
+
 # ----------------------------------------------------------------------- facts bundle
 _MUSEUM_FACT_KEYS = ("objectDate", "medium", "culture", "classification", "creation_date",
                      "technique", "description", "did_you_know", "dimensions")
@@ -863,8 +955,11 @@ async def _apply_commons_structured_override(fx: Fetcher, item: dict, match: dic
     return match
 
 
-async def build_facts_bundle(fx: Fetcher, item: dict, collection: str | None = None) -> dict:
-    """Resolve identity + assemble the typed facts bundle for one catalog item."""
+async def build_facts_bundle(fx: Fetcher, item: dict, collection: str | None = None,
+                              extra_fact: dict | None = None) -> dict:
+    """Resolve identity + assemble the typed facts bundle for one catalog item. `extra_fact` is an
+    optional matched --extra-facts record (see index_extra_facts_by_catalog) folded in as nasa.*
+    facts."""
     allow_day_precision = catalog_spec.kind_for(collection or "") in ("photo", "space")
     match = await resolve_work(fx, item)
     match = await _apply_commons_structured_override(fx, item, match)
@@ -1007,6 +1102,8 @@ async def build_facts_bundle(fx: Fetcher, item: dict, collection: str | None = N
                 if wd.get("based_on_theme") and not any(f["key"] == "wikidata.based_on_theme" for f in facts):
                     facts.append(_fact("wikidata.based_on_theme", wd["based_on_theme"]["of_label"],
                                         "Wikidata", wd_url, "CC0"))
+
+    facts.extend(_extra_facts_for_item(extra_fact))
 
     facts, conflicts = _detect_conflicts(facts)
     return {
@@ -1754,8 +1851,9 @@ async def generate_narrative(bundle: dict, fields: dict, model_sem: asyncio.Sema
 
 
 # ----------------------------------------------------------------------- per-item pipeline
-async def process_item(fx: Fetcher, model_sem: asyncio.Semaphore, item: dict, collection: str) -> dict:
-    bundle = await build_facts_bundle(fx, item)
+async def process_item(fx: Fetcher, model_sem: asyncio.Semaphore, item: dict, collection: str,
+                        extra_fact: dict | None = None) -> dict:
+    bundle = await build_facts_bundle(fx, item, extra_fact=extra_fact)
     fields, needs_review, notes = resolve_structured_fields(bundle, item, collection)
 
     new_item = dict(item)
@@ -1938,6 +2036,21 @@ def build_packet(key: str, collection: str, item: dict, bundle: dict, fields: di
     }
 
 
+def merge_packet_index(existing: dict[str, str], new_entries: dict[str, str],
+                        filtered_collection: str | None) -> dict[str, str]:
+    """--mode packets --collection X only builds packets for X, so folding its {key: collection}
+    entries straight into packets_index.json would silently drop every other collection's entries —
+    which then made a later full import silently skip everything but X (bit us 2026-09-27). An
+    unfiltered run already covers every collection and can just replace outright; a filtered run
+    instead drops X's OLD entries (keys can change — a row's title/idx changed) and folds in the
+    fresh ones, keeping every other collection's entries untouched."""
+    if not filtered_collection:
+        return dict(new_entries)
+    merged = {k: v for k, v in existing.items() if v != filtered_collection}
+    merged.update(new_entries)
+    return merged
+
+
 def build_batches(entries: list[dict], batch_size: int = 100) -> list[list[dict]]:
     """Group packet entries into ~batch_size chunks, collection-coherent where possible: sort by
     collection first so a chunk boundary only splits a collection when it doesn't divide evenly."""
@@ -1945,7 +2058,8 @@ def build_batches(entries: list[dict], batch_size: int = 100) -> list[list[dict]
     return [ordered[i:i + batch_size] for i in range(0, len(ordered), batch_size)]
 
 
-async def run_packets(*, only_sample: bool, limit: int | None, collection: str | None, batch_size: int = 100):
+async def run_packets(*, only_sample: bool, limit: int | None, collection: str | None, batch_size: int = 100,
+                       extra_facts_dir: str | Path | None = None):
     FACTS_DIR.mkdir(parents=True, exist_ok=True)
     PACKETS_DIR.mkdir(parents=True, exist_ok=True)
     PREVIEWS_DIR.mkdir(parents=True, exist_ok=True)
@@ -1964,6 +2078,12 @@ async def run_packets(*, only_sample: bool, limit: int | None, collection: str |
                 targets.append((c, i))
     if limit:
         targets = targets[:limit]
+
+    extra_facts = load_extra_facts(extra_facts_dir)
+    extra_by_coll: dict[str, dict[int, dict]] = {}
+    if extra_facts:
+        for c in {c for c, _ in targets}:
+            extra_by_coll[c] = index_extra_facts_by_catalog(extra_facts, catalog[c])
 
     sem = asyncio.Semaphore(4)
     report = {"collections": {}, "matched": 0, "needs_review_count": 0, "total": 0, "with_preview": 0,
@@ -1987,7 +2107,8 @@ async def run_packets(*, only_sample: bool, limit: int | None, collection: str |
             if fact_path.exists() and packet_path.exists():
                 bundle = json.loads(fact_path.read_text())  # resume: skip re-fetching
             else:
-                bundle = await build_facts_bundle(fx, item, coll)
+                extra_fact = extra_by_coll.get(coll, {}).get(idx)
+                bundle = await build_facts_bundle(fx, item, coll, extra_fact=extra_fact)
                 fact_path.write_text(json.dumps(bundle, indent=2, default=str))
             fields, needs_review, notes = resolve_structured_fields(bundle, item, coll)
 
@@ -2035,6 +2156,19 @@ async def run_packets(*, only_sample: bool, limit: int | None, collection: str |
         cstat["facts_per_item"] = round(cstat["facts_total"] / cstat["total"], 2) if cstat["total"] else 0
     report["facts_per_item"] = round(report["facts_total"] / report["total"], 2) if report["total"] else 0
 
+    if extra_facts:
+        matched_ns = {rec["n"] for idx_map in extra_by_coll.values() for rec in idx_map.values()}
+        report["extra_facts_total"] = len(extra_facts)
+        report["extra_facts_matched"] = len(matched_ns)
+        report["extra_facts_unmatched"] = sorted(rec["n"] for rec in extra_facts if rec["n"] not in matched_ns)
+
+    existing_index: dict[str, str] = {}
+    if PACKET_INDEX_PATH.exists():
+        try:
+            existing_index = json.loads(PACKET_INDEX_PATH.read_text())
+        except (json.JSONDecodeError, OSError):
+            existing_index = {}
+    packet_index = merge_packet_index(existing_index, packet_index, collection if not only_sample else None)
     PACKET_INDEX_PATH.write_text(json.dumps(packet_index, indent=1))
     for i, batch in enumerate(build_batches(entries, batch_size), 1):
         (BATCHES_DIR / f"batch_{i:02d}.json").write_text(json.dumps(batch, indent=1))
@@ -2587,7 +2721,8 @@ def run_import(batch_glob: str = "batch_*.jsonl", curated_path: str | Path | Non
 
 
 # ----------------------------------------------------------------------- run
-async def run(*, only_sample: bool, limit: int | None, collection: str | None):
+async def run(*, only_sample: bool, limit: int | None, collection: str | None,
+              extra_facts_dir: str | Path | None = None):
     FACTS_DIR.mkdir(parents=True, exist_ok=True)
     OUT_CATALOG_DIR.mkdir(parents=True, exist_ok=True)
     CACHE_DIR.mkdir(parents=True, exist_ok=True)
@@ -2605,6 +2740,12 @@ async def run(*, only_sample: bool, limit: int | None, collection: str | None):
     if limit:
         targets = targets[:limit]
 
+    extra_facts = load_extra_facts(extra_facts_dir)
+    extra_by_coll: dict[str, dict[int, dict]] = {}
+    if extra_facts:
+        for c in {c for c, _ in targets}:
+            extra_by_coll[c] = index_extra_facts_by_catalog(extra_facts, catalog[c])
+
     sem = asyncio.Semaphore(4)
     model_sem = asyncio.Semaphore(8)
     report = {"collections": {}, "fallback_count": 0, "needs_review_count": 0, "matched": 0, "total": 0,
@@ -2618,7 +2759,8 @@ async def run(*, only_sample: bool, limit: int | None, collection: str | None):
             item = catalog[coll][idx]
             fact_path = FACTS_DIR / coll / f"{idx:04d}.json"
             fact_path.parent.mkdir(parents=True, exist_ok=True)
-            result = await process_item(fx, model_sem, item, coll)
+            extra_fact = extra_by_coll.get(coll, {}).get(idx)
+            result = await process_item(fx, model_sem, item, coll, extra_fact=extra_fact)
             fact_path.write_text(json.dumps(result["bundle"], indent=2, default=str))
             return coll, result
 
@@ -3129,6 +3271,12 @@ def main():
                           "(default: ~/pieria-img/curation/deferred_drops.json)")
     ap.add_argument("--dry-run", action="store_true",
                      help="land mode only: print the per-collection summary and write nothing")
+    ap.add_argument("--extra-facts", default=None,
+                     help="facts/packets mode: a directory of {n, title, release_url, text, "
+                          "credit_line} JSON records (e.g. NASA/STScI/JPL release text) matched to "
+                          "catalog rows by release_url==attribution_url (fallback: normalized title) "
+                          "and folded into that row's facts bundle as nasa.release_text[.N]/"
+                          "nasa.release_url/nasa.credit")
     ap.add_argument("--agent-overrides", default=None,
                      help="import mode only: path to a hand-curated agent_name overrides file "
                           "(agent_overrides.json shape: [{collection, pre_idx, title, agent_name}]) — "
@@ -3150,7 +3298,7 @@ def main():
     elif args.mode == "packets":
         report = asyncio.run(run_packets(
             only_sample=args.only_sample, limit=args.limit, collection=args.collection,
-            batch_size=args.batch_size,
+            batch_size=args.batch_size, extra_facts_dir=args.extra_facts,
         ))
     elif args.mode == "recheck-museum":
         report = asyncio.run(run_recheck_museum_matches(limit=args.limit))
@@ -3159,7 +3307,8 @@ def main():
     elif args.mode == "blank-masters":
         report = run_blank_masters(limit=args.limit, collection=args.collection)
     else:
-        report = asyncio.run(run(only_sample=args.only_sample, limit=args.limit, collection=args.collection))
+        report = asyncio.run(run(only_sample=args.only_sample, limit=args.limit, collection=args.collection,
+                                  extra_facts_dir=args.extra_facts))
     print(json.dumps(report, indent=2))
 
 
