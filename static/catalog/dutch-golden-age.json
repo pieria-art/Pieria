@@ -3308,13 +3308,13 @@
    }
   },
   {
-   "title": "Philosopher in Meditation",
+   "title": "The Philosopher",
    "agent_name": "Rembrandt van Rijn",
    "agent_role": "Painter",
-   "creation_date": "1632",
+   "creation_date": "c. 1653",
    "cultural_context": "Dutch Golden Age",
-   "medium": "Oil on canvas",
-   "date_display": "1632",
+   "medium": "Oil on panel",
+   "date_display": "c. 1653",
    "description_narrative": "An old man sits absorbed in thought beside a glowing hearth and a spiral staircase that recedes into shadow, one of Rembrandt's most poetic explorations of contemplative solitude. The painting's deep architectural space and dramatic interior light have made it one of his most admired early works.",
    "tags": "philosopher, meditation, interior, Louvre, chiaroscuro",
    "source": "Wikimedia Commons",
@@ -3358,7 +3358,8 @@
      0.9802,
      1.0
     ]
-   }
+   },
+   "current_repository": "National Gallery of Art"
   },
   {
    "title": "Aristotle with a Bust of Homer",
