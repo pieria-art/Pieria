@@ -80,9 +80,30 @@ def test_default_license_satisfies_missing_image_license():
 
 def test_cc_by_image_requires_attribution():
     m = _base(); m["items"][0]["image"]["license"] = "CC-BY-4.0"
-    assert any("attribution is required" in e for e in validate_manifest(m))
+    errs = validate_manifest(m)
+    assert any("attribution is required" in e for e in errs)
+    assert any("license_url is required" in e for e in errs)
+    assert any("attribution_url is required" in e for e in errs)
     m["items"][0]["image"]["attribution"] = "© Museum"
+    m["items"][0]["image"]["license_url"] = "https://creativecommons.org/licenses/by/4.0/"
+    m["items"][0]["image"]["attribution_url"] = "https://pub.test/source-page"
     assert validate_manifest(m) == []
+
+
+def test_cc_by_4_0_with_space_still_requires_attribution():
+    """Regression: the old `^cc-by` regex missed "CC BY 4.0" (a space instead of a hyphen)."""
+    m = _base(); m["items"][0]["image"]["license"] = "CC BY 4.0"
+    errs = validate_manifest(m)
+    assert any("attribution is required" in e for e in errs)
+    assert any("license_url is required" in e for e in errs)
+    assert any("attribution_url is required" in e for e in errs)
+
+
+def test_cc_by_sa_still_requires_attribution_but_is_not_pack_allowed():
+    """CC-BY-SA is excluded from core.licensing.PACK_ALLOWED (ADR-142), but a federation manifest can
+    still declare it and must still require attribution — only pack BUILDING refuses it (build_pack)."""
+    m = _base(); m["items"][0]["image"]["license"] = "CC-BY-SA-4.0"
+    assert any("attribution is required" in e for e in validate_manifest(m))
 
 
 def test_interpretation_needs_its_own_author_and_license():

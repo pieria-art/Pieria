@@ -36,6 +36,7 @@ from urllib.parse import unquote, urlparse
 import httpx
 
 from config import SD_USER_AGENT
+from core.licensing import check_pack_row
 from scout import _wm_throttle
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
@@ -63,7 +64,12 @@ HOST_SOURCE = {
     "openaccess-cdn.clevelandart.org": "Cleveland Museum of Art",
     "tile.loc.gov": "Library of Congress",
 }
-BUNDLE_SAFE = {"pd", "cc-by", "cc-by-sa"}   # cc-by/-sa are safe *with* attribution (we carry it)
+# core.licensing.PACK_ALLOWED semantics (ADR-142, amends ADR-045): PD/CC0 ship freely, CC BY ships
+# WITH attribution — but CC-BY-SA is NOT pack-allowed (share-alike was never in PACK_ALLOWED; the old
+# {"pd", "cc-by", "cc-by-sa"} here silently contradicted ADR-045). These are the live-verdict buckets
+# `classify()`/`classify_museum()` produce (lowercase pd/cc-by/…), not core.licensing's ids — kept as
+# its own small vocabulary since it's driven by Commons LicenseShortName text, not our stored `license`.
+BUNDLE_SAFE = {"pd", "cc-by"}
 
 
 @dataclass
@@ -304,6 +310,23 @@ def bake_catalog(items: list[Item], verified: str) -> int:
     return baked
 
 
+def audit_served_catalog() -> list[tuple[str, str, list[str]]]:
+    """Gate every SERVED catalog row (static/catalog/*.json, same file-selection rule as load_items)
+    against core.licensing.check_pack_row — the pack-ship contract (license already a PACK_ALLOWED id;
+    CC BY rows carry credit_line/license_url/attribution_url). Local, no network — independent of the
+    live Wikimedia verdict audit above. Returns [(collection, title, problems)]; [] means all clear."""
+    failures: list[tuple[str, str, list[str]]] = []
+    for f in sorted(CATALOG_DIR.glob("*.json")):
+        if f.name.startswith("_") or "index" in f.name:
+            continue
+        d = json.loads(f.read_text())
+        for it in d.get("items") or []:
+            problems = check_pack_row(it)
+            if problems:
+                failures.append((f.stem, it.get("title", "?"), problems))
+    return failures
+
+
 async def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--scope", default="catalog,seed", help="comma list: catalog,seed")
@@ -312,7 +335,24 @@ async def main() -> int:
     ap.add_argument("--strict", action="store_true", help="exit non-zero if any item needs review")
     ap.add_argument("--bake", action="store_true",
                     help="persist verdict/basis/url/credit_line/verified into the catalog items (ADR-040 #5)")
+    ap.add_argument("--offline", action="store_true",
+                    help="skip the live Wikimedia/museum network audit entirely — just run the offline "
+                         "pack-ship gate (core.licensing.check_pack_row) against every SERVED row. Fast, "
+                         "no network, not affected by --limit sampling. For CI.")
     args = ap.parse_args()
+
+    if args.offline:
+        served_failures = audit_served_catalog()
+        if served_failures:
+            print(f"=== {len(served_failures)} SERVED ROW(S) FAIL THE PACK-SHIP GATE "
+                  f"(core.licensing.check_pack_row) ===")
+            for cid, title, problems in served_failures[:60]:
+                print(f"  x [{cid}] {title[:50]!r}: {'; '.join(problems)}")
+            if len(served_failures) > 60:
+                print(f"  … and {len(served_failures) - 60} more")
+        else:
+            print("OK: every served catalog row passes core.licensing.check_pack_row")
+        return (1 if served_failures else 0) if args.strict else 0
 
     scopes = {s.strip() for s in args.scope.split(",") if s.strip()}
     items = load_items(scopes)
@@ -324,6 +364,20 @@ async def main() -> int:
     classify_museum(items)
     await audit_wikimedia(items, args.limit)
     rc = report(items, args.json)
+
+    # Pack-ship gate (ADR-142 Stage A): every SERVED row must already carry a PACK_ALLOWED license id
+    # and, for CC BY, complete attribution — independent of the live Wikimedia verdict audit above.
+    served_failures = audit_served_catalog()
+    if served_failures and not args.json:
+        print(f"\n=== {len(served_failures)} SERVED ROW(S) FAIL THE PACK-SHIP GATE "
+              f"(core.licensing.check_pack_row) ===")
+        for cid, title, problems in served_failures[:60]:
+            print(f"  x [{cid}] {title[:50]!r}: {'; '.join(problems)}")
+        if len(served_failures) > 60:
+            print(f"  … and {len(served_failures) - 60} more")
+    if served_failures:
+        rc = 1
+
     if args.bake:
         if args.limit:
             print("refusing to --bake a sampled run (--limit set); bake the full audit", file=sys.stderr)

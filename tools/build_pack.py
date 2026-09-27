@@ -56,6 +56,7 @@ ImageFile.LOAD_TRUNCATED_IMAGES = True
 import federation
 import publisher
 from config import SD_USER_AGENT
+from core.licensing import check_pack_row
 from core.media import DISPLAY_MAX_EDGE, DISPLAY_QUALITY
 from epaper import normalize_crop_box
 from scout import _wm_throttle
@@ -790,6 +791,8 @@ def _manifest_item(item: dict, filename: str, thumbnail: str | None) -> dict:
     out["focal_point"] = [float(focal[0]), float(focal[1])]
     out["featured_rank"] = item.get("featured_rank", 50)
     out["credit_line"] = item.get("credit_line") or ""
+    out["license_url"] = item.get("license_url") or ""
+    out["attribution_url"] = item.get("attribution_url") or ""
     return out
 
 
@@ -801,6 +804,11 @@ def _v2_row(mi: dict) -> dict:
     remote URL. `credit_line` → attribution, `source` → rights_holder. featured_rank is NOT carried —
     the collection's items are emitted rank-sorted, so install uses array order (per-collection = one
     manifest = one playlist). needs_frame_crop is NOT carried — the crop is already baked into the master.
+
+    ADR-142 (Stage A shared contract): `license` is already a core.licensing id (the catalog is
+    migrated); `license_url` + `attribution_url` (required, non-empty, for CC BY) ride along; and
+    `origin_url` is the row's http `source_url` — the real web source page — so a pack-installed work's
+    `/art/{id}` link stops pointing at a `pack:` placeholder (stage B).
     """
     focal = mi.get("focal_point") or [0.5, 0.5]
     return {
@@ -820,8 +828,11 @@ def _v2_row(mi: dict) -> dict:
         "local_file": mi.get("filename"),
         "thumbnail_url": f"pack:_catalog_thumbs/{mi['thumbnail']}" if mi.get("thumbnail") else None,
         "license": mi.get("license") or None,
+        "license_url": mi.get("license_url") or None,
         "attribution": mi.get("credit_line") or None,
+        "attribution_url": mi.get("attribution_url") or None,
         "rights_holder": mi.get("source") or None,
+        "origin_url": mi.get("source_url") or None,
         "focal_x": focal[0], "focal_y": focal[1],
     }
 
@@ -951,7 +962,7 @@ def _dir_size(path: Path) -> int:
 # --------------------------------------------------------------------------- build
 async def build(out: Path, *, scope: set[str], limit: int | None, collections_filter: set[str] | None,
                  concurrency: int, created: str | None, min_edge: int, signing_key: str | None = None,
-                 heavy_concurrency: int = 3) -> int:
+                 heavy_concurrency: int = 3, allow_licence_violations: bool = False) -> int:
     (out / "_Library").mkdir(parents=True, exist_ok=True)
     (out / "_catalog_thumbs").mkdir(parents=True, exist_ok=True)
     (out / "_catalog").mkdir(parents=True, exist_ok=True)
@@ -975,6 +986,30 @@ async def build(out: Path, *, scope: set[str], limit: int | None, collections_fi
         logger.info(f"  pins[{col['id']}]: {replaced} replaced, {parked} parked (skipped, not shipped)")
     if pins_by_collection:
         logger.info(f"pins: {pin_replaced_total} replaced, {pin_parked_total} parked (skipped) in total")
+
+    # Licence gate (ADR-142 Stage A): refuse to queue any catalog row that fails core.licensing's
+    # pack-ship contract (license not a PACK_ALLOWED id, or a CC BY row missing credit/URLs). Applied
+    # AFTER pins merge, so a pin's own license fields are checked too. --allow-licence-violations is a
+    # dev/test escape hatch (logs but keeps the row) — never for a real build.
+    licence_violations: list[tuple[str, str, list[str]]] = []
+    for col in collections:
+        kept = []
+        for it in col.get("items", []):
+            problems = check_pack_row(it)
+            if problems:
+                licence_violations.append((col["id"], it.get("title", "?"), problems))
+                if not allow_licence_violations:
+                    continue
+            kept.append(it)
+        col["items"] = kept
+    if licence_violations:
+        logger.warning(f"licence gate: {len(licence_violations)} row(s) failed check_pack_row"
+                       + (" — ALLOWED (--allow-licence-violations, DEV/TEST ONLY)"
+                          if allow_licence_violations else " — REFUSED (not queued)"))
+        for cid, title, problems in licence_violations[:20]:
+            logger.warning(f"  x [{cid}] {title!r}: {'; '.join(problems)}")
+        if len(licence_violations) > 20:
+            logger.warning(f"  … and {len(licence_violations) - 20} more")
 
     # Catalog items are queued first (they drive the manifest); seed items follow purely to warm
     # the dedup cache for any shared source_url and to bake seed art into the pack for first boot.
@@ -1044,6 +1079,9 @@ async def build(out: Path, *, scope: set[str], limit: int | None, collections_fi
     print(f"thumbnails:  {st.thumb_downloaded} downloaded, {st.thumb_cached} cached, "
           f"{st.thumb_derived} derived, {st.thumb_failed} failed")
     print(f"manifest:    {total_manifest_items} item(s) across {len(manifest_collections)} collection(s)")
+    print(f"licence gate: {len(licence_violations)} row(s) failed check_pack_row"
+          + (" (allowed via --allow-licence-violations)" if allow_licence_violations and licence_violations
+             else " (refused)" if licence_violations else ""))
     print(f"pack size:   {_human_size(_dir_size(out))}  ({out})")
 
     return 1 if (st.master_downloaded == 0 and st.master_cached == 0 and len(queue) > 0) else 0
@@ -1090,6 +1128,10 @@ async def main() -> int:
     ap.add_argument("--allow-unsigned", action="store_true",
                      help="DEV/TEST ONLY: proceed without a valid, registry-trusted signing key, "
                           "producing unsigned/'community'-tier manifests instead of failing.")
+    ap.add_argument("--allow-licence-violations", action="store_true",
+                     help="DEV/TEST ONLY: keep rows that fail core.licensing.check_pack_row (license "
+                          "not pack-allowed, or a CC BY row missing credit/license_url/attribution_url) "
+                          "instead of refusing to queue them. Never use for a real build.")
     args = ap.parse_args()
 
     collections_filter = ({c.strip() for c in args.collections.split(",") if c.strip()}
@@ -1114,7 +1156,8 @@ async def main() -> int:
 
     return await build(args.out, scope=scope, limit=args.limit, collections_filter=collections_filter,
                         concurrency=args.concurrency, created=args.created, min_edge=args.min_edge,
-                        signing_key=signing_key, heavy_concurrency=args.heavy_concurrency)
+                        signing_key=signing_key, heavy_concurrency=args.heavy_concurrency,
+                        allow_licence_violations=args.allow_licence_violations)
 
 
 if __name__ == "__main__":

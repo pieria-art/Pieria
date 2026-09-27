@@ -167,7 +167,7 @@ async def test_build_absent_pins_file_behaves_unchanged(tmp_path, monkeypatch):
     """No static/catalog/_pack_pins.json on disk -> build() output is identical to before pins existed."""
     catalog_dir = tmp_path / "catalog"
     _write_catalog(catalog_dir, "demo", [
-        {"title": "Only Item", "agent_name": "A", "source_url": "https://example.org/only.jpg", "focal_point": [0.5, 0.5]},
+        {"title": "Only Item", "agent_name": "A", "source_url": "https://example.org/only.jpg", "focal_point": [0.5, 0.5], "license": "PDM-1.0"},
     ])
     monkeypatch.setattr(build_pack, "CATALOG_DIR", catalog_dir)
     monkeypatch.setattr(build_pack, "PINS_FILE", tmp_path / "no_pins_here.json")
@@ -191,8 +191,8 @@ async def test_build_absent_pins_file_behaves_unchanged(tmp_path, monkeypatch):
 async def test_build_applies_pins_replace_and_skips_parked(tmp_path, monkeypatch):
     catalog_dir = tmp_path / "catalog"
     _write_catalog(catalog_dir, "demo", [
-        {"title": "Replace Me", "agent_name": "A", "source_url": "https://commons.example/replace.jpg", "focal_point": [0.5, 0.5]},
-        {"title": "Untouched", "agent_name": "B", "source_url": "https://example.org/untouched.jpg", "focal_point": [0.5, 0.5]},
+        {"title": "Replace Me", "agent_name": "A", "source_url": "https://commons.example/replace.jpg", "focal_point": [0.5, 0.5], "license": "PDM-1.0"},
+        {"title": "Untouched", "agent_name": "B", "source_url": "https://example.org/untouched.jpg", "focal_point": [0.5, 0.5], "license": "PDM-1.0"},
     ])
     monkeypatch.setattr(build_pack, "CATALOG_DIR", catalog_dir)
     monkeypatch.setattr(build_pack, "SEED_FILE", tmp_path / "no_seed.json")

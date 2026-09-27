@@ -32,6 +32,8 @@ import shutil
 import tarfile
 from pathlib import Path
 
+from core.licensing import LICENSE_NAMES
+
 # Category for the browse UI = the collection's kind (painting/print/photo/…); Masterpieces is the overlay.
 try:
     from tools.catalog_spec import COLLECTION_KIND
@@ -126,6 +128,60 @@ def _min_tier(pack: Path, cid: str) -> str | None:
     return min(tiers, key=lambda t: _TIER_RANK[t]) if tiers else None
 
 
+def _cc_by_items(manifest: dict) -> list[dict]:
+    """Every Manifest v2 item whose image is licensed CC BY 4.0 (ADR-142 — the only attribution-bearing
+    licence a pack may ship)."""
+    return [it for it in manifest.get("items", []) if (it.get("image") or {}).get("license") == "CC-BY-4.0"]
+
+
+def build_notice(manifest: dict) -> str:
+    """NOTICE.md text for one collection tar (ADR-142 #6). Every tar gets one: a short public-domain/
+    CC0 notice when the collection has no CC BY works, else one entry per CC BY work — title, artist,
+    credit exactly as given, licence name + URL, and its source page — plus the required "adapted for
+    display" line."""
+    title = manifest.get("title") or manifest.get("id") or "This collection"
+    cc_by = _cc_by_items(manifest)
+    if not cc_by:
+        return (f"# {title} — Licensing notice\n\n"
+                "All works in this collection are in the public domain or released under CC0 (Creative "
+                "Commons Zero) — no attribution is legally required, though museum/collection credit is "
+                "shown where known.\n")
+    lines = [f"# {title} — Licensing notice", "",
+             f"This collection includes {len(cc_by)} work(s) licensed **CC BY 4.0**, which requires "
+             "attribution. All works in this pack, CC BY or otherwise, have been adapted for display: "
+             "cropped and resized.", "", "## CC BY 4.0 works", ""]
+    for it in cc_by:
+        img = it.get("image") or {}
+        lic_id = img.get("license")
+        lic_name = LICENSE_NAMES.get(lic_id, lic_id)
+        lic_url = img.get("license_url") or ""
+        source = img.get("attribution_url") or img.get("origin_url") or ""
+        credit = img.get("attribution") or "Unknown"
+        artist = it.get("artist") or "Unknown artist"
+        lines.append(f"- **{it.get('title') or 'Untitled'}** — {artist}. Credit: {credit}. "
+                     f"Licence: [{lic_name}]({lic_url}). Source: {source}.")
+    lines.append("")
+    return "\n".join(lines)
+
+
+def build_credits(manifest: dict) -> list[dict]:
+    """CREDITS.json — the same CC BY roster as NOTICE.md, machine-readable (ADR-142 #6)."""
+    out = []
+    for it in _cc_by_items(manifest):
+        img = it.get("image") or {}
+        out.append({
+            "title": it.get("title"),
+            "artist": it.get("artist"),
+            "credit": img.get("attribution"),
+            "license": img.get("license"),
+            "license_name": LICENSE_NAMES.get(img.get("license")),
+            "license_url": img.get("license_url"),
+            "source_url": img.get("attribution_url") or img.get("origin_url"),
+            "adaptation": "Cropped and resized for display.",
+        })
+    return out
+
+
 def slice_collection(pack: Path, col: dict, out: Path) -> dict | None:
     """Write one collection's self-contained mini-pack under `out/<id>/`, tar it, and return its registry
     row. Returns None (skips) if the manifest is missing/unreadable."""
@@ -172,6 +228,11 @@ def slice_collection(pack: Path, col: dict, out: Path) -> dict | None:
                          "manifest": f"_manifests/{cid}.json",
                          "item_count": len(manifest.get("items", [])), "default": False}],
     }, indent=1, ensure_ascii=False))
+
+    # Licensing paperwork (ADR-142 #6): every tar gets a NOTICE.md + CREDITS.json, whether or not it
+    # carries any CC BY work (the no-CC-BY case gets a short PD/CC0 notice — "every tar has one").
+    (stage / "NOTICE.md").write_text(build_notice(manifest))
+    (stage / "CREDITS.json").write_text(json.dumps(build_credits(manifest), indent=1, ensure_ascii=False))
 
     tar_path = out / f"{cid}.tar"
     with tarfile.open(tar_path, "w") as tf:

@@ -64,9 +64,18 @@ Each item is an artwork + the **public URL of the image you host yourself** + it
 
 **Licensing rules** (enforced by the validator): every image needs a license — either per item or via
 the collection's `default_license`. Use SPDX-ish ids: `CC0-1.0`, `CC-BY-4.0`, `CC-BY-SA-4.0`, `PD`,
-`proprietary`. **`CC-BY*` and `CC-BY-SA*` require an `attribution`.** You declare the license; you're
-attesting you have the right to — Pieria can't verify copyright (no platform can), it verifies
-*identity* and honors takedowns.
+`proprietary`. **`CC-BY*` and `CC-BY-SA*` require an `attribution`, a `license_url` (link to the licence
+text) and an `attribution_url` (the work's source page).** You declare the license; you're attesting you
+have the right to — Pieria can't verify copyright (no platform can), it verifies *identity* and honors
+takedowns.
+
+**First-party packs are narrower** (ADR-142, amends ADR-045): `tools/build_pack.py` only ships
+`core.licensing.PACK_ALLOWED` — `PDM-1.0` (public domain mark), `CC0-1.0`, and `CC-BY-4.0` — never
+`CC-BY-SA*`, `CC-BY-NC*` or `CC-BY-ND*`. A CC BY 4.0 work in the pack must carry its credit exactly as
+given plus a working `license_url` + `attribution_url`, or the build refuses to queue it
+(`core.licensing.check_pack_row`); `tools/audit_licenses.py --offline --strict` runs the same check
+against the served catalog in CI. This narrower allow-list is a *pack-build* policy, not a manifest
+schema limit — a subscribed federation feed of someone else's collection can still declare `CC-BY-SA*`.
 
 ## 3. Sign it
 

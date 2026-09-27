@@ -450,3 +450,75 @@ def test_publish_happy_path_verified_manifest(tmp_path, monkeypatch):
     reg = publish_pack.publish(src, out, core={"masterpieces"})
     assert (out / "packs.json").exists()
     assert {c["id"] for c in reg["collections"]} == {"masterpieces", "cartography"}
+
+
+# ── ADR-142 #6: every tar gets a NOTICE.md + CREDITS.json ───────────────────────────────────────────
+
+def _mi_cc_by(title, rank):
+    """A CC BY 4.0 work with complete attribution (ADR-142's pack-ship contract)."""
+    return {"filename": f"{title.lower()}.jpg", "thumbnail": f"{title.lower()}_t.jpg",
+            "source_url": f"https://x/{title}.jpg", "title": title, "agent_name": "ESA/Webb",
+            "agent_role": "Imaging team", "cultural_context": "Space", "description_narrative": "A placard.",
+            "kind": "photograph", "license": "CC-BY-4.0",
+            "license_url": "https://creativecommons.org/licenses/by/4.0/",
+            "attribution_url": "https://esawebb.org/images/example/",
+            "date_display": "2024", "focal_point": [0.5, 0.5], "featured_rank": rank,
+            "credit_line": "ESA/Webb, NASA & CSA", "source": "ESA/Webb"}
+
+
+def test_notice_and_credits_written_for_pd_only_collection(tmp_path, monkeypatch):
+    priv, pub = publisher.keygen()
+    src = _build_source_pack(tmp_path, priv)  # all-PD fixture
+    out = tmp_path / "dist"
+    monkeypatch.setattr(federation, "TRUSTED_KEYS", {"pieria": pub})
+    publish_pack.publish(src, out, core={"masterpieces"})
+
+    with tarfile.open(out / "cartography.tar") as tf:
+        notice = tf.extractfile("cartography/NOTICE.md").read().decode()
+        credits = json.loads(tf.extractfile("cartography/CREDITS.json").read())
+    assert "public domain" in notice.lower() or "cc0" in notice.lower()
+    assert credits == []
+
+
+def test_notice_and_credits_list_cc_by_works(tmp_path, monkeypatch):
+    priv, pub = publisher.keygen()
+    root = tmp_path / "art-pack"
+    lib = root / "_Library"
+    thumbs = root / "_catalog_thumbs"
+    lib.mkdir(parents=True)
+    thumbs.mkdir(parents=True)
+    cols = [{"id": "cosmos", "title": "Cosmos", "description": "Space", "default": True,
+             "items": [_mi("Nebula", 99), _mi_cc_by("Cosmic-Cliffs", 90)]}]
+    build_pack._emit_v2_manifests(root, cols, signing_key=priv, generated_at="2026-09-27")
+    manifest = json.loads((root / "_manifests" / "cosmos.json").read_text())
+    for item in manifest["items"]:
+        img = item["image"]
+        Image.new("RGB", (30, 20), "red").save(lib / img["local_file"], "JPEG")
+        tn = publish_pack._thumb_name(img.get("thumbnail_url"))
+        if tn:
+            Image.new("RGB", (12, 8), "blue").save(thumbs / tn, "JPEG")
+
+    out = tmp_path / "dist"
+    monkeypatch.setattr(federation, "TRUSTED_KEYS", {"pieria": pub})
+    publish_pack.publish(root, out, core={"cosmos"})
+
+    with tarfile.open(out / "cosmos.tar") as tf:
+        notice = tf.extractfile("cosmos/NOTICE.md").read().decode()
+        credits = json.loads(tf.extractfile("cosmos/CREDITS.json").read())
+    assert "Cosmic-Cliffs" in notice
+    assert "CC BY 4.0" in notice
+    assert "cropped and resized" in notice.lower()
+    assert len(credits) == 1
+    row = credits[0]
+    assert row["title"] == "Cosmic-Cliffs"
+    assert row["credit"] == "ESA/Webb, NASA & CSA"
+    assert row["license"] == "CC-BY-4.0"
+    assert row["license_url"] == "https://creativecommons.org/licenses/by/4.0/"
+    assert row["source_url"] == "https://esawebb.org/images/example/"
+
+
+def test_build_notice_no_cc_by_short_pd_notice():
+    manifest = {"title": "Cartography", "items": [{"title": "Map", "image": {"license": "PDM-1.0"}}]}
+    notice = publish_pack.build_notice(manifest)
+    assert "Cartography" in notice
+    assert publish_pack.build_credits(manifest) == []

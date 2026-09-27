@@ -23,3 +23,7 @@ jobs:
           python-version: "3.11"
       - run: pip install -r requirements.txt -r requirements-dev.txt
       - run: python -m pytest -q --timeout=120 --timeout-method=thread -p no:cacheprovider
+      # ADR-142 Stage A pack-ship gate: offline, covers every served row, no network — fails CI on any
+      # row whose `license` isn't a core.licensing.PACK_ALLOWED id, or whose CC BY row is missing
+      # credit_line/license_url/attribution_url.
+      - run: python -m tools.audit_licenses --offline --strict

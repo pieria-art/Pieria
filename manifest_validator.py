@@ -15,13 +15,27 @@ from __future__ import annotations
 
 import re
 
+from core.licensing import normalize_license
+from core.licensing import requires_attribution as _pack_requires_attribution
+
 MANIFEST_VERSION = 2
 _ACCESS_RE = re.compile(r"^(free|entitlement:[a-z0-9_-]+:.+)$", re.IGNORECASE)
 
 
 def _requires_attribution(license_str: str) -> bool:
-    """CC-BY and CC-BY-SA require attribution; CC0/PD/proprietary do not."""
-    return bool(re.match(r"^cc-by", (license_str or "").strip(), re.IGNORECASE))
+    """CC-BY and CC-BY-SA require attribution; CC0/PD/proprietary do not.
+
+    Federation manifests aren't limited to core.licensing.PACK_ALLOWED (a subscribed feed may declare
+    CC-BY-SA, which normalize_license() rightly refuses as *pack-ship* since it's not in PACK_ALLOWED —
+    but it still requires attribution here). So: use core.licensing for the ids it does recognize, and
+    fall back to a normalized prefix check (fixes the old `^cc-by` regex missing "CC BY 4.0" — the
+    space) for everything else that starts with cc-by, including cc-by-sa.
+    """
+    norm = normalize_license(license_str)
+    if norm is not None:
+        return _pack_requires_attribution(norm)
+    s = re.sub(r"[\s_]+", "-", (license_str or "").strip().lower())
+    return s.startswith("cc-by")
 
 
 def _is_str(v) -> bool:
@@ -67,7 +81,18 @@ def _validate_image(image, path, errors, *, has_default_license):
                         and all(isinstance(n, (int, float)) and 0.0 <= n <= 1.0 for n in box)):
                     errors.append(f"{path}.aspect_crops[{k!r}] must be [x0,y0,x1,y1] with each value "
                                   "a number in 0..1")
+    for k in ("license_url", "attribution_url", "origin_url"):
+        if k in image and not _is_str(image[k]):
+            errors.append(f"{path}.{k} must be a non-empty string when present")
     _check_asset_license(image, path, errors, license_required=not has_default_license)
+    # Image-specific (ADR-142): a CC BY image also needs its licence linked and its source page, on top
+    # of the base `attribution` string _check_asset_license already requires above.
+    lic = image.get("license")
+    if _is_str(lic) and _requires_attribution(lic):
+        if not _is_str(image.get("license_url")):
+            errors.append(f"{path}.license_url is required when license is '{lic}'")
+        if not _is_str(image.get("attribution_url")):
+            errors.append(f"{path}.attribution_url is required when license is '{lic}'")
 
 
 def _validate_interpretation(interp, path, errors):

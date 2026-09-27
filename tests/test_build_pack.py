@@ -322,12 +322,14 @@ import federation
 import publisher
 
 
-def _mi(title, rank, *, filename=None, focal=None):
-    """A v1 manifest item as `_manifest_item` produces it (input to the v2 emit)."""
+def _mi(title, rank, *, filename=None, focal=None, license="PDM-1.0", license_url="", attribution_url=""):
+    """A v1 manifest item as `_manifest_item` produces it (input to the v2 emit). `license` is already
+    a core.licensing id — the served catalog is migrated (ADR-142 Stage A); build_pack trusts it."""
     return {"filename": filename or f"{title.lower()}.jpg", "thumbnail": f"{title.lower()}_t.jpg",
             "source_url": f"https://x/{title}.jpg", "title": title, "agent_name": "A. Painter",
             "cultural_context": "French", "description_narrative": "A placard.", "kind": "painting",
-            "license": "Public Domain", "needs_frame_crop": "", "focal_point": focal or [0.5, 0.5],
+            "license": license, "license_url": license_url, "attribution_url": attribution_url,
+            "needs_frame_crop": "", "focal_point": focal or [0.5, 0.5],
             "featured_rank": rank, "credit_line": "Some Museum"}
 
 
@@ -335,9 +337,20 @@ def test_v2_row_maps_local_asset_and_omits_carried_fields():
     row = build_pack._v2_row(_mi("Sunrise", 90, focal=[0.6, 0.4]))
     assert row["local_file"] == "sunrise.jpg"
     assert row["artist"] == "A. Painter" and row["culture"] == "French" and row["placard"] == "A placard."
-    assert row["attribution"] == "Some Museum" and row["license"] == "Public Domain"
+    assert row["attribution"] == "Some Museum" and row["license"] == "PDM-1.0"
+    assert row["origin_url"] == "https://x/Sunrise.jpg"
     assert (row["focal_x"], row["focal_y"]) == (0.6, 0.4)
     assert "featured_rank" not in row and "needs_frame_crop" not in row   # not carried into v2
+
+
+def test_v2_row_carries_license_url_and_attribution_url_for_cc_by():
+    mi = _mi("Cosmic Cliffs", 80, license="CC-BY-4.0",
+             license_url="https://creativecommons.org/licenses/by/4.0/",
+             attribution_url="https://esawebb.org/images/example/")
+    row = build_pack._v2_row(mi)
+    assert row["license"] == "CC-BY-4.0"
+    assert row["license_url"] == "https://creativecommons.org/licenses/by/4.0/"
+    assert row["attribution_url"] == "https://esawebb.org/images/example/"
 
 
 def test_emit_v2_manifests_signs_and_verifies(tmp_path):

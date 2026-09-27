@@ -104,7 +104,8 @@ def build_item(row: dict) -> dict:
     local = _clean_str(row.get("local_file") or img_in.get("local_file"))
     if local is not None:
         image["local_file"] = local
-    for dst in ("thumbnail_url", "license", "attribution", "rights_holder"):
+    for dst in ("thumbnail_url", "license", "attribution", "rights_holder",
+                "license_url", "attribution_url", "origin_url"):
         val = pick(dst)
         if val is not None:
             image[dst] = val
