@@ -116,54 +116,25 @@
    "series": "Thirty-Six Views of Mount Fuji (Fugaku sanjūrokkei)",
    "agent_name": "Katsushika Hokusai",
    "agent_role": "Artist",
-   "creation_date": "1830/33",
+   "creation_date": "c. 1830–32",
    "cultural_context": "Ukiyo-e, Edo Period, Japanese",
-   "medium": "Color woodblock print; oban",
-   "date_display": "1830/33",
+   "medium": "Woodblock print; ink and color on paper",
+   "date_display": "c. 1830–32",
    "description_narrative": "Katsushika Hokusai's iconic color woodblock print, 'The Great Wave,' captures a colossal wave cresting over three fishing boats, threatening to engulf them amidst a turbulent sea. In the distance, the serene form of Mount Fuji stands against the sky, anchoring this dramatic scene from his famous series 'Thirty-Six Views of Mount Fuji.'",
    "tags": "great wave, mount fuji, ukiyo-e, woodblock print, ocean, dramatic, japanese landscape",
-   "source": "Art Institute of Chicago",
+   "source": "The Metropolitan Museum of Art",
    "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Katsushika%20Hokusai%20-%20The%20Great%20Wave%20off%20the%20Coast%20of%20Kanagawa%20LCCN2008660568.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Katsushika%20Hokusai%20-%20The%20Great%20Wave%20off%20the%20Coast%20of%20Kanagawa%20LCCN2008660568.jpg?width=600",
-   "focal_point": [
-    0.32,
-    0.38
-   ],
+   "source_url": "https://images.metmuseum.org/CRDImages/as/original/DP130155.jpg",
+   "thumbnail_url": "https://images.metmuseum.org/CRDImages/as/web-large/DP130155.jpg",
    "featured_rank": 99,
    "license_verdict": "pd",
-   "license_basis": "Public domain",
+   "license_basis": "CC0 (Met Open Access)",
    "license_url": "",
-   "credit_line": "Library of Congress Catalog: https://lccn.loc.gov/2008660568 Image download: https://cdn.loc.gov/service/pnp/jpd/02000/02018v.jpg Original url: https://www.loc.gov/pictures/item/2008660568/",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 7680,
-   "resolution_tier": "8K",
-   "aspect_crops": {
-    "16:9": [
-     0.0,
-     0.09,
-     1.0,
-     0.8876
-    ],
-    "9:16": [
-     0.03,
-     0.0,
-     0.4267,
-     1.0
-    ],
-    "4:3": [
-     0.0,
-     0.0,
-     0.9403,
-     1.0
-    ],
-    "3:4": [
-     0.03,
-     0.0,
-     0.5589,
-     1.0
-    ]
-   }
+   "credit_line": "Collection of The Metropolitan Museum of Art (JP1847, H. O. Havemeyer Collection)",
+   "license_verified": "2026-09-27",
+   "width": 3859,
+   "height": 2594,
+   "current_repository": "Metropolitan Museum of Art"
   },
   {
    "title": "The Starry Night",
@@ -1844,10 +1815,10 @@
    "title": "Wheatfield with Cypresses",
    "agent_name": "Vincent van Gogh",
    "agent_role": "Painter",
-   "creation_date": "1889",
+   "creation_date": "September 1889",
    "cultural_context": "Dutch Post-Impressionism",
    "medium": "Oil on canvas",
-   "date_display": "1889",
+   "date_display": "September 1889",
    "description_narrative": "Painted near the asylum at Saint-Rémy-de-Provence, this canvas pairs a wind-tossed wheatfield with dark flame-like cypress trees Van Gogh described as 'beautiful in line and proportion, like an Egyptian obelisk.' He made several versions of the composition; this one is held by the Metropolitan Museum of Art.",
    "tags": [
     "van gogh",
@@ -1899,7 +1870,8 @@
      0.9984,
      1.0
     ]
-   }
+   },
+   "current_repository": "National Gallery, London"
   },
   {
    "title": "The School of Athens",

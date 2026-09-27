@@ -3631,10 +3631,10 @@
    "title": "The Water Lily Pond",
    "agent_name": "Claude Monet",
    "agent_role": "Painter",
-   "creation_date": "1917-1919",
+   "creation_date": "c. 1917–19",
    "cultural_context": "Impressionism, French",
    "medium": "Oil on canvas",
-   "date_display": "c. 1917-19",
+   "date_display": "c. 1917–19",
    "description_narrative": "Painted in Monet's garden at Giverny near the end of his career, this canvas dissolves the pond's surface into an almost abstract field of color and reflected light. Water lilies, sky, and overhanging willows merge into a single continuous surface with no clear horizon.",
    "tags": "impressionism, water lilies, giverny, pond, late work, series",
    "source": "Wikimedia Commons",
@@ -3672,7 +3672,8 @@
      0.9644,
      1.0
     ]
-   }
+   },
+   "current_repository": "Albertina, Vienna (Batliner Collection)"
   },
   {
    "title": "Camille on the Beach in Trouville",
@@ -10303,7 +10304,7 @@
    "agent_role": "Painter",
    "creation_date": "c. 1882",
    "cultural_context": "Impressionism, French",
-   "medium": "Pastel on paper",
+   "medium": "Pastel on paper mounted on board",
    "date_display": "c. 1882",
    "description_narrative": "A customer tries on a hat while a milliner attends her, part of Degas's series of works depicting the millinery trade of Parisian hat shops. These scenes let him study fashion, labor, and social interaction between women.",
    "tags": "milliner, hat shop, pastel, fashion, Parisian trade",
@@ -10348,7 +10349,8 @@
      0.9229,
      1.0
     ]
-   }
+   },
+   "current_repository": "The Museum of Modern Art, New York"
   },
   {
    "title": "Breakfast After the Bath",
@@ -10719,10 +10721,10 @@
    "title": "The Milliners",
    "agent_name": "Edgar Degas",
    "agent_role": "Painter",
-   "creation_date": "c. 1882-1905",
+   "creation_date": "c. 1882–before 1905",
    "cultural_context": "Impressionism, French",
-   "medium": "Pastel on paper",
-   "date_display": "c. 1882–1905",
+   "medium": "Oil on canvas",
+   "date_display": "c. 1882–before 1905",
    "description_narrative": "Two milliners are shown at work trimming hats in a shop interior, part of Degas's series documenting the trade. Now at the J. Paul Getty Museum, it captures the concentrated labor of the hatmaking craft.",
    "tags": "milliner, hat shop, labor, pastel, Getty Museum",
    "source": "Wikimedia Commons",
@@ -10766,7 +10768,8 @@
      0.7338,
      1.0
     ]
-   }
+   },
+   "current_repository": "J. Paul Getty Museum, Los Angeles"
   },
   {
    "title": "Woman Bathing",

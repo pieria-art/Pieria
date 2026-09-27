@@ -428,10 +428,10 @@
    "title": "The Beguiling of Merlin",
    "agent_name": "Edward Burne-Jones",
    "agent_role": "Artist",
-   "creation_date": "",
+   "creation_date": "1872–77",
    "cultural_context": "Pre-Raphaelite, Victorian British",
    "medium": "Oil on canvas",
-   "date_display": "1872-1877",
+   "date_display": "1872–77",
    "description_narrative": "This painting by Edward Burne-Jones illustrates the Arthurian legend of Nimue enchanting the wizard Merlin. Nimue, reading from a spellbook, entraps a helpless Merlin within a hawthorn bush, characteristic of the artist's detailed and mythical style.",
    "tags": "arthurian legend, mythology, pre-raphaelite, symbolism, enchantment, sorcery, victorian art",
    "source": "Wikimedia Commons",
@@ -476,7 +476,8 @@
      1.0,
      0.81
     ]
-   }
+   },
+   "current_repository": "Lady Lever Art Gallery, Port Sunlight (National Museums Liverpool)"
   },
   {
    "title": "King Cophetua and the Beggar Maid",
@@ -1925,13 +1926,13 @@
    }
   },
   {
-   "title": "Lamia (1909)",
+   "title": "Lamia",
    "agent_name": "John William Waterhouse",
    "agent_role": "Painter",
-   "creation_date": "1909",
+   "creation_date": "1905",
    "cultural_context": "Pre-Raphaelite / Symbolism, British",
    "medium": "Oil on canvas",
-   "date_display": "1909",
+   "date_display": "1905",
    "description_narrative": "Waterhouse's later single-figure treatment of the serpent-woman Lamia, drawn from Keats's poem, shows her seated by water with a shed snakeskin draped across her lap. It was exhibited at the Royal Academy in 1909, following his earlier two-figure Lamia compositions.",
    "tags": "Lamia, Keats, serpent woman, mythology, transformation, snakeskin",
    "source": "Wikimedia Commons",
@@ -1975,7 +1976,8 @@
      1.0,
      0.8596
     ]
-   }
+   },
+   "current_repository": "Auckland Art Gallery Toi o Tāmaki"
   },
   {
    "title": "Diogenes",

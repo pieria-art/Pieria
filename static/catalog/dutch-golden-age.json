@@ -3470,10 +3470,10 @@
    "title": "The Girl with the Wine Glass",
    "agent_name": "Johannes Vermeer",
    "agent_role": "Painter",
-   "creation_date": "1660",
+   "creation_date": "c. 1659–60",
    "cultural_context": "Dutch Golden Age",
    "medium": "Oil on canvas",
-   "date_display": "c. 1659-1660",
+   "date_display": "c. 1659–60",
    "description_narrative": "A smiling young woman accepts a glass of wine from a suitor while a second man looks on from the shadows, a lively genre scene of courtship and temptation. The elaborate stained-glass window and richly patterned carpet display Vermeer's early fascination with intricate surface detail.",
    "tags": "genre scene, courtship, wine, stained glass, Braunschweig",
    "source": "Wikimedia Commons",
@@ -3517,7 +3517,8 @@
      0.938,
      1.0
     ]
-   }
+   },
+   "current_repository": "Herzog Anton Ulrich-Museum, Braunschweig"
   },
   {
    "title": "Lady Seated at a Virginal",
@@ -3629,10 +3630,10 @@
    "title": "The Glass of Wine",
    "agent_name": "Johannes Vermeer",
    "agent_role": "Painter",
-   "creation_date": "1660",
+   "creation_date": "c. 1658–60",
    "cultural_context": "Dutch Golden Age",
    "medium": "Oil on canvas",
-   "date_display": "c. 1658-1660",
+   "date_display": "c. 1658–60",
    "description_narrative": "A woman drains a glass of wine while a gentleman stands watchfully beside her, a moralizing genre scene about temptation set within a sunlit Delft interior. Light pouring through a leaded window illuminates every fold of fabric and grain of wood in Vermeer's meticulous style.",
    "tags": "genre scene, wine, courtship, interior light, Gemäldegalerie Berlin",
    "source": "Wikimedia Commons",
@@ -3676,60 +3677,32 @@
      0.8011,
      1.0
     ]
-   }
+   },
+   "current_repository": "Gemäldegalerie, Staatliche Museen zu Berlin"
   },
   {
    "title": "Girl with the Red Hat",
    "agent_name": "Johannes Vermeer",
    "agent_role": "Painter",
-   "creation_date": "1669",
+   "creation_date": "c. 1669",
    "cultural_context": "Dutch Golden Age",
-   "medium": "Oil on canvas",
+   "medium": "Oil on panel",
    "date_display": "c. 1669",
    "description_narrative": "A young woman in a flamboyant red hat and blue-grey cloak turns toward the viewer, her open mouth suggesting she has just been addressed. Painted on a wood panel rather than canvas, it is one of Vermeer's smallest and most experimental works, with unusually bold, loose brushwork.",
    "tags": "tronie, red hat, panel painting, National Gallery of Art Washington",
-   "source": "Wikimedia Commons",
+   "source": "National Gallery of Art, Washington",
    "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jan%20Vermeer%20van%20Delft%20-%20Meisje%20met%20een%20rode%20hoed%20%28ca.%201669%29.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jan%20Vermeer%20van%20Delft%20-%20Meisje%20met%20een%20rode%20hoed%20%28ca.%201669%29.jpg?width=600",
+   "source_url": "https://api.nga.gov/iiif/b705a403-3496-42e8-abf5-a37e34c32198/full/3840,/0/default.jpg",
+   "thumbnail_url": "https://api.nga.gov/iiif/b705a403-3496-42e8-abf5-a37e34c32198/full/!800,800/0/default.jpg",
    "license_verdict": "pd",
-   "license_basis": "Public domain",
+   "license_basis": "CC0 (NGA Open Access)",
    "license_url": "",
-   "credit_line": "National Gallery of Art, Washington, D. C., online collection",
-   "license_verified": "2026-07-16",
+   "credit_line": "National Gallery of Art, Washington, Andrew W. Mellon Collection, 1937.1.53 (Open Access)",
+   "license_verified": "2026-09-27",
    "featured_rank": 78,
-   "focal_point": [
-    0.45,
-    0.35
-   ],
-   "delivered_edge": 7680,
-   "resolution_tier": "8K",
-   "aspect_crops": {
-    "16:9": [
-     0.0,
-     0.05,
-     1.0,
-     0.495
-    ],
-    "9:16": [
-     0.145,
-     0.0,
-     0.856,
-     1.0
-    ],
-    "4:3": [
-     0.0,
-     0.0298,
-     1.0,
-     0.6232
-    ],
-    "3:4": [
-     0.026,
-     0.0,
-     0.974,
-     1.0
-    ]
-   }
+   "current_repository": "National Gallery of Art, Washington",
+   "width": 12070,
+   "height": 15257
   },
   {
    "title": "The Geographer",
@@ -5270,13 +5243,13 @@
    }
   },
   {
-   "title": "Two Singing Boys",
-   "agent_name": "Frans Hals",
+   "title": "Two Boys Singing",
+   "agent_name": "Workshop of Frans Hals",
    "agent_role": "Painter",
-   "creation_date": "1626",
+   "creation_date": "c. 1630",
    "cultural_context": "Dutch Golden Age",
    "medium": "Oil on canvas",
-   "date_display": "1626",
+   "date_display": "c. 1630",
    "description_narrative": "Two boys, one holding sheet music, sing together with open-mouthed enthusiasm in this lively genre scene of childhood music-making. The original painting was destroyed in a fire in Berlin in 1945, and it now survives only through photographs and copies.",
    "tags": "genre painting, children, music, singing, lost painting",
    "source": "Wikimedia Commons",
@@ -5320,7 +5293,8 @@
      0.949,
      1.0
     ]
-   }
+   },
+   "current_repository": "Private collection"
   },
   {
    "title": "Portrait of a Man with a Skull",

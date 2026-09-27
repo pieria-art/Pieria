@@ -480,13 +480,13 @@
    }
   },
   {
-   "title": "F. Champenois Imprimeur-Éditeur",
+   "title": "Rêverie (Daydream) — F. Champenois Imprimeur-Éditeur",
    "agent_name": "Alphonse Mucha",
    "agent_role": "Artist",
-   "creation_date": "",
+   "creation_date": "1897 (this lettered impression dated 1898)",
    "cultural_context": "Art Nouveau, French",
    "medium": "Color lithograph",
-   "date_display": "1897",
+   "date_display": "1897 (this lettered impression dated 1898)",
    "description_narrative": "This vibrant lithographic poster features a graceful woman adorned with flowing hair and intricate floral motifs, embodying the distinctive Art Nouveau aesthetic. Designed as an advertisement, it promotes the Parisian printer and publisher F. Champenois, for whom Mucha created numerous works.",
    "tags": "art nouveau, poster, advertising, woman, decorative, elegant, graphic design, fin de siècle",
    "source": "Wikimedia Commons",
@@ -530,7 +530,8 @@
      1.0,
      0.9955
     ]
-   }
+   },
+   "current_repository": "Bibliothèque nationale de France"
   },
   {
    "title": "Zodiac",

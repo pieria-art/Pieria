@@ -23021,14 +23021,14 @@
    }
   },
   {
-   "title": "The Ōji Inari Shrine",
+   "title": "Ōji Inari Shrine (Ōji Inari no yashiro), from the series Famous Places in Edo (Edo meisho)",
    "series": "Famous Places in the Eastern Capital",
    "agent_name": "Utagawa Hiroshige",
    "agent_role": "Artist",
-   "creation_date": "c. 1832/34",
+   "creation_date": "c. 1832–34",
    "cultural_context": "Ukiyo-e, Edo period, Japanese",
    "medium": "Color woodblock print",
-   "date_display": "c. 1833",
+   "date_display": "c. 1832–34",
    "description_narrative": "An early view of the Ōji Inari Shrine, famed as the gathering place of foxes on New Year's Eve according to Edo legend, predating Hiroshige's better-known treatment of the same shrine in his later 'One Hundred Famous Views of Edo.'",
    "tags": "ukiyo-e, woodblock print, hiroshige, oji inari, shrine, edo, landscape",
    "source": "Wikimedia Commons",
@@ -23072,7 +23072,8 @@
      0.5181,
      1.0
     ]
-   }
+   },
+   "current_repository": "Bibliothèque nationale de France"
   },
   {
    "title": "Enjoying the Evening Cool under Ryōgoku Bridge, Musashi Province",

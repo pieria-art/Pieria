@@ -1295,13 +1295,13 @@
    }
   },
   {
-   "title": "Mont Sainte-Victoire",
-   "agent_name": "Paul Cezanne",
+   "title": "Montagne Sainte-Victoire with Large Pine",
+   "agent_name": "Paul Cézanne",
    "agent_role": "Painter",
-   "creation_date": "c. 1902-1906",
+   "creation_date": "c. 1887",
    "cultural_context": "Post-Impressionism, French",
    "medium": "Oil on canvas",
-   "date_display": "c. 1902–06",
+   "date_display": "c. 1887",
    "description_narrative": "Cezanne painted the limestone ridge near his home in Aix-en-Provence dozens of times, breaking its slopes and the valley below into faceted planes of color. These late views of the mountain are considered a crucial bridge between Post-Impressionism and Cubism.",
    "tags": "cezanne, mont sainte-victoire, provence, landscape, post-impressionism, aix",
    "source": "Wikimedia Commons",
@@ -1345,7 +1345,8 @@
      0.7214,
      1.0
     ]
-   }
+   },
+   "current_repository": "The Courtauld Gallery, London"
   },
   {
    "title": "Where Do We Come From? What Are We? Where Are We Going?",
@@ -1518,10 +1519,10 @@
    "title": "Wheatfield with Cypresses",
    "agent_name": "Vincent van Gogh",
    "agent_role": "Painter",
-   "creation_date": "1889",
+   "creation_date": "September 1889",
    "cultural_context": "Dutch Post-Impressionism",
    "medium": "Oil on canvas",
-   "date_display": "1889",
+   "date_display": "September 1889",
    "description_narrative": "Painted near the asylum at Saint-Rémy-de-Provence, this canvas pairs a wind-tossed wheatfield with dark flame-like cypress trees Van Gogh described as 'beautiful in line and proportion, like an Egyptian obelisk.' He made several versions of the composition; this one is held by the Metropolitan Museum of Art.",
    "tags": [
     "van gogh",
@@ -1573,7 +1574,8 @@
      0.9984,
      1.0
     ]
-   }
+   },
+   "current_repository": "National Gallery, London"
   },
   {
    "title": "The Yellow Christ",
@@ -4852,7 +4854,8 @@
      0.7932,
      1.0
     ]
-   }
+   },
+   "current_repository": "Art Gallery of New South Wales"
   },
   {
    "title": "Country House by a River",
@@ -6023,13 +6026,13 @@
    }
   },
   {
-   "title": "The Banks of the Marne",
+   "title": "The Banks of the Marne (Villa on the Bank of a River)",
    "agent_name": "Paul Cézanne",
    "agent_role": "Painter",
-   "creation_date": "1888",
+   "creation_date": "c. 1888",
    "cultural_context": "Post-Impressionism, French",
    "medium": "Oil on canvas",
-   "date_display": "1888",
+   "date_display": "c. 1888",
    "description_narrative": "This landscape depicts a villa on the banks of the Marne river, its reflection built from Cézanne's characteristic overlapping brushstrokes. He painted several views along the Marne during visits to the region in the late 1880s.",
    "tags": "landscape, banks of the marne, river, villa, reflection",
    "source": "Wikimedia Commons",
@@ -6073,16 +6076,17 @@
      0.8991,
      1.0
     ]
-   }
+   },
+   "current_repository": "State Hermitage Museum, St Petersburg"
   },
   {
-   "title": "Turn in the Road in the Woods",
+   "title": "Bend in the Road through the Forest (La Route tournante en sous-bois)",
    "agent_name": "Paul Cézanne",
    "agent_role": "Painter",
-   "creation_date": "1873-1875",
+   "creation_date": "c. 1873–75",
    "cultural_context": "Post-Impressionism, French",
    "medium": "Oil on canvas",
-   "date_display": "1873-75",
+   "date_display": "c. 1873–75",
    "description_narrative": "This early landscape follows a road curving through dense woodland, painted during Cézanne's period working alongside Camille Pissarro near Pontoise and Auvers. The dappled brushwork reflects the Impressionist influence he absorbed before developing his more structural mature style.",
    "tags": "landscape, road, woodland, early period, pissarro influence",
    "source": "Wikimedia Commons",
@@ -6133,7 +6137,8 @@
      0.9428,
      1.0
     ]
-   }
+   },
+   "current_repository": "Solomon R. Guggenheim Museum, New York"
   },
   {
    "title": "Bather at the Seashore",
@@ -7300,10 +7305,10 @@
    "title": "The Chaîne de l'Étoile Mountains with the Pilon du Roi",
    "agent_name": "Paul Cézanne",
    "agent_role": "Painter",
-   "creation_date": "c. 1885",
+   "creation_date": "1885–1886",
    "cultural_context": "Post-Impressionism, French",
-   "medium": "Oil on canvas",
-   "date_display": "c. 1885",
+   "medium": "Watercolor and graphite on laid paper",
+   "date_display": "1885–1886",
    "description_narrative": "This landscape depicts the Chaîne de l'Étoile mountain range and its distinctive Pilon du Roi peak, visible from around Aix-en-Provence. It is held in the Barnes Foundation collection.",
    "tags": "landscape, chaine de l'etoile, mountains, provence, barnes foundation",
    "source": "Wikimedia Commons",
@@ -7347,7 +7352,8 @@
      0.7434,
      1.0
     ]
-   }
+   },
+   "current_repository": "Barnes Foundation, Philadelphia"
   },
   {
    "title": "Trees",
@@ -10966,7 +10972,7 @@
    "title": "Sunflowers (Van Gogh Museum version)",
    "agent_name": "Vincent van Gogh",
    "agent_role": "Painter",
-   "creation_date": "1889",
+   "creation_date": "January 1889",
    "cultural_context": "Post-Impressionism, Dutch",
    "medium": "Oil on canvas",
    "date_display": "January 1889",
@@ -11013,16 +11019,17 @@
      1.0,
      0.7523
     ]
-   }
+   },
+   "current_repository": "Van Gogh Museum, Amsterdam"
   },
   {
-   "title": "A Pair of Shoes (Arles, 1888)",
+   "title": "A Pair of Leather Clogs",
    "agent_name": "Vincent van Gogh",
    "agent_role": "Painter",
-   "creation_date": "1888",
+   "creation_date": "1889",
    "cultural_context": "Post-Impressionism, Dutch",
    "medium": "Oil on canvas",
-   "date_display": "August 1888",
+   "date_display": "1889",
    "description_narrative": "A still life of a worn pair of shoes, painted in Arles and thought to have been inspired by a pair belonging to a local peasant. It is held by the Metropolitan Museum of Art, New York.",
    "tags": "shoes, still life, arles, metropolitan museum",
    "source": "Wikimedia Commons",
@@ -11066,7 +11073,8 @@
      0.7963,
      1.0
     ]
-   }
+   },
+   "current_repository": "Van Gogh Museum, Amsterdam"
   },
   {
    "title": "The Brothel (Le Lupanar)",
@@ -11893,7 +11901,7 @@
    "agent_role": "Painter",
    "creation_date": "1894",
    "cultural_context": "Post-Impressionism, French",
-   "medium": "Oil on canvas",
+   "medium": "Oil on cardboard",
    "date_display": "1894",
    "description_narrative": "Part of Toulouse-Lautrec's celebrated 'Au Lit' series painted from the brothels he frequented, this canvas shows a quiet, intimate moment between two women resting in bed. The series is notable for treating its subjects with sympathy rather than moral judgment.",
    "tags": "Toulouse-Lautrec, In Bed series, intimacy, brothel scenes, Albi, 1894",
@@ -11938,7 +11946,8 @@
      0.5892,
      1.0
     ]
-   }
+   },
+   "current_repository": "Musée Toulouse-Lautrec, Albi"
   },
   {
    "title": "Carmen the Redhead (Carmen la Rousse)",
@@ -12523,7 +12532,7 @@
    "agent_role": "Painter",
    "creation_date": "1893",
    "cultural_context": "Post-Impressionism, French",
-   "medium": "Oil on canvas",
+   "medium": "Oil on cardboard",
    "date_display": "1893",
    "description_narrative": "A portrait of Caudieux, a popular café-concert performer of the Parisian entertainment circuit in the 1890s. Toulouse-Lautrec frequently painted and made posters of the singers and comedians who performed in Montmartre's cabarets.",
    "tags": "Toulouse-Lautrec, portrait, café-concert, performer, Montmartre, 1893",
@@ -12568,7 +12577,8 @@
      1.0,
      0.9519
     ]
-   }
+   },
+   "current_repository": "Musée Toulouse-Lautrec, Albi"
   },
   {
    "title": "Crouching Woman (The Laundress)",
@@ -13889,7 +13899,7 @@
    "agent_role": "Painter",
    "creation_date": "1892",
    "cultural_context": "Post-Impressionism, French",
-   "medium": "Oil on canvas",
+   "medium": "Oil à l'essence on gelatin silver print mounted on board",
    "date_display": "c. 1892",
    "description_narrative": "A portrait of Louise Weber, the famous cancan dancer known as La Goulue ('the Glutton'), shown with her sister. La Goulue was one of the star performers of the Moulin Rouge and a favorite subject of Toulouse-Lautrec's paintings and posters.",
    "tags": "Toulouse-Lautrec, La Goulue, cancan, Moulin Rouge, portrait, NGA",
@@ -13934,7 +13944,8 @@
      1.0,
      0.5841
     ]
-   }
+   },
+   "current_repository": "National Gallery of Art, Washington"
   },
   {
    "title": "Portrait of Maxime Dethomas",

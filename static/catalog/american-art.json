@@ -6558,7 +6558,7 @@
    "agent_role": "Painter",
    "creation_date": "1869",
    "cultural_context": "American Realism, New England marine painting, 19th century",
-   "medium": "Oil on canvas",
+   "medium": "Oil on mahogany panel",
    "date_display": "1869",
    "description_narrative": "Lobster Cove, Manchester, Massachusetts shows Homer's command of the sea, in which fishermen and their vessels are set against the vast, indifferent power of the Atlantic. It exemplifies the artist's mature marine style, developed at his studio on Prout's Neck, Maine, where he lived among the fishing communities he painted.",
    "tags": "marine,seascape,fishing,New England,Winslow Homer",
@@ -6603,7 +6603,8 @@
      0.7148,
      1.0
     ]
-   }
+   },
+   "current_repository": "Cooper Hewitt, Smithsonian Design Museum, New York"
   },
   {
    "title": "Boy on a Raft",
@@ -9476,10 +9477,10 @@
    "title": "Burnt Mountain",
    "agent_name": "Winslow Homer",
    "agent_role": "Painter",
-   "creation_date": "c. 1892",
+   "creation_date": "1902",
    "cultural_context": "American Realism, Adirondack wilderness subjects, 19th century",
-   "medium": "Watercolor on paper",
-   "date_display": "c. 1892",
+   "medium": "Watercolor and graphite on paper",
+   "date_display": "1902",
    "description_narrative": "Burnt Mountain reflects Homer's frequent retreats to the wilderness of the Adirondacks and the Canadian backcountry of Quebec, where he painted guides, hunters, and anglers set against dense forest and still water. Worked largely in watercolor, it shows his fascination with solitary figures absorbed in the rhythms of the wild.",
    "tags": "Adirondacks,wilderness,hunting,fishing,watercolor,Winslow Homer",
    "source": "Wikimedia Commons",
@@ -9523,7 +9524,8 @@
      0.6561,
      1.0
     ]
-   }
+   },
+   "current_repository": "Addison Gallery of American Art, Phillips Academy"
   },
   {
    "title": "Below Zero",
@@ -11326,7 +11328,7 @@
    "agent_role": "Painter",
    "creation_date": "1879",
    "cultural_context": "American Realism, Adirondack wilderness subjects, 19th century",
-   "medium": "Watercolor on paper",
+   "medium": "Oil on canvas",
    "date_display": "1879",
    "description_narrative": "The Yellow Jacket reflects Homer's frequent retreats to the wilderness of the Adirondacks and the Canadian backcountry of Quebec, where he painted guides, hunters, and anglers set against dense forest and still water. Worked largely in watercolor, it shows his fascination with solitary figures absorbed in the rhythms of the wild.",
    "tags": "Adirondacks,wilderness,hunting,fishing,watercolor,Winslow Homer",
@@ -11371,7 +11373,8 @@
      1.0,
      0.9534
     ]
-   }
+   },
+   "current_repository": "Cooper Hewitt, Smithsonian Design Museum, New York"
   },
   {
    "title": "Army Teamsters",
@@ -15005,7 +15008,7 @@
    "agent_role": "Painter",
    "creation_date": "1880",
    "cultural_context": "American Realism, New England marine painting, 19th century",
-   "medium": "Watercolor on paper",
+   "medium": "Oil on canvas",
    "date_display": "1880",
    "description_narrative": "Promenade on the Beach shows Homer's command of the sea, in which fishermen and their vessels are set against the vast, indifferent power of the Atlantic. It exemplifies the artist's mature marine style, developed at his studio on Prout's Neck, Maine, where he lived among the fishing communities he painted.",
    "tags": "marine,seascape,fishing,New England,Winslow Homer",
@@ -15050,7 +15053,8 @@
      0.612,
      1.0
     ]
-   }
+   },
+   "current_repository": "Michele & Donald D'Amour Museum of Fine Arts, Springfield Museums, Springfield, Massachusetts"
   },
   {
    "title": "Building a Smudge",
@@ -17160,7 +17164,8 @@
      0.7568,
      1.0
     ]
-   }
+   },
+   "current_repository": "Reynolda House Museum of American Art"
   },
   {
    "title": "Milking",
@@ -17221,7 +17226,7 @@
    "agent_role": "Painter",
    "creation_date": "1873",
    "cultural_context": "American Realism, post-Civil War genre painting, 19th century",
-   "medium": "Oil on canvas",
+   "medium": "Watercolor on wove paper",
    "date_display": "1873",
    "description_narrative": "A Basket of Clams belongs to Homer's genre paintings of American rural and childhood life, produced in the years following the Civil War as the artist built his reputation beyond illustration. It reflects a nostalgic vision of an agrarian country then rapidly giving way to industry.",
    "tags": "genre,rural life,American Realism,Winslow Homer",
@@ -17266,7 +17271,8 @@
      0.9421,
      1.0
     ]
-   }
+   },
+   "current_repository": "The Metropolitan Museum of Art, New York"
   },
   {
    "title": "Prout's Neck, Breakers",

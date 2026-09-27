@@ -6,13 +6,13 @@
  "license": "Public Domain",
  "items": [
   {
-   "title": "Rosa Centifolia (Cabbage Rose)",
+   "title": "Cabbage Rose (Rosa centifolia simplex)",
    "agent_name": "Pierre-Joseph Redouté",
    "agent_role": "Illustrator",
-   "creation_date": "1817",
+   "creation_date": "1817–24",
    "cultural_context": "Natural history illustration, French",
-   "medium": "Hand-colored stipple engraving",
-   "date_display": "c. 1817-1824",
+   "medium": "Watercolor",
+   "date_display": "1817–24",
    "description_narrative": "A cabbage rose plate from Redouté's landmark folio Les Roses, the artist celebrated as the 'Raphael of flowers' for his work at the court of Empress Joséphine. His stipple-engraving technique rendered petals with a luminous, almost photographic delicacy.",
    "tags": "rose, botanical, redoute, les roses, flower, engraving, french",
    "source": "Wikimedia Commons",
@@ -56,16 +56,17 @@
      0.7855,
      0.7364
     ]
-   }
+   },
+   "current_repository": "Cleveland Museum of Art"
   },
   {
-   "title": "Rosa Gallica",
+   "title": "Rosa gallica officinalis (Rosier de Provins ordinaire), from Les Roses",
    "agent_name": "Pierre-Joseph Redouté",
    "agent_role": "Illustrator",
-   "creation_date": "1817",
+   "creation_date": "1817–24",
    "cultural_context": "Natural history illustration, French",
-   "medium": "Hand-colored stipple engraving",
-   "date_display": "c. 1817-1824",
+   "medium": "Stipple and line engraving with hand colouring",
+   "date_display": "1817–24",
    "description_narrative": "The French rose, Rosa gallica, as engraved for Redouté's Les Roses, the most famous botanical rose book ever produced. The plate pairs scientific precision with the refined elegance that made Redouté the favored flower painter of Napoleonic France.",
    "tags": "rose, botanical, redoute, les roses, gallica, engraving, french",
    "source": "Wikimedia Commons",
@@ -109,7 +110,8 @@
      1.0,
      0.9828
     ]
-   }
+   },
+   "current_repository": "Cleveland Museum of Art"
   },
   {
    "title": "Lilium Candidum (Madonna Lily)",

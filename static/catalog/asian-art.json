@@ -154,12 +154,12 @@
   },
   {
    "title": "Night Revels of Han Xizai",
-   "agent_name": "Gu Hongzhong",
+   "agent_name": "After Gu Hongzhong",
    "agent_role": "Artist",
-   "creation_date": "",
+   "creation_date": "12th century (Song-dynasty copy of a 10th-century original)",
    "cultural_context": "Southern Tang Dynasty, Chinese",
-   "medium": "Ink and color on silk, handscroll",
-   "date_display": "c. 970s",
+   "medium": "Handscroll; ink and colour on silk",
+   "date_display": "12th century (Song-dynasty copy of a 10th-century original)",
    "description_narrative": "This iconic handscroll vividly depicts the nocturnal revels of Han Xizai, a high-ranking official during China's Southern Tang dynasty. Commissioned to document the minister's private life, it offers a detailed look at various scenes of entertainment and social interaction.",
    "tags": "chinese painting, handscroll, court life, figure painting, 10th century, tang dynasty, narrative, banquet",
    "source": "Wikimedia Commons",
@@ -191,7 +191,8 @@
      0.1859,
      1.0
     ]
-   }
+   },
+   "current_repository": "Palace Museum, Beijing"
   },
   {
    "title": "Summer Mountains",

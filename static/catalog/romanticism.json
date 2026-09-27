@@ -1471,10 +1471,10 @@
    "title": "The Burial of the Sardine",
    "agent_name": "Francisco de Goya",
    "agent_role": "Painter",
-   "creation_date": "1812-1814",
+   "creation_date": "c. 1808–1812",
    "cultural_context": "Romanticism, Spanish",
-   "medium": "Oil on canvas",
-   "date_display": "c. 1812–1814",
+   "medium": "Oil on panel",
+   "date_display": "c. 1808–1812",
    "description_narrative": "A small oil panel depicting a masked carnival procession that traditionally marks the end of Spain's pre-Lenten festivities. It belongs to a group of genre panels Goya painted for the Real Academia de Bellas Artes de San Fernando in Madrid.",
    "tags": "carnival, festival, masks, genre scene, Real Academia, Madrid",
    "source": "Wikimedia Commons",
@@ -1512,7 +1512,8 @@
      1.0,
      0.9918
     ]
-   }
+   },
+   "current_repository": "Real Academia de Bellas Artes de San Fernando, Madrid"
   },
   {
    "title": "The Doctor",
@@ -2837,12 +2838,12 @@
   },
   {
    "title": "Queen Mab's Cave",
-   "agent_name": "J. M. W. Turner",
+   "agent_name": "Imitator of J. M. W. Turner",
    "agent_role": "Painter",
-   "creation_date": "1846",
+   "creation_date": "after 1846",
    "cultural_context": "English Romanticism, late imaginative landscape, mid-19th century",
-   "medium": "Oil on canvas",
-   "date_display": "1846",
+   "medium": "Oil on fabric",
+   "date_display": "after 1846",
    "description_narrative": "Inspired by Shakespeare's fairy queen from Romeo and Juliet, Turner conjures a dreamlike grotto of swirling color populated by tiny dancing figures. Exhibited in the final decade of his career, it shows the artist dissolving landscape into near-abstract fields of light and pigment.",
    "tags": "Turner, Queen Mab, fairy, fantasy, Shakespeare, oil painting, late style",
    "source": "Wikimedia Commons",
@@ -2886,7 +2887,8 @@
      0.8059,
      1.0
     ]
-   }
+   },
+   "current_repository": "Cleveland Museum of Art"
   },
   {
    "title": "Rockets and Blue Lights (Close at Hand) to Warn Steamboats of Shoal Water",
@@ -3847,13 +3849,13 @@
    "agent_role": "Painter",
    "creation_date": "c. 1840",
    "cultural_context": "English Romanticism, late coastal watercolors, mid-19th century",
-   "medium": "Watercolor on paper",
+   "medium": "Oil on canvas",
    "date_display": "c. 1840",
    "description_narrative": "Fishing vessels ride a calm evening sea off the Kent coast at Margate, a place Turner knew intimately from childhood visits and later years spent painting its ever-changing sky. The watercolor's soft, glowing tonality is characteristic of his late seaside studies.",
    "tags": "Turner, Margate, coast, evening, boats, watercolor, sea",
    "source": "Wikimedia Commons",
    "license": "Public Domain",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Joseph%20Mallord%20William%20Turner%20-%20View%20off%20Margate%2C%20Evening%20-%202007.8.117%20-%20Clark%20Art%20Institute.tiff?width=3840",
+   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Joseph%20Mallord%20William%20Turner%20-%20View%20off%20Margate%2C%20Evening%20-%202007.8.117%20-%20Clark%20Art%20Institute.tiff?width=4318",
    "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Joseph%20Mallord%20William%20Turner%20-%20View%20off%20Margate%2C%20Evening%20-%202007.8.117%20-%20Clark%20Art%20Institute.tiff?width=600",
    "license_verdict": "pd",
    "license_basis": "Public domain",
@@ -3863,31 +3865,12 @@
    "featured_rank": 34,
    "needs_frame_crop": true,
    "crop_box": [
-    0.06,
-    0.0,
+    0.09,
+    0.01,
     1.0,
-    0.88
+    1.0
    ],
-   "focal_point": [
-    0.55,
-    0.4
-   ],
-   "delivered_edge": 4059,
-   "resolution_tier": "4K",
-   "aspect_crops": {
-    "16:9": [
-     0.0,
-     0.0081,
-     1.0,
-     0.9922
-    ],
-    "4:3": [
-     0.2379,
-     0.0,
-     1.0,
-     1.0
-    ]
-   }
+   "current_repository": "Clark Art Institute, Williamstown, Massachusetts"
   },
   {
    "title": "The Schöllenen Gorge from the Devil's Bridge, Pass of St Gotthard",

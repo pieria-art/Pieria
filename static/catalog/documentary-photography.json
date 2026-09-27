@@ -263,10 +263,10 @@
    "title": "American Gothic, Washington, D.C.",
    "agent_name": "Gordon Parks",
    "agent_role": "Artist",
-   "creation_date": "",
+   "creation_date": "August 1942",
    "cultural_context": "American, Social Documentary Photography, 1940s",
-   "medium": "Gelatin silver print",
-   "date_display": "1942",
+   "medium": "Safety film negative",
+   "date_display": "August 1942",
    "description_narrative": "Gordon Parks's iconic photograph, \"American Gothic, Washington, D.C.,\" features Ella Watson, a charwoman, standing stoically with a broom and mop before an American flag. This powerful image, often seen as a reinterpretation of Grant Wood's painting, critiques racial and economic disparities in 1940s America.",
    "tags": "portrait, documentary, social realism, american, civil rights, poverty, photography",
    "source": "Wikimedia Commons",
@@ -310,7 +310,8 @@
      0.9713,
      1.0
     ]
-   }
+   },
+   "current_repository": "Library of Congress, Prints and Photographs Division"
   },
   {
    "title": "Power house mechanic working on steam pump",

@@ -2064,7 +2064,7 @@
    "agent_role": "Painter",
    "creation_date": "c. 1483-1485",
    "cultural_context": "Italian Renaissance",
-   "medium": "Tempera on panel",
+   "medium": "Fresco (detached), from the Villa Lemmi",
    "date_display": "c. 1483–1485",
    "description_narrative": "A fresco originally painted for the Villa Lemmi near Florence, showing Venus and the Three Graces bestowing gifts on a young bride. It now resides in the Musée du Louvre in Paris.",
    "tags": "fresco, Venus, Three Graces, Villa Lemmi, Louvre, wedding allegory",
@@ -2103,7 +2103,8 @@
      0.8285,
      1.0
     ]
-   }
+   },
+   "current_repository": "Musée du Louvre, Paris"
   },
   {
    "title": "Adoration of the Magi (Uffizi)",

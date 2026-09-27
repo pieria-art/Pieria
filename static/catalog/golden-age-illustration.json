@@ -727,7 +727,7 @@
    "creation_date": "1895",
    "date_display": "1895",
    "cultural_context": "British Illustration",
-   "medium": "Color lithograph",
+   "medium": "Lithograph",
    "description_narrative": "Walter Crane, one of the towering figures of Victorian book illustration and the Arts and Crafts movement, produced this decorative image of a dancer with cymbals for L'Estampe originale, a landmark Parisian portfolio that brought together Europe's finest printmakers and illustrators in the 1890s. The dancer's swirling drapery and flattened, patterned composition reflect the Art Nouveau and Japonisme currents that Crane, already famous for his children's picture books, absorbed and carried into fine printmaking. Prints like this one show how the era's storybook illustrators moved fluidly between the nursery and the gallery wall.",
    "tags": [
     "crane",
@@ -778,7 +778,8 @@
      1.0,
      0.9852
     ]
-   }
+   },
+   "current_repository": "Petit Palais, Musée des Beaux-Arts de la Ville de Paris"
   },
   {
    "title": "Reaper Death",
@@ -787,7 +788,7 @@
    "creation_date": "1900",
    "date_display": "1900",
    "cultural_context": "British Illustration",
-   "medium": "Illustration",
+   "medium": "Tempera on canvas",
    "description_narrative": "Walter Crane gave the medieval figure of Death the Reaper a striking new form in this allegorical design, part of the symbolic and socially conscious imagery he produced alongside his celebrated fairy-tale picture books. Working in the same decorative, flat-patterned style that made his 'Crane's Toy Books' beloved nursery classics, he turned his illustrator's eye toward weightier themes of mortality and harvest. The image belongs to a long tradition of allegorical illustration that popular magazines and gift books used to make abstract ideas vivid for a broad readership.",
    "tags": [
     "crane",
@@ -839,7 +840,8 @@
      0.6562,
      1.0
     ]
-   }
+   },
+   "current_repository": "Staatliche Kunsthalle Karlsruhe"
   },
   {
    "title": "A Dream (Voyage de Rêve)",
@@ -4310,7 +4312,7 @@
    "creation_date": "1908",
    "date_display": "1908",
    "cultural_context": "American Illustration",
-   "medium": "Charcoal and pastel",
+   "medium": "Colour halftone reproduction of a painting, printed in Harper's Monthly Magazine, vol. 117 (1908), p. 328",
    "description_narrative": "A companion plate to Elizabeth Shippen Green's 1908 Harper's Magazine story \"The Flowers,\" this illustration continues her gentle, romantic visual narrative for the popular monthly. Green's soft-focus charcoal-and-pastel technique became a signature of Harper's golden age illustration, offering readers an intimate, dreamlike counterpoint to the magazine's text. Her decades-long career at Harper's made her one of the best-paid women illustrators of her generation.",
    "tags": [
     "green",

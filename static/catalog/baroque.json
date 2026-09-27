@@ -837,10 +837,10 @@
    }
   },
   {
-   "title": "The Penitent Magdalene",
+   "title": "The Penitent Magdalen",
    "agent_name": "Georges de La Tour",
    "agent_role": "Artist",
-   "creation_date": "",
+   "creation_date": "c. 1640",
    "cultural_context": "Baroque, French, Tenebrism",
    "medium": "Oil on canvas",
    "date_display": "c. 1640",
@@ -932,13 +932,13 @@
    }
   },
   {
-   "title": "Et in Arcadia ego",
+   "title": "Et in Arcadia ego (Les Bergers d'Arcadie)",
    "agent_name": "Nicolas Poussin",
    "agent_role": "Artist",
-   "creation_date": "",
+   "creation_date": "c. 1638",
    "cultural_context": "French Baroque, Classical",
    "medium": "Oil on canvas",
-   "date_display": "c. 1637",
+   "date_display": "c. 1638",
    "description_narrative": "Four Arcadian shepherds and a woman gather around a solemn tomb, contemplating the inscription \"Et in Arcadia ego.\" This iconic Baroque painting explores themes of mortality and the inescapable presence of death, even in an idyllic landscape.",
    "tags": "classical, baroque, memento mori, allegory, pastoral, landscape, contemplation, philosophy",
    "source": "Wikimedia Commons",
@@ -982,7 +982,8 @@
      0.8048,
      1.0
     ]
-   }
+   },
+   "current_repository": "Musée du Louvre, Paris"
   },
   {
    "title": "Seaport with the Embarkation of the Queen of Sheba",
@@ -1340,20 +1341,17 @@
   },
   {
    "title": "Esther before Ahasuerus",
-   "agent_name": "Artemisia Gentileschi",
+   "agent_name": "Franciszek Smuglewicz",
    "agent_role": "Painter",
-   "creation_date": "1628-1635",
+   "creation_date": "1778",
    "cultural_context": "Italian Baroque, Naples",
    "medium": "Oil on canvas",
-   "date_display": "c. 1628-1635",
+   "date_display": "1778",
    "description_narrative": "Artemisia's largest known canvas depicts Queen Esther fainting before King Ahasuerus after breaking court protocol to plead for her people. X-rays revealed a painted-over page boy restraining a dog, a compositional link to Veronese's treatment of the theme.",
    "tags": [
-    "artemisia gentileschi",
     "italian baroque",
     "esther",
     "biblical",
-    "met",
-    "female artist",
     "drama"
    ],
    "source": "Wikimedia Commons",
@@ -1397,7 +1395,8 @@
      0.5829,
      1.0
     ]
-   }
+   },
+   "current_repository": "Lithuanian Art Centre TARTLE, Vilnius"
   },
   {
    "title": "The Abduction of the Sabine Women",
