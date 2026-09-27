@@ -8417,7 +8417,9 @@
      0.9797,
      1.0
     ]
-   }
+   },
+   "delivered_edge": 4001,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Garden at Les Lauves",
@@ -11101,7 +11103,9 @@
      0.6063,
      1.0
     ]
-   }
+   },
+   "delivered_edge": 4948,
+   "resolution_tier": "4K"
   },
   {
    "title": "Blossoming Chestnut Branches",
@@ -11535,7 +11539,9 @@
      0.9536,
      1.0
     ]
-   }
+   },
+   "delivered_edge": 3048,
+   "resolution_tier": "HD"
   },
   {
    "title": "A Meadow in the Mountains: Le Mas de Saint-Paul",
@@ -11693,7 +11699,9 @@
      0.7593,
      1.0
     ]
-   }
+   },
+   "delivered_edge": 2943,
+   "resolution_tier": "HD"
   },
   {
    "title": "Orchard with Blossoming Apricot Trees",

@@ -3652,7 +3652,9 @@
      0.9481,
      1.0
     ]
-   }
+   },
+   "delivered_edge": 4096,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Geographer",

@@ -1878,7 +1878,9 @@
      0.7119,
      1.0
     ]
-   }
+   },
+   "delivered_edge": 4123,
+   "resolution_tier": "4K"
   },
   {
    "title": "Mission Building",

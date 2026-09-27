@@ -3549,7 +3549,9 @@
      0.6984,
      1.0
     ]
-   }
+   },
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Sick Bacchus",
@@ -3653,7 +3655,9 @@
      0.8215,
      1.0
     ]
-   }
+   },
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "The Inspiration of Saint Matthew",

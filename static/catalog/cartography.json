@@ -160,7 +160,9 @@
      0.7076,
      1.0
     ]
-   }
+   },
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Nova Totius Terrarum Orbis Geographica",

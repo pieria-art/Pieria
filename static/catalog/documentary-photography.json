@@ -109,7 +109,9 @@
      0.7728,
      1.0
     ]
-   }
+   },
+   "delivered_edge": 4208,
+   "resolution_tier": "4K"
   },
   {
    "title": "Tractored Out, Childress County Texas",
@@ -269,7 +271,9 @@
      0.9375,
      1.0
     ]
-   }
+   },
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Allie Mae Burroughs",

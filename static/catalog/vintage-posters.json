@@ -54,7 +54,9 @@
      1.0,
      0.4921
     ]
-   }
+   },
+   "delivered_edge": 5905,
+   "resolution_tier": "4K"
   },
   {
    "title": "Moulin Rouge: La Goulue",
@@ -273,7 +275,9 @@
      1.0,
      0.9674
     ]
-   }
+   },
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Reine de Joie",
@@ -699,7 +703,9 @@
      1.0,
      0.9969
     ]
-   }
+   },
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "The Seasons: Spring",

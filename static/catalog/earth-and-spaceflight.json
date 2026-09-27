@@ -107,7 +107,9 @@
      0.9957,
      1.0
     ]
-   }
+   },
+   "delivered_edge": 4166,
+   "resolution_tier": "4K"
   },
   {
    "title": "Pale Blue Dot",
@@ -211,7 +213,9 @@
      0.9701,
      1.0
     ]
-   }
+   },
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Bruce McCandless spacewalk",
@@ -263,7 +267,9 @@
      0.925,
      1.0
     ]
-   }
+   },
+   "delivered_edge": 3072,
+   "resolution_tier": "HD"
   },
   {
    "title": "The Earth seen from Apollo 17",
@@ -581,7 +587,9 @@
      0.7291,
      1.0
     ]
-   }
+   },
+   "delivered_edge": 3000,
+   "resolution_tier": "HD"
   }
  ]
 }

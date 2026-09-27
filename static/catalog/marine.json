@@ -163,7 +163,9 @@
      0.8616,
      1.0
     ]
-   }
+   },
+   "delivered_edge": 3200,
+   "resolution_tier": "HD"
   },
   {
    "title": "Dutch Boats in a Gale",
@@ -1123,7 +1125,9 @@
      0.7453,
      1.0
     ]
-   }
+   },
+   "delivered_edge": 7200,
+   "resolution_tier": "4K"
   },
   {
    "title": "Fishermen at Sea",
@@ -1284,7 +1288,9 @@
      0.8196,
      1.0
     ]
-   }
+   },
+   "delivered_edge": 5878,
+   "resolution_tier": "4K"
   },
   {
    "title": "Peace – Burial at Sea",
@@ -1443,7 +1449,9 @@
      0.8088,
      1.0
     ]
-   }
+   },
+   "delivered_edge": 2330,
+   "resolution_tier": "HD"
   },
   {
    "title": "Lumber Schooners at Evening on Penobscot Bay",

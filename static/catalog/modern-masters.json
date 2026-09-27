@@ -439,7 +439,9 @@
      1.0,
      0.6549
     ]
-   }
+   },
+   "delivered_edge": 3392,
+   "resolution_tier": "HD"
   },
   {
    "title": "Jeanne Hébuterne with Yellow Sweater",
@@ -546,7 +548,9 @@
      0.9569,
      1.0
     ]
-   }
+   },
+   "delivered_edge": 4430,
+   "resolution_tier": "4K"
   },
   {
    "title": "Woman in a Striped Dress",

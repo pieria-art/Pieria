@@ -1525,7 +1525,9 @@
      0.867,
      1.0
     ]
-   }
+   },
+   "delivered_edge": 2446,
+   "resolution_tier": "HD"
   },
   {
    "title": "Virgin and Child with the Young Saint John the Baptist",
@@ -2229,7 +2231,9 @@
      1.0,
      1.0
     ]
-   }
+   },
+   "delivered_edge": 6000,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Virgin and Child with Saint John and Two Angels (Studio of Botticelli)",
@@ -3340,7 +3344,9 @@
      1.0,
      0.9826
     ]
-   }
+   },
+   "delivered_edge": 4854,
+   "resolution_tier": "4K"
   },
   {
    "title": "Mars, Venus and Cupid",

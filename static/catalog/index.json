@@ -10,7 +10,7 @@
    "license": "Public Domain",
    "count": 40,
    "cover_thumbnail": "https://commons.wikimedia.org/wiki/Special:FilePath/Mona%20Lisa%2C%20by%20Leonardo%20da%20Vinci%2C%20from%20C2RMF.jpg?width=600",
-   "min_tier": "4K"
+   "min_tier": "HD"
   },
   {
    "id": "impressionism",
@@ -130,7 +130,7 @@
    "license": "Public Domain",
    "count": 25,
    "cover_thumbnail": "https://commons.wikimedia.org/wiki/Special:FilePath/Hercules%20and%20the%20Lernaean%20Hydra%2C%201875-1876%2C%20by%20Gustave%20Moreau%20-%20Art%20Institute%20of%20Chicago%20-%20DSC09590.JPG?width=600",
-   "min_tier": "4K"
+   "min_tier": "HD"
   },
   {
    "id": "cosmos",
