@@ -13,8 +13,8 @@
    "cultural_context": "Modern Astronomy, Global Collaboration",
    "medium": "Photograph",
    "date_display": "2022",
-   "description_narrative": "Golden towers of dust climb into a deep blue field crowded with stars, their rims glowing where light escapes the haze within. NASA, ESA, CSA and STScI imaged the pillars in near-infrared light.",
-   "tags": "pillars of creation, eagle nebula, dust towers, infrared, webb telescope, space",
+   "description_narrative": "Towering columns of dust rise in gold and copper tones against a deep blue field, resembling spires and arches carved from a desert landscape. Captured in near-infrared light by the James Webb Space Telescope, these pillars are filled with semi-transparent gas and dust and mark a region where young stars are still forming.",
+   "tags": "nebula, pillars of creation, webb telescope, star formation, infrared, eagle nebula, gas and dust",
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pillars%20of%20Creation%20%28NIRCam%20Image%29.jpg?width=3840",
@@ -62,54 +62,53 @@
    "title": "Cosmic Cliffs Carina Nebula",
    "agent_name": "NASA, ESA, CSA, STScI",
    "agent_role": "Artist",
-   "creation_date": "",
+   "creation_date": "12 July 2022",
    "cultural_context": "21st Century, Space Exploration",
-   "medium": "Photograph",
-   "date_display": "Undated",
-   "description_narrative": "Jagged amber cliffs of gas and dust rise into a star-strewn blue sky, their peaks rimmed with light and studded with brilliant points where young stars burn through the haze. NASA, ESA, CSA and STScI captured this view of the Carina Nebula's star-forming edge.",
-   "tags": "carina nebula, cosmic cliffs, star formation, infrared, webb telescope, space",
-   "source": "Wikimedia Commons",
+   "medium": "Infrared image — Webb NIRCam",
+   "date_display": "2022",
+   "description_narrative": "Webb's near-infrared camera reveals the edge of the star-forming region NGC 3324, nicknamed the Cosmic Cliffs, roughly 7,600 light-years away in the Carina Nebula. Jagged, amber ridges of gas and dust rise like a mountain range across the frame, with countless spiked stars scattered against the deep blue sky above.",
+   "tags": "nebula, carina nebula, webb telescope, star formation, cosmic cliffs, space",
+   "source": "Webb",
    "license": "PDM-1.0",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/%22Cosmic%20Cliffs%22%20in%20the%20Carina%20Nebula%20%28NIRCam%20Compass%20Image%29%20%282022-031%29.png?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/%22Cosmic%20Cliffs%22%20in%20the%20Carina%20Nebula%20%28NIRCam%20Compass%20Image%29%20%282022-031%29.png?width=600",
-   "focal_point": [
-    0.4,
-    0.45
-   ],
+   "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2022/07/STScI-01GA6KKWG229B16K4Q38CH3BXS.png",
+   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2022/07/STScI-01GA6KKWG229B16K4Q38CH3BXS.png/jcr:content/renditions/2000x1158.png",
    "featured_rank": 75,
    "license_verdict": "pd",
-   "license_basis": "Public domain",
+   "license_basis": "Public domain (NASA/STScI release)",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
-   "credit_line": "\"Cosmic Cliffs\" in the Carina Nebula (NIRCam Compass Image)",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 7680,
-   "resolution_tier": "8K",
+   "credit_line": "Image: NASA, ESA, CSA, STScI",
+   "license_verified": "2026-09-27",
+   "attribution_url": "https://science.nasa.gov/asset/webb/cosmic-cliffs-in-the-carina-nebula-nircam-image/",
    "aspect_crops": {
     "16:9": [
      0.0,
-     0.1499,
+     0.0144,
      1.0,
-     0.8801
+     0.9856
     ],
     "9:16": [
-     0.28,
+     0.2871,
      0.0,
-     0.7134,
+     0.6129,
      1.0
     ],
     "4:3": [
+     0.1139,
      0.0,
-     0.013,
-     1.0,
-     0.9867
+     0.8861,
+     1.0
     ],
     "3:4": [
-     0.21,
+     0.2328,
      0.0,
-     0.7878,
+     0.6672,
      1.0
     ]
-   }
+   },
+   "focal_point": [
+    0.47,
+    0.4
+   ]
   },
   {
    "title": "Hubble Ultra Deep Field",
@@ -119,8 +118,8 @@
    "cultural_context": "21st century science, space exploration",
    "medium": "Photograph",
    "date_display": "between 3 September 2003 and 16 January 2004",
-   "description_narrative": "Thousands of tiny, faint galaxies in every shape and color speckle an otherwise black field, from small spirals to smudges of orange light. NASA and the European Space Agency assembled this deep-field view between September 2003 and January 2004.",
-   "tags": "deep field, galaxies, astrophotography, hubble, space, distant universe",
+   "description_narrative": "Countless tiny galaxies of every shape and color speckle a black field, from faint smudges to bright spiral disks. Known as the Hubble Ultra Deep Field, this view of nearly 10,000 galaxies is the deepest visible-light image of the cosmos, a core sample cutting across billions of light-years.",
+   "tags": "galaxies, deep field, hubble, deep space, astrophotography, cosmology",
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Hubble%20ultra%20deep%20field%20high%20rez%20edit1.jpg?width=3840",
@@ -166,162 +165,159 @@
   },
   {
    "title": "Sombrero Galaxy",
-   "agent_name": "NASA, ESA, STScI",
+   "agent_name": "NASA, ESA, CSA, STScI",
    "agent_role": "Artist",
-   "creation_date": "between May 2003 and June 2003",
-   "cultural_context": "Scientific Imaging, Modern Astronomy",
-   "medium": "Photograph",
-   "date_display": "between May 2003 and June 2003",
-   "description_narrative": "Seen edge-on, a galaxy's bright bulge glows through a thin, dark band of dust that rings it like a brim, a soft halo fading into the surrounding black. The Hubble Heritage Team released this image in 2003.",
-   "tags": "sombrero galaxy, edge-on galaxy, dust lane, hubble, astrophotography, space",
-   "source": "Wikimedia Commons",
+   "creation_date": "3 June 2025",
+   "cultural_context": "21st Century, Space Exploration",
+   "medium": "Infrared image — Webb NIRCam",
+   "date_display": "2025",
+   "description_narrative": "The galaxy appears almost edge-on, a bright white bulge wrapped in a thin band of dust that blocks light from stars behind it. Captured with Webb's NIRCam camera, it lies around 30 million light-years away in the constellation Virgo, its core holding roughly 2,000 globular clusters of old stars.",
+   "tags": "galaxy, spiral galaxy, edge-on galaxy, dust lane, infrared image, webb, globular clusters, virgo",
+   "source": "Webb",
    "license": "PDM-1.0",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/M104%20ngc4594%20sombrero%20galaxy%20hi-res.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/M104%20ngc4594%20sombrero%20galaxy%20hi-res.jpg?width=600",
-   "focal_point": [
-    0.5,
-    0.52
-   ],
+   "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2025/06/STScI-01JWC17WKB372KQ7BM0KYZS0J5.png",
+   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2025/06/STScI-01JWC17WKB372KQ7BM0KYZS0J5.png/jcr:content/renditions/2000x1867.png",
    "featured_rank": 60,
    "license_verdict": "pd",
-   "license_basis": "Public domain",
+   "license_basis": "Public domain (NASA/STScI release)",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
-   "credit_line": "http://www.spacetelescope.org/images/opo0328a/ ([cdn.spacetelescope.org/archives/images/screen/opo0328a.jpg direct link]) http://hubblesite.org/newscenter/newsdesk/archive/releases/2003/28/image/a",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 7680,
-   "resolution_tier": "8K",
+   "credit_line": "Image: NASA, ESA, CSA, STScI",
+   "license_verified": "2026-09-27",
+   "attribution_url": "https://science.nasa.gov/asset/webb/sombrero-galaxy-nircam/",
    "aspect_crops": {
     "16:9": [
      0.0,
-     0.0,
+     0.1887,
      1.0,
-     1.0
+     0.7913
     ],
     "9:16": [
-     0.3423,
+     0.2375,
      0.0,
-     0.6576,
+     0.7625,
      1.0
     ],
     "4:3": [
-     0.1264,
      0.0,
-     0.8736,
-     1.0
+     0.0882,
+     1.0,
+     0.8918
     ],
     "3:4": [
-     0.2898,
+     0.15,
      0.0,
-     0.7102,
+     0.85,
      1.0
     ]
-   }
+   },
+   "focal_point": [
+    0.5,
+    0.49
+   ]
   },
   {
    "title": "Crab Nebula",
-   "agent_name": "NASA, ESA",
+   "agent_name": "NASA, ESA, CSA, STScI",
    "agent_role": "Artist",
-   "creation_date": "1 December 2005",
-   "cultural_context": "Astronomical Research, International Collaboration",
-   "medium": "Photograph",
-   "date_display": "1 December 2005",
-   "description_narrative": "A tangle of glowing filaments, veined in green, orange and blue-white, spreads outward like torn lace against the dark. NASA, ESA and researchers J. Hester and A. Loll produced this mosaic in 2005.",
-   "tags": "crab nebula, filaments, gas cloud, astrophotography, hubble, space",
-   "source": "Wikimedia Commons",
+   "creation_date": "30 October 2023",
+   "cultural_context": "21st Century, Space Exploration",
+   "medium": "Infrared image — Webb NIRCam and MIRI",
+   "date_display": "2023",
+   "description_narrative": "In this Webb infrared view, the Crab Nebula appears as a cage-like lattice of orange-red filaments wrapped around a pale blue-white interior. That soft white haze is synchrotron radiation, thrown off by particles spiraling near light-speed around a neutron star's magnetic field. The nebula lies roughly 6,500 light-years away in the constellation Taurus.",
+   "tags": "crab nebula, supernova remnant, nebula, webb, infrared, synchrotron radiation",
+   "source": "Webb",
    "license": "PDM-1.0",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Crab%20Nebula.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Crab%20Nebula.jpg?width=600",
-   "focal_point": [
-    0.52,
-    0.5
-   ],
+   "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2023/10/STScI-01HBBMF6GFYQG7ECGX1WD3W92B.png",
+   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2023/10/STScI-01HBBMF6GFYQG7ECGX1WD3W92B.png/jcr:content/renditions/2000x1742.jpg",
    "featured_rank": 65,
    "license_verdict": "pd",
-   "license_basis": "Public domain",
+   "license_basis": "Public domain (NASA/STScI release)",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
-   "credit_line": "HubbleSite: gallery, release.",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 3864,
-   "resolution_tier": "4K",
+   "credit_line": "Image: NASA, ESA, CSA, STScI, Tea Temim (Princeton University); Image Processing: Joseph DePasquale (STScI)",
+   "license_verified": "2026-09-27",
+   "attribution_url": "https://science.nasa.gov/asset/webb/crab-nebula-nircam-and-miri-image/",
    "aspect_crops": {
     "16:9": [
      0.0,
-     0.2188,
+     0.177,
      1.0,
-     0.7813
+     0.823
     ],
     "9:16": [
-     0.2188,
+     0.2551,
      0.0,
-     0.7813,
+     0.7449,
      1.0
     ],
     "4:3": [
      0.0,
-     0.125,
+     0.0694,
      1.0,
-     0.875
+     0.9306
     ],
     "3:4": [
-     0.125,
+     0.1734,
      0.0,
-     0.875,
+     0.8266,
      1.0
     ]
-   }
+   },
+   "focal_point": [
+    0.5,
+    0.5
+   ]
   },
   {
    "title": "Horsehead Nebula",
-   "agent_name": "Taavi Niittee",
+   "agent_name": "NASA, ESA, CSA",
    "agent_role": "Artist",
-   "creation_date": "",
-   "cultural_context": "Modern astrophotography",
-   "medium": "Photograph",
-   "date_display": "Undated",
-   "description_narrative": "A dark, horse-shaped column of dust rears up against a glowing curtain of red, a brilliant star flaring nearby and a smaller cloud of blue light smoldering below. Astrophotographer Taavi Niittee captured this alongside the neighboring flame nebula.",
-   "tags": "horsehead nebula, flame nebula, dark nebula, astrophotography, red, silhouette",
-   "source": "Wikimedia Commons",
+   "creation_date": "29 April 2024",
+   "cultural_context": "21st Century, Space Exploration",
+   "medium": "Infrared image — Webb NIRCam",
+   "date_display": "2024",
+   "description_narrative": "A brilliant, diffraction-spiked star blazes above the reddish sky, while the pale blue-white crest of the Horsehead Nebula rises from the bottom of the frame like a cloud-wrapped mane, its edges laced with wispy hydrogen gas. Small distant galaxies dot the dark background around the glowing star. This portion of the nebula's mane is about 0.8 light-years wide.",
+   "tags": "horsehead nebula, webb, nebula, star formation, infrared, hydrogen gas",
+   "source": "Webb",
    "license": "PDM-1.0",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Horsehead%20flame%20nebula%20logoga.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Horsehead%20flame%20nebula%20logoga.jpg?width=600",
-   "focal_point": [
-    0.56,
-    0.46
-   ],
+   "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2024/04/STScI-01HV4CG0EACM1MC07E10X19KNX.png",
+   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2024/04/STScI-01HV4CG0EACM1MC07E10X19KNX.png/jcr:content/renditions/1987x2000.png",
    "featured_rank": 75,
    "license_verdict": "pd",
-   "license_basis": "CC0",
+   "license_basis": "Public domain (NASA/STScI release)",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
-   "credit_line": "Own work",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 5744,
-   "resolution_tier": "4K",
+   "credit_line": "Image: NASA, ESA, CSA, Karl Misselt (University of Arizona), Alain Abergel (IAS, CNRS)",
+   "license_verified": "2026-09-27",
+   "attribution_url": "https://science.nasa.gov/asset/webb/horsehead-nebula-nircam-image/",
    "aspect_crops": {
     "16:9": [
      0.0,
-     0.0899,
+     0.4413,
      1.0,
-     0.9192
+     1.0
     ],
     "9:16": [
-     0.32,
+     0.1669,
      0.0,
-     0.7016,
+     0.7331,
      1.0
     ],
     "4:3": [
-     0.02,
      0.0,
-     0.9243,
+     0.255,
+     1.0,
      1.0
     ],
     "3:4": [
-     0.22,
+     0.1225,
      0.0,
-     0.7288,
+     0.8775,
      1.0
     ]
-   }
+   },
+   "focal_point": [
+    0.5,
+    0.72
+   ]
   },
   {
    "title": "Andromeda Galaxy",
@@ -331,8 +327,8 @@
    "cultural_context": "Modern Astronomy, Space Exploration",
    "medium": "Photograph",
    "date_display": "Undated",
-   "description_narrative": "A vast spiral galaxy tilts across the frame, its core glowing amber and its dusty arms fanning outward in threads of blue, dotted with countless pinprick stars. NASA and ESA astronomers assembled this view of the Andromeda Galaxy from hundreds of overlapping exposures.",
-   "tags": "galaxy, spiral, andromeda, astrophotography, space, mosaic",
+   "description_narrative": "A vast spiral galaxy stretches nearly edge-on, its golden core fading into blue-tinged dust lanes and scattered stars. This mosaic, assembled from more than 600 overlapping Hubble exposures taken over a decade, is the largest such portrait ever made of the Andromeda galaxy, which lies 2.5 million light-years away.",
+   "tags": "galaxy, spiral galaxy, andromeda, hubble, mosaic, astrophotography, deep space",
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Andromeda%20Galaxy%20Hubble%20M31Mosaic%202025%2042208x9870.jpg?width=3840",
@@ -378,57 +374,56 @@
   },
   {
    "title": "Veil Nebula",
-   "agent_name": "Jose A Mtanous",
+   "agent_name": "NASA, ESA",
    "agent_role": "Artist",
-   "creation_date": "",
-   "cultural_context": "Contemporary",
-   "medium": "Photograph",
-   "date_display": "2010s",
-   "description_narrative": "Delicate filaments of red and blue lace stretch across a dense starfield, thin as smoke and frayed at their edges like torn fabric. Astrophotographer Jose A Mtanous captured this wide view of the Veil Nebula complex.",
-   "tags": "veil nebula, supernova remnant, filaments, astrophotography, deep sky, space",
-   "source": "Wikimedia Commons",
+   "creation_date": "24 September 2015",
+   "cultural_context": "Scientific Imaging, Modern Astronomy",
+   "medium": "Photograph — Hubble",
+   "date_display": "2015",
+   "description_narrative": "Delicate, ribbon-like filaments of red, gold, blue, and purple light drift diagonally across a dark, star-flecked sky, tangled together like threads of torn cloth. These are the remains of the Veil Nebula, debris from a star that exploded about 8,000 years ago, now spanning 110 light-years and lying roughly 2,100 light-years away in Cygnus.",
+   "tags": "supernova remnant, veil nebula, hubble, cygnus constellation, nebula filaments, gas cloud, nebula",
+   "source": "Hubble",
    "license": "PDM-1.0",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Veil%20Nebula%20Complex%20NGC%206960%2C%206992%2C%206995%2C%206974%2C%206979%2C%20IC%201340.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Veil%20Nebula%20Complex%20NGC%206960%2C%206992%2C%206995%2C%206974%2C%206979%2C%20IC%201340.jpg?width=600",
-   "focal_point": [
-    0.5,
-    0.45
-   ],
+   "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2015/09/STScI-01EVT2C45NSH3P4GTPXYY828KC.tif/jcr:content/renditions/10681x7121.jpg",
+   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2015/09/STScI-01EVT2C45NSH3P4GTPXYY828KC.tif/jcr:content/renditions/1280x853.jpg",
    "featured_rank": 40,
    "license_verdict": "pd",
-   "license_basis": "CC0",
+   "license_basis": "Public domain (NASA/STScI release)",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
-   "credit_line": "Own work",
-   "license_verified": "2026-07-16",
+   "credit_line": "NASA, ESA, Hubble Heritage Project",
+   "license_verified": "2026-09-27",
    "below_floor_ok": true,
-   "delivered_edge": 3338,
-   "resolution_tier": "HD",
+   "attribution_url": "https://science.nasa.gov/asset/hubble/veil-nebula-supernova-remnant/",
    "aspect_crops": {
-    "3:4": [
-     0.0,
-     0.0,
-     1.0,
-     1.0
-    ],
     "16:9": [
      0.0,
-     0.1199,
+     0.0781,
      1.0,
-     0.5424
+     0.9219
     ],
     "9:16": [
-     0.1255,
+     0.3125,
      0.0,
-     0.8745,
+     0.6875,
      1.0
     ],
     "4:3": [
+     0.0556,
      0.0,
-     0.1201,
-     1.0,
-     0.6833
+     0.9444,
+     1.0
+    ],
+    "3:4": [
+     0.25,
+     0.0,
+     0.75,
+     1.0
     ]
-   }
+   },
+   "focal_point": [
+    0.5,
+    0.55
+   ]
   },
   {
    "title": "Southern Ring Nebula Webb",
@@ -438,8 +433,8 @@
    "cultural_context": "21st Century, Scientific Visualization",
    "medium": "Photograph",
    "date_display": "2022",
-   "description_narrative": "Two side-by-side views of the same glowing shell show it first blazing warm orange, then, in sharper detail, a delicate lattice of teal and white rings. NASA's Scientific Visualization Studio produced this comparison of the Southern Ring Nebula.",
-   "tags": "southern ring nebula, planetary nebula, infrared, webb telescope, comparison, space",
+   "description_narrative": "Two side-by-side views show the same ring around a central star, the left panel soft and cloud-like, the right revealing intricate shells and radiating spikes of dust. Captured by the James Webb Space Telescope combining near- and mid-infrared light, the left image highlights hot gas recently ejected from the central star of the nebula.",
+   "tags": "nebula, southern ring nebula, webb telescope, planetary nebula, infrared, composite image, space",
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Webb%20Space%20Telescope%20Studies%20the%20Southern%20Ring%20Nebula%20%28SVS31284%20-%2052551161139%20deec534918%20o%29.png?width=3840",
@@ -491,8 +486,8 @@
    "cultural_context": "21st century astronomy, global scientific collaboration",
    "medium": "Photograph",
    "date_display": "2022",
-   "description_narrative": "A knot of glowing galaxies clusters together, their haze crossed by ribbons of orange dust where two of them appear to be merging, a looser spiral drifting apart to one side. NASA, ESA, CSA and STScI produced this mosaic of Stephan's Quintet.",
-   "tags": "stephans quintet, galaxy cluster, galaxy merger, infrared, webb telescope, space",
+   "description_narrative": "Five galaxies cluster together against a dense starfield, their spiral arms and glowing cores overlapping in a tangle of blue haze and golden dust. This mosaic, the largest Webb Space Telescope image at the time, combines nearly 1,000 exposures from its near- and mid-infrared instruments to capture the group known as Stephan's Quintet.",
+   "tags": "galaxies, stephans quintet, webb telescope, galaxy cluster, mosaic, infrared, space",
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Stephan%27s%20Quintet%20taken%20by%20James%20Webb%20Space%20Telescope.jpg?width=3840",
@@ -544,8 +539,8 @@
    "cultural_context": "Contemporary Astronomical Imaging, International",
    "medium": "Photograph",
    "date_display": "25 April 2005",
-   "description_narrative": "A slender spire of dust rises from a golden base into cooler blue haze, its lit tip flaring bright against the dark. Astronomers nicknamed this pillar 'the fairy'; NASA, ESA and the Hubble Heritage Team recorded it in 2005.",
-   "tags": "eagle nebula, pillar, dust, star formation, hubble, space",
+   "description_narrative": "A towering pillar of dust rises against a hazy blue backdrop, its ragged silhouette rimmed with orange light from unseen stars beyond. Part of the Eagle Nebula, this pillar spans about ten light-years and marks a stellar nursery of forming stars; the image was released for the Hubble telescope's fifteenth anniversary.",
+   "tags": "nebula, eagle nebula, pillar, star formation, hubble, dust, space",
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Fairy%20of%20Eagle%20Nebula.jpg?width=3840",
@@ -597,8 +592,8 @@
    "cultural_context": "21st Century Scientific Imaging, Space Exploration",
    "medium": "Photograph",
    "date_display": "2022",
-   "description_narrative": "Rust-red filaments of gas fold and stretch around a hollow, smoky cavity, a tight cluster of blazing blue-white stars burning at its heart. The Webb telescope's ERO Production Team, with NASA, ESA, CSA and STScI, produced this image.",
-   "tags": "tarantula nebula, star cluster, gas filaments, infrared, webb telescope, space",
+   "description_narrative": "Rust-red clouds of dust swirl around a bright, densely packed cluster of blue-white stars at the center of the frame. This image from the James Webb Space Telescope's Near-Infrared Camera stretches 340 light-years across and reveals tens of thousands of young stars once hidden by cosmic dust, with the most active region sparkling pale blue.",
+   "tags": "nebula, tarantula nebula, webb telescope, star formation, infrared, gas and dust, space",
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tarantula%20Nebula%20by%20JWST.jpg?width=3840",
@@ -650,8 +645,8 @@
    "cultural_context": "Modern astronomy, scientific imaging",
    "medium": "Photograph",
    "date_display": "21st century",
-   "description_narrative": "A great red-centered eye stares out from the dark, ringed by a teal halo of frayed, glowing threads. NASA and the University of Arizona produced this infrared view.",
-   "tags": "helix nebula, planetary nebula, infrared, eye, astrophotography, space",
+   "description_narrative": "A luminous red core sits inside a swirling teal ring flecked with fine filaments, giving the whole scene the look of a giant cosmic eye. Captured in infrared by NASA's Spitzer Space Telescope, this nebula lies about 700 light-years away in the constellation Aquarius and marks the death of a sun-like star.",
+   "tags": "nebula, helix nebula, planetary nebula, spitzer, infrared, aquarius, dying star",
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Comets%20Kick%20up%20Dust%20in%20Helix%20Nebula%20%28PIA09178%29.jpg?width=3840",
@@ -703,8 +698,8 @@
    "cultural_context": "Contemporary astronomical research, global collaboration",
    "medium": "Photograph",
    "date_display": "23 May 2013",
-   "description_narrative": "A glowing donut hangs in space, its interior shading from blue through green to a fiery orange rim, faint red shells rippling out into the dark beyond it. Combining Hubble and Large Binocular Telescope data revealed the nebula's true shape in 2013.",
-   "tags": "ring nebula, planetary nebula, gas shells, hubble, astrophotography, space",
+   "description_narrative": "A glowing ring of blue-green gas encircles a hazy interior, surrounded by faint red filaments radiating outward like petals. This composite combines visible light from the Hubble Space Telescope with infrared data from the Large Binocular Telescope, revealing a football-shaped structure filling the interior of the nebula rather than leaving it empty.",
+   "tags": "nebula, ring nebula, planetary nebula, hubble, composite image, gas, space",
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Hubble%20reveals%20the%20Ring%20Nebula%E2%80%99s%20true%20shape.jpg?width=3840",
@@ -756,8 +751,8 @@
    "cultural_context": "Contemporary scientific imaging",
    "medium": "Photograph",
    "date_display": "11 January 2006",
-   "description_narrative": "Billows of pink, violet and amber cloud churn around a blazing white core, dark lanes of dust cutting through the glow like smoke. NASA, ESA and the Hubble Space Telescope Orion Treasury Project Team assembled this mosaic in 2006.",
-   "tags": "orion nebula, star nursery, gas cloud, astrophotography, hubble, space",
+   "description_narrative": "Billowing clouds of pink, orange, and violet gas surround a bright central cavity ringed with dust and scattered stars. This mosaic reveals the star-forming heart of the Orion Nebula in unprecedented detail, home to more than 3,000 stars of various sizes and shaped by the ultraviolet radiation of four massive young stars at its center.",
+   "tags": "nebula, orion nebula, star formation, hubble, trapezium, gas and dust, astrophotography",
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Orion%20Nebula%20-%20Hubble%202006%20mosaic%2018000.jpg?width=3840",
@@ -803,56 +798,55 @@
   },
   {
    "title": "Pinwheel Galaxy",
-   "agent_name": "Taavi Niittee",
+   "agent_name": "NASA, ESA, STScI",
    "agent_role": "Artist",
-   "creation_date": "",
-   "cultural_context": "Astronomical Imaging",
-   "medium": "Photograph",
-   "date_display": "Undated",
-   "description_narrative": "A face-on spiral hangs against a sky flecked with faint stars, its pale arms threaded with blue and dotted pink where clusters of young stars cluster along the curves. Astrophotographer Taavi Niittee of the Tõrva Astronomy Club made this exposure.",
-   "tags": "pinwheel galaxy, spiral galaxy, astrophotography, amateur astronomy, star clusters",
-   "source": "Wikimedia Commons",
+   "creation_date": "September 9, 2026",
+   "cultural_context": "Scientific Imaging, X-ray Astronomy",
+   "medium": "X-ray/optical composite — Chandra + Hubble",
+   "date_display": "2026",
+   "description_narrative": "M101, the Pinwheel Galaxy, sits about 21 million light-years away in this composite that combines purple X-ray data from Chandra with visible light from Hubble. Spiral arms of purple and violet wind clockwise around a bright golden-white core, dotted with scattered points of light.",
+   "tags": "spiral galaxy, x-ray, chandra, hubble, composite image, pinwheel galaxy",
+   "source": "Chandra (+ composite)",
    "license": "PDM-1.0",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pinwheel%20galaxy.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pinwheel%20galaxy.jpg?width=600",
-   "focal_point": [
-    0.55,
-    0.55
-   ],
+   "source_url": "https://chandra.harvard.edu/photo/2026/m101/m101_lg.jpg",
+   "thumbnail_url": "https://chandra.harvard.edu/photo/2026/m101/m101.jpg",
    "featured_rank": 45,
    "license_verdict": "pd",
-   "license_basis": "CC0",
+   "license_basis": "Public domain (NASA/STScI release)",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
-   "credit_line": "Own work",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 4656,
-   "resolution_tier": "4K",
+   "credit_line": "X-ray: NASA/CXC/Univ. of Alabama/M. Muhibullah et al.; Optical: NASA/ESA/STScI; Image Processing: NASA/CXC/SAO/N. Wolk",
+   "license_verified": "2026-09-27",
+   "attribution_url": "https://chandra.harvard.edu/photo/2026/m101/",
    "aspect_crops": {
     "16:9": [
      0.0,
-     0.0503,
+     0.1891,
      1.0,
-     0.9497
+     0.7509
     ],
     "9:16": [
-     0.274,
+     0.2384,
      0.0,
-     0.6258,
+     0.8016,
      1.0
     ],
     "4:3": [
-     0.0331,
      0.0,
-     0.867,
-     1.0
+     0.0855,
+     1.0,
+     0.8345
     ],
     "3:4": [
-     0.2155,
+     0.1445,
      0.0,
-     0.6846,
+     0.8955,
      1.0
     ]
-   }
+   },
+   "focal_point": [
+    0.53,
+    0.47
+   ]
   },
   {
    "title": "Antennae Galaxies",
@@ -862,8 +856,8 @@
    "cultural_context": "21st century scientific imaging",
    "medium": "Photograph",
    "date_display": "16 October 2006",
-   "description_narrative": "Two spiral galaxies have folded into a single curved arc, their arms smeared together and studded with hot pink knots where new stars are bursting to life. Hubble recorded this collision in 2006.",
-   "tags": "galaxy collision, antennae galaxies, star formation, astrophotography, space",
+   "description_narrative": "Two spiral galaxies collide in a slow-motion firestorm, their star-studded arms tangled into a curved streamer laced with dark dust lanes and pink knots of new stars. Cataloged as NGC 4038 and NGC 4039, the two galaxies began colliding a few hundred million years ago, igniting new star formation as they merge.",
+   "tags": "galaxy collision, spiral galaxy, interacting galaxies, star formation, hubble, astrophotography, deep space",
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Antennae%20galaxies%20xl.jpg?width=3840",
@@ -915,8 +909,8 @@
    "cultural_context": "Modern Astronomy, Space Exploration",
    "medium": "Photograph",
    "date_display": "1 February 2010",
-   "description_narrative": "A rugged peak of gas and dust juts upward from a hazy base, its ridges glowing gold where starlight sculpts the edges, thin jets spraying from its summit into a blue-green sky. NASA, ESA and M. Livio released this for Hubble's 20th anniversary in 2010.",
-   "tags": "mystic mountain, carina nebula, pillar, star formation, hubble, space",
+   "description_narrative": "A craggy peak of gas and dust rises from a hazy cloudscape streaked with wisps and dotted with bright stars. Part of the Carina Nebula, 7,500 light-years away, this three-light-year-tall pillar is being eroded by light from nearby stars, its infant stars shooting jets of gas from its peaks.",
+   "tags": "nebula, carina nebula, star formation, pillar, hubble, gas and dust, space",
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Mystic%20mountaindddd.jpg?width=3840",
@@ -968,8 +962,8 @@
    "cultural_context": "Scientific imaging, Space exploration",
    "medium": "Photograph",
    "date_display": "Undated",
-   "description_narrative": "Twin wings of glowing gas spread from a bright, cinched waist, their edges licked with orange and violet against black space. The Hubble SM4 Early Release Observations team produced this image.",
-   "tags": "planetary nebula, butterfly nebula, gas, symmetry, astrophotography, space",
+   "description_narrative": "Two glowing lobes of gas billow outward from a bright central waist, edged in orange and threaded with fine filaments against a starry background. This planetary nebula, NGC 6302, is the expanding wreckage of a dying sun-like star, its wings spanning more than two light-years as gas rushes outward at over 600,000 miles an hour.",
+   "tags": "nebula, planetary nebula, butterfly nebula, ngc 6302, hubble, dying star, gas",
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/NGC%206302%20Hubble%202009.full.jpg?width=3840",
@@ -1017,161 +1011,158 @@
    "title": "Cartwheel Galaxy Webb",
    "agent_name": "NASA, ESA, CSA, STScI",
    "agent_role": "Artist",
-   "creation_date": "",
-   "cultural_context": "Contemporary Astronomy, Space Exploration",
-   "medium": "Photograph",
+   "creation_date": "2 August 2022",
+   "cultural_context": "21st Century, Space Exploration",
+   "medium": "Infrared image — Webb NIRCam and MIRI",
    "date_display": "2022",
-   "description_narrative": "A ring-shaped galaxy glows like a wheel with spokes of dust reaching toward a bright inner hub, two smaller companion galaxies drifting nearby in the dark. NASA, ESA, CSA and STScI combined near- and mid-infrared exposures to make this composite.",
-   "tags": "cartwheel galaxy, ring galaxy, infrared, webb telescope, astrophotography, space",
-   "source": "Wikimedia Commons",
+   "description_narrative": "Webb's composite view shows the Cartwheel Galaxy, formed by a high-speed collision about 400 million years ago, alongside its two smaller companion galaxies. A bright inner ring and a wider outer ring are linked by glowing red spokes, with blue dust and scattered background galaxies filling the surrounding field.",
+   "tags": "galaxy, cartwheel galaxy, webb telescope, galaxy collision, infrared, space",
+   "source": "Webb",
    "license": "PDM-1.0",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Cartwheel%20Galaxy%20%28NIRCam%20and%20MIRI%20Composite%20Image%29%20%28weic2211a%29.jpeg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Cartwheel%20Galaxy%20%28NIRCam%20and%20MIRI%20Composite%20Image%29%20%28weic2211a%29.jpeg?width=600",
-   "focal_point": [
-    0.6,
-    0.55
-   ],
+   "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2022/08/STScI-01G9G4J23CDPVNGCYDJRZTTJQN.png",
+   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2022/08/STScI-01G9G4J23CDPVNGCYDJRZTTJQN.png/jcr:content/renditions/2000x1841.png",
    "featured_rank": 48,
    "license_verdict": "pd",
-   "license_basis": "Public domain",
+   "license_basis": "Public domain (NASA/STScI release)",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
-   "credit_line": "Cartwheel Galaxy (NIRCam and MIRI Composite Image)",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 4685,
-   "resolution_tier": "4K",
+   "credit_line": "Image: NASA, ESA, CSA, STScI, Webb ERO Production Team",
+   "license_verified": "2026-09-27",
+   "attribution_url": "https://science.nasa.gov/asset/webb/cartwheel-galaxy-nircam-and-miri-composite-image/",
    "aspect_crops": {
     "16:9": [
      0.0,
-     0.2144,
+     0.1944,
      1.0,
-     0.8256
+     0.8056
     ],
     "9:16": [
-     0.4206,
+     0.3961,
      0.0,
-     0.9384,
+     0.9139,
      1.0
     ],
     "4:3": [
      0.0,
-     0.1126,
+     0.0926,
      1.0,
-     0.9274
+     0.9074
     ],
     "3:4": [
-     0.3097,
+     0.2999,
      0.0,
-     1.0,
+     0.9901,
      1.0
     ]
-   }
+   },
+   "focal_point": [
+    0.58,
+    0.53
+   ]
   },
   {
    "title": "Cosmic Reef",
-   "agent_name": ", and",
+   "agent_name": "NASA, ESA, STScI",
    "agent_role": "Artist",
-   "creation_date": "24 April 2020 (upload date)",
-   "cultural_context": "Unknown",
-   "medium": "Photograph",
-   "date_display": "24 April 2020 (upload date)",
-   "description_narrative": "This image was uploaded to Wikimedia Commons on 24 April 2020 as a compass image for a view of the Cosmic Reef. Vivid clouds of orange and blue gas billow across a dense star field, with bright points of starlight scattered throughout the glowing nebula and a faint ring-shaped structure near the lower left.",
-   "tags": "nebula, space, star field, astronomy, cosmic dust, gas clouds, compass image, reef nebula",
-   "source": "Wikimedia Commons",
+   "creation_date": "24 April 2020",
+   "cultural_context": "Scientific Imaging, Modern Astronomy",
+   "medium": "Photograph — Hubble",
+   "date_display": "2020",
+   "description_narrative": "Nicknamed the Cosmic Reef, this Hubble portrait shows the giant red nebula NGC 2014 beside its smaller blue neighbor NGC 2020, both 163,000 light-years away in the Large Magellanic Cloud. A cluster of bright stars glows amid coral-like orange bubbles, while a separate ring of blue gas glows apart at lower left.",
+   "tags": "nebula, hubble, star cluster, large magellanic cloud, emission nebula, space",
+   "source": "Hubble",
    "license": "PDM-1.0",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Compass%20Image%20for%20Cosmic%20Reef%20%282020-16-4647%29.png?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Compass%20Image%20for%20Cosmic%20Reef%20%282020-16-4647%29.png?width=600",
-   "focal_point": [
-    0.55,
-    0.4
-   ],
+   "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2020/04/STScI-01EVSTMSGMSYJ3VRNRW9KSZ05P.tif/jcr:content/renditions/Full%20Res.png",
+   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2020/04/STScI-01EVSTMSGMSYJ3VRNRW9KSZ05P.tif/jcr:content/renditions/1000x687.png",
    "featured_rank": 35,
    "license_verdict": "pd",
-   "license_basis": "Public domain",
+   "license_basis": "Public domain (NASA/STScI release)",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
-   "credit_line": "Compass Image for Cosmic Reef",
-   "license_verified": "2026-07-16",
-   "delivered_edge": 7680,
-   "resolution_tier": "8K",
+   "credit_line": "NASA, ESA and STScI",
+   "license_verified": "2026-09-27",
+   "attribution_url": "https://science.nasa.gov/asset/hubble/cosmic-reef/",
    "aspect_crops": {
     "16:9": [
      0.0,
-     0.0,
+     0.1207,
      1.0,
-     0.8186
+     0.9393
     ],
     "9:16": [
-     0.3568,
+     0.3168,
      0.0,
-     0.7432,
+     0.7032,
      1.0
     ],
     "4:3": [
-     0.0419,
+     0.0319,
      0.0,
-     0.9581,
+     0.9481,
      1.0
     ],
     "3:4": [
-     0.2623,
+     0.3123,
      0.0,
-     0.7777,
+     0.8277,
      1.0
     ]
-   }
+   },
+   "focal_point": [
+    0.47,
+    0.45
+   ]
   },
   {
-   "title": "Jupiter's Great Red Spot Juno",
-   "agent_name": "NASA/JPL-Caltech/MSSS/SwRI/Kevin M. Gill",
+   "title": "Jupiter's Great Red Spot",
+   "agent_name": "NASA/JPL",
    "agent_role": "Artist",
-   "creation_date": "",
-   "cultural_context": "Space exploration, 21st century",
-   "medium": "Photograph",
-   "date_display": "Undated",
-   "description_narrative": "Marbled bands of cream and rust swirl across a planet's face, curling into a vast tan storm at the center. NASA's Juno spacecraft captured this close pass, processed by Kevin M. Gill.",
-   "tags": "jupiter, great red spot, juno, storm, planetary photography, space",
-   "source": "Wikimedia Commons",
+   "creation_date": "5 December 1998",
+   "cultural_context": "Space Exploration, Planetary Science",
+   "medium": "Photograph — Voyager 1",
+   "date_display": "1998",
+   "description_narrative": "Swirling bands of cream, tan, and blue-gray clouds churn across this close view of Jupiter's turbulent atmosphere, dominated by the oval form of the Great Red Spot. Delicate white filaments and turbulent eddies trace the surrounding atmosphere. Voyager 1 captured the scene through color filters that were later recombined into this single image.",
+   "tags": "jupiter, great red spot, voyager 1, planetary atmosphere, gas giant, space photography",
+   "source": "Voyager 1",
    "license": "PDM-1.0",
-   "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jupiter%27s%20Great%20Red%20Spot%20-%20Juno%20Perijove%207.png?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jupiter%27s%20Great%20Red%20Spot%20-%20Juno%20Perijove%207.png?width=600",
-   "focal_point": [
-    0.45,
-    0.4
-   ],
+   "source_url": "https://images-assets.nasa.gov/image/PIA01384/PIA01384~orig.jpg",
+   "thumbnail_url": "https://images-assets.nasa.gov/image/PIA01384/PIA01384~medium.jpg",
    "featured_rank": 45,
    "license_verdict": "pd",
-   "license_basis": "Public domain",
+   "license_basis": "Public domain (NASA/STScI release)",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
-   "credit_line": "https://www.flickr.com/photos/kevinmgill/35491570250/in/photostream/",
-   "license_verified": "2026-07-16",
+   "credit_line": "NASA/JPL",
+   "license_verified": "2026-09-27",
    "below_floor_ok": true,
-   "delivered_edge": 3408,
-   "resolution_tier": "HD",
+   "attribution_url": "https://photojournal.jpl.nasa.gov/catalog/PIA01384",
    "aspect_crops": {
     "16:9": [
      0.0,
-     0.2899,
+     0.0001,
      1.0,
-     0.5491
+     0.6659
     ],
     "9:16": [
+     0.4624,
      0.0,
-     0.0102,
-     1.0,
-     0.8298
+     0.9376,
+     1.0
     ],
     "4:3": [
      0.0,
-     0.2471,
+     0.0001,
      1.0,
-     0.5929
+     0.8879
     ],
     "3:4": [
+     0.3162,
      0.0,
-     0.1132,
-     1.0,
-     0.7278
+     0.9498,
+     1.0
     ]
-   }
+   },
+   "focal_point": [
+    0.66,
+    0.3
+   ]
   },
   {
    "title": "Pluto New Horizons",
@@ -1181,8 +1172,8 @@
    "cultural_context": "Contemporary Science, Space Exploration",
    "medium": "Photograph",
    "date_display": "2015",
-   "description_narrative": "A pale, mottled world hangs against black space, one hemisphere marked by a broad, heart-shaped plain and darker rust-toned terrain crossing its pole. NASA's New Horizons spacecraft took this natural-color image on 14 July 2015.",
-   "tags": "pluto, new horizons, dwarf planet, planetary photography, nasa, space exploration",
+   "description_narrative": "A cratered, tan-and-brown world fills the frame, one hemisphere marked by a broad pale heart-shaped region set against darker terrain. Captured by NASA's New Horizons spacecraft on July 14, 2015, this natural-color image shows the icy, nitrogen-and-methane-rich plain called Sputnik Planitia at the center of the bright heart.",
+   "tags": "pluto, new horizons, dwarf planet, sputnik planitia, nasa, planetary science, space",
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/This%20image%2C%20taken%20by%20New%20Horizons%20on%20July%2014%2C%202015%2C%20is%20the%20most%20accurate%20natural%20color%20image%20of%20Pluto.png?width=3840",
@@ -1234,8 +1225,8 @@
    "cultural_context": "Space Exploration, 21st Century",
    "medium": "Photograph",
    "date_display": "Taken on 14 January 2015",
-   "description_narrative": "A six-wheeled rover sits on a cracked, sunlit rock slab, rust-colored dunes rolling away toward a hazy horizon. NASA/JPL-Caltech/MSSS took this self-portrait at the 'Mojave' site on Mount Sharp on 14 January 2015.",
-   "tags": "mars rover, curiosity, self-portrait, martian landscape, nasa, space exploration",
+   "description_narrative": "A six-wheeled rover sits on cracked, sun-baked rock beneath a dusty pink sky, its robotic arm folded beside a drilled patch of stone. This self-portrait of NASA's Curiosity rover, taken at the Mojave site on Mount Sharp, combines dozens of images from the Mars Hand Lens Imager camera on its arm, taken in January 2015.",
+   "tags": "mars, rover, curiosity, self-portrait, nasa, mount sharp, space exploration",
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/PIA19142%20Curiosity%20Self-Portrait%20at%20%27Mojave%27%20Site%20on%20Mount%20Sharp.jpg?width=3840",
@@ -1287,8 +1278,8 @@
    "cultural_context": "Scientific Photography, Space Exploration",
    "medium": "Photograph",
    "date_display": "2004",
-   "description_narrative": "A cream-colored planet tilts beneath a wide, banded ring system, the rings' shadow falling in a dark curve across its northern face. NASA's Cassini orbiter captured this view for the Space Science Institute.",
-   "tags": "saturn, rings, cassini, planetary photography, nasa, space",
+   "description_narrative": "A pale gold planet tilts beneath broad, banded rings that sweep from edge to edge, with a faint blue arc visible where the far rings catch the light. Composited from Cassini spacecraft images taken on February 9, 2004, from 69.4 million kilometers away, the smallest features visible here span about 540 kilometers.",
+   "tags": "saturn, cassini, rings, planet, nasa, solar system, space",
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/PIA05380%20-%20Saturn%20from%20Cassini%20Orbiter%20%28square%29.jpg?width=3840",
@@ -1331,6 +1322,4035 @@
      1.0
     ]
    }
+  },
+  {
+   "title": "Centaurus A Crop",
+   "agent_name": "NASA, ESA, CSA, STScI",
+   "agent_role": "Artist",
+   "creation_date": "6 July 2026",
+   "cultural_context": "21st Century, Space Exploration",
+   "medium": "Infrared image — Webb NIRCam and MIRI",
+   "date_display": "2026",
+   "description_narrative": "Webb's infrared view of Centaurus A exposes a warped disk of gas and dust left by a collision with another galaxy billions of years ago; the grainy glow is actually millions of resolved stars. A diagonal band of fiery orange dust cuts across a hazy blue-white glow, framed by scattered stars on a dark background.",
+   "tags": "galaxy, centaurus a, webb telescope, infrared, galaxy collision, space",
+   "source": "Webb",
+   "license": "PDM-1.0",
+   "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2026/07/STScI-01KVT7DD8N4T05XGZCT15QZEZ9.png/jcr:content/renditions/Full-Res-For-Display.png",
+   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2026/07/STScI-01KVT7DD8N4T05XGZCT15QZEZ9.png/jcr:content/renditions/cq5dam.web.1280.1280.png",
+   "license_verdict": "pd",
+   "license_basis": "Public domain (NASA/STScI release)",
+   "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "credit_line": "Image: NASA, ESA, CSA, STScI; Image Processing: Alyssa Pagan (STScI), Joseph DePasquale (STScI), Macarena Garcia Marin (ESA Office at STScI)",
+   "license_verified": "2026-09-27",
+   "attribution_url": "https://science.nasa.gov/asset/webb/centaurus-a-crop-nircam-and-miri-image/",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.2493,
+     1.0,
+     0.7507
+    ],
+    "9:16": [
+     0.1844,
+     0.0,
+     0.8156,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1658,
+     1.0,
+     0.8342
+    ],
+    "3:4": [
+     0.0793,
+     0.0,
+     0.9207,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.5,
+    0.5
+   ]
+  },
+  {
+   "title": "Cat’s Paw Nebula",
+   "agent_name": "NASA, ESA, CSA, STScI",
+   "agent_role": "Artist",
+   "creation_date": "10 July 2025",
+   "cultural_context": "21st Century, Space Exploration",
+   "medium": "Infrared image — Webb NIRCam",
+   "date_display": "2025",
+   "description_narrative": "Webb's near-infrared view scratches beneath the surface of the Cat's Paw Nebula, a massive star-forming region about 4,000 light-years away in the constellation Scorpius, where massive young stars carve cavities into the surrounding gas and dust. Glowing blue cavities open within thick rust-colored clouds, dense with pinpoint stars throughout the frame.",
+   "tags": "nebula, cat's paw nebula, webb telescope, star formation, infrared, space",
+   "source": "Webb",
+   "license": "PDM-1.0",
+   "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2025/07/STScI-01JY2AYZ2PYBDDSMX83K5248DD.jpg/jcr:content/renditions/Full%20Res%20(For%20Display).png",
+   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2025/07/STScI-01JY2AYZ2PYBDDSMX83K5248DD.jpg/jcr:content/renditions/1822x2000.jpg",
+   "license_verdict": "pd",
+   "license_basis": "Public domain (NASA/STScI release)",
+   "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "credit_line": "Image: NASA, ESA, CSA, STScI",
+   "license_verified": "2026-09-27",
+   "attribution_url": "https://science.nasa.gov/asset/webb/cats-paw-nebula-nircam-image/",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0638,
+     1.0,
+     0.5762
+    ],
+    "9:16": [
+     0.2112,
+     0.0,
+     0.8288,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0584,
+     1.0,
+     0.7416
+    ],
+    "3:4": [
+     0.0883,
+     0.0,
+     0.9117,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.5,
+    0.33
+   ]
+  },
+  {
+   "title": "The Carina Nebula: Star Birth in the Extreme",
+   "agent_name": "NASA, ESA, STScI",
+   "agent_role": "Artist",
+   "creation_date": "24 April 2007",
+   "cultural_context": "Scientific Imaging, Modern Astronomy",
+   "medium": "Photograph — Hubble",
+   "date_display": "2007",
+   "description_narrative": "A 50-light-year-wide panorama of the central Carina Nebula, 7,500 light-years away, where intense radiation from massive stars is sculpting the surrounding gas even as it triggers new star birth. Billowing clouds in gold, rust, and pale blue-white sweep across the frame, pierced by dark dust clumps and small knots of bright stars.",
+   "tags": "nebula, carina nebula, hubble, star formation, emission nebula, space",
+   "source": "Hubble",
+   "license": "PDM-1.0",
+   "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2007/04/STScI-01EVVJEDR8NDZJ81SRH0EWRW8N.tif/jcr:content/renditions/29566x14321.jpg",
+   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2007/04/STScI-01EVVJEDR8NDZJ81SRH0EWRW8N.tif/jcr:content/renditions/1000x484.jpg",
+   "license_verdict": "pd",
+   "license_basis": "Public domain (NASA/STScI release)",
+   "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "credit_line": "Hubble Image: NASA, ESA, N. Smith (University of California, Berkeley), and The Hubble Heritage Team (STScI/AURA); CTIO Image: N. Smith (University of California, Berkeley) and NOAO/AURA/NSF",
+   "license_verified": "2026-09-27",
+   "attribution_url": "https://science.nasa.gov/asset/hubble/the-carina-nebula-star-birth-in-the-extreme/",
+   "aspect_crops": {
+    "16:9": [
+     0.0394,
+     0.0,
+     0.9006,
+     1.0
+    ],
+    "9:16": [
+     0.1938,
+     0.0,
+     0.4662,
+     1.0
+    ],
+    "4:3": [
+     0.0971,
+     0.0,
+     0.7429,
+     1.0
+    ],
+    "3:4": [
+     0.1684,
+     0.0,
+     0.5316,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.33,
+    0.45
+   ]
+  },
+  {
+   "title": "Rho Ophiuchi",
+   "agent_name": "NASA, ESA, CSA, STScI",
+   "agent_role": "Artist",
+   "creation_date": "12 July 2023",
+   "cultural_context": "21st Century, Space Exploration",
+   "medium": "Infrared image — Webb NIRCam",
+   "date_display": "2023",
+   "description_narrative": "The Rho Ophiuchi cloud complex, the closest star-forming region to Earth, glows with jets of hydrogen thrown off by young stars in this Webb image. Red streaks of ejected gas cross a dark upper field, while a pale golden cave of dust opens below, ringed by sharp, bright stars.",
+   "tags": "star formation, nebula, webb telescope, infrared, young stars, molecular cloud",
+   "source": "Webb",
+   "license": "PDM-1.0",
+   "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2023/07/STScI-01H44AVB69N1P8RAEJ12NW2RB2.png",
+   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2023/07/STScI-01H44AVB69N1P8RAEJ12NW2RB2.png/jcr:content/renditions/2000x1873.png",
+   "license_verdict": "pd",
+   "license_basis": "Public domain (NASA/STScI release)",
+   "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "credit_line": "Image: NASA, ESA, CSA, STScI, Klaus Pontoppidan (STScI); Image Processing: Alyssa Pagan (STScI)",
+   "license_verified": "2026-09-27",
+   "attribution_url": "https://science.nasa.gov/asset/webb/rho-ophiuchi-nircam-image/",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0997,
+     1.0,
+     0.7003
+    ],
+    "9:16": [
+     0.2366,
+     0.0,
+     0.7634,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0296,
+     1.0,
+     0.8304
+    ],
+    "3:4": [
+     0.1688,
+     0.0,
+     0.8712,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.54,
+    0.2
+   ]
+  },
+  {
+   "title": "Hubble Photographs Grand Design Spiral Galaxy M81",
+   "agent_name": "NASA, ESA, STScI",
+   "agent_role": "Artist",
+   "creation_date": "28 May 2007",
+   "cultural_context": "Scientific Imaging, Modern Astronomy",
+   "medium": "Photograph — Hubble",
+   "date_display": "2007",
+   "description_narrative": "Hubble's sharp, tilted view shows a golden spiral galaxy with a brilliant core and smooth arms flecked with blue clusters of young, hot stars. Fine dust lanes wind inward toward the glowing nucleus, and scattered stars fill the surrounding dark field. This is M81, a spiral galaxy about 11.6 million light-years away and roughly the apparent size of the full Moon in our sky.",
+   "tags": "m81, spiral galaxy, hubble, star clusters, galaxy, bode's galaxy",
+   "source": "Hubble",
+   "license": "PDM-1.0",
+   "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2007/05/STScI-01EVVJ5CSW83EJHQACVP4N6WEJ.tif/jcr:content/renditions/22620x15200.jpg",
+   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2007/05/STScI-01EVVJ5CSW83EJHQACVP4N6WEJ.tif/jcr:content/renditions/1000x672.jpg",
+   "license_verdict": "pd",
+   "license_basis": "Public domain (NASA/STScI release)",
+   "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "credit_line": "NASA, ESA, and The Hubble Heritage Team (STScI/AURA)",
+   "license_verified": "2026-09-27",
+   "attribution_url": "https://science.nasa.gov/asset/hubble/hubble-photographs-grand-design-spiral-galaxy-m81/",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0615,
+     1.0,
+     0.8985
+    ],
+    "9:16": [
+     0.321,
+     0.0,
+     0.699,
+     1.0
+    ],
+    "4:3": [
+     0.052,
+     0.0,
+     0.948,
+     1.0
+    ],
+    "3:4": [
+     0.258,
+     0.0,
+     0.762,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.51,
+    0.47
+   ]
+  },
+  {
+   "title": "NGC 346",
+   "agent_name": "NASA, ESA, CSA",
+   "agent_role": "Artist",
+   "creation_date": "11 January 2023",
+   "cultural_context": "21st Century, Space Exploration",
+   "medium": "Infrared image — Webb NIRCam",
+   "date_display": "2023",
+   "description_narrative": "Pink clouds of hot, ionized hydrogen thread through orange ridges of colder, dust-laden gas in this Webb view of NGC 346, a star cluster embedded in a nebula within the Small Magellanic Cloud, 200,000 light-years away. Light from young stars is eroding the dense clouds, carving the pillars and ridges seen throughout.",
+   "tags": "ngc 346, small magellanic cloud, star cluster, webb telescope, infrared imaging, nebula",
+   "source": "Webb",
+   "license": "PDM-1.0",
+   "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2023/01/STScI-01GNYMD5RCRF1S01A8M2S5M0Z1.png",
+   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2023/01/STScI-01GNYMD5RCRF1S01A8M2S5M0Z1.png/jcr:content/renditions/1377x2000.png",
+   "license_verdict": "pd",
+   "license_basis": "Public domain (NASA/STScI release)",
+   "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "credit_line": "NASA, ESA, CSA, Olivia Jones (UK ATC), Guido De Marchi (ESTEC), Margaret Meixner (USRA); Image Processing: Alyssa Pagan (STScI), Nolan Habel (USRA), Laura Lenkić (USRA), Laurie Chu (NASA Ames)",
+   "license_verified": "2026-09-27",
+   "attribution_url": "https://science.nasa.gov/asset/webb/ngc-346-nircam-image/",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.2563,
+     1.0,
+     0.6437
+    ],
+    "9:16": [
+     0.0915,
+     0.0,
+     0.9085,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1918,
+     1.0,
+     0.7082
+    ],
+    "3:4": [
+     0.0,
+     0.011,
+     1.0,
+     0.929
+    ]
+   },
+   "focal_point": [
+    0.5,
+    0.45
+   ]
+  },
+  {
+   "title": "Out of This Whirl: the Whirlpool Galaxy (M51) and Companion Galaxy",
+   "agent_name": "NASA, ESA, STScI",
+   "agent_role": "Artist",
+   "creation_date": "25 April 2005",
+   "cultural_context": "Scientific Imaging, Modern Astronomy",
+   "medium": "Photograph — Hubble",
+   "date_display": "2005",
+   "description_narrative": "The Whirlpool Galaxy (M51), a face-on spiral about 31 million light-years away, appears beside its smaller companion galaxy NGC 5195, which Hubble shows passing behind rather than merging with it. Two sweeping blue-white arms laced with dark dust lanes and pink star-forming knots spiral around a bright yellow core.",
+   "tags": "spiral galaxy, whirlpool galaxy, companion galaxy, hubble, star formation, dust lanes",
+   "source": "Hubble",
+   "license": "PDM-1.0",
+   "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2005/04/STScI-01EVT85S0E93YAFY779MNYA9Y4.tif/jcr:content/renditions/Full%20Res%20(For%20Display).jpg",
+   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2005/04/STScI-01EVT85S0E93YAFY779MNYA9Y4.tif/jcr:content/renditions/800x555.jpg",
+   "license_verdict": "pd",
+   "license_basis": "Public domain (NASA/STScI release)",
+   "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "credit_line": "NASA, ESA, S. Beckwith (STScI), and The Hubble Heritage Team (STScI/AURA)",
+   "license_verified": "2026-09-27",
+   "attribution_url": "https://science.nasa.gov/asset/hubble/out-of-this-whirl-the-whirlpool-galaxy-m51-and-companion-galaxy/",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0847,
+     1.0,
+     0.8953
+    ],
+    "9:16": [
+     0.1948,
+     0.0,
+     0.5852,
+     1.0
+    ],
+    "4:3": [
+     0.0373,
+     0.0,
+     0.9627,
+     1.0
+    ],
+    "3:4": [
+     0.1197,
+     0.0,
+     0.6403,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.39,
+    0.48
+   ]
+  },
+  {
+   "title": "Webb’s First Deep Field Unveiled",
+   "agent_name": "NASA, ESA, CSA, STScI",
+   "agent_role": "Artist",
+   "creation_date": "11 July 2022",
+   "cultural_context": "21st Century, Space Exploration",
+   "medium": "Infrared image — Webb NIRCam",
+   "date_display": "2022",
+   "description_narrative": "Countless small galaxies in white and orange dot a black sky, some smeared into thin curving arcs, beside a brilliant star with long blue diffraction spikes. This is the galaxy cluster SMACS 0723, shown as it appeared 4.6 billion years ago; its mass bends light like a lens, stretching background galaxies into the arcs seen here.",
+   "tags": "deep field, galaxy cluster, webb, smacs 0723, gravitational lensing, infrared image, distant galaxies",
+   "source": "Webb",
+   "license": "PDM-1.0",
+   "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2022/07/STScI-01G8H15R2PGEXQD7TYYBFJ3FT4.png",
+   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2022/07/STScI-01G8H15R2PGEXQD7TYYBFJ3FT4.png/jcr:content/renditions/1960x2000.png",
+   "license_verdict": "pd",
+   "license_basis": "Public domain (NASA/STScI release)",
+   "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "credit_line": "Image: NASA, ESA, CSA, STScI",
+   "license_verified": "2026-09-27",
+   "attribution_url": "https://science.nasa.gov/asset/webb/webbs-first-deep-field-unveiled-nircam-image/",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.2044,
+     1.0,
+     0.7556
+    ],
+    "9:16": [
+     0.233,
+     0.0,
+     0.807,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1325,
+     1.0,
+     0.8675
+    ],
+    "3:4": [
+     0.1373,
+     0.0,
+     0.9027,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.52,
+    0.5
+   ]
+  },
+  {
+   "title": "Herbig-Haro 46/47",
+   "agent_name": "NASA, ESA, CSA",
+   "agent_role": "Artist",
+   "creation_date": "26 July 2023",
+   "cultural_context": "21st Century, Space Exploration",
+   "medium": "Infrared image — Webb NIRCam",
+   "date_display": "2023",
+   "description_narrative": "Webb's huge diffraction spikes mark a buried, tightly bound pair of young stars, glowing as an orange-white core amid two opposing orange lobes of earlier gas ejections. A faint blue haze of nebula material wraps around the lobes, threaded by thin blue lines from the stars' more recent outflows. This is Herbig-Haro 46/47, a region about 3.1 light-years across.",
+   "tags": "herbig-haro object, protostar, webb, nebula, star formation, outflow",
+   "source": "Webb",
+   "license": "PDM-1.0",
+   "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2023/07/STScI-01H5309J2AAYSABKVQ89R7V44T.png",
+   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2023/07/STScI-01H5309J2AAYSABKVQ89R7V44T.png/jcr:content/renditions/2000x1165.jpg",
+   "license_verdict": "pd",
+   "license_basis": "Public domain (NASA/STScI release)",
+   "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "credit_line": "Image: NASA, ESA, CSA; Image Processing: Joseph DePasquale (STScI), Anton Koekemoer (STScI)",
+   "license_verified": "2026-09-27",
+   "attribution_url": "https://science.nasa.gov/asset/webb/herbig-haro-4647-nircam-image/",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0172,
+     1.0,
+     0.9828
+    ],
+    "9:16": [
+     0.3062,
+     0.0,
+     0.6338,
+     1.0
+    ],
+    "4:3": [
+     0.0816,
+     0.0,
+     0.8584,
+     1.0
+    ],
+    "3:4": [
+     0.2415,
+     0.0,
+     0.6784,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.5,
+    0.5
+   ]
+  },
+  {
+   "title": "Bubble Nebula (NGC 7635)",
+   "agent_name": "NASA, ESA, STScI",
+   "agent_role": "Artist",
+   "creation_date": "21 April 2016",
+   "cultural_context": "Scientific Imaging, Modern Astronomy",
+   "medium": "Photograph — Hubble",
+   "date_display": "2016",
+   "description_narrative": "A massive, super-hot star blows this bubble of gas into space; the Bubble Nebula is 7 light-years across and lies 7,100 light-years away in the constellation Cassiopeia. The star sits off-center near the bubble's edge, its blue shell rimmed by dense golden-orange pillars of gas and dust, with scattered stars piercing the surrounding dark.",
+   "tags": "nebula, bubble nebula, hubble, star, emission nebula, space",
+   "source": "Hubble",
+   "license": "PDM-1.0",
+   "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2016/04/STScI-01EVVGYQGFWPRBWKW0HNACJMEB.tif/jcr:content/renditions/7857x7462.jpg",
+   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2016/04/STScI-01EVVGYQGFWPRBWKW0HNACJMEB.tif/jcr:content/renditions/1200x1140.jpg",
+   "license_verdict": "pd",
+   "license_basis": "Public domain (NASA/STScI release)",
+   "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "credit_line": "NASA, ESA, and the Hubble Heritage Team (STScI/AURA)",
+   "license_verified": "2026-09-27",
+   "attribution_url": "https://science.nasa.gov/asset/hubble/bubble-nebula-ngc-7635/",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.2939,
+     1.0,
+     0.8861
+    ],
+    "9:16": [
+     0.3029,
+     0.0,
+     0.8371,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1652,
+     1.0,
+     0.9548
+    ],
+    "3:4": [
+     0.2038,
+     0.0,
+     0.9162,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.45,
+    0.5
+   ]
+  },
+  {
+   "title": "L1527 and Protostar",
+   "agent_name": "NASA, ESA, CSA, STScI",
+   "agent_role": "Artist",
+   "creation_date": "16 November 2022",
+   "cultural_context": "21st Century, Space Exploration",
+   "medium": "Infrared image — Webb NIRCam",
+   "date_display": "2022",
+   "description_narrative": "An hourglass of glowing gas surrounds a hidden protostar in this Webb image of the dark cloud L1527. The upper lobe blazes orange and red with wispy filaments, while the lower lobe glows blue, since less dust lies between it and the telescope. A dusty band pinches across the center, hiding the still-forming star.",
+   "tags": "protostar, l1527, molecular cloud, webb telescope, infrared imaging, star formation",
+   "source": "Webb",
+   "license": "PDM-1.0",
+   "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2022/11/STScI-01GGWD12YEES5K5163RJFYQT20.png",
+   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2022/11/STScI-01GGWD12YEES5K5163RJFYQT20.png/jcr:content/renditions/1960x2000.png",
+   "license_verdict": "pd",
+   "license_basis": "Public domain (NASA/STScI release)",
+   "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "credit_line": "NASA, ESA, CSA, STScI; Image Processing: Joseph DePasquale (STScI), Alyssa Pagan (STScI), Anton Koekemoer (STScI)",
+   "license_verified": "2026-09-27",
+   "attribution_url": "https://science.nasa.gov/asset/webb/l1527-and-protostar-nircam-image/",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.2344,
+     1.0,
+     0.7856
+    ],
+    "9:16": [
+     0.203,
+     0.0,
+     0.777,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1325,
+     1.0,
+     0.8675
+    ],
+    "3:4": [
+     0.1174,
+     0.0,
+     0.8826,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.5,
+    0.51
+   ]
+  },
+  {
+   "title": "M82 Cigar Galaxy — Webb & Hubble Composite",
+   "agent_name": "NASA, ESA, CSA, STScI",
+   "agent_role": "Artist",
+   "creation_date": "23 June 2026",
+   "cultural_context": "21st Century, Space Exploration",
+   "medium": "Composite image — Webb NIRCam/MIRI + Hubble",
+   "date_display": "2026",
+   "description_narrative": "Fiery plumes of orange-red dust erupt above and below the blue-white disk of the edge-on starburst galaxy M82, nicknamed the Cigar Galaxy, in this Webb and Hubble composite. Extreme star formation drives the plumes, and yellow filaments of ionized hydrogen glow nearest the disk. Webb resolves about 16.5 million individual stars here.",
+   "tags": "m82, cigar galaxy, starburst galaxy, webb telescope, stellar plumes, infrared imaging",
+   "source": "Webb",
+   "license": "PDM-1.0",
+   "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2026/06/STScI-01KM3Q4ECK24AXTM2GVW47V389.png",
+   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2026/06/STScI-01KM3Q4ECK24AXTM2GVW47V389.png/jcr:content/renditions/2000x1348.png",
+   "license_verdict": "pd",
+   "license_basis": "Public domain (NASA/STScI release)",
+   "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "credit_line": "Image: NASA, ESA, CSA, Adam Smercina (STScI, Tufts), Thomas Williams (University of Manchester); Image Processing: Alyssa Pagan (STScI)",
+   "license_verified": "2026-09-27",
+   "attribution_url": "https://science.nasa.gov/asset/webb/m82-cigar-galaxy-webb-hubble/",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0828,
+     1.0,
+     0.9172
+    ],
+    "9:16": [
+     0.3304,
+     0.0,
+     0.7096,
+     1.0
+    ],
+    "4:3": [
+     0.0506,
+     0.0,
+     0.9494,
+     1.0
+    ],
+    "3:4": [
+     0.2672,
+     0.0,
+     0.7728,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.52,
+    0.5
+   ]
+  },
+  {
+   "title": "NASA Unveils Celestial Fireworks as Official Hubble 25th Anniversary Image",
+   "agent_name": "NASA, ESA, STScI",
+   "agent_role": "Artist",
+   "creation_date": "23 April 2015",
+   "cultural_context": "Scientific Imaging, Modern Astronomy",
+   "medium": "Photograph — Hubble",
+   "date_display": "2015",
+   "description_narrative": "A dense cluster of young stars blazes at the heart of this Hubble view of the nebula Gum 29, ringed by pillars of orange-brown dust and blue-green haze. The cluster, called Westerlund 2, holds about 3,000 stars and lies roughly 20,000 light-years away in Carina. Red marks glowing hydrogen; the greenish-blue hues are oxygen.",
+   "tags": "westerlund 2, gum 29, star cluster, carina, hubble, nebula",
+   "source": "Hubble",
+   "license": "PDM-1.0",
+   "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2015/04/STScI-01EVVCBB26G1HB68BC35RPSBDG.tif/jcr:content/renditions/8919x6683.jpg",
+   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2015/04/STScI-01EVVCBB26G1HB68BC35RPSBDG.tif/jcr:content/renditions/1200x899.jpg",
+   "license_verdict": "pd",
+   "license_basis": "Public domain (NASA/STScI release)",
+   "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "credit_line": "NASA, ESA, the Hubble Heritage Team (STScI/AURA), A. Nota (ESA/STScI), and the Westerlund 2 Science Team",
+   "license_verified": "2026-09-27",
+   "attribution_url": "https://science.nasa.gov/asset/hubble/nasa-unveils-celestial-fireworks-as-official-hubble-25th-anniversary-image/",
+   "aspect_crops": {
+    "4:3": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ],
+    "16:9": [
+     0.0,
+     0.0747,
+     1.0,
+     0.8253
+    ],
+    "9:16": [
+     0.2892,
+     0.0,
+     0.7108,
+     1.0
+    ],
+    "3:4": [
+     0.189,
+     0.0,
+     0.751,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.58,
+    0.4
+   ]
+  },
+  {
+   "title": "Spiral Galaxy M83",
+   "agent_name": "NASA, ESA, STScI",
+   "agent_role": "Artist",
+   "creation_date": "9 January 2014",
+   "cultural_context": "Scientific Imaging, Modern Astronomy",
+   "medium": "Photograph — Hubble",
+   "date_display": "2014",
+   "description_narrative": "This face-on spiral galaxy has a bright orange core wrapped in dark dust lanes, with pink patches of glowing gas tracing star formation along its arms. Known as M83, or the Southern Pinwheel, it lies 15 million light-years away in the constellation Hydra and spans about 50,000 light-years, home to thousands of star clusters.",
+   "tags": "spiral galaxy, southern pinwheel, star formation, dust lanes, hubble, hydra constellation, star clusters",
+   "source": "Hubble",
+   "license": "PDM-1.0",
+   "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2014/01/STScI-01EVT37XAM3KAF51GHW3744Z3D.tif/jcr:content/renditions/11405x7419.jpg",
+   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2014/01/STScI-01EVT37XAM3KAF51GHW3744Z3D.tif/jcr:content/renditions/1200x781.jpg",
+   "license_verdict": "pd",
+   "license_basis": "Public domain (NASA/STScI release)",
+   "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "credit_line": "NASA, ESA, and the Hubble Heritage Team (STScI/AURA); Acknowledgement: W. Blair (STScI/Johns Hopkins University) and R. O'Connell (University of Virginia)",
+   "license_verified": "2026-09-27",
+   "attribution_url": "https://science.nasa.gov/asset/hubble/spiral-galaxy-m83/",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0477,
+     1.0,
+     0.9123
+    ],
+    "9:16": [
+     0.287,
+     0.0,
+     0.653,
+     1.0
+    ],
+    "4:3": [
+     0.0463,
+     0.0,
+     0.9137,
+     1.0
+    ],
+    "3:4": [
+     0.2261,
+     0.0,
+     0.7139,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.47,
+    0.47
+   ]
+  },
+  {
+   "title": "WR 124",
+   "agent_name": "NASA, ESA, CSA, STScI",
+   "agent_role": "Artist",
+   "creation_date": "14 March 2023",
+   "cultural_context": "21st Century, Space Exploration",
+   "medium": "Infrared image — Webb NIRCam and MIRI",
+   "date_display": "2023",
+   "description_narrative": "A brilliant star with long, sharp diffraction spikes sits at the center of a rounded magenta and orange nebula threaded with darker clumpy lanes, set against a dense starfield. This is Wolf-Rayet 124, an aging star whose ejected nebula spans about 10 light-years, its clumps shaped by stellar winds streaming outward.",
+   "tags": "wolf-rayet star, nebula, wr 124, webb, infrared image, stellar wind, dust",
+   "source": "Webb",
+   "license": "PDM-1.0",
+   "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2023/03/STScI-01GTYAME8Q4353E2WQQH2965S5.png",
+   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2023/03/STScI-01GTYAME8Q4353E2WQQH2965S5.png/jcr:content/renditions/2000x1970.png",
+   "license_verdict": "pd",
+   "license_basis": "Public domain (NASA/STScI release)",
+   "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "credit_line": "Image: NASA, ESA, CSA, STScI, Webb ERO Production Team",
+   "license_verified": "2026-09-27",
+   "attribution_url": "https://science.nasa.gov/asset/webb/wr-124-nircam-and-miri-composite-image/",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.2144,
+     1.0,
+     0.7856
+    ],
+    "9:16": [
+     0.223,
+     0.0,
+     0.777,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1092,
+     1.0,
+     0.8708
+    ],
+    "3:4": [
+     0.1307,
+     0.0,
+     0.8693,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.51,
+    0.5
+   ]
+  },
+  {
+   "title": "Lagoon Nebula — Visible Light",
+   "agent_name": "NASA, ESA, STScI",
+   "agent_role": "Artist",
+   "creation_date": "19 April 2018",
+   "cultural_context": "Scientific Imaging, Modern Astronomy",
+   "medium": "Photograph — Hubble (visible light)",
+   "date_display": "2018",
+   "description_narrative": "Ridges and cavities of glowing gas fill this visible-light view of the Lagoon Nebula's heart, sculpted by the massive young star Herschel 36 near center. Blue-green oxygen marks where dust has blown away, while red nitrogen and dark purple gas dominate the surrounding clouds. Herschel 36 is about 32 times as massive as the Sun.",
+   "tags": "lagoon nebula, herschel 36, star formation, nebula, visible light, hubble",
+   "source": "Hubble",
+   "license": "PDM-1.0",
+   "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2018/04/STScI-01EVT0PETF5KP1TK3RZSCS2GYM.tif/jcr:content/renditions/Full%20Res.png",
+   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2018/04/STScI-01EVT0PETF5KP1TK3RZSCS2GYM.tif/jcr:content/renditions/849x1000.png",
+   "license_verdict": "pd",
+   "license_basis": "Public domain (NASA/STScI release)",
+   "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "credit_line": "NASA, ESA, and STScI",
+   "license_verified": "2026-09-27",
+   "attribution_url": "https://science.nasa.gov/asset/hubble/lagoon-nebula-visible-light-view/",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.161,
+     1.0,
+     0.639
+    ],
+    "9:16": [
+     0.119,
+     0.0,
+     0.781,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1014,
+     1.0,
+     0.7386
+    ],
+    "3:4": [
+     0.0287,
+     0.0,
+     0.9113,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.38,
+    0.4
+   ]
+  },
+  {
+   "title": "Pismis 24",
+   "agent_name": "NASA, ESA, CSA, STScI",
+   "agent_role": "Artist",
+   "creation_date": "4 September 2025",
+   "cultural_context": "21st Century, Space Exploration",
+   "medium": "Infrared image — Webb NIRCam",
+   "date_display": "2025",
+   "description_narrative": "Pismis 24, a young star cluster in the Lobster Nebula about 5,500 light-years away, blazes with brilliant stars against a deep blue backdrop in this Webb image. Below, a jagged golden-orange peak of dust rises through wisps of pale cloud toward the cluster's light.",
+   "tags": "star cluster, nebula, webb telescope, infrared, lobster nebula, star formation",
+   "source": "Webb",
+   "license": "PDM-1.0",
+   "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2025/09/STScI-01K2JB448ZJPP4WK4JJ7W05EC8.png",
+   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2025/09/STScI-01K2JB448ZJPP4WK4JJ7W05EC8.png/jcr:content/renditions/1449x2000.png",
+   "license_verdict": "pd",
+   "license_basis": "Public domain (NASA/STScI release)",
+   "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "credit_line": "Image: NASA, ESA, CSA, STScI; Image Processing: Alyssa Pagan (STScI)",
+   "license_verified": "2026-09-27",
+   "attribution_url": "https://science.nasa.gov/asset/webb/pismis-24-nircam-image/",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.3962,
+     1.0,
+     0.8038
+    ],
+    "9:16": [
+     0.1118,
+     0.0,
+     0.8882,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.3483,
+     1.0,
+     0.8917
+    ],
+    "3:4": [
+     0.0,
+     0.034,
+     1.0,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.57,
+    0.62
+   ]
+  },
+  {
+   "title": "A “Rose” Made of Galaxies Highlights Hubble’s 21st Anniversary",
+   "agent_name": "NASA, ESA, STScI",
+   "agent_role": "Artist",
+   "creation_date": "20 April 2011",
+   "cultural_context": "Scientific Imaging, Modern Astronomy",
+   "medium": "Photograph — Hubble",
+   "date_display": "2011",
+   "description_narrative": "Arp 273, a pair of interacting spiral galaxies about 300 million light-years away, forms a rose-like shape as the larger galaxy's disk is tidally distorted by its smaller companion below. Pale golden spiral arms edged in blue star clusters curl around a bright core, trailing down toward a smaller, warped companion galaxy.",
+   "tags": "interacting galaxies, spiral galaxy, hubble, arp 273, galaxy collision, star clusters",
+   "source": "Hubble",
+   "license": "PDM-1.0",
+   "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2011/04/STScI-01EVT4TA2ED9JNN2CA5CSZ7H1J.tif/jcr:content/renditions/7887x7994.jpg",
+   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2011/04/STScI-01EVT4TA2ED9JNN2CA5CSZ7H1J.tif/jcr:content/renditions/987x1000.jpg",
+   "license_verdict": "pd",
+   "license_basis": "Public domain (NASA/STScI release)",
+   "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "credit_line": "NASA, ESA, and the Hubble Heritage Team (STScI/AURA)",
+   "license_verified": "2026-09-27",
+   "attribution_url": "https://science.nasa.gov/asset/hubble/a-rose-made-of-galaxies-highlights-hubbles-21st-anniversary/",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0125,
+     1.0,
+     0.5675
+    ],
+    "9:16": [
+     0.2349,
+     0.0,
+     0.8051,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.03,
+     1.0,
+     0.77
+    ],
+    "3:4": [
+     0.1799,
+     0.0,
+     0.9401,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.46,
+    0.22
+   ]
+  },
+  {
+   "title": "Barred Spiral Galaxy NGC 1300",
+   "agent_name": "NASA, ESA, STScI",
+   "agent_role": "Artist",
+   "creation_date": "10 January 2005",
+   "cultural_context": "Scientific Imaging, Modern Astronomy",
+   "medium": "Photograph — Hubble",
+   "date_display": "2005",
+   "description_narrative": "The barred spiral galaxy NGC 1300 lies roughly 69 million light-years away in the constellation Eridanus, with a straight central bar of stars feeding its spiral arms. Blue star clusters and reddish dust lanes trace the winding arms, and faint background galaxies dot the surrounding darkness.",
+   "tags": "barred spiral galaxy, ngc 1300, hubble, galaxy, star clusters, space",
+   "source": "Hubble",
+   "license": "PDM-1.0",
+   "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2005/01/STScI-01EVT8DP1YM9FYPF0Y33VY7ANB.tif/jcr:content/renditions/6637x3787.jpg",
+   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2005/01/STScI-01EVT8DP1YM9FYPF0Y33VY7ANB.tif/jcr:content/renditions/800x456.jpg",
+   "license_verdict": "pd",
+   "license_basis": "Public domain (NASA/STScI release)",
+   "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "credit_line": "NASA, ESA, and The Hubble Heritage Team (STScI/AURA); Acknowledgment: P. Knezek (WIYN)",
+   "license_verified": "2026-09-27",
+   "attribution_url": "https://science.nasa.gov/asset/hubble/barred-spiral-galaxy-ngc-1300/",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0071,
+     1.0,
+     0.9929
+    ],
+    "9:16": [
+     0.3395,
+     0.0,
+     0.6605,
+     1.0
+    ],
+    "4:3": [
+     0.1196,
+     0.0,
+     0.8804,
+     1.0
+    ],
+    "3:4": [
+     0.286,
+     0.0,
+     0.714,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.5,
+    0.47
+   ]
+  },
+  {
+   "title": "The Greatest Saturn Portrait ...Yet",
+   "agent_name": "NASA/JPL/Space Science Institute",
+   "agent_role": "Artist",
+   "creation_date": "24 February 2005",
+   "cultural_context": "Space Exploration, Planetary Science",
+   "medium": "Photograph — Cassini",
+   "date_display": "2005",
+   "description_narrative": "Cassini's sweeping portrait of Saturn combines 126 separate images into one seamless mosaic spanning the planet and its full ring system. Subtle bands of gold and cream color the globe, while the planet's own shadow falls darkly across the rings at left. The spacecraft was roughly 3.9 million miles away when it captured the view over about two hours.",
+   "tags": "saturn, rings, cassini, mosaic, planet, space exploration",
+   "source": "Cassini",
+   "license": "PDM-1.0",
+   "source_url": "https://images-assets.nasa.gov/image/PIA06193/PIA06193~orig.jpg",
+   "thumbnail_url": "https://images-assets.nasa.gov/image/PIA06193/PIA06193~medium.jpg",
+   "license_verdict": "pd",
+   "license_basis": "Public domain (NASA/STScI release)",
+   "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "credit_line": "NASA/JPL/Space Science Institute",
+   "license_verified": "2026-09-27",
+   "attribution_url": "https://photojournal.jpl.nasa.gov/catalog/PIA06193",
+   "aspect_crops": {
+    "16:9": [
+     0.0356,
+     0.0,
+     0.9444,
+     1.0
+    ],
+    "9:16": [
+     0.3962,
+     0.0,
+     0.6837,
+     1.0
+    ],
+    "4:3": [
+     0.1592,
+     0.0,
+     0.8408,
+     1.0
+    ],
+    "3:4": [
+     0.3033,
+     0.0,
+     0.6867,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.5,
+    0.5
+   ]
+  },
+  {
+   "title": "NGC 604",
+   "agent_name": "NASA, ESA, CSA, STScI",
+   "agent_role": "Artist",
+   "creation_date": "9 March 2024",
+   "cultural_context": "21st Century, Space Exploration",
+   "medium": "Infrared image — Webb NIRCam",
+   "date_display": "2024",
+   "description_narrative": "A star-forming region in the Triangulum galaxy, 2.73 million light-years away, imaged in infrared light. Stellar winds from young, hot stars carve dark cavities into surrounding gas and dust, ringed by orange filaments and a pale blue-white glow at the core.",
+   "tags": "nebula, star-forming region, infrared, webb telescope, spiral galaxy, stellar winds",
+   "source": "Webb",
+   "license": "PDM-1.0",
+   "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2024/03/STScI-01HQNVF0HHRF5HH4HKH8S9C83X.png",
+   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2024/03/STScI-01HQNVF0HHRF5HH4HKH8S9C83X.png/jcr:content/renditions/2000x1623.png",
+   "license_verdict": "pd",
+   "license_basis": "Public domain (NASA/STScI release)",
+   "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "credit_line": "Image: NASA, ESA, CSA, STScI",
+   "license_verified": "2026-09-27",
+   "attribution_url": "https://science.nasa.gov/asset/webb/ngc-604-nircam-image/",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1733,
+     1.0,
+     0.8667
+    ],
+    "9:16": [
+     0.3318,
+     0.0,
+     0.7882,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0378,
+     1.0,
+     0.9622
+    ],
+    "3:4": [
+     0.2458,
+     0.0,
+     0.8542,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.55,
+    0.55
+   ]
+  },
+  {
+   "title": "Spiral Galaxy UGC 2885",
+   "agent_name": "NASA, ESA",
+   "agent_role": "Artist",
+   "creation_date": "5 January 2020",
+   "cultural_context": "Scientific Imaging, Modern Astronomy",
+   "medium": "Photograph — Hubble",
+   "date_display": "2020",
+   "description_narrative": "A vast spiral galaxy fills the frame, its pale core wrapped in loose blue arms, with a brilliant foreground star's sharp diffraction spikes beside the nucleus. Nicknamed Rubin's galaxy after astronomer Vera Rubin, UGC 2885 lies 232 million light-years away in Perseus, 2.5 times wider than the Milky Way with 10 times as many stars.",
+   "tags": "spiral galaxy, ugc 2885, hubble, perseus constellation, diffraction spikes, large galaxy, rubin's galaxy",
+   "source": "Hubble",
+   "license": "PDM-1.0",
+   "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2020/01/STScI-01EVSTYK52GZ4YSKGD5C9QFP36.tif/jcr:content/renditions/Full%20Res.png",
+   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2020/01/STScI-01EVSTYK52GZ4YSKGD5C9QFP36.tif/jcr:content/renditions/2000x1500.png",
+   "license_verdict": "pd",
+   "license_basis": "Public domain (NASA/STScI release)",
+   "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "credit_line": "NASA, ESA, Benne Holwerda (University of Louisville)",
+   "license_verified": "2026-09-27",
+   "attribution_url": "https://science.nasa.gov/asset/hubble/spiral-galaxy-ugc-2885/",
+   "aspect_crops": {
+    "4:3": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ],
+    "16:9": [
+     0.0,
+     0.145,
+     1.0,
+     0.895
+    ],
+    "9:16": [
+     0.2991,
+     0.0,
+     0.7209,
+     1.0
+    ],
+    "3:4": [
+     0.2188,
+     0.0,
+     0.7812,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.51,
+    0.54
+   ]
+  },
+  {
+   "title": "NGC 1333",
+   "agent_name": "NASA, ESA, STScI",
+   "agent_role": "Artist",
+   "creation_date": "20 April 2023",
+   "cultural_context": "Scientific Imaging, Modern Astronomy",
+   "medium": "Photograph — Hubble",
+   "date_display": "2023",
+   "description_narrative": "A brilliant blue-white star blazes at the top of this Hubble view of NGC 1333, a star-forming region about 960 light-years away, its light scattering through veils of fine dust. Dark dust obscures much of the frame, thickest toward the bottom, where reddish jets of ionized hydrogen mark newly forming stars.",
+   "tags": "ngc 1333, star formation, perseus molecular cloud, hubble, stellar jets, nebula",
+   "source": "Hubble",
+   "license": "PDM-1.0",
+   "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2023/04/STScI-01GYAG4SRNNW4X8E8TTQ0WK3Q0.tif/jcr:content/renditions/Full%20Res%20(For%20Display).png",
+   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2023/04/STScI-01GYAG4SRNNW4X8E8TTQ0WK3Q0.tif/jcr:content/renditions/1312x2000.png",
+   "license_verdict": "pd",
+   "license_basis": "Public domain (NASA/STScI release)",
+   "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "credit_line": "NASA, ESA, STScI; Image Processing: Varun Bajaj (STScI), Joseph DePasquale (STScI), Jennifer Mack (STScI)",
+   "license_verified": "2026-09-27",
+   "attribution_url": "https://science.nasa.gov/asset/hubble/ngc-1333/",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.3355,
+     1.0,
+     0.7045
+    ],
+    "9:16": [
+     0.0713,
+     0.0,
+     0.9287,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.274,
+     1.0,
+     0.766
+    ],
+    "3:4": [
+     0.0,
+     0.0626,
+     1.0,
+     0.9374
+    ]
+   },
+   "focal_point": [
+    0.43,
+    0.53
+   ]
+  },
+  {
+   "title": "Pandora’s Cluster",
+   "agent_name": "NASA, ESA, CSA",
+   "agent_role": "Artist",
+   "creation_date": "15 February 2023",
+   "cultural_context": "21st Century, Space Exploration",
+   "medium": "Infrared image — Webb NIRCam",
+   "date_display": "2023",
+   "description_narrative": "Webb's infrared view of Pandora's Cluster captures an estimated 50,000 sources of light, where several massive galaxy clusters are merging into one megacluster. Its enormous mass bends space so strongly that distant background galaxies appear as faint red streaks and arcs among the white glowing cluster members.",
+   "tags": "galaxy cluster, gravitational lensing, webb telescope, infrared, deep field, megacluster",
+   "source": "Webb",
+   "license": "PDM-1.0",
+   "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2023/02/STScI-01GQQF9WVPFVMCVHRZY54N2TAR.png",
+   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2023/02/STScI-01GQQF9WVPFVMCVHRZY54N2TAR.png/jcr:content/renditions/2000x1521.png",
+   "license_verdict": "pd",
+   "license_basis": "Public domain (NASA/STScI release)",
+   "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "credit_line": "NASA, ESA, CSA, Ivo Labbe (Swinburne), Rachel Bezanson (University of Pittsburgh); Image Processing: Alyssa Pagan (STScI)",
+   "license_verified": "2026-09-27",
+   "attribution_url": "https://science.nasa.gov/asset/webb/pandoras-cluster-nircam-image/",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1303,
+     1.0,
+     0.8697
+    ],
+    "9:16": [
+     0.3861,
+     0.0,
+     0.8139,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.007,
+     1.0,
+     0.993
+    ],
+    "3:4": [
+     0.2647,
+     0.0,
+     0.8353,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.6,
+    0.45
+   ]
+  },
+  {
+   "title": "Galaxies IC 2163 and NGC 2207",
+   "agent_name": "NASA, ESA, CSA, STScI",
+   "agent_role": "Artist",
+   "creation_date": "31 October 2024",
+   "cultural_context": "21st Century, Space Exploration",
+   "medium": "Composite image — Webb + Hubble",
+   "date_display": "2024",
+   "description_narrative": "Two overlapping spiral galaxies fill the frame, cataloged as IC 2163 at left and the larger NGC 2207 at right. Clusters of young blue stars fleck their red, dust-laced spiral arms, which wind around two brilliant cores. The pair grazed one another millions of years ago and together form the equivalent of two dozen Sun-sized stars a year, far more than the Milky Way's two or three, lying about 114 million light-years from Earth.",
+   "tags": "spiral galaxy, ic 2163, ngc 2207, interacting galaxies, star formation, webb",
+   "source": "Webb",
+   "license": "PDM-1.0",
+   "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2024/10/STScI-01J9RRJA6MZCBT0YXAJQ961Q04.png",
+   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2024/10/STScI-01J9RRJA6MZCBT0YXAJQ961Q04.png/jcr:content/renditions/2000x939.jpg",
+   "license_verdict": "pd",
+   "license_basis": "Public domain (NASA/STScI release)",
+   "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "credit_line": "Image: NASA, ESA, CSA, STScI",
+   "license_verified": "2026-09-27",
+   "attribution_url": "https://science.nasa.gov/asset/webb/galaxies-ic-2163-and-ngc-2207-webb-and-hubble-image/",
+   "aspect_crops": {
+    "16:9": [
+     0.1026,
+     0.0,
+     0.9374,
+     1.0
+    ],
+    "9:16": [
+     0.5079,
+     0.0,
+     0.7721,
+     1.0
+    ],
+    "4:3": [
+     0.207,
+     0.0,
+     0.833,
+     1.0
+    ],
+    "3:4": [
+     0.4639,
+     0.0,
+     0.8161,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.64,
+    0.5
+   ]
+  },
+  {
+   "title": "A Farewell to Saturn",
+   "agent_name": "NASA/JPL-Caltech/Space Science Institute",
+   "agent_role": "Artist",
+   "creation_date": "21 November 2017",
+   "cultural_context": "Space Exploration, Planetary Science",
+   "medium": "Photograph — Cassini",
+   "date_display": "2017",
+   "description_narrative": "Cassini's last portrait of Saturn shows the planet as a dark crescent rimmed with warm gold light, cradled inside its broad, glowing rings. The spacecraft was about 698,000 miles from Saturn when it captured this final mosaic, two days before diving into the planet's atmosphere and ending its mission.",
+   "tags": "saturn, rings, cassini, planet, final image, space exploration",
+   "source": "Cassini",
+   "license": "PDM-1.0",
+   "source_url": "https://images-assets.nasa.gov/image/PIA17218/PIA17218~orig.jpg",
+   "thumbnail_url": "https://images-assets.nasa.gov/image/PIA17218/PIA17218~medium.jpg",
+   "license_verdict": "pd",
+   "license_basis": "Public domain (NASA/STScI release)",
+   "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "credit_line": "NASA/JPL-Caltech/Space Science Institute",
+   "license_verified": "2026-09-27",
+   "attribution_url": "https://photojournal.jpl.nasa.gov/catalog/PIA17218",
+   "aspect_crops": {
+    "16:9": [
+     0.1296,
+     0.0,
+     0.8704,
+     1.0
+    ],
+    "9:16": [
+     0.3828,
+     0.0,
+     0.6172,
+     1.0
+    ],
+    "4:3": [
+     0.2222,
+     0.0,
+     0.7778,
+     1.0
+    ],
+    "3:4": [
+     0.3438,
+     0.0,
+     0.6562,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.5,
+    0.45
+   ]
+  },
+  {
+   "title": "Actively Forming Star System Lynds 483",
+   "agent_name": "NASA, ESA, CSA, STScI",
+   "agent_role": "Artist",
+   "creation_date": "7 March 2025",
+   "cultural_context": "21st Century, Space Exploration",
+   "medium": "Infrared image — Webb NIRCam",
+   "date_display": "2025",
+   "description_narrative": "Webb's near-infrared camera captures Lynds 483, the shimmering ejections of two actively forming stars 650 light-years away in the constellation Serpens. Twin lobes of orange and magenta gas flare upward and downward from a bright central point, threaded with fine dark filaments against a dense field of stars.",
+   "tags": "nebula, protostar, webb telescope, infrared, bipolar outflow, space",
+   "source": "Webb",
+   "license": "PDM-1.0",
+   "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2025/03/STScI-01JM03EZ0HTVWHDCCX0DTFQF5Q.png",
+   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2025/03/STScI-01JM03EZ0HTVWHDCCX0DTFQF5Q.png/jcr:content/renditions/1890x2000.png",
+   "license_verdict": "pd",
+   "license_basis": "Public domain (NASA/STScI release)",
+   "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "credit_line": "Image: NASA, ESA, CSA, STScI",
+   "license_verified": "2026-09-27",
+   "attribution_url": "https://science.nasa.gov/asset/webb/actively-forming-star-system-lynds-483-nircam-image/",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.3543,
+     1.0,
+     0.8857
+    ],
+    "9:16": [
+     0.2023,
+     0.0,
+     0.7977,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.2457,
+     1.0,
+     0.9543
+    ],
+    "3:4": [
+     0.1031,
+     0.0,
+     0.8969,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.5,
+    0.67
+   ]
+  },
+  {
+   "title": "The Cone Nebula (NGC 2264)",
+   "agent_name": "NASA, STScI, ESA",
+   "agent_role": "Artist",
+   "creation_date": "30 April 2002",
+   "cultural_context": "Scientific Imaging, Modern Astronomy",
+   "medium": "Photograph — Hubble",
+   "date_display": "2002",
+   "description_narrative": "Located about 2,500 light-years away, the Cone Nebula (NGC 2264) is a towering pillar of gas and dust silhouetted against a glowing red nebula. Its dark, textured column rises to a bright, blue-white crown of light, with scattered pinpoint stars set against the surrounding crimson glow.",
+   "tags": "nebula, cone nebula, hubble, star-forming region, pillar, space",
+   "source": "Hubble",
+   "license": "PDM-1.0",
+   "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2002/04/STScI-01EVVF7FH2A4CGF3D1VP52SSZ5.tif/jcr:content/renditions/4427x4257.jpg",
+   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2002/04/STScI-01EVVF7FH2A4CGF3D1VP52SSZ5.tif/jcr:content/renditions/800x769.jpg",
+   "license_verdict": "pd",
+   "license_basis": "Public domain (NASA/STScI release)",
+   "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "credit_line": "NASA, H. Ford (JHU), G. Illingworth (UCSC/LO), M.Clampin (STScI), G. Hartig (STScI), the ACS Science Team, and ESA; The ACS Science Team: H. Ford, G. Illingworth, M. Clampin, G. Hartig, T. Allen, K. Anderson, F. Bartko, N. Benitez, J. Blakeslee, R. Bouwens, T. Broadhurst, R. Brown, C. Burrows, D. Campbell, E. Cheng, N. Cross, P. Feldman, M. Franx, D. Golimowski, C. Gronwall, R. Kimble, J. Krist, M. Lesser, D. Magee, A. Martel, W. J. McCann, G. Meurer, G. Miley, M. Postman, P. Rosati, M. Sirianni, W. Sparks, P. Sullivan, H. Tran, Z. Tsvetanov, R. White, and R. Woodruff.",
+   "license_verified": "2026-09-27",
+   "attribution_url": "https://science.nasa.gov/asset/hubble/the-cone-nebula-ngc-2264/",
+   "aspect_crops": {
+    "16:9": [
+     0.017,
+     0.07,
+     0.953,
+     0.6175
+    ],
+    "9:16": [
+     0.23,
+     0.023,
+     0.7301,
+     0.9476
+    ],
+    "4:3": [
+     0.0251,
+     0.0571,
+     0.9557,
+     0.7829
+    ],
+    "3:4": [
+     0.164,
+     0.0249,
+     0.8282,
+     0.9459
+    ]
+   },
+   "focal_point": [
+    0.48,
+    0.2
+   ]
+  },
+  {
+   "title": "Image of Sun From NASA's Solar Dynamics Observatory",
+   "agent_name": "NASA/GSFC/Solar Dynamics Observatory",
+   "agent_role": "Artist",
+   "creation_date": "10 September 2025",
+   "cultural_context": "Scientific Imaging, Modern Astronomy",
+   "medium": "Photograph — Solar Dynamics Observatory (SDO)",
+   "date_display": "2025",
+   "description_narrative": "The Sun glows gold, its turbulent surface mottled with dark filaments and looping bright flares near the edges. Darker patches trace cooler regions across the disk, and a faint halo of light extends beyond it into space.",
+   "tags": "sun, solar surface, granulation, solar flares, corona, sdo, space photography",
+   "source": "SDO",
+   "license": "PDM-1.0",
+   "source_url": "https://images-assets.nasa.gov/image/PIA26681/PIA26681~orig.jpg",
+   "thumbnail_url": "https://images-assets.nasa.gov/image/PIA26681/PIA26681~medium.jpg",
+   "license_verdict": "pd",
+   "license_basis": "Public domain (NASA/STScI release)",
+   "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "credit_line": "NASA/GSFC/Solar Dynamics Observatory",
+   "license_verified": "2026-09-27",
+   "attribution_url": "https://photojournal.jpl.nasa.gov/catalog/PIA26681",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.2188,
+     1.0,
+     0.7812
+    ],
+    "9:16": [
+     0.2412,
+     0.0359,
+     0.7588,
+     0.9561
+    ],
+    "4:3": [
+     0.0,
+     0.125,
+     1.0,
+     0.875
+    ],
+    "3:4": [
+     0.155,
+     0.036,
+     0.845,
+     0.956
+    ]
+   },
+   "focal_point": [
+    0.5,
+    0.5
+   ]
+  },
+  {
+   "title": "NGC 6072",
+   "agent_name": "NASA, ESA, CSA, STScI",
+   "agent_role": "Artist",
+   "creation_date": "30 July 2025",
+   "cultural_context": "21st Century, Space Exploration",
+   "medium": "Infrared image — Webb NIRCam",
+   "date_display": "2025",
+   "description_narrative": "NASA's Webb telescope shows planetary nebula NGC 6072 as multiple outflows from a dying central star push gas outward at different angles, forming a disk. Glowing red molecular gas surrounds a bright white core, spreading into billowing orange clouds across the frame.",
+   "tags": "planetary nebula, webb telescope, infrared, dying star, molecular gas, outflow",
+   "source": "Webb",
+   "license": "PDM-1.0",
+   "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2025/07/STScI-01K0W69T4CK5TD4EZF8RCRRJ2Z.png",
+   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2025/07/STScI-01K0W69T4CK5TD4EZF8RCRRJ2Z.png/jcr:content/renditions/1877x2000.jpg",
+   "license_verdict": "pd",
+   "license_basis": "Public domain (NASA/STScI release)",
+   "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "credit_line": "Image: NASA, ESA, CSA, STScI",
+   "license_verified": "2026-09-27",
+   "attribution_url": "https://science.nasa.gov/asset/webb/ngc-6072-nircam-image/",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.236,
+     1.0,
+     0.764
+    ],
+    "9:16": [
+     0.2004,
+     0.0,
+     0.7996,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.148,
+     1.0,
+     0.852
+    ],
+    "3:4": [
+     0.1005,
+     0.0,
+     0.8995,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.5,
+    0.5
+   ]
+  },
+  {
+   "title": "The Omega Nebula (Swan Nebula/M17)",
+   "agent_name": "NASA, STScI, ESA",
+   "agent_role": "Artist",
+   "creation_date": "30 April 2002",
+   "cultural_context": "Scientific Imaging, Modern Astronomy",
+   "medium": "Photograph — Hubble",
+   "date_display": "2002",
+   "description_narrative": "The Omega Nebula (M17), a star-forming cloud in the Milky Way about 5,500 light-years away, was imaged in visible light by Hubble's Advanced Camera for Surveys. Swirling green, pink and gold clouds of glowing gas and dust wrap around newly formed stars, cut through by dark dust lanes.",
+   "tags": "nebula, star formation, hubble, milky way, gas and dust, emission nebula",
+   "source": "Hubble",
+   "license": "PDM-1.0",
+   "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2002/04/STScI-01EVT9F8QXNC7JV8QP49P6QJCP.tif/jcr:content/renditions/4257x4426.jpg",
+   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2002/04/STScI-01EVT9F8QXNC7JV8QP49P6QJCP.tif/jcr:content/renditions/769x800.jpg",
+   "license_verdict": "pd",
+   "license_basis": "Public domain (NASA/STScI release)",
+   "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "credit_line": "NASA, H. Ford (JHU), G. Illingworth (UCSC/LO), M.Clampin (STScI), G. Hartig (STScI), the ACS Science Team, and ESA; The ACS Science Team: H. Ford, G. Illingworth, M. Clampin, G. Hartig, T. Allen, K. Anderson, F. Bartko, N. Benitez, J. Blakeslee, R. Bouwens, T. Broadhurst, R. Brown, C. Burrows, D. Campbell, E. Cheng, N. Cross, P. Feldman, M. Franx, D. Golimowski, C. Gronwall, R. Kimble, J. Krist, M. Lesser, D. Magee, A. Martel, W. J. McCann, G. Meurer, G. Miley, M. Postman, P. Rosati, M. Sirianni, W. Sparks, P. Sullivan, H. Tran, Z. Tsvetanov, R. White, and R. Woodruff.",
+   "license_verified": "2026-09-27",
+   "attribution_url": "https://science.nasa.gov/asset/hubble/the-omega-nebula-swan-nebulam17/",
+   "aspect_crops": {
+    "16:9": [
+     0.0399,
+     0.3681,
+     0.9683,
+     0.8704
+    ],
+    "9:16": [
+     0.2161,
+     0.017,
+     0.7828,
+     0.986
+    ],
+    "4:3": [
+     0.047,
+     0.2671,
+     0.9697,
+     0.9327
+    ],
+    "3:4": [
+     0.124,
+     0.019,
+     0.8766,
+     0.9842
+    ]
+   },
+   "focal_point": [
+    0.5,
+    0.6
+   ]
+  },
+  {
+   "title": "“The Mice” (NGC 4676): Colliding Galaxies Stream Stars and Gas",
+   "agent_name": "NASA, STScI, ESA",
+   "agent_role": "Artist",
+   "creation_date": "30 April 2002",
+   "cultural_context": "Scientific Imaging, Modern Astronomy",
+   "medium": "Photograph — Hubble",
+   "date_display": "2002",
+   "description_narrative": "A long blue tail of stars and gas streams from one core toward the upper right in this Hubble view of \"The Mice,\" a pair of colliding galaxies cataloged as NGC 4676. Dust lanes lace the two glowing cores as they merge. The pair lies about 300 million light-years away.",
+   "tags": "the mice, ngc 4676, colliding galaxies, tidal tails, hubble, galaxy merger",
+   "source": "Hubble",
+   "license": "PDM-1.0",
+   "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2002/04/STScI-01EVVF88Y5DEXKWJFCFR55DADD.tif/jcr:content/renditions/4428x4257.jpg",
+   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2002/04/STScI-01EVVF88Y5DEXKWJFCFR55DADD.tif/jcr:content/renditions/800x769.jpg",
+   "license_verdict": "pd",
+   "license_basis": "Public domain (NASA/STScI release)",
+   "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "credit_line": "NASA, H. Ford (JHU), G. Illingworth (UCSC/LO), M.Clampin (STScI), G. Hartig (STScI), the ACS Science Team, and ESA; The ACS Science Team: H. Ford, G. Illingworth, M. Clampin, G. Hartig, T. Allen, K. Anderson, F. Bartko, N. Benitez, J. Blakeslee, R. Bouwens, T. Broadhurst, R. Brown, C. Burrows, D. Campbell, E. Cheng, N. Cross, P. Feldman, M. Franx, D. Golimowski, C. Gronwall, R. Kimble, J. Krist, M. Lesser, D. Magee, A. Martel, W. J. McCann, G. Meurer, G. Miley, M. Postman, P. Rosati, M. Sirianni, W. Sparks, P. Sullivan, H. Tran, Z. Tsvetanov, R. White, and R. Woodruff.",
+   "license_verified": "2026-09-27",
+   "attribution_url": "https://science.nasa.gov/asset/hubble/the-mice-ngc-4676-colliding-galaxies-stream-stars-and-gas/",
+   "aspect_crops": {
+    "16:9": [
+     0.044,
+     0.2051,
+     0.9727,
+     0.7485
+    ],
+    "9:16": [
+     0.229,
+     0.027,
+     0.7271,
+     0.948
+    ],
+    "4:3": [
+     0.049,
+     0.109,
+     0.975,
+     0.8314
+    ],
+    "3:4": [
+     0.229,
+     0.0301,
+     0.8931,
+     0.9511
+    ]
+   },
+   "focal_point": [
+    0.47,
+    0.53
+   ]
+  },
+  {
+   "title": "30 Doradus B",
+   "agent_name": "NASA, STScI",
+   "agent_role": "Artist",
+   "creation_date": "January 3, 2024",
+   "cultural_context": "Scientific Imaging, X-ray Astronomy",
+   "medium": "X-ray/optical/infrared composite — Chandra, Hubble, Spitzer",
+   "date_display": "2024",
+   "description_narrative": "An X-ray, optical, and infrared composite of the supernova remnant 30 Doradus B, 160,000 light-years away in the Large Magellanic Cloud, where astronomers found evidence of at least two exploded stars. Purple X-ray light traces a faint shell through pink, blue, and red clouds, with bright stars scattered across the frame.",
+   "tags": "supernova remnant, x-ray, nebula, composite image, large magellanic cloud, star formation",
+   "source": "Chandra (+ composite)",
+   "license": "PDM-1.0",
+   "source_url": "https://chandra.harvard.edu/photo/2024/30dorb/30dorb_lg.jpg",
+   "thumbnail_url": "https://chandra.harvard.edu/photo/2024/30dorb/30dorb.jpg",
+   "license_verdict": "pd",
+   "license_basis": "Public domain (NASA/STScI release)",
+   "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "credit_line": "X-ray: NASA/CXC/Penn State Univ./L. Townsley et al.; Optical: NASA/STScI/HST; Infrared: NASA/JPL/CalTech/SST; Image Processing: NASA/CXC/SAO/J. Schmidt, N. Wolk, K. Arcand",
+   "license_verified": "2026-09-27",
+   "attribution_url": "https://chandra.harvard.edu/photo/2024/30dorb/",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1887,
+     1.0,
+     0.7512
+    ],
+    "9:16": [
+     0.2488,
+     0.0,
+     0.8113,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.105,
+     1.0,
+     0.855
+    ],
+    "3:4": [
+     0.145,
+     0.0,
+     0.895,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.55,
+    0.47
+   ]
+  },
+  {
+   "title": "FS Tau",
+   "agent_name": "NASA, ESA, CSA, STScI",
+   "agent_role": "Artist",
+   "creation_date": "2 July 2026",
+   "cultural_context": "21st Century, Space Exploration",
+   "medium": "Infrared image — Webb",
+   "date_display": "2026",
+   "description_narrative": "Webb's diffraction-spiked glare marks the young star system FS Tau, wrapped in swirling orange and red outflows of gas and soot-like dust, with pale blue nebulosity drifting to the right where starlight scatters off fine grains. Countless faint background galaxies, tinted by how much dust lies in front of them, dot the dark surrounding field. The portion imaged is about 0.31 light-years across.",
+   "tags": "fs tau, protostar, webb, nebula, star formation, young star",
+   "source": "Webb",
+   "license": "PDM-1.0",
+   "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2026/07/STScI-01KVX6065VS4VSDVG0S1NSVB6C.png",
+   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2026/07/STScI-01KVX6065VS4VSDVG0S1NSVB6C.png/jcr:content/renditions/2000x1932.jpg",
+   "license_verdict": "pd",
+   "license_basis": "Public domain (NASA/STScI release)",
+   "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "credit_line": "Image: NASA, ESA, CSA, STScI; Image Processing: Alyssa Pagan (STScI)",
+   "license_verified": "2026-09-27",
+   "attribution_url": "https://science.nasa.gov/asset/webb/fs-tau-webb-image/",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1688,
+     1.0,
+     0.7512
+    ],
+    "9:16": [
+     0.2284,
+     0.0,
+     0.7716,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0617,
+     1.0,
+     0.8383
+    ],
+    "3:4": [
+     0.1378,
+     0.0,
+     0.8622,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.45,
+    0.47
+   ]
+  },
+  {
+   "title": "Trifid Nebula",
+   "agent_name": "NASA, ESA, STScI",
+   "agent_role": "Artist",
+   "creation_date": "20 April 2026",
+   "cultural_context": "Scientific Imaging, Modern Astronomy",
+   "medium": "Photograph — Hubble WFC3",
+   "date_display": "2026",
+   "description_narrative": "A tall, dark brown pillar of dust rises against a blue haze at upper left, its edge glowing gold, with bright orange stars scattered through the surrounding clouds. This is the Trifid Nebula, a star-forming region about 5,000 light-years away, where color marks density: blue where dust is thinnest and near-black in the densest pockets.",
+   "tags": "nebula, trifid nebula, star-forming region, hubble, dust pillars, emission nebula, young stars",
+   "source": "Hubble",
+   "license": "PDM-1.0",
+   "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2026/04/STScI-01KM5VPG2R1WX1SY7ASDJ9JEV5.jpg/jcr:content/renditions/Full Res (For Display).png",
+   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2026/04/STScI-01KM5VPG2R1WX1SY7ASDJ9JEV5.jpg/jcr:content/renditions/2000x1936.jpg",
+   "license_verdict": "pd",
+   "license_basis": "Public domain (NASA/STScI release)",
+   "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "credit_line": "Image: NASA, ESA, STScI; Image Processing: Joseph DePasquale (STScI)",
+   "license_verified": "2026-09-27",
+   "attribution_url": "https://science.nasa.gov/asset/hubble/trifid-nebula-wide-field-camera-3-image/",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0594,
+     1.0,
+     0.6406
+    ],
+    "9:16": [
+     0.1078,
+     0.0,
+     0.6522,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0325,
+     1.0,
+     0.8075
+    ],
+    "3:4": [
+     0.0571,
+     0.0,
+     0.7829,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.33,
+    0.3
+   ]
+  },
+  {
+   "title": "Planetary Nebula NGC 2899",
+   "agent_name": "NASA, ESA, STScI",
+   "agent_role": "Artist",
+   "creation_date": "23 April 2025",
+   "cultural_context": "Scientific Imaging, Modern Astronomy",
+   "medium": "Photograph — Hubble",
+   "date_display": "2025",
+   "description_narrative": "Planetary nebula NGC 2899 glows from hydrogen and oxygen lit by a white dwarf at its center, roughly 4,500 light-years away in the constellation Vela. A blue-green cavity opens at the middle of the nebula, rimmed by billowing orange and rust-colored clouds and dotted with sharp points of starlight.",
+   "tags": "planetary nebula, hubble, white dwarf, glowing gas, nebula, vela constellation",
+   "source": "Hubble",
+   "license": "PDM-1.0",
+   "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2025/04/STScI-01JQCE78E6DK196HZYF5KCVEYT.tif/jcr:content/renditions/Full Res (For Display).png",
+   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2025/04/STScI-01JQCE78E6DK196HZYF5KCVEYT.tif/jcr:content/renditions/2000x1997.jpg",
+   "license_verdict": "pd",
+   "license_basis": "Public domain (NASA/STScI release)",
+   "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "credit_line": "Image: NASA, ESA, STScI; Image Processing: Joseph DePasquale (STScI)",
+   "license_verified": "2026-09-27",
+   "attribution_url": "https://science.nasa.gov/asset/hubble/planetary-nebula-ngc-2899-2/",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.2083,
+     1.0,
+     0.7717
+    ],
+    "9:16": [
+     0.2492,
+     0.0,
+     0.8108,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1044,
+     1.0,
+     0.8556
+    ],
+    "3:4": [
+     0.1456,
+     0.0,
+     0.8944,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.53,
+    0.5
+   ]
+  },
+  {
+   "title": "Herbig-Haro 49/50",
+   "agent_name": "NASA, ESA, CSA, STScI",
+   "agent_role": "Artist",
+   "creation_date": "24 March 2025",
+   "cultural_context": "21st Century, Space Exploration",
+   "medium": "Infrared image — Webb NIRCam and MIRI",
+   "date_display": "2025",
+   "description_narrative": "A tall plume of reddish-orange gas surges diagonally across the frame, its wake-like arcs carved by a jet from a still-forming star just off the lower right edge. Near the top, a small blue-tinted spiral glimmers by chance alignment far beyond the outflow. This portion of Herbig-Haro 49/50 spans about 0.3 light-years.",
+   "tags": "herbig-haro object, outflow, webb, nebula, protostar, spiral galaxy",
+   "source": "Webb",
+   "license": "PDM-1.0",
+   "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2025/03/STScI-01JNGVAQKT0ATWEE89D918J3HF.png",
+   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2025/03/STScI-01JNGVAQKT0ATWEE89D918J3HF.png/jcr:content/renditions/1646x2000.jpg",
+   "license_verdict": "pd",
+   "license_basis": "Public domain (NASA/STScI release)",
+   "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "credit_line": "Image: NASA, ESA, CSA, STScI",
+   "license_verified": "2026-09-27",
+   "attribution_url": "https://science.nasa.gov/asset/webb/herbig-haro-4950-nircam-and-miri-image/",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1385,
+     1.0,
+     0.6015
+    ],
+    "9:16": [
+     0.1383,
+     0.0,
+     0.8217,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1113,
+     1.0,
+     0.7287
+    ],
+    "3:4": [
+     0.0444,
+     0.0,
+     0.9556,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.3,
+    0.32
+   ]
+  },
+  {
+   "title": "A Splendor Seldom Seen",
+   "agent_name": "NASA/JPL-Caltech/Space Science Institute",
+   "agent_role": "Artist",
+   "creation_date": "18 December 2012",
+   "cultural_context": "Space Exploration, Planetary Science",
+   "medium": "Photograph — Cassini",
+   "date_display": "2012",
+   "description_narrative": "Saturn appears as a dark, greenish silhouette ringed by a luminous halo of gold and tan bands, backlit so its rings blaze with reflected light. Captured by NASA's Cassini spacecraft in Saturn's shadow, the image also shows two of Saturn's moons, Enceladus and Tethys, as faint points near the rings.",
+   "tags": "saturn, planetary rings, cassini, backlit, moons, enceladus, tethys, solar system",
+   "source": "Cassini",
+   "license": "PDM-1.0",
+   "source_url": "https://images-assets.nasa.gov/image/PIA14934/PIA14934~orig.jpg",
+   "thumbnail_url": "https://images-assets.nasa.gov/image/PIA14934/PIA14934~medium.jpg",
+   "license_verdict": "pd",
+   "license_basis": "Public domain (NASA/STScI release)",
+   "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "credit_line": "NASA/JPL-Caltech/Space Science Institute",
+   "license_verified": "2026-09-27",
+   "attribution_url": "https://photojournal.jpl.nasa.gov/catalog/PIA14934",
+   "aspect_crops": {
+    "16:9": [
+     0.0865,
+     0.0,
+     0.9135,
+     1.0
+    ],
+    "9:16": [
+     0.3692,
+     0.0,
+     0.6308,
+     1.0
+    ],
+    "4:3": [
+     0.1898,
+     0.0,
+     0.8102,
+     1.0
+    ],
+    "3:4": [
+     0.3255,
+     0.0,
+     0.6745,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.5,
+    0.5
+   ]
+  },
+  {
+   "title": "Dwarf Galaxy WLM",
+   "agent_name": "NASA, ESA, CSA",
+   "agent_role": "Artist",
+   "creation_date": "9 November 2022",
+   "cultural_context": "21st Century, Space Exploration",
+   "medium": "Infrared image — Webb NIRCam",
+   "date_display": "2022",
+   "description_narrative": "Webb resolves the dwarf galaxy WLM into a scatter of faint individual stars, seen here as countless reddish and white points across a starry field, with a bright, cross-spiked star and several distant background spiral galaxies also in view. The portion imaged spans about 1,700 light-years.",
+   "tags": "dwarf galaxy, wlm, webb, stars, infrared, galaxies",
+   "source": "Webb",
+   "license": "PDM-1.0",
+   "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/outreach/migrated/2022/STScI-01GHBZC0XR0DCJFZY0QXEH215V.png",
+   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/outreach/migrated/2022/STScI-01GHBZC0XR0DCJFZY0QXEH215V.png/jcr:content/renditions/2000x2000.png",
+   "license_verdict": "pd",
+   "license_basis": "Public domain (NASA/STScI release)",
+   "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "credit_line": "NASA, ESA, CSA, Kristen McQuinn (Rutgers University); Image Processing: Zoltan Levay (STScI)",
+   "license_verified": "2026-09-27",
+   "attribution_url": "https://science.nasa.gov/asset/webb/dwarf-galaxy-wlm-nircam-image/",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.2188,
+     1.0,
+     0.7812
+    ],
+    "9:16": [
+     0.2188,
+     0.0,
+     0.7812,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.125,
+     1.0,
+     0.875
+    ],
+    "3:4": [
+     0.125,
+     0.0,
+     0.875,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.5,
+    0.5
+   ]
+  },
+  {
+   "title": "Little Dumbbell Nebula",
+   "agent_name": "NASA, ESA, STScI",
+   "agent_role": "Artist",
+   "creation_date": "23 April 2024",
+   "cultural_context": "Scientific Imaging, Modern Astronomy",
+   "medium": "Photograph — Hubble WFC3",
+   "date_display": "2024",
+   "description_narrative": "Two translucent lobes of gas, joined at a bright white waist, form this Hubble portrait of the Little Dumbbell Nebula, also known as Messier 76, located 3,400 light-years away in Perseus. The lobes are inflating away from a dying star at the center; red marks glowing nitrogen and blue marks oxygen.",
+   "tags": "little dumbbell nebula, messier 76, planetary nebula, perseus, hubble, dying star",
+   "source": "Hubble",
+   "license": "PDM-1.0",
+   "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2024/04/STScI-01HTDDQ8K0QZCDAWS43R1XF3T2.tif/jcr:content/renditions/Full%20Res%20(For%20Display).png",
+   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2024/04/STScI-01HTDDQ8K0QZCDAWS43R1XF3T2.tif/jcr:content/renditions/2000x1262.png",
+   "license_verdict": "pd",
+   "license_basis": "Public domain (NASA/STScI release)",
+   "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "credit_line": "NASA, ESA, STScI",
+   "license_verified": "2026-09-27",
+   "attribution_url": "https://science.nasa.gov/asset/hubble/little-dumbbell-nebula-wfc3-image/",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0743,
+     1.0,
+     0.9657
+    ],
+    "9:16": [
+     0.3225,
+     0.0,
+     0.6775,
+     1.0
+    ],
+    "4:3": [
+     0.0793,
+     0.0,
+     0.9207,
+     1.0
+    ],
+    "3:4": [
+     0.2634,
+     0.0,
+     0.7366,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.5,
+    0.45
+   ]
+  },
+  {
+   "title": "Starry Splendor in Core of Omega Centauri",
+   "agent_name": "NASA, ESA, STScI",
+   "agent_role": "Artist",
+   "creation_date": "2 April 2008",
+   "cultural_context": "Scientific Imaging, Modern Astronomy",
+   "medium": "Photograph — Hubble",
+   "date_display": "2008",
+   "description_narrative": "Thousands of stars in gold, white, and pale blue pack tightly together, thinning toward the edges of the frame into darkness. This is the core of Omega Centauri, a globular cluster of about 10 million stars lying roughly 17,000 light-years away, among the largest of some 200 such clusters orbiting the Milky Way.",
+   "tags": "globular cluster, omega centauri, star cluster, hubble, milky way, dense stars, black hole",
+   "source": "Hubble",
+   "license": "PDM-1.0",
+   "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2008/04/STScI-01EVT6E73SYHPKFB1NYEA763C7.tif/jcr:content/renditions/11936x10891.jpg",
+   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2008/04/STScI-01EVT6E73SYHPKFB1NYEA763C7.tif/jcr:content/renditions/877x800.jpg",
+   "license_verdict": "pd",
+   "license_basis": "Public domain (NASA/STScI release)",
+   "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "credit_line": "NASA, ESA, and the Hubble Heritage Team (STScI/AURA); Acknowledgment: A. Cool (San Francisco State University) and J. Anderson (STScI)",
+   "license_verified": "2026-09-27",
+   "attribution_url": "https://science.nasa.gov/asset/hubble/starry-splendor-in-core-of-omega-centauri/",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1918,
+     1.0,
+     0.8082
+    ],
+    "9:16": [
+     0.2134,
+     0.0,
+     0.7266,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.089,
+     1.0,
+     0.911
+    ],
+    "3:4": [
+     0.1278,
+     0.0,
+     0.8122,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.47,
+    0.5
+   ]
+  },
+  {
+   "title": "Witch Head Brews Baby Stars",
+   "agent_name": "NASA/JPL-Caltech",
+   "agent_role": "Artist",
+   "creation_date": "30 October 2013",
+   "cultural_context": "Scientific Imaging, Modern Astronomy",
+   "medium": "Infrared image — WISE",
+   "date_display": "2013",
+   "description_narrative": "Wisps of green cloud curve and taper into a shape reminiscent of a hooked profile, scattered with small blue-white stars against a dark sky. This is the Witch Head nebula, a cloud of dust and gas lit up by nearby massive stars, located hundreds of light-years away near the Orion constellation.",
+   "tags": "nebula, witch head nebula, reflection nebula, infrared image, wise, orion constellation, dust cloud",
+   "source": "WISE",
+   "license": "PDM-1.0",
+   "source_url": "https://images-assets.nasa.gov/image/PIA17553/PIA17553~orig.jpg",
+   "thumbnail_url": "https://images-assets.nasa.gov/image/PIA17553/PIA17553~medium.jpg",
+   "license_verdict": "pd",
+   "license_basis": "Public domain (NASA/STScI release)",
+   "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "credit_line": "NASA/JPL-Caltech",
+   "license_verified": "2026-09-27",
+   "attribution_url": "https://photojournal.jpl.nasa.gov/catalog/PIA17553",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.2788,
+     1.0,
+     0.8413
+    ],
+    "9:16": [
+     0.1787,
+     0.0,
+     0.7412,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.095,
+     1.0,
+     0.845
+    ],
+    "3:4": [
+     0.085,
+     0.0,
+     0.835,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.55,
+    0.55
+   ]
+  },
+  {
+   "title": "Spiral Galaxy Pair NGC 4302 and NGC 4298",
+   "agent_name": "NASA, ESA, STScI",
+   "agent_role": "Artist",
+   "creation_date": "20 April 2017",
+   "cultural_context": "Scientific Imaging, Modern Astronomy",
+   "medium": "Photograph — Hubble",
+   "date_display": "2017",
+   "description_narrative": "A slender edge-on galaxy glows gold along a dark dust lane at left, while a tilted blue spiral with a bright core sits at right. These are NGC 4302, seen exactly edge-on, and NGC 4298, tilted about 70 degrees, a pair of similar spiral galaxies both roughly 55 million light-years away.",
+   "tags": "spiral galaxy, galaxy pair, edge-on galaxy, dust lane, hubble, virgo cluster, coma berenices",
+   "source": "Hubble",
+   "license": "PDM-1.0",
+   "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2017/04/STScI-01EVVBKDHXXAF65ANKSSF78SMT.tif/jcr:content/renditions/Full%20Res.png",
+   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2017/04/STScI-01EVVBKDHXXAF65ANKSSF78SMT.tif/jcr:content/renditions/1727x2000.png",
+   "license_verdict": "pd",
+   "license_basis": "Public domain (NASA/STScI release)",
+   "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "credit_line": "NASA, ESA, and M. Mutchler (STScI)",
+   "license_verified": "2026-09-27",
+   "attribution_url": "https://science.nasa.gov/asset/hubble/spiral-galaxy-pair-ngc-4302-and-ngc-4298/",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1171,
+     1.0,
+     0.6029
+    ],
+    "9:16": [
+     0.2244,
+     0.0,
+     0.8756,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0461,
+     1.0,
+     0.6939
+    ],
+    "3:4": [
+     0.0658,
+     0.0,
+     0.9342,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.5,
+    0.38
+   ]
+  },
+  {
+   "title": "Cygnus Loop Nebula",
+   "agent_name": "NASA/JPL-Caltech",
+   "agent_role": "Artist",
+   "creation_date": "22 March 2012",
+   "cultural_context": "Scientific Imaging, Modern Astronomy",
+   "medium": "Ultraviolet image — GALEX",
+   "date_display": "2012",
+   "description_narrative": "Ultraviolet light picks out wispy, thread-like filaments of hot gas and dust in the Cygnus Loop, glowing pale blue against a star-flecked black sky. These tendrils are the shockwave from a massive stellar explosion, still spreading outward roughly 1,500 light-years away. The original blast would once have been bright enough to see with the naked eye from Earth.",
+   "tags": "cygnus loop, nebula, supernova remnant, ultraviolet, galex, filaments",
+   "source": "GALEX",
+   "license": "PDM-1.0",
+   "source_url": "https://images-assets.nasa.gov/image/PIA15415/PIA15415~orig.jpg",
+   "thumbnail_url": "https://images-assets.nasa.gov/image/PIA15415/PIA15415~medium.jpg",
+   "license_verdict": "pd",
+   "license_basis": "Public domain (NASA/STScI release)",
+   "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "credit_line": "NASA/JPL-Caltech",
+   "license_verified": "2026-09-27",
+   "attribution_url": "https://photojournal.jpl.nasa.gov/catalog/PIA15415",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1787,
+     1.0,
+     0.7412
+    ],
+    "9:16": [
+     0.2263,
+     0.08,
+     0.7438,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.175,
+     1.0,
+     0.925
+    ],
+    "3:4": [
+     0.14,
+     0.08,
+     0.83,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.5,
+    0.45
+   ]
+  },
+  {
+   "title": "The Rite of Spring",
+   "agent_name": "NASA/JPL/Space Science Institute",
+   "agent_role": "Artist",
+   "creation_date": "21 September 2009",
+   "cultural_context": "Space Exploration, Planetary Science",
+   "medium": "Photograph — Cassini",
+   "date_display": "2009",
+   "description_narrative": "This Cassini mosaic, built from 75 exposures, captures Saturn during its equinox, an alignment that occurs only once every 15 Earth years. Low sunlight has dimmed the rings to a narrow, pale arc on one side, fading to darkness on the other, while the planet's cloud bands glow faintly gold above a deep black shadow.",
+   "tags": "saturn, rings, cassini, equinox, natural color, gas giant",
+   "source": "Cassini",
+   "license": "PDM-1.0",
+   "source_url": "https://images-assets.nasa.gov/image/PIA11667/PIA11667~orig.jpg",
+   "thumbnail_url": "https://images-assets.nasa.gov/image/PIA11667/PIA11667~medium.jpg",
+   "license_verdict": "pd",
+   "license_basis": "Public domain (NASA/STScI release)",
+   "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "credit_line": "NASA/JPL/Space Science Institute",
+   "license_verified": "2026-09-27",
+   "attribution_url": "https://photojournal.jpl.nasa.gov/catalog/PIA11667",
+   "aspect_crops": {
+    "16:9": [
+     0.0268,
+     0.0,
+     0.9732,
+     1.0
+    ],
+    "9:16": [
+     0.2903,
+     0.0,
+     0.5897,
+     1.0
+    ],
+    "4:3": [
+     0.1451,
+     0.0,
+     0.8549,
+     1.0
+    ],
+    "3:4": [
+     0.2504,
+     0.0,
+     0.6496,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.45,
+    0.48
+   ]
+  },
+  {
+   "title": "NASA’s Great Observatories Examine the Galactic Center Region",
+   "agent_name": "NASA, ESA, STScI",
+   "agent_role": "Artist",
+   "creation_date": "10 November 2009",
+   "cultural_context": "Scientific Imaging, Modern Astronomy",
+   "medium": "Photograph — Hubble",
+   "date_display": "2009",
+   "description_narrative": "Threads of red dust and violet-blue haze swirl around the turbulent core of the Milky Way in this composite of Hubble, Spitzer, and Chandra data. Yellow marks Hubble's infrared view of stellar nurseries; red is Spitzer's infrared dust; blue and violet are Chandra's X-rays from gas heated to millions of degrees. The view spans about 246 light-years.",
+   "tags": "milky way, galactic center, hubble, spitzer, chandra, composite image",
+   "source": "Hubble",
+   "license": "PDM-1.0",
+   "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2009/11/STScI-01EVT5DYM700P2YXHVR07P6P6J.tif/jcr:content/renditions/9725x4862.jpg",
+   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2009/11/STScI-01EVT5DYM700P2YXHVR07P6P6J.tif/jcr:content/renditions/1000x500.jpg",
+   "license_verdict": "pd",
+   "license_basis": "Public domain (NASA/STScI release)",
+   "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "credit_line": "NASA, ESA, SSC, CXC, and STScI",
+   "license_verified": "2026-09-27",
+   "attribution_url": "https://science.nasa.gov/asset/hubble/nasas-great-observatories-examine-the-galactic-center-region/",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0,
+     0.8889,
+     1.0
+    ],
+    "9:16": [
+     0.4994,
+     0.0,
+     0.7806,
+     1.0
+    ],
+    "4:3": [
+     0.2167,
+     0.0,
+     0.8833,
+     1.0
+    ],
+    "3:4": [
+     0.4325,
+     0.0,
+     0.8075,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.64,
+    0.6
+   ]
+  },
+  {
+   "title": "Sagittarius B2",
+   "agent_name": "NASA, ESA, CSA, STScI",
+   "agent_role": "Artist",
+   "creation_date": "24 September 2025",
+   "cultural_context": "21st Century, Space Exploration",
+   "medium": "Infrared image — Webb NIRCam",
+   "date_display": "2025",
+   "description_narrative": "Sagittarius B2, a giant molecular cloud near the center of the Milky Way, glows with stars, gas and cosmic dust in this near-infrared Webb image. A dense field of white and blue stars spreads across the frame, framed by soft orange clouds of glowing dust in the upper corners.",
+   "tags": "molecular cloud, milky way, webb telescope, infrared, star field, galactic center",
+   "source": "Webb",
+   "license": "PDM-1.0",
+   "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2025/09/STScI-01K4T8XYNBJ9A93DJ9KYQJE2WF.png",
+   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2025/09/STScI-01K4T8XYNBJ9A93DJ9KYQJE2WF.png/jcr:content/renditions/2000x867.png",
+   "license_verdict": "pd",
+   "license_basis": "Public domain (NASA/STScI release)",
+   "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "credit_line": "Image: NASA, ESA, CSA, STScI, Adam Ginsburg (University of Florida), Nazar Budaiev (University of Florida), Taehwa Yoo (University of Florida); Image Processing: Alyssa Pagan (STScI)",
+   "license_verified": "2026-09-27",
+   "attribution_url": "https://science.nasa.gov/asset/webb/sagittarius-b2-nircam-image/",
+   "aspect_crops": {
+    "16:9": [
+     0.1648,
+     0.0,
+     0.9352,
+     1.0
+    ],
+    "9:16": [
+     0.5081,
+     0.0,
+     0.7519,
+     1.0
+    ],
+    "4:3": [
+     0.2911,
+     0.0,
+     0.8689,
+     1.0
+    ],
+    "3:4": [
+     0.4675,
+     0.0,
+     0.7925,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.62,
+    0.45
+   ]
+  },
+  {
+   "title": "Cosmic Ice Sculptures: Dust Pillars in the Carina Nebula",
+   "agent_name": "NASA, ESA, STScI",
+   "agent_role": "Artist",
+   "creation_date": "16 September 2010",
+   "cultural_context": "Scientific Imaging, Modern Astronomy",
+   "medium": "Photograph — Hubble",
+   "date_display": "2010",
+   "description_narrative": "In the Carina Nebula, roughly 7,500 light-years away, violent stellar winds and radiation from massive stars carve pillars of cold hydrogen and dust into strange, sculpted shapes. Dark, wispy pillars stand out against a pale blue-white haze streaked with gold, dotted with small bright stars.",
+   "tags": "nebula, carina nebula, hubble, dust pillars, star formation, space",
+   "source": "Hubble",
+   "license": "PDM-1.0",
+   "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2010/09/STScI-01EVVD63KHJXK2RM8DY8P9E9T3.tif/jcr:content/renditions/6180x3648.jpg",
+   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2010/09/STScI-01EVVD63KHJXK2RM8DY8P9E9T3.tif/jcr:content/renditions/1000x591.jpg",
+   "license_verdict": "pd",
+   "license_basis": "Public domain (NASA/STScI release)",
+   "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "credit_line": "NASA, ESA, and the Hubble Heritage Project (STScI/AURA); Acknowledgment: M. Livio (STScI) and N. Smith (University of California, Berkeley)",
+   "license_verified": "2026-09-27",
+   "attribution_url": "https://science.nasa.gov/asset/hubble/cosmic-ice-sculptures-dust-pillars-in-the-carina-nebula/",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0235,
+     1.0,
+     0.9765
+    ],
+    "9:16": [
+     0.634,
+     0.0,
+     0.966,
+     1.0
+    ],
+    "4:3": [
+     0.1365,
+     0.0,
+     0.9235,
+     1.0
+    ],
+    "3:4": [
+     0.5486,
+     0.0,
+     0.9914,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.78,
+    0.55
+   ]
+  },
+  {
+   "title": "The Case of the Disappearing Continent",
+   "agent_name": "NASA/JPL-Caltech",
+   "agent_role": "Artist",
+   "creation_date": "10 February 2011",
+   "cultural_context": "Scientific Imaging, Modern Astronomy",
+   "medium": "Infrared image — Spitzer Space Telescope",
+   "date_display": "2011",
+   "description_narrative": "In visible light this region resembles North America, but Spitzer's infrared view makes the continent shape disappear, since infrared light passes through dust that blocks visible light. Glowing red clouds fill most of the frame, dotted with countless stars, with darker patches of thick dust and a wedge of blue-black sky in the upper corner.",
+   "tags": "nebula, north america nebula, spitzer, infrared, star field, space",
+   "source": "Spitzer",
+   "license": "PDM-1.0",
+   "source_url": "https://images-assets.nasa.gov/image/PIA13843/PIA13843~orig.jpg",
+   "thumbnail_url": "https://images-assets.nasa.gov/image/PIA13843/PIA13843~medium.jpg",
+   "license_verdict": "pd",
+   "license_basis": "Public domain (NASA/STScI release)",
+   "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "credit_line": "NASA/JPL-Caltech",
+   "license_verified": "2026-09-27",
+   "attribution_url": "https://photojournal.jpl.nasa.gov/catalog/PIA13843",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1387,
+     1.0,
+     0.7012
+    ],
+    "9:16": [
+     0.2688,
+     0.0,
+     0.8313,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.075,
+     1.0,
+     0.825
+    ],
+    "3:4": [
+     0.175,
+     0.0,
+     0.925,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.6,
+    0.4
+   ]
+  },
+  {
+   "title": "Star-Forming Region S106",
+   "agent_name": "NASA, ESA, STScI",
+   "agent_role": "Artist",
+   "creation_date": "15 December 2011",
+   "cultural_context": "Scientific Imaging, Modern Astronomy",
+   "medium": "Photograph — Hubble",
+   "date_display": "2011",
+   "description_narrative": "Two glowing blue-white lobes spread outward like wings from a bright core wrapped in dark red dust, giving the nebula an hourglass shape scattered with pinpoint stars. Known as Sharpless 2-106, this bipolar star-forming region lies nearly 2,000 light-years away, powered by a massive young star that carves the glowing lobes from gas and dust.",
+   "tags": "nebula, star-forming region, bipolar nebula, hubble, sharpless 2-106, emission nebula, young star",
+   "source": "Hubble",
+   "license": "PDM-1.0",
+   "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2011/12/STScI-01EVVHK7TQPH736424XJMEK5K0.tif/jcr:content/renditions/4356x3202.jpg",
+   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2011/12/STScI-01EVVHK7TQPH736424XJMEK5K0.tif/jcr:content/renditions/1000x735.jpg",
+   "license_verdict": "pd",
+   "license_basis": "Public domain (NASA/STScI release)",
+   "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "credit_line": "NASA, ESA, and the Hubble Heritage Team (STScI/AURA)",
+   "license_verified": "2026-09-27",
+   "attribution_url": "https://science.nasa.gov/asset/hubble/star-forming-region-s106/",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0974,
+     1.0,
+     0.8626
+    ],
+    "9:16": [
+     0.2633,
+     0.0,
+     0.6767,
+     1.0
+    ],
+    "4:3": [
+     0.0099,
+     0.0,
+     0.9901,
+     1.0
+    ],
+    "3:4": [
+     0.2043,
+     0.0,
+     0.7557,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.45,
+    0.5
+   ]
+  },
+  {
+   "title": "47 Tucanae – Hubble",
+   "agent_name": "NASA, ESA, STScI",
+   "agent_role": "Artist",
+   "creation_date": "18 July 2013",
+   "cultural_context": "Scientific Imaging, Modern Astronomy",
+   "medium": "Photograph — Hubble",
+   "date_display": "2013",
+   "description_narrative": "A Hubble image of the globular cluster 47 Tucanae, a dense swarm of up to a million stars some 16,700 light-years away in the southern constellation Tucana. Countless white and pale blue points crowd the frame, with a scattering of brighter orange stars standing out among them.",
+   "tags": "globular cluster, star cluster, hubble, milky way, space, stars",
+   "source": "Hubble",
+   "license": "PDM-1.0",
+   "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2013/07/STScI-01EVT3VNE1N7F4MGAVBY9AXQH3.tif/jcr:content/renditions/5227x6974.jpg",
+   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2013/07/STScI-01EVT3VNE1N7F4MGAVBY9AXQH3.tif/jcr:content/renditions/899x1200.jpg",
+   "license_verdict": "pd",
+   "license_basis": "Public domain (NASA/STScI release)",
+   "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "credit_line": "NASA, ESA, H. Richer and J. Heyl (University of British Columbia), and J. Anderson and J. Kalirai (STScI)",
+   "license_verified": "2026-09-27",
+   "attribution_url": "https://science.nasa.gov/asset/hubble/47-tucanae-hubble/",
+   "aspect_crops": {
+    "3:4": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ],
+    "16:9": [
+     0.0,
+     0.2892,
+     1.0,
+     0.7108
+    ],
+    "9:16": [
+     0.1247,
+     0.0,
+     0.8753,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.2189,
+     1.0,
+     0.7811
+    ]
+   },
+   "focal_point": [
+    0.5,
+    0.5
+   ]
+  },
+  {
+   "title": "Global Color Mosaic of Triton",
+   "agent_name": "NASA/JPL/USGS",
+   "agent_role": "Artist",
+   "creation_date": "4 June 1998",
+   "cultural_context": "Space Exploration, Planetary Science",
+   "medium": "Photograph — Voyager 2",
+   "date_display": "1998",
+   "description_narrative": "A Voyager spacecraft's color mosaic of Triton reveals a mottled globe: cratered tan terrain above, a pale blue-green band of fresh frost circling the equator, and faint pink-tinged terrain toward the bottom associated with a south polar ice cap. Dark streaky markings mark dust deposited by the geyser-like plumes Voyager found still active during its flyby. Triton's surface is the coldest known in the solar system, at 38 K.",
+   "tags": "triton, neptune moon, voyager 2, ice, nitrogen frost, cryovolcanism",
+   "source": "Voyager 2",
+   "license": "PDM-1.0",
+   "source_url": "https://images-assets.nasa.gov/image/PIA00317/PIA00317~orig.jpg",
+   "thumbnail_url": "https://images-assets.nasa.gov/image/PIA00317/PIA00317~medium.jpg",
+   "license_verdict": "pd",
+   "license_basis": "Public domain (NASA/STScI release)",
+   "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "credit_line": "NASA/JPL/USGS",
+   "license_verified": "2026-09-27",
+   "attribution_url": "https://photojournal.jpl.nasa.gov/catalog/PIA00317",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1384,
+     1.0,
+     0.8616
+    ],
+    "9:16": [
+     0.2812,
+     0.0,
+     0.7188,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0179,
+     1.0,
+     0.9821
+    ],
+    "3:4": [
+     0.2083,
+     0.0,
+     0.7917,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.5,
+    0.5
+   ]
+  },
+  {
+   "title": "IC 63 Ghost Nebula",
+   "agent_name": "NASA, ESA, STScI",
+   "agent_role": "Artist",
+   "creation_date": "25 October 2018",
+   "cultural_context": "Scientific Imaging, Modern Astronomy",
+   "medium": "Photograph — Hubble",
+   "date_display": "2018",
+   "description_narrative": "Pale gas and dust rise against a dense field of stars, tinted red and blue. This is IC 63, the Ghost Nebula, 550 light-years away in Cassiopeia. Ultraviolet radiation from the blue-giant star Gamma Cassiopeiae makes the hydrogen glow red, while starlight reflects blue off the dust.",
+   "tags": "nebula, ghost nebula, cassiopeia, gas and dust, hubble, space photography",
+   "source": "Hubble",
+   "license": "PDM-1.0",
+   "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2018/10/STScI-01EVSZK666DR7QDPEBC68B2XCJ.tif/jcr:content/renditions/Full%20Res.png",
+   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2018/10/STScI-01EVSZK666DR7QDPEBC68B2XCJ.tif/jcr:content/renditions/985x1000.png",
+   "license_verdict": "pd",
+   "license_basis": "Public domain (NASA/STScI release)",
+   "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "credit_line": "NASA, ESA, and STScI Acknowledgment: H. Arab (University of Strasbourg)",
+   "license_verified": "2026-09-27",
+   "attribution_url": "https://science.nasa.gov/asset/hubble/ic-63-ghost-nebula/",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0199,
+     1.0,
+     0.5741
+    ],
+    "9:16": [
+     0.3345,
+     0.0,
+     0.9055,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0205,
+     1.0,
+     0.7595
+    ],
+    "3:4": [
+     0.1994,
+     0.0,
+     0.9606,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.6,
+    0.35
+   ]
+  },
+  {
+   "title": "Soul Nebula",
+   "agent_name": "NASA/JPL-Caltech/UCLA",
+   "agent_role": "Artist",
+   "creation_date": "5 April 2010",
+   "cultural_context": "Scientific Imaging, Modern Astronomy",
+   "medium": "Infrared image — WISE",
+   "date_display": "2010",
+   "description_narrative": "Green nebular light surrounds a bright orange pillar of dust rising from the center, dotted with sharp blue-white stars. Known as the Soul Nebula (IC 1848 or W5), it is over 150 light-years across and lies about 6,500 light-years away in Cassiopeia, where dusty pillars point toward the young star cluster carving its cavity.",
+   "tags": "nebula, star-forming region, emission nebula, dust pillars, infrared image, wise, cassiopeia, open cluster",
+   "source": "WISE",
+   "license": "PDM-1.0",
+   "source_url": "https://images-assets.nasa.gov/image/PIA13014/PIA13014~orig.jpg",
+   "thumbnail_url": "https://images-assets.nasa.gov/image/PIA13014/PIA13014~medium.jpg",
+   "license_verdict": "pd",
+   "license_basis": "Public domain (NASA/STScI release)",
+   "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "credit_line": "NASA/JPL-Caltech/UCLA",
+   "license_verified": "2026-09-27",
+   "attribution_url": "https://photojournal.jpl.nasa.gov/catalog/PIA13014",
+   "aspect_crops": {
+    "16:9": [
+     0.0053,
+     0.0,
+     0.9347,
+     1.0
+    ],
+    "9:16": [
+     0.283,
+     0.0,
+     0.577,
+     1.0
+    ],
+    "4:3": [
+     0.1015,
+     0.0,
+     0.7985,
+     1.0
+    ],
+    "3:4": [
+     0.2439,
+     0.0,
+     0.6361,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.42,
+    0.4
+   ]
+  },
+  {
+   "title": "NGC 1546",
+   "agent_name": "NASA, ESA, STScI",
+   "agent_role": "Artist",
+   "creation_date": "18 June 2024",
+   "cultural_context": "Scientific Imaging, Modern Astronomy",
+   "medium": "Photograph — Hubble",
+   "date_display": "2024",
+   "description_narrative": "Rusty-brown dust lanes wind across the disk of the galaxy NGC 1546 in this Hubble view, backlit by its own glowing yellow core of older stars. Small blue patches mark active star formation, and a faint edge-on spiral galaxy shows in the background at left. NGC 1546 lies in the constellation Dorado.",
+   "tags": "ngc 1546, spiral galaxy, dorado, dust lanes, hubble, star formation",
+   "source": "Hubble",
+   "license": "PDM-1.0",
+   "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2024/06/STScI-01J0P4S2CD2WWZBRYJJ6FVY4Z6.tif/jcr:content/renditions/Full%20Res%20(For%20Display).png",
+   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2024/06/STScI-01J0P4S2CD2WWZBRYJJ6FVY4Z6.tif/jcr:content/renditions/2000x1836.jpg",
+   "license_verdict": "pd",
+   "license_basis": "Public domain (NASA/STScI release)",
+   "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "credit_line": "NASA, ESA, STScI, David Thilker (JHU)",
+   "license_verified": "2026-09-27",
+   "attribution_url": "https://science.nasa.gov/asset/hubble/ngc-1546/",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1836,
+     1.0,
+     0.7964
+    ],
+    "9:16": [
+     0.2018,
+     0.0,
+     0.7182,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0815,
+     1.0,
+     0.8985
+    ],
+    "3:4": [
+     0.1258,
+     0.0,
+     0.8142,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.5,
+    0.49
+   ]
+  },
+  {
+   "title": "Enceladus: Trailing Hemisphere",
+   "agent_name": "NASA/JPL/Space Science Institute",
+   "agent_role": "Artist",
+   "creation_date": "29 December 2006",
+   "cultural_context": "Space Exploration, Planetary Science",
+   "medium": "Photograph — Cassini",
+   "date_display": "2006",
+   "description_narrative": "Cassini's mosaic of Enceladus' trailing hemisphere shows an icy white globe crossed by long, braided ridges and fine crack-like troughs, with cratered, older terrain lightly speckled across the upper left. A soft diagonal line marks where sunlight falls away toward the unlit side. The mosaic combines 16 separate images taken during a close flyby.",
+   "tags": "enceladus, moon, cassini, ice, cratered terrain, saturn system",
+   "source": "Cassini",
+   "license": "PDM-1.0",
+   "source_url": "https://images-assets.nasa.gov/image/PIA08353/PIA08353~orig.jpg",
+   "thumbnail_url": "https://images-assets.nasa.gov/image/PIA08353/PIA08353~medium.jpg",
+   "license_verdict": "pd",
+   "license_basis": "Public domain (NASA/STScI release)",
+   "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "credit_line": "NASA/JPL/Space Science Institute",
+   "license_verified": "2026-09-27",
+   "attribution_url": "https://photojournal.jpl.nasa.gov/catalog/PIA08353",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.2388,
+     1.0,
+     0.8013
+    ],
+    "9:16": [
+     0.2188,
+     0.0,
+     0.7812,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.145,
+     1.0,
+     0.895
+    ],
+    "3:4": [
+     0.125,
+     0.0,
+     0.875,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.5,
+    0.52
+   ]
+  },
+  {
+   "title": "Bat Shadow",
+   "agent_name": "NASA, ESA, STScI",
+   "agent_role": "Artist",
+   "creation_date": "25 June 2020",
+   "cultural_context": "Scientific Imaging, Modern Astronomy",
+   "medium": "Photograph — Hubble",
+   "date_display": "2020",
+   "description_narrative": "Around the young star HBC 672, 1,400 light-years away, Hubble captured the shadow of its unseen planet-forming disk stretching across a star-forming cloud, nicknamed the Bat Shadow for its wing-like shape. Two dark, wing-shaped bands fan out from a bright pinpoint of starlight, cutting across drifting blue and amber clouds dotted with sharp, spiked stars.",
+   "tags": "nebula, hubble, young star, planet-forming disk, shadow, space",
+   "source": "Hubble",
+   "license": "PDM-1.0",
+   "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2020/06/STScI-01EVSTDBRNE6K7PB5CFGJJJ21B.tif/jcr:content/renditions/Full%20Res.png",
+   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2020/06/STScI-01EVSTDBRNE6K7PB5CFGJJJ21B.tif/jcr:content/renditions/2000x1810.png",
+   "license_verdict": "pd",
+   "license_basis": "Public domain (NASA/STScI release)",
+   "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "credit_line": "NASA, ESA, and STScI",
+   "license_verified": "2026-09-27",
+   "attribution_url": "https://science.nasa.gov/asset/hubble/bat-shadow/",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.2394,
+     1.0,
+     0.8606
+    ],
+    "9:16": [
+     0.3654,
+     0.0,
+     0.8746,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1358,
+     1.0,
+     0.9642
+    ],
+    "3:4": [
+     0.2605,
+     0.0,
+     0.9395,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.65,
+    0.66
+   ]
+  },
+  {
+   "title": "MACS 0416",
+   "agent_name": "NASA, ESA, CSA, STScI",
+   "agent_role": "Artist",
+   "creation_date": "9 November 2023",
+   "cultural_context": "21st Century, Space Exploration",
+   "medium": "Infrared image — Webb NIRCam",
+   "date_display": "2023",
+   "description_narrative": "Galaxies of every hue crowd this Webb and Hubble composite of the cluster MACS0416, whose gravity bends and magnifies light from more distant background galaxies into faint arcs. The bluest galaxies are relatively close and rich in new stars, while the redder ones are more distant or dust-laden. The cluster lies about 4.3 billion light-years away.",
+   "tags": "macs 0416, galaxy cluster, gravitational lensing, webb telescope, hubble, deep field",
+   "source": "Webb",
+   "license": "PDM-1.0",
+   "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2023/11/STScI-01HDHAVM4K4220Z79YTMP1K7VM.png",
+   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2023/11/STScI-01HDHAVM4K4220Z79YTMP1K7VM.png/jcr:content/renditions/2000x1855.jpg",
+   "license_verdict": "pd",
+   "license_basis": "Public domain (NASA/STScI release)",
+   "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "credit_line": "Image: NASA, ESA, CSA, STScI, Jose Diego (IFCA), Jordan D'Silva (UWA), Anton Koekemoer (STScI), Jake Summers (ASU), Rogier Windhorst (ASU), Haojing Yan (University of Missouri); Image Processing: Joseph DePasquale (STScI)",
+   "license_verified": "2026-09-27",
+   "attribution_url": "https://science.nasa.gov/asset/webb/macs-0416-hubble-acs-and-wfc3-webb-nircam-image/",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1467,
+     1.0,
+     0.7533
+    ],
+    "9:16": [
+     0.2392,
+     0.0,
+     0.7608,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0456,
+     1.0,
+     0.8544
+    ],
+    "3:4": [
+     0.1523,
+     0.0,
+     0.8477,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.5,
+    0.4
+   ]
+  },
+  {
+   "title": "Jet in Carina: WFC3 UVIS Full Field",
+   "agent_name": "NASA, ESA",
+   "agent_role": "Artist",
+   "creation_date": "9 September 2009",
+   "cultural_context": "Scientific Imaging, Modern Astronomy",
+   "medium": "Photograph — Hubble WFC3",
+   "date_display": "2009",
+   "description_narrative": "A glowing pillar of gas and dust, tipped in yellow-orange light, rises from a sea of teal nebulosity, with scattered stars punctuating the surrounding blue-black sky. This Hubble image captures a stellar jet in the Carina Nebula, composited from separate exposures taken over about a week in five narrow filters.",
+   "tags": "carina nebula, stellar jet, hubble, gas and dust, star formation, wfc3",
+   "source": "Hubble",
+   "license": "PDM-1.0",
+   "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2009/09/STScI-01EVT5GKWHMMXYNH9ZKB16YXY7.tif/jcr:content/renditions/7215x7344.jpg",
+   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2009/09/STScI-01EVT5GKWHMMXYNH9ZKB16YXY7.tif/jcr:content/renditions/983x1000.jpg",
+   "license_verdict": "pd",
+   "license_basis": "Public domain (NASA/STScI release)",
+   "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "credit_line": "NASA, ESA, and the Hubble SM4 ERO Team",
+   "license_verified": "2026-09-27",
+   "attribution_url": "https://science.nasa.gov/asset/hubble/jet-in-carina-wfc3-uvis-full-field/",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.2437,
+     1.0,
+     0.7963
+    ],
+    "9:16": [
+     0.2137,
+     0.0,
+     0.7863,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1516,
+     1.0,
+     0.8884
+    ],
+    "3:4": [
+     0.1183,
+     0.0,
+     0.8817,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.47,
+    0.47
+   ]
+  },
+  {
+   "title": "A Cosmic Holiday Ornament, Hubble-Style",
+   "agent_name": "NASA, ESA, STScI",
+   "agent_role": "Artist",
+   "creation_date": "18 December 2012",
+   "cultural_context": "Scientific Imaging, Modern Astronomy",
+   "medium": "Photograph — Hubble",
+   "date_display": "2012",
+   "description_narrative": "The planetary nebula NGC 5189, formed as a dying Sun-like star expelled its outer layers, lies between 1,800 and 3,000 light-years away and resembles a glass-blown ornament with a glowing ribbon entwined. Bluish, knotty lobes of gas radiate outward, wrapped by a golden band of filaments, against a dark field scattered with stars.",
+   "tags": "planetary nebula, ngc 5189, hubble, bipolar nebula, space, gas",
+   "source": "Hubble",
+   "license": "PDM-1.0",
+   "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2012/12/STScI-01EVVCW5DG59PNFE13DM8S5SY6.tif/jcr:content/renditions/3964x4224.jpg",
+   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2012/12/STScI-01EVVCW5DG59PNFE13DM8S5SY6.tif/jcr:content/renditions/938x1000.jpg",
+   "license_verdict": "pd",
+   "license_basis": "Public domain (NASA/STScI release)",
+   "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "credit_line": "NASA, ESA, and the Hubble Heritage Team (STScI/AURA)",
+   "license_verified": "2026-09-27",
+   "attribution_url": "https://science.nasa.gov/asset/hubble/a-cosmic-holiday-ornament-hubble-style/",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.2061,
+     1.0,
+     0.7339
+    ],
+    "9:16": [
+     0.2503,
+     0.0,
+     0.8497,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1281,
+     1.0,
+     0.8319
+    ],
+    "3:4": [
+     0.1504,
+     0.0,
+     0.9496,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.53,
+    0.47
+   ]
+  },
+  {
+   "title": "Dark Clouds in Rosette Nebula",
+   "agent_name": "NASA, ESA, STScI",
+   "agent_role": "Artist",
+   "creation_date": "23 April 2025",
+   "cultural_context": "Scientific Imaging, Modern Astronomy",
+   "medium": "Photograph — Hubble",
+   "date_display": "2025",
+   "description_narrative": "Hubble captures a small sliver of the Rosette Nebula, where dark lanes of hydrogen gas laced with dust are silhouetted against glowing blue-gray clouds. Radiation from a cluster of massive stars is eroding this material, and near the upper right a buried young star fires jets of plasma into the cold gas, lighting a faint red glow. This portion spans about four light-years, part of a nebula 100 light-years across and 5,200 light-years from Earth.",
+   "tags": "rosette nebula, dark clouds, nebula, hubble, star formation, hydrogen gas",
+   "source": "Hubble",
+   "license": "PDM-1.0",
+   "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2025/04/STScI-01JQCEYWAF3QJHV0TR7Q1B0FED.tif/jcr:content/renditions/Full Res (For Display).png",
+   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2025/04/STScI-01JQCEYWAF3QJHV0TR7Q1B0FED.tif/jcr:content/renditions/2000x1961.jpg",
+   "license_verdict": "pd",
+   "license_basis": "Public domain (NASA/STScI release)",
+   "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "credit_line": "Image: NASA, ESA, STScI; Image Processing: Joseph DePasquale (STScI)",
+   "license_verified": "2026-09-27",
+   "attribution_url": "https://science.nasa.gov/asset/hubble/dark-clouds-in-rosette-nebula/",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1332,
+     1.0,
+     0.7068
+    ],
+    "9:16": [
+     0.3934,
+     0.0,
+     0.945,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0676,
+     1.0,
+     0.8324
+    ],
+    "3:4": [
+     0.2123,
+     0.0,
+     0.9477,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.55,
+    0.42
+   ]
+  },
+  {
+   "title": "NGC 5335",
+   "agent_name": "NASA, ESA, STScI",
+   "agent_role": "Artist",
+   "creation_date": "23 April 2025",
+   "cultural_context": "Scientific Imaging, Modern Astronomy",
+   "medium": "Photograph — Hubble",
+   "date_display": "2025",
+   "description_narrative": "A bright bar of golden light slices across the glowing core of NGC 5335 in this face-on Hubble view, funneling gas inward to fuel star formation. Loose, patchy streamers of blue young stars wind around the center instead of well-defined spiral arms. Such bars appear in about 30 percent of observed galaxies, including the Milky Way.",
+   "tags": "ngc 5335, spiral galaxy, galactic bar, star formation, hubble, flocculent galaxy",
+   "source": "Hubble",
+   "license": "PDM-1.0",
+   "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2025/04/STScI-01JQCFPAES3ND3FHAVTAWAECD2.tif/jcr:content/renditions/Full Res (For Display).png",
+   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2025/04/STScI-01JQCFPAES3ND3FHAVTAWAECD2.tif/jcr:content/renditions/2000x1982.jpg",
+   "license_verdict": "pd",
+   "license_basis": "Public domain (NASA/STScI release)",
+   "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "credit_line": "Image: NASA, ESA, STScI; Image Processing: Alyssa Pagan (STScI)",
+   "license_verified": "2026-09-27",
+   "attribution_url": "https://science.nasa.gov/asset/hubble/ngc-5335/",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1862,
+     1.0,
+     0.7538
+    ],
+    "9:16": [
+     0.2412,
+     0.0,
+     0.7988,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0917,
+     1.0,
+     0.8483
+    ],
+    "3:4": [
+     0.1583,
+     0.0,
+     0.9017,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.52,
+    0.46
+   ]
+  },
+  {
+   "title": "Trumpler 14",
+   "agent_name": "NASA, ESA",
+   "agent_role": "Artist",
+   "creation_date": "21 January 2016",
+   "cultural_context": "Scientific Imaging, Modern Astronomy",
+   "medium": "Photograph — Hubble",
+   "date_display": "2016",
+   "description_narrative": "A tight swarm of brilliant blue-white stars, some with sharp diffraction spikes, blazes against a soft blue haze streaked with rust-brown clouds. This is Trumpler 14, a star cluster in the Carina Nebula about 8,000 light-years away and only 500,000 years old, among the most massive-star-rich groupings in the Milky Way.",
+   "tags": "star cluster, trumpler 14, carina nebula, hubble, massive stars, open cluster, milky way",
+   "source": "Hubble",
+   "license": "PDM-1.0",
+   "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2016/01/STScI-01EVT1T2ZABA072JD70KJWSRT7.tif/jcr:content/renditions/3906x3906.jpg",
+   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2016/01/STScI-01EVT1T2ZABA072JD70KJWSRT7.tif/jcr:content/renditions/1200x1200.jpg",
+   "license_verdict": "pd",
+   "license_basis": "Public domain (NASA/STScI release)",
+   "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "credit_line": "NASA, ESA, and J. Maíz Apellániz (Institute of Astrophysics of Andalusia, Spain); Acknowledgment: N. Smith (University of Arizona)",
+   "license_verified": "2026-09-27",
+   "attribution_url": "https://science.nasa.gov/asset/hubble/trumpler-14/",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.2688,
+     1.0,
+     0.8313
+    ],
+    "9:16": [
+     0.1687,
+     0.0,
+     0.7312,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.145,
+     1.0,
+     0.895
+    ],
+    "3:4": [
+     0.075,
+     0.0,
+     0.825,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.45,
+    0.55
+   ]
+  },
+  {
+   "title": "JWST Advanced Deep Extragalactic Survey",
+   "agent_name": "NASA, ESA, CSA",
+   "agent_role": "Artist",
+   "creation_date": "5 June 2023",
+   "cultural_context": "21st Century, Space Exploration",
+   "medium": "Infrared image — Webb NIRCam",
+   "date_display": "2023",
+   "description_narrative": "Countless faint galaxies of many shapes and colors speckle the blackness in this deep field, with a few bright foreground stars showing prominent diffraction spikes. This infrared image was taken for the JADES survey of the GOODS-South field. More than 45,000 galaxies are visible here, including many that existed when the universe was less than 600 million years old.",
+   "tags": "deep field, galaxies, webb telescope, infrared imaging, cosmology, jades survey",
+   "source": "Webb",
+   "license": "PDM-1.0",
+   "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2023/06/STScI-01H1Q2DKR7FRQAMDGBGCDAMSPX.png",
+   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2023/06/STScI-01H1Q2DKR7FRQAMDGBGCDAMSPX.png/jcr:content/renditions/2000x1402.png",
+   "license_verdict": "pd",
+   "license_basis": "Public domain (NASA/STScI release)",
+   "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "credit_line": "Image: NASA, ESA, CSA, Brant Robertson (UC Santa Cruz), Ben Johnson (CfA), Sandro Tacchella (Cambridge), Marcia Rieke (University of Arizona), Daniel Eisenstein (CfA); Image Processing: Alyssa Pagan (STScI)",
+   "license_verified": "2026-09-27",
+   "attribution_url": "https://science.nasa.gov/asset/webb/jwst-advanced-deep-extragalactic-survey-nircam-image/",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0989,
+     1.0,
+     0.9011
+    ],
+    "9:16": [
+     0.3028,
+     0.0,
+     0.6972,
+     1.0
+    ],
+    "4:3": [
+     0.0326,
+     0.0,
+     0.9674,
+     1.0
+    ],
+    "3:4": [
+     0.2371,
+     0.0,
+     0.7629,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.5,
+    0.5
+   ]
+  },
+  {
+   "title": "IC 348",
+   "agent_name": "NASA, ESA, CSA, STScI",
+   "agent_role": "Artist",
+   "creation_date": "13 December 2023",
+   "cultural_context": "21st Century, Space Exploration",
+   "medium": "Infrared image — Webb NIRCam",
+   "date_display": "2023",
+   "description_narrative": "Webb's near-infrared view shows swirling curtains of pink and violet nebular light, dotted with bright stars flaring sharp diffraction spikes. A looping arc of gas curls along the right side of the frame, likely carved by winds from a hidden pair of massive young stars near the center. This is the star cluster IC 348, imaged across a region about 0.6 light-years wide.",
+   "tags": "ic 348, star cluster, brown dwarf, webb, reflection nebula, star formation",
+   "source": "Webb",
+   "license": "PDM-1.0",
+   "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2023/12/STScI-01HFC8K9A4CX579GP4QMDX2QBY.png",
+   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2023/12/STScI-01HFC8K9A4CX579GP4QMDX2QBY.png/jcr:content/renditions/1492x2000.png",
+   "license_verdict": "pd",
+   "license_basis": "Public domain (NASA/STScI release)",
+   "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "credit_line": "Image: NASA, ESA, CSA, STScI, Kevin Luhman (PSU), Catarina Alves de Oliveira (ESA)",
+   "license_verified": "2026-09-27",
+   "attribution_url": "https://science.nasa.gov/asset/webb/ic-348-nircam-image/",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.2602,
+     1.0,
+     0.6798
+    ],
+    "9:16": [
+     0.123,
+     0.0,
+     0.877,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1902,
+     1.0,
+     0.7498
+    ],
+    "3:4": [
+     0.0,
+     0.0026,
+     1.0,
+     0.9974
+    ]
+   },
+   "focal_point": [
+    0.5,
+    0.47
+   ]
+  },
+  {
+   "title": "Lagoon Nebula — Infrared Light",
+   "agent_name": "NASA, ESA, STScI",
+   "agent_role": "Artist",
+   "creation_date": "19 April 2018",
+   "cultural_context": "Scientific Imaging, Modern Astronomy",
+   "medium": "Infrared image — Hubble (infrared light)",
+   "date_display": "2018",
+   "description_narrative": "Thousands of stars crowd this infrared view of the Lagoon Nebula, many more than appear in visible light, since infrared light pierces the dust that otherwise hides them. Dark, dust-choked Bok globules thread through the haze near the bright cluster at center, anchored by Herschel 36, a star some 200,000 times brighter than the Sun.",
+   "tags": "lagoon nebula, herschel 36, infrared imaging, star cluster, bok globules, hubble",
+   "source": "Hubble",
+   "license": "PDM-1.0",
+   "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2018/04/STScI-01EVT0N4CV02KC07S48TCNNG14.tif/jcr:content/renditions/Full%20Res.png",
+   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2018/04/STScI-01EVT0N4CV02KC07S48TCNNG14.tif/jcr:content/renditions/861x1000.png",
+   "license_verdict": "pd",
+   "license_basis": "Public domain (NASA/STScI release)",
+   "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "credit_line": "NASA, ESA, and STScI",
+   "license_verified": "2026-09-27",
+   "attribution_url": "https://science.nasa.gov/asset/hubble/lagoon-nebula-infrared-light-view/",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.2077,
+     1.0,
+     0.6923
+    ],
+    "9:16": [
+     0.2535,
+     0.0,
+     0.9065,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1469,
+     1.0,
+     0.7931
+    ],
+    "3:4": [
+     0.1147,
+     0.0,
+     0.9853,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.58,
+    0.47
+   ]
+  },
+  {
+   "title": "Galaxy Cluster Abell 370",
+   "agent_name": "NASA, ESA, STScI",
+   "agent_role": "Artist",
+   "creation_date": "13 September 2018",
+   "cultural_context": "Scientific Imaging, Modern Astronomy",
+   "medium": "Photograph — Hubble",
+   "date_display": "2018",
+   "description_narrative": "Hundreds of galaxies crowd this Hubble field, their light bent and smeared into faint arcs by the gravity of a massed cluster at the center. Two foreground stars blaze with sharp diffraction spikes amid the swarm of small, faint smudges. This is the giant cluster Abell 370, lying about 4 billion light-years away and containing several hundred galaxies of its own.",
+   "tags": "galaxy cluster, abell 370, gravitational lensing, hubble, dark matter, deep field",
+   "source": "Hubble",
+   "license": "PDM-1.0",
+   "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2018/09/STScI-01EVSZQS76DB6KPJT9VEXY75V2.tif/jcr:content/renditions/Full%20Res.png",
+   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2018/09/STScI-01EVSZQS76DB6KPJT9VEXY75V2.tif/jcr:content/renditions/878x1000.png",
+   "license_verdict": "pd",
+   "license_basis": "Public domain (NASA/STScI release)",
+   "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "credit_line": "NASA, ESA, A. Koekemoer (STScI), M. Jauzac (Durham University), C. Steinhardt (Niels Bohr Institute), and the BUFFALO team",
+   "license_verified": "2026-09-27",
+   "attribution_url": "https://science.nasa.gov/asset/hubble/galaxy-cluster-abell-370/",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.175,
+     1.0,
+     0.6693
+    ],
+    "9:16": [
+     0.18,
+     0.0,
+     0.82,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1205,
+     1.0,
+     0.7795
+    ],
+    "3:4": [
+     0.0733,
+     0.0,
+     0.9267,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.5,
+    0.48
+   ]
+  },
+  {
+   "title": "Star Cluster R136",
+   "agent_name": "NASA, ESA",
+   "agent_role": "Artist",
+   "creation_date": "17 March 2016",
+   "cultural_context": "Scientific Imaging, Modern Astronomy",
+   "medium": "Photograph — Hubble",
+   "date_display": "2016",
+   "description_narrative": "A dense knot of bright blue-white stars glows at the center of a vast, cloudy nebula streaked with orange and brown filaments of gas and dust. This is the young star cluster R136 in the Tarantula Nebula, 170,000 light-years away, home to nine stars each more than 100 times the sun's mass.",
+   "tags": "star cluster, tarantula nebula, r136, hubble, large magellanic cloud, massive stars, nebula",
+   "source": "Hubble",
+   "license": "PDM-1.0",
+   "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2016/03/STScI-01EVVH0Z1XVJ2T61FQ5XRYV9HK.tif/jcr:content/renditions/4014x3981.jpg",
+   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2016/03/STScI-01EVVH0Z1XVJ2T61FQ5XRYV9HK.tif/jcr:content/renditions/1200x1190.jpg",
+   "license_verdict": "pd",
+   "license_basis": "Public domain (NASA/STScI release)",
+   "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "credit_line": "NASA, ESA, and P. Crowther (University of Sheffield)",
+   "license_verified": "2026-09-27",
+   "attribution_url": "https://science.nasa.gov/asset/hubble/star-cluster-r136-2/",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.3664,
+     1.0,
+     0.9336
+    ],
+    "9:16": [
+     0.2911,
+     0.0,
+     0.8489,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.2219,
+     1.0,
+     0.9781
+    ],
+    "3:4": [
+     0.1781,
+     0.0,
+     0.9219,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.57,
+    0.72
+   ]
+  },
+  {
+   "title": "Cassiopeia A — Webb NIRCam",
+   "agent_name": "NASA, ESA, CSA, STScI",
+   "agent_role": "Artist",
+   "creation_date": "10 December 2023",
+   "cultural_context": "21st Century, Space Exploration",
+   "medium": "Infrared image — Webb NIRCam",
+   "date_display": "2023",
+   "description_narrative": "Webb's NIRCam view of Cassiopeia A resolves tiny knots of gas from the exploded star, forming clumps of bright orange and pink in the inner shell, ringed by a smoke-like outer shell where ejected material rams into surrounding gas. Sharp, spiked stars scatter across the dark field, with dense clumps in the lower right corner.",
+   "tags": "supernova remnant, cassiopeia a, webb telescope, infrared, nebula, space",
+   "source": "Webb",
+   "license": "PDM-1.0",
+   "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2023/12/STScI-01HGGZBZ1WK06H9NMB5WZTZPXD.png",
+   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2023/12/STScI-01HGGZBZ1WK06H9NMB5WZTZPXD.png/jcr:content/renditions/1746x2000.png",
+   "license_verdict": "pd",
+   "license_basis": "Public domain (NASA/STScI release)",
+   "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "credit_line": "Image: NASA, ESA, CSA, STScI, Danny Milisavljevic (Purdue University), Ilse De Looze (UGhent), Tea Temim (Princeton University)",
+   "license_verified": "2026-09-27",
+   "attribution_url": "https://science.nasa.gov/asset/webb/cassiopeia-a-nircam-image/",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.2244,
+     1.0,
+     0.7156
+    ],
+    "9:16": [
+     0.1279,
+     0.0,
+     0.7721,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1426,
+     1.0,
+     0.7974
+    ],
+    "3:4": [
+     0.0105,
+     0.0,
+     0.8695,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.47,
+    0.45
+   ]
+  },
+  {
+   "title": "M82 Cigar Galaxy — Webb NIRCam",
+   "agent_name": "NASA, ESA, CSA, STScI",
+   "agent_role": "Artist",
+   "creation_date": "23 June 2026",
+   "cultural_context": "21st Century, Space Exploration",
+   "medium": "Infrared image — Webb NIRCam",
+   "date_display": "2026",
+   "description_narrative": "The edge-on disk of the starburst galaxy M82, the Cigar Galaxy, glows blue-white against fiery orange plumes of gas erupting above and below it in this Webb near-infrared view. The snapshot captures a scene that has been evolving for a couple hundred million years. Webb resolves about 16.5 million individual stars within the galaxy.",
+   "tags": "m82, cigar galaxy, webb telescope, nircam, starburst galaxy, infrared imaging",
+   "source": "Webb",
+   "license": "PDM-1.0",
+   "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2026/06/STScI-01KM3RWWTEHPFZG9QEKE4FZM25.png",
+   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2026/06/STScI-01KM3RWWTEHPFZG9QEKE4FZM25.png/jcr:content/renditions/2000x1348.png",
+   "license_verdict": "pd",
+   "license_basis": "Public domain (NASA/STScI release)",
+   "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "credit_line": "Image: NASA, ESA, CSA, Adam Smercina (STScI, Tufts), Thomas Williams (University of Manchester); Image Processing: Alyssa Pagan (STScI)",
+   "license_verified": "2026-09-27",
+   "attribution_url": "https://science.nasa.gov/asset/webb/m82-cigar-galaxy-nircam-image/",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0828,
+     1.0,
+     0.9172
+    ],
+    "9:16": [
+     0.3304,
+     0.0,
+     0.7096,
+     1.0
+    ],
+    "4:3": [
+     0.0506,
+     0.0,
+     0.9494,
+     1.0
+    ],
+    "3:4": [
+     0.2672,
+     0.0,
+     0.7728,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.52,
+    0.48
+   ]
+  },
+  {
+   "title": "Cassiopeia A — Chandra X-ray Composite",
+   "agent_name": "NASA, STScI",
+   "agent_role": "Artist",
+   "creation_date": "April 21, 2021",
+   "cultural_context": "Scientific Imaging, X-ray Astronomy",
+   "medium": "X-ray/infrared/optical composite — Chandra, NuSTAR, Hubble",
+   "date_display": "2021",
+   "description_narrative": "This Chandra, NuSTAR, and Hubble composite of the supernova remnant Cassiopeia A maps elements from its exploded star: iron in red, oxygen in purple, and titanium in blue, about 11,000 light years from Earth. The debris forms a roughly spherical tangle of orange, green, and blue filaments, set against a dark field speckled with stars.",
+   "tags": "supernova remnant, cassiopeia a, x-ray, chandra, composite image, space",
+   "source": "Chandra (+ composite)",
+   "license": "PDM-1.0",
+   "source_url": "https://chandra.harvard.edu/photo/2021/casa/casa_lg.jpg",
+   "thumbnail_url": "https://chandra.harvard.edu/photo/2021/casa/casa.jpg",
+   "license_verdict": "pd",
+   "license_basis": "Public domain (NASA/STScI release)",
+   "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "credit_line": "Chandra: NASA/CXC/RIKEN/T. Sato et al.; NuSTAR: NASA/NuSTAR; Hubble: NASA/STScI",
+   "license_verified": "2026-09-27",
+   "attribution_url": "https://chandra.harvard.edu/photo/2021/casa/",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0668,
+     1.0,
+     0.8132
+    ],
+    "9:16": [
+     0.288,
+     0.0,
+     0.712,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0024,
+     1.0,
+     0.9976
+    ],
+    "3:4": [
+     0.2374,
+     0.0,
+     0.8026,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.53,
+    0.45
+   ]
+  },
+  {
+   "title": "WISE Unveils a Treasure Trove of Beauty",
+   "agent_name": "NASA/JPL-Caltech/UCLA",
+   "agent_role": "Artist",
+   "creation_date": "1 April 2011",
+   "cultural_context": "Scientific Imaging, Modern Astronomy",
+   "medium": "Infrared image — WISE",
+   "date_display": "2011",
+   "description_narrative": "Swirling teal and green clouds fill the upper frame, opening onto a bright white core, while a warm red and pink nebula glows in the lower right. This is the Rho Ophiuchi cloud complex, one of the nearest star-forming regions to Earth, its bright core an emission nebula and its red glow starlight reflected off dust.",
+   "tags": "nebula, rho ophiuchi, star-forming region, infrared image, wise, emission nebula, reflection nebula",
+   "source": "WISE",
+   "license": "PDM-1.0",
+   "source_url": "https://images-assets.nasa.gov/image/PIA13974/PIA13974~orig.jpg",
+   "thumbnail_url": "https://images-assets.nasa.gov/image/PIA13974/PIA13974~medium.jpg",
+   "license_verdict": "pd",
+   "license_basis": "Public domain (NASA/STScI release)",
+   "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "credit_line": "NASA/JPL-Caltech/UCLA",
+   "license_verified": "2026-09-27",
+   "attribution_url": "https://photojournal.jpl.nasa.gov/catalog/PIA13974",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.3432,
+     1.0,
+     0.9168
+    ],
+    "9:16": [
+     0.3042,
+     0.0,
+     0.8558,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1676,
+     1.0,
+     0.9324
+    ],
+    "3:4": [
+     0.2023,
+     0.0,
+     0.9377,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.5,
+    0.55
+   ]
+  },
+  {
+   "title": "Jabbah and Associates",
+   "agent_name": "NASA/JPL-Caltech/UCLA",
+   "agent_role": "Artist",
+   "creation_date": "25 November 2011",
+   "cultural_context": "Scientific Imaging, Modern Astronomy",
+   "medium": "Infrared image — WISE",
+   "date_display": "2011",
+   "description_narrative": "Wisps of green dust drift across a star-flecked field in this infrared view of Jabbah, whose name means \"the forehead of the scorpion.\" Jabbah lies 440 light-years away and, though it looks like a single star, is actually a whole system of stars lighting the surrounding gas and dust.",
+   "tags": "jabbah, scorpius, infrared imaging, wise, nebula, dust cloud, star system",
+   "source": "WISE",
+   "license": "PDM-1.0",
+   "source_url": "https://images-assets.nasa.gov/image/PIA14881/PIA14881~orig.jpg",
+   "thumbnail_url": "https://images-assets.nasa.gov/image/PIA14881/PIA14881~medium.jpg",
+   "license_verdict": "pd",
+   "license_basis": "Public domain (NASA/STScI release)",
+   "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "credit_line": "NASA/JPL-Caltech/UCLA",
+   "license_verified": "2026-09-27",
+   "attribution_url": "https://photojournal.jpl.nasa.gov/catalog/PIA14881",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1473,
+     1.0,
+     0.7527
+    ],
+    "9:16": [
+     0.3587,
+     0.0,
+     0.8813,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0464,
+     1.0,
+     0.8536
+    ],
+    "3:4": [
+     0.2316,
+     0.0,
+     0.9284,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.62,
+    0.42
+   ]
+  },
+  {
+   "title": "Perseus Molecular Cloud",
+   "agent_name": "NASA/JPL-Caltech",
+   "agent_role": "Artist",
+   "creation_date": "19 December 2019",
+   "cultural_context": "Scientific Imaging, Modern Astronomy",
+   "medium": "Infrared image — Spitzer Space Telescope",
+   "date_display": "2019",
+   "description_narrative": "The Perseus Molecular Cloud, a collection of gas and dust about 1,000 light-years from Earth and roughly 500 light-years across, hosts an abundance of young stars in this Spitzer infrared view. Fiery orange and red filaments billow through the frame, with bright clustered points marking clumps of newborn stars.",
+   "tags": "molecular cloud, spitzer, infrared, star formation, nebula, gas and dust",
+   "source": "Spitzer",
+   "license": "PDM-1.0",
+   "source_url": "https://images-assets.nasa.gov/image/PIA23405/PIA23405~orig.jpg",
+   "thumbnail_url": "https://images-assets.nasa.gov/image/PIA23405/PIA23405~medium.jpg",
+   "license_verdict": "pd",
+   "license_basis": "Public domain (NASA/STScI release)",
+   "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "credit_line": "NASA/JPL-Caltech",
+   "license_verified": "2026-09-27",
+   "attribution_url": "https://photojournal.jpl.nasa.gov/catalog/PIA23405",
+   "aspect_crops": {
+    "16:9": [
+     0.1256,
+     0.0,
+     0.84,
+     0.986
+    ],
+    "9:16": [
+     0.1054,
+     0.0,
+     0.3346,
+     1.0
+    ],
+    "4:3": [
+     0.0283,
+     0.0,
+     0.5717,
+     1.0
+    ],
+    "3:4": [
+     0.1172,
+     0.0,
+     0.4228,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.2,
+    0.52
+   ]
+  },
+  {
+   "title": "Orion Big Head Revealed in Infrared",
+   "agent_name": "NASA/JPL-Caltech/UCLA",
+   "agent_role": "Artist",
+   "creation_date": "14 April 2011",
+   "cultural_context": "Scientific Imaging, Modern Astronomy",
+   "medium": "Infrared image — WISE",
+   "date_display": "2011",
+   "description_narrative": "The Lambda Orionis molecular ring, also called the Meissa Ring, glows across roughly 130 light-years of space in this infrared view from WISE. Wispy green filaments of dust encircle a dark center, with scattered blue stars and small red-orange knots marking pockets of warmer gas.",
+   "tags": "nebula, infrared, wise, molecular ring, star-forming region, dust",
+   "source": "WISE",
+   "license": "PDM-1.0",
+   "source_url": "https://images-assets.nasa.gov/image/PIA14040/PIA14040~orig.jpg",
+   "thumbnail_url": "https://images-assets.nasa.gov/image/PIA14040/PIA14040~medium.jpg",
+   "license_verdict": "pd",
+   "license_basis": "Public domain (NASA/STScI release)",
+   "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "credit_line": "NASA/JPL-Caltech/UCLA",
+   "license_verified": "2026-09-27",
+   "attribution_url": "https://photojournal.jpl.nasa.gov/catalog/PIA14040",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0777,
+     1.0,
+     0.6823
+    ],
+    "9:16": [
+     0.2883,
+     0.0,
+     0.8117,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.094,
+     1.0,
+     0.9002
+    ],
+    "3:4": [
+     0.2011,
+     0.0,
+     0.8989,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.52,
+    0.35
+   ]
+  },
+  {
+   "title": "Stars Gather in Downtown Milky Way",
+   "agent_name": "NASA/JPL-Caltech",
+   "agent_role": "Artist",
+   "creation_date": "18 March 2011",
+   "cultural_context": "Scientific Imaging, Modern Astronomy",
+   "medium": "Infrared image — Spitzer Space Telescope",
+   "date_display": "2011",
+   "description_narrative": "A hazy blue-green field of stars and dust brightens toward the center, where pink and orange clouds glow amid a dense white core. This infrared view from NASA's Spitzer Space Telescope shows the crowded center of the Milky Way, whose central star cluster lies 26,000 light-years away and spans roughly 2,400 by 1,360 light-years.",
+   "tags": "milky way, galactic center, infrared image, spitzer, star cluster, nebula, dust",
+   "source": "Spitzer",
+   "license": "PDM-1.0",
+   "source_url": "https://images-assets.nasa.gov/image/PIA13932/PIA13932~orig.jpg",
+   "thumbnail_url": "https://images-assets.nasa.gov/image/PIA13932/PIA13932~medium.jpg",
+   "license_verdict": "pd",
+   "license_basis": "Public domain (NASA/STScI release)",
+   "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "credit_line": "NASA/JPL-Caltech",
+   "license_verified": "2026-09-27",
+   "attribution_url": "https://photojournal.jpl.nasa.gov/catalog/PIA13932",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ],
+    "9:16": [
+     0.2918,
+     0.0,
+     0.6082,
+     1.0
+    ],
+    "4:3": [
+     0.095,
+     0.0,
+     0.845,
+     1.0
+    ],
+    "3:4": [
+     0.2491,
+     0.0,
+     0.6709,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.47,
+    0.5
+   ]
+  },
+  {
+   "title": "Saturn … Four Years On",
+   "agent_name": "NASA/JPL/Space Science Institute",
+   "agent_role": "Artist",
+   "creation_date": "30 December 2008",
+   "cultural_context": "Space Exploration, Planetary Science",
+   "medium": "Photograph — Cassini",
+   "date_display": "2008",
+   "description_narrative": "Cassini assembled this natural-color mosaic from 30 images taken on July 23, 2008, as the spacecraft panned across Saturn and its rings. Pale gold and cream bands wrap the planet's cloud tops, crossed by a wide, thin ring seen nearly edge-on.",
+   "tags": "saturn, rings, cassini, natural color, gas giant, cloud bands",
+   "source": "Cassini",
+   "license": "PDM-1.0",
+   "source_url": "https://images-assets.nasa.gov/image/PIA11141/PIA11141~orig.jpg",
+   "thumbnail_url": "https://images-assets.nasa.gov/image/PIA11141/PIA11141~medium.jpg",
+   "license_verdict": "pd",
+   "license_basis": "Public domain (NASA/STScI release)",
+   "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "credit_line": "NASA/JPL/Space Science Institute",
+   "license_verified": "2026-09-27",
+   "attribution_url": "https://photojournal.jpl.nasa.gov/catalog/PIA11141",
+   "aspect_crops": {
+    "16:9": [
+     0.0697,
+     0.0,
+     0.9303,
+     1.0
+    ],
+    "9:16": [
+     0.3639,
+     0.0,
+     0.6361,
+     1.0
+    ],
+    "4:3": [
+     0.1773,
+     0.0,
+     0.8227,
+     1.0
+    ],
+    "3:4": [
+     0.3185,
+     0.0,
+     0.6815,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.5,
+    0.5
+   ]
+  },
+  {
+   "title": "High Resolution Ceres View",
+   "agent_name": "NASA/JPL-Caltech/UCLA/MPS/DLR/IDA",
+   "agent_role": "Artist",
+   "creation_date": "20 September 2017",
+   "cultural_context": "Space Exploration, Planetary Science",
+   "medium": "Photograph — Dawn",
+   "date_display": "2017",
+   "description_narrative": "Dawn's high-resolution view of Ceres shows a heavily cratered gray sphere, its surface pocked with craters of every size down to fine texture. Near the center, a small cluster of bright white spots marks Occator Crater, the brightest area on the dwarf planet. The image resolves surface features down to about 120 feet per pixel.",
+   "tags": "ceres, dwarf planet, dawn mission, craters, occator crater, planetary science",
+   "source": "Dawn",
+   "license": "PDM-1.0",
+   "source_url": "https://images-assets.nasa.gov/image/PIA21906/PIA21906~orig.jpg",
+   "thumbnail_url": "https://images-assets.nasa.gov/image/PIA21906/PIA21906~medium.jpg",
+   "license_verdict": "pd",
+   "license_basis": "Public domain (NASA/STScI release)",
+   "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "credit_line": "NASA/JPL-Caltech/UCLA/MPS/DLR/IDA",
+   "license_verified": "2026-09-27",
+   "attribution_url": "https://photojournal.jpl.nasa.gov/catalog/PIA21906",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.2188,
+     1.0,
+     0.7812
+    ],
+    "9:16": [
+     0.2188,
+     0.0,
+     0.7812,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.125,
+     1.0,
+     0.875
+    ],
+    "3:4": [
+     0.125,
+     0.0,
+     0.875,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.5,
+    0.5
+   ]
+  },
+  {
+   "title": "On the Final Frontier",
+   "agent_name": "NASA/JPL/Space Science Institute",
+   "agent_role": "Artist",
+   "creation_date": "15 October 2007",
+   "cultural_context": "Space Exploration, Planetary Science",
+   "medium": "Photograph — Cassini",
+   "date_display": "2007",
+   "description_narrative": "This natural-color Cassini mosaic, combining 45 images taken over about two hours, looks across Saturn's rings from their unlit side, roughly 1.1 million kilometers from the planet. The planet's banded, pale gold disk glows behind broad dark rings, its own shadow cutting a curved dark bite across the cloud tops.",
+   "tags": "saturn, rings, cassini, planet, natural color, gas giant",
+   "source": "Cassini",
+   "license": "PDM-1.0",
+   "source_url": "https://images-assets.nasa.gov/image/PIA08388/PIA08388~orig.jpg",
+   "thumbnail_url": "https://images-assets.nasa.gov/image/PIA08388/PIA08388~medium.jpg",
+   "license_verdict": "pd",
+   "license_basis": "Public domain (NASA/STScI release)",
+   "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "credit_line": "NASA/JPL/Space Science Institute",
+   "license_verified": "2026-09-27",
+   "attribution_url": "https://photojournal.jpl.nasa.gov/catalog/PIA08388",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0549,
+     1.0,
+     0.9451
+    ],
+    "9:16": [
+     0.3023,
+     0.0,
+     0.6577,
+     1.0
+    ],
+    "4:3": [
+     0.0688,
+     0.0,
+     0.9112,
+     1.0
+    ],
+    "3:4": [
+     0.2531,
+     0.0,
+     0.7269,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.45,
+    0.48
+   ]
   }
  ]
 }
