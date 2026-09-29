@@ -2104,10 +2104,14 @@ async def run_packets(*, only_sample: bool, limit: int | None, collection: str |
             fact_path = FACTS_DIR / coll / f"{idx:04d}.json"
             fact_path.parent.mkdir(parents=True, exist_ok=True)
             packet_path = PACKETS_DIR / coll / f"{key}.json"
+            extra_fact = extra_by_coll.get(coll, {}).get(idx)
+            bundle = None
             if fact_path.exists() and packet_path.exists():
                 bundle = json.loads(fact_path.read_text())  # resume: skip re-fetching
-            else:
-                extra_fact = extra_by_coll.get(coll, {}).get(idx)
+                # ...unless this run supplies release text the cached bundle predates.
+                if extra_fact and not any(f["key"].startswith("nasa.") for f in bundle["facts"]):
+                    bundle = None
+            if bundle is None:
                 bundle = await build_facts_bundle(fx, item, coll, extra_fact=extra_fact)
                 fact_path.write_text(json.dumps(bundle, indent=2, default=str))
             fields, needs_review, notes = resolve_structured_fields(bundle, item, coll)
