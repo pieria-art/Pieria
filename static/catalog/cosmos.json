@@ -108,7 +108,9 @@
    "focal_point": [
     0.47,
     0.4
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Hubble Ultra Deep Field",
@@ -213,7 +215,9 @@
    "focal_point": [
     0.5,
     0.49
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Crab Nebula",
@@ -265,7 +269,9 @@
    "focal_point": [
     0.5,
     0.5
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Horsehead Nebula",
@@ -317,7 +323,9 @@
    "focal_point": [
     0.5,
     0.72
-   ]
+   ],
+   "delivered_edge": 4187,
+   "resolution_tier": "4K"
   },
   {
    "title": "Andromeda Galaxy",
@@ -423,7 +431,9 @@
    "focal_point": [
     0.5,
     0.55
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Southern Ring Nebula Webb",
@@ -846,7 +856,9 @@
    "focal_point": [
     0.53,
     0.47
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Antennae Galaxies",
@@ -1057,7 +1069,9 @@
    "focal_point": [
     0.58,
     0.53
-   ]
+   ],
+   "delivered_edge": 4685,
+   "resolution_tier": "4K"
   },
   {
    "title": "Cosmic Reef",
@@ -1109,7 +1123,9 @@
    "focal_point": [
     0.47,
     0.45
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Jupiter's Great Red Spot",
@@ -1162,7 +1178,9 @@
    "focal_point": [
     0.66,
     0.3
-   ]
+   ],
+   "delivered_edge": 5489,
+   "resolution_tier": "4K"
   },
   {
    "title": "Pluto New Horizons",
@@ -1372,7 +1390,9 @@
    "focal_point": [
     0.5,
     0.5
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Cat’s Paw Nebula",
@@ -1423,7 +1443,9 @@
    "focal_point": [
     0.5,
     0.33
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "The Carina Nebula: Star Birth in the Extreme",
@@ -1474,7 +1496,9 @@
    "focal_point": [
     0.33,
     0.45
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Rho Ophiuchi",
@@ -1525,7 +1549,9 @@
    "focal_point": [
     0.54,
     0.2
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Hubble Photographs Grand Design Spiral Galaxy M81",
@@ -1576,7 +1602,9 @@
    "focal_point": [
     0.51,
     0.47
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "NGC 346",
@@ -1627,7 +1655,9 @@
    "focal_point": [
     0.5,
     0.45
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Out of This Whirl: the Whirlpool Galaxy (M51) and Companion Galaxy",
@@ -1678,7 +1708,9 @@
    "focal_point": [
     0.39,
     0.48
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Webb’s First Deep Field Unveiled",
@@ -1729,7 +1761,9 @@
    "focal_point": [
     0.52,
     0.5
-   ]
+   ],
+   "delivered_edge": 4630,
+   "resolution_tier": "4K"
   },
   {
    "title": "Herbig-Haro 46/47",
@@ -1780,7 +1814,9 @@
    "focal_point": [
     0.5,
     0.5
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Bubble Nebula (NGC 7635)",
@@ -1831,7 +1867,9 @@
    "focal_point": [
     0.45,
     0.5
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "L1527 and Protostar",
@@ -1882,7 +1920,9 @@
    "focal_point": [
     0.5,
     0.51
-   ]
+   ],
+   "delivered_edge": 4462,
+   "resolution_tier": "4K"
   },
   {
    "title": "M82 Cigar Galaxy — Webb & Hubble Composite",
@@ -1933,7 +1973,9 @@
    "focal_point": [
     0.52,
     0.5
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "NASA Unveils Celestial Fireworks as Official Hubble 25th Anniversary Image",
@@ -1984,7 +2026,9 @@
    "focal_point": [
     0.58,
     0.4
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Spiral Galaxy M83",
@@ -2035,7 +2079,9 @@
    "focal_point": [
     0.47,
     0.47
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "WR 124",
@@ -2086,7 +2132,9 @@
    "focal_point": [
     0.51,
     0.5
-   ]
+   ],
+   "delivered_edge": 4416,
+   "resolution_tier": "4K"
   },
   {
    "title": "Lagoon Nebula — Visible Light",
@@ -2137,7 +2185,9 @@
    "focal_point": [
     0.38,
     0.4
-   ]
+   ],
+   "delivered_edge": 6300,
+   "resolution_tier": "4K"
   },
   {
    "title": "Pismis 24",
@@ -2188,7 +2238,9 @@
    "focal_point": [
     0.57,
     0.62
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "A “Rose” Made of Galaxies Highlights Hubble’s 21st Anniversary",
@@ -2239,7 +2291,9 @@
    "focal_point": [
     0.46,
     0.22
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Barred Spiral Galaxy NGC 1300",
@@ -2290,7 +2344,9 @@
    "focal_point": [
     0.5,
     0.47
-   ]
+   ],
+   "delivered_edge": 6637,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Greatest Saturn Portrait ...Yet",
@@ -2341,7 +2397,9 @@
    "focal_point": [
     0.5,
     0.5
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "NGC 604",
@@ -2392,7 +2450,9 @@
    "focal_point": [
     0.55,
     0.55
-   ]
+   ],
+   "delivered_edge": 4159,
+   "resolution_tier": "4K"
   },
   {
    "title": "Spiral Galaxy UGC 2885",
@@ -2443,7 +2503,9 @@
    "focal_point": [
     0.51,
     0.54
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "NGC 1333",
@@ -2494,7 +2556,9 @@
    "focal_point": [
     0.43,
     0.53
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Pandora’s Cluster",
@@ -2545,7 +2609,9 @@
    "focal_point": [
     0.6,
     0.45
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Galaxies IC 2163 and NGC 2207",
@@ -2596,7 +2662,9 @@
    "focal_point": [
     0.64,
     0.5
-   ]
+   ],
+   "delivered_edge": 6353,
+   "resolution_tier": "4K"
   },
   {
    "title": "A Farewell to Saturn",
@@ -2647,7 +2715,9 @@
    "focal_point": [
     0.5,
     0.45
-   ]
+   ],
+   "delivered_edge": 6000,
+   "resolution_tier": "4K"
   },
   {
    "title": "Actively Forming Star System Lynds 483",
@@ -2698,7 +2768,9 @@
    "focal_point": [
     0.5,
     0.67
-   ]
+   ],
+   "delivered_edge": 4581,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Cone Nebula (NGC 2264)",
@@ -2749,7 +2821,9 @@
    "focal_point": [
     0.48,
     0.2
-   ]
+   ],
+   "delivered_edge": 4427,
+   "resolution_tier": "4K"
   },
   {
    "title": "Image of Sun From NASA's Solar Dynamics Observatory",
@@ -2800,7 +2874,9 @@
    "focal_point": [
     0.5,
     0.5
-   ]
+   ],
+   "delivered_edge": 4096,
+   "resolution_tier": "4K"
   },
   {
    "title": "NGC 6072",
@@ -2851,7 +2927,9 @@
    "focal_point": [
     0.5,
     0.5
-   ]
+   ],
+   "delivered_edge": 4602,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Omega Nebula (Swan Nebula/M17)",
@@ -2902,7 +2980,9 @@
    "focal_point": [
     0.5,
     0.6
-   ]
+   ],
+   "delivered_edge": 4426,
+   "resolution_tier": "4K"
   },
   {
    "title": "“The Mice” (NGC 4676): Colliding Galaxies Stream Stars and Gas",
@@ -2953,7 +3033,9 @@
    "focal_point": [
     0.47,
     0.53
-   ]
+   ],
+   "delivered_edge": 4428,
+   "resolution_tier": "4K"
   },
   {
    "title": "30 Doradus B",
@@ -3004,7 +3086,9 @@
    "focal_point": [
     0.55,
     0.47
-   ]
+   ],
+   "delivered_edge": 6000,
+   "resolution_tier": "4K"
   },
   {
    "title": "FS Tau",
@@ -3055,7 +3139,9 @@
    "focal_point": [
     0.45,
     0.47
-   ]
+   ],
+   "delivered_edge": 4803,
+   "resolution_tier": "4K"
   },
   {
    "title": "Trifid Nebula",
@@ -3106,7 +3192,9 @@
    "focal_point": [
     0.33,
     0.3
-   ]
+   ],
+   "delivered_edge": 4074,
+   "resolution_tier": "4K"
   },
   {
    "title": "Planetary Nebula NGC 2899",
@@ -3157,7 +3245,9 @@
    "focal_point": [
     0.53,
     0.5
-   ]
+   ],
+   "delivered_edge": 3900,
+   "resolution_tier": "4K"
   },
   {
    "title": "Herbig-Haro 49/50",
@@ -3208,7 +3298,9 @@
    "focal_point": [
     0.3,
     0.32
-   ]
+   ],
+   "delivered_edge": 5044,
+   "resolution_tier": "4K"
   },
   {
    "title": "A Splendor Seldom Seen",
@@ -3259,7 +3351,9 @@
    "focal_point": [
     0.5,
     0.5
-   ]
+   ],
+   "delivered_edge": 6672,
+   "resolution_tier": "4K"
   },
   {
    "title": "Dwarf Galaxy WLM",
@@ -3310,7 +3404,9 @@
    "focal_point": [
     0.5,
     0.5
-   ]
+   ],
+   "delivered_edge": 4134,
+   "resolution_tier": "4K"
   },
   {
    "title": "Little Dumbbell Nebula",
@@ -3361,7 +3457,9 @@
    "focal_point": [
     0.5,
     0.45
-   ]
+   ],
+   "delivered_edge": 7505,
+   "resolution_tier": "4K"
   },
   {
    "title": "Starry Splendor in Core of Omega Centauri",
@@ -3412,7 +3510,9 @@
    "focal_point": [
     0.47,
     0.5
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Witch Head Brews Baby Stars",
@@ -3463,7 +3563,9 @@
    "focal_point": [
     0.55,
     0.55
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Spiral Galaxy Pair NGC 4302 and NGC 4298",
@@ -3514,7 +3616,9 @@
    "focal_point": [
     0.5,
     0.38
-   ]
+   ],
+   "delivered_edge": 7614,
+   "resolution_tier": "4K"
   },
   {
    "title": "Cygnus Loop Nebula",
@@ -3565,7 +3669,9 @@
    "focal_point": [
     0.5,
     0.45
-   ]
+   ],
+   "delivered_edge": 6000,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Rite of Spring",
@@ -3616,7 +3722,9 @@
    "focal_point": [
     0.45,
     0.48
-   ]
+   ],
+   "delivered_edge": 7227,
+   "resolution_tier": "4K"
   },
   {
    "title": "NASA’s Great Observatories Examine the Galactic Center Region",
@@ -3667,7 +3775,9 @@
    "focal_point": [
     0.64,
     0.6
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Sagittarius B2",
@@ -3718,7 +3828,9 @@
    "focal_point": [
     0.62,
     0.45
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Cosmic Ice Sculptures: Dust Pillars in the Carina Nebula",
@@ -3769,7 +3881,9 @@
    "focal_point": [
     0.78,
     0.55
-   ]
+   ],
+   "delivered_edge": 6180,
+   "resolution_tier": "4K"
   },
   {
    "title": "The Case of the Disappearing Continent",
@@ -3820,7 +3934,9 @@
    "focal_point": [
     0.6,
     0.4
-   ]
+   ],
+   "delivered_edge": 6800,
+   "resolution_tier": "4K"
   },
   {
    "title": "Star-Forming Region S106",
@@ -3871,7 +3987,9 @@
    "focal_point": [
     0.45,
     0.5
-   ]
+   ],
+   "delivered_edge": 4356,
+   "resolution_tier": "4K"
   },
   {
    "title": "47 Tucanae – Hubble",
@@ -3922,7 +4040,9 @@
    "focal_point": [
     0.5,
     0.5
-   ]
+   ],
+   "delivered_edge": 6974,
+   "resolution_tier": "4K"
   },
   {
    "title": "Global Color Mosaic of Triton",
@@ -3973,7 +4093,9 @@
    "focal_point": [
     0.5,
     0.5
-   ]
+   ],
+   "delivered_edge": 4500,
+   "resolution_tier": "4K"
   },
   {
    "title": "IC 63 Ghost Nebula",
@@ -4024,7 +4146,9 @@
    "focal_point": [
     0.6,
     0.35
-   ]
+   ],
+   "delivered_edge": 4133,
+   "resolution_tier": "4K"
   },
   {
    "title": "Soul Nebula",
@@ -4075,7 +4199,9 @@
    "focal_point": [
     0.42,
     0.4
-   ]
+   ],
+   "delivered_edge": 6660,
+   "resolution_tier": "4K"
   },
   {
    "title": "NGC 1546",
@@ -4126,7 +4252,9 @@
    "focal_point": [
     0.5,
     0.49
-   ]
+   ],
+   "delivered_edge": 4032,
+   "resolution_tier": "4K"
   },
   {
    "title": "Enceladus: Trailing Hemisphere",
@@ -4177,7 +4305,9 @@
    "focal_point": [
     0.5,
     0.52
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Bat Shadow",
@@ -4228,7 +4358,9 @@
    "focal_point": [
     0.65,
     0.66
-   ]
+   ],
+   "delivered_edge": 4398,
+   "resolution_tier": "4K"
   },
   {
    "title": "MACS 0416",
@@ -4279,7 +4411,9 @@
    "focal_point": [
     0.5,
     0.4
-   ]
+   ],
+   "delivered_edge": 4457,
+   "resolution_tier": "4K"
   },
   {
    "title": "Jet in Carina: WFC3 UVIS Full Field",
@@ -4330,7 +4464,9 @@
    "focal_point": [
     0.47,
     0.47
-   ]
+   ],
+   "delivered_edge": 7344,
+   "resolution_tier": "4K"
   },
   {
    "title": "A Cosmic Holiday Ornament, Hubble-Style",
@@ -4381,7 +4517,9 @@
    "focal_point": [
     0.53,
     0.47
-   ]
+   ],
+   "delivered_edge": 4224,
+   "resolution_tier": "4K"
   },
   {
    "title": "Dark Clouds in Rosette Nebula",
@@ -4432,7 +4570,9 @@
    "focal_point": [
     0.55,
     0.42
-   ]
+   ],
+   "delivered_edge": 4073,
+   "resolution_tier": "4K"
   },
   {
    "title": "NGC 5335",
@@ -4483,7 +4623,9 @@
    "focal_point": [
     0.52,
     0.46
-   ]
+   ],
+   "delivered_edge": 4076,
+   "resolution_tier": "4K"
   },
   {
    "title": "Trumpler 14",
@@ -4534,7 +4676,9 @@
    "focal_point": [
     0.45,
     0.55
-   ]
+   ],
+   "delivered_edge": 3906,
+   "resolution_tier": "4K"
   },
   {
    "title": "JWST Advanced Deep Extragalactic Survey",
@@ -4585,7 +4729,9 @@
    "focal_point": [
     0.5,
     0.5
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "IC 348",
@@ -4636,7 +4782,9 @@
    "focal_point": [
     0.5,
     0.47
-   ]
+   ],
+   "delivered_edge": 5077,
+   "resolution_tier": "4K"
   },
   {
    "title": "Lagoon Nebula — Infrared Light",
@@ -4687,7 +4835,9 @@
    "focal_point": [
     0.58,
     0.47
-   ]
+   ],
+   "delivered_edge": 6500,
+   "resolution_tier": "4K"
   },
   {
    "title": "Galaxy Cluster Abell 370",
@@ -4738,7 +4888,9 @@
    "focal_point": [
     0.5,
     0.48
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Star Cluster R136",
@@ -4789,7 +4941,9 @@
    "focal_point": [
     0.57,
     0.72
-   ]
+   ],
+   "delivered_edge": 4014,
+   "resolution_tier": "4K"
   },
   {
    "title": "Cassiopeia A — Webb NIRCam",
@@ -4840,7 +4994,9 @@
    "focal_point": [
     0.47,
     0.45
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "M82 Cigar Galaxy — Webb NIRCam",
@@ -4891,7 +5047,9 @@
    "focal_point": [
     0.52,
     0.48
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Cassiopeia A — Chandra X-ray Composite",
@@ -4942,7 +5100,9 @@
    "focal_point": [
     0.53,
     0.45
-   ]
+   ],
+   "delivered_edge": 7620,
+   "resolution_tier": "4K"
   },
   {
    "title": "WISE Unveils a Treasure Trove of Beauty",
@@ -4993,7 +5153,9 @@
    "focal_point": [
     0.5,
     0.55
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Jabbah and Associates",
@@ -5044,7 +5206,9 @@
    "focal_point": [
     0.62,
     0.42
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Perseus Molecular Cloud",
@@ -5095,7 +5259,9 @@
    "focal_point": [
     0.2,
     0.52
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Orion Big Head Revealed in Infrared",
@@ -5146,7 +5312,9 @@
    "focal_point": [
     0.52,
     0.35
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Stars Gather in Downtown Milky Way",
@@ -5197,7 +5365,9 @@
    "focal_point": [
     0.47,
     0.5
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "Saturn … Four Years On",
@@ -5248,7 +5418,9 @@
    "focal_point": [
     0.5,
     0.5
-   ]
+   ],
+   "delivered_edge": 4613,
+   "resolution_tier": "4K"
   },
   {
    "title": "High Resolution Ceres View",
@@ -5299,7 +5471,9 @@
    "focal_point": [
     0.5,
     0.5
-   ]
+   ],
+   "delivered_edge": 7680,
+   "resolution_tier": "8K"
   },
   {
    "title": "On the Final Frontier",
@@ -5350,7 +5524,9 @@
    "focal_point": [
     0.45,
     0.48
-   ]
+   ],
+   "delivered_edge": 4824,
+   "resolution_tier": "4K"
   }
  ]
 }
