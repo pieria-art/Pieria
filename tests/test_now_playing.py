@@ -242,4 +242,7 @@ def test_next_image_metadata_key_set_is_the_placard_contract(client):
     assert set(served["metadata"].keys()) == {
         "id", "is_personal", "title", "agent_name", "agent_role", "creation_date",
         "cultural_context", "medium", "date_display", "series", "description", "tags",
+        # ADR-142 Stage B — attribution fields, added to core.playback.placard_metadata.
+        "license", "license_name", "license_url", "attribution", "attribution_url", "origin_url",
+        "requires_attribution",
     }

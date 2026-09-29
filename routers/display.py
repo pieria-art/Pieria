@@ -10,6 +10,7 @@ import hashlib
 import logging
 from datetime import datetime
 from typing import Optional
+from urllib.parse import quote
 
 from fastapi import APIRouter, Depends, HTTPException, Query
 from fastapi.concurrency import run_in_threadpool
@@ -20,6 +21,7 @@ from sqlalchemy.orm import Session
 import config
 from config import LIBRARY_DIR
 from core.demo import normalize_display_id
+from core.licensing import LICENSE_NAMES, normalize_license, requires_attribution
 from core.media import lookup_artwork_filename, peek_canvas_image, render_canvas_image, run_image_work
 from core.playback import _playlist_name_if_playable, select_next_image, touch_active_display
 from core.settings_util import _HHMM_RE, _load_schedule, _parse_hhmm, resolve_schedule_state
@@ -153,6 +155,14 @@ async def get_display_image(
     palette. Returns the bytes plus an `X-Refresh-After` header (the playlist's
     display_time) so the frame knows how long to deep-sleep. No WebSocket, no JS.
 
+    ADR-142 (no burned-in credit on the panel): when the selected work carries attribution, the
+    response also carries `X-Artwork-Credit` (the credit line), `X-Artwork-License` (the licence display
+    name, e.g. "CC BY 4.0") and `X-Artwork-Source` (the source/attribution URL) — each header value is
+    percent-encoded UTF-8 (`urllib.parse.quote(..., safe="")`) so it stays HTTP-header-safe (Latin-1)
+    even when the credit text has non-ASCII characters; a BYOS/TRMNL client decodes with
+    `urllib.parse.unquote()` (Python) or `decodeURIComponent()` (JS). Headers are simply absent for
+    PD/CC0 works (no attribution obligation) or when a field has no value.
+
     M6 (INFRA-D075 incident): no Depends(get_db) — the selection/lookup work below needs a session,
     but the render (run_image_work → render_for_epaper) does not, so it runs with the session already
     closed. touch_active_display gets its own short session afterward. See routers/library.py's
@@ -188,6 +198,15 @@ async def get_display_image(
         if not path.exists():
             raise HTTPException(404, detail="Artwork file missing")
         aspect_crops, focal_x, focal_y = art.aspect_crops, art.focal_x, art.focal_y
+        license_id = normalize_license(art.license)
+        # Headers only for a work that actually requires attribution (CC BY) — a PD/CC0 row may still
+        # carry a courtesy `attribution` value (the v1 seed sets it from credit_line unconditionally),
+        # and that must NOT show up here (README's e-ink section documents CC BY only).
+        if requires_attribution(license_id):
+            credit, license_name, cc_source = art.attribution, LICENSE_NAMES.get(license_id), (
+                art.origin_url or art.attribution_url)
+        else:
+            credit = license_name = cc_source = None
 
     try:
         # A1: crop + enhance + Floyd–Steinberg dither + encode is heavy and blocking — thread it so an
@@ -206,19 +225,33 @@ async def get_display_image(
     with SessionLocal() as db:
         touch_active_display(db, display_id, refresh_s=interval)
 
+    headers = {
+        "X-Refresh-After": str(info["display_time"]),
+        # Content hash so the e-ink pull client can change-detect a repaint without a
+        # ~30s panel refresh on an unchanged frame (eink_client dedupes on this; it falls
+        # back to hashing the body if the header is ever absent).
+        "ETag": '"' + hashlib.sha256(data).hexdigest()[:16] + '"',
+        # M6 nit: no explicit Cache-Control here — app.py's CacheHeadersMiddleware already forces
+        # "no-store, no-cache, must-revalidate" on every /display/* path; setting it here too gave
+        # the response two (identical, harmless, but sloppy) Cache-Control headers.
+    }
+    # ADR-142 decision C: no burned-in credit on the panel (render_for_epaper bakes image only) — a
+    # BYOS/TRMNL client that wants to show attribution reads it from these headers instead. HTTP header
+    # values must be Latin-1; a credit line/artist name is free text and may contain non-ASCII (accents,
+    # em dashes, CJK names), so each value is percent-encoded UTF-8 (RFC 3986 %XX, ASCII-safe by
+    # construction) — a client decodes with e.g. Python's `urllib.parse.unquote(header)` or JS's
+    # `decodeURIComponent(header)`. Documented in README's e-ink section too.
+    if credit:
+        headers["X-Artwork-Credit"] = quote(credit, safe="")
+    if license_name:
+        headers["X-Artwork-License"] = quote(license_name, safe="")
+    if cc_source:
+        headers["X-Artwork-Source"] = quote(cc_source, safe="")
+
     return Response(
         content=data,
         media_type=media_type_for(ext),
-        headers={
-            "X-Refresh-After": str(info["display_time"]),
-            # Content hash so the e-ink pull client can change-detect a repaint without a
-            # ~30s panel refresh on an unchanged frame (eink_client dedupes on this; it falls
-            # back to hashing the body if the header is ever absent).
-            "ETag": '"' + hashlib.sha256(data).hexdigest()[:16] + '"',
-            # M6 nit: no explicit Cache-Control here — app.py's CacheHeadersMiddleware already forces
-            # "no-store, no-cache, must-revalidate" on every /display/* path; setting it here too gave
-            # the response two (identical, harmless, but sloppy) Cache-Control headers.
-        },
+        headers=headers,
     )
 
 

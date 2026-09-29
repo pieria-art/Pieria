@@ -159,13 +159,18 @@ async def fetch_manifest(url: str) -> dict:
     return obj
 
 
-def manifest_item_to_catalog(item: dict) -> dict:
+def manifest_item_to_catalog(item: dict, default_license: str | None = None) -> dict:
     """Map a Manifest v2 item to the catalog item shape the browse UI + add flow already expect.
 
     Two asset modes: a remote item carries `image.full_url` (the app fetches it on add); a first-party
     pack item carries `image.local_file` (bytes already on disk under _Library/). For a local item the
     `source_url` is a stable non-http `pack:<file>` sentinel — it dedups + drives the `added` flag like
-    any URL, but never gets fetched: the add path branches on `local_file` to reference it in place."""
+    any URL, but never gets fetched: the add path branches on `local_file` to reference it in place.
+
+    `default_license` is the manifest's own top-level `default_license` (ADR-142 Stage B): when an item
+    omits `image.license` (every item shares the manifest default — manifest_validator's
+    `has_default_license` gate), pass the manifest's value here so it still reaches the catalog row
+    instead of persisting as a bare None."""
     img = item.get("image") or {}
     tags = item.get("tags")
     local = img.get("local_file")
@@ -183,7 +188,11 @@ def manifest_item_to_catalog(item: dict) -> dict:
         "resolution_tier": item.get("resolution_tier"),
         "tags": ",".join(tags) if isinstance(tags, list) else (tags or ""),
         "source": img.get("rights_holder") or "",
-        "license": img.get("license"),
+        "license": img.get("license") or default_license,
+        "license_url": img.get("license_url"),
+        "attribution": img.get("attribution"),
+        "attribution_url": img.get("attribution_url"),
+        "origin_url": img.get("origin_url"),
         "source_url": source_url,
         "local_file": local,
         "thumbnail_url": img.get("thumbnail_url") or (f"pack:{local}" if local else img.get("full_url")),

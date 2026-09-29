@@ -18,6 +18,7 @@ from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 
 import config
+import core.licensing as core_licensing
 import frame_push
 from config import LIBRARY_DIR
 from database import SessionLocal
@@ -43,7 +44,13 @@ def placard_metadata(art: ArtworkModel) -> dict:
     Returns RAW model values — Markdown stripping is the caller's job, because the two callers strip in
     different places: the Canvas does it client-side in stripMd() (static/app.js), the phone endpoint
     does it server-side with config.strip_markdown().
+
+    Attribution fields (ADR-142 Stage B): `license_name` is the display name (core.licensing.
+    LICENSE_NAMES), `requires_attribution` is True only for CC BY 4.0 — the two placard surfaces (Canvas,
+    remote.html) use it to decide whether to show the credit line at all (decision B: PD/CC0 works show
+    nothing new on the placard).
     """
+    license_id = core_licensing.normalize_license(art.license)
     return {
         "id": art.id,
         "is_personal": art.is_personal,
@@ -51,7 +58,14 @@ def placard_metadata(art: ArtworkModel) -> dict:
         "creation_date": art.creation_date, "cultural_context": art.cultural_context,
         "medium": art.medium, "date_display": art.date_display,
         "series": art.series,
-        "description": art.description_narrative, "tags": art.tags
+        "description": art.description_narrative, "tags": art.tags,
+        "license": license_id,
+        "license_name": core_licensing.LICENSE_NAMES.get(license_id) if license_id else None,
+        "license_url": art.license_url,
+        "attribution": art.attribution,
+        "attribution_url": art.attribution_url,
+        "origin_url": art.origin_url,
+        "requires_attribution": core_licensing.requires_attribution(license_id),
     }
 
 

@@ -34,4 +34,10 @@ class ArtworkSchema(BaseModel):
     # from what the e-ink/Frame/Canvas renderers see. NULL/malformed -> None (focal-cover fallback).
     aspect_crops: Optional[dict] = None
     is_personal: bool = False
+    # Attribution (ADR-142) — see models.ArtworkModel for field semantics.
+    license: Optional[str] = None
+    license_url: Optional[str] = None
+    attribution: Optional[str] = None
+    attribution_url: Optional[str] = None
+    origin_url: Optional[str] = None
     model_config = {"from_attributes": True}

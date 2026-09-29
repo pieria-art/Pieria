@@ -27,6 +27,7 @@ from pydantic import BaseModel
 from sqlalchemy import delete, update
 from sqlalchemy.orm import Session
 
+import core.licensing as core_licensing
 import federation
 from agents import process_artwork
 from config import LIBRARY_DIR, strip_markdown
@@ -353,7 +354,7 @@ async def artwork_detail_page(artwork_id: int, db: Session = Depends(get_db)):
         # Personal photo: caption + optional date only — no artist/medium/culture/tags/source jargon.
         title = e(art.title or "My Photo")
         artist_line = e(art.date_display or art.creation_date or "")
-        meta_bits = desc = tag_html = source = ""
+        meta_bits = desc = tag_html = source = credit_html = ""
     else:
         title = e(strip_markdown(art.title or "Untitled"))
         role = e(art.agent_role) if art.agent_role and art.agent_role != "Artist" else ""
@@ -362,8 +363,32 @@ async def artwork_detail_page(artwork_id: int, db: Session = Depends(get_db)):
         meta_bits = " · ".join(b for b in [e(art.cultural_context or ""), e(art.medium or "")] if b)
         desc = e(strip_markdown(art.description_narrative or ""))
         tag_html = "".join(f"<span class=tag>{e(t.strip())}</span>" for t in (art.tags or "").split(",") if t.strip())
-        source = (f"<a class=source href='{e(art.source_url)}' target=_blank rel=noopener>View original source ↗</a>"
-                  if art.source_url else "")
+
+        # ADR-142: every work shows its credit (if any) + licence name linked to the licence deed, on
+        # this page — decision B (PD/CC0 works get no credit anywhere else, but do get one here).
+        # Every URL here is manifest/catalog-supplied and untrusted — gated through safe_http_url()
+        # before it can become an href (review finding: a javascript:/data: value was a stored-XSS
+        # vector when linked directly).
+        license_id = core_licensing.normalize_license(art.license)
+        license_name = core_licensing.LICENSE_NAMES.get(license_id) if license_id else None
+        license_url = core_licensing.safe_http_url(
+            art.license_url or (core_licensing.LICENSE_URLS.get(license_id) if license_id else None))
+        credit_bits = []
+        if art.attribution:
+            credit_bits.append(e(art.attribution))
+        if license_name:
+            if license_url:
+                credit_bits.append(f"<a href='{e(license_url)}' target=_blank rel=noopener>{e(license_name)}</a>")
+            else:
+                credit_bits.append(e(license_name))
+        credit_html = (f"<p class=credit>{' · '.join(credit_bits)}</p>" if credit_bits else "")
+
+        # "View original source" — origin_url is the real web source (ADR-142 Stage B fixes the
+        # pre-existing pack-install bug: source_url is a `pack:…` sentinel for pack-installed works,
+        # never a browsable link). Fall back to source_url only when it's actually http(s).
+        source_href = core_licensing.safe_http_url(art.origin_url) or core_licensing.safe_http_url(art.source_url)
+        source = (f"<a class=source href='{e(source_href)}' target=_blank rel=noopener>View original source ↗</a>"
+                  if source_href else "")
     return HTMLResponse(f"""<!DOCTYPE html><html lang=en><head>
 <meta charset=UTF-8><meta name=viewport content="width=device-width, initial-scale=1">
 <title>{title} — Pieria</title><style>
@@ -378,6 +403,8 @@ async def artwork_detail_page(artwork_id: int, db: Session = Depends(get_db)):
  .desc {{ font-size:1.02rem; }}
  .tags {{ margin-top:22px; display:flex; flex-wrap:wrap; gap:8px; }}
  .tag {{ background:var(--surface); border:1px solid var(--border); color:#cbd5e1; padding:4px 12px; border-radius:20px; font-size:.8rem; }}
+ .credit {{ color:var(--muted); font-size:.85rem; font-style:italic; margin:16px 0 0; }}
+ .credit a {{ color:var(--muted); }}
  .source {{ display:inline-block; margin-top:24px; color:var(--accent); text-decoration:none; }}
  .brand {{ margin-top:40px; color:#475569; font-size:.78rem; display:flex; align-items:center; gap:8px; }}
  .brand img {{ height:20px; opacity:.7; }}
@@ -388,9 +415,44 @@ async def artwork_detail_page(artwork_id: int, db: Session = Depends(get_db)):
  {f'<p class=meta>{meta_bits}</p>' if meta_bits else ''}
  {f'<p class=desc>{desc}</p>' if desc else ''}
  {f'<div class=tags>{tag_html}</div>' if tag_html else ''}
+ {credit_html}
  {source}
  <div class=brand><img src="/logo.svg" alt=""> Presented by Pieria</div>
 </div></body></html>""")
+
+@router.get("/api/credits")
+async def get_credits(db: Session = Depends(get_db)):
+    """ADR-142: every installed work that requires attribution (CC BY), for Admin -> About -> Credits.
+
+    Read-only, demo-mode allowed (core/demo.py). Returns one entry per artwork, plus a `note` line —
+    everything else installed is public domain or CC0, and all works are adapted (cropped/resized) for
+    display, per the CC BY "indicate changes" requirement.
+    """
+    rows = (db.query(ArtworkModel)
+            .filter(ArtworkModel.license.isnot(None), ArtworkModel.is_personal.is_(False))
+            .order_by(ArtworkModel.title).all())
+    items = []
+    for art in rows:
+        license_id = core_licensing.normalize_license(art.license)
+        if not core_licensing.requires_attribution(license_id):
+            continue
+        items.append({
+            "id": art.id,
+            "title": art.title,
+            "agent_name": art.agent_name,
+            "attribution": art.attribution,
+            "license": license_id,
+            "license_name": core_licensing.LICENSE_NAMES.get(license_id),
+            "license_url": art.license_url or core_licensing.LICENSE_URLS.get(license_id),
+            "source_page_url": art.origin_url or art.attribution_url,
+        })
+    return {
+        "items": items,
+        "note": ("Pack-installed works are public domain or CC0 unless credited above — this page "
+                 "doesn't cover your own uploads or subscriptions, whose licensing is up to you. Every "
+                 "work is adapted (cropped and/or resized) for display."),
+    }
+
 
 @router.get("/artworks/{artwork_id}/placard")
 async def get_artwork_placard(artwork_id: int, db: Session = Depends(get_db)):

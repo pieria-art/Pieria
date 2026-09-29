@@ -16,6 +16,7 @@ from PIL import Image
 from sqlalchemy import delete, func, select
 from sqlalchemy.orm import Session
 
+import core.licensing as core_licensing
 import federation
 import frame_push
 from config import ARTWORK_ROOT, LIBRARY_DIR
@@ -211,6 +212,11 @@ def pre_seed_from_pack(db: Session) -> bool:
                     description_narrative=item.get("description_narrative"),
                     tags=item.get("tags"), series=item.get("series"),
                     resolution_tier=item.get("resolution_tier"), is_seed=True, source_url=source_url,
+                    license=core_licensing.normalize_license(item.get("license")),
+                    license_url=item.get("license_url") or None,
+                    attribution=item.get("credit_line") or None,
+                    attribution_url=item.get("attribution_url") or None,
+                    origin_url=source_url if source_url.startswith("http") else None,
                     focal_x=fx, focal_y=fy,
                     aspect_crops_json=json.dumps(crops) if crops else None,
                     affinity_score=round(0.5 + rank / 100.0, 3),
@@ -309,8 +315,9 @@ def _install_collection(db: Session, cid: str, manifest: dict, *, require_verifi
 
     items = manifest.get("items", [])
     n = len(items)
+    default_license = manifest.get("default_license")
     for idx, item in enumerate(items):
-        cat = federation.manifest_item_to_catalog(item)
+        cat = federation.manifest_item_to_catalog(item, default_license=default_license)
         local_file = cat.get("local_file")
         if not local_file:
             continue
@@ -335,6 +342,9 @@ def _install_collection(db: Session, cid: str, manifest: dict, *, require_verifi
                 description_narrative=cat.get("description_narrative"),
                 tags=cat.get("tags"), series=cat.get("series"),
                 resolution_tier=cat.get("resolution_tier"), is_seed=True, source_url=source_url,
+                license=core_licensing.normalize_license(cat.get("license")), license_url=cat.get("license_url"),
+                attribution=cat.get("attribution"), attribution_url=cat.get("attribution_url"),
+                origin_url=cat.get("origin_url"),
                 focal_x=fx, focal_y=fy,
                 aspect_crops_json=json.dumps(crops) if crops else None,
                 affinity_score=affinity,

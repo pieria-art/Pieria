@@ -166,6 +166,13 @@ frame how long (seconds) to deep-sleep before the next fetch; each GET advances 
 - **Pimoroni Inky Impression Spectra 6:** a ready-made poll-and-sleep host client (`sd-eink`) drives the
   panel over SPI — change-detects on the response's `ETag`, floors refresh cadence, and never repaints
   during Night/Quiet Hours. See [`deploy/appliance/`](deploy/appliance/README.md#e-ink-panel-track-b-optional).
+- **Attribution headers (CC BY works, ADR-142):** the panel never burns credit text into the image, so a
+  work that requires attribution carries it in response headers instead: **`X-Artwork-Credit`** (the
+  credit line), **`X-Artwork-License`** (the licence display name, e.g. `CC BY 4.0`), **`X-Artwork-Source`**
+  (the source/attribution URL). Absent entirely for PD/CC0 works, or any field with no value. Each value
+  is **percent-encoded UTF-8** (HTTP headers are Latin-1-only, and a credit line may contain accents,
+  em dashes, etc.) — decode with `urllib.parse.unquote()` (Python) or `decodeURIComponent()` (JS) before
+  displaying.
 
 ## 🔌 Integrations
 

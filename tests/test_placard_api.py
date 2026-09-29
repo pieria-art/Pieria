@@ -63,6 +63,27 @@ def test_placard_returns_full_metadata(client):
     assert p["description"] == "A towering wave curls over three boats."
     assert p["tags"] == "ukiyo-e, seascape"
     assert p["is_personal"] is False
+    assert p["license"] is None
+    assert p["license_name"] is None
+    assert p["requires_attribution"] is False
+
+
+def test_placard_cc_by_attribution(client):
+    """ADR-142: a CC BY work reports license_name + requires_attribution=True so the placard/remote
+    surfaces know to show the credit line."""
+    c, db = client
+    art = _art(db, license="CC-BY-4.0", license_url="https://creativecommons.org/licenses/by/4.0/",
+               attribution="ESA/Webb, NASA & CSA, A. Martel", attribution_url="https://example.org/src",
+               origin_url="https://example.org/src")
+
+    p = c.get(f"/artworks/{art.id}/placard").json()
+    assert p["license"] == "CC-BY-4.0"
+    assert p["license_name"] == "CC BY 4.0"
+    assert p["license_url"] == "https://creativecommons.org/licenses/by/4.0/"
+    assert p["attribution"] == "ESA/Webb, NASA & CSA, A. Martel"
+    assert p["attribution_url"] == "https://example.org/src"
+    assert p["origin_url"] == "https://example.org/src"
+    assert p["requires_attribution"] is True
 
 
 def test_placard_strips_markdown(client):

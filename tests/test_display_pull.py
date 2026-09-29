@@ -96,6 +96,62 @@ def test_pull_sends_sleep_and_change_detection_headers(seeded):
     assert c.get("/display/eink1/current.png").headers["ETag"] == r.headers["ETag"]
 
 
+def test_pull_sends_attribution_headers_for_cc_by_percent_encoded(client):
+    """ADR-142 decision C: no burned-in credit, but the pull response carries it in headers — percent-
+    encoded UTF-8 so a non-ASCII credit line stays a valid (Latin-1) header value."""
+    c, db = client
+    routers_display.LIBRARY_DIR.mkdir(parents=True, exist_ok=True)
+    Image.new("RGB", (900, 1200), (150, 90, 40)).save(
+        routers_display.LIBRARY_DIR / "_credit.jpg", format="JPEG", quality=85)
+    art = ArtworkModel(filename="_credit.jpg", title="Cosmic Cliffs", status="approved",
+                        license="CC-BY-4.0", attribution="ESA/Webb, NASA & CSA, A. Martél",
+                        origin_url="https://esawebb.org/images/cliffs")
+    db.add(art); db.commit(); db.refresh(art)
+    pl = PlaylistModel(name="default")
+    pl.artworks.append(art)
+    db.add(pl); db.commit()
+
+    r = c.get("/display/eink1/current.png")
+    assert r.status_code == 200
+    from urllib.parse import unquote
+    assert unquote(r.headers["X-Artwork-Credit"]) == "ESA/Webb, NASA & CSA, A. Martél"
+    assert unquote(r.headers["X-Artwork-License"]) == "CC BY 4.0"
+    assert unquote(r.headers["X-Artwork-Source"]) == "https://esawebb.org/images/cliffs"
+    # header values themselves must be pure ASCII (Latin-1-safe)
+    r.headers["X-Artwork-Credit"].encode("ascii")
+
+
+def test_pull_omits_attribution_headers_for_pd_work(seeded):
+    c, _, _ = seeded
+    r = c.get("/display/eink1/current.png")
+    assert "X-Artwork-Credit" not in r.headers
+    assert "X-Artwork-License" not in r.headers
+    assert "X-Artwork-Source" not in r.headers
+
+
+def test_pull_omits_attribution_headers_for_pd_work_with_a_courtesy_credit(client):
+    """A PD/CC0 row may still carry a non-empty `attribution` (the v1 seed path sets it from
+    credit_line unconditionally, license-agnostic) — that must NOT leak into the pull headers, which
+    are attribution-obligation-only (CC BY), per README's e-ink section and the endpoint's docstring."""
+    c, db = client
+    routers_display.LIBRARY_DIR.mkdir(parents=True, exist_ok=True)
+    Image.new("RGB", (900, 1200), (150, 90, 40)).save(
+        routers_display.LIBRARY_DIR / "_pd_credit.jpg", format="JPEG", quality=85)
+    art = ArtworkModel(filename="_pd_credit.jpg", title="Public Domain Work", status="approved",
+                        license="PDM-1.0", attribution="Collection of Some Museum",
+                        origin_url="https://museum.test/work")
+    db.add(art); db.commit(); db.refresh(art)
+    pl = PlaylistModel(name="default")
+    pl.artworks.append(art)
+    db.add(pl); db.commit()
+
+    r = c.get("/display/eink1/current.png")
+    assert r.status_code == 200
+    assert "X-Artwork-Credit" not in r.headers
+    assert "X-Artwork-License" not in r.headers
+    assert "X-Artwork-Source" not in r.headers
+
+
 def test_pull_rejects_unknown_extension_and_palette(seeded):
     c, _, _ = seeded
     assert c.get("/display/eink1/current.gif").status_code == 404

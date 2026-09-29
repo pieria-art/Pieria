@@ -117,6 +117,12 @@ class PublisherItemPayload(BaseModel):
     license: Optional[str] = None
     attribution: Optional[str] = None
     rights_holder: Optional[str] = None
+    # ADR-142 Stage B: the licence deed URL, the attribution/source page, and the real web source —
+    # publisher.build_item already threads these into the manifest's `image` sub-object; they were
+    # simply never accepted on the wire until now.
+    license_url: Optional[str] = None
+    attribution_url: Optional[str] = None
+    origin_url: Optional[str] = None
     width: Optional[int] = None
     height: Optional[int] = None
     focal_point: Optional[List[float]] = None

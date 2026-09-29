@@ -216,6 +216,18 @@ body.controls-visible .controls-overlay {
     overflow: visible;
 }
 
+/* CC BY attribution (ADR-142) — quiet, sits with the meta lines, no badge/box/icon. Same family +
+   letter-spacing language as .placard-content h2 (the muted museum-detail line), just lighter/smaller
+   so it reads as a footnote rather than a heading. */
+.placard-credit {
+    font-size: 1vmin;
+    margin: 0 0 1.5vmin 0;
+    color: rgba(255, 255, 255, 0.5);
+    font-family: 'Segoe UI', sans-serif;
+    font-style: italic;
+    letter-spacing: 0.05vmin;
+}
+
 .tags-container {
     display: flex; flex-wrap: wrap; gap: 1vmin;
     margin-bottom: 1.5vmin;

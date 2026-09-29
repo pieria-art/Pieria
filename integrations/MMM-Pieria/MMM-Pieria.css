@@ -47,6 +47,13 @@
 	line-height: 1.4;
 }
 
+/* ADR-142 — quiet CC BY credit line, styled like .sd-meta (dimmed/small) but italic to read as a
+   footnote, same as the other placard surfaces. */
+.MMM-Pieria .sd-credit {
+	margin-top: 6px;
+	font-style: italic;
+}
+
 .MMM-Pieria .sd-status {
 	padding: 1em;
 }

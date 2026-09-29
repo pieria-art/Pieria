@@ -20,6 +20,7 @@ from pydantic import BaseModel
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
+import core.licensing as core_licensing
 import federation
 from config import ARTWORK_ROOT, LIBRARY_DIR, SUB_PREFIX
 from core.downloads import _aspect_crops, _download_image_to_library, _focal_xy
@@ -117,7 +118,8 @@ def _subscribed_collection(db: Session, collection_id: str):
         "license": "",
         "origin": "subscription",
         "trust": sub.trust,
-        "items": [federation.manifest_item_to_catalog(it) for it in m.get("items", [])],
+        "items": [federation.manifest_item_to_catalog(it, default_license=m.get("default_license"))
+                  for it in m.get("items", [])],
     }
 
 
@@ -196,6 +198,11 @@ async def _download_and_create_artwork(db: Session, *, source_url: str, thumbnai
         cultural_context=metadata.get("cultural_context"), medium=metadata.get("medium"),
         date_display=metadata.get("date_display"), description_narrative=metadata.get("description_narrative"),
         tags=metadata.get("tags"), source_url=source_url, thumbnail_url=thumbnail_url, is_seed=False,
+        license=core_licensing.normalize_license(metadata.get("license")),
+        license_url=metadata.get("license_url") or None,
+        attribution=metadata.get("attribution") or metadata.get("credit_line") or None,
+        attribution_url=metadata.get("attribution_url") or None,
+        origin_url=metadata.get("origin_url") or (source_url if source_url.startswith("http") else None),
     )
     db.add(artwork); db.commit(); db.refresh(artwork)
     warm_canvas_cache_async(artwork.id, safe_name)   # pre-render the display image so it's warm by display time

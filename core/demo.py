@@ -54,6 +54,8 @@ ALLOWED_ROUTES: tuple[tuple[frozenset, re.Pattern], ...] = (
     (_GET, _p(r"/api/packs/status")),
     (_GET, _p(r"/api/remote/displays")),
     (_GET, _p(r"/api/demo")),
+    # Admin -> About -> Credits (read-only; ADR-142).
+    (_GET, _p(r"/api/credits")),
     # Heartbeat — allowed in, but routers/display.py makes it a no-op 204 when DEMO_MODE is on.
     (frozenset({"POST"}), _p(r"/api/telemetry/heartbeat")),
 )

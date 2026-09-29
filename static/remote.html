@@ -127,6 +127,9 @@
         /* Capped + scrollable: a long narrative must not shove the transport controls and the
            collection grid off the bottom of a phone screen. */
         .pl-desc { font-size: 0.9rem; line-height: 1.6; margin-top: 12px; max-height: 40vh; overflow-y: auto; }
+        /* ADR-142: quiet credit line for CC BY works — same muted tone as .pl-meta, italic footnote. */
+        .pl-credit { font-size: 0.8rem; color: #94a3b8; font-style: italic; margin-top: 8px; }
+        .pl-credit a { color: #94a3b8; text-decoration: underline; }
         .pl-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
         .pl-tag {
             background: #1e293b; border: 1px solid var(--border-color); color: #cbd5e1;
@@ -186,6 +189,7 @@
                 <div class="pl-artist"></div>
                 <div class="pl-meta"></div>
                 <div class="pl-desc"></div>
+                <div class="pl-credit"></div>
                 <div class="pl-tags"></div>
                 <a class="pl-learn" target="_blank" rel="noopener">Learn more →</a>
             </div>
@@ -236,6 +240,14 @@
         let displaysById = {};          // display_id -> {display_id, playlist, artwork, live} from the last poll
         let placardArtId = null;        // artwork the placard tile currently describes
         let placardOpen = false;        // survives polls, so the tile doesn't slam shut every 5s
+
+        // ADR-142 review: only ever link a manifest/catalog-supplied URL when it's actually http(s) —
+        // mirrors core.licensing.safe_http_url server-side. Returns the trimmed url or null.
+        function isHttpUrl(url) {
+            if (!url || typeof url !== 'string') return null;
+            const s = url.trim();
+            return /^https?:\/\//i.test(s) ? s : null;
+        }
         let placardSeq = 0;             // drops out-of-order fetch responses
 
         async function init() {
@@ -407,6 +419,7 @@
             const el = cls => tile.querySelector('.' + cls);
             const series = el('pl-series'), artist = el('pl-artist'), meta = el('pl-meta');
             const desc = el('pl-desc'), tags = el('pl-tags'), learn = el('pl-learn');
+            const credit = el('pl-credit');
             el('pl-title').textContent = m.title;
             tags.innerHTML = '';                          // clearing only; content is textContent below
 
@@ -417,9 +430,41 @@
                 artist.textContent = m.date_display || m.creation_date || '';
                 meta.textContent = '';
                 desc.textContent = '';
+                credit.style.display = 'none';
                 tags.style.display = 'none';
                 learn.style.display = 'none';
                 return;
+            }
+
+            // ADR-142 decision A/B: CC BY only — an unobtrusive credit line, same rule as app.js.
+            // The licence name links to the deed and a "Source" link to origin_url, each ONLY when the
+            // URL is actually http(s) — a manifest/catalog value is untrusted text, never trusted as a
+            // link target (review finding). Built with createElement/textContent, never innerHTML.
+            credit.innerHTML = '';                        // clearing only; content is textContent below
+            if (m.requires_attribution && m.attribution) {
+                credit.appendChild(document.createTextNode(m.attribution));
+                const licenseName = m.license_name || 'CC BY 4.0';
+                const licenseUrl = isHttpUrl(m.license_url) ? m.license_url : null;
+                credit.appendChild(document.createTextNode(' · '));
+                if (licenseUrl) {
+                    const a = document.createElement('a');
+                    a.href = licenseUrl; a.target = '_blank'; a.rel = 'noopener';
+                    a.textContent = licenseName;
+                    credit.appendChild(a);
+                } else {
+                    credit.appendChild(document.createTextNode(licenseName));
+                }
+                const sourceUrl = isHttpUrl(m.origin_url) || isHttpUrl(m.attribution_url);
+                if (sourceUrl) {
+                    credit.appendChild(document.createTextNode(' · '));
+                    const a = document.createElement('a');
+                    a.href = sourceUrl; a.target = '_blank'; a.rel = 'noopener';
+                    a.textContent = 'Source';
+                    credit.appendChild(a);
+                }
+                credit.style.display = '';
+            } else {
+                credit.style.display = 'none';
             }
 
             series.style.display = m.series ? '' : 'none';

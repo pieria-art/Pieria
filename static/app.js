@@ -612,6 +612,7 @@ function updatePlacard(metadata) {
     const tagsContainer = document.getElementById('art-tags');
     const qrContainer = document.getElementById('qrcode-container');
     const qrEl = document.getElementById('qrcode');
+    const creditEl = document.getElementById('art-credit');
     tagsContainer.innerHTML = '';
     qrEl.innerHTML = '';
 
@@ -622,8 +623,19 @@ function updatePlacard(metadata) {
         agentDate.textContent = metadata.date_display || metadata.creation_date || '';
         museumDetails.textContent = '';
         description.textContent = '';
+        creditEl.style.display = 'none';
         qrContainer.style.display = 'none';
         return;
+    }
+
+    // ADR-142 decision A/B: an unobtrusive credit line, CC BY only — PD/CC0 works show nothing new
+    // here (their courtesy credit lives on /art/{id} only).
+    if (metadata.requires_attribution && metadata.attribution) {
+        creditEl.textContent = `${metadata.attribution} · ${metadata.license_name || 'CC BY 4.0'}`;
+        creditEl.style.display = '';
+    } else {
+        creditEl.textContent = '';
+        creditEl.style.display = 'none';
     }
 
     qrContainer.style.display = '';

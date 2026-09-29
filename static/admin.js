@@ -195,7 +195,7 @@ function switchView(view) {
     if (view === 'museum') enterMuseum();
     if (view === 'devices') enterDevices();
     if (view === 'publisher') enterPublisher();
-    if (view === 'settings') refreshRestoreStatus();
+    if (view === 'settings') { refreshRestoreStatus(); refreshCredits(); }
 }
 
 // Mobile-only: toggle the slide-in sidebar drawer (no-op visual on desktop).
@@ -1749,6 +1749,65 @@ async function dismissRestoreOutcome() {
     refreshRestoreStatus();
 }
 window.dismissRestoreOutcome = dismissRestoreOutcome;
+
+// ADR-142 — Admin -> About -> Credits: every installed work that requires attribution (CC BY).
+// Read-only, so it's safe under demo mode (core/demo.py allows GET /api/credits).
+async function refreshCredits() {
+    const list = document.getElementById('credits-list');
+    const note = document.getElementById('credits-note');
+    if (!list) return;
+    let data;
+    try { data = await (await fetch(`${API_BASE}/api/credits`)).json(); }
+    catch { return; }
+    list.innerHTML = '';
+    if (!data.items || !data.items.length) {
+        const p = document.createElement('p');
+        p.style.cssText = 'font-size:0.8rem; color:#94a3b8;';
+        p.textContent = 'No CC BY works installed — everything here is public domain or CC0.';
+        list.appendChild(p);
+    } else {
+        data.items.forEach(item => {
+            const row = document.createElement('div');
+            row.style.cssText = 'border:1px solid var(--border-color); border-radius:8px; padding:10px 14px; font-size:0.82rem;';
+            const title = document.createElement('div');
+            title.style.cssText = 'color:var(--text-color); font-weight:600;';
+            title.textContent = item.title || 'Untitled';
+            row.appendChild(title);
+            if (item.attribution) {
+                const credit = document.createElement('div');
+                credit.style.cssText = 'color:#94a3b8; margin-top:2px;';
+                credit.textContent = item.attribution;
+                row.appendChild(credit);
+            }
+            const linkRow = document.createElement('div');
+            linkRow.style.cssText = 'margin-top:4px; display:flex; gap:12px; flex-wrap:wrap;';
+            // Only ever an <a href> for a safe http(s) URL — a manifest/catalog value is untrusted,
+            // and license_name-as-plain-text is exactly as useful without one.
+            if (item.license_url && /^https?:\/\//.test(item.license_url)) {
+                const a = document.createElement('a');
+                a.href = item.license_url; a.target = '_blank'; a.rel = 'noopener';
+                a.style.cssText = 'color:var(--accent-color); font-size:0.78rem;';
+                a.textContent = item.license_name || item.license || 'Licence';
+                linkRow.appendChild(a);
+            } else if (item.license_name || item.license) {
+                const span = document.createElement('span');
+                span.style.cssText = 'color:#94a3b8; font-size:0.78rem;';
+                span.textContent = item.license_name || item.license;
+                linkRow.appendChild(span);
+            }
+            if (item.source_page_url && /^https?:\/\//.test(item.source_page_url)) {
+                const a = document.createElement('a');
+                a.href = item.source_page_url; a.target = '_blank'; a.rel = 'noopener';
+                a.style.cssText = 'color:var(--accent-color); font-size:0.78rem;';
+                a.textContent = 'Source page ↗';
+                linkRow.appendChild(a);
+            }
+            if (linkRow.childNodes.length) row.appendChild(linkRow);
+            list.appendChild(row);
+        });
+    }
+    if (note) note.textContent = data.note || '';
+}
 
 async function refreshRestoreStatus() {
     let data;
@@ -3613,7 +3672,17 @@ async function addCatalogItem(collectionId, itemIndex, btn) {
 // bespoke toast + native confirm/prompt/alert.
 // ===========================================================================
 const _pq = s => document.querySelector(s);
-const PUB_LICENSES = ["", "CC0-1.0", "CC-BY-4.0", "CC-BY-SA-4.0", "PD", "proprietary"];
+// core.licensing ids (ADR-142) — CC-BY-SA-4.0/proprietary are kept as OPTIONS (a subscriber's own
+// device, not a pack, decides what to install — ADR-045's own reasoning); only PDM-1.0/CC0-1.0/CC-BY-4.0
+// are PACK_ALLOWED, enforced server-side at pack build, not here.
+const PUB_LICENSES = ["", "PDM-1.0", "CC0-1.0", "CC-BY-4.0", "CC-BY-SA-4.0", "proprietary"];
+// Mirrors core/licensing.py LICENSE_URLS — kept in sync manually (this file is stdlib-free JS, that
+// module is intentionally stdlib-only Python; duplicating three URLs is cheaper than a build step).
+const PUB_LICENSE_URLS = {
+    "PDM-1.0": "https://creativecommons.org/publicdomain/mark/1.0/",
+    "CC0-1.0": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "CC-BY-4.0": "https://creativecommons.org/licenses/by/4.0/",
+};
 let pubCollections = [];
 let pubCurrent = null;
 let pubIdentity = { has_private_key: false };
@@ -3766,6 +3835,10 @@ function pubItemCard(it, idx) {
           <input type="text" class="f-attribution" value="${_esc(img.attribution || '')}"></label>
         <label class="field">Rights holder <input type="text" class="f-rights" value="${_esc(img.rights_holder || '')}"></label>
       </div>
+      <div class="row">
+        <label class="field f-attr-wrap">Attribution / source page URL <span class="muted">(required for CC-BY*)</span>
+          <input type="url" class="f-attribution-url" placeholder="https://…" value="${_esc(img.attribution_url || '')}"></label>
+      </div>
     </div>`;
     const lic = el.querySelector('.f-license');
     pubLicenseOptions(lic, img.license || pubCurrent.default_license);
@@ -3800,9 +3873,10 @@ function pubItemCard(it, idx) {
     bind('.f-culture', v => it.culture = v);
     bind('.f-placard', v => it.placard = v);
     bind('.f-tags', v => it.tags = v.split(',').map(t => t.trim()).filter(Boolean));
-    bind('.f-license', v => img.license = v);
+    bind('.f-license', v => { img.license = v; img.license_url = PUB_LICENSE_URLS[v] || img.license_url; });
     bind('.f-attribution', v => img.attribution = v);
     bind('.f-rights', v => img.rights_holder = v);
+    bind('.f-attribution-url', v => { img.attribution_url = v; img.origin_url = v; });
     el.querySelector('.remove').onclick = () => { pubCurrent.items.splice(idx, 1); pubRenderItems(); pubScheduleValidate(); };
     return el;
 }
@@ -3823,6 +3897,8 @@ function pubCollectPayload() {
                 full_url: img.full_url || '', thumbnail_url: img.thumbnail_url || null,
                 license: img.license || null, attribution: img.attribution || null,
                 rights_holder: img.rights_holder || null,
+                license_url: img.license_url || null, attribution_url: img.attribution_url || null,
+                origin_url: img.origin_url || null,
                 width: img.width || null, height: img.height || null,
                 focal_point: img.focal_point || null };
         })

@@ -45,6 +45,44 @@ def test_detail_page_renders(client):
     assert "https://museum.test/starry" in body    # source link present
 
 
+def test_detail_page_shows_credit_and_origin_link(client):
+    """ADR-142: every work shows its credit + licence (linked), and the source link uses origin_url —
+    the fix for pack installs whose source_url is a broken `pack:…` sentinel."""
+    c, db = client
+    art = ArtworkModel(
+        filename="webb.jpg", title="Cosmic Cliffs", agent_name="ESA/Webb", status="approved",
+        source_url="pack:webb.jpg",
+        license="CC-BY-4.0", license_url="https://creativecommons.org/licenses/by/4.0/",
+        attribution="ESA/Webb, NASA & CSA, A. Martel", origin_url="https://esawebb.org/images/cliffs")
+    db.add(art); db.commit(); db.refresh(art)
+
+    r = c.get(f"/art/{art.id}")
+    body = r.text
+    assert "ESA/Webb, NASA &amp; CSA, A. Martel" in body
+    assert 'href=\'https://creativecommons.org/licenses/by/4.0/\'' in body
+    assert "CC BY 4.0" in body
+    assert 'href=\'https://esawebb.org/images/cliffs\'' in body
+    assert "pack:webb.jpg" not in body   # never link the broken sentinel
+
+
+def test_detail_page_never_links_a_non_http_url(client):
+    """ADR-142 review (BLOCKING): license_url/origin_url are manifest/catalog-supplied and untrusted —
+    a javascript:/data: value must render as plain text, never as an href (stored XSS otherwise)."""
+    c, db = client
+    art = ArtworkModel(
+        filename="evil.jpg", title="Evil Work", status="approved",
+        license="CC-BY-4.0", license_url="javascript:alert(1)",
+        attribution="Some Credit", origin_url="javascript:alert(document.cookie)")
+    db.add(art); db.commit(); db.refresh(art)
+
+    r = c.get(f"/art/{art.id}")
+    body = r.text
+    assert "javascript:" not in body            # neither URL ever reaches an href
+    assert "Some Credit" in body                # the credit text itself still shows
+    assert "CC BY 4.0" in body                  # licence name still shows, just unlinked
+    assert "View original source" not in body   # no source link when origin_url is unsafe
+
+
 def test_detail_page_escapes_html(client):
     c, db = client
     art = ArtworkModel(filename="y.jpg", title="<script>alert(1)</script>", status="approved")

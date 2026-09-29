@@ -111,6 +111,7 @@ _EXPECTED_ALLOWED = {
     ("GET", "/api/packs/status"),
     ("GET", "/api/remote/displays"),
     ("GET", "/api/demo"),
+    ("GET", "/api/credits"),
     ("POST", "/api/telemetry/heartbeat"),
 }
 

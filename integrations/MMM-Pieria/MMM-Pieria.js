@@ -125,7 +125,10 @@ Module.register("MMM-Pieria", {
 			title: m.title || "Untitled",
 			artist: m.agent_name || "Unknown Artist",
 			meta: bits.join("  ·  "),
-			description: m.description || ""
+			description: m.description || "",
+			// ADR-142 decision A: CC BY only — an unobtrusive credit line under the placard text.
+			credit: (m.requires_attribution && m.attribution)
+				? `${m.attribution} · ${m.license_name || "CC BY 4.0"}` : ""
 		};
 	},
 
@@ -184,6 +187,13 @@ Module.register("MMM-Pieria", {
 				desc.className = "sd-description small";
 				desc.textContent = this.truncate(p.description, this.config.maxDescriptionChars);
 				placard.appendChild(desc);
+			}
+
+			if (p.credit) {
+				const credit = document.createElement("div");
+				credit.className = "sd-credit dimmed small";
+				credit.textContent = p.credit;
+				placard.appendChild(credit);
 			}
 
 			wrapper.appendChild(placard);

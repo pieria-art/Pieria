@@ -7,6 +7,7 @@ from core.licensing import (
     check_pack_row,
     normalize_license,
     requires_attribution,
+    safe_http_url,
 )
 
 
@@ -90,3 +91,20 @@ def test_check_pack_row_cc_by_blank_strings_still_fail():
     row = {"license": "CC-BY-4.0", "credit_line": "  ", "license_url": "", "attribution_url": None}
     problems = check_pack_row(row)
     assert len(problems) == 3
+
+
+def test_safe_http_url_accepts_http_and_https():
+    assert safe_http_url("https://example.org/x") == "https://example.org/x"
+    assert safe_http_url("http://example.org/x") == "http://example.org/x"
+    assert safe_http_url("  https://example.org/x  ") == "https://example.org/x"
+    assert safe_http_url("HTTPS://EXAMPLE.ORG/x") == "HTTPS://EXAMPLE.ORG/x"
+
+
+def test_safe_http_url_rejects_other_schemes_and_junk():
+    assert safe_http_url("javascript:alert(1)") is None
+    assert safe_http_url("data:text/html,<script>1</script>") is None
+    assert safe_http_url("vbscript:msgbox(1)") is None
+    assert safe_http_url("not-a-url") is None
+    assert safe_http_url("") is None
+    assert safe_http_url(None) is None
+    assert safe_http_url("pack:some_file.jpg") is None

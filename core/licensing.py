@@ -67,6 +67,23 @@ def requires_attribution(license_id: str | None) -> bool:
     return license_id == "CC-BY-4.0"
 
 
+def safe_http_url(url: str | None) -> str | None:
+    """Return `url` unchanged when it's an http(s) link, else None.
+
+    A manifest/catalog-supplied URL (license_url, attribution_url, origin_url, ...) is untrusted text
+    that server code and templates turn into an `href` — a `javascript:`/`data:`/`vbscript:` value there
+    is a stored-XSS vector (found in ADR-142 Stage B review). Every call site that builds a link from
+    such a field must gate it through this helper first; a non-http(s) value renders as plain text, not
+    a link.
+    """
+    if not url or not isinstance(url, str):
+        return None
+    s = url.strip()
+    if s.lower().startswith(("http://", "https://")):
+        return s
+    return None
+
+
 def check_pack_row(row: dict) -> list[str]:
     """Validate one catalog/pack row against the pack-ship contract. Returns [] when the row is safe
     to bundle; otherwise a list of human-readable problems.

@@ -161,6 +161,18 @@ class ArtworkModel(Base):
     source_url: Mapped[Optional[str]] = mapped_column(String, index=True)
     thumbnail_url: Mapped[Optional[str]] = mapped_column(String)
 
+    # Attribution (INFRA spec_ccby_attribution.md Stage B; ADR-142). `license` is a
+    # core/licensing.py PACK_ALLOWED id (e.g. "CC-BY-4.0"), never free text. `attribution` is the
+    # credit line to display exactly as given (required for CC BY; PD/CC0 may carry a courtesy
+    # credit). `origin_url` is the real web source (fixes the /art/{id} "View original source" link,
+    # which previously fell back to a broken `pack:…` placeholder for pack installs). NULL means
+    # "not known" — manual uploads leave these empty; installs never backfill (ADR-135/F8).
+    license: Mapped[Optional[str]] = mapped_column(String)
+    license_url: Mapped[Optional[str]] = mapped_column(String)
+    attribution: Mapped[Optional[str]] = mapped_column(String)
+    attribution_url: Mapped[Optional[str]] = mapped_column(String)
+    origin_url: Mapped[Optional[str]] = mapped_column(String)
+
     status: Mapped[str] = mapped_column(String, default='pending_review', index=True)
 
     # Crop Metadata (Stored in Original Pixels)

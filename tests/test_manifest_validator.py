@@ -90,6 +90,29 @@ def test_cc_by_image_requires_attribution():
     assert validate_manifest(m) == []
 
 
+def test_license_url_attribution_url_origin_url_reject_non_http():
+    """ADR-142 review: these three fields become an href server-side, so a javascript:/data:/other
+    non-http(s) value must fail validation rather than ship and get rendered as a link elsewhere."""
+    m = _base()
+    m["items"][0]["image"]["license"] = "CC0-1.0"
+    m["items"][0]["image"]["origin_url"] = "javascript:alert(1)"
+    errs = validate_manifest(m)
+    assert any("origin_url must be an http" in e for e in errs)
+
+    m["items"][0]["image"]["origin_url"] = "https://pub.test/source-page"
+    m["items"][0]["image"]["license_url"] = "data:text/html,<script>1</script>"
+    errs = validate_manifest(m)
+    assert any("license_url must be an http" in e for e in errs)
+
+    m["items"][0]["image"]["license_url"] = "https://creativecommons.org/publicdomain/zero/1.0/"
+    m["items"][0]["image"]["attribution_url"] = "not-a-url"
+    errs = validate_manifest(m)
+    assert any("attribution_url must be an http" in e for e in errs)
+
+    m["items"][0]["image"]["attribution_url"] = "https://pub.test/source-page"
+    assert validate_manifest(m) == []
+
+
 def test_cc_by_4_0_with_space_still_requires_attribution():
     """Regression: the old `^cc-by` regex missed "CC BY 4.0" (a space instead of a hyphen)."""
     m = _base(); m["items"][0]["image"]["license"] = "CC BY 4.0"

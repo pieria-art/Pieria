@@ -15,7 +15,7 @@ from __future__ import annotations
 
 import re
 
-from core.licensing import normalize_license
+from core.licensing import normalize_license, safe_http_url
 from core.licensing import requires_attribution as _pack_requires_attribution
 
 MANIFEST_VERSION = 2
@@ -81,9 +81,15 @@ def _validate_image(image, path, errors, *, has_default_license):
                         and all(isinstance(n, (int, float)) and 0.0 <= n <= 1.0 for n in box)):
                     errors.append(f"{path}.aspect_crops[{k!r}] must be [x0,y0,x1,y1] with each value "
                                   "a number in 0..1")
+    # ADR-142 review: these three fields become an href server-side (routers/library.py's /art/{id},
+    # the e-ink pull headers, Admin -> Credits) — a non-http(s) value (javascript:, data:, ...) is a
+    # stored-XSS vector, so the manifest is rejected outright rather than silently defanged at render
+    # time. Every real catalog/pack manifest already uses http(s) here (checked against static/catalog).
     for k in ("license_url", "attribution_url", "origin_url"):
         if k in image and not _is_str(image[k]):
             errors.append(f"{path}.{k} must be a non-empty string when present")
+        elif k in image and safe_http_url(image[k]) is None:
+            errors.append(f"{path}.{k} must be an http:// or https:// URL")
     _check_asset_license(image, path, errors, license_required=not has_default_license)
     # Image-specific (ADR-142): a CC BY image also needs its licence linked and its source page, on top
     # of the base `attribution` string _check_asset_license already requires above.
