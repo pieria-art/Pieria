@@ -108,3 +108,15 @@ def test_safe_http_url_rejects_other_schemes_and_junk():
     assert safe_http_url("") is None
     assert safe_http_url(None) is None
     assert safe_http_url("pack:some_file.jpg") is None
+
+
+def test_display_credit_drops_bare_urls_keeps_real_credits():
+    from core.licensing import display_credit
+    assert display_credit("https://www.artic.edu/artworks/8971") is None
+    assert display_credit("  http://visipix.com/index.htm ") is None
+    assert display_credit("www.example.org/x") is None
+    assert display_credit("http://www.artic.edu/aic/collections/artwork/111628 (Manual stitch by x)") is None
+    assert display_credit("") is None and display_credit(None) is None
+    assert display_credit("https://clevelandart.org/art/1916.1044 IA") is None
+    assert display_credit("NASA, ESA, CSA, STScI") == "NASA, ESA, CSA, STScI"
+    assert display_credit("Photo: Jane Doe, https://example.org") == "Photo: Jane Doe, https://example.org"

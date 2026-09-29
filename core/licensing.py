@@ -67,6 +67,22 @@ def requires_attribution(license_id: str | None) -> bool:
     return license_id == "CC-BY-4.0"
 
 
+def display_credit(text: str | None) -> str | None:
+    """The attribution text fit to SHOW as a credit, or None.
+
+    ~460 catalog rows carry a bare source URL in `credit_line` (a harvest artefact, e.g.
+    "https://www.artic.edu/artworks/8971", or a URL followed by a source note). No real credit starts
+    with a URL, and a URL isn't a credit — the page's "View original source"
+    link already covers where the image came from — so it renders as nothing rather than as raw text.
+    """
+    if not text or not isinstance(text, str):
+        return None
+    s = text.strip()
+    if not s or re.match(r"(?i)(https?://|www\.)", s):
+        return None
+    return s
+
+
 def safe_http_url(url: str | None) -> str | None:
     """Return `url` unchanged when it's an http(s) link, else None.
 

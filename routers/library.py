@@ -374,8 +374,9 @@ async def artwork_detail_page(artwork_id: int, db: Session = Depends(get_db)):
         license_url = core_licensing.safe_http_url(
             art.license_url or (core_licensing.LICENSE_URLS.get(license_id) if license_id else None))
         credit_bits = []
-        if art.attribution:
-            credit_bits.append(e(art.attribution))
+        credit_text = core_licensing.display_credit(art.attribution)
+        if credit_text:
+            credit_bits.append(e(credit_text))
         if license_name:
             if license_url:
                 credit_bits.append(f"<a href='{e(license_url)}' target=_blank rel=noopener>{e(license_name)}</a>")

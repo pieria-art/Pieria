@@ -83,6 +83,19 @@ def test_detail_page_never_links_a_non_http_url(client):
     assert "View original source" not in body   # no source link when origin_url is unsafe
 
 
+def test_detail_page_hides_a_bare_url_credit(client):
+    """~460 catalog rows carry a source URL in credit_line; it must not render as the credit text."""
+    c, db = client
+    art = ArtworkModel(
+        filename="u.jpg", title="Url Credit", status="approved", license="PDM-1.0",
+        attribution="https://www.artic.edu/artworks/8971", origin_url="https://example.org/work")
+    db.add(art); db.commit(); db.refresh(art)
+    body = c.get(f"/art/{art.id}").text
+    assert "artic.edu/artworks/8971" not in body
+    assert "Public domain" in body              # the licence still shows
+    assert "View original source" in body
+
+
 def test_detail_page_escapes_html(client):
     c, db = client
     art = ArtworkModel(filename="y.jpg", title="<script>alert(1)</script>", status="approved")
