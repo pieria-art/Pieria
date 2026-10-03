@@ -1,9 +1,9 @@
 {
  "id": "cosmos",
  "title": "The Cosmos",
- "description": "Public-domain views of deep space from Hubble and the James Webb Space Telescope.",
- "source": "Wikimedia Commons",
- "license": "Public Domain (NASA / ESA)",
+ "description": "Deep space, planets and the Sun from Hubble, Webb, Chandra and NASA's planetary missions.",
+ "source": "NASA, ESA/Webb and ESA/Hubble",
+ "license": "Public domain (NASA) · CC BY 4.0 (ESA/Webb, ESA/Hubble)",
  "items": [
   {
    "title": "Pillars of Creation",
@@ -5527,6 +5527,2046 @@
    ],
    "delivered_edge": 4824,
    "resolution_tier": "4K"
+  },
+  {
+   "title": "Webb visits a star-forming spiral",
+   "agent_name": "ESA/Webb, NASA & CSA, A. Leroy",
+   "agent_role": "Artist",
+   "creation_date": "28 February 2025",
+   "cultural_context": "21st Century, Space Exploration",
+   "medium": "Infrared image — Webb NIRCam and MIRI",
+   "date_display": "2025",
+   "description_narrative": "Webb's infrared image of the barred spiral galaxy NGC 2283, about 45 million light-years away in Canis Major, combines near- and mid-infrared data. Loose arms of red and orange dust and glowing knots swirl around a pale centre, and a few bright stars carry long spikes.",
+   "tags": "spiral galaxy, infrared, webb, barred spiral, dust, star formation",
+   "source": "Webb",
+   "license": "CC-BY-4.0",
+   "source_url": "https://cdn.esawebb.org/archives/images/large/potm2502a.jpg",
+   "thumbnail_url": "https://cdn.esawebb.org/archives/images/screen/potm2502a.jpg",
+   "license_verdict": "cc-by",
+   "license_basis": "CC BY 4.0 (ESA/Webb release)",
+   "license_url": "https://creativecommons.org/licenses/by/4.0/",
+   "credit_line": "ESA/Webb, NASA & CSA, A. Leroy",
+   "license_verified": "2026-10-03",
+   "attribution_url": "https://esawebb.org/images/potm2502a/",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1984,
+     1.0,
+     0.8016
+    ],
+    "9:16": [
+     0.2552,
+     0.0,
+     0.7798,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0979,
+     1.0,
+     0.9021
+    ],
+    "3:4": [
+     0.1203,
+     0.0,
+     0.8197,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.47,
+    0.5
+   ]
+  },
+  {
+   "title": "Dwarf stars in a glittering sky",
+   "agent_name": "ESA/Webb, NASA & CSA, V. Almendros-Abad, M. Guarcello, K. Monsch, and the EWOCS team.",
+   "agent_role": "Artist",
+   "creation_date": "19 December 2025",
+   "cultural_context": "21st Century, Space Exploration",
+   "medium": "Infrared image — Webb NIRCam and MIRI",
+   "date_display": "2025",
+   "description_narrative": "This Webb infrared image shows the star cluster Westerlund 2 in the stellar nursery Gum 29, about 20,000 light-years away in Carina. Thousands of bright stars with spiked halos crowd a blue haze, framed by ragged orange clouds.",
+   "tags": "star cluster, infrared, webb, nebula, stellar nursery, carina",
+   "source": "Webb",
+   "license": "CC-BY-4.0",
+   "source_url": "https://cdn.esawebb.org/archives/images/large/potm2512a.jpg",
+   "thumbnail_url": "https://cdn.esawebb.org/archives/images/screen/potm2512a.jpg",
+   "license_verdict": "cc-by",
+   "license_basis": "CC BY 4.0 (ESA/Webb release)",
+   "license_url": "https://creativecommons.org/licenses/by/4.0/",
+   "credit_line": "ESA/Webb, NASA & CSA, V. Almendros-Abad, M. Guarcello, K. Monsch, and the EWOCS team.",
+   "license_verified": "2026-10-03",
+   "attribution_url": "https://esawebb.org/images/potm2512a/",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0021,
+     1.0,
+     0.5579
+    ],
+    "9:16": [
+     0.0953,
+     0.0,
+     0.6647,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0,
+     1.0,
+     0.741
+    ],
+    "3:4": [
+     0.0005,
+     0.0,
+     0.7595,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.42,
+    0.13
+   ]
+  },
+  {
+   "title": "NGC 602 (Webb image)",
+   "agent_name": "ESA/Webb, NASA & CSA, P. Zeidler, E. Sabbi, A. Nota, M. Zamani (ESA/Webb)",
+   "agent_role": "Artist",
+   "creation_date": "23 October 2024",
+   "cultural_context": "21st Century, Space Exploration",
+   "medium": "Infrared image — Webb NIRCam and MIRI",
+   "date_display": "2024",
+   "description_narrative": "Webb's infrared image shows the young star cluster NGC 602 near the edge of the Small Magellanic Cloud, a satellite galaxy about 200 000 light-years away. A pink glow fills the centre around a small cluster of stars, ringed by ragged orange and teal walls of dust, with distant galaxies scattered behind.",
+   "tags": "star cluster, infrared, webb, nebula, dust, small magellanic cloud",
+   "source": "Webb",
+   "license": "CC-BY-4.0",
+   "source_url": "https://cdn.esawebb.org/archives/images/large/weic2425c.jpg",
+   "thumbnail_url": "https://cdn.esawebb.org/archives/images/screen/weic2425c.jpg",
+   "license_verdict": "cc-by",
+   "license_basis": "CC BY 4.0 (ESA/Webb release)",
+   "license_url": "https://creativecommons.org/licenses/by/4.0/",
+   "credit_line": "ESA/Webb, NASA & CSA, P. Zeidler, E. Sabbi, A. Nota, M. Zamani (ESA/Webb)",
+   "license_verified": "2026-10-03",
+   "attribution_url": "https://esawebb.org/images/weic2425c/",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1317,
+     1.0,
+     0.8283
+    ],
+    "9:16": [
+     0.2229,
+     0.0,
+     0.6771,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0156,
+     1.0,
+     0.9444
+    ],
+    "3:4": [
+     0.1472,
+     0.0,
+     0.7528,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.44,
+    0.48
+   ]
+  },
+  {
+   "title": "Webb opens a Treasure Chest filled with stars",
+   "agent_name": "ESA/Webb, NASA & CSA, M. Reiter; Acknowledgement: M. H. Özsaraç",
+   "agent_role": "Artist",
+   "creation_date": "6 August 2026",
+   "cultural_context": "21st Century, Space Exploration",
+   "medium": "Infrared image — Webb NIRCam",
+   "date_display": "2026",
+   "description_narrative": "Webb's NIRCam shows the Treasure Chest, a dust cloud in the Carina Nebula about 7500 light-years away, shaped by radiation and winds from nearby massive stars. Golden folds of dust rise like a tall sculpted form with a bright glow at its crown, set against a teal and red backdrop dense with blue stars.",
+   "tags": "nebula, infrared, webb, dust clouds, carina nebula, star cluster",
+   "source": "Webb",
+   "license": "CC-BY-4.0",
+   "source_url": "https://cdn.esawebb.org/archives/images/large/potm2607a.jpg",
+   "thumbnail_url": "https://cdn.esawebb.org/archives/images/screen/potm2607a.jpg",
+   "license_verdict": "cc-by",
+   "license_basis": "CC BY 4.0 (ESA/Webb release)",
+   "license_url": "https://creativecommons.org/licenses/by/4.0/",
+   "credit_line": "ESA/Webb, NASA & CSA, M. Reiter; Acknowledgement: M. H. Özsaraç",
+   "license_verified": "2026-10-03",
+   "attribution_url": "https://esawebb.org/images/potm2607a/",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.2544,
+     1.0,
+     0.6656
+    ],
+    "9:16": [
+     0.1152,
+     0.0,
+     0.8848,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1959,
+     1.0,
+     0.7441
+    ],
+    "3:4": [
+     0.0,
+     0.0128,
+     1.0,
+     0.9872
+    ]
+   },
+   "focal_point": [
+    0.45,
+    0.4
+   ]
+  },
+  {
+   "title": "The Red Spider Nebula, caught by Webb",
+   "agent_name": "ESA/Webb, NASA & CSA, J. H. Kastner (Rochester Institute of Technology)",
+   "agent_role": "Artist",
+   "creation_date": "28 October 2025",
+   "cultural_context": "21st Century, Space Exploration",
+   "medium": "Infrared image — Webb NIRCam",
+   "date_display": "2025",
+   "description_narrative": "Webb's NIRCam shows NGC 6537, the Red Spider Nebula, a planetary nebula formed from the shed outer layers of a dying star; the central star appears red here because a shroud of hot dust surrounds it. A bright core sits at the waist of an hourglass shape, with an orange-red band across the middle and blue lobes sweeping out to either side through a field packed with stars.",
+   "tags": "planetary nebula, infrared, webb, hourglass, dust, stars",
+   "source": "Webb",
+   "license": "CC-BY-4.0",
+   "source_url": "https://cdn.esawebb.org/archives/images/large/potm2510a.jpg",
+   "thumbnail_url": "https://cdn.esawebb.org/archives/images/screen/potm2510a.jpg",
+   "license_verdict": "cc-by",
+   "license_basis": "CC BY 4.0 (ESA/Webb release)",
+   "license_url": "https://creativecommons.org/licenses/by/4.0/",
+   "credit_line": "ESA/Webb, NASA & CSA, J. H. Kastner (Rochester Institute of Technology)",
+   "license_verified": "2026-10-03",
+   "attribution_url": "https://esawebb.org/images/potm2510a/",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1794,
+     1.0,
+     0.7406
+    ],
+    "9:16": [
+     0.2481,
+     0.0,
+     0.8119,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0859,
+     1.0,
+     0.8341
+    ],
+    "3:4": [
+     0.1541,
+     0.0,
+     0.9059,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.53,
+    0.46
+   ]
+  },
+  {
+   "title": "HH 211 (NIRCam image, cropped)",
+   "agent_name": "ESA/Webb, NASA, CSA, T. Ray (Dublin Institute for Advanced Studies)",
+   "agent_role": "Artist",
+   "creation_date": "14 September 2023",
+   "cultural_context": "21st Century, Space Exploration",
+   "medium": "Infrared image — Webb NIRCam",
+   "date_display": "2023",
+   "description_narrative": "This Webb image shows Herbig-Haro 211 (HH 211), a bipolar jet from a very young protostar about 1,000 light-years away in Perseus. A narrow jet runs diagonally across a dark blue field, ending in glowing pink bow-shaped shock fronts on either side.",
+   "tags": "protostar, jet, infrared, webb, herbig-haro, outflow",
+   "source": "Webb",
+   "license": "CC-BY-4.0",
+   "source_url": "https://cdn.esawebb.org/archives/images/large/weic2322a.jpg",
+   "thumbnail_url": "https://cdn.esawebb.org/archives/images/screen/weic2322a.jpg",
+   "license_verdict": "cc-by",
+   "license_basis": "CC BY 4.0 (ESA/Webb release)",
+   "license_url": "https://creativecommons.org/licenses/by/4.0/",
+   "credit_line": "ESA/Webb, NASA, CSA, T. Ray (Dublin Institute for Advanced Studies)",
+   "license_verified": "2026-10-03",
+   "attribution_url": "https://esawebb.org/images/weic2322a/",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0856,
+     1.0,
+     0.7744
+    ],
+    "9:16": [
+     0.2903,
+     0.0,
+     0.7497,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0008,
+     1.0,
+     0.9192
+    ],
+    "3:4": [
+     0.2537,
+     0.0,
+     0.8663,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.505,
+    0.505
+   ]
+  },
+  {
+   "title": "Messier 77 (MIRI + NIRCam)",
+   "agent_name": "ESA/Webb, NASA & CSA, A. Leroy",
+   "agent_role": "Artist",
+   "creation_date": "7 May 2026",
+   "cultural_context": "21st Century, Space Exploration",
+   "medium": "Infrared image — Webb NIRCam and MIRI",
+   "date_display": "2026",
+   "description_narrative": "Webb's image of Messier 77, a barred spiral galaxy about 45 million light-years away in Cetus, has a bright active nucleus at its heart. The orange lines radiating from the centre are diffraction spikes from the telescope's optics, not structure in the galaxy itself. Rust-red spiral arms wind around a pale glowing core.",
+   "tags": "spiral galaxy, infrared, webb, active nucleus, dust, starburst",
+   "source": "Webb",
+   "license": "CC-BY-4.0",
+   "source_url": "https://cdn.esawebb.org/archives/images/large/potm2604b.jpg",
+   "thumbnail_url": "https://cdn.esawebb.org/archives/images/screen/potm2604b.jpg",
+   "license_verdict": "cc-by",
+   "license_basis": "CC BY 4.0 (ESA/Webb release)",
+   "license_url": "https://creativecommons.org/licenses/by/4.0/",
+   "credit_line": "ESA/Webb, NASA & CSA, A. Leroy",
+   "license_verified": "2026-10-03",
+   "attribution_url": "https://esawebb.org/images/potm2604b/",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.2486,
+     1.0,
+     0.8014
+    ],
+    "9:16": [
+     0.2098,
+     0.0,
+     0.7822,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1565,
+     1.0,
+     0.8935
+    ],
+    "3:4": [
+     0.1144,
+     0.0,
+     0.8776,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.496,
+    0.525
+   ]
+  },
+  {
+   "title": "Fireworks of stellar starbursts",
+   "agent_name": "ESA/Webb, NASA & CSA, A. Adamo (Stockholm University) and the FEAST JWST team",
+   "agent_role": "Artist",
+   "creation_date": "29 May 2024",
+   "cultural_context": "21st Century, Space Exploration",
+   "medium": "Infrared image — Webb NIRCam and MIRI",
+   "date_display": "2024",
+   "description_narrative": "This Webb infrared image shows NGC 4449, a dwarf starburst galaxy about 12.5 million light-years away in Canes Venatici. The orange-red areas trace carbon-based molecules called PAHs, while hydrogen ionised by newly formed stars appears as bright red spots. Fine blue stars glow across the centre.",
+   "tags": "dwarf galaxy, starburst, infrared, webb, star formation, hydrogen",
+   "source": "Webb",
+   "license": "CC-BY-4.0",
+   "source_url": "https://cdn.esawebb.org/archives/images/large/potm2405a.jpg",
+   "thumbnail_url": "https://cdn.esawebb.org/archives/images/screen/potm2405a.jpg",
+   "license_verdict": "cc-by",
+   "license_basis": "CC BY 4.0 (ESA/Webb release)",
+   "license_url": "https://creativecommons.org/licenses/by/4.0/",
+   "credit_line": "ESA/Webb, NASA & CSA, A. Adamo (Stockholm University) and the FEAST JWST team",
+   "license_verified": "2026-10-03",
+   "attribution_url": "https://esawebb.org/images/potm2405a/",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0,
+     1.0,
+     0.9546
+    ],
+    "9:16": [
+     0.3143,
+     0.0,
+     0.6457,
+     1.0
+    ],
+    "4:3": [
+     0.0872,
+     0.0,
+     0.8728,
+     1.0
+    ],
+    "3:4": [
+     0.259,
+     0.0,
+     0.701,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.48,
+    0.42
+   ]
+  },
+  {
+   "title": "A galactic treasury",
+   "agent_name": "ESA/Webb, NASA & CSA, A. Leroy, J. Lee and the PHANGS Team",
+   "agent_role": "Artist",
+   "creation_date": "27 February 2024",
+   "cultural_context": "21st Century, Space Exploration",
+   "medium": "Infrared image — Webb NIRCam and MIRI",
+   "date_display": "2024",
+   "description_narrative": "Webb's view of the barred spiral galaxy NGC 1559, about 35 million light-years away in Reticulum, pairs the dust glow seen by MIRI with starlight from NIRCam. A pale blue bar of starlight crosses the centre, surrounded by orange and pink arms with bright clumps.",
+   "tags": "spiral galaxy, barred spiral, infrared, webb, dust, reticulum",
+   "source": "Webb",
+   "license": "CC-BY-4.0",
+   "source_url": "https://cdn.esawebb.org/archives/images/large/potm2402a.jpg",
+   "thumbnail_url": "https://cdn.esawebb.org/archives/images/screen/potm2402a.jpg",
+   "license_verdict": "cc-by",
+   "license_basis": "CC BY 4.0 (ESA/Webb release)",
+   "license_url": "https://creativecommons.org/licenses/by/4.0/",
+   "credit_line": "ESA/Webb, NASA & CSA, A. Leroy, J. Lee and the PHANGS Team",
+   "license_verified": "2026-10-03",
+   "attribution_url": "https://esawebb.org/images/potm2402a/",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.2015,
+     1.0,
+     0.7585
+    ],
+    "9:16": [
+     0.186,
+     0.0,
+     0.754,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1087,
+     1.0,
+     0.8513
+    ],
+    "3:4": [
+     0.0913,
+     0.0,
+     0.8487,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.47,
+    0.48
+   ]
+  },
+  {
+   "title": "Tracing spiral arms in infrared",
+   "agent_name": "ESA/Webb, NASA & CSA, A. Leroy",
+   "agent_role": "Artist",
+   "creation_date": "27 November 2024",
+   "cultural_context": "21st Century, Space Exploration",
+   "medium": "Infrared image — Webb NIRCam and MIRI",
+   "date_display": "2024",
+   "description_narrative": "Webb's image of the spiral galaxy NGC 2090 in Columba combines NIRCam and MIRI data, with starlight shown in blue and dust emission in red. A tilted galaxy with a glowing cyan core is encircled by two winding arms of red and orange dust.",
+   "tags": "spiral galaxy, infrared, webb, dust, spiral arms, columba",
+   "source": "Webb",
+   "license": "CC-BY-4.0",
+   "source_url": "https://cdn.esawebb.org/archives/images/large/potm2411a.jpg",
+   "thumbnail_url": "https://cdn.esawebb.org/archives/images/screen/potm2411a.jpg",
+   "license_verdict": "cc-by",
+   "license_basis": "CC BY 4.0 (ESA/Webb release)",
+   "license_url": "https://creativecommons.org/licenses/by/4.0/",
+   "credit_line": "ESA/Webb, NASA & CSA, A. Leroy",
+   "license_verified": "2026-10-03",
+   "attribution_url": "https://esawebb.org/images/potm2411a/",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.2144,
+     1.0,
+     0.8056
+    ],
+    "9:16": [
+     0.2524,
+     0.0,
+     0.7876,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1319,
+     1.0,
+     0.9201
+    ],
+    "3:4": [
+     0.1902,
+     0.0,
+     0.9038,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.52,
+    0.52
+   ]
+  },
+  {
+   "title": "Close look at a local galaxy",
+   "agent_name": "ESA/Webb, NASA & CSA, A. Leroy",
+   "agent_role": "Artist",
+   "creation_date": "18 December 2024",
+   "cultural_context": "21st Century, Space Exploration",
+   "medium": "Infrared image — Webb NIRCam and MIRI",
+   "date_display": "2024",
+   "description_narrative": "This Webb image shows the spiral galaxy NGC 2566 in Puppis, about 76 million light-years away, with a long central bar and well-defined arms. Rings of red and orange dust surround a blue-white glowing centre, with dark gaps between the arms.",
+   "tags": "spiral galaxy, barred spiral, infrared, webb, dust, puppis",
+   "source": "Webb",
+   "license": "CC-BY-4.0",
+   "source_url": "https://cdn.esawebb.org/archives/images/large/potm2412a.jpg",
+   "thumbnail_url": "https://cdn.esawebb.org/archives/images/screen/potm2412a.jpg",
+   "license_verdict": "cc-by",
+   "license_basis": "CC BY 4.0 (ESA/Webb release)",
+   "license_url": "https://creativecommons.org/licenses/by/4.0/",
+   "credit_line": "ESA/Webb, NASA & CSA, A. Leroy",
+   "license_verified": "2026-10-03",
+   "attribution_url": "https://esawebb.org/images/potm2412a/",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.2739,
+     1.0,
+     0.7861
+    ],
+    "9:16": [
+     0.2012,
+     0.0,
+     0.8188,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1885,
+     1.0,
+     0.8715
+    ],
+    "3:4": [
+     0.0982,
+     0.0,
+     0.9218,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.51,
+    0.53
+   ]
+  },
+  {
+   "title": "The stellar lifecycle in a nearby spiral",
+   "agent_name": "ESA/Webb, NASA & CSA, A. Leroy",
+   "agent_role": "Artist",
+   "creation_date": "20 February 2026",
+   "cultural_context": "21st Century, Space Exploration",
+   "medium": "Infrared image — Webb NIRCam and MIRI",
+   "date_display": "2026",
+   "description_narrative": "Webb's MIRI and NIRCam together image the spiral galaxy NGC 5134, about 65 million light-years away in Virgo, where gas clouds along the arms are sites of star formation. A tilted ellipse of red arms glows inside a soft bluish halo around a bright centre.",
+   "tags": "spiral galaxy, infrared, webb, star formation, gas clouds, virgo",
+   "source": "Webb",
+   "license": "CC-BY-4.0",
+   "source_url": "https://cdn.esawebb.org/archives/images/large/potm2602a.jpg",
+   "thumbnail_url": "https://cdn.esawebb.org/archives/images/screen/potm2602a.jpg",
+   "license_verdict": "cc-by",
+   "license_basis": "CC BY 4.0 (ESA/Webb release)",
+   "license_url": "https://creativecommons.org/licenses/by/4.0/",
+   "credit_line": "ESA/Webb, NASA & CSA, A. Leroy",
+   "license_verified": "2026-10-03",
+   "attribution_url": "https://esawebb.org/images/potm2602a/",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.2386,
+     1.0,
+     0.8014
+    ],
+    "9:16": [
+     0.2089,
+     0.0,
+     0.7711,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1448,
+     1.0,
+     0.8952
+    ],
+    "3:4": [
+     0.1152,
+     0.0,
+     0.8648,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.49,
+    0.51
+   ]
+  },
+  {
+   "title": "Peeking into Perseus",
+   "agent_name": "ESA/Webb, NASA & CSA, A. Scholz, K. Muzic, A. Langeveld, R. Jayawardhana",
+   "agent_role": "Artist",
+   "creation_date": "27 August 2024",
+   "cultural_context": "21st Century, Space Exploration",
+   "medium": "Infrared image — Webb NIRISS",
+   "date_display": "2024",
+   "description_narrative": "This Webb mosaic shows NGC 1333, a young star-forming cluster in the Perseus molecular cloud about 960 light-years away, seen through infrared light that pierces its dust. Some of the faintest points are newborn brown dwarfs, and the Herbig-Haro objects mark active star formation. Pale blue and copper clouds drift around a dark rising column of dust, with a few bright spiked stars scattered across the scene.",
+   "tags": "nebula, infrared, webb, star-forming region, brown dwarfs, perseus molecular cloud",
+   "source": "Webb",
+   "license": "CC-BY-4.0",
+   "source_url": "https://cdn.esawebb.org/archives/images/large/potm2408a.jpg",
+   "thumbnail_url": "https://cdn.esawebb.org/archives/images/screen/potm2408a.jpg",
+   "license_verdict": "cc-by",
+   "license_basis": "CC BY 4.0 (ESA/Webb release)",
+   "license_url": "https://creativecommons.org/licenses/by/4.0/",
+   "credit_line": "ESA/Webb, NASA & CSA, A. Scholz, K. Muzic, A. Langeveld, R. Jayawardhana",
+   "license_verified": "2026-10-03",
+   "attribution_url": "https://esawebb.org/images/potm2408a/",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0761,
+     1.0,
+     0.7639
+    ],
+    "9:16": [
+     0.3,
+     0.0,
+     0.76,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0015,
+     1.0,
+     0.9185
+    ],
+    "3:4": [
+     0.1933,
+     0.0,
+     0.8067,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.49,
+    0.31
+   ]
+  },
+  {
+   "title": "NGC 3256 (HST)",
+   "agent_name": "ESA/Hubble, NASA",
+   "agent_role": "Artist",
+   "creation_date": "3 July 2023",
+   "cultural_context": "Scientific Imaging, Modern Astronomy",
+   "medium": "Image — Hubble ACS and WFC3",
+   "date_display": "2023",
+   "description_narrative": "Hubble's image shows NGC 3256, a galaxy distorted by an ancient head-on merger of two spirals, likely about 500 million years ago. Dark brown dust lanes spiral through a bright white core inside a wide, smoky halo.",
+   "tags": "galaxy merger, hubble, dust lanes, spiral galaxy, star formation, interacting galaxies",
+   "source": "Hubble",
+   "license": "CC-BY-4.0",
+   "source_url": "https://cdn.esawebb.org/archives/images/large/potm2306b.jpg",
+   "thumbnail_url": "https://cdn.esawebb.org/archives/images/screen/potm2306b.jpg",
+   "license_verdict": "cc-by",
+   "license_basis": "CC BY 4.0 (ESA/Hubble release)",
+   "license_url": "https://creativecommons.org/licenses/by/4.0/",
+   "credit_line": "ESA/Hubble, NASA",
+   "license_verified": "2026-10-03",
+   "attribution_url": "https://esawebb.org/images/potm2306b/",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1447,
+     1.0,
+     0.8153
+    ],
+    "9:16": [
+     0.2841,
+     0.0,
+     0.7559,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0329,
+     1.0,
+     0.9271
+    ],
+    "3:4": [
+     0.2399,
+     0.0,
+     0.8691,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.52,
+    0.48
+   ]
+  },
+  {
+   "title": "IRS 3 Field (NIRCam and MIRI image)",
+   "agent_name": "ESA/Webb, NASA & CSA, F. Peißker, J. Lu, F. Yusef-Zadeh, N. B. Sabha, C. Chan",
+   "agent_role": "Artist",
+   "creation_date": "11 August 2026",
+   "cultural_context": "21st Century, Space Exploration",
+   "medium": "Infrared image — Webb NIRCam and MIRI",
+   "date_display": "2026",
+   "description_narrative": "Webb's mid-infrared view covers the field around the evolved star IRS 3, which lies 0.55 light-years from Sagittarius A*, the supermassive black hole at the Milky Way's centre. The team found that IRS 3 keeps producing fresh material close to the black hole, even in that harsh radiation. A dense field of blue and white stars is swathed in red and orange glowing clouds, brightest at the centre.",
+   "tags": "galactic centre, infrared, webb, dust, star field, black hole",
+   "source": "Webb",
+   "license": "CC-BY-4.0",
+   "source_url": "https://cdn.esawebb.org/archives/images/large/weic2617a.jpg",
+   "thumbnail_url": "https://cdn.esawebb.org/archives/images/screen/weic2617a.jpg",
+   "license_verdict": "cc-by",
+   "license_basis": "CC BY 4.0 (ESA/Webb release)",
+   "license_url": "https://creativecommons.org/licenses/by/4.0/",
+   "credit_line": "ESA/Webb, NASA & CSA, F. Peißker, J. Lu, F. Yusef-Zadeh, N. B. Sabha, C. Chan",
+   "license_verified": "2026-10-03",
+   "attribution_url": "https://esawebb.org/images/weic2617a/",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0627,
+     1.0,
+     0.8373
+    ],
+    "9:16": [
+     0.2757,
+     0.0,
+     0.6843,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0,
+     0.9683,
+     1.0
+    ],
+    "3:4": [
+     0.2077,
+     0.0,
+     0.7523,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.48,
+    0.45
+   ]
+  },
+  {
+   "title": "Westerlund 1 (wide-field view)",
+   "agent_name": "ESA/Webb, NASA & CSA, M. Zamani (ESA/Webb), M. G. Guarcello (INAF-OAPA) and the EWOCS team",
+   "agent_role": "Artist",
+   "creation_date": "4 October 2024",
+   "cultural_context": "21st Century, Space Exploration",
+   "medium": "Infrared image — Webb NIRCam",
+   "date_display": "2024",
+   "description_narrative": "Webb's NIRCam shows the open cluster Westerlund 1, about 12 000 light-years away in Ara, a super star cluster discovered in 1961. Bright stars with long crossed spikes dominate a dense field, with a few red wisps of gas near the middle.",
+   "tags": "star cluster, super star cluster, infrared, webb, massive stars, ara",
+   "source": "Webb",
+   "license": "CC-BY-4.0",
+   "source_url": "https://cdn.esawebb.org/archives/images/large/potm2409b.jpg",
+   "thumbnail_url": "https://cdn.esawebb.org/archives/images/screen/potm2409b.jpg",
+   "license_verdict": "cc-by",
+   "license_basis": "CC BY 4.0 (ESA/Webb release)",
+   "license_url": "https://creativecommons.org/licenses/by/4.0/",
+   "credit_line": "ESA/Webb, NASA & CSA, M. Zamani (ESA/Webb), M. G. Guarcello (INAF-OAPA) and the EWOCS team",
+   "license_verified": "2026-10-03",
+   "attribution_url": "https://esawebb.org/images/potm2409b/",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1887,
+     1.0,
+     0.7512
+    ],
+    "9:16": [
+     0.2253,
+     0.0,
+     0.7878,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.095,
+     1.0,
+     0.845
+    ],
+    "3:4": [
+     0.095,
+     0.0,
+     0.845,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.47,
+    0.47
+   ]
+  },
+  {
+   "title": "Clash of the Titans",
+   "agent_name": "ESA/Webb, NASA & CSA, L. Armus, A. Evans",
+   "agent_role": "Artist",
+   "creation_date": "3 July 2023",
+   "cultural_context": "21st Century, Space Exploration",
+   "medium": "Infrared image — Webb NIRCam and MIRI",
+   "date_display": "2023",
+   "description_narrative": "Webb's infrared image of NGC 3256, about 120 million light-years away in Vela, shows the aftermath of a collision between two spiral galaxies that astronomers date to around 500 million years ago. The collision set off a burst of star formation. A bright orange and white spiral core sits inside a wide grey halo, with red streams curving away to one side.",
+   "tags": "galaxy merger, infrared, webb, star formation, interacting galaxies, vela",
+   "source": "Webb",
+   "license": "CC-BY-4.0",
+   "source_url": "https://cdn.esawebb.org/archives/images/large/potm2306a.jpg",
+   "thumbnail_url": "https://cdn.esawebb.org/archives/images/screen/potm2306a.jpg",
+   "license_verdict": "cc-by",
+   "license_basis": "CC BY 4.0 (ESA/Webb release)",
+   "license_url": "https://creativecommons.org/licenses/by/4.0/",
+   "credit_line": "ESA/Webb, NASA & CSA, L. Armus, A. Evans",
+   "license_verified": "2026-10-03",
+   "attribution_url": "https://esawebb.org/images/potm2306a/",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1347,
+     1.0,
+     0.8053
+    ],
+    "9:16": [
+     0.3341,
+     0.0,
+     0.8059,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0229,
+     1.0,
+     0.9171
+    ],
+    "3:4": [
+     0.2554,
+     0.0,
+     0.8846,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.555,
+    0.47
+   ]
+  },
+  {
+   "title": "Striking star clusters and irregular clumps",
+   "agent_name": "ESA/Webb, NASA & CSA, A. Leroy",
+   "agent_role": "Artist",
+   "creation_date": "27 August 2026",
+   "cultural_context": "21st Century, Space Exploration",
+   "medium": "Infrared image — Webb NIRCam",
+   "date_display": "2026",
+   "description_narrative": "Webb's infrared image shows Arp 263, also catalogued as NGC 3239, an irregular galaxy about 25 million light-years away in Leo. Red patches of glowing gas are scattered through a pale haze of stars. The bright spiked star at the top is BD+17 2217, a star in our own galaxy.",
+   "tags": "irregular galaxy, infrared, webb, star formation, galaxy merger, leo",
+   "source": "Webb",
+   "license": "CC-BY-4.0",
+   "source_url": "https://cdn.esawebb.org/archives/images/large/potm2608a.jpg",
+   "thumbnail_url": "https://cdn.esawebb.org/archives/images/screen/potm2608a.jpg",
+   "license_verdict": "cc-by",
+   "license_basis": "CC BY 4.0 (ESA/Webb release)",
+   "license_url": "https://creativecommons.org/licenses/by/4.0/",
+   "credit_line": "ESA/Webb, NASA & CSA, A. Leroy",
+   "license_verified": "2026-10-03",
+   "attribution_url": "https://esawebb.org/images/potm2608a/",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1212,
+     1.0,
+     0.6788
+    ],
+    "9:16": [
+     0.3698,
+     0.0,
+     0.9372,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0282,
+     1.0,
+     0.7718
+    ],
+    "3:4": [
+     0.1718,
+     0.0,
+     0.9282,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.55,
+    0.45
+   ]
+  },
+  {
+   "title": "Tangled — cosmic edition",
+   "agent_name": "ESA/Hubble, NASA",
+   "agent_role": "Artist",
+   "creation_date": "26 November 2018",
+   "cultural_context": "Scientific Imaging, Modern Astronomy",
+   "medium": "Image — Hubble",
+   "date_display": "2018",
+   "description_narrative": "Hubble's image shows SNR 0454-67.2, a supernova remnant in the Large Magellanic Cloud, likely left by a Type Ia explosion. Thin red threads loop and snake through dark clouds against a dense field of blue and orange stars.",
+   "tags": "supernova remnant, hubble, large magellanic cloud, gas filaments, stars, type ia supernova",
+   "source": "Hubble",
+   "license": "CC-BY-4.0",
+   "source_url": "https://cdn.esahubble.org/archives/images/large/potw1848a.jpg",
+   "thumbnail_url": "https://cdn.esahubble.org/archives/images/screen/potw1848a.jpg",
+   "license_verdict": "cc-by",
+   "license_basis": "CC BY 4.0 (ESA/Hubble release)",
+   "license_url": "https://creativecommons.org/licenses/by/4.0/",
+   "credit_line": "ESA/Hubble, NASA",
+   "license_verified": "2026-10-03",
+   "attribution_url": "https://esahubble.org/images/potw1848a/",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.2801,
+     1.0,
+     0.8129
+    ],
+    "9:16": [
+     0.1351,
+     0.0,
+     0.7289,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1948,
+     1.0,
+     0.9052
+    ],
+    "3:4": [
+     0.0541,
+     0.0,
+     0.8459,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.48,
+    0.55
+   ]
+  },
+  {
+   "title": "The young stars of Taurus",
+   "agent_name": "ESA/Hubble & NASA, G. Duchêne",
+   "agent_role": "Artist",
+   "creation_date": "30 June 2025",
+   "cultural_context": "Scientific Imaging, Modern Astronomy",
+   "medium": "Image — Hubble",
+   "date_display": "2025",
+   "description_narrative": "Hubble's image shows the reflection nebula GN 04.32.8, part of the Taurus Molecular Cloud about 480 light-years away, lit by the triple star system HP Tau, HP Tau G2 and HP Tau G3. Pale blue-grey clouds curl around a few bright spiked stars, with dark voids in the nebula.",
+   "tags": "reflection nebula, hubble, taurus, dust, young stars, stellar nursery",
+   "source": "Hubble",
+   "license": "CC-BY-4.0",
+   "source_url": "https://cdn.esahubble.org/archives/images/large/potw2526a.jpg",
+   "thumbnail_url": "https://cdn.esahubble.org/archives/images/screen/potw2526a.jpg",
+   "license_verdict": "cc-by",
+   "license_basis": "CC BY 4.0 (ESA/Hubble release)",
+   "license_url": "https://creativecommons.org/licenses/by/4.0/",
+   "credit_line": "ESA/Hubble & NASA, G. Duchêne",
+   "license_verified": "2026-10-03",
+   "attribution_url": "https://esahubble.org/images/potw2526a/",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1709,
+     1.0,
+     0.6991
+    ],
+    "9:16": [
+     0.3,
+     0.0,
+     0.899,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0678,
+     1.0,
+     0.7722
+    ],
+    "3:4": [
+     0.1507,
+     0.0,
+     0.9493,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.55,
+    0.47
+   ]
+  },
+  {
+   "title": "Capturing candyfloss clouds",
+   "agent_name": "ESA/Hubble & NASA, C. Murray",
+   "agent_role": "Artist",
+   "creation_date": "12 May 2025",
+   "cultural_context": "Scientific Imaging, Modern Astronomy",
+   "medium": "Image — Hubble WFC3",
+   "date_display": "2025",
+   "description_narrative": "Wispy clouds in teal, pink and rust drift across a dense scatter of tiny stars, with one orange star trailing long spikes. This is the Large Magellanic Cloud, a dwarf galaxy beside the Milky Way, imaged by Hubble with the Wide Field Camera 3 through several filters that include ultraviolet and infrared light.",
+   "tags": "nebula, dwarf galaxy, hubble, gas clouds, stars, large magellanic cloud",
+   "source": "Hubble",
+   "license": "CC-BY-4.0",
+   "source_url": "https://cdn.esahubble.org/archives/images/large/potw2519a.jpg",
+   "thumbnail_url": "https://cdn.esahubble.org/archives/images/screen/potw2519a.jpg",
+   "license_verdict": "cc-by",
+   "license_basis": "CC BY 4.0 (ESA/Hubble release)",
+   "license_url": "https://creativecommons.org/licenses/by/4.0/",
+   "credit_line": "ESA/Hubble & NASA, C. Murray",
+   "license_verified": "2026-10-03",
+   "attribution_url": "https://esahubble.org/images/potw2519a/",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0687,
+     1.0,
+     0.6313
+    ],
+    "9:16": [
+     0.2398,
+     0.0,
+     0.8022,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0,
+     1.0,
+     0.7502
+    ],
+    "3:4": [
+     0.1751,
+     0.0,
+     0.9249,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.55,
+    0.35
+   ]
+  },
+  {
+   "title": "A glittering cluster shines again",
+   "agent_name": "ESA/Hubble & NASA, A. Sarajedini, G. Piotto, M. Libralato",
+   "agent_role": "Artist",
+   "creation_date": "21 April 2025",
+   "cultural_context": "Scientific Imaging, Modern Astronomy",
+   "medium": "Image — Hubble",
+   "date_display": "2025",
+   "description_narrative": "A round swarm of stars thickens toward the middle, where the points glow blue-white, while orange stars stand out around the edges. This is the globular cluster Messier 72 in Aquarius, revisited by Hubble with ultraviolet data added; the colours separate hot blue stars from cooler red giants.",
+   "tags": "globular cluster, star cluster, hubble, messier 72, stars, aquarius",
+   "source": "Hubble",
+   "license": "CC-BY-4.0",
+   "source_url": "https://cdn.esahubble.org/archives/images/large/potw2516a.jpg",
+   "thumbnail_url": "https://cdn.esahubble.org/archives/images/screen/potw2516a.jpg",
+   "license_verdict": "cc-by",
+   "license_basis": "CC BY 4.0 (ESA/Hubble release)",
+   "license_url": "https://creativecommons.org/licenses/by/4.0/",
+   "credit_line": "ESA/Hubble & NASA, A. Sarajedini, G. Piotto, M. Libralato",
+   "license_verified": "2026-10-03",
+   "attribution_url": "https://esahubble.org/images/potw2516a/",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1914,
+     1.0,
+     0.7486
+    ],
+    "9:16": [
+     0.221,
+     0.0,
+     0.789,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0986,
+     1.0,
+     0.8414
+    ],
+    "3:4": [
+     0.1264,
+     0.0,
+     0.8836,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.505,
+    0.47
+   ]
+  },
+  {
+   "title": "Extreme star cluster bursts into life in new Hubble image",
+   "agent_name": "NASA, ESA and the Hubble Heritage (STScI/AURA)-ESA/Hubble Collaboration",
+   "agent_role": "Artist",
+   "creation_date": "2 October 2007",
+   "cultural_context": "Scientific Imaging, Modern Astronomy",
+   "medium": "Image — Hubble",
+   "date_display": "2007",
+   "description_narrative": "A tight knot of bright blue-white stars sits in the middle, with rust-coloured ridges of gas curling around it on the right. The star-forming region NGC 3603, seen by Hubble, holds a massive young cluster whose hot blue stars have cleared a large cavity in the surrounding gas.",
+   "tags": "star cluster, nebula, ngc 3603, hubble, star formation, gas and dust",
+   "source": "Hubble",
+   "license": "CC-BY-4.0",
+   "source_url": "https://cdn.esahubble.org/archives/images/large/heic0715a.jpg",
+   "thumbnail_url": "https://cdn.esahubble.org/archives/images/screen/heic0715a.jpg",
+   "license_verdict": "cc-by",
+   "license_basis": "CC BY 4.0 (ESA/Hubble release)",
+   "license_url": "https://creativecommons.org/licenses/by/4.0/",
+   "credit_line": "NASA, ESA and the Hubble Heritage (STScI/AURA)-ESA/Hubble Collaboration",
+   "license_verified": "2026-10-03",
+   "attribution_url": "https://esahubble.org/images/heic0715a/",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1801,
+     1.0,
+     0.7399
+    ],
+    "9:16": [
+     0.1699,
+     0.0,
+     0.7351,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0568,
+     1.0,
+     0.8032
+    ],
+    "3:4": [
+     0.1132,
+     0.0,
+     0.8668,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.49,
+    0.43
+   ]
+  },
+  {
+   "title": "Festive and Free-Floating",
+   "agent_name": "ESA/Hubble & NASA, R. Sahai",
+   "agent_role": "Artist",
+   "creation_date": "19 December 2022",
+   "cultural_context": "Scientific Imaging, Modern Astronomy",
+   "medium": "Image — Hubble",
+   "date_display": "2022",
+   "description_narrative": "A sea of red glow fills the frame, dotted with sharp stars, and dark teardrop-shaped silhouettes hang in it with a larger dark mass rising at the lower right. Hubble photographed a small part of the nebula Westerhout 5, where the dark tadpole shape at upper left is a free-floating evaporating gaseous globule; the red comes from hydrogen emission.",
+   "tags": "nebula, red glow, dark globule, hubble, westerhout 5, stars",
+   "source": "Hubble",
+   "license": "CC-BY-4.0",
+   "source_url": "https://cdn.esahubble.org/archives/images/large/potw2251a.jpg",
+   "thumbnail_url": "https://cdn.esahubble.org/archives/images/screen/potw2251a.jpg",
+   "license_verdict": "cc-by",
+   "license_basis": "CC BY 4.0 (ESA/Hubble release)",
+   "license_url": "https://creativecommons.org/licenses/by/4.0/",
+   "credit_line": "ESA/Hubble & NASA, R. Sahai",
+   "license_verified": "2026-10-03",
+   "attribution_url": "https://esahubble.org/images/potw2251a/",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0666,
+     1.0,
+     0.6434
+    ],
+    "9:16": [
+     0.2548,
+     0.0,
+     0.8032,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0754,
+     1.0,
+     0.8446
+    ],
+    "3:4": [
+     0.1343,
+     0.0,
+     0.8657,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.41,
+    0.23
+   ]
+  },
+  {
+   "title": "Tempestuous Young Stars in Orion",
+   "agent_name": "ESA/Hubble & NASA, J. Bally, M. Robberto",
+   "agent_role": "Artist",
+   "creation_date": "23 January 2023",
+   "cultural_context": "Scientific Imaging, Modern Astronomy",
+   "medium": "Image — Hubble WFC3 and ACS",
+   "date_display": "2023",
+   "description_narrative": "Two bright stars with cross-shaped spikes sit in drifting haze that is red at the left and a glowing blue at the lower right. The brighter star is the variable V 372 Orionis in the Orion Nebula, imaged by Hubble using two instruments; the four spikes are diffraction from the telescope's own structure.",
+   "tags": "orion nebula, variable star, hubble, diffraction spikes, nebula, young stars",
+   "source": "Hubble",
+   "license": "CC-BY-4.0",
+   "source_url": "https://cdn.esahubble.org/archives/images/large/potw2304a.jpg",
+   "thumbnail_url": "https://cdn.esahubble.org/archives/images/screen/potw2304a.jpg",
+   "license_verdict": "cc-by",
+   "license_basis": "CC BY 4.0 (ESA/Hubble release)",
+   "license_url": "https://creativecommons.org/licenses/by/4.0/",
+   "credit_line": "ESA/Hubble & NASA, J. Bally, M. Robberto",
+   "license_verified": "2026-10-03",
+   "attribution_url": "https://esahubble.org/images/potw2304a/",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.3173,
+     1.0,
+     0.8827
+    ],
+    "9:16": [
+     0.3002,
+     0.0,
+     0.8598,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1731,
+     1.0,
+     0.9269
+    ],
+    "3:4": [
+     0.1269,
+     0.0,
+     0.8731,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.59,
+    0.68
+   ]
+  },
+  {
+   "title": "Into the storm",
+   "agent_name": "ESA/Hubble & NASA",
+   "agent_role": "Artist",
+   "creation_date": "5 September 2016",
+   "cultural_context": "Scientific Imaging, Modern Astronomy",
+   "medium": "Image — Hubble",
+   "date_display": "2016",
+   "description_narrative": "Blue-white veils of gas and dark brown dust lanes swirl through a field crowded with stars, with a brighter pale blue cloud at the lower right. Hubble shows N159, a star-forming region in the Large Magellanic Cloud, where the glow of hydrogen and strong stellar winds shape the surrounding material around the Papillon Nebula.",
+   "tags": "nebula, star-forming region, n159, large magellanic cloud, hubble, dust lanes",
+   "source": "Hubble",
+   "license": "CC-BY-4.0",
+   "source_url": "https://cdn.esahubble.org/archives/images/large/potw1636a.jpg",
+   "thumbnail_url": "https://cdn.esahubble.org/archives/images/screen/potw1636a.jpg",
+   "license_verdict": "cc-by",
+   "license_basis": "CC BY 4.0 (ESA/Hubble release)",
+   "license_url": "https://creativecommons.org/licenses/by/4.0/",
+   "credit_line": "ESA/Hubble & NASA",
+   "license_verified": "2026-10-03",
+   "attribution_url": "https://esahubble.org/images/potw1636a/",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0686,
+     1.0,
+     1.0
+    ],
+    "9:16": [
+     0.6101,
+     0.0,
+     0.9499,
+     1.0
+    ],
+    "4:3": [
+     0.1474,
+     0.0,
+     0.9526,
+     1.0
+    ],
+    "3:4": [
+     0.4935,
+     0.0,
+     0.9465,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.8,
+    0.77
+   ]
+  },
+  {
+   "title": "A Scattering of Stars",
+   "agent_name": "ESA/Hubble & NASA, J. Kalirai, A. Milone",
+   "agent_role": "Artist",
+   "creation_date": "28 June 2021",
+   "cultural_context": "Scientific Imaging, Modern Astronomy",
+   "medium": "Image — Hubble WFC3",
+   "date_display": "2021",
+   "description_narrative": "Hundreds of blue stars spread out from a dense, bright core against black space, with a few orange stars among them and a faint red haze in the upper corner. This is the open cluster NGC 330 in the Small Magellanic Cloud, seen by Hubble's Wide Field Camera 3; the crossed spikes around stars come from the telescope's supporting vanes.",
+   "tags": "open cluster, star cluster, ngc 330, hubble, small magellanic cloud, stars",
+   "source": "Hubble",
+   "license": "CC-BY-4.0",
+   "source_url": "https://cdn.esahubble.org/archives/images/large/potw2126a.jpg",
+   "thumbnail_url": "https://cdn.esahubble.org/archives/images/screen/potw2126a.jpg",
+   "license_verdict": "cc-by",
+   "license_basis": "CC BY 4.0 (ESA/Hubble release)",
+   "license_url": "https://creativecommons.org/licenses/by/4.0/",
+   "credit_line": "ESA/Hubble & NASA, J. Kalirai, A. Milone",
+   "license_verified": "2026-10-03",
+   "attribution_url": "https://esahubble.org/images/potw2126a/",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.2102,
+     1.0,
+     0.7998
+    ],
+    "9:16": [
+     0.2367,
+     0.0,
+     0.7733,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0369,
+     1.0,
+     0.8231
+    ],
+    "3:4": [
+     0.1473,
+     0.0,
+     0.8627,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.505,
+    0.42
+   ]
+  },
+  {
+   "title": "Hubble Inspects A Pair of Space Oddities",
+   "agent_name": "ESA/Hubble & NASA, Dark Energy Survey/DOE/FNAL/DECam/CTIO/NOIRLab/NSF/AURA, J. Dalcanton",
+   "agent_role": "Artist",
+   "creation_date": "31 October 2022",
+   "cultural_context": "Scientific Imaging, Modern Astronomy",
+   "medium": "Image — Hubble ACS",
+   "date_display": "2022",
+   "description_narrative": "Two spiral galaxies sit at opposite ends of a pale blue stream of stars that arcs between them, with a small tilted galaxy in the gap. Hubble's Advanced Camera for Surveys captured two members of the galaxy triplet Arp 248, also called Wild's Triplet, in Virgo, joined by a tidal tail from their mutual gravity.",
+   "tags": "galaxies, interacting galaxies, tidal tail, arp 248, hubble, virgo",
+   "source": "Hubble",
+   "license": "CC-BY-4.0",
+   "source_url": "https://cdn.esahubble.org/archives/images/large/potw2244a.jpg",
+   "thumbnail_url": "https://cdn.esahubble.org/archives/images/screen/potw2244a.jpg",
+   "license_verdict": "cc-by",
+   "license_basis": "CC BY 4.0 (ESA/Hubble release)",
+   "license_url": "https://creativecommons.org/licenses/by/4.0/",
+   "credit_line": "ESA/Hubble & NASA, Dark Energy Survey/DOE/FNAL/DECam/CTIO/NOIRLab/NSF/AURA, J. Dalcanton",
+   "license_verified": "2026-10-03",
+   "attribution_url": "https://esahubble.org/images/potw2244a/",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0002,
+     1.0,
+     0.5098
+    ],
+    "9:16": [
+     0.0596,
+     0.0,
+     0.6804,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0653,
+     1.0,
+     0.7447
+    ],
+    "3:4": [
+     0.0561,
+     0.0,
+     0.8839,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.235,
+    0.25
+   ]
+  },
+  {
+   "title": "Long-distance relationship",
+   "agent_name": "ESA/Hubble & NASA, J. Dalcanton, Dark Energy Survey/DOE/FNAL/DECam/CTIO/NOIRLab/NSF/AURA",
+   "agent_role": "Artist",
+   "creation_date": "22 December 2025",
+   "cultural_context": "Scientific Imaging, Modern Astronomy",
+   "medium": "Image — Hubble",
+   "date_display": "2025",
+   "description_narrative": "A small bright spiral with tightly wound arms sits at the left, beside a much larger, dim galaxy with a loose ring of blue knots. Hubble pictures Arp 4 in Cetus, from the Atlas of Peculiar Galaxies; the two are not neighbours, since the large one, MCG-02-05-050, lies far closer to us than its companion.",
+   "tags": "galaxies, spiral galaxy, arp 4, hubble, cetus, low surface brightness",
+   "source": "Hubble",
+   "license": "CC-BY-4.0",
+   "source_url": "https://cdn.esahubble.org/archives/images/large/potw2551a.jpg",
+   "thumbnail_url": "https://cdn.esahubble.org/archives/images/screen/potw2551a.jpg",
+   "license_verdict": "cc-by",
+   "license_basis": "CC BY 4.0 (ESA/Hubble release)",
+   "license_url": "https://creativecommons.org/licenses/by/4.0/",
+   "credit_line": "ESA/Hubble & NASA, J. Dalcanton, Dark Energy Survey/DOE/FNAL/DECam/CTIO/NOIRLab/NSF/AURA",
+   "license_verified": "2026-10-03",
+   "attribution_url": "https://esahubble.org/images/potw2551a/",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1653,
+     1.0,
+     0.8147
+    ],
+    "9:16": [
+     0.3914,
+     0.0,
+     0.8786,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.067,
+     1.0,
+     0.933
+    ],
+    "3:4": [
+     0.3152,
+     0.0,
+     0.9648,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.63,
+    0.52
+   ]
+  },
+  {
+   "title": "A glimpse of the future",
+   "agent_name": "ESA/Hubble & NASA",
+   "agent_role": "Artist",
+   "creation_date": "16 October 2017",
+   "cultural_context": "Scientific Imaging, Modern Astronomy",
+   "medium": "Image — Hubble",
+   "date_display": "2017",
+   "description_narrative": "A bright, tangled core sits in the middle with two long, thin curving streams of blue stars sweeping out to opposite sides. Hubble shows NGC 2623, also called Arp 243, in Cancer, the result of a collision between two galaxies; its tidal tails and blue clusters mark the burst of star formation.",
+   "tags": "merging galaxies, ngc 2623, tidal tails, hubble, arp 243, star formation",
+   "source": "Hubble",
+   "license": "CC-BY-4.0",
+   "source_url": "https://cdn.esahubble.org/archives/images/large/potw1742a.jpg",
+   "thumbnail_url": "https://cdn.esahubble.org/archives/images/screen/potw1742a.jpg",
+   "license_verdict": "cc-by",
+   "license_basis": "CC BY 4.0 (ESA/Hubble release)",
+   "license_url": "https://creativecommons.org/licenses/by/4.0/",
+   "credit_line": "ESA/Hubble & NASA",
+   "license_verified": "2026-10-03",
+   "attribution_url": "https://esahubble.org/images/potw1742a/",
+   "aspect_crops": {
+    "16:9": [
+     0.0532,
+     0.0,
+     0.9068,
+     1.0
+    ],
+    "9:16": [
+     0.365,
+     0.0,
+     0.635,
+     1.0
+    ],
+    "4:3": [
+     0.1499,
+     0.0,
+     0.7901,
+     1.0
+    ],
+    "3:4": [
+     0.3199,
+     0.0,
+     0.6801,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.505,
+    0.47
+   ]
+  },
+  {
+   "title": "Hubble Gazes into M74",
+   "agent_name": "ESA/Hubble & NASA, R. Chandar",
+   "agent_role": "Artist",
+   "creation_date": "29 August 2022",
+   "cultural_context": "Scientific Imaging, Modern Astronomy",
+   "medium": "Image — Hubble ACS",
+   "date_display": "2022",
+   "description_narrative": "A face-on spiral shows a pale glowing centre, dark winding dust threads, and many pink and red patches strung along blue-grey arms. This is M74, the Phantom Galaxy, in Pisces, imaged by Hubble's Advanced Camera for Surveys; the pink blooms are hydrogen clouds lit by hot young stars.",
+   "tags": "spiral galaxy, m74, phantom galaxy, hubble, h ii regions, pisces",
+   "source": "Hubble",
+   "license": "CC-BY-4.0",
+   "source_url": "https://cdn.esahubble.org/archives/images/large/potw2235a.jpg",
+   "thumbnail_url": "https://cdn.esahubble.org/archives/images/screen/potw2235a.jpg",
+   "license_verdict": "cc-by",
+   "license_basis": "CC BY 4.0 (ESA/Hubble release)",
+   "license_url": "https://creativecommons.org/licenses/by/4.0/",
+   "credit_line": "ESA/Hubble & NASA, R. Chandar",
+   "license_verified": "2026-10-03",
+   "attribution_url": "https://esahubble.org/images/potw2235a/",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.3291,
+     1.0,
+     0.9509
+    ],
+    "9:16": [
+     0.1855,
+     0.0,
+     0.6945,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1711,
+     1.0,
+     1.0
+    ],
+    "3:4": [
+     0.1007,
+     0.0,
+     0.7793,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.44,
+    0.65
+   ]
+  },
+  {
+   "title": "Grand swirls",
+   "agent_name": "ESA/Hubble & NASA; Acknowledgement: Flickr user Det58",
+   "agent_role": "Artist",
+   "creation_date": "2 June 2014",
+   "cultural_context": "Scientific Imaging, Modern Astronomy",
+   "medium": "Image — Hubble WFC3",
+   "date_display": "2014",
+   "description_narrative": "A bright, small centre is wrapped in broad sweeping arms edged with dark dust and pale pink star clusters, against a dark blue background. This is NGC 1566, a Seyfert galaxy in Dorado, taken by Hubble's Wide Field Camera 3 in near-infrared light.",
+   "tags": "spiral galaxy, ngc 1566, seyfert galaxy, hubble, dorado, near-infrared",
+   "source": "Hubble",
+   "license": "CC-BY-4.0",
+   "source_url": "https://cdn.esahubble.org/archives/images/large/potw1422a.jpg",
+   "thumbnail_url": "https://cdn.esahubble.org/archives/images/screen/potw1422a.jpg",
+   "license_verdict": "cc-by",
+   "license_basis": "CC BY 4.0 (ESA/Hubble release)",
+   "license_url": "https://creativecommons.org/licenses/by/4.0/",
+   "credit_line": "ESA/Hubble & NASA; Acknowledgement: Flickr user Det58",
+   "license_verified": "2026-10-03",
+   "attribution_url": "https://esahubble.org/images/potw1422a/",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1882,
+     1.0,
+     0.7918
+    ],
+    "9:16": [
+     0.2429,
+     0.0,
+     0.7671,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0876,
+     1.0,
+     0.8924
+    ],
+    "3:4": [
+     0.1556,
+     0.0,
+     0.8544,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.505,
+    0.49
+   ]
+  },
+  {
+   "title": "A galactic maelstrom",
+   "agent_name": "ESA/Hubble & NASA and the LEGUS Team; Acknowledgement: R. Gendler",
+   "agent_role": "Artist",
+   "creation_date": "31 August 2015",
+   "cultural_context": "Scientific Imaging, Modern Astronomy",
+   "medium": "Image — Hubble",
+   "date_display": "2015",
+   "description_narrative": "A large glowing core is off-centre inside faint arms, with dark dust lanes spiralling inward and blue-white clusters along the outer edge. Hubble shows Messier 96, a lopsided spiral in Leo that is similar to the Milky Way in mass and size, with gravity from nearby group members thought to have disturbed its arms.",
+   "tags": "spiral galaxy, messier 96, asymmetric galaxy, hubble, leo, dust lanes",
+   "source": "Hubble",
+   "license": "CC-BY-4.0",
+   "source_url": "https://cdn.esahubble.org/archives/images/large/potw1535a.jpg",
+   "thumbnail_url": "https://cdn.esahubble.org/archives/images/screen/potw1535a.jpg",
+   "license_verdict": "cc-by",
+   "license_basis": "CC BY 4.0 (ESA/Hubble release)",
+   "license_url": "https://creativecommons.org/licenses/by/4.0/",
+   "credit_line": "ESA/Hubble & NASA and the LEGUS Team; Acknowledgement: R. Gendler",
+   "license_verified": "2026-10-03",
+   "attribution_url": "https://esahubble.org/images/potw1535a/",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.2292,
+     1.0,
+     0.7808
+    ],
+    "9:16": [
+     0.2232,
+     0.0,
+     0.7968,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1373,
+     1.0,
+     0.8727
+    ],
+    "3:4": [
+     0.1276,
+     0.0,
+     0.8924,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.51,
+    0.505
+   ]
+  },
+  {
+   "title": "Birds of a Feather",
+   "agent_name": "ESA/Hubble & NASA, J. Lee and the PHANGS-HST Team; Acknowledgement: Judy Schmidt (Geckzilla)",
+   "agent_role": "Artist",
+   "creation_date": "29 June 2020",
+   "cultural_context": "Scientific Imaging, Modern Astronomy",
+   "medium": "Image — Hubble",
+   "date_display": "2020",
+   "description_narrative": "A smooth, pale yellow oval core is ringed by short, ragged arms of dark dust threaded with small blue stars, like layered feathers. Hubble pictures NGC 2775, a flocculent spiral in Cancer, whose feathery arms show quiet recent star formation and whose large central bulge has little gas left.",
+   "tags": "spiral galaxy, flocculent spiral, ngc 2775, hubble, cancer, dust lanes",
+   "source": "Hubble",
+   "license": "CC-BY-4.0",
+   "source_url": "https://cdn.esahubble.org/archives/images/large/potw2026a.jpg",
+   "thumbnail_url": "https://cdn.esahubble.org/archives/images/screen/potw2026a.jpg",
+   "license_verdict": "cc-by",
+   "license_basis": "CC BY 4.0 (ESA/Hubble release)",
+   "license_url": "https://creativecommons.org/licenses/by/4.0/",
+   "credit_line": "ESA/Hubble & NASA, J. Lee and the PHANGS-HST Team; Acknowledgement: Judy Schmidt (Geckzilla)",
+   "license_verified": "2026-10-03",
+   "attribution_url": "https://esahubble.org/images/potw2026a/",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.181,
+     1.0,
+     0.839
+    ],
+    "9:16": [
+     0.2646,
+     0.0,
+     0.7454,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0713,
+     1.0,
+     0.9487
+    ],
+    "3:4": [
+     0.1844,
+     0.0,
+     0.8256,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.505,
+    0.51
+   ]
+  },
+  {
+   "title": "The squid and the whale",
+   "agent_name": "ESA/Hubble & NASA, L. C. Ho, D. Thilker",
+   "agent_role": "Artist",
+   "creation_date": "14 April 2025",
+   "cultural_context": "Scientific Imaging, Modern Astronomy",
+   "medium": "Image — Hubble",
+   "date_display": "2025",
+   "description_narrative": "A bright whitish core is wrapped in swirling pink-flecked arms and dark red dust, with one bright star with sharp spikes at the lower left. This is Messier 77, nicknamed the Squid Galaxy, in Cetus, imaged by Hubble; its filaments curl around the disc like tentacles, and this version adds newer filters and processing.",
+   "tags": "spiral galaxy, messier 77, squid galaxy, hubble, cetus, dust lanes",
+   "source": "Hubble",
+   "license": "CC-BY-4.0",
+   "source_url": "https://cdn.esahubble.org/archives/images/large/potw2515a.jpg",
+   "thumbnail_url": "https://cdn.esahubble.org/archives/images/screen/potw2515a.jpg",
+   "license_verdict": "cc-by",
+   "license_basis": "CC BY 4.0 (ESA/Hubble release)",
+   "license_url": "https://creativecommons.org/licenses/by/4.0/",
+   "credit_line": "ESA/Hubble & NASA, L. C. Ho, D. Thilker",
+   "license_verified": "2026-10-03",
+   "attribution_url": "https://esahubble.org/images/potw2515a/",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.2462,
+     1.0,
+     0.7638
+    ],
+    "9:16": [
+     0.2149,
+     0.0,
+     0.8261,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1599,
+     1.0,
+     0.8501
+    ],
+    "3:4": [
+     0.0825,
+     0.0,
+     0.8975,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.49,
+    0.505
+   ]
+  },
+  {
+   "title": "Starbursts on grand scale",
+   "agent_name": "ESA/Hubble & NASA, F. Belfiore, J. Lee and the PHANGS-HST Team",
+   "agent_role": "Artist",
+   "creation_date": "7 October 2024",
+   "cultural_context": "Scientific Imaging, Modern Astronomy",
+   "medium": "Image — Hubble",
+   "date_display": "2024",
+   "description_narrative": "Two broad spiral arms sweep around a bright centre, glittering with blue clusters and scattered pink and red patches. Hubble photographed NGC 5248, also known as Caldwell 45, a grand design spiral in Boötes with many starburst regions and a nuclear ring around its core.",
+   "tags": "spiral galaxy, ngc 5248, caldwell 45, hubble, starburst, boötes",
+   "source": "Hubble",
+   "license": "CC-BY-4.0",
+   "source_url": "https://cdn.esahubble.org/archives/images/large/potw2441a.jpg",
+   "thumbnail_url": "https://cdn.esahubble.org/archives/images/screen/potw2441a.jpg",
+   "license_verdict": "cc-by",
+   "license_basis": "CC BY 4.0 (ESA/Hubble release)",
+   "license_url": "https://creativecommons.org/licenses/by/4.0/",
+   "credit_line": "ESA/Hubble & NASA, F. Belfiore, J. Lee and the PHANGS-HST Team",
+   "license_verified": "2026-10-03",
+   "attribution_url": "https://esahubble.org/images/potw2441a/",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1818,
+     1.0,
+     0.6982
+    ],
+    "9:16": [
+     0.1986,
+     0.0,
+     0.8114,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1058,
+     1.0,
+     0.7942
+    ],
+    "3:4": [
+     0.0965,
+     0.0,
+     0.9135,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.505,
+    0.42
+   ]
+  },
+  {
+   "title": "Finding star clusters in the Lost Galaxy",
+   "agent_name": "ESA/Hubble & NASA, F. Belfiore, J. Lee and the PHANGS-HST Team",
+   "agent_role": "Artist",
+   "creation_date": "17 November 2025",
+   "cultural_context": "Scientific Imaging, Modern Astronomy",
+   "medium": "Image — Hubble",
+   "date_display": "2025",
+   "description_narrative": "Broad spiral arms wind around a glowing core, strung with blue star clusters and pink glowing patches, with a few bright spiked stars in front. Hubble shows NGC 4535, the Lost Galaxy, in Virgo, where young star clusters sit inside glowing H II regions that mark especially hot, massive stars.",
+   "tags": "spiral galaxy, ngc 4535, lost galaxy, hubble, virgo, h ii regions",
+   "source": "Hubble",
+   "license": "CC-BY-4.0",
+   "source_url": "https://cdn.esahubble.org/archives/images/large/potw2546a.jpg",
+   "thumbnail_url": "https://cdn.esahubble.org/archives/images/screen/potw2546a.jpg",
+   "license_verdict": "cc-by",
+   "license_basis": "CC BY 4.0 (ESA/Hubble release)",
+   "license_url": "https://creativecommons.org/licenses/by/4.0/",
+   "credit_line": "ESA/Hubble & NASA, F. Belfiore, J. Lee and the PHANGS-HST Team",
+   "license_verified": "2026-10-03",
+   "attribution_url": "https://esahubble.org/images/potw2546a/",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.2145,
+     1.0,
+     0.8055
+    ],
+    "9:16": [
+     0.1623,
+     0.0,
+     0.6977,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.116,
+     1.0,
+     0.904
+    ],
+    "3:4": [
+     0.0731,
+     0.0,
+     0.7869,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.43,
+    0.51
+   ]
+  },
+  {
+   "title": "Snapshot of a peculiar spiral",
+   "agent_name": "ESA/Hubble & NASA, J. Dalcanton, R. J. Foley (UC Santa Cruz), C. Kilpatrick",
+   "agent_role": "Artist",
+   "creation_date": "28 April 2025",
+   "cultural_context": "Scientific Imaging, Modern Astronomy",
+   "medium": "Image — Hubble",
+   "date_display": "2025",
+   "description_narrative": "One thick, star-speckled arm sweeps up toward the viewer, wrapped around a bright, warm core, while the far side is faint and wispy. Hubble captured Arp 184, also catalogued as NGC 1961, in Camelopardalis, a skewed spiral that earned its place in Halton Arp's Atlas of Peculiar Galaxies for that single broad arm.",
+   "tags": "spiral galaxy, arp 184, ngc 1961, hubble, camelopardalis, peculiar galaxy",
+   "source": "Hubble",
+   "license": "CC-BY-4.0",
+   "source_url": "https://cdn.esahubble.org/archives/images/large/potw2517a.jpg",
+   "thumbnail_url": "https://cdn.esahubble.org/archives/images/screen/potw2517a.jpg",
+   "license_verdict": "cc-by",
+   "license_basis": "CC BY 4.0 (ESA/Hubble release)",
+   "license_url": "https://creativecommons.org/licenses/by/4.0/",
+   "credit_line": "ESA/Hubble & NASA, J. Dalcanton, R. J. Foley (UC Santa Cruz), C. Kilpatrick",
+   "license_verified": "2026-10-03",
+   "attribution_url": "https://esahubble.org/images/potw2517a/",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.132,
+     0.9665,
+     0.708
+    ],
+    "9:16": [
+     0.1645,
+     0.0,
+     0.6955,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0366,
+     0.965,
+     0.8034
+    ],
+    "3:4": [
+     0.1001,
+     0.0,
+     0.8079,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.43,
+    0.36
+   ]
+  },
+  {
+   "title": "Edge-on beauty",
+   "agent_name": "ESA/Hubble & NASA; Acknowledgement: Nick Rose",
+   "agent_role": "Artist",
+   "creation_date": "14 May 2012",
+   "cultural_context": "Scientific Imaging, Modern Astronomy",
+   "medium": "Image — Hubble ACS",
+   "date_display": "2012",
+   "description_narrative": "A thin, tilted band of pale light crosses the frame diagonally, split by a ragged lane of brown dust and blue stars, with a few bright stars and tiny galaxies around it. Hubble's Advanced Camera for Surveys imaged the northern half of NGC 891 in Andromeda, a spiral seen exactly edge-on, where filaments of dust and gas rise out of the disc.",
+   "tags": "spiral galaxy, edge-on galaxy, ngc 891, hubble, andromeda, dust lanes",
+   "source": "Hubble",
+   "license": "CC-BY-4.0",
+   "source_url": "https://cdn.esahubble.org/archives/images/large/potw1220a.jpg",
+   "thumbnail_url": "https://cdn.esahubble.org/archives/images/screen/potw1220a.jpg",
+   "license_verdict": "cc-by",
+   "license_basis": "CC BY 4.0 (ESA/Hubble release)",
+   "license_url": "https://creativecommons.org/licenses/by/4.0/",
+   "credit_line": "ESA/Hubble & NASA; Acknowledgement: Nick Rose",
+   "license_verified": "2026-10-03",
+   "attribution_url": "https://esahubble.org/images/potw1220a/",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1792,
+     1.0,
+     0.7208
+    ],
+    "9:16": [
+     0.0679,
+     0.0,
+     0.6521,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0889,
+     1.0,
+     0.8111
+    ],
+    "3:4": [
+     0.0106,
+     0.0,
+     0.7894,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.36,
+    0.45
+   ]
+  },
+  {
+   "title": "A wanderer dancing the dance of stars and space",
+   "agent_name": "ESA/Hubble & NASA; Acknowledgement: E. Sturdivant",
+   "agent_role": "Artist",
+   "creation_date": "24 December 2012",
+   "cultural_context": "Scientific Imaging, Modern Astronomy",
+   "medium": "Image — Hubble ACS",
+   "date_display": "2012",
+   "description_narrative": "A bright, tight whirl of blue-white stars circles a glowing yellow centre, inside a broad, hazy oval of arms that run off the edges of the frame. This is the star-forming ring around the heart of NGC 1097, a barred Seyfert galaxy in Fornax, taken by Hubble's Advanced Camera for Surveys with visual and infrared filters.",
+   "tags": "barred spiral, ngc 1097, seyfert galaxy, hubble, fornax, star-forming ring",
+   "source": "Hubble",
+   "license": "CC-BY-4.0",
+   "source_url": "https://cdn.esahubble.org/archives/images/large/potw1252a.jpg",
+   "thumbnail_url": "https://cdn.esahubble.org/archives/images/screen/potw1252a.jpg",
+   "license_verdict": "cc-by",
+   "license_basis": "CC BY 4.0 (ESA/Hubble release)",
+   "license_url": "https://creativecommons.org/licenses/by/4.0/",
+   "credit_line": "ESA/Hubble & NASA; Acknowledgement: E. Sturdivant",
+   "license_verified": "2026-10-03",
+   "attribution_url": "https://esahubble.org/images/potw1252a/",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0,
+     1.0,
+     0.854
+    ],
+    "9:16": [
+     0.3197,
+     0.0,
+     0.6903,
+     1.0
+    ],
+    "4:3": [
+     0.0659,
+     0.0,
+     0.9441,
+     1.0
+    ],
+    "3:4": [
+     0.258,
+     0.0,
+     0.752,
+     1.0
+    ]
+   },
+   "focal_point": [
+    0.505,
+    0.38
+   ]
   }
  ]
 }

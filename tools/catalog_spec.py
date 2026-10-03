@@ -513,8 +513,9 @@ COLLECTIONS = [
     {
         "id": "cosmos",
         "title": "The Cosmos",
-        "description": "Public-domain views of deep space from Hubble and the James Webb Space Telescope.",
-        "license": "Public Domain (NASA / ESA)",
+        "description": "Deep space, planets and the Sun from Hubble, Webb, Chandra and NASA's planetary missions.",
+        "license": "Public domain (NASA) · CC BY 4.0 (ESA/Webb, ESA/Hubble)",
+        "source": "NASA, ESA/Webb and ESA/Hubble",
         "sources": ["nasa"],
         "pick_sources": ["wikimedia", "nasa"],
         "queries": [],

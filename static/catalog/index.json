@@ -135,10 +135,10 @@
   {
    "id": "cosmos",
    "title": "The Cosmos",
-   "description": "Public-domain views of deep space from Hubble and the James Webb Space Telescope.",
-   "source": "Wikimedia Commons",
-   "license": "Public Domain (NASA / ESA)",
-   "count": 104,
+   "description": "Deep space, planets and the Sun from Hubble, Webb, Chandra and NASA's planetary missions.",
+   "source": "NASA, ESA/Webb and ESA/Hubble",
+   "license": "Public domain (NASA) · CC BY 4.0 (ESA/Webb, ESA/Hubble)",
+   "count": 144,
    "cover_thumbnail": "https://commons.wikimedia.org/wiki/Special:FilePath/Pillars%20of%20Creation%20%28NIRCam%20Image%29.jpg?width=600",
    "min_tier": "4K"
   },

@@ -332,7 +332,7 @@ async def build_collection(db, spec, cache, *, limit=None, enrich=True, verify=T
         "id": cid,
         "title": spec["title"],
         "description": spec["description"],
-        "source": ", ".join(sorted({i["source"] for i in out_items})) or "Various",
+        "source": spec.get("source") or ", ".join(sorted({i["source"] for i in out_items})) or "Various",
         "license": spec.get("license", "Public Domain"),
         "items": out_items,
     }
