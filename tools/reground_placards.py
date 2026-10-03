@@ -48,6 +48,7 @@ from pathlib import Path
 from PIL import Image
 
 import ai_client
+from core.licensing import normalize_license, requires_attribution
 from tools import catalog_spec
 from tools.audit_placards import (
     AUDIT_DIR,
@@ -1262,6 +1263,35 @@ def _agent_name_is_suspect(name: str) -> bool:
     return len(_CITATION_PAIR_RE.findall(name)) >= 2
 
 
+# ADR-142 / ADR-145: a CC BY 4.0 row's credit is EXACT as the licensor gave it, never rewritten. These are
+# the fields that carry that attribution; every rewrite path below (the space-agency credit cleanup, header
+# hygiene, land's reground-wins merge) must leave them verbatim on a CC BY row. PD/CC0 rows are unaffected.
+# A wrong CC BY credit is corrected in the served row / staging, never through the pipeline.
+CCBY_VERBATIM_FIELDS = ("credit_line", "agent_name", "license", "license_url", "license_basis",
+                        "license_verdict", "license_verified", "attribution_url")
+
+
+def is_cc_by_row(item: dict | None) -> bool:
+    return requires_attribution(normalize_license((item or {}).get("license")))
+
+
+def restore_cc_by_fields(item: dict, original: dict) -> list[str]:
+    """If `original` is a CC BY row, put its CCBY_VERBATIM_FIELDS back into `item` (in place) and return
+    the names that had been changed (empty when nothing was disturbed or the row isn't CC BY)."""
+    if not is_cc_by_row(original):
+        return []
+    changed = []
+    for f in CCBY_VERBATIM_FIELDS:
+        if f in original:
+            if item.get(f) != original[f]:
+                changed.append(f)
+            item[f] = original[f]
+        elif f in item:
+            changed.append(f)
+            del item[f]
+    return changed
+
+
 # Round 13b (item 3): known space-agency full names/acronyms, matched in this order so the acronym list
 # comes out in the credit's own first-occurrence order (never invented — only agencies actually named).
 _SPACE_AGENCY_PATTERNS = [
@@ -1729,6 +1759,13 @@ def resolve_structured_fields(bundle: dict, existing_item: dict, collection: str
             elif sides:
                 notes.append(f"physical_dimensions: dropped implausible Wikidata value(s) {sides} cm "
                               f"(guard: painting floor 5cm, else 0.5-1500cm unless building/monument/map)")
+
+    if is_cc_by_row(existing_item):
+        # ADR-142: a CC BY credit is exact as given — the agent_name is never confirmed, qualified or
+        # "cleaned" (the space-agency cleanup would turn "ESA/Webb, NASA & CSA, A. Leroy" into "ESA, NASA, CSA").
+        for k in ("agent_name_confirmed", "agent_name_source", "agent_name_disagreement"):
+            fields.pop(k, None)
+        notes.append("agent_name: CC BY row — credit kept verbatim (ADR-142)")
 
     return fields, needs_review, notes
 
@@ -2556,7 +2593,10 @@ def run_import(batch_glob: str = "batch_*.jsonl", curated_path: str | Path | Non
         # catalog entry moved/changed since the override was written, so it's skipped, never guessed.
         override = agent_overrides.get((coll, idx))
         if override:
-            if _norm(override["title"]) == _norm(base.get("title") or ""):
+            if _norm(override["title"]) == _norm(base.get("title") or "") and is_cc_by_row(base):
+                import_report.setdefault("cc_by_override_refused", []).append(
+                    {"key": key, "collection": coll, "field": "agent_name"})
+            elif _norm(override["title"]) == _norm(base.get("title") or ""):
                 base["agent_name"] = override["agent_name"]
                 protected_fields = protected_fields | {"agent_name"}
                 import_report["agent_overrides_applied"].append({
@@ -2695,6 +2735,8 @@ def run_import(batch_glob: str = "batch_*.jsonl", curated_path: str | Path | Non
         # since the pollution is in the pre-reground catalog value itself, not something a writer
         # introduced. agent_name may be shortened to leading org names if still too long; title never is.
         for field, shorten in (("agent_name", True), ("current_repository", False), ("title", False)):
+            if field == "agent_name" and is_cc_by_row(base):
+                continue  # ADR-142: a CC BY credit is never "cleaned" (the restore below would undo it anyway)
             old_val = base.get(field)
             new_val = normalize_credit_text(old_val, shorten_to_orgs=shorten) if old_val else old_val
             if field == "agent_name" and new_val and _looks_like_garbage_agent_name(new_val):
@@ -2710,6 +2752,13 @@ def run_import(batch_glob: str = "batch_*.jsonl", curated_path: str | Path | Non
                     import_report["header_hygiene_changes"].append({
                         "key": key, "collection": coll, "field": field, "old": old_val, "new": new_val,
                     })
+
+        # ADR-142/ADR-145 belt-and-braces: whatever the steps above did, a CC BY row leaves with its
+        # credit/licence/attribution fields exactly as the catalog had them.
+        disturbed = restore_cc_by_fields(base, catalog[coll][idx])
+        if disturbed:
+            import_report.setdefault("cc_by_restored", []).append(
+                {"key": key, "collection": coll, "fields": disturbed})
 
         by_collection_new.setdefault(coll, {})[idx] = base
 
@@ -3001,6 +3050,7 @@ def _merge_landed_item(static_item: dict, reground_item: dict) -> dict:
     for key in reground_item:
         if key not in static_item:
             merged[key] = reground_item[key]
+    restore_cc_by_fields(merged, static_item)   # ADR-142: the served CC BY credit is the truth, not reground's
     return merged
 
 
@@ -3055,7 +3105,7 @@ def run_land(*, static_dir: Path | None = None, drops_path: str | Path | None = 
                 "collections": count_mismatches}
 
     # Pass 2: every collection verified — build the merged output. Nothing written yet.
-    report = {"refused": False, "dry_run": dry_run, "collections": {}, "title_mismatches": []}
+    report = {"refused": False, "dry_run": dry_run, "collections": {}, "title_mismatches": [], "cc_by_refused": []}
     plan: dict[str, tuple[Path, dict]] = {}
     for coll, (static_data, static_items, reground_items, dropped) in loaded.items():
         new_items = list(static_items)
@@ -3063,6 +3113,12 @@ def run_land(*, static_dir: Path | None = None, drops_path: str | Path | None = 
         for i, r_item in enumerate(reground_items):
             pre_idx = pre_drop_index(i, dropped)
             s_item = static_items[pre_idx]
+            if (is_cc_by_row(s_item) or is_cc_by_row(r_item)) and r_item.get("source_url") != s_item.get("source_url"):
+                # Index-paired to a DIFFERENT work (reordered catalog): never move a CC BY credit onto it, or off it.
+                report["cc_by_refused"].append({"collection": coll, "pre_idx": pre_idx,
+                                                "static_title": s_item.get("title"),
+                                                "reground_title": r_item.get("title")})
+                continue
             if (r_item.get("title") or "") != (s_item.get("title") or ""):
                 report["title_mismatches"].append({
                     "collection": coll, "pre_idx": pre_idx,

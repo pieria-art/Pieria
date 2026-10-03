@@ -36,7 +36,7 @@ from urllib.parse import unquote, urlparse
 import httpx
 
 from config import SD_USER_AGENT
-from core.licensing import check_pack_row
+from core.licensing import check_pack_row, normalize_license, requires_attribution
 from scout import _wm_throttle
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
@@ -294,6 +294,11 @@ def bake_catalog(items: list[Item], verified: str) -> int:
             # Never bake a transient failure: "error" means the Commons check itself failed (network/
             # parse), not that the work is un-licensed. Leave those unbaked so a later run resolves them.
             if not it or not it.verdict or it.verdict == "error":
+                continue
+            # ADR-142: a CC BY row's credit/licence evidence is exact as given (ESA etc.) — never overwritten by the
+            # Commons/policy classification (a non-Commons row classifies "unknown" with an empty credit_line).
+            # (The audit's flagged list still surfaces a changed Commons licence for these rows.)
+            if requires_attribution(normalize_license(entry.get("license"))):
                 continue
             entry["license_verdict"] = it.verdict          # pd | cc-by | cc-by-sa | restricted | unknown
             entry["license_basis"] = it.detail             # the actual Commons LicenseShortName / policy note

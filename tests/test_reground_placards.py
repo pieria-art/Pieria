@@ -2893,3 +2893,114 @@ def test_merge_packet_index_filtered_run_drops_stale_keys_for_that_collection():
     merged = rg.merge_packet_index(existing, new_entries, filtered_collection="cosmos")
     assert "old-key-0003" not in merged
     assert merged == {"keep-0000": "demo", "new-key-0003": "cosmos"}
+
+
+# --------------------------------------------------------------------------- CC BY guard (ADR-142 / ADR-145)
+_ESA_ROW = dict(
+    title="Webb visits a star-forming spiral",
+    agent_name="ESA/Webb, NASA & CSA, A. Leroy",
+    medium="Infrared image — Webb NIRCam and MIRI",
+    source="Webb", license="CC-BY-4.0", license_verdict="cc-by",
+    license_basis="CC BY 4.0 (ESA/Webb release)",
+    license_url="https://creativecommons.org/licenses/by/4.0/",
+    credit_line="ESA/Webb, NASA & CSA, A. Leroy", license_verified="2026-10-03",
+    attribution_url="https://esawebb.org/images/potm2502a/",
+)
+
+
+def test_cc_by_agent_name_is_not_cleaned_to_an_acronym_list():
+    # Without the guard the space-agency cleanup turns this into "ESA, NASA, CSA", dropping the person.
+    fields, _, notes = rg.resolve_structured_fields(_bundle([]), dict(_ESA_ROW), "cosmos")
+    assert "agent_name_confirmed" not in fields
+    assert any("CC BY" in n for n in notes)
+
+
+def test_pd_row_still_gets_the_agency_cleanup():
+    pd_row = dict(_ESA_ROW, license="PDM-1.0", agent_name="NASA, ESA, CSA, STScI and the Webb team")
+    fields, _, _ = rg.resolve_structured_fields(_bundle([]), pd_row, "cosmos")
+    assert fields["agent_name_confirmed"] == "NASA, ESA, CSA, STScI"
+
+
+def test_run_import_keeps_cc_by_credit_fields_verbatim(tmp_path, monkeypatch):
+    packets_dir = tmp_path / "packets" / "cosmos"
+    packets_dir.mkdir(parents=True)
+    (tmp_path / "written").mkdir()
+    # a packet that WOULD rewrite the agent (stale/other-pipeline packet) + a long credit hygiene would shorten
+    long_credit = ("ESA/Webb, NASA & CSA, M. G. Guarcello (INAF-OAPA), M. Zamani (ESA/Webb) "
+                   "and the EWOCS team, with thanks to a very long list of acknowledged contributors")
+    row = dict(_ESA_ROW, agent_name=long_credit, credit_line=long_credit)
+    packet = {"title": row["title"], "facts": [],
+              "structured": {"agent_name_confirmed": "ESA, NASA, CSA"}}
+    (packets_dir / "webb-visits-a-star-forming-spiral-0000.json").write_text(json.dumps(packet))
+    monkeypatch.setattr(rg, "PACKETS_DIR", tmp_path / "packets")
+    monkeypatch.setattr(rg, "WRITTEN_DIR", tmp_path / "written")
+    monkeypatch.setattr(rg, "OUT_CATALOG_DIR", tmp_path / "catalog")
+    monkeypatch.setattr(rg, "IMPORT_REPORT_PATH", tmp_path / "import_report.json")
+    monkeypatch.setattr(rg, "PACKET_INDEX_PATH", tmp_path / "packets_index.json")
+    (tmp_path / "packets_index.json").write_text(json.dumps({"webb-visits-a-star-forming-spiral-0000": "cosmos"}))
+    monkeypatch.setattr(rg, "load_catalog", lambda: {"cosmos": [row]})
+
+    report = rg.run_import()
+    out = json.loads((tmp_path / "catalog" / "cosmos.json").read_text())["items"][0]
+    for f in rg.CCBY_VERBATIM_FIELDS:
+        assert out[f] == row[f], f
+    assert report["cc_by_restored"][0]["fields"] == ["agent_name"]
+
+
+def test_land_keeps_the_served_cc_by_credit(tmp_path, monkeypatch):
+    static_dir, out_dir = _land_env(tmp_path, monkeypatch)
+    _write_static(static_dir / "demo.json", [dict(_ESA_ROW)])
+    _write_reground(out_dir / "demo.json", [dict(_ESA_ROW, agent_name="ESA, NASA, CSA", credit_line="",
+                                                 license_url="", description_narrative="A galaxy.")])
+
+    rg.run_land(static_dir=static_dir, drops_path=tmp_path / "no-drops.json")
+
+    item = json.loads((static_dir / "demo.json").read_text())["items"][0]
+    for f in rg.CCBY_VERBATIM_FIELDS:
+        assert item[f] == _ESA_ROW[f], f
+    assert item["description_narrative"] == "A galaxy."   # everything else still lands
+
+
+def test_restore_cc_by_fields_ignores_non_cc_by_rows():
+    item = {"agent_name": "changed", "credit_line": "changed"}
+    assert rg.restore_cc_by_fields(item, {"license": "PDM-1.0", "agent_name": "orig"}) == []
+    assert item["agent_name"] == "changed"
+
+
+def test_land_refuses_a_cc_by_row_paired_to_a_different_work(tmp_path, monkeypatch):
+    # A reordered catalog index-pairs reground row B with served CC BY row A: A's credit must not land on B.
+    static_dir, out_dir = _land_env(tmp_path, monkeypatch)
+    a = dict(_ESA_ROW, source_url="https://cdn.esawebb.org/a.jpg")
+    other = dict(title="Other", agent_name="NASA", license="PDM-1.0", source_url="https://x/other.jpg", credit_line="NASA")
+    _write_static(static_dir / "demo.json", [dict(a), dict(other)])
+    _write_reground(out_dir / "demo.json", [dict(other, description_narrative="B"), dict(a, description_narrative="A")])
+
+    report = rg.run_land(static_dir=static_dir, drops_path=tmp_path / "no-drops.json")
+
+    items = json.loads((static_dir / "demo.json").read_text())["items"]
+    assert items[0] == a                                  # served CC BY row kept unchanged
+    assert [r["pre_idx"] for r in report["cc_by_refused"]] == [0, 1]
+    assert items[1].get("credit_line") != a["credit_line"]  # nobody else carries the ESA credit
+    assert items[1] == other                              # the PD row is not overwritten by the ESA row either
+
+
+def test_run_import_refuses_agent_override_on_cc_by_row(tmp_path, monkeypatch):
+    packets_dir = tmp_path / "packets" / "cosmos"
+    packets_dir.mkdir(parents=True)
+    (tmp_path / "written").mkdir()
+    (packets_dir / "w-0000.json").write_text(json.dumps({"title": _ESA_ROW["title"], "facts": [], "structured": {}}))
+    ov = tmp_path / "ov.json"
+    ov.write_text(json.dumps([{"collection": "cosmos", "pre_idx": 0, "title": _ESA_ROW["title"], "agent_name": "Someone Else"}]))
+    monkeypatch.setattr(rg, "PACKETS_DIR", tmp_path / "packets")
+    monkeypatch.setattr(rg, "WRITTEN_DIR", tmp_path / "written")
+    monkeypatch.setattr(rg, "OUT_CATALOG_DIR", tmp_path / "catalog")
+    monkeypatch.setattr(rg, "IMPORT_REPORT_PATH", tmp_path / "import_report.json")
+    monkeypatch.setattr(rg, "PACKET_INDEX_PATH", tmp_path / "packets_index.json")
+    (tmp_path / "packets_index.json").write_text(json.dumps({"w-0000": "cosmos"}))
+    monkeypatch.setattr(rg, "load_catalog", lambda: {"cosmos": [dict(_ESA_ROW)]})
+
+    report = rg.run_import(agent_overrides_path=ov)
+    out = json.loads((tmp_path / "catalog" / "cosmos.json").read_text())["items"][0]
+    assert out["agent_name"] == _ESA_ROW["agent_name"]
+    assert report["cc_by_override_refused"] == [{"key": "w-0000", "collection": "cosmos", "field": "agent_name"}]
+    assert report["agent_overrides_applied"] == []

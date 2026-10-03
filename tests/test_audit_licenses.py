@@ -76,3 +76,22 @@ def test_audit_served_catalog_flags_cc_by_sa_as_not_pack_allowed(tmp_path, monke
     monkeypatch.setattr(audit_licenses, "CATALOG_DIR", catalog_dir)
     failures = audit_licenses.audit_served_catalog()
     assert failures and failures[0][1] == "Bad"
+
+
+def test_bake_catalog_never_overwrites_a_cc_by_row(tmp_path, monkeypatch):
+    # ADR-142: a CC BY row's credit/licence evidence is exact as given. A non-Commons row classifies "unknown"
+    # with an empty credit_line, which --bake would otherwise write straight over it.
+    monkeypatch.setattr(audit_licenses, "CATALOG_DIR", tmp_path)
+    esa = {"title": "E", "source_url": "https://cdn.esawebb.org/x.jpg", "source": "Webb", "license": "CC-BY-4.0",
+           "license_verdict": "cc-by", "license_basis": "CC BY 4.0 (ESA/Webb release)",
+           "license_url": "https://creativecommons.org/licenses/by/4.0/", "credit_line": "ESA/Webb, NASA & CSA, A. Leroy"}
+    pd = {"title": "P", "source_url": "https://cdn.example/p.jpg", "source": "Webb", "license": "PDM-1.0",
+          "license_verdict": "pd", "license_basis": "old", "license_url": "", "credit_line": "old"}
+    (tmp_path / "cosmos.json").write_text(json.dumps({"items": [dict(esa), dict(pd)]}))
+    items = [audit_licenses.Item(origin="cosmos", title=t["title"], source="Webb", source_url=t["source_url"],
+                                 license_label=t["license"], verdict="unknown", detail="no policy", credit_line="")
+             for t in (esa, pd)]
+    audit_licenses.bake_catalog(items, "2026-10-03")
+    out = json.loads((tmp_path / "cosmos.json").read_text())["items"]
+    assert out[0] == esa                      # untouched
+    assert out[1]["license_verdict"] == "unknown"   # non-CC-BY rows still bake as before
