@@ -306,28 +306,52 @@ PY
   fi
 }
 
+# --- quiesce everything that writes status files or holds the apt/dpkg lock (--full only) ----------
+# Runs FIRST in --full, before anything destructive, because it can abort. STOP, never disable: the
+# timers must stay enabled so every flashed unit starts them at its first boot. An OS upgrade (or the
+# nightly check, which shares the apt lock) is NEVER killed mid-run — killing dpkg corrupts the image
+# being captured — so if one is running we refuse and the operator re-runs once it has finished.
+APT_LOCK_FILE="${SD_LOCK_FILE:-/run/lock/pieria-apt.lock}"
+
+quiesce_status_writers() {
+  local t svc
+  local timers="sd-watchdog.timer sd-metrics.timer sd-os-check.timer sd-quiet-hours.timer sd-os-upgrade.timer"
+  for t in $timers; do
+    systemctl --no-ask-password stop "$t" 2>/dev/null || true
+  done
+
+  local busy=""
+  for svc in sd-os-upgrade.service sd-os-check.service; do
+    systemctl is-active --quiet "$svc" 2>/dev/null && busy="$busy $svc"
+  done
+  # The shared apt flock: held by update-system / sd-os-check / sd-os-upgrade. Test without creating it.
+  if [ -e "$APT_LOCK_FILE" ] && ! flock -n "$APT_LOCK_FILE" true 2>/dev/null; then
+    busy="$busy (apt lock $APT_LOCK_FILE held)"
+  fi
+  if [ -n "$busy" ]; then
+    echo "  ERROR: an OS upgrade is running —$busy" >&2
+    echo "         wait for it to finish, then re-run. Nothing was cleared." >&2
+    exit 1
+  fi
+
+  # Everything else may be stopped if it is mid-run (they only write status JSON).
+  for t in $timers; do
+    svc="${t%.timer}.service"
+    case "$svc" in sd-os-upgrade.service|sd-os-check.service) continue ;; esac
+    if systemctl is-active --quiet "$svc" 2>/dev/null; then
+      systemctl --no-ask-password stop "$svc" 2>/dev/null || true
+    fi
+  done
+  echo "  stopped the status-writing timers + any running service (timers left ENABLED for first boot)"
+}
+
 # --- this box's status files must not ride the image (--full only) --------------------------------
 # data/appliance/ holds conf.json / watchdog / metrics / update-check — state that describes THIS build
 # box and would be shown to a stranger until first boot regenerates it. The container (uid 1000) can
 # swap anything inside data/ for a symlink, so root goes through sd-mailbox (ADR-131: O_NOFOLLOW
 # dir-fd), never `rm data/appliance/*` by path. Run after wipe_secrets so a refusal there aborts first.
 clear_appliance_status() {
-  local root n t
-  # Quiesce the writers FIRST or they recreate files behind the clear. STOP, never disable: these
-  # timers must stay enabled so every flashed unit starts them at its first boot.
-  # Timers first (nothing new fires), then any matching service still running (an in-flight run could
-  # write after the clear). Missing units are harmless.
-  local timers="sd-watchdog.timer sd-metrics.timer sd-os-check.timer sd-quiet-hours.timer sd-os-upgrade.timer"
-  for t in $timers; do
-    systemctl --no-ask-password stop "$t" 2>/dev/null || true
-  done
-  for t in $timers; do
-    t="${t%.timer}.service"
-    if systemctl is-active --quiet "$t" 2>/dev/null; then
-      systemctl --no-ask-password stop "$t" 2>/dev/null || true
-    fi
-  done
-  echo "  stopped the status-writing timers + any running service (timers left ENABLED for first boot)"
+  local root n
   if ! root="$(repo_root)"; then
     echo "  WARNING: could not locate the app repo — empty data/appliance/ by hand" >&2
     return 0
@@ -434,7 +458,8 @@ case "${1:-}" in
   --full)
     require_root "$@"
     echo "==> sd-image-prep: FULL (destructive — for a distributable image capture)"
-    wipe_secrets  # FIRST: this can abort, and it should abort before anything destructive happens
+    quiesce_status_writers   # can abort (an OS upgrade is running) — before anything destructive
+    wipe_secrets  # this can abort too, and it should abort before anything destructive happens
     clear_appliance_status
     reset_conf_to_placeholder
     declare_capabilities

@@ -86,6 +86,9 @@ def test_full_aborts_if_mailbox_fails(tmp_path):
     assert "refusing to capture" in r.stderr
 
 
+QUIET = "systemctl() { echo \"$*\" >> \"$LOG\"; [ \"$1\" != is-active ]; }; quiesce_status_writers"   # no unit is active
+
+
 def _run_with_systemctl_log(body, tmp_path, **env_extra):
     log = tmp_path / "sysctl.log"
     script = ('source "$BIN"; repo_root() { printf "%s" "$FAKE_ROOT"; }; '
@@ -97,24 +100,61 @@ def _run_with_systemctl_log(body, tmp_path, **env_extra):
 
 
 def test_full_stops_status_timers_but_never_disables_them(tmp_path):
-    (tmp_path / "data").mkdir()
-    r, calls = _run_with_systemctl_log("clear_appliance_status", tmp_path)
+    r, calls = _run_with_systemctl_log(QUIET, tmp_path,
+                                       SD_LOCK_FILE=str(tmp_path / "no.lock"))
     assert r.returncode == 0, r.stderr
-    for t in ("sd-watchdog.timer", "sd-metrics.timer"):
+    for t in ("sd-watchdog.timer", "sd-metrics.timer", "sd-os-upgrade.timer"):
         assert f"--no-ask-password stop {t}" in calls
     assert "disable" not in calls and "mask" not in calls
-    assert "--no-ask-password stop sd-os-upgrade.timer" in calls
 
 
-def test_full_also_stops_active_services_not_inactive_ones(tmp_path):
-    (tmp_path / "data").mkdir()
+def test_full_stops_other_active_services_but_not_inactive_ones(tmp_path):
     body = ('systemctl() { echo "$*" >> "$LOG"; '
-            '[ "$1" = is-active ] && [ "$3" = sd-os-upgrade.service ]; return; }; clear_appliance_status')
-    r, calls = _run_with_systemctl_log(body, tmp_path)
+            '[ "$1" = is-active ] && [ "$3" = sd-metrics.service ]; return; }; quiesce_status_writers')
+    r, calls = _run_with_systemctl_log(body, tmp_path, SD_LOCK_FILE=str(tmp_path / "no.lock"))
     assert r.returncode == 0, r.stderr
-    assert "--no-ask-password stop sd-os-upgrade.service" in calls
-    assert "stop sd-metrics.service" not in calls
-    assert "disable" not in calls
+    assert "--no-ask-password stop sd-metrics.service" in calls
+    assert "stop sd-watchdog.service" not in calls
+
+
+def test_full_aborts_if_os_upgrade_service_is_running_and_never_stops_it(tmp_path):
+    body = ('systemctl() { echo "$*" >> "$LOG"; '
+            '[ "$1" = is-active ] && [ "$3" = sd-os-upgrade.service ]; return; }; quiesce_status_writers; '
+            'echo REACHED')
+    r, calls = _run_with_systemctl_log(body, tmp_path, SD_LOCK_FILE=str(tmp_path / "no.lock"))
+    assert r.returncode == 1
+    assert "an OS upgrade is running" in r.stderr and "wait for it to finish" in r.stderr
+    assert "REACHED" not in r.stdout
+    assert "stop sd-os-upgrade.service" not in calls
+    assert "stop sd-os-check.service" not in calls
+
+
+def test_full_aborts_if_the_apt_lock_is_held(tmp_path):
+    lock = tmp_path / "apt.lock"
+    lock.write_text("")
+    holder = subprocess.Popen(["flock", str(lock), "sleep", "20"])
+    try:
+        import time
+        time.sleep(0.5)
+        r, _ = _run_with_systemctl_log(QUIET, tmp_path, SD_LOCK_FILE=str(lock))
+        assert r.returncode == 1
+        assert "an OS upgrade is running" in r.stderr and "apt lock" in r.stderr
+    finally:
+        holder.kill()
+        holder.wait()
+
+
+def test_full_does_not_create_a_missing_apt_lock(tmp_path):
+    lock = tmp_path / "absent.lock"
+    r, _ = _run_with_systemctl_log(QUIET, tmp_path, SD_LOCK_FILE=str(lock))
+    assert r.returncode == 0
+    assert not lock.exists()
+
+
+def test_full_runs_quiesce_before_any_destructive_step():
+    text = _BIN.read_text()
+    full = text[text.index("  --full)"):]
+    assert full.index("quiesce_status_writers") < full.index("wipe_secrets") < full.index("clear_appliance_status")
 
 
 def test_declare_capabilities_keeps_trailing_comment(tmp_path):
