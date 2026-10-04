@@ -603,6 +603,14 @@
                     </div>
                     <div class="ds-hint">Appears in the phone remote. Letters, numbers, - or _. The display restarts.</div>
 
+                    <!-- Network name (ADR-148) -->
+                    <label class="ds-label" for="ds-hostname">Device name on the network</label>
+                    <div class="ds-row">
+                        <input type="text" id="ds-hostname" class="ds-input" placeholder="pieria" autocomplete="off" autocapitalize="none" spellcheck="false" maxlength="63">
+                        <button class="secondary" data-maint id="ds-hostname-save" onclick="saveHostname()">Save</button>
+                    </div>
+                    <div class="ds-hint" id="ds-hostname-hint">The address this admin page lives at (<b>name</b>.local). Lowercase letters, numbers and hyphens. Changing it moves the address.</div>
+
                     <!-- Orientation -->
                     <label class="ds-label" for="ds-orientation">Orientation</label>
                     <div class="ds-row">
@@ -1312,6 +1320,6 @@
         </div>
     </div>
 
-    <script src="admin.js?v=20261004b"></script>
+    <script src="admin.js?v=20261004c"></script>
 </body>
 </html>

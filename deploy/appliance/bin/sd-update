@@ -32,6 +32,7 @@ STATUS="$DIR/status.json"
 OVERRIDE="$REPO_ROOT/deploy/appliance/compose/docker-compose.appliance.yml"
 DRY_RUN="${DRY_RUN:-0}"
 LOG=""
+STATUS_EXTRA=""   # optional JSON object merged into status.json (set-hostname reports old/new names)
 
 # The appliance conf. Same rule as sd-conf/sd_setup: an explicit SD_CONF wins (tests), else Bookworm's
 # /boot/firmware, else the old /boot.
@@ -69,6 +70,7 @@ REF="$(_get ref)"
 TIMEZONE="$(_get timezone)"
 ORIENTATION="$(_get orientation)"
 DISPLAY_ID="$(_get display_id)"
+NEW_HOSTNAME="$(_get hostname)"     # not HOSTNAME: that is a bash builtin variable
 WATCHDOG_MODE="$(_get watchdog)"
 SCHEDULE="$(_get schedule)"
 SCHED_TIME="$(_get time)"
@@ -93,9 +95,14 @@ write_status() {
   # status.json -> /etc/something) — rather than following it, and the whole operation happens through
   # an fd opened O_NOFOLLOW on an already-verified data/appliance directory fd.
   SD_STATE="$state" SD_MSG="$msg" SD_TAIL="$tail_json" SD_ACT="$ACTION" SD_NON="$NONCE" \
-  SD_NOW="$(date -u +%Y-%m-%dT%H:%M:%SZ)" python3 -c '
+  SD_EXTRA="${STATUS_EXTRA:-}" SD_NOW="$(date -u +%Y-%m-%dT%H:%M:%SZ)" python3 -c '
 import json, os, sys
+try:
+    extra = json.loads(os.environ.get("SD_EXTRA") or "{}")
+except ValueError:
+    extra = {}
 print(json.dumps({
+    **(extra if isinstance(extra, dict) else {}),
     "state": os.environ["SD_STATE"], "action": os.environ["SD_ACT"],
     "nonce": os.environ["SD_NON"], "message": os.environ["SD_MSG"],
     "log_tail": json.loads(os.environ["SD_TAIL"]), "updated_at": os.environ["SD_NOW"],
@@ -106,7 +113,7 @@ print(json.dumps({
 # Whitelist — anything else is rejected before any work happens.
 case "$ACTION" in
   update-app|update-scripts|reboot) : ;;
-  set-timezone|preview-orientation|set-orientation|set-display-name|set-watchdog|reopen-setup) : ;;
+  set-timezone|preview-orientation|set-orientation|set-display-name|set-hostname|set-watchdog|reopen-setup) : ;;
   relaunch-kiosk|restart-app|poweroff|support-bundle) : ;;
   check-os-updates|update-system|set-os-schedule) : ;;
   *)
@@ -552,13 +559,69 @@ finally:
     DONE_MSG="orientation set to $ORIENTATION"
     ;;
   set-display-name)
-    # HOSTNAME is deliberately NOT touched (ADR-083: renaming it trips a Chromium SingletonLock bug
-    # that leaves the kiosk unable to start). The display name and the network name are separate.
+    # DISPLAY_ID only. The network name (HOSTNAME) is a separate setting with its own action,
+    # `set-hostname` below — the display name and the network name are never changed together.
     conf_set "DISPLAY_ID=$DISPLAY_ID" || rc=$?
     [ $rc -eq 0 ] && reload_kiosk
     [ $rc -eq 0 ] && eink_restart_if_enabled
     conf_export
     DONE_MSG="display renamed to $DISPLAY_ID"
+    ;;
+  set-hostname)
+    # The network name (<name>.local). ADR-083 kept this off-limits while a rename could leave
+    # Chromium's SingletonLock "held by another computer"; ADR-137 clears stale locks at every kiosk
+    # launch, so the policy was lifted (Josh, 2026-10-04). Authoritative validation happens here, via
+    # sd-conf — the endpoint's check is only the first gate. The value is lowercased + trimmed, then
+    # must pass sd-conf's RFC 1123 label rule; the `case` is belt-and-braces and never evals it.
+    NEW_HOSTNAME="$(printf '%s' "$NEW_HOSTNAME" | tr 'A-Z' 'a-z' | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')"
+    HN_BAD=0
+    HN_ERR="$("$SD_CONF_BIN" validate HOSTNAME "$NEW_HOSTNAME" 2>&1 >/dev/null)" || HN_BAD=1
+    case "$NEW_HOSTNAME" in ""|*[!a-z0-9-]*|-*|*-) HN_BAD=1 ;; esac
+    if [ "$HN_BAD" = "1" ]; then
+      write_status error "invalid hostname: ${HN_ERR:-not a valid network name}"
+      mbox rm request.json; persist_log
+      exit 1
+    fi
+    OLD_HOSTNAME="$(conf_get HOSTNAME)"
+    [ -n "$OLD_HOSTNAME" ] || OLD_HOSTNAME="$(hostname 2>/dev/null || cat /etc/hostname 2>/dev/null || true)"
+    # Same effect as sd_setup._apply_hostname (the wizard): hostnamectl, falling back to writing
+    # /etc/hostname, then the 127.0.1.1 line in /etc/hosts. OS first, conf second — the conf must
+    # never claim a name the box does not have.
+    if ! run hostnamectl set-hostname "$NEW_HOSTNAME"; then
+      echo "$NEW_HOSTNAME" > /etc/hostname 2>>"$LOG" || rc=1
+      hostname "$NEW_HOSTNAME" 2>/dev/null || true
+    fi
+    if [ $rc -eq 0 ]; then
+      HOSTS_FILE="${SD_HOSTS_FILE:-/etc/hosts}"
+      if [ "$DRY_RUN" = "1" ] && [ -z "${SD_HOSTS_FILE:-}" ]; then
+        echo "[dry-run] set 127.0.1.1 -> $NEW_HOSTNAME in $HOSTS_FILE" >> "$LOG"
+      else
+        # Non-fatal courtesy (sudo's "unable to resolve host", stale avahi name); /etc/hostname is
+        # what matters. Every 127.0.1.1 line is replaced, or one is appended if none exists.
+        HOSTS_TMP="$(mktemp)"
+        awk -v h="$NEW_HOSTNAME" '
+          { l = $0; sub(/#.*/, "", l); sub(/^[ 	]+/, "", l)
+            if (index(l, "127.0.1.1") == 1) { print "127.0.1.1	" h; seen = 1 } else print }
+          END { if (!seen) print "127.0.1.1	" h }' "$HOSTS_FILE" > "$HOSTS_TMP" 2>>"$LOG"           && cat "$HOSTS_TMP" > "$HOSTS_FILE" 2>>"$LOG"           || echo "+ could not update $HOSTS_FILE (non-fatal)" >> "$LOG"
+        rm -f "$HOSTS_TMP"
+      fi
+      conf_set "HOSTNAME=$NEW_HOSTNAME" || rc=$?
+    fi
+    if [ $rc -eq 0 ]; then
+      # avahi re-announces under the new name; the _pieria._tcp record is republished (--no-block:
+      # it is a oneshot that waits for the app). Both best-effort — a box without them still renamed.
+      run systemctl restart avahi-daemon || true
+      run systemctl restart --no-block sd-avahi-publish || true
+      # sd-kiosk-launch bakes <hostname>.local into the admin URL on the splash screen, and it clears
+      # a stale Chromium Singleton* lock before every launch (ADR-137), so a relaunch is safe.
+      reload_kiosk
+      STATUS_EXTRA="$(OLD="$OLD_HOSTNAME" NEW="$NEW_HOSTNAME" IPS="$(hostname -I 2>/dev/null || true)" python3 -c '
+import json, os
+print(json.dumps({"old_hostname": os.environ["OLD"], "new_hostname": os.environ["NEW"],
+                  "ips": os.environ["IPS"].split()}))')"
+    fi
+    conf_export
+    DONE_MSG="network name changed: ${OLD_HOSTNAME:-?}.local -> $NEW_HOSTNAME.local"
     ;;
   set-watchdog)
     # Nothing to restart: sd-watchdog re-sources the conf on every tick, so the next one picks it up.

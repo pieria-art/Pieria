@@ -742,6 +742,11 @@ function _pollMaint() {
                 statusEl.textContent = '⏼ Powered off. To turn it back on, unplug the power and plug it in again.';
                 return;   // buttons stay disabled: there is nothing left to talk to
             }
+            if (data.action === 'set-hostname' && data.state === 'done' && data.new_hostname) {
+                _goToNewAddress(data.new_hostname, data.ips);
+                return;   // this page is about to be at the wrong address — leave the buttons off
+            }
+            if (_hostnameRedirectTimer) { clearTimeout(_hostnameRedirectTimer); _hostnameRedirectTimer = null; }
             _maintButtons(false);
             refreshHostHealth();      // pick up the new conf / bundle / update state
         }
@@ -884,6 +889,12 @@ function _renderDeviceSettings(host) {
     if (!_dsLoaded) {
         const name = document.getElementById('ds-display-name');
         if (name) name.value = conf.DISPLAY_ID || '';
+        const hn = document.getElementById('ds-hostname');
+        if (hn) hn.value = conf.HOSTNAME || '';
+        const hnHint = document.getElementById('ds-hostname-hint');
+        if (hnHint && conf.HOSTNAME) hnHint.innerHTML =
+            `Currently <b>${_esc(conf.HOSTNAME)}.local</b> — the address of this admin page. ` +
+            'Lowercase letters, numbers and hyphens. Changing it moves the address.';
         const orient = document.getElementById('ds-orientation');
         if (orient) orient.value = conf.ROTATE || 'landscape';
         const wd = document.getElementById('ds-watchdog');
@@ -941,6 +952,42 @@ async function saveDisplayName() {
         prompt: `Rename this display to “${value}”? The picture relaunches, and the phone remote will show the new name. Names are lowercased (“Living Room” becomes living_room).`,
     });
     _dsLoaded = false;
+}
+
+// Renaming the network name MOVES this page: the old <name>.local stops answering once avahi
+// re-announces, so the status poll below may die with it. Hence two exits to the new address — the
+// normal one when the host reports `done`, and a timer for when the connection went first.
+let _hostnameRedirectTimer = null;
+
+function _goToNewAddress(newName, ips) {
+    if (_hostnameRedirectTimer) { clearTimeout(_hostnameRedirectTimer); _hostnameRedirectTimer = null; }
+    const port = location.port ? `:${location.port}` : '';
+    const url = `${location.protocol}//${newName}.local${port}/admin`;
+    const ip = (ips || []).find(a => /^\d+\.\d+\.\d+\.\d+$/.test(a));
+    const statusEl = document.getElementById('maint-status');
+    statusEl.style.display = 'block';
+    statusEl.innerHTML = `✓ Renamed. Taking you to <a href="${_esc(url)}">${_esc(url)}</a>` +
+        (ip ? ` · if that doesn\u2019t load, try <a href="${_esc(location.protocol + '//' + ip + port + '/admin')}">${_esc(ip)}</a>` : '') +
+        '…';
+    setTimeout(() => { location.href = url; }, 4000);
+}
+
+async function saveHostname() {
+    const el = document.getElementById('ds-hostname');
+    const value = (el.value || '').trim().toLowerCase();
+    if (!value) return;
+    if (!/^[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?$/.test(value)) {
+        const hint = document.getElementById('ds-hostname-hint');
+        hint.textContent = 'Use 1\u201363 lowercase letters, numbers or hyphens, not starting or ending with a hyphen.';
+        return;
+    }
+    const queued = await applianceAction('set-hostname', { hostname: value }, {
+        prompt: `Rename this device to “${value}”?\n\nThe admin address will change to ${value}.local — this page, any bookmarks and the phone remote will need the new address. The picture relaunches, and this page takes you to the new address when it\u2019s done.`,
+        danger: true, confirmText: 'Rename',
+    });
+    _dsLoaded = false;
+    if (!queued) return;
+    _hostnameRedirectTimer = setTimeout(() => _goToNewAddress(value, []), 25000);
 }
 
 async function saveTimezone() {
@@ -1003,6 +1050,7 @@ async function keepOrientation() {
 }
 
 window.saveDisplayName = saveDisplayName;
+window.saveHostname = saveHostname;
 window.saveTimezone = saveTimezone;
 window.saveWatchdog = saveWatchdog;
 window.previewOrientation = previewOrientation;

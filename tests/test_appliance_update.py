@@ -70,8 +70,8 @@ def _req(client):
 
 def test_new_actions_are_whitelisted():
     from routers.health import ALLOWED_UPDATE_ACTIONS
-    assert len(ALLOWED_UPDATE_ACTIONS) == 16
-    for action in ("set-timezone", "set-orientation", "preview-orientation", "set-display-name",
+    assert len(ALLOWED_UPDATE_ACTIONS) == 17
+    for action in ("set-timezone", "set-orientation", "preview-orientation", "set-display-name", "set-hostname",
                    "set-watchdog", "set-os-schedule", "reopen-setup", "relaunch-kiosk",
                    "restart-app", "poweroff", "support-bundle", "check-os-updates", "update-system"):
         assert action in ALLOWED_UPDATE_ACTIONS
@@ -79,7 +79,7 @@ def test_new_actions_are_whitelisted():
 
 @pytest.mark.parametrize("action,field", [
     ("set-timezone", "timezone"), ("set-orientation", "orientation"),
-    ("set-display-name", "display_id"), ("set-watchdog", "watchdog"),
+    ("set-display-name", "display_id"), ("set-hostname", "hostname"), ("set-watchdog", "watchdog"),
     ("set-os-schedule", "schedule"),
 ])
 def test_a_missing_required_field_is_a_400(appliance, action, field):
@@ -112,6 +112,21 @@ def test_the_display_name_is_sanitized_before_it_is_queued(appliance):
     assert appliance.post("/api/appliance/update",
                           json={"action": "set-display-name", "display_id": "Living Room!"}).status_code == 200
     assert _req(appliance)["display_id"] == "living_room"
+
+
+@pytest.mark.parametrize("bad", ["-a", "a-", "a" * 64, "a.b", "a_b", "a b", "a;rm -rf /", "$(id)", "a`id`", "a\nb", "!!!"])
+def test_an_invalid_hostname_is_a_400_and_queues_nothing(appliance, bad):
+    resp = appliance.post("/api/appliance/update", json={"action": "set-hostname", "hostname": bad})
+    assert resp.status_code == 400
+    assert not (config.APPLIANCE_DIR / "request.json").exists()
+
+
+def test_a_hostname_is_lowercased_and_queued_and_touches_no_display_state(appliance):
+    resp = appliance.post("/api/appliance/update",
+                          json={"action": "set-hostname", "hostname": "  Living-Room "})
+    assert resp.status_code == 200
+    req = _req(appliance)
+    assert req["hostname"] == "living-room" and "display_id" not in req
 
 
 def test_a_display_name_that_sanitizes_to_nothing_is_a_400(appliance):

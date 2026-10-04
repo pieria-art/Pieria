@@ -48,6 +48,10 @@ def validate(key: str, value: str):
     return sd_conf.validate(key, value)
 
 
+def sanitize_hostname(raw: str) -> str:
+    return sd_conf.sanitize_hostname(raw) if sd_conf else ""
+
+
 def sanitize_display_id(raw: str) -> str:
     return sd_conf.sanitize_display_id(raw) if sd_conf else ""
 
@@ -84,6 +88,7 @@ ACTION_FIELDS = {
     "set-orientation":     [("orientation", "ROTATE", True)],
     "preview-orientation": [("orientation", "ROTATE", True)],
     "set-display-name":    [("display_id", "DISPLAY_ID", True)],
+    "set-hostname":        [("hostname", "HOSTNAME", True)],
     "set-watchdog":        [("watchdog", "WATCHDOG", True)],
     "set-os-schedule":     [("schedule", "OS_UPDATE_SCHEDULE", True),
                             ("time", "OS_UPDATE_TIME", False)],

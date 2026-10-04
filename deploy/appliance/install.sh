@@ -51,8 +51,9 @@ CONF_SRC="(none — no pieria.conf found)"
 # pointed the setup gate at it — the living-room TV came up in setup mode after a routine
 # "Update Scripts". Rule: if the new conf is ABSENT or still the placeholder, and a legacy conf that
 # is itself configured sits beside it, copy the legacy conf over. Runs BEFORE the flavour is decided so
-# this very run provisions the right flavour. The legacy file is left in place; nothing reads it after
-# this run (the unit paths below are all rewritten to `pieria.conf`).
+# this very run provisions the right flavour. After a verified migration the legacy file is renamed to
+# `screen-docent.conf.migrated` (never deleted) so nothing can read it; the unit paths below are all
+# rewritten to `pieria.conf`.
 _conf_is_placeholder() {
   ( SERVER_URL=""; DISPLAY_ID=""; . "$1" 2>/dev/null
     [ -z "$SERVER_URL" ] || [ -z "$DISPLAY_ID" ] || \
@@ -64,7 +65,19 @@ for d in /boot/firmware /boot /etc; do
   if [ -r "$_legacy" ] && ! _conf_is_placeholder "$_legacy"; then
     if [ ! -e "$_new" ] || _conf_is_placeholder "$_new"; then
       install -m 0644 "$_legacy" "$_new"
-      echo "==> MIGRATED legacy config: $_legacy -> $_new (ADR-083). Legacy file left in place, unused."
+      echo "==> MIGRATED legacy config: $_legacy -> $_new (ADR-083)."
+    fi
+  fi
+  # ADR-083 cleanup (ADR-148): once pieria.conf is VERIFIED — present, readable, not the placeholder,
+  # and it parses as shell — the orphan legacy file can only mislead (a stale unit or a hand-edit
+  # pointed at it would run split-brain). Rename, never delete. Idempotent: no legacy file -> nothing
+  # to do; a second run finds no `screen-docent.conf` and skips.
+  if [ -f "$_legacy" ] && [ -r "$_new" ] && ! _conf_is_placeholder "$_new" \
+     && ( . "$_new" ) >/dev/null 2>&1; then
+    if [ ! -e "$_legacy.migrated" ] && mv "$_legacy" "$_legacy.migrated"; then
+      echo "==> Orphan legacy config renamed: $_legacy -> $_legacy.migrated (ADR-083). Nothing reads it; delete it by hand when you like."
+    elif [ -e "$_legacy.migrated" ]; then
+      echo "==> NOTE: $_legacy.migrated already exists; leaving $_legacy in place (resolve by hand)." >&2
     fi
   fi
   break

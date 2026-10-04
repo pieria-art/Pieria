@@ -79,7 +79,7 @@ ALLOWED_UPDATE_ACTIONS = {
     # existing (ADR-032 / ADR-071)
     "update-app", "update-scripts", "reboot",
     # device settings
-    "set-timezone", "preview-orientation", "set-orientation", "set-display-name", "set-watchdog",
+    "set-timezone", "preview-orientation", "set-orientation", "set-display-name", "set-hostname", "set-watchdog",
     "set-os-schedule", "reopen-setup",
     # actions
     "relaunch-kiosk", "restart-app", "poweroff", "support-bundle",
@@ -102,6 +102,7 @@ class ApplianceUpdateRequest(BaseModel):
     timezone: Optional[str] = None
     orientation: Optional[str] = None
     display_id: Optional[str] = None
+    hostname: Optional[str] = None
     watchdog: Optional[str] = None
     schedule: Optional[str] = None
     time: Optional[str] = None
@@ -153,6 +154,9 @@ def _collect_fields(req: ApplianceUpdateRequest) -> dict:
             # Sanitize FIRST and send the sanitized value: "Living Room!" is a reasonable thing to
             # type and must become living_room, not a 400.
             raw = value = appliance_settings.sanitize_display_id(raw)
+        elif conf_key == "HOSTNAME":
+            # Trim + lowercase only; anything the validator then refuses (a.b, -a, 64 chars) is a 400.
+            raw = value = appliance_settings.sanitize_hostname(raw)
         err = appliance_settings.validate(conf_key, value)
         if err:
             raise HTTPException(status_code=400, detail=err)

@@ -23,7 +23,7 @@ _BIN = _ROOT / "deploy" / "appliance" / "bin"
 #: Every host command any arm may reach. A shim that is missing would fall through to the real binary,
 #: which is exactly the accident this list exists to prevent.
 SHIMMED = ["systemctl", "timedatectl", "docker", "apt-get", "git", "systemd-run", "wlr-randr",
-           "flock", "dpkg", "logger"]
+           "flock", "dpkg", "logger", "hostnamectl"]
 
 BASE_CONF = """# Pieria — Appliance configuration
 SERVER_URL=http://localhost:8000
@@ -349,6 +349,67 @@ def test_set_display_name_renames_and_relaunches_but_never_touches_the_hostname(
     assert h.conf_value("DISPLAY_ID") == "new_name"
     assert h.conf_value("HOSTNAME") == "pieria-abcd"      # ADR-083
     assert "[dry-run] systemctl restart getty@tty1" in h.log
+
+
+# --- set-hostname (ADR-083 policy lifted, ADR-148) -------------------------------------------------
+
+def test_set_hostname_applies_it_everywhere_and_reports_old_and_new(h, tmp_path):
+    hosts = tmp_path / "hosts"
+    hosts.write_text("127.0.0.1\tlocalhost\n127.0.1.1\tpieria-abcd  # old\n::1\tlocalhost\n")
+    h.request("set-hostname", hostname="Hall-TV")           # uppercase is normalised, not refused
+    r = h.run(SD_HOSTS_FILE=str(hosts))
+    assert r.returncode == 0, r.stderr
+    assert h.conf_value("HOSTNAME") == "hall-tv"
+    assert h.conf_value("DISPLAY_ID") == "living_room"      # the display name is a separate setting
+    assert "[dry-run] hostnamectl set-hostname hall-tv" in h.log
+    assert hosts.read_text() == "127.0.0.1\tlocalhost\n127.0.1.1\thall-tv\n::1\tlocalhost\n"
+    assert "[dry-run] systemctl restart avahi-daemon" in h.log
+    assert "[dry-run] systemctl restart --no-block sd-avahi-publish" in h.log
+    assert "[dry-run] systemctl restart getty@tty1" in h.log     # the kiosk relaunch
+    st = h.status
+    assert st["state"] == "done" and st["action"] == "set-hostname"
+    assert st["old_hostname"] == "pieria-abcd" and st["new_hostname"] == "hall-tv"
+    assert isinstance(st["ips"], list)
+    assert "hall-tv.local" in st["message"]
+    assert h.request_consumed
+
+
+def test_set_hostname_appends_the_hosts_line_when_there_is_none(h, tmp_path):
+    hosts = tmp_path / "hosts"
+    hosts.write_text("127.0.0.1\tlocalhost\n")
+    h.request("set-hostname", hostname="hall-tv")
+    h.run(SD_HOSTS_FILE=str(hosts))
+    assert hosts.read_text() == "127.0.0.1\tlocalhost\n127.0.1.1\thall-tv\n"
+
+
+def test_set_hostname_leaves_the_real_etc_hosts_alone_under_dry_run(h):
+    h.request("set-hostname", hostname="hall-tv")
+    h.run()
+    assert "[dry-run] set 127.0.1.1 -> hall-tv in /etc/hosts" in h.log
+
+
+@pytest.mark.parametrize("bad", ["-a", "a-", "a" * 64, "a.b", "a_b", "a b", "a;rm -rf /", "$(id)",
+                                 "a`id`", "a\\nb", "", "x/y"])
+def test_set_hostname_refuses_a_bad_name_on_the_host_too(h, bad):
+    before = h.conf_text
+    h.request("set-hostname", hostname=bad)
+    r = h.run()
+    assert r.returncode == 1
+    assert h.status["state"] == "error"
+    assert h.conf_text == before
+    assert "hostnamectl" not in h.called and "hostnamectl" not in h.log
+    assert h.request_consumed
+
+
+def test_a_failed_hostnamectl_does_not_write_the_conf(h, tmp_path):
+    h.stub("hostnamectl", "exit 1")
+    h.request("set-hostname", hostname="hall-tv")
+    # Real mode would fall back to writing /etc/hostname (needs root); in dry-run `run` cannot fail,
+    # so assert the ordering instead: OS first, then the conf, then the services.
+    h.run()
+    log = h.log
+    assert log.index("hostnamectl set-hostname") < log.index("sd-conf set HOSTNAME=hall-tv")
+    assert log.index("sd-conf set HOSTNAME=hall-tv") < log.index("systemctl restart avahi-daemon")
 
 
 def test_a_display_rename_restarts_the_eink_client_only_when_one_is_enabled(h):

@@ -121,7 +121,11 @@ def test_validate_rejects_an_injection_even_for_a_known_key():
     ("OS_UPDATE_TIME", "03:00", True), ("OS_UPDATE_TIME", "23:59", True),
     ("OS_UPDATE_TIME", "24:00", False), ("OS_UPDATE_TIME", "3:00", False),
     ("SERVER_URL", "http://192.168.1.50:8000", True), ("SERVER_URL", "ftp://x", False),
-    ("HOSTNAME", "anything", False),        # ADR-083: hostname is NOT writable through this bridge
+    ("HOSTNAME", "living-room", True), ("HOSTNAME", "a", True), ("HOSTNAME", "a" * 63, True),
+    ("HOSTNAME", "Living-Room", False),     # the GATES lowercase first; the validator itself is strict
+    ("HOSTNAME", "-a", False), ("HOSTNAME", "a-", False), ("HOSTNAME", "a" * 64, False),
+    ("HOSTNAME", "a.b", False), ("HOSTNAME", "a_b", False), ("HOSTNAME", "", False),
+    ("HOSTNAME", "a;rm", False), ("HOSTNAME", "$(x)", False), ("HOSTNAME", "a b", False),
     ("GEMINI_API_KEY", "sk-x", False),      # never writable through the bridge
 ])
 def test_validator_table(key, value, ok):
@@ -130,6 +134,15 @@ def test_validator_table(key, value, ok):
 
 def test_validate_rejects_an_overlong_value():
     assert sc.validate("DISPLAY_ID", "a" * 65)
+
+
+def test_hostname_rule_matches_the_wizard_regex():
+    assert sc._HOSTNAME_VALID_RE.pattern == wiz._HOSTNAME_VALID_RE.pattern
+
+
+@pytest.mark.parametrize("raw,want", [("  Living-Room ", "living-room"), ("PIERIA", "pieria"), ("", "")])
+def test_sanitize_hostname_trims_and_lowercases_only(raw, want):
+    assert sc.sanitize_hostname(raw) == want
 
 
 # --- parity with the wizard -------------------------------------------------------------------------
