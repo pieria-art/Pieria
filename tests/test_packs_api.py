@@ -222,3 +222,32 @@ async def test_install_job_records_error(db, monkeypatch):
     await packs_router._install_job("cartography", "https://packs.test/packs.json")
     assert packs_router._JOBS["cartography"]["state"] == "error"
     assert "sha256" in packs_router._JOBS["cartography"]["error"]
+
+
+@respx.mock
+def test_install_double_call_starts_one_job(client, db, monkeypatch):
+    """The slot is claimed before the registry await, so a second request is in_progress, not a 2nd install."""
+    monkeypatch.setattr(federation, "_assert_public_url", lambda url: None)
+    respx.get(REG_URL).respond(200, json=_fake_registry())
+    started = []
+
+    async def fake_job(*a):
+        started.append(a)
+    monkeypatch.setattr(packs_router, "_install_job", fake_job)
+    db.add(SettingsModel(setting_key="pack_registry_url", setting_value=REG_URL))
+    db.commit()
+
+    assert client.post("/api/packs/cosmos/install").json()["state"] == "started"
+    assert packs_router._JOBS["cosmos"]["state"] == "in_progress"  # claimed by the endpoint itself
+    assert client.post("/api/packs/cosmos/install").json()["state"] == "in_progress"
+    assert len(started) == 1
+
+
+@respx.mock
+def test_install_rejection_clears_the_claimed_slot(client, db, monkeypatch):
+    monkeypatch.setattr(federation, "_assert_public_url", lambda url: None)
+    respx.get(REG_URL).respond(200, json=_fake_registry())
+    db.add(SettingsModel(setting_key="pack_registry_url", setting_value=REG_URL))
+    db.commit()
+    assert client.post("/api/packs/nope/install").status_code == 404
+    assert "nope" not in packs_router._JOBS
