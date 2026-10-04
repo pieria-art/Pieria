@@ -312,7 +312,13 @@ PY
 # swap anything inside data/ for a symlink, so root goes through sd-mailbox (ADR-131: O_NOFOLLOW
 # dir-fd), never `rm data/appliance/*` by path. Run after wipe_secrets so a refusal there aborts first.
 clear_appliance_status() {
-  local root n
+  local root n t
+  # Quiesce the writers FIRST or they recreate files behind the clear. STOP, never disable: these
+  # timers must stay enabled so every flashed unit starts them at its first boot.
+  for t in sd-watchdog.timer sd-metrics.timer sd-os-check.timer sd-quiet-hours.timer; do
+    systemctl --no-ask-password stop "$t" 2>/dev/null || true
+  done
+  echo "  stopped the status-writing timers (left ENABLED for the flashed units' first boot)"
   if ! root="$(repo_root)"; then
     echo "  WARNING: could not locate the app repo — empty data/appliance/ by hand" >&2
     return 0

@@ -81,7 +81,7 @@ pre-populated library:
 cd ~/Pieria
 docker compose -f docker-compose.yml -f deploy/appliance/compose/docker-compose.appliance.yml down
 sudo rm -rf data/*.db* Artwork/*        # the DB is data/artwork.db (database.py)
-sudo systemctl stop sd-watchdog.timer sd-metrics.timer sd-os-check.timer sd-quiet-hours.timer sd-eink
+sudo systemctl stop sd-eink            # (`sd-image-prep --full` stops the status timers itself, leaving them enabled)
 ```
 
 Leaving art baked in is a legitimate alternative (a "lean Core" image — faster to first paint, much
