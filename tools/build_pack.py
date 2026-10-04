@@ -37,6 +37,7 @@ import re
 import subprocess
 import unicodedata
 from dataclasses import dataclass, field
+from datetime import UTC, datetime
 from io import BytesIO
 from pathlib import Path
 from urllib.parse import parse_qsl, urlencode, urlparse, urlsplit, urlunsplit
@@ -896,6 +897,11 @@ def _emit_v2_manifests(out: Path, manifest_collections: list[dict], *, signing_k
     them (with the default rotation). Returns the pack index. Deterministic — NO AI, NO network."""
     (out / "_manifests").mkdir(parents=True, exist_ok=True)
     public_key = publisher.public_from_private(signing_key) if signing_key else None
+    if signing_key and not generated_at:
+        # F8 freshness: a SIGNED manifest always carries a signed `generated_at` (the monotonic field a box
+        # compares so a replayed older manifest can't roll metadata back). Pass --created for a
+        # reproducible build; otherwise stamp now.
+        generated_at = datetime.now(UTC).strftime("%Y-%m-%dT%H:%M:%SZ")
     index_cols, signed_n, unsigned_n = [], 0, 0
     have_masterpieces = any(c["id"] == "masterpieces" for c in manifest_collections)
     for col in manifest_collections:

@@ -257,6 +257,8 @@ async def refresh_manifests_from_registry(db, client: httpx.AsyncClient, registr
             reason = lifespan.manifest_refusal_reason(manifest, cid, require_verified=True)
             if reason is not None:
                 raise ValueError(reason)
+            if lifespan.is_stale_manifest(sub, manifest):
+                raise ValueError("manifest is older than the applied one (rollback refused)")
             dest = lifespan.ARTWORK_ROOT / "_manifests" / f"{cid}.json"
             dest.parent.mkdir(parents=True, exist_ok=True)
             tmp = dest.with_name(dest.name + ".tmp")

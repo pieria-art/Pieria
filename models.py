@@ -268,6 +268,8 @@ class SubscriptionModel(Base):
     # sha256 of the manifest whose metadata was last applied to existing works (ADR-148 F8); a differing
     # hash on boot triggers a refresh. NULL = never recorded (refresh once).
     applied_manifest_hash: Mapped[Optional[str]] = mapped_column(String)
+    # `generated_at` (signed, monotonic) of the manifest last applied; an OLDER fetched manifest is refused.
+    applied_generated_at: Mapped[Optional[str]] = mapped_column(String)
     metadata_refreshed_at: Mapped[Optional[datetime]] = mapped_column(DateTime)   # last F8 refresh that ran
     # L5 key pinning (ADR-148): the publisher signing key pinned at subscribe / first signed sync. A changed
     # key blocks the feed ('changed', new key in pending_public_key) until re-trusted; 'rotated' = a

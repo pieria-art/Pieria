@@ -158,3 +158,47 @@ async def test_old_registry_without_manifest_fields_is_a_noop(tmp_path, monkeypa
     server = Server(dist)
     assert await _run(db, server) == {}
     assert server.hits == ["/packs.json"]
+
+
+def _publish_gen(src, priv, gen, credit):
+    m = dict(_mi("Map", 60), credit_line=credit)
+    build_pack._emit_v2_manifests(
+        src, [{"id": "cartography", "title": "Cartography", "description": "Maps", "items": [m]}],
+        signing_key=priv, generated_at=gen)
+
+
+@pytest.mark.asyncio
+async def test_older_signed_manifest_is_refused_rollback(tmp_path, monkeypatch):
+    priv, src, dist, db = _setup(tmp_path, monkeypatch)   # installed manifest: generated_at 2026-07-17
+    _publish_gen(src, priv, "2026-10-05", "Newer credit")
+    publish_pack.publish_manifests_only(src, dist)
+    assert set(await _run(db, Server(dist))) == {"cartography"}
+    assert _sub(db).applied_generated_at.startswith("2026-10-05")
+    newer = (src / "_manifests" / "cartography.json").read_bytes()
+    # attacker replays the OLDER (validly signed) manifest + its matching registry hash
+    _publish_gen(src, priv, "2026-09-01", "Old credit")
+    publish_pack.publish_manifests_only(src, dist)
+    (src / "_manifests" / "cartography.json").write_bytes(newer)
+    assert await _run(db, Server(dist)) == {}
+    assert _map(db).attribution == "Newer credit"
+    assert (src / "_manifests" / "cartography.json").read_bytes() == newer
+
+
+@pytest.mark.asyncio
+async def test_unstamped_applied_is_legacy_allowed_once(tmp_path, monkeypatch):
+    priv, src, dist, db = _setup(tmp_path, monkeypatch)
+    sub = _sub(db)
+    sub.applied_generated_at = None
+    db.commit()
+    _publish_gen(src, priv, "2020-01-01", "Fixed")   # older than anything, but nothing recorded -> allowed
+    publish_pack.publish_manifests_only(src, dist)
+    assert set(await _run(db, Server(dist))) == {"cartography"}
+
+
+def test_signed_build_always_stamps_generated_at(tmp_path):
+    priv, _ = publisher.keygen()
+    root = tmp_path / "p"
+    build_pack._emit_v2_manifests(
+        root, [{"id": "c", "title": "C", "description": "", "items": [_mi("Map", 60)]}],
+        signing_key=priv, generated_at=None)
+    assert json.loads((root / "_manifests" / "c.json").read_text()).get("generated_at")

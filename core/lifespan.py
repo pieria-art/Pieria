@@ -356,11 +356,41 @@ def refresh_installed_packs(db: Session) -> dict:
     return out
 
 
+def _gen_time(manifest: dict | None):
+    """The manifest's signed `generated_at` as an aware datetime, or None (absent/unparseable = legacy)."""
+    raw = (manifest or {}).get("generated_at")
+    if not isinstance(raw, str):
+        return None
+    try:
+        dt = datetime.fromisoformat(raw.replace("Z", "+00:00"))
+    except ValueError:
+        return None
+    return dt if dt.tzinfo else dt.replace(tzinfo=UTC)
+
+
+def is_stale_manifest(sub: SubscriptionModel, manifest: dict) -> bool:
+    """True when `manifest` is OLDER than the one applied on `sub` (replay/rollback of a validly signed
+    but superseded manifest). Equal is not stale (the hash check makes it a no-op). Nothing recorded =
+    legacy, allow once; an applied stamp with an unstamped fetched manifest is a downgrade, refused."""
+    applied = None
+    if sub.applied_generated_at:
+        try:
+            applied = datetime.fromisoformat(sub.applied_generated_at)
+        except ValueError:
+            applied = None
+    if applied is None:
+        return False
+    new = _gen_time(manifest)
+    return new is None or new < applied
+
+
 def apply_manifest_refresh(db: Session, sub: SubscriptionModel, manifest: dict) -> tuple[int, int]:
     """Refresh existing works from an (already validated) manifest and record it as applied on `sub`.
     Metadata only: no image work, no new works, no playlist re-linking."""
     n_ref, n_skip = _refresh_manifest_items(db, manifest)
     sub.applied_manifest_hash = manifest_hash(manifest)
+    gen = _gen_time(manifest)
+    sub.applied_generated_at = gen.isoformat() if gen else None
     sub.cached_manifest = json.dumps(manifest)
     sub.metadata_refreshed_at = datetime.now(UTC)
     db.commit()
@@ -480,6 +510,8 @@ def _install_collection(db: Session, cid: str, manifest: dict, *, require_verifi
             db.execute(playlist_artwork.insert().values(
                 playlist_id=playlist.id, artwork_id=artwork.id, display_order=idx))
     sub.applied_manifest_hash = manifest_hash(manifest)
+    gen = _gen_time(manifest)
+    sub.applied_generated_at = gen.isoformat() if gen else None
     db.commit()
     if n_refreshed or n_skipped:
         logger.info(f"[PackInstall] '{title}': {n_refreshed} existing work(s) refreshed, "

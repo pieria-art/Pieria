@@ -227,7 +227,7 @@ def test_0008_api_tokens_upgrades_a_populated_0007_db(db_path):
     with eng.begin() as c:
         c.execute(text("INSERT INTO active_displays (display_id, last_seen_at) VALUES ('wall','2026-10-01')"))
     command.upgrade(cfg, "head")
-    assert _stamp(db_path) == _head(db_path) == "0011_subscription_key_pinning"
+    assert _stamp(db_path) == _head(db_path)
     cols = _columns(db_path)
     assert {"id", "name", "token_hash", "scopes", "created_at", "last_used_at", "revoked_at"} <= cols["api_tokens"]
     assert "kind" in cols["active_displays"]
@@ -243,7 +243,7 @@ def test_0008_is_idempotent_on_a_create_all_db(db_path):
     Base.metadata.create_all(create_engine(f"sqlite:///{db_path}"))
     _set_legacy_stamp(db_path, "0007_artwork_attribution")
     command.upgrade(_cfg(db_path), "head")
-    assert _stamp(db_path) == "0011_subscription_key_pinning"
+    assert _stamp(db_path) == _head(db_path)
 
 
 def test_newer_stamp_logic_still_reconciles_with_0008_as_head(db_path):
@@ -256,7 +256,7 @@ def test_newer_stamp_logic_still_reconciles_with_0008_as_head(db_path):
                           "VALUES ('keep','h','read','2026-10-01')"))
     _set_legacy_stamp(db_path, "a1b2c3d4e5f6")
     run_migrations(_cfg(db_path))
-    assert _stamp(db_path) == "0011_subscription_key_pinning"
+    assert _stamp(db_path) == _head(db_path)
     with eng.connect() as conn:
         assert conn.execute(text("SELECT name FROM api_tokens")).scalar() == "keep"
 
@@ -289,7 +289,7 @@ def test_0010_adds_metadata_refreshed_at(db_path):
     cfg = _cfg(db_path)
     command.upgrade(cfg, "0009_pack_refresh_tracking")
     command.upgrade(cfg, "head")
-    assert _stamp(db_path) == _head(db_path) == "0011_subscription_key_pinning"
+    assert _stamp(db_path) == _head(db_path)
     assert "metadata_refreshed_at" in _columns(db_path)["subscriptions"]
 
 
@@ -300,7 +300,22 @@ def test_0011_adds_key_pinning_columns_from_0010(db_path):
     with eng.begin() as c:
         c.execute(text("INSERT INTO subscriptions (url, trust, enabled, item_count, created_at) VALUES ('https://x.test/m.json','community',1,0,'2026-10-01')"))
     command.upgrade(cfg, "head")
-    assert _stamp(db_path) == _head(db_path) == "0011_subscription_key_pinning"
+    assert _stamp(db_path) == _head(db_path)
     assert {"pinned_public_key", "key_status", "pending_public_key"} <= _columns(db_path)["subscriptions"]
     with eng.connect() as c:
         assert tuple(c.execute(text("SELECT key_status, pinned_public_key FROM subscriptions")).one()) == ("ok", None)
+
+
+def test_0012_adds_applied_generated_at_through_0011(db_path):
+    """Populated 0010 DB goes 0010 -> 0011 -> 0012 as one chain."""
+    cfg = _cfg(db_path)
+    command.upgrade(cfg, "0010_pack_metadata_refreshed_at")
+    eng = create_engine(f"sqlite:///{db_path}")
+    with eng.begin() as c:
+        c.execute(text("INSERT INTO subscriptions (url, trust, enabled, item_count, created_at) VALUES ('pack:x','verified',1,0,'2026-10-01')"))
+    command.upgrade(cfg, "head")
+    assert _stamp(db_path) == _head(db_path) == "0012_pack_applied_generated_at"
+    cols = _columns(db_path)["subscriptions"]
+    assert {"pinned_public_key", "applied_generated_at"} <= cols
+    with eng.connect() as c:
+        assert c.execute(text("SELECT applied_generated_at FROM subscriptions")).scalar() is None
