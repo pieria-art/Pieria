@@ -195,7 +195,7 @@ function switchView(view) {
     if (view === 'museum') enterMuseum();
     if (view === 'devices') enterDevices();
     if (view === 'publisher') enterPublisher();
-    if (view === 'settings') { refreshRestoreStatus(); refreshCredits(); }
+    if (view === 'settings') { refreshRestoreStatus(); refreshCredits(); refreshApiTokens(); }
 }
 
 // Mobile-only: toggle the slide-in sidebar drawer (no-op visual on desktop).
@@ -296,6 +296,114 @@ function copyServerAddress() {
     if (c) { c.style.display = 'inline'; setTimeout(() => { c.style.display = 'none'; }, 1500); }
 }
 window.copyServerAddress = copyServerAddress;
+
+// --- API & Integrations (public API v1 tokens, ADR-147) ----------------------
+// GET/POST /api/settings/api-tokens, DELETE /api/settings/api-tokens/{id}. The plaintext token is in
+// the POST response ONLY — it is shown once in a modal and never kept anywhere in the page afterwards.
+function _apiTokenRowHTML(t) {
+    const revoked = !!t.revoked_at;
+    const scopes = (t.scopes || []).map(s => `<span class="badge">${_esc(s)}</span>`).join(' ');
+    const created = t.created_at ? new Date(t.created_at).toLocaleDateString() : '—';
+    const used = t.last_used_at ? new Date(t.last_used_at).toLocaleString() : 'never';
+    const action = revoked
+        ? `<span style="font-size:0.75rem; color:#94a3b8;">Revoked</span>`
+        : `<button class="secondary" data-revoke="${_esc(t.id)}" data-name="${_esc(t.name)}" style="padding:6px 12px; border-color:#ef4444; color:#ef4444;">Revoke</button>`;
+    return `<div style="display:flex; gap:12px; align-items:center; justify-content:space-between; flex-wrap:wrap; padding:10px 12px; border:1px solid var(--border-color); border-radius:8px;${revoked ? ' opacity:0.5;' : ''}">
+        <div style="min-width:0;">
+            <div style="font-size:0.88rem; font-weight:600; overflow-wrap:anywhere;">${_esc(t.name)} ${scopes}</div>
+            <div style="font-size:0.74rem; color:#94a3b8;">Created ${_esc(created)} · last used ${_esc(used)}</div>
+        </div>${action}</div>`;
+}
+
+async function refreshApiTokens() {
+    const box = document.getElementById('api-token-list');
+    if (!box) return;
+    try {
+        const res = await fetch(`${API_BASE}/api/settings/api-tokens`);
+        if (!res.ok) throw new Error(res.status);
+        const rows = await res.json();
+        box.innerHTML = rows.length
+            ? rows.map(_apiTokenRowHTML).join('')
+            : '<span style="font-size:0.8rem; color:#94a3b8;">No tokens yet.</span>';
+        box.querySelectorAll('[data-revoke]').forEach(b => {
+            b.onclick = () => revokeApiToken(b.dataset.revoke, b.dataset.name);
+        });
+    } catch (e) {
+        box.innerHTML = '<span style="font-size:0.8rem; color:#ef4444;">Could not load tokens.</span>';
+    }
+}
+
+// Show a freshly minted token exactly once. Built with createElement/textContent (never innerHTML).
+function showNewTokenModal(name, token) {
+    const overlay = document.createElement('div');
+    overlay.id = 'modal-overlay';
+    const box = document.createElement('div');
+    box.className = 'modal-box';
+    const msg = document.createElement('p');
+    msg.className = 'modal-msg';
+    msg.textContent = `Token "${name}" created. Copy it now — you won't see it again. If you lose it, revoke it and make a new one.`;
+    const code = document.createElement('code');
+    code.id = 'api-token-plain';
+    code.textContent = token;
+    code.style.cssText = 'display:block; background:#0f172a; border:1px solid var(--border-color); padding:10px 12px; border-radius:8px; font-size:0.82rem; word-break:break-all; user-select:all; margin-bottom:18px; color:var(--success-color);';
+    const actions = document.createElement('div');
+    actions.className = 'modal-actions';
+    const copy = document.createElement('button');
+    copy.textContent = 'Copy';
+    const done = document.createElement('button');
+    done.className = 'btn-confirm';
+    done.textContent = "Done, I've saved it";
+    actions.append(copy, done);
+    box.append(msg, code, actions);
+    overlay.appendChild(box);
+    document.body.appendChild(overlay);
+    done.focus();
+    copy.onclick = async () => {
+        try { await navigator.clipboard.writeText(token); showToast('Token copied', 'success'); }
+        catch (e) {
+            const r = document.createRange(); r.selectNodeContents(code);
+            const s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+            showToast('Press Ctrl+C to copy the selected token');
+        }
+    };
+    done.onclick = () => { code.textContent = ''; overlay.remove(); };   // not Esc / click-outside: easy to dismiss by accident
+}
+
+async function createApiToken() {
+    const nameEl = document.getElementById('api-token-name');
+    const name = nameEl.value.trim();
+    const scopes = ['read', 'control'].filter(s => document.getElementById('api-scope-' + s).checked);
+    if (!name) { showToast('Give the token a name', 'error'); nameEl.focus(); return; }
+    if (!scopes.length) { showToast('Pick at least one scope', 'error'); return; }
+    const btn = document.getElementById('api-token-create-btn');
+    btn.disabled = true;
+    try {
+        const res = await fetch(`${API_BASE}/api/settings/api-tokens`, {
+            method: 'POST', headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name, scopes }),
+        });
+        const body = await res.json().catch(() => ({}));
+        if (!res.ok) { showToast(typeof body.detail === 'string' ? body.detail : 'Could not create the token', 'error'); return; }
+        nameEl.value = '';
+        showNewTokenModal(body.name, body.token);
+        refreshApiTokens();
+    } catch (e) {
+        showToast('Could not create the token', 'error');
+    } finally { btn.disabled = false; }
+}
+
+async function revokeApiToken(id, name) {
+    const ok = await confirmModal(`Revoke "${name}"? Anything using it stops working immediately. This can't be undone.`,
+                                  { confirmText: 'Revoke', danger: true });
+    if (!ok) return;
+    try {
+        const res = await fetch(`${API_BASE}/api/settings/api-tokens/${encodeURIComponent(id)}`, { method: 'DELETE' });
+        if (!res.ok) throw new Error(res.status);
+        showToast('Token revoked', 'success');
+    } catch (e) { showToast('Could not revoke the token', 'error'); }
+    refreshApiTokens();
+}
+window.createApiToken = createApiToken;
 
 // --- Public demo mode (SD_DEMO_MODE=1, core/demo.py) -------------------------
 // GET /api/demo tells us whether this box is the public demo. When it is: add body.demo (CSS hook +

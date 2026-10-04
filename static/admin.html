@@ -753,6 +753,29 @@
                     </div>
                     <p id="server-address-note" style="display:none; font-size:0.78rem; color:#fbbf24; margin:14px 0 0;"></p>
                 </div>
+                <!-- API & Integrations — tokens for the public API v1 (ADR-147) -->
+                <div id="api-card" style="background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 25px;">
+                    <h3 style="margin-top: 0; font-size: 0.9rem; color: var(--text-color);">🔌 API &amp; Integrations</h3>
+                    <p style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 10px;">
+                        Let other software read what's on your walls and control them — skip, pause, change collection —
+                        with an <strong>API token</strong>. Each token is its own key, so you can revoke one without
+                        touching the rest. Read the
+                        <a href="https://github.com/pieria-art/Pieria/blob/main/docs/api.md" target="_blank" rel="noopener" style="color:var(--accent-color)">guide</a>
+                        or browse the live <a href="/api/v1/docs" target="_blank" rel="noopener" style="color:var(--accent-color)">API reference</a>.
+                    </p>
+                    <p style="font-size: 0.78rem; color: #94a3b8; margin: 0 0 16px;">
+                        🏠 <strong>Home Assistant:</strong> an integration is coming &mdash; it will find this box on your network and ask for a token from here.
+                    </p>
+                    <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-bottom:8px;">
+                        <input id="api-token-name" type="text" maxlength="60" placeholder="Token name (e.g. Home Assistant)" style="flex:1 1 220px; min-width:0;" onkeydown="if(event.key==='Enter')createApiToken()">
+                        <button class="primary" id="api-token-create-btn" onclick="createApiToken()" style="padding:10px 18px; font-weight:600;">Create token</button>
+                    </div>
+                    <div style="display:flex; gap:18px; flex-wrap:wrap; font-size:0.82rem; margin-bottom:18px;">
+                        <label style="display:flex; gap:6px; align-items:center; cursor:pointer;"><input type="checkbox" id="api-scope-read" checked> <span><strong>Read</strong> &mdash; see displays, artwork, schedule</span></label>
+                        <label style="display:flex; gap:6px; align-items:center; cursor:pointer;"><input type="checkbox" id="api-scope-control" checked> <span><strong>Control</strong> &mdash; change what's playing</span></label>
+                    </div>
+                    <div id="api-token-list" style="display:flex; flex-direction:column; gap:8px;"><span style="font-size:0.8rem; color:#94a3b8;">Loading…</span></div>
+                </div>
                 <!-- Subscriptions (federated collections) -->
                 <div style="background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 25px;">
                     <h3 style="margin-top: 0; font-size: 0.9rem; color: var(--text-color);">🌐 Subscriptions <span style="font-weight:normal; color:#94a3b8;">— federated collections</span></h3>
@@ -1289,6 +1312,6 @@
         </div>
     </div>
 
-    <script src="admin.js?v=20261004a"></script>
+    <script src="admin.js?v=20261004b"></script>
 </body>
 </html>
