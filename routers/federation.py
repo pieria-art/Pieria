@@ -30,6 +30,9 @@ def _sub_summary(s: SubscriptionModel) -> dict:
         "item_count": s.item_count,
         "last_synced": s.last_synced.isoformat() if s.last_synced else None,
         "last_status": s.last_status,
+        "key_status": s.key_status or "ok",
+        "pinned_fingerprint": federation.key_fingerprint(s.pinned_public_key),
+        "pending_fingerprint": federation.key_fingerprint(s.pending_public_key),
     }
 
 
@@ -61,7 +64,8 @@ async def add_subscription(payload: SubscriptionPayload, db: Session = Depends(g
     sub = SubscriptionModel(
         url=url, collection_id=manifest.get("id"), title=manifest.get("title"),
         publisher_id=pub.get("id"), publisher_name=pub.get("name"), publisher_url=pub.get("url"),
-        trust=federation.assess_trust(manifest), enabled=True, cached_manifest=json.dumps(manifest),
+        trust=federation.assess_trust(manifest), pinned_public_key=federation.manifest_key(manifest),
+        key_status="ok", enabled=True, cached_manifest=json.dumps(manifest),
         item_count=len(manifest.get("items", [])), last_status="ok", last_synced=datetime.now(UTC))
     db.add(sub); db.commit(); db.refresh(sub)
     return _sub_summary(sub)
@@ -73,6 +77,23 @@ async def sync_subscription_endpoint(sub_id: int, db: Session = Depends(get_db))
     if not sub:
         raise HTTPException(404)
     await federation.sync_subscription(db, sub)
+    return _sub_summary(sub)
+
+
+@router.post("/api/subscriptions/{sub_id}/retrust")
+async def retrust_subscription(sub_id: int, db: Session = Depends(get_db)):
+    """Accept a publisher's changed key (pending -> pinned) and re-sync; or acknowledge a followed
+    registry rotation. Only valid when the row is flagged."""
+    sub = db.query(SubscriptionModel).filter(SubscriptionModel.id == sub_id).first()
+    if not sub:
+        raise HTTPException(404)
+    if sub.key_status == "rotated":
+        sub.key_status, sub.pending_public_key = "ok", None
+        db.commit()
+    elif sub.key_status == "changed":
+        await federation.sync_subscription(db, sub, retrust=True)
+    else:
+        raise HTTPException(400, detail="Nothing to re-trust")
     return _sub_summary(sub)
 
 

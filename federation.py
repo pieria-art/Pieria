@@ -14,6 +14,7 @@ Untrusted manifest strings are escaped at *render* time (the /art page + browse 
 
 import asyncio
 import base64
+import hashlib
 import json
 import logging
 from datetime import UTC, datetime
@@ -194,9 +195,36 @@ def manifest_item_to_catalog(item: dict, default_license: str | None = None) -> 
     }
 
 
-async def sync_subscription(db, sub: SubscriptionModel) -> SubscriptionModel:
+def manifest_key(manifest: dict) -> str | None:
+    """The publisher key a manifest is validly signed with, else None (unsigned). fetch_manifest has
+    already rejected a present-but-invalid signature, so a key here is a proven signing key."""
+    if manifest.get("signature") and verify_signature(manifest):
+        return (manifest.get("publisher") or {}).get("public_key")
+    return None
+
+
+def key_fingerprint(key_b64: str | None) -> str | None:
+    """Short, human-comparable fingerprint of a base64 public key (sha256, first 16 hex, grouped)."""
+    if not key_b64:
+        return None
+    try:
+        raw = base64.b64decode(key_b64)
+    except (ValueError, TypeError):
+        raw = key_b64.encode("utf-8", "replace")
+    h = hashlib.sha256(raw).hexdigest()[:16]
+    return " ".join(h[i:i + 4] for i in range(0, 16, 4))
+
+
+async def sync_subscription(db, sub: SubscriptionModel, retrust: bool = False) -> SubscriptionModel:
     """Re-fetch a subscription's manifest, validate it, and cache it on the row. Records status; a
-    failed sync keeps the previous cached manifest (graceful degradation)."""
+    failed sync keeps the previous cached manifest (graceful degradation).
+
+    L5 / ADR-148 key pinning (SSH-style TOFU): the first valid signing key is pinned. A later sync whose
+    key CHANGED, or whose signature was REMOVED, is NOT applied — key_status='changed', the new key is
+    parked in pending_public_key, and the last good cached manifest keeps being served until the user
+    re-trusts. A registry-verified publisher follows the registry instead (our record) and is flagged
+    'rotated' (pending_public_key then holds the previous pin). `retrust=True` (user action) accepts the
+    pending key — but only if the feed still presents exactly that key."""
     try:
         manifest = await fetch_manifest(sub.url)
     except FederationError as e:
@@ -205,13 +233,42 @@ async def sync_subscription(db, sub: SubscriptionModel) -> SubscriptionModel:
         db.commit()
         return sub
 
+    trust = assess_trust(manifest)
+    new_key = manifest_key(manifest)
+    pinned = sub.pinned_public_key
+    if pinned and new_key != pinned:
+        if trust == "verified":
+            logger.warning("subscription %s: registry key rotated; following the registry", sub.id)
+            sub.key_status = "rotated"
+            sub.pending_public_key = pinned          # the previous pin, shown in the UI
+            sub.pinned_public_key = new_key
+        elif retrust and sub.key_status == "changed" and new_key == sub.pending_public_key:
+            logger.info("subscription %s: publisher key re-trusted by user", sub.id)
+            sub.pinned_public_key = new_key
+            sub.key_status, sub.pending_public_key = "ok", None
+        else:
+            logger.warning("subscription %s: publisher key %s — manifest NOT applied",
+                           sub.id, "REMOVED (unsigned)" if new_key is None else "CHANGED")
+            sub.key_status = "changed"
+            sub.pending_public_key = new_key
+            sub.last_status = "blocked: publisher key changed — review before trusting"
+            sub.last_synced = datetime.now(UTC)
+            db.commit()
+            return sub
+    elif pinned:
+        if sub.key_status == "changed":              # feed went back to the pinned key
+            sub.key_status, sub.pending_public_key = "ok", None
+    elif new_key:
+        logger.info("subscription %s: pinning publisher key on first signed sync", sub.id)
+        sub.pinned_public_key = new_key
+
     pub = manifest.get("publisher") or {}
     sub.collection_id = manifest.get("id")
     sub.title = manifest.get("title")
     sub.publisher_id = pub.get("id")
     sub.publisher_name = pub.get("name")
     sub.publisher_url = pub.get("url")
-    sub.trust = assess_trust(manifest)   # re-evaluate the tier on every sync
+    sub.trust = trust   # re-evaluate the tier on every sync
     sub.cached_manifest = json.dumps(manifest)
     sub.item_count = len(manifest.get("items", []))
     sub.last_status = "ok"

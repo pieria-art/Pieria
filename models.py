@@ -269,6 +269,12 @@ class SubscriptionModel(Base):
     # hash on boot triggers a refresh. NULL = never recorded (refresh once).
     applied_manifest_hash: Mapped[Optional[str]] = mapped_column(String)
     metadata_refreshed_at: Mapped[Optional[datetime]] = mapped_column(DateTime)   # last F8 refresh that ran
+    # L5 key pinning (ADR-148): the publisher signing key pinned at subscribe / first signed sync. A changed
+    # key blocks the feed ('changed', new key in pending_public_key) until re-trusted; 'rotated' = a
+    # verified-registry rotation we followed (pending_public_key then holds the previous pin).
+    pinned_public_key: Mapped[Optional[str]] = mapped_column(String)
+    key_status: Mapped[str] = mapped_column(String, default="ok", server_default="ok")
+    pending_public_key: Mapped[Optional[str]] = mapped_column(String)
     item_count: Mapped[int] = mapped_column(Integer, default=0)
     last_synced: Mapped[Optional[datetime]] = mapped_column(DateTime)
     last_status: Mapped[Optional[str]] = mapped_column(String)      # 'ok' | 'error: …'

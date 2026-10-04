@@ -1086,6 +1086,43 @@ function trustBadge(origin, trust) {
     return `<span class="trust-badge" style="font-size:0.62rem; padding:2px 8px; border-radius:10px; border:1px solid ${b.color}; color:${b.color}; white-space:nowrap;">${b.label}</span>`;
 }
 
+// L5 (ADR-148): publisher-key pinning warning row. 'changed' = feed BLOCKED until re-trusted; 'rotated' =
+// a verified-registry rotation we followed (FYI, acknowledge). All strings escaped.
+function _keyWarning(s) {
+    if (s.key_status !== 'changed' && s.key_status !== 'rotated') return '';
+    const changed = s.key_status === 'changed';
+    const oldFp = changed ? s.pinned_fingerprint : s.pending_fingerprint;
+    const newFp = changed ? s.pending_fingerprint : s.pinned_fingerprint;
+    const colour = changed ? '#ef4444' : '#f59e0b';
+    const head = changed ? 'Publisher key changed \u2014 review before trusting'
+                         : 'Verified publisher key rotated (followed the registry)';
+    const note = changed ? 'Syncing is paused; the last good works keep showing.' : 'Acknowledge to dismiss.';
+    const fp = v => v ? `<code>${_esc(v)}</code>` : '<em>none (unsigned)</em>';
+    return `<div style="margin-top:10px; padding:10px; border:1px solid ${colour}; border-radius:6px; font-size:0.78rem;">
+        <strong style="color:${colour};">${_esc(head)}</strong><br>
+        <small style="color:#94a3b8;">Old key: ${fp(oldFp)} &rarr; New key: ${fp(newFp)}<br>${_esc(note)}</small>
+        <div style="display:flex; gap:8px; margin-top:8px;">
+            <button class="secondary" onclick="retrustSubscription(${Number(s.id)}, '${_esc((s.title || s.url).replace(/'/g, ''))}', '${_esc(s.key_status)}')" style="padding:6px 12px; font-size:0.75rem;">${changed ? 'Trust' : 'Acknowledge'}</button>
+            ${changed ? `<button class="secondary" onclick="removeSubscription(${Number(s.id)}, '${_esc((s.title || s.url).replace(/'/g, ''))}')" style="padding:6px 12px; font-size:0.75rem; border-color:#ef4444; color:#ef4444;">Remove</button>` : ''}
+        </div>
+    </div>`;
+}
+
+async function retrustSubscription(id, name, status) {
+    if (status === 'changed' && !(await confirmModal(
+        `Trust the new signing key for "${name}"? Only do this if you expect the publisher changed keys.`,
+        { confirmText: 'Trust new key', danger: true }))) return;
+    try {
+        const res = await fetch(`${API_BASE}/api/subscriptions/${id}/retrust`, { method: 'POST' });
+        const data = await res.json();
+        if (!res.ok) { showToast(data.detail || 'Could not re-trust.', 'error'); return; }
+        showToast(data.key_status === 'ok' ? 'Key trusted \u2713' : 'Feed key changed again \u2014 review it.',
+                  data.key_status === 'ok' ? 'success' : 'error');
+        loadSubscriptions();
+    } catch (e) { showToast('Network error.', 'error'); }
+}
+window.retrustSubscription = retrustSubscription;
+
 async function loadSubscriptions() {
     const list = document.getElementById('subscriptions-list');
     if (!list) return;
@@ -1110,6 +1147,7 @@ async function loadSubscriptions() {
                         <button class="secondary" onclick="removeSubscription(${s.id}, '${_esc((s.title || s.url).replace(/'/g, ''))}')" style="padding:6px 12px; font-size:0.75rem; border-color:#ef4444; color:#ef4444;">Remove</button>
                     </div>
                 </div>
+                ${_keyWarning(s)}
             </div>`;
         }).join('');
     } catch (e) { console.error('[Admin] loadSubscriptions failed:', e); }
