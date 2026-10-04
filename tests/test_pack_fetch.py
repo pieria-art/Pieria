@@ -635,7 +635,7 @@ async def test_settings_fetch_remote_json_refuses_redirect_to_private_host(monke
 
     real_async_client = httpx.AsyncClient
     monkeypatch.setattr(federation, "_assert_public_url", guard)
-    monkeypatch.setattr(settings_util.httpx, "AsyncClient",
+    monkeypatch.setattr(settings_util.safe_http, "safe_async_client",
                         lambda **k: real_async_client(transport=httpx.MockTransport(handler)))
 
     with pytest.raises(federation.FederationError):
