@@ -131,9 +131,11 @@ def _resolve_scheduled(schedule: dict, now: datetime) -> dict:
 # "Art off when we leave / on when we're home". One global override in the Settings KV, layered over the
 # schedule by resolve_schedule_state, so the Canvas blackout AND the appliance CEC timer (both poll
 # schedule-state) honour it with no other change. Stored as JSON {"on": bool, "until": epoch|None}.
-#   on:true  -> quiet NOW, until `until` or indefinitely.
-#   on:false -> NOT quiet until `until` or the next scheduled quiet transition, whichever is first
-#               (the expiry is resolved once, at set time, and stored — so "until" is always honest).
+# Tri-state at the API: mode on (force quiet) / off (force awake) / auto (no override).
+#   on / off -> ends at `until` or at the NEXT scheduled quiet boundary, whichever is first, so a forced
+#               state never sticks silently. (The expiry is resolved once, at set time, and stored — so
+#               "until" is always honest.) With no quiet schedule there is no boundary: indefinite.
+#   auto     -> the override is deleted; the schedule rules.
 # An expired override is deleted the next time it is read.
 QUIET_OVERRIDE_KEY = "quiet_override"
 
@@ -177,29 +179,32 @@ def get_quiet_override(db: Session, now_utc: Optional[datetime] = None) -> Optio
     return {"on": on, "until": until}
 
 
-def set_quiet_override(db: Session, schedule: dict, on: bool, until: Optional[datetime],
-                       now_local: Optional[datetime] = None, now_utc: Optional[datetime] = None) -> None:
-    """Persist an override (see the block comment for on:true / on:false expiry). `until` must be aware."""
-    now_local = now_local or datetime.now()
-    now_utc = now_utc or datetime.now(UTC)
+def set_quiet_override(db: Session, schedule: dict, on: Optional[bool], until: Optional[datetime],
+                       now_local: Optional[datetime] = None) -> None:
+    """Persist an override (see the block comment for the expiry rule); `on=None` clears it (auto).
+    `until` must be aware."""
+    if on is None:
+        db.query(SettingsModel).filter(SettingsModel.setting_key == QUIET_OVERRIDE_KEY).delete()
+        db.commit()
+        return
+    _active, flip = _schedule_quiet_window(schedule, now_local or datetime.now())
     expiry = until
-    if not on:
-        _active, flip = _schedule_quiet_window(schedule, now_local)
-        if flip is not None and (expiry is None or flip < expiry):
-            expiry = flip
+    if flip is not None and (expiry is None or flip < expiry):
+        expiry = flip
     _upsert_setting(db, QUIET_OVERRIDE_KEY,
                     json.dumps({"on": on, "until": expiry.timestamp() if expiry else None}))
     db.commit()
 
 
 def quiet_status(schedule: dict, override: Optional[dict], now_local: Optional[datetime] = None) -> dict:
-    """{"active", "source": schedule|manual|none, "until": aware-UTC datetime | None}."""
+    """{"active", "mode": on|off|auto, "source": schedule|manual|none, "until": aware-UTC datetime|None}."""
     if override is not None:
-        return {"active": override["on"], "source": "manual", "until": override["until"]}
+        return {"active": override["on"], "mode": "on" if override["on"] else "off", "source": "manual",
+                "until": override["until"]}
     active, flip = _schedule_quiet_window(schedule, now_local or datetime.now())
     if active:
-        return {"active": True, "source": "schedule", "until": flip}
-    return {"active": False, "source": "none", "until": None}
+        return {"active": True, "mode": "auto", "source": "schedule", "until": flip}
+    return {"active": False, "mode": "auto", "source": "none", "until": None}
 
 
 def resolve_schedule_state(schedule: dict, now: datetime, override: Optional[dict] = None) -> dict:

@@ -574,7 +574,7 @@ def test_expired_pending_show_is_ignored(env):
     assert _next(c, "panel")["metadata"]["id"] == arts[0].id
 
 
-# --- A2: manual quiet override -----------------------------------------------------------------------
+# --- A2: manual quiet override (tri-state: on / off / auto) --------------------------------------------
 
 def _quiet_schedule(c, db, start, end, enabled=True):
     c.patch("/api/v1/schedule", json={"quiet_enabled": enabled, "quiet_start": start, "quiet_end": end},
@@ -585,71 +585,95 @@ def _iso(dt):
     return dt.astimezone(UTC).isoformat()
 
 
+def _expire_override(db, on):
+    row = db.query(SettingsModel).filter_by(setting_key="quiet_override").one()
+    row.setting_value = json.dumps({"on": on, "until": (datetime.now(UTC) - timedelta(seconds=1)).timestamp()})
+    db.commit()
+
+
 def test_quiet_default_and_schedule_source(env):
     c, db = env
     read = _mint(db, ["read"])
-    assert c.get("/api/v1/quiet", headers=read).json() == {"active": False, "source": "none", "until": None}
+    assert c.get("/api/v1/quiet", headers=read).json() == {"active": False, "mode": "auto",
+                                                           "source": "none", "until": None}
     _quiet_schedule(c, db, "00:00", "23:59")
     q = c.get("/api/v1/quiet", headers=read).json()
-    assert q["active"] is True and q["source"] == "schedule" and q["until"] is not None
+    assert q["active"] is True and q["mode"] == "auto" and q["source"] == "schedule"
     assert datetime.fromisoformat(q["until"]) > datetime.now(UTC)
     assert q["until"].endswith("Z") or q["until"].endswith("+00:00")
 
 
-def test_quiet_on_forces_quiet_with_and_without_until(env):
+def test_quiet_on_without_a_schedule_is_indefinite_and_with_until_ends_there(env):
     c, db = env
     read, ctl = _mint(db, ["read"]), _mint(db, ["control"])
-    r = c.post("/api/v1/quiet", json={"on": True}, headers=ctl)
-    assert r.status_code == 200 and r.json() == {"active": True, "source": "manual", "until": None}
+    r = c.post("/api/v1/quiet", json={"mode": "on"}, headers=ctl)
+    assert r.status_code == 200
+    assert r.json() == {"active": True, "mode": "on", "source": "manual", "until": None}
     assert c.get("/api/v1/quiet", headers=read).json() == r.json()
     until = datetime.now(UTC) + timedelta(hours=2)
-    r = c.post("/api/v1/quiet", json={"on": True, "until": _iso(until)}, headers=ctl).json()
-    assert r["active"] is True and r["source"] == "manual"
+    r = c.post("/api/v1/quiet", json={"mode": "on", "until": _iso(until)}, headers=ctl).json()
+    assert r["active"] is True and r["source"] == "manual" and r["mode"] == "on"
     assert abs((datetime.fromisoformat(r["until"]) - until).total_seconds()) < 1
     # naive until is read as UTC
     naive = (datetime.now(UTC) + timedelta(hours=1)).replace(tzinfo=None, microsecond=0)
-    r = c.post("/api/v1/quiet", json={"on": True, "until": naive.isoformat()}, headers=ctl).json()
+    r = c.post("/api/v1/quiet", json={"mode": "on", "until": naive.isoformat()}, headers=ctl).json()
     assert datetime.fromisoformat(r["until"]).replace(tzinfo=None) == naive
 
 
-def test_quiet_until_in_the_past_is_422_and_writes_nothing(env):
-    c, db = env
-    ctl = _mint(db, ["control"])
-    r = c.post("/api/v1/quiet", json={"on": True, "until": _iso(datetime.now(UTC) - timedelta(minutes=1))},
-               headers=ctl)
-    assert r.status_code == 422 and r.json()["error"]["code"] == "validation_error"
-    assert db.query(SettingsModel).filter_by(setting_key="quiet_override").count() == 0
-    for body in ({}, {"on": "maybe"}, {"on": True, "x": 1}, {"on": True, "until": "soon"}):
-        assert c.post("/api/v1/quiet", json=body, headers=ctl).status_code == 422
-
-
-def test_quiet_off_overrides_a_scheduled_quiet_until_its_end(env):
+def test_quiet_forced_states_end_at_the_next_schedule_boundary_or_until(env):
+    """on/off never stick silently: capped at the next scheduled quiet boundary, whichever is first."""
     c, db = env
     read, ctl = _mint(db, ["read"]), _mint(db, ["control"])
     _quiet_schedule(c, db, "00:00", "23:59")                         # scheduled quiet right now
-    sched_end = datetime.fromisoformat(c.get("/api/v1/quiet", headers=read).json()["until"])
-    r = c.post("/api/v1/quiet", json={"on": False}, headers=ctl).json()
-    assert r["active"] is False and r["source"] == "manual"
-    assert datetime.fromisoformat(r["until"]) == sched_end            # capped at the scheduled transition
-    # a nearer `until` wins over the transition
-    near = datetime.now(UTC) + timedelta(minutes=5)
-    r = c.post("/api/v1/quiet", json={"on": False, "until": _iso(near)}, headers=ctl).json()
+    boundary = datetime.fromisoformat(c.get("/api/v1/quiet", headers=read).json()["until"])
+    r = c.post("/api/v1/quiet", json={"mode": "off"}, headers=ctl).json()
+    assert r["active"] is False and r["mode"] == "off" and r["source"] == "manual"
+    assert datetime.fromisoformat(r["until"]) == boundary
+    r = c.post("/api/v1/quiet", json={"mode": "on"}, headers=ctl).json()       # on, no until: capped too
+    assert r["active"] is True and datetime.fromisoformat(r["until"]) == boundary
+    near = datetime.now(UTC) + timedelta(minutes=5)                            # a nearer until wins
+    r = c.post("/api/v1/quiet", json={"mode": "off", "until": _iso(near)}, headers=ctl).json()
     assert abs((datetime.fromisoformat(r["until"]) - near).total_seconds()) < 1
-    # a farther `until` is still capped at the transition
-    far = datetime.now(UTC) + timedelta(days=3)
-    r = c.post("/api/v1/quiet", json={"on": False, "until": _iso(far)}, headers=ctl).json()
-    assert datetime.fromisoformat(r["until"]) == sched_end
+    far = datetime.now(UTC) + timedelta(days=3)                                # a farther one is capped
+    r = c.post("/api/v1/quiet", json={"mode": "off", "until": _iso(far)}, headers=ctl).json()
+    assert datetime.fromisoformat(r["until"]) == boundary
+
+
+def test_quiet_auto_clears_the_override(env):
+    c, db = env
+    ctl = _mint(db, ["control"])
+    _quiet_schedule(c, db, "00:00", "23:59")
+    c.post("/api/v1/quiet", json={"mode": "off"}, headers=ctl)
+    assert c.get("/api/displays/wall/schedule-state").json()["quiet"] is False
+    r = c.post("/api/v1/quiet", json={"mode": "auto"}, headers=ctl).json()
+    assert r["mode"] == "auto" and r["source"] == "schedule" and r["active"] is True
+    assert db.query(SettingsModel).filter_by(setting_key="quiet_override").count() == 0
+    assert c.get("/api/displays/wall/schedule-state").json()["quiet"] is True
+    # auto when nothing is set is a harmless no-op, and ignores an `until`
+    assert c.post("/api/v1/quiet", json={"mode": "auto", "until": "2000-01-01T00:00:00Z"},
+                  headers=ctl).status_code == 200
+
+
+def test_quiet_validation_is_422_and_writes_nothing(env):
+    c, db = env
+    ctl = _mint(db, ["control"])
+    r = c.post("/api/v1/quiet", json={"mode": "on", "until": _iso(datetime.now(UTC) - timedelta(minutes=1))},
+               headers=ctl)
+    assert r.status_code == 422 and r.json()["error"]["code"] == "validation_error"
+    assert db.query(SettingsModel).filter_by(setting_key="quiet_override").count() == 0
+    for body in ({}, {"on": True}, {"mode": "maybe"}, {"mode": True}, {"mode": "on", "x": 1},
+                 {"mode": "on", "until": "soon"}):
+        assert c.post("/api/v1/quiet", json=body, headers=ctl).status_code == 422, body
 
 
 def test_quiet_override_expires_and_clears_itself(env):
     c, db = env
     read, ctl = _mint(db, ["read"]), _mint(db, ["control"])
-    c.post("/api/v1/quiet", json={"on": True, "until": _iso(datetime.now(UTC) + timedelta(hours=1))},
+    c.post("/api/v1/quiet", json={"mode": "on", "until": _iso(datetime.now(UTC) + timedelta(hours=1))},
            headers=ctl)
-    row = db.query(SettingsModel).filter_by(setting_key="quiet_override").one()
-    row.setting_value = json.dumps({"on": True, "until": (datetime.now(UTC) - timedelta(seconds=1)).timestamp()})
-    db.commit()
-    assert c.get("/api/v1/quiet", headers=read).json() == {"active": False, "source": "none", "until": None}
+    _expire_override(db, True)
+    assert c.get("/api/v1/quiet", headers=read).json() == {"active": False, "mode": "auto",
+                                                           "source": "none", "until": None}
     assert db.query(SettingsModel).filter_by(setting_key="quiet_override").count() == 0
 
 
@@ -659,27 +683,133 @@ def test_quiet_override_reaches_schedule_state_for_canvas_and_cec(env):
     read, ctl = _mint(db, ["read"]), _mint(db, ["control"])
     internal = "/api/displays/wall/schedule-state"
     assert c.get(internal).json()["quiet"] is False
-    c.post("/api/v1/quiet", json={"on": True}, headers=ctl)
+    c.post("/api/v1/quiet", json={"mode": "on"}, headers=ctl)
     st = c.get(internal).json()
     assert st["quiet"] is True and st["quiet_mode"] == "cec"          # quiet_enabled is False; override wins
     assert c.get("/api/v1/schedule/state", headers=read).json()["quiet"] is True
     # forced-off beats a scheduled quiet window
     _quiet_schedule(c, db, "00:00", "23:59")
-    c.post("/api/v1/quiet", json={"on": False}, headers=ctl)
+    c.post("/api/v1/quiet", json={"mode": "off"}, headers=ctl)
     assert c.get(internal).json()["quiet"] is False
     assert c.get("/api/v1/schedule/state", headers=read).json()["quiet"] is False
     # an expired override stops mattering
-    row = db.query(SettingsModel).filter_by(setting_key="quiet_override").one()
-    row.setting_value = json.dumps({"on": False, "until": (datetime.now(UTC) - timedelta(seconds=1)).timestamp()})
-    db.commit()
+    _expire_override(db, False)
     assert c.get(internal).json()["quiet"] is True                    # back to the schedule
 
 
 def test_quiet_override_works_with_the_schedule_disabled(env):
     c, db = env
     c.patch("/api/v1/schedule", json={"enabled": False}, headers=_mint(db, ["control"]))
-    c.post("/api/v1/quiet", json={"on": True}, headers=_mint(db, ["control"]))
+    c.post("/api/v1/quiet", json={"mode": "on"}, headers=_mint(db, ["control"]))
     assert c.get("/api/displays/wall/schedule-state").json()["quiet"] is True
+
+
+# --- A2 contract additions: playlist_id, updated_at, name, info features, kind rules, id caps -----------
+
+def test_set_playlist_by_id_or_name_exactly_one(env):
+    c, db = env
+    summer = _playlist(db, "Summer", [_art(db)])
+    hidden = _playlist(db, "_internal", [_art(db, "H")])
+    _display(db, "wall", kind="canvas")
+    h = _mint(db, ["control"])
+    r = c.post("/api/v1/displays/wall/commands", json={"action": "set_playlist", "playlist_id": summer.id}, headers=h)
+    assert r.status_code == 202
+    assert json.loads(db.query(RemoteCommandModel).one().payload) == {"action": "set_playlist", "playlist": "Summer"}
+    for body in ({"action": "set_playlist"},
+                 {"action": "set_playlist", "playlist": "Summer", "playlist_id": summer.id},
+                 {"action": "set_playlist", "playlist": "  "},
+                 {"action": "set_playlist", "playlist_id": 0},
+                 {"action": "set_playlist", "playlist_id": 10**30}):
+        assert c.post("/api/v1/displays/wall/commands", json=body, headers=h).status_code == 422, body
+    for body in ({"action": "set_playlist", "playlist_id": 9999},
+                 {"action": "set_playlist", "playlist_id": hidden.id}):
+        r = c.post("/api/v1/displays/wall/commands", json=body, headers=h)
+        assert r.status_code == 422 and r.json()["error"]["code"] == "unknown_playlist"
+    assert db.query(RemoteCommandModel).count() == 1
+
+
+def test_display_name_playlist_id_and_updated_at(env):
+    c, db = env
+    arts = [_art(db, f"A{i}") for i in range(3)]
+    pl = _playlist(db, "Seq", arts)
+    _display(db, "wall", age_s=2, kind="canvas")
+    read, ctl = _mint(db, ["read"]), _mint(db, ["control"])
+    d = c.get("/api/v1/displays/wall", headers=read).json()
+    assert d["name"] == "wall" and d["playlist_id"] is None
+    assert datetime.fromisoformat(d["updated_at"]) == datetime.fromisoformat(d["last_seen"])   # fallback
+    _next(c)
+    d1 = c.get("/api/v1/displays/wall", headers=read).json()
+    assert d1["playlist"] == "Seq" and d1["playlist_id"] == pl.id
+    t1 = datetime.fromisoformat(d1["updated_at"])
+    assert t1 > datetime.fromisoformat(d["last_seen"])
+    # a held (paused) serve changes nothing; pausing itself does; the next change moves it again
+    c.post("/api/v1/displays/wall/commands", json={"action": "pause"}, headers=ctl)
+    t2 = datetime.fromisoformat(c.get("/api/v1/displays/wall", headers=read).json()["updated_at"])
+    assert t2 >= t1
+    _next(c)
+    assert datetime.fromisoformat(c.get("/api/v1/displays/wall", headers=read).json()["updated_at"]) == t2
+    _next(c, manual="true")
+    t3 = datetime.fromisoformat(c.get("/api/v1/displays/wall", headers=read).json()["updated_at"])
+    assert t3 > t2
+    c.post("/api/v1/displays/wall/commands", json={"action": "set_mode", "mode": "static-crop"}, headers=ctl)
+    assert datetime.fromisoformat(c.get("/api/v1/displays/wall", headers=read).json()["updated_at"]) > t3
+
+
+def test_info_advertises_features_and_the_calling_tokens_scopes(env):
+    c, db = env
+    i = c.get("/api/v1/info", headers=_mint(db, ["read"])).json()
+    assert i["token_scopes"] == ["read"]
+    assert {"displays", "commands", "pause", "show", "quiet", "schedule", "search"} <= set(i["api_features"])
+    assert sorted(c.get("/api/v1/info", headers=_mint(db, ["read", "control"])).json()["token_scopes"]) \
+        == ["control", "read"]
+
+
+@pytest.mark.parametrize("body", [{"action": "next"}, {"action": "previous"}, {"action": "show_placard"},
+                                  {"action": "set_mode", "mode": "static-crop"},
+                                  {"action": "set_playlist", "playlist": "Summer"}])
+@pytest.mark.parametrize("live", [True, False])
+def test_canvas_only_actions_on_pull_based_displays_are_409_unsupported(env, body, live):
+    c, db = env
+    _playlist(db, "Summer", [_art(db)])
+    _display(db, "panel", age_s=1 if live else 3600, kind="eink")
+    _display(db, "frame-tv", age_s=1 if live else 3600)
+    h = _mint(db, ["control"])
+    for did in ("panel", "frame-tv"):
+        r = c.post(f"/api/v1/displays/{did}/commands", json=body, headers=h)
+        assert r.status_code == 409 and r.json()["error"]["code"] == "unsupported_for_kind", (did, r.text)
+    assert db.query(RemoteCommandModel).count() == 0
+    # pause/resume and show remain allowed on them
+    art = _art(db, "X")
+    assert c.post("/api/v1/displays/panel/commands", json={"action": "pause"}, headers=h).status_code == 202
+    assert c.post("/api/v1/displays/frame-tv/show", json={"artwork_id": art.id}, headers=h).status_code == 202
+
+
+def test_unknown_kind_is_treated_as_canvas_and_needs_to_be_live(env):
+    c, db = env
+    _display(db, "mystery", age_s=1)
+    _display(db, "mystery-asleep", age_s=3600)
+    h = _mint(db, ["control"])
+    assert c.post("/api/v1/displays/mystery/commands", json={"action": "next"}, headers=h).status_code == 202
+    r = c.post("/api/v1/displays/mystery-asleep/commands", json={"action": "next"}, headers=h)
+    assert r.status_code == 409 and r.json()["error"]["code"] == "not_live"
+
+
+@pytest.mark.parametrize("path", ["/api/v1/artworks/99999999999999999999",
+                                  "/api/v1/artworks/0", "/api/v1/playlists/99999999999999999999/artworks",
+                                  "/api/v1/playlists/1/artworks?offset=99999999999999999999",
+                                  "/api/v1/playlists/1/artworks?offset=1000001"])
+def test_oversized_ids_and_offsets_are_422_not_500(env, path):
+    c, db = env
+    r = c.get(path, headers=_mint(db, ["read"]))
+    assert r.status_code == 422 and r.json()["error"]["code"] == "validation_error"
+
+
+def test_oversized_show_artwork_id_is_422(env):
+    c, db = env
+    _display(db, "wall", kind="canvas")
+    r = c.post("/api/v1/displays/wall/show", json={"artwork_id": 10**30}, headers=_mint(db, ["control"]))
+    assert r.status_code == 422
+    assert c.get("/next-image", params={"playlist_name": "x", "artwork_id": 10**30}).status_code == 422
 
 
 # --- A2: command TTL ---------------------------------------------------------------------------------
@@ -719,7 +849,11 @@ def test_v1_openapi_describes_the_a2_surface(env):
     schemas = spec["components"]["schemas"]
     assert {"pause", "resume"} <= set(schemas["CommandAction"]["enum"])
     assert schemas["Display"]["properties"]["paused"]["type"] == "boolean"
-    assert set(schemas["QuietState"]["properties"]) == {"active", "source", "until"}
+    assert set(schemas["QuietState"]["properties"]) == {"active", "mode", "source", "until"}
+    assert set(schemas["QuietRequest"]["properties"]) == {"mode", "until"}
+    assert {"playlist", "playlist_id"} <= set(schemas["CommandRequest"]["properties"])
+    assert {"name", "playlist_id", "updated_at"} <= set(schemas["Display"]["properties"])
+    assert {"api_features", "token_scopes"} <= set(schemas["Info"]["properties"])
     assert set(spec["paths"]["/quiet"]) == {"get", "post"}
 
 

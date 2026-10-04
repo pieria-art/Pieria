@@ -249,9 +249,12 @@ def _record_now_playing(db: Session, display_id: str, artwork_id: int, playlist_
     try:
         d = db.query(ActiveDisplayModel).filter(ActiveDisplayModel.display_id == display_id).first()
         if d:
+            if d.current_artwork_id != artwork_id or d.current_playlist != playlist_name:
+                touch_display_updated(db, display_id)
             d.current_artwork_id = artwork_id
             d.current_playlist = playlist_name
         else:
+            touch_display_updated(db, display_id)
             db.add(ActiveDisplayModel(display_id=display_id, current_artwork_id=artwork_id,
                                       current_playlist=playlist_name))
         db.commit()
@@ -340,9 +343,37 @@ def set_display_paused(db: Session, display_id: str, paused: bool) -> None:
     row = db.query(SettingsModel).filter(SettingsModel.setting_key == key).first()
     if paused and row is None:
         db.add(SettingsModel(setting_key=key, setting_value="1"))
+        touch_display_updated(db, display_id)
     elif not paused and row is not None:
         db.delete(row)
+        touch_display_updated(db, display_id)
     db.commit()
+
+
+_UPDATED_PREFIX = "display_updated:"
+
+
+def touch_display_updated(db: Session, display_id: str) -> None:
+    """Stamp "this display's now-playing / paused / mode just changed" (public API `updated_at`, so a
+    client can tell a queued command has taken effect). Rides the caller's commit."""
+    key = _UPDATED_PREFIX + display_id
+    value = datetime.now(UTC).isoformat()
+    row = db.query(SettingsModel).filter(SettingsModel.setting_key == key).first()
+    if row is None:
+        db.add(SettingsModel(setting_key=key, setting_value=value))
+    else:
+        row.setting_value = value
+
+
+def display_updated_at(db: Session, display_id: str) -> Optional[datetime]:
+    row = db.query(SettingsModel.setting_value).filter(
+        SettingsModel.setting_key == _UPDATED_PREFIX + display_id).first()
+    if row is None:
+        return None
+    try:
+        return _as_utc(datetime.fromisoformat(row[0]))
+    except (ValueError, TypeError):
+        return None
 
 
 def set_pending_show(db: Session, display_id: str, artwork_id: int, ttl_sec: int = SHOW_NEXT_TTL_SEC) -> None:

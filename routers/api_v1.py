@@ -21,7 +21,7 @@ from datetime import UTC, datetime
 from enum import StrEnum
 from typing import Literal, Optional
 
-from fastapi import APIRouter, Depends, FastAPI, Query, Request
+from fastapi import APIRouter, Depends, FastAPI, Path, Query, Request
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
@@ -38,12 +38,14 @@ from core import api_tokens
 from core.playback import (
     _as_utc,
     _is_live,
+    display_updated_at,
     is_display_paused,
     known_displays,
     placard_metadata,
     queue_remote_command,
     set_display_paused,
     set_pending_show,
+    touch_display_updated,
 )
 from core.settings_util import (
     ScheduleError,
@@ -68,6 +70,12 @@ from models import (
 logger = logging.getLogger("artwork-display-api")
 
 API_VERSION = 1
+# Capability list `GET /info` advertises; clients feature-detect on it. Additive only.
+API_FEATURES = ["displays", "commands", "pause", "show", "quiet", "schedule", "search"]
+MAX_ID = 2**63 - 1          # SQLite INTEGER ceiling: anything larger is a 422, never a 500
+MAX_OFFSET = 1_000_000
+def IdPath():
+    return Path(..., ge=1, le=MAX_ID)   # a fresh FieldInfo per parameter (FastAPI binds the name onto it)
 SERVER_ID_KEY = "server_id"
 DISPLAY_MODE_PREFIX = "display_mode:"   # last render mode commanded through this API, per display
 
@@ -184,6 +192,10 @@ class Info(BaseModel):
     server_id: str = Field(description="UUID minted once on first use and stable across restarts and "
                                        "upgrades (restored with a backup). Use it as the unique id of this server.")
     display_name: Optional[str] = Field(None, description="The appliance's configured name, if any.")
+    api_features: list[str] = Field(description="Capabilities this server offers (e.g. `pause`, `show`, "
+                                                "`quiet`). Feature-detect on this, not on the version; new "
+                                                "values are only ever added.")
+    token_scopes: list[str] = Field(description="The scopes (`read`, `control`) of the token making this call.")
 
 
 class ArtworkCompact(BaseModel):
@@ -200,6 +212,9 @@ class ArtworkCompact(BaseModel):
 
 class Display(BaseModel):
     id: str = Field(description="The display's id (what you put in the URL).")
+    name: str = Field(description="Friendly name for UI. Pieria has no separate display-name setting "
+                                  "(the appliance's configured name IS its display id), so this equals "
+                                  "`id` today; show it, but address the display by `id`.")
     live: bool = Field(description="Checking in right now (heartbeat within ~15 s). Only live displays "
                                    "accept commands.")
     last_seen: datetime = Field(description="Last check-in (UTC).")
@@ -209,6 +224,11 @@ class Display(BaseModel):
                     "time it checks in).")
     playlist: Optional[str] = Field(None, description="Name of the playlist it is playing "
                                                       "(the same string `set_playlist` takes).")
+    playlist_id: Optional[int] = Field(None, description="Id of that playlist (what `set_playlist` also "
+                                                         "accepts); null if unknown or since renamed.")
+    updated_at: datetime = Field(description="UTC. When this display's now-playing, paused flag or mode "
+                                             "last changed (falls back to `last_seen` before the first "
+                                             "change) — compare it to tell a queued command has taken effect.")
     mode: Optional[RenderMode] = Field(None, description="Render mode, canvas displays only. Best effort: "
                                                          "the last mode commanded through this API, else the "
                                                          "playlist's default mode.")
@@ -222,14 +242,19 @@ class Display(BaseModel):
 class CommandRequest(BaseModel):
     model_config = ConfigDict(extra="forbid")
     action: CommandAction
-    playlist: Optional[str] = Field(None, description="Required for `set_playlist`: a playlist name from "
-                                                      "`GET /playlists`.")
+    playlist: Optional[str] = Field(None, description="`set_playlist`: a playlist name from "
+                                                      "`GET /playlists`. Give this OR `playlist_id`.")
+    playlist_id: Optional[int] = Field(None, ge=1, le=MAX_ID,
+                                       description="`set_playlist`: a playlist id from `GET /playlists`. "
+                                                   "Give this OR `playlist`.")
     mode: Optional[RenderMode] = Field(None, description="Required for `set_mode`.")
 
     @model_validator(mode="after")
     def _needs(self):
-        if self.action is CommandAction.set_playlist and not (self.playlist or "").strip():
-            raise ValueError("`playlist` is required for set_playlist")
+        if self.action is CommandAction.set_playlist:
+            named = bool((self.playlist or "").strip())
+            if named == (self.playlist_id is not None):
+                raise ValueError("set_playlist needs exactly one of `playlist` (name) or `playlist_id`")
         if self.action is CommandAction.set_mode and self.mode is None:
             raise ValueError("`mode` is required for set_mode")
         return self
@@ -241,20 +266,26 @@ class CommandAccepted(BaseModel):
 
 class ShowRequest(BaseModel):
     model_config = ConfigDict(extra="forbid")
-    artwork_id: int = Field(description="An approved artwork id (see `GET /artworks/{id}`, `GET /search`).")
+    artwork_id: int = Field(ge=1, le=MAX_ID, description="An approved artwork id (see `GET /artworks/{id}`, `GET /search`).")
 
 
 class QuietRequest(BaseModel):
     model_config = ConfigDict(extra="forbid")
-    on: bool = Field(description="true = force quiet now. false = force NOT quiet now.")
+    mode: Literal["on", "off", "auto"] = Field(
+        description="on = force quiet now. off = force awake now. auto = clear any override; the "
+                    "quiet-hours schedule rules again.")
     until: Optional[datetime] = Field(
         None, description="ISO-8601 instant (a value with no offset is read as UTC); must be in the "
-                          "future. on:true without `until` lasts until you change it. on:false ends at "
-                          "`until` or at the next scheduled quiet transition, whichever comes first.")
+                          "future. For on/off the override ends at `until` if given, else at the NEXT "
+                          "scheduled quiet boundary (whichever is first) — so a forced state never sticks "
+                          "silently; with no quiet schedule configured it lasts until changed. Ignored "
+                          "for auto.")
 
 
 class QuietState(BaseModel):
     active: bool = Field(description="Quiet (panel off/blank) right now, whatever the cause.")
+    mode: Literal["on", "off", "auto"] = Field(
+        description="The override in force: on / off, or auto when none (the schedule rules).")
     source: Literal["schedule", "manual", "none"] = Field(
         description="manual = an override from `POST /quiet` is in force (it may force quiet OFF too); "
                     "schedule = the quiet-hours schedule is making it quiet; none = not quiet.")
@@ -406,8 +437,13 @@ def _display_view(db: Session, row: ActiveDisplayModel, live: bool, frame_id: st
             mode = None
     art = (db.query(ArtworkModel).filter(ArtworkModel.id == row.current_artwork_id).first()
            if row.current_artwork_id else None)
-    return Display(id=row.display_id, live=live, last_seen=_as_utc(row.last_seen_at), kind=kind,
-                   playlist=row.current_playlist, mode=mode, artwork=_compact(art) if art else None,
+    pl = (db.query(PlaylistModel.id).filter(PlaylistModel.name == row.current_playlist).first()
+          if row.current_playlist else None)
+    last_seen = _as_utc(row.last_seen_at)
+    return Display(id=row.display_id, name=row.display_id, live=live, last_seen=last_seen, kind=kind,
+                   playlist=row.current_playlist, playlist_id=pl[0] if pl else None,
+                   updated_at=display_updated_at(db, row.display_id) or last_seen,
+                   mode=mode, artwork=_compact(art) if art else None,
                    paused=is_display_paused(db, row.display_id))
 
 
@@ -439,14 +475,16 @@ router = APIRouter(responses=_RESP)
 # ---------------------------------------------------------------------------------------------------
 
 @router.get("/info", response_model=Info, tags=["server"], summary="Server identity and version",
-            dependencies=[Depends(require_read)])
-def get_info(db: Session = Depends(get_db)):
+            description="Also what to feature-detect on (`api_features`) and what the calling token may do "
+                        "(`token_scopes`).")
+def get_info(token: ApiTokenModel = Depends(require_read), db: Session = Depends(get_db)):
     display_name = None
     if config.IS_APPLIANCE:
         conf = host_health.read_conf() or {}
         display_name = (conf.get("values") or {}).get("DISPLAY_ID") or None
     return Info(name="Pieria", version=config.APP_VERSION, api_version=API_VERSION,
-                appliance_mode=config.IS_APPLIANCE, server_id=_server_id(db), display_name=display_name)
+                appliance_mode=config.IS_APPLIANCE, server_id=_server_id(db), display_name=display_name,
+                api_features=API_FEATURES, token_scopes=api_tokens.token_scopes(token))
 
 
 @router.get("/displays", response_model=list[Display], tags=["displays"],
@@ -480,7 +518,10 @@ _ACTION_TO_INTERNAL = {CommandAction.next: "next_image", CommandAction.previous:
              responses={404: {"model": ErrorResponse, "description": "Unknown display."},
                         409: {"model": ErrorResponse,
                               "description": "`not_live`: the display is not checking in, so the command "
-                                             "was NOT queued (it would never be delivered)."},
+                                             "was NOT queued (it would never be delivered). "
+                                             "`unsupported_for_kind`: a canvas-only action "
+                                             "(next/previous/show_placard/set_playlist/set_mode) sent to "
+                                             "an e-ink or Frame display, which has no live channel."},
                         422: {"model": ErrorResponse,
                               "description": "Unknown action/mode, missing field, or unknown playlist."}})
 def post_command(display_id: str, body: CommandRequest, db: Session = Depends(get_db)):
@@ -488,7 +529,8 @@ def post_command(display_id: str, body: CommandRequest, db: Session = Depends(ge
 
     `pause` / `resume` set a server-side flag first, so they also succeed (202) on a sleeping e-ink or
     Frame display, which honours the flag on its next pull; a Canvas additionally gets the command
-    relayed so it stops/starts its own timer."""
+    relayed so it stops/starts its own timer. A display of `unknown` kind (not stamped yet) is treated
+    as a Canvas: it needs to be live."""
     row = db.query(ActiveDisplayModel).filter(ActiveDisplayModel.display_id == display_id).first()
     if row is None:
         raise ApiError(404, "not_found", "no such display")
@@ -500,18 +542,26 @@ def post_command(display_id: str, body: CommandRequest, db: Session = Depends(ge
         if not pull_based:
             queue_remote_command(db, display_id, body.action.value)
         return CommandAccepted()
+    if _display_kind(row, _frame_id(db)) in ("eink", "frame"):
+        raise ApiError(409, "unsupported_for_kind",
+                       f"{body.action.value!r} needs a live Canvas display; this display is pull-based "
+                       "(only pause, resume and show apply)")
     playlist = None
     if body.action is CommandAction.set_playlist:
-        playlist = body.playlist.strip()
-        pl = db.query(PlaylistModel).filter(PlaylistModel.name == playlist).first()
+        if body.playlist_id is not None:
+            pl = db.query(PlaylistModel).filter(PlaylistModel.id == body.playlist_id).first()
+        else:
+            pl = db.query(PlaylistModel).filter(PlaylistModel.name == body.playlist.strip()).first()
         if pl is None or pl.name.startswith("_"):
-            raise ApiError(422, "unknown_playlist", f"no playlist named {playlist!r}")
+            raise ApiError(422, "unknown_playlist", "no such playlist")
+        playlist = pl.name
     if not _is_live(row, datetime.now(UTC)):
         raise ApiError(409, "not_live", "display is not live (not checking in); command not queued")
     mode = body.mode.value if body.action is CommandAction.set_mode else None
     queue_remote_command(db, display_id, _ACTION_TO_INTERNAL[body.action], playlist, mode)
     if mode:
         _upsert_setting(db, DISPLAY_MODE_PREFIX + display_id, mode)
+        touch_display_updated(db, display_id)
         db.commit()
     return CommandAccepted()
 
@@ -560,7 +610,8 @@ def list_playlists(db: Session = Depends(get_db)):
 @router.get("/playlists/{playlist_id}/artworks", response_model=ArtworkPage, tags=["library"],
             summary="Artworks in a playlist, in playlist order", dependencies=[Depends(require_read)],
             responses={404: {"model": ErrorResponse, "description": "Unknown playlist."}})
-def list_playlist_artworks(playlist_id: int, limit: int = Query(50, ge=1, le=200), offset: int = Query(0, ge=0),
+def list_playlist_artworks(playlist_id: int = IdPath(), limit: int = Query(50, ge=1, le=200),
+                           offset: int = Query(0, ge=0, le=MAX_OFFSET),
                            db: Session = Depends(get_db)):
     p = _visible_playlist(db, playlist_id)
     base = (db.query(ArtworkModel).join(playlist_artwork, playlist_artwork.c.artwork_id == ArtworkModel.id)
@@ -574,7 +625,7 @@ def list_playlist_artworks(playlist_id: int, limit: int = Query(50, ge=1, le=200
             summary="One artwork: placard, metadata, licence and credit",
             dependencies=[Depends(require_read)],
             responses={404: {"model": ErrorResponse, "description": "Unknown (or unapproved) artwork."}})
-def get_artwork(artwork_id: int, db: Session = Depends(get_db)):
+def get_artwork(artwork_id: int = IdPath(), db: Session = Depends(get_db)):
     from config import strip_markdown
     a = db.query(ArtworkModel).filter(ArtworkModel.id == artwork_id,
                                       ArtworkModel.status == "approved").first()
@@ -658,18 +709,18 @@ def get_quiet(db: Session = Depends(get_db)):
              summary="Manually force quiet on or off", dependencies=[Depends(require_control)],
              responses={422: {"model": ErrorResponse, "description": "`until` is in the past."}})
 def post_quiet(body: QuietRequest, db: Session = Depends(get_db)):
-    """`on:true` blanks the display now (Canvas blackout; the appliance also powers the panel off when
-    quiet mode is `cec`) until `until`, or indefinitely. `on:false` forces NOT quiet until `until` or the
-    next scheduled quiet transition, whichever is first. Takes effect on the display's next schedule poll
-    (~60 s for the Canvas). Returns the resulting state, same as `GET /quiet`."""
-    until = body.until
+    """`mode:on` blanks the display now (Canvas blackout; the appliance also powers the panel off when
+    quiet mode is `cec`); `mode:off` forces it awake; `mode:auto` clears the override. on/off end at
+    `until` or the next scheduled quiet boundary, whichever is first. Takes effect on the display's next
+    schedule poll (~60 s for the Canvas). Returns the resulting state, same as `GET /quiet`."""
+    until = body.until if body.mode != "auto" else None
     if until is not None:
         if until.tzinfo is None:
             until = until.replace(tzinfo=UTC)
         until = until.astimezone(UTC)
         if until <= datetime.now(UTC):
             raise ApiError(422, "validation_error", "until must be in the future")
-    set_quiet_override(db, _load_schedule(db), body.on, until)
+    set_quiet_override(db, _load_schedule(db), {"on": True, "off": False, "auto": None}[body.mode], until)
     return _quiet_view(db)
 
 

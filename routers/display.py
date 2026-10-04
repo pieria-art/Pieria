@@ -130,7 +130,7 @@ async def get_next_image(
     direction: int = Query(1),
     manual: bool = Query(False, description="A viewer/remote-initiated advance: advances even while the "
                                             "display is paused (the auto-advance timer never sets this)."),
-    artwork_id: Optional[int] = Query(None, description="Show this approved artwork now (the Canvas's "
+    artwork_id: Optional[int] = Query(None, ge=1, le=2**63 - 1, description="Show this approved artwork now (the Canvas's "
                                                          "`show_artwork` command), then carry on from it."),
     db: Session = Depends(get_db)
 ):
