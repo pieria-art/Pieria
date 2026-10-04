@@ -386,6 +386,15 @@ if [ "${ALL_IN_ONE:-0}" = "1" ]; then
   echo "==> Advertising the server over mDNS (friendly name in network browsers)"
   install -d /etc/avahi/services
   install -m 0644 "$HERE/avahi/pieria.service" /etc/avahi/services/pieria.service
+  # `_pieria._tcp` (Home Assistant / API discovery): its TXT values (version, server_id) are dynamic and
+  # avahi files are static XML, so a host helper GENERATES /etc/avahi/services/pieria-api.service from the
+  # app's loopback identity route — at boot (this unit), and again after each update-app (sd-update).
+  install -m 0755 "$BIN_SRC/sd-avahi-publish" /usr/local/bin/sd-avahi-publish
+  install -m 0644 "$UNIT_SRC/sd-avahi-publish.service" /etc/systemd/system/sd-avahi-publish.service
+  systemctl daemon-reload
+  systemctl enable sd-avahi-publish.service 2>/dev/null || echo "    (could not enable sd-avahi-publish.service)"
+  # --no-block: it waits (bounded) for the app, which may not be up yet on a first install.
+  systemctl start --no-block sd-avahi-publish.service 2>/dev/null || true
 
   echo "==> Installing GUI update bridge (Admin -> Devices -> Maintenance)"
   sed "s#__REPO_ROOT__#$REPO_ROOT#g" "$UNIT_SRC/sd-update.path"    > /etc/systemd/system/sd-update.path

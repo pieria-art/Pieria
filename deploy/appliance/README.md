@@ -303,6 +303,7 @@ like Fire TV / bring-your-own-browser; it's simply inert here.)
 | `systemd/sd-eink.service` | (optional, `EINK_ENABLED=1`) Long-running unit running `sd-eink` (`Restart=always`; the poll/sleep cadence lives inside the client, not a timer). |
 | `udev/99-pieria-no-cec-pointer.rules` | Ignores the HDMI-CEC phantom pointer so no stray cursor shows on the display. |
 | `avahi/pieria.service` | (all-in-one) Advertises the server over mDNS with a friendly name. |
+| `bin/sd-avahi-publish` + `systemd/sd-avahi-publish.service` | (all-in-one) Generates `/etc/avahi/services/pieria-api.service` (`_pieria._tcp`, TXT `version`/`server_id`/`path=/api/v1`) from the app's loopback `GET /api/health/identity`. Runs at boot, after `update-app`, and on install; fails closed (leaves the old record) if the app does not answer. |
 | `config/pieria.conf.example` | Template seeded to the boot partition. |
 | `compose/docker-compose.appliance.yml` | All-in-one override (Uvicorn 4→2 workers, `SD_APPLIANCE_MODE=all-in-one`) merged over the root compose. |
 

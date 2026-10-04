@@ -1,0 +1,17 @@
+# Installed AND ENABLED by install.sh (all-in-one only) as /etc/systemd/system/sd-avahi-publish.service.
+# Publishes the `_pieria._tcp` mDNS record (version + server_id
+# TXT) once the app is serving. A oneshot that is NOT in the boot critical path: it waits (bounded) for
+# the app and exits 1 if it never comes, which only means the box is not discoverable by Home
+# Assistant until the next update/boot.
+[Unit]
+Description=Advertise the Pieria API over mDNS (_pieria._tcp)
+After=sd-app.service avahi-daemon.service
+Wants=avahi-daemon.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/sd-avahi-publish --wait 120
+TimeoutStartSec=150
+
+[Install]
+WantedBy=multi-user.target

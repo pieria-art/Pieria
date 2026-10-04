@@ -412,6 +412,12 @@ case "$ACTION" in
       wait_healthy || rc=1
     fi
 
+    # The new version has a new `version=` TXT value: refresh the `_pieria._tcp` record. Best-effort —
+    # discovery must never fail or roll back an update.
+    if [ $rc -eq 0 ] && [ "$DRY_RUN" != "1" ]; then
+      "${SD_AVAHI_BIN:-$BINDIR/sd-avahi-publish}" --wait 30 >> "$LOG" 2>&1 || true
+    fi
+
     # Restore-or-clear the DB for a rollback: if artwork.db existed before this update, put the
     # snapshot back; if it didn't, the new version may have created one (e.g. via migration) that
     # belongs to a version we're abandoning — remove it rather than leaving it behind.

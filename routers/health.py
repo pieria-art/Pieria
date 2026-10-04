@@ -53,6 +53,21 @@ async def get_host_health(db: Session = Depends(get_db)):
         ],
     }
 
+@router.get("/api/health/identity")
+def get_identity(db: Session = Depends(get_db)):
+    """`{version, server_id}` — deliberately UNAUTHENTICATED and internal (never in the v1 contract).
+
+    The host's `sd-avahi-publish` curls this over loopback to build the `_pieria._tcp` mDNS record.
+    Both values are broadcast to the whole LAN by that record anyway, so serving them here discloses
+    nothing new — and it keeps root from ever reading data/ (no sd-mailbox surface, ADR-131)."""
+    from routers.api_v1 import ApiError, _server_id  # lazy: avoid a health <-> api_v1 import cycle
+    try:
+        sid = _server_id(db)
+    except ApiError:
+        raise HTTPException(status_code=503, detail="server id unavailable")
+    return {"version": config.APP_VERSION, "server_id": sid}
+
+
 # --- Appliance update bridge (all-in-one only) -------------------------------------------------
 # The container is unprivileged and cannot run git/docker/reboot. So a GUI action just writes a
 # request file into the ./data bind mount; a root systemd .path unit notices it and runs the
