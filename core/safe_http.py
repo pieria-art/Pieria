@@ -19,6 +19,8 @@ import httpcore
 import httpx
 from httpcore._backends.anyio import AnyIOBackend
 
+_SITE_LOCAL = ipaddress.ip_network("fec0::/10")
+
 
 class UnsafeAddress(Exception):
     """A host resolved to (or is) a non-public address."""
@@ -31,6 +33,8 @@ def check_ip(ip_text: str) -> None:
     ip = ipaddress.ip_address(ip_text.split("%", 1)[0])
     if isinstance(ip, ipaddress.IPv6Address) and ip.ipv4_mapped is not None:
         ip = ip.ipv4_mapped
+    if ip in _SITE_LOCAL:   # fec0::/10, deprecated site-local: is_global still says True
+        raise UnsafeAddress(f"host resolves to a non-public address ({ip}) — blocked")
     if not ip.is_global or ip.is_multicast or ip.is_reserved or ip.is_unspecified:
         raise UnsafeAddress(f"host resolves to a non-public address ({ip}) — blocked")
 

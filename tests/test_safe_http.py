@@ -87,7 +87,7 @@ async def test_tls_still_verifies_the_original_hostname(monkeypatch, dial):
 @pytest.mark.parametrize("ip", [
     "127.0.0.1", "10.1.2.3", "192.168.0.9", "172.16.5.5", "169.254.169.254", "0.0.0.0",
     "100.64.0.1", "198.18.0.1",                       # L1: CGNAT, benchmarking
-    "::1", "fe80::1", "fc00::1", "fd12:3456::1",       # loopback, link-local, ULA
+    "::1", "fe80::1", "fc00::1", "fd12:3456::1", "fec0::1",   # loopback, link-local, ULA, site-local
     "::ffff:127.0.0.1", "::ffff:10.0.0.1", "::ffff:169.254.169.254",   # v4-mapped
     "224.0.0.1",
 ])

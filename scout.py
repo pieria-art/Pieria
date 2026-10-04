@@ -23,6 +23,8 @@ from urllib.parse import quote
 import httpx
 from sqlalchemy.orm import Session
 
+from core import safe_http
+from core.downloads import guarded_stream
 from models import SettingsModel
 from query_classifier import SearchIntent
 
@@ -359,7 +361,8 @@ class RijksmuseumScout(MuseumScout):
         logger.info(f"[Scout] RijksmuseumScout (Open Data) searching for: {q} (intent: {intent.query_type if intent else 'none'})")
         found = []
         try:
-            async with httpx.AsyncClient(follow_redirects=True) as client:
+            # Pinned-resolution client (M2); redirects are followed per-hop by guarded_stream below.
+            async with safe_http.safe_async_client() as client:
                 params = {"imageAvailable": "true"}
 
                 if intent and intent.query_type == "artist":
@@ -398,12 +401,17 @@ class RijksmuseumScout(MuseumScout):
                     # Resolve each item using Dublin Core profile for easy metadata extraction
                     res_params = {"_profile": "dc"}
                     res_headers = {"Accept": "application/ld+json"}
-                    res_resp = await client.get(item_url, params=res_params, headers=res_headers, timeout=10.0)
-
-                    if res_resp.status_code != 200:
+                    # item_url comes from the API response (not a fixed host): every hop is SSRF-validated.
+                    try:
+                        async with guarded_stream(client, "GET", item_url, params=res_params,
+                                                  headers=res_headers, timeout=10.0) as res_resp:
+                            if res_resp.status_code != 200:
+                                continue
+                            await res_resp.aread()
+                            item_data = res_resp.json()
+                    except Exception as e:   # blocked/unsafe/too many redirects/network: skip the item
+                        logger.warning(f"[Scout] Rijksmuseum item fetch refused/failed: {e}")
                         continue
-
-                    item_data = res_resp.json()
 
                     # Extract IIIF image from 'relation' field
                     relation = item_data.get('relation', {})
