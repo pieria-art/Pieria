@@ -12,6 +12,7 @@ from sqlalchemy.orm import Session
 
 from config import SD_USER_AGENT
 from core import safe_http
+from core import sun as sun_mod
 from core.downloads import guarded_stream
 from models import SettingsModel
 
@@ -44,6 +45,15 @@ DEFAULT_SCHEDULE = {
     "quiet_start": "23:30",
     "quiet_end": "07:00",
     "quiet_mode": "cec",       # "cec" (appliance powers panel) | "blackout" (software only)
+    # ADR-148 sunrise/sunset auto-dimming. "fixed" (default) = the HH:MM ramps above, untouched. "sun" =
+    # the four ramp points follow today's sunset/sunrise + these offsets (minutes); quiet hours stay HH:MM.
+    "mode": "fixed",
+    "evening_offset_min": -30,  # relative to sunset: begin the day -> night ramp
+    "night_offset_min": 60,     # relative to sunset: fully night
+    "morning_offset_min": -30,  # relative to sunrise: begin the night -> day ramp
+    "day_offset_min": 30,       # relative to sunrise: fully day
+    "latitude": None,           # optional; unset -> the time zone's tzdata reference location
+    "longitude": None,
 }
 
 
@@ -85,6 +95,36 @@ def _cyc_frac(t: int, a: int, b: int) -> float:
     return 0.0 if span == 0 else ((t - a) % 1440) / span
 
 
+def _ramp_points(s: dict, now: datetime) -> tuple[int, int, int, int]:
+    """(day_start, evening_start, night_start, morning_start) as minutes for `now`'s date. Fixed mode reads
+    the HH:MM fields. Sun mode derives them from that day's sunrise/sunset + offsets (core.sun); with no
+    resolvable location (logs a warning once), or on a polar day/night with no sunrise/sunset (silent), it
+    falls back to the fixed HH:MM times for that day."""
+    fixed = (_parse_hhmm(s["day_start"], 480), _parse_hhmm(s["evening_start"], 1200),
+             _parse_hhmm(s["night_start"], 1350), _parse_hhmm(s["morning_start"], 390))
+    if s.get("mode") != "sun":
+        return fixed
+    sun = sun_mod.todays_sun(s, now.date())
+    if sun is None:
+        if sun_mod.resolve_location(s) is None:
+            _warn_no_location()
+        return fixed
+    rise, sset = sun["sunrise"], sun["sunset"]
+    return ((rise + int(s["day_offset_min"])) % 1440, (sset + int(s["evening_offset_min"])) % 1440,
+            (sset + int(s["night_offset_min"])) % 1440, (rise + int(s["morning_offset_min"])) % 1440)
+
+
+_warned_no_location = False
+
+
+def _warn_no_location():
+    global _warned_no_location
+    if not _warned_no_location:
+        _warned_no_location = True
+        logger.warning("display_schedule mode=sun but no location (no lat/long, time zone unresolved) — "
+                       "falling back to the fixed HH:MM schedule")
+
+
 def _resolve_scheduled(schedule: dict, now: datetime) -> dict:
     """Pure: given the schedule config + a wall-clock time, return what the display should look like NOW.
 
@@ -97,10 +137,7 @@ def _resolve_scheduled(schedule: dict, now: datetime) -> dict:
         return {"enabled": False, "brightness": 1.0, "warmth": 0.0, "quiet": False, "quiet_mode": s.get("quiet_mode", "cec")}
 
     t = now.hour * 60 + now.minute
-    day_start = _parse_hhmm(s["day_start"], 480)
-    evening = _parse_hhmm(s["evening_start"], 1200)
-    night = _parse_hhmm(s["night_start"], 1350)
-    morning = _parse_hhmm(s["morning_start"], 390)
+    day_start, evening, night, morning = _ramp_points(s, now)
 
     if _cyc_in(t, day_start, evening):
         n = 0.0
@@ -218,6 +255,19 @@ def resolve_schedule_state(schedule: dict, now: datetime, override: Optional[dic
 _HHMM_RE = re.compile(r"^\d{1,2}:\d{2}$")
 
 
+_LOCATION_KEYS = ("latitude", "longitude")
+
+
+def schedule_changes(model) -> dict:
+    """A pydantic patch model -> the `changes` dict for apply_schedule_patch: None values are dropped
+    (= "keep"), except latitude/longitude explicitly sent as null, which CLEAR the manual location."""
+    out = model.model_dump(exclude_none=True)
+    for k in _LOCATION_KEYS:
+        if k in model.model_fields_set and getattr(model, k) is None:
+            out[k] = None
+    return out
+
+
 class ScheduleError(ValueError):
     """A schedule value failed validation; the message names the field and the rule."""
 
@@ -239,6 +289,20 @@ def apply_schedule_patch(db: Session, changes: dict) -> dict:
             raise ScheduleError(f"{tkey} must be HH:MM")
     if merged["quiet_mode"] not in ("cec", "blackout"):
         raise ScheduleError("quiet_mode must be 'cec' or 'blackout'")
+    if merged["mode"] not in ("fixed", "sun"):
+        raise ScheduleError("mode must be 'fixed' or 'sun'")
+    for okey in ("evening_offset_min", "night_offset_min", "morning_offset_min", "day_offset_min"):
+        v = merged[okey]
+        if isinstance(v, bool) or not isinstance(v, (int, float)) or int(v) != v or not (-180 <= v <= 180):
+            raise ScheduleError(f"{okey} must be a whole number of minutes between -180 and 180")
+        merged[okey] = int(v)
+    for ckey, lim in (("latitude", 90), ("longitude", 180)):
+        v = merged[ckey]
+        if v is not None:
+            if isinstance(v, bool) or not isinstance(v, (int, float)) or not (-lim <= v <= lim):
+                raise ScheduleError(f"{ckey} must be between {-lim} and {lim}")
+    if (merged["latitude"] is None) != (merged["longitude"] is None):
+        raise ScheduleError("latitude and longitude must be set together (or both cleared)")
     _upsert_setting(db, SCHEDULE_SETTING_KEY, json.dumps(merged))
     db.commit()
     return merged

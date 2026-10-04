@@ -980,3 +980,18 @@ def test_unauthenticated_next_image_does_not_grow_display_updated_rows(env):
     for i in range(3):
         _next(c, display=f"random-{i}")
     assert db.query(SettingsModel).filter(SettingsModel.setting_key.like("display_updated:%")).count() == 0
+
+
+def test_schedule_v1_sun_fields_round_trip(env):
+    c, db = env
+    read, ctl = _mint(db, ["read"]), _mint(db, ["control", "read"])
+    s = c.get("/api/v1/schedule", headers=read).json()
+    assert s["mode"] == "fixed" and s["night_offset_min"] == 60 and s["latitude"] is None
+    r = c.patch("/api/v1/schedule", json={"mode": "sun", "morning_offset_min": -60, "latitude": 51.5,
+                                          "longitude": -0.1}, headers=ctl)
+    assert r.status_code == 200 and r.json()["mode"] == "sun" and r.json()["morning_offset_min"] == -60
+    assert c.get("/api/v1/schedule", headers=read).json() == r.json()
+    assert c.patch("/api/v1/schedule", json={"evening_offset_min": 500}, headers=ctl).status_code == 422
+    assert c.patch("/api/v1/schedule", json={"mode": "moon"}, headers=ctl).status_code == 422
+    r = c.patch("/api/v1/schedule", json={"latitude": None, "longitude": None}, headers=ctl)
+    assert r.json()["latitude"] is None and r.json()["mode"] == "sun"

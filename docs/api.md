@@ -241,6 +241,14 @@ of it (omitted fields keep their value). Times are `HH:MM`, 24 h, in the server'
 `day_brightness` and `night_brightness` are 0.1-1.0, `night_warmth` 0.0-1.0, `quiet_mode` is `cec` or
 `blackout`. An out-of-range value is `422 validation_error`.
 
+**Follow the sun** (additive): `mode` is `fixed` (default; the `HH:MM` ramp times) or `sun`, where the four
+ramp points follow today's sunset/sunrise plus `evening_offset_min` / `night_offset_min` (from sunset,
+defaults -30 / +60) and `morning_offset_min` / `day_offset_min` (from sunrise, defaults -30 / +30), each
+-180..180. Quiet hours stay `HH:MM`. `latitude` (-90..90) and `longitude` (-180..180) are optional and set
+together; `null` (also accepted in a PATCH to clear them) means the device time zone's tzdata reference
+location. With no resolvable location, or on a polar day/night with no sunrise/sunset, that day falls
+back to the fixed `HH:MM` times.
+
 ```bash
 curl -s -H "Authorization: Bearer $TOKEN" $PIERIA/schedule
 

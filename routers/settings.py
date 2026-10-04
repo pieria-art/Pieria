@@ -15,6 +15,7 @@ from sqlalchemy.orm import Session
 
 import ai_client
 import frame_push
+from core import sun as sun_mod
 from core.playback import _frame_select
 from core.settings_util import (
     ScheduleError,
@@ -23,6 +24,7 @@ from core.settings_util import (
     _load_schedule,
     _upsert_setting,
     apply_schedule_patch,
+    schedule_changes,
 )
 from database import get_db
 from models import PlaylistModel, SettingsModel
@@ -76,6 +78,27 @@ class DisplaySchedulePayload(BaseModel):
     quiet_start: Optional[str] = None
     quiet_end: Optional[str] = None
     quiet_mode: Optional[str] = None
+    mode: Optional[str] = None
+    evening_offset_min: Optional[int] = None
+    night_offset_min: Optional[int] = None
+    morning_offset_min: Optional[int] = None
+    day_offset_min: Optional[int] = None
+    latitude: Optional[float] = None
+    longitude: Optional[float] = None
+
+
+@router.get("/api/settings/display-schedule/sun")
+async def get_display_schedule_sun(db: Session = Depends(get_db)):
+    """Where the sun times come from and today's computed sunrise/sunset (for the admin hint)."""
+    s = _load_schedule(db)
+    loc = sun_mod.resolve_location(s)
+    out = {"zone": sun_mod.current_zone(), "location": None, "sunrise": None, "sunset": None}
+    if loc:
+        out["location"] = {"latitude": loc[0], "longitude": loc[1], "source": loc[2]}
+        t = sun_mod.todays_sun(s, datetime.now().date())
+        if t:
+            out["sunrise"], out["sunset"] = sun_mod.fmt_hhmm(t["sunrise"]), sun_mod.fmt_hhmm(t["sunset"])
+    return out
 
 
 @router.get("/api/settings/display-schedule")
@@ -87,7 +110,7 @@ async def get_display_schedule(db: Session = Depends(get_db)):
 async def set_display_schedule(payload: DisplaySchedulePayload, db: Session = Depends(get_db)):
     """Merge the given fields over the current schedule, validate, and persist as JSON."""
     try:
-        return apply_schedule_patch(db, payload.model_dump(exclude_none=True))
+        return apply_schedule_patch(db, schedule_changes(payload))
     except ScheduleError as e:
         raise HTTPException(400, detail=str(e))
 

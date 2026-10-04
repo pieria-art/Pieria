@@ -3598,6 +3598,29 @@ function _schedShowRangeVals() {
     }
 }
 
+function _schedModeToggle() {
+    const sun = document.getElementById('sched-mode-sun').checked;
+    document.getElementById('sched-sun-fields').style.display = sun ? '' : 'none';
+    // Fixed HH:MM ramp times are not used while following the sun (they remain the polar/no-location fallback).
+    document.getElementById('sched-fixed-fields').style.opacity = sun ? '0.45' : '1';
+}
+
+async function _schedLoadSunHint() {
+    const el = document.getElementById('sched-sun-hint');
+    if (!el) return;
+    try {
+        const j = await fetch(`${API_BASE}/api/settings/display-schedule/sun`).then(r => r.json());
+        if (!j.location) {
+            el.textContent = 'No location: enter latitude/longitude, or set the time zone (Device settings). Until then the fixed times above are used.';
+        } else {
+            const where = j.location.source === 'manual' ? 'using your latitude/longitude'
+                : `using ${j.zone}\'s reference location`;
+            el.textContent = `${where} (${j.location.latitude.toFixed(2)}, ${j.location.longitude.toFixed(2)})` +
+                (j.sunrise ? ` · today: sunrise ${j.sunrise}, sunset ${j.sunset}` : ' · no sunrise/sunset today — the fixed times above are used');
+        }
+    } catch (e) { el.textContent = ''; }
+}
+
 async function loadNightSchedule() {
     const card = document.getElementById('night-schedule-card');
     if (!card) return;
@@ -3616,6 +3639,15 @@ async function loadNightSchedule() {
         set('sched-quiet-start', s.quiet_start);
         set('sched-quiet-end', s.quiet_end);
         set('sched-quiet-mode', s.quiet_mode);
+        document.getElementById('sched-mode-sun').checked = s.mode === 'sun';
+        set('sched-evening-offset', s.evening_offset_min);
+        set('sched-night-offset', s.night_offset_min);
+        set('sched-morning-offset', s.morning_offset_min);
+        set('sched-day-offset', s.day_offset_min);
+        set('sched-lat', s.latitude ?? '');
+        set('sched-lon', s.longitude ?? '');
+        _schedModeToggle();
+        _schedLoadSunHint();
         _schedShowRangeVals();
         // Keep the % labels live as the sliders move.
         for (const inp of Object.keys(_SCHED_RANGES)) {
@@ -3641,6 +3673,11 @@ async function saveNightSchedule() {
         morning_start: v('sched-morning-start'), day_start: v('sched-day-start'),
         quiet_start: v('sched-quiet-start'), quiet_end: v('sched-quiet-end'),
         quiet_mode: v('sched-quiet-mode'),
+        mode: document.getElementById('sched-mode-sun').checked ? 'sun' : 'fixed',
+        evening_offset_min: parseInt(v('sched-evening-offset'), 10), night_offset_min: parseInt(v('sched-night-offset'), 10),
+        morning_offset_min: parseInt(v('sched-morning-offset'), 10), day_offset_min: parseInt(v('sched-day-offset'), 10),
+        latitude: v('sched-lat') === '' ? null : parseFloat(v('sched-lat')),
+        longitude: v('sched-lon') === '' ? null : parseFloat(v('sched-lon')),
     };
     try {
         const resp = await fetch(`${API_BASE}/api/settings/display-schedule`, {
@@ -3649,7 +3686,7 @@ async function saveNightSchedule() {
         });
         const data = await resp.json();
         if (!resp.ok) { result.textContent = '✗ ' + (data.detail || 'Save failed'); result.style.color = '#ef4444'; }
-        else { result.textContent = '✓ Saved — displays update within a minute'; result.style.color = '#34d399'; }
+        else { result.textContent = '✓ Saved — displays update within a minute'; result.style.color = '#34d399'; _schedLoadSunHint(); }
     } catch (e) { result.textContent = '✗ Network error'; result.style.color = '#ef4444'; }
     finally { btn.disabled = false; btn.textContent = orig; }
 }

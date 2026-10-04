@@ -55,6 +55,7 @@ from core.settings_util import (
     get_quiet_override,
     quiet_status,
     resolve_schedule_state,
+    schedule_changes,
     set_quiet_override,
 )
 from database import get_db
@@ -355,6 +356,14 @@ class Schedule(BaseModel):
     quiet_start: str
     quiet_end: str
     quiet_mode: Literal["cec", "blackout"]
+    mode: Literal["fixed", "sun"] = Field("fixed", description="`sun`: the four ramp points follow today's "
+                                          "sunset/sunrise + the offsets below instead of the HH:MM fields.")
+    evening_offset_min: int = Field(-30, description="-180..180 minutes from sunset (sun mode)")
+    night_offset_min: int = Field(60, description="-180..180 minutes from sunset (sun mode)")
+    morning_offset_min: int = Field(-30, description="-180..180 minutes from sunrise (sun mode)")
+    day_offset_min: int = Field(30, description="-180..180 minutes from sunrise (sun mode)")
+    latitude: Optional[float] = Field(None, description="-90..90; null = the time zone's reference location")
+    longitude: Optional[float] = Field(None, description="-180..180; null = the time zone's reference location")
 
 
 class SchedulePatch(BaseModel):
@@ -372,6 +381,13 @@ class SchedulePatch(BaseModel):
     quiet_start: Optional[str] = None
     quiet_end: Optional[str] = None
     quiet_mode: Optional[Literal["cec", "blackout"]] = None
+    mode: Optional[Literal["fixed", "sun"]] = None
+    evening_offset_min: Optional[int] = None
+    night_offset_min: Optional[int] = None
+    morning_offset_min: Optional[int] = None
+    day_offset_min: Optional[int] = None
+    latitude: Optional[float] = None
+    longitude: Optional[float] = None
 
 
 class ScheduleState(BaseModel):
@@ -682,7 +698,7 @@ def get_schedule(db: Session = Depends(get_db)):
               responses={422: {"model": ErrorResponse, "description": "A value is out of range or malformed."}})
 def patch_schedule(body: SchedulePatch, db: Session = Depends(get_db)):
     try:
-        return apply_schedule_patch(db, body.model_dump(exclude_none=True))
+        return apply_schedule_patch(db, schedule_changes(body))
     except ScheduleError as e:
         raise ApiError(422, "validation_error", str(e))
 
