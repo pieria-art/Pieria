@@ -4,6 +4,7 @@ Enriches artwork metadata using Wikipedia context and Gemini.
 """
 
 import asyncio
+import json
 import logging
 
 import wikipedia
@@ -12,17 +13,81 @@ from sqlalchemy.orm import Session
 import ai_client
 from agents import FOCAL_POINT_INSTRUCTION, apply_focal_point
 from config import strip_markdown
+from core import grounding
 from models import ArtworkModel
 
 logger = logging.getLogger("artwork-display-api.curator")
 
-async def enrich_artwork(artwork_id: int, db: Session, context_hints: str = None):
+# Columns grounding may write (record-derived structured fields + prose). `current_repository` and
+# `physical_dimensions` have no column today, so they are carried in the result but not stored.
+_GROUNDED_COLUMNS = ("agent_name", "creation_date", "date_display", "medium", "cultural_context")
+
+
+def _user_edited(artwork: ArtworkModel) -> set:
+    try:
+        return set(json.loads(getattr(artwork, "user_edited_fields", None) or "[]"))
+    except (ValueError, TypeError):
+        return set()
+
+
+async def _enrich_grounded(artwork: ArtworkModel, db: Session, context_hints, source_api) -> bool:
+    """ADR-148 runtime grounding: identity -> facts -> record-derived fields + validated prose. Returns
+    True when the artwork was enriched this way; False means "keep today's behaviour" (nothing to ground
+    on, or any failure — grounding never raises)."""
+    extra_parts = []
+    if artwork.filename:
+        from config import LIBRARY_DIR
+        img_path = LIBRARY_DIR / artwork.filename
+        if img_path.exists():
+            try:
+                extra_parts.append(ai_client.image_part(str(img_path)))
+            except Exception as ie:
+                logger.warning(f"[RAG Curator] Image parsing failed: {ie}")
+    result = await grounding.ground_work(
+        title=artwork.title or "", artist=artwork.agent_name, hints=context_hints,
+        source_api=source_api, source_url=artwork.source_url, extra_parts=extra_parts,
+        prompt_suffix=FOCAL_POINT_INSTRUCTION + " Put focal_point in the same JSON object.",
+    )
+    if not result:
+        return False
+    edited = _user_edited(artwork)     # F8: a field the user edited always wins
+    for col in _GROUNDED_COLUMNS:
+        if result["fields"].get(col) and col not in edited:
+            setattr(artwork, col, result["fields"][col])
+    if "description_narrative" not in edited:
+        artwork.description_narrative = strip_markdown(result["description_narrative"])
+    if result.get("tags") and "tags" not in edited:
+        artwork.tags = result["tags"]
+    if result.get("focal_point") is not None:
+        apply_focal_point(artwork, {"focal_point": result["focal_point"]})
+    artwork.status = 'pending_review'
+    db.commit()
+    ai_client.clear_failure()
+    logger.info(f"[RAG Curator] Grounded {artwork.title} ({result['n_facts']} facts, "
+                f"{'minimal fallback placard' if result['used_fallback'] else 'validated prose'})")
+    return True
+
+
+async def enrich_artwork(artwork_id: int, db: Session, context_hints: str = None, source_api: str = None):
     """
-    Fact-checks and enriches artwork metadata using Wikipedia RAG.
+    Enriches a user-added museum work. First tries grounded enrichment (core/grounding.py: Wikidata
+    identity + museum record facts, structured fields from records, validated prose); if that has nothing
+    to ground on or fails, falls back to the original Wikipedia-RAG path below. Personal photos never
+    enter this pipeline.
     """
     artwork = db.query(ArtworkModel).filter(ArtworkModel.id == artwork_id).first()
     if not artwork:
         return None
+    if artwork.is_personal:
+        logger.info(f"[RAG Curator] Skipping personal photo {artwork_id}")
+        return artwork
+
+    try:
+        if await _enrich_grounded(artwork, db, context_hints, source_api):
+            return artwork
+    except Exception as e:
+        logger.warning(f"[RAG Curator] Grounded enrichment failed, using legacy path: {e}", exc_info=True)
+        db.rollback()
 
     search_query = f"{artwork.title} {artwork.agent_name}"
     logger.info(f"[RAG Curator] Enriching: {search_query}")

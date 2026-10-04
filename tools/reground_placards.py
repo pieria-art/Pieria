@@ -48,6 +48,46 @@ from pathlib import Path
 from PIL import Image
 
 import ai_client
+
+# The reusable core now lives in core/grounding.py (runtime grounding, ADR-148); this tool re-imports it
+# so every name callers/tests use here still resolves.
+from core.grounding import (  # noqa: F401
+    _ACCESSION_RE,
+    _ARTWORK_CLASS_RE,
+    _ARTWORK_ENTITY_CACHE,
+    _BARE_QID_RE,
+    _COPY_RUN_WORDS,
+    _LABEL_CACHE,
+    _MEDIUM_BUCKETS,
+    _MONTH_NAMES,
+    _NARRATIVE_PROMPT,
+    _POSSESSIVE_RE,
+    _VISUAL_STOPWORDS,
+    _WD_LENGTH_UNIT_TO_CM,
+    CLAIM_PROPS,
+    COMMONS_API,
+    VERSION_PROPS,
+    WD_API,
+    _copied_run,
+    _fact,
+    _facts_block,
+    _is_artwork_entity,
+    _labels_for_qids,
+    _ordinal,
+    _possessive_stem,
+    _structured_block,
+    _template_placard_grounded,
+    _visual_claim_ok,
+    _wikidata_by_accession,
+    _wikidata_full,
+    build_narrative_prompt,
+    check_claims,
+    format_wikidata_date,
+    looks_like_accession_number,
+    medium_bucket,
+    validate_written_item,
+    wikidata_quantity_to_cm,
+)
 from core.licensing import normalize_license, requires_attribution
 from tools import catalog_spec
 from tools.audit_placards import (
@@ -55,7 +95,6 @@ from tools.audit_placards import (
     CACHE_DIR,
     CLEVELAND_SEARCH,
     UA,
-    WD_SPARQL,
     Fetcher,
     _commons_structured,  # noqa: F401  (re-exported for callers/tests that want it)
     _museum_record,
@@ -150,19 +189,9 @@ def load_catalog() -> dict[str, list[dict]]:
         out[f.stem] = json.loads(f.read_text()).get("items", [])
     return out
 
-WD_API = "https://www.wikidata.org/w/api.php"
-COMMONS_API = "https://commons.wikimedia.org/w/api.php"
 AIC_SEARCH = "https://api.artic.edu/api/v1/artworks/search"
 PREVIEW_MAX_PX = 1024
 
-# Wikidata properties consulted for the facts bundle. English-labelled claims only.
-CLAIM_PROPS = {
-    "P170": "creator", "P571": "inception", "P186": "made_from_material", "P136": "genre",
-    "P135": "movement", "P195": "collection", "P276": "location", "P180": "depicts",
-    "P2048": "height", "P2049": "width",
-}
-# "is a version of" signals — never guessed, only reported when Wikidata states one of these.
-VERSION_PROPS = {"P1877": "after a work by", "P144": "based on", "P629": "edition or translation of"}
 
 NARRATIVE_MODEL = "gemini-3.5-flash"  # primary ai_model per spec — explicitly NOT the fast model,
 # and explicitly NOT whatever the live app's DB settings happen to be configured to right now (a dev
@@ -178,41 +207,14 @@ def _narrative_cfg() -> dict:
         "model": NARRATIVE_MODEL, "model_fast": NARRATIVE_MODEL, "temperature": None,
     }
 
-# ----------------------------------------------------------------------- accession-year guard
-# Accession/object numbers look like "1940.116", "2019.34.1", "78.PA.1" — a leading 4-digit "year"
-# segment followed by a dotted registrar suffix. A bare "1940" or "c. 1874" is NOT accession-shaped.
-_ACCESSION_RE = re.compile(r"^\s*\d{2,4}\s*\.\s*\d+(\s*\.\s*\d+)*\s*$")
 
 
-def looks_like_accession_number(value: str) -> bool:
-    """True when `value` is shaped like a museum accession/object number rather than a date."""
-    if not value:
-        return False
-    return bool(_ACCESSION_RE.match(str(value).strip()))
 
 
-# ----------------------------------------------------------------------- medium bucketing
-_MEDIUM_BUCKETS = [
-    ("oil", re.compile(r"\boil\b", re.I)),
-    ("watercolor", re.compile(r"\bwater\s*colou?r\b|\bgouache\b", re.I)),
-    ("print", re.compile(r"\bwoodblock\b|\bwoodcut\b|\bengraving\b|\betching\b|\blithograph\b|\bprint\b", re.I)),
-    ("photograph", re.compile(r"\bphotograph\b|\bgelatin silver\b|\balbumen\b", re.I)),
-    ("sculpture_bronze", re.compile(r"\bbronze\b", re.I)),
-    ("sculpture_marble", re.compile(r"\bmarble\b", re.I)),
-    ("drawing", re.compile(r"\bpencil\b|\bcharcoal\b|\bink\b|\bgraphite\b|\bdrawing\b", re.I)),
-]
 
 
-def medium_bucket(medium: str) -> str | None:
-    for name, pat in _MEDIUM_BUCKETS:
-        if pat.search(medium or ""):
-            return name
-    return None
 
 
-# ----------------------------------------------------------------------- fact record helpers
-def _fact(key, value, source, source_url, licence):
-    return {"key": key, "value": value, "source": source, "source_url": source_url, "licence": licence}
 
 
 async def _commons_extmetadata(fx: Fetcher, filename: str) -> dict | None:
@@ -570,20 +572,6 @@ def museum_match_verified(item: dict, record: dict, *, explicit_id: bool = False
     return False, f"no corroborating creator (catalog {item.get('agent_name')!r} vs record {record_creator!r})"
 
 
-async def _wikidata_by_accession(fx: Fetcher, accession: str, institution: str) -> str | None:
-    """SPARQL: an item whose P217 (inventory number) matches AND whose P195 (collection) label
-    contains the institution's first word — both must hold, so a common accession-number shape from a
-    different museum can't false-match."""
-    keyword = (institution.split() or [""])[0].lower()
-    q = (
-        'SELECT ?item WHERE { '
-        f'?item wdt:P217 "{accession}" . '
-        '?item wdt:P195 ?coll . ?coll rdfs:label ?collLabel . FILTER(LANG(?collLabel)="en") '
-        f'FILTER(CONTAINS(LCASE(?collLabel), "{keyword}")) }} LIMIT 1'
-    )
-    body, err = await fx.get_json(WD_SPARQL, {"query": q, "format": "json"})
-    rows = ((body or {}).get("results") or {}).get("bindings") or []
-    return rows[0]["item"]["value"].rsplit("/", 1)[-1] if rows else None
 
 
 async def resolve_via_commons_credit(fx: Fetcher, ext: dict) -> dict | None:
@@ -601,12 +589,6 @@ async def resolve_via_commons_credit(fx: Fetcher, ext: dict) -> dict | None:
     return {"institution": institution, "accession": accession, "qid": qid, "museum_record": museum_record}
 
 
-# ----------------------------------------------------------------------- current_repository validity
-# Never a bare unresolved QID, and never a P276 "location" (that property mixes holding institutions
-# with depicted/creation PLACES — e.g. "Moon" for an Apollo photo). Only P195 collection labels that
-# actually look like an institution are accepted; a museum-API-sourced institution name is trusted
-# outright (it came from that institution's own record, not a generic Wikidata place property).
-_BARE_QID_RE = re.compile(r"^Q\d+$")
 _INSTITUTION_LABEL_RE = re.compile(
     r"\b(museum|gallery|librar|archive|university|institut|foundation|collection|academy|society|"
     r"cent(?:er|re))", re.I
@@ -621,140 +603,22 @@ def looks_like_institution_label(label: str) -> bool:
     return bool(_INSTITUTION_LABEL_RE.search(label))
 
 
-# In-process label cache, keyed by QID, shared across the whole run — many items share the same
-# creator/collection/genre entity, and a full-catalog run repeats the same handful of QIDs thousands
-# of times. Populated only via the batched fetch below.
-_LABEL_CACHE: dict[str, str] = {}
 
 
-async def _labels_for_qids(fx: Fetcher, qids: list[str]) -> dict[str, str]:
-    """Resolve many QIDs to English labels in as few requests as possible: wbgetentities accepts up
-    to 50 pipe-separated ids per call. This is the fix for a real throughput problem found while
-    running the full catalog — the original one-id-per-request _label_for_qid made a full-corpus run
-    (~2,800 items x up to ~35 label lookups each) collapse under Wikidata's rate limiting."""
-    todo = [q for q in dict.fromkeys(qids) if q and q not in _LABEL_CACHE]
-    for i in range(0, len(todo), 50):
-        chunk = todo[i:i + 50]
-        body, _ = await fx.get_json(WD_API, {
-            "action": "wbgetentities", "ids": "|".join(chunk), "props": "labels",
-            "languages": "en", "format": "json",
-        })
-        entities = (body or {}).get("entities") or {}
-        for q in chunk:
-            ent = entities.get(q) or {}
-            lab = ((ent.get("labels") or {}).get("en") or {}).get("value")
-            _LABEL_CACHE[q] = lab or q
-    return {q: _LABEL_CACHE.get(q, q) for q in qids}
 
 
-# Round 3 #7: is P144/P1877/P629's target itself a work of art (painting, sculpture, print,
-# photograph, …), or a theme/text/character it merely depicts or draws on (Old Testament, "Venus
-# Pudica")? Judged by that entity's own P31 (instance of) labels — cheap keyword match, not a QID
-# allowlist, so it generalises past the handful of classes anyone bothered to enumerate.
-_ARTWORK_CLASS_RE = re.compile(
-    r"\b(painting|sculpture|print|photograph|drawing|artwork|work of art|fresco|engraving|etching|"
-    r"lithograph|woodcut|woodblock|mosaic|tapestry|illustration|statue|bronze|panel painting|"
-    r"altarpiece|relief|bust|manuscript)\b", re.I,
-)
-_ARTWORK_ENTITY_CACHE: dict[str, bool] = {}
 
 
-async def _is_artwork_entity(fx: Fetcher, qid: str) -> bool:
-    if qid in _ARTWORK_ENTITY_CACHE:
-        return _ARTWORK_ENTITY_CACHE[qid]
-    body, err = await fx.get_json(WD_API, {
-        "action": "wbgetentities", "ids": qid, "props": "claims", "format": "json",
-    })
-    result = False
-    if body:
-        ent = (body.get("entities") or {}).get(qid) or {}
-        ids = []
-        for c in ((ent.get("claims") or {}).get("P31") or [])[:5]:
-            v = c.get("mainsnak", {}).get("datavalue", {}).get("value")
-            if isinstance(v, dict) and v.get("id"):
-                ids.append(v["id"])
-        if ids:
-            labels = await _labels_for_qids(fx, ids)
-            result = any(_ARTWORK_CLASS_RE.search(labels.get(i, "") or "") for i in ids)
-    _ARTWORK_ENTITY_CACHE[qid] = result
-    return result
 
 
-# ----------------------------------------------------------------------- Wikidata quantity (dimensions)
-# Round 6 bug: P2048/P2049 (height/width) were shipped as the RAW Wikidata quantity `amount` string
-# ("+1272") with its unit (mm/cm/in/m — a QID on the same datavalue) silently ignored, then blindly
-# suffixed " cm" downstream — "+1272 x +1121 cm" on a small watercolour was really 127.2 x 112.1 cm
-# (mm) or similar unit confusion. Wikidata's own default unit for P2048/P2049 when none is given is cm.
-_WD_LENGTH_UNIT_TO_CM = {
-    "Q174789": 0.1,     # millimetre
-    "Q174728": 1.0,     # centimetre
-    "Q11573": 100.0,    # metre (canonical item; P2048/P2049 usually cite this one)
-    "Q7727": 100.0,     # metre (alternate item some data uses)
-    "Q218593": 2.54,    # inch
-}
 
 
-def wikidata_quantity_to_cm(dv: dict) -> float | None:
-    amount = dv.get("amount")
-    if amount is None:
-        return None
-    try:
-        val = float(str(amount).lstrip("+"))
-    except ValueError:
-        return None
-    unit = dv.get("unit") or ""
-    qid = unit.rsplit("/", 1)[-1] if unit else None
-    factor = _WD_LENGTH_UNIT_TO_CM.get(qid, 1.0)  # unknown/missing unit -> Wikidata's own cm default
-    return abs(val) * factor
 
 
-# ----------------------------------------------------------------------- Wikidata date normalisation
-# Round 3 bug: raw ISO dates ("1850-00-00", "1873-01-01") were leaking into date_display. Wikidata
-# zero-fills month/day it doesn't actually know ("00"), so the real signal is the claim's own
-# `precision` code, not the string shape. P1480 ("circa" qualifier) is honoured as a "c. " prefix.
-_MONTH_NAMES = ["", "January", "February", "March", "April", "May", "June", "July", "August",
-                "September", "October", "November", "December"]
 
 
-def _ordinal(n: int) -> str:
-    if 10 <= n % 100 <= 20:
-        suffix = "th"
-    else:
-        suffix = {1: "st", 2: "nd", 3: "rd"}.get(n % 10, "th")
-    return f"{n}{suffix}"
 
 
-def format_wikidata_date(claim: dict, allow_day_precision: bool = False) -> str | None:
-    """precision: 11=day, 10=month, 9=year, 8=decade, 7=century, <=6=millennium+. Day/month precision
-    is collapsed to a year UNLESS allow_day_precision (photos/space imagery, where a specific day is
-    both plausible and meaningful) — never for a generic artwork."""
-    dv = claim.get("mainsnak", {}).get("datavalue", {}).get("value")
-    if not isinstance(dv, dict) or "time" not in dv:
-        return None
-    m = re.match(r"^([+-])(\d+)-(\d{2})-(\d{2})T", dv["time"])
-    if not m:
-        return None
-    sign, y, mo, day = m.groups()
-    year = int(y) * (-1 if sign == "-" else 1)
-    precision = dv.get("precision", 9)
-    circa = bool((claim.get("qualifiers") or {}).get("P1480"))
-    prefix = "c. " if circa else ""
-
-    if precision >= 10 and allow_day_precision and mo != "00":
-        try:
-            if precision >= 11 and day != "00":
-                return f"{prefix}{int(day)} {_MONTH_NAMES[int(mo)]} {year}"
-            return f"{prefix}{_MONTH_NAMES[int(mo)]} {year}"
-        except (ValueError, IndexError):
-            pass
-    if precision >= 9:
-        return f"{prefix}{year}"
-    if precision == 8:
-        return f"{prefix}{(year // 10) * 10}s"
-    if precision == 7:
-        century = (year - 1) // 100 + 1 if year > 0 else (year // 100)
-        return f"{prefix}{_ordinal(century)} century"
-    return f"{prefix}{year}"  # millennium or coarser — best effort
 
 
 # Round 7 #2: a raw "YYYY-MM-DD" reaching date_display/creation_date (typically an
@@ -778,88 +642,6 @@ def _normalize_iso_date_string(value: str, collection: str | None) -> str:
     return str(int(year))
 
 
-async def _wikidata_full(fx: Fetcher, qid: str, allow_day_precision: bool = False) -> dict:
-    body, err = await fx.get_json(WD_API, {
-        "action": "wbgetentities", "ids": qid, "props": "claims|sitelinks", "languages": "en", "format": "json",
-    })
-    if not body:
-        return {"fetch_error": err}
-    ent = (body.get("entities") or {}).get(qid) or {}
-    claims = ent.get("claims") or {}
-
-    # First pass: collect every QID this item's claims reference (creator, collection, genre, …) so
-    # they can be resolved to labels in one or two batched calls instead of one-per-value.
-    need_ids: list[str] = []
-    for prop in list(CLAIM_PROPS) + list(VERSION_PROPS):
-        if prop == "P571":
-            continue  # date-valued, not QID-valued — handled separately below
-        for c in (claims.get(prop) or [])[:5]:
-            v = c.get("mainsnak", {}).get("datavalue", {}).get("value")
-            if isinstance(v, dict) and v.get("id"):
-                need_ids.append(v["id"])
-    labels = await _labels_for_qids(fx, need_ids) if need_ids else {}
-
-    def _resolved_label(qid_val: str) -> str | None:
-        """The batched label, or None if it never resolved to an English label — round 3: a fact must
-        never ship a bare, unresolved QID to a writer."""
-        lab = labels.get(qid_val)
-        if not lab or _BARE_QID_RE.match(lab.strip()):
-            return None
-        return lab
-
-    out = {}
-    for prop, key in CLAIM_PROPS.items():
-        vals = claims.get(prop) or []
-        vlabels = []
-        for c in vals[:5]:
-            dv = c.get("mainsnak", {}).get("datavalue", {})
-            v = dv.get("value")
-            if prop == "P571":
-                formatted = format_wikidata_date(c, allow_day_precision)
-                if formatted:
-                    vlabels.append(formatted)
-            elif prop in ("P2048", "P2049") and isinstance(v, dict) and "amount" in v:
-                cm = wikidata_quantity_to_cm(v)
-                if cm is not None:
-                    vlabels.append(f"{cm:.1f}")
-            elif isinstance(v, dict) and v.get("id"):
-                lab = _resolved_label(v["id"])
-                if lab:
-                    vlabels.append(lab)
-            elif isinstance(v, dict) and "amount" in v:
-                vlabels.append(v["amount"])
-            elif isinstance(v, str):
-                vlabels.append(v)
-        if vlabels:
-            out[key] = vlabels
-    creator_qid = None
-    for c in (claims.get("P170") or [])[:1]:
-        v = c.get("mainsnak", {}).get("datavalue", {}).get("value")
-        if isinstance(v, dict) and v.get("id"):
-            creator_qid = v["id"]
-    version = None
-    based_on_theme = None
-    for prop, relation in VERSION_PROPS.items():
-        vals = claims.get(prop) or []
-        if not vals:
-            continue
-        dv = vals[0].get("mainsnak", {}).get("datavalue", {}).get("value", {})
-        if isinstance(dv, dict) and dv.get("id"):
-            lab = _resolved_label(dv["id"])
-            if lab:  # never ship an unresolved QID as a "version of" target either
-                # Round 3 #7: P144/P1877/P629 often point at a THEME, not another physical artwork
-                # (Old Testament, "Venus Pudica", Book of Judith) — only call it is_version_of when the
-                # target is itself an instance/subclass of some kind of artwork.
-                if await _is_artwork_entity(fx, dv["id"]):
-                    version = {"relation": relation, "of_qid": dv["id"], "of_label": lab, "property": prop}
-                else:
-                    based_on_theme = {"relation": relation, "of_qid": dv["id"], "of_label": lab, "property": prop}
-            break
-    sitelinks = ent.get("sitelinks") or {}
-    return {
-        "claims": out, "enwiki_title": sitelinks.get("enwiki", {}).get("title"),
-        "is_version_of": version, "based_on_theme": based_on_theme, "creator_qid": creator_qid,
-    }
 
 
 # ----------------------------------------------------------------------- extra facts (--extra-facts DIR)
@@ -969,7 +751,6 @@ def index_extra_facts_by_catalog(extra_facts: list[dict], catalog_items: list[di
 
 
 _FREELY_QUOTABLE_LICENCES = {"PDM-1.0", "CC0-1.0"}
-_COPY_RUN_WORDS = 8   # a narrative may not reproduce this many consecutive words of a paraphrase-only fact
 
 
 _ESA_HOSTS = ("esahubble.org", "esawebb.org", "esa.int")
@@ -1864,102 +1645,16 @@ def resolve_structured_fields(bundle: dict, existing_item: dict, collection: str
     return fields, needs_review, notes
 
 
-# ----------------------------------------------------------------------- narrative (model, grounded only)
-_NARRATIVE_PROMPT = """You are writing a museum wall placard. Use ONLY the facts listed below — never \
-add a claim (name, date, place, event, subject detail) that is not directly supported by them. If the \
-facts are thin, write a SHORTER, more general placard about what is visibly depicted, the maker, and the \
-date rather than inventing anything. You may use the "background text (context only)" ONLY to avoid \
-stating something false — never as a source of new claims or phrasing; do not copy its wording. Facts \
-marked PARAPHRASE ONLY (CC BY text) may support claims but must be restated in your own words.
-{version_note}
-Facts (each has a fact_key you must cite):
-{facts_block}
-
-Structured fields (already fixed, do not contradict them):
-{structured_block}
-
-Background text (context only — verification, not a source of new claims):
-{context_block}
-
-Return ONLY a JSON object:
-{{"description_narrative": "2-3 plain-English sentences", "tags": "5-8 comma-separated lowercase keywords",
-"claims": [{{"text": "one factual claim from the narrative", "fact_keys": ["wikidata.inception", ...]}}]}}
-Every sentence containing a checkable fact must have a matching entry in "claims" whose fact_keys point \
-at the facts above that support it."""
 
 
-def _facts_block(bundle: dict) -> str:
-    lines = []
-    for f in bundle["facts"]:
-        v = f["value"]
-        v = ", ".join(v) if isinstance(v, list) else v
-        note = "; PARAPHRASE ONLY - never copy its wording" if f.get("paraphrase_only") else ""
-        lines.append(f"- [{f['key']}] {v} (source: {f['source']}, {f['licence']}{note})")
-    return "\n".join(lines) or "(none retrieved)"
 
 
-def _structured_block(fields: dict) -> str:
-    keys = ("medium", "date_display", "current_repository", "physical_dimensions")
-    return "\n".join(f"- {k}: {fields[k]}" for k in keys if fields.get(k)) or "(none)"
 
 
-def build_narrative_prompt(bundle: dict, fields: dict, offending_claim: dict | None = None) -> str:
-    version_note = ""
-    if bundle.get("is_version_of"):
-        v = bundle["is_version_of"]
-        version_note = (f"\nIMPORTANT: this object is {v['relation']} \"{v['of_label']}\" — say PLAINLY "
-                         f"that it is a copy/cast/replica/version, do not describe it as the original.")
-    prompt = _NARRATIVE_PROMPT.format(
-        version_note=version_note,
-        facts_block=_facts_block(bundle),
-        structured_block=_structured_block(fields),
-        context_block="\n".join(bundle.get("check_only_texts") or [])[:1200] or "(none)",
-    )
-    if offending_claim:
-        prompt += (f"\n\nYour previous draft included this claim, which is NOT supported by the facts "
-                   f"above: \"{offending_claim.get('text')}\". Remove it or replace it with one the facts "
-                   f"actually support.")
-    return prompt
 
 
-def check_claims(claims: list[dict], bundle: dict) -> tuple[bool, dict | None]:
-    """Every claim must cite >=1 real fact key, and the claim's specifics (years/numbers/proper nouns
-    it names) must actually appear in the text of the facts it cites. Returns (ok, offending_claim)."""
-    facts_by_key = {f["key"]: f for f in bundle["facts"]}
-    for claim in claims or []:
-        keys = claim.get("fact_keys") or []
-        real_keys = [k for k in keys if k in facts_by_key]
-        if not real_keys:
-            return False, claim
-        cited_text = " ".join(
-            (", ".join(facts_by_key[k]["value"]) if isinstance(facts_by_key[k]["value"], list) else str(facts_by_key[k]["value"]))
-            for k in real_keys
-        ).lower()
-        numbers = re.findall(r"\b\d{3,4}\b", claim.get("text") or "")
-        for n in numbers:
-            if n not in cited_text:
-                return False, claim
-    return True, None
 
 
-def _template_placard_grounded(item: dict, fields: dict, bundle: dict) -> dict:
-    """Deterministic fallback, using only the grounded structured fields — never invents."""
-    t, a = item.get("title", "Untitled"), fields.get("agent_name_confirmed") or item.get("agent_name", "")
-    d = fields.get("date_display") or item.get("date_display") or item.get("creation_date") or ""
-    m = fields.get("medium") or item.get("medium") or ""
-    repo = fields.get("current_repository") or item.get("source", "a public collection")
-    s1 = t + (f" by {a}" if a and a != "Unknown Artist" else "") + (f" ({d})" if d else "") + "."
-    version_note = ""
-    if bundle.get("is_version_of"):
-        v = bundle["is_version_of"]
-        version_note = f" This is {v['relation']} \"{v['of_label']}\"."
-    s2 = (f"{m}. " if m else "") + f"Held by {repo}.{version_note}"
-    item = dict(item)
-    item["description_narrative"] = (s1 + " " + s2).strip()
-    if not item.get("tags"):
-        words = [w.lower() for w in re.split(r"[\s,]+", t) if len(w) > 3][:5]
-        item["tags"] = ", ".join(words)
-    return item
 
 
 async def generate_narrative(bundle: dict, fields: dict, model_sem: asyncio.Semaphore) -> tuple[dict | None, bool]:
@@ -2319,100 +2014,16 @@ async def run_packets(*, only_sample: bool, limit: int | None, collection: str |
     return report
 
 
-# ----------------------------------------------------------------------- import (validate + land the writer's output)
-_VISUAL_STOPWORDS = {
-    "the", "a", "an", "and", "or", "of", "in", "on", "at", "with", "is", "are", "was", "were",
-    "this", "it", "its", "his", "her", "their", "by", "from", "to", "as", "shows", "depicts",
-}
 
 
-_POSSESSIVE_RE = re.compile(r"'s?$", re.I)
 
 
-def _possessive_stem(word: str) -> str:
-    """"Nebula's" -> "nebula", "Stars'" -> "stars" (lower-cased). The possessive marker is not part of the
-    proper noun, so the noun is checked against the title/facts, not the inflected form."""
-    return _POSSESSIVE_RE.sub("", word).lower()
 
 
-def _visual_claim_ok(text: str, title: str, facts: list[dict]) -> tuple[bool, str | None]:
-    """A visual:true claim may describe only what is visibly depicted — no names/dates/places/events.
-    Reject a number, or a capitalised word that isn't part of the title or a fact value."""
-    if re.search(r"\d", text or ""):
-        return False, "visual claim contains a number/year"
-    allowed_words = set()
-    for w in re.findall(r"[A-Za-z']+", title or ""):
-        allowed_words.add(w.lower())
-        allowed_words.add(_possessive_stem(w))
-    for f in facts:
-        v = f["value"]
-        vals = v if isinstance(v, list) else [v]
-        for val in vals:
-            for w in re.findall(r"[A-Za-z']+", str(val)):
-                allowed_words.add(w.lower())
-                allowed_words.add(_possessive_stem(w))
-    for m in re.finditer(r"\b[A-Z][a-zA-Z']*\b", text or ""):
-        word = m.group(0)
-        if word.lower() in _VISUAL_STOPWORDS:
-            continue
-        if (re.match(r"^[A-Z][a-z']*$", word) and word.lower() not in allowed_words
-                and _possessive_stem(word) not in allowed_words):
-            # A capitalised word that isn't sentence-initial reads as a proper noun. Sentence-initial
-            # capitals — the claim's first word, or the first word after . ! ? (claims can hold two
-            # sentences) — are exempt.
-            if not re.search(r"(^|[.!?][\"'”’)]*\s+)[\"'“‘(]*$", text[:m.start()]):
-                return False, f"visual claim names a proper noun not in the title/facts: {word!r}"
-    return True, None
 
 
-def _copied_run(narrative: str, source: str, n: int = _COPY_RUN_WORDS) -> str | None:
-    """The first n-word run of `narrative` that also appears verbatim (case/punctuation-insensitive) in
-    `source`, else None."""
-    def words(t):
-        return re.findall(r"[a-z0-9']+", t.lower().replace("\u2019", "'"))
-    nw, sw = words(narrative), words(source)
-    if len(nw) < n or len(sw) < n:
-        return None
-    grams = {tuple(sw[i:i + n]) for i in range(len(sw) - n + 1)}
-    for i in range(len(nw) - n + 1):
-        if tuple(nw[i:i + n]) in grams:
-            return " ".join(nw[i:i + n])
-    return None
 
 
-def validate_written_item(written: dict, packet: dict) -> tuple[bool, list[str]]:
-    """Returns (passed, reasons). reasons is non-empty iff not passed."""
-    reasons = []
-    facts = packet.get("facts") or []
-    facts_by_key = {f["key"]: f for f in facts}
-    for claim in written.get("claims") or []:
-        text = claim.get("text") or ""
-        if claim.get("visual"):
-            ok, reason = _visual_claim_ok(text, packet.get("title") or "", facts)
-            if not ok:
-                reasons.append(f"{reason}: {text!r}")
-            continue
-        keys = claim.get("fact_keys") or []
-        real_keys = [k for k in keys if k in facts_by_key]
-        if not real_keys:
-            reasons.append(f"claim cites no real fact_keys: {text!r}")
-            continue
-        cited_text = " ".join(
-            (", ".join(facts_by_key[k]["value"]) if isinstance(facts_by_key[k]["value"], list) else str(facts_by_key[k]["value"]))
-            for k in real_keys
-        ).lower()
-        for n in re.findall(r"\b\d{3,4}\b", text):
-            if n not in cited_text:
-                reasons.append(f"claim year/number {n!r} not found in its cited facts: {text!r}")
-    if not (written.get("description_narrative") or "").strip():
-        reasons.append("empty description_narrative")
-    for f in facts:
-        if f.get("paraphrase_only") and isinstance(f.get("value"), str):
-            run = _copied_run(written.get("description_narrative") or "", f["value"])
-            if run:
-                reasons.append(f"narrative copies {_COPY_RUN_WORDS}+ consecutive words of paraphrase-only "
-                               f"fact {f['key']} ({f.get('licence')}): {run!r}")
-    return (not reasons), reasons
 
 
 # ----------------------------------------------------------------------- field corrections (round 4)

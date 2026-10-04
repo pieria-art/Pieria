@@ -61,10 +61,10 @@ class DiscoveryQueueSchema(BaseModel):
     model_config = {"from_attributes": True}
 
 
-async def run_rag_pipeline(artwork_id: int, context_hints: str = None):
+async def run_rag_pipeline(artwork_id: int, context_hints: str = None, source_api: str = None):
     db = SessionLocal()
     try:
-        await curator.enrich_artwork(artwork_id, db, context_hints=context_hints)
+        await curator.enrich_artwork(artwork_id, db, context_hints=context_hints, source_api=source_api)
     finally:
         db.close()
 
@@ -251,7 +251,7 @@ async def approve_discovery(item_id: int, background_tasks: BackgroundTasks, db:
     db.refresh(new_art)
 
     # 3. Enrich with RAG Curator
-    background_tasks.add_task(run_rag_pipeline, new_art.id, item.context_hints)
+    background_tasks.add_task(run_rag_pipeline, new_art.id, item.context_hints, item.source_api)
 
     return {"status": "Art added and fully enriched", "artwork_id": new_art.id}
 

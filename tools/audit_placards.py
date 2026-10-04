@@ -24,11 +24,26 @@ import os
 import random
 import re
 import sys
-import unicodedata
 import urllib.parse
 from pathlib import Path
 
 import httpx
+
+# Shared resolution code moved to core/grounding.py (runtime grounding, ADR-148); re-imported here.
+from core.grounding import (  # noqa: F401
+    COMMONS_API,
+    WD_API,
+    WD_SPARQL,
+    WP_SUMMARY,
+    _commons_structured,
+    _label_for_qid,
+    _norm,
+    _search_and_verify,
+    _sparql_p18,
+    _surname,
+    _wikipedia_lead,
+    resolve_work,
+)
 
 ROOT = Path(__file__).resolve().parent.parent
 CATALOG_DIR = ROOT / "static" / "catalog"
@@ -51,10 +66,6 @@ OTHER_FLOOR = 3
 
 UA = "Pieria-PlacardAudit/1.0 (https://github.com/pieria-art/Pieria; placard accuracy audit)"
 
-WD_API = "https://www.wikidata.org/w/api.php"
-WD_SPARQL = "https://query.wikidata.org/sparql"
-COMMONS_API = "https://commons.wikimedia.org/w/api.php"
-WP_SUMMARY = "https://en.wikipedia.org/api/rest_v1/page/summary/{}"
 MET_SEARCH = "https://collectionapi.metmuseum.org/public/collection/v1/search"
 MET_OBJECT = "https://collectionapi.metmuseum.org/public/collection/v1/objects/{}"
 CLEVELAND_SEARCH = "https://openaccess-api.clevelandart.org/api/artworks/"
@@ -67,18 +78,8 @@ CLAIM_PROPS = {
 }
 
 
-# --------------------------------------------------------------------------- small helpers
-def _norm(s: str) -> str:
-    s = unicodedata.normalize("NFKD", s or "")
-    s = "".join(c for c in s if not unicodedata.combining(c))
-    s = re.sub(r"[^a-z0-9 ]", "", s.lower())
-    s = re.sub(r"^(the|a|an)\s+", "", s)
-    return re.sub(r"\s+", " ", s).strip()
 
 
-def _surname(name: str) -> str:
-    parts = (name or "").split()
-    return _norm(parts[-1]) if parts else ""
 
 
 def _slug(title: str) -> str:
@@ -226,109 +227,14 @@ class Fetcher:
             return None, err or "unknown_error"
 
 
-# --------------------------------------------------------------------------- wikidata resolution
-async def _label_for_qid(fx: Fetcher, qid: str) -> str:
-    body, _ = await fx.get_json(WD_API, {
-        "action": "wbgetentities", "ids": qid, "props": "labels", "languages": "en", "format": "json",
-    })
-    if not body:
-        return qid
-    ent = (body.get("entities") or {}).get(qid) or {}
-    lab = ((ent.get("labels") or {}).get("en") or {}).get("value")
-    return lab or qid
 
 
-async def _sparql_p18(fx: Fetcher, filename: str) -> list[str]:
-    # WDQS represents P18 (commonsMedia) as the Special:FilePath URI, not a bare string literal —
-    # matching against that URI form is what actually hits the index (a literal-string FILTER times
-    # out unindexed). Encoded exactly like the catalog's own source_url (spaces as %20).
-    uri = f"http://commons.wikimedia.org/wiki/Special:FilePath/{urllib.parse.quote(filename)}"
-    q = f"SELECT ?item WHERE {{ ?item wdt:P18 <{uri}> . }}"
-    body, err = await fx.get_json(WD_SPARQL, {"query": q, "format": "json"})
-    if not body:
-        return []
-    rows = body.get("results", {}).get("bindings", [])
-    return [r["item"]["value"].rsplit("/", 1)[-1] for r in rows]
 
 
-async def _commons_structured(fx: Fetcher, filename: str) -> tuple[str | None, str]:
-    """Try the Commons file's structured data for P6243 (digital representation of), then P180
-    (depicts). Returns (qid_or_None, method_note)."""
-    body, err = await fx.get_json(COMMONS_API, {
-        "action": "wbgetentities", "sites": "commonswiki", "titles": f"File:{filename}",
-        "props": "claims", "format": "json",
-    })
-    if not body:
-        return None, f"commons_fetch_error:{err}"
-    entities = body.get("entities") or {}
-    ent = next(iter(entities.values()), {}) if entities else {}
-    claims = ent.get("claims") or {}
-    for prop, note in (("P6243", "commons P6243 digital-representation-of"), ("P180", "commons P180 depicts")):
-        vals = claims.get(prop) or []
-        qids = []
-        for c in vals:
-            snak = c.get("mainsnak", {}).get("datavalue", {}).get("value", {})
-            if isinstance(snak, dict) and snak.get("id"):
-                qids.append(snak["id"])
-        if len(qids) == 1:
-            return qids[0], note
-    return None, "commons_no_structured_match"
 
 
-async def _search_and_verify(fx: Fetcher, title: str, artist: str) -> tuple[str | None, str, str]:
-    """wbsearchentities on title; accept only a candidate whose P170 creator label matches the
-    catalog's artist surname. Returns (qid_or_None, method, confidence)."""
-    body, err = await fx.get_json(WD_API, {
-        "action": "wbsearchentities", "search": title, "language": "en", "type": "item",
-        "limit": 6, "format": "json",
-    })
-    if not body:
-        return None, f"search_fetch_error:{err}", "none"
-    cands = body.get("search") or []
-    if not cands:
-        return None, "search_no_candidates", "none"
-    target_surname = _surname(artist)
-    for c in cands:
-        qid = c["id"]
-        ebody, _ = await fx.get_json(WD_API, {
-            "action": "wbgetentities", "ids": qid, "props": "claims|labels", "languages": "en", "format": "json",
-        })
-        if not ebody:
-            continue
-        ent = (ebody.get("entities") or {}).get(qid) or {}
-        creators = (ent.get("claims") or {}).get("P170") or []
-        for cl in creators:
-            cqid = cl.get("mainsnak", {}).get("datavalue", {}).get("value", {}).get("id")
-            if not cqid:
-                continue
-            clabel = await _label_for_qid(fx, cqid)
-            if target_surname and target_surname in _surname(clabel):
-                return qid, "wbsearchentities + creator-verified", "medium"
-    return None, "search_candidates_no_creator_match", "none"
 
 
-async def resolve_work(fx: Fetcher, item: dict) -> dict:
-    source_url = item.get("source_url") or ""
-    title = item.get("title") or ""
-    artist = item.get("agent_name") or ""
-
-    if "commons.wikimedia.org" in source_url:
-        parsed = urllib.parse.urlparse(source_url)
-        raw_name = parsed.path.rsplit("/", 1)[-1]
-        filename = urllib.parse.unquote(raw_name)
-        qids = await _sparql_p18(fx, filename)
-        if len(qids) == 1:
-            return {"qid": qids[0], "method": "P18 exact commons-file match", "confidence": "high"}
-        if len(qids) > 1:
-            return {"qid": qids[0], "method": "P18 match (ambiguous, multiple items)", "confidence": "medium"}
-        qid, note = await _commons_structured(fx, filename)
-        if qid:
-            return {"qid": qid, "method": note, "confidence": "high"}
-
-    qid, method, conf = await _search_and_verify(fx, title, artist)
-    if qid:
-        return {"qid": qid, "method": method, "confidence": conf}
-    return None
 
 
 # --------------------------------------------------------------------------- evidence assembly
@@ -362,12 +268,6 @@ async def _wikidata_claims(fx: Fetcher, qid: str) -> dict:
     return {"claims": out, "enwiki_title": enwiki}
 
 
-async def _wikipedia_lead(fx: Fetcher, enwiki_title: str) -> str | None:
-    body, err = await fx.get_json(WP_SUMMARY.format(urllib.parse.quote(enwiki_title)))
-    if not body:
-        return None
-    extract = body.get("extract") or ""
-    return extract[:1500] if extract else None
 
 
 async def _museum_record(fx: Fetcher, item: dict) -> dict | None:
