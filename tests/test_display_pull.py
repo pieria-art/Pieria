@@ -259,3 +259,24 @@ def test_pull_without_interval_keeps_the_old_rule(seeded):
 def test_pull_interval_below_15_is_rejected(seeded):
     c, _, _ = seeded
     assert c.get("/display/eink1/current.png", params={"interval": 5}).status_code == 422
+
+
+def test_paused_display_pull_holds_the_current_frame_and_unpausing_advances(seeded):
+    """ADR-147: pause is one server-side flag, so the e-ink pull holds its frame too."""
+    from core.playback import set_display_paused
+    c, db, art = seeded
+    Image.new("RGB", (900, 1200), (10, 200, 90)).save(routers_display.LIBRARY_DIR / "_pull2.jpg", format="JPEG")
+    art2 = ArtworkModel(filename="_pull2.jpg", title="t2", status="approved")
+    db.add(art2)
+    db.commit()
+    db.refresh(art2)
+    pl = db.query(PlaylistModel).filter_by(name="default").one()
+    pl.artworks.append(art2)
+    db.commit()
+
+    first = c.get("/display/eink1/current.png?w=64&h=64")
+    set_display_paused(db, "eink1", True)
+    held = [c.get("/display/eink1/current.png?w=64&h=64") for _ in range(3)]
+    assert all(h.headers["ETag"] == first.headers["ETag"] for h in held)
+    set_display_paused(db, "eink1", False)
+    assert c.get("/display/eink1/current.png?w=64&h=64").headers["ETag"] != first.headers["ETag"]

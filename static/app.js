@@ -96,6 +96,9 @@ let currentFocal = null;
 // mode toggle re-applies them without re-plumbing every call site.
 let currentAspectCrops = null;
 let cycleTimeout = null;
+// Public API pause (ADR-147): the SERVER owns the flag (/next-image reports it as `paused`; the `pause` /
+// `resume` WS commands flip it live). While true: no auto-advance timer, Ken Burns drift frozen.
+let isPaused = false;
 let currentPlaylists = [];
 let socket = null;
 
@@ -284,6 +287,15 @@ function connectWS() {
                     break;
                 case 'heartbeat':
                     break;                                 // an older server echoes our own beat back
+                case 'pause':
+                    pauseCycle();
+                    break;
+                case 'resume':
+                    resumeCycle();
+                    break;
+                case 'show_artwork':
+                    if (msg.artwork_id) startDisplayCycleManually(1, msg.artwork_id);
+                    break;
                 case 'show_placard':
                     if (placardTimeout) clearTimeout(placardTimeout);
                     const manualShowTime = globalConfig.placard_manual !== null ? globalConfig.placard_manual : (currentPlaylistData?.placard_manual !== undefined ? currentPlaylistData.placard_manual : DEFAULT_SETTINGS.placard_manual);
@@ -488,12 +500,33 @@ let cycleGen = 0;
 async function startDisplayCycle() {
     if (cycleTimeout) clearTimeout(cycleTimeout);
     const gen = await fetchAndTransition(1, false);
-    if (gen === cycleGen) cycleTimeout = setTimeout(startDisplayCycle, currentDisplayTime);  // only the latest reschedules
+    if (gen === cycleGen && !isPaused) cycleTimeout = setTimeout(startDisplayCycle, currentDisplayTime);  // only the latest reschedules
+}
+
+function setKenBurnsPaused(paused) {
+    document.querySelectorAll('.artwork-item').forEach(el => {
+        if (!el._kbAnim) return;
+        if (paused) el._kbAnim.pause(); else el._kbAnim.play();
+    });
+}
+
+function pauseCycle() {
+    isPaused = true;
+    if (cycleTimeout) { clearTimeout(cycleTimeout); cycleTimeout = null; }
+    setKenBurnsPaused(true);
+}
+
+function resumeCycle() {
+    if (!isPaused) return;
+    isPaused = false;
+    setKenBurnsPaused(false);
+    if (cycleTimeout) clearTimeout(cycleTimeout);
+    cycleTimeout = setTimeout(startDisplayCycle, currentDisplayTime);   // a full dwell from now, then carry on
 }
 
 let currentPlaylistData = null;
 
-async function fetchAndTransition(direction = 1, isSkipped = false) {
+async function fetchAndTransition(direction = 1, isSkipped = false, showArtworkId = null) {
     if (!currentPlaylist) return cycleGen;
     const gen = ++cycleGen;   // this call is now the latest; any older in-flight call will bail below
 
@@ -508,6 +541,10 @@ async function fetchAndTransition(direction = 1, isSkipped = false) {
             display_id: DISPLAY_ID,
             direction: direction
         });
+        // A viewer/remote-initiated advance must move a paused display exactly once (the server holds
+        // auto-advances while paused); `artwork_id` is the show-this-artwork-now command.
+        if (isSkipped) params.append('manual', 'true');
+        if (showArtworkId) params.append('artwork_id', String(showArtworkId));
         
         // Only append shuffle if it was explicitly overridden in the URL
         if (globalConfig.shuffle !== null) {
@@ -520,6 +557,7 @@ async function fetchAndTransition(direction = 1, isSkipped = false) {
         const data = await response.json();
         if (gen !== cycleGen) return gen;
         setEmptyState(false);
+        isPaused = !!data.paused;                           // the server's flag wins (reload-while-paused)
 
         currentPlaylistData = data;
         currentImageIndex = data.index;
@@ -829,6 +867,7 @@ function startKenBurns(element, fx, fy, img, box) {
         ],
         { duration: 45000, iterations: Infinity, direction: 'alternate', easing: 'linear' }
     );
+    if (isPaused) element._kbAnim.pause();        // a paused display's explicit next stays frozen
 }
 
 function initNavButtons() {
@@ -836,10 +875,10 @@ function initNavButtons() {
     document.getElementById('next-btn').addEventListener('click', () => startDisplayCycleManually(1));
 }
 
-async function startDisplayCycleManually(direction) {
+async function startDisplayCycleManually(direction, showArtworkId = null) {
     if (cycleTimeout) clearTimeout(cycleTimeout);
-    const gen = await fetchAndTransition(direction, true); // true = user skipped
-    if (gen === cycleGen) cycleTimeout = setTimeout(startDisplayCycle, currentDisplayTime);  // only the latest reschedules
+    const gen = await fetchAndTransition(direction, true, showArtworkId); // true = user skipped
+    if (gen === cycleGen && !isPaused) cycleTimeout = setTimeout(startDisplayCycle, currentDisplayTime);  // only the latest reschedules
 }
 
 function initModeToggles() {

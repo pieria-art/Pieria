@@ -76,8 +76,18 @@ async def select_next_image(
     display_id: str,
     direction: int,
     db: Session,
+    manual: bool = False,
+    show_artwork_id: Optional[int] = None,
 ) -> dict:
     """Stateful next-image selection (Phase 6).
+
+    A2 (ADR-147): three things can short-circuit the bag/sequence advance, in this order —
+      1. `show_artwork_id` (Canvas "show artwork now"): serve that approved artwork (404 if unknown).
+      2. a pending show-next set through the public API for a pull-on-wake display (consumed once).
+      3. PAUSE: a paused display's auto-advance (`direction=1`, `manual=False`) re-serves the item it is
+         already showing instead of advancing. A manual advance (`manual=True`, or any direction != 1)
+         still advances exactly once and the display stays paused.
+    The response carries `paused` so a Canvas that reloads while paused does not restart its timer.
 
     Uses 'bag shuffle' for variety and persists state per display. The canonical
     selection brain: the `/next-image` route, the e-ink pull route, and the Frame
@@ -110,6 +120,26 @@ async def select_next_image(
 
     if not artworks: raise HTTPException(404, detail="No approved images")
     count = len(artworks)
+
+    paused = is_display_paused(db, display_id)
+    held = None
+    if show_artwork_id is not None:
+        held = db.query(ArtworkModel).filter(ArtworkModel.id == show_artwork_id,
+                                             ArtworkModel.status == 'approved').first()
+        if held is None:
+            raise HTTPException(404, detail="No such artwork")
+    if held is None:
+        held = _take_pending_show(db, display_id)
+    if held is None and paused and direction == 1 and not manual:
+        cur = db.query(ActiveDisplayModel).filter(ActiveDisplayModel.display_id == display_id).first()
+        if cur and cur.current_artwork_id and cur.current_playlist == playlist_name:
+            held = db.query(ArtworkModel).filter(ArtworkModel.id == cur.current_artwork_id,
+                                                 ArtworkModel.status == 'approved').first()
+    if held is not None:
+        db.commit()   # the last_playlist write above rides this
+        idx = next((i for i, a in enumerate(artworks) if a.id == held.id), -1)
+        _record_now_playing(db, display_id, held.id, playlist_name)
+        return _selection_payload(held, idx, p, resolved_shuffle, playlist_name, paused)
 
     # Get or create playback session. A8: the (display_id, playlist_id) UNIQUE constraint backstops the
     # check-then-insert race across the 4 workers — if another worker inserts first, catch the
@@ -180,6 +210,11 @@ async def select_next_image(
     # stays heartbeat-owned so a fresh selection never masks a display that stopped checking in.
     _record_now_playing(db, display_id, selected_art.id, playlist_name)
 
+    return _selection_payload(selected_art, selected_idx, p, resolved_shuffle, playlist_name, paused)
+
+
+def _selection_payload(selected_art, selected_idx: int, p, resolved_shuffle: bool, playlist_name: str,
+                       paused: bool) -> dict:
     try:
         _ver = int((LIBRARY_DIR / selected_art.filename).stat().st_mtime)
     except OSError:
@@ -202,7 +237,8 @@ async def select_next_image(
         # Per-aspect crop presets (may be None). The CLIENT picks by its own viewport ratio — the
         # server can't, since one now-playing payload fans out to displays of different shapes.
         "aspect_crops": selected_art.aspect_crops,
-        "metadata": placard_metadata(selected_art)
+        "metadata": placard_metadata(selected_art),
+        "paused": paused,
     }
 
 
@@ -235,19 +271,109 @@ def _now_playing_artwork(db: Session, artwork_id: Optional[int]) -> Optional[dic
             "is_personal": a.is_personal, "thumb_url": f"/artworks/{a.id}/thumbnail"}
 
 
+#: A queued command older than this is never delivered and is purged (A2, ADR-147). A command is a
+#: "do it now" intent for a display that is live — one that sat longer (display offline, tab asleep)
+#: would otherwise fire minutes later as a surprise, or queue forever.
+COMMAND_TTL_SEC = 60
+
+
+def _command_cutoff() -> datetime:
+    # remote_commands.created_at is stored as UTC wall-clock without tzinfo (SQLite), so compare naive.
+    return (datetime.now(UTC) - timedelta(seconds=COMMAND_TTL_SEC)).replace(tzinfo=None)
+
+
 def queue_remote_command(db: Session, display_id: str, action: str,
-                         playlist: Optional[str] = None, mode: Optional[str] = None) -> None:
+                         playlist: Optional[str] = None, mode: Optional[str] = None,
+                         artwork_id: Optional[int] = None) -> None:
     """Persist a command for a display's WS poller to relay (the Phase 5 cross-worker bridge — see
     routers/ws.py). The ONE writer of remote_commands: `/api/remote/change` and the public API's
     `/api/v1/displays/{id}/commands` both go through here, so the payload shape the Canvas parses
-    (`{action, playlist?, mode?}`) cannot diverge between them."""
+    (`{action, playlist?, mode?, artwork_id?}`) cannot diverge between them. Expired rows (older than
+    COMMAND_TTL_SEC) are purged on every enqueue."""
     payload = {"action": action}
     if playlist:
         payload["playlist"] = playlist
     if mode:
         payload["mode"] = mode
+    if artwork_id is not None:
+        payload["artwork_id"] = artwork_id
+    db.query(RemoteCommandModel).filter(RemoteCommandModel.created_at < _command_cutoff()).delete(
+        synchronize_session=False)
     db.add(RemoteCommandModel(target_display=display_id, action=action, payload=json.dumps(payload)))
     db.commit()
+
+
+def take_deliverable_commands(db: Session, display_id: str) -> list[dict]:
+    """Pop this display's queued commands for the WS relay: returns the payloads of the fresh ones (in
+    order) and deletes every row it saw, so an EXPIRED command (older than COMMAND_TTL_SEC) is purged
+    and never delivered."""
+    cutoff = _command_cutoff()
+    rows = (db.query(RemoteCommandModel).filter(RemoteCommandModel.target_display == display_id)
+              .order_by(RemoteCommandModel.id).all())
+    out = []
+    for cmd in rows:
+        created = cmd.created_at.replace(tzinfo=None) if cmd.created_at else None
+        if created is None or created >= cutoff:
+            out.append(json.loads(cmd.payload))
+        db.delete(cmd)
+    db.commit()
+    return out
+
+
+# --- Pause + show-next (A2, ADR-147): per-display flags in the Settings KV ------------------------------
+# KV rather than a column on active_displays/display_playback_sessions: the active_displays row is DELETED
+# on every clean WS disconnect (a Canvas reload would silently un-pause) and playback sessions are per
+# (display, playlist). Absent row = not paused.
+_PAUSED_PREFIX = "display_paused:"
+_SHOW_NEXT_PREFIX = "display_show_next:"
+#: A queued show-next for a pull-on-wake display waits for its next pull — which may be minutes away.
+SHOW_NEXT_TTL_SEC = 6 * 3600
+
+
+def is_display_paused(db: Session, display_id: str) -> bool:
+    return db.query(SettingsModel.setting_key).filter(
+        SettingsModel.setting_key == _PAUSED_PREFIX + display_id).first() is not None
+
+
+def set_display_paused(db: Session, display_id: str, paused: bool) -> None:
+    key = _PAUSED_PREFIX + display_id
+    row = db.query(SettingsModel).filter(SettingsModel.setting_key == key).first()
+    if paused and row is None:
+        db.add(SettingsModel(setting_key=key, setting_value="1"))
+    elif not paused and row is not None:
+        db.delete(row)
+    db.commit()
+
+
+def set_pending_show(db: Session, display_id: str, artwork_id: int, ttl_sec: int = SHOW_NEXT_TTL_SEC) -> None:
+    """Make `artwork_id` the next item this display is served (consumed by select_next_image)."""
+    key = _SHOW_NEXT_PREFIX + display_id
+    value = json.dumps({"id": artwork_id, "exp": (datetime.now(UTC) + timedelta(seconds=ttl_sec)).timestamp()})
+    row = db.query(SettingsModel).filter(SettingsModel.setting_key == key).first()
+    if row is None:
+        db.add(SettingsModel(setting_key=key, setting_value=value))
+    else:
+        row.setting_value = value
+    db.commit()
+
+
+def _take_pending_show(db: Session, display_id: str) -> Optional["ArtworkModel"]:
+    """Consume the pending show-next, if any and unexpired and still approved."""
+    key = _SHOW_NEXT_PREFIX + display_id
+    row = db.query(SettingsModel).filter(SettingsModel.setting_key == key).first()
+    if row is None:
+        return None
+    try:
+        data = json.loads(row.setting_value)
+        ok = float(data["exp"]) > datetime.now(UTC).timestamp()
+        art_id = int(data["id"])
+    except (ValueError, KeyError, TypeError):
+        ok, art_id = False, 0
+    db.delete(row)
+    db.commit()
+    if not ok:
+        return None
+    return db.query(ArtworkModel).filter(ArtworkModel.id == art_id, ArtworkModel.status == 'approved').first()
 
 
 def _display_now_playing(db: Session, row: "ActiveDisplayModel") -> dict:

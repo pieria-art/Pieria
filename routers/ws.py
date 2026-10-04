@@ -7,7 +7,6 @@ worker processes (ADR-006), since no single worker sees every display's socket.
 """
 
 import asyncio
-import json
 import logging
 from datetime import UTC, datetime
 from typing import Optional
@@ -20,10 +19,16 @@ import config
 from core import appliance_settings
 from core.connections import manager
 from core.demo import normalize_display_id
-from core.playback import _display_now_playing, _is_live, known_displays, queue_remote_command
+from core.playback import (
+    _display_now_playing,
+    _is_live,
+    known_displays,
+    queue_remote_command,
+    take_deliverable_commands,
+)
 from core.security import _origin_allowed
 from database import SessionLocal, get_db
-from models import ActiveDisplayModel, RemoteCommandModel
+from models import ActiveDisplayModel
 
 logger = logging.getLogger("artwork-display-api")
 
@@ -132,12 +137,10 @@ async def websocket_endpoint(websocket: WebSocket, display_id: str):
         while True:
             try:
                 with SessionLocal() as db:
-                    cmds = db.query(RemoteCommandModel).filter(RemoteCommandModel.target_display == display_id).all()
-                    for cmd in cmds:
-                        logger.info(f"Relaying remote command to {display_id}: {cmd.action}")
-                        await manager.send_personal_message(json.loads(cmd.payload), display_id)
-                        db.delete(cmd)
-                    db.commit()
+                    # take_deliverable_commands drops (and purges) commands older than the TTL (ADR-147).
+                    for payload in take_deliverable_commands(db, display_id):
+                        logger.info(f"Relaying remote command to {display_id}: {payload.get('action')}")
+                        await manager.send_personal_message(payload, display_id)
             except Exception as e:
                 logger.error(f"Command poller error for {display_id}: {e}", exc_info=True)
             await asyncio.sleep(1)

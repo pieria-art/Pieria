@@ -24,7 +24,13 @@ from core.demo import normalize_display_id
 from core.licensing import LICENSE_NAMES, normalize_license, requires_attribution
 from core.media import lookup_artwork_filename, peek_canvas_image, render_canvas_image, run_image_work
 from core.playback import _playlist_name_if_playable, select_next_image, touch_active_display
-from core.settings_util import _HHMM_RE, _load_schedule, _parse_hhmm, resolve_schedule_state
+from core.settings_util import (
+    _HHMM_RE,
+    _load_schedule,
+    _parse_hhmm,
+    get_quiet_override,
+    resolve_schedule_state,
+)
 from database import SessionLocal, get_db
 from epaper import (
     PALETTES,
@@ -113,7 +119,7 @@ async def get_schedule_state(display_id: str, now: Optional[str] = Query(None), 
         if m < 0 or not _HHMM_RE.match(now):
             raise HTTPException(400, detail="now must be HH:MM")
         when = when.replace(hour=m // 60, minute=m % 60)
-    return resolve_schedule_state(_load_schedule(db), when)
+    return resolve_schedule_state(_load_schedule(db), when, get_quiet_override(db))
 
 
 @router.get("/next-image")
@@ -122,11 +128,16 @@ async def get_next_image(
     shuffle: Optional[bool] = Query(None),
     display_id: str = Query("default"),
     direction: int = Query(1),
+    manual: bool = Query(False, description="A viewer/remote-initiated advance: advances even while the "
+                                            "display is paused (the auto-advance timer never sets this)."),
+    artwork_id: Optional[int] = Query(None, description="Show this approved artwork now (the Canvas's "
+                                                         "`show_artwork` command), then carry on from it."),
     db: Session = Depends(get_db)
 ):
     """Stateful next-image selection — thin route over core.playback.select_next_image."""
     display_id = normalize_display_id(display_id)
-    return await select_next_image(playlist_name, shuffle, display_id, direction, db)
+    return await select_next_image(playlist_name, shuffle, display_id, direction, db,
+                                   manual=manual, show_artwork_id=artwork_id)
 
 
 @router.get("/display/{display_id}/current.{ext}")

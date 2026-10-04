@@ -38,16 +38,22 @@ from core import api_tokens
 from core.playback import (
     _as_utc,
     _is_live,
+    is_display_paused,
     known_displays,
     placard_metadata,
     queue_remote_command,
+    set_display_paused,
+    set_pending_show,
 )
 from core.settings_util import (
     ScheduleError,
     _load_schedule,
     _upsert_setting,
     apply_schedule_patch,
+    get_quiet_override,
+    quiet_status,
     resolve_schedule_state,
+    set_quiet_override,
 )
 from database import get_db
 from models import (
@@ -160,9 +166,11 @@ class RenderMode(StrEnum):
 
 
 class CommandAction(StrEnum):
-    """A1 set. `pause` / `resume` are added in A2 (additive — clients must tolerate new values)."""
+    """A1 set + `pause` / `resume` (A2; additive — clients must tolerate new values)."""
     next = "next"
     previous = "previous"
+    pause = "pause"
+    resume = "resume"
     show_placard = "show_placard"
     set_playlist = "set_playlist"
     set_mode = "set_mode"
@@ -206,6 +214,9 @@ class Display(BaseModel):
                                                          "playlist's default mode.")
     artwork: Optional[ArtworkCompact] = Field(None, description="What it is showing (null before its first "
                                                                  "frame). A read — never advances playback.")
+    paused: bool = Field(False, description="Server-side pause flag. While true, the display's own "
+                                            "auto-advance (and an e-ink pull) re-serves the current "
+                                            "artwork; an explicit `next`/`previous` still advances once.")
 
 
 class CommandRequest(BaseModel):
@@ -226,6 +237,30 @@ class CommandRequest(BaseModel):
 
 class CommandAccepted(BaseModel):
     status: Literal["queued"] = "queued"
+
+
+class ShowRequest(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    artwork_id: int = Field(description="An approved artwork id (see `GET /artworks/{id}`, `GET /search`).")
+
+
+class QuietRequest(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    on: bool = Field(description="true = force quiet now. false = force NOT quiet now.")
+    until: Optional[datetime] = Field(
+        None, description="ISO-8601 instant (a value with no offset is read as UTC); must be in the "
+                          "future. on:true without `until` lasts until you change it. on:false ends at "
+                          "`until` or at the next scheduled quiet transition, whichever comes first.")
+
+
+class QuietState(BaseModel):
+    active: bool = Field(description="Quiet (panel off/blank) right now, whatever the cause.")
+    source: Literal["schedule", "manual", "none"] = Field(
+        description="manual = an override from `POST /quiet` is in force (it may force quiet OFF too); "
+                    "schedule = the quiet-hours schedule is making it quiet; none = not quiet.")
+    until: Optional[datetime] = Field(
+        None, description="UTC. When this state ends: the override's expiry (null = indefinite), or the "
+                          "end of the current scheduled quiet window. null when source is `none`.")
 
 
 class PlaylistSummary(BaseModel):
@@ -313,7 +348,8 @@ class ScheduleState(BaseModel):
     enabled: bool
     brightness: float = Field(description="0.1 - 1.0 effective screen brightness now.")
     warmth: float = Field(description="0.0 - 1.0 effective amber tint now.")
-    quiet: bool = Field(description="Inside quiet hours: panel should be off/blank.")
+    quiet: bool = Field(description="Panel should be off/blank: inside quiet hours, or forced by a manual "
+                                   "override (`POST /quiet`).")
     quiet_mode: Literal["cec", "blackout"]
 
 
@@ -348,6 +384,10 @@ def _setting(db: Session, key: str) -> Optional[str]:
     return row.setting_value if row else None
 
 
+def _frame_id(db: Session) -> str:
+    return (_setting(db, "frame_display_id") or "").strip() or "frame-tv"
+
+
 def _display_kind(row: ActiveDisplayModel, frame_id: str) -> str:
     if row.display_id == frame_id:
         return "frame"
@@ -367,7 +407,8 @@ def _display_view(db: Session, row: ActiveDisplayModel, live: bool, frame_id: st
     art = (db.query(ArtworkModel).filter(ArtworkModel.id == row.current_artwork_id).first()
            if row.current_artwork_id else None)
     return Display(id=row.display_id, live=live, last_seen=_as_utc(row.last_seen_at), kind=kind,
-                   playlist=row.current_playlist, mode=mode, artwork=_compact(art) if art else None)
+                   playlist=row.current_playlist, mode=mode, artwork=_compact(art) if art else None,
+                   paused=is_display_paused(db, row.display_id))
 
 
 def _visible_playlist(db: Session, playlist_id: int) -> PlaylistModel:
@@ -413,7 +454,7 @@ def get_info(db: Session = Depends(get_db)):
             dependencies=[Depends(require_read)])
 def list_displays(db: Session = Depends(get_db)):
     """Includes sleeping e-ink panels (`live: false`). Pure read — never advances playback."""
-    frame_id = (_setting(db, "frame_display_id") or "").strip() or "frame-tv"
+    frame_id = _frame_id(db)
     return [_display_view(db, row, live, frame_id) for row, live in known_displays(db)]
 
 
@@ -424,7 +465,7 @@ def get_display(display_id: str, db: Session = Depends(get_db)):
     row = db.query(ActiveDisplayModel).filter(ActiveDisplayModel.display_id == display_id).first()
     if row is None:
         raise ApiError(404, "not_found", "no such display")
-    frame_id = (_setting(db, "frame_display_id") or "").strip() or "frame-tv"
+    frame_id = _frame_id(db)
     return _display_view(db, row, _is_live(row, datetime.now(UTC)), frame_id)
 
 
@@ -443,10 +484,22 @@ _ACTION_TO_INTERNAL = {CommandAction.next: "next_image", CommandAction.previous:
                         422: {"model": ErrorResponse,
                               "description": "Unknown action/mode, missing field, or unknown playlist."}})
 def post_command(display_id: str, body: CommandRequest, db: Session = Depends(get_db)):
-    """Queued for the display's WebSocket relay (~1 s). 202 means queued, not yet shown."""
+    """Queued for the display's WebSocket relay (~1 s). 202 means queued, not yet shown.
+
+    `pause` / `resume` set a server-side flag first, so they also succeed (202) on a sleeping e-ink or
+    Frame display, which honours the flag on its next pull; a Canvas additionally gets the command
+    relayed so it stops/starts its own timer."""
     row = db.query(ActiveDisplayModel).filter(ActiveDisplayModel.display_id == display_id).first()
     if row is None:
         raise ApiError(404, "not_found", "no such display")
+    if body.action in (CommandAction.pause, CommandAction.resume):
+        pull_based = _display_kind(row, _frame_id(db)) in ("eink", "frame")
+        if not pull_based and not _is_live(row, datetime.now(UTC)):
+            raise ApiError(409, "not_live", "display is not live (not checking in); command not queued")
+        set_display_paused(db, display_id, body.action is CommandAction.pause)
+        if not pull_based:
+            queue_remote_command(db, display_id, body.action.value)
+        return CommandAccepted()
     playlist = None
     if body.action is CommandAction.set_playlist:
         playlist = body.playlist.strip()
@@ -460,6 +513,33 @@ def post_command(display_id: str, body: CommandRequest, db: Session = Depends(ge
     if mode:
         _upsert_setting(db, DISPLAY_MODE_PREFIX + display_id, mode)
         db.commit()
+    return CommandAccepted()
+
+
+@router.post("/displays/{display_id}/show", response_model=CommandAccepted, status_code=202,
+             tags=["displays"], summary="Show a specific artwork now",
+             dependencies=[Depends(require_control)],
+             responses={404: {"model": ErrorResponse, "description": "Unknown display, or unknown / "
+                                                                       "unapproved artwork."},
+                        409: {"model": ErrorResponse,
+                              "description": "`not_live`: a Canvas display that is not checking in "
+                                             "(nothing queued)."}})
+def post_show(display_id: str, body: ShowRequest, db: Session = Depends(get_db)):
+    """Canvas: shown within ~1 s, then the rotation continues from it. E-ink / Frame: becomes the next
+    item served on the display's next pull (it waits, even while the display sleeps, for up to 6 h).
+    A paused display stays paused after showing it."""
+    row = db.query(ActiveDisplayModel).filter(ActiveDisplayModel.display_id == display_id).first()
+    if row is None:
+        raise ApiError(404, "not_found", "no such display")
+    if db.query(ArtworkModel.id).filter(ArtworkModel.id == body.artwork_id,
+                                        ArtworkModel.status == "approved").first() is None:
+        raise ApiError(404, "not_found", "no such artwork")
+    if _display_kind(row, _frame_id(db)) in ("eink", "frame"):
+        set_pending_show(db, display_id, body.artwork_id)
+        return CommandAccepted()
+    if not _is_live(row, datetime.now(UTC)):
+        raise ApiError(409, "not_live", "display is not live (not checking in); command not queued")
+    queue_remote_command(db, display_id, "show_artwork", artwork_id=body.artwork_id)
     return CommandAccepted()
 
 
@@ -559,7 +639,38 @@ def patch_schedule(body: SchedulePatch, db: Session = Depends(get_db)):
 @router.get("/schedule/state", response_model=ScheduleState, tags=["schedule"],
             summary="Brightness/warmth/quiet resolved for right now", dependencies=[Depends(require_read)])
 def get_schedule_state(db: Session = Depends(get_db)):
-    return resolve_schedule_state(_load_schedule(db), datetime.now())
+    return resolve_schedule_state(_load_schedule(db), datetime.now(), get_quiet_override(db))
+
+
+def _quiet_view(db: Session) -> QuietState:
+    return QuietState(**quiet_status(_load_schedule(db), get_quiet_override(db)))
+
+
+@router.get("/quiet", response_model=QuietState, tags=["schedule"],
+            summary="Is the display quiet right now, and why", dependencies=[Depends(require_read)])
+def get_quiet(db: Session = Depends(get_db)):
+    """The effective quiet state: a manual override if one is in force, else the quiet-hours schedule.
+    An expired override is cleared on read."""
+    return _quiet_view(db)
+
+
+@router.post("/quiet", response_model=QuietState, tags=["schedule"],
+             summary="Manually force quiet on or off", dependencies=[Depends(require_control)],
+             responses={422: {"model": ErrorResponse, "description": "`until` is in the past."}})
+def post_quiet(body: QuietRequest, db: Session = Depends(get_db)):
+    """`on:true` blanks the display now (Canvas blackout; the appliance also powers the panel off when
+    quiet mode is `cec`) until `until`, or indefinitely. `on:false` forces NOT quiet until `until` or the
+    next scheduled quiet transition, whichever is first. Takes effect on the display's next schedule poll
+    (~60 s for the Canvas). Returns the resulting state, same as `GET /quiet`."""
+    until = body.until
+    if until is not None:
+        if until.tzinfo is None:
+            until = until.replace(tzinfo=UTC)
+        until = until.astimezone(UTC)
+        if until <= datetime.now(UTC):
+            raise ApiError(422, "validation_error", "until must be in the future")
+    set_quiet_override(db, _load_schedule(db), body.on, until)
+    return _quiet_view(db)
 
 
 # ---------------------------------------------------------------------------------------------------

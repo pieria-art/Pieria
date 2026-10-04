@@ -149,6 +149,7 @@ def test_last_used_moves_at_most_once_a_minute(env):
     ("post", "/api/v1/displays/wall/commands"), ("get", "/api/v1/playlists"),
     ("get", "/api/v1/playlists/1/artworks"), ("get", "/api/v1/artworks/1"), ("get", "/api/v1/search?q=a"),
     ("get", "/api/v1/schedule"), ("patch", "/api/v1/schedule"), ("get", "/api/v1/schedule/state"),
+    ("post", "/api/v1/displays/wall/show"), ("get", "/api/v1/quiet"), ("post", "/api/v1/quiet"),
 ])
 def test_every_route_requires_a_token(env, method, path):
     c, _ = env
@@ -284,7 +285,7 @@ def test_command_to_non_live_display_is_409_and_not_queued(env):
 
 
 @pytest.mark.parametrize("body", [
-    {"action": "explode"}, {"action": "pause"},                       # unknown / not-yet-added (A2)
+    {"action": "explode"}, {"action": "Pause"},                       # unknown / wrong-case
     {"action": "set_mode"}, {"action": "set_mode", "mode": "disco"},
     {"action": "set_playlist"}, {"action": "next", "bogus": 1}, {},
 ])
@@ -418,3 +419,305 @@ def test_touch_active_display_stamps_eink_kind(env):
     _, db = env
     touch_active_display(db, "panel", refresh_s=900)
     assert db.query(ActiveDisplayModel).one().kind == "eink"
+
+
+# --- A2: pause / resume ------------------------------------------------------------------------------
+
+def _next(c, display="wall", playlist="Seq", **params):
+    q = {"playlist_name": playlist, "display_id": display, **params}
+    r = c.get("/next-image", params=q)
+    assert r.status_code == 200, r.text
+    return r.json()
+
+
+def test_pause_holds_next_image_and_explicit_next_advances_once(env):
+    c, db = env
+    arts = [_art(db, f"A{i}") for i in range(4)]
+    _playlist(db, "Seq", arts)
+    _display(db, "wall", kind="canvas")
+    ctl, read = _mint(db, ["control"]), _mint(db, ["read"])
+    first = _next(c)["metadata"]["id"]
+    assert first == arts[0].id and _next(c)["metadata"]["id"] == arts[1].id   # unpaused: advances
+
+    r = c.post("/api/v1/displays/wall/commands", json={"action": "pause"}, headers=ctl)
+    assert r.status_code == 202 and r.json() == {"status": "queued"}
+    assert c.get("/api/v1/displays/wall", headers=read).json()["paused"] is True
+    held = [_next(c) for _ in range(3)]                                        # auto-advance timer ticks
+    assert {h["metadata"]["id"] for h in held} == {arts[1].id} and all(h["paused"] for h in held)
+
+    assert _next(c, manual="true")["metadata"]["id"] == arts[2].id            # explicit next: exactly once
+    assert _next(c)["metadata"]["id"] == arts[2].id                            # ... and it stays paused
+    assert _next(c, direction=-1)["metadata"]["id"] == arts[1].id              # previous also advances once
+    assert _next(c)["metadata"]["id"] == arts[1].id
+
+    assert c.post("/api/v1/displays/wall/commands", json={"action": "resume"}, headers=ctl).status_code == 202
+    assert c.get("/api/v1/displays/wall", headers=read).json()["paused"] is False
+    nxt = _next(c)
+    assert nxt["metadata"]["id"] == arts[2].id and nxt["paused"] is False
+    # the relay got the Canvas-facing commands
+    acts = [json.loads(m.payload)["action"] for m in db.query(RemoteCommandModel).order_by(RemoteCommandModel.id)]
+    assert acts == ["pause", "resume"]
+
+
+def test_pause_resume_on_sleeping_eink_sets_flag_without_queueing(env):
+    c, db = env
+    _display(db, "panel", age_s=3600, kind="eink")
+    _display(db, "cv", age_s=3600, kind="canvas")
+    ctl, read = _mint(db, ["control"]), _mint(db, ["read"])
+    r = c.post("/api/v1/displays/panel/commands", json={"action": "pause"}, headers=ctl)
+    assert r.status_code == 202
+    assert c.get("/api/v1/displays/panel", headers=read).json()["paused"] is True
+    assert db.query(RemoteCommandModel).count() == 0                 # nothing rots in the queue
+    assert c.post("/api/v1/displays/panel/commands", json={"action": "resume"}, headers=ctl).status_code == 202
+    assert c.get("/api/v1/displays/panel", headers=read).json()["paused"] is False
+    # canvas-only actions + a sleeping canvas still 409, pause included
+    assert c.post("/api/v1/displays/panel/commands", json={"action": "next"}, headers=ctl).status_code == 409
+    r = c.post("/api/v1/displays/cv/commands", json={"action": "pause"}, headers=ctl)
+    assert r.status_code == 409 and r.json()["error"]["code"] == "not_live"
+    assert c.get("/api/v1/displays/cv", headers=read).json()["paused"] is False
+    assert c.post("/api/v1/displays/ghost/commands", json={"action": "pause"}, headers=ctl).status_code == 404
+
+
+def test_pause_flag_survives_the_display_row_being_deleted(env):
+    """A Canvas reload deletes its active_displays row on WS disconnect; the pause must outlive that."""
+    from core.playback import is_display_paused, set_display_paused
+    _, db = env
+    _display(db, "wall")
+    set_display_paused(db, "wall", True)
+    db.query(ActiveDisplayModel).delete()
+    db.commit()
+    assert is_display_paused(db, "wall") is True
+    set_display_paused(db, "wall", False)
+    assert is_display_paused(db, "wall") is False
+
+
+# --- A2: show artwork now ----------------------------------------------------------------------------
+
+def test_show_on_canvas_queues_show_artwork_and_next_image_serves_it(env):
+    c, db = env
+    arts = [_art(db, f"A{i}") for i in range(3)]
+    other = _art(db, "Elsewhere")                                    # approved, in no playlist
+    _playlist(db, "Seq", arts)
+    _display(db, "wall", kind="canvas")
+    ctl = _mint(db, ["control"])
+    r = c.post("/api/v1/displays/wall/show", json={"artwork_id": other.id}, headers=ctl)
+    assert r.status_code == 202 and r.json() == {"status": "queued"}
+    cmd = db.query(RemoteCommandModel).one()
+    assert cmd.target_display == "wall"
+    assert json.loads(cmd.payload) == {"action": "show_artwork", "artwork_id": other.id}
+    # what the Canvas then does: /next-image with artwork_id
+    shown = _next(c, artwork_id=other.id, manual="true")
+    assert shown["metadata"]["id"] == other.id and shown["index"] == -1
+    row = db.query(ActiveDisplayModel).one()
+    assert row.current_artwork_id == other.id and row.current_playlist == "Seq"
+    # the rotation continues from the sequence, undisturbed
+    assert _next(c)["metadata"]["id"] == arts[0].id
+    assert c.get("/next-image", params={"playlist_name": "Seq", "display_id": "wall",
+                                        "artwork_id": 99999}).status_code == 404
+
+
+def test_show_errors(env):
+    c, db = env
+    art = _art(db)
+    pending = ArtworkModel(filename="p.jpg", status="pending", title="p")
+    db.add(pending)
+    db.commit()
+    db.refresh(pending)
+    _display(db, "wall", kind="canvas")
+    _display(db, "asleep", age_s=120, kind="canvas")
+    ctl = _mint(db, ["control"])
+    assert c.post("/api/v1/displays/ghost/show", json={"artwork_id": art.id}, headers=ctl).status_code == 404
+    assert c.post("/api/v1/displays/wall/show", json={"artwork_id": 9999}, headers=ctl).status_code == 404
+    assert c.post("/api/v1/displays/wall/show", json={"artwork_id": pending.id}, headers=ctl).status_code == 404
+    r = c.post("/api/v1/displays/asleep/show", json={"artwork_id": art.id}, headers=ctl)
+    assert r.status_code == 409 and r.json()["error"]["code"] == "not_live"
+    for body in ({}, {"artwork_id": "x"}, {"artwork_id": art.id, "x": 1}):
+        assert c.post("/api/v1/displays/wall/show", json=body, headers=ctl).status_code == 422
+    assert db.query(RemoteCommandModel).count() == 0
+
+
+def test_show_on_sleeping_eink_is_served_on_next_pull_once(env):
+    c, db = env
+    arts = [_art(db, f"A{i}") for i in range(3)]
+    other = _art(db, "Special")
+    _playlist(db, "Seq", arts)
+    _display(db, "panel", age_s=3600, kind="eink")
+    ctl = _mint(db, ["control"])
+    r = c.post("/api/v1/displays/panel/show", json={"artwork_id": other.id}, headers=ctl)
+    assert r.status_code == 202
+    assert db.query(RemoteCommandModel).count() == 0
+    assert _next(c, "panel")["metadata"]["id"] == other.id           # the pull (auto-advance path)
+    assert _next(c, "panel")["metadata"]["id"] == arts[0].id         # one-shot: back to the rotation
+
+
+def test_show_while_paused_serves_it_then_holds_it(env):
+    c, db = env
+    arts = [_art(db, f"A{i}") for i in range(3)]
+    other = _art(db, "Special")
+    _playlist(db, "Seq", arts)
+    _display(db, "panel", kind="eink")
+    ctl = _mint(db, ["control"])
+    _next(c, "panel")
+    c.post("/api/v1/displays/panel/commands", json={"action": "pause"}, headers=ctl)
+    c.post("/api/v1/displays/panel/show", json={"artwork_id": other.id}, headers=ctl)
+    assert _next(c, "panel")["metadata"]["id"] == other.id
+    assert _next(c, "panel")["metadata"]["id"] == other.id           # paused -> holds the shown item
+
+
+def test_expired_pending_show_is_ignored(env):
+    from core.playback import set_pending_show
+    c, db = env
+    arts = [_art(db, f"A{i}") for i in range(2)]
+    other = _art(db, "Special")
+    _playlist(db, "Seq", arts)
+    set_pending_show(db, "panel", other.id, ttl_sec=-1)
+    assert _next(c, "panel")["metadata"]["id"] == arts[0].id
+
+
+# --- A2: manual quiet override -----------------------------------------------------------------------
+
+def _quiet_schedule(c, db, start, end, enabled=True):
+    c.patch("/api/v1/schedule", json={"quiet_enabled": enabled, "quiet_start": start, "quiet_end": end},
+            headers=_mint(db, ["control"]))
+
+
+def _iso(dt):
+    return dt.astimezone(UTC).isoformat()
+
+
+def test_quiet_default_and_schedule_source(env):
+    c, db = env
+    read = _mint(db, ["read"])
+    assert c.get("/api/v1/quiet", headers=read).json() == {"active": False, "source": "none", "until": None}
+    _quiet_schedule(c, db, "00:00", "23:59")
+    q = c.get("/api/v1/quiet", headers=read).json()
+    assert q["active"] is True and q["source"] == "schedule" and q["until"] is not None
+    assert datetime.fromisoformat(q["until"]) > datetime.now(UTC)
+    assert q["until"].endswith("Z") or q["until"].endswith("+00:00")
+
+
+def test_quiet_on_forces_quiet_with_and_without_until(env):
+    c, db = env
+    read, ctl = _mint(db, ["read"]), _mint(db, ["control"])
+    r = c.post("/api/v1/quiet", json={"on": True}, headers=ctl)
+    assert r.status_code == 200 and r.json() == {"active": True, "source": "manual", "until": None}
+    assert c.get("/api/v1/quiet", headers=read).json() == r.json()
+    until = datetime.now(UTC) + timedelta(hours=2)
+    r = c.post("/api/v1/quiet", json={"on": True, "until": _iso(until)}, headers=ctl).json()
+    assert r["active"] is True and r["source"] == "manual"
+    assert abs((datetime.fromisoformat(r["until"]) - until).total_seconds()) < 1
+    # naive until is read as UTC
+    naive = (datetime.now(UTC) + timedelta(hours=1)).replace(tzinfo=None, microsecond=0)
+    r = c.post("/api/v1/quiet", json={"on": True, "until": naive.isoformat()}, headers=ctl).json()
+    assert datetime.fromisoformat(r["until"]).replace(tzinfo=None) == naive
+
+
+def test_quiet_until_in_the_past_is_422_and_writes_nothing(env):
+    c, db = env
+    ctl = _mint(db, ["control"])
+    r = c.post("/api/v1/quiet", json={"on": True, "until": _iso(datetime.now(UTC) - timedelta(minutes=1))},
+               headers=ctl)
+    assert r.status_code == 422 and r.json()["error"]["code"] == "validation_error"
+    assert db.query(SettingsModel).filter_by(setting_key="quiet_override").count() == 0
+    for body in ({}, {"on": "maybe"}, {"on": True, "x": 1}, {"on": True, "until": "soon"}):
+        assert c.post("/api/v1/quiet", json=body, headers=ctl).status_code == 422
+
+
+def test_quiet_off_overrides_a_scheduled_quiet_until_its_end(env):
+    c, db = env
+    read, ctl = _mint(db, ["read"]), _mint(db, ["control"])
+    _quiet_schedule(c, db, "00:00", "23:59")                         # scheduled quiet right now
+    sched_end = datetime.fromisoformat(c.get("/api/v1/quiet", headers=read).json()["until"])
+    r = c.post("/api/v1/quiet", json={"on": False}, headers=ctl).json()
+    assert r["active"] is False and r["source"] == "manual"
+    assert datetime.fromisoformat(r["until"]) == sched_end            # capped at the scheduled transition
+    # a nearer `until` wins over the transition
+    near = datetime.now(UTC) + timedelta(minutes=5)
+    r = c.post("/api/v1/quiet", json={"on": False, "until": _iso(near)}, headers=ctl).json()
+    assert abs((datetime.fromisoformat(r["until"]) - near).total_seconds()) < 1
+    # a farther `until` is still capped at the transition
+    far = datetime.now(UTC) + timedelta(days=3)
+    r = c.post("/api/v1/quiet", json={"on": False, "until": _iso(far)}, headers=ctl).json()
+    assert datetime.fromisoformat(r["until"]) == sched_end
+
+
+def test_quiet_override_expires_and_clears_itself(env):
+    c, db = env
+    read, ctl = _mint(db, ["read"]), _mint(db, ["control"])
+    c.post("/api/v1/quiet", json={"on": True, "until": _iso(datetime.now(UTC) + timedelta(hours=1))},
+           headers=ctl)
+    row = db.query(SettingsModel).filter_by(setting_key="quiet_override").one()
+    row.setting_value = json.dumps({"on": True, "until": (datetime.now(UTC) - timedelta(seconds=1)).timestamp()})
+    db.commit()
+    assert c.get("/api/v1/quiet", headers=read).json() == {"active": False, "source": "none", "until": None}
+    assert db.query(SettingsModel).filter_by(setting_key="quiet_override").count() == 0
+
+
+def test_quiet_override_reaches_schedule_state_for_canvas_and_cec(env):
+    """Both the Canvas blackout and sd-quiet-hours poll the INTERNAL schedule-state route."""
+    c, db = env
+    read, ctl = _mint(db, ["read"]), _mint(db, ["control"])
+    internal = "/api/displays/wall/schedule-state"
+    assert c.get(internal).json()["quiet"] is False
+    c.post("/api/v1/quiet", json={"on": True}, headers=ctl)
+    st = c.get(internal).json()
+    assert st["quiet"] is True and st["quiet_mode"] == "cec"          # quiet_enabled is False; override wins
+    assert c.get("/api/v1/schedule/state", headers=read).json()["quiet"] is True
+    # forced-off beats a scheduled quiet window
+    _quiet_schedule(c, db, "00:00", "23:59")
+    c.post("/api/v1/quiet", json={"on": False}, headers=ctl)
+    assert c.get(internal).json()["quiet"] is False
+    assert c.get("/api/v1/schedule/state", headers=read).json()["quiet"] is False
+    # an expired override stops mattering
+    row = db.query(SettingsModel).filter_by(setting_key="quiet_override").one()
+    row.setting_value = json.dumps({"on": False, "until": (datetime.now(UTC) - timedelta(seconds=1)).timestamp()})
+    db.commit()
+    assert c.get(internal).json()["quiet"] is True                    # back to the schedule
+
+
+def test_quiet_override_works_with_the_schedule_disabled(env):
+    c, db = env
+    c.patch("/api/v1/schedule", json={"enabled": False}, headers=_mint(db, ["control"]))
+    c.post("/api/v1/quiet", json={"on": True}, headers=_mint(db, ["control"]))
+    assert c.get("/api/displays/wall/schedule-state").json()["quiet"] is True
+
+
+# --- A2: command TTL ---------------------------------------------------------------------------------
+
+def test_expired_commands_are_never_delivered_and_are_purged(env):
+    from core.playback import COMMAND_TTL_SEC, take_deliverable_commands
+    _, db = env
+    old = datetime.now(UTC) - timedelta(seconds=COMMAND_TTL_SEC + 5)
+    db.add(RemoteCommandModel(target_display="wall", action="next_image",
+                              payload=json.dumps({"action": "next_image"}), created_at=old))
+    db.add(RemoteCommandModel(target_display="wall", action="pause", payload=json.dumps({"action": "pause"})))
+    db.add(RemoteCommandModel(target_display="other", action="next_image",
+                              payload=json.dumps({"action": "next_image"})))
+    db.commit()
+    assert take_deliverable_commands(db, "wall") == [{"action": "pause"}]
+    left = db.query(RemoteCommandModel).all()
+    assert [m.target_display for m in left] == ["other"]               # stale + delivered rows are gone
+    assert take_deliverable_commands(db, "wall") == []
+
+
+def test_enqueue_purges_stale_rows_for_any_display_incl_internal_remote_path(env):
+    from core.playback import COMMAND_TTL_SEC
+    c, db = env
+    old = datetime.now(UTC) - timedelta(seconds=COMMAND_TTL_SEC + 5)
+    db.add(RemoteCommandModel(target_display="gone", action="next_image",
+                              payload=json.dumps({"action": "next_image"}), created_at=old))
+    db.commit()
+    r = c.post("/api/remote/change", json={"target_display": "wall", "action": "next_image"})
+    assert r.status_code == 200
+    assert [m.target_display for m in db.query(RemoteCommandModel).all()] == ["wall"]
+
+
+def test_v1_openapi_describes_the_a2_surface(env):
+    c, _ = env
+    spec = c.get("/api/v1/openapi.json").json()
+    assert "/displays/{display_id}/show" in spec["paths"] and "/quiet" in spec["paths"]
+    schemas = spec["components"]["schemas"]
+    assert {"pause", "resume"} <= set(schemas["CommandAction"]["enum"])
+    assert schemas["Display"]["properties"]["paused"]["type"] == "boolean"
+    assert set(schemas["QuietState"]["properties"]) == {"active", "source", "until"}
+    assert set(spec["paths"]["/quiet"]) == {"get", "post"}

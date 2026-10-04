@@ -5,7 +5,7 @@ schedule resolver, and the catalog remote-override lookup.
 import json
 import logging
 import re
-from datetime import datetime
+from datetime import UTC, datetime, timedelta
 from typing import Optional
 
 import httpx
@@ -85,7 +85,7 @@ def _cyc_frac(t: int, a: int, b: int) -> float:
     return 0.0 if span == 0 else ((t - a) % 1440) / span
 
 
-def resolve_schedule_state(schedule: dict, now: datetime) -> dict:
+def _resolve_scheduled(schedule: dict, now: datetime) -> dict:
     """Pure: given the schedule config + a wall-clock time, return what the display should look like NOW.
 
     Returns {enabled, brightness (0.1..1), warmth (0..1), quiet (bool), quiet_mode}. 'night factor' n
@@ -125,6 +125,90 @@ def resolve_schedule_state(schedule: dict, now: datetime) -> dict:
     return {"enabled": True, "brightness": brightness, "warmth": warmth,
             "quiet": quiet, "quiet_mode": s.get("quiet_mode", "cec")}
 
+
+
+# --- A2 (ADR-147): manual quiet override ---------------------------------------------------------------
+# "Art off when we leave / on when we're home". One global override in the Settings KV, layered over the
+# schedule by resolve_schedule_state, so the Canvas blackout AND the appliance CEC timer (both poll
+# schedule-state) honour it with no other change. Stored as JSON {"on": bool, "until": epoch|None}.
+#   on:true  -> quiet NOW, until `until` or indefinitely.
+#   on:false -> NOT quiet until `until` or the next scheduled quiet transition, whichever is first
+#               (the expiry is resolved once, at set time, and stored — so "until" is always honest).
+# An expired override is deleted the next time it is read.
+QUIET_OVERRIDE_KEY = "quiet_override"
+
+
+def _schedule_quiet_window(schedule: dict, now: datetime) -> tuple[bool, Optional[datetime]]:
+    """(is the SCHEDULE quiet now, when that flips next as an aware-UTC datetime or None). `now` is the
+    server's local wall clock (naive), like resolve_schedule_state's."""
+    s = {**DEFAULT_SCHEDULE, **(schedule or {})}
+    if not s.get("enabled", True) or not s.get("quiet_enabled"):
+        return False, None
+    qs = _parse_hhmm(s["quiet_start"], 1410)
+    qe = _parse_hhmm(s["quiet_end"], 420)
+    if _cyc_len(qs, qe) == 0:
+        return False, None
+    t = now.hour * 60 + now.minute
+    active = _cyc_in(t, qs, qe)
+    edge = qe if active else qs
+    delta = (edge - t) % 1440 or 1440
+    flip = now.replace(second=0, microsecond=0) + timedelta(minutes=delta)
+    return active, flip.astimezone(UTC)   # naive == local wall clock
+
+
+def get_quiet_override(db: Session, now_utc: Optional[datetime] = None) -> Optional[dict]:
+    """The live override as {"on": bool, "until": aware-UTC datetime | None}, or None. Clears an expired one."""
+    now_utc = now_utc or datetime.now(UTC)
+    row = db.query(SettingsModel).filter(SettingsModel.setting_key == QUIET_OVERRIDE_KEY).first()
+    if row is None:
+        return None
+    try:
+        data = json.loads(row.setting_value)
+        on = bool(data["on"])
+        until = datetime.fromtimestamp(float(data["until"]), UTC) if data.get("until") is not None else None
+    except (ValueError, KeyError, TypeError):
+        db.delete(row)
+        db.commit()
+        return None
+    if until is not None and until <= now_utc:
+        db.delete(row)
+        db.commit()
+        return None
+    return {"on": on, "until": until}
+
+
+def set_quiet_override(db: Session, schedule: dict, on: bool, until: Optional[datetime],
+                       now_local: Optional[datetime] = None, now_utc: Optional[datetime] = None) -> None:
+    """Persist an override (see the block comment for on:true / on:false expiry). `until` must be aware."""
+    now_local = now_local or datetime.now()
+    now_utc = now_utc or datetime.now(UTC)
+    expiry = until
+    if not on:
+        _active, flip = _schedule_quiet_window(schedule, now_local)
+        if flip is not None and (expiry is None or flip < expiry):
+            expiry = flip
+    _upsert_setting(db, QUIET_OVERRIDE_KEY,
+                    json.dumps({"on": on, "until": expiry.timestamp() if expiry else None}))
+    db.commit()
+
+
+def quiet_status(schedule: dict, override: Optional[dict], now_local: Optional[datetime] = None) -> dict:
+    """{"active", "source": schedule|manual|none, "until": aware-UTC datetime | None}."""
+    if override is not None:
+        return {"active": override["on"], "source": "manual", "until": override["until"]}
+    active, flip = _schedule_quiet_window(schedule, now_local or datetime.now())
+    if active:
+        return {"active": True, "source": "schedule", "until": flip}
+    return {"active": False, "source": "none", "until": None}
+
+
+def resolve_schedule_state(schedule: dict, now: datetime, override: Optional[dict] = None) -> dict:
+    """The schedule's brightness/warmth/quiet for `now`, with an optional manual quiet `override`
+    (from get_quiet_override) forcing `quiet` either way. Brightness/warmth are unaffected."""
+    state = _resolve_scheduled(schedule, now)
+    if override is not None:
+        state["quiet"] = bool(override["on"])
+    return state
 
 _HHMM_RE = re.compile(r"^\d{1,2}:\d{2}$")
 
