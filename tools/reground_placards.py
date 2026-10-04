@@ -891,9 +891,37 @@ def _split_release_text(text: str, max_len: int = _NASA_RELEASE_CHUNK_MAX) -> li
     return chunks
 
 
-def load_extra_facts(path: str | Path | None) -> list[dict]:
+# NASA Photojournal (photojournal.jpl.nasa.gov/catalog/PIAnnnnn) is a JS-rendered SPA: a plain fetch
+# captures the site shell -- welcome banner, "related images" cards, footer -- not the release text
+# (2026-10-03: the SDO Sun's "text" was 2.5k chars of that). A model must never see it as a source.
+_BOILERPLATE_PHRASES = (
+    "welcome you to photojournal", "welcome to the new photojournal", "welcome to photojournal",
+    "stay up-to-date with the latest additions", "discover more topics from photojournal",
+    "skip to main content", "enable javascript", "javascript is required", "javascript is disabled",
+    "we use cookies", "accept all cookies",
+)
+_RELATED_CARD_RE = re.compile(r"(?m)^Description\s+\S")
+
+
+def boilerplate_reason(text: str | None) -> str | None:
+    """A clear reason when `text` is scraped site boilerplate rather than release text, else None.
+    Two independent signals: known shell phrases, or a run of "Description ..." related-image cards."""
+    t = re.sub(r"\s+", " ", text or "").lower()
+    for phrase in _BOILERPLATE_PHRASES:
+        if phrase in t:
+            return f"site boilerplate (matched {phrase!r}) - page was JS-rendered, no release text captured"
+    n_cards = len(_RELATED_CARD_RE.findall(text or ""))
+    if n_cards >= 2:
+        return (f"site boilerplate ({n_cards} related-image 'Description ...' cards) - "
+                f"page was JS-rendered, no release text captured")
+    return None
+
+
+def load_extra_facts(path: str | Path | None, rejected: list | None = None) -> list[dict]:
     """--extra-facts DIR: one {n, title, release_url, text, credit_line} JSON per file. Order doesn't
-    matter — matching (below) is keyed off release_url/title, not filename."""
+    matter — matching (below) is keyed off release_url/title, not filename. Records whose text is scraped
+    site boilerplate (see boilerplate_reason) are dropped HERE, before any packet exists; each is appended
+    to `rejected` (when given) as {n, title, release_url, reason}."""
     if not path:
         return []
     d = Path(path).expanduser()
@@ -906,6 +934,13 @@ def load_extra_facts(path: str | Path | None) -> list[dict]:
         except (json.JSONDecodeError, OSError):
             continue
         if data.get("release_url") and data.get("text"):
+            reason = boilerplate_reason(data.get("text"))
+            if reason:
+                logger.info(f"    · extra-facts {fp.name} refused: {reason}")
+                if rejected is not None:
+                    rejected.append({"n": data.get("n"), "title": data.get("title"),
+                                     "release_url": data.get("release_url"), "reason": reason})
+                continue
             out.append(data)
     return out
 
@@ -957,7 +992,7 @@ def _extra_facts_for_item(rec: dict | None) -> list[dict]:
     PDM-1.0 / "NASA release". PD/CC0 text is a normal fact. Anything else (ESA CC BY 4.0, ...) is still a
     citable fact but flagged paraphrase_only, which the facts block shows the writer and
     validate_written_item enforces. The `nasa.*` keys are kept: clean_credits keys on nasa.credit."""
-    if not rec:
+    if not rec or boilerplate_reason(rec.get("text")):
         return []
     licence, paraphrase_only = _extra_fact_licence(rec)
     label = (rec.get("source_label") or rec.get("source") or "").strip()
@@ -2166,7 +2201,8 @@ async def run_packets(*, only_sample: bool, limit: int | None, collection: str |
     if limit:
         targets = targets[:limit]
 
-    extra_facts = load_extra_facts(extra_facts_dir)
+    extra_rejected: list[dict] = []
+    extra_facts = load_extra_facts(extra_facts_dir, rejected=extra_rejected)
     extra_by_coll: dict[str, dict[int, dict]] = {}
     if extra_facts:
         for c in {c for c, _ in targets}:
@@ -2247,6 +2283,8 @@ async def run_packets(*, only_sample: bool, limit: int | None, collection: str |
         cstat["facts_per_item"] = round(cstat["facts_total"] / cstat["total"], 2) if cstat["total"] else 0
     report["facts_per_item"] = round(report["facts_total"] / report["total"], 2) if report["total"] else 0
 
+    if extra_rejected:
+        report["extra_facts_rejected"] = extra_rejected
     if extra_facts:
         matched_ns = {rec["n"] for idx_map in extra_by_coll.values() for rec in idx_map.values()}
         report["extra_facts_total"] = len(extra_facts)

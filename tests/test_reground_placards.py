@@ -3137,3 +3137,42 @@ def test_visual_claim_possessive_of_unknown_proper_noun_still_rejected():
     assert not ok and "Orion" in why
     ok, why = rg._visual_claim_ok("The Hubble's mirror gleams.", "Ring Nebula", [])
     assert not ok
+
+
+# --- boilerplate extra-facts text (JS-rendered Photojournal)
+
+_PJ_BOILERPLATE = (
+    "The National Aeronautics and Space Administration and the Planetary Data System's (PDS) Cartography "
+    "and Imaging Sciences Node welcome you to Photojournal - An image archive.\nWelcome to the new "
+    "Photojournal Website!\nStay up-to-date with the latest additions to the Photojournal image archive.\n"
+    "Perseverance's View of 'Turquoise Bay'\nDescription NASA's Perseverance Mars rover used its camera...\n"
+    "Curiosity Postcard\nDescription While parked at a sand ridge...\nDiscover More Topics From Photojournal")
+
+
+def test_boilerplate_reason_flags_photojournal_shell_and_cards():
+    assert "boilerplate" in rg.boilerplate_reason(_PJ_BOILERPLATE)
+    cards_only = "Title one\nDescription NASA did a thing here...\nTitle two\nDescription Another thing...\n"
+    assert "related-image" in rg.boilerplate_reason(cards_only)
+
+
+def test_boilerplate_reason_passes_real_release_text():
+    real = ("This image from NASA's Solar Dynamics Observatory shows the Sun in extreme ultraviolet light. "
+            "The description of the photo notes bright active regions. Description: see the caption.")
+    assert rg.boilerplate_reason(real) is None
+    assert rg.boilerplate_reason("") is None and rg.boilerplate_reason(None) is None
+
+
+def test_load_extra_facts_refuses_boilerplate_and_reports_reason(tmp_path):
+    (tmp_path / "1.json").write_text(json.dumps({"n": 1, "title": "Sun", "release_url": "https://pj/PIA1",
+                                                  "text": _PJ_BOILERPLATE}))
+    (tmp_path / "2.json").write_text(json.dumps({"n": 2, "title": "Real", "release_url": "https://x/2",
+                                                  "text": "A real release about a nebula."}))
+    rejected = []
+    recs = rg.load_extra_facts(tmp_path, rejected=rejected)
+    assert [r["n"] for r in recs] == [2]
+    assert rejected[0]["n"] == 1 and "boilerplate" in rejected[0]["reason"]
+    assert [r["n"] for r in rg.load_extra_facts(tmp_path)] == [2]   # default call filters too
+
+
+def test_extra_facts_for_item_refuses_boilerplate_record():
+    assert rg._extra_facts_for_item({"release_url": "u", "text": _PJ_BOILERPLATE}) == []
