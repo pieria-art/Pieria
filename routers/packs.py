@@ -102,7 +102,20 @@ async def install_pack(collection_id: str, db: Session = Depends(get_db)):
     """Kick off a background download+install of one collection; the card polls /api/packs/status."""
     if _JOBS.get(collection_id, {}).get("state") == "in_progress":
         return {"state": "in_progress"}
-    asyncio.create_task(_install_job(collection_id, _registry_url(db)))
+    url = _registry_url(db)
+    # Validate against the same registry the job installs from, BEFORE spawning it: an unknown id
+    # used to answer "started" while the job silently did nothing.
+    client = pack_fetch.new_client()
+    try:
+        reg = await pack_fetch.fetch_registry(client, url)
+    except Exception as e:  # noqa: BLE001 — never answer "started" when we can't confirm the id
+        logger.warning(f"[Packs] install {collection_id!r}: registry unreachable: {type(e).__name__}: {e}")
+        raise HTTPException(502, detail="pack registry unavailable; try again later") from e
+    finally:
+        await client.aclose()
+    if collection_id not in {c.get("id") for c in reg.get("collections", [])}:
+        raise HTTPException(404, detail=f"collection {collection_id!r} is not in the pack registry")
+    asyncio.create_task(_install_job(collection_id, url))
     return {"state": "started"}
 
 

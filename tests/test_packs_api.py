@@ -2,16 +2,20 @@
 per-collection install state, kick off a background install, and expose job status for polling.
 """
 import pytest
+import respx
 from fastapi.testclient import TestClient
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.pool import StaticPool
 
+import federation
 from app import app
 from core import pack_fetch
 from database import Base, get_db
-from models import ArtworkModel, PlaylistModel, SubscriptionModel, playlist_artwork
+from models import ArtworkModel, PlaylistModel, SettingsModel, SubscriptionModel, playlist_artwork
 from routers import packs as packs_router
+
+REG_URL = "https://packs.test/packs.json"
 
 
 @pytest.fixture
@@ -136,6 +140,9 @@ def test_list_packs_demo_mode_caches_across_calls(client, monkeypatch):
 
 
 def test_install_endpoint_starts_and_dedups(client, db, monkeypatch):
+    async def fake_fetch(_c, _u):
+        return _fake_registry()
+    monkeypatch.setattr(pack_fetch, "fetch_registry", fake_fetch)
     async def fake_install(_db, _client, _url, _cid):
         return {"ok": True, "trust": "verified", "installed": True}
     monkeypatch.setattr(pack_fetch, "install_collection_from_registry", fake_install)
@@ -146,6 +153,49 @@ def test_install_endpoint_starts_and_dedups(client, db, monkeypatch):
     packs_router._JOBS["cosmos"] = {"state": "in_progress"}
     assert client.post("/api/packs/cosmos/install").json()["state"] == "in_progress"
     assert client.get("/api/packs/status").json()["cosmos"]["state"] == "in_progress"
+
+
+@respx.mock
+def test_install_unknown_id_is_404_and_starts_no_task(client, db, monkeypatch):
+    monkeypatch.setattr(federation, "_assert_public_url", lambda url: None)  # test host isn't public
+    respx.get(REG_URL).respond(200, json=_fake_registry())
+    started = []
+    monkeypatch.setattr(packs_router, "_install_job", lambda *a: started.append(a))
+    db.add(SettingsModel(setting_key="pack_registry_url", setting_value=REG_URL))
+    db.commit()
+
+    r = client.post("/api/packs/no-such-pack/install")
+    assert r.status_code == 404 and "no-such-pack" in r.json()["detail"]
+    assert started == [] and "no-such-pack" not in packs_router._JOBS
+
+
+@respx.mock
+def test_install_known_id_starts(client, db, monkeypatch):
+    monkeypatch.setattr(federation, "_assert_public_url", lambda url: None)  # test host isn't public
+    respx.get(REG_URL).respond(200, json=_fake_registry())
+    async def fake_install(_db, _client, _url, _cid):
+        return {"ok": True, "trust": "verified", "installed": True}
+    monkeypatch.setattr(pack_fetch, "install_collection_from_registry", fake_install)
+    monkeypatch.setattr(packs_router, "SessionLocal", lambda: db)
+    db.add(SettingsModel(setting_key="pack_registry_url", setting_value=REG_URL))
+    db.commit()
+
+    r = client.post("/api/packs/cosmos/install")
+    assert r.status_code == 200 and r.json() == {"state": "started"}
+
+
+@respx.mock
+def test_install_registry_unreachable_is_502_not_started(client, db, monkeypatch):
+    monkeypatch.setattr(federation, "_assert_public_url", lambda url: None)  # test host isn't public
+    respx.get(REG_URL).respond(500)
+    started = []
+    monkeypatch.setattr(packs_router, "_install_job", lambda *a: started.append(a))
+    db.add(SettingsModel(setting_key="pack_registry_url", setting_value=REG_URL))
+    db.commit()
+
+    r = client.post("/api/packs/cosmos/install")
+    assert r.status_code == 502 and "registry" in r.json()["detail"]
+    assert started == []
 
 
 @pytest.mark.asyncio
