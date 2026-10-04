@@ -232,3 +232,26 @@ def test_license_change_respects_user_edited_credit(tmp_path, monkeypatch):
     assert a.license == "CC0-1.0"
     assert a.attribution == CC_BY_CREDIT   # user-edited field wins even when stale
     assert a.attribution_url is None
+
+
+def test_reinstall_from_older_manifest_skips_refresh_and_keeps_stamp(tmp_path, monkeypatch):
+    root, priv = _setup(tmp_path, monkeypatch, None)
+
+    def pub(gen, credit):
+        build_pack._emit_v2_manifests(
+            root, [{"id": "masterpieces", "title": "Masterpieces", "description": "",
+                    "items": [_mi("Alpha", credit_line=credit), _mi("Beta"), _mi("Gamma")]}],
+            signing_key=priv, generated_at=gen)
+    pub("2026-10-05", "Newer credit")
+    db = _db()
+    _install(db, root)
+    sub = db.query(SubscriptionModel).one()
+    stamp, h = sub.applied_generated_at, sub.applied_manifest_hash
+    assert _art(db, "alpha").attribution == "Newer credit"
+    pub("2026-09-01", "Old credit")       # replayed older signed tar/manifest
+    _install(db, root)
+    db.refresh(sub)
+    assert _art(db, "alpha").attribution == "Newer credit"
+    assert (sub.applied_generated_at, sub.applied_manifest_hash) == (stamp, h)
+    assert lifespan.refresh_installed_packs(db) == {}   # boot refresh doesn't apply the stale disk copy either
+

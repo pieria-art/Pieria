@@ -352,6 +352,9 @@ def refresh_installed_packs(db: Session) -> dict:
         if manifest_refusal_reason(manifest, cid) is not None:
             logger.warning(f"[PackRefresh] {cid!r}: on-disk manifest refused, not refreshing")
             continue
+        if is_stale_manifest(sub, manifest):
+            logger.warning(f"[PackRefresh] {cid!r}: on-disk manifest older than the applied one, skipping")
+            continue
         out[cid] = apply_manifest_refresh(db, sub, manifest)
     return out
 
@@ -433,6 +436,12 @@ def _install_collection(db: Session, cid: str, manifest: dict, *, require_verifi
     # 1) Upsert the local subscription row — provenance/trust live in OUR DB, not the manifest body.
     sub_url = f"pack:{cid}"
     sub = db.query(SubscriptionModel).filter(SubscriptionModel.url == sub_url).first()
+    # Rollback guard (F8b): a re-install from an OLDER signed manifest (replayed registry + tar) may still
+    # relink / fetch missing images, but must not re-apply old metadata or move the applied stamp back.
+    stale = sub is not None and is_stale_manifest(sub, manifest)
+    if stale:
+        logger.warning(f"[PackInstall] {cid!r}: manifest is older than the applied one - "
+                       "metadata refresh skipped")
     if sub is None:
         sub = SubscriptionModel(url=sub_url)
         db.add(sub)
@@ -443,7 +452,8 @@ def _install_collection(db: Session, cid: str, manifest: dict, *, require_verifi
     sub.publisher_url = pub.get("url")
     sub.trust = trust   # 'verified' iff the key is registry-trusted
     sub.enabled = True
-    sub.cached_manifest = json.dumps(manifest)
+    if not stale:
+        sub.cached_manifest = json.dumps(manifest)
     sub.item_count = len(manifest.get("items", []))
     sub.last_status = "ok"
     sub.last_synced = datetime.now(UTC)
@@ -497,7 +507,7 @@ def _install_collection(db: Session, cid: str, manifest: dict, *, require_verifi
                 affinity_score=affinity,
             )
             db.add(artwork); db.commit(); db.refresh(artwork)
-        else:
+        elif not stale:
             # ADR-148 F8: an existing work picks up the pack's corrected metadata (user edits win).
             changed, skipped = _refresh_existing_artwork(artwork, cat)
             n_refreshed += 1 if changed else 0
@@ -509,9 +519,10 @@ def _install_collection(db: Session, cid: str, manifest: dict, *, require_verifi
         if not existing_link:
             db.execute(playlist_artwork.insert().values(
                 playlist_id=playlist.id, artwork_id=artwork.id, display_order=idx))
-    sub.applied_manifest_hash = manifest_hash(manifest)
-    gen = _gen_time(manifest)
-    sub.applied_generated_at = gen.isoformat() if gen else None
+    if not stale:
+        sub.applied_manifest_hash = manifest_hash(manifest)
+        gen = _gen_time(manifest)
+        sub.applied_generated_at = gen.isoformat() if gen else None
     db.commit()
     if n_refreshed or n_skipped:
         logger.info(f"[PackInstall] '{title}': {n_refreshed} existing work(s) refreshed, "
