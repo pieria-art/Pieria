@@ -220,14 +220,14 @@ def test_broken_migration_file_fails_loud(db_path, tmp_path):
 
 def test_0008_api_tokens_upgrades_a_populated_0007_db(db_path):
     """The real deploy path: a populated 0007 DB gains api_tokens + active_displays.kind, keeps its rows,
-    and reaches head (0008 is head)."""
+    and reaches head (0009 is head)."""
     cfg = _cfg(db_path)
     command.upgrade(cfg, "0007_artwork_attribution")
     eng = create_engine(f"sqlite:///{db_path}")
     with eng.begin() as c:
         c.execute(text("INSERT INTO active_displays (display_id, last_seen_at) VALUES ('wall','2026-10-01')"))
     command.upgrade(cfg, "head")
-    assert _stamp(db_path) == _head(db_path) == "0008_api_tokens"
+    assert _stamp(db_path) == _head(db_path) == "0009_pack_refresh_tracking"
     cols = _columns(db_path)
     assert {"id", "name", "token_hash", "scopes", "created_at", "last_used_at", "revoked_at"} <= cols["api_tokens"]
     assert "kind" in cols["active_displays"]
@@ -243,7 +243,7 @@ def test_0008_is_idempotent_on_a_create_all_db(db_path):
     Base.metadata.create_all(create_engine(f"sqlite:///{db_path}"))
     _set_legacy_stamp(db_path, "0007_artwork_attribution")
     command.upgrade(_cfg(db_path), "head")
-    assert _stamp(db_path) == "0008_api_tokens"
+    assert _stamp(db_path) == "0009_pack_refresh_tracking"
 
 
 def test_newer_stamp_logic_still_reconciles_with_0008_as_head(db_path):
@@ -256,6 +256,30 @@ def test_newer_stamp_logic_still_reconciles_with_0008_as_head(db_path):
                           "VALUES ('keep','h','read','2026-10-01')"))
     _set_legacy_stamp(db_path, "a1b2c3d4e5f6")
     run_migrations(_cfg(db_path))
-    assert _stamp(db_path) == "0008_api_tokens"
+    assert _stamp(db_path) == "0009_pack_refresh_tracking"
     with eng.connect() as conn:
         assert conn.execute(text("SELECT name FROM api_tokens")).scalar() == "keep"
+
+
+def test_0009_pack_refresh_tracking_upgrades_a_populated_0008_db(db_path):
+    """ADR-148 F8: a populated 0008 DB gains artworks.user_edited_fields (existing rows read '[]') and
+    subscriptions.applied_manifest_hash (NULL), keeping its data."""
+    cfg = _cfg(db_path)
+    command.upgrade(cfg, "0008_api_tokens")
+    eng = create_engine(f"sqlite:///{db_path}")
+    with eng.begin() as c:
+        c.execute(text("INSERT INTO artworks (filename, status, original_width, original_height, affinity_score, skip_count, total_display_time, is_seed, is_personal, focal_x, focal_y) VALUES ('a.jpg','approved',0,0,1.0,0,0,0,0,0.5,0.5)"))
+        c.execute(text("INSERT INTO subscriptions (url, trust, enabled, item_count, created_at) VALUES ('pack:x','verified',1,0,'2026-10-01')"))
+    command.upgrade(cfg, "head")
+    assert _stamp(db_path) == _head(db_path) == "0009_pack_refresh_tracking"
+    with eng.connect() as c:
+        assert c.execute(text("SELECT filename, user_edited_fields FROM artworks")).fetchall() == [("a.jpg", "[]")]
+        assert c.execute(text("SELECT url, applied_manifest_hash FROM subscriptions")).fetchall() == [("pack:x", None)]
+    eng.dispose()
+
+
+def test_0009_is_idempotent_on_a_create_all_db(db_path):
+    Base.metadata.create_all(create_engine(f"sqlite:///{db_path}"))
+    _set_legacy_stamp(db_path, "0008_api_tokens")
+    command.upgrade(_cfg(db_path), "head")
+    assert _stamp(db_path) == "0009_pack_refresh_tracking"

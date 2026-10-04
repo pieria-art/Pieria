@@ -21,6 +21,7 @@ from sqlalchemy.orm import Session
 
 import ai_client
 from config import LIBRARY_DIR
+from core.artwork_edits import assign_tracked
 from core.media import check_user_upload_pixel_ceiling, read_capped_upload, warm_canvas_cache_async
 from core.playlists import _link_artwork_to_playlist
 from core.schemas import ArtworkSchema
@@ -172,9 +173,9 @@ async def update_personal_photo(artwork_id: int, payload: PersonalPhotoUpdate, d
     if not art or not art.is_personal:
         raise HTTPException(404, detail="Personal photo not found")
     if payload.caption is not None:
-        art.title = payload.caption.strip() or None
+        assign_tracked(art, {"title": payload.caption.strip() or None})
     if payload.date is not None:
-        art.date_display = payload.date.strip() or None
+        assign_tracked(art, {"date_display": payload.date.strip() or None})
     db.commit(); db.refresh(art)
     return art
 

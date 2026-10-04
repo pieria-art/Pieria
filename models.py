@@ -178,6 +178,9 @@ class ArtworkModel(Base):
 
     status: Mapped[str] = mapped_column(String, default='pending_review', index=True)
 
+    # ADR-148 F8: JSON array of column names the USER edited; a pack refresh never overwrites these.
+    user_edited_fields: Mapped[str] = mapped_column(Text, default="[]", server_default="[]")
+
     # Crop Metadata (Stored in Original Pixels)
     crop_x: Mapped[Optional[float]] = mapped_column(Float, default=0.0)
     crop_y: Mapped[Optional[float]] = mapped_column(Float, default=0.0)
@@ -262,6 +265,9 @@ class SubscriptionModel(Base):
     trust: Mapped[str] = mapped_column(String, default="community")
     enabled: Mapped[bool] = mapped_column(Boolean, default=True)
     cached_manifest: Mapped[Optional[str]] = mapped_column(Text)    # last VALIDATED manifest JSON
+    # sha256 of the manifest whose metadata was last applied to existing works (ADR-148 F8); a differing
+    # hash on boot triggers a refresh. NULL = never recorded (refresh once).
+    applied_manifest_hash: Mapped[Optional[str]] = mapped_column(String)
     item_count: Mapped[int] = mapped_column(Integer, default=0)
     last_synced: Mapped[Optional[datetime]] = mapped_column(DateTime)
     last_status: Mapped[Optional[str]] = mapped_column(String)      # 'ok' | 'error: …'

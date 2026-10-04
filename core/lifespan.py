@@ -4,6 +4,7 @@ and the Canvas cache warmer. Extracted verbatim from app.py (Phase 4 of the app-
 
 import asyncio
 import fcntl
+import hashlib
 import json
 import logging
 import os
@@ -20,6 +21,7 @@ import core.licensing as core_licensing
 import federation
 import frame_push
 from config import ARTWORK_ROOT, LIBRARY_DIR
+from core.artwork_edits import edited_fields
 from core.downloads import _aspect_crops, _focal_xy
 from core.media import get_optimized_image, render_canvas_image, run_image_work
 from core.playback import _frame_select
@@ -268,6 +270,104 @@ def manifest_refusal_reason(manifest: dict, cid: str, *, require_verified: bool 
     return None
 
 
+def manifest_hash(manifest: dict) -> str:
+    """Stable sha256 of a manifest (canonical JSON) — what a subscription records as 'applied'."""
+    return hashlib.sha256(json.dumps(manifest, sort_keys=True, separators=(",", ":")).encode()).hexdigest()
+
+
+def _refresh_existing_artwork(artwork: ArtworkModel, cat: dict) -> tuple[bool, int]:
+    """ADR-148 F8: overwrite an EXISTING pack work's pack-sourced fields from its manifest item, skipping
+    any field the user edited (`user_edited_fields`). Returns (changed, n_fields_skipped_for_user_edits).
+    Never touches status / affinity / crop / is_personal, and never blanks a field: a manifest value that
+    is absent/empty leaves the stored value alone (it may be local enrichment). Rows that are personal
+    photos or not pack-owned (is_seed false) are left entirely alone."""
+    if artwork.is_personal or not artwork.is_seed:
+        return False, 0
+    values = {
+        "title": cat.get("title"), "agent_name": cat.get("agent_name"), "agent_role": cat.get("agent_role"),
+        "creation_date": cat.get("creation_date"), "cultural_context": cat.get("cultural_context"),
+        "medium": cat.get("medium"), "date_display": cat.get("date_display"),
+        "description_narrative": cat.get("description_narrative"), "tags": cat.get("tags"),
+        "series": cat.get("series"), "resolution_tier": cat.get("resolution_tier"),
+        "license": core_licensing.normalize_license(cat.get("license")) if cat.get("license") else None,
+        "license_url": cat.get("license_url"), "attribution": cat.get("attribution"),
+        "attribution_url": cat.get("attribution_url"), "origin_url": cat.get("origin_url"),
+    }
+    if cat.get("focal_point") is not None:
+        values["focal_x"], values["focal_y"] = _focal_xy(cat)
+    crops = _aspect_crops(cat)
+    if crops:
+        values["aspect_crops_json"] = json.dumps(crops)
+    edited = edited_fields(artwork)
+    changed, skipped = False, 0
+    for k, v in values.items():
+        if v is None or v == "":
+            continue
+        if k in edited:
+            if getattr(artwork, k) != v:
+                skipped += 1
+            continue
+        if getattr(artwork, k) != v:
+            setattr(artwork, k, v)
+            changed = True
+    return changed, skipped
+
+
+def _find_pack_artwork(db: Session, cat: dict) -> ArtworkModel | None:
+    source_url = cat.get("source_url") or (f"pack:{cat['local_file']}" if cat.get("local_file") else None)
+    if source_url is None:
+        return None
+    return (db.query(ArtworkModel).filter(ArtworkModel.source_url == source_url).first()
+            or db.query(ArtworkModel).filter(ArtworkModel.filename == cat.get("local_file")).first())
+
+
+def refresh_installed_packs(db: Session) -> dict:
+    """ADR-148 F8 auto-trigger (boot, zero-network): for every installed `pack:<cid>` subscription whose
+    on-disk manifest (`ARTWORK_ROOT/_manifests/<cid>.json`) hashes differently from the one recorded as
+    applied, refresh the metadata of its EXISTING works only — no new works, no playlist re-linking (so a
+    work the user removed from a gallery stays removed), no image work. Unchanged hash = no-op.
+    Returns {cid: (refreshed, skipped)} for the packs it touched."""
+    out: dict = {}
+    for sub in db.query(SubscriptionModel).filter(SubscriptionModel.url.like("pack:%")).all():
+        cid = sub.url.split("pack:", 1)[1]
+        mpath = ARTWORK_ROOT / "_manifests" / f"{cid}.json"
+        if not mpath.exists():
+            continue
+        try:
+            manifest = json.loads(mpath.read_text())
+        except (OSError, ValueError):
+            continue
+        h = manifest_hash(manifest)
+        if sub.applied_manifest_hash == h:
+            continue
+        if manifest_refusal_reason(manifest, cid) is not None:
+            logger.warning(f"[PackRefresh] {cid!r}: on-disk manifest refused, not refreshing")
+            continue
+        n_ref, n_skip = _refresh_manifest_items(db, manifest)
+        sub.applied_manifest_hash = h
+        sub.cached_manifest = json.dumps(manifest)
+        db.commit()
+        out[cid] = (n_ref, n_skip)
+        logger.info(f"[PackRefresh] {cid!r}: manifest changed — {n_ref} work(s) refreshed, "
+                    f"{n_skip} field(s) skipped for user edits")
+    return out
+
+
+def _refresh_manifest_items(db: Session, manifest: dict) -> tuple[int, int]:
+    n_ref = n_skip = 0
+    default_license = manifest.get("default_license")
+    for item in manifest.get("items", []):
+        cat = federation.manifest_item_to_catalog(item, default_license=default_license)
+        art = _find_pack_artwork(db, cat)
+        if art is None:
+            continue
+        changed, skipped = _refresh_existing_artwork(art, cat)
+        n_ref += 1 if changed else 0
+        n_skip += skipped
+    db.commit()
+    return n_ref, n_skip
+
+
 def _install_collection(db: Session, cid: str, manifest: dict, *, require_verified: bool = False) -> str | None:
     """Install ONE collection's signed Manifest v2 as a verified LOCAL subscription + mint its playlist and
     ArtworkModels from the LOCAL masters (array order == fame order), zero-network. Idempotent: upserts the
@@ -316,6 +416,7 @@ def _install_collection(db: Session, cid: str, manifest: dict, *, require_verifi
     items = manifest.get("items", [])
     n = len(items)
     default_license = manifest.get("default_license")
+    n_refreshed = n_skipped = 0
     for idx, item in enumerate(items):
         cat = federation.manifest_item_to_catalog(item, default_license=default_license)
         local_file = cat.get("local_file")
@@ -350,6 +451,11 @@ def _install_collection(db: Session, cid: str, manifest: dict, *, require_verifi
                 affinity_score=affinity,
             )
             db.add(artwork); db.commit(); db.refresh(artwork)
+        else:
+            # ADR-148 F8: an existing work picks up the pack's corrected metadata (user edits win).
+            changed, skipped = _refresh_existing_artwork(artwork, cat)
+            n_refreshed += 1 if changed else 0
+            n_skipped += skipped
 
         existing_link = db.execute(select(playlist_artwork).where(
             playlist_artwork.c.playlist_id == playlist.id,
@@ -357,7 +463,11 @@ def _install_collection(db: Session, cid: str, manifest: dict, *, require_verifi
         if not existing_link:
             db.execute(playlist_artwork.insert().values(
                 playlist_id=playlist.id, artwork_id=artwork.id, display_order=idx))
+    sub.applied_manifest_hash = manifest_hash(manifest)
     db.commit()
+    if n_refreshed or n_skipped:
+        logger.info(f"[PackInstall] '{title}': {n_refreshed} existing work(s) refreshed, "
+                    f"{n_skipped} field(s) skipped for user edits")
     return title
 
 
@@ -881,6 +991,9 @@ async def lifespan(app: FastAPI):
                 # ADR-044: prefer the unified v2 install (verified local subscriptions); fall back to
                 # the v1 pre_seed for an older pack that ships only pack-manifest.json.
                 has_pack = install_pack_subscriptions(db) or pre_seed_from_pack(db)
+                # ADR-148 F8: a pack whose on-disk manifest changed since it was applied (e.g. an app
+                # update shipped corrected credits) refreshes its existing works' metadata. Zero-network.
+                refresh_installed_packs(db)
                 # ADR-040 #4: no baked pack (vanilla `docker compose`)? Own art via R2 — pull the default
                 # collection (Masterpieces) + set it default. Only if that also fails do we live-seed.
                 if not has_pack:

@@ -31,6 +31,7 @@ import core.licensing as core_licensing
 import federation
 from agents import process_artwork
 from config import LIBRARY_DIR, strip_markdown
+from core.artwork_edits import assign_tracked, edited_fields, mark_edited
 from core.media import (
     check_user_upload_pixel_ceiling,
     get_optimized_image,
@@ -291,11 +292,18 @@ async def upload_artwork(background_tasks: BackgroundTasks, request: Request, fi
 async def get_pending_artworks(db: Session = Depends(get_db)):
     return db.query(ArtworkModel).filter(ArtworkModel.status == 'pending_review').all()
 
+def _placard_values(data) -> dict:
+    return {"title": data.title, "agent_name": data.agent_name, "agent_role": data.agent_role,
+            "creation_date": data.creation_date, "cultural_context": data.cultural_context,
+            "medium": data.medium, "date_display": data.date_display,
+            "description_narrative": data.description_narrative, "tags": data.tags}
+
 @router.patch("/artworks/{artwork_id}/approve", response_model=ArtworkSchema)
 async def approve_artwork(artwork_id: int, data: ArtworkApproval, db: Session = Depends(get_db)):
     art = db.query(ArtworkModel).filter(ArtworkModel.id == artwork_id).first()
     if not art: raise HTTPException(404)
-    art.title, art.agent_name, art.agent_role, art.creation_date, art.cultural_context, art.medium, art.date_display, art.description_narrative, art.tags, art.status = data.title, data.agent_name, data.agent_role, data.creation_date, data.cultural_context, data.medium, data.date_display, data.description_narrative, data.tags, 'approved'
+    assign_tracked(art, _placard_values(data))
+    art.status = 'approved'
     db.commit(); db.refresh(art); return art
 
 @router.post("/artworks/approve-bulk")
@@ -318,7 +326,7 @@ async def update_artwork_metadata(artwork_id: int, data: ArtworkApproval, db: Se
     so an approved piece stays approved. Personal photos edit via /api/studio/photo instead."""
     art = db.query(ArtworkModel).filter(ArtworkModel.id == artwork_id).first()
     if not art: raise HTTPException(404)
-    art.title, art.agent_name, art.agent_role, art.creation_date, art.cultural_context, art.medium, art.date_display, art.description_narrative, art.tags = data.title, data.agent_name, data.agent_role, data.creation_date, data.cultural_context, data.medium, data.date_display, data.description_narrative, data.tags
+    assign_tracked(art, _placard_values(data))   # ADR-148 F8: changed fields are user-edited -> pack refresh skips them
     db.commit(); db.refresh(art); return art
 
 @router.get("/artworks/{artwork_id}/thumbnail")
@@ -499,14 +507,15 @@ async def update_artwork_crop(artwork_id: int, payload: CropPayload, db: Session
     art = db.query(ArtworkModel).filter(ArtworkModel.id == artwork_id).first()
     if not art:
         raise HTTPException(404)
-    art.crop_x = payload.crop_x
-    art.crop_y = payload.crop_y
-    art.crop_width = payload.crop_width
-    art.crop_height = payload.crop_height
+    vals = {"crop_x": payload.crop_x, "crop_y": payload.crop_y,
+            "crop_width": payload.crop_width, "crop_height": payload.crop_height}
     if payload.focal_x is not None:
-        art.focal_x = min(1.0, max(0.0, payload.focal_x))
+        vals["focal_x"] = min(1.0, max(0.0, payload.focal_x))
     if payload.focal_y is not None:
-        art.focal_y = min(1.0, max(0.0, payload.focal_y))
+        vals["focal_y"] = min(1.0, max(0.0, payload.focal_y))
+    assign_tracked(art, vals)   # ADR-148 F8: a manual crop/focal survives pack refresh
+    if edited_fields(art) & {"focal_x", "focal_y"}:
+        mark_edited(art, ["aspect_crops_json"])   # per-aspect boxes override focal framing; keep the user's look
     db.commit(); db.refresh(art)
     return art
 
