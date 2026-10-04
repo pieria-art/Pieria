@@ -114,7 +114,8 @@ def test_the_display_name_is_sanitized_before_it_is_queued(appliance):
     assert _req(appliance)["display_id"] == "living_room"
 
 
-@pytest.mark.parametrize("bad", ["-a", "a-", "a" * 64, "a.b", "a_b", "a b", "a;rm -rf /", "$(id)", "a`id`", "a\nb", "!!!"])
+@pytest.mark.parametrize("bad", ["-a", "a-", "a" * 64, "a.b", "a_b", "a b", "a;rm -rf /", "$(id)", "a`id`", "a\nb", "!!!",
+                                 "pieria", "Pieria", "raspberrypi", "localhost"])
 def test_an_invalid_hostname_is_a_400_and_queues_nothing(appliance, bad):
     resp = appliance.post("/api/appliance/update", json={"action": "set-hostname", "hostname": bad})
     assert resp.status_code == 400

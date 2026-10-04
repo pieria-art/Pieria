@@ -46,6 +46,10 @@ _SERVER_URL_RE = re.compile(r"^https?://[^\s/]+(?::\d+)?(?:/.*)?$")
 _DISPLAY_ID_RE = re.compile(r"[^a-z0-9_-]+")
 _HOSTNAME_STRIP_RE = re.compile(r"[^a-z0-9-]+")
 _HOSTNAME_VALID_RE = re.compile(r"^[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?$")
+#: Names sd-hostname treats as "nobody chose this" and re-rolls to pieria-XXXX on EVERY boot. Choosing one
+#: would leave the conf saying one thing and the OS another. MIRRORS sd-hostname's `case` and the other
+#: copy (sd-conf / sd_setup.py); a test pins all three.
+RESERVED_HOSTNAMES = frozenset({"raspberrypi", "pieria", "pieria-setup", "pieria-bench-pi", "localhost"})
 
 
 def sanitize_display_id(raw: str) -> str:
@@ -63,12 +67,13 @@ def derive_hostname(raw: str) -> str:
     (pieria-XXXX) rather than shipping an invalid name."""
     s = _HOSTNAME_STRIP_RE.sub("-", (raw or "").strip().lower().replace("_", "-"))
     s = re.sub(r"-+", "-", s).strip("-")[:63].rstrip("-")
-    return s if _HOSTNAME_VALID_RE.match(s) else ""
+    return s if _HOSTNAME_VALID_RE.match(s) and s not in RESERVED_HOSTNAMES else ""
 
 
 def valid_hostname(raw: str) -> bool:
     """Is `raw` already a valid single DNS label (what /etc/hostname wants)?"""
-    return bool(_HOSTNAME_VALID_RE.match((raw or "").strip()))
+    raw = (raw or "").strip()
+    return bool(_HOSTNAME_VALID_RE.match(raw)) and raw not in RESERVED_HOSTNAMES
 
 
 def validate_fields(fields: dict) -> dict:

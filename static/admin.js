@@ -958,6 +958,8 @@ async function saveDisplayName() {
 // re-announces, so the status poll below may die with it. Hence two exits to the new address — the
 // normal one when the host reports `done`, and a timer for when the connection went first.
 let _hostnameRedirectTimer = null;
+// Mirrors sd-conf RESERVED_HOSTNAMES: sd-hostname re-rolls these on every boot (a test pins the pairing).
+const _RESERVED_HOSTNAMES = ['raspberrypi', 'pieria', 'pieria-setup', 'pieria-bench-pi', 'localhost'];
 
 function _goToNewAddress(newName, ips) {
     if (_hostnameRedirectTimer) { clearTimeout(_hostnameRedirectTimer); _hostnameRedirectTimer = null; }
@@ -976,9 +978,11 @@ async function saveHostname() {
     const el = document.getElementById('ds-hostname');
     const value = (el.value || '').trim().toLowerCase();
     if (!value) return;
-    if (!/^[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?$/.test(value)) {
+    if (!/^[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?$/.test(value) || _RESERVED_HOSTNAMES.includes(value)) {
         const hint = document.getElementById('ds-hostname-hint');
-        hint.textContent = 'Use 1\u201363 lowercase letters, numbers or hyphens, not starting or ending with a hyphen.';
+        hint.textContent = _RESERVED_HOSTNAMES.includes(value)
+            ? `\u201c${value}\u201d is reserved \u2014 the device would rename itself on reboot. Pick another name.`
+            : 'Use 1\u201363 lowercase letters, numbers or hyphens, not starting or ending with a hyphen.';
         return;
     }
     const queued = await applianceAction('set-hostname', { hostname: value }, {

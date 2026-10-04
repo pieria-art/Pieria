@@ -232,3 +232,28 @@ def test_write_atomic_leaves_no_temp_files_behind(tmp_path):
     sc.write_atomic(conf, "A=1\n")
     assert conf.read_text() == "A=1\n"
     assert [p.name for p in tmp_path.iterdir()] == ["pieria.conf"]
+
+
+# --- reserved hostnames (sd-hostname re-rolls these on every boot) ------------------------------------
+
+def _sd_hostname_reserved():
+    import re
+    text = (_ROOT / "deploy" / "appliance" / "bin" / "sd-hostname").read_text()
+    m = re.search(r'^\s*((?:[a-z0-9-]+\|)+)"\"\) ;;', text, re.M) or re.search(r'^\s*([a-z0-9|-]+)\|""\) ;;', text, re.M)
+    return set(m.group(1).strip("|").split("|"))
+
+
+def test_reserved_hostnames_match_sd_hostname_and_the_wizard():
+    assert sc.RESERVED_HOSTNAMES == _sd_hostname_reserved() == set(wiz.RESERVED_HOSTNAMES)
+
+
+@pytest.mark.parametrize("name", ["pieria", "raspberrypi", "pieria-setup", "pieria-bench-pi", "localhost"])
+def test_a_reserved_hostname_is_refused_everywhere(name):
+    assert "reserved" in sc.validate("HOSTNAME", name)
+    assert not wiz.valid_hostname(name)
+    assert wiz.derive_hostname(name) == ""
+
+
+def test_a_near_miss_of_a_reserved_name_is_fine():
+    assert sc.validate("HOSTNAME", "pieria-lounge") is None
+    assert wiz.valid_hostname("pieria-lounge")
