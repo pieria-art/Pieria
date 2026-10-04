@@ -487,7 +487,7 @@ if [ -n "$_stale_units" ]; then
   echo "!!  WARNING: these units reference a conf other than $BOOT_CONF (ADR-083 split-brain):"
   echo "$_stale_units" | sed 's/^/      /'
 fi
-[ "${ALL_IN_ONE:-0}" = "1" ] && _expected="$_expected sd-app.service sd-timesync-wait.service sd-metrics.timer sd-quiet-hours.timer sd-watchdog.timer sd-update.path sd-os-check.timer"
+[ "${ALL_IN_ONE:-0}" = "1" ] && _expected="$_expected sd-app.service sd-timesync-wait.service sd-metrics.timer sd-quiet-hours.timer sd-watchdog.timer sd-update.path sd-os-check.timer sd-avahi-publish.service"
 [ "${EINK_ENABLED:-0}" = "1" ] && _expected="$_expected sd-eink.service"
 _missing=0
 for u in $_expected; do

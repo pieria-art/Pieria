@@ -12,6 +12,16 @@ Wants=avahi-daemon.service
 Type=oneshot
 ExecStart=/usr/local/bin/sd-avahi-publish --wait 120
 TimeoutStartSec=150
+# Hardening: it only needs loopback to the app and one file under /etc/avahi/services (avahi reloads
+# service files itself via inotify, so there is nothing to signal).
+NoNewPrivileges=yes
+ProtectSystem=strict
+ReadWritePaths=/etc/avahi/services
+PrivateTmp=yes
+ProtectHome=yes
+IPAddressAllow=localhost
+IPAddressDeny=any
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
 
 [Install]
 WantedBy=multi-user.target

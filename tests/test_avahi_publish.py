@@ -102,3 +102,68 @@ def test_identity_route_unauthenticated_and_stable():
     finally:
         app.dependency_overrides.clear()
         db.close()
+
+
+def _serve(handler_cls):
+    import http.server
+    import threading
+    srv = http.server.HTTPServer(("127.0.0.1", 0), handler_cls)
+    threading.Thread(target=srv.serve_forever, daemon=True).start()
+    return srv
+
+
+def test_redirect_is_refused_never_followed(tmp_path):
+    import http.server
+    hits = []
+
+    class Target(http.server.BaseHTTPRequestHandler):
+        def do_GET(self):
+            hits.append(self.path)
+            self.send_response(200); self.end_headers()
+            self.wfile.write(b'{"version":"1.0","server_id":"%s"}' % UUID.encode())
+
+        def log_message(self, *a): pass
+
+    target = _serve(Target)
+
+    class Redir(http.server.BaseHTTPRequestHandler):
+        def do_GET(self):
+            self.send_response(302)
+            self.send_header("Location", f"http://127.0.0.1:{target.server_port}/ssrf")
+            self.end_headers()
+
+        def log_message(self, *a): pass
+
+    redir = _serve(Redir)
+    try:
+        f = tmp_path / "x.service"
+        rc = pub.main(["--url", f"http://127.0.0.1:{redir.server_port}", "--out", str(f), "--wait", "0"])
+        assert rc == 1 and not f.exists()
+        assert hits == []   # the redirect target was never contacted
+    finally:
+        redir.shutdown(); target.shutdown()
+
+
+def test_plain_200_still_works(tmp_path):
+    import http.server
+
+    class Ok(http.server.BaseHTTPRequestHandler):
+        def do_GET(self):
+            self.send_response(200); self.end_headers()
+            self.wfile.write(b'{"version":"1.0.6","server_id":"%s"}' % UUID.encode())
+
+        def log_message(self, *a): pass
+
+    srv = _serve(Ok)
+    try:
+        f = tmp_path / "x.service"
+        assert pub.main(["--url", f"http://127.0.0.1:{srv.server_port}", "--out", str(f), "--wait", "0"]) == 0
+    finally:
+        srv.shutdown()
+
+
+@pytest.mark.parametrize("url", ["http://169.254.169.254", "http://example.com:8000", "https://127.0.0.1",
+                                 "http://127.0.0.1.evil.test"])
+def test_non_loopback_url_refused(tmp_path, url):
+    f = tmp_path / "x.service"
+    assert pub.main(["--url", url, "--out", str(f), "--wait", "0"]) == 1 and not f.exists()

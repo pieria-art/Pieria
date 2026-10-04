@@ -60,12 +60,35 @@ def render(version: str, server_id: str, port: int) -> str:
     return TEMPLATE.format(port=port, version=escape(version), server_id=escape(server_id.lower()))
 
 
+class _NoRedirect(urllib.request.HTTPRedirectHandler):
+    """The app runs in a container root cannot trust: a 3xx must never steer root's request elsewhere
+    (blind SSRF). Refuse every redirect — it surfaces as an HTTPError, i.e. a failed attempt."""
+
+    def redirect_request(self, *args, **kwargs):
+        return None
+
+
+#: No proxy handler either: an environment http_proxy must not carry root's loopback request off-box.
+_OPENER = urllib.request.build_opener(urllib.request.ProxyHandler({}), _NoRedirect)
+_LOOPBACK = {"127.0.0.1", "localhost", "::1"}
+
+
+def check_loopback(url: str) -> None:
+    """Root only ever talks to the local app. Anything else (including a hostile SD_AVAHI_URL) is refused."""
+    u = urllib.parse.urlparse(url)
+    if u.scheme != "http" or u.hostname not in _LOOPBACK:
+        raise ValueError(f"refusing non-loopback url: {url!r}")
+
+
 def fetch_identity(url: str, wait: float) -> dict:
+    check_loopback(url)
     deadline = time.monotonic() + wait
     last: Exception | None = None
     while True:
         try:
-            with urllib.request.urlopen(url.rstrip("/") + "/api/health/identity", timeout=5) as r:
+            with _OPENER.open(url.rstrip("/") + "/api/health/identity", timeout=5) as r:
+                if r.status != 200:   # any 3xx that slipped through is a failure, never followed
+                    raise ValueError(f"unexpected status {r.status}")
                 data = json.loads(r.read(4096))
             if isinstance(data, dict):
                 return data
