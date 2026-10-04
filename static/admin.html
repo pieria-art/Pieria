@@ -835,6 +835,10 @@
                             <label style="display:block; margin-bottom:6px; font-size:0.8rem; color:#94a3b8;">Model</label>
                             <select id="ai-model" onchange="onAiModelChange()" style="width:100%; box-sizing:border-box; background:#0f172a; border:1px solid var(--border-color); color:white; padding:10px 12px; border-radius:6px; font-size:0.85rem;"></select>
                             <input type="text" id="ai-model-custom" placeholder="Enter a custom model ID…" style="display:none; margin-top:8px; width:100%; box-sizing:border-box; background:#0f172a; border:1px solid var(--border-color); color:white; padding:10px 12px; border-radius:6px; font-size:0.85rem;">
+                            <div style="margin-top:8px; display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+                                <button type="button" id="ai-refresh-models-btn" onclick="refreshAiModels()" style="padding:6px 12px; font-size:0.75rem;">↻ Refresh models</button>
+                                <span id="ai-models-note" style="font-size:0.72rem; color:#94a3b8;"></span>
+                            </div>
                         </div>
 
                         <details style="border:1px solid var(--border-color); border-radius:8px; padding:10px 14px; background:#0f172a;">

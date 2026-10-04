@@ -3154,6 +3154,7 @@ function unlockPremiumScout(source, name) {
 // AI Engine (model provider configuration)
 // -----------------------------------------------------------------------------
 let aiPresets = {};
+let aiFetched = {};         // provider -> {models, fetched_at}: runtime model lists cached server-side (ADR-078)
 let aiConfigured = false;   // mirrors /api/settings/ai has_key; gates AI-only controls
 let aiLastError = '';       // mirrors /api/settings/ai last_error — health, NOT config (see below)
 
@@ -3217,6 +3218,7 @@ async function loadAiSettings() {
         const resp = await fetch(`${API_BASE}/api/settings/ai`);
         const cfg = await resp.json();
         aiPresets = cfg.presets || {};
+        aiFetched = cfg.fetched_models || {};
         aiConfigured = !!cfg.has_key;
         aiLastError = cfg.last_error || '';
         applyAiGating();
@@ -3229,7 +3231,7 @@ async function loadAiSettings() {
             opt.value = key; opt.textContent = p.label;
             provSel.appendChild(opt);
         });
-        provSel.value = (cfg.provider in aiPresets) ? cfg.provider : 'gemini';
+        provSel.value = (cfg.provider in aiPresets) ? cfg.provider : 'anthropic';
 
         renderAiModels(provSel.value, cfg.model);
         _setVal('ai-base-url', cfg.base_url);
@@ -3257,7 +3259,13 @@ async function loadAiSettings() {
 function renderAiModels(provider, selected) {
     const sel = document.getElementById('ai-model');
     if (!sel) return;
-    const models = (aiPresets[provider] && aiPresets[provider].models) || [];
+    // Fetched (hard-filtered) list wins when present; the curated presets are the offline fallback.
+    const fetched = aiFetched[provider] && aiFetched[provider].models;
+    const models = (fetched && fetched.length) ? fetched : ((aiPresets[provider] && aiPresets[provider].models) || []);
+    const note = document.getElementById('ai-models-note');
+    if (note) note.textContent = (fetched && fetched.length)
+        ? `${fetched.length} models from the provider · ${(aiFetched[provider].fetched_at || '').slice(0, 10)}`
+        : 'Showing curated defaults.';
     sel.innerHTML = '';
     models.forEach(m => {
         const opt = document.createElement('option');
@@ -3316,6 +3324,36 @@ function onAiProviderChange() {
     const base = document.getElementById('ai-base-url');
     if (base) base.value = (aiPresets[provider] && aiPresets[provider].base_url) || '';
     applyProviderUI(provider);
+}
+
+async function refreshAiModels() {
+    const provider = document.getElementById('ai-provider').value;
+    const btn = document.getElementById('ai-refresh-models-btn');
+    const note = document.getElementById('ai-models-note');
+    const keep = currentAiModel();
+    const orig = btn.textContent;
+    btn.disabled = true; btn.textContent = '⏳ Fetching…';
+    try {
+        const resp = await fetch(`${API_BASE}/api/settings/ai/models`, {
+            method: 'POST', headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                provider,
+                base_url: document.getElementById('ai-base-url').value.trim(),
+                api_key: document.getElementById('ai-key').value.trim()
+            })
+        });
+        const data = await resp.json();
+        if (!resp.ok) { if (note) note.textContent = '✗ ' + (data.detail || 'Refresh failed'); return; }
+        if (data.source === 'live') aiFetched[provider] = { models: data.models, fetched_at: data.fetched_at };
+        else if (data.source === 'cache') aiFetched[provider] = { models: data.models, fetched_at: data.fetched_at };
+        else delete aiFetched[provider];
+        renderAiModels(provider, keep);
+        if (note && data.error) note.textContent = `${note.textContent} — could not refresh (${data.error})`;
+    } catch (e) {
+        if (note) note.textContent = '✗ Network error';
+    } finally {
+        btn.disabled = false; btn.textContent = orig;
+    }
 }
 
 function currentAiModel() {

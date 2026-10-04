@@ -3,7 +3,9 @@ remote catalog source, default playlist, and the Night & Quiet Hours display sch
 """
 
 import asyncio
+import json
 import os
+from datetime import UTC, datetime
 from typing import Optional
 
 import httpx
@@ -159,9 +161,11 @@ async def get_ai_settings(db: Session = Depends(get_db)):
     cfg = ai_client.get_ai_config(force=True)
     health = ai_client.get_failure()
     return {
-        "provider": rows.get("ai_provider", ai_client.DEFAULT_PROVIDER),
+        "provider": cfg["provider"],  # saved, else legacy-env Gemini, else the fresh default (Claude)
         "base_url": rows.get("ai_base_url", ""),
         "model": rows.get("ai_model", ""),
+        "default_model": ai_client.DEFAULT_MODEL if cfg["provider"] == ai_client.DEFAULT_PROVIDER else "",
+        "fetched_models": _load_model_caches(db),
         "model_fast": rows.get("ai_model_fast", ""),
         "temperature": rows.get("ai_temperature", ""),
         "has_key": cfg["configured"],
@@ -183,6 +187,72 @@ async def get_ai_settings(db: Session = Depends(get_db)):
             for k, v in ai_client.PRESETS.items()
         },
     }
+
+
+def _load_model_caches(db: Session) -> dict:
+    """{provider: {models, fetched_at, base_url}} for every cached runtime model list."""
+    out = {}
+    rows = db.query(SettingsModel).filter(
+        SettingsModel.setting_key.like(f"{ai_client.MODELS_CACHE_PREFIX}%")
+    ).all()
+    for r in rows:
+        try:
+            entry = json.loads(r.setting_value or "")
+            if isinstance(entry.get("models"), list) and entry["models"]:
+                out[r.setting_key[len(ai_client.MODELS_CACHE_PREFIX):]] = entry
+        except (ValueError, AttributeError):
+            continue
+    return out
+
+
+class ModelsRefreshPayload(BaseModel):
+    provider: str
+    base_url: Optional[str] = ""
+    api_key: Optional[str] = None  # typed-but-unsaved key; blank ⇒ use the saved one
+
+
+@router.post("/api/settings/ai/models")
+async def refresh_ai_models(payload: ModelsRefreshPayload, db: Session = Depends(get_db)):
+    """Fetch the provider's own model list (hard-filtered), cache it, and return it.
+
+    Never sends a key anywhere but the provider's own base URL: preset providers ignore any
+    client-supplied base_url, and the SAVED key is only used when the saved provider (and, for
+    ollama/custom, saved base URL) matches. On failure falls back to the cache, then the presets.
+    """
+    provider = payload.provider
+    preset = ai_client.PRESETS.get(provider)
+    if preset is None:
+        raise HTTPException(400, f"Unknown provider: {provider}")
+    cfg = ai_client.get_ai_config(force=True)
+    user_url_ok = provider in ("ollama", "custom")
+    if user_url_ok:
+        base_url = (payload.base_url or "").strip().rstrip("/") or (
+            cfg["base_url"] if cfg["provider"] == provider else preset["base_url"]
+        )
+    else:
+        base_url = preset["base_url"].rstrip("/")
+    api_key = (payload.api_key or "").strip()
+    if not api_key and cfg["provider"] == provider and cfg["base_url"].rstrip("/") == base_url:
+        api_key = cfg["api_key"]  # saved key, or the legacy GEMINI_API_KEY env for gemini
+
+    caches = _load_model_caches(db)
+    try:
+        models = await asyncio.to_thread(ai_client.fetch_provider_models, provider, base_url, api_key)
+    except ai_client.AIConfigError as e:
+        cached = caches.get(provider)
+        if cached and cached.get("base_url") == base_url:
+            return {"provider": provider, "models": cached["models"], "source": "cache",
+                    "fetched_at": cached.get("fetched_at", ""), "error": str(e)}
+        return {"provider": provider, "models": preset["models"], "source": "preset",
+                "fetched_at": "", "error": str(e)}
+
+    fetched_at = datetime.now(UTC).isoformat()
+    _upsert_setting(
+        db, ai_client.MODELS_CACHE_PREFIX + provider,
+        json.dumps({"models": models, "fetched_at": fetched_at, "base_url": base_url}),
+    )
+    db.commit()
+    return {"provider": provider, "models": models, "source": "live", "fetched_at": fetched_at, "error": ""}
 
 
 class AISettingsPayload(BaseModel):
@@ -209,7 +279,7 @@ async def save_ai_settings(payload: AISettingsPayload, db: Session = Depends(get
     api_key = (
         (payload.api_key or "").strip()
         or (existing.setting_value if existing else "")
-        or os.getenv("GEMINI_API_KEY", "")
+        or (os.getenv("GEMINI_API_KEY", "") if provider == "gemini" else "")
     )
     key_optional = ai_client.PRESETS[provider].get("key_optional", False)
     if not api_key and not key_optional:

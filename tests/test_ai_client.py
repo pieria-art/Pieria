@@ -75,8 +75,8 @@ def test_config_env_fallback(monkeypatch):
     assert cfg["provider"] == "gemini"
     assert cfg["api_key"] == "env-key-123"
     assert cfg["base_url"] == ai_client.PRESETS["gemini"]["base_url"].rstrip("/")
-    assert cfg["model"] == ai_client.DEFAULT_MODEL
-    assert cfg["model_fast"] == ai_client.DEFAULT_MODEL  # no override ⇒ primary
+    assert cfg["model"] == ai_client.LEGACY_MODEL  # legacy env-key install stays Gemini
+    assert cfg["model_fast"] == ai_client.LEGACY_MODEL  # no override ⇒ primary
     assert cfg["configured"] is True
 
 

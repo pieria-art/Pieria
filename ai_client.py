@@ -64,9 +64,12 @@ PRESETS = {
     "anthropic": {
         "label": "Anthropic Claude",
         "base_url": "https://api.anthropic.com/v1",
-        # Sonnet 5 leads: near-Opus quality on this workload at a fraction of Opus pricing, so it's
-        # the right default for placard writing. Opus 5 for the hardest cases, Haiku 4.5 for cheap.
-        "models": ["claude-sonnet-5", "claude-opus-5", "claude-haiku-4-5"],
+        # Sonnet 5.5 leads: near-Opus quality on this workload at a fraction of Opus pricing, so it's
+        # the right default for placard writing. Opus 5.5 for the hardest cases, Haiku 4.5 for cheap.
+        # Saved settings holding an older id (claude-sonnet-5 ...) keep working — never rewritten.
+        "models": ["claude-sonnet-5-5", "claude-opus-5-5", "claude-haiku-4-5-20251001"],
+        # Anthropic's OpenAI-compatible layer wants an explicit output cap.
+        "max_tokens": 8192,
         "key_url": "https://console.anthropic.com/settings/keys",
         # Anthropic's OpenAI-compat layer does not reliably honour response_format;
         # rely on prompt + tolerant fence-stripping instead.
@@ -101,11 +104,17 @@ PRESETS = {
     },
 }
 
-# Built-in defaults (Gemini), used when nothing is configured in the DB.
-DEFAULT_PROVIDER = "gemini"
-DEFAULT_BASE_URL = PRESETS["gemini"]["base_url"]
-DEFAULT_MODEL = "gemini-3.5-flash"
-DEFAULT_FAST_MODEL = "gemini-3.1-flash-lite"
+# Built-in defaults (Claude Sonnet), used for a FRESH install — nothing saved, no legacy env key.
+DEFAULT_PROVIDER = "anthropic"
+DEFAULT_BASE_URL = PRESETS["anthropic"]["base_url"]
+DEFAULT_MODEL = "claude-sonnet-5-5"
+DEFAULT_FAST_MODEL = "claude-haiku-4-5-20251001"
+
+# Legacy default: before 1.1 an unset provider meant Gemini, and the README quick-start tells users to
+# put GEMINI_API_KEY in .env WITHOUT ever saving a provider. Those installs must keep resolving to
+# Gemini — flipping them to Anthropic would silently send a Google key to the wrong host.
+LEGACY_PROVIDER = "gemini"
+LEGACY_MODEL = "gemini-3.5-flash"
 
 # Keys we persist in the SettingsModel KV table.
 AI_SETTING_KEYS = (
@@ -235,12 +244,19 @@ def get_ai_config(force: bool = False) -> dict:
         logger.warning(f"[AI] Could not read settings ({e}); using env/defaults.")
         s = {}
 
-    provider = s.get("ai_provider") or DEFAULT_PROVIDER
+    env_key = os.getenv("GEMINI_API_KEY") or ""
+    provider = s.get("ai_provider")
+    legacy = False
+    if not provider:
+        # Unset provider: a legacy (pre-1.1) install if anything Gemini-era is present; else fresh.
+        legacy = bool(env_key or s.get("ai_api_key") or s.get("ai_model"))
+        provider = LEGACY_PROVIDER if legacy else DEFAULT_PROVIDER
     base_url = (s.get("ai_base_url") or "").rstrip("/")
     if not base_url:
         base_url = PRESETS.get(provider, {}).get("base_url", DEFAULT_BASE_URL).rstrip("/")
-    api_key = s.get("ai_api_key") or os.getenv("GEMINI_API_KEY") or ""
-    model = s.get("ai_model") or DEFAULT_MODEL
+    # The env key is a GEMINI key — never hand it to any other provider's host.
+    api_key = s.get("ai_api_key") or (env_key if provider == "gemini" else "")
+    model = s.get("ai_model") or (LEGACY_MODEL if legacy else DEFAULT_MODEL)
     model_fast = s.get("ai_model_fast") or model
     temp_raw = s.get("ai_temperature")
     try:
@@ -373,6 +389,10 @@ def chat(
     if json_mode and supports_json_mode(cfg.get("provider", "")):
         payload["response_format"] = {"type": "json_object"}
 
+    cap = PRESETS.get(cfg.get("provider"), {}).get("max_tokens")
+    if cap:
+        payload["max_tokens"] = cap
+
     t = temperature if temperature is not None else cfg.get("temperature")
     if t is not None and not rejects_temperature(model):
         payload["temperature"] = t
@@ -436,3 +456,114 @@ def validate_config(provider: str, base_url: str, api_key: str, model: str) -> s
         timeout=25.0,
         cfg=cfg,
     )
+
+
+# -----------------------------------------------------------------------------
+# Runtime model lists (ADR-078 post-launch plan)
+# -----------------------------------------------------------------------------
+# Ask the provider what it serves, then filter HARD: an unfiltered list offers embeddings, TTS,
+# image-generation and text-only models that fail at enrichment time. Where a provider exposes
+# capability metadata (OpenRouter modalities, Anthropic capabilities) we use it; elsewhere an explicit
+# per-provider allowlist pattern stands in. The key is only ever sent to the provider's own base_url,
+# and redirects are NOT followed (a 3xx is an error). PRESETS stay the offline fallback.
+MODELS_CACHE_PREFIX = "ai_models_cache_"   # + provider; deliberately NOT in AI_SETTING_KEYS
+_MAX_FETCHED = 150
+
+_re = __import__("re")
+_NON_VISION_OR_GEN = _re.compile(
+    r"embed|tts|whisper|audio|speech|transcri|realtime|moderation|dall-e|imagen|image|veo|sora|"
+    r"-live|rerank|guard|aqa|robotics|computer-use|search-preview|instruct$|davinci|babbage|"
+    r"gpt-3\.5|gpt-4-|codex",
+    _re.I,
+)
+_DATED = _re.compile(r"(-\d{4}-\d{2}-\d{2}|-\d{8}|-\d{2}-\d{4}|-\d{3}|-\d{4})$")
+_ALLOW = {
+    "openai": _re.compile(r"^(gpt-(?:4o|4\.1|4\.5|[5-9])|o[3-9])", _re.I),
+    "anthropic": _re.compile(r"^claude-(?:sonnet|opus|haiku|fable|mythos)-\d", _re.I),
+    "gemini": _re.compile(r"^gemini-\d", _re.I),
+    "ollama": _re.compile(
+        r"llava|vision|vl(?:[:\-]|$)|minicpm-v|moondream|gemma3|gemma4|llama4|pixtral|mistral-small3", _re.I
+    ),
+}
+
+
+def _collapse_dated(ids: list) -> list:
+    """Drop `X-2025-10-01` style snapshots when the undated alias `X` is in the list."""
+    have = set(ids)
+    out = []
+    for i in ids:
+        m = _DATED.search(i)
+        if m and i[: m.start()] in have:
+            continue
+        out.append(i)
+    return out
+
+
+def _filter_models(provider: str, payload) -> list:
+    """Parse a provider's /models reply into a filtered, de-duplicated, sorted id list."""
+    entries = None
+    if isinstance(payload, dict):
+        entries = payload.get("data") or payload.get("models")
+    ids = []
+    for e in entries or []:
+        if not isinstance(e, dict) or not (e.get("id") or e.get("name")):
+            continue
+        mid = str(e.get("id") or e.get("name"))
+        if mid.startswith("models/"):
+            mid = mid[len("models/"):]
+        if _NON_VISION_OR_GEN.search(mid):
+            continue
+        allow = _ALLOW.get(provider)
+        if allow and not allow.search(mid):
+            continue
+        if provider == "openrouter":
+            arch = e.get("architecture") or {}
+            if "image" not in (arch.get("input_modalities") or []):
+                continue
+            if set(arch.get("output_modalities") or ["text"]) != {"text"}:
+                continue            # image/audio GENERATION
+            if e.get("expiration_date"):
+                continue            # deprecated
+        caps = e.get("capabilities")
+        if provider == "anthropic" and isinstance(caps, dict):
+            if not (caps.get("image_input") or {}).get("supported", True):
+                continue
+        if e.get("deprecated") is True:
+            continue
+        ids.append(mid)
+    return _collapse_dated(sorted(set(ids)))[:_MAX_FETCHED]
+
+
+def fetch_provider_models(provider: str, base_url: str, api_key: str, timeout: float = 15.0) -> list:
+    """GET the provider's own model list and filter it. Raises AIConfigError on any failure.
+
+    Never logs or echoes the key; error text is generic.
+    """
+    base = (base_url or "").rstrip("/")
+    if not base:
+        raise AIConfigError("A base URL is required to list models.")
+    if not api_key and not PRESETS.get(provider, {}).get("key_optional"):
+        raise AIConfigError("An API key is required to list models.")
+    headers = {}
+    if provider == "anthropic":
+        if api_key:
+            headers["x-api-key"] = api_key
+        headers["anthropic-version"] = "2023-06-01"
+    elif api_key:
+        headers["Authorization"] = f"Bearer {api_key}"
+    params = {"limit": 1000} if provider == "anthropic" else None
+    try:
+        resp = _http_client.get(
+            f"{base}/models", headers=headers, params=params, timeout=timeout, follow_redirects=False
+        )
+    except httpx.HTTPError as e:
+        raise AIConfigError(f"Could not reach the model endpoint: {type(e).__name__}") from e
+    if resp.status_code != 200:
+        raise AIConfigError(f"The provider's model list returned HTTP {resp.status_code}.")
+    try:
+        models = _filter_models(provider, resp.json())
+    except ValueError as e:
+        raise AIConfigError("The provider's model list was unreadable.") from e
+    if not models:
+        raise AIConfigError("The provider's model list had no usable vision models.")
+    return models
