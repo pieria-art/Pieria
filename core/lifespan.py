@@ -305,7 +305,8 @@ def _refresh_existing_artwork(artwork: ArtworkModel, cat: dict) -> tuple[bool, i
     # A licence change (e.g. CC BY -> CC0) invalidates the credit that went with the old licence: refresh
     # the whole licence-dependent group from the manifest, CLEARING members it omits, so a placard never
     # shows the new licence beside the old credit (ADR-142). Per-field user edits still win.
-    lic_changed = bool(values["license"]) and values["license"] != artwork.license
+    lic_changed = (bool(values["license"]) and values["license"] != artwork.license
+                   and "license" not in edited)
     changed, skipped = False, 0
     for k, v in values.items():
         if lic_changed and k in _LICENSE_GROUP:

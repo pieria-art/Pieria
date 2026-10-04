@@ -255,3 +255,10 @@ def test_reinstall_from_older_manifest_skips_refresh_and_keeps_stamp(tmp_path, m
     assert (sub.applied_generated_at, sub.applied_manifest_hash) == (stamp, h)
     assert lifespan.refresh_installed_packs(db) == {}   # boot refresh doesn't apply the stale disk copy either
 
+
+
+def test_user_edited_license_does_not_wipe_other_credit_fields(tmp_path, monkeypatch):
+    a = _cc_by_then_cc0(tmp_path, monkeypatch, edit="license")
+    assert a.license == "CC-BY-4.0"                       # user's licence kept
+    assert a.attribution == CC_BY_CREDIT                  # nothing wiped on the strength of a licence delta
+    assert a.attribution_url == "https://x/credit"
