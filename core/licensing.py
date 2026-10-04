@@ -60,8 +60,9 @@ def normalize_license(text: str | None) -> str | None:
         return "CC0-1.0"
     if "cc-by" in s:          # by-sa/by-nc/by-nd already excluded above
         # Version-aware: only 4.0 is pack-allowed. Look at what follows "cc-by".
-        ver = re.search(r"cc-by-?(\d+(?:\.\d+)?)", s)
-        if ver and ver.group(1) != "4.0" and ver.group(1) != "4":
+        # Fail closed: any version number after cc-by (separators -, /, (, v, spaces) that isn't 4/4.0 -> None.
+        ver = re.search(r"cc-by[\s\-/(v]*(\d+(?:\.\d+)?)", s)
+        if ver and ver.group(1) not in ("4", "4.0"):
             return None       # 2.0 / 2.5 / 3.0 / 3.0-igo ... not CC BY 4.0, must not be restated as such
         return "CC-BY-4.0"    # explicit 4.0, or unversioned "CC BY" (assumed 4.0)
     if ("public-domain" in s or "no-known-restrictions" in s or "pd-art" in s

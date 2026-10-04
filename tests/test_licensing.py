@@ -124,7 +124,7 @@ def test_display_credit_drops_bare_urls_keeps_real_credits():
 
 @pytest.mark.parametrize("text", [
     "CC BY 2.0", "CC BY 2.5", "CC BY 3.0", "CC-BY-3.0", "cc-by-3.0-igo", "CC BY 3.0 IGO",
-    "CC BY 2.0 (Flickr)", "cc-by-2.5",
+    "CC BY 2.0 (Flickr)", "cc-by-2.5", "CC BY v3.0", "CC-BY (3.0)", "cc-by/3.0",
 ])
 def test_normalize_cc_by_other_versions_not_allowed(text):
     assert normalize_license(text) is None
