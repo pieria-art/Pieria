@@ -121,8 +121,30 @@ async def select_next_image(
     if not artworks: raise HTTPException(404, detail="No approved images")
     count = len(artworks)
 
+    # Get or create playback session. A8: the (display_id, playlist_id) UNIQUE constraint backstops the
+    # check-then-insert race across the 4 workers — if another worker inserts first, catch the
+    # IntegrityError, roll back, and re-query the row it created instead of duplicating it.
+    def _get_session():
+        return db.query(DisplayPlaybackSessionModel).filter(
+            DisplayPlaybackSessionModel.display_id == display_id,
+            DisplayPlaybackSessionModel.playlist_id == p.id
+        ).first()
+
+    def _ensure_session():
+        session = _get_session()
+        if not session:
+            session = DisplayPlaybackSessionModel(display_id=display_id, playlist_id=p.id)
+            db.add(session)
+            try:
+                db.commit()
+            except IntegrityError:
+                db.rollback()
+                session = _get_session()
+        return session
+
     paused = is_display_paused(db, display_id)
     held = None
+    moved = False   # a show (not a pause re-serve) repositions the rotation cursor
     if show_artwork_id is not None:
         held = db.query(ArtworkModel).filter(ArtworkModel.id == show_artwork_id,
                                              ArtworkModel.status == 'approved').first()
@@ -130,6 +152,7 @@ async def select_next_image(
             raise HTTPException(404, detail="No such artwork")
     if held is None:
         held = _take_pending_show(db, display_id)
+    moved = held is not None
     if held is None and paused and direction == 1 and not manual:
         # The hold target lives in the pause flag itself: the active_displays row is deleted on a WS
         # disconnect and recreated empty on reconnect, so it cannot be trusted across a Canvas reload.
@@ -140,27 +163,22 @@ async def select_next_image(
     if held is not None:
         db.commit()   # the last_playlist write above rides this
         idx = next((i for i, a in enumerate(artworks) if a.id == held.id), -1)
+        if moved and idx >= 0:
+            # Spec §2: show-now "then continues the rotation from there". Shown item is in the current
+            # playlist -> sequential cursor jumps to it; shuffle drops it from the remaining bag so it
+            # is not repeated. Not in the playlist -> cursor/bag untouched (rotation resumes where it was).
+            session = _ensure_session()
+            if resolved_shuffle:
+                valid_ids = [a.id for a in artworks]
+                bag = [x for x in json.loads(session.unplayed_artworks_json) if x in valid_ids] or valid_ids
+                session.unplayed_artworks_json = json.dumps([x for x in bag if x != held.id])
+            else:
+                session.last_sequential_index = idx
+            db.commit()
         _record_now_playing(db, display_id, held.id, playlist_name)
         return _selection_payload(held, idx, p, resolved_shuffle, playlist_name, paused)
 
-    # Get or create playback session. A8: the (display_id, playlist_id) UNIQUE constraint backstops the
-    # check-then-insert race across the 4 workers — if another worker inserts first, catch the
-    # IntegrityError, roll back, and re-query the row it created instead of duplicating it.
-    def _get_session():
-        return db.query(DisplayPlaybackSessionModel).filter(
-            DisplayPlaybackSessionModel.display_id == display_id,
-            DisplayPlaybackSessionModel.playlist_id == p.id
-        ).first()
-
-    session = _get_session()
-    if not session:
-        session = DisplayPlaybackSessionModel(display_id=display_id, playlist_id=p.id)
-        db.add(session)
-        try:
-            db.commit()
-        except IntegrityError:
-            db.rollback()
-            session = _get_session()
+    session = _ensure_session()
 
     selected_art = None
     selected_idx = -1

@@ -574,6 +574,55 @@ def test_expired_pending_show_is_ignored(env):
     assert _next(c, "panel")["metadata"]["id"] == arts[0].id
 
 
+def _id(r):
+    return r["metadata"]["id"]
+
+
+def test_show_in_playlist_moves_the_sequential_cursor(env):
+    c, db = env
+    arts = [_art(db, f"A{i}") for i in range(5)]
+    _playlist(db, "Seq", arts)
+    for _ in range(5):
+        last = _next(c, "wall")
+    assert _id(last) == arts[4].id
+    assert _id(_next(c, "wall", artwork_id=arts[0].id)) == arts[0].id
+    assert _id(_next(c, "wall")) == arts[1].id                       # continues AFTER the shown item
+    assert _id(_next(c, "wall")) == arts[2].id
+
+
+def test_show_in_shuffle_does_not_repeat_it_in_the_same_bag(env):
+    c, db = env
+    arts = [_art(db, f"A{i}") for i in range(4)]
+    _playlist(db, "Seq", arts, shuffle=True)
+    shown = arts[2].id
+    assert _id(_next(c, "wall", artwork_id=shown)) == shown
+    rest = {_id(_next(c, "wall")) for _ in range(3)}
+    assert rest == {a.id for a in arts} - {shown}                     # the other three, no repeat
+
+
+def test_eink_pending_show_in_playlist_moves_cursor(env):
+    c, db = env
+    arts = [_art(db, f"A{i}") for i in range(5)]
+    _playlist(db, "Seq", arts)
+    _display(db, "panel", age_s=3600, kind="eink")
+    for _ in range(5):
+        _next(c, "panel")
+    ctl = _mint(db, ["control"])
+    assert c.post("/api/v1/displays/panel/show", json={"artwork_id": arts[1].id}, headers=ctl).status_code == 202
+    assert _id(_next(c, "panel")) == arts[1].id
+    assert _id(_next(c, "panel")) == arts[2].id
+
+
+def test_show_outside_the_playlist_keeps_the_old_position(env):
+    c, db = env
+    arts = [_art(db, f"A{i}") for i in range(5)]
+    other = _art(db, "Special")
+    _playlist(db, "Seq", arts)
+    _next(c, "wall"); _next(c, "wall")                                # at A1
+    assert _id(_next(c, "wall", artwork_id=other.id)) == other.id
+    assert _id(_next(c, "wall")) == arts[2].id
+
+
 # --- A2: manual quiet override (tri-state: on / off / auto) --------------------------------------------
 
 def _quiet_schedule(c, db, start, end, enabled=True):
