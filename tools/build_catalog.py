@@ -344,6 +344,10 @@ async def main():
     ap.add_argument("--limit", type=int, help="cap items per collection (for quick runs)")
     ap.add_argument("--no-enrich", action="store_true", help="skip model enrichment (template only)")
     ap.add_argument("--no-verify", action="store_true", help="skip image URL verification")
+    ap.add_argument("--r2-thumbs", metavar="THUMBS_DIR",
+                    help="after building, point thumbnail_url at the self-hosted R2 thumbs listed in "
+                         "THUMBS_DIR/index.json (ADR-148; original kept as thumbnail_source_url). "
+                         "Produce them first with tools/publish_thumbs.py.")
     args = ap.parse_args()
 
     enrich = not args.no_enrich
@@ -397,6 +401,10 @@ async def main():
     idx_path.write_text(json.dumps(index, indent=1, ensure_ascii=False))
     total = sum(c["count"] for c in ordered)
     logger.info(f"\nDONE — {len(ordered)} collections, {total} items → {CATALOG_DIR}")
+    if args.r2_thumbs:
+        from tools import publish_thumbs
+        thumbs_index = json.loads((Path(args.r2_thumbs) / "index.json").read_text())["items"]
+        logger.info(f"R2 thumbnails: {publish_thumbs.rewrite_catalog(CATALOG_DIR, thumbs_index, publish_thumbs.default_base_url())}")
 
 
 if __name__ == "__main__":

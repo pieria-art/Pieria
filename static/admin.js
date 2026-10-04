@@ -1463,6 +1463,14 @@ async function fetchDiscoveryQueue() {
     } catch (error) { console.error('[Admin] Fetch discovery failed:', error); }
 }
 
+// ADR-148: catalog thumbs are self-hosted on R2; if one is missing, fall back ONCE to the original
+// hotlink (`thumbnail_source_url`) so a missing object never shows a broken image.
+function catalogThumbFallback(img) {
+    const fb = img.dataset.fallback;
+    img.onerror = null;
+    if (fb && img.src !== fb) img.src = fb;
+}
+
 // proposed_title/proposed_artist/source_api come verbatim from external museum-API JSON — every field
 // is escaped (H2: a crafted title like `"><img src=x onerror=...>` would otherwise execute in the
 // unauth admin the moment a scout returns it).
@@ -4042,7 +4050,7 @@ async function renderCuratedSearch(q) {
                 card.dataset.cidx = `${it.collection_id}:${it.item_index}`;
                 if (added) card.dataset.added = '1';
                 card.innerHTML = `
-                    <img loading="lazy" src="${_esc(it.thumbnail_url)}" alt="${_esc(it.title)}" style="background:#0f172a;">
+                    <img loading="lazy" src="${_esc(it.thumbnail_url)}" alt="${_esc(it.title)}" style="background:#0f172a;"${it.thumbnail_source_url ? ` data-fallback="${_esc(it.thumbnail_source_url)}" onerror="catalogThumbFallback(this)"` : ''}>
                     <div class="info">
                         <strong>${_esc(it.title || 'Untitled')}</strong> ${_resBadge(it.resolution_tier)}<br>
                         <small>${_esc(it.agent_name || 'Unknown')}</small><br>

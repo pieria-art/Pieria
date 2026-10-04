@@ -7,14 +7,17 @@ browse surface, namespaced with SUB_PREFIX so they can never collide with a bund
 
 import asyncio
 import copy
+import hashlib
 import json
 import logging
 import os
+import re
 import shutil
 from pathlib import Path
 from typing import List, Optional
 
 from fastapi import APIRouter, Depends, HTTPException
+from fastapi.responses import FileResponse
 from PIL import Image
 from pydantic import BaseModel
 from sqlalchemy import select
@@ -43,6 +46,40 @@ CATALOG_DIR = Path("static/catalog")
 # what they get (_catalog_index does `.extend(subscribed)` / `setdefault("origin", ...)`) — a shared
 # object would accumulate those mutations across calls.
 _local_json_cache: dict = {}
+
+
+# ADR-148: catalog thumbnails live on R2; for an INSTALLED pack the same ~600px thumb is already on disk
+# (ARTWORK_ROOT/_catalog_thumbs/<sha1(source_url)[:12]>.jpg), so those items are served locally and never
+# touch the network. The id is a 12-hex pack hash — nothing else is ever joined into a path.
+_THUMB_HASH_RE = re.compile(r"^[0-9a-f]{12}$")
+_thumb_dir_cache: dict = {"key": None, "names": frozenset()}
+
+
+def _installed_thumb_hashes() -> frozenset:
+    d = Path(ARTWORK_ROOT) / "_catalog_thumbs"
+    try:
+        key = (str(d), d.stat().st_mtime_ns)
+    except OSError:
+        return frozenset()
+    if _thumb_dir_cache["key"] != key:
+        names = frozenset(p.stem for p in d.glob("*.jpg") if _THUMB_HASH_RE.match(p.stem))
+        _thumb_dir_cache.update(key=key, names=names)
+    return _thumb_dir_cache["names"]
+
+
+def _localize_thumbs(items: list) -> None:
+    """Point an item's thumbnail_url at the local thumb route when its installed pack thumb exists."""
+    have = _installed_thumb_hashes()
+    if not have:
+        return
+    for it in items:
+        su = it.get("source_url")
+        if not su:
+            continue
+        h = hashlib.sha1(su.encode("utf-8")).hexdigest()[:12]
+        if h in have:
+            it.setdefault("thumbnail_source_url", it.get("thumbnail_url"))
+            it["thumbnail_url"] = f"/api/catalog/thumb/{h}"
 
 
 def _norm(s) -> str:
@@ -270,6 +307,7 @@ async def search_catalog(q: str = "", db: Session = Depends(get_db)):
                     continue  # one card per unique work; first collection wins the attribution
                 seen.add(key)
                 owned = (it.get("source_url") in added_urls or key in added_keys)
+                _localize_thumbs([it])
                 results.append({**it, "collection_id": cid, "collection_title": ctitle,
                                 "item_index": idx, "added": owned})
                 if len(results) >= CAP:
@@ -325,8 +363,22 @@ async def get_catalog_collection(collection_id: str, db: Session = Depends(get_d
         it["added"] = it.get("source_url") in added
         it["item_index"] = idx
         items.append(it)
+    _localize_thumbs(items)
     col["items"] = items
     return col
+
+
+@router.get("/api/catalog/thumb/{thumb_hash}")
+async def get_catalog_thumb(thumb_hash: str):
+    """An installed pack's `_catalog_thumbs/<hash>.jpg`. Path-validated: only a 12-hex hash is accepted
+    (no `..`, separators, or absolute paths can match), and the file must exist under that directory."""
+    if not _THUMB_HASH_RE.match(thumb_hash):
+        raise HTTPException(404, detail="No such thumbnail")
+    root = (Path(ARTWORK_ROOT) / "_catalog_thumbs").resolve()
+    path = (root / f"{thumb_hash}.jpg").resolve()
+    if path.parent != root or not path.is_file():
+        raise HTTPException(404, detail="No such thumbnail")
+    return FileResponse(path, media_type="image/jpeg", headers={"Cache-Control": "public, max-age=86400"})
 
 class CatalogAddPayload(BaseModel):
     collection_id: str
