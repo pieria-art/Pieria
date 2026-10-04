@@ -23,7 +23,7 @@ class FactoryResetRequest(BaseModel):
 
 
 @router.post("/api/admin/factory-reset")
-async def factory_reset(req: FactoryResetRequest, db: Session = Depends(get_db)):
+def factory_reset(req: FactoryResetRequest, db: Session = Depends(get_db)):
     """
     Resets the app to factory state:
     - Keeps only seed artworks (is_seed=True)

@@ -50,17 +50,17 @@ def _view(row) -> dict:
 
 
 @router.get("/api/settings/api-tokens")
-async def list_api_tokens(request: Request, x_appliance_token: Optional[str] = Header(None),
-                          db: Session = Depends(get_db)):
+def list_api_tokens(request: Request, x_appliance_token: Optional[str] = Header(None),
+                    db: Session = Depends(get_db)):
     """Every token (including revoked) — metadata only. The secret is never retrievable."""
     _gate(request, x_appliance_token, fetch_metadata_ok=True)
     return [_view(r) for r in api_tokens.list_tokens(db)]
 
 
 @router.post("/api/settings/api-tokens", status_code=201)
-async def mint_api_token(payload: TokenMintRequest, request: Request,
-                         x_appliance_token: Optional[str] = Header(None),
-                         db: Session = Depends(get_db)):
+def mint_api_token(payload: TokenMintRequest, request: Request,
+                   x_appliance_token: Optional[str] = Header(None),
+                   db: Session = Depends(get_db)):
     """Mint a token. The plaintext `token` is in THIS response only — show it once, then it is gone."""
     _gate(request, x_appliance_token)
     try:
@@ -71,9 +71,9 @@ async def mint_api_token(payload: TokenMintRequest, request: Request,
 
 
 @router.delete("/api/settings/api-tokens/{token_id}")
-async def revoke_api_token(token_id: int, request: Request,
-                           x_appliance_token: Optional[str] = Header(None),
-                           db: Session = Depends(get_db)):
+def revoke_api_token(token_id: int, request: Request,
+                     x_appliance_token: Optional[str] = Header(None),
+                     db: Session = Depends(get_db)):
     """Revoke a token (it 401s immediately). Idempotent; the row stays so the list shows history."""
     _gate(request, x_appliance_token)
     row = api_tokens.revoke_token(db, token_id)
