@@ -12,6 +12,9 @@ pushes: converted to RGB, then rotated 90 degrees if its dimensions don't match 
 `EINK_ORIENTATION=portrait` does client-side) — so a candidate PNG from `tools.eink.eink_candidate` pushes
 identically to how production would have shown it.
 
+While it runs, `/run/pieria-eink-hold` exists (created here, removed on exit only if we created it), so
+WATCHDOG=enforce does not fight the push.
+
 `inky` is a Pi-only dependency (SPI + the vendor driver) and is never installed off the panel — this
 module does not import it at module load time, only inside `push()`, so it can still be imported (for
 `--help`, or by a test that monkeypatches the import) on a laptop with no `inky` present.
@@ -19,6 +22,9 @@ module does not import it at module load time, only inside `push()`, so it can s
 from __future__ import annotations
 
 import argparse
+import contextlib
+import os
+import signal
 import sys
 import time
 from pathlib import Path
@@ -32,7 +38,59 @@ from PIL import Image
 REFRESH_SECONDS = 25
 
 
+#: sd-watchdog's hold flag (deploy/appliance/bin/sd-watchdog `EINK_HOLD_FLAG`): while it EXISTS the
+#: watchdog reports "eink-held" and never restarts sd-eink — otherwise WATCHDOG=enforce fights a manual
+#: push for the SPI/GPIO lines. Same SD_EINK_HOLD_FLAG override as the watchdog (tests use it too).
+DEFAULT_HOLD_FLAG = "/run/pieria-eink-hold"
+
+
+def hold_flag_path() -> Path:
+    return Path(os.environ.get("SD_EINK_HOLD_FLAG") or DEFAULT_HOLD_FLAG)
+
+
+@contextlib.contextmanager
+def eink_hold():
+    """Hold the watchdog off for the duration of a push. Creates the flag only if absent (O_EXCL) and
+    removes it on exit — error, KeyboardInterrupt and SIGTERM included — ONLY if this process created
+    it, so a hold someone else set (a bench session) is never cleared. If the flag can't be created
+    (not root, no /run) it warns and proceeds: the push itself is not blocked by the safety net."""
+    flag = hold_flag_path()
+    created = False
+    try:
+        fd = os.open(flag, os.O_WRONLY | os.O_CREAT | os.O_EXCL | os.O_NOFOLLOW, 0o644)
+        with os.fdopen(fd, "w") as fh:
+            fh.write(f"{os.getpid()} eink_push\n")
+        created = True
+    except FileExistsError:
+        pass  # someone else's hold — leave it alone, and leave it in place afterwards
+    except OSError as e:
+        print(f"  warning: could not create {flag} ({e}) — with WATCHDOG=enforce the watchdog may "
+              f"fight this push (run with sudo)", file=sys.stderr)
+
+    prev = None
+    try:
+        # SIGTERM would otherwise kill us without running `finally`.
+        prev = signal.signal(signal.SIGTERM, lambda _s, _f: sys.exit(143))
+    except ValueError:  # not the main thread
+        pass
+    try:
+        yield created
+    finally:
+        if prev is not None:
+            signal.signal(signal.SIGTERM, prev)
+        if created:
+            try:
+                os.unlink(flag)
+            except FileNotFoundError:
+                pass
+
+
 def push(path: Path, wait: bool = False) -> None:
+    with eink_hold():
+        _push(path, wait)
+
+
+def _push(path: Path, wait: bool = False) -> None:
     try:
         from inky.auto import auto  # noqa: PLC0415 — Pi-only dependency
     except ImportError:
