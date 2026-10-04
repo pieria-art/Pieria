@@ -97,3 +97,23 @@ def test_set_keys_without_comment_unchanged_and_result_sources_correctly():
     assert sc.set_keys("WATCHDOG=observe\n", {"WATCHDOG": "off"}) == "WATCHDOG=off\n"
     out = sc.set_keys("WATCHDOG=observe # c\n", {"WATCHDOG": "off"})
     assert _bash_source(out, "WATCHDOG") == "off"
+
+
+# --- the setup wizard's preserved lines ---------------------------------------------------------
+wiz = _load("sd_setup_cmt", _ROOT / "deploy" / "appliance" / "setup" / "sd_setup.py")
+
+
+def test_wizard_parser_copy_is_identical():
+    for line, _ in CASES:
+        rest = line.partition("=")[2]
+        assert wiz.split_conf_value(rest) == eink_client.split_conf_value(rest)
+
+
+def test_wizard_preserves_commented_line_with_its_comment():
+    out = wiz._preserved_lines("WATCHDOG=enforce  # self-heal\nEINK_ENABLED=1\n")
+    assert out == ["WATCHDOG=enforce  # self-heal", "EINK_ENABLED=1"]
+
+
+def test_wizard_still_rejects_unsafe_value_even_with_a_comment(capsys):
+    assert wiz._preserved_lines("X=a;rm -rf /  # c\nY=$(id) # c\n") == []
+    assert "dropping unsafe" in capsys.readouterr().err

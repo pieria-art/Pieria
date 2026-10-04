@@ -166,6 +166,31 @@ def resolve_timezone(fields: dict) -> str:
     return tz if valid_timezone(tz) else ""
 
 
+def split_conf_value(rest: str):
+    """Split the text after `KEY=` into (value, trailing), matching what bash `.`-sourcing yields for
+    the forms pieria.conf actually uses (ADR-137 conf comments):
+
+      KEY=value   # note   -> value  (an unquoted `#` starts a comment only when whitespace precedes it)
+      KEY="a # b"  # note  -> a # b  (quotes protect a `#`; text after the closing quote is ignored)
+      KEY='a # b'          -> a # b
+      KEY=   # note        -> ""
+
+    `trailing` is the raw suffix after the value token (leading whitespace + comment), kept so a writer
+    can preserve a line's comment. An unterminated quote is treated as an unquoted value. Copied
+    from eink_client.split_conf_value (standalone wizard); a test pins the equality."""
+    lead = len(rest) - len(rest.lstrip())
+    body = rest[lead:]
+    if lead and body.startswith("#"):
+        return "", rest
+    if body[:1] in ("'", '"'):
+        end = body.find(body[0], 1)
+        if end != -1:
+            return body[1:end], body[end + 1:]
+    m = re.search(r"\s+#", body)
+    cut = m.start() if m else len(body)
+    return body[:cut].strip(), body[cut:]
+
+
 def _preserved_lines(existing: str) -> list:
     """Settings from an existing conf that the wizard must NOT clobber.
 
@@ -179,8 +204,13 @@ def _preserved_lines(existing: str) -> list:
         line = raw.strip()
         if not line or line.startswith("#") or "=" not in line:
             continue
-        key, _, value = line.partition("=")
-        key, value = key.strip(), value.strip()
+        key, _, rest = line.partition("=")
+        key = key.strip()
+        # Split the value from an inline `# note` BEFORE validating, exactly as bash `.`-sourcing does,
+        # so `WATCHDOG=enforce  # x` survives (comment kept) instead of failing SAFE_VALUE_RE.
+        value, trailing = split_conf_value(rest)
+        if trailing and not trailing.lstrip().startswith("#"):
+            trailing = ""
         if not key or key in _WIZARD_KEYS:
             continue
         if not _PRESERVED_KEY_RE.match(key) or not _SAFE_VALUE_RE.match(value):
@@ -190,7 +220,7 @@ def _preserved_lines(existing: str) -> list:
             print(f"sd-setup: dropping unsafe preserved conf line for key {key!r} "
                   "(value did not pass SAFE_VALUE_RE)", file=sys.stderr)
             continue
-        out.append(f"{key}={value}")
+        out.append(f"{key}={value}{trailing}")
     return out
 
 
