@@ -200,3 +200,19 @@ def test_unknown_nonretired_stamp_is_left_untouched_and_unmigrated(db_path, capl
         run_migrations(_cfg(db_path))
     assert _stamp(db_path) == "ffffdeadbeef"
     assert any("ffffdeadbeef" in r.message and "newer release" in r.message for r in caplog.records)
+
+
+def test_broken_migration_file_fails_loud(db_path, tmp_path):
+    """An unimportable migration script must make run_migrations RAISE, not read the real baseline stamp
+    as 'unknown/newer' and boot on the old schema (ADR-035)."""
+    import shutil
+    scripts = tmp_path / "migrations"
+    shutil.copytree("migrations", scripts, ignore=shutil.ignore_patterns("__pycache__"))
+    (scripts / "versions" / "9999_broken.py").write_text("def upgrade(:\n")
+    Base.metadata.create_all(create_engine(f"sqlite:///{db_path}"))
+    _set_legacy_stamp(db_path, BASELINE)
+    cfg = _cfg(db_path)
+    cfg.set_main_option("script_location", str(scripts))
+    with pytest.raises(Exception):
+        run_migrations(cfg)
+    assert _stamp(db_path) == BASELINE

@@ -18,6 +18,8 @@ from typing import Optional
 from alembic import command
 from alembic.config import Config
 from alembic.script import ScriptDirectory
+from alembic.script.revision import ResolutionError
+from alembic.util.exc import CommandError
 from sqlalchemy import create_engine, event, inspect, text
 
 import models  # noqa: F401  — registers every table on Base.metadata
@@ -62,7 +64,13 @@ def _is_known_revision(cfg: Config, rev: str) -> bool:
     script = ScriptDirectory.from_config(cfg)
     try:
         return script.get_revision(rev) is not None
-    except Exception:
+    except (ResolutionError, CommandError) as e:
+        # alembic wraps an unknown id as CommandError("Can't locate revision") from a ResolutionError.
+        if isinstance(e, CommandError) and not isinstance(e.__cause__, ResolutionError):
+            raise
+        # Only "this id isn't in the scripts". Anything else (a broken/unimportable migration file, a
+        # corrupt script dir) must propagate: boot fails loud (ADR-035) rather than reading the real
+        # baseline stamp as "unknown/newer" and running on an old schema.
         return False
 
 
