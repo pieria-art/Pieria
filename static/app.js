@@ -105,6 +105,7 @@ let socket = null;
 // Telemetry State
 let activeArtworkId = null;
 let activeImageStartTime = 0;
+let lastAdvanceAt = Date.now();   // last successful /next-image; recoverCycle() reads it
 
 // Public demo mode (SD_DEMO_MODE=1, core/demo.py) — checked once at boot, before the WS connects,
 // since the gate now refuses /ws/{id} outright in demo (a public visitor's socket cost a SQLite
@@ -260,10 +261,15 @@ function connectWS() {
     socket = new WebSocket(WS_URL);
 
     socket.onopen = () => {
+        wsBackoffMs = WS_BACKOFF_MIN_MS;                   // a good connection resets the ladder
         if (heartbeatTimer) clearInterval(heartbeatTimer);
         sendHeartbeat();                                   // go live immediately, not 5s later
         heartbeatTimer = setInterval(sendHeartbeat, HEARTBEAT_MS);
+        if (wsEverOpened) recoverCycle();                  // a reopen: a rebuild/outage may have eaten our timer or commands
+        wsEverOpened = true;                               // (the first open is init()'s job)
     };
+
+    socket.onerror = () => { /* always followed by onclose, which owns the retry */ };
 
     socket.onmessage = async (event) => {
         try {
@@ -311,10 +317,49 @@ function connectWS() {
 
     socket.onclose = () => {
         if (heartbeatTimer) { clearInterval(heartbeatTimer); heartbeatTimer = null; }
-        console.warn('[Client] Hub connection lost. Retrying in 5s...');
-        setTimeout(connectWS, 5000);
+        scheduleReconnect();
     };
 }
+
+// Reconnect with exponential backoff + jitter (1 s -> 30 s cap), reset on a successful open. A fixed 5 s
+// retry hammered a restarting server in lockstep, and the page never re-synced after a reopen, so
+// auto-advance stalled after a container rebuild until someone tapped the Remote (prod incident).
+const WS_BACKOFF_MIN_MS = 1000;
+const WS_BACKOFF_MAX_MS = 30000;
+let wsBackoffMs = WS_BACKOFF_MIN_MS;
+let wsRetryTimer = null;
+let wsEverOpened = false;
+
+function scheduleReconnect() {
+    if (wsRetryTimer) return;                                       // one pending retry at a time
+    const delay = Math.round(wsBackoffMs * (0.5 + Math.random() * 0.5));   // jitter: 50-100% of the step
+    wsBackoffMs = Math.min(wsBackoffMs * 2, WS_BACKOFF_MAX_MS);
+    console.warn(`[Client] Hub connection lost. Retrying in ${delay}ms...`);
+    wsRetryTimer = setTimeout(() => { wsRetryTimer = null; connectWS(); }, delay);
+}
+
+// Re-sync after the socket reopens, the network returns, or the tab becomes visible again. The server
+// owns the pause flag and holds auto-advances while paused, so /next-image (via startDisplayCycle) is the
+// authoritative "paused?" probe and a paused display stays paused. A healthy running cycle is left alone
+// (no double-scheduling; startDisplayCycle also clears any pending timer first).
+function recoverCycle() {
+    if (isDemoMode) return;
+    if (!currentPlaylist) { refreshPlaylists(false); return; }     // never got started: pick the preferred playlist
+    refreshPlaylists(false);                                        // re-fetch playlists/config now, not at the next 15 s poll
+    const stale = Date.now() - lastAdvanceAt > 2 * (currentDisplayTime || 30000);
+    if (isPaused || !cycleTimeout || stale) startDisplayCycle();
+}
+
+function reconnectNow() {
+    if (socket && socket.readyState !== WebSocket.CLOSED) { recoverCycle(); return; }
+    if (wsRetryTimer) { clearTimeout(wsRetryTimer); wsRetryTimer = null; }
+    wsBackoffMs = WS_BACKOFF_MIN_MS;
+    connectWS();
+}
+window.addEventListener('online', () => { if (!isDemoMode) reconnectNow(); });
+document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible' && !isDemoMode) reconnectNow();
+});
 
 async function handleRemotePlaylistSwitch(name) {
     const p = currentPlaylists.find(pl => pl.name === name);
@@ -569,6 +614,7 @@ async function fetchAndTransition(direction = 1, isSkipped = false, showArtworkI
         // Update Telemetry state for the newly fetched image
         activeArtworkId = data.metadata.id;
         activeImageStartTime = Date.now();
+        lastAdvanceAt = activeImageStartTime;
         
         // Resolve Settings Hierarchy (URL > Playlist > Global Default)
         const cycleTime = globalConfig.cycle_time || data.display_time || DEFAULT_SETTINGS.cycle_time;
