@@ -93,7 +93,8 @@ declare_capabilities() {
   local want=0
   systemctl is-enabled sd-eink.service >/dev/null 2>&1 && want=1
   if grep -qE "^[[:space:]]*EINK_ENABLED=" "$BOOT_CONF" 2>/dev/null; then
-    sed -i "s/^[[:space:]]*EINK_ENABLED=.*/EINK_ENABLED=$want/" "$BOOT_CONF"
+    # Replace only the VALUE token — a trailing `# note` on the line must survive (ADR-137).
+    sed -i -E "s/^[[:space:]]*EINK_ENABLED=[^[:space:]#]*/EINK_ENABLED=$want/" "$BOOT_CONF"
   else
     printf '\nEINK_ENABLED=%s\n' "$want" >> "$BOOT_CONF"
   fi

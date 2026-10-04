@@ -82,3 +82,33 @@ def test_full_aborts_if_mailbox_fails(tmp_path):
 
     assert r.returncode == 1
     assert "refusing to capture" in r.stderr
+
+
+def _run_with_systemctl_log(body, tmp_path, **env_extra):
+    log = tmp_path / "sysctl.log"
+    script = ('source "$BIN"; repo_root() { printf "%s" "$FAKE_ROOT"; }; '
+              'systemctl() { echo "$*" >> "$LOG"; }; ' + body)
+    env = {"BIN": str(_BIN), "FAKE_ROOT": str(tmp_path), "LOG": str(log), "PATH": "/usr/bin:/bin",
+           "SD_MAILBOX_BIN": str(_MAILBOX), **env_extra}
+    r = subprocess.run(["bash", "-c", script, str(_BIN)], capture_output=True, text=True, env=env, timeout=30)
+    return r, (log.read_text() if log.exists() else "")
+
+
+def test_declare_capabilities_keeps_trailing_comment(tmp_path):
+    conf = tmp_path / "pieria.conf"
+    conf.write_text("A=1\nEINK_ENABLED=0   # panel installed?\nB=2\n")
+    r, _ = _run_with_systemctl_log('BOOT_CONF="$CONF"; declare_capabilities', tmp_path, CONF=str(conf))
+    assert r.returncode == 0, r.stderr
+    # fake systemctl returns 0 for is-enabled -> want=1
+    assert conf.read_text() == "A=1\nEINK_ENABLED=1   # panel installed?\nB=2\n"
+
+
+def test_declare_capabilities_plain_empty_and_quoted_values(tmp_path):
+    for before, after in (("EINK_ENABLED=0\n", "EINK_ENABLED=1\n"),
+                          ("EINK_ENABLED=  # c\n", "EINK_ENABLED=1  # c\n"),
+                          ('EINK_ENABLED="0" # c\n', "EINK_ENABLED=1 # c\n")):
+        conf = tmp_path / "c.conf"
+        conf.write_text(before)
+        r, _ = _run_with_systemctl_log('BOOT_CONF="$CONF"; declare_capabilities', tmp_path, CONF=str(conf))
+        assert r.returncode == 0, r.stderr
+        assert conf.read_text() == after
