@@ -12,3 +12,18 @@ repos:
       - id: ruff           # lint only (autofix); config in pyproject.toml.
         args: [--fix]      # `ruff format` is available but intentionally NOT enforced —
                            # it would reflow this codebase's deliberately compact style.
+  # .ai/ doc contract (INFRA-D025) - lab-local. `.ai/` is ignored here (except system_architecture.md),
+  # so a files-filtered hook would never fire: always_run + pass_filenames: false. Skips cleanly when the
+  # linter or .ai/ is absent (CI, contributors) so their commits are never blocked.
+  - repo: local
+    hooks:
+      - id: ai-doc-contract
+        name: .ai doc contract (staleness lint, INFRA-D025)
+        language: system
+        always_run: true
+        pass_filenames: false
+        entry: >
+          bash -c 'L="$HOME/ai-workspace/infrastructure/tools/ai_doc_lint.py";
+          [ -f "$L" ] || { echo "ai_doc_lint.py not found - skipping"; exit 0; };
+          [ -f .ai/active_context.md ] || { echo ".ai/ control files not present - skipping"; exit 0; };
+          python3 "$L" .'
