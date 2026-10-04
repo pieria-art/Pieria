@@ -717,7 +717,10 @@ def post_quiet(body: QuietRequest, db: Session = Depends(get_db)):
     if until is not None:
         if until.tzinfo is None:
             until = until.replace(tzinfo=UTC)
-        until = until.astimezone(UTC)
+        try:
+            until = until.astimezone(UTC)
+        except (OverflowError, ValueError):   # e.g. 9999-12-31T23:59:59-12:00 has no UTC representation
+            raise ApiError(422, "validation_error", "until is out of range")
         if until <= datetime.now(UTC):
             raise ApiError(422, "validation_error", "until must be in the future")
     set_quiet_override(db, _load_schedule(db), {"on": True, "off": False, "auto": None}[body.mode], until)
