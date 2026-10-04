@@ -3004,3 +3004,43 @@ def test_run_import_refuses_agent_override_on_cc_by_row(tmp_path, monkeypatch):
     assert out["agent_name"] == _ESA_ROW["agent_name"]
     assert report["cc_by_override_refused"] == [{"key": "w-0000", "collection": "cosmos", "field": "agent_name"}]
     assert report["agent_overrides_applied"] == []
+
+
+# --- extra facts: licence/source label from the record; CC BY text is paraphrase-only
+
+def test_extra_facts_default_is_pdm_nasa_and_quotable():
+    facts = rg._extra_facts_for_item({"release_url": "https://x", "text": "Hello there.", "credit_line": "NASA"})
+    assert {f["licence"] for f in facts} == {"PDM-1.0"} and {f["source"] for f in facts} == {"NASA release"}
+    assert not any(f.get("paraphrase_only") for f in facts)
+
+
+def test_extra_facts_cc_by_record_takes_licence_label_and_is_paraphrase_only():
+    rec = {"release_url": "https://esa/x", "text": "Hello there.", "credit_line": "ESA/Webb, CC BY 4.0",
+           "licence": "CC BY 4.0", "source_label": "ESA release"}
+    by_key = {f["key"]: f for f in rg._extra_facts_for_item(rec)}
+    assert by_key["nasa.release_text"]["licence"] == "CC-BY-4.0"
+    assert by_key["nasa.release_text"]["source"] == "ESA release"
+    assert by_key["nasa.release_text"]["paraphrase_only"] is True
+    assert by_key["nasa.credit"]["licence"] == "CC-BY-4.0"
+    assert "PARAPHRASE ONLY" in rg._facts_block({"facts": list(by_key.values())})
+
+
+def test_extra_facts_unknown_licence_is_paraphrase_only_and_cc0_is_quotable():
+    f = rg._extra_facts_for_item({"release_url": "u", "text": "t.", "licence": "CC BY-SA 4.0"})[0]
+    assert f["paraphrase_only"] is True
+    f = rg._extra_facts_for_item({"release_url": "u", "text": "t.", "license": "CC0"})[0]
+    assert f["licence"] == "CC0-1.0" and "paraphrase_only" not in f
+
+
+def test_validate_written_rejects_verbatim_copy_of_paraphrase_only_fact():
+    text = "The telescope captured a swirling cloud of gas and dust glowing in infrared light."
+    facts = rg._extra_facts_for_item({"release_url": "u", "text": text, "licence": "CC-BY-4.0"})
+    packet = {"title": "T", "facts": facts}
+    copied = {"description_narrative": "Here, the telescope captured a swirling cloud of gas and dust glowing.",
+              "claims": []}
+    ok, reasons = rg.validate_written_item(copied, packet)
+    assert not ok and any("paraphrase-only" in r for r in reasons)
+    own = {"description_narrative": "Infrared light reveals a churning gas cloud.", "claims": []}
+    assert rg.validate_written_item(own, packet)[0]
+    pd_packet = {"title": "T", "facts": rg._extra_facts_for_item({"release_url": "u", "text": text})}
+    assert rg.validate_written_item(copied, pd_packet)[0]

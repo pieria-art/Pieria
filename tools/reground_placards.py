@@ -913,24 +913,52 @@ def index_extra_facts_by_catalog(extra_facts: list[dict], catalog_items: list[di
     return matched
 
 
+_FREELY_QUOTABLE_LICENCES = {"PDM-1.0", "CC0-1.0"}
+_COPY_RUN_WORDS = 8   # a narrative may not reproduce this many consecutive words of a paraphrase-only fact
+
+
+def _extra_fact_licence(rec: dict) -> tuple[str, bool]:
+    """(licence id/text for the fact, paraphrase_only). A record without a licence is the original NASA/
+    STScI case (PDM-1.0, quotable). PD/CC0 stay quotable. EVERYTHING else -- CC BY 4.0 (ADR-142: attribution
+    + paraphrase, never copied wording), BY-SA/NC, or an unrecognised string -- is paraphrase-only: the
+    pipeline only has "quotable" vs "not", so the safe mapping for anything not provably PD/CC0 is the latter."""
+    raw = (rec.get("licence") or rec.get("license") or "").strip()
+    if not raw:
+        return "PDM-1.0", False
+    norm = normalize_license(raw)
+    if norm in _FREELY_QUOTABLE_LICENCES:
+        return norm, False
+    return (norm or raw), True
+
+
 def _extra_facts_for_item(rec: dict | None) -> list[dict]:
     """nasa.release_text[.N] / nasa.release_url / nasa.credit for one matched extra-facts record.
-    Public-domain NASA release text (PDM-1.0) — unlike the check-only CC BY-SA text elsewhere here,
-    this one is licensed for direct use/paraphrase, so it's a normal fact, not check-only."""
+    Licence + source label come from the record (`licence`/`license`, `source_label`/`source`); absent ->
+    PDM-1.0 / "NASA release". PD/CC0 text is a normal fact. Anything else (ESA CC BY 4.0, ...) is still a
+    citable fact but flagged paraphrase_only, which the facts block shows the writer and
+    validate_written_item enforces. The `nasa.*` keys are kept: clean_credits keys on nasa.credit."""
     if not rec:
         return []
+    licence, paraphrase_only = _extra_fact_licence(rec)
+    label = (rec.get("source_label") or rec.get("source") or "").strip()
+    if not label:
+        label = "Agency release" if paraphrase_only else "NASA release"
     facts: list[dict] = []
     url = rec.get("release_url") or ""
     chunks = _split_release_text(rec.get("text") or "")
     if len(chunks) == 1:
-        facts.append(_fact("nasa.release_text", chunks[0], "NASA release", url, "PDM-1.0"))
+        facts.append(_fact("nasa.release_text", chunks[0], label, url, licence))
     else:
         for i, chunk in enumerate(chunks, 1):
-            facts.append(_fact(f"nasa.release_text.{i}", chunk, "NASA release", url, "PDM-1.0"))
+            facts.append(_fact(f"nasa.release_text.{i}", chunk, label, url, licence))
     if url:
-        facts.append(_fact("nasa.release_url", url, "NASA release", url, "PDM-1.0"))
+        facts.append(_fact("nasa.release_url", url, label, url, licence))
     if rec.get("credit_line"):
-        facts.append(_fact("nasa.credit", rec["credit_line"], "NASA release", url, "PDM-1.0"))
+        facts.append(_fact("nasa.credit", rec["credit_line"], label, url, licence))
+    if paraphrase_only:
+        for f in facts:
+            if f["key"].startswith("nasa.release_text"):
+                f["paraphrase_only"] = True
     return facts
 
 
@@ -1775,7 +1803,8 @@ _NARRATIVE_PROMPT = """You are writing a museum wall placard. Use ONLY the facts
 add a claim (name, date, place, event, subject detail) that is not directly supported by them. If the \
 facts are thin, write a SHORTER, more general placard about what is visibly depicted, the maker, and the \
 date rather than inventing anything. You may use the "background text (context only)" ONLY to avoid \
-stating something false — never as a source of new claims or phrasing; do not copy its wording.
+stating something false — never as a source of new claims or phrasing; do not copy its wording. Facts \
+marked PARAPHRASE ONLY (CC BY text) may support claims but must be restated in your own words.
 {version_note}
 Facts (each has a fact_key you must cite):
 {facts_block}
@@ -1798,7 +1827,8 @@ def _facts_block(bundle: dict) -> str:
     for f in bundle["facts"]:
         v = f["value"]
         v = ", ".join(v) if isinstance(v, list) else v
-        lines.append(f"- [{f['key']}] {v} (source: {f['source']}, {f['licence']})")
+        note = "; PARAPHRASE ONLY - never copy its wording" if f.get("paraphrase_only") else ""
+        lines.append(f"- [{f['key']}] {v} (source: {f['source']}, {f['licence']}{note})")
     return "\n".join(lines) or "(none retrieved)"
 
 
@@ -2254,6 +2284,21 @@ def _visual_claim_ok(text: str, title: str, facts: list[dict]) -> tuple[bool, st
     return True, None
 
 
+def _copied_run(narrative: str, source: str, n: int = _COPY_RUN_WORDS) -> str | None:
+    """The first n-word run of `narrative` that also appears verbatim (case/punctuation-insensitive) in
+    `source`, else None."""
+    def words(t):
+        return re.findall(r"[a-z0-9']+", t.lower().replace("\u2019", "'"))
+    nw, sw = words(narrative), words(source)
+    if len(nw) < n or len(sw) < n:
+        return None
+    grams = {tuple(sw[i:i + n]) for i in range(len(sw) - n + 1)}
+    for i in range(len(nw) - n + 1):
+        if tuple(nw[i:i + n]) in grams:
+            return " ".join(nw[i:i + n])
+    return None
+
+
 def validate_written_item(written: dict, packet: dict) -> tuple[bool, list[str]]:
     """Returns (passed, reasons). reasons is non-empty iff not passed."""
     reasons = []
@@ -2280,6 +2325,12 @@ def validate_written_item(written: dict, packet: dict) -> tuple[bool, list[str]]
                 reasons.append(f"claim year/number {n!r} not found in its cited facts: {text!r}")
     if not (written.get("description_narrative") or "").strip():
         reasons.append("empty description_narrative")
+    for f in facts:
+        if f.get("paraphrase_only") and isinstance(f.get("value"), str):
+            run = _copied_run(written.get("description_narrative") or "", f["value"])
+            if run:
+                reasons.append(f"narrative copies {_COPY_RUN_WORDS}+ consecutive words of paraphrase-only "
+                               f"fact {f['key']} ({f.get('licence')}): {run!r}")
     return (not reasons), reasons
 
 
