@@ -18,10 +18,12 @@ from sqlalchemy.pool import StaticPool
 
 import app as app_module
 import core.downloads as core_downloads
+import federation
 import routers.curation as routers_curation
 from app import _download_image_to_library, app
 from database import Base, get_db
 from models import ArtworkModel, DiscoveryQueueModel
+from tests.http_fakes import stream_via_get
 
 
 def _png_bytes(size=(40, 30), color=(10, 20, 30)):
@@ -55,7 +57,14 @@ def _fake_client_factory(responses, captured):
             captured.setdefault("urls", []).append(url)
             return seq.pop(0)
 
+        stream = stream_via_get
+
     return _Client
+
+
+@pytest.fixture(autouse=True)
+def _no_dns(monkeypatch):
+    monkeypatch.setattr(federation, "_assert_public_url", lambda url: None)   # fake hosts; DNS is not under test here
 
 
 @pytest.fixture

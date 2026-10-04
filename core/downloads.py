@@ -12,6 +12,7 @@ from PIL import Image
 
 import federation
 from config import LIBRARY_DIR, SD_USER_AGENT
+from core import safe_http
 from epaper import ASPECT_CROP_KEYS, normalize_crop_box
 
 
@@ -74,21 +75,20 @@ async def _download_image_to_library(source_url: str, *, filename: str,
     # caller's initial pre-check never saw. We can't simply refuse redirects — Wikimedia's
     # Special:FilePath (most of the catalog + seed) legitimately 302s to the real image — so we
     # follow, but only to validated public hosts.
-    async with httpx.AsyncClient(headers={"User-Agent": SD_USER_AGENT}) as client:
+    async with safe_http.safe_async_client(headers={"User-Agent": SD_USER_AGENT}) as client:
         for attempt in range(retries):
-            url = source_url
-            for _hop in range(6):
-                resp = await client.get(url, timeout=45.0, follow_redirects=False)
-                if resp.status_code not in (301, 302, 303, 307, 308):
-                    break
-                loc = resp.headers.get("location")
-                if not loc:
-                    break
-                url = str(resp.url.join(loc))   # resolve relative redirects against the current URL
-                try:
-                    await asyncio.to_thread(federation._assert_public_url, url)   # C2: DNS off the loop
-                except federation.FederationError as e:
-                    raise HTTPException(502, detail=f"Image redirected to a blocked host ({e}).")
+            try:
+                # N5: the ONE hop follower (guarded_stream) — every hop pre-validated, and the
+                # connection itself is pinned to the validated IP (M2).
+                async with guarded_stream(client, "GET", source_url, timeout=45.0, max_hops=5) as r:
+                    await r.aread()
+                    resp = r
+            except federation.FederationError as e:
+                raise HTTPException(502, detail=f"Image fetch refused: blocked host ({e}).")
+            except TooManyRedirects:
+                raise HTTPException(502, detail="Could not download image (too many redirects).")
+            except httpx.HTTPError as e:
+                raise HTTPException(502, detail=f"Could not download image ({type(e).__name__}).")
             if resp.status_code == 429:
                 await asyncio.sleep(3 * (attempt + 1))
                 continue

@@ -1,6 +1,7 @@
 """Federation — SSRF guard, safe fetch/validate, and the subscribe-by-URL endpoints + catalog merge."""
 
 import json
+import socket
 
 import pytest
 from fastapi.testclient import TestClient
@@ -43,13 +44,13 @@ def _gai(ip):
     "fc00::1",      # unique-local IPv6
 ])
 def test_ssrf_guard_blocks_non_public(monkeypatch, ip):
-    monkeypatch.setattr(federation.socket, "getaddrinfo", _gai(ip))
+    monkeypatch.setattr(socket, "getaddrinfo", _gai(ip))
     with pytest.raises(FederationError):
         _assert_public_url("https://evil.test/m.json")
 
 
 def test_ssrf_guard_allows_public(monkeypatch):
-    monkeypatch.setattr(federation.socket, "getaddrinfo", _gai("93.184.216.34"))
+    monkeypatch.setattr(socket, "getaddrinfo", _gai("93.184.216.34"))
     _assert_public_url("https://example.test/m.json")  # no raise
 
 

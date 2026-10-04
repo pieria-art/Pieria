@@ -23,7 +23,7 @@ from urllib.parse import urljoin
 import httpx
 
 from config import SD_USER_AGENT
-from core import lifespan
+from core import lifespan, safe_http
 from core.downloads import guarded_stream
 
 logger = logging.getLogger(__name__)
@@ -278,4 +278,4 @@ def _installed_sub(db, cid: str):
 def new_client() -> httpx.AsyncClient:
     # N5: redirects are followed manually and SSRF-validated per hop (guarded_stream) — the client
     # itself must never auto-follow, or a bypass is one httpx.AsyncClient.get() call away.
-    return httpx.AsyncClient(headers={"User-Agent": SD_USER_AGENT}, follow_redirects=False)
+    return safe_http.safe_async_client(headers={"User-Agent": SD_USER_AGENT})

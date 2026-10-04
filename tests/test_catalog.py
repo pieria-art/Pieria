@@ -17,11 +17,13 @@ from sqlalchemy.pool import StaticPool
 
 import app as app_module
 import core.downloads as core_downloads
+import federation
 import routers.catalog as routers_catalog
 import routers.settings as routers_settings
 from app import app
 from database import Base, get_db
 from models import ArtworkModel, PlaylistModel, SubscriptionModel, playlist_artwork
+from tests.http_fakes import stream_via_get
 
 ITEM_A = {
     "title": "Test Sunrise", "agent_name": "A. Painter", "agent_role": "Painter",
@@ -32,6 +34,11 @@ ITEM_A = {
 }
 ITEM_B = dict(ITEM_A, title="Test Dusk", source_url="https://example.test/b/full.jpg",
               thumbnail_url="https://example.test/b/thumb.jpg", focal_point=[0.25, 0.75])
+
+
+@pytest.fixture(autouse=True)
+def _no_dns(monkeypatch):
+    monkeypatch.setattr(federation, "_assert_public_url", lambda url: None)   # fake hosts; DNS is not under test here
 
 
 @pytest.fixture
@@ -96,6 +103,7 @@ def client(monkeypatch, tmp_path):
         async def __aenter__(self): return self
         async def __aexit__(self, *a): return False
         async def get(self, url, **k): return _Resp()
+        stream = stream_via_get
 
     monkeypatch.setattr(app_module.httpx, "AsyncClient", _Client)
 

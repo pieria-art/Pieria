@@ -8,10 +8,10 @@ import re
 from datetime import UTC, datetime, timedelta
 from typing import Optional
 
-import httpx
 from sqlalchemy.orm import Session
 
 from config import SD_USER_AGENT
+from core import safe_http
 from core.downloads import guarded_stream
 from models import SettingsModel
 
@@ -255,7 +255,7 @@ async def _fetch_remote_json(base: str, name: str):
     user/admin input with no SSRF guard before this fix, and `follow_redirects=True` let a redirect
     bypass any guard added at the entry point — routed through guarded_stream (core/pack_fetch.py's
     shared helper), which SSRF-validates the URL and every redirect hop before following it."""
-    async with httpx.AsyncClient(headers={"User-Agent": SD_USER_AGENT}) as client:
+    async with safe_http.safe_async_client(headers={"User-Agent": SD_USER_AGENT}) as client:
         async with guarded_stream(client, "GET", f"{base}/{name}", timeout=15.0) as r:
             if r.status_code == 200:
                 await r.aread()

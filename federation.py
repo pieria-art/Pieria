@@ -14,10 +14,8 @@ Untrusted manifest strings are escaped at *render* time (the /art page + browse 
 
 import asyncio
 import base64
-import ipaddress
 import json
 import logging
-import socket
 from datetime import UTC, datetime
 from pathlib import Path
 from urllib.parse import urlparse
@@ -26,6 +24,7 @@ import httpx
 from nacl.exceptions import BadSignatureError
 from nacl.signing import VerifyKey
 
+from core import safe_http
 from manifest_validator import validate_manifest
 from models import SubscriptionModel
 
@@ -102,25 +101,19 @@ def _assert_public_url(url: str) -> None:
     if host in BLOCKED_HOSTS:
         raise FederationError("host is on the blocklist")
     port = parsed.port or (443 if parsed.scheme == "https" else 80)
+    # Early, friendly refusal only. The AUTHORITATIVE check is core.safe_http's pinned connect (M2):
+    # this resolution is NOT what httpx dials, so it can never be the only guard.
     try:
-        infos = socket.getaddrinfo(host, port, proto=socket.IPPROTO_TCP)
-    except socket.gaierror as e:
-        raise FederationError(f"cannot resolve host: {e}") from e
-    for info in infos:
-        ip = ipaddress.ip_address(info[4][0])
-        # Allowlist, not a blocklist (L1): `is_global` already excludes private/loopback/link-local/
-        # reserved/unspecified AND CGNAT (100.64.0.0/10, RFC 6598) — the earlier blocklist enumerated
-        # ranges by name and missed CGNAT entirely. `is_global` alone is not enough on its own, though:
-        # some multicast/reserved ranges report is_global=True (e.g. 224.0.0.1), so those stay explicit.
-        if not ip.is_global or ip.is_multicast or ip.is_reserved or ip.is_unspecified:
-            raise FederationError(f"host resolves to a non-public address ({ip}) — blocked")
+        safe_http.resolve_public(host, port)
+    except safe_http.UnsafeAddress as e:
+        raise FederationError(str(e)) from e
 
 
 async def fetch_manifest(url: str) -> dict:
     """Safely fetch + validate a Manifest v2 collection from `url`. Raises FederationError."""
     await asyncio.to_thread(_assert_public_url, url)   # C2: getaddrinfo is blocking — keep it off the loop
     try:
-        async with httpx.AsyncClient(headers={"User-Agent": "Pieria-Federation/1.0"}) as client:
+        async with safe_http.safe_async_client(headers={"User-Agent": "Pieria-Federation/1.0"}) as client:
             # follow_redirects=False on purpose — a redirect could bypass the SSRF pre-check.
             async with client.stream("GET", url, timeout=FETCH_TIMEOUT, follow_redirects=False) as resp:
                 if resp.status_code in (301, 302, 303, 307, 308):
