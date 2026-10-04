@@ -18,7 +18,7 @@
    "source": "The Metropolitan Museum of Art",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/%E5%8C%97%E5%AE%8B%20%E5%BE%BD%E5%AE%97%20%E7%AB%B9%E7%A6%BD%E5%9C%96%20%E5%8D%B7-Finches%20and%20bamboo%20MET%20DP151504.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/%E5%8C%97%E5%AE%8B%20%E5%BE%BD%E5%AE%97%20%E7%AB%B9%E7%A6%BD%E5%9C%96%20%E5%8D%B7-Finches%20and%20bamboo%20MET%20DP151504.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/40677c088fc131ae91d5ad7518e2dd5d93a30b38c31bef45e84904e88710905b.jpg",
    "focal_point": [
     0.53,
     0.5
@@ -57,7 +57,8 @@
      1.0
     ]
    },
-   "current_repository": "The Metropolitan Museum of Art"
+   "current_repository": "The Metropolitan Museum of Art",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/%E5%8C%97%E5%AE%8B%20%E5%BE%BD%E5%AE%97%20%E7%AB%B9%E7%A6%BD%E5%9C%96%20%E5%8D%B7-Finches%20and%20bamboo%20MET%20DP151504.jpg?width=600"
   },
   {
    "title": "Travelers Among Mountains and Streams",
@@ -72,7 +73,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Fan%20Kuan%20-%20Travelers%20Among%20Mountains%20and%20Streams%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Fan%20Kuan%20-%20Travelers%20Among%20Mountains%20and%20Streams%20-%20Google%20Art%20Project.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/79809b6fa0633a17bf2895f9698015e83533a8383a70e23c2e143b0723710a09.jpg",
    "focal_point": [
     0.55,
     0.38
@@ -110,7 +111,8 @@
      1.0,
      0.5203
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Fan%20Kuan%20-%20Travelers%20Among%20Mountains%20and%20Streams%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
    "title": "Early Spring",
@@ -125,7 +127,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Guo%20Xi%20-%20Early%20Spring%2C%20upscaled%2C%20color-corrected.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Guo%20Xi%20-%20Early%20Spring%2C%20upscaled%2C%20color-corrected.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/bd8b3a23a6ce8f49c11b3e180ba61fa0f22a30209eda7a243d4075b879c6529e.jpg",
    "focal_point": [
     0.5,
     0.45
@@ -163,7 +165,8 @@
      1.0,
      0.9431
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Guo%20Xi%20-%20Early%20Spring%2C%20upscaled%2C%20color-corrected.jpg?width=600"
   },
   {
    "title": "Night Revels of Han Xizai",
@@ -178,7 +181,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Gu%20Hongzhong%27s%20Night%20Revels%201%20edit.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Gu%20Hongzhong%27s%20Night%20Revels%201%20edit.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/7803294d8a47d2d91c06462edd76d66fcbaee9305dea5c30f469839614ab2a53.jpg",
    "focal_point": [
     0.13,
     0.42
@@ -218,7 +221,8 @@
     ]
    },
    "current_repository": "Palace Museum, Beijing",
-   "physical_dimensions": "28.7 x 335.5 cm"
+   "physical_dimensions": "28.7 x 335.5 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Gu%20Hongzhong%27s%20Night%20Revels%201%20edit.jpg?width=600"
   },
   {
    "title": "Summer Mountains",
@@ -233,7 +237,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Qu%20Ding%2C%20Summer%20Mountains%2C%20Metmuseum%2C%20NY.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Qu%20Ding%2C%20Summer%20Mountains%2C%20Metmuseum%2C%20NY.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/5f609c0ba32be14b63fce12f534a0e7c57971c484b3825e1d0111a9b887307b3.jpg",
    "focal_point": [
     0.42,
     0.35
@@ -271,7 +275,8 @@
      0.4695,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Qu%20Ding%2C%20Summer%20Mountains%2C%20Metmuseum%2C%20NY.jpg?width=600"
   },
   {
    "title": "The Court of Gayumars",
@@ -286,7 +291,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Court%20of%20Gayumars%20Persian%20miniature.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Court%20of%20Gayumars%20Persian%20miniature.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/24e82c04e1df639ed2f0ebad440ca8cb49ddcedc21ce8c7803bfaf6e7c53c02b.jpg",
    "focal_point": [
     0.5,
     0.4
@@ -326,7 +331,8 @@
     ]
    },
    "current_repository": "The Aga Khan Museum",
-   "physical_dimensions": "34.5 x 22.5 cm"
+   "physical_dimensions": "34.5 x 22.5 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Court%20of%20Gayumars%20Persian%20miniature.jpg?width=600"
   },
   {
    "title": "Folio from the Shahnameh of Shah Tahmasp",
@@ -341,7 +347,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/FOLIO%20FROM%20THE%20SHAHNAMEH%20OF%20SHAH%20TAHMASP%2C%20ATTRIBUTED%20TO%20AQA%20MIRAK%2C%20CIRCA%201525-35%2C%20Sotheby%2Cs.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/FOLIO%20FROM%20THE%20SHAHNAMEH%20OF%20SHAH%20TAHMASP%2C%20ATTRIBUTED%20TO%20AQA%20MIRAK%2C%20CIRCA%201525-35%2C%20Sotheby%2Cs.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/fc2c10d5231a395721455049a96026b1a81eae4ab5e8bac5472c4914bcd920d4.jpg",
    "focal_point": [
     0.6,
     0.5
@@ -379,7 +385,8 @@
      0.9769,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/FOLIO%20FROM%20THE%20SHAHNAMEH%20OF%20SHAH%20TAHMASP%2C%20ATTRIBUTED%20TO%20AQA%20MIRAK%2C%20CIRCA%201525-35%2C%20Sotheby%2Cs.jpg?width=600"
   },
   {
    "title": "Folio from the Hamzanama",
@@ -394,7 +401,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/%22%27Umar%20Walks%20around%20Fulad%20Castle%2C%20Meets%20a%20Foot%20Soldier%20and%20Kicks%20Him%20to%20the%20Ground%22%2C%20Folio%20from%20a%20Hamzanama%20%28The%20Adventures%20of%20Hamza%29%20MET%2055120.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/%22%27Umar%20Walks%20around%20Fulad%20Castle%2C%20Meets%20a%20Foot%20Soldier%20and%20Kicks%20Him%20to%20the%20Ground%22%2C%20Folio%20from%20a%20Hamzanama%20%28The%20Adventures%20of%20Hamza%29%20MET%2055120.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/34f0a2bc7c9e7c649383945f3f4f6732374aa6e7cc28d7d9e689958dd40b902a.jpg",
    "focal_point": [
     0.62,
     0.66
@@ -433,7 +440,8 @@
      1.0
     ]
    },
-   "current_repository": "Metropolitan Museum of Art"
+   "current_repository": "Metropolitan Museum of Art",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/%22%27Umar%20Walks%20around%20Fulad%20Castle%2C%20Meets%20a%20Foot%20Soldier%20and%20Kicks%20Him%20to%20the%20Ground%22%2C%20Folio%20from%20a%20Hamzanama%20%28The%20Adventures%20of%20Hamza%29%20MET%2055120.jpg?width=600"
   },
   {
    "title": "Krishna Lifting Mount Govardhan",
@@ -448,7 +456,7 @@
    "source": "Cleveland Museum of Art",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/India%2C%20Pahari%20Hills%2C%20Kangra%20School%2C%2018th%20century%20-%20Krishna%20Lifting%20Mt.%20Govardhana%20-%202001.45%20-%20Cleveland%20Museum%20of%20Art.tif?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/India%2C%20Pahari%20Hills%2C%20Kangra%20School%2C%2018th%20century%20-%20Krishna%20Lifting%20Mt.%20Govardhana%20-%202001.45%20-%20Cleveland%20Museum%20of%20Art.tif?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/0f892482e8fbf2df58b60fbc72a23b9020cab212b8ef1ae00793edaf85b24371.jpg",
    "focal_point": [
     0.45,
     0.43
@@ -488,7 +496,8 @@
     ]
    },
    "current_repository": "",
-   "physical_dimensions": ""
+   "physical_dimensions": "",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/India%2C%20Pahari%20Hills%2C%20Kangra%20School%2C%2018th%20century%20-%20Krishna%20Lifting%20Mt.%20Govardhana%20-%202001.45%20-%20Cleveland%20Museum%20of%20Art.tif?width=600"
   },
   {
    "title": "Pine Trees Screen",
@@ -503,7 +512,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Hasegawa%20Tohaku%20-%20Pine%20Trees%20%28Sh%C5%8Drin-zu%20by%C5%8Dbu%29%20-%20left%20hand%20screen.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Hasegawa%20Tohaku%20-%20Pine%20Trees%20%28Sh%C5%8Drin-zu%20by%C5%8Dbu%29%20-%20left%20hand%20screen.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/53928861693ca67fff01024b08c1dec94ce73bfcf8e8bdfb44764048d33dcea2.jpg",
    "focal_point": [
     0.3,
     0.4
@@ -541,7 +550,8 @@
      0.4305,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Hasegawa%20Tohaku%20-%20Pine%20Trees%20%28Sh%C5%8Drin-zu%20by%C5%8Dbu%29%20-%20left%20hand%20screen.jpg?width=600"
   },
   {
    "title": "Wind God and Thunder God",
@@ -556,7 +566,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tawaraya%20S%C5%8Dtatsu%20-%20God%20of%20Thunder%20%28Raijin%29%20-%202004.86%20-%20Cleveland%20Museum%20of%20Art.tif?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tawaraya%20S%C5%8Dtatsu%20-%20God%20of%20Thunder%20%28Raijin%29%20-%202004.86%20-%20Cleveland%20Museum%20of%20Art.tif?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/754af6aa1d4e8b79044525b74394d4a12fc480228e1242e5684d37fe1b08e157.jpg",
    "focal_point": [
     0.4,
     0.22
@@ -596,7 +606,8 @@
     ]
    },
    "current_repository": "Cleveland Museum of Art",
-   "physical_dimensions": "Image: 150.4 x 343 cm (59 3/16 x 135 1/16 in.); Overall: 162.4 x 355.8 cm (63 15/16 x 140 1/16 in.); Panel: 162.4 x 59.2 cm (63 15/16 x 23 5/16 in.); with frame: 165.6 x 358.6 cm (65 3/16 x 141 3/16 in.)"
+   "physical_dimensions": "Image: 150.4 x 343 cm (59 3/16 x 135 1/16 in.); Overall: 162.4 x 355.8 cm (63 15/16 x 140 1/16 in.); Panel: 162.4 x 59.2 cm (63 15/16 x 23 5/16 in.); with frame: 165.6 x 358.6 cm (65 3/16 x 141 3/16 in.)",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tawaraya%20S%C5%8Dtatsu%20-%20God%20of%20Thunder%20%28Raijin%29%20-%202004.86%20-%20Cleveland%20Museum%20of%20Art.tif?width=600"
   },
   {
    "title": "Red and White Plum Blossoms",
@@ -611,7 +622,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Ogata%20Korin%20-%20RED%20AND%20WHITE%20PLUM%20BLOSSOMS%20%28National%20Treasure%29%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Ogata%20Korin%20-%20RED%20AND%20WHITE%20PLUM%20BLOSSOMS%20%28National%20Treasure%29%20-%20Google%20Art%20Project.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/7f1dadfe19a4a8afa72ffdafd3a69609af2cb8592a20ff551de192635315b5ce.jpg",
    "focal_point": [
     0.5,
     0.5
@@ -649,7 +660,8 @@
      0.6644,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Ogata%20Korin%20-%20RED%20AND%20WHITE%20PLUM%20BLOSSOMS%20%28National%20Treasure%29%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
    "title": "Irises Screen",
@@ -664,7 +676,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Irises%20screen%202.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Irises%20screen%202.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/19fd8461c01d760657fba973dc615274b763f0f87843ad3dc123b2f5e17c3457.jpg",
    "focal_point": [
     0.3,
     0.4
@@ -703,7 +715,8 @@
      1.0
     ]
    },
-   "current_repository": "Nezu Art Museum"
+   "current_repository": "Nezu Art Museum",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Irises%20screen%202.jpg?width=600"
   },
   {
    "title": "The Concourse of the Birds",
@@ -718,7 +731,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/%22The%20Concourse%20of%20the%20Birds%22%2C%20Folio%2011r%20from%20a%20Mantiq%20al-tair%20%28Language%20of%20the%20Birds%29%20MET%20DP234083.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/%22The%20Concourse%20of%20the%20Birds%22%2C%20Folio%2011r%20from%20a%20Mantiq%20al-tair%20%28Language%20of%20the%20Birds%29%20MET%20DP234083.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/95cfcbb61911a3e24511cba035ad44aa1330b531f909c630d7f53944f570b6dc.jpg",
    "license_verdict": "pd",
    "license_basis": "CC0",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -757,7 +770,8 @@
      0.9335
     ]
    },
-   "current_repository": "Metropolitan Museum of Art"
+   "current_repository": "Metropolitan Museum of Art",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/%22The%20Concourse%20of%20the%20Birds%22%2C%20Folio%2011r%20from%20a%20Mantiq%20al-tair%20%28Language%20of%20the%20Birds%29%20MET%20DP234083.jpg?width=600"
   },
   {
    "title": "Fish and Rocks",
@@ -772,7 +786,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bada%20Shanren%20-%20Fish%20and%20Rocks%20-%201953.247%20-%20Cleveland%20Museum%20of%20Art.tiff?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bada%20Shanren%20-%20Fish%20and%20Rocks%20-%201953.247%20-%20Cleveland%20Museum%20of%20Art.tiff?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/984d8cb68825b9e0c80755ed481dcca9412f4f33f9772a75813b4320edee99cd.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -812,7 +826,8 @@
     ]
    },
    "current_repository": "Cleveland Museum of Art",
-   "physical_dimensions": "Painting: 29.6 x 158.4 cm (11 5/8 x 62 3/8 in.)"
+   "physical_dimensions": "Painting: 29.6 x 158.4 cm (11 5/8 x 62 3/8 in.)",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bada%20Shanren%20-%20Fish%20and%20Rocks%20-%201953.247%20-%20Cleveland%20Museum%20of%20Art.tiff?width=600"
   },
   {
    "title": "Cypress Trees",
@@ -827,7 +842,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Kano%20Eitoku%20-%20Cypress%20Trees.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Kano%20Eitoku%20-%20Cypress%20Trees.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/df77efa13a1e107a642fdb7a389a8e66359db004a8d4d58b0716737f01e17fe1.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -865,7 +880,8 @@
      0.751,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Kano%20Eitoku%20-%20Cypress%20Trees.jpg?width=600"
   },
   {
    "title": "Youth Holding a Pomegranate",
@@ -880,7 +896,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Riza-yi%20Abbasi%20-%20Youth%20Holding%20a%20Pomegranate%3B%20Illustration%20from%20a%20Single%20Page%20Manuscript%20-%201947.497%20-%20Cleveland%20Museum%20of%20Art.tif?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Riza-yi%20Abbasi%20-%20Youth%20Holding%20a%20Pomegranate%3B%20Illustration%20from%20a%20Single%20Page%20Manuscript%20-%201947.497%20-%20Cleveland%20Museum%20of%20Art.tif?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/1896d888c3c34fa3282d0235676d0105d1894756b13738d5769031256aed50f4.jpg",
    "license_verdict": "pd",
    "license_basis": "CC0",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -920,7 +936,8 @@
     ]
    },
    "current_repository": "Cleveland Museum of Art",
-   "physical_dimensions": "Image: 15.3 x 8 cm (6 x 3 1/8 in.); Overall: 27.7 x 16.4 cm (10 7/8 x 6 7/16 in.)"
+   "physical_dimensions": "Image: 15.3 x 8 cm (6 x 3 1/8 in.); Overall: 27.7 x 16.4 cm (10 7/8 x 6 7/16 in.)",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Riza-yi%20Abbasi%20-%20Youth%20Holding%20a%20Pomegranate%3B%20Illustration%20from%20a%20Single%20Page%20Manuscript%20-%201947.497%20-%20Cleveland%20Museum%20of%20Art.tif?width=600"
   },
   {
    "title": "Tobatsu Bishamonten",
@@ -935,7 +952,7 @@
    "source": "The Metropolitan Museum of Art",
    "license": "PDM-1.0",
    "source_url": "https://images.metmuseum.org/CRDImages/as/original/DP-27915-006.jpg",
-   "thumbnail_url": "https://images.metmuseum.org/CRDImages/as/web-large/DP-27915-006.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/56d7769586fa7e3472a6066bdc31c779c4026266a6e95570620f9b71d022d361.jpg",
    "focal_point": [
     0.46,
     0.21
@@ -973,7 +990,8 @@
      1.0,
      0.5926
     ]
-   }
+   },
+   "thumbnail_source_url": "https://images.metmuseum.org/CRDImages/as/web-large/DP-27915-006.jpg"
   }
  ]
 }

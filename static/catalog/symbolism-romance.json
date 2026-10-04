@@ -18,7 +18,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/John%20Everett%20Millais%20-%20Ophelia%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/John%20Everett%20Millais%20-%20Ophelia%20-%20Google%20Art%20Project.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/03267b618eaef7578e2673491c47127c25021e4a5af4751b0c384383b7b25bda.jpg",
    "focal_point": [
     0.35,
     0.5
@@ -56,7 +56,8 @@
      0.585,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/John%20Everett%20Millais%20-%20Ophelia%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
    "title": "Christ in the House of His Parents",
@@ -71,7 +72,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/John%20Everett%20Millais%20-%20Christ%20in%20the%20House%20of%20His%20Parents%20%28%60The%20Carpenter%27s%20Shop%27%29%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/John%20Everett%20Millais%20-%20Christ%20in%20the%20House%20of%20His%20Parents%20%28%60The%20Carpenter%27s%20Shop%27%29%20-%20Google%20Art%20Project.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/4c66bbb9e89a287c632eb3f1c4ec0f960272209b66094c949e15cd56957a6d5a.jpg",
    "focal_point": [
     0.52,
     0.42
@@ -110,7 +111,8 @@
      1.0
     ]
    },
-   "physical_dimensions": "86.4 x 139.7 cm"
+   "physical_dimensions": "86.4 x 139.7 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/John%20Everett%20Millais%20-%20Christ%20in%20the%20House%20of%20His%20Parents%20%28%60The%20Carpenter%27s%20Shop%27%29%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
    "title": "Proserpine",
@@ -125,7 +127,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Dante%20Gabriel%20Rossetti%20-%20Proserpine%20-%20Google%20Art%20Project%20%28JQFW5c2ZLfpmbw%29.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Dante%20Gabriel%20Rossetti%20-%20Proserpine%20-%20Google%20Art%20Project%20%28JQFW5c2ZLfpmbw%29.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/766c89b28999be31ac5f8aaa265ae8f8979860826d85b9689feb63178fd6d914.jpg",
    "focal_point": [
     0.45,
     0.22
@@ -163,7 +165,8 @@
      1.0,
      0.6959
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Dante%20Gabriel%20Rossetti%20-%20Proserpine%20-%20Google%20Art%20Project%20%28JQFW5c2ZLfpmbw%29.jpg?width=600"
   },
   {
    "title": "Beata Beatrix",
@@ -178,7 +181,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Dante%20Gabriel%20Rossetti%20-%20Beata%20Beatrix%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Dante%20Gabriel%20Rossetti%20-%20Beata%20Beatrix%20-%20Google%20Art%20Project.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/1b09788234dc0ab066387e72f838b0ec61c314bc1df268fca3881b77752bff41.jpg",
    "focal_point": [
     0.5,
     0.25
@@ -217,7 +220,8 @@
      1.0
     ]
    },
-   "physical_dimensions": "66.0 x 86.4 cm"
+   "physical_dimensions": "66.0 x 86.4 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Dante%20Gabriel%20Rossetti%20-%20Beata%20Beatrix%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
    "title": "The Day Dream",
@@ -232,7 +236,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Dante%20Gabriel%20Rossetti%20-%20The%20Day%20Dream%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Dante%20Gabriel%20Rossetti%20-%20The%20Day%20Dream%20-%20Google%20Art%20Project.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/ba95f1f42dd51c1359ad4a231667c886fe23df200c79e349017004ff6165512d.jpg",
    "focal_point": [
     0.55,
     0.16
@@ -272,7 +276,8 @@
     ]
    },
    "current_repository": "Victoria and Albert Museum",
-   "physical_dimensions": "157.5 x 92.7 cm"
+   "physical_dimensions": "157.5 x 92.7 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Dante%20Gabriel%20Rossetti%20-%20The%20Day%20Dream%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
    "title": "Lady Lilith",
@@ -287,7 +292,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Dante%20Gabriel%20Rossetti%20-%20Lady%20Lilith.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Dante%20Gabriel%20Rossetti%20-%20Lady%20Lilith.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/2f9fc8afb4bbab7b5cc2fa3ce54b7add7eeebc66f40904f94c53159fa4e3d732.jpg",
    "focal_point": [
     0.6,
     0.25
@@ -327,7 +332,8 @@
      1.0
     ]
    },
-   "current_repository": "Delaware Art Museum"
+   "current_repository": "Delaware Art Museum",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Dante%20Gabriel%20Rossetti%20-%20Lady%20Lilith.jpg?width=600"
   },
   {
    "title": "The Awakening Conscience",
@@ -342,7 +348,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/William%20Holman%20Hunt%20-%20The%20Awakening%20Conscience%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/William%20Holman%20Hunt%20-%20The%20Awakening%20Conscience%20-%20Google%20Art%20Project.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/3a1c4f0c366b6b30feaee7fcdcc191345b0c5d8778274b554689b776a1142a2f.jpg",
    "focal_point": [
     0.5,
     0.27
@@ -381,7 +387,8 @@
      0.9859
     ]
    },
-   "physical_dimensions": "55.9 x 76.2 cm"
+   "physical_dimensions": "55.9 x 76.2 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/William%20Holman%20Hunt%20-%20The%20Awakening%20Conscience%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
    "title": "The Golden Stairs",
@@ -396,7 +403,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sir%20Edward%20Burne-Jones%20-%20The%20golden%20stairs%20-%201880.jpeg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sir%20Edward%20Burne-Jones%20-%20The%20golden%20stairs%20-%201880.jpeg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/c0d425d8c5cbbe026b5d58e284810a4f0ea1a7c0bb7a0db5442edac218bbf96e.jpg",
    "focal_point": [
     0.5,
     0.45
@@ -434,7 +441,8 @@
      1.0,
      0.5668
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sir%20Edward%20Burne-Jones%20-%20The%20golden%20stairs%20-%201880.jpeg?width=600"
   },
   {
    "title": "The Beguiling of Merlin",
@@ -449,7 +457,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Beguiling%20of%20Merlin.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Beguiling%20of%20Merlin.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/fe86e95eefcf41adc8a17d55d06f56eed30352eaf8860cc4216a591cb4ad69a2.jpg",
    "focal_point": [
     0.6,
     0.18
@@ -489,7 +497,8 @@
      0.81
     ]
    },
-   "current_repository": "Lady Lever Art Gallery, Port Sunlight (National Museums Liverpool)"
+   "current_repository": "Lady Lever Art Gallery, Port Sunlight (National Museums Liverpool)",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Beguiling%20of%20Merlin.jpg?width=600"
   },
   {
    "title": "King Cophetua and the Beggar Maid",
@@ -504,7 +513,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Edward%20Burne-Jones%20-%20King%20Cophetua%20and%20the%20Beggar%20Maid%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Edward%20Burne-Jones%20-%20King%20Cophetua%20and%20the%20Beggar%20Maid%20-%20Google%20Art%20Project.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/e90aadbfb5a4f547f145aa9ef65d4450c99f9b148621313735c189141aa73e29.jpg",
    "focal_point": [
     0.62,
     0.33
@@ -544,7 +553,8 @@
      0.5362
     ]
    },
-   "physical_dimensions": "293.4 x 135.9 cm"
+   "physical_dimensions": "293.4 x 135.9 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Edward%20Burne-Jones%20-%20King%20Cophetua%20and%20the%20Beggar%20Maid%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
    "title": "The Lady of Shalott",
@@ -559,7 +569,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/John%20William%20Waterhouse%20-%20The%20Lady%20of%20Shalott%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/John%20William%20Waterhouse%20-%20The%20Lady%20of%20Shalott%20-%20Google%20Art%20Project.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/d7e5adc8a898fa32a32c69e079dd2c2896380d749958b82550b5b60f447fb691.jpg",
    "focal_point": [
     0.4,
     0.34
@@ -597,7 +607,8 @@
      0.7358,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/John%20William%20Waterhouse%20-%20The%20Lady%20of%20Shalott%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
    "title": "Hylas and the Nymphs",
@@ -612,7 +623,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Waterhouse%20Hylas%20and%20the%20Nymphs%20Manchester%20Art%20Gallery%201896.15%20n2.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Waterhouse%20Hylas%20and%20the%20Nymphs%20Manchester%20Art%20Gallery%201896.15%20n2.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/098a806cdcdab7d2c79ddbed1ba2badf8e843babb0fccfc9939af68a9aef3ab1.jpg",
    "focal_point": [
     0.37,
     0.18
@@ -651,7 +662,8 @@
      0.5501,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Waterhouse%20Hylas%20and%20the%20Nymphs%20Manchester%20Art%20Gallery%201896.15%20n2.jpg?width=600"
   },
   {
    "title": "Ophelia",
@@ -666,7 +678,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/John%20William%20Waterhouse%20-%20Ophelia%20%281894%29.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/John%20William%20Waterhouse%20-%20Ophelia%20%281894%29.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/a8f612943fb0e29371d41eefe921e166e2dffd2458277c0685b79e8399d19ea6.jpg",
    "focal_point": [
     0.5,
     0.22
@@ -705,7 +717,8 @@
      1.0,
      0.8129
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/John%20William%20Waterhouse%20-%20Ophelia%20%281894%29.jpg?width=600"
   },
   {
    "title": "The Magic Circle",
@@ -720,7 +733,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Magic%20Circle%20-%20John%20William%20Waterhouse.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Magic%20Circle%20-%20John%20William%20Waterhouse.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/c0898c882c8c00724ed2e5783167eccb409d33640caddf75f68d5299f0dd76e8.jpg",
    "focal_point": [
     0.4,
     0.42
@@ -759,7 +772,8 @@
      1.0,
      0.6112
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Magic%20Circle%20-%20John%20William%20Waterhouse.jpg?width=600"
   },
   {
    "title": "Work",
@@ -774,7 +788,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Ford%20Madox%20Brown%20-%20Work%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Ford%20Madox%20Brown%20-%20Work%20-%20Google%20Art%20Project.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/6295a1585c28c5643ab51bf73697891d93891b05be84253f78438bf9ebec6ce4.jpg",
    "focal_point": [
     0.42,
     0.4
@@ -812,7 +826,8 @@
      0.7902,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Ford%20Madox%20Brown%20-%20Work%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
    "title": "The Last of England",
@@ -827,7 +842,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Ford%20Madox%20Brown%20-%20The%20Last%20of%20England%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Ford%20Madox%20Brown%20-%20The%20Last%20of%20England%20-%20Google%20Art%20Project.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/d2b62f6415d144e9fcf7e0543793ac2363ef412bf349733fd5e4050cf2ccdb64.jpg",
    "focal_point": [
     0.5,
     0.28
@@ -867,7 +882,8 @@
     ]
    },
    "current_repository": "Birmingham Museums Trust",
-   "physical_dimensions": "82.5 x 75.0 cm"
+   "physical_dimensions": "82.5 x 75.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Ford%20Madox%20Brown%20-%20The%20Last%20of%20England%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
    "title": "The Apparition",
@@ -882,7 +898,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Gustave%20Moreau%20-%20The%20Apparition%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Gustave%20Moreau%20-%20The%20Apparition%20-%20Google%20Art%20Project.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/9dcf6d9b2f352d77b5a3a20d31b264a0a9a247da9fc2a33fb646f8442492490f.jpg",
    "focal_point": [
     0.6,
     0.42
@@ -921,7 +937,8 @@
      0.9237
     ]
    },
-   "physical_dimensions": "106.0 x 72.0 cm"
+   "physical_dimensions": "106.0 x 72.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Gustave%20Moreau%20-%20The%20Apparition%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
    "title": "Jupiter and Semele",
@@ -936,7 +953,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jupiter%20and%20Semele%20by%20Gustave%20Moreau.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jupiter%20and%20Semele%20by%20Gustave%20Moreau.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/890dd61615c61f61b91bca8dfad7b82af696ea9cee81ce676f4a028797932d21.jpg",
    "focal_point": [
     0.5,
     0.27
@@ -975,7 +992,8 @@
      0.7578
     ]
    },
-   "physical_dimensions": "213.0 x 118.0 cm"
+   "physical_dimensions": "213.0 x 118.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jupiter%20and%20Semele%20by%20Gustave%20Moreau.jpg?width=600"
   },
   {
    "title": "Oedipus and the Sphinx",
@@ -990,7 +1008,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Oedipus%20and%20the%20Sphinx%201864.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Oedipus%20and%20the%20Sphinx%201864.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/a0c2e88c186b5a9358423db2893d88a2c0db0eacf0968962f77f97c9c1eb7425.jpg",
    "focal_point": [
     0.56,
     0.28
@@ -1028,7 +1046,8 @@
      1.0,
      0.7302
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Oedipus%20and%20the%20Sphinx%201864.jpg?width=600"
   },
   {
    "title": "The Cyclops",
@@ -1043,7 +1062,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Odilon%20Redon%2C%20Le%20Polype%20difforme%20flottait%20sur%20les%20rivages%2C%20sorte%20de%20cyclope%20souriant%20et%20hideux%20%28Thedeformed%20polyp%20floated%20on%20the%20shores%2C%20a%20sort%20of%20smiling%20and%20hideous%20Cyclops%2C%201883%2C%20NGA%2040258.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Odilon%20Redon%2C%20Le%20Polype%20difforme%20flottait%20sur%20les%20rivages%2C%20sorte%20de%20cyclope%20souriant%20et%20hideux%20%28Thedeformed%20polyp%20floated%20on%20the%20shores%2C%20a%20sort%20of%20smiling%20and%20hideous%20Cyclops%2C%201883%2C%20NGA%2040258.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/7ae870bc9279393cb510088beb36b7cbfb0e630b3219f5661b3c5518358088e9.jpg",
    "focal_point": [
     0.45,
     0.52
@@ -1084,7 +1103,8 @@
     ]
    },
    "current_repository": "Prints in the National Gallery of Art",
-   "physical_dimensions": "21.4 x 20.0 cm"
+   "physical_dimensions": "21.4 x 20.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Odilon%20Redon%2C%20Le%20Polype%20difforme%20flottait%20sur%20les%20rivages%2C%20sorte%20de%20cyclope%20souriant%20et%20hideux%20%28Thedeformed%20polyp%20floated%20on%20the%20shores%2C%20a%20sort%20of%20smiling%20and%20hideous%20Cyclops%2C%201883%2C%20NGA%2040258.jpg?width=600"
   },
   {
    "title": "Isle of the Dead",
@@ -1099,7 +1119,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Arnold%20B%C3%B6cklin%20-%20Die%20Toteninsel%20I%20%28Basel%2C%20Kunstmuseum%29.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Arnold%20B%C3%B6cklin%20-%20Die%20Toteninsel%20I%20%28Basel%2C%20Kunstmuseum%29.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/07e391c6f359306ff8052954f9410e2f93ab19a7695ebc28e5b1fa0587a2e728.jpg",
    "focal_point": [
     0.42,
     0.78
@@ -1137,7 +1157,8 @@
      0.7449,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Arnold%20B%C3%B6cklin%20-%20Die%20Toteninsel%20I%20%28Basel%2C%20Kunstmuseum%29.jpg?width=600"
   },
   {
    "title": "The Poor Fisherman",
@@ -1152,7 +1173,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pierre%20Puvis%20de%20Chavannes%20-%20The%20Poor%20Fisherman%20-%201925.802%20-%20Cleveland%20Museum%20of%20Art.tif?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pierre%20Puvis%20de%20Chavannes%20-%20The%20Poor%20Fisherman%20-%201925.802%20-%20Cleveland%20Museum%20of%20Art.tif?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/f0d7e004cf3c7ef4676148361e90fad092bbd848bc99cc1416b08cd94a420b48.jpg",
    "focal_point": [
     0.38,
     0.3
@@ -1191,7 +1212,8 @@
      1.0
     ]
    },
-   "current_repository": "Cleveland Museum of Art"
+   "current_repository": "Cleveland Museum of Art",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pierre%20Puvis%20de%20Chavannes%20-%20The%20Poor%20Fisherman%20-%201925.802%20-%20Cleveland%20Museum%20of%20Art.tif?width=600"
   },
   {
    "title": "Flaming June",
@@ -1206,7 +1228,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frederic%20Leighton%20-%20Flaming%20June%20%281895%29%20-%20Museo%20de%20Arte%20de%20Ponce.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frederic%20Leighton%20-%20Flaming%20June%20%281895%29%20-%20Museo%20de%20Arte%20de%20Ponce.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/db8763e13457399c8c65c7398c10bcc6147626ad93f60648ff65f231df398914.jpg",
    "focal_point": [
     0.45,
     0.33
@@ -1244,7 +1266,8 @@
      0.8776,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frederic%20Leighton%20-%20Flaming%20June%20%281895%29%20-%20Museo%20de%20Arte%20de%20Ponce.jpg?width=600"
   },
   {
    "title": "The Roses of Heliogabalus",
@@ -1259,7 +1282,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Alma-Tadema%20-%20The%20Roses%20of%20Heliogabalus.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Alma-Tadema%20-%20The%20Roses%20of%20Heliogabalus.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/af4eb9ea4299d0c9e8ead0434c50f3af89ebe4aa4178ffad5c31671ae74fd4b1.jpg",
    "focal_point": [
     0.5,
     0.28
@@ -1298,7 +1321,8 @@
      1.0
     ]
    },
-   "physical_dimensions": "132.1 x 213.9 cm"
+   "physical_dimensions": "132.1 x 213.9 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Alma-Tadema%20-%20The%20Roses%20of%20Heliogabalus.jpg?width=600"
   },
   {
    "title": "Circe Invidiosa",
@@ -1313,7 +1337,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/J.%20W.%20Waterhouse%20-%20Circe%20Invidiosa%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/J.%20W.%20Waterhouse%20-%20Circe%20Invidiosa%20-%20Google%20Art%20Project.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/3a2b7bd9ccdb6aa7840a267f3ac6b3e07997fb87aedb68c6d88bce7a39d4a8a9.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1353,7 +1377,8 @@
     ]
    },
    "current_repository": "Art Gallery of South Australia",
-   "physical_dimensions": "180.7 x 87.4 cm"
+   "physical_dimensions": "180.7 x 87.4 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/J.%20W.%20Waterhouse%20-%20Circe%20Invidiosa%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
    "title": "Hope",
@@ -1368,7 +1393,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/George%20Frederick%20Watts%20-%20Hope%20-%20B2011.32%20-%20Yale%20Center%20for%20British%20Art.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/George%20Frederick%20Watts%20-%20Hope%20-%20B2011.32%20-%20Yale%20Center%20for%20British%20Art.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/51a93e84a7b84f907f515fc23dbd037b3746b2e44f48553e2ed9b15c9fdf4e25.jpg",
    "needs_frame_crop": true,
    "license_verdict": "pd",
    "license_basis": "Public domain",
@@ -1415,7 +1440,8 @@
     ]
    },
    "current_repository": "Yale Center for British Art",
-   "physical_dimensions": "66.0 x 48.3 cm"
+   "physical_dimensions": "66.0 x 48.3 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/George%20Frederick%20Watts%20-%20Hope%20-%20B2011.32%20-%20Yale%20Center%20for%20British%20Art.jpg?width=600"
   },
   {
    "title": "The Caress (Les Caresses)",
@@ -1430,7 +1456,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Fernand%20Khnopff%20-%20Caresses%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Fernand%20Khnopff%20-%20Caresses%20-%20Google%20Art%20Project.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/d9826a65c8732e49404f08143386b01579280058d4ebdad20e0bcc97e8d2be71.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1470,7 +1496,8 @@
     ]
    },
    "current_repository": "Royal Museums of Fine Arts of Belgium",
-   "physical_dimensions": "50.5 x 151.0 cm"
+   "physical_dimensions": "50.5 x 151.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Fernand%20Khnopff%20-%20Caresses%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
    "title": "The Wheel of Fortune",
@@ -1485,7 +1512,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Edward%20Burne-Jones%20-%20The%20Wheel%20of%20Fortune%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Edward%20Burne-Jones%20-%20The%20Wheel%20of%20Fortune%20-%20Google%20Art%20Project.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/f18ab7518d42de5a31b894029942d01a6ca313878e5035ed50240220075eada2.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1524,7 +1551,8 @@
      0.3874
     ]
    },
-   "physical_dimensions": "200.0 x 100.0 cm"
+   "physical_dimensions": "200.0 x 100.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Edward%20Burne-Jones%20-%20The%20Wheel%20of%20Fortune%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
    "title": "Echo and Narcissus",
@@ -1539,7 +1567,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Echo%20and%20Narcissus%20by%20John%20William%20Waterhouse.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Echo%20and%20Narcissus%20by%20John%20William%20Waterhouse.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/eeafd03db91ef73e4628f6a51c16891fa167952d24277295291f4325a9918e6c.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1578,7 +1606,8 @@
      1.0
     ]
    },
-   "current_repository": "Walker Art Gallery"
+   "current_repository": "Walker Art Gallery",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Echo%20and%20Narcissus%20by%20John%20William%20Waterhouse.jpg?width=600"
   },
   {
    "title": "Madonna",
@@ -1593,7 +1622,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Edvard%20Munch%20-%20Madonna%20-%20NG.M.00841%20-%20National%20Museum%20of%20Art%2C%20Architecture%20and%20Design.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Edvard%20Munch%20-%20Madonna%20-%20NG.M.00841%20-%20National%20Museum%20of%20Art%2C%20Architecture%20and%20Design.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/152ef5f9a161081b396c70793adbada58803540a8aa04d451302aa22e22e3211.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1633,7 +1662,8 @@
     ]
    },
    "current_repository": "National Gallery of Norway",
-   "physical_dimensions": "90.5 x 70.5 cm"
+   "physical_dimensions": "90.5 x 70.5 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Edvard%20Munch%20-%20Madonna%20-%20NG.M.00841%20-%20National%20Museum%20of%20Art%2C%20Architecture%20and%20Design.jpg?width=600"
   },
   {
    "title": "Elaine",
@@ -1648,7 +1678,7 @@
    "source": "Art Institute of Chicago",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Toby%20Edward%20Rosenthal%20-%20Elaine%20-%201917.3%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Toby%20Edward%20Rosenthal%20-%20Elaine%20-%201917.3%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/fb2204052a8941f727d122dea75ff3dba5920f157c7ac2976b8e07d4f56ac496.jpg",
    "focal_point": [
     0.4,
     0.42
@@ -1689,7 +1719,8 @@
     ]
    },
    "current_repository": "Art Institute of Chicago",
-   "physical_dimensions": "97.9 × 158.8 cm (38 9/16 × 62 1/2 in.)"
+   "physical_dimensions": "97.9 × 158.8 cm (38 9/16 × 62 1/2 in.)",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Toby%20Edward%20Rosenthal%20-%20Elaine%20-%201917.3%20-%20Art%20Institute%20of%20Chicago.jpg?width=600"
   },
   {
    "title": "Winged Figure",
@@ -1704,7 +1735,7 @@
    "source": "Art Institute of Chicago",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Abbott%20Handerson%20Thayer%20-%20Winged%20Figure%20-%201947.32%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Abbott%20Handerson%20Thayer%20-%20Winged%20Figure%20-%201947.32%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/6fc158539dc212051acc5bd7ac43c3f9f70d8fa5c90b56bb0cde9d3947f95dda.jpg",
    "focal_point": [
     0.55,
     0.2
@@ -1745,7 +1776,8 @@
     ]
    },
    "current_repository": "Art Institute of Chicago",
-   "physical_dimensions": "130.8 × 95.9 cm (51 1/2 × 37 3/4 in.)"
+   "physical_dimensions": "130.8 × 95.9 cm (51 1/2 × 37 3/4 in.)",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Abbott%20Handerson%20Thayer%20-%20Winged%20Figure%20-%201947.32%20-%20Art%20Institute%20of%20Chicago.jpg?width=600"
   },
   {
    "title": "Apollo and Marsyas",
@@ -1760,7 +1792,7 @@
    "source": "Art Institute of Chicago",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Hans%20Thoma%20-%20Apollo%20und%20Marsyas.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Hans%20Thoma%20-%20Apollo%20und%20Marsyas.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/2cda8e7c2cea5d3ac8cc49159f39d957e88573cfb66628f32ea8ca1f4800a4c4.jpg",
    "focal_point": [
     0.4,
     0.68
@@ -1801,7 +1833,8 @@
    },
    "below_floor_ok": true,
    "current_repository": "Art Institute of Chicago",
-   "physical_dimensions": "101 × 73.5 cm (39 3/4 × 28 7/8 in.); Framed: 127.4 × 100.1 cm (50 1/8 × 39 3/8 in.)"
+   "physical_dimensions": "101 × 73.5 cm (39 3/4 × 28 7/8 in.); Framed: 127.4 × 100.1 cm (50 1/8 × 39 3/8 in.)",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Hans%20Thoma%20-%20Apollo%20und%20Marsyas.jpg?width=600"
   },
   {
    "title": "Cleopatra",
@@ -1816,7 +1849,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Plate%2021%2C%20Cleopatra%20%28J.%20W.%20Waterhouse%29%2012000px.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Plate%2021%2C%20Cleopatra%20%28J.%20W.%20Waterhouse%29%2012000px.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/942a6912b507a02e4e533a1dc0fabcf6e079ab83664046bffdf65a051b60dcf0.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1854,7 +1887,8 @@
      0.9724,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Plate%2021%2C%20Cleopatra%20%28J.%20W.%20Waterhouse%29%2012000px.jpg?width=600"
   },
   {
    "title": "Saint Cecilia",
@@ -1869,7 +1903,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Waterhouse%20stcecilia.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Waterhouse%20stcecilia.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/750f49a50bd06cb27f708e0bcc231a7d929b2592d15bd519b29aa15112824b5d.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1907,7 +1941,8 @@
      0.9795,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Waterhouse%20stcecilia.jpg?width=600"
   },
   {
    "title": "A Song of Springtime",
@@ -1922,7 +1957,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/John%20William%20Waterhouse%20-%20A%20Song%20of%20Springtime.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/John%20William%20Waterhouse%20-%20A%20Song%20of%20Springtime.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/ec2ce431583db3851239730b20b58ca2512ad720cddee4cbee1960e6e2f425b3.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1961,7 +1996,8 @@
      1.0
     ]
    },
-   "physical_dimensions": "71.5 x 92.4 cm"
+   "physical_dimensions": "71.5 x 92.4 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/John%20William%20Waterhouse%20-%20A%20Song%20of%20Springtime.jpg?width=600"
   },
   {
    "title": "Lamia",
@@ -1976,7 +2012,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/John%20Waterhouse%20-%20Lamia%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/John%20Waterhouse%20-%20Lamia%20-%20Google%20Art%20Project.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/4acc141796f3f220866ef6eee093875ffa9d601a62ae09a2f73a60ede4f7c4b7.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -2016,7 +2052,8 @@
     ]
    },
    "current_repository": "Auckland Art Gallery Toi o Tāmaki",
-   "physical_dimensions": "144.8 x 90.2 cm"
+   "physical_dimensions": "144.8 x 90.2 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/John%20Waterhouse%20-%20Lamia%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
    "title": "Diogenes",
@@ -2031,7 +2068,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/John%20Waterhouse%20-%20Diogenes%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/John%20Waterhouse%20-%20Diogenes%20-%20Google%20Art%20Project.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/9dd2009677ac4d5875a2816f1e8dcbc15345915ee611a02273fc3c4edb5342d8.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -2071,7 +2108,8 @@
     ]
    },
    "current_repository": "Art Gallery of New South Wales",
-   "physical_dimensions": "249.0 x 177.4 cm"
+   "physical_dimensions": "249.0 x 177.4 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/John%20Waterhouse%20-%20Diogenes%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
    "title": "The Rescue",
@@ -2086,7 +2124,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/%22The%20Rescue%22%20by%20John%20William%20Waterhouse%201890.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/%22The%20Rescue%22%20by%20John%20William%20Waterhouse%201890.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/bd6158e75e2d96f343293b6693192e542f8e1a5d4244f724c8d337697ac4ca4c.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -2124,7 +2162,8 @@
      1.0,
      0.9141
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/%22The%20Rescue%22%20by%20John%20William%20Waterhouse%201890.jpg?width=600"
   },
   {
    "title": "La Belle Dame Sans Merci",
@@ -2139,7 +2178,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/La%20Belle%20Dame%20Sans%20Merci%2C%20by%20John%20William%20Waterhouse%2C%201893%2C%20oil%20on%20canvas%20-%20Hessisches%20Landesmuseum%20Darmstadt%20-%20Darmstadt%2C%20Germany%20-%20DSC01228.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/La%20Belle%20Dame%20Sans%20Merci%2C%20by%20John%20William%20Waterhouse%2C%201893%2C%20oil%20on%20canvas%20-%20Hessisches%20Landesmuseum%20Darmstadt%20-%20Darmstadt%2C%20Germany%20-%20DSC01228.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/3d6dff48d60f384d86df1231f63ab7141ba3b5d056af5a028e55d32d085ab6ab.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -2177,7 +2216,8 @@
      1.0,
      0.6447
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/La%20Belle%20Dame%20Sans%20Merci%2C%20by%20John%20William%20Waterhouse%2C%201893%2C%20oil%20on%20canvas%20-%20Hessisches%20Landesmuseum%20Darmstadt%20-%20Darmstadt%2C%20Germany%20-%20DSC01228.jpg?width=600"
   },
   {
    "title": "Lady on a Balcony, Capri",
@@ -2192,7 +2232,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/John%20William%20Waterhouse%20-%20Lady%20on%20a%20Balcony%2C%20Capri.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/John%20William%20Waterhouse%20-%20Lady%20on%20a%20Balcony%2C%20Capri.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/c3ac200d977a5345010c8bd7cdcea3d4dbc28221df0e0b6844f0a1abef927a39.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -2231,7 +2271,8 @@
      0.8831
     ]
    },
-   "physical_dimensions": "53.5 x 31.0 cm"
+   "physical_dimensions": "53.5 x 31.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/John%20William%20Waterhouse%20-%20Lady%20on%20a%20Balcony%2C%20Capri.jpg?width=600"
   },
   {
    "title": "A Tale from the Decameron",
@@ -2246,7 +2287,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/1916-a-tale-from-the-decameron-.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/1916-a-tale-from-the-decameron-.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/8573a6be0d9cbc4f404b1b2ceb7bf9475028864d92572773cb6499b53046da48.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -2284,7 +2325,8 @@
      0.605,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/1916-a-tale-from-the-decameron-.jpg?width=600"
   },
   {
    "title": "The Favourites of the Emperor Honorius",
@@ -2299,7 +2341,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/J.%20W.%20Waterhouse%20-%20The%20favourites%20of%20the%20Emperor%20Honorius%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/J.%20W.%20Waterhouse%20-%20The%20favourites%20of%20the%20Emperor%20Honorius%20-%20Google%20Art%20Project.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/f4d39e4e5d3da91577d8a0e2da0a4db0188a1fc18ce229143a416a34c058033e.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -2344,7 +2386,8 @@
      0.4516,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/J.%20W.%20Waterhouse%20-%20The%20favourites%20of%20the%20Emperor%20Honorius%20-%20Google%20Art%20Project.jpg?width=600"
   }
  ]
 }

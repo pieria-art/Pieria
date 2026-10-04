@@ -18,7 +18,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Migrant%20Mother%20by%20Dorothea%20Lange%20%28original%29.tif?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Migrant%20Mother%20by%20Dorothea%20Lange%20%28original%29.tif?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/ed6e5ebd22a1fac96bbd2cb2720bb87d3997b915bdf6210ea2c138faff163729.jpg",
    "focal_point": [
     0.47,
     0.28
@@ -57,7 +57,8 @@
      1.0
     ]
    },
-   "current_repository": "United States Library of Congress"
+   "current_repository": "United States Library of Congress",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Migrant%20Mother%20by%20Dorothea%20Lange%20%28original%29.tif?width=600"
   },
   {
    "title": "Toward Los Angeles",
@@ -72,7 +73,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Toward%20Los%20Angeles%2C%20California%20LOC%203549663710.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Toward%20Los%20Angeles%2C%20California%20LOC%203549663710.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/442ce93820e8c94af981b7a3658f843ba8c0adb7f188777a1da0f6ee20a776bc.jpg",
    "featured_rank": 25,
    "license_verdict": "pd",
    "license_basis": "Public domain",
@@ -111,7 +112,8 @@
     ]
    },
    "delivered_edge": 4208,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Toward%20Los%20Angeles%2C%20California%20LOC%203549663710.jpg?width=600"
   },
   {
    "title": "Tractored Out, Childress County Texas",
@@ -126,7 +128,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tenantless%20farm%20Texas%20panhandle%201938.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tenantless%20farm%20Texas%20panhandle%201938.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/a754ea14bc0dc9afe8937aa1ab5f5a4ef0868e37a76c90835b45245da52bf95e.jpg",
    "focal_point": [
     0.56,
     0.36
@@ -165,7 +167,8 @@
      1.0
     ]
    },
-   "current_repository": "United States Library of Congress"
+   "current_repository": "United States Library of Congress",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tenantless%20farm%20Texas%20panhandle%201938.jpg?width=600"
   },
   {
    "title": "The Steerage",
@@ -180,7 +183,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Alfred%20Stieglitz%20-%20The%20Steerage%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Alfred%20Stieglitz%20-%20The%20Steerage%20-%20Google%20Art%20Project.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/db824e0c3a20fdab535ae03da6085d84b7eedac171e377a667a46a770e9a7e80.jpg",
    "focal_point": [
     0.5,
     0.23
@@ -220,7 +223,8 @@
     ]
    },
    "current_repository": "Museum of Modern Art",
-   "physical_dimensions": "33.5 x 26.4 cm"
+   "physical_dimensions": "33.5 x 26.4 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Alfred%20Stieglitz%20-%20The%20Steerage%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
    "title": "Floyd Burroughs, cotton sharecropper",
@@ -235,7 +239,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Floyd%20Burroughs%2C%20cotton%20sharecropper.%20Hale%20County%2C%20Alabama%2C%208c52247a.tif?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Floyd%20Burroughs%2C%20cotton%20sharecropper.%20Hale%20County%2C%20Alabama%2C%208c52247a.tif?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/7b22770c609a8de4d8d237a493f05c4b901d90e9e0540283a355c3e82dbb2bde.jpg",
    "featured_rank": 55,
    "license_verdict": "pd",
    "license_basis": "Public domain",
@@ -273,7 +277,8 @@
     ]
    },
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Floyd%20Burroughs%2C%20cotton%20sharecropper.%20Hale%20County%2C%20Alabama%2C%208c52247a.tif?width=600"
   },
   {
    "title": "Allie Mae Burroughs",
@@ -288,7 +293,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Allie%20Mae%20Burroughs%2C%208c52248u.tif?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Allie%20Mae%20Burroughs%2C%208c52248u.tif?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/0279f07903fb8485dbae289569baf37d2012581f28a42afbeac1f6b334b7f0db.jpg",
    "focal_point": [
     0.48,
     0.38
@@ -327,7 +332,8 @@
      1.0
     ]
    },
-   "current_repository": "United States Library of Congress"
+   "current_repository": "United States Library of Congress",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Allie%20Mae%20Burroughs%2C%208c52248u.tif?width=600"
   },
   {
    "title": "American Gothic, Washington, D.C.",
@@ -342,7 +348,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Gordon%20Parks%20-%20American%20Gothic%20full.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Gordon%20Parks%20-%20American%20Gothic%20full.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/fe53d6360bfc214689b3045fe9733a82d90f78d7612fea61b510b5a731ccbd0c.jpg",
    "focal_point": [
     0.5,
     0.42
@@ -381,7 +387,8 @@
      1.0
     ]
    },
-   "current_repository": "Library of Congress, Prints and Photographs Division"
+   "current_repository": "Library of Congress, Prints and Photographs Division",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Gordon%20Parks%20-%20American%20Gothic%20full.jpg?width=600"
   },
   {
    "title": "Power house mechanic working on steam pump",
@@ -396,7 +403,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Lewis%20Hine%20Power%20house%20mechanic%20working%20on%20steam%20pump.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Lewis%20Hine%20Power%20house%20mechanic%20working%20on%20steam%20pump.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/ae43bdc60f327020e9577ecee3681a7f0797730dde923b7f6891877a5efcb0b0.jpg",
    "focal_point": [
     0.68,
     0.5
@@ -435,7 +442,8 @@
      1.0,
      0.9584
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Lewis%20Hine%20Power%20house%20mechanic%20working%20on%20steam%20pump.jpg?width=600"
   },
   {
    "title": "Breaker Boys, Pennsylvania",
@@ -450,7 +458,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pennsylvania%20breaker%20boys%201911.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pennsylvania%20breaker%20boys%201911.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/b04a3afd3eca0e86f46d018ab1f83c238cc86b8125a69f594ad8fdae98e8c766.jpg",
    "focal_point": [
     0.42,
     0.55
@@ -489,7 +497,8 @@
      1.0
     ]
    },
-   "current_repository": "United States Library of Congress"
+   "current_repository": "United States Library of Congress",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pennsylvania%20breaker%20boys%201911.jpg?width=600"
   },
   {
    "title": "Spinner in a Cotton Mill",
@@ -504,7 +513,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Lewis%20Hine%2C%20Spinner%20in%20Globe%20Cotton%20Mill%2C%20Augusta%2C%20Georgia%2C%201909.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Lewis%20Hine%2C%20Spinner%20in%20Globe%20Cotton%20Mill%2C%20Augusta%2C%20Georgia%2C%201909.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/86a702448efd4801a267d4ae06d68a89cb3fec892264cb4d305e28fae59dc75b.jpg",
    "focal_point": [
     0.55,
     0.27
@@ -543,7 +552,8 @@
      1.0
     ]
    },
-   "current_repository": "United States Library of Congress"
+   "current_repository": "United States Library of Congress",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Lewis%20Hine%2C%20Spinner%20in%20Globe%20Cotton%20Mill%2C%20Augusta%2C%20Georgia%2C%201909.jpg?width=600"
   },
   {
    "title": "Bandit's Roost",
@@ -558,7 +568,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bandits%20Roost%2C%2059%20and%20a%20half%20Mulberry%20Street.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bandits%20Roost%2C%2059%20and%20a%20half%20Mulberry%20Street.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/0a05d658c9e7916c57d8a673a99fa8956f763218941a7aaf2e1397df0aec15fe.jpg",
    "focal_point": [
     0.5,
     0.627
@@ -597,7 +607,8 @@
      0.8531
     ]
    },
-   "current_repository": "Museum of Modern Art"
+   "current_repository": "Museum of Modern Art",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bandits%20Roost%2C%2059%20and%20a%20half%20Mulberry%20Street.jpg?width=600"
   },
   {
    "title": "Ancient Ruins in the Canyon de Chelly",
@@ -612,7 +623,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Timothy%20O%27Sullivan%2C%20Anasazi%20ruins%20%28the%20%22White%20House%22%29%2C%20Canyon%20de%20Chelly%2C%20Arizona%2C%201873.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Timothy%20O%27Sullivan%2C%20Anasazi%20ruins%20%28the%20%22White%20House%22%29%2C%20Canyon%20de%20Chelly%2C%20Arizona%2C%201873.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/7cd097363e7f1308b709805be670a62deaa1b362bf550528725432e57d0bc354.jpg",
    "focal_point": [
     0.27,
     0.62
@@ -651,7 +662,8 @@
      0.9861
     ]
    },
-   "current_repository": "United States Library of Congress"
+   "current_repository": "United States Library of Congress",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Timothy%20O%27Sullivan%2C%20Anasazi%20ruins%20%28the%20%22White%20House%22%29%2C%20Canyon%20de%20Chelly%2C%20Arizona%2C%201873.jpg?width=600"
   },
   {
    "title": "Yosemite Valley from Inspiration Point",
@@ -666,7 +678,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Carleton%20Watkins%20%28American%20-%20Yosemite%20Valley%20from%20Inspiration%20Point%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Carleton%20Watkins%20%28American%20-%20Yosemite%20Valley%20from%20Inspiration%20Point%20-%20Google%20Art%20Project.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/57372527e444ce11b3a34925ba6ad7dcb654da4774127ab623d149f89bcee226.jpg",
    "focal_point": [
     0.27,
     0.32
@@ -704,7 +716,8 @@
      0.4835,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Carleton%20Watkins%20%28American%20-%20Yosemite%20Valley%20from%20Inspiration%20Point%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
    "title": "Boulevard du Temple",
@@ -719,7 +732,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Boulevard%20du%20Temple%20by%20Daguerre.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Boulevard%20du%20Temple%20by%20Daguerre.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/dae75165a8559e0fbab33d1e924b8e787c8a5e9a866d0feb193531f3b76cc806.jpg",
    "focal_point": [
     0.21,
     0.78
@@ -758,7 +771,8 @@
      0.5889,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Boulevard%20du%20Temple%20by%20Daguerre.jpg?width=600"
   },
   {
    "title": "The Open Door",
@@ -773,7 +787,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20open%20door%20-%20btv1b10023869v%20%281%20of%202%29.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20open%20door%20-%20btv1b10023869v%20%281%20of%202%29.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/d1e036467d23d6540477694a2a734846c325c21a47c0faf7c178c626876a00c2.jpg",
    "focal_point": [
     0.4,
     0.5
@@ -811,7 +825,8 @@
      0.7751,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20open%20door%20-%20btv1b10023869v%20%281%20of%202%29.jpg?width=600"
   },
   {
    "title": "View from the Window at Le Gras",
@@ -826,7 +841,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/View%20from%20the%20Window%20at%20Le%20Gras%2C%20Joseph%20Nic%C3%A9phore%20Ni%C3%A9pce%2C%20uncompressed%20UMN%20source.png?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/View%20from%20the%20Window%20at%20Le%20Gras%2C%20Joseph%20Nic%C3%A9phore%20Ni%C3%A9pce%2C%20uncompressed%20UMN%20source.png?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/7c6149dbdab82c4c42e9b2ff04ae2bd6a7b0e4c83207fa95c16501daa7963b91.jpg",
    "focal_point": [
     0.45,
     0.5
@@ -866,7 +881,8 @@
      1.0
     ]
    },
-   "current_repository": "Information Technology University of Minnesota"
+   "current_repository": "Information Technology University of Minnesota",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/View%20from%20the%20Window%20at%20Le%20Gras%2C%20Joseph%20Nic%C3%A9phore%20Ni%C3%A9pce%2C%20uncompressed%20UMN%20source.png?width=600"
   },
   {
    "title": "Geronimo",
@@ -881,7 +897,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Geronimo%20by%20Edward%20Curtis%2C%201905.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Geronimo%20by%20Edward%20Curtis%2C%201905.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/cb1855580ea1561b3d7ba91dadad665e2e5961bdf6b480df71e3fae885008311.jpg",
    "focal_point": [
     0.5,
     0.42
@@ -920,7 +936,8 @@
      1.0,
      0.7006
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Geronimo%20by%20Edward%20Curtis%2C%201905.jpg?width=600"
   }
  ]
 }

@@ -18,7 +18,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Blue%20Marble%2C%20AS17-148-22727.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Blue%20Marble%2C%20AS17-148-22727.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/9c3d28c5b97aa975f19e60531a144d9e897dbb7b891f72bed1102aaeeb55130d.jpg",
    "focal_point": [
     0.5,
     0.5
@@ -56,7 +56,8 @@
      0.875,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Blue%20Marble%2C%20AS17-148-22727.jpg?width=600"
   },
   {
    "title": "Earthrise",
@@ -71,7 +72,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/NASA%20Earthrise%20AS08-14-2383%20Apollo%208%201968-12-24.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/NASA%20Earthrise%20AS08-14-2383%20Apollo%208%201968-12-24.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/4195e4a5c71926a66fe5e1c29074b3909363c5fcdda2581f28dd072828b51c6b.jpg",
    "featured_rank": 92,
    "license_verdict": "pd",
    "license_basis": "Public domain",
@@ -109,7 +110,8 @@
     ]
    },
    "delivered_edge": 4166,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/NASA%20Earthrise%20AS08-14-2383%20Apollo%208%201968-12-24.jpg?width=600"
   },
   {
    "title": "Pale Blue Dot",
@@ -124,7 +126,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pale%20Blue%20Dot%20from%20Voyager%201%20-%20PIA23645.png?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pale%20Blue%20Dot%20from%20Voyager%201%20-%20PIA23645.png?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/4440fd81f53a4a36f54b15a6ae3f8cf0b1178e5f6e94bd67288b9d8ad5557358.jpg",
    "focal_point": [
     0.62,
     0.5
@@ -162,7 +164,8 @@
      0.9711,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pale%20Blue%20Dot%20from%20Voyager%201%20-%20PIA23645.png?width=600"
   },
   {
    "title": "Buzz Aldrin on the Moon Apollo 11",
@@ -177,7 +180,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/A%20Man%20on%20the%20Moon%2C%20AS11-40-5903.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/A%20Man%20on%20the%20Moon%2C%20AS11-40-5903.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/14be7ad2fa6cff16ccc46118ada12ba856f11f06dafa0ec50bb5388e02c2c29f.jpg",
    "featured_rank": 85,
    "license_verdict": "pd",
    "license_basis": "Public domain",
@@ -215,7 +218,8 @@
     ]
    },
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/A%20Man%20on%20the%20Moon%2C%20AS11-40-5903.jpg?width=600"
   },
   {
    "title": "Bruce McCandless spacewalk",
@@ -230,7 +234,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bruce%20McCandless%20II%20during%20EVA%20in%201984.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bruce%20McCandless%20II%20during%20EVA%20in%201984.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/f8113cdd47862ef7a735256697cb7552cbe62c730c864c5fb4257bea64ff30ad.jpg",
    "featured_rank": 75,
    "license_verdict": "pd",
    "license_basis": "Public domain",
@@ -269,7 +273,8 @@
     ]
    },
    "delivered_edge": 3072,
-   "resolution_tier": "HD"
+   "resolution_tier": "HD",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bruce%20McCandless%20II%20during%20EVA%20in%201984.jpg?width=600"
   },
   {
    "title": "The Earth seen from Apollo 17",
@@ -284,7 +289,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Blue%20Marble%204463x4163.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Blue%20Marble%204463x4163.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/169045d23d10b17ed80fb5051d3612eae070601b12c9f1335829bfd5b97eefc3.jpg",
    "focal_point": [
     0.5,
     0.47
@@ -322,7 +327,8 @@
      0.8498,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Blue%20Marble%204463x4163.jpg?width=600"
   },
   {
    "title": "Apollo 11 bootprint on the Moon",
@@ -337,7 +343,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Buzz%20Aldrin%27s%20bootprint%20on%20the%20Moon%2C%20AS11-40-5877.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Buzz%20Aldrin%27s%20bootprint%20on%20the%20Moon%2C%20AS11-40-5877.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/639c296a1a2b2c51e508298db34b16a2ddfe7d068ff9f0679b418a25ac3ba6b4.jpg",
    "focal_point": [
     0.5,
     0.56
@@ -375,7 +381,8 @@
      0.8754,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Buzz%20Aldrin%27s%20bootprint%20on%20the%20Moon%2C%20AS11-40-5877.jpg?width=600"
   },
   {
    "title": "The Day the Earth Smiled",
@@ -390,7 +397,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Day%20the%20Earth%20Smiled-PIA17172.png?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Day%20the%20Earth%20Smiled-PIA17172.png?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/d22a7f21cc880cbac729ed98a672dbdfa443ff04a426fa7b972cd25da0681098.jpg",
    "focal_point": [
     0.5,
     0.5
@@ -428,7 +435,8 @@
      0.6458,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Day%20the%20Earth%20Smiled-PIA17172.png?width=600"
   },
   {
    "title": "Apollo 8 Crew Portrait",
@@ -443,7 +451,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Apollo%208%20primary%20crew%20and%20backup%20crew%20portrait%20%28jsc2008e049010%29.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Apollo%208%20primary%20crew%20and%20backup%20crew%20portrait%20%28jsc2008e049010%29.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/26805bc4fab19f072bd758f583d75c86f64ece07b3cbdab3491a05de3d1ed2aa.jpg",
    "focal_point": [
     0.5,
     0.62
@@ -482,7 +490,8 @@
      0.9752,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Apollo%208%20primary%20crew%20and%20backup%20crew%20portrait%20%28jsc2008e049010%29.jpg?width=600"
   },
   {
    "title": "Apollo 11 Lunar Module Eagle",
@@ -497,7 +506,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/AS11-44-6642%20(21689650582).jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/AS11-44-6642%20(21689650582).jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/10f2aafb042b0eb957b371bcf466b71d98e41ddb4d8da655d6c398ca7f2118eb.jpg",
    "focal_point": [
     0.4,
     0.71
@@ -535,7 +544,8 @@
      0.8,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/AS11-44-6642%20(21689650582).jpg?width=600"
   },
   {
    "title": "Hubble Space Telescope in Orbit",
@@ -550,7 +560,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/View%20of%20Hubble%20after%20Being%20Released%20from%20the%20Shuttle%20Atlantis%20%2828223588012%29.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/View%20of%20Hubble%20after%20Being%20Released%20from%20the%20Shuttle%20Atlantis%20%2828223588012%29.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/748b0a5b5536691f5bb8a40c6e3470dc92984211e07a87eadaa7b5ca26318a66.jpg",
    "featured_rank": 40,
    "license_verdict": "pd",
    "license_basis": "Public domain",
@@ -589,7 +599,8 @@
     ]
    },
    "delivered_edge": 3000,
-   "resolution_tier": "HD"
+   "resolution_tier": "HD",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/View%20of%20Hubble%20after%20Being%20Released%20from%20the%20Shuttle%20Atlantis%20%2828223588012%29.jpg?width=600"
   }
  ]
 }

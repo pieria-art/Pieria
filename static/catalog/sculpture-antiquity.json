@@ -18,7 +18,7 @@
    "source": "The Metropolitan Museum of Art",
    "license": "PDM-1.0",
    "source_url": "https://images.metmuseum.org/CRDImages/es/original/DP242660.jpg",
-   "thumbnail_url": "https://images.metmuseum.org/CRDImages/es/web-large/DP242660.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/be238c101a4ebb4e2a94be1357d04aedd8be751849126aa38894cb3bd3722aa4.jpg",
    "focal_point": [
     0.5,
     0.4
@@ -57,7 +57,8 @@
      1.0
     ]
    },
-   "current_repository": "The Metropolitan Museum of Art"
+   "current_repository": "The Metropolitan Museum of Art",
+   "thumbnail_source_url": "https://images.metmuseum.org/CRDImages/es/web-large/DP242660.jpg"
   },
   {
    "title": "Standing Figure with Jeweled Headdress",
@@ -72,7 +73,7 @@
    "source": "The Metropolitan Museum of Art",
    "license": "PDM-1.0",
    "source_url": "https://images.metmuseum.org/CRDImages/is/original/DP235240.jpg",
-   "thumbnail_url": "https://images.metmuseum.org/CRDImages/is/web-large/DP235240.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/bd3faaefd590fa8afd86a3ae5690a3b91ebea37f23236ba1bf822129cb9d9dc3.jpg",
    "focal_point": [
     0.5,
     0.18
@@ -110,7 +111,8 @@
      1.0,
      0.7144
     ]
-   }
+   },
+   "thumbnail_source_url": "https://images.metmuseum.org/CRDImages/is/web-large/DP235240.jpg"
   },
   {
    "title": "Bronze figure of a boy in Eastern dress",
@@ -125,7 +127,7 @@
    "source": "The Metropolitan Museum of Art",
    "license": "PDM-1.0",
    "source_url": "https://images.metmuseum.org/CRDImages/gr/original/DP-39819-001.jpg",
-   "thumbnail_url": "https://images.metmuseum.org/CRDImages/gr/web-large/DP-39819-001.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/f083a0aea475bacd9dfe7d12b745b7ef9021ff500112337eb9ee11ecc11f5577.jpg",
    "focal_point": [
     0.48,
     0.23
@@ -163,7 +165,8 @@
      1.0,
      0.6125
     ]
-   }
+   },
+   "thumbnail_source_url": "https://images.metmuseum.org/CRDImages/gr/web-large/DP-39819-001.jpg"
   },
   {
    "title": "Bronze statuette of a philosopher on a lamp stand",
@@ -178,7 +181,7 @@
    "source": "The Metropolitan Museum of Art",
    "license": "PDM-1.0",
    "source_url": "https://images.metmuseum.org/CRDImages/gr/original/DP337221.jpg",
-   "thumbnail_url": "https://images.metmuseum.org/CRDImages/gr/web-large/DP337221.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/26dcb81e10357371613a1903bb4c105a7f69418baa5667ab762a58822ff3bd77.jpg",
    "focal_point": [
     0.52,
     0.16
@@ -216,7 +219,8 @@
      1.0,
      0.5826
     ]
-   }
+   },
+   "thumbnail_source_url": "https://images.metmuseum.org/CRDImages/gr/web-large/DP337221.jpg"
   },
   {
    "title": "Marble torso of a boy",
@@ -231,7 +235,7 @@
    "source": "The Metropolitan Museum of Art",
    "license": "PDM-1.0",
    "source_url": "https://images.metmuseum.org/CRDImages/gr/original/DP-18346-001.jpg",
-   "thumbnail_url": "https://images.metmuseum.org/CRDImages/gr/web-large/DP-18346-001.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/46cec3942aa658faca29258e6b7b2c5721e99d573276031df24be63a661266a8.jpg",
    "focal_point": [
     0.45,
     0.4
@@ -269,7 +273,8 @@
      0.9941,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://images.metmuseum.org/CRDImages/gr/web-large/DP-18346-001.jpg"
   },
   {
    "title": "Limestone statue of Aphrodite holding winged Eros",
@@ -284,7 +289,7 @@
    "source": "The Metropolitan Museum of Art",
    "license": "PDM-1.0",
    "source_url": "https://images.metmuseum.org/CRDImages/gr/original/DP-17234-001.jpg",
-   "thumbnail_url": "https://images.metmuseum.org/CRDImages/gr/web-large/DP-17234-001.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/a5896018b12d5a38e90f8ac5aa7efb2e68d97a9530af3ccf07d4d4bf9b80a5dc.jpg",
    "focal_point": [
     0.48,
     0.22
@@ -322,7 +327,8 @@
      1.0,
      0.5925
     ]
-   }
+   },
+   "thumbnail_source_url": "https://images.metmuseum.org/CRDImages/gr/web-large/DP-17234-001.jpg"
   },
   {
    "title": "Marble portrait of the co-emperor Lucius Verus",
@@ -337,7 +343,7 @@
    "source": "The Metropolitan Museum of Art",
    "license": "PDM-1.0",
    "source_url": "https://images.metmuseum.org/CRDImages/gr/original/DP337237.jpg",
-   "thumbnail_url": "https://images.metmuseum.org/CRDImages/gr/web-large/DP337237.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/e8ca1ff97da3cffbd4e5c2345760ce856999ead03b9581bf3ebc6d58447de016.jpg",
    "focal_point": [
     0.43,
     0.38
@@ -375,7 +381,8 @@
      1.0,
      0.6426
     ]
-   }
+   },
+   "thumbnail_source_url": "https://images.metmuseum.org/CRDImages/gr/web-large/DP337237.jpg"
   },
   {
    "title": "Marble portrait bust of a woman",
@@ -390,7 +397,7 @@
    "source": "The Metropolitan Museum of Art",
    "license": "PDM-1.0",
    "source_url": "https://images.metmuseum.org/CRDImages/gr/original/DP345017.jpg",
-   "thumbnail_url": "https://images.metmuseum.org/CRDImages/gr/web-large/DP345017.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/eddc088d93436f7597a954a3f751cfa29b3da205765c293ca9000cb08d2f9d17.jpg",
    "focal_point": [
     0.45,
     0.32
@@ -428,7 +435,8 @@
      1.0,
      0.6026
     ]
-   }
+   },
+   "thumbnail_source_url": "https://images.metmuseum.org/CRDImages/gr/web-large/DP345017.jpg"
   },
   {
    "title": "Venus de Milo",
@@ -443,7 +451,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Ancient%20Greek%20Marble%20Aphrodite%20of%20Milos%20%28Venus%20de%20Milo%29%2C%20130-100%20BC%20%2828198787402%29.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Ancient%20Greek%20Marble%20Aphrodite%20of%20Milos%20%28Venus%20de%20Milo%29%2C%20130-100%20BC%20%2828198787402%29.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/ac1af3f24fdc93f7d89b969c7868dc6ce5bff1fa4682d85ea54225e4688b771e.jpg",
    "focal_point": [
     0.42,
     0.15
@@ -481,7 +489,8 @@
      1.0,
      0.9191
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Ancient%20Greek%20Marble%20Aphrodite%20of%20Milos%20%28Venus%20de%20Milo%29%2C%20130-100%20BC%20%2828198787402%29.jpg?width=600"
   },
   {
    "title": "Winged Victory of Samothrace",
@@ -496,7 +505,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Nike%20of%20Samothrace%2C%20Louvre.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Nike%20of%20Samothrace%2C%20Louvre.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/49f567dce738c37eb82ee85c6b8c2a95928bf6eab8920fef284cd2744bdfb1c2.jpg",
    "focal_point": [
     0.43,
     0.27
@@ -534,7 +543,8 @@
      0.73,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Nike%20of%20Samothrace%2C%20Louvre.jpg?width=600"
   },
   {
    "title": "Laocoön and His Sons",
@@ -549,7 +559,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Laoco%C3%B6n%20and%20his%20sons%20group.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Laoco%C3%B6n%20and%20his%20sons%20group.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/6d924e052c138f5610e52215f7dcb28155fee40e4812900f87766df4b6a8eb57.jpg",
    "focal_point": [
     0.4,
     0.13
@@ -589,7 +599,8 @@
     ]
    },
    "current_repository": "Pio-Clementino museum",
-   "physical_dimensions": "242.0 x 160.0 cm"
+   "physical_dimensions": "242.0 x 160.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Laoco%C3%B6n%20and%20his%20sons%20group.jpg?width=600"
   },
   {
    "title": "Pietà",
@@ -604,7 +615,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Michelangelo%27s%20Piet%C3%A0%20Saint%20Peter%27s%20Basilica%20Vatican%20City.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Michelangelo%27s%20Piet%C3%A0%20Saint%20Peter%27s%20Basilica%20Vatican%20City.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/8a193428c94a17899e7cb343edd50ae1cdc659400e183dbed7995bc489924c1c.jpg",
    "focal_point": [
     0.52,
     0.22
@@ -643,7 +654,8 @@
      0.8324,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Michelangelo%27s%20Piet%C3%A0%20Saint%20Peter%27s%20Basilica%20Vatican%20City.jpg?width=600"
   },
   {
    "title": "Moses",
@@ -658,7 +670,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Moses%20Michelangelo%202014%2001.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Moses%20Michelangelo%202014%2001.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/f0a7a0e018b671cd93a79ec3b9a0891795c5b62f3cd93a424aa25ffc637784d8.jpg",
    "focal_point": [
     0.5,
     0.36
@@ -696,7 +708,8 @@
      0.75,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Moses%20Michelangelo%202014%2001.jpg?width=600"
   },
   {
    "title": "Discobolus",
@@ -711,7 +724,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Discobolus%20face%20front.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Discobolus%20face%20front.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/15e7fd81f464b4789ce9e6151b9c51ff78b1f7c103c8ae14bf08f751396be4e3.jpg",
    "focal_point": [
     0.5,
     0.4
@@ -750,7 +763,8 @@
      1.0,
      0.5925
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Discobolus%20face%20front.jpg?width=600"
   },
   {
    "title": "The Thinker",
@@ -765,7 +779,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Auguste%20Rodin%20-%20The%20Thinker%20-%201917.42%20-%20Cleveland%20Museum%20of%20Art.tif?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Auguste%20Rodin%20-%20The%20Thinker%20-%201917.42%20-%20Cleveland%20Museum%20of%20Art.tif?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/f075cfe2b9f51c20b00ce35723317be1dfe5b188a5d9b3eab069409033580404.jpg",
    "focal_point": [
     0.68,
     0.27
@@ -805,7 +819,8 @@
     ]
    },
    "current_repository": "Cleveland Museum of Art",
-   "physical_dimensions": "Overall: 182.9 x 98.4 x 142.2 cm (72 x 38 3/4 x 56 in.)"
+   "physical_dimensions": "Overall: 182.9 x 98.4 x 142.2 cm (72 x 38 3/4 x 56 in.)",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Auguste%20Rodin%20-%20The%20Thinker%20-%201917.42%20-%20Cleveland%20Museum%20of%20Art.tif?width=600"
   },
   {
    "title": "The Kiss",
@@ -820,7 +835,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rodin%20The%20Kiss%2001.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rodin%20The%20Kiss%2001.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/cfd364d76fa44c0e83d3a1d88245e78adae1e88f2960cbe4937a8c77d5f882a6.jpg",
    "focal_point": [
     0.52,
     0.14
@@ -860,7 +875,8 @@
     ]
    },
    "current_repository": "National Museum in Warsaw",
-   "physical_dimensions": "73.0 cm"
+   "physical_dimensions": "73.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rodin%20The%20Kiss%2001.jpg?width=600"
   }
  ]
 }

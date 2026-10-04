@@ -18,7 +18,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Mona%20Lisa%2C%20by%20Leonardo%20da%20Vinci%2C%20from%20C2RMF.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Mona%20Lisa%2C%20by%20Leonardo%20da%20Vinci%2C%20from%20C2RMF.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/3bc122beb56ddb624adf9be9d97fbb9f1b323e6aa5edc60bbb2b9e98132677a6.jpg",
    "focal_point": [
     0.5,
     0.28
@@ -56,7 +56,8 @@
      1.0,
      0.9309
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Mona%20Lisa%2C%20by%20Leonardo%20da%20Vinci%2C%20from%20C2RMF.jpg?width=600"
   },
   {
    "title": "The Last Supper",
@@ -71,7 +72,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Last%20Supper%20-%20Leonardo%20Da%20Vinci%20-%20High%20Resolution%2032x16.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Last%20Supper%20-%20Leonardo%20Da%20Vinci%20-%20High%20Resolution%2032x16.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/0c3777764be77abf84288a3a934c01a77902b30206e92bd344b0229494e83bbc.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -109,7 +110,8 @@
      0.6875,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Last%20Supper%20-%20Leonardo%20Da%20Vinci%20-%20High%20Resolution%2032x16.jpg?width=600"
   },
   {
    "title": "Under the Wave off Kanagawa",
@@ -125,7 +127,7 @@
    "source": "The Metropolitan Museum of Art",
    "license": "PDM-1.0",
    "source_url": "https://images.metmuseum.org/CRDImages/as/original/DP130155.jpg",
-   "thumbnail_url": "https://images.metmuseum.org/CRDImages/as/web-large/DP130155.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/978917759c08b576679406470cc93b02aaba013c00f82664e2d6afe18366ccda.jpg",
    "featured_rank": 99,
    "license_verdict": "pd",
    "license_basis": "CC0 (Met Open Access)",
@@ -166,7 +168,8 @@
     ]
    },
    "delivered_edge": 3859,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://images.metmuseum.org/CRDImages/as/web-large/DP130155.jpg"
   },
   {
    "title": "The Starry Night",
@@ -181,7 +184,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Van%20Gogh%20-%20Starry%20Night%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Van%20Gogh%20-%20Starry%20Night%20-%20Google%20Art%20Project.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/2b067be4a4a531fffba09a0bc687d30946d11e65b27e7a302da2b6d85e47797b.jpg",
    "focal_point": [
     0.45,
     0.35
@@ -219,7 +222,8 @@
      0.6727,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Van%20Gogh%20-%20Starry%20Night%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
    "title": "The Scream",
@@ -234,7 +238,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Edvard%20Munch%2C%201893%2C%20The%20Scream%2C%20oil%2C%20tempera%20and%20pastel%20on%20cardboard%2C%2091%20x%2073%20cm%2C%20National%20Gallery%20of%20Norway.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Edvard%20Munch%2C%201893%2C%20The%20Scream%2C%20oil%2C%20tempera%20and%20pastel%20on%20cardboard%2C%2091%20x%2073%20cm%2C%20National%20Gallery%20of%20Norway.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/c68f81f0cc0b0bcdb641911de8298dbb350c144cf85782c1bb7299d7c31fe0d6.jpg",
    "focal_point": [
     0.55,
     0.72
@@ -273,7 +277,8 @@
      1.0
     ]
    },
-   "current_repository": "National Museum of Art"
+   "current_repository": "National Museum of Art",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Edvard%20Munch%2C%201893%2C%20The%20Scream%2C%20oil%2C%20tempera%20and%20pastel%20on%20cardboard%2C%2091%20x%2073%20cm%2C%20National%20Gallery%20of%20Norway.jpg?width=600"
   },
   {
    "title": "Primavera",
@@ -288,7 +293,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Botticelli-primavera.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Botticelli-primavera.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/e3f7b1619bb9021ed79e287bba8d8af18873a7a5a47889c36f3b52cad0f08b61.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -326,7 +331,8 @@
      0.7263,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Botticelli-primavera.jpg?width=600"
   },
   {
    "title": "The Night Watch",
@@ -341,7 +347,7 @@
    "source": "Rijksmuseum",
    "license": "PDM-1.0",
    "source_url": "https://iiif.micr.io/PJEZO/full/max/0/default.jpg",
-   "thumbnail_url": "https://iiif.micr.io/PJEZO/full/400,/0/default.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/2d23f8a178fe2941ec775fe19a364d203cd91358197cc5362d9972bd8546f249.jpg",
    "focal_point": [
     0.5,
     0.4
@@ -379,7 +385,8 @@
      0.8128,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://iiif.micr.io/PJEZO/full/400,/0/default.jpg"
   },
   {
    "title": "Girl with a Pearl Earring",
@@ -394,7 +401,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Johannes%20Vermeer%20-%20Girl%20with%20a%20Pearl%20Earring%20-%20670%20-%20Mauritshuis.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Johannes%20Vermeer%20-%20Girl%20with%20a%20Pearl%20Earring%20-%20670%20-%20Mauritshuis.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/9895ab7f8512b2761a28309e7461e9c17b4a9b9330a430b61f49b2a09008b897.jpg",
    "focal_point": [
     0.42,
     0.42
@@ -432,7 +439,8 @@
      0.944,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Johannes%20Vermeer%20-%20Girl%20with%20a%20Pearl%20Earring%20-%20670%20-%20Mauritshuis.jpg?width=600"
   },
   {
    "title": "Portrait of Adele Bloch-Bauer I",
@@ -447,7 +455,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Adele%20Bloch-Bauer.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Adele%20Bloch-Bauer.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/f4b937a85aaf362817d2e5ec0cce9efe75126d933c067d04e2dc57b30e475847.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -485,7 +493,8 @@
      1.0,
      0.5627
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Adele%20Bloch-Bauer.jpg?width=600"
   },
   {
    "title": "Water Lilies",
@@ -500,7 +509,7 @@
    "source": "Art Institute of Chicago",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Claude%20Monet%20-%20Water%20Lilies%20-%201906%2C%20Ryerson.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Claude%20Monet%20-%20Water%20Lilies%20-%201906%2C%20Ryerson.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/fd0ded501fc07d5060cc3c1deba36a9222d7575681846bedbb4dcae9abe5e863.jpg",
    "focal_point": [
     0.5,
     0.7
@@ -541,7 +550,8 @@
    },
    "below_floor_ok": true,
    "current_repository": "Art Institute of Chicago",
-   "physical_dimensions": "89.9 × 94.1 cm (35 3/8 × 37 1/16 in.); Framed: 103.2 × 107 × 5.8 cm (40 5/8 × 42 1/8 × 2 1/4 in.)"
+   "physical_dimensions": "89.9 × 94.1 cm (35 3/8 × 37 1/16 in.); Framed: 103.2 × 107 × 5.8 cm (40 5/8 × 42 1/8 × 2 1/4 in.)",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Claude%20Monet%20-%20Water%20Lilies%20-%201906%2C%20Ryerson.jpg?width=600"
   },
   {
    "title": "Irises",
@@ -556,7 +566,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Irises-Vincent%20van%20Gogh.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Irises-Vincent%20van%20Gogh.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/ba5f4f956ad727ad4c6ae1464985f6a9560021b3e76d2e3113dfddcaf6df6672.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -596,7 +606,8 @@
     ]
    },
    "current_repository": "J. Paul Getty Museum",
-   "physical_dimensions": "74.3 x 94.3 cm"
+   "physical_dimensions": "74.3 x 94.3 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Irises-Vincent%20van%20Gogh.jpg?width=600"
   },
   {
    "title": "The Creation of Adam",
@@ -611,7 +622,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sistine%20Chapel%20ceiling%2C%20Creation%20of%20Adam.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sistine%20Chapel%20ceiling%2C%20Creation%20of%20Adam.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/893a1500ef465050db99084e0b3a97e002ab3da6d9d287c6bbde2b42e1980ab9.jpg",
    "focal_point": [
     0.5,
     0.46
@@ -650,7 +661,8 @@
      1.0
     ]
    },
-   "physical_dimensions": "155.0 x 270.0 cm"
+   "physical_dimensions": "155.0 x 270.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sistine%20Chapel%20ceiling%2C%20Creation%20of%20Adam.jpg?width=600"
   },
   {
    "title": "American Gothic",
@@ -665,7 +677,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Grant%20Wood%20-%20American%20Gothic%20%281930%29.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Grant%20Wood%20-%20American%20Gothic%20%281930%29.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/33669ac84025f55d101d48a98289a2c5e5970dc8bff1e246992a1ad54e017706.jpg",
    "focal_point": [
     0.66,
     0.27
@@ -705,7 +717,8 @@
     ]
    },
    "current_repository": "Art Institute of Chicago",
-   "physical_dimensions": "78.0 x 65.3 cm"
+   "physical_dimensions": "78.0 x 65.3 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Grant%20Wood%20-%20American%20Gothic%20%281930%29.jpg?width=600"
   },
   {
    "title": "Sunflowers",
@@ -720,7 +733,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Vincent%20van%20Gogh%20-%20Sunflowers%20%281888%2C%20National%20Gallery%20London%29.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Vincent%20van%20Gogh%20-%20Sunflowers%20%281888%2C%20National%20Gallery%20London%29.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/558ff43e3e8a6155f79876be55563e13f8cf286f3e45b071dd592fb5240328b7.jpg",
    "focal_point": [
     0.5,
     0.42
@@ -760,7 +773,8 @@
     ]
    },
    "current_repository": "National Gallery",
-   "physical_dimensions": "92.1 x 73.0 cm"
+   "physical_dimensions": "92.1 x 73.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Vincent%20van%20Gogh%20-%20Sunflowers%20%281888%2C%20National%20Gallery%20London%29.jpg?width=600"
   },
   {
    "title": "Olympia",
@@ -775,7 +789,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Edouard%20Manet%20-%20Olympia%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Edouard%20Manet%20-%20Olympia%20-%20Google%20Art%20Project.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/98c63704cbeeb4f82194eb67d3384c8fe104e32d8878444ab97a724963b7d8ce.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -813,7 +827,8 @@
      0.5737,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Edouard%20Manet%20-%20Olympia%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
    "title": "The Birth of Venus",
@@ -828,7 +843,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Birth%20of%20Venus%20%28Botticelli%29%201.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Birth%20of%20Venus%20%28Botticelli%29%201.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/2359f166c827685d07025f7c3cbc3e7f3ead3328cfa6237bffa518641465a7eb.jpg",
    "focal_point": [
     0.52,
     0.18
@@ -866,7 +881,8 @@
      0.7272,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Birth%20of%20Venus%20%28Botticelli%29%201.jpg?width=600"
   },
   {
    "title": "The Last Judgment",
@@ -881,7 +897,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Last%20Judgement%20%28Michelangelo%29.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Last%20Judgement%20%28Michelangelo%29.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/bbe02e39a39ddae50ab307bf1d16c6aeb67f418dcf426b10931d8d060e51035b.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -919,7 +935,8 @@
      0.9131,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Last%20Judgement%20%28Michelangelo%29.jpg?width=600"
   },
   {
    "title": "Nighthawks",
@@ -934,7 +951,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Nighthawks%20by%20Edward%20Hopper.png?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Nighthawks%20by%20Edward%20Hopper.png?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/23f944c72940874194a1bb977b2d0f782b7449d698b51419207121af04c49ca4.jpg",
    "focal_point": [
     0.66,
     0.55
@@ -972,7 +989,8 @@
      0.9249,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Nighthawks%20by%20Edward%20Hopper.png?width=600"
   },
   {
    "title": "Las Meninas",
@@ -987,7 +1005,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Las%20Meninas%2C%20by%20Diego%20Vel%C3%A1zquez%2C%20from%20Prado%20in%20Google%20Earth.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Las%20Meninas%2C%20by%20Diego%20Vel%C3%A1zquez%2C%20from%20Prado%20in%20Google%20Earth.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/74839bd2f8fc1358a02fdee9cd89879f890b8c808cb74a278f74c153f08464d7.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1025,7 +1043,8 @@
      0.9231,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Las%20Meninas%2C%20by%20Diego%20Vel%C3%A1zquez%2C%20from%20Prado%20in%20Google%20Earth.jpg?width=600"
   },
   {
    "title": "View of Delft",
@@ -1040,7 +1059,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Johannes%20Vermeer%20-%20View%20of%20Delft%20-%2092%20-%20Mauritshuis.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Johannes%20Vermeer%20-%20View%20of%20Delft%20-%2092%20-%20Mauritshuis.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/767df5e6f996cdd5bf3ca19fa4e792811237727c510bf4dca41a81f36bf478ed.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1079,7 +1098,8 @@
      1.0
     ]
    },
-   "physical_dimensions": "96.5 x 115.7 cm"
+   "physical_dimensions": "96.5 x 115.7 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Johannes%20Vermeer%20-%20View%20of%20Delft%20-%2092%20-%20Mauritshuis.jpg?width=600"
   },
   {
    "title": "Luncheon of the Boating Party",
@@ -1094,7 +1114,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pierre-Auguste%20Renoir%20-%20Luncheon%20of%20the%20Boating%20Party%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pierre-Auguste%20Renoir%20-%20Luncheon%20of%20the%20Boating%20Party%20-%20Google%20Art%20Project.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/340f90fb1db8354940286a9c8f009c05ee743b3464eebfa764a9f5339c4039ec.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1132,7 +1152,8 @@
      0.7055,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pierre-Auguste%20Renoir%20-%20Luncheon%20of%20the%20Boating%20Party%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
    "title": "Luncheon on the Grass",
@@ -1147,7 +1168,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Edouard%20Manet%20-%20Luncheon%20on%20the%20Grass%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Edouard%20Manet%20-%20Luncheon%20on%20the%20Grass%20-%20Google%20Art%20Project.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/504d53f905898eb340d654789ea953c1072aebcb9ee2ac4e202d7c545eab4238.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1185,7 +1206,8 @@
      0.6429,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Edouard%20Manet%20-%20Luncheon%20on%20the%20Grass%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
    "title": "Dance at Le Moulin de la Galette",
@@ -1200,7 +1222,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Auguste%20Renoir%20-%20Dance%20at%20Le%20Moulin%20de%20la%20Galette%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Auguste%20Renoir%20-%20Dance%20at%20Le%20Moulin%20de%20la%20Galette%20-%20Google%20Art%20Project.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/49c45f9339dbd22847ba89512dab1e1ddfc3d4ef5613219c6b305c78cbabfe01.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1238,7 +1260,8 @@
      0.7486,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Auguste%20Renoir%20-%20Dance%20at%20Le%20Moulin%20de%20la%20Galette%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
    "title": "The Kiss",
@@ -1253,7 +1276,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Kiss%20-%20Gustav%20Klimt%20-%20Google%20Cultural%20Institute.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Kiss%20-%20Gustav%20Klimt%20-%20Google%20Cultural%20Institute.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/8948bec6d8008217a36d7c67ada187d6fe9b99b8f8c65e3fb297a903016e4171.jpg",
    "focal_point": [
     0.45,
     0.22
@@ -1292,7 +1315,8 @@
      1.0
     ]
    },
-   "physical_dimensions": "180.0 x 180.0 cm"
+   "physical_dimensions": "180.0 x 180.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Kiss%20-%20Gustav%20Klimt%20-%20Google%20Cultural%20Institute.jpg?width=600"
   },
   {
    "title": "The Sleeping Gypsy",
@@ -1307,7 +1331,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Henri%20Rousseau%20-%20La%20zingara%20addormentata.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Henri%20Rousseau%20-%20La%20zingara%20addormentata.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/667e6f871a6418bf0a43eef0fa75f7bcda26f5bfe479d57380355fe21505287e.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1345,7 +1369,8 @@
      0.7248,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Henri%20Rousseau%20-%20La%20zingara%20addormentata.jpg?width=600"
   },
   {
    "title": "The Bedroom (Amsterdam version, 1888)",
@@ -1360,7 +1385,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Vincent%20van%20Gogh%20-%20De%20slaapkamer%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Vincent%20van%20Gogh%20-%20De%20slaapkamer%20-%20Google%20Art%20Project.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/b422275bdabcdcaf618749a8ab109c41ed506cbccd944e35a3cd79d3faa82c9b.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1398,7 +1423,8 @@
      0.9952,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Vincent%20van%20Gogh%20-%20De%20slaapkamer%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
    "title": "The Hay Wain",
@@ -1413,7 +1439,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/John-constable-the-hay-wain.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/John-constable-the-hay-wain.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/daaec1404b6eb78228eece88ef2d22817141c337b57bad119a8028156ca465ab.jpg",
    "license_verdict": "pd",
    "license_basis": "CC0",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1451,7 +1477,8 @@
      0.8386,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/John-constable-the-hay-wain.jpg?width=600"
   },
   {
    "title": "The Fighting Temeraire",
@@ -1466,7 +1493,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Fighting%20Temeraire%2C%20JMW%20Turner%2C%20National%20Gallery.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Fighting%20Temeraire%2C%20JMW%20Turner%2C%20National%20Gallery.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/02b212b0866823e7ba72d3b974502b8ddcb93f16dfc78f775d82d7dfe68ceddd.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1504,7 +1531,8 @@
      0.6072,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Fighting%20Temeraire%2C%20JMW%20Turner%2C%20National%20Gallery.jpg?width=600"
   },
   {
    "title": "The Anatomy Lesson of Dr. Nicolaes Tulp",
@@ -1519,7 +1547,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20van%20Rijn%20-%20The%20Anatomy%20Lesson%20of%20Dr%20Nicolaes%20Tulp%20-%20146%20-%20Mauritshuis.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20van%20Rijn%20-%20The%20Anatomy%20Lesson%20of%20Dr%20Nicolaes%20Tulp%20-%20146%20-%20Mauritshuis.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/890b1f4c9977f27279ef74f8d1de86233ad42aa8250bf46d25208d161e9ec8e7.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1557,7 +1585,8 @@
      0.833,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20van%20Rijn%20-%20The%20Anatomy%20Lesson%20of%20Dr%20Nicolaes%20Tulp%20-%20146%20-%20Mauritshuis.jpg?width=600"
   },
   {
    "title": "The Art of Painting",
@@ -1572,7 +1601,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jan%20Vermeer%20-%20The%20Art%20of%20Painting%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jan%20Vermeer%20-%20The%20Art%20of%20Painting%20-%20Google%20Art%20Project.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/b43d7b6a9877a0104c3608abe4fd008e52ef43fc9283356dff7264e16f6eb628.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1610,7 +1639,8 @@
      0.921,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jan%20Vermeer%20-%20The%20Art%20of%20Painting%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
    "title": "The Return of the Prodigal Son",
@@ -1625,7 +1655,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20Harmensz%20van%20Rijn%20-%20Return%20of%20the%20Prodigal%20Son%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20Harmensz%20van%20Rijn%20-%20Return%20of%20the%20Prodigal%20Son%20-%20Google%20Art%20Project.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/c1d58f6655a628f94f0f35d47a6e4ae8ddd928d994da7dc8521a2461a3c1f3f9.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1663,7 +1693,8 @@
      1.0,
      0.7656
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20Harmensz%20van%20Rijn%20-%20Return%20of%20the%20Prodigal%20Son%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
    "title": "The Arnolfini Portrait",
@@ -1678,7 +1709,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Van%20Eyck%20-%20Arnolfini%20Portrait.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Van%20Eyck%20-%20Arnolfini%20Portrait.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/5f04fb4902a6d5a4a9ba6440955074084894ad61fc0769a6ba6f35317d54be65.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1717,7 +1748,8 @@
      0.9874
     ]
    },
-   "current_repository": "National Gallery"
+   "current_repository": "National Gallery",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Van%20Eyck%20-%20Arnolfini%20Portrait.jpg?width=600"
   },
   {
    "title": "A Sunday on La Grande Jatte — 1884",
@@ -1732,7 +1764,7 @@
    "source": "Art Institute of Chicago",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/A%20Sunday%20on%20La%20Grande%20Jatte%2C%20Georges%20Seurat%2C%201884.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/A%20Sunday%20on%20La%20Grande%20Jatte%2C%20Georges%20Seurat%2C%201884.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/80ca8c043c7224b1d2e7f20eb17ea97a4ad723c1d1f60f31500f7920363f8ccf.jpg",
    "focal_point": [
     0.78,
     0.4
@@ -1772,7 +1804,8 @@
     ]
    },
    "current_repository": "Art Institute of Chicago",
-   "physical_dimensions": "207.5 × 308.1 cm (81 3/4 × 121 1/4 in.)"
+   "physical_dimensions": "207.5 × 308.1 cm (81 3/4 × 121 1/4 in.)",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/A%20Sunday%20on%20La%20Grande%20Jatte%2C%20Georges%20Seurat%2C%201884.jpg?width=600"
   },
   {
    "title": "Café Terrace at Night",
@@ -1787,7 +1820,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Van%20Gogh%20-%20Terrace%20of%20a%20Caf%C3%A9%20at%20Night%20%28Place%20du%20Forum%29%201888.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Van%20Gogh%20-%20Terrace%20of%20a%20Caf%C3%A9%20at%20Night%20%28Place%20du%20Forum%29%201888.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/80c09a63c79ce829c0029eea5413b35ae63c4eabc5f70b58d5daf01413247f5a.jpg",
    "focal_point": [
     0.32,
     0.55
@@ -1827,7 +1860,8 @@
     ]
    },
    "current_repository": "Kröller-Müller Museum",
-   "physical_dimensions": "80.7 x 65.3 cm"
+   "physical_dimensions": "80.7 x 65.3 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Van%20Gogh%20-%20Terrace%20of%20a%20Caf%C3%A9%20at%20Night%20%28Place%20du%20Forum%29%201888.jpg?width=600"
   },
   {
    "title": "Starry Night Over the Rhône",
@@ -1842,7 +1876,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Starry%20Night%20Over%20the%20Rhone.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Starry%20Night%20Over%20the%20Rhone.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/60c088e2907709c8179a36807c1df04e3f7a5330e5721104feefe36452e83156.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1880,7 +1914,8 @@
      1.0,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Starry%20Night%20Over%20the%20Rhone.jpg?width=600"
   },
   {
    "title": "Wheatfield with Cypresses",
@@ -1895,7 +1930,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Vincent%20van%20Gogh%20-%20A%20Wheatfield%2C%20with%20Cypressess%20%281889%29.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Vincent%20van%20Gogh%20-%20A%20Wheatfield%2C%20with%20Cypressess%20%281889%29.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/42c9a348f3578aa0bc82087e11b98102d8d4af063f911cae9d8840c6c0347f76.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1934,7 +1969,8 @@
      1.0
     ]
    },
-   "current_repository": "National Gallery, London"
+   "current_repository": "National Gallery, London",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Vincent%20van%20Gogh%20-%20A%20Wheatfield%2C%20with%20Cypressess%20%281889%29.jpg?width=600"
   },
   {
    "title": "The School of Athens",
@@ -1949,7 +1985,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/%22School%20of%20Athens%22%20by%20Raphael%2C%20Raphael%20Rooms%2C%20Vatican%20Museum%20%2848466167851%29.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/%22School%20of%20Athens%22%20by%20Raphael%2C%20Raphael%20Rooms%2C%20Vatican%20Museum%20%2848466167851%29.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/59b23ac0023fe69cb1f7fe9ceeb6d28d89f60f1727585dbfa741bfbaf6a1acc1.jpg",
    "focal_point": [
     0.5,
     0.46
@@ -1987,7 +2023,8 @@
      0.75,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/%22School%20of%20Athens%22%20by%20Raphael%2C%20Raphael%20Rooms%2C%20Vatican%20Museum%20%2848466167851%29.jpg?width=600"
   },
   {
    "title": "Bacchus and Ariadne",
@@ -2002,7 +2039,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/%22Bacchus%20and%20Ariadne%22%20by%20Titian%20-%20National%20Gallery%2C%20London%20-%20Joy%20of%20Museums.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/%22Bacchus%20and%20Ariadne%22%20by%20Titian%20-%20National%20Gallery%2C%20London%20-%20Joy%20of%20Museums.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/c471d6bb417999767bcb85f417dccfe945324143ba2e1908ab6989bf70cbfad8.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -2040,7 +2077,8 @@
      0.9328,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/%22Bacchus%20and%20Ariadne%22%20by%20Titian%20-%20National%20Gallery%2C%20London%20-%20Joy%20of%20Museums.jpg?width=600"
   },
   {
    "title": "Virgin of the Rocks",
@@ -2055,7 +2093,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Leonardo%20da%20Vinci%20-%20Virgin%20of%20the%20Rocks%20%28National%20Gallery%20London%29%2002.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Leonardo%20da%20Vinci%20-%20Virgin%20of%20the%20Rocks%20%28National%20Gallery%20London%29%2002.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/136f6a4d25f041181325ec9c1c9d0c01b074a7039a8eaf1e209270fd97cfe6b2.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -2094,7 +2132,8 @@
      0.9438
     ]
    },
-   "current_repository": "National Gallery"
+   "current_repository": "National Gallery",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Leonardo%20da%20Vinci%20-%20Virgin%20of%20the%20Rocks%20%28National%20Gallery%20London%29%2002.jpg?width=600"
   },
   {
    "title": "The Raft of the Medusa",
@@ -2109,7 +2148,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Th%C3%A9odore%20G%C3%A9ricault%20-%20The%20Raft%20of%20the%20Medusa%20-%20WGA08630.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Th%C3%A9odore%20G%C3%A9ricault%20-%20The%20Raft%20of%20the%20Medusa%20-%20WGA08630.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/f46c2137544d82bf3a3e7ae112a2a4b016d0a0f6f243e27f5ca19823170711aa.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -2147,7 +2186,8 @@
      0.9498,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Th%C3%A9odore%20G%C3%A9ricault%20-%20The%20Raft%20of%20the%20Medusa%20-%20WGA08630.jpg?width=600"
   }
  ]
 }

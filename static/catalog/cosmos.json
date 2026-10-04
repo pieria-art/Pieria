@@ -18,7 +18,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pillars%20of%20Creation%20%28NIRCam%20Image%29.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pillars%20of%20Creation%20%28NIRCam%20Image%29.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/0f570b8ed00a3a90e99e3c11a667e57b537ed86295c1bed3c0404fd0ace7a757.jpg",
    "focal_point": [
     0.5,
     0.45
@@ -56,7 +56,8 @@
      1.0,
      0.8695
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pillars%20of%20Creation%20%28NIRCam%20Image%29.jpg?width=600"
   },
   {
    "title": "Cosmic Cliffs Carina Nebula",
@@ -71,7 +72,7 @@
    "source": "Webb",
    "license": "PDM-1.0",
    "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2022/07/STScI-01GA6KKWG229B16K4Q38CH3BXS.png",
-   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2022/07/STScI-01GA6KKWG229B16K4Q38CH3BXS.png/jcr:content/renditions/2000x1158.png",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/500bd610238bc87aaa10ad0a4fe94a30fc655ad1addf9ecf7f9acabf8b59ed3f.jpg",
    "featured_rank": 75,
    "license_verdict": "pd",
    "license_basis": "Public domain (NASA/STScI release)",
@@ -110,7 +111,8 @@
     0.4
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "thumbnail_source_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2022/07/STScI-01GA6KKWG229B16K4Q38CH3BXS.png/jcr:content/renditions/2000x1158.png"
   },
   {
    "title": "Hubble Ultra Deep Field",
@@ -125,7 +127,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Hubble%20ultra%20deep%20field%20high%20rez%20edit1.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Hubble%20ultra%20deep%20field%20high%20rez%20edit1.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/b5ace77c42691f836a5dd73ab5d89c7cec38173936790543c5f1816e59a499f7.jpg",
    "focal_point": [
     0.5,
     0.5
@@ -163,7 +165,8 @@
      0.875,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Hubble%20ultra%20deep%20field%20high%20rez%20edit1.jpg?width=600"
   },
   {
    "title": "Sombrero Galaxy",
@@ -178,7 +181,7 @@
    "source": "Webb",
    "license": "PDM-1.0",
    "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2025/06/STScI-01JWC17WKB372KQ7BM0KYZS0J5.png",
-   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2025/06/STScI-01JWC17WKB372KQ7BM0KYZS0J5.png/jcr:content/renditions/2000x1867.png",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/d6fd3ff947896dc8aacebdbe79c7449a514fe55c0f4e4c6758e7517e64659948.jpg",
    "featured_rank": 60,
    "license_verdict": "pd",
    "license_basis": "Public domain (NASA/STScI release)",
@@ -217,7 +220,8 @@
     0.49
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "thumbnail_source_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2025/06/STScI-01JWC17WKB372KQ7BM0KYZS0J5.png/jcr:content/renditions/2000x1867.png"
   },
   {
    "title": "Crab Nebula",
@@ -232,7 +236,7 @@
    "source": "Webb",
    "license": "PDM-1.0",
    "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2023/10/STScI-01HBBMF6GFYQG7ECGX1WD3W92B.png",
-   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2023/10/STScI-01HBBMF6GFYQG7ECGX1WD3W92B.png/jcr:content/renditions/2000x1742.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/19b6e568b5531d7088b87608ea959c1c5396320f39899e6ed3f83b3ec72e75e7.jpg",
    "featured_rank": 65,
    "license_verdict": "pd",
    "license_basis": "Public domain (NASA/STScI release)",
@@ -271,7 +275,8 @@
     0.5
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "thumbnail_source_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2023/10/STScI-01HBBMF6GFYQG7ECGX1WD3W92B.png/jcr:content/renditions/2000x1742.jpg"
   },
   {
    "title": "Horsehead Nebula",
@@ -286,7 +291,7 @@
    "source": "Webb",
    "license": "PDM-1.0",
    "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2024/04/STScI-01HV4CG0EACM1MC07E10X19KNX.png",
-   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2024/04/STScI-01HV4CG0EACM1MC07E10X19KNX.png/jcr:content/renditions/1987x2000.png",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/a961edd656c13d106884f8bfeda2c740e37daaf7320aca616ea8a962266ea5b6.jpg",
    "featured_rank": 75,
    "license_verdict": "pd",
    "license_basis": "Public domain (NASA/STScI release)",
@@ -325,7 +330,8 @@
     0.72
    ],
    "delivered_edge": 4187,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2024/04/STScI-01HV4CG0EACM1MC07E10X19KNX.png/jcr:content/renditions/1987x2000.png"
   },
   {
    "title": "Andromeda Galaxy",
@@ -340,7 +346,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Andromeda%20Galaxy%20Hubble%20M31Mosaic%202025%2042208x9870.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Andromeda%20Galaxy%20Hubble%20M31Mosaic%202025%2042208x9870.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/d57e9f4d81b727a701a963a464419f7a60f1985fa48f04d0e4a4208519968acf.jpg",
    "focal_point": [
     0.42,
     0.55
@@ -378,7 +384,8 @@
      0.4877,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Andromeda%20Galaxy%20Hubble%20M31Mosaic%202025%2042208x9870.jpg?width=600"
   },
   {
    "title": "Veil Nebula",
@@ -393,7 +400,7 @@
    "source": "Hubble",
    "license": "PDM-1.0",
    "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2015/09/STScI-01EVT2C45NSH3P4GTPXYY828KC.tif/jcr:content/renditions/10681x7121.jpg",
-   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2015/09/STScI-01EVT2C45NSH3P4GTPXYY828KC.tif/jcr:content/renditions/1280x853.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/274129571e50c7743066201f98822dc0ed06ef7940661699645b56f2b9b111c6.jpg",
    "featured_rank": 40,
    "license_verdict": "pd",
    "license_basis": "Public domain (NASA/STScI release)",
@@ -433,7 +440,8 @@
     0.55
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "thumbnail_source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2015/09/STScI-01EVT2C45NSH3P4GTPXYY828KC.tif/jcr:content/renditions/1280x853.jpg"
   },
   {
    "title": "Southern Ring Nebula Webb",
@@ -448,7 +456,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Webb%20Space%20Telescope%20Studies%20the%20Southern%20Ring%20Nebula%20%28SVS31284%20-%2052551161139%20deec534918%20o%29.png?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Webb%20Space%20Telescope%20Studies%20the%20Southern%20Ring%20Nebula%20%28SVS31284%20-%2052551161139%20deec534918%20o%29.png?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/5d2da061228aecf170fd57befb854dafb5ec245c92b36cc7ba7cdab18379d21c.jpg",
    "focal_point": [
     0.28,
     0.45
@@ -486,7 +494,8 @@
      0.4617,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Webb%20Space%20Telescope%20Studies%20the%20Southern%20Ring%20Nebula%20%28SVS31284%20-%2052551161139%20deec534918%20o%29.png?width=600"
   },
   {
    "title": "Stephan's Quintet Webb",
@@ -501,7 +510,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Stephan%27s%20Quintet%20taken%20by%20James%20Webb%20Space%20Telescope.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Stephan%27s%20Quintet%20taken%20by%20James%20Webb%20Space%20Telescope.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/80cf15b7ddd916337e3059cb2a2a102a4b80d9877c5ae1b3d02069f09f969f76.jpg",
    "focal_point": [
     0.6,
     0.45
@@ -539,7 +548,8 @@
      0.8591,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Stephan%27s%20Quintet%20taken%20by%20James%20Webb%20Space%20Telescope.jpg?width=600"
   },
   {
    "title": "Eagle Nebula",
@@ -554,7 +564,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Fairy%20of%20Eagle%20Nebula.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Fairy%20of%20Eagle%20Nebula.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/3cf82dcc511465a10e321ac66dc954ce2ca8d8631e348ebe129b571be3fc5559.jpg",
    "focal_point": [
     0.4,
     0.2
@@ -592,7 +602,8 @@
      1.0,
      0.7088
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Fairy%20of%20Eagle%20Nebula.jpg?width=600"
   },
   {
    "title": "Tarantula Nebula Webb",
@@ -607,7 +618,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tarantula%20Nebula%20by%20JWST.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tarantula%20Nebula%20by%20JWST.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/58d39b5e1a3dffcedd94240051387214447e4e6e8935b99f818c6cd36d1d1d83.jpg",
    "focal_point": [
     0.5,
     0.55
@@ -645,7 +656,8 @@
      0.7168,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tarantula%20Nebula%20by%20JWST.jpg?width=600"
   },
   {
    "title": "Helix Nebula",
@@ -660,7 +672,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Comets%20Kick%20up%20Dust%20in%20Helix%20Nebula%20%28PIA09178%29.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Comets%20Kick%20up%20Dust%20in%20Helix%20Nebula%20%28PIA09178%29.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/2bb39017d68d03edc4c85465590be5977a784cefdb94905234c8f2bf4948d054.jpg",
    "focal_point": [
     0.47,
     0.5
@@ -698,7 +710,8 @@
      0.8119,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Comets%20Kick%20up%20Dust%20in%20Helix%20Nebula%20%28PIA09178%29.jpg?width=600"
   },
   {
    "title": "Ring Nebula",
@@ -713,7 +726,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Hubble%20reveals%20the%20Ring%20Nebula%E2%80%99s%20true%20shape.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Hubble%20reveals%20the%20Ring%20Nebula%E2%80%99s%20true%20shape.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/37bb40a30722478b03090028964ac8fbc8a8ded369ce6666ddf3cc5362a58c5a.jpg",
    "focal_point": [
     0.5,
     0.52
@@ -751,7 +764,8 @@
      0.8482,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Hubble%20reveals%20the%20Ring%20Nebula%E2%80%99s%20true%20shape.jpg?width=600"
   },
   {
    "title": "Orion Nebula",
@@ -766,7 +780,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Orion%20Nebula%20-%20Hubble%202006%20mosaic%2018000.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Orion%20Nebula%20-%20Hubble%202006%20mosaic%2018000.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/9de8a0ab1bd94a3de8745ba87d9a72bcd3dd10f7abbd8cb38e1f29c558445ea2.jpg",
    "focal_point": [
     0.45,
     0.48
@@ -804,7 +818,8 @@
      0.775,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Orion%20Nebula%20-%20Hubble%202006%20mosaic%2018000.jpg?width=600"
   },
   {
    "title": "Pinwheel Galaxy",
@@ -819,7 +834,7 @@
    "source": "Chandra (+ composite)",
    "license": "PDM-1.0",
    "source_url": "https://chandra.harvard.edu/photo/2026/m101/m101_lg.jpg",
-   "thumbnail_url": "https://chandra.harvard.edu/photo/2026/m101/m101.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/05aad06ddd6293143328f1e8fb7f122358b4307ff25fe18f2de8b55a841b1ea3.jpg",
    "featured_rank": 45,
    "license_verdict": "pd",
    "license_basis": "Public domain (NASA/STScI release)",
@@ -858,7 +873,8 @@
     0.47
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "thumbnail_source_url": "https://chandra.harvard.edu/photo/2026/m101/m101.jpg"
   },
   {
    "title": "Antennae Galaxies",
@@ -873,7 +889,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Antennae%20galaxies%20xl.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Antennae%20galaxies%20xl.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/c35e30d1865e1dd6c8161970370850ad7cd2c3ff5f4eefb6453caf530c0f2f66.jpg",
    "focal_point": [
     0.55,
     0.4
@@ -911,7 +927,8 @@
      0.8721,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Antennae%20galaxies%20xl.jpg?width=600"
   },
   {
    "title": "Mystic Mountain",
@@ -926,7 +943,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Mystic%20mountaindddd.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Mystic%20mountaindddd.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/e4a2a6bdd255df37016fb37a222fa01196741ad3c9504dd094ae91e74b585fd1.jpg",
    "focal_point": [
     0.47,
     0.35
@@ -964,7 +981,8 @@
      0.65,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Mystic%20mountaindddd.jpg?width=600"
   },
   {
    "title": "Butterfly Nebula NGC 6302",
@@ -979,7 +997,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/NGC%206302%20Hubble%202009.full.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/NGC%206302%20Hubble%202009.full.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/d79a0182ca29008452da4a6e33df50282313396448e411fcbe6bdaee6f6f9c45.jpg",
    "focal_point": [
     0.5,
     0.5
@@ -1017,7 +1035,8 @@
      0.887,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/NGC%206302%20Hubble%202009.full.jpg?width=600"
   },
   {
    "title": "Cartwheel Galaxy Webb",
@@ -1032,7 +1051,7 @@
    "source": "Webb",
    "license": "PDM-1.0",
    "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2022/08/STScI-01G9G4J23CDPVNGCYDJRZTTJQN.png",
-   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2022/08/STScI-01G9G4J23CDPVNGCYDJRZTTJQN.png/jcr:content/renditions/2000x1841.png",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/48e71ba697a92a5681d232507ee62219e40cabc048377277de114cfe64198039.jpg",
    "featured_rank": 48,
    "license_verdict": "pd",
    "license_basis": "Public domain (NASA/STScI release)",
@@ -1071,7 +1090,8 @@
     0.53
    ],
    "delivered_edge": 4685,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2022/08/STScI-01G9G4J23CDPVNGCYDJRZTTJQN.png/jcr:content/renditions/2000x1841.png"
   },
   {
    "title": "Cosmic Reef",
@@ -1086,7 +1106,7 @@
    "source": "Hubble",
    "license": "PDM-1.0",
    "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2020/04/STScI-01EVSTMSGMSYJ3VRNRW9KSZ05P.tif/jcr:content/renditions/Full%20Res.png",
-   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2020/04/STScI-01EVSTMSGMSYJ3VRNRW9KSZ05P.tif/jcr:content/renditions/1000x687.png",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/f86620ad3875085a2715ff6a7771976a1e22fd027e9b18931c5bdcbf50e081ca.jpg",
    "featured_rank": 35,
    "license_verdict": "pd",
    "license_basis": "Public domain (NASA/STScI release)",
@@ -1125,7 +1145,8 @@
     0.45
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "thumbnail_source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2020/04/STScI-01EVSTMSGMSYJ3VRNRW9KSZ05P.tif/jcr:content/renditions/1000x687.png"
   },
   {
    "title": "Jupiter's Great Red Spot",
@@ -1140,7 +1161,7 @@
    "source": "Voyager 1",
    "license": "PDM-1.0",
    "source_url": "https://images-assets.nasa.gov/image/PIA01384/PIA01384~orig.jpg",
-   "thumbnail_url": "https://images-assets.nasa.gov/image/PIA01384/PIA01384~medium.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/5eb65ee168b0975dab864daf3cc00b12a9a608dcc425ef57fdc537fcbd5fa8ef.jpg",
    "featured_rank": 45,
    "license_verdict": "pd",
    "license_basis": "Public domain (NASA/STScI release)",
@@ -1180,7 +1201,8 @@
     0.3
    ],
    "delivered_edge": 5489,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://images-assets.nasa.gov/image/PIA01384/PIA01384~medium.jpg"
   },
   {
    "title": "Pluto New Horizons",
@@ -1195,7 +1217,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/This%20image%2C%20taken%20by%20New%20Horizons%20on%20July%2014%2C%202015%2C%20is%20the%20most%20accurate%20natural%20color%20image%20of%20Pluto.png?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/This%20image%2C%20taken%20by%20New%20Horizons%20on%20July%2014%2C%202015%2C%20is%20the%20most%20accurate%20natural%20color%20image%20of%20Pluto.png?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/0898764b33e6c0eea09c2cdbb28d81fe34e6a40642141469c45da0c54f20a179.jpg",
    "focal_point": [
     0.5,
     0.5
@@ -1233,7 +1255,8 @@
      0.875,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/This%20image%2C%20taken%20by%20New%20Horizons%20on%20July%2014%2C%202015%2C%20is%20the%20most%20accurate%20natural%20color%20image%20of%20Pluto.png?width=600"
   },
   {
    "title": "Curiosity Self-Portrait at Mars",
@@ -1248,7 +1271,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/PIA19142%20Curiosity%20Self-Portrait%20at%20%27Mojave%27%20Site%20on%20Mount%20Sharp.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/PIA19142%20Curiosity%20Self-Portrait%20at%20%27Mojave%27%20Site%20on%20Mount%20Sharp.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/23643061283c05d82e6d41036e4340a9a952045f3f056599faac78cc1aea27b4.jpg",
    "focal_point": [
     0.53,
     0.42
@@ -1286,7 +1309,8 @@
      0.712,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/PIA19142%20Curiosity%20Self-Portrait%20at%20%27Mojave%27%20Site%20on%20Mount%20Sharp.jpg?width=600"
   },
   {
    "title": "Saturn from Cassini",
@@ -1301,7 +1325,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/PIA05380%20-%20Saturn%20from%20Cassini%20Orbiter%20%28square%29.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/PIA05380%20-%20Saturn%20from%20Cassini%20Orbiter%20%28square%29.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/d093356ab2b9a43272f0fc995449abc4ce86c2ea0cc0077829f75c95eeb57264.jpg",
    "focal_point": [
     0.48,
     0.53
@@ -1339,7 +1363,8 @@
      0.855,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/PIA05380%20-%20Saturn%20from%20Cassini%20Orbiter%20%28square%29.jpg?width=600"
   },
   {
    "title": "Centaurus A Crop",
@@ -1354,7 +1379,7 @@
    "source": "Webb",
    "license": "PDM-1.0",
    "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2026/07/STScI-01KVT7DD8N4T05XGZCT15QZEZ9.png/jcr:content/renditions/Full-Res-For-Display.png",
-   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2026/07/STScI-01KVT7DD8N4T05XGZCT15QZEZ9.png/jcr:content/renditions/cq5dam.web.1280.1280.png",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/b55917d1eb2583577fb53cab1ae907338162a1ef9aaed925a29f5fc53df6934c.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain (NASA/STScI release)",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1392,7 +1417,8 @@
     0.5
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "thumbnail_source_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2026/07/STScI-01KVT7DD8N4T05XGZCT15QZEZ9.png/jcr:content/renditions/cq5dam.web.1280.1280.png"
   },
   {
    "title": "Cat’s Paw Nebula",
@@ -1407,7 +1433,7 @@
    "source": "Webb",
    "license": "PDM-1.0",
    "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2025/07/STScI-01JY2AYZ2PYBDDSMX83K5248DD.jpg/jcr:content/renditions/Full%20Res%20(For%20Display).png",
-   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2025/07/STScI-01JY2AYZ2PYBDDSMX83K5248DD.jpg/jcr:content/renditions/1822x2000.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/e81e07dae4f85682f24827193fc6348f6c3d59c5fe6659f793c411e76d7505cb.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain (NASA/STScI release)",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1445,7 +1471,8 @@
     0.33
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "thumbnail_source_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2025/07/STScI-01JY2AYZ2PYBDDSMX83K5248DD.jpg/jcr:content/renditions/1822x2000.jpg"
   },
   {
    "title": "The Carina Nebula: Star Birth in the Extreme",
@@ -1460,7 +1487,7 @@
    "source": "Hubble",
    "license": "PDM-1.0",
    "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2007/04/STScI-01EVVJEDR8NDZJ81SRH0EWRW8N.tif/jcr:content/renditions/29566x14321.jpg",
-   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2007/04/STScI-01EVVJEDR8NDZJ81SRH0EWRW8N.tif/jcr:content/renditions/1000x484.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/0ccda28a5025b849b21d2926f75036e07df21c2f6c8c56967d9fbc0924a35b2a.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain (NASA/STScI release)",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1498,7 +1525,8 @@
     0.45
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "thumbnail_source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2007/04/STScI-01EVVJEDR8NDZJ81SRH0EWRW8N.tif/jcr:content/renditions/1000x484.jpg"
   },
   {
    "title": "Rho Ophiuchi",
@@ -1513,7 +1541,7 @@
    "source": "Webb",
    "license": "PDM-1.0",
    "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2023/07/STScI-01H44AVB69N1P8RAEJ12NW2RB2.png",
-   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2023/07/STScI-01H44AVB69N1P8RAEJ12NW2RB2.png/jcr:content/renditions/2000x1873.png",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/bada47d767ce8e66601f3123923d5802dcd0bbae9e84c23928cb4c2e486e0d74.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain (NASA/STScI release)",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1551,7 +1579,8 @@
     0.2
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "thumbnail_source_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2023/07/STScI-01H44AVB69N1P8RAEJ12NW2RB2.png/jcr:content/renditions/2000x1873.png"
   },
   {
    "title": "Hubble Photographs Grand Design Spiral Galaxy M81",
@@ -1566,7 +1595,7 @@
    "source": "Hubble",
    "license": "PDM-1.0",
    "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2007/05/STScI-01EVVJ5CSW83EJHQACVP4N6WEJ.tif/jcr:content/renditions/22620x15200.jpg",
-   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2007/05/STScI-01EVVJ5CSW83EJHQACVP4N6WEJ.tif/jcr:content/renditions/1000x672.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/65f88e675f937d1356ab6b474c01ddc4a38e2ed14468e35c677eb2e843029e7f.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain (NASA/STScI release)",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1604,7 +1633,8 @@
     0.47
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "thumbnail_source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2007/05/STScI-01EVVJ5CSW83EJHQACVP4N6WEJ.tif/jcr:content/renditions/1000x672.jpg"
   },
   {
    "title": "NGC 346",
@@ -1619,7 +1649,7 @@
    "source": "Webb",
    "license": "PDM-1.0",
    "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2023/01/STScI-01GNYMD5RCRF1S01A8M2S5M0Z1.png",
-   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2023/01/STScI-01GNYMD5RCRF1S01A8M2S5M0Z1.png/jcr:content/renditions/1377x2000.png",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/fd78aa7145a1c810942e0172c4deda7257afdc046936c0451c8a7adb94ed8096.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain (NASA/STScI release)",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1657,7 +1687,8 @@
     0.45
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "thumbnail_source_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2023/01/STScI-01GNYMD5RCRF1S01A8M2S5M0Z1.png/jcr:content/renditions/1377x2000.png"
   },
   {
    "title": "Out of This Whirl: the Whirlpool Galaxy (M51) and Companion Galaxy",
@@ -1672,7 +1703,7 @@
    "source": "Hubble",
    "license": "PDM-1.0",
    "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2005/04/STScI-01EVT85S0E93YAFY779MNYA9Y4.tif/jcr:content/renditions/Full%20Res%20(For%20Display).jpg",
-   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2005/04/STScI-01EVT85S0E93YAFY779MNYA9Y4.tif/jcr:content/renditions/800x555.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/f00be3794eb57d0fe70aef02aeca4fc147f767073aaca97cef02e75e7955787e.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain (NASA/STScI release)",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1710,7 +1741,8 @@
     0.48
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "thumbnail_source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2005/04/STScI-01EVT85S0E93YAFY779MNYA9Y4.tif/jcr:content/renditions/800x555.jpg"
   },
   {
    "title": "Webb’s First Deep Field Unveiled",
@@ -1725,7 +1757,7 @@
    "source": "Webb",
    "license": "PDM-1.0",
    "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2022/07/STScI-01G8H15R2PGEXQD7TYYBFJ3FT4.png",
-   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2022/07/STScI-01G8H15R2PGEXQD7TYYBFJ3FT4.png/jcr:content/renditions/1960x2000.png",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/c53a4adaa63eddd7e8a8e93d28f110359fe5f9c080dd45f1fd903ef2438d55b0.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain (NASA/STScI release)",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1763,7 +1795,8 @@
     0.5
    ],
    "delivered_edge": 4630,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2022/07/STScI-01G8H15R2PGEXQD7TYYBFJ3FT4.png/jcr:content/renditions/1960x2000.png"
   },
   {
    "title": "Herbig-Haro 46/47",
@@ -1778,7 +1811,7 @@
    "source": "Webb",
    "license": "PDM-1.0",
    "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2023/07/STScI-01H5309J2AAYSABKVQ89R7V44T.png",
-   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2023/07/STScI-01H5309J2AAYSABKVQ89R7V44T.png/jcr:content/renditions/2000x1165.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/cfad422094f8a5bea9ddc8fcef929e5811da4bb40a3686ec994c9cd0dfef9540.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain (NASA/STScI release)",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1816,7 +1849,8 @@
     0.5
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "thumbnail_source_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2023/07/STScI-01H5309J2AAYSABKVQ89R7V44T.png/jcr:content/renditions/2000x1165.jpg"
   },
   {
    "title": "Bubble Nebula (NGC 7635)",
@@ -1831,7 +1865,7 @@
    "source": "Hubble",
    "license": "PDM-1.0",
    "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2016/04/STScI-01EVVGYQGFWPRBWKW0HNACJMEB.tif/jcr:content/renditions/7857x7462.jpg",
-   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2016/04/STScI-01EVVGYQGFWPRBWKW0HNACJMEB.tif/jcr:content/renditions/1200x1140.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/4ac9ef29f9c3a5b46f6a04c58c7b3a23dcd62af7ca5454755762f4ef10fbdcb2.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain (NASA/STScI release)",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1869,7 +1903,8 @@
     0.5
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "thumbnail_source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2016/04/STScI-01EVVGYQGFWPRBWKW0HNACJMEB.tif/jcr:content/renditions/1200x1140.jpg"
   },
   {
    "title": "L1527 and Protostar",
@@ -1884,7 +1919,7 @@
    "source": "Webb",
    "license": "PDM-1.0",
    "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2022/11/STScI-01GGWD12YEES5K5163RJFYQT20.png",
-   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2022/11/STScI-01GGWD12YEES5K5163RJFYQT20.png/jcr:content/renditions/1960x2000.png",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/d1e1bbea24f3d0a54b2ea981e50a127bf703a3aa1ad9802ac8c22268a1c8f7cb.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain (NASA/STScI release)",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1922,7 +1957,8 @@
     0.51
    ],
    "delivered_edge": 4462,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2022/11/STScI-01GGWD12YEES5K5163RJFYQT20.png/jcr:content/renditions/1960x2000.png"
   },
   {
    "title": "M82 Cigar Galaxy — Webb & Hubble Composite",
@@ -1937,7 +1973,7 @@
    "source": "Webb",
    "license": "PDM-1.0",
    "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2026/06/STScI-01KM3Q4ECK24AXTM2GVW47V389.png",
-   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2026/06/STScI-01KM3Q4ECK24AXTM2GVW47V389.png/jcr:content/renditions/2000x1348.png",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/342bc3e7d052e600455931b48b082ab3a758fabee517b00bd59f320929cd9cea.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain (NASA/STScI release)",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1975,7 +2011,8 @@
     0.5
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "thumbnail_source_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2026/06/STScI-01KM3Q4ECK24AXTM2GVW47V389.png/jcr:content/renditions/2000x1348.png"
   },
   {
    "title": "NASA Unveils Celestial Fireworks as Official Hubble 25th Anniversary Image",
@@ -1990,7 +2027,7 @@
    "source": "Hubble",
    "license": "PDM-1.0",
    "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2015/04/STScI-01EVVCBB26G1HB68BC35RPSBDG.tif/jcr:content/renditions/8919x6683.jpg",
-   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2015/04/STScI-01EVVCBB26G1HB68BC35RPSBDG.tif/jcr:content/renditions/1200x899.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/11e986e26976285473a041ee4c6eaa856969c2807c18bf559bb2fe9f954ab288.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain (NASA/STScI release)",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -2028,7 +2065,8 @@
     0.4
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "thumbnail_source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2015/04/STScI-01EVVCBB26G1HB68BC35RPSBDG.tif/jcr:content/renditions/1200x899.jpg"
   },
   {
    "title": "Spiral Galaxy M83",
@@ -2043,7 +2081,7 @@
    "source": "Hubble",
    "license": "PDM-1.0",
    "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2014/01/STScI-01EVT37XAM3KAF51GHW3744Z3D.tif/jcr:content/renditions/11405x7419.jpg",
-   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2014/01/STScI-01EVT37XAM3KAF51GHW3744Z3D.tif/jcr:content/renditions/1200x781.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/0fc2e004549e7ac2af7a9794d7fb453fc9602292dd7babd8eed71947903e3d6b.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain (NASA/STScI release)",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -2081,7 +2119,8 @@
     0.47
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "thumbnail_source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2014/01/STScI-01EVT37XAM3KAF51GHW3744Z3D.tif/jcr:content/renditions/1200x781.jpg"
   },
   {
    "title": "WR 124",
@@ -2096,7 +2135,7 @@
    "source": "Webb",
    "license": "PDM-1.0",
    "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2023/03/STScI-01GTYAME8Q4353E2WQQH2965S5.png",
-   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2023/03/STScI-01GTYAME8Q4353E2WQQH2965S5.png/jcr:content/renditions/2000x1970.png",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/8ff7866abbc4a96efba6d0715b99ae0f9f716e0d62de843ea02c6d914e9161f2.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain (NASA/STScI release)",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -2134,7 +2173,8 @@
     0.5
    ],
    "delivered_edge": 4416,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2023/03/STScI-01GTYAME8Q4353E2WQQH2965S5.png/jcr:content/renditions/2000x1970.png"
   },
   {
    "title": "Lagoon Nebula — Visible Light",
@@ -2149,7 +2189,7 @@
    "source": "Hubble",
    "license": "PDM-1.0",
    "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2018/04/STScI-01EVT0PETF5KP1TK3RZSCS2GYM.tif/jcr:content/renditions/Full%20Res.png",
-   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2018/04/STScI-01EVT0PETF5KP1TK3RZSCS2GYM.tif/jcr:content/renditions/849x1000.png",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/2de36fd5154cc2dd51ee9a962b0f0143c8b7020e645da22a79cb865f8b745b36.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain (NASA/STScI release)",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -2187,7 +2227,8 @@
     0.4
    ],
    "delivered_edge": 6300,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2018/04/STScI-01EVT0PETF5KP1TK3RZSCS2GYM.tif/jcr:content/renditions/849x1000.png"
   },
   {
    "title": "Pismis 24",
@@ -2202,7 +2243,7 @@
    "source": "Webb",
    "license": "PDM-1.0",
    "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2025/09/STScI-01K2JB448ZJPP4WK4JJ7W05EC8.png",
-   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2025/09/STScI-01K2JB448ZJPP4WK4JJ7W05EC8.png/jcr:content/renditions/1449x2000.png",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/e793d8b971c19286dc42bc1235b30fe8247d22ce2259e76bc70d86a10aede3b0.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain (NASA/STScI release)",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -2240,7 +2281,8 @@
     0.62
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "thumbnail_source_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2025/09/STScI-01K2JB448ZJPP4WK4JJ7W05EC8.png/jcr:content/renditions/1449x2000.png"
   },
   {
    "title": "A “Rose” Made of Galaxies Highlights Hubble’s 21st Anniversary",
@@ -2255,7 +2297,7 @@
    "source": "Hubble",
    "license": "PDM-1.0",
    "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2011/04/STScI-01EVT4TA2ED9JNN2CA5CSZ7H1J.tif/jcr:content/renditions/7887x7994.jpg",
-   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2011/04/STScI-01EVT4TA2ED9JNN2CA5CSZ7H1J.tif/jcr:content/renditions/987x1000.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/e709abeea6d5b28c750c2b9b4cecaca6b2b0c31fc620cb9322ee4d66b4b4f5a1.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain (NASA/STScI release)",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -2293,7 +2335,8 @@
     0.22
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "thumbnail_source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2011/04/STScI-01EVT4TA2ED9JNN2CA5CSZ7H1J.tif/jcr:content/renditions/987x1000.jpg"
   },
   {
    "title": "Barred Spiral Galaxy NGC 1300",
@@ -2308,7 +2351,7 @@
    "source": "Hubble",
    "license": "PDM-1.0",
    "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2005/01/STScI-01EVT8DP1YM9FYPF0Y33VY7ANB.tif/jcr:content/renditions/6637x3787.jpg",
-   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2005/01/STScI-01EVT8DP1YM9FYPF0Y33VY7ANB.tif/jcr:content/renditions/800x456.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/737f3d063a75f62b1c200550dab2643b16749e0daa4c21c78cbd34c2ade512c2.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain (NASA/STScI release)",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -2346,7 +2389,8 @@
     0.47
    ],
    "delivered_edge": 6637,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2005/01/STScI-01EVT8DP1YM9FYPF0Y33VY7ANB.tif/jcr:content/renditions/800x456.jpg"
   },
   {
    "title": "The Greatest Saturn Portrait ...Yet",
@@ -2361,7 +2405,7 @@
    "source": "Cassini",
    "license": "PDM-1.0",
    "source_url": "https://images-assets.nasa.gov/image/PIA06193/PIA06193~orig.jpg",
-   "thumbnail_url": "https://images-assets.nasa.gov/image/PIA06193/PIA06193~medium.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/818ea15ec0cc28d22fc2d9b82039d529c3fbd804c71da44ed8817d4f96314bb8.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain (NASA/STScI release)",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -2399,7 +2443,8 @@
     0.5
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "thumbnail_source_url": "https://images-assets.nasa.gov/image/PIA06193/PIA06193~medium.jpg"
   },
   {
    "title": "NGC 604",
@@ -2414,7 +2459,7 @@
    "source": "Webb",
    "license": "PDM-1.0",
    "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2024/03/STScI-01HQNVF0HHRF5HH4HKH8S9C83X.png",
-   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2024/03/STScI-01HQNVF0HHRF5HH4HKH8S9C83X.png/jcr:content/renditions/2000x1623.png",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/5cf4c07262373ae9ada6dc4f2f21a96b7171399674332fdb1222a9ad3acbc862.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain (NASA/STScI release)",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -2452,7 +2497,8 @@
     0.55
    ],
    "delivered_edge": 4159,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2024/03/STScI-01HQNVF0HHRF5HH4HKH8S9C83X.png/jcr:content/renditions/2000x1623.png"
   },
   {
    "title": "Spiral Galaxy UGC 2885",
@@ -2467,7 +2513,7 @@
    "source": "Hubble",
    "license": "PDM-1.0",
    "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2020/01/STScI-01EVSTYK52GZ4YSKGD5C9QFP36.tif/jcr:content/renditions/Full%20Res.png",
-   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2020/01/STScI-01EVSTYK52GZ4YSKGD5C9QFP36.tif/jcr:content/renditions/2000x1500.png",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/2c4f20f87462e8428157aa6eefb991d90db395cf3285153b34f42b5c2c2aeaef.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain (NASA/STScI release)",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -2505,7 +2551,8 @@
     0.54
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "thumbnail_source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2020/01/STScI-01EVSTYK52GZ4YSKGD5C9QFP36.tif/jcr:content/renditions/2000x1500.png"
   },
   {
    "title": "NGC 1333",
@@ -2520,7 +2567,7 @@
    "source": "Hubble",
    "license": "PDM-1.0",
    "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2023/04/STScI-01GYAG4SRNNW4X8E8TTQ0WK3Q0.tif/jcr:content/renditions/Full%20Res%20(For%20Display).png",
-   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2023/04/STScI-01GYAG4SRNNW4X8E8TTQ0WK3Q0.tif/jcr:content/renditions/1312x2000.png",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/928f8d0cd69b2a24c933bff8c5983dc9d308484c11d50af6d722e048afb36bc8.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain (NASA/STScI release)",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -2558,7 +2605,8 @@
     0.53
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "thumbnail_source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2023/04/STScI-01GYAG4SRNNW4X8E8TTQ0WK3Q0.tif/jcr:content/renditions/1312x2000.png"
   },
   {
    "title": "Pandora’s Cluster",
@@ -2573,7 +2621,7 @@
    "source": "Webb",
    "license": "PDM-1.0",
    "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2023/02/STScI-01GQQF9WVPFVMCVHRZY54N2TAR.png",
-   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2023/02/STScI-01GQQF9WVPFVMCVHRZY54N2TAR.png/jcr:content/renditions/2000x1521.png",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/3a52da284650edd52c65c5118e5ed94c5dd4bf3cf372f6d4b9eb295fa5ee166b.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain (NASA/STScI release)",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -2611,7 +2659,8 @@
     0.45
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "thumbnail_source_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2023/02/STScI-01GQQF9WVPFVMCVHRZY54N2TAR.png/jcr:content/renditions/2000x1521.png"
   },
   {
    "title": "Galaxies IC 2163 and NGC 2207",
@@ -2626,7 +2675,7 @@
    "source": "Webb",
    "license": "PDM-1.0",
    "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2024/10/STScI-01J9RRJA6MZCBT0YXAJQ961Q04.png",
-   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2024/10/STScI-01J9RRJA6MZCBT0YXAJQ961Q04.png/jcr:content/renditions/2000x939.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/d1bd7c7acd6a801dd3dd8e6e73442167da376c63fe4fba050ad933c40d1289e9.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain (NASA/STScI release)",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -2664,7 +2713,8 @@
     0.5
    ],
    "delivered_edge": 6353,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2024/10/STScI-01J9RRJA6MZCBT0YXAJQ961Q04.png/jcr:content/renditions/2000x939.jpg"
   },
   {
    "title": "A Farewell to Saturn",
@@ -2679,7 +2729,7 @@
    "source": "Cassini",
    "license": "PDM-1.0",
    "source_url": "https://images-assets.nasa.gov/image/PIA17218/PIA17218~orig.jpg",
-   "thumbnail_url": "https://images-assets.nasa.gov/image/PIA17218/PIA17218~medium.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/4ea3d2e664a12b31f30e3f4ff5a284a20b90bd2633f91819c427ccf1bc34cc77.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain (NASA/STScI release)",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -2717,7 +2767,8 @@
     0.45
    ],
    "delivered_edge": 6000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://images-assets.nasa.gov/image/PIA17218/PIA17218~medium.jpg"
   },
   {
    "title": "Actively Forming Star System Lynds 483",
@@ -2732,7 +2783,7 @@
    "source": "Webb",
    "license": "PDM-1.0",
    "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2025/03/STScI-01JM03EZ0HTVWHDCCX0DTFQF5Q.png",
-   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2025/03/STScI-01JM03EZ0HTVWHDCCX0DTFQF5Q.png/jcr:content/renditions/1890x2000.png",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/cf6a635c81d8b704c29020a0f2544619faec0c2600613007ffb3996e250f6d51.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain (NASA/STScI release)",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -2770,7 +2821,8 @@
     0.67
    ],
    "delivered_edge": 4581,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2025/03/STScI-01JM03EZ0HTVWHDCCX0DTFQF5Q.png/jcr:content/renditions/1890x2000.png"
   },
   {
    "title": "The Cone Nebula (NGC 2264)",
@@ -2785,7 +2837,7 @@
    "source": "Hubble",
    "license": "PDM-1.0",
    "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2002/04/STScI-01EVVF7FH2A4CGF3D1VP52SSZ5.tif/jcr:content/renditions/4427x4257.jpg",
-   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2002/04/STScI-01EVVF7FH2A4CGF3D1VP52SSZ5.tif/jcr:content/renditions/800x769.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/b83dfe37f4ea04772896b2e71202f8eb41631e9dd291d23d00c0619dfa36b260.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain (NASA/STScI release)",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -2823,7 +2875,8 @@
     0.2
    ],
    "delivered_edge": 4427,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2002/04/STScI-01EVVF7FH2A4CGF3D1VP52SSZ5.tif/jcr:content/renditions/800x769.jpg"
   },
   {
    "title": "Image of Sun From NASA's Solar Dynamics Observatory",
@@ -2838,7 +2891,7 @@
    "source": "SDO",
    "license": "PDM-1.0",
    "source_url": "https://images-assets.nasa.gov/image/PIA26681/PIA26681~orig.jpg",
-   "thumbnail_url": "https://images-assets.nasa.gov/image/PIA26681/PIA26681~medium.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/1adb4e39bf9c6e55b142bdd25b6dc3bf76ae08f4c9f7c3a0653440f0973d98cd.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain (NASA/STScI release)",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -2876,7 +2929,8 @@
     0.5
    ],
    "delivered_edge": 4096,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://images-assets.nasa.gov/image/PIA26681/PIA26681~medium.jpg"
   },
   {
    "title": "NGC 6072",
@@ -2891,7 +2945,7 @@
    "source": "Webb",
    "license": "PDM-1.0",
    "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2025/07/STScI-01K0W69T4CK5TD4EZF8RCRRJ2Z.png",
-   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2025/07/STScI-01K0W69T4CK5TD4EZF8RCRRJ2Z.png/jcr:content/renditions/1877x2000.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/3dd038c6a703416e5f7b5e81a2d8c10d8a6caad30312a4af4ecdf54e24c3b3a8.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain (NASA/STScI release)",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -2929,7 +2983,8 @@
     0.5
    ],
    "delivered_edge": 4602,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2025/07/STScI-01K0W69T4CK5TD4EZF8RCRRJ2Z.png/jcr:content/renditions/1877x2000.jpg"
   },
   {
    "title": "The Omega Nebula (Swan Nebula/M17)",
@@ -2944,7 +2999,7 @@
    "source": "Hubble",
    "license": "PDM-1.0",
    "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2002/04/STScI-01EVT9F8QXNC7JV8QP49P6QJCP.tif/jcr:content/renditions/4257x4426.jpg",
-   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2002/04/STScI-01EVT9F8QXNC7JV8QP49P6QJCP.tif/jcr:content/renditions/769x800.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/24e71d00dadbca24447ecf6bc216626b735a43132834d7211c2e10aa0b9810b3.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain (NASA/STScI release)",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -2982,7 +3037,8 @@
     0.6
    ],
    "delivered_edge": 4426,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2002/04/STScI-01EVT9F8QXNC7JV8QP49P6QJCP.tif/jcr:content/renditions/769x800.jpg"
   },
   {
    "title": "“The Mice” (NGC 4676): Colliding Galaxies Stream Stars and Gas",
@@ -2997,7 +3053,7 @@
    "source": "Hubble",
    "license": "PDM-1.0",
    "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2002/04/STScI-01EVVF88Y5DEXKWJFCFR55DADD.tif/jcr:content/renditions/4428x4257.jpg",
-   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2002/04/STScI-01EVVF88Y5DEXKWJFCFR55DADD.tif/jcr:content/renditions/800x769.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/74fe2d1dd466a1ec852994e6011b69093154bbd737cb85e8a0f80a5abe460c6c.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain (NASA/STScI release)",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -3035,7 +3091,8 @@
     0.53
    ],
    "delivered_edge": 4428,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2002/04/STScI-01EVVF88Y5DEXKWJFCFR55DADD.tif/jcr:content/renditions/800x769.jpg"
   },
   {
    "title": "30 Doradus B",
@@ -3050,7 +3107,7 @@
    "source": "Chandra (+ composite)",
    "license": "PDM-1.0",
    "source_url": "https://chandra.harvard.edu/photo/2024/30dorb/30dorb_lg.jpg",
-   "thumbnail_url": "https://chandra.harvard.edu/photo/2024/30dorb/30dorb.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/5a533b8b1fd56f24f4043be6337820e4ebc5af1ca8e334866db1d4aa86e7ccdc.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain (NASA/STScI release)",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -3088,7 +3145,8 @@
     0.47
    ],
    "delivered_edge": 6000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://chandra.harvard.edu/photo/2024/30dorb/30dorb.jpg"
   },
   {
    "title": "FS Tau",
@@ -3103,7 +3161,7 @@
    "source": "Webb",
    "license": "PDM-1.0",
    "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2026/07/STScI-01KVX6065VS4VSDVG0S1NSVB6C.png",
-   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2026/07/STScI-01KVX6065VS4VSDVG0S1NSVB6C.png/jcr:content/renditions/2000x1932.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/ec7ccc7a073f1db16de133cff1e5af804789effb5cd5d03ae91e0c19f4f902fd.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain (NASA/STScI release)",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -3141,7 +3199,8 @@
     0.47
    ],
    "delivered_edge": 4803,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2026/07/STScI-01KVX6065VS4VSDVG0S1NSVB6C.png/jcr:content/renditions/2000x1932.jpg"
   },
   {
    "title": "Trifid Nebula",
@@ -3156,7 +3215,7 @@
    "source": "Hubble",
    "license": "PDM-1.0",
    "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2026/04/STScI-01KM5VPG2R1WX1SY7ASDJ9JEV5.jpg/jcr:content/renditions/Full Res (For Display).png",
-   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2026/04/STScI-01KM5VPG2R1WX1SY7ASDJ9JEV5.jpg/jcr:content/renditions/2000x1936.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/bb345831dc683b9500c3d2bc344e3ff66318e4963deebc7749966062e2f87872.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain (NASA/STScI release)",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -3194,7 +3253,8 @@
     0.3
    ],
    "delivered_edge": 4074,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2026/04/STScI-01KM5VPG2R1WX1SY7ASDJ9JEV5.jpg/jcr:content/renditions/2000x1936.jpg"
   },
   {
    "title": "Planetary Nebula NGC 2899",
@@ -3209,7 +3269,7 @@
    "source": "Hubble",
    "license": "PDM-1.0",
    "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2025/04/STScI-01JQCE78E6DK196HZYF5KCVEYT.tif/jcr:content/renditions/Full Res (For Display).png",
-   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2025/04/STScI-01JQCE78E6DK196HZYF5KCVEYT.tif/jcr:content/renditions/2000x1997.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/039afd328d77b2eccf133a999841e5df1ccfce3ecd0407c9d3482c7cdd62bcc9.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain (NASA/STScI release)",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -3247,7 +3307,8 @@
     0.5
    ],
    "delivered_edge": 3900,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2025/04/STScI-01JQCE78E6DK196HZYF5KCVEYT.tif/jcr:content/renditions/2000x1997.jpg"
   },
   {
    "title": "Herbig-Haro 49/50",
@@ -3262,7 +3323,7 @@
    "source": "Webb",
    "license": "PDM-1.0",
    "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2025/03/STScI-01JNGVAQKT0ATWEE89D918J3HF.png",
-   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2025/03/STScI-01JNGVAQKT0ATWEE89D918J3HF.png/jcr:content/renditions/1646x2000.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/0d717594b72fec935d9052394f4d0da2eaaf8ed2a23385e2d56b6a1e1db79d20.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain (NASA/STScI release)",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -3300,7 +3361,8 @@
     0.32
    ],
    "delivered_edge": 5044,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2025/03/STScI-01JNGVAQKT0ATWEE89D918J3HF.png/jcr:content/renditions/1646x2000.jpg"
   },
   {
    "title": "A Splendor Seldom Seen",
@@ -3315,7 +3377,7 @@
    "source": "Cassini",
    "license": "PDM-1.0",
    "source_url": "https://images-assets.nasa.gov/image/PIA14934/PIA14934~orig.jpg",
-   "thumbnail_url": "https://images-assets.nasa.gov/image/PIA14934/PIA14934~medium.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/018f11ce6b940f6a29730a41e20aba97fee4e51071595e8968b163f98f9c74d5.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain (NASA/STScI release)",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -3353,7 +3415,8 @@
     0.5
    ],
    "delivered_edge": 6672,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://images-assets.nasa.gov/image/PIA14934/PIA14934~medium.jpg"
   },
   {
    "title": "Dwarf Galaxy WLM",
@@ -3368,7 +3431,7 @@
    "source": "Webb",
    "license": "PDM-1.0",
    "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/outreach/migrated/2022/STScI-01GHBZC0XR0DCJFZY0QXEH215V.png",
-   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/outreach/migrated/2022/STScI-01GHBZC0XR0DCJFZY0QXEH215V.png/jcr:content/renditions/2000x2000.png",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/d1964f4369328d7af91c2fa5dbe3db5fac839cda42d13f9eab141904b9f8f8d5.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain (NASA/STScI release)",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -3406,7 +3469,8 @@
     0.5
    ],
    "delivered_edge": 4134,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/outreach/migrated/2022/STScI-01GHBZC0XR0DCJFZY0QXEH215V.png/jcr:content/renditions/2000x2000.png"
   },
   {
    "title": "Little Dumbbell Nebula",
@@ -3421,7 +3485,7 @@
    "source": "Hubble",
    "license": "PDM-1.0",
    "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2024/04/STScI-01HTDDQ8K0QZCDAWS43R1XF3T2.tif/jcr:content/renditions/Full%20Res%20(For%20Display).png",
-   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2024/04/STScI-01HTDDQ8K0QZCDAWS43R1XF3T2.tif/jcr:content/renditions/2000x1262.png",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/27b3ea29641ebaa11799f77e23ae4fcaab49e0b3c2aa41085b250dcfee8dadaf.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain (NASA/STScI release)",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -3459,7 +3523,8 @@
     0.45
    ],
    "delivered_edge": 7505,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2024/04/STScI-01HTDDQ8K0QZCDAWS43R1XF3T2.tif/jcr:content/renditions/2000x1262.png"
   },
   {
    "title": "Starry Splendor in Core of Omega Centauri",
@@ -3474,7 +3539,7 @@
    "source": "Hubble",
    "license": "PDM-1.0",
    "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2008/04/STScI-01EVT6E73SYHPKFB1NYEA763C7.tif/jcr:content/renditions/11936x10891.jpg",
-   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2008/04/STScI-01EVT6E73SYHPKFB1NYEA763C7.tif/jcr:content/renditions/877x800.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/a5144caa59561fca7cb4749cccb63e71430fe750e49f155c293aed2e489aed13.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain (NASA/STScI release)",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -3512,7 +3577,8 @@
     0.5
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "thumbnail_source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2008/04/STScI-01EVT6E73SYHPKFB1NYEA763C7.tif/jcr:content/renditions/877x800.jpg"
   },
   {
    "title": "Witch Head Brews Baby Stars",
@@ -3527,7 +3593,7 @@
    "source": "WISE",
    "license": "PDM-1.0",
    "source_url": "https://images-assets.nasa.gov/image/PIA17553/PIA17553~orig.jpg",
-   "thumbnail_url": "https://images-assets.nasa.gov/image/PIA17553/PIA17553~medium.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/77bc1143240c0e1d048c0c619fc0658f76036f6c144e529dcaae1c059e054b18.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain (NASA/STScI release)",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -3565,7 +3631,8 @@
     0.55
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "thumbnail_source_url": "https://images-assets.nasa.gov/image/PIA17553/PIA17553~medium.jpg"
   },
   {
    "title": "Spiral Galaxy Pair NGC 4302 and NGC 4298",
@@ -3580,7 +3647,7 @@
    "source": "Hubble",
    "license": "PDM-1.0",
    "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2017/04/STScI-01EVVBKDHXXAF65ANKSSF78SMT.tif/jcr:content/renditions/Full%20Res.png",
-   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2017/04/STScI-01EVVBKDHXXAF65ANKSSF78SMT.tif/jcr:content/renditions/1727x2000.png",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/115363729087358905897c8e3019eec70bc94095f4497c590a1a726f8b915d23.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain (NASA/STScI release)",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -3618,7 +3685,8 @@
     0.38
    ],
    "delivered_edge": 7614,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2017/04/STScI-01EVVBKDHXXAF65ANKSSF78SMT.tif/jcr:content/renditions/1727x2000.png"
   },
   {
    "title": "Cygnus Loop Nebula",
@@ -3633,7 +3701,7 @@
    "source": "GALEX",
    "license": "PDM-1.0",
    "source_url": "https://images-assets.nasa.gov/image/PIA15415/PIA15415~orig.jpg",
-   "thumbnail_url": "https://images-assets.nasa.gov/image/PIA15415/PIA15415~medium.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/3240e2bb5385fbc3aff29e030ea9a5af27600bc6dea74b50172bb65bed664be5.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain (NASA/STScI release)",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -3671,7 +3739,8 @@
     0.45
    ],
    "delivered_edge": 6000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://images-assets.nasa.gov/image/PIA15415/PIA15415~medium.jpg"
   },
   {
    "title": "The Rite of Spring",
@@ -3686,7 +3755,7 @@
    "source": "Cassini",
    "license": "PDM-1.0",
    "source_url": "https://images-assets.nasa.gov/image/PIA11667/PIA11667~orig.jpg",
-   "thumbnail_url": "https://images-assets.nasa.gov/image/PIA11667/PIA11667~medium.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/94b0266298ccef7217868769665bfbd13862d567b14861f3486c1beb6c93d2ab.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain (NASA/STScI release)",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -3724,7 +3793,8 @@
     0.48
    ],
    "delivered_edge": 7227,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://images-assets.nasa.gov/image/PIA11667/PIA11667~medium.jpg"
   },
   {
    "title": "NASA’s Great Observatories Examine the Galactic Center Region",
@@ -3739,7 +3809,7 @@
    "source": "Hubble",
    "license": "PDM-1.0",
    "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2009/11/STScI-01EVT5DYM700P2YXHVR07P6P6J.tif/jcr:content/renditions/9725x4862.jpg",
-   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2009/11/STScI-01EVT5DYM700P2YXHVR07P6P6J.tif/jcr:content/renditions/1000x500.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/71bd4775e5d79a5cf18fac616d6fc8787f3950c2ff7ebe8003c0edb56df12324.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain (NASA/STScI release)",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -3777,7 +3847,8 @@
     0.6
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "thumbnail_source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2009/11/STScI-01EVT5DYM700P2YXHVR07P6P6J.tif/jcr:content/renditions/1000x500.jpg"
   },
   {
    "title": "Sagittarius B2",
@@ -3792,7 +3863,7 @@
    "source": "Webb",
    "license": "PDM-1.0",
    "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2025/09/STScI-01K4T8XYNBJ9A93DJ9KYQJE2WF.png",
-   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2025/09/STScI-01K4T8XYNBJ9A93DJ9KYQJE2WF.png/jcr:content/renditions/2000x867.png",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/84a3f27ac82e0d852054f6ef21deafb123b58dc657a2d62b9808d7a92a54c8c9.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain (NASA/STScI release)",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -3830,7 +3901,8 @@
     0.45
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "thumbnail_source_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2025/09/STScI-01K4T8XYNBJ9A93DJ9KYQJE2WF.png/jcr:content/renditions/2000x867.png"
   },
   {
    "title": "Cosmic Ice Sculptures: Dust Pillars in the Carina Nebula",
@@ -3845,7 +3917,7 @@
    "source": "Hubble",
    "license": "PDM-1.0",
    "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2010/09/STScI-01EVVD63KHJXK2RM8DY8P9E9T3.tif/jcr:content/renditions/6180x3648.jpg",
-   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2010/09/STScI-01EVVD63KHJXK2RM8DY8P9E9T3.tif/jcr:content/renditions/1000x591.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/9ca54f6af6d0d8e9531aa365fd215963ae2e893e4c054f2cc150d10afaee7144.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain (NASA/STScI release)",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -3883,7 +3955,8 @@
     0.55
    ],
    "delivered_edge": 6180,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2010/09/STScI-01EVVD63KHJXK2RM8DY8P9E9T3.tif/jcr:content/renditions/1000x591.jpg"
   },
   {
    "title": "The Case of the Disappearing Continent",
@@ -3898,7 +3971,7 @@
    "source": "Spitzer",
    "license": "PDM-1.0",
    "source_url": "https://images-assets.nasa.gov/image/PIA13843/PIA13843~orig.jpg",
-   "thumbnail_url": "https://images-assets.nasa.gov/image/PIA13843/PIA13843~medium.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/702fb6fd56356d4000289acf02b58fa8ca5d9989634b4d8b5ffd132381e798cb.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain (NASA/STScI release)",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -3936,7 +4009,8 @@
     0.4
    ],
    "delivered_edge": 6800,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://images-assets.nasa.gov/image/PIA13843/PIA13843~medium.jpg"
   },
   {
    "title": "Star-Forming Region S106",
@@ -3951,7 +4025,7 @@
    "source": "Hubble",
    "license": "PDM-1.0",
    "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2011/12/STScI-01EVVHK7TQPH736424XJMEK5K0.tif/jcr:content/renditions/4356x3202.jpg",
-   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2011/12/STScI-01EVVHK7TQPH736424XJMEK5K0.tif/jcr:content/renditions/1000x735.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/85908aeb9e6b9d3c265336530daf1b686d111617fd35f2c458ecf266f0f5fe85.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain (NASA/STScI release)",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -3989,7 +4063,8 @@
     0.5
    ],
    "delivered_edge": 4356,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2011/12/STScI-01EVVHK7TQPH736424XJMEK5K0.tif/jcr:content/renditions/1000x735.jpg"
   },
   {
    "title": "47 Tucanae – Hubble",
@@ -4004,7 +4079,7 @@
    "source": "Hubble",
    "license": "PDM-1.0",
    "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2013/07/STScI-01EVT3VNE1N7F4MGAVBY9AXQH3.tif/jcr:content/renditions/5227x6974.jpg",
-   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2013/07/STScI-01EVT3VNE1N7F4MGAVBY9AXQH3.tif/jcr:content/renditions/899x1200.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/03af6573878b5f961dfb073e49c59af190012fe509e345f63fa3831b6ced1d69.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain (NASA/STScI release)",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -4042,7 +4117,8 @@
     0.5
    ],
    "delivered_edge": 6974,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2013/07/STScI-01EVT3VNE1N7F4MGAVBY9AXQH3.tif/jcr:content/renditions/899x1200.jpg"
   },
   {
    "title": "Global Color Mosaic of Triton",
@@ -4057,7 +4133,7 @@
    "source": "Voyager 2",
    "license": "PDM-1.0",
    "source_url": "https://images-assets.nasa.gov/image/PIA00317/PIA00317~orig.jpg",
-   "thumbnail_url": "https://images-assets.nasa.gov/image/PIA00317/PIA00317~medium.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/95818e4a8fc21ac6eb2952c2ece8e0f980946f100510f2d54cd07d00021238df.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain (NASA/STScI release)",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -4095,7 +4171,8 @@
     0.5
    ],
    "delivered_edge": 4500,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://images-assets.nasa.gov/image/PIA00317/PIA00317~medium.jpg"
   },
   {
    "title": "IC 63 Ghost Nebula",
@@ -4110,7 +4187,7 @@
    "source": "Hubble",
    "license": "PDM-1.0",
    "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2018/10/STScI-01EVSZK666DR7QDPEBC68B2XCJ.tif/jcr:content/renditions/Full%20Res.png",
-   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2018/10/STScI-01EVSZK666DR7QDPEBC68B2XCJ.tif/jcr:content/renditions/985x1000.png",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/139a4d9cde5329fb59840eea0ee23c4f4eb07184475089c2544fe3938edddc15.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain (NASA/STScI release)",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -4148,7 +4225,8 @@
     0.35
    ],
    "delivered_edge": 4133,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2018/10/STScI-01EVSZK666DR7QDPEBC68B2XCJ.tif/jcr:content/renditions/985x1000.png"
   },
   {
    "title": "Soul Nebula",
@@ -4163,7 +4241,7 @@
    "source": "WISE",
    "license": "PDM-1.0",
    "source_url": "https://images-assets.nasa.gov/image/PIA13014/PIA13014~orig.jpg",
-   "thumbnail_url": "https://images-assets.nasa.gov/image/PIA13014/PIA13014~medium.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/d4c094d29f5a5d5a5ad13c622d4a1c76e5db952ebc515ef794e38e05800a1149.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain (NASA/STScI release)",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -4201,7 +4279,8 @@
     0.4
    ],
    "delivered_edge": 6660,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://images-assets.nasa.gov/image/PIA13014/PIA13014~medium.jpg"
   },
   {
    "title": "NGC 1546",
@@ -4216,7 +4295,7 @@
    "source": "Hubble",
    "license": "PDM-1.0",
    "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2024/06/STScI-01J0P4S2CD2WWZBRYJJ6FVY4Z6.tif/jcr:content/renditions/Full%20Res%20(For%20Display).png",
-   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2024/06/STScI-01J0P4S2CD2WWZBRYJJ6FVY4Z6.tif/jcr:content/renditions/2000x1836.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/38b3fe2f39873bd0bff47486ae1ebcd09237eb9e1a30e253166db09a43c0760d.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain (NASA/STScI release)",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -4254,7 +4333,8 @@
     0.49
    ],
    "delivered_edge": 4032,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2024/06/STScI-01J0P4S2CD2WWZBRYJJ6FVY4Z6.tif/jcr:content/renditions/2000x1836.jpg"
   },
   {
    "title": "Enceladus: Trailing Hemisphere",
@@ -4269,7 +4349,7 @@
    "source": "Cassini",
    "license": "PDM-1.0",
    "source_url": "https://images-assets.nasa.gov/image/PIA08353/PIA08353~orig.jpg",
-   "thumbnail_url": "https://images-assets.nasa.gov/image/PIA08353/PIA08353~medium.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/e1103e5d69947e6027320ebc43485cee696f6de8610f608a93a98388de3f4ff2.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain (NASA/STScI release)",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -4307,7 +4387,8 @@
     0.52
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "thumbnail_source_url": "https://images-assets.nasa.gov/image/PIA08353/PIA08353~medium.jpg"
   },
   {
    "title": "Bat Shadow",
@@ -4322,7 +4403,7 @@
    "source": "Hubble",
    "license": "PDM-1.0",
    "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2020/06/STScI-01EVSTDBRNE6K7PB5CFGJJJ21B.tif/jcr:content/renditions/Full%20Res.png",
-   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2020/06/STScI-01EVSTDBRNE6K7PB5CFGJJJ21B.tif/jcr:content/renditions/2000x1810.png",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/706c01e45a36ede1f5f1db7056f5937e4464dacc4cd1fdd9656bcf3a72a56ccc.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain (NASA/STScI release)",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -4360,7 +4441,8 @@
     0.66
    ],
    "delivered_edge": 4398,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2020/06/STScI-01EVSTDBRNE6K7PB5CFGJJJ21B.tif/jcr:content/renditions/2000x1810.png"
   },
   {
    "title": "MACS 0416",
@@ -4375,7 +4457,7 @@
    "source": "Webb",
    "license": "PDM-1.0",
    "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2023/11/STScI-01HDHAVM4K4220Z79YTMP1K7VM.png",
-   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2023/11/STScI-01HDHAVM4K4220Z79YTMP1K7VM.png/jcr:content/renditions/2000x1855.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/a98092ed5b4699b0e0ab97d8c971a91729713472c302c418ed79b172c0868f34.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain (NASA/STScI release)",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -4413,7 +4495,8 @@
     0.4
    ],
    "delivered_edge": 4457,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2023/11/STScI-01HDHAVM4K4220Z79YTMP1K7VM.png/jcr:content/renditions/2000x1855.jpg"
   },
   {
    "title": "Jet in Carina: WFC3 UVIS Full Field",
@@ -4428,7 +4511,7 @@
    "source": "Hubble",
    "license": "PDM-1.0",
    "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2009/09/STScI-01EVT5GKWHMMXYNH9ZKB16YXY7.tif/jcr:content/renditions/7215x7344.jpg",
-   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2009/09/STScI-01EVT5GKWHMMXYNH9ZKB16YXY7.tif/jcr:content/renditions/983x1000.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/dc82e619340df138d1744f7f36b1b1a13adbed2cc15c59e346600b54cbb41c15.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain (NASA/STScI release)",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -4466,7 +4549,8 @@
     0.47
    ],
    "delivered_edge": 7344,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2009/09/STScI-01EVT5GKWHMMXYNH9ZKB16YXY7.tif/jcr:content/renditions/983x1000.jpg"
   },
   {
    "title": "A Cosmic Holiday Ornament, Hubble-Style",
@@ -4481,7 +4565,7 @@
    "source": "Hubble",
    "license": "PDM-1.0",
    "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2012/12/STScI-01EVVCW5DG59PNFE13DM8S5SY6.tif/jcr:content/renditions/3964x4224.jpg",
-   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2012/12/STScI-01EVVCW5DG59PNFE13DM8S5SY6.tif/jcr:content/renditions/938x1000.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/afad05e06aa70b7aedf9ef5411d2ba83375470871a813cafecaf3e96d098012d.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain (NASA/STScI release)",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -4519,7 +4603,8 @@
     0.47
    ],
    "delivered_edge": 4224,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2012/12/STScI-01EVVCW5DG59PNFE13DM8S5SY6.tif/jcr:content/renditions/938x1000.jpg"
   },
   {
    "title": "Dark Clouds in Rosette Nebula",
@@ -4534,7 +4619,7 @@
    "source": "Hubble",
    "license": "PDM-1.0",
    "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2025/04/STScI-01JQCEYWAF3QJHV0TR7Q1B0FED.tif/jcr:content/renditions/Full Res (For Display).png",
-   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2025/04/STScI-01JQCEYWAF3QJHV0TR7Q1B0FED.tif/jcr:content/renditions/2000x1961.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/79ec83b091da75232b31ff0aa22229bf5027303c8579ed27ad9f92fc761c6694.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain (NASA/STScI release)",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -4572,7 +4657,8 @@
     0.42
    ],
    "delivered_edge": 4073,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2025/04/STScI-01JQCEYWAF3QJHV0TR7Q1B0FED.tif/jcr:content/renditions/2000x1961.jpg"
   },
   {
    "title": "NGC 5335",
@@ -4587,7 +4673,7 @@
    "source": "Hubble",
    "license": "PDM-1.0",
    "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2025/04/STScI-01JQCFPAES3ND3FHAVTAWAECD2.tif/jcr:content/renditions/Full Res (For Display).png",
-   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2025/04/STScI-01JQCFPAES3ND3FHAVTAWAECD2.tif/jcr:content/renditions/2000x1982.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/496ef28401ad10bae08f70dbd2014f1b3bc362b7b87c13e94c77ec6e90dc4c81.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain (NASA/STScI release)",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -4625,7 +4711,8 @@
     0.46
    ],
    "delivered_edge": 4076,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2025/04/STScI-01JQCFPAES3ND3FHAVTAWAECD2.tif/jcr:content/renditions/2000x1982.jpg"
   },
   {
    "title": "Trumpler 14",
@@ -4640,7 +4727,7 @@
    "source": "Hubble",
    "license": "PDM-1.0",
    "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2016/01/STScI-01EVT1T2ZABA072JD70KJWSRT7.tif/jcr:content/renditions/3906x3906.jpg",
-   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2016/01/STScI-01EVT1T2ZABA072JD70KJWSRT7.tif/jcr:content/renditions/1200x1200.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/eb425ad0ee88fa130d16e126e8f7d7f2f24d11ec7db88bb2c899f7512c628dbe.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain (NASA/STScI release)",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -4678,7 +4765,8 @@
     0.55
    ],
    "delivered_edge": 3906,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2016/01/STScI-01EVT1T2ZABA072JD70KJWSRT7.tif/jcr:content/renditions/1200x1200.jpg"
   },
   {
    "title": "JWST Advanced Deep Extragalactic Survey",
@@ -4693,7 +4781,7 @@
    "source": "Webb",
    "license": "PDM-1.0",
    "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2023/06/STScI-01H1Q2DKR7FRQAMDGBGCDAMSPX.png",
-   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2023/06/STScI-01H1Q2DKR7FRQAMDGBGCDAMSPX.png/jcr:content/renditions/2000x1402.png",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/f379fc76151ee41697d4e752767143e9fbdcb28f84b14f18bd9c37f8ac7a3200.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain (NASA/STScI release)",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -4731,7 +4819,8 @@
     0.5
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "thumbnail_source_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2023/06/STScI-01H1Q2DKR7FRQAMDGBGCDAMSPX.png/jcr:content/renditions/2000x1402.png"
   },
   {
    "title": "IC 348",
@@ -4746,7 +4835,7 @@
    "source": "Webb",
    "license": "PDM-1.0",
    "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2023/12/STScI-01HFC8K9A4CX579GP4QMDX2QBY.png",
-   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2023/12/STScI-01HFC8K9A4CX579GP4QMDX2QBY.png/jcr:content/renditions/1492x2000.png",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/6a708b20c7f0689fd7ef9274bee72be92ddc01c4f6d5b5cc080c2eb911208f77.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain (NASA/STScI release)",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -4784,7 +4873,8 @@
     0.47
    ],
    "delivered_edge": 5077,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2023/12/STScI-01HFC8K9A4CX579GP4QMDX2QBY.png/jcr:content/renditions/1492x2000.png"
   },
   {
    "title": "Lagoon Nebula — Infrared Light",
@@ -4799,7 +4889,7 @@
    "source": "Hubble",
    "license": "PDM-1.0",
    "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2018/04/STScI-01EVT0N4CV02KC07S48TCNNG14.tif/jcr:content/renditions/Full%20Res.png",
-   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2018/04/STScI-01EVT0N4CV02KC07S48TCNNG14.tif/jcr:content/renditions/861x1000.png",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/070f97fcc5192b4af71a86cab17fdb15b5280a83570ec3c0467292c3d78b0bc0.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain (NASA/STScI release)",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -4837,7 +4927,8 @@
     0.47
    ],
    "delivered_edge": 6500,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2018/04/STScI-01EVT0N4CV02KC07S48TCNNG14.tif/jcr:content/renditions/861x1000.png"
   },
   {
    "title": "Galaxy Cluster Abell 370",
@@ -4852,7 +4943,7 @@
    "source": "Hubble",
    "license": "PDM-1.0",
    "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2018/09/STScI-01EVSZQS76DB6KPJT9VEXY75V2.tif/jcr:content/renditions/Full%20Res.png",
-   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2018/09/STScI-01EVSZQS76DB6KPJT9VEXY75V2.tif/jcr:content/renditions/878x1000.png",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/acd30b6f0d2edbf6d4582779c77ad0bbc6a4fb3378593c4e06ae11a02ba30fb8.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain (NASA/STScI release)",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -4890,7 +4981,8 @@
     0.48
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "thumbnail_source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2018/09/STScI-01EVSZQS76DB6KPJT9VEXY75V2.tif/jcr:content/renditions/878x1000.png"
   },
   {
    "title": "Star Cluster R136",
@@ -4905,7 +4997,7 @@
    "source": "Hubble",
    "license": "PDM-1.0",
    "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2016/03/STScI-01EVVH0Z1XVJ2T61FQ5XRYV9HK.tif/jcr:content/renditions/4014x3981.jpg",
-   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2016/03/STScI-01EVVH0Z1XVJ2T61FQ5XRYV9HK.tif/jcr:content/renditions/1200x1190.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/4f1439f760dec7c55a205f6d51b55d30b2de2448654b0926645bdfc224e5329e.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain (NASA/STScI release)",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -4943,7 +5035,8 @@
     0.72
    ],
    "delivered_edge": 4014,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2016/03/STScI-01EVVH0Z1XVJ2T61FQ5XRYV9HK.tif/jcr:content/renditions/1200x1190.jpg"
   },
   {
    "title": "Cassiopeia A — Webb NIRCam",
@@ -4958,7 +5051,7 @@
    "source": "Webb",
    "license": "PDM-1.0",
    "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2023/12/STScI-01HGGZBZ1WK06H9NMB5WZTZPXD.png",
-   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2023/12/STScI-01HGGZBZ1WK06H9NMB5WZTZPXD.png/jcr:content/renditions/1746x2000.png",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/1ea7ffd302de9452581138c94c2d437a5718a72d443af54d90f119d8f970dc01.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain (NASA/STScI release)",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -4996,7 +5089,8 @@
     0.45
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "thumbnail_source_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2023/12/STScI-01HGGZBZ1WK06H9NMB5WZTZPXD.png/jcr:content/renditions/1746x2000.png"
   },
   {
    "title": "M82 Cigar Galaxy — Webb NIRCam",
@@ -5011,7 +5105,7 @@
    "source": "Webb",
    "license": "PDM-1.0",
    "source_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2026/06/STScI-01KM3RWWTEHPFZG9QEKE4FZM25.png",
-   "thumbnail_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2026/06/STScI-01KM3RWWTEHPFZG9QEKE4FZM25.png/jcr:content/renditions/2000x1348.png",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/d3ad6d45aaa354b4b0f903140794aac6dd5c40777ff7b2d24c9119ec20fb0700.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain (NASA/STScI release)",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -5049,7 +5143,8 @@
     0.48
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "thumbnail_source_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2026/06/STScI-01KM3RWWTEHPFZG9QEKE4FZM25.png/jcr:content/renditions/2000x1348.png"
   },
   {
    "title": "Cassiopeia A — Chandra X-ray Composite",
@@ -5064,7 +5159,7 @@
    "source": "Chandra (+ composite)",
    "license": "PDM-1.0",
    "source_url": "https://chandra.harvard.edu/photo/2021/casa/casa_lg.jpg",
-   "thumbnail_url": "https://chandra.harvard.edu/photo/2021/casa/casa.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/a90de345072b40c684d97fb613b315a1aa2653562704ed67b8f32f8f077f04a8.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain (NASA/STScI release)",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -5102,7 +5197,8 @@
     0.45
    ],
    "delivered_edge": 7620,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://chandra.harvard.edu/photo/2021/casa/casa.jpg"
   },
   {
    "title": "WISE Unveils a Treasure Trove of Beauty",
@@ -5117,7 +5213,7 @@
    "source": "WISE",
    "license": "PDM-1.0",
    "source_url": "https://images-assets.nasa.gov/image/PIA13974/PIA13974~orig.jpg",
-   "thumbnail_url": "https://images-assets.nasa.gov/image/PIA13974/PIA13974~medium.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/d1c305e6146b59d2352f0a932829e0a107949a401a86990f832a6fcd5c60c25a.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain (NASA/STScI release)",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -5155,7 +5251,8 @@
     0.55
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "thumbnail_source_url": "https://images-assets.nasa.gov/image/PIA13974/PIA13974~medium.jpg"
   },
   {
    "title": "Jabbah and Associates",
@@ -5170,7 +5267,7 @@
    "source": "WISE",
    "license": "PDM-1.0",
    "source_url": "https://images-assets.nasa.gov/image/PIA14881/PIA14881~orig.jpg",
-   "thumbnail_url": "https://images-assets.nasa.gov/image/PIA14881/PIA14881~medium.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/28c92164021284bd3a4d554078b453b9f8290e8ef5d10c53d6d859f6e9967580.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain (NASA/STScI release)",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -5208,7 +5305,8 @@
     0.42
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "thumbnail_source_url": "https://images-assets.nasa.gov/image/PIA14881/PIA14881~medium.jpg"
   },
   {
    "title": "Perseus Molecular Cloud",
@@ -5223,7 +5321,7 @@
    "source": "Spitzer",
    "license": "PDM-1.0",
    "source_url": "https://images-assets.nasa.gov/image/PIA23405/PIA23405~orig.jpg",
-   "thumbnail_url": "https://images-assets.nasa.gov/image/PIA23405/PIA23405~medium.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/505d95465535def2993a5b2c58829371dc86382ca6b2a0776ce4151b0e9efde3.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain (NASA/STScI release)",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -5261,7 +5359,8 @@
     0.52
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "thumbnail_source_url": "https://images-assets.nasa.gov/image/PIA23405/PIA23405~medium.jpg"
   },
   {
    "title": "Orion Big Head Revealed in Infrared",
@@ -5276,7 +5375,7 @@
    "source": "WISE",
    "license": "PDM-1.0",
    "source_url": "https://images-assets.nasa.gov/image/PIA14040/PIA14040~orig.jpg",
-   "thumbnail_url": "https://images-assets.nasa.gov/image/PIA14040/PIA14040~medium.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/08c83363bebb4894298af4959ace1de32a01ce97e0a3ae76631bf914e7f25e93.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain (NASA/STScI release)",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -5314,7 +5413,8 @@
     0.35
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "thumbnail_source_url": "https://images-assets.nasa.gov/image/PIA14040/PIA14040~medium.jpg"
   },
   {
    "title": "Stars Gather in Downtown Milky Way",
@@ -5329,7 +5429,7 @@
    "source": "Spitzer",
    "license": "PDM-1.0",
    "source_url": "https://images-assets.nasa.gov/image/PIA13932/PIA13932~orig.jpg",
-   "thumbnail_url": "https://images-assets.nasa.gov/image/PIA13932/PIA13932~medium.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/792c05fa7b5a23d5260b2f9fefca118e93073d0e592609625e15c878ab29f08d.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain (NASA/STScI release)",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -5367,7 +5467,8 @@
     0.5
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "thumbnail_source_url": "https://images-assets.nasa.gov/image/PIA13932/PIA13932~medium.jpg"
   },
   {
    "title": "Saturn … Four Years On",
@@ -5382,7 +5483,7 @@
    "source": "Cassini",
    "license": "PDM-1.0",
    "source_url": "https://images-assets.nasa.gov/image/PIA11141/PIA11141~orig.jpg",
-   "thumbnail_url": "https://images-assets.nasa.gov/image/PIA11141/PIA11141~medium.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/b76d92070882507c2efc0df412a7ebe93166e3e61a777025e89fd541d24f6ccb.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain (NASA/STScI release)",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -5420,7 +5521,8 @@
     0.5
    ],
    "delivered_edge": 4613,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://images-assets.nasa.gov/image/PIA11141/PIA11141~medium.jpg"
   },
   {
    "title": "High Resolution Ceres View",
@@ -5435,7 +5537,7 @@
    "source": "Dawn",
    "license": "PDM-1.0",
    "source_url": "https://images-assets.nasa.gov/image/PIA21906/PIA21906~orig.jpg",
-   "thumbnail_url": "https://images-assets.nasa.gov/image/PIA21906/PIA21906~medium.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/e86d17e6afbf5cc261f75cf1d438d40ded7873f762abd1e3c051088ad06c08e0.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain (NASA/STScI release)",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -5473,7 +5575,8 @@
     0.5
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "thumbnail_source_url": "https://images-assets.nasa.gov/image/PIA21906/PIA21906~medium.jpg"
   },
   {
    "title": "On the Final Frontier",
@@ -5488,7 +5591,7 @@
    "source": "Cassini",
    "license": "PDM-1.0",
    "source_url": "https://images-assets.nasa.gov/image/PIA08388/PIA08388~orig.jpg",
-   "thumbnail_url": "https://images-assets.nasa.gov/image/PIA08388/PIA08388~medium.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/e1957f55fd70ff8db8b7e70cbd162b236197bba78a8f199454c4274629923a3f.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain (NASA/STScI release)",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -5526,7 +5629,8 @@
     0.48
    ],
    "delivered_edge": 4824,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://images-assets.nasa.gov/image/PIA08388/PIA08388~medium.jpg"
   },
   {
    "title": "Webb visits a star-forming spiral",
@@ -5541,7 +5645,7 @@
    "source": "Webb",
    "license": "CC-BY-4.0",
    "source_url": "https://cdn.esawebb.org/archives/images/large/potm2502a.jpg",
-   "thumbnail_url": "https://cdn.esawebb.org/archives/images/screen/potm2502a.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/fbfd78cd6acb0a53f0c0fbc71842e12c0da8a9ab39d4aec3dd92a8614b43cdb1.jpg",
    "license_verdict": "cc-by",
    "license_basis": "CC BY 4.0 (ESA/Webb release)",
    "license_url": "https://creativecommons.org/licenses/by/4.0/",
@@ -5579,7 +5683,8 @@
     0.5
    ],
    "delivered_edge": 4328,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://cdn.esawebb.org/archives/images/screen/potm2502a.jpg"
   },
   {
    "title": "Dwarf stars in a glittering sky",
@@ -5594,7 +5699,7 @@
    "source": "Webb",
    "license": "CC-BY-4.0",
    "source_url": "https://cdn.esawebb.org/archives/images/large/potm2512a.jpg",
-   "thumbnail_url": "https://cdn.esawebb.org/archives/images/screen/potm2512a.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/dc476582e3919f2027e690f9864ff5688315b081dff0bf8c1dc1c8e3a1b513b1.jpg",
    "license_verdict": "cc-by",
    "license_basis": "CC BY 4.0 (ESA/Webb release)",
    "license_url": "https://creativecommons.org/licenses/by/4.0/",
@@ -5632,7 +5737,8 @@
     0.13
    ],
    "delivered_edge": 4175,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://cdn.esawebb.org/archives/images/screen/potm2512a.jpg"
   },
   {
    "title": "NGC 602 (Webb image)",
@@ -5647,7 +5753,7 @@
    "source": "Webb",
    "license": "CC-BY-4.0",
    "source_url": "https://cdn.esawebb.org/archives/images/large/weic2425c.jpg",
-   "thumbnail_url": "https://cdn.esawebb.org/archives/images/screen/weic2425c.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/51c597ed8afda3b2f3e605937da5a662f4944c2631ed34eac11f0db977d2db2e.jpg",
    "license_verdict": "cc-by",
    "license_basis": "CC BY 4.0 (ESA/Webb release)",
    "license_url": "https://creativecommons.org/licenses/by/4.0/",
@@ -5685,7 +5791,8 @@
     0.48
    ],
    "delivered_edge": 5863,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://cdn.esawebb.org/archives/images/screen/weic2425c.jpg"
   },
   {
    "title": "Webb opens a Treasure Chest filled with stars",
@@ -5700,7 +5807,7 @@
    "source": "Webb",
    "license": "CC-BY-4.0",
    "source_url": "https://cdn.esawebb.org/archives/images/large/potm2607a.jpg",
-   "thumbnail_url": "https://cdn.esawebb.org/archives/images/screen/potm2607a.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/f29f5ab17e653b6a4b6d5cb3e4ba9aae0ab1547726267478c9f4e45c71aff206.jpg",
    "license_verdict": "cc-by",
    "license_basis": "CC BY 4.0 (ESA/Webb release)",
    "license_url": "https://creativecommons.org/licenses/by/4.0/",
@@ -5738,7 +5845,8 @@
     0.4
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "thumbnail_source_url": "https://cdn.esawebb.org/archives/images/screen/potm2607a.jpg"
   },
   {
    "title": "The Red Spider Nebula, caught by Webb",
@@ -5753,7 +5861,7 @@
    "source": "Webb",
    "license": "CC-BY-4.0",
    "source_url": "https://cdn.esawebb.org/archives/images/large/potm2510a.jpg",
-   "thumbnail_url": "https://cdn.esawebb.org/archives/images/screen/potm2510a.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/9121798fa1fa104919c137e5c6f4250166d30bc6ffc38099b61fbbe7eae0bc5d.jpg",
    "license_verdict": "cc-by",
    "license_basis": "CC BY 4.0 (ESA/Webb release)",
    "license_url": "https://creativecommons.org/licenses/by/4.0/",
@@ -5791,7 +5899,8 @@
     0.46
    ],
    "delivered_edge": 4756,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://cdn.esawebb.org/archives/images/screen/potm2510a.jpg"
   },
   {
    "title": "HH 211 (NIRCam image, cropped)",
@@ -5806,7 +5915,7 @@
    "source": "Webb",
    "license": "CC-BY-4.0",
    "source_url": "https://cdn.esawebb.org/archives/images/large/weic2322a.jpg",
-   "thumbnail_url": "https://cdn.esawebb.org/archives/images/screen/weic2322a.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/795b367f1fc2ff6fc6b4ef60bd0f453baee962c81be590a31d76453db52588c7.jpg",
    "license_verdict": "cc-by",
    "license_basis": "CC BY 4.0 (ESA/Webb release)",
    "license_url": "https://creativecommons.org/licenses/by/4.0/",
@@ -5844,7 +5953,8 @@
     0.505
    ],
    "delivered_edge": 3846,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://cdn.esawebb.org/archives/images/screen/weic2322a.jpg"
   },
   {
    "title": "Messier 77 (MIRI + NIRCam)",
@@ -5859,7 +5969,7 @@
    "source": "Webb",
    "license": "CC-BY-4.0",
    "source_url": "https://cdn.esawebb.org/archives/images/large/potm2604b.jpg",
-   "thumbnail_url": "https://cdn.esawebb.org/archives/images/screen/potm2604b.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/5ee3cdad7cd4c0baeb70ecf6df1dd1d230915162c628a719d6e5c43429d17f6f.jpg",
    "license_verdict": "cc-by",
    "license_basis": "CC BY 4.0 (ESA/Webb release)",
    "license_url": "https://creativecommons.org/licenses/by/4.0/",
@@ -5897,7 +6007,8 @@
     0.525
    ],
    "delivered_edge": 4164,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://cdn.esawebb.org/archives/images/screen/potm2604b.jpg"
   },
   {
    "title": "Fireworks of stellar starbursts",
@@ -5912,7 +6023,7 @@
    "source": "Webb",
    "license": "CC-BY-4.0",
    "source_url": "https://cdn.esawebb.org/archives/images/large/potm2405a.jpg",
-   "thumbnail_url": "https://cdn.esawebb.org/archives/images/screen/potm2405a.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/d69ba19ed04b23c35e314dd90204f36a79ef7752cf969389efb508969866e370.jpg",
    "license_verdict": "cc-by",
    "license_basis": "CC BY 4.0 (ESA/Webb release)",
    "license_url": "https://creativecommons.org/licenses/by/4.0/",
@@ -5950,7 +6061,8 @@
     0.42
    ],
    "delivered_edge": 5249,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://cdn.esawebb.org/archives/images/screen/potm2405a.jpg"
   },
   {
    "title": "A galactic treasury",
@@ -5965,7 +6077,7 @@
    "source": "Webb",
    "license": "CC-BY-4.0",
    "source_url": "https://cdn.esawebb.org/archives/images/large/potm2402a.jpg",
-   "thumbnail_url": "https://cdn.esawebb.org/archives/images/screen/potm2402a.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/797f53c2ec11c54601fd80cfd9b12afa111a786e27139efc6459a852faa247d6.jpg",
    "license_verdict": "cc-by",
    "license_basis": "CC BY 4.0 (ESA/Webb release)",
    "license_url": "https://creativecommons.org/licenses/by/4.0/",
@@ -6003,7 +6115,8 @@
     0.48
    ],
    "delivered_edge": 4377,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://cdn.esawebb.org/archives/images/screen/potm2402a.jpg"
   },
   {
    "title": "Tracing spiral arms in infrared",
@@ -6018,7 +6131,7 @@
    "source": "Webb",
    "license": "CC-BY-4.0",
    "source_url": "https://cdn.esawebb.org/archives/images/large/potm2411a.jpg",
-   "thumbnail_url": "https://cdn.esawebb.org/archives/images/screen/potm2411a.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/52bd390fff377c7d84aa79e6af267c65d5c9020b09c4277a44c88441eb61f4a4.jpg",
    "license_verdict": "cc-by",
    "license_basis": "CC BY 4.0 (ESA/Webb release)",
    "license_url": "https://creativecommons.org/licenses/by/4.0/",
@@ -6056,7 +6169,8 @@
     0.52
    ],
    "delivered_edge": 4380,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://cdn.esawebb.org/archives/images/screen/potm2411a.jpg"
   },
   {
    "title": "Close look at a local galaxy",
@@ -6071,7 +6185,7 @@
    "source": "Webb",
    "license": "CC-BY-4.0",
    "source_url": "https://cdn.esawebb.org/archives/images/large/potm2412a.jpg",
-   "thumbnail_url": "https://cdn.esawebb.org/archives/images/screen/potm2412a.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/c294b16041017ef73c45e750dd2a1bc1dba961f0a85434d28ca5722f64caa14b.jpg",
    "license_verdict": "cc-by",
    "license_basis": "CC BY 4.0 (ESA/Webb release)",
    "license_url": "https://creativecommons.org/licenses/by/4.0/",
@@ -6109,7 +6223,8 @@
     0.53
    ],
    "delivered_edge": 4387,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://cdn.esawebb.org/archives/images/screen/potm2412a.jpg"
   },
   {
    "title": "The stellar lifecycle in a nearby spiral",
@@ -6124,7 +6239,7 @@
    "source": "Webb",
    "license": "CC-BY-4.0",
    "source_url": "https://cdn.esawebb.org/archives/images/large/potm2602a.jpg",
-   "thumbnail_url": "https://cdn.esawebb.org/archives/images/screen/potm2602a.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/dc8dfea5de75ebe89ff6c3ff2877464e0411db9039384add8c961befeac31d96.jpg",
    "license_verdict": "cc-by",
    "license_basis": "CC BY 4.0 (ESA/Webb release)",
    "license_url": "https://creativecommons.org/licenses/by/4.0/",
@@ -6162,7 +6277,8 @@
     0.51
    ],
    "delivered_edge": 4204,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://cdn.esawebb.org/archives/images/screen/potm2602a.jpg"
   },
   {
    "title": "Peeking into Perseus",
@@ -6177,7 +6293,7 @@
    "source": "Webb",
    "license": "CC-BY-4.0",
    "source_url": "https://cdn.esawebb.org/archives/images/large/potm2408a.jpg",
-   "thumbnail_url": "https://cdn.esawebb.org/archives/images/screen/potm2408a.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/e18309e56b996d7c55f817f1320f8267ffbb7624dda36b3a31f9e38b7d786e49.jpg",
    "license_verdict": "cc-by",
    "license_basis": "CC BY 4.0 (ESA/Webb release)",
    "license_url": "https://creativecommons.org/licenses/by/4.0/",
@@ -6215,7 +6331,8 @@
     0.31
    ],
    "delivered_edge": 4096,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://cdn.esawebb.org/archives/images/screen/potm2408a.jpg"
   },
   {
    "title": "NGC 3256 (HST)",
@@ -6230,7 +6347,7 @@
    "source": "Hubble",
    "license": "CC-BY-4.0",
    "source_url": "https://cdn.esawebb.org/archives/images/large/potm2306b.jpg",
-   "thumbnail_url": "https://cdn.esawebb.org/archives/images/screen/potm2306b.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/9935b41adf56bd58fa16c869a37fd7ff45e6c25f058f417f9f7442a099106a30.jpg",
    "license_verdict": "cc-by",
    "license_basis": "CC BY 4.0 (ESA/Hubble release)",
    "license_url": "https://creativecommons.org/licenses/by/4.0/",
@@ -6268,7 +6385,8 @@
     0.48
    ],
    "delivered_edge": 4206,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://cdn.esawebb.org/archives/images/screen/potm2306b.jpg"
   },
   {
    "title": "IRS 3 Field (NIRCam and MIRI image)",
@@ -6283,7 +6401,7 @@
    "source": "Webb",
    "license": "CC-BY-4.0",
    "source_url": "https://cdn.esawebb.org/archives/images/large/weic2617a.jpg",
-   "thumbnail_url": "https://cdn.esawebb.org/archives/images/screen/weic2617a.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/ac52a3d619b0b988fe2ec0598ff6b6b7685a6aeece5f770967d9f7d669ccc4a0.jpg",
    "license_verdict": "cc-by",
    "license_basis": "CC BY 4.0 (ESA/Webb release)",
    "license_url": "https://creativecommons.org/licenses/by/4.0/",
@@ -6321,7 +6439,8 @@
     0.45
    ],
    "delivered_edge": 4756,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://cdn.esawebb.org/archives/images/screen/weic2617a.jpg"
   },
   {
    "title": "Westerlund 1 (wide-field view)",
@@ -6336,7 +6455,7 @@
    "source": "Webb",
    "license": "CC-BY-4.0",
    "source_url": "https://cdn.esawebb.org/archives/images/large/potm2409b.jpg",
-   "thumbnail_url": "https://cdn.esawebb.org/archives/images/screen/potm2409b.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/2da49cca3eb984e555b930ba14226b407e8cfc5fbba583fffaacb5c6498cd098.jpg",
    "license_verdict": "cc-by",
    "license_basis": "CC BY 4.0 (ESA/Webb release)",
    "license_url": "https://creativecommons.org/licenses/by/4.0/",
@@ -6374,7 +6493,8 @@
     0.47
    ],
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "thumbnail_source_url": "https://cdn.esawebb.org/archives/images/screen/potm2409b.jpg"
   },
   {
    "title": "Clash of the Titans",
@@ -6389,7 +6509,7 @@
    "source": "Webb",
    "license": "CC-BY-4.0",
    "source_url": "https://cdn.esawebb.org/archives/images/large/potm2306a.jpg",
-   "thumbnail_url": "https://cdn.esawebb.org/archives/images/screen/potm2306a.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/94817f5af2d16025df810163499dd1cf35db364ea042bcb1e73021c2c0ca33ac.jpg",
    "license_verdict": "cc-by",
    "license_basis": "CC BY 4.0 (ESA/Webb release)",
    "license_url": "https://creativecommons.org/licenses/by/4.0/",
@@ -6427,7 +6547,8 @@
     0.47
    ],
    "delivered_edge": 4206,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://cdn.esawebb.org/archives/images/screen/potm2306a.jpg"
   },
   {
    "title": "Striking star clusters and irregular clumps",
@@ -6442,7 +6563,7 @@
    "source": "Webb",
    "license": "CC-BY-4.0",
    "source_url": "https://cdn.esawebb.org/archives/images/large/potm2608a.jpg",
-   "thumbnail_url": "https://cdn.esawebb.org/archives/images/screen/potm2608a.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/850824adea19b52483c2edd4d57bcb3d31180453c317e3ea4791c4073483a63d.jpg",
    "license_verdict": "cc-by",
    "license_basis": "CC BY 4.0 (ESA/Webb release)",
    "license_url": "https://creativecommons.org/licenses/by/4.0/",
@@ -6480,7 +6601,8 @@
     0.45
    ],
    "delivered_edge": 4335,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://cdn.esawebb.org/archives/images/screen/potm2608a.jpg"
   },
   {
    "title": "Tangled — cosmic edition",
@@ -6495,7 +6617,7 @@
    "source": "Hubble",
    "license": "CC-BY-4.0",
    "source_url": "https://cdn.esahubble.org/archives/images/large/potw1848a.jpg",
-   "thumbnail_url": "https://cdn.esahubble.org/archives/images/screen/potw1848a.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/67122c36469533f6f99cbdfc325eaa5b2ce376ea5d20eb772661afe74d4a097e.jpg",
    "license_verdict": "cc-by",
    "license_basis": "CC BY 4.0 (ESA/Hubble release)",
    "license_url": "https://creativecommons.org/licenses/by/4.0/",
@@ -6533,7 +6655,8 @@
     0.55
    ],
    "delivered_edge": 4165,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://cdn.esahubble.org/archives/images/screen/potw1848a.jpg"
   },
   {
    "title": "The young stars of Taurus",
@@ -6548,7 +6671,7 @@
    "source": "Hubble",
    "license": "CC-BY-4.0",
    "source_url": "https://cdn.esahubble.org/archives/images/large/potw2526a.jpg",
-   "thumbnail_url": "https://cdn.esahubble.org/archives/images/screen/potw2526a.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/b09120555657799016eb5570e5762c298ea5abd28ade9c09fe5ea92be3fc6590.jpg",
    "license_verdict": "cc-by",
    "license_basis": "CC BY 4.0 (ESA/Hubble release)",
    "license_url": "https://creativecommons.org/licenses/by/4.0/",
@@ -6586,7 +6709,8 @@
     0.47
    ],
    "delivered_edge": 3880,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://cdn.esahubble.org/archives/images/screen/potw2526a.jpg"
   },
   {
    "title": "Capturing candyfloss clouds",
@@ -6601,7 +6725,7 @@
    "source": "Hubble",
    "license": "CC-BY-4.0",
    "source_url": "https://cdn.esahubble.org/archives/images/large/potw2519a.jpg",
-   "thumbnail_url": "https://cdn.esahubble.org/archives/images/screen/potw2519a.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/8c82a5abd32da9468c38b803c9772a28648e14c68c2635b00ea3c44fa045b68f.jpg",
    "license_verdict": "cc-by",
    "license_basis": "CC BY 4.0 (ESA/Hubble release)",
    "license_url": "https://creativecommons.org/licenses/by/4.0/",
@@ -6639,7 +6763,8 @@
     0.35
    ],
    "delivered_edge": 4016,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://cdn.esahubble.org/archives/images/screen/potw2519a.jpg"
   },
   {
    "title": "A glittering cluster shines again",
@@ -6654,7 +6779,7 @@
    "source": "Hubble",
    "license": "CC-BY-4.0",
    "source_url": "https://cdn.esahubble.org/archives/images/large/potw2516a.jpg",
-   "thumbnail_url": "https://cdn.esahubble.org/archives/images/screen/potw2516a.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/8485e77e94d1989f7ce4e5b9a474e236a4b6fcb3cd5051ba7c7636ec4d1f6fef.jpg",
    "license_verdict": "cc-by",
    "license_basis": "CC BY 4.0 (ESA/Hubble release)",
    "license_url": "https://creativecommons.org/licenses/by/4.0/",
@@ -6692,7 +6817,8 @@
     0.47
    ],
    "delivered_edge": 4917,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://cdn.esahubble.org/archives/images/screen/potw2516a.jpg"
   },
   {
    "title": "Extreme star cluster bursts into life in new Hubble image",
@@ -6707,7 +6833,7 @@
    "source": "Hubble",
    "license": "CC-BY-4.0",
    "source_url": "https://cdn.esahubble.org/archives/images/large/heic0715a.jpg",
-   "thumbnail_url": "https://cdn.esahubble.org/archives/images/screen/heic0715a.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/75b35860d81af853a5b4d4b2dce5efc127f4baf5064b43ebd5ebd915cb422832.jpg",
    "license_verdict": "cc-by",
    "license_basis": "CC BY 4.0 (ESA/Hubble release)",
    "license_url": "https://creativecommons.org/licenses/by/4.0/",
@@ -6745,7 +6871,8 @@
     0.43
    ],
    "delivered_edge": 3904,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://cdn.esahubble.org/archives/images/screen/heic0715a.jpg"
   },
   {
    "title": "Festive and Free-Floating",
@@ -6760,7 +6887,7 @@
    "source": "Hubble",
    "license": "CC-BY-4.0",
    "source_url": "https://cdn.esahubble.org/archives/images/large/potw2251a.jpg",
-   "thumbnail_url": "https://cdn.esahubble.org/archives/images/screen/potw2251a.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/d7bf93eeb2c29dbba0a715ccbf2c59029a4379de2a079a389b50f1aa8ae52d54.jpg",
    "license_verdict": "cc-by",
    "license_basis": "CC BY 4.0 (ESA/Hubble release)",
    "license_url": "https://creativecommons.org/licenses/by/4.0/",
@@ -6798,7 +6925,8 @@
     0.23
    ],
    "delivered_edge": 3977,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://cdn.esahubble.org/archives/images/screen/potw2251a.jpg"
   },
   {
    "title": "Tempestuous Young Stars in Orion",
@@ -6813,7 +6941,7 @@
    "source": "Hubble",
    "license": "CC-BY-4.0",
    "source_url": "https://cdn.esahubble.org/archives/images/large/potw2304a.jpg",
-   "thumbnail_url": "https://cdn.esahubble.org/archives/images/screen/potw2304a.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/dd9b1031fe6b1f6949f6d69d33e168bd2fe13afb66694afe5a165605bd4da0bf.jpg",
    "license_verdict": "cc-by",
    "license_basis": "CC BY 4.0 (ESA/Hubble release)",
    "license_url": "https://creativecommons.org/licenses/by/4.0/",
@@ -6851,7 +6979,8 @@
     0.68
    ],
    "delivered_edge": 4003,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://cdn.esahubble.org/archives/images/screen/potw2304a.jpg"
   },
   {
    "title": "Into the storm",
@@ -6866,7 +6995,7 @@
    "source": "Hubble",
    "license": "CC-BY-4.0",
    "source_url": "https://cdn.esahubble.org/archives/images/large/potw1636a.jpg",
-   "thumbnail_url": "https://cdn.esahubble.org/archives/images/screen/potw1636a.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/d07b8ca823e5062f17ced07954602db485ef59c5785b634ad25ea1804bf62add.jpg",
    "license_verdict": "cc-by",
    "license_basis": "CC BY 4.0 (ESA/Hubble release)",
    "license_url": "https://creativecommons.org/licenses/by/4.0/",
@@ -6904,7 +7033,8 @@
     0.77
    ],
    "delivered_edge": 5764,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://cdn.esahubble.org/archives/images/screen/potw1636a.jpg"
   },
   {
    "title": "A Scattering of Stars",
@@ -6919,7 +7049,7 @@
    "source": "Hubble",
    "license": "CC-BY-4.0",
    "source_url": "https://cdn.esahubble.org/archives/images/large/potw2126a.jpg",
-   "thumbnail_url": "https://cdn.esahubble.org/archives/images/screen/potw2126a.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/335a2f3ad3209df9b67f872efb115a304782761d62d15d8b38eb3ecef510a60b.jpg",
    "license_verdict": "cc-by",
    "license_basis": "CC BY 4.0 (ESA/Hubble release)",
    "license_url": "https://creativecommons.org/licenses/by/4.0/",
@@ -6957,7 +7087,8 @@
     0.42
    ],
    "delivered_edge": 3865,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://cdn.esahubble.org/archives/images/screen/potw2126a.jpg"
   },
   {
    "title": "Hubble Inspects A Pair of Space Oddities",
@@ -6972,7 +7103,7 @@
    "source": "Hubble",
    "license": "CC-BY-4.0",
    "source_url": "https://cdn.esahubble.org/archives/images/large/potw2244a.jpg",
-   "thumbnail_url": "https://cdn.esahubble.org/archives/images/screen/potw2244a.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/8d0c1682e58c4635e2ae345055c8da7541af55d4de0363797841037f8429ad9d.jpg",
    "license_verdict": "cc-by",
    "license_basis": "CC BY 4.0 (ESA/Hubble release)",
    "license_url": "https://creativecommons.org/licenses/by/4.0/",
@@ -7010,7 +7141,8 @@
     0.25
    ],
    "delivered_edge": 3999,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://cdn.esahubble.org/archives/images/screen/potw2244a.jpg"
   },
   {
    "title": "Long-distance relationship",
@@ -7025,7 +7157,7 @@
    "source": "Hubble",
    "license": "CC-BY-4.0",
    "source_url": "https://cdn.esahubble.org/archives/images/large/potw2551a.jpg",
-   "thumbnail_url": "https://cdn.esahubble.org/archives/images/screen/potw2551a.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/1dab03eeb72eddb8032f95b7db8c9188eb4197c4077f87971d973e01805f48ff.jpg",
    "license_verdict": "cc-by",
    "license_basis": "CC BY 4.0 (ESA/Hubble release)",
    "license_url": "https://creativecommons.org/licenses/by/4.0/",
@@ -7063,7 +7195,8 @@
     0.52
    ],
    "delivered_edge": 3845,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://cdn.esahubble.org/archives/images/screen/potw2551a.jpg"
   },
   {
    "title": "A glimpse of the future",
@@ -7078,7 +7211,7 @@
    "source": "Hubble",
    "license": "CC-BY-4.0",
    "source_url": "https://cdn.esahubble.org/archives/images/large/potw1742a.jpg",
-   "thumbnail_url": "https://cdn.esahubble.org/archives/images/screen/potw1742a.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/9810db64615bddc5d2873e1b876488d57cd22a71bbc7493fa22af39053f4f11c.jpg",
    "license_verdict": "cc-by",
    "license_basis": "CC BY 4.0 (ESA/Hubble release)",
    "license_url": "https://creativecommons.org/licenses/by/4.0/",
@@ -7116,7 +7249,8 @@
     0.47
    ],
    "delivered_edge": 3978,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://cdn.esahubble.org/archives/images/screen/potw1742a.jpg"
   },
   {
    "title": "Hubble Gazes into M74",
@@ -7131,7 +7265,7 @@
    "source": "Hubble",
    "license": "CC-BY-4.0",
    "source_url": "https://cdn.esahubble.org/archives/images/large/potw2235a.jpg",
-   "thumbnail_url": "https://cdn.esahubble.org/archives/images/screen/potw2235a.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/316b5b3d66f7725a785aa9e006ce67f7fd2d6d1f4a0ceaae5fddb636cbe8c95b.jpg",
    "license_verdict": "cc-by",
    "license_basis": "CC BY 4.0 (ESA/Hubble release)",
    "license_url": "https://creativecommons.org/licenses/by/4.0/",
@@ -7169,7 +7303,8 @@
     0.65
    ],
    "delivered_edge": 5093,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://cdn.esahubble.org/archives/images/screen/potw2235a.jpg"
   },
   {
    "title": "Grand swirls",
@@ -7184,7 +7319,7 @@
    "source": "Hubble",
    "license": "CC-BY-4.0",
    "source_url": "https://cdn.esahubble.org/archives/images/large/potw1422a.jpg",
-   "thumbnail_url": "https://cdn.esahubble.org/archives/images/screen/potw1422a.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/9ebf466e10d12c12e1f136103353dfe039773818e4d968bcbca7cf4a2859707a.jpg",
    "license_verdict": "cc-by",
    "license_basis": "CC BY 4.0 (ESA/Hubble release)",
    "license_url": "https://creativecommons.org/licenses/by/4.0/",
@@ -7222,7 +7357,8 @@
     0.49
    ],
    "delivered_edge": 4182,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://cdn.esahubble.org/archives/images/screen/potw1422a.jpg"
   },
   {
    "title": "A galactic maelstrom",
@@ -7237,7 +7373,7 @@
    "source": "Hubble",
    "license": "CC-BY-4.0",
    "source_url": "https://cdn.esahubble.org/archives/images/large/potw1535a.jpg",
-   "thumbnail_url": "https://cdn.esahubble.org/archives/images/screen/potw1535a.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/eb145b8dfbc652df8de1d5e391a59c2f95ebc9926fe36d106f6b6564375dd619.jpg",
    "license_verdict": "cc-by",
    "license_basis": "CC BY 4.0 (ESA/Hubble release)",
    "license_url": "https://creativecommons.org/licenses/by/4.0/",
@@ -7275,7 +7411,8 @@
     0.505
    ],
    "delivered_edge": 4216,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://cdn.esahubble.org/archives/images/screen/potw1535a.jpg"
   },
   {
    "title": "Birds of a Feather",
@@ -7290,7 +7427,7 @@
    "source": "Hubble",
    "license": "CC-BY-4.0",
    "source_url": "https://cdn.esahubble.org/archives/images/large/potw2026a.jpg",
-   "thumbnail_url": "https://cdn.esahubble.org/archives/images/screen/potw2026a.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/09943a289badfc4d025cec1e2109078fe2da0a28fa245208d263635e9e6e34e9.jpg",
    "license_verdict": "cc-by",
    "license_basis": "CC BY 4.0 (ESA/Hubble release)",
    "license_url": "https://creativecommons.org/licenses/by/4.0/",
@@ -7328,7 +7465,8 @@
     0.51
    ],
    "delivered_edge": 3913,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://cdn.esahubble.org/archives/images/screen/potw2026a.jpg"
   },
   {
    "title": "The squid and the whale",
@@ -7343,7 +7481,7 @@
    "source": "Hubble",
    "license": "CC-BY-4.0",
    "source_url": "https://cdn.esahubble.org/archives/images/large/potw2515a.jpg",
-   "thumbnail_url": "https://cdn.esahubble.org/archives/images/screen/potw2515a.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/b4a690a2ecdaae45da88eacbe367b5ef7766494e385ac3c70cb36e1401b2a955.jpg",
    "license_verdict": "cc-by",
    "license_basis": "CC BY 4.0 (ESA/Hubble release)",
    "license_url": "https://creativecommons.org/licenses/by/4.0/",
@@ -7381,7 +7519,8 @@
     0.505
    ],
    "delivered_edge": 4101,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://cdn.esahubble.org/archives/images/screen/potw2515a.jpg"
   },
   {
    "title": "Starbursts on grand scale",
@@ -7396,7 +7535,7 @@
    "source": "Hubble",
    "license": "CC-BY-4.0",
    "source_url": "https://cdn.esahubble.org/archives/images/large/potw2441a.jpg",
-   "thumbnail_url": "https://cdn.esahubble.org/archives/images/screen/potw2441a.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/57d5e1845882ae432c77267fa432f95101c1aab6e0c73f84d156a00bf230744a.jpg",
    "license_verdict": "cc-by",
    "license_basis": "CC BY 4.0 (ESA/Hubble release)",
    "license_url": "https://creativecommons.org/licenses/by/4.0/",
@@ -7434,7 +7573,8 @@
     0.42
    ],
    "delivered_edge": 4119,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://cdn.esahubble.org/archives/images/screen/potw2441a.jpg"
   },
   {
    "title": "Finding star clusters in the Lost Galaxy",
@@ -7449,7 +7589,7 @@
    "source": "Hubble",
    "license": "CC-BY-4.0",
    "source_url": "https://cdn.esahubble.org/archives/images/large/potw2546a.jpg",
-   "thumbnail_url": "https://cdn.esahubble.org/archives/images/screen/potw2546a.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/2552d81d399ce01faee99f22328deb239f4dc8acc631c5c8ac678a12a1a95de8.jpg",
    "license_verdict": "cc-by",
    "license_basis": "CC BY 4.0 (ESA/Hubble release)",
    "license_url": "https://creativecommons.org/licenses/by/4.0/",
@@ -7487,7 +7627,8 @@
     0.51
    ],
    "delivered_edge": 4101,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://cdn.esahubble.org/archives/images/screen/potw2546a.jpg"
   },
   {
    "title": "Snapshot of a peculiar spiral",
@@ -7502,7 +7643,7 @@
    "source": "Hubble",
    "license": "CC-BY-4.0",
    "source_url": "https://cdn.esahubble.org/archives/images/large/potw2517a.jpg",
-   "thumbnail_url": "https://cdn.esahubble.org/archives/images/screen/potw2517a.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/4fd6cf70d1e2ea43bd9b0b8619ae0423a379cdf8d3599c769c50e3fc1edd4271.jpg",
    "license_verdict": "cc-by",
    "license_basis": "CC BY 4.0 (ESA/Hubble release)",
    "license_url": "https://creativecommons.org/licenses/by/4.0/",
@@ -7540,7 +7681,8 @@
     0.36
    ],
    "delivered_edge": 4025,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://cdn.esahubble.org/archives/images/screen/potw2517a.jpg"
   },
   {
    "title": "Edge-on beauty",
@@ -7555,7 +7697,7 @@
    "source": "Hubble",
    "license": "CC-BY-4.0",
    "source_url": "https://cdn.esahubble.org/archives/images/large/potw1220a.jpg",
-   "thumbnail_url": "https://cdn.esahubble.org/archives/images/screen/potw1220a.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/9e89f7bfdb842b3197f83ea6e277746a1f320137233424246286b76bc3e9e2ae.jpg",
    "license_verdict": "cc-by",
    "license_basis": "CC BY 4.0 (ESA/Hubble release)",
    "license_url": "https://creativecommons.org/licenses/by/4.0/",
@@ -7593,7 +7735,8 @@
     0.45
    ],
    "delivered_edge": 3995,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://cdn.esahubble.org/archives/images/screen/potw1220a.jpg"
   },
   {
    "title": "A wanderer dancing the dance of stars and space",
@@ -7608,7 +7751,7 @@
    "source": "Hubble",
    "license": "CC-BY-4.0",
    "source_url": "https://cdn.esahubble.org/archives/images/large/potw1252a.jpg",
-   "thumbnail_url": "https://cdn.esahubble.org/archives/images/screen/potw1252a.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/589e2dda294cce4cea5d38f916b8ff4adb3df461198d7c807eba91df93f81b13.jpg",
    "license_verdict": "cc-by",
    "license_basis": "CC BY 4.0 (ESA/Hubble release)",
    "license_url": "https://creativecommons.org/licenses/by/4.0/",
@@ -7646,7 +7789,8 @@
     0.38
    ],
    "delivered_edge": 4090,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://cdn.esahubble.org/archives/images/screen/potw1252a.jpg"
   }
  ]
 }

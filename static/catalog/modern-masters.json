@@ -18,7 +18,7 @@
    "source": "Art Institute of Chicago",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Hercules%20and%20the%20Lernaean%20Hydra%2C%201875-1876%2C%20by%20Gustave%20Moreau%20-%20Art%20Institute%20of%20Chicago%20-%20DSC09590.JPG?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Hercules%20and%20the%20Lernaean%20Hydra%2C%201875-1876%2C%20by%20Gustave%20Moreau%20-%20Art%20Institute%20of%20Chicago%20-%20DSC09590.JPG?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/9f6f81bb0b9afb1061fda837a01874cb6018d36ea390a07a6212ee06a2413e15.jpg",
    "focal_point": [
     0.25,
     0.52
@@ -59,7 +59,8 @@
    },
    "below_floor_ok": true,
    "current_repository": "Art Institute of Chicago",
-   "physical_dimensions": "179.3 × 154 cm (70 9/16 × 60 5/8 in.); Framed: 226.7 × 201.9 cm (89 1/4 × 79 1/2 in.)"
+   "physical_dimensions": "179.3 × 154 cm (70 9/16 × 60 5/8 in.); Framed: 226.7 × 201.9 cm (89 1/4 × 79 1/2 in.)",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Hercules%20and%20the%20Lernaean%20Hydra%2C%201875-1876%2C%20by%20Gustave%20Moreau%20-%20Art%20Institute%20of%20Chicago%20-%20DSC09590.JPG?width=600"
   },
   {
    "title": "The Girl by the Window",
@@ -74,7 +75,7 @@
    "source": "Art Institute of Chicago",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Edvard%20Munch%20-%20The%20Girl%20by%20the%20Window%20-%202000.50%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Edvard%20Munch%20-%20The%20Girl%20by%20the%20Window%20-%202000.50%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/c262004ac241e245c30856ca54840034ba1d93fa965f8274d5095ca9c2d7f4d5.jpg",
    "focal_point": [
     0.55,
     0.22
@@ -115,7 +116,8 @@
    },
    "below_floor_ok": true,
    "current_repository": "Art Institute of Chicago",
-   "physical_dimensions": "96.5 × 65.4 cm (38 × 25 3/4 in.); Framed: 110.5 × 79.4 × 8.9 cm (43 1/2 × 31 1/4 × 3 1/2 in.)"
+   "physical_dimensions": "96.5 × 65.4 cm (38 × 25 3/4 in.); Framed: 110.5 × 79.4 × 8.9 cm (43 1/2 × 31 1/4 × 3 1/2 in.)",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Edvard%20Munch%20-%20The%20Girl%20by%20the%20Window%20-%202000.50%20-%20Art%20Institute%20of%20Chicago.jpg?width=600"
   },
   {
    "title": "The Kiss",
@@ -130,7 +132,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Kiss%20-%20Gustav%20Klimt%20-%20Google%20Cultural%20Institute.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Kiss%20-%20Gustav%20Klimt%20-%20Google%20Cultural%20Institute.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/8948bec6d8008217a36d7c67ada187d6fe9b99b8f8c65e3fb297a903016e4171.jpg",
    "focal_point": [
     0.45,
     0.22
@@ -169,7 +171,8 @@
      1.0
     ]
    },
-   "physical_dimensions": "180.0 x 180.0 cm"
+   "physical_dimensions": "180.0 x 180.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Kiss%20-%20Gustav%20Klimt%20-%20Google%20Cultural%20Institute.jpg?width=600"
   },
   {
    "title": "The Scream",
@@ -184,7 +187,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Edvard%20Munch%2C%201893%2C%20The%20Scream%2C%20oil%2C%20tempera%20and%20pastel%20on%20cardboard%2C%2091%20x%2073%20cm%2C%20National%20Gallery%20of%20Norway.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Edvard%20Munch%2C%201893%2C%20The%20Scream%2C%20oil%2C%20tempera%20and%20pastel%20on%20cardboard%2C%2091%20x%2073%20cm%2C%20National%20Gallery%20of%20Norway.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/c68f81f0cc0b0bcdb641911de8298dbb350c144cf85782c1bb7299d7c31fe0d6.jpg",
    "focal_point": [
     0.55,
     0.72
@@ -223,7 +226,8 @@
      1.0
     ]
    },
-   "current_repository": "National Museum of Art"
+   "current_repository": "National Museum of Art",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Edvard%20Munch%2C%201893%2C%20The%20Scream%2C%20oil%2C%20tempera%20and%20pastel%20on%20cardboard%2C%2091%20x%2073%20cm%2C%20National%20Gallery%20of%20Norway.jpg?width=600"
   },
   {
    "title": "Portrait of Jeanne Hébuterne",
@@ -238,7 +242,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Amedeo%20Modigliani%20-%20Portrait%20of%20Jeanne%20H%C3%A9buterne%20%28Portrait%20de%20Jeanne%20H%C3%A9buterne%29%20-%20BF422%20-%20Barnes%20Foundation.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Amedeo%20Modigliani%20-%20Portrait%20of%20Jeanne%20H%C3%A9buterne%20%28Portrait%20de%20Jeanne%20H%C3%A9buterne%29%20-%20BF422%20-%20Barnes%20Foundation.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/7b0bc2e96a8d72011db02f3624f44dbfd8d91c92b00cd297626370100585c132.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -278,7 +282,8 @@
     ]
    },
    "current_repository": "Barnes Foundation",
-   "physical_dimensions": "99.7 x 64.8 cm"
+   "physical_dimensions": "99.7 x 64.8 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Amedeo%20Modigliani%20-%20Portrait%20of%20Jeanne%20H%C3%A9buterne%20%28Portrait%20de%20Jeanne%20H%C3%A9buterne%29%20-%20BF422%20-%20Barnes%20Foundation.jpg?width=600"
   },
   {
    "title": "Portrait of Adele Bloch-Bauer I",
@@ -293,7 +298,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Adele%20Bloch-Bauer.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Adele%20Bloch-Bauer.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/f4b937a85aaf362817d2e5ec0cce9efe75126d933c067d04e2dc57b30e475847.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -331,7 +336,8 @@
      1.0,
      0.5627
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Adele%20Bloch-Bauer.jpg?width=600"
   },
   {
    "title": "The Sick Child",
@@ -346,7 +352,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Edvard%20Munch%20-%20The%20Sick%20Child%20-%20NG.M.00839%20-%20National%20Museum%20of%20Art%2C%20Architecture%20and%20Design.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Edvard%20Munch%20-%20The%20Sick%20Child%20-%20NG.M.00839%20-%20National%20Museum%20of%20Art%2C%20Architecture%20and%20Design.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/cb1f26b5078e83e7797eae9b908e6d3c4485d2d1d50727849f49c4f215b36715.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -386,7 +392,8 @@
     ]
    },
    "current_repository": "National Museum of Art, Architecture and Design",
-   "physical_dimensions": "120.0 x 118.5 cm"
+   "physical_dimensions": "120.0 x 118.5 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Edvard%20Munch%20-%20The%20Sick%20Child%20-%20NG.M.00839%20-%20National%20Museum%20of%20Art%2C%20Architecture%20and%20Design.jpg?width=600"
   },
   {
    "title": "Judith I",
@@ -401,7 +408,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Judith%201%20%28cropped%29.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Judith%201%20%28cropped%29.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/3385a5f7c77d9657c4a96a187f4bd67864aa706226abd8fe4a44b7f3aac55448.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -441,7 +448,8 @@
     ]
    },
    "delivered_edge": 3392,
-   "resolution_tier": "HD"
+   "resolution_tier": "HD",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Judith%201%20%28cropped%29.jpg?width=600"
   },
   {
    "title": "Jeanne Hébuterne with Yellow Sweater",
@@ -456,7 +464,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Amedeo%20Modigliani%20-%20Portrait%20of%20Jeanne%20H%C3%A9buterne%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Amedeo%20Modigliani%20-%20Portrait%20of%20Jeanne%20H%C3%A9buterne%20-%20Google%20Art%20Project.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/38405cab46e57c0a0632ddfb8a6717363349ddc2566b52b30339c3e770a39967.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -496,7 +504,8 @@
     ]
    },
    "current_repository": "Ohara Museum of Art",
-   "physical_dimensions": "92.3 x 54.5 cm"
+   "physical_dimensions": "92.3 x 54.5 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Amedeo%20Modigliani%20-%20Portrait%20of%20Jeanne%20H%C3%A9buterne%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
    "title": "The Buddha",
@@ -511,7 +520,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Odilon%20Redon%20-%20Buddha%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Odilon%20Redon%20-%20Buddha%20-%20Google%20Art%20Project.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/f50b02aedbfcbdfabdbb8984de7f193adbba6b673ed4989f5d911072c2ab9cc9.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -550,7 +559,8 @@
     ]
    },
    "delivered_edge": 4430,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Odilon%20Redon%20-%20Buddha%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
    "title": "Woman in a Striped Dress",
@@ -565,7 +575,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Edouard%20Vuillard%20-%20Woman%20in%20a%20Striped%20Dress%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Edouard%20Vuillard%20-%20Woman%20in%20a%20Striped%20Dress%20-%20Google%20Art%20Project.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/a78c5adc7b56920ebb402ca76f81596c881d37472aec0d317a665025a32f7683.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -604,7 +614,8 @@
      1.0
     ]
    },
-   "physical_dimensions": "65.7 x 58.7 cm"
+   "physical_dimensions": "65.7 x 58.7 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Edouard%20Vuillard%20-%20Woman%20in%20a%20Striped%20Dress%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
    "title": "The Sleeping Gypsy",
@@ -619,7 +630,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Henri%20Rousseau%20-%20La%20zingara%20addormentata.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Henri%20Rousseau%20-%20La%20zingara%20addormentata.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/667e6f871a6418bf0a43eef0fa75f7bcda26f5bfe479d57380355fe21505287e.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -657,7 +668,8 @@
      0.7248,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Henri%20Rousseau%20-%20La%20zingara%20addormentata.jpg?width=600"
   },
   {
    "title": "Landscape: Window Overlooking the Woods",
@@ -672,7 +684,7 @@
    "source": "Art Institute of Chicago",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Edouard%20Jean%20Vuillard%20-%20Landscape%2C%20Window%20Overlooking%20the%20Woods%20-%201981.77%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Edouard%20Jean%20Vuillard%20-%20Landscape%2C%20Window%20Overlooking%20the%20Woods%20-%201981.77%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/d673c95b3cf6b8e29c7fbd276de2acbbae5b61a9c160003c035ea6fef6fe306e.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -713,7 +725,8 @@
    },
    "below_floor_ok": true,
    "current_repository": "Art Institute of Chicago",
-   "physical_dimensions": "249.2 × 378.5 cm (96 1/8 × 149 in.); Framed: 259.4 × 392.5 cm (102 1/8 × 154 1/2 in.)"
+   "physical_dimensions": "249.2 × 378.5 cm (96 1/8 × 149 in.); Framed: 259.4 × 392.5 cm (102 1/8 × 154 1/2 in.)",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Edouard%20Jean%20Vuillard%20-%20Landscape%2C%20Window%20Overlooking%20the%20Woods%20-%201981.77%20-%20Art%20Institute%20of%20Chicago.jpg?width=600"
   },
   {
    "title": "Te burao (The Hibiscus Tree)",
@@ -728,7 +741,7 @@
    "source": "Art Institute of Chicago",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Paul%20Gauguin%20-%20Te%20burao%20%28The%20Hibiscus%20Tree%29%20-%201923.308%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Paul%20Gauguin%20-%20Te%20burao%20%28The%20Hibiscus%20Tree%29%20-%201923.308%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/3c7153e0b397b809672f7e40bd717d6c4b61f6990f2e1d3c8994364be36338e3.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -769,7 +782,8 @@
    },
    "below_floor_ok": true,
    "current_repository": "Art Institute of Chicago",
-   "physical_dimensions": "68 × 90.7 cm (26 3/4 × 35 11/16 in.); Framed: 86.4 × 109.3 × 8.9 cm (34 × 43 × 3 1/2 in.)"
+   "physical_dimensions": "68 × 90.7 cm (26 3/4 × 35 11/16 in.); Framed: 86.4 × 109.3 × 8.9 cm (34 × 43 × 3 1/2 in.)",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Paul%20Gauguin%20-%20Te%20burao%20%28The%20Hibiscus%20Tree%29%20-%201923.308%20-%20Art%20Institute%20of%20Chicago.jpg?width=600"
   },
   {
    "title": "No te aha oe riri (Why Are You Angry?)",
@@ -784,7 +798,7 @@
    "source": "Art Institute of Chicago",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Paul%20Gauguin%2C%20No%20te%20aha%20oe%20riri%20%28Why%20Are%20You%20Angry%3F%29%2C%201896%2C%201933.1119%2C%20Art%20Institute%20of%20Chicago.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Paul%20Gauguin%2C%20No%20te%20aha%20oe%20riri%20%28Why%20Are%20You%20Angry%3F%29%2C%201896%2C%201933.1119%2C%20Art%20Institute%20of%20Chicago.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/9131699246fe5d577b707c8aa4b8ae3900f6d68f6074ac44ad6dd84951a901dd.jpg",
    "license_verdict": "pd",
    "license_basis": "CC0",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -825,7 +839,8 @@
    },
    "below_floor_ok": true,
    "current_repository": "Art Institute of Chicago",
-   "physical_dimensions": "95.3 × 130.6 cm (37 1/2 × 51 3/8 in.); Framed: 116.6 × 153.1 × 6.7 cm (45 7/8 × 60 1/4 × 2 5/8 in.)"
+   "physical_dimensions": "95.3 × 130.6 cm (37 1/2 × 51 3/8 in.); Framed: 116.6 × 153.1 × 6.7 cm (45 7/8 × 60 1/4 × 2 5/8 in.)",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Paul%20Gauguin%2C%20No%20te%20aha%20oe%20riri%20%28Why%20Are%20You%20Angry%3F%29%2C%201896%2C%201933.1119%2C%20Art%20Institute%20of%20Chicago.jpg?width=600"
   },
   {
    "title": "Sawmill, Outskirts of Paris",
@@ -840,7 +855,7 @@
    "source": "Art Institute of Chicago",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Henri%20Rousseau%20-%20Sawmill%2C%20Outskirts%20of%20Paris%20-%201950.133%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Henri%20Rousseau%20-%20Sawmill%2C%20Outskirts%20of%20Paris%20-%201950.133%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/501efa5d218a744449a97140505ba9f5be232fb86ec08433df74b3723a07da5b.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -881,7 +896,8 @@
    },
    "below_floor_ok": true,
    "current_repository": "Art Institute of Chicago",
-   "physical_dimensions": "25.5 × 45.5 cm (10 × 17 7/8 in.)"
+   "physical_dimensions": "25.5 × 45.5 cm (10 × 17 7/8 in.)",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Henri%20Rousseau%20-%20Sawmill%2C%20Outskirts%20of%20Paris%20-%201950.133%20-%20Art%20Institute%20of%20Chicago.jpg?width=600"
   },
   {
    "title": "The Virgin (Die Jungfrau)",
@@ -896,7 +912,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/KlimtDieJungfrau.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/KlimtDieJungfrau.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/9b4b2663769441dddb3951b5d2e7151a8cd059bf7020d035db4675127b9ae2cf.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -934,7 +950,8 @@
      0.8579,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/KlimtDieJungfrau.jpg?width=600"
   },
   {
    "title": "Lake Attersee",
@@ -949,7 +966,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Gustav%20Klimt%20-%20Attersee%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Gustav%20Klimt%20-%20Attersee%20-%20Google%20Art%20Project.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/295fde161b4d9f7d9afa89acd259dd398ec8ae2e7e539fb87d8d78df7450a86c.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -989,7 +1006,8 @@
     ]
    },
    "current_repository": "Leopold Museum",
-   "physical_dimensions": "80.2 x 80.2 cm"
+   "physical_dimensions": "80.2 x 80.2 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Gustav%20Klimt%20-%20Attersee%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
    "title": "Cottage Garden",
@@ -1004,7 +1022,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Klimt%20bauerngarten.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Klimt%20bauerngarten.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/daa57603521cf3356b9a2261c71e3a996a1ab569ee5fe3a428ded5505a01012a.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1042,7 +1060,8 @@
      0.882,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Klimt%20bauerngarten.jpg?width=600"
   },
   {
    "title": "Love (Liebe)",
@@ -1057,7 +1076,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Klimt%20-%20Liebe%20-%201895.jpeg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Klimt%20-%20Liebe%20-%201895.jpeg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/9db16bf337f49de7f6c600b61a010cf784941ce146f3571b98b1240c25b77942.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1095,7 +1114,8 @@
      1.0,
      0.9869
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Klimt%20-%20Liebe%20-%201895.jpeg?width=600"
   },
   {
    "title": "Jurisprudence",
@@ -1110,7 +1130,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Klimt%20-%20Jurisprudenz%201903-1907.jpeg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Klimt%20-%20Jurisprudenz%201903-1907.jpeg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/04d8c51a5dc33e5d76fcd352c045ddc58d6786e475f15cf912d391d2b61ebbd7.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1148,7 +1168,8 @@
      1.0,
      0.9461
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Klimt%20-%20Jurisprudenz%201903-1907.jpeg?width=600"
   },
   {
    "title": "Approaching Thunderstorm (The Large Poplar II)",
@@ -1163,7 +1184,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Gustav%20Klimt%20-%20Approaching%20Thunderstorm%20%28The%20Large%20Poplar%20II%29%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Gustav%20Klimt%20-%20Approaching%20Thunderstorm%20%28The%20Large%20Poplar%20II%29%20-%20Google%20Art%20Project.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/11d26aa8eaaed54fa14c903c88cd23165cf2bb3f75ae2f86149788115179408c.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1203,7 +1224,8 @@
     ]
    },
    "current_repository": "Leopold Museum",
-   "physical_dimensions": "100.8 x 100.7 cm"
+   "physical_dimensions": "100.8 x 100.7 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Gustav%20Klimt%20-%20Approaching%20Thunderstorm%20%28The%20Large%20Poplar%20II%29%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
    "title": "Upper Austrian Farmhouse",
@@ -1218,7 +1240,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Klimt%20-%20Ober%C3%B6sterreichisches%20Bauernhaus.jpeg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Klimt%20-%20Ober%C3%B6sterreichisches%20Bauernhaus.jpeg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/0fbeff9cb708b683bf2f49fdf5e85118d2ac1cc426c0a059a2f61baed698e868.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1257,7 +1279,8 @@
      1.0
     ]
    },
-   "physical_dimensions": "110.0 x 110.0 cm"
+   "physical_dimensions": "110.0 x 110.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Klimt%20-%20Ober%C3%B6sterreichisches%20Bauernhaus.jpeg?width=600"
   },
   {
    "title": "Baby (Cradle)",
@@ -1272,7 +1295,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Baby%20%28Cradle%29%20A18969.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Baby%20%28Cradle%29%20A18969.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/481eb29f9466741b630e6021f3427ca4fd094f9470c78653a338f3c39820a34a.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1311,7 +1334,8 @@
      1.0
     ]
    },
-   "physical_dimensions": "110.9 x 110.4 cm"
+   "physical_dimensions": "110.9 x 110.4 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Baby%20%28Cradle%29%20A18969.jpg?width=600"
   },
   {
    "title": "Cottage Garden with Sunflowers",
@@ -1326,7 +1350,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Klimt%20-%20Bauerngarten%20mit%20Sonnenblumen%20-%20ca1907.jpeg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Klimt%20-%20Bauerngarten%20mit%20Sonnenblumen%20-%20ca1907.jpeg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/a3d710a9974a629c0fea8d1bbfcf054971e88c75a5b15732062c80032a96ce7e.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1365,7 +1389,8 @@
      1.0
     ]
    },
-   "physical_dimensions": "110.0 x 110.0 cm"
+   "physical_dimensions": "110.0 x 110.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Klimt%20-%20Bauerngarten%20mit%20Sonnenblumen%20-%20ca1907.jpeg?width=600"
   }
  ]
 }

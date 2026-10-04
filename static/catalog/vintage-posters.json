@@ -18,7 +18,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/24.%20Alfons%20Mucha%2C%20Plak%C3%A1t%20Gismonda.%20Sarah%20Bernhardt%2C%201894%2C%20Um%C4%9Bleckopr%C5%AFmyslov%C3%A9%20muzeum%20v%20Praze.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/24.%20Alfons%20Mucha%2C%20Plak%C3%A1t%20Gismonda.%20Sarah%20Bernhardt%2C%201894%2C%20Um%C4%9Bleckopr%C5%AFmyslov%C3%A9%20muzeum%20v%20Praze.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/c1d6d39ca944e1fd68d34990642b12830078ea8e72b3057ba0f810da228c45cd.jpg",
    "featured_rank": 70,
    "license_verdict": "pd",
    "license_basis": "Public domain",
@@ -56,7 +56,8 @@
     ]
    },
    "delivered_edge": 5905,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/24.%20Alfons%20Mucha%2C%20Plak%C3%A1t%20Gismonda.%20Sarah%20Bernhardt%2C%201894%2C%20Um%C4%9Bleckopr%C5%AFmyslov%C3%A9%20muzeum%20v%20Praze.jpg?width=600"
   },
   {
    "title": "Moulin Rouge: La Goulue",
@@ -71,7 +72,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Toulouse-Lautrec%2C%20Henri%20de%20-%20Moulin%20Rouge-La%20Goulue%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Toulouse-Lautrec%2C%20Henri%20de%20-%20Moulin%20Rouge-La%20Goulue%20-%20Google%20Art%20Project.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/68cf54122693cf9314ce407dcf9d7014d77c23966f489e9c9cac365a3eacbe6a.jpg",
    "focal_point": [
     0.34,
     0.27
@@ -109,7 +110,8 @@
      1.0,
      0.9702
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Toulouse-Lautrec%2C%20Henri%20de%20-%20Moulin%20Rouge-La%20Goulue%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
    "title": "Divan Japonais",
@@ -124,7 +126,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/%28Albi%29%20Le%20Divan%20japonais%201893%20lithographie%20-%20Toulouse-Lautrec%20MTH.A3.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/%28Albi%29%20Le%20Divan%20japonais%201893%20lithographie%20-%20Toulouse-Lautrec%20MTH.A3.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/dad5103a35332425c4eb1a733088cd9c8bf644788d5d5f52432074293d13f358.jpg",
    "focal_point": [
     0.5,
     0.27
@@ -162,7 +164,8 @@
      0.9976,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/%28Albi%29%20Le%20Divan%20japonais%201893%20lithographie%20-%20Toulouse-Lautrec%20MTH.A3.jpg?width=600"
   },
   {
    "title": "Aristide Bruant dans son cabaret",
@@ -177,7 +180,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Toulouse-Lautrec%20-%20Ambassadeurs%20Aristide%20Bruant%2C%201948.450.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Toulouse-Lautrec%20-%20Ambassadeurs%20Aristide%20Bruant%2C%201948.450.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/4637d63f829d0a5b4af19d5cc88a841bed2baae0a951965a97f9fdd233b4dc37.jpg",
    "focal_point": [
     0.4,
     0.27
@@ -216,7 +219,8 @@
      1.0,
      0.9522
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Toulouse-Lautrec%20-%20Ambassadeurs%20Aristide%20Bruant%2C%201948.450.jpg?width=600"
   },
   {
    "title": "Jane Avril (Jardin de Paris)",
@@ -231,7 +235,7 @@
    "source": "Bibliothèque nationale de France (Gallica)",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jane%20Avril%2C%20Jardin%2C%20de%20Paris%20estampe%2C%20affiche%20%282e%20%C3%A9tat%29%2C%20HTL%2093%20monogramme%20de%20Toulouse-Lautrec.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jane%20Avril%2C%20Jardin%2C%20de%20Paris%20estampe%2C%20affiche%20%282e%20%C3%A9tat%29%2C%20HTL%2093%20monogramme%20de%20Toulouse-Lautrec.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/ec9f295470d6aa4c2c3e255e6ca8d8f6b119b01319b46b20e436aee2853b8999.jpg",
    "featured_rank": 75,
    "license_verdict": "pd",
    "license_basis": "Public domain",
@@ -277,7 +281,8 @@
     ]
    },
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jane%20Avril%2C%20Jardin%2C%20de%20Paris%20estampe%2C%20affiche%20%282e%20%C3%A9tat%29%2C%20HTL%2093%20monogramme%20de%20Toulouse-Lautrec.jpg?width=600"
   },
   {
    "title": "Reine de Joie",
@@ -292,7 +297,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Toulouse-Lautrec%20Reine%20de%20Joie%20-%20Koller.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Toulouse-Lautrec%20Reine%20de%20Joie%20-%20Koller.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/70bfbe5a1a70d3637ea0f063e1c812e03184ee02eb6c8c9406a986cdb62fa4cd.jpg",
    "focal_point": [
     0.45,
     0.22
@@ -330,7 +335,8 @@
      1.0,
      0.9582
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Toulouse-Lautrec%20Reine%20de%20Joie%20-%20Koller.jpg?width=600"
   },
   {
    "title": "La Revue Blanche",
@@ -345,7 +351,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/La%20Revue%20Blanche%20MET%20MM86253.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/La%20Revue%20Blanche%20MET%20MM86253.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/11f66251e5bce48d4ed2f1b352e57c7358b1ea33963ef0a282493191050291fc.jpg",
    "focal_point": [
     0.3,
     0.31
@@ -384,7 +390,8 @@
      0.5933
     ]
    },
-   "current_repository": "Metropolitan Museum of Art"
+   "current_repository": "Metropolitan Museum of Art",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/La%20Revue%20Blanche%20MET%20MM86253.jpg?width=600"
   },
   {
    "title": "May Belfort",
@@ -399,7 +406,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/1895%20color%20lithograph%20by%20de%20Toulouse-Lautrec%20-%20May%20Belfort.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/1895%20color%20lithograph%20by%20de%20Toulouse-Lautrec%20-%20May%20Belfort.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/f0a526d91d063fa0e77e1b15fb38ff6a51594d6d85eb62892771df1dd9c29f0a.jpg",
    "focal_point": [
     0.42,
     0.21
@@ -437,7 +444,8 @@
      0.9883,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/1895%20color%20lithograph%20by%20de%20Toulouse-Lautrec%20-%20May%20Belfort.jpg?width=600"
   },
   {
    "title": "Job",
@@ -452,7 +460,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Job%20-%20affiche%20-%20Mucha%20-%20btv1b9016418h.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Job%20-%20affiche%20-%20Mucha%20-%20btv1b9016418h.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/4da4af1a0f19892bcdfeb0674e47b8f1abbc611a44c701148a6df7d1934d6220.jpg",
    "focal_point": [
     0.55,
     0.27
@@ -490,7 +498,8 @@
      1.0,
      0.9579
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Job%20-%20affiche%20-%20Mucha%20-%20btv1b9016418h.jpg?width=600"
   },
   {
    "title": "Bières de la Meuse",
@@ -505,7 +514,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bi%C3%A8res%20de%20la%20Meuse%20-%20affiche%20-%20Mucha%20-%20btv1b9016425n.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bi%C3%A8res%20de%20la%20Meuse%20-%20affiche%20-%20Mucha%20-%20btv1b9016425n.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/a959946f1f7420be066d58432132137ff1482e28e58117d5b326b7124e37039d.jpg",
    "focal_point": [
     0.42,
     0.32
@@ -543,7 +552,8 @@
      1.0,
      0.9529
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bi%C3%A8res%20de%20la%20Meuse%20-%20affiche%20-%20Mucha%20-%20btv1b9016425n.jpg?width=600"
   },
   {
    "title": "Rêverie (Daydream) — F. Champenois Imprimeur-Éditeur",
@@ -558,7 +568,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/F.%20Champenois%20imprimeur-%C3%A9diteur%2066%20Boul%28evard%29%20St%20Michel.%201898%20-%20%28affiche%29%20%28Avec%20lettre%29%20-%20Mucha%20-%20btv1b90051807.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/F.%20Champenois%20imprimeur-%C3%A9diteur%2066%20Boul%28evard%29%20St%20Michel.%201898%20-%20%28affiche%29%20%28Avec%20lettre%29%20-%20Mucha%20-%20btv1b90051807.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/30171559ca494b1c94736801d6be3b1760dad6a45d282418735b54eb9cc3b130.jpg",
    "focal_point": [
     0.5,
     0.3
@@ -597,7 +607,8 @@
      0.9955
     ]
    },
-   "current_repository": "Bibliothèque nationale de France"
+   "current_repository": "Bibliothèque nationale de France",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/F.%20Champenois%20imprimeur-%C3%A9diteur%2066%20Boul%28evard%29%20St%20Michel.%201898%20-%20%28affiche%29%20%28Avec%20lettre%29%20-%20Mucha%20-%20btv1b90051807.jpg?width=600"
   },
   {
    "title": "Zodiac",
@@ -612,7 +623,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Alphonse%20Mucha%20-%20Zodiac%2C%201869.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Alphonse%20Mucha%20-%20Zodiac%2C%201869.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/ff413ca75bb136aa9c0847df8a78d670b60fb7ea577abcf736ee38e8f26572b9.jpg",
    "focal_point": [
     0.46,
     0.34
@@ -651,7 +662,8 @@
      1.0,
      0.6248
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Alphonse%20Mucha%20-%20Zodiac%2C%201869.jpg?width=600"
   },
   {
    "title": "Rêverie",
@@ -666,7 +678,7 @@
    "source": "Bibliothèque nationale de France (Gallica)",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/F.%20Champenois%20imprimeur-%C3%A9diteur.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/F.%20Champenois%20imprimeur-%C3%A9diteur.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/038608ffe1124f9aeeba2d1c4e5697be9b63386f5fa00daf54d30140c40aa6f5.jpg",
    "featured_rank": 40,
    "license_verdict": "pd",
    "license_basis": "Public domain",
@@ -705,7 +717,8 @@
     ]
    },
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/F.%20Champenois%20imprimeur-%C3%A9diteur.jpg?width=600"
   },
   {
    "title": "The Seasons: Spring",
@@ -720,7 +733,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Mucha%20-%20Les%20Saisons%20%281896%29%20-%20printemps.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Mucha%20-%20Les%20Saisons%20%281896%29%20-%20printemps.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/d175a15aa892030ea96133a96a0bfd87eb8686b30052a06a02f2d90cc3603704.jpg",
    "focal_point": [
     0.55,
     0.22
@@ -759,7 +772,8 @@
      0.7683
     ]
    },
-   "current_repository": "Gallica Digital Library"
+   "current_repository": "Gallica Digital Library",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Mucha%20-%20Les%20Saisons%20%281896%29%20-%20printemps.jpg?width=600"
   },
   {
    "title": "The Seasons: Autumn",
@@ -774,7 +788,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Mucha%20-%20Les%20Saisons%20(1896)%20-%20automne.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Mucha%20-%20Les%20Saisons%20(1896)%20-%20automne.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/bad1e0e2ffbfe85d0d264a914a079d7b6ae0acbbca0435c71028242e7a3fb835.jpg",
    "focal_point": [
     0.56,
     0.21
@@ -813,7 +827,8 @@
      0.795
     ]
    },
-   "current_repository": "Gallica Digital Library"
+   "current_repository": "Gallica Digital Library",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Mucha%20-%20Les%20Saisons%20(1896)%20-%20automne.jpg?width=600"
   },
   {
    "title": "La Dame aux Camélias",
@@ -828,7 +843,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Alfons%20Mucha%20-%201896%20-%20La%20Dame%20aux%20Cam%C3%A9lias%20-%20Sarah%20Bernhardt.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Alfons%20Mucha%20-%201896%20-%20La%20Dame%20aux%20Cam%C3%A9lias%20-%20Sarah%20Bernhardt.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/1e616430d5f68fd33489b8d253492aba7e8467e2f474e717a12e787d66f2d831.jpg",
    "focal_point": [
     0.5,
     0.28
@@ -866,7 +881,8 @@
      1.0,
      0.5901
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Alfons%20Mucha%20-%201896%20-%20La%20Dame%20aux%20Cam%C3%A9lias%20-%20Sarah%20Bernhardt.jpg?width=600"
   },
   {
    "title": "Monaco Monte-Carlo",
@@ -881,7 +897,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Monaco-Monte-Carlo%20-%20%28affiche%29%20%28Variante%20de%20lettre%20-%20sans%20mention%20PLM%29%20-%20Mucha%201897%20-%20btv1b9016307c.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Monaco-Monte-Carlo%20-%20%28affiche%29%20%28Variante%20de%20lettre%20-%20sans%20mention%20PLM%29%20-%20Mucha%201897%20-%20btv1b9016307c.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/39be437856025e9113c98c35a30cbdfffc4482a53ad64ab94da958cf722be3d8.jpg",
    "focal_point": [
     0.42,
     0.28
@@ -919,7 +935,8 @@
      1.0,
      0.9684
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Monaco-Monte-Carlo%20-%20%28affiche%29%20%28Variante%20de%20lettre%20-%20sans%20mention%20PLM%29%20-%20Mucha%201897%20-%20btv1b9016307c.jpg?width=600"
   },
   {
    "title": "Le Chat Noir",
@@ -934,7 +951,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Prochainement%20Tourn%C3%A9e%20du%20Chat%20Noir%20DE%20Rodolphe%20Salis%20-%20affiche%20-%20Steinlen%20-%20btv1b9012728p.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Prochainement%20Tourn%C3%A9e%20du%20Chat%20Noir%20DE%20Rodolphe%20Salis%20-%20affiche%20-%20Steinlen%20-%20btv1b9012728p.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/f8b8835d9941d71589b92dd39583011ddc3a40e6f11fe4be98f8c224df94dae0.jpg",
    "focal_point": [
     0.38,
     0.22
@@ -972,7 +989,8 @@
      1.0,
      0.9958
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Prochainement%20Tourn%C3%A9e%20du%20Chat%20Noir%20DE%20Rodolphe%20Salis%20-%20affiche%20-%20Steinlen%20-%20btv1b9012728p.jpg?width=600"
   },
   {
    "title": "Folies Bergère",
@@ -987,7 +1005,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Folies-Berg%C3%A8re.%20Lo%C3%AFe%20Fuller%20-%20affiche%20-%20Jules%20Ch%C3%A9ret%20-%20btv1b9015303d.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Folies-Berg%C3%A8re.%20Lo%C3%AFe%20Fuller%20-%20affiche%20-%20Jules%20Ch%C3%A9ret%20-%20btv1b9015303d.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/1acc1cd6ec3d7fab83193ae633535e70e6604939df3ed655435c78a5b4515226.jpg",
    "focal_point": [
     0.45,
     0.3
@@ -1025,7 +1043,8 @@
      1.0,
      0.9964
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Folies-Berg%C3%A8re.%20Lo%C3%AFe%20Fuller%20-%20affiche%20-%20Jules%20Ch%C3%A9ret%20-%20btv1b9015303d.jpg?width=600"
   },
   {
    "title": "Folies-Bergère, La Loïe Fuller",
@@ -1040,7 +1059,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Folies%20Berg%C3%A8re.%20La%20Lo%C3%AFe%20Fuller%20-%20affiche%20-%20Jules%20Ch%C3%A9ret%20-%20btv1b9015442v.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Folies%20Berg%C3%A8re.%20La%20Lo%C3%AFe%20Fuller%20-%20affiche%20-%20Jules%20Ch%C3%A9ret%20-%20btv1b9015442v.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/44adf3c0633ff29ab34ef9ad74d01751385d54693dac94cd3bd5ccf4d1b51928.jpg",
    "focal_point": [
     0.55,
     0.32
@@ -1078,7 +1097,8 @@
      0.989,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Folies%20Berg%C3%A8re.%20La%20Lo%C3%AFe%20Fuller%20-%20affiche%20-%20Jules%20Ch%C3%A9ret%20-%20btv1b9015442v.jpg?width=600"
   },
   {
    "title": "Bal du Moulin Rouge",
@@ -1093,7 +1113,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bal%20du%20Moulin%20rouge%20tous%20les%20soirs%20et%20dimanche%20jour...%20-%20affiche%20-%20Jules%20Ch%C3%A9ret%20-%20btv1b532110709%20%281%20of%202%29.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bal%20du%20Moulin%20rouge%20tous%20les%20soirs%20et%20dimanche%20jour...%20-%20affiche%20-%20Jules%20Ch%C3%A9ret%20-%20btv1b532110709%20%281%20of%202%29.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/d15adafba5ccfa8adf7df077d60968765168ac9babe5f7f184246c906932d4a4.jpg",
    "focal_point": [
     0.6,
     0.32
@@ -1131,7 +1151,8 @@
      1.0,
      0.9886
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bal%20du%20Moulin%20rouge%20tous%20les%20soirs%20et%20dimanche%20jour...%20-%20affiche%20-%20Jules%20Ch%C3%A9ret%20-%20btv1b532110709%20%281%20of%202%29.jpg?width=600"
   },
   {
    "title": "Salon des Cent",
@@ -1146,7 +1167,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Salon%20des%20Cent%20%281894%29%20...%20Exposition%20d%27une%20partie%20de%20l%27oeuvre%20de%20E.%20Grasset%20-%20affiche%20-%20EG%20%28monogramme%20Eug%C3%A8ne%20Grasset%29%20-%20btv1b9016905m.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Salon%20des%20Cent%20%281894%29%20...%20Exposition%20d%27une%20partie%20de%20l%27oeuvre%20de%20E.%20Grasset%20-%20affiche%20-%20EG%20%28monogramme%20Eug%C3%A8ne%20Grasset%29%20-%20btv1b9016905m.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/7a188b18ac60fa92688b098a3e5a602e6f417b8bbb61f913f88d373d4b6583ae.jpg",
    "focal_point": [
     0.4,
     0.32
@@ -1184,7 +1205,8 @@
      0.9977,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Salon%20des%20Cent%20%281894%29%20...%20Exposition%20d%27une%20partie%20de%20l%27oeuvre%20de%20E.%20Grasset%20-%20affiche%20-%20EG%20%28monogramme%20Eug%C3%A8ne%20Grasset%29%20-%20btv1b9016905m.jpg?width=600"
   },
   {
    "title": "Absinthe Robette",
@@ -1199,7 +1221,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Absinthe%20Robette%20-%20affiche%20-%20Privat-Livemont%201896%20-%20btv1b9016411m.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Absinthe%20Robette%20-%20affiche%20-%20Privat-Livemont%201896%20-%20btv1b9016411m.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/986eaa261f853bca289096b588edfbea85384124280db92fb79ac76cb575c98a.jpg",
    "focal_point": [
     0.32,
     0.38
@@ -1237,7 +1259,8 @@
      0.9787,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Absinthe%20Robette%20-%20affiche%20-%20Privat-Livemont%201896%20-%20btv1b9016411m.jpg?width=600"
   },
   {
    "title": "Bitter Campari",
@@ -1252,7 +1275,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bitter%20Campari.%20Milano%20-%20affiche%20-%20%28Leonetto%29%20Cappiello%20-%20btv1b90151593.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bitter%20Campari.%20Milano%20-%20affiche%20-%20%28Leonetto%29%20Cappiello%20-%20btv1b90151593.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/5fbef265779f9ba69125f4a504a3adc9e54ddd8c3e71a109f427813fddd41334.jpg",
    "focal_point": [
     0.42,
     0.36
@@ -1290,7 +1313,8 @@
      1.0,
      0.9871
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bitter%20Campari.%20Milano%20-%20affiche%20-%20%28Leonetto%29%20Cappiello%20-%20btv1b90151593.jpg?width=600"
   },
   {
    "title": "Maurin Quina",
@@ -1305,7 +1329,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Maurin%20quina.%20Le%20Puy.%20France%20-%20affiche%20-%20%28Leonetto%29%20Cappiello%20-%20btv1b90059518.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Maurin%20quina.%20Le%20Puy.%20France%20-%20affiche%20-%20%28Leonetto%29%20Cappiello%20-%20btv1b90059518.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/c4701402c595ef8b925bc25fa93a2277a3c02a9d6fb7f2995fcceb0aca9cb388.jpg",
    "focal_point": [
     0.45,
     0.23
@@ -1343,7 +1367,8 @@
      1.0,
      0.9453
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Maurin%20quina.%20Le%20Puy.%20France%20-%20affiche%20-%20%28Leonetto%29%20Cappiello%20-%20btv1b90059518.jpg?width=600"
   },
   {
    "title": "See America Welcome to Montana",
@@ -1358,7 +1383,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/See%20America%2C%20Welcome%20to%20Montana%2C%20WPA%20poster%2C%20ca.%201937%20%281%29.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/See%20America%2C%20Welcome%20to%20Montana%2C%20WPA%20poster%2C%20ca.%201937%20%281%29.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/988cec5cfc2d4bfb824ac8f38bd9e56257ac60e42c744d0d8408bb5c3f7b9570.jpg",
    "focal_point": [
     0.4,
     0.27
@@ -1396,7 +1421,8 @@
      0.9805,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/See%20America%2C%20Welcome%20to%20Montana%2C%20WPA%20poster%2C%20ca.%201937%20%281%29.jpg?width=600"
   },
   {
    "title": "I Want You for U.S. Army",
@@ -1411,7 +1437,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/I%20Want%20You%20for%20U.S.%20Army%20by%20James%20Montgomery%20Flagg.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/I%20Want%20You%20for%20U.S.%20Army%20by%20James%20Montgomery%20Flagg.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/3eb1d8b2a8a32ab072b27b95bd19ce5f39dec8efe3a19a5762c7b6402e3f721a.jpg",
    "focal_point": [
     0.5,
     0.27
@@ -1449,7 +1475,8 @@
      1.0,
      0.9963
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/I%20Want%20You%20for%20U.S.%20Army%20by%20James%20Montgomery%20Flagg.jpg?width=600"
   },
   {
    "title": "Destroy This Mad Brute",
@@ -1464,7 +1491,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Harry%20R.%20Hopps%2C%20Destroy%20this%20mad%20brute%20Enlist%20-%20U.S.%20Army%2C%2003216u%20edit.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Harry%20R.%20Hopps%2C%20Destroy%20this%20mad%20brute%20Enlist%20-%20U.S.%20Army%2C%2003216u%20edit.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/f521cd5dd7639f7b4eb0e42010678c36c81cb20e1cb5683d2262006c44783767.jpg",
    "focal_point": [
     0.46,
     0.36
@@ -1502,7 +1529,8 @@
      1.0,
      0.9406
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Harry%20R.%20Hopps%2C%20Destroy%20this%20mad%20brute%20Enlist%20-%20U.S.%20Army%2C%2003216u%20edit.jpg?width=600"
   },
   {
    "title": "When Hearts are Trumps",
@@ -1517,7 +1545,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/When%20hearts%20are%20trumps%20by%20Tom%20Hall.%20LCCN2014647766.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/When%20hearts%20are%20trumps%20by%20Tom%20Hall.%20LCCN2014647766.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/650ab1581e08b229e20e3fcdeb6643754945e3c2f65ae5e33bf8597c654d33f6.jpg",
    "focal_point": [
     0.5,
     0.25
@@ -1555,7 +1583,8 @@
      1.0,
      0.9776
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/When%20hearts%20are%20trumps%20by%20Tom%20Hall.%20LCCN2014647766.jpg?width=600"
   },
   {
    "title": "Harper's March",
@@ -1570,7 +1599,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Harper%27s-%20March%20MET%20DP823656.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Harper%27s-%20March%20MET%20DP823656.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/ef011c29c40867bc043ffb5c8e6606163979b850bd729982e5e50190840468ad.jpg",
    "focal_point": [
     0.65,
     0.18
@@ -1609,7 +1638,8 @@
      0.8503
     ]
    },
-   "current_repository": "Metropolitan Museum of Art"
+   "current_repository": "Metropolitan Museum of Art",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Harper%27s-%20March%20MET%20DP823656.jpg?width=600"
   },
   {
    "title": "The Boston Sunday Herald",
@@ -1624,7 +1654,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Boston%20Sunday%20Hearld%20-%20Easter%20-%20E.%20Reed.%20LCCN2014645307.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Boston%20Sunday%20Hearld%20-%20Easter%20-%20E.%20Reed.%20LCCN2014645307.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/84ef6f3e521f99be027167147ae339aecbfc525c73d9a5ef77a408de0375ca56.jpg",
    "focal_point": [
     0.5,
     0.3
@@ -1662,7 +1692,8 @@
      1.0,
      0.8782
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Boston%20Sunday%20Hearld%20-%20Easter%20-%20E.%20Reed.%20LCCN2014645307.jpg?width=600"
   }
  ]
 }

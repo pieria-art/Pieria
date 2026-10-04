@@ -18,7 +18,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Caravaggio%20%E2%80%94%20The%20Calling%20of%20Saint%20Matthew.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Caravaggio%20%E2%80%94%20The%20Calling%20of%20Saint%20Matthew.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/4076b8a0e216c9434741a1db4c8e5390b53a9534d3ab9a2938dd26970aa8ba80.jpg",
    "focal_point": [
     0.42,
     0.46
@@ -57,7 +57,8 @@
      1.0
     ]
    },
-   "physical_dimensions": "340.0 x 322.0 cm"
+   "physical_dimensions": "340.0 x 322.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Caravaggio%20%E2%80%94%20The%20Calling%20of%20Saint%20Matthew.jpg?width=600"
   },
   {
    "title": "The Supper at Emmaus",
@@ -72,7 +73,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Supper%20at%20Emmaus-Caravaggio%20%281606%29.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Supper%20at%20Emmaus-Caravaggio%20%281606%29.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/2bdc7472a2b5d20b0dde1669c4aea3b112724809dedaec154c52b52ada8ed84a.jpg",
    "focal_point": [
     0.37,
     0.4
@@ -110,7 +111,8 @@
      0.7224,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Supper%20at%20Emmaus-Caravaggio%20%281606%29.jpg?width=600"
   },
   {
    "title": "The Conversion of Saint Paul on the Way to Damascus",
@@ -125,7 +127,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Conversion%20on%20the%20Way%20to%20Damascus-Caravaggio%20%28c.1600-1%29.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Conversion%20on%20the%20Way%20to%20Damascus-Caravaggio%20%28c.1600-1%29.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/ebb4f29733eb52edfe662347dca6222887978e5befe156fd1c18bcde0e6b60e6.jpg",
    "focal_point": [
     0.66,
     0.82
@@ -164,7 +166,8 @@
      1.0
     ]
    },
-   "physical_dimensions": "230.0 x 175.0 cm"
+   "physical_dimensions": "230.0 x 175.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Conversion%20on%20the%20Way%20to%20Damascus-Caravaggio%20%28c.1600-1%29.jpg?width=600"
   },
   {
    "title": "Bacchus",
@@ -179,7 +182,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bacchus%20by%20Caravaggio%201.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bacchus%20by%20Caravaggio%201.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/b065e86a276716b66ae91501e964c4143473e804a80e54e40378fd7d7ead9ca4.jpg",
    "focal_point": [
     0.48,
     0.27
@@ -217,7 +220,8 @@
      0.9374,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bacchus%20by%20Caravaggio%201.jpg?width=600"
   },
   {
    "title": "Judith Beheading Holofernes",
@@ -232,7 +236,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Judith%20Beheading%20Holofernes-Caravaggio%20%28c.1598-9%29.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Judith%20Beheading%20Holofernes-Caravaggio%20%28c.1598-9%29.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/bb952ca0e6326fc35114b128db3fe9e49cfadee9699e8d1ec4c030fa675d1c6c.jpg",
    "focal_point": [
     0.68,
     0.22
@@ -270,7 +274,8 @@
      0.9582,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Judith%20Beheading%20Holofernes-Caravaggio%20%28c.1598-9%29.jpg?width=600"
   },
   {
    "title": "David with the Head of Goliath",
@@ -285,7 +290,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/David%20with%20the%20Head%20of%20Goliath-Caravaggio%20%281610%29.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/David%20with%20the%20Head%20of%20Goliath-Caravaggio%20%281610%29.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/f7953c2817511cab93cc13aa78b14e7ccc177ae708683d72c3221d93c638b44f.jpg",
    "focal_point": [
     0.45,
     0.27
@@ -324,7 +329,8 @@
      1.0
     ]
    },
-   "physical_dimensions": "125.0 x 101.0 cm"
+   "physical_dimensions": "125.0 x 101.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/David%20with%20the%20Head%20of%20Goliath-Caravaggio%20%281610%29.jpg?width=600"
   },
   {
    "title": "Boy with a Basket of Fruit",
@@ -339,7 +345,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Boy%20with%20a%20Basket%20of%20Fruit-Caravaggio%20%281593%29.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Boy%20with%20a%20Basket%20of%20Fruit-Caravaggio%20%281593%29.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/c698fca5b3b14788b1f48988cf374cf91f701364d570f880bde6858488980083.jpg",
    "focal_point": [
     0.45,
     0.26
@@ -378,7 +384,8 @@
      1.0
     ]
    },
-   "physical_dimensions": "70.0 x 67.0 cm"
+   "physical_dimensions": "70.0 x 67.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Boy%20with%20a%20Basket%20of%20Fruit-Caravaggio%20%281593%29.jpg?width=600"
   },
   {
    "title": "The Cardsharps",
@@ -393,7 +400,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Caravaggio%20%28Michelangelo%20Merisi%29%20-%20The%20Cardsharps%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Caravaggio%20%28Michelangelo%20Merisi%29%20-%20The%20Cardsharps%20-%20Google%20Art%20Project.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/ceea73bc6a10f29c3a2b8e790bfbc20d5dd10a9b9447ed8470dfdaaa5f25fe32.jpg",
    "focal_point": [
     0.27,
     0.32
@@ -431,7 +438,8 @@
      0.6897,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Caravaggio%20%28Michelangelo%20Merisi%29%20-%20The%20Cardsharps%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
    "title": "Self-Portrait as the Allegory of Painting",
@@ -446,7 +454,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Self-Portrait%20as%20the%20Allegory%20of%20Painting%20%28La%20Pittura%29%20-%20Artemisia%20Gentileschi.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Self-Portrait%20as%20the%20Allegory%20of%20Painting%20%28La%20Pittura%29%20-%20Artemisia%20Gentileschi.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/3cb33396842c5d61d08374991e8790a16ff2ec4315b024a6835b2f4f1bd41989.jpg",
    "focal_point": [
     0.52,
     0.28
@@ -486,7 +494,8 @@
     ]
    },
    "current_repository": "Royal Collection",
-   "physical_dimensions": "98.6 x 75.2 cm"
+   "physical_dimensions": "98.6 x 75.2 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Self-Portrait%20as%20the%20Allegory%20of%20Painting%20%28La%20Pittura%29%20-%20Artemisia%20Gentileschi.jpg?width=600"
   },
   {
    "title": "The Garden of Love",
@@ -501,7 +510,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20and%20Workshop%20-%20The%20Garden%20of%20Love.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20and%20Workshop%20-%20The%20Garden%20of%20Love.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/5b5e802b87c4069927ae4cbd9b23efbfbafaef958e7ee470149a70ab447b1774.jpg",
    "focal_point": [
     0.52,
     0.66
@@ -540,7 +549,8 @@
      1.0
     ]
    },
-   "physical_dimensions": "127.0 x 225.9 cm"
+   "physical_dimensions": "127.0 x 225.9 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20and%20Workshop%20-%20The%20Garden%20of%20Love.jpg?width=600"
   },
   {
    "title": "Samson and Delilah",
@@ -555,7 +565,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Samson%20and%20Delilah%20by%20Rubens.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Samson%20and%20Delilah%20by%20Rubens.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/2544dc8a4fecc567645269b987a769210cf116ce434d50a3cdd615d200f749ce.jpg",
    "focal_point": [
     0.38,
     0.5
@@ -595,7 +605,8 @@
     ]
    },
    "current_repository": "National Gallery",
-   "physical_dimensions": "185.0 x 205.0 cm"
+   "physical_dimensions": "185.0 x 205.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Samson%20and%20Delilah%20by%20Rubens.jpg?width=600"
   },
   {
    "title": "The Three Graces",
@@ -610,7 +621,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Three%20Graces%2C%20by%20Peter%20Paul%20Rubens%2C%20from%20Prado%20in%20Google%20Earth.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Three%20Graces%2C%20by%20Peter%20Paul%20Rubens%2C%20from%20Prado%20in%20Google%20Earth.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/db4f523fc9d505c562b1416381d2f38aa4a5a172849b15c766c4578ab019068a.jpg",
    "focal_point": [
     0.5,
     0.28
@@ -648,7 +659,8 @@
      0.9569,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Three%20Graces%2C%20by%20Peter%20Paul%20Rubens%2C%20from%20Prado%20in%20Google%20Earth.jpg?width=600"
   },
   {
    "title": "The Surrender of Breda",
@@ -663,7 +675,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Velazquez-The%20Surrender%20of%20Breda.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Velazquez-The%20Surrender%20of%20Breda.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/a1639159f18eadb71057ebbd4a6cbda1dff2b84fc0bb27b14956e2fbad8b1aa9.jpg",
    "focal_point": [
     0.5,
     0.45
@@ -702,7 +714,8 @@
      0.7682,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Velazquez-The%20Surrender%20of%20Breda.jpg?width=600"
   },
   {
    "title": "The Toilet of Venus (Rokeby Venus)",
@@ -717,7 +730,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Diego%20Vel%C3%A1zquez%20-%20Rokeby%20Venus.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Diego%20Vel%C3%A1zquez%20-%20Rokeby%20Venus.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/dfa71151e55ac31bcb073526d64814f35bc0558eb29706099fed78b2be1b2e21.jpg",
    "focal_point": [
     0.43,
     0.4
@@ -757,7 +770,8 @@
     ]
    },
    "current_repository": "National Gallery",
-   "physical_dimensions": "122.5 x 175.0 cm"
+   "physical_dimensions": "122.5 x 175.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Diego%20Vel%C3%A1zquez%20-%20Rokeby%20Venus.jpg?width=600"
   },
   {
    "title": "Old Woman Frying Eggs",
@@ -772,7 +786,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/VEL%C3%81ZQUEZ%20-%20Vieja%20friendo%20huevos%20%28National%20Galleries%20of%20Scotland%2C%201618.%20%C3%93leo%20sobre%20lienzo%2C%20100.5%20x%20119.5%20cm%29.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/VEL%C3%81ZQUEZ%20-%20Vieja%20friendo%20huevos%20%28National%20Galleries%20of%20Scotland%2C%201618.%20%C3%93leo%20sobre%20lienzo%2C%20100.5%20x%20119.5%20cm%29.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/10bf7647701d6993cd432c2c439f3b55ca16779495a9fd4dfb7be9519d5c9487.jpg",
    "focal_point": [
     0.66,
     0.28
@@ -810,7 +824,8 @@
      0.9796,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/VEL%C3%81ZQUEZ%20-%20Vieja%20friendo%20huevos%20%28National%20Galleries%20of%20Scotland%2C%201618.%20%C3%93leo%20sobre%20lienzo%2C%20100.5%20x%20119.5%20cm%29.jpg?width=600"
   },
   {
    "title": "The Storm on the Sea of Galilee",
@@ -825,7 +840,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20-%20Christ%20in%20the%20Storm%20on%20the%20Sea%20of%20Galilee.jpeg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20-%20Christ%20in%20the%20Storm%20on%20the%20Sea%20of%20Galilee.jpeg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/acb907a385817e48c621b6e681354d9e15d7d29cf684bd40af920f9fbd513650.jpg",
    "focal_point": [
     0.5,
     0.7
@@ -863,7 +878,8 @@
      0.9628,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20-%20Christ%20in%20the%20Storm%20on%20the%20Sea%20of%20Galilee.jpeg?width=600"
   },
   {
    "title": "The Penitent Magdalen",
@@ -878,7 +894,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Penitent%20Magdalen%20MET%20DT7252.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Penitent%20Magdalen%20MET%20DT7252.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/988707a6574861b469a20ddd0b803fa09da43c48356f43eb7df764beb825af5d.jpg",
    "focal_point": [
     0.33,
     0.16
@@ -918,7 +934,8 @@
      0.963
     ]
    },
-   "current_repository": "Metropolitan Museum of Art"
+   "current_repository": "Metropolitan Museum of Art",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Penitent%20Magdalen%20MET%20DT7252.jpg?width=600"
   },
   {
    "title": "Saint Francis in Meditation",
@@ -933,7 +950,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Francisco%20de%20Zurbar%C3%A1n%20053.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Francisco%20de%20Zurbar%C3%A1n%20053.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/6e31cd107fd680ba853347c41c44031931702c31157f83c4c2cabedfb107597b.jpg",
    "focal_point": [
     0.6,
     0.16
@@ -973,7 +990,8 @@
     ]
    },
    "current_repository": "National Gallery",
-   "physical_dimensions": "152.0 x 99.0 cm"
+   "physical_dimensions": "152.0 x 99.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Francisco%20de%20Zurbar%C3%A1n%20053.jpg?width=600"
   },
   {
    "title": "Et in Arcadia ego (Les Bergers d'Arcadie)",
@@ -988,7 +1006,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Nicolas%20Poussin%20-%20Et%20in%20Arcadia%20ego%20%28deuxi%C3%A8me%20version%29.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Nicolas%20Poussin%20-%20Et%20in%20Arcadia%20ego%20%28deuxi%C3%A8me%20version%29.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/4c2eb12e21a690304d293f6f4482aa278bf6f54fbf629c404d69f837ac52976c.jpg",
    "focal_point": [
     0.5,
     0.5
@@ -1027,7 +1045,8 @@
      1.0
     ]
    },
-   "current_repository": "Musée du Louvre, Paris"
+   "current_repository": "Musée du Louvre, Paris",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Nicolas%20Poussin%20-%20Et%20in%20Arcadia%20ego%20%28deuxi%C3%A8me%20version%29.jpg?width=600"
   },
   {
    "title": "Seaport with the Embarkation of the Queen of Sheba",
@@ -1042,7 +1061,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Claude%20Lorrain%20-%20Seaport%20with%20the%20Embarkation%20of%20the%20Queen%20of%20Sheba%20-%20WGA05002.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Claude%20Lorrain%20-%20Seaport%20with%20the%20Embarkation%20of%20the%20Queen%20of%20Sheba%20-%20WGA05002.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/5a0574a82391ea41b05c511160c6438173e055ea8789a3b46aa9f12112b7a1f4.jpg",
    "focal_point": [
     0.46,
     0.5
@@ -1080,7 +1099,8 @@
      0.8101,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Claude%20Lorrain%20-%20Seaport%20with%20the%20Embarkation%20of%20the%20Queen%20of%20Sheba%20-%20WGA05002.jpg?width=600"
   },
   {
    "title": "The Martyrdom of Saint Philip",
@@ -1095,7 +1115,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jos%C3%A9%20de%20Ribera%20054.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jos%C3%A9%20de%20Ribera%20054.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/f476f4aab2d0f4b510782cab4b6d70520282a345f0ec4d883859d7a945dd02ec.jpg",
    "focal_point": [
     0.45,
     0.45
@@ -1135,7 +1155,8 @@
      0.8477
     ]
    },
-   "physical_dimensions": "234.0 x 234.0 cm"
+   "physical_dimensions": "234.0 x 234.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jos%C3%A9%20de%20Ribera%20054.jpg?width=600"
   },
   {
    "title": "The Immaculate Conception",
@@ -1150,7 +1171,7 @@
    "source": "Cleveland Museum of Art",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bartolom%C3%A9%20Esteban%20Murillo%20-%20The%20Immaculate%20Conception%20-%201959.189%20-%20Cleveland%20Museum%20of%20Art.tiff?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bartolom%C3%A9%20Esteban%20Murillo%20-%20The%20Immaculate%20Conception%20-%201959.189%20-%20Cleveland%20Museum%20of%20Art.tiff?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/772146d4dd1f23b0d81a6025d6d9c76ecfd6d248f4a09ec4c40539b1b35829eb.jpg",
    "focal_point": [
     0.5,
     0.13
@@ -1190,7 +1211,8 @@
     ]
    },
    "current_repository": "Cleveland Museum of Art",
-   "physical_dimensions": "Framed: 246.3 x 152.7 x 8 cm (96 15/16 x 60 1/8 x 3 1/8 in.); Unframed: 220.5 x 127.5 cm (86 13/16 x 50 3/16 in.)"
+   "physical_dimensions": "Framed: 246.3 x 152.7 x 8 cm (96 15/16 x 60 1/8 x 3 1/8 in.); Unframed: 220.5 x 127.5 cm (86 13/16 x 50 3/16 in.)",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bartolom%C3%A9%20Esteban%20Murillo%20-%20The%20Immaculate%20Conception%20-%201959.189%20-%20Cleveland%20Museum%20of%20Art.tiff?width=600"
   },
   {
    "title": "Judith Slaying Holofernes",
@@ -1205,7 +1227,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Judith%20Beheading%20Holofernes.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Judith%20Beheading%20Holofernes.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/c7d98c120668f89fdae8a0e027f6a0bf8f65175c39c0dd7e12aa766a3a8d003a.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1243,7 +1265,8 @@
      0.8885,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Judith%20Beheading%20Holofernes.jpg?width=600"
   },
   {
    "title": "The Descent from the Cross",
@@ -1258,7 +1281,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Descent%20from%20the%20Cross%20-%20WGA20212.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Descent%20from%20the%20Cross%20-%20WGA20212.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/8d99cd5f4f366062f2067f39c6ec350c6d1187485f3b1c1bcb347cffa304ad4b.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1297,7 +1320,8 @@
      1.0
     ]
    },
-   "physical_dimensions": "421.0 x 622.0 cm"
+   "physical_dimensions": "421.0 x 622.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Descent%20from%20the%20Cross%20-%20WGA20212.jpg?width=600"
   },
   {
    "title": "The Massacre of the Innocents",
@@ -1312,7 +1336,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20%E2%80%93%20The%20Massacre%20of%20the%20Innocents%20%28Art%20Gallery%20of%20Ontario%29.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20%E2%80%93%20The%20Massacre%20of%20the%20Innocents%20%28Art%20Gallery%20of%20Ontario%29.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/c080d44320ab5d8e94a343574d4d7fbd1ba519d74ecb788ec356355576978b04.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1350,7 +1374,8 @@
      0.793,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20%E2%80%93%20The%20Massacre%20of%20the%20Innocents%20%28Art%20Gallery%20of%20Ontario%29.jpg?width=600"
   },
   {
    "title": "Susanna and the Elders",
@@ -1365,7 +1390,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Susanna%20and%20the%20Elders%20%281610%29%2C%20Artemisia%20Gentileschi.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Susanna%20and%20the%20Elders%20%281610%29%2C%20Artemisia%20Gentileschi.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/0534f99b5bd6aae8e8861eaed631354ed1755a2c7eb88f8b1abd339b1ece76f8.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1403,7 +1428,8 @@
      1.0,
      0.8139
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Susanna%20and%20the%20Elders%20%281610%29%2C%20Artemisia%20Gentileschi.jpg?width=600"
   },
   {
    "title": "Esther before Ahasuerus",
@@ -1418,7 +1444,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Esther%20before%20Ahasuerus%2C%20Franciszek%20Smuglewicz%2C%201778.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Esther%20before%20Ahasuerus%2C%20Franciszek%20Smuglewicz%2C%201778.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/5b69cae5195909c89e534ef42fed71c99cc78dfd77bff30e3d6dce920bc20e87.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1458,7 +1484,8 @@
     ]
    },
    "current_repository": "Lithuanian Art Centre TARTLE, Vilnius",
-   "physical_dimensions": "78.0 x 106.0 cm"
+   "physical_dimensions": "78.0 x 106.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Esther%20before%20Ahasuerus%2C%20Franciszek%20Smuglewicz%2C%201778.jpg?width=600"
   },
   {
    "title": "The Abduction of the Sabine Women",
@@ -1473,7 +1500,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Abduction%20of%20the%20Sabine%20Women%20%28Poussin%2C%20MET%29.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Abduction%20of%20the%20Sabine%20Women%20%28Poussin%2C%20MET%29.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/53f7a355df1c4524cd6fa0660e44cb808aaecb41c0458975faf98cf9f3d3f413.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1511,7 +1538,8 @@
      0.6287,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Abduction%20of%20the%20Sabine%20Women%20%28Poussin%2C%20MET%29.jpg?width=600"
   },
   {
    "title": "Agnus Dei",
@@ -1526,7 +1554,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Agnus%20Dei%20%28The%20Lamb%20of%20God%29%2C%20by%20Francisco%20de%20Zurbaran%2C%20c.%201635-1640%20-%20San%20Diego%20Museum%20of%20Art%20-%20DSC06627.JPG?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Agnus%20Dei%20%28The%20Lamb%20of%20God%29%2C%20by%20Francisco%20de%20Zurbaran%2C%20c.%201635-1640%20-%20San%20Diego%20Museum%20of%20Art%20-%20DSC06627.JPG?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/dbfc1bd51c21e4bdde59aeb7b3c8bca652d3c0c958b9581427a2ccd6ed9baf33.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1566,7 +1594,8 @@
     ]
    },
    "current_repository": "San Diego Museum of Art",
-   "physical_dimensions": "35.6 x 52.1 cm"
+   "physical_dimensions": "35.6 x 52.1 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Agnus%20Dei%20%28The%20Lamb%20of%20God%29%2C%20by%20Francisco%20de%20Zurbaran%2C%20c.%201635-1640%20-%20San%20Diego%20Museum%20of%20Art%20-%20DSC06627.JPG?width=600"
   },
   {
    "title": "The Holy Family with Saints Elizabeth and John the Baptist",
@@ -1581,7 +1610,7 @@
    "source": "Art Institute of Chicago",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20The%20Holy%20Family%20with%20Saints%20Elizabeth%20and%20John%20the%20Baptist%20-%201967.229%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20The%20Holy%20Family%20with%20Saints%20Elizabeth%20and%20John%20the%20Baptist%20-%201967.229%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/023492a5b3a71c9b8555bcedb7f4582f8270661d31a111815ea51719cf5e9e18.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1622,7 +1651,8 @@
    },
    "below_floor_ok": true,
    "current_repository": "Art Institute of Chicago",
-   "physical_dimensions": "114.5 × 91.5 cm (45 1/8 × 36 in.); Framed: 137.8 × 115.6 × 12.7 cm (54 1/4 × 45 1/2 × 5 in.)"
+   "physical_dimensions": "114.5 × 91.5 cm (45 1/8 × 36 in.); Framed: 137.8 × 115.6 × 12.7 cm (54 1/4 × 45 1/2 × 5 in.)",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20The%20Holy%20Family%20with%20Saints%20Elizabeth%20and%20John%20the%20Baptist%20-%201967.229%20-%20Art%20Institute%20of%20Chicago.jpg?width=600"
   },
   {
    "title": "Salome with the Head of Saint John the Baptist",
@@ -1637,7 +1667,7 @@
    "source": "Art Institute of Chicago",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Guido%20Reni%20-%20Salome%20with%20the%20Head%20of%20Saint%20John%20the%20Baptist%20-%201960.3%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Guido%20Reni%20-%20Salome%20with%20the%20Head%20of%20Saint%20John%20the%20Baptist%20-%201960.3%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/13ab7f8168fe3178260fb06631c034f4bc3eab0c86838a5d5c6a871e019d6c79.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1652,7 +1682,8 @@
    "resolution_tier": "HD",
    "below_floor_ok": true,
    "current_repository": "Art Institute of Chicago",
-   "physical_dimensions": "248.5 × 174 cm (97 3/4 × 68 1/2 in.); Framed: 285 × 210.2 × 8.9 cm (112 3/16 × 82 3/4 × 3 1/2 in.)"
+   "physical_dimensions": "248.5 × 174 cm (97 3/4 × 68 1/2 in.); Framed: 285 × 210.2 × 8.9 cm (112 3/16 × 82 3/4 × 3 1/2 in.)",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Guido%20Reni%20-%20Salome%20with%20the%20Head%20of%20Saint%20John%20the%20Baptist%20-%201960.3%20-%20Art%20Institute%20of%20Chicago.jpg?width=600"
   },
   {
    "title": "Saint Romanus of Antioch and Saint Barulas",
@@ -1667,7 +1698,7 @@
    "source": "Art Institute of Chicago",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Francisco%20de%20Zurbar%C3%A1n%20-%20Saint%20Romanus%20of%20Antioch%20and%20Saint%20Barulas%20-%201947.793%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Francisco%20de%20Zurbar%C3%A1n%20-%20Saint%20Romanus%20of%20Antioch%20and%20Saint%20Barulas%20-%201947.793%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/aab1de6382481034a3a72f19336cd7653166f9110aae23516aadd6179fc589dc.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1708,7 +1739,8 @@
    },
    "below_floor_ok": true,
    "current_repository": "Art Institute of Chicago",
-   "physical_dimensions": "246.5 × 185.4 cm (97 1/16 × 73 in.)"
+   "physical_dimensions": "246.5 × 185.4 cm (97 1/16 × 73 in.)",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Francisco%20de%20Zurbar%C3%A1n%20-%20Saint%20Romanus%20of%20Antioch%20and%20Saint%20Barulas%20-%201947.793%20-%20Art%20Institute%20of%20Chicago.jpg?width=600"
   },
   {
    "title": "Landscape with Saint John on Patmos",
@@ -1723,7 +1755,7 @@
    "source": "Art Institute of Chicago",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Nicolas%20Poussin%20-%20Landscape%20with%20Saint%20John%20on%20Patmos%20-%201930.500%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Nicolas%20Poussin%20-%20Landscape%20with%20Saint%20John%20on%20Patmos%20-%201930.500%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/08c3e36a038609277428d1ba7d0f3abe842149e2f27f903ed11999390f056a7a.jpg",
    "focal_point": [
     0.62,
     0.82
@@ -1758,7 +1790,8 @@
    },
    "below_floor_ok": true,
    "current_repository": "Art Institute of Chicago",
-   "physical_dimensions": "100.3 × 136.4 cm (39 1/2 × 53 5/8 in.); Framed: 128.6 × 164.1 cm (50 5/8 × 64 5/8 in.)"
+   "physical_dimensions": "100.3 × 136.4 cm (39 1/2 × 53 5/8 in.); Framed: 128.6 × 164.1 cm (50 5/8 × 64 5/8 in.)",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Nicolas%20Poussin%20-%20Landscape%20with%20Saint%20John%20on%20Patmos%20-%201930.500%20-%20Art%20Institute%20of%20Chicago.jpg?width=600"
   },
   {
    "title": "Saint Martin and the Beggar",
@@ -1773,7 +1806,7 @@
    "source": "Art Institute of Chicago",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Domenico%20Theotok%C3%B3poulos%2C%20called%20El%20Greco%20-%20Saint%20Martin%20and%20the%20Beggar%20-%201949.1093%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Domenico%20Theotok%C3%B3poulos%2C%20called%20El%20Greco%20-%20Saint%20Martin%20and%20the%20Beggar%20-%201949.1093%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/b01f4c8d48b5c54bd1bcb261e345f8b80c752e079719f6f47afddbaebae85003.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1814,7 +1847,8 @@
    },
    "below_floor_ok": true,
    "current_repository": "Art Institute of Chicago",
-   "physical_dimensions": "110 × 63 cm (43 5/16 × 24 13/16 in.); Framed: 133.4 × 85.7 × 10.2 cm (52 1/2 × 33 3/4 × 4 in.)"
+   "physical_dimensions": "110 × 63 cm (43 5/16 × 24 13/16 in.); Framed: 133.4 × 85.7 × 10.2 cm (52 1/2 × 33 3/4 × 4 in.)",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Domenico%20Theotok%C3%B3poulos%2C%20called%20El%20Greco%20-%20Saint%20Martin%20and%20the%20Beggar%20-%201949.1093%20-%20Art%20Institute%20of%20Chicago.jpg?width=600"
   },
   {
    "title": "Saint Francis Kneeling in Meditation",
@@ -1829,7 +1863,7 @@
    "source": "Art Institute of Chicago",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Domenico%20Theotok%C3%B3poulos%2C%20called%20El%20Greco%20-%20Saint%20Francis%20Kneeling%20in%20Meditation%20-%201935.372%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Domenico%20Theotok%C3%B3poulos%2C%20called%20El%20Greco%20-%20Saint%20Francis%20Kneeling%20in%20Meditation%20-%201935.372%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/c19b858347c3994a8264b0175b2933d31f25a7c134c6872bbf20d7557fbadcb9.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1864,7 +1898,8 @@
    },
    "below_floor_ok": true,
    "current_repository": "Art Institute of Chicago",
-   "physical_dimensions": "92 × 74 cm (36 3/16 × 24 1/8 in.); Framed: 112.4 × 94.6 × 8.9 cm (44 1/4 × 37 1/4 × 3 1/2 in.)"
+   "physical_dimensions": "92 × 74 cm (36 3/16 × 24 1/8 in.); Framed: 112.4 × 94.6 × 8.9 cm (44 1/4 × 37 1/4 × 3 1/2 in.)",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Domenico%20Theotok%C3%B3poulos%2C%20called%20El%20Greco%20-%20Saint%20Francis%20Kneeling%20in%20Meditation%20-%201935.372%20-%20Art%20Institute%20of%20Chicago.jpg?width=600"
   },
   {
    "title": "The Assumption of the Virgin",
@@ -1879,7 +1914,7 @@
    "source": "Art Institute of Chicago",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Domenikos%20Theotok%C3%B3poulos%2C%20called%20El%20Greco%20-%20The%20Assumption%20of%20the%20Virgin%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Domenikos%20Theotok%C3%B3poulos%2C%20called%20El%20Greco%20-%20The%20Assumption%20of%20the%20Virgin%20-%20Google%20Art%20Project.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/646f05eaa29e43efdef146d0d898a8550051a2e34604c7357fb5bd2e33e1115c.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1893,7 +1928,8 @@
    "delivered_edge": 5395,
    "resolution_tier": "4K",
    "current_repository": "Art Institute of Chicago",
-   "physical_dimensions": "403.2 × 211.8 cm (158 3/4 × 83 7/16 in.); Framed: 461.6 × 256.5 × 14 cm (181 3/4 × 101 × 5 9/16 in.)"
+   "physical_dimensions": "403.2 × 211.8 cm (158 3/4 × 83 7/16 in.); Framed: 461.6 × 256.5 × 14 cm (181 3/4 × 101 × 5 9/16 in.)",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Domenikos%20Theotok%C3%B3poulos%2C%20called%20El%20Greco%20-%20The%20Assumption%20of%20the%20Virgin%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
    "title": "The Crucifixion",
@@ -1908,7 +1944,7 @@
    "source": "Art Institute of Chicago",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Francisco%20de%20Zurbar%C3%A1n%20-%20The%20Crucifixion%20-%201954.15%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Francisco%20de%20Zurbar%C3%A1n%20-%20The%20Crucifixion%20-%201954.15%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/af25285531303898056bde51875d086c71a9aa69293fa9389ad30342ae8a7b04.jpg",
    "focal_point": [
     0.45,
     0.28
@@ -1949,7 +1985,8 @@
    },
    "below_floor_ok": true,
    "current_repository": "Art Institute of Chicago",
-   "physical_dimensions": "290.3 × 165.5 cm (114 5/16 × 65 3/16 in.); Framed: 339.1 × 212.1 × 14 cm (133 3/8 × 83 1/2 × 5 1/2 in.)"
+   "physical_dimensions": "290.3 × 165.5 cm (114 5/16 × 65 3/16 in.); Framed: 339.1 × 212.1 × 14 cm (133 3/8 × 83 1/2 × 5 1/2 in.)",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Francisco%20de%20Zurbar%C3%A1n%20-%20The%20Crucifixion%20-%201954.15%20-%20Art%20Institute%20of%20Chicago.jpg?width=600"
   },
   {
    "title": "Cupid Chastised",
@@ -1964,7 +2001,7 @@
    "source": "Art Institute of Chicago",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bartolomeo%20Manfredi%20-%20Cupid%20Chastised%20-%201947.58%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bartolomeo%20Manfredi%20-%20Cupid%20Chastised%20-%201947.58%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/67c3b4c0756e9d1f56f4eb0dbfb4204bfc78f51a4bd7249b897ab1b1eb42475d.jpg",
    "focal_point": [
     0.5,
     0.27
@@ -2005,7 +2042,8 @@
    },
    "below_floor_ok": true,
    "current_repository": "Art Institute of Chicago",
-   "physical_dimensions": "175.3 × 130.6 cm (69 × 51 3/8 in.)"
+   "physical_dimensions": "175.3 × 130.6 cm (69 × 51 3/8 in.)",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bartolomeo%20Manfredi%20-%20Cupid%20Chastised%20-%201947.58%20-%20Art%20Institute%20of%20Chicago.jpg?width=600"
   },
   {
    "title": "Don Gaspar de Guzmán (1587–1645), Count-Duke of Olivares",
@@ -2020,7 +2058,7 @@
    "source": "The Metropolitan Museum of Art",
    "license": "PDM-1.0",
    "source_url": "https://images.metmuseum.org/CRDImages/ep/original/DP-14936-011.jpg",
-   "thumbnail_url": "https://images.metmuseum.org/CRDImages/ep/web-large/DP-14936-011.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/a916bfe817f96cba38c94a76c6c14bff2aa86636231908c428d2847cc0b26ce0.jpg",
    "focal_point": [
     0.57,
     0.22
@@ -2059,7 +2097,8 @@
      1.0
     ]
    },
-   "current_repository": "The Metropolitan Museum of Art"
+   "current_repository": "The Metropolitan Museum of Art",
+   "thumbnail_source_url": "https://images.metmuseum.org/CRDImages/ep/web-large/DP-14936-011.jpg"
   },
   {
    "title": "The Jabach Family",
@@ -2074,7 +2113,7 @@
    "source": "The Metropolitan Museum of Art",
    "license": "PDM-1.0",
    "source_url": "https://images.metmuseum.org/CRDImages/ep/original/DP352819.jpg",
-   "thumbnail_url": "https://images.metmuseum.org/CRDImages/ep/web-large/DP352819.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/2ca3ae4028e69780b793d0a14005be74b117a8cf7c29126794098fa1568bbe1c.jpg",
    "focal_point": [
     0.42,
     0.4
@@ -2113,7 +2152,8 @@
      1.0
     ]
    },
-   "current_repository": "The Metropolitan Museum of Art"
+   "current_repository": "The Metropolitan Museum of Art",
+   "thumbnail_source_url": "https://images.metmuseum.org/CRDImages/ep/web-large/DP352819.jpg"
   },
   {
    "title": "Charity",
@@ -2128,7 +2168,7 @@
    "source": "The Metropolitan Museum of Art",
    "license": "PDM-1.0",
    "source_url": "https://images.metmuseum.org/CRDImages/ep/original/DT10776.jpg",
-   "thumbnail_url": "https://images.metmuseum.org/CRDImages/ep/web-large/DT10776.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/6057db8df284d459600d8fa1692f399f1b6d32c8eded66cf8c90245fb7cc5c2c.jpg",
    "focal_point": [
     0.43,
     0.27
@@ -2168,7 +2208,8 @@
      1.0
     ]
    },
-   "current_repository": "The Metropolitan Museum of Art"
+   "current_repository": "The Metropolitan Museum of Art",
+   "thumbnail_source_url": "https://images.metmuseum.org/CRDImages/ep/web-large/DT10776.jpg"
   },
   {
    "title": "Self-Portrait",
@@ -2183,7 +2224,7 @@
    "source": "The Metropolitan Museum of Art",
    "license": "PDM-1.0",
    "source_url": "https://images.metmuseum.org/CRDImages/ep/original/DP323414.jpg",
-   "thumbnail_url": "https://images.metmuseum.org/CRDImages/ep/web-large/DP323414.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/cb87adeb0fe7f76364b3c2752986c9bbe1c4475add97248bd6b9c8e70bdc5ab9.jpg",
    "focal_point": [
     0.5,
     0.35
@@ -2221,7 +2262,8 @@
      0.9684,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://images.metmuseum.org/CRDImages/ep/web-large/DP323414.jpg"
   },
   {
    "title": "Christ in the House of Martha and Mary",
@@ -2236,7 +2278,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Cristo%20en%20casa%20de%20Marta%20y%20Mar%C3%ADa%2C%20by%20Diego%20Vel%C3%A1zquez.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Cristo%20en%20casa%20de%20Marta%20y%20Mar%C3%ADa%2C%20by%20Diego%20Vel%C3%A1zquez.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/807f293fdbc7d765af7304ef1ba77a61cff76c38f442b440ef18046c1d955a35.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -2276,7 +2318,8 @@
     ]
    },
    "current_repository": "National Gallery",
-   "physical_dimensions": "60.0 x 103.5 cm"
+   "physical_dimensions": "60.0 x 103.5 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Cristo%20en%20casa%20de%20Marta%20y%20Mar%C3%ADa%2C%20by%20Diego%20Vel%C3%A1zquez.jpg?width=600"
   },
   {
    "title": "The Immaculate Conception",
@@ -2291,7 +2334,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/20090211%20NP%20Inmaculada.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/20090211%20NP%20Inmaculada.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/1c58048681f1df98ac0955e02acbfe09f6116c2fd2f7e624a8db23d1386337f1.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -2331,7 +2374,8 @@
     ]
    },
    "current_repository": "Focus-Abengoa Foundation",
-   "physical_dimensions": "142.0 x 98.0 cm"
+   "physical_dimensions": "142.0 x 98.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/20090211%20NP%20Inmaculada.jpg?width=600"
   },
   {
    "title": "Tavern Scene with Two Men and a Girl (Peasants at the Table)",
@@ -2346,7 +2390,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tavern%20Scene%20with%20Two%20Men%20and%20a%20Girl%20-%20Diego%20Rodr%C3%ADguez%20de%20Silva%20y%20Vel%C3%A1zquez%20-%20Google%20Arts%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tavern%20Scene%20with%20Two%20Men%20and%20a%20Girl%20-%20Diego%20Rodr%C3%ADguez%20de%20Silva%20y%20Vel%C3%A1zquez%20-%20Google%20Arts%20Project.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/0e02b71cc4652f728ff350e132c76668baa718b6edb68278e1416b574a59efd4.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -2384,7 +2428,8 @@
      0.7098,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tavern%20Scene%20with%20Two%20Men%20and%20a%20Girl%20-%20Diego%20Rodr%C3%ADguez%20de%20Silva%20y%20Vel%C3%A1zquez%20-%20Google%20Arts%20Project.jpg?width=600"
   },
   {
    "title": "Christ after the Flagellation Contemplated by the Christian Soul",
@@ -2399,7 +2444,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Velazquez-CristCol.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Velazquez-CristCol.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/4a6061ed63dfb111e9e0471e1590e033bcbb0cc390ef8931c4d0bcdc690bb759.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -2439,7 +2484,8 @@
     ]
    },
    "current_repository": "National Gallery",
-   "physical_dimensions": "165.1 x 206.4 cm"
+   "physical_dimensions": "165.1 x 206.4 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Velazquez-CristCol.jpg?width=600"
   },
   {
    "title": "The Needlewoman",
@@ -2454,7 +2500,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Diego%20Vel%C3%A1zquez%20023.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Diego%20Vel%C3%A1zquez%20023.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/632b0967ee50c0f15f27eff3515c801391afc8984e4d08f429860951290b887d.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -2494,7 +2540,8 @@
     ]
    },
    "current_repository": "Andrew W. Mellon collection",
-   "physical_dimensions": "74.0 x 60.0 cm"
+   "physical_dimensions": "74.0 x 60.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Diego%20Vel%C3%A1zquez%20023.jpg?width=600"
   },
   {
    "title": "Saint John the Evangelist on the Island of Patmos",
@@ -2509,7 +2556,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Diego%20Vel%C3%A1zquez%20018%20%28John%20the%20Evangelist%20from%20Patmos%29.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Diego%20Vel%C3%A1zquez%20018%20%28John%20the%20Evangelist%20from%20Patmos%29.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/80f01824930a0b965ff522181648fc7eca9b1d42a27fb6902ac30cb7ebe0cc8e.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -2549,7 +2596,8 @@
     ]
    },
    "current_repository": "National Gallery",
-   "physical_dimensions": "135.5 x 102.2 cm"
+   "physical_dimensions": "135.5 x 102.2 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Diego%20Vel%C3%A1zquez%20018%20%28John%20the%20Evangelist%20from%20Patmos%29.jpg?width=600"
   },
   {
    "title": "The Luncheon (El Almuerzo)",
@@ -2564,7 +2612,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Diego%20Velazquez%20-%20%D0%97%D0%B0%D0%B2%D1%82%D1%80%D0%B0%D0%BA%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Diego%20Velazquez%20-%20%D0%97%D0%B0%D0%B2%D1%82%D1%80%D0%B0%D0%BA%20-%20Google%20Art%20Project.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/c0c20a9cf73bd73c14dfbfdb6fa3ff291a6f0a0417bf34ba6fcde2530d36e413.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -2604,7 +2652,8 @@
     ]
    },
    "current_repository": "Hermitage Museum",
-   "physical_dimensions": "108.5 x 102.0 cm"
+   "physical_dimensions": "108.5 x 102.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Diego%20Velazquez%20-%20%D0%97%D0%B0%D0%B2%D1%82%D1%80%D0%B0%D0%BA%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
    "title": "Saint Catherine of Alexandria",
@@ -2619,7 +2668,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Saint%20Catherine%20of%20Alexandria%20%28Caravaggio%29.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Saint%20Catherine%20of%20Alexandria%20%28Caravaggio%29.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/458a2be4469f2bc17b1817063c55d12a3bdc04b040c5920a65f4b4ccd65ddde7.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -2659,7 +2708,8 @@
     ]
    },
    "current_repository": "Thyssen-Bornemisza Museum",
-   "physical_dimensions": "173.0 x 133.0 cm"
+   "physical_dimensions": "173.0 x 133.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Saint%20Catherine%20of%20Alexandria%20%28Caravaggio%29.jpg?width=600"
   },
   {
    "title": "The Seven Works of Mercy",
@@ -2674,7 +2724,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Caravaggio%20-%20The%20Seven%20Works%20of%20Mercy%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Caravaggio%20-%20The%20Seven%20Works%20of%20Mercy%20-%20Google%20Art%20Project.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/a5423178c1f4361e28681d416715a5e480548df89f5f27b5cf45a5f531fe6f80.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -2712,7 +2762,8 @@
      1.0,
      0.953
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Caravaggio%20-%20The%20Seven%20Works%20of%20Mercy%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
    "title": "Martha and Mary Magdalene",
@@ -2727,7 +2778,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Martha%20and%20Mary%20Magdalene-Caravaggio%20%28c.1599%29.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Martha%20and%20Mary%20Magdalene-Caravaggio%20%28c.1599%29.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/5ef59fde6abebe5ccaed835a6713b2e034d8e5930622233b9a666429e2d74a51.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -2765,7 +2816,8 @@
      0.7311,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Martha%20and%20Mary%20Magdalene-Caravaggio%20%28c.1599%29.jpg?width=600"
   },
   {
    "title": "Amor Vincit Omnia (Cupid as Victor)",
@@ -2780,7 +2832,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Caravaggio%20-%20Cupid%20as%20Victor%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Caravaggio%20-%20Cupid%20as%20Victor%20-%20Google%20Art%20Project.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/ddacc08d6a0dd83255f6a861193324cf30bbbf8c93272181fe09be8c0963fe68.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -2819,7 +2871,8 @@
      0.9842
     ]
    },
-   "physical_dimensions": "156.5 x 113.3 cm"
+   "physical_dimensions": "156.5 x 113.3 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Caravaggio%20-%20Cupid%20as%20Victor%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
    "title": "Rest on the Flight into Egypt",
@@ -2834,7 +2887,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rest%20on%20the%20Flight%20into%20Egypt-Caravaggio%20%28c.1597%29.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rest%20on%20the%20Flight%20into%20Egypt-Caravaggio%20%28c.1597%29.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/c717be1c7bafb24dcc54b26ef3651415808ab335729c8a80d477369b9e6e9488.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -2873,7 +2926,8 @@
      1.0
     ]
    },
-   "physical_dimensions": "135.5 x 48.0 cm"
+   "physical_dimensions": "135.5 x 48.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rest%20on%20the%20Flight%20into%20Egypt-Caravaggio%20%28c.1597%29.jpg?width=600"
   },
   {
    "title": "The Sacrifice of Isaac",
@@ -2888,7 +2942,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sacrifice%20of%20Isaac-Caravaggio%20%28c.%201603%29.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sacrifice%20of%20Isaac-Caravaggio%20%28c.%201603%29.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/6306c9d1bd04d65eb9884f348b3bd964a2de2f0137cc3e2910b45ce6421c88e5.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -2926,7 +2980,8 @@
      0.5734,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sacrifice%20of%20Isaac-Caravaggio%20%28c.%201603%29.jpg?width=600"
   },
   {
    "title": "The Lute Player",
@@ -2941,7 +2996,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Caravaggio%2C%20Michelangelo%20Merisi%20da%20-%20The%20Lute-Player.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Caravaggio%2C%20Michelangelo%20Merisi%20da%20-%20The%20Lute-Player.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/1095735ce4e361892eca6588de1530151c74b39902cb6012809d0e1656b52c0d.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -2979,7 +3034,8 @@
      0.6217,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Caravaggio%2C%20Michelangelo%20Merisi%20da%20-%20The%20Lute-Player.jpg?width=600"
   },
   {
    "title": "Saint Francis of Assisi in Ecstasy",
@@ -2994,7 +3050,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Saint%20Francis%20of%20Assisi%20in%20Ecstasy-Caravaggio%20%28c.1595%29.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Saint%20Francis%20of%20Assisi%20in%20Ecstasy-Caravaggio%20%28c.1595%29.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/cecdddeb406b9af98fd5b67a92b2584a38c12b82d05645a5a6f910d0f1ac0260.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -3034,7 +3090,8 @@
     ]
    },
    "current_repository": "Wadsworth Atheneum Museum of Art",
-   "physical_dimensions": "93.5 x 128.4 cm"
+   "physical_dimensions": "93.5 x 128.4 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Saint%20Francis%20of%20Assisi%20in%20Ecstasy-Caravaggio%20%28c.1595%29.jpg?width=600"
   },
   {
    "title": "Penitent Magdalene",
@@ -3049,7 +3106,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Penitent%20Magdalene-Caravaggio%20%281594-6%29.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Penitent%20Magdalene-Caravaggio%20%281594-6%29.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/627ecb1d182d83f23f5bbe78be6a564acf34667f6032ca7cc22f94935851360a.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -3088,7 +3145,8 @@
      1.0
     ]
    },
-   "physical_dimensions": "122.5 x 30.0 cm"
+   "physical_dimensions": "122.5 x 30.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Penitent%20Magdalene-Caravaggio%20%281594-6%29.jpg?width=600"
   },
   {
    "title": "The Fortune Teller (Louvre version)",
@@ -3103,7 +3161,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Fortune%20Teller-Caravaggio%20%28Louvre%29.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Fortune%20Teller-Caravaggio%20%28Louvre%29.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/553daf22aea6f71b1beb7175b90ad3886469944c212007a3bb504076a9b01d31.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -3142,7 +3200,8 @@
      1.0
     ]
    },
-   "physical_dimensions": "99.0 x 131.0 cm"
+   "physical_dimensions": "99.0 x 131.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Fortune%20Teller-Caravaggio%20%28Louvre%29.jpg?width=600"
   },
   {
    "title": "Madonna of the Rosary",
@@ -3157,7 +3216,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Michelangelo%20Merisi%2C%20called%20Caravaggio%20-%20Madonna%20of%20the%20Rosary%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Michelangelo%20Merisi%2C%20called%20Caravaggio%20-%20Madonna%20of%20the%20Rosary%20-%20Google%20Art%20Project.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/20138bd4332c437647fbdaa5ba0b5b5035ee55b4754e27ba63fe46dd75304e1f.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -3197,7 +3256,8 @@
     ]
    },
    "current_repository": "Kunsthistorisches Museum",
-   "physical_dimensions": "364.5 x 249.5 cm"
+   "physical_dimensions": "364.5 x 249.5 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Michelangelo%20Merisi%2C%20called%20Caravaggio%20-%20Madonna%20of%20the%20Rosary%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
    "title": "The Fortune Teller (Capitoline version)",
@@ -3212,7 +3272,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Fortune%20Teller%20by%20Michelangelo%20Merisi%20da%20Caravaggio%20%281571-1610%29%2C%20oil%20on%20canvas%2C%201595.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Fortune%20Teller%20by%20Michelangelo%20Merisi%20da%20Caravaggio%20%281571-1610%29%2C%20oil%20on%20canvas%2C%201595.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/194881ff0e23fc128697fe35a999c78b2e18af33c59ec5296eb9d17c1027133e.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -3250,7 +3310,8 @@
      0.786,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Fortune%20Teller%20by%20Michelangelo%20Merisi%20da%20Caravaggio%20%281571-1610%29%2C%20oil%20on%20canvas%2C%201595.jpg?width=600"
   },
   {
    "title": "Christ Crowned with Thorns",
@@ -3265,7 +3326,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Michelangelo%20Merisi%2C%20called%20Caravaggio%20-%20The%20Crowning%20with%20Thorns%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Michelangelo%20Merisi%2C%20called%20Caravaggio%20-%20The%20Crowning%20with%20Thorns%20-%20Google%20Art%20Project.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/e784171600fbcc7daf8a59895896d508ef4af6c6b5e24cedf9cdcf6b975c5caa.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -3303,7 +3364,8 @@
      0.789,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Michelangelo%20Merisi%2C%20called%20Caravaggio%20-%20The%20Crowning%20with%20Thorns%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
    "title": "Portrait of a Gentleman (possibly Scipione Borghese)",
@@ -3318,7 +3380,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Michelangelo%20Merisi%20known%20as%20Caravaggio%20-%20Portrait%20of%20a%20gentleman%20%28Scipione%20Borghese%3F%29%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Michelangelo%20Merisi%20known%20as%20Caravaggio%20-%20Portrait%20of%20a%20gentleman%20%28Scipione%20Borghese%3F%29%20-%20Google%20Art%20Project.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/cdea72e8e73b27fdb6e02b5c568b3057c16278ca41630dfb749d3a0baafa77cf.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -3357,7 +3419,8 @@
      1.0
     ]
    },
-   "physical_dimensions": "7.7 x 6.9 cm"
+   "physical_dimensions": "7.7 x 6.9 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Michelangelo%20Merisi%20known%20as%20Caravaggio%20-%20Portrait%20of%20a%20gentleman%20%28Scipione%20Borghese%3F%29%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
    "title": "Narcissus",
@@ -3372,7 +3435,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Caravaggio%20-%20Narciso%20%281597-1599%29.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Caravaggio%20-%20Narciso%20%281597-1599%29.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/1446c668601cc38cbed43139c2e9cf81239cf20078e3be7cd6e4ddb73075e4c4.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -3411,7 +3474,8 @@
      1.0
     ]
    },
-   "physical_dimensions": "110.0 x 92.0 cm"
+   "physical_dimensions": "110.0 x 92.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Caravaggio%20-%20Narciso%20%281597-1599%29.jpg?width=600"
   },
   {
    "title": "Boy Bitten by a Lizard",
@@ -3426,7 +3490,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Boy%20Bitten%20by%20a%20Lizard-Caravaggio%20%28National%20Gallery%20London%29.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Boy%20Bitten%20by%20a%20Lizard-Caravaggio%20%28National%20Gallery%20London%29.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/b4652b2d6d915f20b4c684cb818efdffa2b9c13ab58b937be217118ff4c125be.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -3464,7 +3528,8 @@
      1.0,
      0.9898
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Boy%20Bitten%20by%20a%20Lizard-Caravaggio%20%28National%20Gallery%20London%29.jpg?width=600"
   },
   {
    "title": "The Beheading of Saint John the Baptist",
@@ -3479,7 +3544,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Decollazione%20di%20San%20Giovanni%20Battista%20%28particolare%201%29.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Decollazione%20di%20San%20Giovanni%20Battista%20%28particolare%201%29.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/4a2e1687d2cccabbdaeaba3d8477634d0d66b83ec970f2ec66983e7422957238.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -3517,7 +3582,8 @@
      1.0,
      0.8803
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Decollazione%20di%20San%20Giovanni%20Battista%20%28particolare%201%29.jpg?width=600"
   },
   {
    "title": "Death of the Virgin",
@@ -3532,7 +3598,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Morte%20della%20vergine%20%28particolare%201%29.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Morte%20della%20vergine%20%28particolare%201%29.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/b0131ee15a84e7ae8856cb84a5c98675cd9da2b61a6041848fa5d3d446c377e6.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -3570,7 +3636,8 @@
      0.9891,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Morte%20della%20vergine%20%28particolare%201%29.jpg?width=600"
   },
   {
    "title": "The Incredulity of Saint Thomas",
@@ -3585,7 +3652,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Caravaggio%20incredulity.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Caravaggio%20incredulity.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/7c10c31f3cf6c0bdc8ef4464e2fd5e9ab341178107aa5bf4f9d0474042495f2b.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -3623,7 +3690,8 @@
     ]
    },
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Caravaggio%20incredulity.jpg?width=600"
   },
   {
    "title": "Sick Bacchus",
@@ -3638,7 +3706,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bacchino%20malato%20%28particolare%29.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bacchino%20malato%20%28particolare%29.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/3b543180cc278f2986a93fc4543f9977cf1c75e6c3d7b919c6f3144fc08fabc3.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -3676,7 +3744,8 @@
      0.9592,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bacchino%20malato%20%28particolare%29.jpg?width=600"
   },
   {
    "title": "The Martyrdom of Saint Matthew",
@@ -3691,7 +3760,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Caravaggio%20%E2%80%94%20The%20Martyrdom%20of%20Saint%20Matthew.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Caravaggio%20%E2%80%94%20The%20Martyrdom%20of%20Saint%20Matthew.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/1450d816ea1fc04384abe816923ace2cda1f7562d0b1186b3e143e83f60e7520.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -3729,7 +3798,8 @@
     ]
    },
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Caravaggio%20%E2%80%94%20The%20Martyrdom%20of%20Saint%20Matthew.jpg?width=600"
   },
   {
    "title": "The Inspiration of Saint Matthew",
@@ -3744,7 +3814,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/San%20Matteo%20e%20l%27angelo%20%28particolare%29.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/San%20Matteo%20e%20l%27angelo%20%28particolare%29.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/acc01098964d63e92068407dd317344db18d45f97999b314b3f50bb5c8117a75.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -3782,7 +3852,8 @@
      1.0,
      0.9921
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/San%20Matteo%20e%20l%27angelo%20%28particolare%29.jpg?width=600"
   },
   {
    "title": "Ecce Homo",
@@ -3797,7 +3868,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Caravaggio%20%28Michelangelo%20Merisi%29%20-%20Ecce%20Homo%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Caravaggio%20%28Michelangelo%20Merisi%29%20-%20Ecce%20Homo%20-%20Google%20Art%20Project.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/566704c110a3942797e1eff2dd0ece7c8d1be62db6c0908a6021b07974f1298e.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -3836,7 +3907,8 @@
      1.0
     ]
    },
-   "physical_dimensions": "128.0 x 103.0 cm"
+   "physical_dimensions": "128.0 x 103.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Caravaggio%20%28Michelangelo%20Merisi%29%20-%20Ecce%20Homo%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
    "title": "Saint John the Baptist in the Wilderness",
@@ -3851,7 +3923,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Michelangelo%20Merisi%2C%20called%20Caravaggio%20-%20Saint%20John%20the%20Baptist%20in%20the%20Wilderness%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Michelangelo%20Merisi%2C%20called%20Caravaggio%20-%20Saint%20John%20the%20Baptist%20in%20the%20Wilderness%20-%20Google%20Art%20Project.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/f80072334e57542e34dd93384647dcb5912bdea43ea644ae3355d95b7c515de4.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -3891,7 +3963,8 @@
     ]
    },
    "current_repository": "The Nelson-Atkins Museum of Art",
-   "physical_dimensions": "172.7 x 132.1 cm"
+   "physical_dimensions": "172.7 x 132.1 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Michelangelo%20Merisi%2C%20called%20Caravaggio%20-%20Saint%20John%20the%20Baptist%20in%20the%20Wilderness%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
    "title": "The Musicians",
@@ -3906,7 +3979,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Musicians%20MET%20DP-687-001.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Musicians%20MET%20DP-687-001.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/9ca97aa58388f2326d513beec1171961034fed569ab45e4958575202346d9ba5.jpg",
    "license_verdict": "pd",
    "license_basis": "CC0",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -3946,7 +4019,8 @@
     ]
    },
    "current_repository": "Metropolitan Museum of Art",
-   "physical_dimensions": "92.1 x 118.4 cm"
+   "physical_dimensions": "92.1 x 118.4 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Musicians%20MET%20DP-687-001.jpg?width=600"
   },
   {
    "title": "Medusa",
@@ -3961,7 +4035,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Medusa%20Murtola02.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Medusa%20Murtola02.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/53bee4d31f98b41c289301cb24fd049f0a1db7aee582c2bc9f9e6c14287b353e.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -3999,7 +4073,8 @@
      0.8879,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Medusa%20Murtola02.jpg?width=600"
   },
   {
    "title": "The Education of the Virgin",
@@ -4014,7 +4089,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Opvoeding%20van%20Maria%20-%20306%20-%20Royal%20Museum%20of%20Fine%20Arts%20Antwerp.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Opvoeding%20van%20Maria%20-%20306%20-%20Royal%20Museum%20of%20Fine%20Arts%20Antwerp.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/d4662f65f0a22971ddfd7e28130e0da07f929cca27ff2e9dc7aaa2d005192e6d.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -4054,7 +4129,8 @@
     ]
    },
    "current_repository": "Royal Museum of Fine Arts Antwerp",
-   "physical_dimensions": "194.0 x 140.0 cm"
+   "physical_dimensions": "194.0 x 140.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Opvoeding%20van%20Maria%20-%20306%20-%20Royal%20Museum%20of%20Fine%20Arts%20Antwerp.jpg?width=600"
   },
   {
    "title": "Saint Teresa of Ávila Interceding for Bernardino de Mendoza",
@@ -4069,7 +4145,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Heilige%20Theresia%20van%20%C3%81vila%20bemiddelt%20voor%20Bernardino%20de%20Mendoza%20de%20verlossing%20uit%20het%20vagevuur%20-%20299%20-%20Royal%20Museum%20of%20Fine%20Arts%20Antwerp.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Heilige%20Theresia%20van%20%C3%81vila%20bemiddelt%20voor%20Bernardino%20de%20Mendoza%20de%20verlossing%20uit%20het%20vagevuur%20-%20299%20-%20Royal%20Museum%20of%20Fine%20Arts%20Antwerp.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/e55c9c20d1665e63b6c4d93779c4653fcd1bc1bec779d13ca7bd1f4af8a312cc.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -4109,7 +4185,8 @@
     ]
    },
    "current_repository": "Royal Museum of Fine Arts Antwerp",
-   "physical_dimensions": "193.0 x 139.0 cm"
+   "physical_dimensions": "193.0 x 139.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Heilige%20Theresia%20van%20%C3%81vila%20bemiddelt%20voor%20Bernardino%20de%20Mendoza%20de%20verlossing%20uit%20het%20vagevuur%20-%20299%20-%20Royal%20Museum%20of%20Fine%20Arts%20Antwerp.jpg?width=600"
   },
   {
    "title": "The Holy Family with a Parrot",
@@ -4124,7 +4201,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Heilige%20Familie%20met%20de%20papegaai%20-%20312%20-%20Royal%20Museum%20of%20Fine%20Arts%20Antwerp.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Heilige%20Familie%20met%20de%20papegaai%20-%20312%20-%20Royal%20Museum%20of%20Fine%20Arts%20Antwerp.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/dffa6c4e3e232bca55c9d2fb6b61f19d6546e25e00fdadee28cd9dae2b8490cc.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -4164,7 +4241,8 @@
     ]
    },
    "current_repository": "Royal Museum of Fine Arts Antwerp",
-   "physical_dimensions": "164.0 x 190.0 cm"
+   "physical_dimensions": "164.0 x 190.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Heilige%20Familie%20met%20de%20papegaai%20-%20312%20-%20Royal%20Museum%20of%20Fine%20Arts%20Antwerp.jpg?width=600"
   },
   {
    "title": "The Holy Trinity (Throne of Grace)",
@@ -4179,7 +4257,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Heilige%20Drievuldigheid%20-%20314%20-%20Royal%20Museum%20of%20Fine%20Arts%20Antwerp.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Heilige%20Drievuldigheid%20-%20314%20-%20Royal%20Museum%20of%20Fine%20Arts%20Antwerp.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/4b6bf09a5a305ec11496d4c0d6f9c30db0552c21dc4fadfe7900f2277ff67b4c.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -4219,7 +4297,8 @@
     ]
    },
    "current_repository": "Royal Museum of Fine Arts Antwerp",
-   "physical_dimensions": "158.0 x 152.0 cm"
+   "physical_dimensions": "158.0 x 152.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Heilige%20Drievuldigheid%20-%20314%20-%20Royal%20Museum%20of%20Fine%20Arts%20Antwerp.jpg?width=600"
   },
   {
    "title": "The Incredulity of Saint Thomas",
@@ -4234,7 +4313,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Ongeloof%20van%20Tomas%20-%20307%20-%20Royal%20Museum%20of%20Fine%20Arts%20Antwerp.tiff?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Ongeloof%20van%20Tomas%20-%20307%20-%20Royal%20Museum%20of%20Fine%20Arts%20Antwerp.tiff?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/706c0a7e349d615a4be44a44500ebf37edfe7e4dc3113bda79fd85ff47071a52.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -4274,7 +4353,8 @@
     ]
    },
    "current_repository": "Royal Museum of Fine Arts Antwerp",
-   "physical_dimensions": "143.0 x 123.0 cm"
+   "physical_dimensions": "143.0 x 123.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Ongeloof%20van%20Tomas%20-%20307%20-%20Royal%20Museum%20of%20Fine%20Arts%20Antwerp.tiff?width=600"
   },
   {
    "title": "The Lamentation of Christ (Christ on the Straw)",
@@ -4289,7 +4369,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Christus%20op%20het%20stro%20-%20300%20-%20Royal%20Museum%20of%20Fine%20Arts%20Antwerp.tiff?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Christus%20op%20het%20stro%20-%20300%20-%20Royal%20Museum%20of%20Fine%20Arts%20Antwerp.tiff?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/e9f42e4958b65c33b10200eb2c07a0549c0fb682492f1cebc3bc5b39592ea26c.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -4329,7 +4409,8 @@
     ]
    },
    "current_repository": "Royal Museum of Fine Arts Antwerp",
-   "physical_dimensions": "138.0 x 98.0 cm"
+   "physical_dimensions": "138.0 x 98.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Christus%20op%20het%20stro%20-%20300%20-%20Royal%20Museum%20of%20Fine%20Arts%20Antwerp.tiff?width=600"
   },
   {
    "title": "The Arch of the Mint, Front Face",
@@ -4344,7 +4425,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Erepoort%20van%20de%20Munt%20%28voorzijde%29%20-%20316-317%20-%20Royal%20Museum%20of%20Fine%20Arts%20Antwerp.tiff?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Erepoort%20van%20de%20Munt%20%28voorzijde%29%20-%20316-317%20-%20Royal%20Museum%20of%20Fine%20Arts%20Antwerp.tiff?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/d393e3afc429b27deb9185bbc3cd8ac53c3df2ef5fb8caf3396b3723dc8efe39.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -4384,7 +4465,8 @@
     ]
    },
    "current_repository": "Royal Museum of Fine Arts Antwerp",
-   "physical_dimensions": "104.0 x 71.0 cm"
+   "physical_dimensions": "104.0 x 71.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Erepoort%20van%20de%20Munt%20%28voorzijde%29%20-%20316-317%20-%20Royal%20Museum%20of%20Fine%20Arts%20Antwerp.tiff?width=600"
   },
   {
    "title": "The Arch of the Mint, Rear Face",
@@ -4399,7 +4481,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Erepoort%20van%20de%20Munt%20%28keerzijde%29%20-%20317%20-%20Royal%20Museum%20of%20Fine%20Arts%20Antwerp.tiff?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Erepoort%20van%20de%20Munt%20%28keerzijde%29%20-%20317%20-%20Royal%20Museum%20of%20Fine%20Arts%20Antwerp.tiff?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/3544d4bc49a690933fa64958850bcdd847d234930de2a7ef3f550227ede9cad6.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -4439,7 +4521,8 @@
     ]
    },
    "current_repository": "Royal Museum of Fine Arts Antwerp",
-   "physical_dimensions": "104.0 x 73.0 cm"
+   "physical_dimensions": "104.0 x 73.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Erepoort%20van%20de%20Munt%20%28keerzijde%29%20-%20317%20-%20Royal%20Museum%20of%20Fine%20Arts%20Antwerp.tiff?width=600"
   },
   {
    "title": "Heads of Two Apostles",
@@ -4454,7 +4537,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/1617%20Rubens%20K%C3%B6pfe%20zweier%20Apostel%20Kloster%20Strahov%20Prag%20anagoria.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/1617%20Rubens%20K%C3%B6pfe%20zweier%20Apostel%20Kloster%20Strahov%20Prag%20anagoria.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/0bcd4f51b7d0c50565a052d96ad5eb76faf94aa16959d6a975c14634e530d558.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -4492,7 +4575,8 @@
      0.9167,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/1617%20Rubens%20K%C3%B6pfe%20zweier%20Apostel%20Kloster%20Strahov%20Prag%20anagoria.jpg?width=600"
   },
   {
    "title": "The Baptism of Christ",
@@ -4507,7 +4591,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Doopsel%20van%20Christus%20-%20707%20-%20Royal%20Museum%20of%20Fine%20Arts%20Antwerp.tiff?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Doopsel%20van%20Christus%20-%20707%20-%20Royal%20Museum%20of%20Fine%20Arts%20Antwerp.tiff?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/a0cd21ba987fddb064561facdb70b6bb948d90f3ce2dcbeabb218e57b961d6d2.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -4547,7 +4631,8 @@
     ]
    },
    "current_repository": "Royal Museum of Fine Arts Antwerp",
-   "physical_dimensions": "411.0 x 675.0 cm"
+   "physical_dimensions": "411.0 x 675.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Doopsel%20van%20Christus%20-%20707%20-%20Royal%20Museum%20of%20Fine%20Arts%20Antwerp.tiff?width=600"
   },
   {
    "title": "Venus Frigida",
@@ -4562,7 +4647,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Venus%20frigida%20-%20709%20-%20Royal%20Museum%20of%20Fine%20Arts%20Antwerp.tiff?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Venus%20frigida%20-%20709%20-%20Royal%20Museum%20of%20Fine%20Arts%20Antwerp.tiff?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/15614c48582d12cbd152447ef59803f2c0899053abc1df7e0f9bb56c286e2ec8.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -4602,7 +4687,8 @@
     ]
    },
    "current_repository": "Royal Museum of Fine Arts Antwerp",
-   "physical_dimensions": "145.1 x 185.6 cm"
+   "physical_dimensions": "145.1 x 185.6 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Venus%20frigida%20-%20709%20-%20Royal%20Museum%20of%20Fine%20Arts%20Antwerp.tiff?width=600"
   },
   {
    "title": "Minerva Victorious over Ignorance",
@@ -4617,7 +4703,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Minerva%20overwint%20de%20Onwetendheid%20-%20802%20-%20Royal%20Museum%20of%20Fine%20Arts%20Antwerp.tiff?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Minerva%20overwint%20de%20Onwetendheid%20-%20802%20-%20Royal%20Museum%20of%20Fine%20Arts%20Antwerp.tiff?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/7426b5b707d874768b31d05c3f47f514b1d92d3b2b00083ece85d57f897b4672.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -4657,7 +4743,8 @@
     ]
    },
    "current_repository": "Royal Museum of Fine Arts Antwerp",
-   "physical_dimensions": "62.8 x 48.7 cm"
+   "physical_dimensions": "62.8 x 48.7 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Minerva%20overwint%20de%20Onwetendheid%20-%20802%20-%20Royal%20Museum%20of%20Fine%20Arts%20Antwerp.tiff?width=600"
   },
   {
    "title": "Kitchen Maid, Butcher and Boy at a Table",
@@ -4672,7 +4759,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Keukenmeid%2C%20slager%20en%20jongen%20bij%20een%20tafel%20-%205146%20-%20Royal%20Museum%20of%20Fine%20Arts%20Antwerp.tiff?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Keukenmeid%2C%20slager%20en%20jongen%20bij%20een%20tafel%20-%205146%20-%20Royal%20Museum%20of%20Fine%20Arts%20Antwerp.tiff?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/460c48b2bd0703ec3545424b38d115783f0344ed0b918f2503dda9d8f1dffeab.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -4712,7 +4799,8 @@
     ]
    },
    "current_repository": "Royal Museum of Fine Arts Antwerp",
-   "physical_dimensions": "18.9 x 27.6 cm"
+   "physical_dimensions": "18.9 x 27.6 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Keukenmeid%2C%20slager%20en%20jongen%20bij%20een%20tafel%20-%205146%20-%20Royal%20Museum%20of%20Fine%20Arts%20Antwerp.tiff?width=600"
   },
   {
    "title": "Bellona",
@@ -4727,7 +4815,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Bellona%20-%205036%20-%20Royal%20Museum%20of%20Fine%20Arts%20Antwerp.tiff?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Bellona%20-%205036%20-%20Royal%20Museum%20of%20Fine%20Arts%20Antwerp.tiff?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/c8264f0d6dbd8dceb04856591ade2d039e005e307ec5c486b87b4ae1afa93715.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -4767,7 +4855,8 @@
     ]
    },
    "current_repository": "Royal Museum of Fine Arts Antwerp",
-   "physical_dimensions": "23.0 x 44.0 cm"
+   "physical_dimensions": "23.0 x 44.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Bellona%20-%205036%20-%20Royal%20Museum%20of%20Fine%20Arts%20Antwerp.tiff?width=600"
   },
   {
    "title": "The Adoration of the Magi",
@@ -4782,7 +4871,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Adoration%20of%20the%20Magi%20%28KMSKA%29.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Adoration%20of%20the%20Magi%20%28KMSKA%29.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/05e8578a1b5edfad2322d66b6d75387be0e29ba8c5de5d9c72ee230a8721524e.jpg",
    "license_verdict": "pd",
    "license_basis": "CC0",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -4822,7 +4911,8 @@
     ]
    },
    "current_repository": "Royal Museum of Fine Arts Antwerp",
-   "physical_dimensions": "447.0 x 336.0 cm"
+   "physical_dimensions": "447.0 x 336.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Adoration%20of%20the%20Magi%20%28KMSKA%29.jpg?width=600"
   },
   {
    "title": "The Stigmatization of Saint Francis of Assisi",
@@ -4837,7 +4927,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Saint%20Francis%20of%20Assisi%20Receiving%20the%20Stigmata%20-%20S-9%20-%20Museum%20of%20Fine%20Arts%20Ghent%20%28MSK%29.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Saint%20Francis%20of%20Assisi%20Receiving%20the%20Stigmata%20-%20S-9%20-%20Museum%20of%20Fine%20Arts%20Ghent%20%28MSK%29.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/eaeb18c9e2e50bf206ac2a639e678644c8c2aad89fc6cfc753a4c512c9b07c5d.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -4877,7 +4967,8 @@
     ]
    },
    "current_repository": "Museum of Fine Arts Ghent (MSK)",
-   "physical_dimensions": "382.0 x 243.0 cm"
+   "physical_dimensions": "382.0 x 243.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Saint%20Francis%20of%20Assisi%20Receiving%20the%20Stigmata%20-%20S-9%20-%20Museum%20of%20Fine%20Arts%20Ghent%20%28MSK%29.jpg?width=600"
   },
   {
    "title": "Calvary",
@@ -4892,7 +4983,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Calvarie%20-%20581%20-%20Royal%20Museum%20of%20Fine%20Arts%20Antwerp.tiff?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Calvarie%20-%20581%20-%20Royal%20Museum%20of%20Fine%20Arts%20Antwerp.tiff?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/4147f89bd82ed6d61be11a6c1ea570275a60a8b8c6bd780ac6af8b20b90e6b5e.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -4932,7 +5023,8 @@
     ]
    },
    "current_repository": "Royal Museum of Fine Arts Antwerp",
-   "physical_dimensions": "59.5 x 38.0 cm"
+   "physical_dimensions": "59.5 x 38.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Calvarie%20-%20581%20-%20Royal%20Museum%20of%20Fine%20Arts%20Antwerp.tiff?width=600"
   },
   {
    "title": "Jupiter and Callisto",
@@ -4947,7 +5039,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Jupiter%20and%20Callisto.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Jupiter%20and%20Callisto.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/50ab98b4b719d5311ced0d5b090bb346c06deee953282dff23faef16ffa7c3a5.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -4986,7 +5078,8 @@
      1.0
     ]
    },
-   "physical_dimensions": "202.0 x 305.0 cm"
+   "physical_dimensions": "202.0 x 305.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Jupiter%20and%20Callisto.jpg?width=600"
   },
   {
    "title": "The Deer Hunt",
@@ -5001,7 +5094,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20De%20hertenjacht%20-%20766%20-%20Royal%20Museum%20of%20Fine%20Arts%20Antwerp.tiff?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20De%20hertenjacht%20-%20766%20-%20Royal%20Museum%20of%20Fine%20Arts%20Antwerp.tiff?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/dd5982f08cf12faf798811c5e095ccc7992d31d42bcc58075f72e0a1cf1031ae.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -5041,7 +5134,8 @@
     ]
    },
    "current_repository": "Royal Museum of Fine Arts Antwerp",
-   "physical_dimensions": "41.5 x 64.0 cm"
+   "physical_dimensions": "41.5 x 64.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20De%20hertenjacht%20-%20766%20-%20Royal%20Museum%20of%20Fine%20Arts%20Antwerp.tiff?width=600"
   },
   {
    "title": "Hercules and Minerva Expelling Mars",
@@ -5056,7 +5150,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Minerva%20en%20Hercules%20verdrijven%20Mars%20-%205097%20-%20Royal%20Museum%20of%20Fine%20Arts%20Antwerp.tiff?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Minerva%20en%20Hercules%20verdrijven%20Mars%20-%205097%20-%20Royal%20Museum%20of%20Fine%20Arts%20Antwerp.tiff?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/86c1a405e13135eb314101c71966af7cdf3b0e2f18f1c5762777bedacdf022e2.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -5096,7 +5190,8 @@
     ]
    },
    "current_repository": "Royal Museum of Fine Arts Antwerp",
-   "physical_dimensions": "35.3 x 53.0 cm"
+   "physical_dimensions": "35.3 x 53.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Minerva%20en%20Hercules%20verdrijven%20Mars%20-%205097%20-%20Royal%20Museum%20of%20Fine%20Arts%20Antwerp.tiff?width=600"
   },
   {
    "title": "Christ Expiring on the Cross",
@@ -5111,7 +5206,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Christus%20aan%20het%20kruis%20-%20313%20-%20Royal%20Museum%20of%20Fine%20Arts%20Antwerp.tiff?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Christus%20aan%20het%20kruis%20-%20313%20-%20Royal%20Museum%20of%20Fine%20Arts%20Antwerp.tiff?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/acb58262e7d5a0f6aeaccbedd8db74f4d38aab6a326913bbf659202e1ea266f7.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -5151,7 +5246,8 @@
     ]
    },
    "current_repository": "Royal Museum of Fine Arts Antwerp",
-   "physical_dimensions": "219.0 x 122.0 cm"
+   "physical_dimensions": "219.0 x 122.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Christus%20aan%20het%20kruis%20-%20313%20-%20Royal%20Museum%20of%20Fine%20Arts%20Antwerp.tiff?width=600"
   },
   {
    "title": "The Lamentation over the Dead Christ",
@@ -5166,7 +5262,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Bewening%20van%20Christus%20-%20319%20-%20Royal%20Museum%20of%20Fine%20Arts%20Antwerp.tiff?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Bewening%20van%20Christus%20-%20319%20-%20Royal%20Museum%20of%20Fine%20Arts%20Antwerp.tiff?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/2185e906184c31c5ad62cbfcb32aed2701b9340075b9fcd47233c07f3fa765e1.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -5206,7 +5302,8 @@
     ]
    },
    "current_repository": "Royal Museum of Fine Arts Antwerp",
-   "physical_dimensions": "56.0 x 75.0 cm"
+   "physical_dimensions": "56.0 x 75.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Bewening%20van%20Christus%20-%20319%20-%20Royal%20Museum%20of%20Fine%20Arts%20Antwerp.tiff?width=600"
   },
   {
    "title": "The Triumphal Car of Kallo",
@@ -5221,7 +5318,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20The%20Triumphal%20Car%20of%20Kallo%20-%20WGA20447.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20The%20Triumphal%20Car%20of%20Kallo%20-%20WGA20447.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/1bdb934a6083c074c5e12c764d712f6940738ee69f6117217c9171fb1882628c.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -5259,7 +5356,8 @@
      1.0,
      0.9611
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20The%20Triumphal%20Car%20of%20Kallo%20-%20WGA20447.jpg?width=600"
   },
   {
    "title": "Landscape with a Herd of Cows",
@@ -5274,7 +5372,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Polder%20Landscape%20with%20Herd%20of%20Cows%20-%20Peter%20Paul%20Rubens.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Polder%20Landscape%20with%20Herd%20of%20Cows%20-%20Peter%20Paul%20Rubens.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/209fc20fd2d03b49fa6de0df926347c1cbda44f0aa93150264c5cb5bced3103f.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -5314,7 +5412,8 @@
     ]
    },
    "current_repository": "Bavarian State Painting Collections",
-   "physical_dimensions": "81.1 x 106.7 cm"
+   "physical_dimensions": "81.1 x 106.7 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Polder%20Landscape%20with%20Herd%20of%20Cows%20-%20Peter%20Paul%20Rubens.jpg?width=600"
   },
   {
    "title": "Old Woman and Boy with Candles",
@@ -5329,7 +5428,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Old%20Woman%20and%20Boy%20with%20Candles%20-%201150%20-%20Mauritshuis.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Old%20Woman%20and%20Boy%20with%20Candles%20-%201150%20-%20Mauritshuis.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/5eb7b3ac4cabfa0793ab146b4141a3668679bf7d433afc3fc424da47a2ceb0f4.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -5368,7 +5467,8 @@
      1.0
     ]
    },
-   "physical_dimensions": "79.0 x 64.0 cm"
+   "physical_dimensions": "79.0 x 64.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Old%20Woman%20and%20Boy%20with%20Candles%20-%201150%20-%20Mauritshuis.jpg?width=600"
   },
   {
    "title": "Bathsheba at the Fountain",
@@ -5383,7 +5483,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20013.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20013.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/85f2e6e5e53b9dbc9d38b37dd08d2ff77543c97f73c8a0f4ad7907cb53b8b14a.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -5422,7 +5522,8 @@
      0.9847
     ]
    },
-   "physical_dimensions": "175.0 x 126.0 cm"
+   "physical_dimensions": "175.0 x 126.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20013.jpg?width=600"
   },
   {
    "title": "Pan and Syrinx",
@@ -5437,7 +5538,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jan%20Brueghel%20%28II%29%20%26%20Peter%20Paul%20Rubens%20-%20Pan%20and%20Syrinx%20%28Staatliches%20Museum%20Schwerin%29.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jan%20Brueghel%20%28II%29%20%26%20Peter%20Paul%20Rubens%20-%20Pan%20and%20Syrinx%20%28Staatliches%20Museum%20Schwerin%29.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/c66743a0c1d556b79746ff2efc614f7fe36d4cfa53791e9a5aa076f538a940a7.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -5477,7 +5578,8 @@
     ]
    },
    "current_repository": "Staatliches Museum Schwerin",
-   "physical_dimensions": "51.4 x 85.6 cm"
+   "physical_dimensions": "51.4 x 85.6 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jan%20Brueghel%20%28II%29%20%26%20Peter%20Paul%20Rubens%20-%20Pan%20and%20Syrinx%20%28Staatliches%20Museum%20Schwerin%29.jpg?width=600"
   },
   {
    "title": "The Flagellation of Christ",
@@ -5492,7 +5594,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20The%20Flagellation%20of%20Christ%20-%201910-Z%20-%20Museum%20of%20Fine%20Arts%20Ghent%20%28MSK%29.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20The%20Flagellation%20of%20Christ%20-%201910-Z%20-%20Museum%20of%20Fine%20Arts%20Ghent%20%28MSK%29.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/2bba6aefb813a2ed5068051185bf86fc4801f65f8c09d698db41befc6f98f71e.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -5532,7 +5634,8 @@
     ]
    },
    "current_repository": "Museum of Fine Arts Ghent (MSK)",
-   "physical_dimensions": "37.4 x 35.1 cm"
+   "physical_dimensions": "37.4 x 35.1 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20The%20Flagellation%20of%20Christ%20-%201910-Z%20-%20Museum%20of%20Fine%20Arts%20Ghent%20%28MSK%29.jpg?width=600"
   },
   {
    "title": "Quos Ego: Neptune Calming the Tempest",
@@ -5547,7 +5650,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Quos%20Ego%20-%20Neptunus%20bedaart%20de%20onstuimige%20wateren%20-%20233%20-%20Royal%20Museum%20of%20Fine%20Arts%20Antwerp.tiff?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Quos%20Ego%20-%20Neptunus%20bedaart%20de%20onstuimige%20wateren%20-%20233%20-%20Royal%20Museum%20of%20Fine%20Arts%20Antwerp.tiff?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/dadfa1b0dbc5c0551df77eaeb112e34581a93a3b3ccdc4e400b7c310777798ec.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -5587,7 +5690,8 @@
     ]
    },
    "current_repository": "Royal Museum of Fine Arts Antwerp",
-   "physical_dimensions": "193.0 x 182.0 cm"
+   "physical_dimensions": "193.0 x 182.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Quos%20Ego%20-%20Neptunus%20bedaart%20de%20onstuimige%20wateren%20-%20233%20-%20Royal%20Museum%20of%20Fine%20Arts%20Antwerp.tiff?width=600"
   },
   {
    "title": "Venus, Mars and Cupid",
@@ -5602,7 +5706,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rubens%2C%20Sir%20Peter%20Paul%20-%20Venus%2C%20Mars%20and%20Cupid%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rubens%2C%20Sir%20Peter%20Paul%20-%20Venus%2C%20Mars%20and%20Cupid%20-%20Google%20Art%20Project.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/3b4ded58c380b746b30bdc94d89f7061a688401901365381a815f9514eb1ed9d.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -5642,7 +5746,8 @@
     ]
    },
    "current_repository": "Dulwich Picture Gallery",
-   "physical_dimensions": "195.2 x 133.0 cm"
+   "physical_dimensions": "195.2 x 133.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rubens%2C%20Sir%20Peter%20Paul%20-%20Venus%2C%20Mars%20and%20Cupid%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
    "title": "Venus and Cupid",
@@ -5657,7 +5762,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/0%20V%C3%A9nus%20et%20Cupidon%20-%20P.P.%20Rubens%20-%20Mus%C3%A9e%20Thyssen-Bornemisza%20%284%29.JPG?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/0%20V%C3%A9nus%20et%20Cupidon%20-%20P.P.%20Rubens%20-%20Mus%C3%A9e%20Thyssen-Bornemisza%20%284%29.JPG?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/d1abf2efaaccad588ae3aa9565abd14a2382be1cf3b8a5a0cb0b852fb70befde.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -5695,7 +5800,8 @@
      0.55,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/0%20V%C3%A9nus%20et%20Cupidon%20-%20P.P.%20Rubens%20-%20Mus%C3%A9e%20Thyssen-Bornemisza%20%284%29.JPG?width=600"
   },
   {
    "title": "Milkmaids with Cattle in a Landscape, 'The Farm at Laken'",
@@ -5710,7 +5816,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sir%20Peter%20Paul%20Rubens%20-%20Milkmaids%20with%20Cattle%20in%20a%20Landscape%2C%20%27The%20Farm%20at%20Laken%27%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sir%20Peter%20Paul%20Rubens%20-%20Milkmaids%20with%20Cattle%20in%20a%20Landscape%2C%20%27The%20Farm%20at%20Laken%27%20-%20Google%20Art%20Project.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/bdd4aac7f691a8b6d7c919308c60baa3010f2c465eb9a213878ec51d0b6e5fd1.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -5750,7 +5856,8 @@
     ]
    },
    "current_repository": "Royal Collection",
-   "physical_dimensions": "85.9 x 127.9 cm"
+   "physical_dimensions": "85.9 x 127.9 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sir%20Peter%20Paul%20Rubens%20-%20Milkmaids%20with%20Cattle%20in%20a%20Landscape%2C%20%27The%20Farm%20at%20Laken%27%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
    "title": "Agrippina and Germanicus",
@@ -5765,7 +5872,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Agrippina%20and%20Germanicus%20%28National%20Gallery%20of%20Art%29.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Agrippina%20and%20Germanicus%20%28National%20Gallery%20of%20Art%29.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/0b85a30accd94f8f2b9d80f04e0932a24f90dfff5ae036ce92f3ebf3ff6cb718.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -5804,7 +5911,8 @@
      1.0
     ]
    },
-   "current_repository": "National Gallery of Art"
+   "current_repository": "National Gallery of Art",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Agrippina%20and%20Germanicus%20%28National%20Gallery%20of%20Art%29.jpg?width=600"
   },
   {
    "title": "Decius Mus Addressing the Legions",
@@ -5819,7 +5927,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Decius%20Mus%20Addressing%20the%20Legions%20%28National%20Gallery%20of%20Art%29.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Decius%20Mus%20Addressing%20the%20Legions%20%28National%20Gallery%20of%20Art%29.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/8b249d7b62049835e3ac95f3f3c1ef14334b35ab1ba5ba7508c1fb6df9ff8055.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -5859,7 +5967,8 @@
     ]
    },
    "current_repository": "Samuel H. Kress Collection",
-   "physical_dimensions": "80.7 x 84.7 cm"
+   "physical_dimensions": "80.7 x 84.7 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Decius%20Mus%20Addressing%20the%20Legions%20%28National%20Gallery%20of%20Art%29.jpg?width=600"
   },
   {
    "title": "Ceres and Two Nymphs with a Cornucopia",
@@ -5874,7 +5983,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rubens%2C%20Sir%20Peter%20Paul%20-%20Ceres%20and%20Two%20Nymphs%20with%20a%20Cornucopia%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rubens%2C%20Sir%20Peter%20Paul%20-%20Ceres%20and%20Two%20Nymphs%20with%20a%20Cornucopia%20-%20Google%20Art%20Project.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/11eecfcb71ac5256af229679e1c05573d4478b18cc1347864d3b85f57621c0dc.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -5914,7 +6023,8 @@
     ]
    },
    "current_repository": "Dulwich Picture Gallery",
-   "physical_dimensions": "30.9 x 24.4 cm"
+   "physical_dimensions": "30.9 x 24.4 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rubens%2C%20Sir%20Peter%20Paul%20-%20Ceres%20and%20Two%20Nymphs%20with%20a%20Cornucopia%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
    "title": "Mars, Venus and Cupid",
@@ -5929,7 +6039,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/1636%20Rubens%20Mars%2C%20Venus%20und%20Amor%20anagoria.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/1636%20Rubens%20Mars%2C%20Venus%20und%20Amor%20anagoria.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/fc23ff6564cb5607e02dec2e2e2e7c3856d02af3297417d78eab2b45188bce8a.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -5967,7 +6077,8 @@
      1.0,
      0.9797
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/1636%20Rubens%20Mars%2C%20Venus%20und%20Amor%20anagoria.jpg?width=600"
   },
   {
    "title": "Girl with a Fan (Lady in White)",
@@ -5982,7 +6093,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Girl%20with%20a%20Fan%20%28Lady%20in%20White%29.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Girl%20with%20a%20Fan%20%28Lady%20in%20White%29.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/3ab2573f3d53b224056d89802d1391ddf22c6de5322bb98cf8decb1639526090.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -6022,7 +6133,8 @@
     ]
    },
    "current_repository": "Kunsthistorisches Museum",
-   "physical_dimensions": "123.5 x 100.5 cm"
+   "physical_dimensions": "123.5 x 100.5 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Girl%20with%20a%20Fan%20%28Lady%20in%20White%29.jpg?width=600"
   },
   {
    "title": "Abundance (Abundantia)",
@@ -6037,7 +6149,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Abundance%20%28Abundantia%29%20by%20Peter%20Paul%20Rubens%2C%20c.%201630%2C%20oil%20on%20panel%20-%20National%20Museum%20of%20Western%20Art%2C%20Tokyo%20-%20DSC08165.JPG?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Abundance%20%28Abundantia%29%20by%20Peter%20Paul%20Rubens%2C%20c.%201630%2C%20oil%20on%20panel%20-%20National%20Museum%20of%20Western%20Art%2C%20Tokyo%20-%20DSC08165.JPG?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/3c8bcb8bdc97833987bedb7d78c79b4ea2eda6e018f06e4744b3fd542dd9db2b.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -6075,7 +6187,8 @@
      1.0,
      0.951
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Abundance%20%28Abundantia%29%20by%20Peter%20Paul%20Rubens%2C%20c.%201630%2C%20oil%20on%20panel%20-%20National%20Museum%20of%20Western%20Art%2C%20Tokyo%20-%20DSC08165.JPG?width=600"
   },
   {
    "title": "The Calydonian Boar Hunt",
@@ -6090,7 +6203,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20The%20Calydonian%20Boar%20Hunt%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20The%20Calydonian%20Boar%20Hunt%20-%20Google%20Art%20Project.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/1ebb749a97332a0c0479ce42b136924e33887602d0e59e9dcefbbabb230adbe4.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -6130,7 +6243,8 @@
     ]
    },
    "current_repository": "J. Paul Getty Museum",
-   "physical_dimensions": "59.2 x 89.7 cm"
+   "physical_dimensions": "59.2 x 89.7 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20The%20Calydonian%20Boar%20Hunt%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
    "title": "Landscape with a Rainbow",
@@ -6145,7 +6259,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rubens%20Peter%20Paul%20-%20Landscape%20with%20a%20Rainbow.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rubens%20Peter%20Paul%20-%20Landscape%20with%20a%20Rainbow.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/1da6282227b1c703d6a109a4609d70aae7a51aecc2c34ae6bd1b16165b872515.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -6183,7 +6297,8 @@
      0.7724,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rubens%20Peter%20Paul%20-%20Landscape%20with%20a%20Rainbow.jpg?width=600"
   },
   {
    "title": "The Wild Boar Hunt",
@@ -6198,7 +6313,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20La%20Chasse%20au%20sanglier.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20La%20Chasse%20au%20sanglier.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/84eb247e25b58b3dd441cb078f096407696dfbe36505a12648c9193db1281d29.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -6236,7 +6351,8 @@
      0.6656,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20La%20Chasse%20au%20sanglier.jpg?width=600"
   },
   {
    "title": "The Adoration of the Magi (Lyon)",
@@ -6251,7 +6367,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20The%20Adoration%20of%20the%20Magi%20%28Lyon%29.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20The%20Adoration%20of%20the%20Magi%20%28Lyon%29.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/2b3287ace68b50688451a1fabdb8c1638d78c4b1cc19bb75e4a64695b37189c6.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -6289,7 +6405,8 @@
      0.9695,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20The%20Adoration%20of%20the%20Magi%20%28Lyon%29.jpg?width=600"
   },
   {
    "title": "Helena Fourment in Her Wedding Dress",
@@ -6304,7 +6421,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Helena%20Fourment%20in%20her%20wedding%20dress.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Helena%20Fourment%20in%20her%20wedding%20dress.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/762e4222c24986d504e244ab0debb08525a5e060f261854048413ffdd2559829.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -6344,7 +6461,8 @@
     ]
    },
    "current_repository": "Bavarian State Painting Collections",
-   "physical_dimensions": "163.5 x 136.9 cm"
+   "physical_dimensions": "163.5 x 136.9 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Helena%20Fourment%20in%20her%20wedding%20dress.jpg?width=600"
   },
   {
    "title": "The Reconciliation of the Romans and the Sabines",
@@ -6359,7 +6477,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20en%20Justus%20van%20Egmont%20-%20De%20verzoening%20van%20de%20Romeinen%20met%20de%20Sabijnen%20-%20RH.S.220%20-%20Rubenshuis.tiff?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20en%20Justus%20van%20Egmont%20-%20De%20verzoening%20van%20de%20Romeinen%20met%20de%20Sabijnen%20-%20RH.S.220%20-%20Rubenshuis.tiff?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/019fa9dfe1967b73c7fd2b784ad97215c6486b331b2891f1a4956e67eb0cae14.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -6398,7 +6516,8 @@
      1.0
     ]
    },
-   "physical_dimensions": "38.0 x 56.5 cm"
+   "physical_dimensions": "38.0 x 56.5 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20en%20Justus%20van%20Egmont%20-%20De%20verzoening%20van%20de%20Romeinen%20met%20de%20Sabijnen%20-%20RH.S.220%20-%20Rubenshuis.tiff?width=600"
   },
   {
    "title": "Old Woman with a Basket of Coal",
@@ -6413,7 +6532,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Old%20Woman%20with%20a%20Basket%20of%20Coal%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Old%20Woman%20with%20a%20Basket%20of%20Coal%20-%20Google%20Art%20Project.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/a9f3a6c60bf17e2853fa6cdec0118bed01a705bbe3adae23f8bf3c922433d29e.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -6452,7 +6571,8 @@
      1.0
     ]
    },
-   "physical_dimensions": "116.0 x 92.0 cm"
+   "physical_dimensions": "116.0 x 92.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Old%20Woman%20with%20a%20Basket%20of%20Coal%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
    "title": "Adam and Eve (after Titian)",
@@ -6467,7 +6587,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Adam%20en%20Eva%20-%20RH.S.164%20-%20Rubenshuis.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Adam%20en%20Eva%20-%20RH.S.164%20-%20Rubenshuis.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/c4b4df5e9d34ef8101572e9aa1c8053c93e290f151ae1244893abdffeb20ff01.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -6506,7 +6626,8 @@
      1.0
     ]
    },
-   "physical_dimensions": "182.5 x 140.7 cm"
+   "physical_dimensions": "182.5 x 140.7 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Adam%20en%20Eva%20-%20RH.S.164%20-%20Rubenshuis.jpg?width=600"
   },
   {
    "title": "Christ Triumphant over Death and Sin",
@@ -6521,7 +6642,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/54a%20Pierre-Paul%20Rubens%2C%20Le%20Christ%20triomphant%20de%20la%20Mort%20et%20du%20P%C3%A9ch%C3%A9%2C%20vers%201615-16.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/54a%20Pierre-Paul%20Rubens%2C%20Le%20Christ%20triomphant%20de%20la%20Mort%20et%20du%20P%C3%A9ch%C3%A9%2C%20vers%201615-16.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/ea85b73fda1d914dc9b0d88e28abe54ff9c612e95271c4ecf2fb6909ad45a492.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -6559,7 +6680,8 @@
      0.9838,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/54a%20Pierre-Paul%20Rubens%2C%20Le%20Christ%20triomphant%20de%20la%20Mort%20et%20du%20P%C3%A9ch%C3%A9%2C%20vers%201615-16.jpg?width=600"
   },
   {
    "title": "Pan and Syrinx",
@@ -6574,7 +6696,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pan%20syrinx%20Rubens.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pan%20syrinx%20Rubens.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/0c5f374ee5440bc658cb6bc3a75f093b1a467100a95baedd4f368e619927de26.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -6612,7 +6734,8 @@
      0.7972,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pan%20syrinx%20Rubens.jpg?width=600"
   },
   {
    "title": "Worship of Venus",
@@ -6627,7 +6750,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Worship%20of%20Venus%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Worship%20of%20Venus%20-%20Google%20Art%20Project.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/638e77c6aad0bc482550e97d350a041da83c1f9d18dab73d9896453f0731b956.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -6665,7 +6788,8 @@
      0.983,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Worship%20of%20Venus%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
    "title": "The Death of Decius Mus",
@@ -6680,7 +6804,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rubens%20-%20Morte%20di%20Decio%20Mure%20%28Bozzetto%29.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rubens%20-%20Morte%20di%20Decio%20Mure%20%28Bozzetto%29.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/d4fc09e0fc059d090e48f03b45d751826505e706d85985548c2c8137f392d88b.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -6718,7 +6842,8 @@
      0.7204,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rubens%20-%20Morte%20di%20Decio%20Mure%20%28Bozzetto%29.jpg?width=600"
   },
   {
    "title": "The Voyage of the Cardinal-Infante Ferdinand: Neptune Calming the Tempest",
@@ -6733,7 +6858,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Voyage%20of%20the%20Cardinal%20Infante%20Ferdinand%20of%20Spain%20from%20Barcelona%20to%20Genoa%20in%20April%201633%2C%20with%20Neptune%20Calming%20the%20Tempest%2C%20by%20Peter%20Paul%20Rubens%2C%201635%20-%20Fogg%20Art%20Museum%20-%20DSC02322.JPG?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Voyage%20of%20the%20Cardinal%20Infante%20Ferdinand%20of%20Spain%20from%20Barcelona%20to%20Genoa%20in%20April%201633%2C%20with%20Neptune%20Calming%20the%20Tempest%2C%20by%20Peter%20Paul%20Rubens%2C%201635%20-%20Fogg%20Art%20Museum%20-%20DSC02322.JPG?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/a270caf609a86f4bee8a0332e68b0030e204ebf459ef9fa491ec7c88f07bb2e4.jpg",
    "license_verdict": "pd",
    "license_basis": "CC0",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -6771,7 +6896,8 @@
      0.6552,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Voyage%20of%20the%20Cardinal%20Infante%20Ferdinand%20of%20Spain%20from%20Barcelona%20to%20Genoa%20in%20April%201633%2C%20with%20Neptune%20Calming%20the%20Tempest%2C%20by%20Peter%20Paul%20Rubens%2C%201635%20-%20Fogg%20Art%20Museum%20-%20DSC02322.JPG?width=600"
   },
   {
    "title": "Landscape with Cows and Duck Hunters",
@@ -6786,7 +6912,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20%281577-1640%29%20-%20A%20Landscape%20with%20Cows%20and%20Duck%20Hunters%20-%202013%20-%20Gem%C3%A4ldegalerie.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20%281577-1640%29%20-%20A%20Landscape%20with%20Cows%20and%20Duck%20Hunters%20-%202013%20-%20Gem%C3%A4ldegalerie.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/0924e38ebec00bf873b870ecaef531f4e1322e87735519e67e992e1ce63a1985.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -6824,7 +6950,8 @@
      0.9996,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20%281577-1640%29%20-%20A%20Landscape%20with%20Cows%20and%20Duck%20Hunters%20-%202013%20-%20Gem%C3%A4ldegalerie.jpg?width=600"
   },
   {
    "title": "Landscape with a Gallows",
@@ -6839,7 +6966,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20%281577-1640%29%20-%20A%20Landscape%20with%20Gallows%20-%201948%20-%20Gem%C3%A4ldegalerie.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20%281577-1640%29%20-%20A%20Landscape%20with%20Gallows%20-%201948%20-%20Gem%C3%A4ldegalerie.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/dca08e21ae283721e7b06fbe587cce58867c34aee58bc1af721674bb67000339.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -6878,7 +7005,8 @@
      1.0
     ]
    },
-   "physical_dimensions": "19.5 x 24.6 cm"
+   "physical_dimensions": "19.5 x 24.6 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20%281577-1640%29%20-%20A%20Landscape%20with%20Gallows%20-%201948%20-%20Gem%C3%A4ldegalerie.jpg?width=600"
   },
   {
    "title": "Fortuna",
@@ -6893,7 +7021,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20%281577-1640%29%20-%20Fortuna%20-%20798C%20-%20Gem%C3%A4ldegalerie.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20%281577-1640%29%20-%20Fortuna%20-%20798C%20-%20Gem%C3%A4ldegalerie.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/7c1ba21ce6cf47955eab4e40b0b0562669afabad01c37d89bd36714eb2236dab.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -6932,7 +7060,8 @@
      0.972
     ]
    },
-   "physical_dimensions": "36.7 x 25.4 cm"
+   "physical_dimensions": "36.7 x 25.4 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20%281577-1640%29%20-%20Fortuna%20-%20798C%20-%20Gem%C3%A4ldegalerie.jpg?width=600"
   },
   {
    "title": "Landscape with the Shipwreck of Saint Paul",
@@ -6947,7 +7076,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20%281577-1640%29%20-%20Landscape%20with%20the%20shipwreck%20of%20Paul%20-%20776E%20-%20Gem%C3%A4ldegalerie.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20%281577-1640%29%20-%20Landscape%20with%20the%20shipwreck%20of%20Paul%20-%20776E%20-%20Gem%C3%A4ldegalerie.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/3ba101ede2e9d38d854f7ea46ff1201d5b6a99d92a976c1d750a7cb246f6fd7c.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -6986,7 +7115,8 @@
      1.0
     ]
    },
-   "physical_dimensions": "61.0 x 99.0 cm"
+   "physical_dimensions": "61.0 x 99.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20%281577-1640%29%20-%20Landscape%20with%20the%20shipwreck%20of%20Paul%20-%20776E%20-%20Gem%C3%A4ldegalerie.jpg?width=600"
   },
   {
    "title": "The Raising of Lazarus",
@@ -7001,7 +7131,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20%281577-1640%29%20-%20Resurrection%20of%20Lazarus%20-%20783%20-%20Gem%C3%A4ldegalerie.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20%281577-1640%29%20-%20Resurrection%20of%20Lazarus%20-%20783%20-%20Gem%C3%A4ldegalerie.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/b0994593ac8168a86df0725859ec92b586ee4b3ff5edc6a2dcbdbcdd732f5eff.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -7040,7 +7170,8 @@
      0.9925
     ]
    },
-   "physical_dimensions": "263.0 x 196.0 cm"
+   "physical_dimensions": "263.0 x 196.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20%281577-1640%29%20-%20Resurrection%20of%20Lazarus%20-%20783%20-%20Gem%C3%A4ldegalerie.jpg?width=600"
   },
   {
    "title": "Saint Cecilia",
@@ -7055,7 +7186,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20%281577-1640%29%20-%20Saint%20Cecilia%20-%20781%20-%20Gem%C3%A4ldegalerie.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20%281577-1640%29%20-%20Saint%20Cecilia%20-%20781%20-%20Gem%C3%A4ldegalerie.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/99c665fd32be3bcf2ee4fe914290ef7225ccc0eaf51e546d57551606b6b6bdaf.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -7094,7 +7225,8 @@
      1.0
     ]
    },
-   "physical_dimensions": "177.0 x 139.0 cm"
+   "physical_dimensions": "177.0 x 139.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20%281577-1640%29%20-%20Saint%20Cecilia%20-%20781%20-%20Gem%C3%A4ldegalerie.jpg?width=600"
   },
   {
    "title": "The Drunken Silenus",
@@ -7109,7 +7241,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20%281577-1640%29%20-%20The%20Bacchanal%20-%20776B%20-%20Gem%C3%A4ldegalerie.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20%281577-1640%29%20-%20The%20Bacchanal%20-%20776B%20-%20Gem%C3%A4ldegalerie.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/da808ac3143ac12497bbe5b787fee479abea824c0ef6433dc8a563e56bff5fa4.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -7148,7 +7280,8 @@
      1.0
     ]
    },
-   "current_repository": ""
+   "current_repository": "",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20%281577-1640%29%20-%20The%20Bacchanal%20-%20776B%20-%20Gem%C3%A4ldegalerie.jpg?width=600"
   },
   {
    "title": "The Penitent Magdalene",
@@ -7163,7 +7296,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20%281577-1640%29%20-%20The%20Penitent%20Magdalene%20-%20763A%20-%20Gem%C3%A4ldegalerie.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20%281577-1640%29%20-%20The%20Penitent%20Magdalene%20-%20763A%20-%20Gem%C3%A4ldegalerie.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/103a3d3f1969d70b769f8fb585be9720d2000c733009c25dcab3bd61c785b934.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -7202,7 +7335,8 @@
      1.0
     ]
    },
-   "physical_dimensions": "215.0 x 285.0 cm"
+   "physical_dimensions": "215.0 x 285.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20%281577-1640%29%20-%20The%20Penitent%20Magdalene%20-%20763A%20-%20Gem%C3%A4ldegalerie.jpg?width=600"
   },
   {
    "title": "Madonna and Child",
@@ -7217,7 +7351,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20%281577-1640%29%20-%20The%20Virgin%20and%20Child%20-%20917%20-%20Gem%C3%A4ldegalerie.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20%281577-1640%29%20-%20The%20Virgin%20and%20Child%20-%20917%20-%20Gem%C3%A4ldegalerie.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/962ca3f81b3b11c0dc76c039aa7cd53adbc307186cde1015d9a154b0820ac21b.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -7256,7 +7390,8 @@
      0.9722
     ]
    },
-   "physical_dimensions": "151.0 x 108.0 cm"
+   "physical_dimensions": "151.0 x 108.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20%281577-1640%29%20-%20The%20Virgin%20and%20Child%20-%20917%20-%20Gem%C3%A4ldegalerie.jpg?width=600"
   },
   {
    "title": "Three Riders in Different Positions",
@@ -7271,7 +7406,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20%281577-1640%29%20-%20Three%20riders%20in%20different%20positions%20-%20797%20-%20Gem%C3%A4ldegalerie.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20%281577-1640%29%20-%20Three%20riders%20in%20different%20positions%20-%20797%20-%20Gem%C3%A4ldegalerie.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/cc76900344f07efbfea865a070eb518bdcf7ffb47042440bde2c5f8c73520c0f.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -7309,7 +7444,8 @@
      0.6358,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20%281577-1640%29%20-%20Three%20riders%20in%20different%20positions%20-%20797%20-%20Gem%C3%A4ldegalerie.jpg?width=600"
   },
   {
    "title": "Atalanta and Meleager",
@@ -7324,7 +7460,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Atalanta%20and%20Meleager%20MET%20LC-44%2022-1.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Atalanta%20and%20Meleager%20MET%20LC-44%2022-1.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/435a6423bed0793049a110c6de913e3a921b726ff1f980e335a9fa9b47c2c9e3.jpg",
    "license_verdict": "pd",
    "license_basis": "CC0",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -7363,7 +7499,8 @@
      1.0
     ]
    },
-   "current_repository": "Metropolitan Museum of Art"
+   "current_repository": "Metropolitan Museum of Art",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Atalanta%20and%20Meleager%20MET%20LC-44%2022-1.jpg?width=600"
   },
   {
    "title": "The Andrians",
@@ -7378,7 +7515,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20The%20Andrians%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20The%20Andrians%20-%20Google%20Art%20Project.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/feb7361bbdc91c007d6ba5dacc945a85aa153e6e84950637f695c9bcc506e552.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -7417,7 +7554,8 @@
      1.0
     ]
    },
-   "physical_dimensions": "200.0 x 215.0 cm"
+   "physical_dimensions": "200.0 x 215.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20The%20Andrians%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
    "title": "The Feast of Herod",
@@ -7432,7 +7570,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Edinburgh%20NGS%20Rubens%20feast%20of%20Herod.JPG?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Edinburgh%20NGS%20Rubens%20feast%20of%20Herod.JPG?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/8fdff7eec7366d3de1fba8de85a0c9eea4856e94fd2542bb9035824acb2a4889.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -7470,7 +7608,8 @@
      0.6651,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Edinburgh%20NGS%20Rubens%20feast%20of%20Herod.JPG?width=600"
   },
   {
    "title": "Evening Landscape with a Timber Wagon",
@@ -7485,7 +7624,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Evening%20Landscape%20with%20Timber%20Wagon%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Evening%20Landscape%20with%20Timber%20Wagon%20-%20Google%20Art%20Project.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/fdb5e42959d87254bf92693eaed30dd95034b68f3eae6978689a9941ee51a543.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -7525,7 +7664,8 @@
     ]
    },
    "current_repository": "Museum Boijmans Van Beuningen",
-   "physical_dimensions": "49.5 x 54.7 cm"
+   "physical_dimensions": "49.5 x 54.7 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Paul%20Rubens%20-%20Evening%20Landscape%20with%20Timber%20Wagon%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
    "title": "Lot and His Daughters",
@@ -7540,7 +7680,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Lot%20and%20his%20daughters%2C%20by%20Peter%20Paul%20Rubens.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Lot%20and%20his%20daughters%2C%20by%20Peter%20Paul%20Rubens.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/f2490f8605dde3ff161e0b556cfff71390eb7fce3ed17c7be6a598ca18b819f4.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -7578,7 +7718,8 @@
      0.775,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Lot%20and%20his%20daughters%2C%20by%20Peter%20Paul%20Rubens.jpg?width=600"
   },
   {
    "title": "Las Meninas",
@@ -7593,7 +7734,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Las%20Meninas%2C%20by%20Diego%20Vel%C3%A1zquez%2C%20from%20Prado%20in%20Google%20Earth.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Las%20Meninas%2C%20by%20Diego%20Vel%C3%A1zquez%2C%20from%20Prado%20in%20Google%20Earth.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/74839bd2f8fc1358a02fdee9cd89879f890b8c808cb74a278f74c153f08464d7.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -7631,7 +7772,8 @@
      0.9231,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Las%20Meninas%2C%20by%20Diego%20Vel%C3%A1zquez%2C%20from%20Prado%20in%20Google%20Earth.jpg?width=600"
   }
  ]
 }

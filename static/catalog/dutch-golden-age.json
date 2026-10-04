@@ -18,7 +18,7 @@
    "source": "The Metropolitan Museum of Art",
    "license": "PDM-1.0",
    "source_url": "https://images.metmuseum.org/CRDImages/ep/original/DP-30758-001.jpg",
-   "thumbnail_url": "https://images.metmuseum.org/CRDImages/ep/web-large/DP-30758-001.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/92aa14d13a1c83f437e0615d82f1f3de909d2b668ab71490a31afa77d576d0be.jpg",
    "focal_point": [
     0.55,
     0.32
@@ -57,7 +57,8 @@
      1.0
     ]
    },
-   "current_repository": "The Metropolitan Museum of Art"
+   "current_repository": "The Metropolitan Museum of Art",
+   "thumbnail_source_url": "https://images.metmuseum.org/CRDImages/ep/web-large/DP-30758-001.jpg"
   },
   {
    "title": "Portrait of a Man (\"The Auctioneer\")",
@@ -72,7 +73,7 @@
    "source": "The Metropolitan Museum of Art",
    "license": "PDM-1.0",
    "source_url": "https://images.metmuseum.org/CRDImages/ep/original/DP145912.jpg",
-   "thumbnail_url": "https://images.metmuseum.org/CRDImages/ep/web-large/DP145912.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/fff4d7ac6774bff4526d778ea4028f9403f9fe712794e395b696b97c0a065388.jpg",
    "focal_point": [
     0.4,
     0.28
@@ -111,7 +112,8 @@
      0.9679,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://images.metmuseum.org/CRDImages/ep/web-large/DP145912.jpg"
   },
   {
    "title": "Herman Doomer (ca. 1595–1650)",
@@ -126,7 +128,7 @@
    "source": "The Metropolitan Museum of Art",
    "license": "PDM-1.0",
    "source_url": "https://images.metmuseum.org/CRDImages/ep/original/DP145921.jpg",
-   "thumbnail_url": "https://images.metmuseum.org/CRDImages/ep/web-large/DP145921.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/10282422c30033192a4d4703e589360b4982bb384cca704c37d8a9d9a539109d.jpg",
    "focal_point": [
     0.48,
     0.38
@@ -166,7 +168,8 @@
      0.5834
     ]
    },
-   "current_repository": "The Metropolitan Museum of Art"
+   "current_repository": "The Metropolitan Museum of Art",
+   "thumbnail_source_url": "https://images.metmuseum.org/CRDImages/ep/web-large/DP145921.jpg"
   },
   {
    "title": "Portrait of Gerard de Lairesse",
@@ -181,7 +184,7 @@
    "source": "The Metropolitan Museum of Art",
    "license": "PDM-1.0",
    "source_url": "https://images.metmuseum.org/CRDImages/rl/original/DP121332.jpg",
-   "thumbnail_url": "https://images.metmuseum.org/CRDImages/rl/web-large/DP121332.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/f16d81b0a797cce8fe9f4830fe47666b49d2cbbc5441da655d355e644c1ba746.jpg",
    "focal_point": [
     0.52,
     0.3
@@ -221,7 +224,8 @@
      1.0
     ]
    },
-   "current_repository": "The Metropolitan Museum of Art"
+   "current_repository": "The Metropolitan Museum of Art",
+   "thumbnail_source_url": "https://images.metmuseum.org/CRDImages/rl/web-large/DP121332.jpg"
   },
   {
    "title": "Self-Portrait",
@@ -236,7 +240,7 @@
    "source": "The Metropolitan Museum of Art",
    "license": "PDM-1.0",
    "source_url": "https://images.metmuseum.org/CRDImages/ep/original/DP-16323-001.jpg",
-   "thumbnail_url": "https://images.metmuseum.org/CRDImages/ep/web-large/DP-16323-001.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/d45bfae29b355165208a04a3c9693a71670e93fd458e1f9398192b72d78fdbd4.jpg",
    "focal_point": [
     0.45,
     0.32
@@ -275,7 +279,8 @@
      1.0
     ]
    },
-   "current_repository": "The Metropolitan Museum of Art"
+   "current_repository": "The Metropolitan Museum of Art",
+   "thumbnail_source_url": "https://images.metmuseum.org/CRDImages/ep/web-large/DP-16323-001.jpg"
   },
   {
    "title": "Hendrickje Stoffels (1626–1663)",
@@ -290,7 +295,7 @@
    "source": "The Metropolitan Museum of Art",
    "license": "PDM-1.0",
    "source_url": "https://images.metmuseum.org/CRDImages/ep/original/DP145920.jpg",
-   "thumbnail_url": "https://images.metmuseum.org/CRDImages/ep/web-large/DP145920.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/729253d4e0fca40a7240e09fd65d90758df62f39dd2ddc8743483d6200864d6f.jpg",
    "focal_point": [
     0.45,
     0.38
@@ -330,7 +335,8 @@
      1.0
     ]
    },
-   "current_repository": "The Metropolitan Museum of Art"
+   "current_repository": "The Metropolitan Museum of Art",
+   "thumbnail_source_url": "https://images.metmuseum.org/CRDImages/ep/web-large/DP145920.jpg"
   },
   {
    "title": "Man in a Turban",
@@ -345,7 +351,7 @@
    "source": "The Metropolitan Museum of Art",
    "license": "PDM-1.0",
    "source_url": "https://images.metmuseum.org/CRDImages/ep/original/DP146479.jpg",
-   "thumbnail_url": "https://images.metmuseum.org/CRDImages/ep/web-large/DP146479.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/866852ad0cf18e527f4291b23a13a980513e249ee28e8adde1383521fcb84d9d.jpg",
    "focal_point": [
     0.5,
     0.27
@@ -384,7 +390,8 @@
      1.0
     ]
    },
-   "current_repository": "The Metropolitan Museum of Art"
+   "current_repository": "The Metropolitan Museum of Art",
+   "thumbnail_source_url": "https://images.metmuseum.org/CRDImages/ep/web-large/DP146479.jpg"
   },
   {
    "title": "Lucas van Uffel (died 1637)",
@@ -399,7 +406,7 @@
    "source": "The Metropolitan Museum of Art",
    "license": "PDM-1.0",
    "source_url": "https://images.metmuseum.org/CRDImages/ep/original/DP-27908-001.jpg",
-   "thumbnail_url": "https://images.metmuseum.org/CRDImages/ep/web-large/DP-27908-001.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/d0a9747ef0680a2e909105fbb8c0a46b8d3c88ba2c1445fd32497d994a50f9c1.jpg",
    "focal_point": [
     0.55,
     0.28
@@ -438,7 +445,8 @@
      1.0
     ]
    },
-   "current_repository": "The Metropolitan Museum of Art"
+   "current_repository": "The Metropolitan Museum of Art",
+   "thumbnail_source_url": "https://images.metmuseum.org/CRDImages/ep/web-large/DP-27908-001.jpg"
   },
   {
    "title": "A Maid Asleep",
@@ -453,7 +461,7 @@
    "source": "The Metropolitan Museum of Art",
    "license": "PDM-1.0",
    "source_url": "https://images.metmuseum.org/CRDImages/ep/original/DP355525.jpg",
-   "thumbnail_url": "https://images.metmuseum.org/CRDImages/ep/web-large/DP355525.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/0ec61dee3dfc63ca712037ad576ab78784811e417675519a607c309c41a3f111.jpg",
    "focal_point": [
     0.27,
     0.45
@@ -492,7 +500,8 @@
      1.0
     ]
    },
-   "current_repository": "The Metropolitan Museum of Art"
+   "current_repository": "The Metropolitan Museum of Art",
+   "thumbnail_source_url": "https://images.metmuseum.org/CRDImages/ep/web-large/DP355525.jpg"
   },
   {
    "title": "Study of a Young Woman",
@@ -507,7 +516,7 @@
    "source": "The Metropolitan Museum of Art",
    "license": "PDM-1.0",
    "source_url": "https://images.metmuseum.org/CRDImages/ep/original/DP353256.jpg",
-   "thumbnail_url": "https://images.metmuseum.org/CRDImages/ep/web-large/DP353256.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/315da5c89692cf64cf61343c83def139a5a93f23f5752c193f1cc29e5ad57441.jpg",
    "focal_point": [
     0.47,
     0.32
@@ -546,7 +555,8 @@
      1.0
     ]
    },
-   "current_repository": "The Metropolitan Museum of Art"
+   "current_repository": "The Metropolitan Museum of Art",
+   "thumbnail_source_url": "https://images.metmuseum.org/CRDImages/ep/web-large/DP353256.jpg"
   },
   {
    "title": "The Crucifixion with the Virgin and Saint John",
@@ -561,7 +571,7 @@
    "source": "The Metropolitan Museum of Art",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Hendrick%20ter%20Brugghen%20The%20Crucifixion%20with%20the%20Virgin%20and%20Saint%20John.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Hendrick%20ter%20Brugghen%20The%20Crucifixion%20with%20the%20Virgin%20and%20Saint%20John.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/7eef3fafe73e7e4840817f6f375e9bfa2dc9d4d83bef81c611df0eb29b4de32d.jpg",
    "focal_point": [
     0.5,
     0.21
@@ -601,7 +611,8 @@
     ]
    },
    "current_repository": "The Metropolitan Museum of Art",
-   "physical_dimensions": "154.9 x 102.2 cm"
+   "physical_dimensions": "154.9 x 102.2 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Hendrick%20ter%20Brugghen%20The%20Crucifixion%20with%20the%20Virgin%20and%20Saint%20John.jpg?width=600"
   },
   {
    "title": "Young Man and Woman in an Inn",
@@ -616,7 +627,7 @@
    "source": "The Metropolitan Museum of Art",
    "license": "PDM-1.0",
    "source_url": "https://images.metmuseum.org/CRDImages/ep/original/DP145899.jpg",
-   "thumbnail_url": "https://images.metmuseum.org/CRDImages/ep/web-large/DP145899.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/7aa49bc5d674c2f9a92105c015f37b68d4aec5cd4c3b37533346edfac24d8401.jpg",
    "focal_point": [
     0.4,
     0.34
@@ -656,7 +667,8 @@
      1.0
     ]
    },
-   "current_repository": "The Metropolitan Museum of Art"
+   "current_repository": "The Metropolitan Museum of Art",
+   "thumbnail_source_url": "https://images.metmuseum.org/CRDImages/ep/web-large/DP145899.jpg"
   },
   {
    "title": "Boy with a Lute",
@@ -671,7 +683,7 @@
    "source": "The Metropolitan Museum of Art",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frans%20Hals%20-%20Boy%20with%20a%20Lute%20-%20The%20Metropolitan%20Museum%20of%20Art.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frans%20Hals%20-%20Boy%20with%20a%20Lute%20-%20The%20Metropolitan%20Museum%20of%20Art.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/95b776ab0ab2d5ef3ed1de239c25b483ed65ec603b30f4cfaee8eb85d2d2eafb.jpg",
    "focal_point": [
     0.5,
     0.35
@@ -710,7 +722,8 @@
      1.0
     ]
    },
-   "current_repository": "The Metropolitan Museum of Art"
+   "current_repository": "The Metropolitan Museum of Art",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frans%20Hals%20-%20Boy%20with%20a%20Lute%20-%20The%20Metropolitan%20Museum%20of%20Art.jpg?width=600"
   },
   {
    "title": "Petrus Scriverius (1576–1660)",
@@ -725,7 +738,7 @@
    "source": "The Metropolitan Museum of Art",
    "license": "PDM-1.0",
    "source_url": "https://images.metmuseum.org/CRDImages/ep/original/DP247208.jpg",
-   "thumbnail_url": "https://images.metmuseum.org/CRDImages/ep/web-large/DP247208.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/99dcb68b9620a9436a37b8621626866dfb8e8d3a4aa4449beb5fa849f23e1e83.jpg",
    "focal_point": [
     0.45,
     0.37
@@ -764,7 +777,8 @@
      0.6352
     ]
    },
-   "current_repository": "The Metropolitan Museum of Art"
+   "current_repository": "The Metropolitan Museum of Art",
+   "thumbnail_source_url": "https://images.metmuseum.org/CRDImages/ep/web-large/DP247208.jpg"
   },
   {
    "title": "The Smokers",
@@ -779,7 +793,7 @@
    "source": "The Metropolitan Museum of Art",
    "license": "PDM-1.0",
    "source_url": "https://images.metmuseum.org/CRDImages/ep/original/DP-15904-001.jpg",
-   "thumbnail_url": "https://images.metmuseum.org/CRDImages/ep/web-large/DP-15904-001.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/9a21f2b2bfa481494e747c34f58b2d73255f02c24ef1bfde1e41823e1681ef34.jpg",
    "focal_point": [
     0.42,
     0.28
@@ -818,7 +832,8 @@
      1.0
     ]
    },
-   "current_repository": ""
+   "current_repository": "",
+   "thumbnail_source_url": "https://images.metmuseum.org/CRDImages/ep/web-large/DP-15904-001.jpg"
   },
   {
    "title": "Landschap met stenen brug",
@@ -833,7 +848,7 @@
    "source": "Rijksmuseum",
    "license": "PDM-1.0",
    "source_url": "https://iiif.micr.io/hodeb/full/max/0/default.jpg",
-   "thumbnail_url": "https://iiif.micr.io/hodeb/full/400,/0/default.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/aef348362decc49416b36c2b1ce419f5c946c8fc86cc41dae57861535056a8ba.jpg",
    "focal_point": [
     0.42,
     0.45
@@ -871,7 +886,8 @@
      0.7281,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://iiif.micr.io/hodeb/full/400,/0/default.jpg"
   },
   {
    "title": "The Night Watch",
@@ -886,7 +902,7 @@
    "source": "Rijksmuseum",
    "license": "PDM-1.0",
    "source_url": "https://iiif.micr.io/PJEZO/full/max/0/default.jpg",
-   "thumbnail_url": "https://iiif.micr.io/PJEZO/full/400,/0/default.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/2d23f8a178fe2941ec775fe19a364d203cd91358197cc5362d9972bd8546f249.jpg",
    "focal_point": [
     0.5,
     0.4
@@ -924,7 +940,8 @@
      0.8128,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://iiif.micr.io/PJEZO/full/400,/0/default.jpg"
   },
   {
    "title": "Girl with a Pearl Earring",
@@ -939,7 +956,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Johannes%20Vermeer%20-%20Girl%20with%20a%20Pearl%20Earring%20-%20670%20-%20Mauritshuis.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Johannes%20Vermeer%20-%20Girl%20with%20a%20Pearl%20Earring%20-%20670%20-%20Mauritshuis.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/9895ab7f8512b2761a28309e7461e9c17b4a9b9330a430b61f49b2a09008b897.jpg",
    "focal_point": [
     0.42,
     0.42
@@ -977,7 +994,8 @@
      0.944,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Johannes%20Vermeer%20-%20Girl%20with%20a%20Pearl%20Earring%20-%20670%20-%20Mauritshuis.jpg?width=600"
   },
   {
    "title": "The Milkmaid",
@@ -992,7 +1010,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Johannes%20Vermeer%20-%20Het%20melkmeisje%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Johannes%20Vermeer%20-%20Het%20melkmeisje%20-%20Google%20Art%20Project.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/5762da953b56a34085f3888f855217cb9b0ce6ecfbdc35a416ed0d55347cfa83.jpg",
    "focal_point": [
     0.56,
     0.27
@@ -1030,7 +1048,8 @@
      0.921,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Johannes%20Vermeer%20-%20Het%20melkmeisje%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
    "title": "View of Delft",
@@ -1045,7 +1064,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Johannes%20Vermeer%20-%20View%20of%20Delft%20-%2092%20-%20Mauritshuis.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Johannes%20Vermeer%20-%20View%20of%20Delft%20-%2092%20-%20Mauritshuis.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/767df5e6f996cdd5bf3ca19fa4e792811237727c510bf4dca41a81f36bf478ed.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1084,7 +1103,8 @@
      1.0
     ]
    },
-   "physical_dimensions": "96.5 x 115.7 cm"
+   "physical_dimensions": "96.5 x 115.7 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Johannes%20Vermeer%20-%20View%20of%20Delft%20-%2092%20-%20Mauritshuis.jpg?width=600"
   },
   {
    "title": "Woman Holding a Balance",
@@ -1099,7 +1119,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Johannes%20Vermeer%20-%20Woman%20Holding%20a%20Balance%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Johannes%20Vermeer%20-%20Woman%20Holding%20a%20Balance%20-%20Google%20Art%20Project.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/3f954bf09dcb6e5649c5e385880537a955836facb58ec9396df9779baa361a6d.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1139,7 +1159,8 @@
     ]
    },
    "current_repository": "Widener Collection",
-   "physical_dimensions": "42.5 x 38.0 cm"
+   "physical_dimensions": "42.5 x 38.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Johannes%20Vermeer%20-%20Woman%20Holding%20a%20Balance%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
    "title": "The Anatomy Lesson of Dr. Nicolaes Tulp",
@@ -1154,7 +1175,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20van%20Rijn%20-%20The%20Anatomy%20Lesson%20of%20Dr%20Nicolaes%20Tulp%20-%20146%20-%20Mauritshuis.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20van%20Rijn%20-%20The%20Anatomy%20Lesson%20of%20Dr%20Nicolaes%20Tulp%20-%20146%20-%20Mauritshuis.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/890b1f4c9977f27279ef74f8d1de86233ad42aa8250bf46d25208d161e9ec8e7.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1192,7 +1213,8 @@
      0.833,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20van%20Rijn%20-%20The%20Anatomy%20Lesson%20of%20Dr%20Nicolaes%20Tulp%20-%20146%20-%20Mauritshuis.jpg?width=600"
   },
   {
    "title": "The Jewish Bride",
@@ -1207,7 +1229,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20van%20Rijn%20-%20The%20Great%20Jewish%20Bride%20-%201926.477%20-%20Cleveland%20Museum%20of%20Art.tif?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20van%20Rijn%20-%20The%20Great%20Jewish%20Bride%20-%201926.477%20-%20Cleveland%20Museum%20of%20Art.tif?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/5cfb92afd52bd175826b1eae5d3785284e9f579cca1fc8f4daaaca9b59bc463b.jpg",
    "license_verdict": "pd",
    "license_basis": "CC0",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1247,7 +1269,8 @@
     ]
    },
    "current_repository": "Cleveland Museum of Art",
-   "physical_dimensions": "Sheet: 23.1 x 18 cm (9 1/8 x 7 1/16 in.); Platemark: 22.1 x 17 cm (8 11/16 x 6 11/16 in.)"
+   "physical_dimensions": "Sheet: 23.1 x 18 cm (9 1/8 x 7 1/16 in.); Platemark: 22.1 x 17 cm (8 11/16 x 6 11/16 in.)",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20van%20Rijn%20-%20The%20Great%20Jewish%20Bride%20-%201926.477%20-%20Cleveland%20Museum%20of%20Art.tif?width=600"
   },
   {
    "title": "Winter Landscape with Skaters",
@@ -1262,7 +1285,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Hendrick%20Avercamp%20follower%20-%20Winter%20Landscape%20with%20Skaters%2C%201067-1279.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Hendrick%20Avercamp%20follower%20-%20Winter%20Landscape%20with%20Skaters%2C%201067-1279.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/6ffe62c33e3016f44af5d94b1a2fb1856fac0c3038112ab9563fe95f6553972a.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1301,7 +1324,8 @@
      1.0
     ]
    },
-   "physical_dimensions": "22.4 x 27.9 cm"
+   "physical_dimensions": "22.4 x 27.9 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Hendrick%20Avercamp%20follower%20-%20Winter%20Landscape%20with%20Skaters%2C%201067-1279.jpg?width=600"
   },
   {
    "title": "Malle Babbe",
@@ -1316,7 +1340,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frans%20Hals%20Malle%20Babbe%20about%201640-1646%20Gem%C3%A4ldegalerie%20Berlin%209387.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frans%20Hals%20Malle%20Babbe%20about%201640-1646%20Gem%C3%A4ldegalerie%20Berlin%209387.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/53d9a6eb6a684e44e8d9429220497fd8e6106da0ca348af889099b89fd1fc74a.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1354,7 +1378,8 @@
      0.55,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frans%20Hals%20Malle%20Babbe%20about%201640-1646%20Gem%C3%A4ldegalerie%20Berlin%209387.jpg?width=600"
   },
   {
    "title": "The Goldfinch",
@@ -1369,7 +1394,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Carel%20Fabritius%20-%20The%20Goldfinch%20-%20605%20-%20Mauritshuis.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Carel%20Fabritius%20-%20The%20Goldfinch%20-%20605%20-%20Mauritshuis.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/09cd755c630242e9cc835f047d1c8b14afe3739bdda83e574e8975d1c7d326e9.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1408,7 +1433,8 @@
      0.9332
     ]
    },
-   "physical_dimensions": "33.5 x 22.8 cm"
+   "physical_dimensions": "33.5 x 22.8 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Carel%20Fabritius%20-%20The%20Goldfinch%20-%20605%20-%20Mauritshuis.jpg?width=600"
   },
   {
    "title": "The Art of Painting",
@@ -1423,7 +1449,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jan%20Vermeer%20-%20The%20Art%20of%20Painting%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jan%20Vermeer%20-%20The%20Art%20of%20Painting%20-%20Google%20Art%20Project.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/b43d7b6a9877a0104c3608abe4fd008e52ef43fc9283356dff7264e16f6eb628.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1461,7 +1487,8 @@
      0.921,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jan%20Vermeer%20-%20The%20Art%20of%20Painting%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
    "title": "The Laughing Cavalier",
@@ -1476,7 +1503,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frans%20Hals%20%E2%80%93%20The%20Laughing%20Cavalier.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frans%20Hals%20%E2%80%93%20The%20Laughing%20Cavalier.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/0c7fa88be7e19dbbc2d672b7f65c78fa7948b049630eb417e8a81b7588955254.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1516,7 +1543,8 @@
     ]
    },
    "current_repository": "Wallace Collection",
-   "physical_dimensions": "83.0 x 67.3 cm"
+   "physical_dimensions": "83.0 x 67.3 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frans%20Hals%20%E2%80%93%20The%20Laughing%20Cavalier.jpg?width=600"
   },
   {
    "title": "Belshazzar's Feast",
@@ -1531,7 +1559,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt-BelsazarFXD.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt-BelsazarFXD.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/b85e6ce1f5f07d20a8f72d4e62d5c14825ce576db7864cc44d8720d3b79eb973.jpg",
    "featured_rank": 85,
    "width": 5308,
    "license_verdict": "pd",
@@ -1570,7 +1598,8 @@
      0.8371,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt-BelsazarFXD.jpg?width=600"
   },
   {
    "title": "The Courtyard of a House in Delft",
@@ -1585,7 +1614,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pieter%20de%20Hooch%20-%20The%20Courtyard%20of%20a%20House%20in%20Delft.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pieter%20de%20Hooch%20-%20The%20Courtyard%20of%20a%20House%20in%20Delft.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/10f7fdf8ef7d12d8237e13e01e5f581f4a4d29614a7bbc511822d19b0b502495.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1625,7 +1654,8 @@
     ]
    },
    "current_repository": "National Gallery",
-   "physical_dimensions": "74.0 x 60.0 cm"
+   "physical_dimensions": "74.0 x 60.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pieter%20de%20Hooch%20-%20The%20Courtyard%20of%20a%20House%20in%20Delft.jpg?width=600"
   },
   {
    "title": "The Young Bull",
@@ -1640,7 +1670,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Paulus%20Potter%20-%20The%20Bull%20-%20136%20-%20Mauritshuis.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Paulus%20Potter%20-%20The%20Bull%20-%20136%20-%20Mauritshuis.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/b64376e472d45fa6f3726f55fc18d45453f90fd5b6fd66687f40007c40c13ff3.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1679,7 +1709,8 @@
      1.0
     ]
    },
-   "physical_dimensions": "235.5 x 339.0 cm"
+   "physical_dimensions": "235.5 x 339.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Paulus%20Potter%20-%20The%20Bull%20-%20136%20-%20Mauritshuis.jpg?width=600"
   },
   {
    "title": "The Abduction of Europa",
@@ -1694,7 +1725,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20-%20The%20Abduction%20of%20Europa%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20-%20The%20Abduction%20of%20Europa%20-%20Google%20Art%20Project.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/a52085fc32a7fdc26f24a1a9da9e019f659045ed2e5099cd37d16f19f6bd7983.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1734,7 +1765,8 @@
     ]
    },
    "current_repository": "J. Paul Getty Museum",
-   "physical_dimensions": "64.6 x 78.7 cm"
+   "physical_dimensions": "64.6 x 78.7 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20-%20The%20Abduction%20of%20Europa%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
    "title": "Judith at the Banquet of Holofernes (Artemisia)",
@@ -1749,7 +1781,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Judith%20at%20the%20Banquet%20of%20Holofernes%20%28previously%20known%20as%20Artemisia%29%2C%20by%20Rembrandt%2C%20from%20Prado%20in%20Google%20Earth.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Judith%20at%20the%20Banquet%20of%20Holofernes%20%28previously%20known%20as%20Artemisia%29%2C%20by%20Rembrandt%2C%20from%20Prado%20in%20Google%20Earth.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/862f661a37f346a1c2bfb666ab38cce245c1f7c0600c69e6d447e1c47331f219.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1788,7 +1820,8 @@
      1.0
     ]
    },
-   "physical_dimensions": "143.0 x 154.7 cm"
+   "physical_dimensions": "143.0 x 154.7 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Judith%20at%20the%20Banquet%20of%20Holofernes%20%28previously%20known%20as%20Artemisia%29%2C%20by%20Rembrandt%2C%20from%20Prado%20in%20Google%20Earth.jpg?width=600"
   },
   {
    "title": "The Return of the Prodigal Son",
@@ -1803,7 +1836,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20Harmensz%20van%20Rijn%20-%20Return%20of%20the%20Prodigal%20Son%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20Harmensz%20van%20Rijn%20-%20Return%20of%20the%20Prodigal%20Son%20-%20Google%20Art%20Project.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/c1d58f6655a628f94f0f35d47a6e4ae8ddd928d994da7dc8521a2461a3c1f3f9.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1841,7 +1874,8 @@
      1.0,
      0.7656
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20Harmensz%20van%20Rijn%20-%20Return%20of%20the%20Prodigal%20Son%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
    "title": "Self-Portrait (c. 1659)",
@@ -1856,7 +1890,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20van%20Rijn%20-%20Self-Portrait%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20van%20Rijn%20-%20Self-Portrait%20-%20Google%20Art%20Project.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/5da2ca0a2aea0a39ae7760c733564e989318540858850aa02948d426a8365d88.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1894,7 +1928,8 @@
      0.9857,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20van%20Rijn%20-%20Self-Portrait%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
    "title": "Landscape with the Good Samaritan",
@@ -1909,7 +1944,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Landscape%20with%20the%20Good%20Samaritan%20-%20Rembrandt.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Landscape%20with%20the%20Good%20Samaritan%20-%20Rembrandt.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/0630582c3b0cde1779a47b2a081121d32083471442725168a28b4ce2ce6af741.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1947,7 +1982,8 @@
      0.8139,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Landscape%20with%20the%20Good%20Samaritan%20-%20Rembrandt.jpg?width=600"
   },
   {
    "title": "Portrait of a Seated Woman with Spectacles and a Book",
@@ -1962,7 +1998,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20-%20Portrait%20of%20a%20seated%20woman%20with%20spectacles%20and%20a%20book.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20-%20Portrait%20of%20a%20seated%20woman%20with%20spectacles%20and%20a%20book.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/27b0f50a9fb155348c45aabdb6b094c265ddda606050de0cef89d8a67e9b7c49.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -2002,7 +2038,8 @@
     ]
    },
    "current_repository": "Andrew W. Mellon collection",
-   "physical_dimensions": "109.7 x 91.5 cm"
+   "physical_dimensions": "109.7 x 91.5 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20-%20Portrait%20of%20a%20seated%20woman%20with%20spectacles%20and%20a%20book.jpg?width=600"
   },
   {
    "title": "Man in Oriental Costume",
@@ -2017,7 +2054,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Man%20in%20Oriental%20Costume%20%282%29.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Man%20in%20Oriental%20Costume%20%282%29.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/386f62e2f885efd5d21cd68574835de94eb053ddd30ac8097e5f84205f26ab88.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -2055,7 +2092,8 @@
      1.0,
      0.5842
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Man%20in%20Oriental%20Costume%20%282%29.jpg?width=600"
   },
   {
    "title": "An Old Woman Reading, Probably the Prophetess Hannah",
@@ -2070,7 +2108,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Oude%20lezende%20vrouw%2C%20waarschijnlijk%20de%20profetes%20Hanna%20Rijksmuseum%20SK-A-3066.jpeg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Oude%20lezende%20vrouw%2C%20waarschijnlijk%20de%20profetes%20Hanna%20Rijksmuseum%20SK-A-3066.jpeg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/1c7ce1cb6496555b2c2c723c5eb3ff5da853a18068aa025dd9238f548c582e58.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -2109,7 +2147,8 @@
      1.0
     ]
    },
-   "physical_dimensions": "60.0 x 48.0 cm"
+   "physical_dimensions": "60.0 x 48.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Oude%20lezende%20vrouw%2C%20waarschijnlijk%20de%20profetes%20Hanna%20Rijksmuseum%20SK-A-3066.jpeg?width=600"
   },
   {
    "title": "Self-Portrait in Oriental Dress",
@@ -2124,7 +2163,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20-%20Portrait%20de%20l%27artiste%20en%20costume%20oriental%20-%20mus%C3%A9e%20des%20Beaux-Arts%20de%20la%20ville%20de%20Paris%20-%203.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20-%20Portrait%20de%20l%27artiste%20en%20costume%20oriental%20-%20mus%C3%A9e%20des%20Beaux-Arts%20de%20la%20ville%20de%20Paris%20-%203.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/093321d369f6da03f8ecdaea13428a90835080035e6727552b8029b6cb8ff81a.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -2162,7 +2201,8 @@
      1.0,
      0.5826
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20-%20Portrait%20de%20l%27artiste%20en%20costume%20oriental%20-%20mus%C3%A9e%20des%20Beaux-Arts%20de%20la%20ville%20de%20Paris%20-%203.jpg?width=600"
   },
   {
    "title": "Jacob Blessing the Children of Joseph",
@@ -2177,7 +2217,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20van%20Rijn%20-%20Jacob%20blessing%20Ephraim%20and%20Manasseh%20%28Gem%C3%A4ldegalerie%20Alte%20Meister%20Kassel%29.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20van%20Rijn%20-%20Jacob%20blessing%20Ephraim%20and%20Manasseh%20%28Gem%C3%A4ldegalerie%20Alte%20Meister%20Kassel%29.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/ef559148b8433eb9f9b306c4470e5eefd0a1a3a1737e71c18551b168663b93f4.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -2216,7 +2256,8 @@
      1.0
     ]
    },
-   "physical_dimensions": "173.0 x 209.0 cm"
+   "physical_dimensions": "173.0 x 209.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20van%20Rijn%20-%20Jacob%20blessing%20Ephraim%20and%20Manasseh%20%28Gem%C3%A4ldegalerie%20Alte%20Meister%20Kassel%29.jpg?width=600"
   },
   {
    "title": "Young Woman in Profile, with a Fan",
@@ -2231,7 +2272,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20van%20Rijn%20-%20Jonge%20vrouw%20en%20profil%20%281632%29.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20van%20Rijn%20-%20Jonge%20vrouw%20en%20profil%20%281632%29.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/0cfa3c64ce590a1890b1ea38818165683f9f71778396422d9eb7eec189f33c81.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -2270,7 +2311,8 @@
      0.5947
     ]
    },
-   "physical_dimensions": "72.0 x 55.0 cm"
+   "physical_dimensions": "72.0 x 55.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20van%20Rijn%20-%20Jonge%20vrouw%20en%20profil%20%281632%29.jpg?width=600"
   },
   {
    "title": "Portrait of a Clergyman",
@@ -2285,7 +2327,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20-%20Portret%20van%20een%20predikant%20-%20705%20-%20Royal%20Museum%20of%20Fine%20Arts%20Antwerp.tiff?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20-%20Portret%20van%20een%20predikant%20-%20705%20-%20Royal%20Museum%20of%20Fine%20Arts%20Antwerp.tiff?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/5e1fc264ca1575a712b7681126462fda776f7ef48e56d856e8233ecc2e603b45.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -2325,7 +2367,8 @@
     ]
    },
    "current_repository": "Royal Museum of Fine Arts Antwerp",
-   "physical_dimensions": "132.0 x 109.0 cm"
+   "physical_dimensions": "132.0 x 109.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20-%20Portret%20van%20een%20predikant%20-%20705%20-%20Royal%20Museum%20of%20Fine%20Arts%20Antwerp.tiff?width=600"
   },
   {
    "title": "Bust of an Old Bearded Man Wearing a Golden Chain with a Cross",
@@ -2340,7 +2383,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20-%20Bust%20of%20an%20old%20bearded%20man%20wearing%20a%20golden%20chain%20with%20a%20cross.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20-%20Bust%20of%20an%20old%20bearded%20man%20wearing%20a%20golden%20chain%20with%20a%20cross.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/66c06353bdd143edb3a7d223ad129f5c49c50386bf7c59823ee2e817058849c9.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -2379,7 +2422,8 @@
      1.0
     ]
    },
-   "physical_dimensions": "67.4 x 55.9 cm"
+   "physical_dimensions": "67.4 x 55.9 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20-%20Bust%20of%20an%20old%20bearded%20man%20wearing%20a%20golden%20chain%20with%20a%20cross.jpg?width=600"
   },
   {
    "title": "Self-Portrait (early)",
@@ -2394,7 +2438,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Self-Portrait%20-%20Rembrandt.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Self-Portrait%20-%20Rembrandt.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/94838baf28f23b7120b7c9d65a8e45061106bc4f093f5e200f37766c0e59169c.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -2432,7 +2476,8 @@
      0.9069,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Self-Portrait%20-%20Rembrandt.jpg?width=600"
   },
   {
    "title": "Bellona",
@@ -2447,7 +2492,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bellona%2C%20by%20Rembrandt%20van%20Rijn.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bellona%2C%20by%20Rembrandt%20van%20Rijn.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/83a77e7f0c78ebc2eca00269ec1057700b5739c39d6cdf50d62365693811b0c3.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -2487,7 +2532,8 @@
     ]
    },
    "current_repository": "Metropolitan Museum of Art",
-   "physical_dimensions": "127.0 x 97.5 cm"
+   "physical_dimensions": "127.0 x 97.5 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bellona%2C%20by%20Rembrandt%20van%20Rijn.jpg?width=600"
   },
   {
    "title": "Man in a Fur-Lined Coat",
@@ -2502,7 +2548,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20Harmensz.%20van%20Rijn%20-%20Man%20in%20a%20Fur-lined%20Coat%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20Harmensz.%20van%20Rijn%20-%20Man%20in%20a%20Fur-lined%20Coat%20-%20Google%20Art%20Project.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/b7ac21fea6722ee537c15a888dda8bb99be30c44f0f5f205ba6cd25091fca608.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -2542,7 +2588,8 @@
     ]
    },
    "current_repository": "Toledo Museum of Art",
-   "physical_dimensions": "114.9 x 88.3 cm"
+   "physical_dimensions": "114.9 x 88.3 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20Harmensz.%20van%20Rijn%20-%20Man%20in%20a%20Fur-lined%20Coat%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
    "title": "Saint Paul",
@@ -2557,7 +2604,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%2C%20The%20Apostle%20Paul%2C%201659%2C%20The%20National%20Gallery%2C%20London.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%2C%20The%20Apostle%20Paul%2C%201659%2C%20The%20National%20Gallery%2C%20London.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/860291ecd76d2f7c06cd47bfb8e2227c004c46d17864fe83b3ee3c3d55eb6964.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -2597,7 +2644,8 @@
     ]
    },
    "current_repository": "National Gallery",
-   "physical_dimensions": "102.0 x 85.5 cm"
+   "physical_dimensions": "102.0 x 85.5 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%2C%20The%20Apostle%20Paul%2C%201659%2C%20The%20National%20Gallery%2C%20London.jpg?width=600"
   },
   {
    "title": "Portrait of Margaretha de Geer, Wife of Jacob Trip",
@@ -2612,7 +2660,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/61017Portrait%20of%20Margaretha%20de%20Geer.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/61017Portrait%20of%20Margaretha%20de%20Geer.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/8e63b473c57367725a113ec379958fdf3264acfe733afd3f9dd5639c8dbad0e4.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -2652,7 +2700,8 @@
     ]
    },
    "current_repository": "National Gallery",
-   "physical_dimensions": "130.5 x 97.5 cm"
+   "physical_dimensions": "130.5 x 97.5 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/61017Portrait%20of%20Margaretha%20de%20Geer.jpg?width=600"
   },
   {
    "title": "The Laughing Man",
@@ -2667,7 +2716,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20-%20The%20laughing%20man.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20-%20The%20laughing%20man.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/b67dbf3779e5c182f0329d62e6c5c9a1914bd0a8d5ac2cbfaa017a150d0ea885.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -2706,7 +2755,8 @@
      1.0
     ]
    },
-   "physical_dimensions": "15.3 x 12.2 cm"
+   "physical_dimensions": "15.3 x 12.2 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20-%20The%20laughing%20man.jpg?width=600"
   },
   {
    "title": "Two African Men",
@@ -2721,7 +2771,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20Harmensz.%20van%20Rijn%20157.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20Harmensz.%20van%20Rijn%20157.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/7dce3f50e97e739c0d5fa8e4931e5f466f97316b5230dc9fb0020ad4538c61d4.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -2760,7 +2810,8 @@
      1.0
     ]
    },
-   "physical_dimensions": "77.8 x 64.4 cm"
+   "physical_dimensions": "77.8 x 64.4 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20Harmensz.%20van%20Rijn%20157.jpg?width=600"
   },
   {
    "title": "Andromeda Chained to the Rocks",
@@ -2775,7 +2826,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Andromeda%2C%20Rembrandt%20van%20Rijn%2C%201630-1631%2C%20Mauritshuis%2C%20The%20Hague.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Andromeda%2C%20Rembrandt%20van%20Rijn%2C%201630-1631%2C%20Mauritshuis%2C%20The%20Hague.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/fb272e45ce629d88884119fa31034333ad5f4c0318b87458ed1bdcc44d18f65a.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -2814,7 +2865,8 @@
      0.9798
     ]
    },
-   "physical_dimensions": "34.0 x 24.5 cm"
+   "physical_dimensions": "34.0 x 24.5 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Andromeda%2C%20Rembrandt%20van%20Rijn%2C%201630-1631%2C%20Mauritshuis%2C%20The%20Hague.jpg?width=600"
   },
   {
    "title": "The Abduction of Ganymede",
@@ -2829,7 +2881,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20-%20The%20Abduction%20of%20Ganymede%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20-%20The%20Abduction%20of%20Ganymede%20-%20Google%20Art%20Project.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/6de33b490a8ca586d3cb23064bf03aefa59b719c79b46bc7df615bae9fa4c0e7.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -2868,7 +2920,8 @@
      0.9802
     ]
    },
-   "physical_dimensions": "177.0 x 129.0 cm"
+   "physical_dimensions": "177.0 x 129.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20-%20The%20Abduction%20of%20Ganymede%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
    "title": "Young Woman in Fantasy Costume (Saskia)",
@@ -2883,7 +2936,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jonge%20vrouw%20in%20gefantaseerde%20kleding%20Rijksmuseum%20SK-A-4057.jpeg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jonge%20vrouw%20in%20gefantaseerde%20kleding%20Rijksmuseum%20SK-A-4057.jpeg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/dfed1288c772e303e6c81a95d0f87ad67162fc6a8e9a1467a2a73d8b69d8667d.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -2922,7 +2975,8 @@
      1.0
     ]
    },
-   "physical_dimensions": "65.0 x 48.0 cm"
+   "physical_dimensions": "65.0 x 48.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jonge%20vrouw%20in%20gefantaseerde%20kleding%20Rijksmuseum%20SK-A-4057.jpeg?width=600"
   },
   {
    "title": "Portrait of Marten Looten",
@@ -2937,7 +2991,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Maerten%20Looten%2C%20by%20Rembrandt%20van%20Rijn.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Maerten%20Looten%2C%20by%20Rembrandt%20van%20Rijn.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/db7b08bf2b5e3417bf81bc9e74f684aeeb56210f4b246cc418d294803f437e87.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -2975,7 +3029,8 @@
      0.9697,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Maerten%20Looten%2C%20by%20Rembrandt%20van%20Rijn.jpg?width=600"
   },
   {
    "title": "Minerva",
@@ -2990,7 +3045,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20-%20Minerva%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20-%20Minerva%20-%20Google%20Art%20Project.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/2bc137657fefb9d47bea5352da1177188bb5631fcb45dd55140cd431cd509d60.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -3029,7 +3084,8 @@
      1.0
     ]
    },
-   "physical_dimensions": "60.5 x 49.0 cm"
+   "physical_dimensions": "60.5 x 49.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20-%20Minerva%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
    "title": "Flora (Saskia van Uylenburgh in Arcadian Costume)",
@@ -3044,7 +3100,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Saskia%20van%20Uylenburgh%20in%20Arcadian%20Costume.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Saskia%20van%20Uylenburgh%20in%20Arcadian%20Costume.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/9f6bf59d67ffa9ba55117a439113e6d4c1a81f0864b3ad9b34c5fee5a32cca9b.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -3082,7 +3138,8 @@
      0.9761,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Saskia%20van%20Uylenburgh%20in%20Arcadian%20Costume.jpg?width=600"
   },
   {
    "title": "The Rape of Proserpina",
@@ -3097,7 +3154,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20-%20The%20Rape%20of%20Proserpine%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20-%20The%20Rape%20of%20Proserpine%20-%20Google%20Art%20Project.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/a682003ebac5dbe0212c2f1fd2c05b49c3a7f29926d57472e23a0e3214c62fa5.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -3136,7 +3193,8 @@
      1.0
     ]
    },
-   "physical_dimensions": "84.8 x 79.7 cm"
+   "physical_dimensions": "84.8 x 79.7 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20-%20The%20Rape%20of%20Proserpine%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
    "title": "Portrait of Aechje Claesdr.",
@@ -3151,7 +3209,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20Harmensz.%20van%20Rijn%20108.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20Harmensz.%20van%20Rijn%20108.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/6a77e6115607fbe1437117f4e38c5196321d4dfef45aca3e31356b08f46eda62.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -3191,7 +3249,8 @@
     ]
    },
    "current_repository": "National Gallery",
-   "physical_dimensions": "71.1 x 55.9 cm"
+   "physical_dimensions": "71.1 x 55.9 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20Harmensz.%20van%20Rijn%20108.jpg?width=600"
   },
   {
    "title": "The Apostle Paul",
@@ -3206,7 +3265,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Saint%20Paul%2C%20Rembrandt%20van%20Rijn%20%28and%20Workshop%3F%29%2C%20c.%201657.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Saint%20Paul%2C%20Rembrandt%20van%20Rijn%20%28and%20Workshop%3F%29%2C%20c.%201657.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/66ad65fd914e7580c408e6904e75c4e01112d02d8bcd886478cb5bdca57df859.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -3246,7 +3305,8 @@
     ]
    },
    "current_repository": "National Gallery of Art",
-   "physical_dimensions": "131.5 x 104.4 cm"
+   "physical_dimensions": "131.5 x 104.4 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Saint%20Paul%2C%20Rembrandt%20van%20Rijn%20%28and%20Workshop%3F%29%2C%20c.%201657.jpg?width=600"
   },
   {
    "title": "A Woman in Bed",
@@ -3261,7 +3321,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20%28Rembrandt%20van%20Rijn%29%20-%20A%20Woman%20in%20Bed%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20%28Rembrandt%20van%20Rijn%29%20-%20A%20Woman%20in%20Bed%20-%20Google%20Art%20Project.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/1cd99156ccf9b35801d5103c22bd58637065665f5bff41aa11208b65f97ff8b5.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -3300,7 +3360,8 @@
      1.0
     ]
    },
-   "physical_dimensions": "81.1 x 67.8 cm"
+   "physical_dimensions": "81.1 x 67.8 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20%28Rembrandt%20van%20Rijn%29%20-%20A%20Woman%20in%20Bed%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
    "title": "The Philosopher",
@@ -3315,7 +3376,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20-%20The%20Philosopher.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20-%20The%20Philosopher.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/d4aec4937ecd9c46c1d66f5817548fb401b2969f2d1cc8da4636a5247b96125d.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -3355,7 +3416,8 @@
     ]
    },
    "current_repository": "National Gallery of Art",
-   "physical_dimensions": "61.5 x 49.5 cm"
+   "physical_dimensions": "61.5 x 49.5 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%20-%20The%20Philosopher.jpg?width=600"
   },
   {
    "title": "Saint Bartholomew",
@@ -3370,7 +3432,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%2051030.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%2051030.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/36d71f441e6d3535f1a211dc4f0940c25d7521e6139b18bbd4c66a70e2c34de0.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -3410,7 +3472,8 @@
     ]
    },
    "current_repository": "Timken Museum of Art",
-   "physical_dimensions": "122.7 x 99.7 cm"
+   "physical_dimensions": "122.7 x 99.7 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt%2051030.jpg?width=600"
   },
   {
    "title": "The Girl with the Wine Glass",
@@ -3425,7 +3488,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Johannes%20Vermeer%20-%20The%20Girl%20with%20the%20Wine%20Glass%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Johannes%20Vermeer%20-%20The%20Girl%20with%20the%20Wine%20Glass%20-%20Google%20Art%20Project.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/446f4f905a3b4f00ea35344fbca8d1ce00d34d6162eefab0d26f4ee7d6195737.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -3464,7 +3527,8 @@
      1.0
     ]
    },
-   "current_repository": "Herzog Anton Ulrich-Museum, Braunschweig"
+   "current_repository": "Herzog Anton Ulrich-Museum, Braunschweig",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Johannes%20Vermeer%20-%20The%20Girl%20with%20the%20Wine%20Glass%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
    "title": "Lady Seated at a Virginal",
@@ -3479,7 +3543,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jan%20Vermeer%20van%20Delft%20-%20Jonge%20vrouw%20aan%20een%20virginaal%20%28ca.%201670-72%29.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jan%20Vermeer%20van%20Delft%20-%20Jonge%20vrouw%20aan%20een%20virginaal%20%28ca.%201670-72%29.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/d1119ff6acd3dd1d3df94a607448e2e4105dc18b3a1c2168ebab7433745b2185.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -3519,7 +3583,8 @@
     ]
    },
    "current_repository": "National Gallery",
-   "physical_dimensions": "51.5 x 45.5 cm"
+   "physical_dimensions": "51.5 x 45.5 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jan%20Vermeer%20van%20Delft%20-%20Jonge%20vrouw%20aan%20een%20virginaal%20%28ca.%201670-72%29.jpg?width=600"
   },
   {
    "title": "Lady Standing at a Virginal",
@@ -3534,7 +3599,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jan%20Vermeer%20van%20Delft%20-%20Jonge%20vrouw%20staande%20bij%20een%20virginaal%20%28ca.%201670-72%29.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jan%20Vermeer%20van%20Delft%20-%20Jonge%20vrouw%20staande%20bij%20een%20virginaal%20%28ca.%201670-72%29.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/eeec9f1643a78254360b4cc5070bb4f1758d52b3d286393c5c7c6c923592e919.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -3574,7 +3639,8 @@
     ]
    },
    "current_repository": "National Gallery",
-   "physical_dimensions": "51.7 x 45.2 cm"
+   "physical_dimensions": "51.7 x 45.2 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jan%20Vermeer%20van%20Delft%20-%20Jonge%20vrouw%20staande%20bij%20een%20virginaal%20%28ca.%201670-72%29.jpg?width=600"
   },
   {
    "title": "The Glass of Wine",
@@ -3589,7 +3655,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jan%20Vermeer%20van%20Delft%20-%20Het%20glas%20wijn%20%281658-60%29.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jan%20Vermeer%20van%20Delft%20-%20Het%20glas%20wijn%20%281658-60%29.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/84340d20bf03a014b8218f3d3dc6b1c53dcb5dc67a39feef0b405ed321bdc6e1.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -3628,7 +3694,8 @@
      1.0
     ]
    },
-   "current_repository": "Gemäldegalerie, Staatliche Museen zu Berlin"
+   "current_repository": "Gemäldegalerie, Staatliche Museen zu Berlin",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jan%20Vermeer%20van%20Delft%20-%20Het%20glas%20wijn%20%281658-60%29.jpg?width=600"
   },
   {
    "title": "Girl with the Red Hat",
@@ -3643,7 +3710,7 @@
    "source": "National Gallery of Art, Washington",
    "license": "PDM-1.0",
    "source_url": "https://api.nga.gov/iiif/b705a403-3496-42e8-abf5-a37e34c32198/full/3840,/0/default.jpg",
-   "thumbnail_url": "https://api.nga.gov/iiif/b705a403-3496-42e8-abf5-a37e34c32198/full/!800,800/0/default.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/e50ec1ab5434ca39e48fab1da107818d208c86c27845fc351b8f4d03b841bded.jpg",
    "license_verdict": "pd",
    "license_basis": "CC0 (NGA Open Access)",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -3684,7 +3751,8 @@
     ]
    },
    "delivered_edge": 4096,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://api.nga.gov/iiif/b705a403-3496-42e8-abf5-a37e34c32198/full/!800,800/0/default.jpg"
   },
   {
    "title": "The Geographer",
@@ -3699,7 +3767,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Johannes%20Vermeer%20-%20The%20Geographer%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Johannes%20Vermeer%20-%20The%20Geographer%20-%20Google%20Art%20Project.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/fc1f197ad93f4108d11f3481c944a590e2aabf2851a3a512480b107e8085994e.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -3737,7 +3805,8 @@
      0.9204,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Johannes%20Vermeer%20-%20The%20Geographer%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
    "title": "The Guitar Player",
@@ -3752,7 +3821,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Johannes%20Vermeer%20-%20The%20Guitar%20Player%20%28ca.%201672%29.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Johannes%20Vermeer%20-%20The%20Guitar%20Player%20%28ca.%201672%29.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/88e5a676d2c6a64ec2062306c5a89cea7a504a9e17fba0d6348bfc57741f8e95.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -3790,7 +3859,8 @@
      0.9361,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Johannes%20Vermeer%20-%20The%20Guitar%20Player%20%28ca.%201672%29.jpg?width=600"
   },
   {
    "title": "Mistress and Maid",
@@ -3805,7 +3875,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Johannes%20Vermeer%20-%20Mistress%20and%20Maid%20-%20Google%20Arts%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Johannes%20Vermeer%20-%20Mistress%20and%20Maid%20-%20Google%20Arts%20Project.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/f591bd3dc836d65240035f81f501e886a0d1150e352f0fb59582509eae49aa06.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -3843,7 +3913,8 @@
      0.9323,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Johannes%20Vermeer%20-%20Mistress%20and%20Maid%20-%20Google%20Arts%20Project.jpg?width=600"
   },
   {
    "title": "Allegory of the Catholic Faith",
@@ -3858,7 +3929,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Johannes%20Vermeer%2C%20Allegory%20of%20the%20Catholic%20Faith%2C%20The%20Metropolitan%20Museum%20of%20Art.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Johannes%20Vermeer%2C%20Allegory%20of%20the%20Catholic%20Faith%2C%20The%20Metropolitan%20Museum%20of%20Art.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/7112f6e6f3b22d0f7241cdc4bdc59becb5f93bd73d29aed6ddfa34d43d8bc85a.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -3898,7 +3969,8 @@
     ]
    },
    "current_repository": "Metropolitan Museum of Art",
-   "physical_dimensions": "114.3 x 88.9 cm"
+   "physical_dimensions": "114.3 x 88.9 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Johannes%20Vermeer%2C%20Allegory%20of%20the%20Catholic%20Faith%2C%20The%20Metropolitan%20Museum%20of%20Art.jpg?width=600"
   },
   {
    "title": "Woman with a Lute",
@@ -3913,7 +3985,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Vermeer%20-%20Woman%20with%20a%20Lute%20near%20a%20window.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Vermeer%20-%20Woman%20with%20a%20Lute%20near%20a%20window.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/c2b28093e3cb8d5156ec10f6a3d768931902111032d5bde517ab17c88da5d2c1.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -3953,7 +4025,8 @@
     ]
    },
    "current_repository": "Metropolitan Museum of Art",
-   "physical_dimensions": "51.4 x 45.7 cm"
+   "physical_dimensions": "51.4 x 45.7 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Vermeer%20-%20Woman%20with%20a%20Lute%20near%20a%20window.jpg?width=600"
   },
   {
    "title": "Woman in Blue Reading a Letter",
@@ -3968,7 +4041,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Brieflezende%20vrouw%2C%20SK-C-251.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Brieflezende%20vrouw%2C%20SK-C-251.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/0eff1d1c352fbddf8655532fba177f0742e6350656413fab4d9029b4b1c56953.jpg",
    "license_verdict": "pd",
    "license_basis": "CC0",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -4006,7 +4079,8 @@
      0.9483,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Brieflezende%20vrouw%2C%20SK-C-251.jpg?width=600"
   },
   {
    "title": "Diana and her Nymphs",
@@ -4021,7 +4095,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Johannes%20Vermeer%20-%20Diana%20and%20her%20Nymphs%20-%20406%20-%20Mauritshuis.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Johannes%20Vermeer%20-%20Diana%20and%20her%20Nymphs%20-%20406%20-%20Mauritshuis.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/7a6826d745a6ae020c346c6379b0f4b61176107512d046a13ec470b975556ae6.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -4060,7 +4134,8 @@
      1.0
     ]
    },
-   "physical_dimensions": "97.8 x 104.6 cm"
+   "physical_dimensions": "97.8 x 104.6 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Johannes%20Vermeer%20-%20Diana%20and%20her%20Nymphs%20-%20406%20-%20Mauritshuis.jpg?width=600"
   },
   {
    "title": "The Little Street (View of Houses in Delft)",
@@ -4075,7 +4150,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Gezicht%20op%20huizen%20in%20Delft%2C%20bekend%20als%20%E2%80%98Het%20straatje%E2%80%99%20Gezicht%20op%20huizen%20in%20Delft%2C%20bekend%20als%20%27Het%20straatje%27%2C%20SK-A-2860.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Gezicht%20op%20huizen%20in%20Delft%2C%20bekend%20als%20%E2%80%98Het%20straatje%E2%80%99%20Gezicht%20op%20huizen%20in%20Delft%2C%20bekend%20als%20%27Het%20straatje%27%2C%20SK-A-2860.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/1c4156b22ca515a4f312468c072ca6eef99daef455e358a87b374681c919dd42.jpg",
    "license_verdict": "pd",
    "license_basis": "CC0",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -4113,7 +4188,8 @@
      0.9425,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Gezicht%20op%20huizen%20in%20Delft%2C%20bekend%20als%20%E2%80%98Het%20straatje%E2%80%99%20Gezicht%20op%20huizen%20in%20Delft%2C%20bekend%20als%20%27Het%20straatje%27%2C%20SK-A-2860.jpg?width=600"
   },
   {
    "title": "Woman with a Pearl Necklace",
@@ -4128,7 +4204,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jan%20Vermeer%20van%20Delft%20-%20Young%20Woman%20with%20a%20Pearl%20Necklace%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jan%20Vermeer%20van%20Delft%20-%20Young%20Woman%20with%20a%20Pearl%20Necklace%20-%20Google%20Art%20Project.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/dd91b5ce31189a914732e3dc1c4b13f0fd8c038eca618483d1b9b0058d2871ac.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -4167,7 +4243,8 @@
      1.0
     ]
    },
-   "physical_dimensions": "55.0 x 45.0 cm"
+   "physical_dimensions": "55.0 x 45.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jan%20Vermeer%20van%20Delft%20-%20Young%20Woman%20with%20a%20Pearl%20Necklace%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
    "title": "Officer and Laughing Girl",
@@ -4182,7 +4259,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Johannes%20Vermeer%20-%20De%20Soldaat%20en%20het%20Lachende%20Meisje%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Johannes%20Vermeer%20-%20De%20Soldaat%20en%20het%20Lachende%20Meisje%20-%20Google%20Art%20Project.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/7fe418150142437b1ff1d36a2515234a35e8d026c9905df056c48e2c74daddb6.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -4222,7 +4299,8 @@
     ]
    },
    "current_repository": "The Frick Collection",
-   "physical_dimensions": "50.5 x 46.0 cm"
+   "physical_dimensions": "50.5 x 46.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Johannes%20Vermeer%20-%20De%20Soldaat%20en%20het%20Lachende%20Meisje%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
    "title": "The Music Lesson",
@@ -4237,7 +4315,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Johannes%20Vermeer%20-%20Lady%20at%20the%20Virginal%20with%20a%20Gentleman%2C%20%27The%20Music%20Lesson%27%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Johannes%20Vermeer%20-%20Lady%20at%20the%20Virginal%20with%20a%20Gentleman%2C%20%27The%20Music%20Lesson%27%20-%20Google%20Art%20Project.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/3bcbcf4db55ff226a0050cd85974e385dcffe1a9bc1ccec7e461a7aea1f34dd0.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -4277,7 +4355,8 @@
     ]
    },
    "current_repository": "Royal Collection",
-   "physical_dimensions": "74.1 x 64.6 cm"
+   "physical_dimensions": "74.1 x 64.6 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Johannes%20Vermeer%20-%20Lady%20at%20the%20Virginal%20with%20a%20Gentleman%2C%20%27The%20Music%20Lesson%27%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
    "title": "The Love Letter",
@@ -4292,7 +4371,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Vermeer%2C%20Johannes%20-%20The%20Loveletter.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Vermeer%2C%20Johannes%20-%20The%20Loveletter.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/ccfc1dd41b75e509720b42dd7cba50c6ceaa76ab2f3c0e9918e5da695201ac9a.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -4330,7 +4409,8 @@
      0.9202,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Vermeer%2C%20Johannes%20-%20The%20Loveletter.jpg?width=600"
   },
   {
    "title": "The Astronomer",
@@ -4345,7 +4425,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Der%20Astronom%20Hajotthu%20version.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Der%20Astronom%20Hajotthu%20version.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/5c6babda555489b95eb2c2bee1b19e74eff7828286d7f2913321eec871604847.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -4383,7 +4463,8 @@
      0.9022,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Der%20Astronom%20Hajotthu%20version.jpg?width=600"
   },
   {
    "title": "Lady Writing a Letter with her Maid",
@@ -4398,7 +4479,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/DublinVermeer.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/DublinVermeer.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/5d74c262e1fa745ed269d4d430ec77b38cbf69c895a2578821b297f2a21a7c31.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -4436,7 +4517,8 @@
      0.9411,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/DublinVermeer.jpg?width=600"
   },
   {
    "title": "The Procuress",
@@ -4451,7 +4533,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Johannes%20Vermeer%20-%20The%20Procuress%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Johannes%20Vermeer%20-%20The%20Procuress%20-%20Google%20Art%20Project.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/ca9e88312eba7234c77b1ab9f19f9e24fbbd9383b2512d418a9cafb07cb84fe3.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -4490,7 +4572,8 @@
      1.0
     ]
    },
-   "physical_dimensions": "143.0 x 130.0 cm"
+   "physical_dimensions": "143.0 x 130.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Johannes%20Vermeer%20-%20The%20Procuress%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
    "title": "Girl Reading a Letter at an Open Window",
@@ -4505,7 +4588,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Johannes%20Vermeer%20-%20Girl%20Reading%20a%20Letter%20by%20an%20Open%20Window%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Johannes%20Vermeer%20-%20Girl%20Reading%20a%20Letter%20by%20an%20Open%20Window%20-%20Google%20Art%20Project.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/2c5e201d6ff7c46e64d1083de929eef156ac6075610b8912d4730ca6fa4471d5.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -4543,7 +4626,8 @@
      0.9906,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Johannes%20Vermeer%20-%20Girl%20Reading%20a%20Letter%20by%20an%20Open%20Window%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
    "title": "A Lady Writing",
@@ -4558,7 +4642,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Johannes%20Vermeer%20-%20A%20Lady%20Writing%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Johannes%20Vermeer%20-%20A%20Lady%20Writing%20-%20Google%20Art%20Project.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/b61c59f1e909c0c48825e84cf702f4bd305236483e75c7a83bf23972108a1209.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -4596,7 +4680,8 @@
      0.8952,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Johannes%20Vermeer%20-%20A%20Lady%20Writing%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
    "title": "Christ in the House of Martha and Mary",
@@ -4611,7 +4696,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Johannes%20%28Jan%29%20Vermeer%20-%20Christ%20in%20the%20House%20of%20Martha%20and%20Mary%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Johannes%20%28Jan%29%20Vermeer%20-%20Christ%20in%20the%20House%20of%20Martha%20and%20Mary%20-%20Google%20Art%20Project.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/9bc172eb79f45ffc0bb195ee76ac5c186a728251f075ad260c464c6e3a6ee14e.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -4649,7 +4734,8 @@
      0.9173,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Johannes%20%28Jan%29%20Vermeer%20-%20Christ%20in%20the%20House%20of%20Martha%20and%20Mary%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
    "title": "Portrait of Jacobus Zaffius",
@@ -4664,7 +4750,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Hals%20Frans%20-%20Zaffius%2C%20Jacobus%20Hendricksz%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Hals%20Frans%20-%20Zaffius%2C%20Jacobus%20Hendricksz%20-%20Google%20Art%20Project.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/88226a1ed4b34f72b1f5c63f7d83cf29ff4ce43b48a0e387f72c97031c4ecc66.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -4702,7 +4788,8 @@
      1.0,
      0.5924
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Hals%20Frans%20-%20Zaffius%2C%20Jacobus%20Hendricksz%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
    "title": "Portrait of Maritge Claesdr Vooght",
@@ -4717,7 +4804,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Portret%20van%20Maritge%20Claesdr%20Vooght%20%281577-1644%29%2C%20SK-C-139.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Portret%20van%20Maritge%20Claesdr%20Vooght%20%281577-1644%29%2C%20SK-C-139.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/f0b0f692e865a082f5158f9c7ed352a1fcfa103b5905735fc0e9693de7fbb0c4.jpg",
    "license_verdict": "pd",
    "license_basis": "CC0",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -4755,7 +4842,8 @@
      1.0,
      0.5958
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Portret%20van%20Maritge%20Claesdr%20Vooght%20%281577-1644%29%2C%20SK-C-139.jpg?width=600"
   },
   {
    "title": "Portrait of Jacob Olycan",
@@ -4770,7 +4858,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frans%20Hals%20-%20Portrait%20of%20Jacob%20Olycan%20%281596-1638%29%20-%20459%20-%20Mauritshuis.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frans%20Hals%20-%20Portrait%20of%20Jacob%20Olycan%20%281596-1638%29%20-%20459%20-%20Mauritshuis.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/5f3beab952e81427fd2130a55d343370585eb1451c0a4d1449b730343817163b.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -4809,7 +4897,8 @@
      1.0
     ]
    },
-   "physical_dimensions": "124.8 x 97.5 cm"
+   "physical_dimensions": "124.8 x 97.5 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frans%20Hals%20-%20Portrait%20of%20Jacob%20Olycan%20%281596-1638%29%20-%20459%20-%20Mauritshuis.jpg?width=600"
   },
   {
    "title": "Catharina Hooft and her Nurse",
@@ -4824,7 +4913,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bildnis%20der%20Catharina%20Hooft%20mit%20ihrer%20Amme-WUS03330.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bildnis%20der%20Catharina%20Hooft%20mit%20ihrer%20Amme-WUS03330.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/4b9069c77d6fc2c465053350e52ae48f7d0a3b947d75b998801c323e705ca524.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -4862,7 +4951,8 @@
      0.9325,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bildnis%20der%20Catharina%20Hooft%20mit%20ihrer%20Amme-WUS03330.jpg?width=600"
   },
   {
    "title": "Family Portrait in a Landscape",
@@ -4877,7 +4967,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bildnis%20der%20Familie%20van%20Campen%20in%20einer%20Landschaft%20%28Frans%20Hals%20and%20Salomon%20de%20Bray%29-WUS03410.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bildnis%20der%20Familie%20van%20Campen%20in%20einer%20Landschaft%20%28Frans%20Hals%20and%20Salomon%20de%20Bray%29-WUS03410.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/c48f082352bd333c4802e438b4dba9e173717b0fd96a4f63801d9155db701081.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -4915,7 +5005,8 @@
      0.72,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bildnis%20der%20Familie%20van%20Campen%20in%20einer%20Landschaft%20%28Frans%20Hals%20and%20Salomon%20de%20Bray%29-WUS03410.jpg?width=600"
   },
   {
    "title": "Portrait of Pieter Cornelisz van der Morsch",
@@ -4930,7 +5021,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bildnis%20des%20Pieter%20Cornelisz%20van%20der%20Mersch%20%28Frans%20Hals%29-WUS03711.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bildnis%20des%20Pieter%20Cornelisz%20van%20der%20Mersch%20%28Frans%20Hals%29-WUS03711.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/f11134fd7cdbe9d49dd198e2322c7bd5f67f412fcc1af81b82221138d28fb8dd.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -4968,7 +5059,8 @@
      1.0,
      0.9092
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bildnis%20des%20Pieter%20Cornelisz%20van%20der%20Mersch%20%28Frans%20Hals%29-WUS03711.jpg?width=600"
   },
   {
    "title": "Banquet of the Officers of the St. George Civic Guard",
@@ -4983,7 +5075,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frans%20hals%2C%20banchetto%20degli%20ufficiali%20della%20guardia%20civica%20di%20s.%20giorgio%2C%201624-27%2C%2006.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frans%20hals%2C%20banchetto%20degli%20ufficiali%20della%20guardia%20civica%20di%20s.%20giorgio%2C%201624-27%2C%2006.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/4590817471e76ba75ae0ba503d341bd15c075144a110219f89509aa5f6e265e6.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -5021,7 +5113,8 @@
      1.0,
      0.9092
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frans%20hals%2C%20banchetto%20degli%20ufficiali%20della%20guardia%20civica%20di%20s.%20giorgio%2C%201624-27%2C%2006.jpg?width=600"
   },
   {
    "title": "Officers and Sergeants of the St. George Civic Guard",
@@ -5036,7 +5129,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frans%20hals%2C%20ufficiali%20e%20subalterni%20della%20guardia%20civica%20di%20s.%20giorgio%2C%201639%2C%2004.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frans%20hals%2C%20ufficiali%20e%20subalterni%20della%20guardia%20civica%20di%20s.%20giorgio%2C%201639%2C%2004.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/88d966b891c36535ff169487b1f9099f94c23977a7d71852a74394894e0d67b9.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -5074,7 +5167,8 @@
      1.0,
      0.8426
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frans%20hals%2C%20ufficiali%20e%20subalterni%20della%20guardia%20civica%20di%20s.%20giorgio%2C%201639%2C%2004.jpg?width=600"
   },
   {
    "title": "Portrait of an Elderly Lady",
@@ -5089,7 +5183,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frans%20Hals%20-%20An%20Old%20Lady%20-%201957.18.4%20-%20Yale%20University%20Art%20Gallery.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frans%20Hals%20-%20An%20Old%20Lady%20-%201957.18.4%20-%20Yale%20University%20Art%20Gallery.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/aef85c5535a7ebcb8d388218d63fbeff4d9519dae31ca013836092c66c801871.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -5129,7 +5223,8 @@
     ]
    },
    "current_repository": "Yale University Art Gallery",
-   "physical_dimensions": "73.7 x 59.1 cm"
+   "physical_dimensions": "73.7 x 59.1 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frans%20Hals%20-%20An%20Old%20Lady%20-%201957.18.4%20-%20Yale%20University%20Art%20Gallery.jpg?width=600"
   },
   {
    "title": "The Meagre Company",
@@ -5144,7 +5239,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frans%20Hals%2C%20De%20magere%20compagnie.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frans%20Hals%2C%20De%20magere%20compagnie.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/4d62491197d35ad0a3cd7f511e1083958e0ea1b9a565251da19e7893f2f52872.jpg",
    "featured_rank": 50,
    "width": 5446,
    "license_verdict": "pd",
@@ -5184,7 +5279,8 @@
      1.0
     ]
    },
-   "physical_dimensions": "209.0 x 429.0 cm"
+   "physical_dimensions": "209.0 x 429.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frans%20Hals%2C%20De%20magere%20compagnie.jpg?width=600"
   },
   {
    "title": "Fisherman Playing the Violin",
@@ -5199,7 +5295,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frans%20hals%2C%20pescatore%20che%20suona%20il%20violino%2C%201630%20ca.%2002.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frans%20hals%2C%20pescatore%20che%20suona%20il%20violino%2C%201630%20ca.%2002.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/1167f869d6fbeb4fb72866dfac976e327b47b684197f83f50e74d0b302696d30.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -5237,7 +5333,8 @@
      1.0,
      0.9854
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frans%20hals%2C%20pescatore%20che%20suona%20il%20violino%2C%201630%20ca.%2002.jpg?width=600"
   },
   {
    "title": "Two Boys Singing",
@@ -5252,7 +5349,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frans%20Hals%20-%20Twee%20zingende%20jongens%2C%201626.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frans%20Hals%20-%20Twee%20zingende%20jongens%2C%201626.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/1a1c7bf03be6c2fdc4a91482f0a40ba900519a4d0f08a3a62489fba3716b2761.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -5291,7 +5388,8 @@
      1.0
     ]
    },
-   "current_repository": "Private collection"
+   "current_repository": "Private collection",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frans%20Hals%20-%20Twee%20zingende%20jongens%2C%201626.jpg?width=600"
   },
   {
    "title": "Portrait of a Man with a Skull",
@@ -5306,7 +5404,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bildnis%20eines%20Mannes%20mit%20Totensch%C3%A4del%20%28Frans%20Hals%29-WUS03347.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bildnis%20eines%20Mannes%20mit%20Totensch%C3%A4del%20%28Frans%20Hals%29-WUS03347.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/5cfa1e96a89d33958ba80602c2a41635ecfb573cd81cceaa7c2b389aacc1458f.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -5351,7 +5449,8 @@
      0.9854,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bildnis%20eines%20Mannes%20mit%20Totensch%C3%A4del%20%28Frans%20Hals%29-WUS03347.jpg?width=600"
   },
   {
    "title": "Saint Luke the Evangelist",
@@ -5366,7 +5465,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Der%20Evangelist%20Lukas%20%28Frans%20Hals%29-WUS03443.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Der%20Evangelist%20Lukas%20%28Frans%20Hals%29-WUS03443.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/d2ab492949662581849a9229beeef07b693adaacecc89fb349975b91001ccfd6.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -5411,7 +5510,8 @@
      0.969,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Der%20Evangelist%20Lukas%20%28Frans%20Hals%29-WUS03443.jpg?width=600"
   },
   {
    "title": "Portrait of Vincent Laurensz van der Vinne",
@@ -5426,7 +5526,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Portrait%20of%20Vincent%20Laurensz%20van%20der%20Vinne%20%28Frans%20Hals%29-WUS03787.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Portrait%20of%20Vincent%20Laurensz%20van%20der%20Vinne%20%28Frans%20Hals%29-WUS03787.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/bd319ac9910c2e14c8a50868e50fa0aa404d2ac3fef9efc182f976372991be14.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -5471,7 +5571,8 @@
      0.9975,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Portrait%20of%20Vincent%20Laurensz%20van%20der%20Vinne%20%28Frans%20Hals%29-WUS03787.jpg?width=600"
   },
   {
    "title": "The Lute Player",
@@ -5486,7 +5587,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Le%20Bouffon%20au%20luth%20-%20Frans%20Hals%20-%20Mus%C3%A9e%20du%20Louvre%20Peintures%20RF%201984%2032.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Le%20Bouffon%20au%20luth%20-%20Frans%20Hals%20-%20Mus%C3%A9e%20du%20Louvre%20Peintures%20RF%201984%2032.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/64b921ed7f88ee164d4262c416b336bf9146719661d203207016b010628b60a0.jpg",
    "featured_rank": 47,
    "width": 6384,
    "license_verdict": "pd",
@@ -5526,7 +5627,8 @@
      1.0
     ]
    },
-   "physical_dimensions": "70.0 x 62.0 cm"
+   "physical_dimensions": "70.0 x 62.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Le%20Bouffon%20au%20luth%20-%20Frans%20Hals%20-%20Mus%C3%A9e%20du%20Louvre%20Peintures%20RF%201984%2032.jpg?width=600"
   },
   {
    "title": "Portrait of a Standing Woman",
@@ -5541,7 +5643,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bildnis%20einer%20stehenden%20Frau%20%28Frans%20Hals%29-WUS03349.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bildnis%20einer%20stehenden%20Frau%20%28Frans%20Hals%29-WUS03349.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/8f14614d7ab1f159fa404daa844b7726a911706b99554197dceabd808d756347.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -5586,7 +5688,8 @@
      1.0,
      0.9877
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bildnis%20einer%20stehenden%20Frau%20%28Frans%20Hals%29-WUS03349.jpg?width=600"
   },
   {
    "title": "Saint John the Evangelist",
@@ -5601,7 +5704,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frans%20Hals%20%28Dutch%20-%20Saint%20John%20the%20Evangelist%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frans%20Hals%20%28Dutch%20-%20Saint%20John%20the%20Evangelist%20-%20Google%20Art%20Project.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/d0af05f2a5b502630f64822e9783432ee2bf66c5cb70b71708a5669eb273ee4b.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -5641,7 +5744,8 @@
     ]
    },
    "current_repository": "J. Paul Getty Museum",
-   "physical_dimensions": "70.0 x 55.0 cm"
+   "physical_dimensions": "70.0 x 55.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frans%20Hals%20%28Dutch%20-%20Saint%20John%20the%20Evangelist%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
    "title": "Fisher Boy in a Landscape",
@@ -5656,7 +5760,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frans%20Hals%20-%20Vissersjongen.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frans%20Hals%20-%20Vissersjongen.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/9e0dc62020f7a435051799201ef141020d7c02fd02d8ed88a6f817d7884232e9.jpg",
    "featured_rank": 33,
    "width": 4372,
    "license_verdict": "pd",
@@ -5695,7 +5799,8 @@
      0.9286,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frans%20Hals%20-%20Vissersjongen.jpg?width=600"
   },
   {
    "title": "Peeckelhaering",
@@ -5710,7 +5815,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pekelharing%20%28Frans%20Hals%29-WUS03433.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pekelharing%20%28Frans%20Hals%29-WUS03433.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/97c626235c098fde83802cd61b0a12d393a9f9c2aa9101208240d433941ff0e0.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -5748,7 +5853,8 @@
      0.9477,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pekelharing%20%28Frans%20Hals%29-WUS03433.jpg?width=600"
   },
   {
    "title": "Singing Boy with a Flute",
@@ -5763,7 +5869,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frans%20Hals%20-%20Singing%20Boy%20with%20Flute%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frans%20Hals%20-%20Singing%20Boy%20with%20Flute%20-%20Google%20Art%20Project.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/ca7bfedd1b247b6ca5ad5b0c81c50849e13df9cddb3b44dc33c2fc3beda3faa9.jpg",
    "featured_rank": 35,
    "width": 4000,
    "license_verdict": "pd",
@@ -5802,7 +5908,8 @@
      0.9737,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frans%20Hals%20-%20Singing%20Boy%20with%20Flute%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
    "title": "Portrait of Johannes Acronius",
@@ -5817,7 +5924,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frans%20Hals%20%281582-83%20-%201666%29%20-%20Bildnis%20des%20Johannes%20Acronius%20%281565-1627%29%20-%20767%20-%20Gem%C3%A4ldegalerie.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frans%20Hals%20%281582-83%20-%201666%29%20-%20Bildnis%20des%20Johannes%20Acronius%20%281565-1627%29%20-%20767%20-%20Gem%C3%A4ldegalerie.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/8e27f2361fde3c8848b324a0e26f7f5a5255f40991a3144f3d558409b048c6ae.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -5856,7 +5963,8 @@
      1.0
     ]
    },
-   "physical_dimensions": "19.3 x 17.1 cm"
+   "physical_dimensions": "19.3 x 17.1 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frans%20Hals%20%281582-83%20-%201666%29%20-%20Bildnis%20des%20Johannes%20Acronius%20%281565-1627%29%20-%20767%20-%20Gem%C3%A4ldegalerie.jpg?width=600"
   },
   {
    "title": "Portrait of a Man",
@@ -5871,7 +5979,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frans%20Hals%20%281582-83%20-%201666%29%20-%20Portrait%20of%20a%20Man%20-%20766%20-%20Gem%C3%A4ldegalerie.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frans%20Hals%20%281582-83%20-%201666%29%20-%20Portrait%20of%20a%20Man%20-%20766%20-%20Gem%C3%A4ldegalerie.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/f2e704ee4b7df15dd44c07597aa79d2221d7f6d00418f0f6524fb54f47096fb1.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -5910,7 +6018,8 @@
      0.954
     ]
    },
-   "physical_dimensions": "20.0 x 14.0 cm"
+   "physical_dimensions": "20.0 x 14.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frans%20Hals%20%281582-83%20-%201666%29%20-%20Portrait%20of%20a%20Man%20-%20766%20-%20Gem%C3%A4ldegalerie.jpg?width=600"
   },
   {
    "title": "Portrait of a Woman Holding a Book",
@@ -5925,7 +6034,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frans%20Hals%20-%20portrait%20of%20Maritge%20Claesdr.%20Olycan%20-%20half-length%20holding%20a%20book.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frans%20Hals%20-%20portrait%20of%20Maritge%20Claesdr.%20Olycan%20-%20half-length%20holding%20a%20book.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/1b88109c248bf007fd54f3d233f30b873c6758b5085abcda490cd42bfb4adf8b.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -5964,7 +6073,8 @@
      1.0
     ]
    },
-   "physical_dimensions": "128.0 x 94.5 cm"
+   "physical_dimensions": "128.0 x 94.5 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frans%20Hals%20-%20portrait%20of%20Maritge%20Claesdr.%20Olycan%20-%20half-length%20holding%20a%20book.jpg?width=600"
   }
  ]
 }

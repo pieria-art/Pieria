@@ -18,7 +18,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsca/18200/18256u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/18200/18256v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/26226ce43a62d26a15e13afd3950cec1847efefc31e2f09cd220a00ce43c2376.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -57,7 +57,8 @@
      0.7555,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/18200/18256v.jpg"
   },
   {
    "title": "The Albert Memorial, London",
@@ -72,7 +73,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsca/52400/52405u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/52400/52405v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/442dc88cc09a1c12e533539af1f0f8ce0d1c9652c28c5e05557e94c5dcc0d8d4.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -111,7 +112,8 @@
      1.0,
      0.9874
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/52400/52405v.jpg"
   },
   {
    "title": "The Waag, Nieuwmarkt, Amsterdam",
@@ -126,7 +128,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsca/52600/52693u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/52600/52693v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/acb9cb91f972239f196a865081024977efb4c3ad0561e6057c51f691c2f96a25.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -165,7 +167,8 @@
      0.7801,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/52600/52693v.jpg"
   },
   {
    "title": "The Betsy Ross House, Philadelphia",
@@ -180,7 +183,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsca/17900/17948u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/17900/17948v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/869e05aebe6332cda149a7bfecf8ffbb0480fc13c57c4c36b6bc4144e2a9481f.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -219,7 +222,8 @@
      1.0,
      0.8542
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/17900/17948v.jpg"
   },
   {
    "title": "The Belfry and Canal, Bruges",
@@ -234,7 +238,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsca/52200/52295u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/52200/52295v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/669828c4012de292ed9771c4017f8cec0138231ed1b6caf76241aed2fc625137.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -273,7 +277,8 @@
      0.5593,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/52200/52295v.jpg"
   },
   {
    "title": "The National Bank, Bucharest",
@@ -288,7 +293,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsca/52700/52719u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/52700/52719v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/ae4b8f1a91cc3472f0ab85d608f64188b0f212fb298866e75516558fa2950b6a.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -327,7 +332,8 @@
      0.7759,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/52700/52719v.jpg"
   },
   {
    "title": "Domnița Bălașa Church, Bucharest",
@@ -342,7 +348,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsca/52700/52718u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/52700/52718v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/ddb5e4163d4dd0643a17a023e962aba7acd881d98425b905781cefad6e71172e.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -381,7 +387,8 @@
      0.7812,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/52700/52718v.jpg"
   },
   {
    "title": "The Archway, St. Augustine's Abbey, Canterbury",
@@ -396,7 +403,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsca/52300/52358u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/52300/52358v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/a60ffdb110efaf0a1e6ee3db8a1483f24ee163adcc45950b8c2fff0da9529a37.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -435,7 +442,8 @@
      0.7487,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/52300/52358v.jpg"
   },
   {
    "title": "Grain Elevators on the Chicago River",
@@ -450,7 +458,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsca/18100/18101u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/18100/18101v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/d167f01b8972503ec93658f051cbe99a50edc49538e1691b48be0392fe23b3b0.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -489,7 +497,8 @@
      0.9154,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/18100/18101v.jpg"
   },
   {
    "title": "Christ Church, Philadelphia",
@@ -504,7 +513,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsca/18100/18123u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/18100/18123v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/7a3f12dfa71faa361911cb3b3f8d577589ac135498cb433cadadf057966aca88.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -543,7 +552,8 @@
      0.978,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/18100/18123v.jpg"
   },
   {
    "title": "Cliveden, the Chew Mansion, Germantown",
@@ -558,7 +568,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsca/18100/18127u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/18100/18127v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/eda29fc287c58012f1efb46fd95030be53f7330af555c211991bb085ff38d9a3.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -597,7 +607,8 @@
      0.7904,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/18100/18127v.jpg"
   },
   {
    "title": "Reichsburg Cochem on the Moselle",
@@ -612,7 +623,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsca/52500/52538u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/52500/52538v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/43c4462526a0a9d6a4d07814d0a59b2b945d1fc9cdbf78421756429d2d948eaa.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -651,7 +662,8 @@
     ]
    },
    "delivered_edge": 7333,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/52500/52538v.jpg"
   },
   {
    "title": "Detroit Museum of Art",
@@ -666,7 +678,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsca/18000/18018u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/18000/18018v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/59112d9382ac8243499c60e9f6802d838cbb2bebf5ce2b3fd491c3b95256dfda.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -705,7 +717,8 @@
      0.7819,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/18000/18018v.jpg"
   },
   {
    "title": "Western Boulevard, Detroit",
@@ -720,7 +733,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsca/18200/18290u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/18200/18290v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/62270cc8f5762bcd398f9ea03234eac54f063fc175c74a1a7e3b17bd2af8b21c.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -759,7 +772,8 @@
      0.7794,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/18200/18290v.jpg"
   },
   {
    "title": "Field Columbian Museum, Jackson Park, Chicago",
@@ -774,7 +788,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsca/18100/18167u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/18100/18167v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/66ea3a71776835143c7eb2dcc21b2bd207acbe112cadf34738f330daf770201b.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -813,7 +827,8 @@
      0.7927,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/18100/18167v.jpg"
   },
   {
    "title": "Fort Marion (Castillo de San Marcos), St. Augustine",
@@ -828,7 +843,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsca/18000/18031u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/18000/18031v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/d8fffa6adddb501c2964299e122900274ad1b7a0caafcfbbea2e73ead92c8deb.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -867,7 +882,8 @@
      0.7627,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/18000/18031v.jpg"
   },
   {
    "title": "Illinois Trust and Savings Bank, Chicago",
@@ -882,7 +898,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsca/18000/18096u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/18000/18096v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/56b5139fb2a86ab2c08a69fa991e4477d24ffc9d45ed9ea737538fb27d1b0c94.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -921,7 +937,8 @@
      0.7861,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/18000/18096v.jpg"
   },
   {
    "title": "Independence Hall, Philadelphia",
@@ -936,7 +953,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsca/18100/18122u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/18100/18122v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/b10dcca5dd1cee118c9f5e5c641a209e11f4b0407f7263e3604e0fe9f36be022.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -975,7 +992,8 @@
      0.7933,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/18100/18122v.jpg"
   },
   {
    "title": "Brasov Town Hall (Kronstadt Rathaus)",
@@ -990,7 +1008,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsca/52700/52716u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/52700/52716v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/644c310c07734f07b91ab82c9f7bfa06ea7ec624c7591d8ca00b023179141a6c.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -1029,7 +1047,8 @@
      0.7202,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/52700/52716v.jpg"
   },
   {
    "title": "Grant Monument, Lincoln Park, Chicago",
@@ -1044,7 +1063,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsca/17900/17947u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/17900/17947v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/ee3b1a072c5ac8369f6b12dc7e7a10a2eda7b9662218a268f55c34d8b8e7ddf3.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -1083,7 +1102,8 @@
      1.0,
      0.8098
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/17900/17947v.jpg"
   },
   {
    "title": "Lafayette Monument, Lafayette Park, Washington",
@@ -1098,7 +1118,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsca/18000/18017u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/18000/18017v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/d136a44631b2a4087f8aa5b71afbedf1c71771d0f018dbc3086f765933373379.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -1137,7 +1157,8 @@
      0.7806,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/18000/18017v.jpg"
   },
   {
    "title": "Trafalgar Square, London",
@@ -1152,7 +1173,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsca/52900/52921u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/52900/52921v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/3779cbcfab824db309c83deedf3caace13a71cdd2353d3f746070cd19241c181.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -1191,7 +1212,8 @@
      0.7893,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/52900/52921v.jpg"
   },
   {
    "title": "Basílica de San Francisco el Grande, Madrid",
@@ -1206,7 +1228,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsca/52800/52817u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/52800/52817v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/6ddac458f50ddb9902819e65f55c50dffb4e068a3dcef384e8fc37ba9536a2e7.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -1245,7 +1267,8 @@
      0.7825,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/52800/52817v.jpg"
   },
   {
    "title": "Founder's Hall, Girard College, Philadelphia",
@@ -1260,7 +1283,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsca/18100/18124u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/18100/18124v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/fda0ed585fc0710d6c432b920ba6c410d2e51ab373398d1cd69787b8c4a3bec7.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -1299,7 +1322,8 @@
      0.9124,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/18100/18124v.jpg"
   },
   {
    "title": "Masonic Temple, Chicago",
@@ -1314,7 +1338,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsca/18000/18095u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/18000/18095v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/b732fab8c0678e54c2b6b42fb122c939691a96089f7113ecab0a28d5fbbda69b.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -1353,7 +1377,8 @@
      0.9889,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/18000/18095v.jpg"
   },
   {
    "title": "Mission Dolores, San Francisco",
@@ -1368,7 +1393,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsca/17900/17977u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/17900/17977v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/c5dbfc6e1f08a86c6bf4b9a078050a521a282b4d6ccd557f727b41e90d341c1f.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -1407,7 +1432,8 @@
      0.7425,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/17900/17977v.jpg"
   },
   {
    "title": "Mount Pleasant Mansion, Philadelphia",
@@ -1422,7 +1448,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsca/17900/17949u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/17900/17949v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/16f6aaf8b157dc5c18eff76a523dd1c0abb1bbba3154296a4fc1cb1e480d3f5f.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -1461,7 +1487,8 @@
      0.6458,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/17900/17949v.jpg"
   },
   {
    "title": "San Francisco Wharf, Havana",
@@ -1476,7 +1503,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsca/18200/18272u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/18200/18272v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/99c01692d439d87cce57efbbff2af7e4741895bd424cb78160c145a481a44b17.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -1515,7 +1542,8 @@
      0.7918,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/18200/18272v.jpg"
   },
   {
    "title": "New Old South Church, Boston",
@@ -1530,7 +1558,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsca/18100/18171u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/18100/18171v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/1f3c712904fdb341c2df03311018a841819c3e84779726e3004e887d1b1319b8.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -1569,7 +1597,8 @@
      0.9758,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/18100/18171v.jpg"
   },
   {
    "title": "Old City Gate, St. Augustine",
@@ -1584,7 +1613,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsca/18000/18023u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/18000/18023v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/6e2ebc0f1ea9660d08fe96b4e89a8fd3ca2ef65cbf634949f4d18d2f57846fa5.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -1623,7 +1652,8 @@
      0.663,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/18000/18023v.jpg"
   },
   {
    "title": "Grand Foyer, Palais Garnier, Paris",
@@ -1638,7 +1668,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsca/52400/52490u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/52400/52490v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/b8d2c95862db36fe00154294485845bea2e11edc92ad5fbb4eb460f69df04e6b.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -1677,7 +1707,8 @@
      1.0,
      0.9954
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/52400/52490v.jpg"
   },
   {
    "title": "Palais Garnier, Paris",
@@ -1692,7 +1723,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsca/52400/52491u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/52400/52491v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/6fe06f2cb3ac88eb5aadecec6781a5071805cd5c0163f973a6416f875718714d.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -1731,7 +1762,8 @@
      0.7788,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/52400/52491v.jpg"
   },
   {
    "title": "La Madeleine, Paris",
@@ -1746,7 +1778,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsca/52400/52496u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/52400/52496v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/96a0b880c8adfc0d125ee350031530d73603e581788ed7226d946cc7e4502cd8.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -1785,7 +1817,8 @@
      0.898,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/52400/52496v.jpg"
   },
   {
    "title": "The Louvre, Paris",
@@ -1800,7 +1833,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsca/52500/52500u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/52500/52500v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/22ac0a23a3c60e0421d68d271ac5696fdbe682ceb5e49f2cd5b52c1af466e86e.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -1839,7 +1872,8 @@
      0.7807,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/52500/52500v.jpg"
   },
   {
    "title": "The Panthéon, Paris",
@@ -1854,7 +1888,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsca/52400/52493u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/52400/52493v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/b1e095ab48bdfacfc04978442e7dd705dcc126662589f797dfb935cf60e0c384.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -1893,7 +1927,8 @@
      1.0,
      0.9969
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/52400/52493v.jpg"
   },
   {
    "title": "Notre-Dame Cathedral, Paris",
@@ -1908,7 +1943,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsca/52400/52497u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/52400/52497v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/f0637e90b1171860c3906231829ab83b4da282e10d52e0334bede325942f457c.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -1947,7 +1982,8 @@
      0.6808,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/52400/52497v.jpg"
   },
   {
    "title": "The Palais Royal, Paris",
@@ -1962,7 +1998,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsca/52400/52498u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/52400/52498v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/3298e45c276cb7f129b33b0f8c1b312182ad82d2721cac30445a09dc1dc1ee38.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -2001,7 +2037,8 @@
      0.7778,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/52400/52498v.jpg"
   },
   {
    "title": "Porte Saint-Denis, Paris",
@@ -2016,7 +2053,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsca/52500/52502u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/52500/52502v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/5cd383fdb2a437b2c64c7de5870e28af9e1696a2edc32dc53db07f1cfcd83c33.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -2055,7 +2092,8 @@
      0.9062,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/52500/52502v.jpg"
   },
   {
    "title": "Plymouth Church, Brooklyn",
@@ -2070,7 +2108,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsca/18200/18259u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/18200/18259v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/adc105b27a41fcfe836bb3f3e14533c251b8df20d3377bd322689a842ebe1337.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -2109,7 +2147,8 @@
      1.0,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/18200/18259v.jpg"
   },
   {
    "title": "Randolph Street, Chicago",
@@ -2124,7 +2163,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsca/18000/18099u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/18000/18099v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/5d4f52f53e79f9d381ab33549fba97b3daf7ee699dddb5891d15eceb9a100b2a.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -2163,7 +2202,8 @@
      0.9801,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/18000/18099v.jpg"
   },
   {
    "title": "The Potter Palmer Mansion, Chicago",
@@ -2178,7 +2218,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsca/18100/18102u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/18100/18102v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/288c79d44592bbb78f50752e9af9d350761b9bcf5f6dd03b91c4af55a43dce47.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -2217,7 +2257,8 @@
      0.7845,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/18100/18102v.jpg"
   },
   {
    "title": "United States Soldiers' Home, Washington",
@@ -2232,7 +2273,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsca/18000/18020u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/18000/18020v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/17cb6b5e2a64d9e6f54c61bd10c87dff45f41343d7a3bfd7b0da372caa5aa945.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -2271,7 +2312,8 @@
      0.8334,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/18000/18020v.jpg"
   },
   {
    "title": "St. Botolph's Church, Boston, England",
@@ -2286,7 +2328,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsca/52300/52352u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/52300/52352v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/d36c87e802cd3b1a06d9fbf315ba6e896ee3852e350dac86658f335dd66bf99b.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -2325,7 +2367,8 @@
      1.0,
      0.9924
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/52300/52352v.jpg"
   },
   {
    "title": "State Street, Chicago",
@@ -2340,7 +2383,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsca/18000/18098u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/18000/18098v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/fb669676289ef9ffca80ae92c86a0ee6ff877c74d8e61df7f5298fb1df989977.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -2379,7 +2422,8 @@
      1.0,
      0.7425
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/18000/18098v.jpg"
   },
   {
    "title": "The State, War, and Navy Building, Washington",
@@ -2394,7 +2438,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsca/18000/18015u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/18000/18015v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/85a0d7ee2e7aa8967d8c754d56bfa25ad5ac9ffbf477ff5c64332d53101c9e22.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -2433,7 +2477,8 @@
      0.7847,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/18000/18015v.jpg"
   },
   {
    "title": "The Statue of Liberty, New York Harbor",
@@ -2448,7 +2493,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsca/18200/18288u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/18200/18288v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/644c19ac314eb283055ce6b2404827723229dd0430378ad8e8f75f9bc29e1119.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -2487,7 +2532,8 @@
      0.7957,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/18200/18288v.jpg"
   },
   {
    "title": "Strawberry Mansion, Philadelphia",
@@ -2502,7 +2548,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsca/18100/18125u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/18100/18125v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/3ac8af429141ee9cb373b6548045dfdaad891fc85e6704cceba59021f8fac0ba.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -2541,7 +2587,8 @@
      0.7888,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/18100/18125v.jpg"
   },
   {
    "title": "The Alcazar Hotel, St. Augustine",
@@ -2556,7 +2603,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsca/18000/18022u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/18000/18022v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/d9e8e3abee5e06e8aa16ca8995b9bc1203e4b4a487f3260ce26d5dcc88f4d786.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -2595,7 +2642,8 @@
      0.7826,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/18000/18022v.jpg"
   },
   {
    "title": "The Auditorium Building, Chicago",
@@ -2610,7 +2658,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsca/18000/18097u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/18000/18097v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/ba57e5e86324fac26454a218645caa59d08dfa48c463e9cae4592d8db832c7f8.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -2649,7 +2697,8 @@
      0.772,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/18000/18097v.jpg"
   },
   {
    "title": "The U.S. Capitol, Washington D.C.",
@@ -2664,7 +2713,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsca/17900/17907u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/17900/17907v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/0980f8f3c5ef97b7128ad65e1ce3285ba6e38863340434a11ddc1e011b2202e9.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -2703,7 +2752,8 @@
      0.6446,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/17900/17907v.jpg"
   },
   {
    "title": "Grand Army Plaza, Brooklyn",
@@ -2718,7 +2768,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsca/18200/18266u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/18200/18266v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/3644b3f8580615d653997b1ac74503c435a663a458666f2c07eb70d78d9d74fd.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -2757,7 +2807,8 @@
      0.5872,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/18200/18266v.jpg"
   },
   {
    "title": "The Morris-Jumel Mansion, New York",
@@ -2772,7 +2823,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsca/18200/18258u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/18200/18258v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/17f38b9f54cf27a1ad99f44c0f7c1e7ba363caa55e5e9a7743a7ddd875df53c3.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -2811,7 +2862,8 @@
      0.7943,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/18200/18258v.jpg"
   },
   {
    "title": "The Library of Congress, Washington D.C.",
@@ -2826,7 +2878,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsca/18000/18016u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/18000/18016v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/0f0dedcf60e914e4c69cb9ddc26e9e889e23e4dfc3688340eb2a5904c4519fb9.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -2865,7 +2917,8 @@
      0.7767,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/18000/18016v.jpg"
   },
   {
    "title": "The Hotel Ponce de Leon, St. Augustine",
@@ -2880,7 +2933,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsca/18100/18131u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/18100/18131v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/85e3ff977ec3bcd232eeb27e667a991340f59ea0badf94ec5f304b2979527b19.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -2919,7 +2972,8 @@
      0.7934,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/18100/18131v.jpg"
   },
   {
    "title": "The Cliff House and Seal Rocks, San Francisco",
@@ -2934,7 +2988,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsca/17800/17882u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/17800/17882v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/f7a68d4b2eae996b8f165f96c065e74928222b35447f022e4313033d72ce7297.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -2973,7 +3027,8 @@
      0.5932,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/17800/17882v.jpg"
   },
   {
    "title": "The Boardwalk Casino, Atlantic City",
@@ -2988,7 +3043,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsca/17900/17929u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/17900/17929v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/4e6fcb60ed14039f11f5c4811a5dec000649b96b59f514d3239fc92fcbd974bc.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -3027,7 +3082,8 @@
      0.7487,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/17900/17929v.jpg"
   },
   {
    "title": "The Lodge, Golden Gate Park, San Francisco",
@@ -3042,7 +3098,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsca/17900/17918u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/17900/17918v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/1089b7e6c4f46171df8c82afd2a2c857e2064c96b4b5543d38d2151c3cb9cd69.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -3081,7 +3137,8 @@
      0.6409,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/17900/17918v.jpg"
   },
   {
    "title": "Tremont Street, Boston",
@@ -3096,7 +3153,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsca/18200/18270u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/18200/18270v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/c792107a2d19ddf93e5a609d83b8b8590202643ed198a611ee5f9df4f72fb156.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -3135,7 +3192,8 @@
      0.5894,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/18200/18270v.jpg"
   },
   {
    "title": "Wabash Avenue, Chicago",
@@ -3150,7 +3208,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsca/18100/18100u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/18100/18100v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/94e4fea74ec62f9fe30f58c269a253e1230d7528a971396cc63f48252db3a63e.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -3189,7 +3247,8 @@
      0.7812,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/18100/18100v.jpg"
   },
   {
    "title": "The Washington Monument",
@@ -3204,7 +3263,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsca/18200/18241u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/18200/18241v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/e0b8e789bcc08a9ff796b6b408421cbb003bc77f1da8532a2d5c516a9d49a8c3.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -3243,7 +3302,8 @@
      0.977,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/18200/18241v.jpg"
   },
   {
    "title": "Jackson Monument and the White House, Washington",
@@ -3258,7 +3318,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsca/18000/18037u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/18000/18037v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/ca8738ee128330f79259e08075b30b7aaf283969c274e7e4432a1b0fef5f9619.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -3297,7 +3357,8 @@
      0.683,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/18000/18037v.jpg"
   },
   {
    "title": "The Naval Monument, Washington",
@@ -3312,7 +3373,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsca/18000/18038u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/18000/18038v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/9bbba8cdf988b34bc79cb94cabc839adf54c879bfb7d5b2791fbc9c7074d7862.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -3351,7 +3412,8 @@
      0.7838,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/18000/18038v.jpg"
   },
   {
    "title": "The Smithsonian Institution, Washington",
@@ -3366,7 +3428,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsca/18000/18036u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/18000/18036v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/5f68363cce58daf03bcb63198f57e2cfaa25189092a9aa14a998e9bbdef4bfa7.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -3405,7 +3467,8 @@
      0.7333,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/18000/18036v.jpg"
   },
   {
    "title": "The Library of Congress, Washington",
@@ -3420,7 +3483,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsca/18000/18034u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/18000/18034v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/b946091fe17374020d91cad49b5ac92dfb6a36a296ce682e95a934c95087dd4c.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -3459,7 +3522,8 @@
      0.6339,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/18000/18034v.jpg"
   },
   {
    "title": "A Venetian Street",
@@ -3474,7 +3538,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsc/06600/06695u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsc/06600/06695v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/9d7e8cc5cd89b5567b62a2eea8da7f421011ea839aedf98c302a0d6a91e0eada.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -3513,7 +3577,8 @@
      1.0,
      0.9551
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsc/06600/06695v.jpg"
   },
   {
    "title": "Old Paris, Exposition Universelle 1900",
@@ -3528,7 +3593,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsc/05200/05227u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsc/05200/05227v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/dce70ce08ee456c9d014ca69435dadcd69945e552ba836fab57762f4603e8791.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -3567,7 +3632,8 @@
      0.7821,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsc/05200/05227v.jpg"
   },
   {
    "title": "The Arsenale, Venice",
@@ -3582,7 +3648,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsc/06700/06712u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsc/06700/06712v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/4ef08725f15fcea6f59dd4570620dae4aea844d07bdbfa8cb20362d47d067080.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -3621,7 +3687,8 @@
      0.6309,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsc/06700/06712v.jpg"
   },
   {
    "title": "The British Museum, London",
@@ -3636,7 +3703,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsc/08500/08563u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsc/08500/08563v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/959f21811d50e1bbacd43a2a8ea0b34c39e7772d128cb676ea280fd66d2d9421.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -3675,7 +3742,8 @@
      0.8285,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsc/08500/08563v.jpg"
   },
   {
    "title": "Cheapside, London",
@@ -3690,7 +3758,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsc/08500/08576u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsc/08500/08576v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/2ae3bf23643c112bf17b773a03682e394f4b273b9adace29c45aaf7ed39b7a7e.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -3729,7 +3797,8 @@
      1.0,
      0.629
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsc/08500/08576v.jpg"
   },
   {
    "title": "View of Vienna from the Riesenrad",
@@ -3744,7 +3813,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsc/09200/09205u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsc/09200/09205v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/0d9e7eee23537322b66d60dbbbb6374b11d47555523cf3b4573ceb1b36e7d850.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -3783,7 +3852,8 @@
      0.7842,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsc/09200/09205v.jpg"
   },
   {
    "title": "General View of Miskolc, Hungary",
@@ -3798,7 +3868,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsc/09400/09496u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsc/09400/09496v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/0e77856c04832611ed2e3673303e53bc5cb73920398a74de7570e2c674de8ff7.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -3837,7 +3907,8 @@
      0.6803,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsc/09400/09496v.jpg"
   },
   {
    "title": "Venice Harbour",
@@ -3852,7 +3923,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsc/06700/06742u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsc/06700/06742v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/2675f3f4c857d25d6cc3e324e10a87d8d1fc9e4d7766441d724ce66017ea7e2d.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -3891,7 +3962,8 @@
      0.7359,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsc/06700/06742v.jpg"
   },
   {
    "title": "The Hofburg Palace, Vienna",
@@ -3906,7 +3978,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsc/09200/09210u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsc/09200/09210v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/aa37af271982db73a1b33a49c18136d0c7c22936a8a8ba080a92393b529673f1.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -3945,7 +4017,8 @@
      0.7764,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsc/09200/09210v.jpg"
   },
   {
    "title": "Holborn Viaduct, London",
@@ -3960,7 +4033,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsc/08500/08578u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsc/08500/08578v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/85c1e4f421ff263532934744ee358a56cbbf2a3ffe351f8bbea11e4570938bf8.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -3999,7 +4072,8 @@
      0.7795,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsc/08500/08578v.jpg"
   },
   {
    "title": "Kahlenberg, Vienna",
@@ -4014,7 +4088,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsc/09200/09239u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsc/09200/09239v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/b6111fc05938795c225ffd48c0c6e13c05c4b9523f90cc200b020b659cb19b0d.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -4053,7 +4127,8 @@
      0.7859,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsc/09200/09239v.jpg"
   },
   {
    "title": "Kossuth Monument, Miskolc",
@@ -4068,7 +4143,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsc/09400/09497u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsc/09400/09497v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/8ec1a63104bf872f61849f002ef72bb2d17bb237c1af3324c1a0263fafbbdfac.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -4107,7 +4182,8 @@
      0.73,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsc/09400/09497v.jpg"
   },
   {
    "title": "Lambeth Palace, London",
@@ -4122,7 +4198,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsc/08500/08565u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsc/08500/08565v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/587dc2b1ede9207d0db539653e41fd4bba3552126f9c15f5a9f6bd3d458885b3.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -4161,7 +4237,8 @@
      0.7304,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsc/08500/08565v.jpg"
   },
   {
    "title": "Leopoldsberg, Vienna",
@@ -4176,7 +4253,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsc/09200/09233u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsc/09200/09233v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/09a6c8ff6142f305590f0f9f6c23e9cc54aada5b49d8d0daed8de191095ccc10.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -4215,7 +4292,8 @@
      0.8091,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsc/09200/09233v.jpg"
   },
   {
    "title": "London Bridge",
@@ -4230,7 +4308,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsc/08500/08569u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsc/08500/08569v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/7399ce1bf3e92243e67e73cbeebc7a4ae698ca9d7ff905fa7198227d55b2569e.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -4269,7 +4347,8 @@
      0.7787,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsc/08500/08569v.jpg"
   },
   {
    "title": "A Vienna Marketplace",
@@ -4284,7 +4363,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsc/09200/09211u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsc/09200/09211v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/b720b0455cb186d17ffb83a55d758f828441c7aea042e76f7d0fe1302e7c8583.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -4323,7 +4402,8 @@
      0.8964,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsc/09200/09211v.jpg"
   },
   {
    "title": "The Market, Bremerhaven",
@@ -4338,7 +4418,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsca/00400/00435u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/00400/00435v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/0ed28fafaa8c6a7da7ad8c42c4efb7eefb99ec0de7f39f2adc575065f197dcbc.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -4377,7 +4457,8 @@
      0.7815,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/00400/00435v.jpg"
   },
   {
    "title": "Church of St. Étienne-du-Mont, Paris",
@@ -4392,7 +4473,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsca/52400/52495u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/52400/52495v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/d7d31e98ff440497fbfc4171098bece37d6d8deb30d87e231da43f31a610e7ed.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -4431,7 +4512,8 @@
      0.7494,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/52400/52495v.jpg"
   },
   {
    "title": "The Parliament Building, Vienna",
@@ -4446,7 +4528,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsc/09200/09207u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsc/09200/09207v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/2a64972b0d778cc21b96cee5d6dab6a78ba30f333178c146e0f478999fb7437c.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -4485,7 +4567,8 @@
      0.6239,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsc/09200/09207v.jpg"
   },
   {
    "title": "Ca' Pesaro, Venice",
@@ -4500,7 +4583,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsc/06600/06690u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsc/06600/06690v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/607d3bad22269827ca296d89f14564f3e30720773df0ca051110d9da3c01d86c.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -4539,7 +4622,8 @@
      0.7768,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsc/06600/06690v.jpg"
   },
   {
    "title": "Piccadilly Circus, London",
@@ -4554,7 +4638,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsc/08500/08577u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsc/08500/08577v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/f0fad584e06c98a7f096a0a258f9909a7855800f350c929a6ecc1ee8b6509a83.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -4593,7 +4677,8 @@
      0.7328,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsc/08500/08577v.jpg"
   },
   {
    "title": "Ca' Rezzonico, Venice",
@@ -4608,7 +4693,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsc/06600/06691u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsc/06600/06691v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/ae25e74c0a0bd1c513c23e44a45d3a81d0ed287ab06052f7d0084da9c50febf7.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -4647,7 +4732,8 @@
      0.7824,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsc/06600/06691v.jpg"
   },
   {
    "title": "The Royal Exchange, London",
@@ -4662,7 +4748,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsc/08500/08562u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsc/08500/08562v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/e11ee755d6320279dada4ac38b499c6162fdc440bec3f0718618a87c758dbaf0.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -4701,7 +4787,8 @@
      0.6796,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsc/08500/08562v.jpg"
   },
   {
    "title": "Fort Crown Point Ruins, New York",
@@ -4716,7 +4803,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsca/18200/18215u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/18200/18215v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/cd4d17a956f3ac826cba28b0048f66b9f8d3db8b05a3dee953194417a2b85468.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -4755,7 +4842,8 @@
      0.6377,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsca/18200/18215v.jpg"
   },
   {
    "title": "Church of Saint-Augustin, Paris",
@@ -4770,7 +4858,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsc/05100/05189u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsc/05100/05189v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/72c993dc889df06a864b2dc42d6a9a350cfc5c54363430f47f0061d18187ec87.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -4809,7 +4897,8 @@
      0.8056,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsc/05100/05189v.jpg"
   },
   {
    "title": "St. Augustine's Bridge, Bristol",
@@ -4824,7 +4913,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsc/08000/08051u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsc/08000/08051v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/9b8afe1b6f007960f5573ac3653e3db56cf5369374e5c66a9d56fd5eac6bdd5c.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -4863,7 +4952,8 @@
      0.8308,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsc/08000/08051v.jpg"
   },
   {
    "title": "The Thames Embankment, London",
@@ -4878,7 +4968,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsc/08500/08580u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsc/08500/08580v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/18b0f7a39bf7bc68adfeb7d6ac54ade2f0b5808355a86ce4bab8847a79c5da92.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -4917,7 +5007,8 @@
      0.7799,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsc/08500/08580v.jpg"
   },
   {
    "title": "The Paris Opéra (Palais Garnier)",
@@ -4932,7 +5023,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsc/05100/05178u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsc/05100/05178v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/812681632bf6dbae5c7cf80666f79d40bd3f224099fe632d499a23ab46ad7361.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -4971,7 +5062,8 @@
      0.7821,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsc/05100/05178v.jpg"
   },
   {
    "title": "The Piazzetta, Venice",
@@ -4986,7 +5078,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsc/06600/06693u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsc/06600/06693v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/682b346f7dc2e2725db24e74721fcf499e706e8e9c45233441bf815a507b5dfe.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -5025,7 +5117,8 @@
      0.6357,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsc/06600/06693v.jpg"
   },
   {
    "title": "The Tower of London",
@@ -5040,7 +5133,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsc/08500/08566u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsc/08500/08566v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/7d37bed6efdfb4c8ccdc03141dc42a58e03b331239423d0d24c24ed080f29675.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -5079,7 +5172,8 @@
      0.8251,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsc/08500/08566v.jpg"
   },
   {
    "title": "The University of Vienna",
@@ -5094,7 +5188,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsc/09200/09214u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsc/09200/09214v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/75d5a659f8efac1a45b601d1fbc4c7d56de72b8205e81fa9a96fb68f43111931.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -5133,7 +5227,8 @@
      0.7294,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsc/09200/09214v.jpg"
   },
   {
    "title": "The Three Bridges, Venice",
@@ -5148,7 +5243,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsc/06700/06700u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsc/06700/06700v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/1448a281d478d6d859ce3e905ddeb3f0a3c1268294ef58b9ca5ea35bc6d30209.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -5187,7 +5282,8 @@
      1.0,
      0.9135
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsc/06700/06700v.jpg"
   },
   {
    "title": "Venice Harbour and the Doge's Palace",
@@ -5202,7 +5298,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsc/06700/06718u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsc/06700/06718v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/0bc9f97e44a6ae6f48d7491cdf85c5e75a6418c21a4a91aa47ae49185d194134.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -5241,7 +5337,8 @@
      0.7303,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsc/06700/06718v.jpg"
   },
   {
    "title": "The Votivkirche, Vienna",
@@ -5256,7 +5353,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsc/09200/09209u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsc/09200/09209v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/864d1a6ded02ed82d7b27e4f7c170a746e75b69d1078d0d39827d28244252e23.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -5295,7 +5392,8 @@
      1.0,
      0.6815
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsc/09200/09209v.jpg"
   },
   {
    "title": "Westminster Abbey, London",
@@ -5310,7 +5408,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsc/08500/08570u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsc/08500/08570v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/90509c330e6f2cc19a2b2f7dc5a8e92a4f09d1ae9e95750276eca3e9d7b4fe9e.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -5349,7 +5447,8 @@
      0.5818,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsc/08500/08570v.jpg"
   },
   {
    "title": "The Wurstelprater, Vienna",
@@ -5364,7 +5463,7 @@
    "source": "Library of Congress",
    "license": "PDM-1.0",
    "source_url": "https://tile.loc.gov/storage-services/master/pnp/ppmsc/09200/09218u.tif",
-   "thumbnail_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsc/09200/09218v.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/cd94b6f5bae828d00542db8a5f085bb5003e19b954c1eab43248fd971030a6a2.jpg",
    "kind": "photo",
    "license_verdict": "pd",
    "license_basis": "Public Domain — LoC Prints & Photographs, no known restrictions",
@@ -5403,7 +5502,8 @@
      0.9691,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://tile.loc.gov/storage-services/service/pnp/ppmsc/09200/09218v.jpg"
   }
  ]
 }

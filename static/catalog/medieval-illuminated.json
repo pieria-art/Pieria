@@ -18,7 +18,7 @@
    "source": "The Metropolitan Museum of Art",
    "license": "PDM-1.0",
    "source_url": "https://images.metmuseum.org/CRDImages/cl/original/DP225775.jpg",
-   "thumbnail_url": "https://images.metmuseum.org/CRDImages/cl/web-large/DP225775.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/08dc4d3fadae95959360d0f17d345344ea8708247ab2d6ca187cba9c1211c34a.jpg",
    "focal_point": [
     0.45,
     0.25
@@ -57,7 +57,8 @@
      0.975,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://images.metmuseum.org/CRDImages/cl/web-large/DP225775.jpg"
   },
   {
    "title": "The Belles Heures of Jean de France, duc de Berry",
@@ -72,7 +73,7 @@
    "source": "The Metropolitan Museum of Art",
    "license": "PDM-1.0",
    "source_url": "https://images.metmuseum.org/CRDImages/cl/original/DP253014.jpg",
-   "thumbnail_url": "https://images.metmuseum.org/CRDImages/cl/web-large/DP253014.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/9330d4c0beb6f84466186e384b77a9b5cca73370d17e2c98aaa9265ea1984c9d.jpg",
    "focal_point": [
     0.5,
     0.33
@@ -112,7 +113,8 @@
      0.98
     ]
    },
-   "current_repository": "The Metropolitan Museum of Art"
+   "current_repository": "The Metropolitan Museum of Art",
+   "thumbnail_source_url": "https://images.metmuseum.org/CRDImages/cl/web-large/DP253014.jpg"
   },
   {
    "title": "Très Riches Heures du Duc de Berry: January",
@@ -127,7 +129,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Les%20Tr%C3%A8s%20Riches%20Heures%20du%20duc%20de%20Berry%20Janvier-2.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Les%20Tr%C3%A8s%20Riches%20Heures%20du%20duc%20de%20Berry%20Janvier-2.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/52806c091fac4e7fd62e2ee8a63830139a2a31bc465ce4fcf3b03bd14c69ff02.jpg",
    "focal_point": [
     0.78,
     0.45
@@ -166,7 +168,8 @@
      0.9999,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Les%20Tr%C3%A8s%20Riches%20Heures%20du%20duc%20de%20Berry%20Janvier-2.jpg?width=600"
   },
   {
    "title": "Très Riches Heures du Duc de Berry: February",
@@ -181,7 +184,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/008%20MS%2065%20F2%20V.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/008%20MS%2065%20F2%20V.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/e792cfce565d31795fc7d2f24999663a4a13fcc131151a5a9b4714550fc58e92.jpg",
    "focal_point": [
     0.33,
     0.63
@@ -220,7 +223,8 @@
      1.0,
      0.9658
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/008%20MS%2065%20F2%20V.jpg?width=600"
   }
  ]
 }

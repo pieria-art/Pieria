@@ -18,7 +18,7 @@
    "source": "The Metropolitan Museum of Art",
    "license": "PDM-1.0",
    "source_url": "https://images.metmuseum.org/CRDImages/eg/original/DP248993.jpg",
-   "thumbnail_url": "https://images.metmuseum.org/CRDImages/eg/web-large/DP248993.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/e5bf5e27fbbf267e1de9c9ecd9ba4d24bb5d38daa3932fd51d226f70a925f7f0.jpg",
    "focal_point": [
     0.66,
     0.49
@@ -56,7 +56,8 @@
      1.0,
      0.7618
     ]
-   }
+   },
+   "thumbnail_source_url": "https://images.metmuseum.org/CRDImages/eg/web-large/DP248993.jpg"
   },
   {
    "title": "The Temple of Dendur",
@@ -71,7 +72,7 @@
    "source": "The Metropolitan Museum of Art",
    "license": "PDM-1.0",
    "source_url": "https://images.metmuseum.org/CRDImages/eg/original/DP240337.jpg",
-   "thumbnail_url": "https://images.metmuseum.org/CRDImages/eg/web-large/DP240337.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/63a1ef0ee70985ff7496d8d637267efa2f8db4daee5f21b7ba7566a233a7b74f.jpg",
    "focal_point": [
     0.6,
     0.45
@@ -109,7 +110,8 @@
      1.0,
      0.6917
     ]
-   }
+   },
+   "thumbnail_source_url": "https://images.metmuseum.org/CRDImages/eg/web-large/DP240337.jpg"
   },
   {
    "title": "Statuette of Amun",
@@ -124,7 +126,7 @@
    "source": "The Metropolitan Museum of Art",
    "license": "PDM-1.0",
    "source_url": "https://images.metmuseum.org/CRDImages/eg/original/DP-38626-001.jpg",
-   "thumbnail_url": "https://images.metmuseum.org/CRDImages/eg/web-large/DP-38626-001.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/b1abdfd03e2e9e5dc6919f79787ad0bfb9890d51956a4a53f178f3334709c5b4.jpg",
    "focal_point": [
     0.5,
     0.22
@@ -162,7 +164,8 @@
      1.0,
      0.9787
     ]
-   }
+   },
+   "thumbnail_source_url": "https://images.metmuseum.org/CRDImages/eg/web-large/DP-38626-001.jpg"
   },
   {
    "title": "Head of a ruler",
@@ -177,7 +180,7 @@
    "source": "The Metropolitan Museum of Art",
    "license": "PDM-1.0",
    "source_url": "https://images.metmuseum.org/CRDImages/an/original/DP-23662-001.jpg",
-   "thumbnail_url": "https://images.metmuseum.org/CRDImages/an/web-large/DP-23662-001.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/f210c76728ea4a9e67e357fdf1247f25bd35b89e36f32daaae2eacbc81c73f01.jpg",
    "focal_point": [
     0.5,
     0.45
@@ -215,7 +218,8 @@
      0.9498,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://images.metmuseum.org/CRDImages/an/web-large/DP-23662-001.jpg"
   },
   {
    "title": "Book of the Dead of Hunefer",
@@ -230,7 +234,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Book%20of%20the%20Dead%20of%20Hunefer%20sheet%202.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Book%20of%20the%20Dead%20of%20Hunefer%20sheet%202.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/cbe204f474dc50eac3079b62fba377ea5d0695b7401d013d0e228de60c7762c3.jpg",
    "focal_point": [
     0.18,
     0.6
@@ -270,7 +274,8 @@
      1.0
     ]
    },
-   "current_repository": "British Museum"
+   "current_repository": "British Museum",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Book%20of%20the%20Dead%20of%20Hunefer%20sheet%202.jpg?width=600"
   },
   {
    "title": "Papyrus of Ani",
@@ -285,7 +290,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Papyrus%20of%20Ani%20BM%20Sheet%2012.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Papyrus%20of%20Ani%20BM%20Sheet%2012.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/a1f3e75b61264427b5df8cea3d9f459b407d1a64428c72696109410b9360d047.jpg",
    "focal_point": [
     0.55,
     0.5
@@ -324,7 +329,8 @@
      0.7827,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Papyrus%20of%20Ani%20BM%20Sheet%2012.jpg?width=600"
   },
   {
    "title": "Seated Scribe",
@@ -339,7 +345,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Le%20Scribe%20accroupi%20-%20Mus%C3%A9e%20du%20Louvre%20Antiquit%C3%A9s%20%C3%A9gyptiennes%20E%203023.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Le%20Scribe%20accroupi%20-%20Mus%C3%A9e%20du%20Louvre%20Antiquit%C3%A9s%20%C3%A9gyptiennes%20E%203023.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/2d606549d537f6bcc52d6a85f051f706e498c7194896a868b73ea785b3207567.jpg",
    "featured_rank": 65,
    "license_verdict": "pd",
    "license_basis": "CC0",
@@ -378,7 +384,8 @@
     ]
    },
    "delivered_edge": 7680,
-   "resolution_tier": "8K"
+   "resolution_tier": "8K",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Le%20Scribe%20accroupi%20-%20Mus%C3%A9e%20du%20Louvre%20Antiquit%C3%A9s%20%C3%A9gyptiennes%20E%203023.jpg?width=600"
   },
   {
    "title": "Faience Sphinx of Amenhotep III",
@@ -393,7 +400,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sphinx%20of%20Amenhotep%20III%2C%20possibly%20from%20a%20Model%20of%20a%20Temple%20MET%20DT539.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sphinx%20of%20Amenhotep%20III%2C%20possibly%20from%20a%20Model%20of%20a%20Temple%20MET%20DT539.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/da8ff863dc4662378b5ffe3ea67239a403f68cd961c7a7185050e119f7dc6639.jpg",
    "focal_point": [
     0.55,
     0.35
@@ -433,7 +440,8 @@
      1.0
     ]
    },
-   "current_repository": "Metropolitan Museum of Art"
+   "current_repository": "Metropolitan Museum of Art",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sphinx%20of%20Amenhotep%20III%2C%20possibly%20from%20a%20Model%20of%20a%20Temple%20MET%20DT539.jpg?width=600"
   },
   {
    "title": "Wall Painting from the Tomb of Nebamun",
@@ -448,7 +456,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tomb%20of%20Nebamun.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tomb%20of%20Nebamun.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/bf5b4c0918db13f2dacd3c0f980f2166298094629e80e22f6551ffeef427425a.jpg",
    "focal_point": [
     0.55,
     0.25
@@ -488,7 +496,8 @@
      1.0
     ]
    },
-   "current_repository": "British Museum"
+   "current_repository": "British Museum",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tomb%20of%20Nebamun.jpg?width=600"
   },
   {
    "title": "Code of Hammurabi Stele",
@@ -503,7 +512,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Hammurabi%20code.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Hammurabi%20code.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/2b800870cb22db83384fe4a8dbc82d5c96aba10a6523376c7581ff06202b315c.jpg",
    "focal_point": [
     0.5,
     0.5
@@ -541,7 +550,8 @@
      1.0,
      0.8891
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Hammurabi%20code.jpg?width=600"
   },
   {
    "title": "Relief of a Winged Genius",
@@ -556,7 +566,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Neo-Assyrian%20Bas%20Relief%20of%20Winged%20Genius%2C%20from%20North%20Palace%20at%20Nimrud%2C%20c.%20883-859%20BC%20%2848465099611%29.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Neo-Assyrian%20Bas%20Relief%20of%20Winged%20Genius%2C%20from%20North%20Palace%20at%20Nimrud%2C%20c.%20883-859%20BC%20%2848465099611%29.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/e935ed381dc5bb7dac3ffa61aa9b4771d0297f0716d0eee184cffd9bec31c2ad.jpg",
    "focal_point": [
     0.55,
     0.09
@@ -594,7 +604,8 @@
      1.0,
      0.8891
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Neo-Assyrian%20Bas%20Relief%20of%20Winged%20Genius%2C%20from%20North%20Palace%20at%20Nimrud%2C%20c.%20883-859%20BC%20%2848465099611%29.jpg?width=600"
   }
  ]
 }

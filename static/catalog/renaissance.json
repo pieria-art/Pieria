@@ -18,7 +18,7 @@
    "source": "Art Institute of Chicago",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sandro%20Botticelli%20-%20Virgin%20and%20Child%20with%20an%20Angel%20-%201954.283%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sandro%20Botticelli%20-%20Virgin%20and%20Child%20with%20an%20Angel%20-%201954.283%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/8355e6218eb11ac4cd8710293a8e873b2ed1c4fbbe42ef3b7b430ff961879a77.jpg",
    "focal_point": [
     0.62,
     0.27
@@ -59,7 +59,8 @@
    },
    "below_floor_ok": true,
    "current_repository": "Art Institute of Chicago",
-   "physical_dimensions": "85.8 × 59.1 cm (33 3/4 × 23 1/4 in.); Framed: 106.7 × 80.1 × 7.7 cm (42 × 31 1/2 × 3 in.)"
+   "physical_dimensions": "85.8 × 59.1 cm (33 3/4 × 23 1/4 in.); Framed: 106.7 × 80.1 × 7.7 cm (42 × 31 1/2 × 3 in.)",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sandro%20Botticelli%20-%20Virgin%20and%20Child%20with%20an%20Angel%20-%201954.283%20-%20Art%20Institute%20of%20Chicago.jpg?width=600"
   },
   {
    "title": "Virgin and Child with Two Angels",
@@ -74,7 +75,7 @@
    "source": "Art Institute of Chicago",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sandro%20Botticelli%20-%20Virgin%20and%20Child%20with%20Two%20Angels%20-%201954.282%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sandro%20Botticelli%20-%20Virgin%20and%20Child%20with%20Two%20Angels%20-%201954.282%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/e8f037a0c7aaab26cf3df20763155df8e6f59a64fe9492385665b09d88b749c7.jpg",
    "focal_point": [
     0.45,
     0.27
@@ -115,7 +116,8 @@
     ]
    },
    "current_repository": "Art Institute of Chicago",
-   "physical_dimensions": "Diam.: 34.4 cm (13 1/2 in.); Framed: Diam.: 44.5 cm (17 1/2 in.)"
+   "physical_dimensions": "Diam.: 34.4 cm (13 1/2 in.); Framed: Diam.: 44.5 cm (17 1/2 in.)",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sandro%20Botticelli%20-%20Virgin%20and%20Child%20with%20Two%20Angels%20-%201954.282%20-%20Art%20Institute%20of%20Chicago.jpg?width=600"
   },
   {
    "title": "Allegory of Venus and Cupid",
@@ -130,7 +132,7 @@
    "source": "Art Institute of Chicago",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Imitator%20of%20Titian%20-%20Allegory%20of%20Venus%20and%20Cupid%2C%20c.%201600.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Imitator%20of%20Titian%20-%20Allegory%20of%20Venus%20and%20Cupid%2C%20c.%201600.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/ef487e46c44b19fa956721b39bad5d8c01a37b06207ad5280b59a9988770211d.jpg",
    "focal_point": [
     0.72,
     0.32
@@ -171,7 +173,8 @@
     ]
    },
    "current_repository": "Art Institute of Chicago",
-   "physical_dimensions": "129.9 × 155.3 cm (51 1/8 × 61 1/8 in.)"
+   "physical_dimensions": "129.9 × 155.3 cm (51 1/8 × 61 1/8 in.)",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Imitator%20of%20Titian%20-%20Allegory%20of%20Venus%20and%20Cupid%2C%20c.%201600.jpg?width=600"
   },
   {
    "title": "Portrait of a Lady",
@@ -186,7 +189,7 @@
    "source": "Art Institute of Chicago",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Titian%20-%20Portrait%20of%20a%20Lady%20-%201954.301%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Titian%20-%20Portrait%20of%20a%20Lady%20-%201954.301%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/ac8da9faad0e4ee9e7b69077a321e40e645e715c158f6c31cf301617eb08c44a.jpg",
    "focal_point": [
     0.43,
     0.27
@@ -227,7 +230,8 @@
     ]
    },
    "current_repository": "Art Institute of Chicago",
-   "physical_dimensions": "63.5 x 51.8 cm"
+   "physical_dimensions": "63.5 x 51.8 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Titian%20-%20Portrait%20of%20a%20Lady%20-%201954.301%20-%20Art%20Institute%20of%20Chicago.jpg?width=600"
   },
   {
    "title": "Scenes from the Life of Saint John the Baptist",
@@ -242,7 +246,7 @@
    "source": "Art Institute of Chicago",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bartolommeo%20di%20Giovanni%20-%20Scenes%20from%20the%20Life%20of%20Saint%20John%20the%20Baptist%20-%201937.996%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bartolommeo%20di%20Giovanni%20-%20Scenes%20from%20the%20Life%20of%20Saint%20John%20the%20Baptist%20-%201937.996%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/aa5ec681f9a49ea604c6dd4e8c999624ccd723213b303fa2905b4043ed139bce.jpg",
    "focal_point": [
     0.45,
     0.55
@@ -283,7 +287,8 @@
    },
    "below_floor_ok": true,
    "current_repository": "Art Institute of Chicago",
-   "physical_dimensions": "74 × 150.4 cm (29 3/16 × 59 3/16 in.); Framed: 88 × 164 cm (34 5/8 × 64 9/16 in.)"
+   "physical_dimensions": "74 × 150.4 cm (29 3/16 × 59 3/16 in.); Framed: 88 × 164 cm (34 5/8 × 64 9/16 in.)",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bartolommeo%20di%20Giovanni%20-%20Scenes%20from%20the%20Life%20of%20Saint%20John%20the%20Baptist%20-%201937.996%20-%20Art%20Institute%20of%20Chicago.jpg?width=600"
   },
   {
    "title": "The Nativity",
@@ -298,7 +303,7 @@
    "source": "Art Institute of Chicago",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Fra%20Bartolommeo%20-%20The%20Nativity%20-%202005.49%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Fra%20Bartolommeo%20-%20The%20Nativity%20-%202005.49%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/6786f20bc73b9bff6819eb8c4037933c45f7856ae27045ac7d1dee24e31f3620.jpg",
    "focal_point": [
     0.46,
     0.78
@@ -339,7 +344,8 @@
    },
    "below_floor_ok": true,
    "current_repository": "Art Institute of Chicago",
-   "physical_dimensions": "34 × 24.5 cm (13 3/8 × 9 5/8 in.); Framed: 52.7 × 35.6 cm (20 3/4 × 14 1/16 in.)"
+   "physical_dimensions": "34 × 24.5 cm (13 3/8 × 9 5/8 in.); Framed: 52.7 × 35.6 cm (20 3/4 × 14 1/16 in.)",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Fra%20Bartolommeo%20-%20The%20Nativity%20-%202005.49%20-%20Art%20Institute%20of%20Chicago.jpg?width=600"
   },
   {
    "title": "Alessandro de' Medici",
@@ -354,7 +360,7 @@
    "source": "Art Institute of Chicago",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pontormo%2C%20%28Jacopo%20Carrucci%29%20-%20Alessandro%20de%27%20Medici%20-%201933.1002%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pontormo%2C%20%28Jacopo%20Carrucci%29%20-%20Alessandro%20de%27%20Medici%20-%201933.1002%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/3d965f89b79267005004b5d29438ed76cb1727a2f57451caafda4eb7c3642346.jpg",
    "focal_point": [
     0.45,
     0.34
@@ -369,7 +375,8 @@
    "resolution_tier": "HD",
    "below_floor_ok": true,
    "current_repository": "Art Institute of Chicago",
-   "physical_dimensions": "35.3 × 25.8 cm (13 7/8 × 10 1/8 in.); Framed: 47.7 × 42 × 6.1 cm (18 3/4 × 16 1/2 × 2 3/8 in.)"
+   "physical_dimensions": "35.3 × 25.8 cm (13 7/8 × 10 1/8 in.); Framed: 47.7 × 42 × 6.1 cm (18 3/4 × 16 1/2 × 2 3/8 in.)",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pontormo%2C%20%28Jacopo%20Carrucci%29%20-%20Alessandro%20de%27%20Medici%20-%201933.1002%20-%20Art%20Institute%20of%20Chicago.jpg?width=600"
   },
   {
    "title": "Christ Carrying the Cross",
@@ -384,7 +391,7 @@
    "source": "Art Institute of Chicago",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sebastiano%20del%20Piombo%20-%20Christ%20Carrying%20the%20Cross%20-%202016.15%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sebastiano%20del%20Piombo%20-%20Christ%20Carrying%20the%20Cross%20-%202016.15%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/3e8085f3173e00e264c810e6558b7381249074eba226628711c2c7e7eff7f47e.jpg",
    "focal_point": [
     0.37,
     0.45
@@ -424,7 +431,8 @@
     ]
    },
    "below_floor_ok": true,
-   "current_repository": "Art Institute of Chicago"
+   "current_repository": "Art Institute of Chicago",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sebastiano%20del%20Piombo%20-%20Christ%20Carrying%20the%20Cross%20-%202016.15%20-%20Art%20Institute%20of%20Chicago.jpg?width=600"
   },
   {
    "title": "The Crucifixion",
@@ -439,7 +447,7 @@
    "source": "Art Institute of Chicago",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Carlo%20Crivelli%20-%20The%20Crucifixion%20-%201929.862%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Carlo%20Crivelli%20-%20The%20Crucifixion%20-%201929.862%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/49c1c3a6dbec9298472359ab55dfb80dde86cd284ee01cc1b1650438ddc86aee.jpg",
    "focal_point": [
     0.5,
     0.27
@@ -480,7 +488,8 @@
     ]
    },
    "current_repository": "Art Institute of Chicago",
-   "physical_dimensions": "75.0 x 55.2 cm"
+   "physical_dimensions": "75.0 x 55.2 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Carlo%20Crivelli%20-%20The%20Crucifixion%20-%201929.862%20-%20Art%20Institute%20of%20Chicago.jpg?width=600"
   },
   {
    "title": "Saint John the Baptist Entering the Wilderness",
@@ -495,7 +504,7 @@
    "source": "Art Institute of Chicago",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Giovanni%20di%20Paolo%20-%20Saint%20John%20the%20Baptist%20Entering%20the%20Wilderness%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Giovanni%20di%20Paolo%20-%20Saint%20John%20the%20Baptist%20Entering%20the%20Wilderness%20-%20Google%20Art%20Project.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/b90ded1bb78d4a6bc178b0384d17424c833e0fe940b18ce9986e2b0b167af789.jpg",
    "focal_point": [
     0.47,
     0.31
@@ -535,7 +544,8 @@
     ]
    },
    "current_repository": "Art Institute of Chicago",
-   "physical_dimensions": "68.5 × 36.2 cm (27 × 14 1/4 in.); Framed: 79.4 × 47.7 × 8 cm (31 1/4 × 18 3/4 × 3 1/8 in.)"
+   "physical_dimensions": "68.5 × 36.2 cm (27 × 14 1/4 in.); Framed: 79.4 × 47.7 × 8 cm (31 1/4 × 18 3/4 × 3 1/8 in.)",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Giovanni%20di%20Paolo%20-%20Saint%20John%20the%20Baptist%20Entering%20the%20Wilderness%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
    "title": "Ecce Agnus Dei",
@@ -550,7 +560,7 @@
    "source": "Art Institute of Chicago",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Giovanni%20di%20Paolo%20-%20Ecce%20Agnus%20Dei%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Giovanni%20di%20Paolo%20-%20Ecce%20Agnus%20Dei%20-%20Google%20Art%20Project.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/1e91c09580fa119ddff44ba286b1f05b33d806e49550390c88fa00fb011844a8.jpg",
    "focal_point": [
     0.45,
     0.47
@@ -590,7 +600,8 @@
     ]
    },
    "current_repository": "Art Institute of Chicago",
-   "physical_dimensions": "68.5 × 39.5 cm (27 × 15 1/2 in.); Framed: 80.1 × 53.4 × 8.9 cm (31 1/2 × 21 × 3 1/2 in.)"
+   "physical_dimensions": "68.5 × 39.5 cm (27 × 15 1/2 in.); Framed: 80.1 × 53.4 × 8.9 cm (31 1/2 × 21 × 3 1/2 in.)",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Giovanni%20di%20Paolo%20-%20Ecce%20Agnus%20Dei%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
    "title": "The Assassination and Funeral of Julius Caesar",
@@ -605,7 +616,7 @@
    "source": "Art Institute of Chicago",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Workshop%20of%20Apollonio%20di%20Giovanni%20-%20The%20Assassination%20and%20Funeral%20of%20Julius%20Caesar%20-%201974.393%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Workshop%20of%20Apollonio%20di%20Giovanni%20-%20The%20Assassination%20and%20Funeral%20of%20Julius%20Caesar%20-%201974.393%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/d683a6f192560ccb0e03a19e809e1baca9143654204fc5965630ef7d770d086c.jpg",
    "focal_point": [
     0.6,
     0.5
@@ -646,7 +657,8 @@
     ]
    },
    "current_repository": "Art Institute of Chicago",
-   "physical_dimensions": "39.5 × 126.7 cm (15 1/2 × 49 7/8 in.); Framed: 67.4 × 152.4 × 7.7 cm (26 1/2 × 60 × 3 in.)"
+   "physical_dimensions": "39.5 × 126.7 cm (15 1/2 × 49 7/8 in.); Framed: 67.4 × 152.4 × 7.7 cm (26 1/2 × 60 × 3 in.)",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Workshop%20of%20Apollonio%20di%20Giovanni%20-%20The%20Assassination%20and%20Funeral%20of%20Julius%20Caesar%20-%201974.393%20-%20Art%20Institute%20of%20Chicago.jpg?width=600"
   },
   {
    "title": "The Last Communion of Saint Jerome",
@@ -661,7 +673,7 @@
    "source": "The Metropolitan Museum of Art",
    "license": "PDM-1.0",
    "source_url": "https://images.metmuseum.org/CRDImages/ep/original/DP-24049-001.jpg",
-   "thumbnail_url": "https://images.metmuseum.org/CRDImages/ep/web-large/DP-24049-001.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/5091c1aa75e5c8e253680314040e3f48fbe588d961725a1f5aaede7f8863a73d.jpg",
    "focal_point": [
     0.55,
     0.48
@@ -700,7 +712,8 @@
      1.0
     ]
    },
-   "current_repository": "The Metropolitan Museum of Art"
+   "current_repository": "The Metropolitan Museum of Art",
+   "thumbnail_source_url": "https://images.metmuseum.org/CRDImages/ep/web-large/DP-24049-001.jpg"
   },
   {
    "title": "The Annunciation",
@@ -715,7 +728,7 @@
    "source": "The Metropolitan Museum of Art",
    "license": "PDM-1.0",
    "source_url": "https://images.metmuseum.org/CRDImages/rl/original/DP267397.jpg",
-   "thumbnail_url": "https://images.metmuseum.org/CRDImages/rl/web-large/DP267397.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/abc79052fc6af46d48037644fc35b940187bbad90af201cf9624d718b3b99bda.jpg",
    "focal_point": [
     0.45,
     0.5
@@ -754,7 +767,8 @@
      1.0
     ]
    },
-   "current_repository": "The Metropolitan Museum of Art"
+   "current_repository": "The Metropolitan Museum of Art",
+   "thumbnail_source_url": "https://images.metmuseum.org/CRDImages/rl/web-large/DP267397.jpg"
   },
   {
    "title": "Mona Lisa",
@@ -769,7 +783,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Mona%20Lisa%2C%20by%20Leonardo%20da%20Vinci%2C%20from%20C2RMF.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Mona%20Lisa%2C%20by%20Leonardo%20da%20Vinci%2C%20from%20C2RMF.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/3bc122beb56ddb624adf9be9d97fbb9f1b323e6aa5edc60bbb2b9e98132677a6.jpg",
    "focal_point": [
     0.5,
     0.28
@@ -807,7 +821,8 @@
      1.0,
      0.9309
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Mona%20Lisa%2C%20by%20Leonardo%20da%20Vinci%2C%20from%20C2RMF.jpg?width=600"
   },
   {
    "title": "The Birth of Venus",
@@ -822,7 +837,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Birth%20of%20Venus%20%28Botticelli%29%201.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Birth%20of%20Venus%20%28Botticelli%29%201.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/2359f166c827685d07025f7c3cbc3e7f3ead3328cfa6237bffa518641465a7eb.jpg",
    "focal_point": [
     0.52,
     0.18
@@ -860,7 +875,8 @@
      0.7272,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Birth%20of%20Venus%20%28Botticelli%29%201.jpg?width=600"
   },
   {
    "title": "The Creation of Adam",
@@ -875,7 +891,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sistine%20Chapel%20ceiling%2C%20Creation%20of%20Adam.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sistine%20Chapel%20ceiling%2C%20Creation%20of%20Adam.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/893a1500ef465050db99084e0b3a97e002ab3da6d9d287c6bbde2b42e1980ab9.jpg",
    "focal_point": [
     0.5,
     0.46
@@ -914,7 +930,8 @@
      1.0
     ]
    },
-   "physical_dimensions": "155.0 x 270.0 cm"
+   "physical_dimensions": "155.0 x 270.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sistine%20Chapel%20ceiling%2C%20Creation%20of%20Adam.jpg?width=600"
   },
   {
    "title": "The School of Athens",
@@ -929,7 +946,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/%22School%20of%20Athens%22%20by%20Raphael%2C%20Raphael%20Rooms%2C%20Vatican%20Museum%20%2848466167851%29.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/%22School%20of%20Athens%22%20by%20Raphael%2C%20Raphael%20Rooms%2C%20Vatican%20Museum%20%2848466167851%29.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/59b23ac0023fe69cb1f7fe9ceeb6d28d89f60f1727585dbfa741bfbaf6a1acc1.jpg",
    "focal_point": [
     0.5,
     0.46
@@ -967,7 +984,8 @@
      0.75,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/%22School%20of%20Athens%22%20by%20Raphael%2C%20Raphael%20Rooms%2C%20Vatican%20Museum%20%2848466167851%29.jpg?width=600"
   },
   {
    "title": "The Last Supper",
@@ -982,7 +1000,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Last%20Supper%20-%20Leonardo%20Da%20Vinci%20-%20High%20Resolution%2032x16.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Last%20Supper%20-%20Leonardo%20Da%20Vinci%20-%20High%20Resolution%2032x16.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/0c3777764be77abf84288a3a934c01a77902b30206e92bd344b0229494e83bbc.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1020,7 +1038,8 @@
      0.6875,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Last%20Supper%20-%20Leonardo%20Da%20Vinci%20-%20High%20Resolution%2032x16.jpg?width=600"
   },
   {
    "title": "Primavera",
@@ -1035,7 +1054,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Botticelli-primavera.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Botticelli-primavera.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/e3f7b1619bb9021ed79e287bba8d8af18873a7a5a47889c36f3b52cad0f08b61.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1073,7 +1092,8 @@
      0.7263,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Botticelli-primavera.jpg?width=600"
   },
   {
    "title": "Venus of Urbino",
@@ -1088,7 +1108,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tizian%20Venus%20von%20Urbino%201538%20Sammlung%20Uffizien.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tizian%20Venus%20von%20Urbino%201538%20Sammlung%20Uffizien.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/0db3c462034493405c52c65bc81935f24176147ea19da15a4b7988ff05851f7c.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1126,7 +1146,8 @@
      0.5892,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tizian%20Venus%20von%20Urbino%201538%20Sammlung%20Uffizien.jpg?width=600"
   },
   {
    "title": "Bacchus and Ariadne",
@@ -1141,7 +1162,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/%22Bacchus%20and%20Ariadne%22%20by%20Titian%20-%20National%20Gallery%2C%20London%20-%20Joy%20of%20Museums.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/%22Bacchus%20and%20Ariadne%22%20by%20Titian%20-%20National%20Gallery%2C%20London%20-%20Joy%20of%20Museums.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/c471d6bb417999767bcb85f417dccfe945324143ba2e1908ab6989bf70cbfad8.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1179,7 +1200,8 @@
      0.9328,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/%22Bacchus%20and%20Ariadne%22%20by%20Titian%20-%20National%20Gallery%2C%20London%20-%20Joy%20of%20Museums.jpg?width=600"
   },
   {
    "title": "The Wedding at Cana",
@@ -1194,7 +1216,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Veronese%2C%20The%20Marriage%20at%20Cana%20%281563%29.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Veronese%2C%20The%20Marriage%20at%20Cana%20%281563%29.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/f581fc4c4cf138f850c60ed71916f942e90450aa20fcaf5130e7af73083c071e.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1232,7 +1254,8 @@
      0.8248,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Veronese%2C%20The%20Marriage%20at%20Cana%20%281563%29.jpg?width=600"
   },
   {
    "title": "The Last Judgment",
@@ -1247,7 +1270,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Last%20Judgement%20%28Michelangelo%29.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Last%20Judgement%20%28Michelangelo%29.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/bbe02e39a39ddae50ab307bf1d16c6aeb67f418dcf426b10931d8d060e51035b.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1285,7 +1308,8 @@
      0.9131,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Last%20Judgement%20%28Michelangelo%29.jpg?width=600"
   },
   {
    "title": "Virgin of the Rocks",
@@ -1300,7 +1324,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Leonardo%20da%20Vinci%20-%20Virgin%20of%20the%20Rocks%20%28National%20Gallery%20London%29%2002.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Leonardo%20da%20Vinci%20-%20Virgin%20of%20the%20Rocks%20%28National%20Gallery%20London%29%2002.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/136f6a4d25f041181325ec9c1c9d0c01b074a7039a8eaf1e209270fd97cfe6b2.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1339,7 +1363,8 @@
      0.9438
     ]
    },
-   "current_repository": "National Gallery"
+   "current_repository": "National Gallery",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Leonardo%20da%20Vinci%20-%20Virgin%20of%20the%20Rocks%20%28National%20Gallery%20London%29%2002.jpg?width=600"
   },
   {
    "title": "The Sistine Madonna",
@@ -1354,7 +1379,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Raphael%20-%20The%20Sistine%20Madonna%20-%20Google%20Arts%20%26%20Culture.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Raphael%20-%20The%20Sistine%20Madonna%20-%20Google%20Arts%20%26%20Culture.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/544de59e8eb7e5b7d5673a91ece191031616fe7bc22022ed54f839d79e4aa53c.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1393,7 +1418,8 @@
      0.9909
     ]
    },
-   "physical_dimensions": "269.5 x 201.0 cm"
+   "physical_dimensions": "269.5 x 201.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Raphael%20-%20The%20Sistine%20Madonna%20-%20Google%20Arts%20%26%20Culture.jpg?width=600"
   },
   {
    "title": "Pallas and the Centaur",
@@ -1408,7 +1434,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pallade%20col%20Centauro%2C%20Sandro%20Botticelli%20%281482%29.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pallade%20col%20Centauro%2C%20Sandro%20Botticelli%20%281482%29.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/4b38e85a664410c42e623a3af408e9608e80932461fe6143bc8a561dc4763672.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1455,7 +1481,8 @@
     ]
    },
    "current_repository": "Uffizi Gallery",
-   "physical_dimensions": "205.0 x 147.5 cm"
+   "physical_dimensions": "205.0 x 147.5 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pallade%20col%20Centauro%2C%20Sandro%20Botticelli%20%281482%29.jpg?width=600"
   },
   {
    "title": "The Battle of San Romano",
@@ -1470,7 +1497,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Uccello%20%E2%80%94%20the%20Battle%20of%20San%20Romano.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Uccello%20%E2%80%94%20the%20Battle%20of%20San%20Romano.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/1c1a798cf01d24c86679d9b550c70874e56b4b5950d843eb6abdf2a7846df2cf.jpg",
    "license_verdict": "pd",
    "license_basis": "CC0",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1508,7 +1535,8 @@
      0.6407,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Uccello%20%E2%80%94%20the%20Battle%20of%20San%20Romano.jpg?width=600"
   },
   {
    "title": "The Lamentation over the Dead Christ",
@@ -1523,7 +1551,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Lamentaci%C3%B3n%20sobre%20Cristo%20muerto%2C%20por%20Andrea%20Mantegna.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Lamentaci%C3%B3n%20sobre%20Cristo%20muerto%2C%20por%20Andrea%20Mantegna.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/a36548f76131274073042da6e6ae87a22defa21cb5feaa955c8baf16db5451fd.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1563,7 +1591,8 @@
     ]
    },
    "delivered_edge": 2446,
-   "resolution_tier": "HD"
+   "resolution_tier": "HD",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Lamentaci%C3%B3n%20sobre%20Cristo%20muerto%2C%20por%20Andrea%20Mantegna.jpg?width=600"
   },
   {
    "title": "Virgin and Child with the Young Saint John the Baptist",
@@ -1578,7 +1607,7 @@
    "source": "Art Institute of Chicago",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Correggio%20-%20Virgin%20and%20Child%20with%20the%20Young%20Saint%20John%20the%20Baptist%20-%201965.688%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Correggio%20-%20Virgin%20and%20Child%20with%20the%20Young%20Saint%20John%20the%20Baptist%20-%201965.688%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/f206c6ca21b4c6efb52c9125d3250a3ba4004fd7d74d1e5ef214c2428220311b.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1619,7 +1648,8 @@
    },
    "below_floor_ok": true,
    "current_repository": "Art Institute of Chicago",
-   "physical_dimensions": "64.2 × 50.2 cm (25 1/4 × 19 3/4 in.); Framed: 79.4 × 63.9 × 8.3 cm (31 1/4 × 25 1/8 × 3 1/4 in.)"
+   "physical_dimensions": "64.2 × 50.2 cm (25 1/4 × 19 3/4 in.); Framed: 79.4 × 63.9 × 8.3 cm (31 1/4 × 25 1/8 × 3 1/4 in.)",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Correggio%20-%20Virgin%20and%20Child%20with%20the%20Young%20Saint%20John%20the%20Baptist%20-%201965.688%20-%20Art%20Institute%20of%20Chicago.jpg?width=600"
   },
   {
    "title": "Tarquin and Lucretia",
@@ -1634,7 +1664,7 @@
    "source": "Art Institute of Chicago",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tintoretto%20-%20Tarquin%20and%20Lucretia%20-%201949.203%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tintoretto%20-%20Tarquin%20and%20Lucretia%20-%201949.203%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/c4c594664545026229b406a35ab931f02bdf23ed4e97a6910377c5d2887440aa.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1682,7 +1712,8 @@
    },
    "below_floor_ok": true,
    "current_repository": "Art Institute of Chicago",
-   "physical_dimensions": "175 × 151.5 cm (68 7/8 × 59 5/8 in.); Framed: 203.9 × 181 × 8.3 cm (80 1/4 × 71 1/4 × 3 1/4 in.)"
+   "physical_dimensions": "175 × 151.5 cm (68 7/8 × 59 5/8 in.); Framed: 203.9 × 181 × 8.3 cm (80 1/4 × 71 1/4 × 3 1/4 in.)",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tintoretto%20-%20Tarquin%20and%20Lucretia%20-%201949.203%20-%20Art%20Institute%20of%20Chicago.jpg?width=600"
   },
   {
    "title": "Annunciation",
@@ -1697,7 +1728,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Fra%20Angelico%20-%20Annunciation.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Fra%20Angelico%20-%20Annunciation.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/5d4f90daac74ce130f5f9df3986b10d33781b5299738f0e63b10655fb4e337e3.jpg",
    "focal_point": [
     0.6,
     0.38
@@ -1735,7 +1766,8 @@
      1.0,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Fra%20Angelico%20-%20Annunciation.jpg?width=600"
   },
   {
    "title": "Ghent Altarpiece: Adoration of the Mystic Lamb",
@@ -1750,7 +1782,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://upload.wikimedia.org/wikipedia/commons/a/a8/Hubert_van_Eyck_004.jpg",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Hubert%20van%20Eyck%20004.jpg?width=1200",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/8003840db4f320eb587d9808bbdf40e43280b188cc202621cb382d33b0efd569.jpg",
    "focal_point": [
     0.5,
     0.33
@@ -1788,7 +1820,8 @@
      0.711,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Hubert%20van%20Eyck%20004.jpg?width=1200"
   },
   {
    "title": "The Annunciation",
@@ -1803,7 +1836,7 @@
    "source": "The Metropolitan Museum of Art",
    "license": "PDM-1.0",
    "source_url": "https://images.metmuseum.org/CRDImages/ep/original/DT1479.jpg",
-   "thumbnail_url": "https://images.metmuseum.org/CRDImages/ep/web-large/DT1479.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/d40b3eee9aa23401720ac536a04cd01de5f9a429c6678f611c6fdd36b90df79e.jpg",
    "focal_point": [
     0.72,
     0.45
@@ -1842,7 +1875,8 @@
      0.9504,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://images.metmuseum.org/CRDImages/ep/web-large/DT1479.jpg"
   },
   {
    "title": "Portrait of a Young Man",
@@ -1857,7 +1891,7 @@
    "source": "The Metropolitan Museum of Art",
    "license": "PDM-1.0",
    "source_url": "https://images.metmuseum.org/CRDImages/ep/original/DP-14286-011.jpg",
-   "thumbnail_url": "https://images.metmuseum.org/CRDImages/ep/web-large/DP-14286-011.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/7fc4042b551a1a4009fd56ea364d0148133bcdc8aa5ba25707bff185b6281032.jpg",
    "focal_point": [
     0.52,
     0.21
@@ -1896,7 +1930,8 @@
      1.0
     ]
    },
-   "current_repository": "The Metropolitan Museum of Art"
+   "current_repository": "The Metropolitan Museum of Art",
+   "thumbnail_source_url": "https://images.metmuseum.org/CRDImages/ep/web-large/DP-14286-011.jpg"
   },
   {
    "title": "Jacob Willemsz van Veen (1456–1535), the Artist's Father",
@@ -1911,7 +1946,7 @@
    "source": "The Metropolitan Museum of Art",
    "license": "PDM-1.0",
    "source_url": "https://images.metmuseum.org/CRDImages/ep/original/DP-38857-001.jpg",
-   "thumbnail_url": "https://images.metmuseum.org/CRDImages/ep/web-large/DP-38857-001.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/6dfb4a76691c5c404f9065454c30a73c53233c1c48c764b2c998486a3430445c.jpg",
    "focal_point": [
     0.48,
     0.33
@@ -1950,7 +1985,8 @@
      0.9347
     ]
    },
-   "current_repository": "The Metropolitan Museum of Art"
+   "current_repository": "The Metropolitan Museum of Art",
+   "thumbnail_source_url": "https://images.metmuseum.org/CRDImages/ep/web-large/DP-38857-001.jpg"
   },
   {
    "title": "Hermann von Wedigh III (died 1560)",
@@ -1965,7 +2001,7 @@
    "source": "The Metropolitan Museum of Art",
    "license": "PDM-1.0",
    "source_url": "https://images.metmuseum.org/CRDImages/ep/original/DP164836.jpg",
-   "thumbnail_url": "https://images.metmuseum.org/CRDImages/ep/web-large/DP164836.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/b61cb95b92a329fdde81fd2953403f3cf4de585f4531d84c7e88607642e7f462.jpg",
    "focal_point": [
     0.58,
     0.28
@@ -2005,7 +2041,8 @@
      1.0
     ]
    },
-   "current_repository": "The Metropolitan Museum of Art"
+   "current_repository": "The Metropolitan Museum of Art",
+   "thumbnail_source_url": "https://images.metmuseum.org/CRDImages/ep/web-large/DP164836.jpg"
   },
   {
    "title": "Portrait of Giuliano de' Medici",
@@ -2020,7 +2057,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Giuliano%20de%27%20Medici%20by%20Sandro%20Botticelli.jpeg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Giuliano%20de%27%20Medici%20by%20Sandro%20Botticelli.jpeg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/8ca3046fd28ead85797c828e30cfbf84d60b4e9435efbddd522dd8b00a82a952.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -2059,7 +2096,8 @@
      0.9171
     ]
    },
-   "current_repository": "National Gallery of Art"
+   "current_repository": "National Gallery of Art",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Giuliano%20de%27%20Medici%20by%20Sandro%20Botticelli.jpeg?width=600"
   },
   {
    "title": "Portrait of a Youth",
@@ -2074,7 +2112,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Botticelli-Portrait%20of%20a%20Youth.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Botticelli-Portrait%20of%20a%20Youth.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/eba1b4c3cf4377c372d5aa9dd9028b957a406817b86ddff0ff3ed70cfad4b79a.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -2114,7 +2152,8 @@
     ]
    },
    "current_repository": "Andrew W. Mellon collection",
-   "physical_dimensions": "43.5 x 46.2 cm"
+   "physical_dimensions": "43.5 x 46.2 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Botticelli-Portrait%20of%20a%20Youth.jpg?width=600"
   },
   {
    "title": "Venus and the Three Graces Presenting Gifts to a Young Woman",
@@ -2129,7 +2168,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/V%C3%A9nus%20et%20les%20trois%20Gr%C3%A2ces%20offrant%20des%20pr%C3%A9sents%20%C3%A0%20une%20jeune%20fille%20-%20Sandro%20Botticelli%20-%20Mus%C3%A9e%20du%20Louvre%20Peintures%20RF%20321.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/V%C3%A9nus%20et%20les%20trois%20Gr%C3%A2ces%20offrant%20des%20pr%C3%A9sents%20%C3%A0%20une%20jeune%20fille%20-%20Sandro%20Botticelli%20-%20Mus%C3%A9e%20du%20Louvre%20Peintures%20RF%20321.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/fbaa08428807e68d63e13bdbc07f1cf4f4adb25ae67de8cba383612863fdee21.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -2168,7 +2207,8 @@
      1.0
     ]
    },
-   "current_repository": "Musée du Louvre, Paris"
+   "current_repository": "Musée du Louvre, Paris",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/V%C3%A9nus%20et%20les%20trois%20Gr%C3%A2ces%20offrant%20des%20pr%C3%A9sents%20%C3%A0%20une%20jeune%20fille%20-%20Sandro%20Botticelli%20-%20Mus%C3%A9e%20du%20Louvre%20Peintures%20RF%20321.jpg?width=600"
   },
   {
    "title": "Adoration of the Magi (Uffizi)",
@@ -2183,7 +2223,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sandro%20Botticelli%20-%20Adorazione%20dei%20Magi%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sandro%20Botticelli%20-%20Adorazione%20dei%20Magi%20-%20Google%20Art%20Project.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/8f409af1738ea37ac6d8d0077c3e2c35866ee654a7e6588c708641a3b1a6dca8.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -2221,7 +2261,8 @@
      0.8117,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sandro%20Botticelli%20-%20Adorazione%20dei%20Magi%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
    "title": "Mystic Nativity",
@@ -2236,7 +2277,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sandro%20Botticelli%20-%20Mystische%20Geburt%201500.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sandro%20Botticelli%20-%20Mystische%20Geburt%201500.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/d01e1eca8c9712d9b96875042b6f78b11df9096a6b7527fdb4aab67c95e08049.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -2275,7 +2316,8 @@
     ]
    },
    "delivered_edge": 6000,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sandro%20Botticelli%20-%20Mystische%20Geburt%201500.jpg?width=600"
   },
   {
    "title": "The Virgin and Child with Saint John and Two Angels (Studio of Botticelli)",
@@ -2290,7 +2332,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sandro%20Botticelli%20%281444-1445-1510%29%20%28studio%20of%29%20-%20The%20Virgin%20and%20Child%20with%20Saint%20John%20and%20Two%20Angels%20-%20NG226%20-%20National%20Gallery.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sandro%20Botticelli%20%281444-1445-1510%29%20%28studio%20of%29%20-%20The%20Virgin%20and%20Child%20with%20Saint%20John%20and%20Two%20Angels%20-%20NG226%20-%20National%20Gallery.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/5ee40e4fd616da7181be477b6d01aa6a0ae683d89fcd1a368ac308729967f1d2.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -2330,7 +2372,8 @@
     ]
    },
    "current_repository": "National Gallery",
-   "physical_dimensions": "114.3 x 113.0 cm"
+   "physical_dimensions": "114.3 x 113.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sandro%20Botticelli%20%281444-1445-1510%29%20%28studio%20of%29%20-%20The%20Virgin%20and%20Child%20with%20Saint%20John%20and%20Two%20Angels%20-%20NG226%20-%20National%20Gallery.jpg?width=600"
   },
   {
    "title": "Fortitude",
@@ -2345,7 +2388,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Botticelli%20-%20Fortitude.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Botticelli%20-%20Fortitude.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/56adb5ac1194725d9d28eff61b4b9ab70d0fdc7828b377c239d99e778528b232.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -2383,7 +2426,8 @@
      1.0,
      0.3072
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Botticelli%20-%20Fortitude.jpg?width=600"
   },
   {
    "title": "Madonna and Child with Five Angels",
@@ -2398,7 +2442,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Botticelli%20Louvre%2011.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Botticelli%20Louvre%2011.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/b7f072b284fc66eb68c219b9829f3d11d355abb023b052a5df9a8ea74021e92d.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -2437,7 +2481,8 @@
      0.9384
     ]
    },
-   "physical_dimensions": "58.0 x 40.0 cm"
+   "physical_dimensions": "58.0 x 40.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Botticelli%20Louvre%2011.jpg?width=600"
   },
   {
    "title": "Bardi Altarpiece (Madonna and Child with Saints John the Baptist and John the Evangelist)",
@@ -2452,7 +2497,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sandro%20Botticelli%20-%20Madonna%20with%20Saints%20-%20Google%20Art%20ProjectFXD.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sandro%20Botticelli%20-%20Madonna%20with%20Saints%20-%20Google%20Art%20ProjectFXD.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/b2de8fd6a918a2340a787eb151e86a79b4111434a727c61a12fb07d2dbff22db.jpg",
    "featured_rank": 65,
    "width": 4165,
    "license_verdict": "pd",
@@ -2491,7 +2536,8 @@
      0.891,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sandro%20Botticelli%20-%20Madonna%20with%20Saints%20-%20Google%20Art%20ProjectFXD.jpg?width=600"
   },
   {
    "title": "Adoration of the Christ Child with Saint John (Botticelli or Workshop)",
@@ -2506,7 +2552,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Adoration%20of%20Christ%20with%20Saint%20John%2C%20by%20Sandro%20Botticelli%20or%20workshop.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Adoration%20of%20Christ%20with%20Saint%20John%2C%20by%20Sandro%20Botticelli%20or%20workshop.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/9431160adcacabb356a7fd43ee8930b52e5f8286aaad8a9f988966ec7f8284be.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -2544,7 +2590,8 @@
      0.9552,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Adoration%20of%20Christ%20with%20Saint%20John%2C%20by%20Sandro%20Botticelli%20or%20workshop.jpg?width=600"
   },
   {
    "title": "The Calumny of Apelles (detail: Truth)",
@@ -2559,7 +2606,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sandro%20Botticelli%20024.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sandro%20Botticelli%20024.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/20f888f81aadcfbf01b5efbd52318520939e9672a662ff8412bea67a91ed8025.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -2597,7 +2644,8 @@
      1.0,
      0.62
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sandro%20Botticelli%20024.jpg?width=600"
   },
   {
    "title": "Virgin and Child with the Young Saint John (School of Botticelli)",
@@ -2612,7 +2660,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Schule%2C%20Sandro%20Botticelli%20%281445%20-%201510%29%20-%20Virgin%20and%20Child%20with%20young%20st.%20John%20-%20I.172%20-%20Gem%C3%A4ldegalerie.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Schule%2C%20Sandro%20Botticelli%20%281445%20-%201510%29%20-%20Virgin%20and%20Child%20with%20young%20st.%20John%20-%20I.172%20-%20Gem%C3%A4ldegalerie.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/8c3926ce1508ec053ca79dfd93db94452e4f835370043b1115023597900ec13d.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -2650,7 +2698,8 @@
      1.0,
      0.92
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Schule%2C%20Sandro%20Botticelli%20%281445%20-%201510%29%20-%20Virgin%20and%20Child%20with%20young%20st.%20John%20-%20I.172%20-%20Gem%C3%A4ldegalerie.jpg?width=600"
   },
   {
    "title": "The Annunciation (Workshop of Botticelli)",
@@ -2665,7 +2714,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Werkstatt%2C%20Sandro%20Botticelli%20%281445%20-%201510%29%20-%20Annunciation%20to%20Mary%20-%201117%20-%20Gem%C3%A4ldegalerie.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Werkstatt%2C%20Sandro%20Botticelli%20%281445%20-%201510%29%20-%20Annunciation%20to%20Mary%20-%201117%20-%20Gem%C3%A4ldegalerie.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/eccbf2b05f487549b1d815d011f86b4ceed9b3ee10209788b65898cbbb462d0e.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -2703,7 +2752,8 @@
      0.8544,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Werkstatt%2C%20Sandro%20Botticelli%20%281445%20-%201510%29%20-%20Annunciation%20to%20Mary%20-%201117%20-%20Gem%C3%A4ldegalerie.jpg?width=600"
   },
   {
    "title": "Young Man Before the Seven Liberal Arts",
@@ -2718,7 +2768,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sandro%20Botticelli%20028.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sandro%20Botticelli%20028.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/6f5a138e8382f789b154f70f1706ab66dfe13d1c44751b584565207a3b5e0d79.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -2757,7 +2807,8 @@
      1.0
     ]
    },
-   "physical_dimensions": "237.0 x 269.0 cm"
+   "physical_dimensions": "237.0 x 269.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sandro%20Botticelli%20028.jpg?width=600"
   },
   {
    "title": "Pastoral Concert",
@@ -2772,7 +2823,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Le%20Concert%20champ%C3%AAtre%2C%20by%20Titian%2C%20from%20C2RMF%20retouched.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Le%20Concert%20champ%C3%AAtre%2C%20by%20Titian%2C%20from%20C2RMF%20retouched.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/5d1edd167c020474b81573c928e752495c89099dfeeca9fbbd1f7984bbb20b5c.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -2811,7 +2862,8 @@
      1.0
     ]
    },
-   "physical_dimensions": "105.0 x 136.5 cm"
+   "physical_dimensions": "105.0 x 136.5 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Le%20Concert%20champ%C3%AAtre%2C%20by%20Titian%2C%20from%20C2RMF%20retouched.jpg?width=600"
   },
   {
    "title": "Venus with an Organ Player",
@@ -2826,7 +2878,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tizian%20-%20Venus%20with%20the%20Organ%20Player%20%28Gem%C3%A4ldegalerie%20Berlin%29%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tizian%20-%20Venus%20with%20the%20Organ%20Player%20%28Gem%C3%A4ldegalerie%20Berlin%29%20-%20Google%20Art%20Project.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/460c783a035da91c988f8774de5e69cfd06cb35974d3a1d5a3416e83839052eb.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -2864,7 +2916,8 @@
      0.9749,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tizian%20-%20Venus%20with%20the%20Organ%20Player%20%28Gem%C3%A4ldegalerie%20Berlin%29%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
    "title": "Girl in a Fur",
@@ -2879,7 +2932,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tiziano%20Vecellio%2Ccalled%20Titian%20-%20Girl%20in%20a%20Fur%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tiziano%20Vecellio%2Ccalled%20Titian%20-%20Girl%20in%20a%20Fur%20-%20Google%20Art%20Project.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/0e7748ec55f2003679075ed05389b0ba5ad85edf8f5368886ff8daee723a4684.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -2919,7 +2972,8 @@
     ]
    },
    "current_repository": "Kunsthistorisches Museum",
-   "physical_dimensions": "95.5 x 63.7 cm"
+   "physical_dimensions": "95.5 x 63.7 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tiziano%20Vecellio%2Ccalled%20Titian%20-%20Girl%20in%20a%20Fur%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
    "title": "Portrait of Alfonso I d'Este",
@@ -2934,7 +2988,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bemberg%20Fondation%20Toulouse%20-%20Portrait%20d%27Alphonse%20dEste%20-%20Titien%20Inv.1053.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bemberg%20Fondation%20Toulouse%20-%20Portrait%20d%27Alphonse%20dEste%20-%20Titien%20Inv.1053.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/8f47536df9b2cdb4d625a815d1db90a89386f2c7e5739df16f56e61b91d38a6f.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -2972,7 +3026,8 @@
      0.9528,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bemberg%20Fondation%20Toulouse%20-%20Portrait%20d%27Alphonse%20dEste%20-%20Titien%20Inv.1053.jpg?width=600"
   },
   {
    "title": "Diana and Actaeon",
@@ -2987,7 +3042,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tizian%20Diana%20Aktaion.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tizian%20Diana%20Aktaion.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/3970c095dce9846360815b03754f6f070b07db76833f264921cdc0e0311ad1d4.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -3026,7 +3081,8 @@
      1.0
     ]
    },
-   "current_repository": "National Gallery of Scotland"
+   "current_repository": "National Gallery of Scotland",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tizian%20Diana%20Aktaion.jpg?width=600"
   },
   {
    "title": "Diana and Callisto",
@@ -3041,7 +3097,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tizian%20015%20%282%29.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tizian%20015%20%282%29.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/39732f440b83f4f9abdae39f339099c43c165641a13d2caed9ffa649eb7476cc.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -3081,7 +3137,8 @@
     ]
    },
    "current_repository": "National Gallery",
-   "physical_dimensions": "187.5 x 205.5 cm"
+   "physical_dimensions": "187.5 x 205.5 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tizian%20015%20%282%29.jpg?width=600"
   },
   {
    "title": "Nymph and Shepherd",
@@ -3096,7 +3153,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tiziano%20Vecellio%2C%20called%20Titian%20-%20Nymph%20and%20Shepherd%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tiziano%20Vecellio%2C%20called%20Titian%20-%20Nymph%20and%20Shepherd%20-%20Google%20Art%20Project.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/5d09a454db775eeeb9255b12e674586938741513956dd6deca3efe10e3db9f57.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -3136,7 +3193,8 @@
     ]
    },
    "current_repository": "Kunsthistorisches Museum",
-   "physical_dimensions": "149.6 x 187.0 cm"
+   "physical_dimensions": "149.6 x 187.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tiziano%20Vecellio%2C%20called%20Titian%20-%20Nymph%20and%20Shepherd%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
    "title": "Portrait of Philip II",
@@ -3151,7 +3209,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Philip%20II%20portrait%20by%20Titian.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Philip%20II%20portrait%20by%20Titian.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/e9c168ff8d1254206ca915fba61c36e3b21d60dd6d948632eecdf1ff2e283839.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -3190,7 +3248,8 @@
      1.0
     ]
    },
-   "physical_dimensions": "103.0 x 82.0 cm"
+   "physical_dimensions": "103.0 x 82.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Philip%20II%20portrait%20by%20Titian.jpg?width=600"
   },
   {
    "title": "The Bacchanal of the Andrians",
@@ -3205,7 +3264,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bacchanal%20of%20the%20Andrians%20by%20Titian%20in%20the%20Prado%20Museum.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bacchanal%20of%20the%20Andrians%20by%20Titian%20in%20the%20Prado%20Museum.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/36c3fd2b8b82a85ad298515e7ac956ffa0968e2a87c40e22933e6bd87b352731.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -3243,7 +3302,8 @@
      0.8786,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bacchanal%20of%20the%20Andrians%20by%20Titian%20in%20the%20Prado%20Museum.jpg?width=600"
   },
   {
    "title": "An Idyll: A Mother and a Halberdier in a Wooded Landscape",
@@ -3258,7 +3318,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Titian%20-%20An%20Idyll%20%28Harvard%20Art%20Museums%29.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Titian%20-%20An%20Idyll%20%28Harvard%20Art%20Museums%29.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/311f22a654506e1c90eb2f00bd094516337ae739e47c4fb8b68776198d123cf8.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -3297,7 +3357,8 @@
      1.0
     ]
    },
-   "current_repository": "Harvard Art Museums"
+   "current_repository": "Harvard Art Museums",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Titian%20-%20An%20Idyll%20%28Harvard%20Art%20Museums%29.jpg?width=600"
   },
   {
    "title": "Penitent Magdalene",
@@ -3312,7 +3373,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bordeaux%20-%20Madeleine%20p%C3%A9nitente%2002.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bordeaux%20-%20Madeleine%20p%C3%A9nitente%2002.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/a5e088aff62e00c7274f7c6014bfd9509a501e1b911a0612d107111aca50e661.jpg",
    "featured_rank": 58,
    "width": 4849,
    "license_verdict": "pd",
@@ -3352,7 +3413,8 @@
      0.9952
     ]
    },
-   "physical_dimensions": "87.0 x 64.0 cm"
+   "physical_dimensions": "87.0 x 64.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bordeaux%20-%20Madeleine%20p%C3%A9nitente%2002.jpg?width=600"
   },
   {
    "title": "Tarquin and Lucretia",
@@ -3367,7 +3429,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Titien%20-%20Tarquin%20et%20Lucr%C3%A8ce%2002.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Titien%20-%20Tarquin%20et%20Lucr%C3%A8ce%2002.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/14d0aa2066f111cbfced71b58d37e0d4fab7f3b45358f9bcd6bb12eefd0a08eb.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -3406,7 +3468,8 @@
     ]
    },
    "delivered_edge": 4854,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Titien%20-%20Tarquin%20et%20Lucr%C3%A8ce%2002.jpg?width=600"
   },
   {
    "title": "Mars, Venus and Cupid",
@@ -3421,7 +3484,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Titian.MarsVenusandAmor01.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Titian.MarsVenusandAmor01.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/fd45f03eda95cc8420a49756932e5af665b0dfd90aa1501040161d83dc687e15.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -3461,7 +3524,8 @@
     ]
    },
    "current_repository": "Kunsthistorisches Museum",
-   "physical_dimensions": "97.0 x 109.0 cm"
+   "physical_dimensions": "97.0 x 109.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Titian.MarsVenusandAmor01.jpg?width=600"
   },
   {
    "title": "Portrait of a Man",
@@ -3476,7 +3540,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tiziano%2C%20ritratto%20indianapolis.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tiziano%2C%20ritratto%20indianapolis.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/390dfe9188d7fb650423ea25e9897378fc5bb55b23ebebc1463f36fa2da4d0b6.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -3515,7 +3579,8 @@
      1.0
     ]
    },
-   "physical_dimensions": "59.5 x 45.5 cm"
+   "physical_dimensions": "59.5 x 45.5 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tiziano%2C%20ritratto%20indianapolis.jpg?width=600"
   },
   {
    "title": "Venus with an Organ Player and a Dog",
@@ -3530,7 +3595,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tizian%20096.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tizian%20096.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/ca988e63c68ceefac4523b98695d825c4c8b13164256b29b156a5ce3d3b9309d.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -3568,7 +3633,8 @@
      0.9292,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tizian%20096.jpg?width=600"
   },
   {
    "title": "The Triumph of Love",
@@ -3583,7 +3649,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Titian%20-%20The%20Triumph%20of%20Love%2C%20c.%201543%20-%201546.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Titian%20-%20The%20Triumph%20of%20Love%2C%20c.%201543%20-%201546.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/dde3bb6d88bee802a7ffe4f22380d78151d2634e023fe2b34c84bcb35e12ce18.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -3623,7 +3689,8 @@
     ]
    },
    "current_repository": "Ashmolean Museum",
-   "physical_dimensions": "88.3 x 88.3 cm"
+   "physical_dimensions": "88.3 x 88.3 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Titian%20-%20The%20Triumph%20of%20Love%2C%20c.%201543%20-%201546.jpg?width=600"
   }
  ]
 }

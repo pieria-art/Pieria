@@ -18,7 +18,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Klimt%20-%20Nine%20Cartoons%20for%20the%20Stoclet%20Frieze-%20Part%204%2C%20Part%20of%20the%20tree%20of%20life%20%281910-11%29.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Klimt%20-%20Nine%20Cartoons%20for%20the%20Stoclet%20Frieze-%20Part%204%2C%20Part%20of%20the%20tree%20of%20life%20%281910-11%29.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/453f363d7f57229a0059a09219d2e93fd1e34f0e5b589b7077c259efc19844f1.jpg",
    "focal_point": [
     0.74,
     0.49
@@ -58,7 +58,8 @@
     ]
    },
    "current_repository": "MAK – Museum of Applied Arts",
-   "physical_dimensions": "200.0 x 102.0 cm"
+   "physical_dimensions": "200.0 x 102.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Klimt%20-%20Nine%20Cartoons%20for%20the%20Stoclet%20Frieze-%20Part%204%2C%20Part%20of%20the%20tree%20of%20life%20%281910-11%29.jpg?width=600"
   },
   {
    "title": "Pallas Athene",
@@ -73,7 +74,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Klimt%20-%20Pallas%20Athene.jpeg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Klimt%20-%20Pallas%20Athene.jpeg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/7ab5dd19f306c748a1e651181934bd3532f035ee99e0163ab353bfe08ab3658f.jpg",
    "focal_point": [
     0.45,
     0.27
@@ -113,7 +114,8 @@
     ]
    },
    "current_repository": "Vienna Museum",
-   "physical_dimensions": "75.0 x 75.0 cm"
+   "physical_dimensions": "75.0 x 75.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Klimt%20-%20Pallas%20Athene.jpeg?width=600"
   },
   {
    "title": "Danaë",
@@ -128,7 +130,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Klimt%20-%20Danae%20-%201907-08.jpeg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Klimt%20-%20Danae%20-%201907-08.jpeg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/b19621510f522537845042907a7a8dcbacb48186d198961b661861461e8ee2f1.jpg",
    "focal_point": [
     0.6,
     0.22
@@ -167,7 +169,8 @@
      0.8765,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Klimt%20-%20Danae%20-%201907-08.jpeg?width=600"
   },
   {
    "title": "The Beethoven Frieze",
@@ -182,7 +185,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Gustav-klimt-the-beethoven-frieze-the-hostile-powers.-far-wall.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Gustav-klimt-the-beethoven-frieze-the-hostile-powers.-far-wall.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/0c5f36114eea123de22056db3fb908c3be96c972b2d804da8420d69c3b19ce94.jpg",
    "focal_point": [
     0.36,
     0.28
@@ -220,7 +223,8 @@
      0.4825,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Gustav-klimt-the-beethoven-frieze-the-hostile-powers.-far-wall.jpg?width=600"
   },
   {
    "title": "The Slav Epic: The Apotheosis of the Slavs",
@@ -235,7 +239,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Mucha%20Apoteoza.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Mucha%20Apoteoza.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/ba3ba60b145518bb6b921dbb3ca07872b3441eef5d3a2ea7251795a0337324dd.jpg",
    "focal_point": [
     0.5,
     0.13
@@ -276,7 +280,8 @@
     ]
    },
    "current_repository": "museum collection of the Prague City Gallery",
-   "physical_dimensions": "480.0 x 405.0 cm"
+   "physical_dimensions": "480.0 x 405.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Mucha%20Apoteoza.jpg?width=600"
   },
   {
    "title": "Strawberry Thief",
@@ -291,7 +296,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Textile%2C%20Strawberry%20Thief%2C%20designed%201883%2C%20printed%20ca.%201934%20%28CH%2018340065%29.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Textile%2C%20Strawberry%20Thief%2C%20designed%201883%2C%20printed%20ca.%201934%20%28CH%2018340065%29.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/9a69da713e8cfdf6104d63060bcef951c9421586a8126ba42b870eb1390c5cd2.jpg",
    "focal_point": [
     0.5,
     0.32
@@ -336,7 +341,8 @@
      0.7537,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Textile%2C%20Strawberry%20Thief%2C%20designed%201883%2C%20printed%20ca.%201934%20%28CH%2018340065%29.jpg?width=600"
   },
   {
    "title": "Trellis",
@@ -351,7 +357,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Trellis%20MET%20DT255077.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Trellis%20MET%20DT255077.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/02cdb06cddcff2807256c082e22b46b63f58dce5a76541eea383f8378240d9d6.jpg",
    "focal_point": [
     0.25,
     0.4
@@ -390,7 +396,8 @@
      1.0
     ]
    },
-   "current_repository": "Metropolitan Museum of Art"
+   "current_repository": "Metropolitan Museum of Art",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Trellis%20MET%20DT255077.jpg?width=600"
   },
   {
    "title": "Acanthus",
@@ -405,7 +412,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Acanthus%20and%20Vine%20tapestry%2C%20designed%20and%20woven%20by%20William%20Morris%2C%20May-September%201879%20-%20Kelmscott%20Manor%20-%20Oxfordshire%2C%20England%20-%20DSC09975.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Acanthus%20and%20Vine%20tapestry%2C%20designed%20and%20woven%20by%20William%20Morris%2C%20May-September%201879%20-%20Kelmscott%20Manor%20-%20Oxfordshire%2C%20England%20-%20DSC09975.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/dbdef239cbd276d3a8761872c8ad1a73850b6b2235aa747a10d08975ceed7ca3.jpg",
    "focal_point": [
     0.5,
     0.35
@@ -450,7 +457,8 @@
      0.8098,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Acanthus%20and%20Vine%20tapestry%2C%20designed%20and%20woven%20by%20William%20Morris%2C%20May-September%201879%20-%20Kelmscott%20Manor%20-%20Oxfordshire%2C%20England%20-%20DSC09975.jpg?width=600"
   },
   {
    "title": "Magnolia and Irises",
@@ -465,7 +473,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Magnolias%20and%20Irises%20MET%20DT280214.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Magnolias%20and%20Irises%20MET%20DT280214.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/df1f062bb9e98e17a4be94f519fa30ea6f3dfbc01873921585f5b3dc671140a1.jpg",
    "focal_point": [
     0.45,
     0.2
@@ -504,7 +512,8 @@
      0.399
     ]
    },
-   "current_repository": "Metropolitan Museum of Art"
+   "current_repository": "Metropolitan Museum of Art",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Magnolias%20and%20Irises%20MET%20DT280214.jpg?width=600"
   },
   {
    "title": "The Peacock Skirt",
@@ -519,7 +528,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Beardsley-peacockskirt.PNG?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Beardsley-peacockskirt.PNG?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/fd602cb04102f5f799834d4d14d7e4b4eaa19cafb3591c31aa3b042f87a03a11.jpg",
    "focal_point": [
     0.5,
     0.18
@@ -557,7 +566,8 @@
      1.0,
      0.9664
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Beardsley-peacockskirt.PNG?width=600"
   },
   {
    "title": "The Dancer's Reward",
@@ -572,7 +582,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Aubrey%20Beardsley%20-%20The%20Dancer%27s%20Reward.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Aubrey%20Beardsley%20-%20The%20Dancer%27s%20Reward.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/4b023df5a4dacb585a34efdf7d232f3028109ea01080e17d2b91f078ff07ca79.jpg",
    "focal_point": [
     0.55,
     0.12
@@ -611,7 +621,8 @@
      1.0,
      0.9877
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Aubrey%20Beardsley%20-%20The%20Dancer%27s%20Reward.jpg?width=600"
   },
   {
    "title": "Neptune's Horses",
@@ -626,7 +637,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Walter%20T.%20Crane%20-%20Neptune%27s%20Horses%20%28ca.1892%29.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Walter%20T.%20Crane%20-%20Neptune%27s%20Horses%20%28ca.1892%29.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/a57525063cf448a12ff0d1b5c88be60351743bf0b311402bd6490d6ba01b69db.jpg",
    "focal_point": [
     0.5,
     0.35
@@ -665,7 +676,8 @@
      1.0
     ]
    },
-   "physical_dimensions": "25.0 x 45.0 cm"
+   "physical_dimensions": "25.0 x 45.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Walter%20T.%20Crane%20-%20Neptune%27s%20Horses%20%28ca.1892%29.jpg?width=600"
   },
   {
    "title": "Ver Sacrum",
@@ -680,7 +692,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Kolo%20Moser%20-%20Ver%20Sacrum%20-%201897.jpeg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Kolo%20Moser%20-%20Ver%20Sacrum%20-%201897.jpeg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/756a4f90e7c600cf09338b888d0b79a0ab28aca235506791966e4bbf5ac2e229.jpg",
    "focal_point": [
     0.5,
     0.35
@@ -718,7 +730,8 @@
      1.0,
      0.5564
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Kolo%20Moser%20-%20Ver%20Sacrum%20-%201897.jpeg?width=600"
   }
  ]
 }

@@ -18,7 +18,7 @@
    "source": "The Metropolitan Museum of Art",
    "license": "PDM-1.0",
    "source_url": "https://images.metmuseum.org/CRDImages/ep/original/DP143157.jpg",
-   "thumbnail_url": "https://images.metmuseum.org/CRDImages/ep/web-large/DP143157.jpg",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/3cfc2e1cca92fd75ce7493fc9380ad66171fb5e4c6de90203d29c22652190c5c.jpg",
    "focal_point": [
     0.5,
     0.5
@@ -58,7 +58,8 @@
      1.0
     ]
    },
-   "current_repository": "The Metropolitan Museum of Art"
+   "current_repository": "The Metropolitan Museum of Art",
+   "thumbnail_source_url": "https://images.metmuseum.org/CRDImages/ep/web-large/DP143157.jpg"
   },
   {
    "title": "Snow Storm: Steam-Boat off a Harbour's Mouth",
@@ -73,7 +74,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/J.M.W.%20Turner%20%E2%80%93%20Snow%20Storm%20-%20Steam-Boat%20off%20a%20Harbour%27s%20Mouth.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/J.M.W.%20Turner%20%E2%80%93%20Snow%20Storm%20-%20Steam-Boat%20off%20a%20Harbour%27s%20Mouth.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/d933db97f197ef375feaaaf724b15059b54921195ab2bbf2efa4cf8672c980ea.jpg",
    "focal_point": [
     0.52,
     0.5
@@ -111,7 +112,8 @@
      0.7819,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/J.M.W.%20Turner%20%E2%80%93%20Snow%20Storm%20-%20Steam-Boat%20off%20a%20Harbour%27s%20Mouth.jpg?width=600"
   },
   {
    "title": "The Shipwreck",
@@ -126,7 +128,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Joseph%20Mallord%20William%20Turner%20076.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Joseph%20Mallord%20William%20Turner%20076.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/b353b5fc7b87ffb148614110ccf73b3e989ef2ef5ecf8f9c0519c620d184b99d.jpg",
    "featured_rank": 45,
    "license_verdict": "pd",
    "license_basis": "Public domain",
@@ -165,7 +167,8 @@
     ]
    },
    "delivered_edge": 3200,
-   "resolution_tier": "HD"
+   "resolution_tier": "HD",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Joseph%20Mallord%20William%20Turner%20076.jpg?width=600"
   },
   {
    "title": "Dutch Boats in a Gale",
@@ -180,7 +183,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Joseph%20Mallord%20William%20Turner%20047.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Joseph%20Mallord%20William%20Turner%20047.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/7f049a7f807a99cf76442ff9e979a3619ea0adfa2cac54a93e83ee71cda90f85.jpg",
    "focal_point": [
     0.4,
     0.55
@@ -219,7 +222,8 @@
      0.673,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Joseph%20Mallord%20William%20Turner%20047.jpg?width=600"
   },
   {
    "title": "Breezing Up (A Fair Wind)",
@@ -234,7 +238,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Winslow%20Homer%20-%20Breezing%20Up%20%28A%20Fair%20Wind%29.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Winslow%20Homer%20-%20Breezing%20Up%20%28A%20Fair%20Wind%29.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/0968b802692787c267f93aa27f83694ba40e1ab9b1d6b6523953faa4bb232e51.jpg",
    "focal_point": [
     0.5,
     0.45
@@ -274,7 +278,8 @@
     ]
    },
    "current_repository": "National Gallery of Art",
-   "physical_dimensions": "61.5 x 97.0 cm"
+   "physical_dimensions": "61.5 x 97.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Winslow%20Homer%20-%20Breezing%20Up%20%28A%20Fair%20Wind%29.jpg?width=600"
   },
   {
    "title": "The Fog Warning",
@@ -289,7 +294,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Winslow%20Homer%20-%20The%20Fog%20Warning%20%28lightened%29.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Winslow%20Homer%20-%20The%20Fog%20Warning%20%28lightened%29.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/d734b35170b665339c06c23c32347e59fca754b3e918cd3c12dbb74841d8b23a.jpg",
    "focal_point": [
     0.4,
     0.3
@@ -327,7 +332,8 @@
      0.5851,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Winslow%20Homer%20-%20The%20Fog%20Warning%20%28lightened%29.jpg?width=600"
   },
   {
    "title": "Northeaster",
@@ -342,7 +348,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Northeaster%20by%20Winslow%20Homer%201895.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Northeaster%20by%20Winslow%20Homer%201895.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/567b36780ff6de52d18e28ea0a8c8004d663799da4001c1cdd63dd44ddb04ae9.jpg",
    "focal_point": [
     0.3,
     0.4
@@ -383,7 +389,8 @@
     ]
    },
    "current_repository": "Metropolitan Museum of Art",
-   "physical_dimensions": "87.6 x 127.0 cm"
+   "physical_dimensions": "87.6 x 127.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Northeaster%20by%20Winslow%20Homer%201895.jpg?width=600"
   },
   {
    "title": "Eight Bells",
@@ -398,7 +405,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/WinslowHomer-Eight%20Bells%201886.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/WinslowHomer-Eight%20Bells%201886.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/df3dc9f16b709d50cb6e4e97f605d3a7b53af5b6903cfcaeae4cebefc5f79996.jpg",
    "focal_point": [
     0.5,
     0.42
@@ -438,7 +445,8 @@
     ]
    },
    "current_repository": "Addison Gallery of American Art",
-   "physical_dimensions": "64.0 x 76.7 cm"
+   "physical_dimensions": "64.0 x 76.7 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/WinslowHomer-Eight%20Bells%201886.jpg?width=600"
   },
   {
    "title": "The Ninth Wave",
@@ -453,7 +461,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Aivazovsky%2C%20Ivan%20-%20The%20Ninth%20Wave.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Aivazovsky%2C%20Ivan%20-%20The%20Ninth%20Wave.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/fcf942b6aacfdff56fdaca6c7d9427758469b07dba74416b4c616d1207d6ddd5.jpg",
    "focal_point": [
     0.36,
     0.85
@@ -491,7 +499,8 @@
      0.5171,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Aivazovsky%2C%20Ivan%20-%20The%20Ninth%20Wave.jpg?width=600"
   },
   {
    "title": "The Black Sea",
@@ -506,7 +515,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Aivazovsky%20-%20Black%20Sea%20Fleet%20in%20the%20Bay%20of%20Theodosia.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Aivazovsky%20-%20Black%20Sea%20Fleet%20in%20the%20Bay%20of%20Theodosia.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/3d316c0db02c28eb7a1924d34b748663450d0040fd495923ca26785879e2c907.jpg",
    "focal_point": [
     0.2,
     0.55
@@ -545,7 +554,8 @@
      0.3789,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Aivazovsky%20-%20Black%20Sea%20Fleet%20in%20the%20Bay%20of%20Theodosia.jpg?width=600"
   },
   {
    "title": "A Dutch Ship in a Strong Breeze",
@@ -560,7 +570,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Willem%20van%20de%20Velde%20II%20-%20A%20Dutch%20Ship%20and%20Other%20Small%20Vessels%20in%20a%20Strong%20Breeze.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Willem%20van%20de%20Velde%20II%20-%20A%20Dutch%20Ship%20and%20Other%20Small%20Vessels%20in%20a%20Strong%20Breeze.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/3f08088c39e5b8ce485742fc2f39b2e5fa4c1b6f827e14c0d33628ed6516c82b.jpg",
    "focal_point": [
     0.32,
     0.66
@@ -600,7 +610,8 @@
     ]
    },
    "current_repository": "National Gallery",
-   "physical_dimensions": "55.0 x 70.0 cm"
+   "physical_dimensions": "55.0 x 70.0 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Willem%20van%20de%20Velde%20II%20-%20A%20Dutch%20Ship%20and%20Other%20Small%20Vessels%20in%20a%20Strong%20Breeze.jpg?width=600"
   },
   {
    "title": "Ships in a Stormy Sea",
@@ -615,7 +626,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Ludolf%20Bakhuizen%20-%20Ships%20on%20a%20Stormy%20Sea%2C%201698%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Ludolf%20Bakhuizen%20-%20Ships%20on%20a%20Stormy%20Sea%2C%201698%20-%20Google%20Art%20Project.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/d2d62a9fd02d80155c1be375f8557d6e0b873c58120c73a04094fff3330f0f91.jpg",
    "focal_point": [
     0.42,
     0.58
@@ -654,7 +665,8 @@
      0.671,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Ludolf%20Bakhuizen%20-%20Ships%20on%20a%20Stormy%20Sea%2C%201698%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
    "title": "Ships in Distress off a Rocky Coast",
@@ -669,7 +681,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Ludolf%20Bakhuizen%20-%20Ships%20in%20Distress%20off%20a%20Rocky%20Coast%20-%20WGA01128.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Ludolf%20Bakhuizen%20-%20Ships%20in%20Distress%20off%20a%20Rocky%20Coast%20-%20WGA01128.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/9fdd9457f54db467e45af111084a76f2869a68a3d4c8bb0c2e26c9a6cbb47969.jpg",
    "focal_point": [
     0.5,
     0.55
@@ -708,7 +720,8 @@
      1.0
     ]
    },
-   "physical_dimensions": "114.3 x 167.3 cm"
+   "physical_dimensions": "114.3 x 167.3 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Ludolf%20Bakhuizen%20-%20Ships%20in%20Distress%20off%20a%20Rocky%20Coast%20-%20WGA01128.jpg?width=600"
   },
   {
    "title": "The Monk by the Sea",
@@ -723,7 +736,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Der%20M%C3%B6nch%20am%20Meer%20%28Caspar%20David%20Friedrich%29-WUS03183.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Der%20M%C3%B6nch%20am%20Meer%20%28Caspar%20David%20Friedrich%29-WUS03183.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/46ba59a356091d0b58bc7656feeeda2f16b49c39870e711639aba0485c464fcf.jpg",
    "focal_point": [
     0.35,
     0.85
@@ -761,7 +774,8 @@
      0.7,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Der%20M%C3%B6nch%20am%20Meer%20%28Caspar%20David%20Friedrich%29-WUS03183.jpg?width=600"
   },
   {
    "title": "The Stormy Sea",
@@ -776,7 +790,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Gustave%20Courbet-Boats.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Gustave%20Courbet-Boats.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/b3e38f85589b933e11e4ed0281dab7ecf0108ec362f118139a794da10201e219.jpg",
    "focal_point": [
     0.27,
     0.78
@@ -816,7 +830,8 @@
      1.0
     ]
    },
-   "current_repository": "Orsay Museum"
+   "current_repository": "Orsay Museum",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Gustave%20Courbet-Boats.jpg?width=600"
   },
   {
    "title": "Calm Sea",
@@ -831,7 +846,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Gustave%20Courbet%2C%20Calm%20Sea%2C%201866%2C%20NGA%2066408.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Gustave%20Courbet%2C%20Calm%20Sea%2C%201866%2C%20NGA%2066408.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/29dcba3ad96ece30cb8edfdb07a5fd28cbde2fb76ec41dbecc2ae0297a8ee5d0.jpg",
    "focal_point": [
     0.5,
     0.6
@@ -870,7 +885,8 @@
      1.0
     ]
    },
-   "current_repository": "National Gallery of Art"
+   "current_repository": "National Gallery of Art",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Gustave%20Courbet%2C%20Calm%20Sea%2C%201866%2C%20NGA%2066408.jpg?width=600"
   },
   {
    "title": "Brig upon the Water",
@@ -885,7 +901,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Gustave%20Le%20Gray%20-%20Brig%20upon%20the%20Water%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Gustave%20Le%20Gray%20-%20Brig%20upon%20the%20Water%20-%20Google%20Art%20Project.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/aea20be78ede0140a9ffc57ca47427cd2468509719803fc6a0d1a895e1b34753.jpg",
    "focal_point": [
     0.54,
     0.66
@@ -923,7 +939,8 @@
      0.8451,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Gustave%20Le%20Gray%20-%20Brig%20upon%20the%20Water%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
    "title": "The Icebergs",
@@ -938,7 +955,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Icebergs%20by%20Frederic%20Edwin%20Church%2C%20detail%2C%201861%2C%20oil%20on%20canvas%20-%20Dallas%20Museum%20of%20Art%20-%20DSC04831.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Icebergs%20by%20Frederic%20Edwin%20Church%2C%20detail%2C%201861%2C%20oil%20on%20canvas%20-%20Dallas%20Museum%20of%20Art%20-%20DSC04831.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/ed3bc2b87c0b2e41de250c9872c3639159d6bf369f571bb02a7d3cd232cb4334.jpg",
    "focal_point": [
     0.5,
     0.4
@@ -976,7 +993,8 @@
      0.8,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Icebergs%20by%20Frederic%20Edwin%20Church%2C%20detail%2C%201861%2C%20oil%20on%20canvas%20-%20Dallas%20Museum%20of%20Art%20-%20DSC04831.jpg?width=600"
   },
   {
    "title": "The Gulf Stream",
@@ -991,7 +1009,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Winslow%20Homer%20-%20The%20Gulf%20Stream%20-%20Metropolitan%20Museum%20of%20Art.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Winslow%20Homer%20-%20The%20Gulf%20Stream%20-%20Metropolitan%20Museum%20of%20Art.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/65d6402eaba9225a033a874c86e667fad93c46faf33819dfe1b46eaa55a311cc.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1031,7 +1049,8 @@
     ]
    },
    "current_repository": "Metropolitan Museum of Art",
-   "physical_dimensions": "71.4 x 124.8 cm"
+   "physical_dimensions": "71.4 x 124.8 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Winslow%20Homer%20-%20The%20Gulf%20Stream%20-%20Metropolitan%20Museum%20of%20Art.jpg?width=600"
   },
   {
    "title": "The Wave (La Vague)",
@@ -1046,7 +1065,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Gustave%20Courbet%20-%20The%20Wave%20-%201950.86%20-%20Dallas%20Museum%20of%20Art.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Gustave%20Courbet%20-%20The%20Wave%20-%201950.86%20-%20Dallas%20Museum%20of%20Art.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/4afc553bff434bc3a17ad2b8cbba582fdad4689a9800ee856a5fff9b7912d151.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1086,7 +1105,8 @@
     ]
    },
    "current_repository": "Dallas Museum of Art",
-   "physical_dimensions": "55.9 x 91.4 cm"
+   "physical_dimensions": "55.9 x 91.4 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Gustave%20Courbet%20-%20The%20Wave%20-%201950.86%20-%20Dallas%20Museum%20of%20Art.jpg?width=600"
   },
   {
    "title": "The Battle of Trafalgar",
@@ -1101,7 +1121,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Battle%20of%20Trafalgar%2C%2021%20October%201805%20RMG%20BHC0565.tiff?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Battle%20of%20Trafalgar%2C%2021%20October%201805%20RMG%20BHC0565.tiff?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/83a7a6aaa4e99388743b6e2b4c1b5a845eedb09beb5f9d9fd79bfc1abf215de9.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1139,7 +1159,8 @@
     ]
    },
    "delivered_edge": 7200,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Battle%20of%20Trafalgar%2C%2021%20October%201805%20RMG%20BHC0565.tiff?width=600"
   },
   {
    "title": "Fishermen at Sea",
@@ -1154,7 +1175,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Horror%20und%20Delight-Turner-Fishermen%20at%20Sea%20DSC2300.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Horror%20und%20Delight-Turner-Fishermen%20at%20Sea%20DSC2300.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/c4690340719292d7d3b67c2d2bfd685d809d0a2c7aa694c42f7ee080c57159c7.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1192,7 +1213,8 @@
      0.67,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Horror%20und%20Delight-Turner-Fishermen%20at%20Sea%20DSC2300.jpg?width=600"
   },
   {
    "title": "Rockets and Blue Lights (Close at Hand) to Warn Steamboats of Shoal Water",
@@ -1207,7 +1229,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/J.M.W.%20Turner%27s%20Rockets%20and%20Blue%20Lights%20%28Close%20at%20Hand%29%20to%20Warn%20Steamboats%20of%20Shoal%20Water.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/J.M.W.%20Turner%27s%20Rockets%20and%20Blue%20Lights%20%28Close%20at%20Hand%29%20to%20Warn%20Steamboats%20of%20Shoal%20Water.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/53543927cc17804a9cd509d3f0e6afefea738b06231b75127f248bb6bf0bbd42.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1247,7 +1269,8 @@
     ]
    },
    "current_repository": "Clark Art Institute",
-   "physical_dimensions": "92.1 x 122.2 cm"
+   "physical_dimensions": "92.1 x 122.2 cm",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/J.M.W.%20Turner%27s%20Rockets%20and%20Blue%20Lights%20%28Close%20at%20Hand%29%20to%20Warn%20Steamboats%20of%20Shoal%20Water.jpg?width=600"
   },
   {
    "title": "Calais Pier",
@@ -1262,7 +1285,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Joseph%20Mallord%20William%20Turner%20024.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Joseph%20Mallord%20William%20Turner%20024.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/5240ee480c743a4e385fc87be52fb2f566d4c844e24bc1fd2cfe7f93abb2fe14.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1302,7 +1325,8 @@
     ]
    },
    "delivered_edge": 5878,
-   "resolution_tier": "4K"
+   "resolution_tier": "4K",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Joseph%20Mallord%20William%20Turner%20024.jpg?width=600"
   },
   {
    "title": "Peace – Burial at Sea",
@@ -1317,7 +1341,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Horror%20und%20Delight-Turner-Peace%20-%20Burial%20at%20Sea%20DSC2232.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Horror%20und%20Delight-Turner-Peace%20-%20Burial%20at%20Sea%20DSC2232.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/0fae245f8c422a931966b9c18857c116b7aa525cc3320ab98d28aa8dc62a2189.jpg",
    "license_verdict": "pd",
    "license_basis": "Public domain",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1355,7 +1379,8 @@
      0.85,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Horror%20und%20Delight-Turner-Peace%20-%20Burial%20at%20Sea%20DSC2232.jpg?width=600"
   },
   {
    "title": "Beach Scene, Trouville",
@@ -1370,7 +1395,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Eug%C3%A8ne%20Boudin%2C%20Beach%20Scene%20at%20Trouville%2C%201863%2C%20NGA%2061364.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Eug%C3%A8ne%20Boudin%2C%20Beach%20Scene%20at%20Trouville%2C%201863%2C%20NGA%2061364.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/8c4a0897581a4fcd496934c526a838622eaf55483a608d970a6ecfda7eb7dbcc.jpg",
    "license_verdict": "pd",
    "license_basis": "CC0",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1408,7 +1433,8 @@
      0.9453,
      1.0
     ]
-   }
+   },
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Eug%C3%A8ne%20Boudin%2C%20Beach%20Scene%20at%20Trouville%2C%201863%2C%20NGA%2061364.jpg?width=600"
   },
   {
    "title": "Perry's Victory on Lake Erie",
@@ -1423,7 +1449,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/%27Perry%27s%20Victory%20on%20Lake%20Erie%27%20by%20Thomas%20Birch%2C%20c.%201814.JPG?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/%27Perry%27s%20Victory%20on%20Lake%20Erie%27%20by%20Thomas%20Birch%2C%20c.%201814.JPG?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/6f2d40fbef79a485a42e9b049ba591133ddbca616506943cf176f3d63845a2f7.jpg",
    "license_verdict": "pd",
    "license_basis": "CC0",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1463,7 +1489,8 @@
     ]
    },
    "delivered_edge": 2330,
-   "resolution_tier": "HD"
+   "resolution_tier": "HD",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/%27Perry%27s%20Victory%20on%20Lake%20Erie%27%20by%20Thomas%20Birch%2C%20c.%201814.JPG?width=600"
   },
   {
    "title": "Lumber Schooners at Evening on Penobscot Bay",
@@ -1478,7 +1505,7 @@
    "source": "Wikimedia Commons",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Fitz%20Henry%20Lane%2C%20Lumber%20Schooners%20at%20Evening%20on%20Penobscot%20Bay%2C%201863%2C%20NGA%2057611.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Fitz%20Henry%20Lane%2C%20Lumber%20Schooners%20at%20Evening%20on%20Penobscot%20Bay%2C%201863%2C%20NGA%2057611.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/f91d62b14bb34b2d09f39fd599fd01b851b50a59b8a0c4818dab26057b72c72c.jpg",
    "license_verdict": "pd",
    "license_basis": "CC0",
    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -1517,7 +1544,8 @@
      1.0
     ]
    },
-   "current_repository": "National Gallery of Art"
+   "current_repository": "National Gallery of Art",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Fitz%20Henry%20Lane%2C%20Lumber%20Schooners%20at%20Evening%20on%20Penobscot%20Bay%2C%201863%2C%20NGA%2057611.jpg?width=600"
   },
   {
    "title": "Grey and Silver: Old Battersea Reach",
@@ -1532,7 +1560,7 @@
    "source": "Art Institute of Chicago",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/James%20McNeill%20Whistler%20-%20Grey%20and%20Silver-%20Old%20Battersea%20Reach%20-%20Google%20Art%20Project.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/James%20McNeill%20Whistler%20-%20Grey%20and%20Silver-%20Old%20Battersea%20Reach%20-%20Google%20Art%20Project.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/b55629c98f0e67c1635dd695d9f31f6020eb2c54224d30e38097ac17f2d8e0d3.jpg",
    "focal_point": [
     0.62,
     0.45
@@ -1572,7 +1600,8 @@
     ]
    },
    "current_repository": "Art Institute of Chicago",
-   "physical_dimensions": "50.8 × 68.6 cm (20 × 27 in.)"
+   "physical_dimensions": "50.8 × 68.6 cm (20 × 27 in.)",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/James%20McNeill%20Whistler%20-%20Grey%20and%20Silver-%20Old%20Battersea%20Reach%20-%20Google%20Art%20Project.jpg?width=600"
   },
   {
    "title": "Coast Scene, Bathers",
@@ -1587,7 +1616,7 @@
    "source": "Art Institute of Chicago",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/James%20McNeill%20Whistler%20-%20Coast%20Scene%2C%20Bathers%20-%201933.208%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/James%20McNeill%20Whistler%20-%20Coast%20Scene%2C%20Bathers%20-%201933.208%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/2143008850093e0fa090d6108f32fe69f218bd7e4f965dcbce8f8bf4c32fd7b3.jpg",
    "focal_point": [
     0.55,
     0.27
@@ -1628,7 +1657,8 @@
    },
    "below_floor_ok": true,
    "current_repository": "Art Institute of Chicago",
-   "physical_dimensions": "13.3 × 21.9 cm (5 1/4 × 8 5/8 in.)"
+   "physical_dimensions": "13.3 × 21.9 cm (5 1/4 × 8 5/8 in.)",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/James%20McNeill%20Whistler%20-%20Coast%20Scene%2C%20Bathers%20-%201933.208%20-%20Art%20Institute%20of%20Chicago.jpg?width=600"
   },
   {
    "title": "Nocturne: Blue and Gold—Southampton Water",
@@ -1643,7 +1673,7 @@
    "source": "Art Institute of Chicago",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/James%20McNeill%20Whistler%20-%20Nocturne%2C%20Blue%20and%20Gold%E2%80%94Southampton%20Water%20-%201900.52%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/James%20McNeill%20Whistler%20-%20Nocturne%2C%20Blue%20and%20Gold%E2%80%94Southampton%20Water%20-%201900.52%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/b27e9babf8b7f90edde3fa846169bd53443afd71d4220915f964f6346c2f715a.jpg",
    "focal_point": [
     0.32,
     0.29
@@ -1684,7 +1714,8 @@
    },
    "below_floor_ok": true,
    "current_repository": "Art Institute of Chicago",
-   "physical_dimensions": "51 × 76.7 cm (20 1/16 × 30 3/16 in.)"
+   "physical_dimensions": "51 × 76.7 cm (20 1/16 × 30 3/16 in.)",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/James%20McNeill%20Whistler%20-%20Nocturne%2C%20Blue%20and%20Gold%E2%80%94Southampton%20Water%20-%201900.52%20-%20Art%20Institute%20of%20Chicago.jpg?width=600"
   },
   {
    "title": "Capture of the Tripoli by the Enterprise",
@@ -1699,7 +1730,7 @@
    "source": "Art Institute of Chicago",
    "license": "PDM-1.0",
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Thomas%20Birch%20-%20Capture%20of%20the%20Tripoli%20by%20the%20Enterprise%20-%201991.30%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
-   "thumbnail_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Thomas%20Birch%20-%20Capture%20of%20the%20Tripoli%20by%20the%20Enterprise%20-%201991.30%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
+   "thumbnail_url": "https://packs.curwe.ai/thumbs/5d76d0de3839bdf45ed5a8b4fa5cf1ccc74ce3ecb2b3113e88318b849804cd64.jpg",
    "focal_point": [
     0.6,
     0.55
@@ -1740,7 +1771,8 @@
     ]
    },
    "current_repository": "Art Institute of Chicago",
-   "physical_dimensions": "45.1 × 65.1 cm (17 3/4 × 25 5/8 in.)"
+   "physical_dimensions": "45.1 × 65.1 cm (17 3/4 × 25 5/8 in.)",
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Thomas%20Birch%20-%20Capture%20of%20the%20Tripoli%20by%20the%20Enterprise%20-%201991.30%20-%20Art%20Institute%20of%20Chicago.jpg?width=600"
   }
  ]
 }
