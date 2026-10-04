@@ -75,6 +75,11 @@ ASPECT_INEXACT_TOL = 0.005   # post-snap real-aspect error tolerance; should nev
 NOT_MAXIMAL_REJECT = 0.90    # max(box w, box h) below this -> reject (throws away too much resolution)
 NOT_MAXIMAL_WARN = 0.98      # below this (but >= reject floor) -> pass with a `near_maximal` warning
 FOCAL_MARGIN = 0.05          # focal point within this fraction of a box edge -> too close, reject
+FOCAL_CENTRAL_MARGIN = 0.15  # ...and on any side the box is NOT pinned to the image edge, the focal must sit
+                             # at least this fraction in from that box edge (a central band), so a box that
+                             # merely hugs the subject with it on a margin can't pass. Pinned sides keep the
+                             # looser FOCAL_MARGIN: the box cannot grow there, the subject is at the image edge.
+FOCAL_PIN_EPS = 0.002        # box edge within this of 0.0 / 1.0 counts as pinned to the image edge
 SNAP_MOVED_FAR = 0.15        # max coordinate delta from snapping -> warn (not reject) that the agent
                               # may have misjudged the composition
 
@@ -234,6 +239,19 @@ def _parse_focal(fp) -> tuple[float, float] | None:
     return None
 
 
+def _focal_in_band(f: float, lo: float, hi: float) -> bool:
+    """One axis of the focal QA: is image-space coordinate `f` inside box edges [lo, hi] by enough?
+    Each side demands FOCAL_CENTRAL_MARGIN of the box extent, relaxed to FOCAL_MARGIN on a side where the
+    box is pinned to the image edge (lo ~ 0.0 / hi ~ 1.0) — there the box cannot move to centre the subject."""
+    ext = hi - lo
+    if ext <= 0:
+        return True
+    rel = (f - lo) / ext
+    lo_min = FOCAL_MARGIN if lo <= FOCAL_PIN_EPS else FOCAL_CENTRAL_MARGIN
+    hi_min = FOCAL_MARGIN if hi >= 1.0 - FOCAL_PIN_EPS else FOCAL_CENTRAL_MARGIN
+    return lo_min <= rel <= 1 - hi_min
+
+
 def _gate_box(snapped: list[float], source_aspect: float, target: float,
               focal_point: tuple[float, float] | None) -> tuple[str | None, list[str]]:
     """QA-gate one already-snapped box. Returns (reject_reason | None, warnings)."""
@@ -259,8 +277,8 @@ def _gate_box(snapped: list[float], source_aspect: float, target: float,
         # compositional signal and must be skipped — checking it would reject correctly-composed
         # landscape crops that legitimately slide off a "no opinion" axis. A near-0.5 value like 0.48
         # IS a real measurement and stays checked (exact-equality only, no tolerance).
-        bad_x = fx != 0.5 and not (FOCAL_MARGIN <= (fx - x0) / bw <= 1 - FOCAL_MARGIN)
-        bad_y = fy != 0.5 and not (FOCAL_MARGIN <= (fy - y0) / bh <= 1 - FOCAL_MARGIN)
+        bad_x = fx != 0.5 and not _focal_in_band(fx, x0, x1)
+        bad_y = fy != 0.5 and not _focal_in_band(fy, y0, y1)
         if bad_x or bad_y:
             return "focal_outside", warnings
 

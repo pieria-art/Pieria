@@ -182,6 +182,50 @@ def test_focal_outside_rejects_focal_near_edge():
     assert diag["16:9"]["reject"] == "focal_outside"
 
 
+def test_focal_central_band_rejects_top_hugging_box_with_subject_at_bottom_margin():
+    # 16:9 on a square master: a full-width box pinned to the TOP image edge, y in [0.0, 0.5625]. The
+    # focal sits 5% of the box above its bottom edge (inside the old 0.05 margin, outside the 0.15 band).
+    box = [0.0, 0.0, 1.0, 0.5625]
+    fy = 0.5625 * 0.92
+    diag: dict = {}
+    out, reason = dac._validate_item({"16:9": box}, 1.0, focal_point=(0.4, fy), diag=diag)
+    assert reason == "empty"
+    assert diag["16:9"]["reject"] == "focal_outside"
+
+
+def test_focal_central_band_passes_centred_focal_in_pinned_box():
+    box = [0.0, 0.0, 1.0, 0.5625]
+    out, reason = dac._validate_item({"16:9": box}, 1.0, focal_point=(0.4, 0.5625 / 2))
+    assert reason is None
+
+
+def test_focal_central_band_just_inside_the_band_passes():
+    box = [0.0, 0.0, 1.0, 0.5625]
+    fy = 0.5625 * (1 - dac.FOCAL_CENTRAL_MARGIN - 0.01)
+    out, reason = dac._validate_item({"16:9": box}, 1.0, focal_point=(0.4, fy))
+    assert reason is None
+
+
+def test_focal_central_band_relaxed_where_box_pinned_and_subject_at_image_edge():
+    # Subject genuinely at the TOP image edge: focal_y is 8% into a box pinned to y=0 (inside the 0.15
+    # band, outside nothing -- pinned side only needs FOCAL_MARGIN). Passes.
+    box = [0.0, 0.0, 1.0, 0.5625]
+    out, reason = dac._validate_item({"16:9": box}, 1.0, focal_point=(0.4, 0.5625 * 0.08))
+    assert reason is None
+    # The same 8%-in focal on a box NOT pinned there is rejected.
+    unpinned = [0.0, 0.1, 1.0, 0.6625]
+    diag: dict = {}
+    dac._validate_item({"16:9": unpinned}, 1.0, focal_point=(0.4, 0.1 + 0.5625 * 0.08), diag=diag)
+    assert diag["16:9"]["reject"] == "focal_outside"
+
+
+def test_focal_pinned_side_still_enforces_the_minimal_margin():
+    box = [0.0, 0.0, 1.0, 0.5625]
+    diag: dict = {}
+    dac._validate_item({"16:9": box}, 1.0, focal_point=(0.4, 0.5625 * 0.02), diag=diag)
+    assert diag["16:9"]["reject"] == "focal_outside"
+
+
 def test_focal_comfortably_inside_passes():
     out, reason = dac._validate_item({"16:9": FULL_SET["16:9"]}, 1.0, focal_point=(0.5, 0.4))
     assert reason is None
@@ -282,7 +326,7 @@ def test_bake_focal_outside_gate_drops_only_that_key(tmp_path):
     lib.mkdir(parents=True)
     _master(lib, "https://x/a.jpg", 1000, 1000)
     cat = tmp_path / "static" / "catalog"
-    _catalog(cat, "col", [{"title": "A", "source_url": "https://x/a.jpg", "focal_point": [0.3, 0.6]}])
+    _catalog(cat, "col", [{"title": "A", "source_url": "https://x/a.jpg", "focal_point": [0.3, 0.4]}])
     boxes = {
         "16:9": [0.0, 0.1, 1.0, 0.6625],
         "9:16": [0.4375, 0.0, 1.0, 1.0],   # excludes focal_x=0.3 -> focal_outside
