@@ -86,6 +86,7 @@ from database import SessionLocal  # noqa: F401,E402
 # import rule.
 from routers.admin import router as admin_router
 from routers.api_tokens import router as api_tokens_router
+from routers.api_v1 import v1_app
 from routers.backup import router as backup_router
 from routers.catalog import _read_local_json  # noqa: F401  — re-exported for tests/test_cache.py
 from routers.catalog import router as catalog_router
@@ -213,6 +214,11 @@ app.include_router(publisher_router)
 app.include_router(settings_router)
 app.include_router(studio_router)
 app.include_router(ws_router)
+
+# Public API v1 (ADR-147): a separate FastAPI instance with its own OpenAPI/docs, token-authenticated on
+# every route (routers/api_v1.py). Mounted BEFORE the "/" static mount below, which would swallow it.
+# The middleware added to `app` (origin guard, cache headers, demo gate) wraps mounted apps too.
+app.mount("/api/v1", v1_app)
 
 # M6 (INFRA-D075, 2026-09-25): these two were `@app.middleware("http")` (BaseHTTPMiddleware) —
 # converted to pure ASGI, matching UploadBodyCapMiddleware/DemoModeMiddleware above. NOTE: a reviewer's
