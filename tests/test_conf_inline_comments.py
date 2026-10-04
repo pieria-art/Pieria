@@ -5,6 +5,7 @@ return `value   # note`. These tests run the REAL bash as the oracle for each fo
 """
 import importlib.machinery
 import importlib.util
+import inspect
 import pathlib
 import subprocess
 import sys
@@ -45,6 +46,9 @@ CASES = [
     ("K='single # inside'", "single # inside"),
     ("K='single # inside'  # trailing", "single # inside"),
     ('K="q" # c', "q"),
+    ('K="a"b', "ab"),
+    ('K="90"#x', "90#x"),
+    ("K='a'b # c", "ab"),
 ]
 
 
@@ -71,10 +75,12 @@ def test_all_readers_match_bash(line, expected, tmp_path, monkeypatch):
     monkeypatch.delenv("K", raising=False)
 
 
-def test_the_two_parser_copies_are_identical():
-    for line, _ in CASES:
-        rest = line.partition("=")[2]
-        assert sc.split_conf_value(rest) == eink_client.split_conf_value(rest)
+def _src(fn):
+    return inspect.getsource(fn)
+
+
+def test_the_parser_copies_are_identical_source():
+    assert _src(sc.split_conf_value) == _src(eink_client.split_conf_value)
 
 
 def test_export_view_strips_comments():
@@ -103,10 +109,8 @@ def test_set_keys_without_comment_unchanged_and_result_sources_correctly():
 wiz = _load("sd_setup_cmt", _ROOT / "deploy" / "appliance" / "setup" / "sd_setup.py")
 
 
-def test_wizard_parser_copy_is_identical():
-    for line, _ in CASES:
-        rest = line.partition("=")[2]
-        assert wiz.split_conf_value(rest) == eink_client.split_conf_value(rest)
+def test_wizard_parser_copy_is_identical_source():
+    assert _src(wiz.split_conf_value) == _src(eink_client.split_conf_value)
 
 
 def test_wizard_preserves_commented_line_with_its_comment():
@@ -117,3 +121,42 @@ def test_wizard_preserves_commented_line_with_its_comment():
 def test_wizard_still_rejects_unsafe_value_even_with_a_comment(capsys):
     assert wiz._preserved_lines("X=a;rm -rf /  # c\nY=$(id) # c\n") == []
     assert "dropping unsafe" in capsys.readouterr().err
+
+
+# --- reviewer regressions: text glued to a closing quote must never survive a rewrite ---------------
+
+def test_vertical_whitespace_does_not_split_like_bash():
+    # \v, \f and NBSP are not word separators in bash; only space/tab are.
+    for ws in ("\x0b", "\x0c", "\xa0"):
+        line = f"K=a{ws}# c"
+        assert eink_client.split_conf_value(line.partition("=")[2])[0] == f"a{ws}# c"
+
+
+def test_set_keys_cleans_a_glued_hash_payload():
+    out = sc.set_keys('ROTATE="90"#;echo PWNED\n', {"ROTATE": "180"})
+    assert out == "ROTATE=180\n"
+    assert _bash_source(out, "ROTATE") == "180"
+
+
+def test_glued_payload_after_unquoted_value_is_not_a_comment_either():
+    out = sc.set_keys("ROTATE=90#;echo PWNED\n", {"ROTATE": "180"})
+    assert "PWNED" not in out
+
+
+def test_set_keys_drops_non_comment_trailing_text():
+    assert sc.set_keys('ROTATE="90" junk\n', {"ROTATE": "180"}) == "ROTATE=180\n"
+
+
+def test_wizard_refuses_glued_hash_payload(capsys):
+    assert wiz._preserved_lines('K="ok"#;echo PWNED\n') == []
+    assert "dropping unsafe" in capsys.readouterr().err
+
+
+def test_wizard_refuses_non_comment_trailing_text(capsys):
+    assert wiz._preserved_lines('K="ok" ;echo PWNED\n') == []
+    assert "dropping unsafe" in capsys.readouterr().err
+
+
+def test_sd_conf_get_of_glued_value_fails_validation_not_silently_90():
+    assert sc.get_key('ROTATE="90"#x\n', "ROTATE") == "90#x"
+    assert sc.validate("ROTATE", "90#x") is not None

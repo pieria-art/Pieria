@@ -236,6 +236,10 @@ def do_clear(afd: int) -> int:
             removed += 1
         except FileNotFoundError:
             pass
+        except IsADirectoryError:
+            print(f"sd-mailbox: clear: leaving directory {name!r}", file=sys.stderr)
+        except OSError as e:
+            die(f"clear: could not remove {name!r}: {e}")   # fail closed, no traceback
     return removed
 
 

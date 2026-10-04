@@ -8,6 +8,8 @@ import pathlib
 import subprocess
 import sys
 
+import pytest
+
 _ROOT = pathlib.Path(__file__).resolve().parents[1]
 _BIN = _ROOT / "deploy" / "appliance" / "bin" / "sd-image-prep"
 _MAILBOX = _ROOT / "deploy" / "appliance" / "bin" / "sd-mailbox"
@@ -121,3 +123,29 @@ def test_declare_capabilities_plain_empty_and_quoted_values(tmp_path):
         r, _ = _run_with_systemctl_log('BOOT_CONF="$CONF"; declare_capabilities', tmp_path, CONF=str(conf))
         assert r.returncode == 0, r.stderr
         assert conf.read_text() == after
+
+
+def test_clear_survives_a_per_entry_oserror(tmp_path, monkeypatch):
+    import importlib.machinery
+    import importlib.util
+    loader = importlib.machinery.SourceFileLoader("sd_mailbox_clr", str(_MAILBOX))
+    spec = importlib.util.spec_from_loader("sd_mailbox_clr", loader)
+    mod = importlib.util.module_from_spec(spec)
+    loader.exec_module(mod)
+    app = tmp_path / "appliance"
+    app.mkdir()
+    (app / "f").write_text("x")
+    fd = os.open(app, os.O_DIRECTORY)
+    try:
+        def eisdir(name, dir_fd=None):
+            raise IsADirectoryError(21, "is a directory")
+        monkeypatch.setattr(mod.os, "unlink", eisdir)
+        assert mod.do_clear(fd) == 0                 # warned, continued, no traceback
+
+        def eperm(name, dir_fd=None):
+            raise PermissionError(1, "nope")
+        monkeypatch.setattr(mod.os, "unlink", eperm)
+        with pytest.raises(SystemExit):              # fails closed via die()
+            mod.do_clear(fd)
+    finally:
+        os.close(fd)

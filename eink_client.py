@@ -46,27 +46,29 @@ ScheduleFn = Callable[[], dict]
 
 def split_conf_value(rest: str):
     """Split the text after `KEY=` into (value, trailing), matching what bash `.`-sourcing yields for
-    the forms pieria.conf actually uses (ADR-137 conf comments):
+    the forms pieria.conf actually uses (ADR-137 conf comments). Only space/tab separate words, as in bash:
 
-      KEY=value   # note   -> value  (an unquoted `#` starts a comment only when whitespace precedes it)
-      KEY="a # b"  # note  -> a # b  (quotes protect a `#`; text after the closing quote is ignored)
+      KEY=value   # note   -> value  (an unquoted `#` starts a comment only when space/tab precedes it)
+      KEY="a # b"  # note  -> a # b  (quotes protect a `#`)
       KEY='a # b'          -> a # b
+      KEY="a"b             -> ab     (text glued to a closing quote joins the word, so KEY="90"#x -> 90#x)
       KEY=   # note        -> ""
 
-    `trailing` is the raw suffix after the value token (leading whitespace + comment), kept so a writer
-    can preserve a line's comment. An unterminated quote is treated as an unquoted value. COPIED
-    VERBATIM into deploy/appliance/bin/sd-conf (standalone host script); a test pins the equality."""
-    lead = len(rest) - len(rest.lstrip())
-    body = rest[lead:]
-    if lead and body.startswith("#"):
+    `trailing` is the raw suffix after the value word (it starts with space/tab, or is empty), kept so a
+    writer can preserve a line's comment; writers keep it ONLY if it matches `^[ \t]+#`. An unterminated
+    quote is treated as an unquoted value. Copied verbatim into eink_client.py, sd-conf and sd_setup.py
+    (standalone scripts); a test pins that the source text is identical."""
+    body = rest.lstrip(" \t")
+    if len(body) != len(rest) and body.startswith("#"):
         return "", rest
     if body[:1] in ("'", '"'):
         end = body.find(body[0], 1)
         if end != -1:
-            return body[1:end], body[end + 1:]
-    m = re.search(r"\s+#", body)
+            glued = re.match(r"[^ \t]*", body[end + 1:]).group(0)
+            return body[1:end] + glued, body[end + 1 + len(glued):]
+    m = re.search(r"[ \t]+#", body)
     cut = m.start() if m else len(body)
-    return body[:cut].strip(), body[cut:]
+    return body[:cut].strip(" \t"), body[cut:]
 
 
 def parse_conf_text(text: str) -> dict:
