@@ -21,6 +21,13 @@ WITHOUT re-taring (a cheap R2 cover refresh: upload `packs.json` + `covers/`, th
     python -m tools.publish_pack --pack ./art-pack --out ./art-pack-dist
     python -m tools.publish_pack --core masterpieces,impressionism,post-impressionism
     python -m tools.publish_pack --pack ./art-pack --out ./art-pack-dist --covers-only
+    python -m tools.publish_pack --pack ./art-pack --out ./art-pack-dist --manifests-only
+
+F8b metadata-only refresh: every publish also writes `manifests/<id>.json` and adds `manifest_url` +
+`manifest_sha256` to each registry row; installed boxes fetch a changed manifest (no image download) and
+refresh their existing works' metadata. `--manifests-only` regenerates just those against an existing dist.
+R2 UPLOAD ORDER: (1) `manifests/*.json`, (2) `packs.json` LAST (a box that sees the new packs.json must
+find the manifest it names), then purge the changed URLs. Tars/covers only when they changed.
 
 Upload to Cloudflare R2 is a separate step (ADR-038 §5: publish-only token → Infisical, device curls a
 public URL). This tool stays offline/deterministic; `--upload` is a documented seam, not implemented here.
@@ -281,6 +288,39 @@ def _gate_manifests(pack: Path, cols: list[dict]) -> list[tuple[str, str]]:
     return failures
 
 
+def emit_manifests(pack: Path, out: Path, rows: list[dict]) -> None:
+    """F8b (ADR-148): publish each collection's signed manifest as a STANDALONE file so installed boxes can
+    refresh metadata without re-downloading the tar. `manifests/<id>.json` is a byte copy of the manifest
+    inside the tar - it carries its own embedded Ed25519 signature (same scheme + same trusted key as the
+    pack install; there is no separate .sig file). Each registry row gains `manifest_url` (relative, like
+    `download`) and `manifest_sha256` = core.lifespan.manifest_hash (sha256 of the canonical JSON, the very
+    value a box records as its applied hash, so 'differs from applied' is a plain string compare).
+    Additive: old clients ignore both fields."""
+    from core.lifespan import manifest_hash
+    (out / "manifests").mkdir(parents=True, exist_ok=True)
+    index = json.loads((pack / "pack-index.json").read_text())
+    paths = {c["id"]: pack / c.get("manifest", f"_manifests/{c['id']}.json") for c in index.get("collections", [])}
+    for row in rows:
+        mpath = paths.get(row["id"])
+        if mpath is None or not mpath.exists():
+            continue
+        shutil.copy2(mpath, out / "manifests" / f"{row['id']}.json")
+        row["manifest_url"] = f"manifests/{row['id']}.json"
+        row["manifest_sha256"] = manifest_hash(json.loads(mpath.read_text()))
+
+
+def publish_manifests_only(pack: Path, out: Path) -> dict:
+    """Regenerate `manifests/` + patch manifest_url/manifest_sha256 into an EXISTING `packs.json`, without
+    re-taring. THE metadata-fix publish: upload `manifests/*` first, then `packs.json`."""
+    reg_path = out / "packs.json"
+    if not reg_path.exists():
+        raise SystemExit(f"--manifests-only needs an existing {reg_path}; run a full publish first")
+    registry = json.loads(reg_path.read_text())
+    emit_manifests(pack, out, registry.get("collections", []))
+    reg_path.write_text(json.dumps(registry, indent=1, ensure_ascii=False))
+    return registry
+
+
 def publish(pack: Path, out: Path, core: set[str], only: set[str] | None = None,
             *, allow_unverified: bool = False) -> dict:
     index = json.loads((pack / "pack-index.json").read_text())
@@ -302,6 +342,7 @@ def publish(pack: Path, out: Path, core: set[str], only: set[str] | None = None,
         rows.append(row)
 
     emit_covers(pack, out, rows)  # cover art per collection -> covers/<id>.jpg + row["cover"]
+    emit_manifests(pack, out, rows)  # standalone signed manifests -> manifests/<id>.json (F8b)
     core_ids = sorted(r["id"] for r in rows if r["core"])
     ids = {r["id"] for r in rows}
     # The OOB first-glimpse: what a fresh install pulls from R2 and sets as the default playlist.
@@ -344,11 +385,30 @@ def main() -> int:
     ap.add_argument("--covers-only", action="store_true",
                     help="regenerate covers/ + patch cover fields into an existing packs.json WITHOUT "
                          "re-taring (cheap R2 cover refresh: upload packs.json + covers/, tars untouched)")
+    ap.add_argument("--manifests-only", action="store_true",
+                    help="regenerate manifests/ + patch manifest_url/manifest_sha256 into an existing "
+                         "packs.json WITHOUT re-taring (metadata-only fix: upload manifests/ FIRST, "
+                         "then packs.json LAST)")
     ap.add_argument("--allow-unverified", action="store_true",
                     help="DEV/TEST ONLY: skip the pre-publish device-refusal gate (every manifest must "
                          "normally pass core.lifespan.manifest_refusal_reason(require_verified=True) "
                          "before anything is written). Never use for a real publish.")
     args = ap.parse_args()
+
+    if args.manifests_only:
+        index = json.loads((args.pack / "pack-index.json").read_text())
+        failures = [] if args.allow_unverified else _gate_manifests(args.pack, index.get("collections", []))
+        if failures:
+            print("FAIL: refusing to publish - manifest(s) would be refused on-device:")
+            for cid, reason in failures:
+                print(f"  x {cid}: {reason}")
+            return 1
+        reg = publish_manifests_only(args.pack, args.out)
+        n = sum(1 for r in reg["collections"] if r.get("manifest_sha256"))
+        print("\n=== MANIFESTS-ONLY ===")
+        print(f"manifests refreshed: {n}/{len(reg['collections'])} -> {args.out}/manifests/ + packs.json")
+        print(f"Next: upload {args.out}/manifests/ to R2 FIRST, then {args.out}/packs.json LAST; purge both.")
+        return 0
 
     if args.covers_only:
         reg = publish_covers_only(args.pack, args.out)

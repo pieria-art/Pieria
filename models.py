@@ -268,6 +268,7 @@ class SubscriptionModel(Base):
     # sha256 of the manifest whose metadata was last applied to existing works (ADR-148 F8); a differing
     # hash on boot triggers a refresh. NULL = never recorded (refresh once).
     applied_manifest_hash: Mapped[Optional[str]] = mapped_column(String)
+    metadata_refreshed_at: Mapped[Optional[datetime]] = mapped_column(DateTime)   # last F8 refresh that ran
     item_count: Mapped[int] = mapped_column(Integer, default=0)
     last_synced: Mapped[Optional[datetime]] = mapped_column(DateTime)
     last_status: Mapped[Optional[str]] = mapped_column(String)      # 'ok' | 'error: …'

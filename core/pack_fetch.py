@@ -209,6 +209,67 @@ async def install_collection_from_registry(db, client: httpx.AsyncClient, regist
     return result
 
 
+MAX_MANIFEST_BYTES = 32 * 1024 * 1024
+
+
+async def _fetch_manifest(client: httpx.AsyncClient, url: str) -> dict:
+    """GET one standalone manifest through guarded_stream (per-hop SSRF validation, no auto-redirect),
+    capped at MAX_MANIFEST_BYTES. (core/safe_http.py does not exist on main - this is the pack_fetch
+    client every other registry fetch uses.)"""
+    async with guarded_stream(client, "GET", url, timeout=30) as r:
+        r.raise_for_status()
+        buf = bytearray()
+        async for chunk in r.aiter_bytes(_CHUNK):
+            buf += chunk
+            if len(buf) > MAX_MANIFEST_BYTES:
+                raise ValueError("manifest exceeds size cap")
+    return json.loads(bytes(buf))
+
+
+async def refresh_manifests_from_registry(db, client: httpx.AsyncClient, registry_url: str) -> dict:
+    """F8b (ADR-148): metadata-only refresh. For each INSTALLED pack whose registry `manifest_sha256`
+    differs from the subscription's applied hash: fetch `manifest_url`, require the canonical sha256 to
+    match AND the same trust rules as a pack install (valid registry-verified signature, id matches),
+    then write `_manifests/<cid>.json` and refresh existing works' metadata. No images, no re-link.
+    An unreachable registry raises nothing the caller must handle beyond logging; a registry without
+    manifest fields (old publish) is a no-op. Returns {cid: (n_refreshed, n_skipped)} for applied packs;
+    refused ones are logged and left untouched (nothing written)."""
+    from models import SubscriptionModel
+    try:
+        registry = await fetch_registry(client, registry_url)
+        entries = {c.get("id"): c for c in registry.get("collections", []) if isinstance(c, dict)}
+    except Exception as e:  # noqa: BLE001 — silent retry next cycle
+        logger.info(f"[PackRefresh] registry unreachable ({type(e).__name__}); will retry next cycle")
+        return {}
+    applied: dict = {}
+    for sub in db.query(SubscriptionModel).filter(SubscriptionModel.url.like("pack:%")).all():
+        cid = sub.url.split("pack:", 1)[1]
+        entry = entries.get(cid) or {}
+        want, murl = entry.get("manifest_sha256"), entry.get("manifest_url")
+        if not want or not murl or sub.applied_manifest_hash == want:
+            continue
+        try:
+            manifest = await _fetch_manifest(client, urljoin(registry_url, murl))
+            if not isinstance(manifest, dict) or lifespan.manifest_hash(manifest) != want:
+                raise ValueError("manifest sha256 does not match the registry")
+            if manifest.get("id") not in (None, cid):
+                raise ValueError(f"manifest id {manifest.get('id')!r} != {cid!r}")
+            reason = lifespan.manifest_refusal_reason(manifest, cid, require_verified=True)
+            if reason is not None:
+                raise ValueError(reason)
+            dest = lifespan.ARTWORK_ROOT / "_manifests" / f"{cid}.json"
+            dest.parent.mkdir(parents=True, exist_ok=True)
+            tmp = dest.with_name(dest.name + ".tmp")
+            tmp.write_text(json.dumps(manifest))
+            tmp.replace(dest)
+            applied[cid] = await asyncio.to_thread(lifespan.apply_manifest_refresh, db, sub, manifest)
+        except Exception as e:  # noqa: BLE001 — one bad pack must not block the others
+            logger.warning(f"[PackRefresh] {cid!r}: refused, nothing applied: {type(e).__name__}: {e}")
+    if applied:
+        logger.info(f"[PackRefresh] registry check: {len(applied)} pack(s) metadata-refreshed: {applied}")
+    return applied
+
+
 def _installed_sub(db, cid: str):
     from models import SubscriptionModel
     return db.query(SubscriptionModel).filter(SubscriptionModel.url == f"pack:{cid}").first()

@@ -343,14 +343,21 @@ def refresh_installed_packs(db: Session) -> dict:
         if manifest_refusal_reason(manifest, cid) is not None:
             logger.warning(f"[PackRefresh] {cid!r}: on-disk manifest refused, not refreshing")
             continue
-        n_ref, n_skip = _refresh_manifest_items(db, manifest)
-        sub.applied_manifest_hash = h
-        sub.cached_manifest = json.dumps(manifest)
-        db.commit()
-        out[cid] = (n_ref, n_skip)
-        logger.info(f"[PackRefresh] {cid!r}: manifest changed — {n_ref} work(s) refreshed, "
-                    f"{n_skip} field(s) skipped for user edits")
+        out[cid] = apply_manifest_refresh(db, sub, manifest)
     return out
+
+
+def apply_manifest_refresh(db: Session, sub: SubscriptionModel, manifest: dict) -> tuple[int, int]:
+    """Refresh existing works from an (already validated) manifest and record it as applied on `sub`.
+    Metadata only: no image work, no new works, no playlist re-linking."""
+    n_ref, n_skip = _refresh_manifest_items(db, manifest)
+    sub.applied_manifest_hash = manifest_hash(manifest)
+    sub.cached_manifest = json.dumps(manifest)
+    sub.metadata_refreshed_at = datetime.now(UTC)
+    db.commit()
+    logger.info(f"[PackRefresh] {sub.url!r}: manifest changed — {n_ref} work(s) refreshed, "
+                f"{n_skip} field(s) skipped for user edits")
+    return n_ref, n_skip
 
 
 def _refresh_manifest_items(db: Session, manifest: dict) -> tuple[int, int]:
@@ -906,6 +913,32 @@ async def _restore_pending_packs_loop() -> None:
         lock_fd.close()
 
 
+async def _pack_manifest_refresh_loop():
+    """F8b (ADR-148): at boot (after the pack seed) and once a day, ask the registry whether any INSTALLED
+    pack's manifest changed and refresh existing works' metadata - no image downloads. Leader-only,
+    best-effort; an unreachable registry is a silent retry next cycle."""
+    import config
+    from config import PACK_REGISTRY_URL
+    from core import pack_fetch
+    await asyncio.sleep(60)   # let the boot seed / OOB install settle first
+    while True:
+        db = SessionLocal()
+        client = pack_fetch.new_client()
+        try:
+            row = db.query(SettingsModel).filter(SettingsModel.setting_key == "pack_registry_url").first()
+            url = row.setting_value if row and row.setting_value else PACK_REGISTRY_URL
+            if not config.DISABLE_BOOT_SEED:
+                await pack_fetch.refresh_manifests_from_registry(db, client, url)
+        except asyncio.CancelledError:
+            raise
+        except Exception as e:  # noqa: BLE001 — a background check must never take the app down
+            logger.info(f"[PackRefresh] registry check skipped: {type(e).__name__}: {e}")
+        finally:
+            await client.aclose()
+            db.close()
+        await asyncio.sleep(24 * 3600)
+
+
 async def _update_check_loop():
     """ADR-071: refresh the 'is there a newer release?' cache about once a day, so the admin UI shows a
     current answer without a live GitHub call on page load. Leader-only, best-effort, appliance-only."""
@@ -1051,6 +1084,7 @@ async def lifespan(app: FastAPI):
 
         # ADR-071: keep the update-availability cache warm (appliance-only; no-op elsewhere).
         _spawn(_update_check_loop())
+        _spawn(_pack_manifest_refresh_loop())   # F8b: metadata-only pack refresh (leader-only)
 
         # A restore just landed (core/restore_boot.py) and its pack images need re-downloading.
         _spawn(_restore_pending_packs_loop())

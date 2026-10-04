@@ -51,8 +51,9 @@ async def list_packs(db: Session = Depends(get_db)):
 
     url = _registry_url(db)
     # cid -> trust for installed packs; every registry pack is Official (this is the signed pieria registry).
-    installed = {s.url.split("pack:", 1)[1]: s.trust
-                 for s in db.query(SubscriptionModel).filter(SubscriptionModel.url.like("pack:%")).all()}
+    subs = db.query(SubscriptionModel).filter(SubscriptionModel.url.like("pack:%")).all()
+    installed = {s.url.split("pack:", 1)[1]: s.trust for s in subs}
+    refreshed = {s.url.split("pack:", 1)[1]: s.metadata_refreshed_at for s in subs}
     client = pack_fetch.new_client()
     try:
         reg = await pack_fetch.fetch_registry(client, url)
@@ -69,6 +70,8 @@ async def list_packs(db: Session = Depends(get_db)):
         row = {k: c.get(k) for k in _FIELDS}
         cid = c.get("id")
         row["installed"] = cid in installed
+        ts = refreshed.get(cid)   # F8b: when a metadata-only refresh last ran for this pack
+        row["metadata_refreshed_at"] = ts.isoformat() if ts else None
         # Trust badge: an installed pack shows what the device verified (verified/community); an available
         # one shows Official (it's from the signed pieria registry, verified for real at install).
         row["trust"] = installed.get(cid) or "official"
