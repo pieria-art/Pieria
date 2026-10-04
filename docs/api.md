@@ -71,9 +71,10 @@ Branch on `code` (stable); `message` is for humans and may change.
 |---|---|---|
 | 401 | `unauthorized` | Missing, invalid or revoked token. Carries `WWW-Authenticate: Bearer`. |
 | 403 | `insufficient_scope` | The token is valid but lacks the scope this call needs. |
-| 404 | `not_found` | No such display, artwork or playlist. |
-| 409 | `not_live` | The display is not checking in, so the command was **not** queued. |
-| 422 | `validation_error` | A field is missing, malformed or out of range (`message` says which). |
+| 404 | `not_found` | No such display, artwork or playlist (or an artwork that is not approved). |
+| 409 | `not_live` | A canvas display is not checking in, so the command was **not** queued. |
+| 409 | `unsupported_for_kind` | A canvas-only action was sent to an e-ink or Frame display (see commands below). |
+| 422 | `validation_error` | A field is missing, malformed or **out of bounds** (ids and offsets have ranges, `limit` is capped, `until` must be in the future); `message` says which. |
 | 422 | `unknown_playlist` | `set_playlist` named a playlist that does not exist. |
 | 500 | `internal_error` | Something broke on the server. Safe to retry later. |
 
@@ -100,12 +101,19 @@ calls with a body.
 
 ### Server
 
-**`GET /info`** (`read`): name, version, `api_version`, `appliance_mode`, `server_id`, `display_name`.
+**`GET /info`** (`read`): name, version, `api_version`, `appliance_mode`, `server_id`, `display_name`,
+plus two fields clients should use:
+
+- **`api_features`**: the capabilities this server offers (today `pause`, `show`, `quiet`). **Feature-detect on
+  this list, not on `version`**: an older Pieria simply will not list a feature, and new values are only ever added.
+- **`token_scopes`**: the scopes of the token making the call (`read`, `control`), so a client can tell
+  at once whether it may send commands.
 
 ```bash
 curl -s -H "Authorization: Bearer $TOKEN" $PIERIA/info
 # {"name":"Pieria","version":"1.0.6","api_version":1,"appliance_mode":true,
-#  "server_id":"123e4567-e89b-12d3-a456-426614174000","display_name":"living_room"}
+#  "server_id":"123e4567-e89b-12d3-a456-426614174000","display_name":"living_room",
+#  "api_features":["pause","show","quiet"],"token_scopes":["read","control"]}
 ```
 
 ### Displays
@@ -118,15 +126,23 @@ curl -s -H "Authorization: Bearer $TOKEN" $PIERIA/displays
 ```
 
 ```json
-[{"id": "living_room", "live": true, "last_seen": "2026-10-04T20:15:02Z", "kind": "canvas",
-  "playlist": "Impressionists", "mode": "ken-burns",
+[{"id": "living_room", "name": "living_room", "live": true, "last_seen": "2026-10-04T20:15:02Z",
+  "updated_at": "2026-10-04T20:14:51Z", "kind": "canvas", "paused": false,
+  "playlist": "Impressionists", "playlist_id": 3, "mode": "ken-burns",
   "artwork": {"id": 42, "title": "The Starry Night", "artist": "Vincent van Gogh", "year": "1889",
               "image_url": "/artworks/42/display.jpg", "thumb_url": "/artworks/42/thumbnail",
               "is_personal": false}}]
 ```
 
-`kind` is `canvas` (browser/kiosk), `eink`, `frame` (Samsung Frame TV) or `unknown`. `live` means the
-display checked in within about 15 seconds; only live displays accept commands.
+- `kind` is `canvas` (browser/kiosk), `eink`, `frame` (Samsung Frame TV) or `unknown`.
+- `live` means the display checked in within about 15 seconds. Canvas displays must be live to take most
+  commands; e-ink and Frame displays sleep between pulls (`live: false`) and that is normal.
+- `name` is a friendly label for your UI. Today it equals `id`; show it, but always address a display by `id`.
+- `playlist` is the playlist name and `playlist_id` its id (null if unknown or since renamed); `set_playlist`
+  accepts either.
+- `paused` is the server-side pause flag (see `pause` below).
+- `updated_at` (UTC) is when the display's now-playing, `paused` flag or `mode` last changed. After sending
+  a command, compare it with the value you had to tell the command has taken effect.
 
 **`GET /displays/{id}`** (`read`): one display, same shape.
 
@@ -134,27 +150,55 @@ display checked in within about 15 seconds; only live displays accept commands.
 curl -s -H "Authorization: Bearer $TOKEN" $PIERIA/displays/living_room
 ```
 
-**`POST /displays/{id}/commands`** (`control`): send a command. Returns `202 {"status": "queued"}`:
-it is queued for the display, not yet shown (a live display acts within about a second). If the display
-is not live you get `409 not_live` and nothing is queued.
+**`POST /displays/{id}/commands`** (`control`): send a command. Returns `202 {"status": "queued"}`.
+202 means accepted, not yet shown (a live canvas acts within about a second).
 
 | `action` | Extra fields | Effect |
 |---|---|---|
 | `next` | | next artwork |
 | `previous` | | previous artwork |
+| `pause` | | hold the current artwork |
+| `resume` | | carry on rotating |
 | `show_placard` | | show the museum placard for the current work |
-| `set_playlist` | `playlist` (a name from `GET /playlists`) | switch collection |
+| `set_playlist` | `playlist` (name) **or** `playlist_id` (id), from `GET /playlists` | switch collection |
 | `set_mode` | `mode`: `ken-burns`, `static-crop` or `contain-matte` | change how art is rendered |
+
+How kinds differ:
+
+- **`pause` / `resume`** work on every kind. They set a server-side flag first, so they succeed (202) even
+  on a sleeping e-ink or Frame display, which honours the flag on its next pull. While paused, the display's
+  own auto-advance re-serves the current artwork; an explicit `next` or `previous` still moves it once.
+  A canvas also gets the command relayed so it stops or starts its own timer.
+- **`next`, `previous`, `show_placard`, `set_playlist`, `set_mode` are canvas-only.** Sent to an e-ink or
+  Frame display they return **`409 unsupported_for_kind`**, because those have no live channel.
+- A canvas that is not checking in returns **`409 not_live`** and nothing is queued. A display whose kind is
+  still `unknown` is treated as a canvas.
+- **Queued commands expire after 60 seconds.** A command a display does not collect within a minute is
+  dropped, never delivered late.
 
 ```bash
 curl -s -X POST -H "Authorization: Bearer $TOKEN" -H "Content-Type: application/json" \
   -d '{"action":"next"}' $PIERIA/displays/living_room/commands
 
 curl -s -X POST -H "Authorization: Bearer $TOKEN" -H "Content-Type: application/json" \
-  -d '{"action":"set_playlist","playlist":"Impressionists"}' $PIERIA/displays/living_room/commands
+  -d '{"action":"pause"}' $PIERIA/displays/living_room/commands
+
+curl -s -X POST -H "Authorization: Bearer $TOKEN" -H "Content-Type: application/json" \
+  -d '{"action":"set_playlist","playlist_id":3}' $PIERIA/displays/living_room/commands
 
 curl -s -X POST -H "Authorization: Bearer $TOKEN" -H "Content-Type: application/json" \
   -d '{"action":"set_mode","mode":"contain-matte"}' $PIERIA/displays/living_room/commands
+```
+
+**`POST /displays/{id}/show`** (`control`) with `{"artwork_id": 42}`: show a specific approved artwork now.
+Returns `202`. On a canvas it appears within about a second and the rotation continues from it. On
+e-ink or Frame it becomes the next item served on the display's next pull and waits for it, even while
+the display sleeps, for up to 6 hours. A paused display stays paused. `404` for an unknown display or an
+unknown or unapproved artwork; `409 not_live` for a canvas that is not checking in.
+
+```bash
+curl -s -X POST -H "Authorization: Bearer $TOKEN" -H "Content-Type: application/json" \
+  -d '{"artwork_id":42}' $PIERIA/displays/living_room/show
 ```
 
 ### Library
@@ -167,7 +211,7 @@ curl -s -H "Authorization: Bearer $TOKEN" $PIERIA/playlists
 ```
 
 **`GET /playlists/{id}/artworks?limit=50&offset=0`** (`read`): a page of a playlist's approved works
-(`limit` 1-200). Returns `{total, limit, offset, items: [...]}`.
+(`limit` 1-200, `offset` 0-1000000). Returns `{total, limit, offset, items: [...]}`.
 
 ```bash
 curl -s -H "Authorization: Bearer $TOKEN" "$PIERIA/playlists/3/artworks?limit=20&offset=40"
@@ -211,18 +255,48 @@ curl -s -X PATCH -H "Authorization: Bearer $TOKEN" -H "Content-Type: application
 curl -s -H "Authorization: Bearer $TOKEN" $PIERIA/schedule/state
 ```
 
-### Coming next (additive, still v1)
+### Quiet (manual override)
 
-These are being added to v1 now. They are listed so you can plan for them; check `/api/v1/docs` on your
-server for what it actually supports.
+"Art off while we are out, on when we are home." A manual override sits on top of the quiet-hours
+schedule.
 
-- **Pause and resume.** The command `action` enum gains `pause` and `resume`, and `Display` gains
-  `paused` (boolean). While paused, a display holds its current artwork; an explicit `next` or
-  `previous` still moves it once.
-- **`POST /displays/{id}/show`** (`control`) with `{"artwork_id": 42}`: show a specific artwork now.
-- **`GET /quiet`** (`read`) and **`POST /quiet`** (`control`) with `{"on": true, "until": "..."}`: a
-  manual quiet override ("art off while we are out"). The response is
-  `{"active": bool, "source": "schedule" | "manual" | "none", "until": ...}`.
+**`GET /quiet`** (`read`): is the display quiet right now, and why. Returns
+
+```json
+{"active": true, "mode": "on", "source": "manual", "until": "2026-10-04T23:00:00Z"}
+```
+
+- `active`: quiet (panel off or blank) right now, whatever the cause.
+- `mode`: the override in force: `on`, `off`, or `auto` when there is none and the schedule rules.
+- `source`: `manual` (an override is in force, and it may force quiet **off** too), `schedule` (the
+  quiet-hours schedule is making it quiet) or `none`.
+- `until` (UTC): when this state ends: the override's expiry (null = indefinite) or the end of the current
+  scheduled quiet window; null when `source` is `none`.
+
+**`POST /quiet`** (`control`) with `{"mode": "on" | "off" | "auto", "until": "<ISO-8601>"}` (`until`
+optional) returns the resulting state, same shape as `GET /quiet`.
+
+| `mode` | Effect |
+|---|---|
+| `on` | force quiet now (canvas blackout; the appliance also powers the panel off when the schedule's `quiet_mode` is `cec`) |
+| `off` | force awake now, even inside quiet hours |
+| `auto` | clear the override; the schedule rules again (`until` is ignored) |
+
+For `on` and `off` the override **ends at `until` if you give one, otherwise at the next scheduled quiet
+boundary, whichever comes first**, so a forced state never sticks silently. With no quiet schedule
+configured it lasts until you change it. `until` must be in the future (an offset-less value is read as
+UTC), or you get `422 validation_error`. It takes effect on the display's next schedule poll (about 60 s
+for a canvas).
+
+```bash
+curl -s -H "Authorization: Bearer $TOKEN" $PIERIA/quiet
+
+curl -s -X POST -H "Authorization: Bearer $TOKEN" -H "Content-Type: application/json" \
+  -d '{"mode":"on","until":"2026-10-04T23:00:00Z"}' $PIERIA/quiet
+
+curl -s -X POST -H "Authorization: Bearer $TOKEN" -H "Content-Type: application/json" \
+  -d '{"mode":"auto"}' $PIERIA/quiet
+```
 
 ## 6. Media (images)
 
@@ -243,8 +317,9 @@ There is no push channel yet, so integrations poll.
 
 - Poll **`GET /displays` no faster than every 5 seconds**; 10 s is plenty for a dashboard. One call
   returns every display, so do not poll each display separately.
+- Poll `/quiet` no faster than every 10 seconds (it only takes effect on a ~60 s display poll anyway).
 - Library data (`/playlists`, `/artworks/{id}`, `/search`) changes rarely. Cache it; refresh on demand.
-- After a command, wait about a second, then re-read `/displays`.
+- After a command, wait about a second, then re-read `/displays` and watch `updated_at`. Commands expire after 60 s, so do not retry a `202` blindly.
 - If you see `401`, stop and ask the user for a new token rather than retrying.
 
 Home Assistant users do not need any of this: the integration handles polling, discovery and
