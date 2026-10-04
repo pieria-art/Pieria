@@ -203,3 +203,38 @@ def test_saved_key_not_sent_to_other_provider_or_client_supplied_host(client):
     assert not evil.called
     assert not oai.called            # no key for openai => never even asks
     assert r["source"] == "preset"
+
+
+# ---- save route: the stored key is bound to its (provider, base_url) ------------
+def test_save_never_sends_stored_key_to_new_host(client):
+    c, db = client
+    _save(db, ai_provider="anthropic", ai_api_key="sk-ant-REALKEY0123456", ai_model="claude-sonnet-5-5")
+    with respx.mock:
+        evil = respx.route(host="attacker.lan").mock(
+            return_value=httpx.Response(200, json={"choices": [{"message": {"content": "ok"}}]}))
+        r = c.post("/api/settings/ai", json={"provider": "custom", "base_url": "http://attacker.lan/v1",
+                                              "model": "x"})
+    assert r.status_code == 400 and not evil.called
+    assert db.query(SettingsModel).filter_by(setting_key="ai_provider").first().setting_value == "anthropic"
+
+
+def test_save_same_target_reuses_stored_key(client):
+    c, db = client
+    _save(db, ai_provider="anthropic", ai_api_key="sk-ant-REALKEY0123456", ai_model="claude-sonnet-5-5")
+    with respx.mock:
+        route = respx.post("https://api.anthropic.com/v1/chat/completions").mock(
+            return_value=httpx.Response(200, json={"choices": [{"message": {"content": "ok"}}]}))
+        r = c.post("/api/settings/ai", json={"provider": "anthropic", "model": "claude-opus-5-5"})
+    assert r.status_code == 200
+    assert route.calls[0].request.headers["authorization"] == "Bearer sk-ant-REALKEY0123456"
+
+
+def test_switching_to_keyless_provider_clears_old_key(client):
+    c, db = client
+    _save(db, ai_provider="anthropic", ai_api_key="sk-ant-REALKEY0123456")
+    with respx.mock:
+        route = respx.post("http://host.docker.internal:11434/v1/chat/completions").mock(
+            return_value=httpx.Response(200, json={"choices": [{"message": {"content": "ok"}}]}))
+        r = c.post("/api/settings/ai", json={"provider": "ollama", "model": "llava"})
+    assert r.status_code == 200 and "authorization" not in route.calls[0].request.headers
+    assert ai_client.get_ai_config(force=True)["api_key"] == ""

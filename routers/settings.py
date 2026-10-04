@@ -4,7 +4,6 @@ remote catalog source, default playlist, and the Night & Quiet Hours display sch
 
 import asyncio
 import json
-import os
 from datetime import UTC, datetime
 from typing import Optional
 
@@ -298,12 +297,11 @@ async def save_ai_settings(payload: AISettingsPayload, db: Session = Depends(get
         raise HTTPException(400, "A model name is required.")
 
     base_url = (payload.base_url or ai_client.PRESETS[provider]["base_url"]).rstrip("/")
-    existing = db.query(SettingsModel).filter(SettingsModel.setting_key == "ai_api_key").first()
-    api_key = (
-        (payload.api_key or "").strip()
-        or (existing.setting_value if existing else "")
-        or (os.getenv("GEMINI_API_KEY", "") if provider == "gemini" else "")
-    )
+    # The stored key belongs to ONE (provider, base_url). Reusing it for any other target would hand a
+    # credential to a host the user never gave it to (e.g. POST provider=custom, base_url=attacker).
+    cfg = ai_client.get_ai_config(force=True)
+    same_target = provider == cfg["provider"] and base_url == cfg["base_url"].rstrip("/")
+    api_key = (payload.api_key or "").strip() or (cfg["api_key"] if same_target else "")
     key_optional = ai_client.PRESETS[provider].get("key_optional", False)
     if not api_key and not key_optional:
         raise HTTPException(400, "An API key is required for this provider.")
@@ -318,6 +316,8 @@ async def save_ai_settings(payload: AISettingsPayload, db: Session = Depends(get
     _upsert_setting(db, "ai_base_url", base_url)
     if api_key:
         _upsert_setting(db, "ai_api_key", api_key)
+    elif not same_target:
+        _upsert_setting(db, "ai_api_key", "")  # never leave the old target's key bound to the new one
     _upsert_setting(db, "ai_model", payload.model)
     _upsert_setting(db, "ai_model_fast", (payload.model_fast or "").strip())
     _upsert_setting(db, "ai_temperature", (payload.temperature or "").strip())
