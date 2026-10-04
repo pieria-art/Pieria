@@ -201,3 +201,12 @@ body.demo { padding-top: 40px; box-sizing: border-box; }
 .ds-input:focus { outline: none; border-color: var(--accent-color); }
 .ds-hint { margin-top: 6px; font-size: 0.75rem; color: #94a3b8; }
 .ds-warn { color: #fbbf24; }
+
+/* --- Alert card (1.1): a persistent, can't-miss problem notice inside a page (the watchdog "gave up"
+   warning). Distinct from .toast, which is transient. [hidden] must win over the display below. --- */
+.alert-card { background: var(--card-bg); border: 1px solid var(--danger-color); border-left-width: 5px; border-radius: 12px; padding: 18px 22px; }
+.alert-card[hidden] { display: none; }
+.alert-card h3 { margin: 0 0 8px; font-size: 0.95rem; color: var(--danger-color); }
+.alert-card p { margin: 0 0 8px; font-size: 0.85rem; line-height: 1.5; color: var(--text-color); }
+.alert-card .alert-meta { font-size: 0.75rem; color: #94a3b8; }
+.alert-card .alert-actions { margin-top: 12px; display: flex; gap: 10px; flex-wrap: wrap; }

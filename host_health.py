@@ -142,6 +142,55 @@ def read_watchdog():
     return None
 
 
+#: A watchdog.json older than this is not evidence of anything: the timer fires every 60 s, so the
+#: file being this stale means the watchdog is off / dead, and a stale "gave up" must not nag forever.
+WATCHDOG_STALE_S = 15 * 60
+
+
+def _parse_iso(value):
+    try:
+        dt = datetime.fromisoformat(str(value).replace("Z", "+00:00"))
+        return dt if dt.tzinfo else dt.replace(tzinfo=UTC)
+    except (TypeError, ValueError):
+        return None
+
+
+def read_watchdog_state(now=None):
+    """The watchdog's verdict, distilled for the admin UI (1.1). One of:
+      {"state": "gave_up", reason, surface, since, attempts, last_action, last_action_at, mode, checked_at}
+      {"state": "ok", ...same keys, None where unknown}
+      {"state": "unknown", "reason": ...}  - file missing, garbled, wrong shape, or stale.
+    Derived from watchdog.json (written every tick by sd-watchdog), so it clears itself the first tick
+    the box recovers. Never raises - a missing/garbled file is "unknown", not a 500."""
+    wd = read_watchdog()
+    if not isinstance(wd, dict):
+        return {"state": "unknown", "reason": "no watchdog status yet"}
+    checked = _parse_iso(wd.get("checked_at"))
+    if checked is None:
+        return {"state": "unknown", "reason": "watchdog status has no valid timestamp"}
+    age = ((now or datetime.now(UTC)) - checked).total_seconds()
+    if age > WATCHDOG_STALE_S:
+        return {"state": "unknown", "reason": "watchdog has not reported in over 15 minutes"}
+
+    def _s(key):
+        v = wd.get(key)
+        return v if isinstance(v, str) and v else None
+
+    attempts = wd.get("attempts")
+    gave_up = wd.get("gave_up") in (1, True, "1")
+    return {
+        "state": "gave_up" if gave_up else "ok",
+        "reason": _s("message"),
+        "surface": _s("gave_up_what"),
+        "since": _s("gave_up_since") if gave_up else None,
+        "attempts": attempts if isinstance(attempts, int) and not isinstance(attempts, bool) else None,
+        "last_action": _s("last_action"),
+        "last_action_at": _s("last_action_at"),
+        "mode": _s("mode"),
+        "checked_at": _s("checked_at"),
+    }
+
+
 def _read_json(name):
     """One shape for every root-written JSON mailbox file in data/appliance/: the file may be absent
     (before the first host run), mid-write, or unreadable — all of which mean None, never an
@@ -217,6 +266,7 @@ def collect() -> dict:
         "disk": read_disk(),
         "throttled": read_throttled(),
         "watchdog": read_watchdog(),
+        "watchdog_state": read_watchdog_state(),
         "conf": read_conf(),
         "os_updates": read_os_updates(),
         "support_bundle": read_support_bundle(),

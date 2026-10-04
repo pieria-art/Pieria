@@ -147,6 +147,27 @@ perform() {
   esac
 }
 
+# --- give-up state carried across ticks (1.1) --------------------------------------------------
+# watchdog.json is rewritten every tick, so "since when has it been giving up" and "what was the last
+# thing it actually tried" need the PREVIOUS file. Read it through sd-mailbox (L6), take the three
+# carried fields, and splice them into every status write below as extra JSON members. Malformed or
+# absent previous file -> all empty, never an error. The admin UI reads these (host_health.read_watchdog_state).
+prev_since=""; prev_last=""; prev_last_at=""
+{ IFS= read -r prev_since; IFS= read -r prev_last; IFS= read -r prev_last_at; } < <(
+  mbox read "$STATUS" 2>/dev/null | python3 -c '
+import json, re, sys
+try:
+    d = json.load(sys.stdin)
+except Exception:
+    d = {}
+if not isinstance(d, dict):
+    d = {}
+for k in ("gave_up_since", "last_action", "last_action_at"):
+    v = d.get(k)
+    # carried into hand-built JSON: allow only a conservative charset
+    print(v if isinstance(v, str) and re.fullmatch(r"[A-Za-z0-9:+._-]{0,40}", v) else "")
+' 2>/dev/null) || true
+
 # --- pause while an appliance action is in flight (ADR-121) --------------------
 # sd-update's own actions (update-app/update-system/restart-app/...) can legitimately leave the
 # server unreachable or the kiosk mid-reload for minutes — and update-system's reboot can take the
@@ -192,8 +213,11 @@ case "$ia_age" in ''|*[!0-9]*) ia_age=999999 ;; esac
 case "$ia_state" in
   queued|running)
     if [ "$ia_age" -lt "$IN_FLIGHT_MAX_AGE" ]; then
-      write_status_atomic "$(printf '{"mode":"%s","checked_at":"%s","action":"%s","message":"%s"}\n' \
-        "$MODE" "$now_iso" "paused: $ia_action in flight" "paused: $ia_action in flight")"
+      # Paused: no probe ran, so gave_up is NOT asserted this tick, but the carried since/last_action
+      # survive so a give-up that resumes keeps its original "since".
+      write_status_atomic "$(printf '{"mode":"%s","checked_at":"%s","action":"%s","message":"%s","gave_up":0,"gave_up_since":"%s","last_action":"%s","last_action_at":"%s"}\n' \
+        "$MODE" "$now_iso" "paused: $ia_action in flight" "paused: $ia_action in flight" \
+        "$prev_since" "$prev_last" "$prev_last_at")"
       exit 0
     fi
     ;;
@@ -431,8 +455,29 @@ elif [ "$has_eink" = 1 ]; then
 else
   display_kind="none"
 fi
-write_status_atomic "$(printf '{"mode":"%s","checked_at":"%s","display":"%s","server_ok":%s,"kiosk_ok":%s,"paint_ok":%s,"live_ok":%s,"advance_ok":%s,"eink_live_ok":%s,"consecutive_fails_server":%s,"consecutive_fails_display":%s,"consecutive_fails_eink":%s,"action":"%s","message":"%s"}\n' \
-  "$MODE" "$now_iso" "$display_kind" "$server_ok" "$kiosk_ok" "$paint_ok" "$live_ok" "$advance_ok" "$eink_live_ok" "$fails_server" "$fails_display" "$fails_eink" "$action" "$message")"
+# Give-up bookkeeping (1.1). gave_up=1 iff THIS tick's action includes give-up; it clears itself the
+# first tick the surface recovers (or drops into hysteresis), because the file is rewritten every tick.
+# gave_up_since is sticky while gave_up stays 1. last_action = the last REAL rung taken in enforce mode
+# (relaunch-kiosk, restart-eink, restart-container, reboot) — "would ..." lines and give-up don't count.
+gave_up=0; gave_up_since=""; gave_up_what=""
+case "+$action+" in *+give-up+*) gave_up=1 ;; esac
+if [ "$gave_up" = 1 ]; then
+  gave_up_since="${prev_since:-$now_iso}"
+  [ "$kiosk_fault" = 1 ] && [ "$fails_display" -ge "$ESCALATE_AFTER" ] && gave_up_what="display"
+  if [ "$eink_fault" = 1 ] && [ "$fails_eink" -ge "$ESCALATE_AFTER" ] && [ ! -e "$EINK_HOLD_FLAG" ]; then
+    gave_up_what="${gave_up_what:+$gave_up_what+}eink"
+  fi
+fi
+attempts="$fails_display"; [ "$fails_eink" -gt "$attempts" ] && attempts="$fails_eink"
+last_action="$prev_last"; last_action_at="$prev_last_at"
+if [ "$MODE" = "enforce" ]; then
+  for _a in relaunch-kiosk restart-eink restart-container reboot; do
+    case "+$action+" in *"+$_a+"*) last_action="$_a"; last_action_at="$now_iso" ;; esac
+  done
+fi
+write_status_atomic "$(printf '{"mode":"%s","checked_at":"%s","display":"%s","server_ok":%s,"kiosk_ok":%s,"paint_ok":%s,"live_ok":%s,"advance_ok":%s,"eink_live_ok":%s,"consecutive_fails_server":%s,"consecutive_fails_display":%s,"consecutive_fails_eink":%s,"action":"%s","message":"%s","gave_up":%s,"gave_up_since":"%s","gave_up_what":"%s","attempts":%s,"last_action":"%s","last_action_at":"%s"}\n' \
+  "$MODE" "$now_iso" "$display_kind" "$server_ok" "$kiosk_ok" "$paint_ok" "$live_ok" "$advance_ok" "$eink_live_ok" "$fails_server" "$fails_display" "$fails_eink" "$action" "$message" \
+  "$gave_up" "$gave_up_since" "$gave_up_what" "$attempts" "$last_action" "$last_action_at")"
 
 [ "$action" != "none" ] && logger -t sd-watchdog "$message"
 exit 0

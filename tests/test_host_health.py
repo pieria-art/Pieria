@@ -1,5 +1,7 @@
 """Device Health — throttle-bitmask decode, graceful degradation, and endpoint mode-gating."""
 
+import json
+
 import pytest
 from fastapi.testclient import TestClient
 from sqlalchemy import create_engine
@@ -93,7 +95,7 @@ def test_host_health_200_when_appliance(client, monkeypatch):
     body = resp.json()
     assert body["available"] is True
     assert set(body["host"].keys()) == {"loadavg", "temp_c", "memory", "uptime_s", "disk", "throttled",
-                                        "watchdog", "conf", "os_updates", "support_bundle",
+                                        "watchdog", "watchdog_state", "conf", "os_updates", "support_bundle",
                                         "last_update_log", "container_tz"}
     assert isinstance(body["displays"], list)
 
@@ -184,3 +186,71 @@ def test_set_display_name_migrates_playback_and_commands_and_clears_the_old_row(
     assert db.query(DisplayPlaybackSessionModel).one().display_id == "new_name"
     assert db.query(RemoteCommandModel).one().target_display == "new_name"
     assert db.query(ActiveDisplayModel).count() == 0
+
+
+# --- 1.1: watchdog "gave up" state for the admin UI ------------------------------------------------
+
+def _wd_file(tmp_path, monkeypatch, body):
+    monkeypatch.setattr(config, "APPLIANCE_DIR", tmp_path)
+    (tmp_path / "watchdog.json").write_text(body)
+
+
+def _now_iso():
+    from datetime import UTC, datetime
+    return datetime.now(UTC).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+
+def test_watchdog_state_unknown_when_file_missing(tmp_path, monkeypatch):
+    monkeypatch.setattr(config, "APPLIANCE_DIR", tmp_path)
+    assert host_health.read_watchdog_state()["state"] == "unknown"
+
+
+@pytest.mark.parametrize("body", ["{not json", "[]", '"x"', "", '{"checked_at": "garbage"}', "{}"])
+def test_watchdog_state_unknown_when_file_garbled(tmp_path, monkeypatch, body):
+    _wd_file(tmp_path, monkeypatch, body)
+    assert host_health.read_watchdog_state()["state"] == "unknown"
+
+
+def test_watchdog_state_gave_up_is_parsed(tmp_path, monkeypatch):
+    now = _now_iso()
+    _wd_file(tmp_path, monkeypatch, json.dumps({
+        "mode": "enforce", "checked_at": now, "action": "give-up", "message": "gave up — needs attention",
+        "gave_up": 1, "gave_up_since": "2026-10-04T01:00:00+00:00", "gave_up_what": "display",
+        "attempts": 7, "last_action": "relaunch-kiosk", "last_action_at": "2026-10-04T00:58:00+00:00"}))
+    ws = host_health.read_watchdog_state()
+    assert ws["state"] == "gave_up"
+    assert ws["surface"] == "display" and ws["attempts"] == 7
+    assert ws["since"] == "2026-10-04T01:00:00+00:00"
+    assert ws["last_action"] == "relaunch-kiosk"
+
+
+def test_watchdog_state_clears_when_watchdog_recovers(tmp_path, monkeypatch):
+    _wd_file(tmp_path, monkeypatch, json.dumps({
+        "mode": "enforce", "checked_at": _now_iso(), "action": "none", "message": "healthy",
+        "gave_up": 0, "gave_up_since": "", "attempts": 0, "last_action": "relaunch-kiosk"}))
+    ws = host_health.read_watchdog_state()
+    assert ws["state"] == "ok" and ws["since"] is None
+
+
+def test_watchdog_state_stale_gave_up_is_unknown(tmp_path, monkeypatch):
+    _wd_file(tmp_path, monkeypatch, json.dumps({
+        "mode": "enforce", "checked_at": "2020-01-01T00:00:00Z", "gave_up": 1}))
+    assert host_health.read_watchdog_state()["state"] == "unknown"
+
+
+def test_watchdog_state_wrong_typed_fields_never_raise(tmp_path, monkeypatch):
+    _wd_file(tmp_path, monkeypatch, json.dumps({
+        "checked_at": _now_iso(), "gave_up": 1, "attempts": "lots", "gave_up_what": 5, "message": ["x"]}))
+    ws = host_health.read_watchdog_state()
+    assert ws["state"] == "gave_up" and ws["attempts"] is None and ws["surface"] is None
+
+
+def test_api_exposes_watchdog_state_and_survives_garbage(client, tmp_path, monkeypatch):
+    monkeypatch.setattr(config, "IS_APPLIANCE", True)
+    _wd_file(tmp_path, monkeypatch, "{garbled")
+    resp = client.get("/api/health/host")
+    assert resp.status_code == 200
+    assert resp.json()["host"]["watchdog_state"]["state"] == "unknown"
+    (tmp_path / "watchdog.json").write_text(json.dumps(
+        {"checked_at": _now_iso(), "gave_up": 1, "gave_up_what": "display", "attempts": 6}))
+    assert client.get("/api/health/host").json()["host"]["watchdog_state"]["state"] == "gave_up"

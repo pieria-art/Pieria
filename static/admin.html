@@ -562,6 +562,9 @@
             <h2 style="color: var(--accent-color); font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.1rem; margin-bottom: 30px;">Devices</h2>
 
             <div style="display: flex; flex-direction: column; gap: 20px; max-width: 700px;">
+                <!-- Watchdog gave up (1.1): hidden unless /api/health/host reports watchdog_state=gave_up -->
+                <div id="watchdog-alert" class="alert-card" role="alert" hidden></div>
+
                 <!-- Server (this box) health -->
                 <div style="background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 25px;">
                     <h3 style="margin-top: 0; font-size: 0.9rem; color: var(--text-color);">🩺 Server Health <span id="device-health-updated" style="font-weight:normal; color:#64748b; font-size:0.72rem;"></span></h3>
@@ -1286,6 +1289,6 @@
         </div>
     </div>
 
-    <script src="admin.js?v=20260630d"></script>
+    <script src="admin.js?v=20261004a"></script>
 </body>
 </html>

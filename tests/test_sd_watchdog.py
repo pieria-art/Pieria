@@ -719,3 +719,75 @@ def test_a_symlinked_appliance_dir_is_refused_and_the_outside_dir_untouched(tmp_
     assert not (outside / "watchdog.json").exists()
     assert not (outside / "watchdog-reboots.log").exists()
     assert (root / "data" / "appliance").is_symlink()
+
+
+# --- 1.1: give-up state is persisted for the admin UI -------------------------------------------
+
+def test_give_up_sets_gave_up_since_and_attempts_and_last_action(h):
+    h.set_server_ok(True)
+    h.set_kiosk_ok(True)
+    h.set_paint_ok(False)
+    for _ in range(5):
+        st = h.tick()
+    assert st["gave_up"] == 0 and st["last_action"] == "relaunch-kiosk"
+    st = h.tick()   # fails=6 -> give-up
+    assert st["gave_up"] == 1 and st["gave_up_what"] == "display"
+    assert st["attempts"] == 6 and st["last_action"] == "relaunch-kiosk"
+    since = st["gave_up_since"]
+    assert since
+    st = h.tick()
+    assert st["gave_up"] == 1 and st["gave_up_since"] == since   # sticky, not re-stamped
+
+
+def test_give_up_clears_when_the_surface_recovers(h):
+    h.set_server_ok(True)
+    h.set_kiosk_ok(True)
+    h.set_paint_ok(False)
+    for _ in range(6):
+        st = h.tick()
+    assert st["gave_up"] == 1
+    h.set_paint_ok(True)
+    st = h.tick()
+    assert st["gave_up"] == 0 and st["gave_up_since"] == "" and st["attempts"] == 0
+    assert st["last_action"] == "relaunch-kiosk"   # history survives the recovery
+
+
+def test_eink_give_up_names_the_eink_surface(h):
+    h.enable_eink()
+    h.set_connector(False)
+    h.set_server_ok(True)
+    h.set_eink_active(False)
+    for _ in range(6):
+        st = h.tick()
+    assert st["gave_up"] == 1 and st["gave_up_what"] == "eink"
+    assert st["last_action"] == "restart-eink"
+
+
+def test_observe_mode_give_up_reports_but_records_no_last_action(h):
+    h.set_server_ok(True)
+    h.set_kiosk_ok(True)
+    h.set_paint_ok(False)
+    for _ in range(6):
+        st = h.tick(mode="observe")
+    assert st["gave_up"] == 1 and st["last_action"] == ""
+
+
+def test_a_garbled_previous_status_file_never_breaks_the_tick(h):
+    (h.dir / "watchdog.json").write_text("{not json")
+    h.set_server_ok(True)
+    h.set_kiosk_ok(True)
+    h.set_paint_ok(True)
+    st = h.tick()
+    assert st["gave_up"] == 0 and st["action"] == "none"
+
+
+def test_pause_keeps_the_carried_give_up_since(h):
+    h.set_server_ok(True)
+    h.set_kiosk_ok(True)
+    h.set_paint_ok(False)
+    for _ in range(6):
+        st = h.tick()
+    since = st["gave_up_since"]
+    h.write_appliance_status("running")
+    st = h.tick()
+    assert st["action"].startswith("paused") and st["gave_up"] == 0 and st["gave_up_since"] == since

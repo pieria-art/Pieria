@@ -452,6 +452,34 @@ function _renderHostHealth(host) {
         (selfheal ? _metricTile('Self-heal', selfheal, selfhealWarn) : '');
 }
 
+// Watchdog "gave up" warning (1.1). Shown only for watchdog_state.state === 'gave_up'; "ok" and
+// "unknown" hide it, so it clears on the first poll after the watchdog recovers.
+function _renderWatchdogAlert(host) {
+    const el = document.getElementById('watchdog-alert');
+    if (!el) return;
+    const ws = host.watchdog_state;
+    if (!ws || ws.state !== 'gave_up') { el.hidden = true; el.innerHTML = ''; return; }
+    const what = String(ws.surface || 'display');
+    const eink = what === 'eink';
+    const failed = eink ? 'The e-ink display client has stopped'
+        : (what.includes('eink') ? 'The screen and the e-ink display client have stopped' : 'The screen has stopped updating');
+    const since = ws.since ? ` since ${_esc(new Date(ws.since).toLocaleString())}` : '';
+    const tried = ws.last_action
+        ? `Last automatic fix tried: <code>${_esc(ws.last_action)}</code>${ws.last_action_at ? ' at ' + _esc(new Date(ws.last_action_at).toLocaleTimeString()) : ''}.`
+        : 'No automatic fix has succeeded.';
+    // One recovery action: restarting the picture fixes a wedged browser; an e-ink-only fault needs a reboot.
+    const btn = eink
+        ? `<button class="danger" onclick="applianceAction('reboot')">⏻ Reboot</button>`
+        : `<button class="secondary" onclick="applianceAction('relaunch-kiosk')">🖵 Restart display</button>`;
+    el.innerHTML = `<h3>⚠ Self-heal gave up</h3>
+        <p>${failed}${since}, and the automatic recovery ladder is exhausted (${ws.attempts != null ? _esc(ws.attempts) + ' failed checks' : 'repeated failures'}). It will not try again by itself.</p>
+        <p class="alert-meta">${tried}</p>
+        <p class="alert-meta">${_esc(ws.reason || '')}</p>
+        <div class="alert-actions">${btn}</div>
+        <p class="alert-meta">${eink ? '' : 'If restarting the display does not bring the picture back, use Reboot below.'}</p>`;
+    el.hidden = false;
+}
+
 function _renderActiveDisplays(displays) {
     const el = document.getElementById('active-displays-list');
     if (!el) return;
@@ -489,6 +517,7 @@ async function refreshHostHealth() {
         if (!res.ok) return;
         const data = await res.json();
         _renderHostHealth(data.host || {});
+        _renderWatchdogAlert(data.host || {});
         _renderActiveDisplays(data.displays || []);
         _renderDeviceSettings(data.host || {});
         renderOsUpdates(data.host || {});
