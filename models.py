@@ -45,6 +45,9 @@ class ActiveDisplayModel(Base):
     # selection brain, used by both Canvas and e-ink); liveness (last_seen_at) stays heartbeat-owned.
     current_artwork_id: Mapped[Optional[int]] = mapped_column(Integer, nullable=True)
     current_playlist: Mapped[Optional[str]] = mapped_column(String, nullable=True)
+    # 'canvas' | 'eink' — stamped by the path that owns the row (WS heartbeat / e-ink pull) so the public
+    # API can report a display's kind. NULL until that display next checks in (reported as 'unknown').
+    kind: Mapped[Optional[str]] = mapped_column(String, nullable=True)
 
 class RemoteCommandModel(Base):
     """
@@ -286,3 +289,18 @@ class PublisherCollectionModel(Base):
     items_json: Mapped[str] = mapped_column(Text, default="[]")          # JSON array of item dicts
     created_at: Mapped[datetime] = mapped_column(DateTime, default=lambda: datetime.now(UTC))
     updated_at: Mapped[datetime] = mapped_column(DateTime, default=lambda: datetime.now(UTC))
+
+
+class ApiTokenModel(Base):
+    """A bearer token for the public API (/api/v1). Only the sha256 of the token is stored — the
+    plaintext exists once, in the mint response. `scopes` is a comma-separated subset of
+    {read, control}. Revoked rows are kept (revoked_at) so the admin list can show history."""
+    __tablename__ = "api_tokens"
+
+    id: Mapped[int] = mapped_column(primary_key=True, index=True)
+    name: Mapped[str] = mapped_column(String)
+    token_hash: Mapped[str] = mapped_column(String, unique=True, index=True)
+    scopes: Mapped[str] = mapped_column(String)
+    created_at: Mapped[datetime] = mapped_column(DateTime, default=lambda: datetime.now(UTC))
+    last_used_at: Mapped[Optional[datetime]] = mapped_column(DateTime, nullable=True)
+    revoked_at: Mapped[Optional[datetime]] = mapped_column(DateTime, nullable=True)

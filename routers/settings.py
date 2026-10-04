@@ -3,7 +3,6 @@ remote catalog source, default playlist, and the Night & Quiet Hours display sch
 """
 
 import asyncio
-import json
 import os
 from typing import Optional
 
@@ -16,12 +15,12 @@ import ai_client
 import frame_push
 from core.playback import _frame_select
 from core.settings_util import (
-    _HHMM_RE,
-    SCHEDULE_SETTING_KEY,
+    ScheduleError,
     _catalog_remote_base,
     _fetch_remote_json,
     _load_schedule,
     _upsert_setting,
+    apply_schedule_patch,
 )
 from database import get_db
 from models import PlaylistModel, SettingsModel
@@ -85,23 +84,10 @@ async def get_display_schedule(db: Session = Depends(get_db)):
 @router.post("/api/settings/display-schedule")
 async def set_display_schedule(payload: DisplaySchedulePayload, db: Session = Depends(get_db)):
     """Merge the given fields over the current schedule, validate, and persist as JSON."""
-    merged = _load_schedule(db)
-    for k, v in payload.model_dump(exclude_none=True).items():
-        merged[k] = v
-    # Validate ranges/formats so a bad value can't wedge the resolver or the Canvas overlay.
-    for bkey in ("day_brightness", "night_brightness"):
-        if not (0.1 <= float(merged[bkey]) <= 1.0):
-            raise HTTPException(400, detail=f"{bkey} must be between 0.1 and 1.0")
-    if not (0.0 <= float(merged["night_warmth"]) <= 1.0):
-        raise HTTPException(400, detail="night_warmth must be between 0.0 and 1.0")
-    for tkey in ("evening_start", "night_start", "morning_start", "day_start", "quiet_start", "quiet_end"):
-        if not _HHMM_RE.match(str(merged[tkey])):
-            raise HTTPException(400, detail=f"{tkey} must be HH:MM")
-    if merged["quiet_mode"] not in ("cec", "blackout"):
-        raise HTTPException(400, detail="quiet_mode must be 'cec' or 'blackout'")
-    _upsert_setting(db, SCHEDULE_SETTING_KEY, json.dumps(merged))
-    db.commit()
-    return merged
+    try:
+        return apply_schedule_patch(db, payload.model_dump(exclude_none=True))
+    except ScheduleError as e:
+        raise HTTPException(400, detail=str(e))
 
 
 # -----------------------------------------------------------------------------

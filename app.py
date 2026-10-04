@@ -85,6 +85,7 @@ from database import SessionLocal  # noqa: F401,E402
 # Each is a plain APIRouter with no dependency on this module — see routers/__init__.py for the
 # import rule.
 from routers.admin import router as admin_router
+from routers.api_tokens import router as api_tokens_router
 from routers.backup import router as backup_router
 from routers.catalog import _read_local_json  # noqa: F401  — re-exported for tests/test_cache.py
 from routers.catalog import router as catalog_router
@@ -197,6 +198,7 @@ app.add_middleware(DemoModeMiddleware)
 # Order matches the (alphabetical) import block above; these are leaf domain routers with distinct
 # path prefixes, so registration order carries no route-matching significance.
 app.include_router(admin_router)
+app.include_router(api_tokens_router)
 app.include_router(backup_router)
 app.include_router(catalog_router)
 app.include_router(curation_router)

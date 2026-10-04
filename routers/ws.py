@@ -20,7 +20,7 @@ import config
 from core import appliance_settings
 from core.connections import manager
 from core.demo import normalize_display_id
-from core.playback import _display_now_playing, _is_live, known_displays
+from core.playback import _display_now_playing, _is_live, known_displays, queue_remote_command
 from core.security import _origin_allowed
 from database import SessionLocal, get_db
 from models import ActiveDisplayModel, RemoteCommandModel
@@ -84,20 +84,7 @@ async def remote_change_playlist(request: RemoteChangeRequest, db: Session = Dep
         raise HTTPException(400, detail=error)
     logger.info(f"Targeted Remote Command: {request.target_display} -> {request.action}")
 
-    payload = {"action": request.action}
-    if request.playlist:
-        payload["playlist"] = request.playlist
-    if request.mode:
-        payload["mode"] = request.mode
-
-    # Phase 5: Persist command to DB to bridge across worker processes
-    cmd = RemoteCommandModel(
-        target_display=request.target_display,
-        action=request.action,
-        payload=json.dumps(payload)
-    )
-    db.add(cmd)
-    db.commit()
+    queue_remote_command(db, request.target_display, request.action, request.playlist, request.mode)
 
     return {"status": "command_queued"}
 
@@ -133,8 +120,9 @@ async def websocket_endpoint(websocket: WebSocket, display_id: str):
                 display = db.query(ActiveDisplayModel).filter(ActiveDisplayModel.display_id == display_id).first()
                 if display:
                     display.last_seen_at = datetime.now(UTC)
+                    display.kind = "canvas"   # public API reports it (ADR-147); same row, no extra query
                 else:
-                    db.add(ActiveDisplayModel(display_id=display_id))
+                    db.add(ActiveDisplayModel(display_id=display_id, kind="canvas"))
                 db.commit()
         except Exception as e:
             logger.error(f"Heartbeat error for {display_id}: {e}", exc_info=True)

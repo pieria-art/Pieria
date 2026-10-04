@@ -27,6 +27,7 @@ from models import (
     ArtworkModel,
     DisplayPlaybackSessionModel,
     PlaylistModel,
+    RemoteCommandModel,
     SettingsModel,
     playlist_artwork,
 )
@@ -234,6 +235,21 @@ def _now_playing_artwork(db: Session, artwork_id: Optional[int]) -> Optional[dic
             "is_personal": a.is_personal, "thumb_url": f"/artworks/{a.id}/thumbnail"}
 
 
+def queue_remote_command(db: Session, display_id: str, action: str,
+                         playlist: Optional[str] = None, mode: Optional[str] = None) -> None:
+    """Persist a command for a display's WS poller to relay (the Phase 5 cross-worker bridge — see
+    routers/ws.py). The ONE writer of remote_commands: `/api/remote/change` and the public API's
+    `/api/v1/displays/{id}/commands` both go through here, so the payload shape the Canvas parses
+    (`{action, playlist?, mode?}`) cannot diverge between them."""
+    payload = {"action": action}
+    if playlist:
+        payload["playlist"] = playlist
+    if mode:
+        payload["mode"] = mode
+    db.add(RemoteCommandModel(target_display=display_id, action=action, payload=json.dumps(payload)))
+    db.commit()
+
+
 def _display_now_playing(db: Session, row: "ActiveDisplayModel") -> dict:
     """{display_id, playlist, artwork} for a display row — the shared shape for /remote + Devices."""
     return {"display_id": row.display_id, "playlist": row.current_playlist,
@@ -327,8 +343,9 @@ def touch_active_display(db: Session, display_id: str, refresh_s: Optional[int] 
         d = db.query(ActiveDisplayModel).filter(ActiveDisplayModel.display_id == display_id).first()
         if d:
             d.last_seen_at = datetime.now(UTC)
+            d.kind = "eink"   # only the e-ink pull route calls this; the public API reports it (ADR-147)
         else:
-            db.add(ActiveDisplayModel(display_id=display_id))
+            db.add(ActiveDisplayModel(display_id=display_id, kind="eink"))
         if refresh_s is not None:
             key = f"{_REFRESH_S_PREFIX}{display_id}"
             row = db.query(SettingsModel).filter(SettingsModel.setting_key == key).first()

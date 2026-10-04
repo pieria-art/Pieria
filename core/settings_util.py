@@ -129,6 +129,32 @@ def resolve_schedule_state(schedule: dict, now: datetime) -> dict:
 _HHMM_RE = re.compile(r"^\d{1,2}:\d{2}$")
 
 
+class ScheduleError(ValueError):
+    """A schedule value failed validation; the message names the field and the rule."""
+
+
+def apply_schedule_patch(db: Session, changes: dict) -> dict:
+    """Merge `changes` (already None-stripped) over the stored schedule, validate, persist, return the
+    merged schedule. The ONE validator for the display schedule — the internal settings route and the
+    public API's PATCH /schedule both call it. Raises ScheduleError (nothing is written on failure)."""
+    merged = _load_schedule(db)
+    merged.update(changes)
+    # Validate ranges/formats so a bad value can't wedge the resolver or the Canvas overlay.
+    for bkey in ("day_brightness", "night_brightness"):
+        if not (0.1 <= float(merged[bkey]) <= 1.0):
+            raise ScheduleError(f"{bkey} must be between 0.1 and 1.0")
+    if not (0.0 <= float(merged["night_warmth"]) <= 1.0):
+        raise ScheduleError("night_warmth must be between 0.0 and 1.0")
+    for tkey in ("evening_start", "night_start", "morning_start", "day_start", "quiet_start", "quiet_end"):
+        if not _HHMM_RE.match(str(merged[tkey])):
+            raise ScheduleError(f"{tkey} must be HH:MM")
+    if merged["quiet_mode"] not in ("cec", "blackout"):
+        raise ScheduleError("quiet_mode must be 'cec' or 'blackout'")
+    _upsert_setting(db, SCHEDULE_SETTING_KEY, json.dumps(merged))
+    db.commit()
+    return merged
+
+
 async def _catalog_remote_base(db: Session) -> Optional[str]:
     """Optional remote override: a static base URL hosting index.json + <id>.json (no server needed)."""
     setting = db.query(SettingsModel).filter(SettingsModel.setting_key == "catalog_url").first()

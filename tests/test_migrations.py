@@ -216,3 +216,46 @@ def test_broken_migration_file_fails_loud(db_path, tmp_path):
     with pytest.raises(Exception):
         run_migrations(cfg)
     assert _stamp(db_path) == BASELINE
+
+
+def test_0008_api_tokens_upgrades_a_populated_0007_db(db_path):
+    """The real deploy path: a populated 0007 DB gains api_tokens + active_displays.kind, keeps its rows,
+    and reaches head (0008 is head)."""
+    cfg = _cfg(db_path)
+    command.upgrade(cfg, "0007_artwork_attribution")
+    eng = create_engine(f"sqlite:///{db_path}")
+    with eng.begin() as c:
+        c.execute(text("INSERT INTO active_displays (display_id, last_seen_at) VALUES ('wall','2026-10-01')"))
+    command.upgrade(cfg, "head")
+    assert _stamp(db_path) == _head(db_path) == "0008_api_tokens"
+    cols = _columns(db_path)
+    assert {"id", "name", "token_hash", "scopes", "created_at", "last_used_at", "revoked_at"} <= cols["api_tokens"]
+    assert "kind" in cols["active_displays"]
+    insp = inspect(create_engine(f"sqlite:///{db_path}"))   # fresh engine: a reused one serves cached index info
+    assert any(ix["unique"] and ix["column_names"] == ["token_hash"] for ix in insp.get_indexes("api_tokens"))
+    with eng.connect() as c:
+        assert c.execute(text("SELECT display_id, kind FROM active_displays")).fetchall() == [("wall", None)]
+    eng.dispose()
+
+
+def test_0008_is_idempotent_on_a_create_all_db(db_path):
+    """A create_all-built DB already has the table + column; the guarded upgrade must skip them."""
+    Base.metadata.create_all(create_engine(f"sqlite:///{db_path}"))
+    _set_legacy_stamp(db_path, "0007_artwork_attribution")
+    command.upgrade(_cfg(db_path), "head")
+    assert _stamp(db_path) == "0008_api_tokens"
+
+
+def test_newer_stamp_logic_still_reconciles_with_0008_as_head(db_path):
+    """A retired-stamped legacy DB (schema complete incl. the new table/column) is reconciled to the
+    baseline and then upgraded through every migration to the new head without touching data."""
+    eng = create_engine(f"sqlite:///{db_path}")
+    Base.metadata.create_all(eng)
+    with eng.begin() as conn:
+        conn.execute(text("INSERT INTO api_tokens (name, token_hash, scopes, created_at) "
+                          "VALUES ('keep','h','read','2026-10-01')"))
+    _set_legacy_stamp(db_path, "a1b2c3d4e5f6")
+    run_migrations(_cfg(db_path))
+    assert _stamp(db_path) == "0008_api_tokens"
+    with eng.connect() as conn:
+        assert conn.execute(text("SELECT name FROM api_tokens")).scalar() == "keep"
