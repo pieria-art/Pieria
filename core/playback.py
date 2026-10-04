@@ -131,9 +131,11 @@ async def select_next_image(
     if held is None:
         held = _take_pending_show(db, display_id)
     if held is None and paused and direction == 1 and not manual:
-        cur = db.query(ActiveDisplayModel).filter(ActiveDisplayModel.display_id == display_id).first()
-        if cur and cur.current_artwork_id and cur.current_playlist == playlist_name:
-            held = db.query(ArtworkModel).filter(ArtworkModel.id == cur.current_artwork_id,
+        # The hold target lives in the pause flag itself: the active_displays row is deleted on a WS
+        # disconnect and recreated empty on reconnect, so it cannot be trusted across a Canvas reload.
+        hold = _pause_hold(db, display_id)
+        if hold and hold.get("playlist") == playlist_name and hold.get("artwork_id"):
+            held = db.query(ArtworkModel).filter(ArtworkModel.id == hold["artwork_id"],
                                                  ArtworkModel.status == 'approved').first()
     if held is not None:
         db.commit()   # the last_playlist write above rides this
@@ -257,6 +259,7 @@ def _record_now_playing(db: Session, display_id: str, artwork_id: int, playlist_
             touch_display_updated(db, display_id)
             db.add(ActiveDisplayModel(display_id=display_id, current_artwork_id=artwork_id,
                                       current_playlist=playlist_name))
+        _refresh_pause_hold(db, display_id, artwork_id, playlist_name)
         db.commit()
     except Exception as e:
         logger.error(f"_record_now_playing error for {display_id}: {e}", exc_info=True)
@@ -338,11 +341,35 @@ def is_display_paused(db: Session, display_id: str) -> bool:
         SettingsModel.setting_key == _PAUSED_PREFIX + display_id).first() is not None
 
 
+def _pause_hold(db: Session, display_id: str) -> Optional[dict]:
+    """The {artwork_id, playlist} a paused display is holding, or None (not paused / not recorded yet)."""
+    row = db.query(SettingsModel.setting_value).filter(
+        SettingsModel.setting_key == _PAUSED_PREFIX + display_id).first()
+    if row is None:
+        return None
+    try:
+        data = json.loads(row[0])
+        return data if isinstance(data, dict) else None
+    except (ValueError, TypeError):
+        return None
+
+
+def _refresh_pause_hold(db: Session, display_id: str, artwork_id: int, playlist_name: str) -> None:
+    """While paused, whatever the display now shows (incl. after an explicit next/show) is what it holds.
+    Rides the caller's commit."""
+    row = db.query(SettingsModel).filter(SettingsModel.setting_key == _PAUSED_PREFIX + display_id).first()
+    if row is not None:
+        row.setting_value = json.dumps({"artwork_id": artwork_id, "playlist": playlist_name})
+
+
 def set_display_paused(db: Session, display_id: str, paused: bool) -> None:
     key = _PAUSED_PREFIX + display_id
     row = db.query(SettingsModel).filter(SettingsModel.setting_key == key).first()
     if paused and row is None:
-        db.add(SettingsModel(setting_key=key, setting_value="1"))
+        cur = db.query(ActiveDisplayModel).filter(ActiveDisplayModel.display_id == display_id).first()
+        hold = ({"artwork_id": cur.current_artwork_id, "playlist": cur.current_playlist}
+                if cur and cur.current_artwork_id else {})
+        db.add(SettingsModel(setting_key=key, setting_value=json.dumps(hold)))
         touch_display_updated(db, display_id)
     elif not paused and row is not None:
         db.delete(row)
@@ -353,9 +380,12 @@ def set_display_paused(db: Session, display_id: str, paused: bool) -> None:
 _UPDATED_PREFIX = "display_updated:"
 
 
-def touch_display_updated(db: Session, display_id: str) -> None:
+def touch_display_updated(db: Session, display_id: str, force: bool = False) -> None:
     """Stamp "this display's now-playing / paused / mode just changed" (public API `updated_at`, so a
     client can tell a queued command has taken effect). Rides the caller's commit."""
+    if not force and db.query(ActiveDisplayModel.display_id).filter(
+            ActiveDisplayModel.display_id == display_id).first() is None:
+        return   # /next-image is unauthenticated: never grow a KV row per arbitrary display_id
     key = _UPDATED_PREFIX + display_id
     value = datetime.now(UTC).isoformat()
     row = db.query(SettingsModel).filter(SettingsModel.setting_key == key).first()

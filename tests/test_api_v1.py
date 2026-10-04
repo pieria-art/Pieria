@@ -871,3 +871,63 @@ def test_sec_fetch_site_alone_opens_only_the_list_route(env, monkeypatch):
     assert c.delete("/api/settings/api-tokens/1", headers=sfs).status_code == 403
     assert c.post("/api/settings/api-tokens", json={"name": "x", "scopes": ["control"]},
                   headers={**ADMIN, **sfs}).status_code == 201          # a real same-origin browser POST
+
+
+# --- A2 review fixes ----------------------------------------------------------------------------------
+
+def test_paused_hold_survives_a_ws_disconnect_and_reconnect(env):
+    """routers/ws.py deletes the active_displays row on disconnect and recreates it EMPTY on reconnect;
+    a paused Canvas must still get the same artwork back on reload."""
+    c, db = env
+    arts = [_art(db, f"A{i}") for i in range(4)]
+    _playlist(db, "Seq", arts)
+    _display(db, "wall", kind="canvas")
+    ctl = _mint(db, ["control"])
+    _next(c)
+    shown = _next(c)["metadata"]["id"]
+    c.post("/api/v1/displays/wall/commands", json={"action": "pause"}, headers=ctl)
+    for _ in range(2):                                              # two reloads
+        db.query(ActiveDisplayModel).delete()
+        db.commit()
+        _display(db, "wall", kind="canvas")                         # reconnect: row back, no now-playing
+        assert _next(c)["metadata"]["id"] == shown
+    # an explicit next while paused moves the hold, and the new one survives a reload too
+    moved = _next(c, manual="true")["metadata"]["id"]
+    assert moved != shown
+    db.query(ActiveDisplayModel).delete()
+    db.commit()
+    _display(db, "wall", kind="canvas")
+    assert _next(c)["metadata"]["id"] == moved
+
+
+def test_paused_hold_follows_a_show_while_paused_across_reload(env):
+    c, db = env
+    arts = [_art(db, f"A{i}") for i in range(3)]
+    other = _art(db, "Special")
+    _playlist(db, "Seq", arts)
+    _display(db, "wall", kind="canvas")
+    _next(c)
+    c.post("/api/v1/displays/wall/commands", json={"action": "pause"}, headers=_mint(db, ["control"]))
+    _next(c, artwork_id=other.id, manual="true")
+    db.query(ActiveDisplayModel).delete()
+    db.commit()
+    _display(db, "wall", kind="canvas")
+    assert _next(c)["metadata"]["id"] == other.id
+
+
+@pytest.mark.parametrize("until", ["9999-12-31T23:59:59-12:00", "0001-01-01T00:00:00+14:00",
+                                   "0001-01-01T00:00:00", "2000-01-01T00:00:00Z"])
+def test_quiet_until_out_of_range_or_past_is_422_not_500(env, until):
+    c, db = env
+    for mode in ("on", "off"):
+        r = c.post("/api/v1/quiet", json={"mode": mode, "until": until}, headers=_mint(db, ["control"]))
+        assert r.status_code == 422 and r.json()["error"]["code"] == "validation_error"
+    assert db.query(SettingsModel).filter_by(setting_key="quiet_override").count() == 0
+
+
+def test_unauthenticated_next_image_does_not_grow_display_updated_rows(env):
+    c, db = env
+    _playlist(db, "Seq", [_art(db, f"A{i}") for i in range(2)])
+    for i in range(3):
+        _next(c, display=f"random-{i}")
+    assert db.query(SettingsModel).filter(SettingsModel.setting_key.like("display_updated:%")).count() == 0
