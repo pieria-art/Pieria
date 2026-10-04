@@ -202,3 +202,33 @@ def test_edit_routes_mark_only_changed_fields(tmp_path, monkeypatch):
         assert {"title", "crop_x", "crop_y", "crop_width", "crop_height", "focal_x", "focal_y"} <= edited_fields(_art(db, "alpha"))
     finally:
         app.dependency_overrides.clear()
+
+
+def _cc_by_then_cc0(tmp_path, monkeypatch, edit=None):
+    root, priv = _setup(tmp_path, monkeypatch, None)
+    by = _mi("Alpha", license="CC-BY-4.0", license_url="https://creativecommons.org/licenses/by/4.0/",
+             credit_line=CC_BY_CREDIT, attribution_url="https://x/credit")
+    _publish(root, priv, [by, _mi("Beta"), _mi("Gamma")])
+    db = _db()
+    _install(db, root)
+    if edit:
+        a = _art(db, "alpha")
+        mark_edited(a, [edit])
+        db.commit()
+    _publish(root, priv, [_mi("Alpha", license="CC0-1.0", credit_line=""), _mi("Beta"), _mi("Gamma")])
+    _install(db, root)
+    return _art(db, "alpha")
+
+
+def test_license_change_clears_stale_credit_fields(tmp_path, monkeypatch):
+    a = _cc_by_then_cc0(tmp_path, monkeypatch)
+    assert a.license == "CC0-1.0"
+    assert a.license_url != "https://creativecommons.org/licenses/by/4.0/"
+    assert a.attribution is None and a.attribution_url is None   # no BY credit beside a CC0 licence
+
+
+def test_license_change_respects_user_edited_credit(tmp_path, monkeypatch):
+    a = _cc_by_then_cc0(tmp_path, monkeypatch, edit="attribution")
+    assert a.license == "CC0-1.0"
+    assert a.attribution == CC_BY_CREDIT   # user-edited field wins even when stale
+    assert a.attribution_url is None

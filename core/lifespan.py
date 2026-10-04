@@ -275,6 +275,9 @@ def manifest_hash(manifest: dict) -> str:
     return hashlib.sha256(json.dumps(manifest, sort_keys=True, separators=(",", ":")).encode()).hexdigest()
 
 
+_LICENSE_GROUP = ("license", "license_url", "attribution", "attribution_url")
+
+
 def _refresh_existing_artwork(artwork: ArtworkModel, cat: dict) -> tuple[bool, int]:
     """ADR-148 F8: overwrite an EXISTING pack work's pack-sourced fields from its manifest item, skipping
     any field the user edited (`user_edited_fields`). Returns (changed, n_fields_skipped_for_user_edits).
@@ -299,9 +302,15 @@ def _refresh_existing_artwork(artwork: ArtworkModel, cat: dict) -> tuple[bool, i
     if crops:
         values["aspect_crops_json"] = json.dumps(crops)
     edited = edited_fields(artwork)
+    # A licence change (e.g. CC BY -> CC0) invalidates the credit that went with the old licence: refresh
+    # the whole licence-dependent group from the manifest, CLEARING members it omits, so a placard never
+    # shows the new licence beside the old credit (ADR-142). Per-field user edits still win.
+    lic_changed = bool(values["license"]) and values["license"] != artwork.license
     changed, skipped = False, 0
     for k, v in values.items():
-        if v is None or v == "":
+        if lic_changed and k in _LICENSE_GROUP:
+            v = v or None
+        elif v is None or v == "":
             continue
         if k in edited:
             if getattr(artwork, k) != v:
