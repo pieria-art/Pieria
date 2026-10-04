@@ -202,7 +202,7 @@ def _preserved_lines(existing: str) -> list:
     indicate why. Found before it could bite on the bench, 2026-07-21.
     """
     out = []
-    for raw in (existing or "").splitlines():
+    for raw in (existing or "").split("\n"):   # bash breaks lines on \n only
         line = raw.strip()
         if not line or line.startswith("#") or "=" not in line:
             continue

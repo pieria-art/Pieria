@@ -74,7 +74,7 @@ def split_conf_value(rest: str):
 def parse_conf_text(text: str) -> dict:
     """KEY -> value for every assignment line in a pieria.conf, bash-sourcing semantics (last wins)."""
     out = {}
-    for raw in (text or "").splitlines():
+    for raw in (text or "").split("\n"):   # bash breaks lines on \n ONLY (not \v \f \x85 ...)
         line = raw.strip()
         if not line or line.startswith("#") or "=" not in line:
             continue

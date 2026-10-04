@@ -188,10 +188,14 @@ def split_conf_value(rest: str):
 def get_key(text: str, key: str):
     """The FIRST assignment of `key`, or None. set_keys rewrites that same first line, so the two
     agree; a later duplicate is dropped on write precisely because it would win under `.`-sourcing."""
-    for raw in (text or "").splitlines():
+    for raw in (text or "").split("\n"):   # bash breaks lines on \n ONLY, never str.splitlines()
         if _line_key(raw) == key:
             return split_conf_value(raw.strip().split("=", 1)[1])[0]
     return None
+
+
+#: Characters str.splitlines() treats as line breaks that bash does not.
+_EXOTIC_BREAKS = frozenset("\x0b\x0c\x1c\x1d\x1e\x85\u2028\u2029")
 
 
 def set_keys(text: str, updates: dict) -> str:
@@ -200,8 +204,17 @@ def set_keys(text: str, updates: dict) -> str:
     Replaces the first `KEY=` line for each key, drops any LATER duplicate of a key being set (a
     duplicate would win under `.`-sourcing and silently undo the edit), appends keys that were absent,
     and leaves comments, blank lines, ordering and every other key byte-identical."""
+    bad = sorted({hex(ord(c)) for c in (text or "") if c in _EXOTIC_BREAKS})
+    if bad:
+        # Python's splitlines() would break on these but bash does not, so a "comment" containing one
+        # sources as code once a rewrite splits it onto its own line. Fail closed — the owner fixes the file.
+        raise ValueError(f"conf contains non-newline line-break characters ({', '.join(bad)}); "
+                         "refusing to rewrite it — remove them by hand")
+    lines = (text or "").split("\n")
+    if lines and lines[-1] == "":
+        lines.pop()   # the file's final newline, not an extra blank line
     out, seen = [], set()
-    for raw in (text or "").splitlines():
+    for raw in lines:
         key = _line_key(raw)
         if key is None or key not in updates:
             out.append(raw)
@@ -396,7 +409,12 @@ def main(argv=None) -> int:
             print(f"sd-conf: {key}: {err}", file=sys.stderr)
             return 2
         updates[key] = value
-    write_atomic(conf_path, set_keys(read_conf(conf_path), updates))
+    try:
+        new_text = set_keys(read_conf(conf_path), updates)
+    except ValueError as e:
+        print(f"sd-conf: {e}", file=sys.stderr)
+        return 2
+    write_atomic(conf_path, new_text)
     return 0
 
 

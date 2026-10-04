@@ -160,3 +160,37 @@ def test_wizard_refuses_non_comment_trailing_text(capsys):
 def test_sd_conf_get_of_glued_value_fails_validation_not_silently_90():
     assert sc.get_key('ROTATE="90"#x\n', "ROTATE") == "90#x"
     assert sc.validate("ROTATE", "90#x") is not None
+
+
+# --- line breaks: bash splits on \n only ----------------------------------------------------------
+
+@pytest.mark.parametrize("ch", ["\x0b", "\x0c", "\x1c", "\x1d", "\x1e", "\x85", "\u2028", "\u2029"])
+def test_set_keys_refuses_a_conf_with_exotic_line_breaks(ch):
+    text = f"# note{ch}echo PWNED\nROTATE=90\n"
+    with pytest.raises(ValueError):
+        sc.set_keys(text, {"ROTATE": "180"})
+
+
+def test_cli_set_fails_closed_and_leaves_the_file(tmp_path):
+    conf = tmp_path / "c.conf"
+    original = "# note\x0becho PWNED\nROTATE=90\n"
+    conf.write_text(original)
+    r = subprocess.run([sys.executable, str(_BIN / "sd-conf"), "--conf", str(conf), "set", "ROTATE=180"],
+                       capture_output=True, text=True)
+    assert r.returncode == 2
+    assert "refusing to rewrite" in r.stderr
+    assert conf.read_text() == original
+    assert "PWNED" not in _bash_source(conf.read_text(), "ROTATE") + "x"
+
+
+def test_readers_treat_exotic_breaks_as_part_of_the_line_like_bash():
+    text = "# note\x0cROTATE=999\nROTATE=90\n"
+    assert _bash_source(text, "ROTATE") == "90"
+    assert sc.get_key(text, "ROTATE") == "90"
+    assert eink_client.parse_conf_text(text)["ROTATE"] == "90"
+    assert wiz._preserved_lines(text.replace("ROTATE", "EINK_ENABLED")) == ["EINK_ENABLED=90"]
+
+
+def test_set_keys_normal_file_roundtrip_unchanged_shape():
+    assert sc.set_keys("A=1\n\nB=2\n", {"B": "3"}) == "A=1\n\nB=3\n"
+    assert sc.set_keys("", {"B": "3"}) == "B=3\n"
