@@ -7,6 +7,7 @@ import html
 import io
 import json
 import logging
+import math
 from pathlib import Path
 from typing import List, Optional
 
@@ -498,6 +499,45 @@ class CropPayload(BaseModel):
     crop_height: float = 0.0
     focal_x: Optional[float] = None
     focal_y: Optional[float] = None
+    # Tier 2 "framing per screen shape": {"9:16": [x0,y0,x1,y1], ...} normalized 0..1. Only the shapes
+    # sent are replaced (merged into the stored dict). reset_aspect_crops drops the user-edit mark so a
+    # pack refresh may update the framing again.
+    aspect_crops: Optional[dict] = None
+    reset_aspect_crops: bool = False
+
+ASPECT_CROP_MIN_SPAN = 0.1      # a box thinner than 10% of either axis is a mis-drag, not a framing
+ASPECT_CROP_RATIO_TOL = 0.03    # Cropper rounds to whole pixels; 3% is generous, a wrong shape is far off
+
+def _validate_aspect_crops(raw: dict, art: ArtworkModel) -> dict:
+    """Return {shape: [x0,y0,x1,y1]} or raise 422. Ratio is checked in PIXELS (box span x image size),
+    since a normalized box is only the shape's aspect on a square image."""
+    from epaper import ASPECT_CROP_KEYS
+    w, h = art.original_width, art.original_height
+    if not (w and h and w > 0 and h > 0):
+        raise HTTPException(422, "artwork has no known dimensions")
+    out = {}
+    for key, box in raw.items():
+        if key not in ASPECT_CROP_KEYS:
+            raise HTTPException(422, f"unknown shape {key!r}; expected one of {list(ASPECT_CROP_KEYS)}")
+        if not (isinstance(box, (list, tuple)) and len(box) == 4):
+            raise HTTPException(422, f"{key}: box must be [x0,y0,x1,y1]")
+        try:
+            x0, y0, x1, y1 = (float(v) for v in box)
+        except (TypeError, ValueError):
+            raise HTTPException(422, f"{key}: box values must be numbers")
+        if not all(math.isfinite(v) for v in (x0, y0, x1, y1)):
+            raise HTTPException(422, f"{key}: box values must be finite")
+        if not (0.0 <= x0 < x1 <= 1.0 and 0.0 <= y0 < y1 <= 1.0):
+            raise HTTPException(422, f"{key}: box must lie inside the image (0..1, x0<x1, y0<y1)")
+        if x1 - x0 < ASPECT_CROP_MIN_SPAN or y1 - y0 < ASPECT_CROP_MIN_SPAN:
+            raise HTTPException(422, f"{key}: box is too small")
+        kw, kh = (float(v) for v in key.split(":"))
+        want = kw / kh
+        got = ((x1 - x0) * w) / ((y1 - y0) * h)
+        if abs(got / want - 1.0) > ASPECT_CROP_RATIO_TOL:
+            raise HTTPException(422, f"{key}: box ratio {got:.3f} is not {want:.3f}")
+        out[key] = [round(x0, 5), round(y0, 5), round(x1, 5), round(y1, 5)]
+    return out
 
 @router.patch("/artworks/{artwork_id}/crop", response_model=ArtworkSchema)
 async def update_artwork_crop(artwork_id: int, payload: CropPayload, db: Session = Depends(get_db)):
@@ -513,9 +553,19 @@ async def update_artwork_crop(artwork_id: int, payload: CropPayload, db: Session
         vals["focal_x"] = min(1.0, max(0.0, payload.focal_x))
     if payload.focal_y is not None:
         vals["focal_y"] = min(1.0, max(0.0, payload.focal_y))
+    new_boxes = _validate_aspect_crops(payload.aspect_crops, art) if payload.aspect_crops else None
+    focal_before = edited_fields(art) & {"focal_x", "focal_y"}
     assign_tracked(art, vals)   # ADR-148 F8: a manual crop/focal survives pack refresh
-    if edited_fields(art) & {"focal_x", "focal_y"}:
+    if (edited_fields(art) & {"focal_x", "focal_y"}) - focal_before:
         mark_edited(art, ["aspect_crops_json"])   # per-aspect boxes override focal framing; keep the user's look
+    if new_boxes:
+        merged = dict(art.aspect_crops or {})
+        merged.update(new_boxes)
+        assign_tracked(art, {"aspect_crops_json": json.dumps(merged)})
+        mark_edited(art, ["aspect_crops_json"])
+    if payload.reset_aspect_crops:
+        cur = edited_fields(art) - {"aspect_crops_json"}
+        art.user_edited_fields = json.dumps(sorted(cur))
     db.commit(); db.refresh(art)
     return art
 

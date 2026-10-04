@@ -239,6 +239,20 @@
         .ratio-buttons { display: flex; gap: 8px; margin-bottom: 10px; }
         .ratio-buttons button { background: transparent; border: 1px solid var(--border-color); color: var(--text-color); padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; }
         .ratio-buttons button.active { background: var(--accent-color); border-color: var(--accent-color); }
+        #modal-overlay { z-index: 1200; }   /* confirm/prompt must sit above the Edit overlay (1100) */
+        .edit-tier-head { font-size: 0.78rem; font-weight: 600; color: var(--accent-color); text-transform: uppercase; letter-spacing: 0.05rem; margin-bottom: 4px; }
+        .edit-tier-note { margin: 0 0 8px; }
+        .edit-shape-bar { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+        .edit-shape-all { font-size: 0.75rem; color: #94a3b8; display: flex; align-items: center; gap: 5px; margin-bottom: 10px; cursor: pointer; }
+        .edit-shape-all input { width: auto; margin: 0; }
+        .ratio-buttons button.own { border-color: var(--accent-color); }
+        .ratio-buttons button.own::after { content: " \2022"; }
+        .ratio-buttons button.edited::before { content: "\270E "; }
+        .edit-shape-row { display: flex; gap: 14px; align-items: flex-start; }
+        .edit-shape-wrap { flex: 1 1 auto; min-width: 0; }
+        .edit-shape-side { flex: 0 0 150px; }
+        .edit-shape-preview { position: relative; overflow: hidden; background: #0f172a; border: 1px solid var(--border-color); border-radius: 6px; margin: 0 auto; }
+        .edit-shape-preview img { position: absolute; max-width: none; display: block; }
         .edit-focal { margin-top: 16px; }
         .edit-focal-wrap { position: relative; width: 220px; max-width: 64%; aspect-ratio: 3/2; background: #0f172a; border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; cursor: crosshair; margin-top: 6px; }
         .edit-focal-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
@@ -1283,12 +1297,30 @@
             </div>
             <div class="edit-body">
                 <div class="edit-left">
+                    <div class="edit-tier-head">1 · Trim to the art</div>
+                    <p class="edit-note edit-tier-note">Cuts away frames, colour strips and museum borders. Applies on every screen.</p>
                     <div class="ratio-buttons" id="edit-ratios" data-mutates="1">
                         <button onclick="editSetRatio(16/9, this)">16:9</button>
                         <button onclick="editSetRatio(9/16, this)">9:16</button>
                         <button onclick="editSetRatio(NaN, this)" class="active">Freeform</button>
                     </div>
                     <div class="edit-cropper-wrap"><img id="edit-cropper-image" src=""></div>
+                    <div class="edit-tier-head" style="margin-top:20px;">2 · Framing per screen shape</div>
+                    <p class="edit-note edit-tier-note">How this work fills each kind of screen. Drag the box to choose what stays in view.</p>
+                    <div class="edit-shape-bar">
+                        <div class="ratio-buttons" id="edit-shape-tabs" data-mutates="1"></div>
+                        <label id="edit-shape-all-wrap" class="edit-shape-all" style="display:none;"><input type="checkbox" id="edit-shape-all" onchange="editShapesRenderTabs()"> Show all shapes</label>
+                    </div>
+                    <div id="edit-shape-hint" class="edit-note" style="margin:0 0 8px;"></div>
+                    <div class="edit-shape-row" data-mutates="1">
+                        <div class="edit-cropper-wrap edit-shape-wrap"><img id="edit-shape-image" src=""></div>
+                        <div class="edit-shape-side">
+                            <div id="edit-shape-preview" class="edit-shape-preview"><img id="edit-shape-preview-img" src="" alt=""></div>
+                            <div class="edit-note" style="margin:4px 0 8px;">Preview</div>
+                            <button class="secondary" id="edit-shape-reset" onclick="editShapesReset()" style="font-size:0.75rem; padding:5px 10px;">Reset to pack framing</button>
+                        </div>
+                    </div>
+                    <p class="edit-note" id="edit-shape-status" style="margin:6px 0 0;"></p>
                     <div class="edit-focal" data-mutates="1">
                         <label style="font-size:0.7rem; color:#94a3b8; text-transform:uppercase; letter-spacing:0.05rem;">Focus point</label>
                         <div class="edit-focal-wrap" id="edit-focal-wrap">
@@ -1339,6 +1371,6 @@
         </div>
     </div>
 
-    <script src="admin.js?v=20261004d"></script>
+    <script src="admin.js?v=20261005a"></script>
 </body>
 </html>

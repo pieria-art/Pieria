@@ -3036,6 +3036,7 @@ function openEdit(id, ctx) {
         }
     });
     document.querySelectorAll('#edit-ratios button').forEach((b, i) => b.classList.toggle('active', i === 2));
+    editShapesInit(art);
 }
 
 function editSetRatio(ratio, btn) {
@@ -3043,6 +3044,156 @@ function editSetRatio(ratio, btn) {
     editCropper.setAspectRatio(ratio);
     document.querySelectorAll('#edit-ratios button').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
+}
+
+// --- Tier 2: framing per screen shape (aspect_crops) --------------------------------------------
+// One Cropper locked to the active shape's ratio, re-created on tab switch. Boxes are normalized 0..1
+// against the WHOLE image (not the Tier-1 trim). Only shapes the user actually moved are sent on save,
+// so re-saving never freezes pack framing the user didn't touch (ADR-148 F8).
+const EDIT_SHAPES = ['16:9', '9:16', '4:3', '3:4'];
+let editShapeCropper = null, editShape = null, editShapeBoxes = {}, editShapeDirty = new Set();
+let editShapeDisplayShapes = null;   // shapes of this box's displays, or null = unknown -> show all
+let editShapeEdited = false;         // aspect_crops_json is currently a user edit (server-side mark)
+
+function _shapeRatio(k) { const [a, b] = k.split(':').map(Number); return a / b; }
+
+// This box's own screen shapes. Displays don't report a pixel size, so use the appliance conf mirror
+// (/api/health/host, 404 off-appliance): ROTATE 90/270 or EINK_ORIENTATION=portrait -> portrait.
+async function _editOwnShapes() {
+    try {
+        const res = await fetch(`${API_BASE}/api/health/host`);
+        if (!res.ok) return null;
+        const conf = ((await res.json()).conf || {}).values;
+        if (!conf) return null;
+        const portrait = ['90', '270'].includes(String(conf.ROTATE || '')) || conf.EINK_ORIENTATION === 'portrait';
+        return portrait ? ['9:16', '3:4'] : ['16:9', '4:3'];
+    } catch (e) { return null; }
+}
+
+function _editDefaultBox(art, shape) {
+    const W = art.original_width, H = art.original_height, r = _shapeRatio(shape);
+    let bw, bh;
+    if (W / H > r) { bh = 1; bw = (r * H) / W; } else { bw = 1; bh = W / (r * H); }
+    const x0 = Math.min(1 - bw, Math.max(0, (art.focal_x ?? 0.5) - bw / 2));
+    const y0 = Math.min(1 - bh, Math.max(0, (art.focal_y ?? 0.5) - bh / 2));
+    return [x0, y0, x0 + bw, y0 + bh];
+}
+
+function _editBoxFits(art, shape, box) {
+    if (!Array.isArray(box) || box.length !== 4) return false;
+    const got = ((box[2] - box[0]) * art.original_width) / ((box[3] - box[1]) * art.original_height);
+    return Math.abs(got / _shapeRatio(shape) - 1) <= 0.03;
+}
+
+async function editShapesInit(art) {
+    if (editShapeCropper) { editShapeCropper.destroy(); editShapeCropper = null; }
+    editShape = null; editShapeBoxes = {}; editShapeDirty = new Set();
+    editShapeEdited = false;
+    const saved = art.aspect_crops || {};
+    EDIT_SHAPES.forEach(k => {
+        editShapeBoxes[k] = _editBoxFits(art, k, saved[k]) ? saved[k].slice() : _editDefaultBox(art, k);
+    });
+    document.getElementById('edit-shape-image').src = `${API_BASE}/artworks/${art.id}/preview?f=${encodeURIComponent(art.filename)}`;
+    document.getElementById('edit-shape-preview-img').src = document.getElementById('edit-shape-image').src;
+    document.getElementById('edit-shape-status').textContent = '';
+    const id = art.id;
+    editShapeDisplayShapes = await _editOwnShapes();
+    if (editId !== id) return;   // modal closed/switched while the conf fetch was in flight
+    document.getElementById('edit-shape-all-wrap').style.display = editShapeDisplayShapes ? '' : 'none';
+    document.getElementById('edit-shape-all').checked = false;
+    editShapesRenderTabs();
+}
+
+function editShapesRenderTabs() {
+    const showAll = !editShapeDisplayShapes || document.getElementById('edit-shape-all').checked;
+    const shapes = showAll ? EDIT_SHAPES : editShapeDisplayShapes;
+    const tabs = document.getElementById('edit-shape-tabs');
+    tabs.innerHTML = '';
+    shapes.forEach(k => {
+        const b = document.createElement('button');
+        b.type = 'button'; b.textContent = k; b.dataset.shape = k;
+        if (editShapeDisplayShapes && editShapeDisplayShapes.includes(k)) { b.classList.add('own'); b.title = "A shape of this box's screen"; }
+        if (editShapeDirty.has(k)) b.classList.add('edited');
+        b.onclick = () => editShapeSelect(k);
+        tabs.appendChild(b);
+    });
+    document.getElementById('edit-shape-hint').textContent = editShapeDisplayShapes
+        ? "• marks the shape of this box's screen." + (showAll ? '' : ' Tick "Show all shapes" for other screens.')
+        : 'Screen shape unknown here, so every shape is shown.';
+    editShapeSelect(shapes.includes(editShape) ? editShape : shapes[0]);
+}
+
+function _editShapeFlush() {
+    if (!editShapeCropper || !editShape) return;
+    const img = editShapeCropper.getImageData();
+    const d = editShapeCropper.getData();
+    editShapeBoxes[editShape] = [d.x / img.naturalWidth, d.y / img.naturalHeight,
+                                 (d.x + d.width) / img.naturalWidth, (d.y + d.height) / img.naturalHeight];
+}
+
+function _editShapePreview() {
+    if (!editShape) return;
+    const [x0, y0, x1, y1] = editShapeBoxes[editShape];
+    const bw = x1 - x0, bh = y1 - y0, r = _shapeRatio(editShape);
+    const box = document.getElementById('edit-shape-preview');
+    const W = r >= 1 ? 140 : Math.round(140 * r), H = Math.round(W / r);
+    box.style.width = W + 'px'; box.style.height = H + 'px';
+    const im = document.getElementById('edit-shape-preview-img');
+    im.style.width = (100 / bw) + '%'; im.style.height = (100 / bh) + '%';
+    im.style.left = (-x0 / bw * 100) + '%'; im.style.top = (-y0 / bh * 100) + '%';
+}
+
+function editShapeSelect(shape) {
+    _editShapeFlush();
+    editShape = shape;
+    document.querySelectorAll('#edit-shape-tabs button').forEach(b => b.classList.toggle('active', b.dataset.shape === shape));
+    if (editShapeCropper) { editShapeCropper.destroy(); editShapeCropper = null; }
+    const cimg = document.getElementById('edit-shape-image');
+    let ready = false;
+    editShapeCropper = new Cropper(cimg, {
+        viewMode: 1, dragMode: 'move', aspectRatio: _shapeRatio(shape), autoCropArea: 0.9, restore: false,
+        guides: true, center: true, highlight: false, background: false,
+        ready() {
+            const img = editShapeCropper.getImageData();
+            const [x0, y0, x1, y1] = editShapeBoxes[shape];
+            editShapeCropper.setData({ x: x0 * img.naturalWidth, y: y0 * img.naturalHeight,
+                                       width: (x1 - x0) * img.naturalWidth, height: (y1 - y0) * img.naturalHeight });
+            ready = true;
+            _editShapePreview();
+        },
+        crop() { if (!ready) return; _editShapeFlush(); _editShapePreview(); },
+        cropend() {
+            if (!ready) return;
+            editShapeDirty.add(shape);
+            const t = document.querySelector(`#edit-shape-tabs button[data-shape="${shape}"]`);
+            if (t) t.classList.add('edited');
+            document.getElementById('edit-shape-status').textContent = 'Changed — saved when you press Save.';
+        }
+    });
+}
+
+// Dirty shapes only, {shape: [x0,y0,x1,y1]}; null when nothing was moved.
+function editShapesPayload() {
+    _editShapeFlush();
+    if (!editShapeDirty.size) return null;
+    const out = {};
+    editShapeDirty.forEach(k => { out[k] = editShapeBoxes[k].map(v => Math.round(Math.min(1, Math.max(0, v)) * 1e5) / 1e5); });
+    return out;
+}
+
+async function editShapesReset() {
+    if (editId == null) return;
+    const art = _findArt(editId);
+    if (!await confirmModal('Drop your framing edits for this work? The next pack refresh may restore the pack’s framing.', { confirmText: 'Reset' })) return;
+    try {
+        const r = await fetch(`${API_BASE}/artworks/${editId}/crop`, { method: 'PATCH', headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ crop_x: art.crop_x, crop_y: art.crop_y, crop_width: art.crop_width, crop_height: art.crop_height, reset_aspect_crops: true }) });
+        if (!r.ok) throw new Error(r.status);
+        editShapeDirty = new Set();
+        document.getElementById('edit-shape-status').textContent = 'Reset — the pack may update this framing again.';
+        editShapesRenderTabs();
+        showToast('Framing released to the pack.', 'success');
+    } catch (e) { showToast('Reset failed.', 'error'); }
 }
 
 function _editSetDot(fx, fy) {
@@ -3081,7 +3232,14 @@ async function saveEdit() {
             const r = art.original_width / cd.naturalWidth;
             body.crop_x = data.x * r; body.crop_y = data.y * r; body.crop_width = data.width * r; body.crop_height = data.height * r;
         }
-        await fetch(`${API_BASE}/artworks/${id}/crop`, { method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+        const shapes = editShapesPayload();
+        if (shapes) body.aspect_crops = shapes;
+        const cropRes = await fetch(`${API_BASE}/artworks/${id}/crop`, { method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+        if (!cropRes.ok) {
+            let why = ''; try { why = (await cropRes.json()).detail || ''; } catch (e) {}
+            showToast('Crop not saved' + (why ? ': ' + why : '.'), 'error');
+            return;
+        }
 
         if (editIsPersonal) {
             await fetch(`${API_BASE}/api/studio/photo/${id}`, { method: 'PATCH', headers: { 'Content-Type': 'application/json' },
@@ -3100,6 +3258,7 @@ async function saveEdit() {
 function closeEdit() {
     document.getElementById('edit-overlay').classList.remove('open');
     if (editCropper) { editCropper.destroy(); editCropper = null; }
+    if (editShapeCropper) { editShapeCropper.destroy(); editShapeCropper = null; }
     editId = null;
 }
 
