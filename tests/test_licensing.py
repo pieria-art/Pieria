@@ -120,3 +120,16 @@ def test_display_credit_drops_bare_urls_keeps_real_credits():
     assert display_credit("https://clevelandart.org/art/1916.1044 IA") is None
     assert display_credit("NASA, ESA, CSA, STScI") == "NASA, ESA, CSA, STScI"
     assert display_credit("Photo: Jane Doe, https://example.org") == "Photo: Jane Doe, https://example.org"
+
+
+@pytest.mark.parametrize("text", [
+    "CC BY 2.0", "CC BY 2.5", "CC BY 3.0", "CC-BY-3.0", "cc-by-3.0-igo", "CC BY 3.0 IGO",
+    "CC BY 2.0 (Flickr)", "cc-by-2.5",
+])
+def test_normalize_cc_by_other_versions_not_allowed(text):
+    assert normalize_license(text) is None
+
+
+@pytest.mark.parametrize("text", ["CC BY 4.0", "cc-by-4.0", "CC-BY-4.0", "CC BY 4.0 (ESA/Webb release)", "CC BY", "cc-by"])
+def test_normalize_cc_by_4_and_unversioned_map_to_4(text):
+    assert normalize_license(text) == "CC-BY-4.0"

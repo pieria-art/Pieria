@@ -41,6 +41,10 @@ def normalize_license(text: str | None) -> str | None:
     Handles (case/spacing/hyphenation insensitive): "Public Domain", "Public Domain (Library of
     Congress; no known restrictions)", "PD", "PD-Art", "no known restrictions", "CC0", "cc0-1.0",
     "CC BY 4.0", "CC-BY-4.0", "cc-by". Already-normalized ids pass through unchanged.
+
+    CC BY is version-aware: an explicit 4.0 -> CC-BY-4.0; an explicit other version ("CC BY 3.0",
+    "cc-by-2.5", "cc-by-3.0-igo") -> None (not pack-allowed); an UNVERSIONED "CC BY"/"cc-by" still maps to
+    CC-BY-4.0 (the long-standing behaviour; all shipped data is 4.0).
     """
     if not text or not isinstance(text, str):
         return None
@@ -54,8 +58,12 @@ def normalize_license(text: str | None) -> str | None:
         return None
     if "cc0" in s:
         return "CC0-1.0"
-    if "cc-by" in s:          # by-sa/by-nc/by-nd already excluded above, so any remaining "cc-by" is 4.0
-        return "CC-BY-4.0"
+    if "cc-by" in s:          # by-sa/by-nc/by-nd already excluded above
+        # Version-aware: only 4.0 is pack-allowed. Look at what follows "cc-by".
+        ver = re.search(r"cc-by-?(\d+(?:\.\d+)?)", s)
+        if ver and ver.group(1) != "4.0" and ver.group(1) != "4":
+            return None       # 2.0 / 2.5 / 3.0 / 3.0-igo ... not CC BY 4.0, must not be restated as such
+        return "CC-BY-4.0"    # explicit 4.0, or unversioned "CC BY" (assumed 4.0)
     if ("public-domain" in s or "no-known-restrictions" in s or "pd-art" in s
             or s == "pd" or s.startswith("pd-")):
         return "PDM-1.0"
