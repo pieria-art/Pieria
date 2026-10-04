@@ -82,14 +82,12 @@ cd ~/Pieria
 docker compose -f docker-compose.yml -f deploy/appliance/compose/docker-compose.appliance.yml down
 sudo rm -rf data/*.db* Artwork/*        # the DB is data/artwork.db (database.py)
 sudo systemctl stop sd-watchdog.timer sd-metrics.timer sd-os-check.timer sd-quiet-hours.timer sd-eink
-sudo rm -f data/appliance/*             # this box's status files (conf/watchdog/metrics/update-check)
 ```
 
 Leaving art baked in is a legitimate alternative (a "lean Core" image — faster to first paint, much
 bigger download). Decide deliberately; don't let it happen by accident.
 
-**Verify:** `du -sh Artwork/` is ~0, the DB file is gone, and `data/appliance/` is empty (its files regenerate
-on first boot; left in place they show a stranger this build box's state until then). The container image itself stays on the
+**Verify:** `du -sh Artwork/` is ~0 and the DB file is gone. The container image itself stays on the
 card — that is what makes first boot fast.
 
 ---
@@ -100,7 +98,7 @@ card — that is what makes first boot fast.
 sudo POWEROFF=1 sd-image-prep --full
 ```
 
-This scrubs secrets, resets the boot conf to the placeholder (so first boot enters the wizard), enables
+This scrubs secrets, empties `data/appliance/` (this box's status files — conf/watchdog/metrics/update-check; done through `sd-mailbox`, and they regenerate on first boot), resets the boot conf to the placeholder (so first boot enters the wizard), enables
 `sd-setup.service`, wipes saved Wi-Fi, wipes machine identity, re-arms SSH host-key regeneration,
 removes every `authorized_keys`, cleans logs, and stamps the `fake-hwclock` floor.
 

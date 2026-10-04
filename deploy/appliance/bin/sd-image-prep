@@ -19,7 +19,8 @@
 #                   (NetworkManager system-connections), and logs, so the captured .img is clean and
 #                   every flashed unit regenerates its own identity. Run this only right before you
 #                   power down and capture the card. (The app DB reset, if wanted, is a separate manual
-#                   capture-time step — this script never touches Artwork/ or data/.)
+#                   capture-time step — this script never touches Artwork/ or the DB. It DOES empty
+#                   data/appliance/ — this box's status files — via sd-mailbox, ADR-131.)
 #
 # Usage:  sudo sd-image-prep --enable-setup
 #         sudo sd-image-prep --full
@@ -31,6 +32,8 @@ if [ -d /boot/firmware ]; then BOOT_CONF="/boot/firmware/pieria.conf"; else BOOT
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 SD_CONF_BIN="${SD_CONF_BIN:-$SCRIPT_DIR/sd-conf}"
 [ -x "$SD_CONF_BIN" ] || SD_CONF_BIN="/usr/local/bin/sd-conf"
+SD_MAILBOX_BIN="${SD_MAILBOX_BIN:-$SCRIPT_DIR/sd-mailbox}"
+[ -x "$SD_MAILBOX_BIN" ] || SD_MAILBOX_BIN="/usr/local/bin/sd-mailbox"
 # The shipped placeholder conf, if we can find it (repo layout: ../config/…; installed layout: none).
 CONF_EXAMPLE=""
 for c in "$SCRIPT_DIR/../config/pieria.conf.example" \
@@ -302,6 +305,32 @@ PY
   fi
 }
 
+# --- this box's status files must not ride the image (--full only) --------------------------------
+# data/appliance/ holds conf.json / watchdog / metrics / update-check — state that describes THIS build
+# box and would be shown to a stranger until first boot regenerates it. The container (uid 1000) can
+# swap anything inside data/ for a symlink, so root goes through sd-mailbox (ADR-131: O_NOFOLLOW
+# dir-fd), never `rm data/appliance/*` by path. Run after wipe_secrets so a refusal there aborts first.
+clear_appliance_status() {
+  local root n
+  if ! root="$(repo_root)"; then
+    echo "  WARNING: could not locate the app repo — empty data/appliance/ by hand" >&2
+    return 0
+  fi
+  if [ ! -d "$root/data" ]; then
+    echo "  no $root/data — nothing to clear in data/appliance"
+    return 0
+  fi
+  if [ ! -x "$SD_MAILBOX_BIN" ]; then
+    echo "  ERROR: sd-mailbox not found — cannot safely clear data/appliance (run install.sh)" >&2
+    exit 1
+  fi
+  if ! n="$("$SD_MAILBOX_BIN" --repo-root "$root" --dir appliance clear)"; then
+    echo "  ERROR: sd-mailbox could not clear data/appliance — refusing to capture with its status files" >&2
+    exit 1
+  fi
+  echo "  cleared data/appliance/ ($n file(s)) — status files regenerate on first boot"
+}
+
 # --- remote login: no shared credentials on a distributed image (--full only) ---------------------
 lock_login() {
   # The third leg of the same problem as SSH host keys and authorized_keys. A public image means every
@@ -390,6 +419,7 @@ case "${1:-}" in
     require_root "$@"
     echo "==> sd-image-prep: FULL (destructive — for a distributable image capture)"
     wipe_secrets  # FIRST: this can abort, and it should abort before anything destructive happens
+    clear_appliance_status
     reset_conf_to_placeholder
     declare_capabilities
     enable_setup_service

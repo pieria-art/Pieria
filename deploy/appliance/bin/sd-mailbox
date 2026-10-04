@@ -26,6 +26,7 @@ Usage:
   sd-mailbox --repo-root REPO_ROOT [--dir appliance|data] copy-in <src_path> <name> [--mode] [--owner]
   sd-mailbox --repo-root REPO_ROOT [--dir appliance|data] chown-dir [--owner U:G] [--mode 0755]
   sd-mailbox --repo-root REPO_ROOT [--dir appliance|data] stat    <name>
+  sd-mailbox --repo-root REPO_ROOT [--dir appliance|data] clear              # unlink every non-dir entry
 
 `stat` lstats `<name>` (via the dir fd — never by path, so it never follows a planted symlink) and
 prints "mtime size type mode uid gid" (type is one of file/dir/symlink/other; mode is 4-digit octal)
@@ -219,6 +220,25 @@ def do_rm(afd: int, name: str) -> None:
         pass
 
 
+def do_clear(afd: int) -> int:
+    """Unlink every non-directory entry in the verified dir (the `rm -f dir/*` image capture needs),
+    entirely via the dir fd. Symlinks are unlinked, never followed. Subdirectories are left alone and
+    reported — this never recurses, so a planted dir cannot steer root anywhere. Returns the number of
+    entries removed."""
+    removed = 0
+    for name in os.listdir(afd):
+        try:
+            st = os.stat(name, dir_fd=afd, follow_symlinks=False)
+            if stat.S_ISDIR(st.st_mode):
+                print(f"sd-mailbox: clear: leaving directory {name!r}", file=sys.stderr)
+                continue
+            os.unlink(name, dir_fd=afd)
+            removed += 1
+        except FileNotFoundError:
+            pass
+    return removed
+
+
 def do_copy_in(afd: int, src_path: str, name: str, mode: int, owner, max_bytes: int = DEFAULT_MAX_READ) -> None:
     # Most callers pass a root-private mktemp source (a tarball, a sqlite snapshot) where this check is
     # pure belt-and-suspenders — but a caller could pass a path under the container-writable data/ tree
@@ -281,6 +301,8 @@ def main(argv=None) -> int:
     p_stat = sub.add_parser("stat")
     p_stat.add_argument("name")
 
+    sub.add_parser("clear")
+
     args = ap.parse_args(argv)
 
     afd = resolve_target_dir(args.repo_root, args.dir)
@@ -306,6 +328,8 @@ def main(argv=None) -> int:
         elif args.cmd == "chown-dir":
             owner = parse_owner(args.owner) if args.owner else None
             do_chown_dir(afd, owner, int(args.mode, 8))
+        elif args.cmd == "clear":
+            print(do_clear(afd))
         elif args.cmd == "stat":
             try:
                 print(do_stat(afd, args.name))
