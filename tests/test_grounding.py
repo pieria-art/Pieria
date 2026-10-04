@@ -283,3 +283,31 @@ async def test_personal_photos_skip_grounding_and_the_museum_pipeline(testing_se
     art = _artwork(testing_session, is_personal=True, description_narrative="My dog.")
     out = await curator.enrich_artwork(art.id, testing_session, context_hints=MET_HINTS)
     assert out.description_narrative == "My dog." and out.is_personal
+
+
+@pytest.mark.asyncio
+async def test_image_is_decoded_once_and_off_the_event_loop(testing_session, monkeypatch, tmp_path):
+    import asyncio
+    import threading
+
+    import config
+    monkeypatch.setattr(config, "LIBRARY_DIR", tmp_path)
+    (tmp_path / "x.jpg").write_bytes(b"not really an image")
+    main_thread = threading.get_ident()
+    calls = []
+
+    def fake_image_part(path, *a, **k):
+        calls.append(threading.get_ident())
+        return {"type": "image_url", "image_url": {"url": "data:,x"}}
+    monkeypatch.setattr(ai_client, "image_part", fake_image_part)
+    monkeypatch.setattr(curator.wikipedia, "summary", lambda *a, **k: "Some summary.")
+    legacy = {"title": "Test Painting", "description_narrative": "Legacy blurb.", "tags": ["a"]}
+    monkeypatch.setattr(ai_client, "chat", _chat_stub([legacy]))
+    handler, _ = _wikidata_router(down=True)       # grounding returns None -> legacy path reuses the part
+    art = _artwork(testing_session)
+    art.filename = "x.jpg"
+    testing_session.commit()
+    with respx.mock(assert_all_called=False) as m:
+        m.route().mock(side_effect=handler)
+        await asyncio.wait_for(curator.enrich_artwork(art.id, testing_session, context_hints=None), 10)
+    assert len(calls) == 1 and calls[0] != main_thread

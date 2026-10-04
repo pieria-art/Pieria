@@ -30,19 +30,30 @@ def _user_edited(artwork: ArtworkModel) -> set:
         return set()
 
 
-async def _enrich_grounded(artwork: ArtworkModel, db: Session, context_hints, source_api) -> bool:
+async def _load_image_part(artwork: ArtworkModel):
+    """Decode + downscale the artwork's image ONCE, off the event loop (originals can be ~150 MP; a
+    sync PIL decode here would freeze the display WS and schedule polling). None when absent/unreadable."""
+    if not artwork.filename:
+        return None
+    from config import LIBRARY_DIR
+    img_path = LIBRARY_DIR / artwork.filename
+    if not img_path.exists():
+        return None
+    try:
+        part = await asyncio.to_thread(ai_client.image_part, str(img_path))
+        logger.info(f"[RAG Curator] Prepared {artwork.filename} for the Vision payload.")
+        return part
+    except Exception as ie:
+        logger.warning(f"[RAG Curator] Image parsing failed: {ie}")
+        return None
+
+
+async def _enrich_grounded(artwork: ArtworkModel, db: Session, context_hints, source_api,
+                           image_part=None) -> bool:
     """ADR-148 runtime grounding: identity -> facts -> record-derived fields + validated prose. Returns
     True when the artwork was enriched this way; False means "keep today's behaviour" (nothing to ground
     on, or any failure — grounding never raises)."""
-    extra_parts = []
-    if artwork.filename:
-        from config import LIBRARY_DIR
-        img_path = LIBRARY_DIR / artwork.filename
-        if img_path.exists():
-            try:
-                extra_parts.append(ai_client.image_part(str(img_path)))
-            except Exception as ie:
-                logger.warning(f"[RAG Curator] Image parsing failed: {ie}")
+    extra_parts = [image_part] if image_part else []
     result = await grounding.ground_work(
         title=artwork.title or "", artist=artwork.agent_name, hints=context_hints,
         source_api=source_api, source_url=artwork.source_url, extra_parts=extra_parts,
@@ -82,8 +93,9 @@ async def enrich_artwork(artwork_id: int, db: Session, context_hints: str = None
         logger.info(f"[RAG Curator] Skipping personal photo {artwork_id}")
         return artwork
 
+    image_part = await _load_image_part(artwork)
     try:
-        if await _enrich_grounded(artwork, db, context_hints, source_api):
+        if await _enrich_grounded(artwork, db, context_hints, source_api, image_part):
             return artwork
     except Exception as e:
         logger.warning(f"[RAG Curator] Grounded enrichment failed, using legacy path: {e}", exc_info=True)
@@ -124,15 +136,8 @@ async def enrich_artwork(artwork_id: int, db: Session, context_hints: str = None
         )
 
         content_parts = [ai_client.text_part(prompt)]
-        if artwork.filename:
-            from config import LIBRARY_DIR
-            img_path = LIBRARY_DIR / artwork.filename
-            if img_path.exists():
-                try:
-                    content_parts.append(ai_client.image_part(str(img_path)))
-                    logger.info(f"[RAG Curator] Attached {artwork.filename} to Vision RAG payload.")
-                except Exception as ie:
-                    logger.warning(f"[RAG Curator] Image parsing failed: {ie}")
+        if image_part:
+            content_parts.append(image_part)
 
         response_text = await asyncio.to_thread(
             ai_client.chat,
