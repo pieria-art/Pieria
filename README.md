@@ -185,6 +185,10 @@ Thin clients that render the same curation brain on platforms people already run
 - **[MagicMirror²](integrations/MMM-Pieria/)** — the `MMM-Pieria` module turns a slot on a
   smart mirror into a rotating museum wall (current artwork + placard from your server). Front-end
   only, no extra setup; includes a `preview.html` to try it in any browser without MagicMirror.
+- **[Public API](docs/api.md)** — a small, stable, token-authenticated HTTP API (`/api/v1`) to read what
+  your walls are showing and control them: next/previous, switch collection, search, night schedule.
+  Make a token under **Settings → 🔌 API & Integrations**; the live reference is at `/api/v1/docs`. It is
+  what the upcoming Home Assistant integration is built on.
 
 ## 🏛️ VRA Core Metadata Architecture
 
@@ -207,7 +211,7 @@ Pieria uses a strict priority system for settings like `cycle_time`, `mode`, and
 3.  **Global Defaults:** System-wide fallbacks.
 
 ## 📖 Documentation
-For URL parameters, the **Raspberry Pi appliance** how-to, **e-ink / "dumb" frame** setup, and hardware tips, visit the internal **Help & Docs** page at `http://localhost:8000/help` from your running server. Reflashing or moving to new hardware? See **[Backup & Restore](docs/backup-restore.md)**.
+For URL parameters, the **Raspberry Pi appliance** how-to, **e-ink / "dumb" frame** setup, and hardware tips, visit the internal **Help & Docs** page at `http://localhost:8000/help` from your running server. Reflashing or moving to new hardware? See **[Backup & Restore](docs/backup-restore.md)**. Controlling Pieria from other software? See **[Control your Pieria](docs/api.md)**.
 
 ## 🔐 Advanced: Enabling HTTPS (optional)
 
