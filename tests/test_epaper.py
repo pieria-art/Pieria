@@ -477,3 +477,63 @@ def test_spectra6_toe_is_bit_identical_to_shipping_above_the_knee():
     out = _spectra6_toe(img)
     for x, v in enumerate(greys):
         assert out.getpixel((x, 0)) == (lut[v], lut[v], lut[v]), f"grey {v} diverged from shipping"
+
+
+# --- ADR-085 closed by ADR-148: orientation mismatch always crops to fill (no side margins) ----------
+
+def _solid_file(tmp_path, name, size, color=(20, 40, 160)):
+    p = tmp_path / name
+    Image.new("RGB", size, color).save(p)
+    return p
+
+
+def _split_portrait(tmp_path, name):
+    """Portrait work: top half red, bottom half green."""
+    p = tmp_path / name
+    img = Image.new("RGB", (300, 600), (200, 0, 0))
+    img.paste((0, 200, 0), (0, 300, 300, 600))
+    img.save(p)
+    return p
+
+
+def _colours(img):
+    return {c for _, c in img.getcolors(maxcolors=1 << 20)}
+
+
+def test_portrait_work_on_landscape_panel_fills_even_when_contain_requested(tmp_path):
+    src = _solid_file(tmp_path, "p.png", (300, 600))
+    for fit in ("cover", "contain"):
+        out = _fit_rgb(src, 400, 300, fit, (0.5, 0.5), None)
+        assert out.size == (400, 300)
+        assert (255, 255, 255) not in _colours(out)
+
+
+def test_landscape_work_on_portrait_panel_fills_symmetric(tmp_path):
+    src = _solid_file(tmp_path, "l.png", (600, 300))
+    out = _fit_rgb(src, 300, 400, "contain", (0.5, 0.5), None)
+    assert out.size == (300, 400)
+    assert (255, 255, 255) not in _colours(out)
+
+
+def test_mismatch_uses_aspect_crops_box_for_panel_shape(tmp_path):
+    p = _split_portrait(tmp_path, "split.png")
+    crops = {"4:3": [0.0, 0.5, 1.0, 1.0], "3:4": [0.0, 0.0, 1.0, 1.0]}
+    box = pick_crop_for_aspect(crops, 400, 300)
+    assert box == (0.0, 0.5, 1.0, 1.0)
+    out = _fit_rgb(p, 400, 300, "cover", (0.5, 0.0), box)
+    assert out.size == (400, 300)
+    assert _colours(out) == {(0, 200, 0)}   # the reviewed box wins over the top-anchored focal
+
+
+def test_mismatch_without_box_is_focal_anchored_cover(tmp_path):
+    p = _split_portrait(tmp_path, "split2.png")
+    top = _fit_rgb(p, 400, 300, "contain", (0.5, 0.0), None)
+    bot = _fit_rgb(p, 400, 300, "contain", (0.5, 1.0), None)
+    assert top.getpixel((200, 150)) == (200, 0, 0)
+    assert bot.getpixel((200, 150)) == (0, 200, 0)
+
+
+def test_same_orientation_contain_unchanged(tmp_path):
+    src = _solid_file(tmp_path, "w.png", (400, 100))
+    out = _fit_rgb(src, 400, 300, "contain", (0.5, 0.5), None)
+    assert out.getpixel((200, 2)) == (255, 255, 255)   # still letterboxed: orientations agree

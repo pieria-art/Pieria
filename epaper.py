@@ -159,7 +159,8 @@ def _fit_rgb(image_path: Path, w: int, h: int, fit: str = "cover",
     """Open a source image, honour EXIF orientation, normalise ANY input mode
     (JPEG/PNG/WebP, incl. CMYK / RGBA / palette / greyscale) to RGB, and fit it to
     exactly w x h — cover-crop (anchored on the normalized focal point, default
-    centered) or contain (letterbox onto white).
+    centered) or contain (letterbox onto white; coerced to cover when the work's orientation
+    mismatches the panel's — ADR-148).
 
     An optional normalized `crop_box` pre-crops to an authored region first; since that box is
     authored AT the target aspect the subsequent fit is near-lossless, and focal stops mattering.
@@ -188,6 +189,13 @@ def _fit_rgb(image_path: Path, w: int, h: int, fit: str = "cover",
             # a degenerate box on a tiny source would crop to nothing — keep the full frame instead
             if right - left >= 1 and lower - upper >= 1:
                 img = img.crop((left, upper, right, lower))
+        # ADR-085 closed by ADR-148: a work whose orientation doesn't match the panel's (portrait on a
+        # landscape panel, or the reverse) always CROPS TO FILL — never side margins. The authored
+        # `aspect_crops` box was applied above when present, else the focal-anchored cover below is the
+        # fallback. An explicit fit="contain" is still honoured when the orientations agree (or either is
+        # square), where it can only add thin bars rather than waste half the panel.
+        if fit == "contain" and img.width != img.height and w != h and (img.width > img.height) != (w > h):
+            fit = "cover"
         if fit == "cover":
             return ImageOps.fit(
                 img, (w, h), method=Image.Resampling.LANCZOS, centering=focal
