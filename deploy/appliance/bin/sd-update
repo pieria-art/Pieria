@@ -597,13 +597,29 @@ finally:
         echo "[dry-run] set 127.0.1.1 -> $NEW_HOSTNAME in $HOSTS_FILE" >> "$LOG"
       else
         # Non-fatal courtesy (sudo's "unable to resolve host", stale avahi name); /etc/hostname is
-        # what matters. Every 127.0.1.1 line is replaced, or one is appended if none exists.
-        HOSTS_TMP="$(mktemp)"
-        awk -v h="$NEW_HOSTNAME" '
-          { l = $0; sub(/#.*/, "", l); sub(/^[ 	]+/, "", l)
-            if (index(l, "127.0.1.1") == 1) { print "127.0.1.1	" h; seen = 1 } else print }
-          END { if (!seen) print "127.0.1.1	" h }' "$HOSTS_FILE" > "$HOSTS_TMP" 2>>"$LOG"           && cat "$HOSTS_TMP" > "$HOSTS_FILE" 2>>"$LOG"           || echo "+ could not update $HOSTS_FILE (non-fatal)" >> "$LOG"
-        rm -f "$HOSTS_TMP"
+        # what matters. Every 127.0.1.1 line (first FIELD, so 127.0.1.10 is left alone) gets the new
+        # name, keeping any extra aliases after the old one; one is appended if none exists. Written
+        # to a temp file BESIDE the target, then renamed over it — a failed write never leaves an
+        # empty /etc/hosts.
+        HOSTS_TMP="$(mktemp "$(dirname "$HOSTS_FILE")/.sd-hosts.XXXXXX" 2>>"$LOG")" || HOSTS_TMP=""
+        if [ -n "$HOSTS_TMP" ] \
+           && awk -v h="$NEW_HOSTNAME" '
+                { l = $0; sub(/#.*/, "", l); n = split(l, f, /[ \t]+/)
+                  if (f[1] == "") { for (i = 1; i < n; i++) f[i] = f[i + 1]; n-- }
+                  if (f[1] == "127.0.1.1") {
+                    out = "127.0.1.1\t" h
+                    for (i = 3; i <= n; i++) if (f[i] != "" && f[i] != h) out = out " " f[i]
+                    print out; seen = 1
+                  } else print }
+                END { if (!seen) print "127.0.1.1\t" h }' "$HOSTS_FILE" > "$HOSTS_TMP" 2>>"$LOG" \
+           && chmod --reference="$HOSTS_FILE" "$HOSTS_TMP" 2>>"$LOG" \
+           && { chown --reference="$HOSTS_FILE" "$HOSTS_TMP" 2>>"$LOG" || true; } \
+           && mv -f "$HOSTS_TMP" "$HOSTS_FILE" 2>>"$LOG"; then
+          :
+        else
+          echo "+ could not update $HOSTS_FILE (non-fatal)" >> "$LOG"
+          [ -n "$HOSTS_TMP" ] && rm -f "$HOSTS_TMP"
+        fi
       fi
       conf_set "HOSTNAME=$NEW_HOSTNAME" || rc=$?
     fi

@@ -696,3 +696,28 @@ def test_a_symlinked_appliance_dir_is_refused_and_the_outside_dir_untouched(tmp_
     assert (outside / "request.json").exists()
     # And the symlink itself was never replaced by sd-mailbox trying to (re)create the directory.
     assert (root / "data" / "appliance").is_symlink()
+
+
+
+def test_hosts_rewrite_keeps_aliases_skips_127_0_1_10_and_is_atomic(h, tmp_path):
+    hosts = tmp_path / "hosts"
+    hosts.write_text("127.0.0.1 localhost\n127.0.1.10 other\n  127.0.1.1\told-name alias1 alias2 # c\n# 127.0.1.1 x\n")
+    hosts.chmod(0o640)
+    h.request("set-hostname", hostname="hall-tv")
+    h.run(SD_HOSTS_FILE=str(hosts))
+    assert hosts.read_text() == ("127.0.0.1 localhost\n127.0.1.10 other\n"
+                                 "127.0.1.1\thall-tv alias1 alias2\n# 127.0.1.1 x\n")
+    assert oct(hosts.stat().st_mode)[-3:] == "640"                 # mode preserved across the rename
+    assert [p.name for p in tmp_path.iterdir() if p.name.startswith(".sd-hosts")] == []   # temp cleaned up
+
+
+def test_a_failed_hosts_rewrite_leaves_the_file_intact_and_is_non_fatal(h, tmp_path):
+    hosts = tmp_path / "hosts"
+    hosts.write_text("127.0.0.1 localhost\n127.0.1.1 old\n")
+    before = hosts.read_text()
+    h.stub("awk", "exit 1")
+    h.request("set-hostname", hostname="hall-tv")
+    h.run(SD_HOSTS_FILE=str(hosts))
+    assert hosts.read_text() == before                              # never truncated
+    assert "could not update" in h.log
+    assert h.conf_value("HOSTNAME") == "hall-tv" and h.status["state"] == "done"
