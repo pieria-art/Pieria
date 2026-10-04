@@ -3116,3 +3116,24 @@ def test_unscoped_land_still_refuses_extra_reground_rows(tmp_path, monkeypatch):
     _write_reground(out_dir / "cosmos.json", [dict(title="A"), dict(title="B")])
     r = rg.run_land(static_dir=static_dir, drops_path=tmp_path / "no-drops.json")
     assert r["refused"] and r["reason"] == "item count mismatch"
+
+
+# --- visual claims: possessive proper nouns
+
+def test_visual_claim_possessive_of_title_noun_passes():
+    ok, why = rg._visual_claim_ok("A bright blue haze surrounds the Nebula's core.", "Ring Nebula", [])
+    assert ok, why
+    ok, why = rg._visual_claim_ok("Dust lanes cross the Galaxies' arms.", "Spiral Galaxies", [])
+    assert ok, why
+    ok, why = rg._visual_claim_ok("Light spills from Stephan's Quintet.", "Stephan's Quintet", [])
+    assert ok, why
+    # the bare noun still passes, and a fact value can license the noun too
+    ok, why = rg._visual_claim_ok("Gas wraps the Pillars' tips.", "Untitled", [{"value": "The Pillars of Creation"}])
+    assert ok, why
+
+
+def test_visual_claim_possessive_of_unknown_proper_noun_still_rejected():
+    ok, why = rg._visual_claim_ok("Dust fills the Orion's core.", "Ring Nebula", [])
+    assert not ok and "Orion" in why
+    ok, why = rg._visual_claim_ok("The Hubble's mirror gleams.", "Ring Nebula", [])
+    assert not ok

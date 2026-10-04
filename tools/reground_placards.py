@@ -2277,6 +2277,15 @@ _VISUAL_STOPWORDS = {
 }
 
 
+_POSSESSIVE_RE = re.compile(r"'s?$", re.I)
+
+
+def _possessive_stem(word: str) -> str:
+    """"Nebula's" -> "nebula", "Stars'" -> "stars" (lower-cased). The possessive marker is not part of the
+    proper noun, so the noun is checked against the title/facts, not the inflected form."""
+    return _POSSESSIVE_RE.sub("", word).lower()
+
+
 def _visual_claim_ok(text: str, title: str, facts: list[dict]) -> tuple[bool, str | None]:
     """A visual:true claim may describe only what is visibly depicted — no names/dates/places/events.
     Reject a number, or a capitalised word that isn't part of the title or a fact value."""
@@ -2285,17 +2294,20 @@ def _visual_claim_ok(text: str, title: str, facts: list[dict]) -> tuple[bool, st
     allowed_words = set()
     for w in re.findall(r"[A-Za-z']+", title or ""):
         allowed_words.add(w.lower())
+        allowed_words.add(_possessive_stem(w))
     for f in facts:
         v = f["value"]
         vals = v if isinstance(v, list) else [v]
         for val in vals:
             for w in re.findall(r"[A-Za-z']+", str(val)):
                 allowed_words.add(w.lower())
+                allowed_words.add(_possessive_stem(w))
     for m in re.finditer(r"\b[A-Z][a-zA-Z']*\b", text or ""):
         word = m.group(0)
         if word.lower() in _VISUAL_STOPWORDS:
             continue
-        if re.match(r"^[A-Z][a-z']*$", word) and word.lower() not in allowed_words:
+        if (re.match(r"^[A-Z][a-z']*$", word) and word.lower() not in allowed_words
+                and _possessive_stem(word) not in allowed_words):
             # A capitalised word that isn't sentence-initial reads as a proper noun. Sentence-initial
             # capitals — the claim's first word, or the first word after . ! ? (claims can hold two
             # sentences) — are exempt.
