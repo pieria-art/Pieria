@@ -3176,3 +3176,18 @@ def test_load_extra_facts_refuses_boilerplate_and_reports_reason(tmp_path):
 
 def test_extra_facts_for_item_refuses_boilerplate_record():
     assert rg._extra_facts_for_item({"release_url": "u", "text": _PJ_BOILERPLATE}) == []
+
+
+def test_extra_facts_esa_host_infers_cc_by_when_no_licence_field():
+    rec = {"n": 13, "title": "T", "release_url": "https://esahubble.org/images/potw2235a/",
+           "text": "A galaxy glows.", "credit_line": "ESA/Hubble & NASA, R. Chandar",
+           "release_id": "potw2235a", "release_date": "2022-08-29"}
+    facts = rg._extra_facts_for_item(rec)
+    assert {f["licence"] for f in facts} == {"CC-BY-4.0"} and {f["source"] for f in facts} == {"ESA release"}
+    assert facts[0]["paraphrase_only"] is True
+    for host in ("https://esawebb.org/images/x/", "https://www.esa.int/a"):
+        assert rg._extra_facts_for_item({**rec, "release_url": host})[0]["licence"] == "CC-BY-4.0"
+    # explicit fields win; non-ESA hosts keep the default; lookalike hosts do not match
+    assert rg._extra_facts_for_item({**rec, "licence": "CC0"})[0]["licence"] == "CC0-1.0"
+    assert rg._extra_facts_for_item({**rec, "release_url": "https://nasa.gov/x"})[0]["licence"] == "PDM-1.0"
+    assert rg._extra_facts_for_item({**rec, "release_url": "https://notesa.int/x"})[0]["licence"] == "PDM-1.0"

@@ -972,6 +972,14 @@ _FREELY_QUOTABLE_LICENCES = {"PDM-1.0", "CC0-1.0"}
 _COPY_RUN_WORDS = 8   # a narrative may not reproduce this many consecutive words of a paraphrase-only fact
 
 
+_ESA_HOSTS = ("esahubble.org", "esawebb.org", "esa.int")
+
+
+def _is_esa_release_url(url: str | None) -> bool:
+    host = (urllib.parse.urlparse(url or "").hostname or "").lower()
+    return any(host == h or host.endswith("." + h) for h in _ESA_HOSTS)
+
+
 def _extra_fact_licence(rec: dict) -> tuple[str, bool]:
     """(licence id/text for the fact, paraphrase_only). A record without a licence is the original NASA/
     STScI case (PDM-1.0, quotable). PD/CC0 stay quotable. EVERYTHING else -- CC BY 4.0 (ADR-142: attribution
@@ -979,6 +987,8 @@ def _extra_fact_licence(rec: dict) -> tuple[str, bool]:
     pipeline only has "quotable" vs "not", so the safe mapping for anything not provably PD/CC0 is the latter."""
     raw = (rec.get("licence") or rec.get("license") or "").strip()
     if not raw:
+        if _is_esa_release_url(rec.get("release_url")):   # real ESA records carry no licence field
+            return "CC-BY-4.0", True
         return "PDM-1.0", False
     norm = normalize_license(raw)
     if norm in _FREELY_QUOTABLE_LICENCES:
@@ -997,7 +1007,8 @@ def _extra_facts_for_item(rec: dict | None) -> list[dict]:
     licence, paraphrase_only = _extra_fact_licence(rec)
     label = (rec.get("source_label") or rec.get("source") or "").strip()
     if not label:
-        label = "Agency release" if paraphrase_only else "NASA release"
+        label = ("ESA release" if _is_esa_release_url(rec.get("release_url")) else
+                 "Agency release" if paraphrase_only else "NASA release")
     facts: list[dict] = []
     url = rec.get("release_url") or ""
     chunks = _split_release_text(rec.get("text") or "")
