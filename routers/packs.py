@@ -107,16 +107,24 @@ async def install_pack(collection_id: str, db: Session = Depends(get_db)):
     _JOBS[collection_id] = {"state": "in_progress"}
     # Validate against the same registry the job installs from, BEFORE spawning it: an unknown id
     # used to answer "started" while the job silently did nothing.
-    client = pack_fetch.new_client()
     try:
-        reg = await pack_fetch.fetch_registry(client, url)
+        client = pack_fetch.new_client()
+        try:
+            reg = await pack_fetch.fetch_registry(client, url)
+        finally:
+            await client.aclose()
+        try:
+            known = {c.get("id") for c in reg.get("collections", [])}
+        except (AttributeError, TypeError) as e:  # malformed registry (non-dict body/entries)
+            raise ValueError(f"malformed registry: {type(e).__name__}: {e}") from e
     except Exception as e:  # noqa: BLE001 — never answer "started" when we can't confirm the id
         _JOBS.pop(collection_id, None)
-        logger.warning(f"[Packs] install {collection_id!r}: registry unreachable: {type(e).__name__}: {e}")
+        logger.warning(f"[Packs] install {collection_id!r}: registry unusable: {type(e).__name__}: {e}")
         raise HTTPException(502, detail="pack registry unavailable; try again later") from e
-    finally:
-        await client.aclose()
-    if collection_id not in {c.get("id") for c in reg.get("collections", [])}:
+    except BaseException:  # CancelledError etc.: never leave the claimed slot stuck
+        _JOBS.pop(collection_id, None)
+        raise
+    if collection_id not in known:
         _JOBS.pop(collection_id, None)
         raise HTTPException(404, detail=f"collection {collection_id!r} is not in the pack registry")
     asyncio.create_task(_install_job(collection_id, url))

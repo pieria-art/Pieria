@@ -1,6 +1,8 @@
 """ADR-040 #4 — the "browse & download packs" endpoints (routers/packs.py): list the registry with
 per-collection install state, kick off a background install, and expose job status for polling.
 """
+import asyncio
+
 import pytest
 import respx
 from fastapi.testclient import TestClient
@@ -251,3 +253,24 @@ def test_install_rejection_clears_the_claimed_slot(client, db, monkeypatch):
     db.commit()
     assert client.post("/api/packs/nope/install").status_code == 404
     assert "nope" not in packs_router._JOBS
+
+
+@respx.mock
+@pytest.mark.parametrize("body", [{"collections": ["cosmos"]}, ["cosmos"], {"collections": None}])
+def test_install_malformed_registry_is_502_and_releases_slot(client, db, monkeypatch, body):
+    monkeypatch.setattr(federation, "_assert_public_url", lambda url: None)
+    respx.get(REG_URL).respond(200, json=body)
+    db.add(SettingsModel(setting_key="pack_registry_url", setting_value=REG_URL))
+    db.commit()
+    assert client.post("/api/packs/cosmos/install").status_code == 502
+    assert "cosmos" not in packs_router._JOBS
+
+
+@pytest.mark.asyncio
+async def test_install_cancellation_releases_slot(db, monkeypatch):
+    async def hang(_c, _u):
+        raise asyncio.CancelledError
+    monkeypatch.setattr(pack_fetch, "fetch_registry", hang)
+    with pytest.raises(asyncio.CancelledError):
+        await packs_router.install_pack("cosmos", db)
+    assert "cosmos" not in packs_router._JOBS
