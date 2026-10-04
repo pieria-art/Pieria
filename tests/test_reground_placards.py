@@ -3044,3 +3044,33 @@ def test_validate_written_rejects_verbatim_copy_of_paraphrase_only_fact():
     assert rg.validate_written_item(own, packet)[0]
     pd_packet = {"title": "T", "facts": rg._extra_facts_for_item({"release_url": "u", "text": text})}
     assert rg.validate_written_item(copied, pd_packet)[0]
+
+
+# --- --catalog-dir
+
+def test_load_catalog_reads_catalog_dir_override(tmp_path, monkeypatch):
+    (tmp_path / "cosmos.json").write_text(json.dumps({"items": [{"title": "A"}]}))
+    (tmp_path / "_pins.json").write_text(json.dumps({"items": [{"title": "X"}]}))
+    (tmp_path / "index.json").write_text("{}")
+    monkeypatch.setattr(rg, "CATALOG_SRC_DIR", None)
+    rg.set_catalog_dir(tmp_path)
+    try:
+        assert rg.load_catalog() == {"cosmos": [{"title": "A"}]}
+    finally:
+        rg.set_catalog_dir(None)
+    assert rg.CATALOG_SRC_DIR is None
+
+
+def test_land_defaults_to_catalog_dir_override(tmp_path, monkeypatch):
+    static_dir, out_dir = _land_env(tmp_path, monkeypatch)
+    alt = tmp_path / "alt"
+    alt.mkdir()
+    _write_static(static_dir / "demo.json", [dict(title="A", medium="Oil")])
+    _write_static(alt / "demo.json", [dict(title="A", medium="Oil")])
+    _write_reground(out_dir / "demo.json", [dict(title="A", medium="Oil on canvas")])
+    before = (static_dir / "demo.json").read_text()
+    monkeypatch.setattr(rg, "CATALOG_SRC_DIR", alt)
+    report = rg.run_land(drops_path=tmp_path / "no-drops.json")
+    assert not report["refused"]
+    assert json.loads((alt / "demo.json").read_text())["items"][0]["medium"] == "Oil on canvas"
+    assert (static_dir / "demo.json").read_text() == before

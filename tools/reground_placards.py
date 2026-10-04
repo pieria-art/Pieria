@@ -62,9 +62,9 @@ from tools.audit_placards import (
     _norm,
     _slug,
     _wikipedia_lead,
-    load_catalog,
     resolve_work,
 )
+from tools.audit_placards import load_catalog as _audit_load_catalog
 from tools.verify_placards import load_deferred_drops, pre_drop_index
 
 logging.basicConfig(level=logging.INFO, format="%(message)s")
@@ -129,6 +129,26 @@ ART_PACK_MANIFESTS = ROOT / "art-pack" / "_manifests"
 # --mode land's target — the SERVED catalog (never OUT_CATALOG_DIR, which is the import's own output).
 # Not re-derived by set_workdir: it names the repo's static assets, not a per-run reground/ path.
 STATIC_CATALOG_DIR = ROOT / "static" / "catalog"
+# --catalog-dir: the catalog every mode READS (packets/import/recheck/...) and --mode land WRITES. None ->
+# the default (audit_placards.CATALOG_DIR for reads, STATIC_CATALOG_DIR for land) — both static/catalog.
+CATALOG_SRC_DIR: Path | None = None
+
+
+def set_catalog_dir(path: Path | str | None) -> None:
+    global CATALOG_SRC_DIR
+    CATALOG_SRC_DIR = Path(path).expanduser() if path else None
+
+
+def load_catalog() -> dict[str, list[dict]]:
+    """{collection: items} from --catalog-dir when set, else audit_placards' default catalog."""
+    if CATALOG_SRC_DIR is None:
+        return _audit_load_catalog()
+    out = {}
+    for f in sorted(CATALOG_SRC_DIR.glob("*.json")):
+        if f.name == "index.json" or f.name.startswith("_"):
+            continue
+        out[f.stem] = json.loads(f.read_text()).get("items", [])
+    return out
 
 WD_API = "https://www.wikidata.org/w/api.php"
 COMMONS_API = "https://commons.wikimedia.org/w/api.php"
@@ -3117,7 +3137,7 @@ def run_land(*, static_dir: Path | None = None, drops_path: str | Path | None = 
     matched pair does NOT abort the run (static already carries curated titles, so a mismatch should be
     rare) — it's asserted, collected, and reported instead.
     """
-    static_dir = Path(static_dir) if static_dir is not None else STATIC_CATALOG_DIR
+    static_dir = Path(static_dir) if static_dir is not None else (CATALOG_SRC_DIR or STATIC_CATALOG_DIR)
     drops_path = Path(drops_path) if drops_path is not None else DEFAULT_DROPS_PATH
     drops_map = load_deferred_drops(drops_path) if drops_path.exists() else {}
 
@@ -3380,6 +3400,9 @@ def main():
     ap.add_argument("--drops", default=None,
                      help="apply-drops/land mode: path to the approved deferred-drops file "
                           "(default: ~/pieria-img/curation/deferred_drops.json)")
+    ap.add_argument("--catalog-dir", default=None,
+                     help="catalog directory (<collection>.json files) every mode reads and --mode land "
+                          "writes (default: the served static/catalog)")
     ap.add_argument("--dry-run", action="store_true",
                      help="land mode only: print the per-collection summary and write nothing")
     ap.add_argument("--extra-facts", default=None,
@@ -3399,6 +3422,8 @@ def main():
 
     if args.workdir:
         set_workdir(Path(args.workdir).expanduser())
+    if args.catalog_dir:
+        set_catalog_dir(args.catalog_dir)
 
     if args.mode == "import":
         report = run_import(curated_path=args.curated, agent_overrides_path=args.agent_overrides)
