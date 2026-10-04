@@ -3126,7 +3126,7 @@ def _merge_landed_item(static_item: dict, reground_item: dict) -> dict:
 
 
 def run_land(*, static_dir: Path | None = None, drops_path: str | Path | None = None,
-             dry_run: bool = False) -> dict:
+             dry_run: bool = False, collections: list[str] | None = None) -> dict:
     """Land OUT_CATALOG_DIR's re-grounded items into the served static/catalog/<collection>.json files,
     preserving each file's own top-level keys/order and each item's own key order (new keys appended).
     Reground is index-aligned to static EXCEPT the deferred drops already removed from reground's
@@ -3136,6 +3136,12 @@ def run_land(*, static_dir: Path | None = None, drops_path: str | Path | None = 
     collection's drops, or if any static collection has no reground file. A title mismatch between a
     matched pair does NOT abort the run (static already carries curated titles, so a mismatch should be
     rare) — it's asserted, collected, and reported instead.
+
+    `collections` (--collections cosmos): a SCOPED re-land. Only the listed collections are considered —
+    every other collection's reground/static file is ignored and its served file is never rewritten, so
+    it stays byte-identical. Within a listed collection, reground rows beyond static's count (minus
+    drops) are APPENDED as new rows (new works added after the one-shot full land); fewer reground rows
+    than expected still refuses. Without it the strict one-shot behaviour (exact counts) is unchanged.
     """
     static_dir = Path(static_dir) if static_dir is not None else (CATALOG_SRC_DIR or STATIC_CATALOG_DIR)
     drops_path = Path(drops_path) if drops_path is not None else DEFAULT_DROPS_PATH
@@ -3143,6 +3149,16 @@ def run_land(*, static_dir: Path | None = None, drops_path: str | Path | None = 
 
     static_by_coll = _static_collections(static_dir)
     reground_files = {f.stem: f for f in sorted(OUT_CATALOG_DIR.glob("*.json"))}
+
+    scoped = bool(collections)
+    if scoped:
+        wanted = list(dict.fromkeys(collections))
+        unknown = sorted(c for c in wanted if c not in static_by_coll or c not in reground_files)
+        if unknown:
+            return {"refused": True, "dry_run": dry_run, "collections": unknown,
+                    "reason": "--collections names a collection with no static file or no reground file"}
+        static_by_coll = {c: static_by_coll[c] for c in wanted}
+        reground_files = {c: reground_files[c] for c in wanted}
 
     missing_reground = sorted(c for c in static_by_coll if c not in reground_files)
     if missing_reground:
@@ -3164,7 +3180,7 @@ def run_land(*, static_dir: Path | None = None, drops_path: str | Path | None = 
         reground_items = reground_data["items"] if isinstance(reground_data, dict) else reground_data
         dropped = drops_map.get(coll, [])
         expected = len(static_items) - len(dropped)
-        if len(reground_items) != expected:
+        if len(reground_items) < expected or (len(reground_items) != expected and not scoped):
             count_mismatches.append({"collection": coll, "reground_count": len(reground_items),
                                       "static_count": len(static_items), "drops": len(dropped),
                                       "expected": expected})
@@ -3181,7 +3197,7 @@ def run_land(*, static_dir: Path | None = None, drops_path: str | Path | None = 
     for coll, (static_data, static_items, reground_items, dropped) in loaded.items():
         new_items = list(static_items)
         changed = dict.fromkeys(LAND_CHANGE_FIELDS, 0)
-        for i, r_item in enumerate(reground_items):
+        for i, r_item in enumerate(reground_items[:len(static_items) - len(dropped)]):
             pre_idx = pre_drop_index(i, dropped)
             s_item = static_items[pre_idx]
             if (is_cc_by_row(s_item) or is_cc_by_row(r_item)) and r_item.get("source_url") != s_item.get("source_url"):
@@ -3199,16 +3215,20 @@ def run_land(*, static_dir: Path | None = None, drops_path: str | Path | None = 
                 if s_item.get(field) != r_item.get(field):
                     changed[field] += 1
             new_items[pre_idx] = _merge_landed_item(s_item, r_item)
+        n_matched = len(static_items) - len(dropped)
+        appended = reground_items[n_matched:]   # only non-empty in a scoped re-land (count check above)
         # The deferred drops are approved removals: they must leave the served catalog too, not just
         # the import output (they were kept here by mistake on the first landing, 2026-09-27).
         dropped_set = set(dropped)
         new_items = [it for j, it in enumerate(new_items) if j not in dropped_set]
+        new_items.extend(appended)
 
         new_data = dict(static_data)
         new_data["items"] = new_items
         plan[coll] = (static_dir / f"{coll}.json", new_data)
         report["collections"][coll] = {
             "items_before": len(static_items), "items_after": len(new_items), "changed": changed,
+            "appended": len(appended),
         }
 
     if dry_run:
@@ -3403,6 +3423,10 @@ def main():
     ap.add_argument("--catalog-dir", default=None,
                      help="catalog directory (<collection>.json files) every mode reads and --mode land "
                           "writes (default: the served static/catalog)")
+    ap.add_argument("--collections", nargs="+", default=None,
+                     help="land mode only: re-land just these collections (space/comma separated), "
+                          "appending reground rows static doesn't have yet; every other collection "
+                          "file is left untouched")
     ap.add_argument("--dry-run", action="store_true",
                      help="land mode only: print the per-collection summary and write nothing")
     ap.add_argument("--extra-facts", default=None,
@@ -3430,7 +3454,8 @@ def main():
     elif args.mode == "apply-drops":
         report = run_apply_drops(drops_path=args.drops)
     elif args.mode == "land":
-        report = run_land(drops_path=args.drops, dry_run=args.dry_run)
+        colls = [c for part in (args.collections or []) for c in part.split(",") if c] or None
+        report = run_land(drops_path=args.drops, dry_run=args.dry_run, collections=colls)
     elif args.mode == "packets":
         report = asyncio.run(run_packets(
             only_sample=args.only_sample, limit=args.limit, collection=args.collection,

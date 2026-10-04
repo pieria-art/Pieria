@@ -3074,3 +3074,45 @@ def test_land_defaults_to_catalog_dir_override(tmp_path, monkeypatch):
     assert not report["refused"]
     assert json.loads((alt / "demo.json").read_text())["items"][0]["medium"] == "Oil on canvas"
     assert (static_dir / "demo.json").read_text() == before
+
+
+# --- scoped re-land (--collections)
+
+def test_scoped_land_appends_new_rows_and_leaves_other_rows_and_files_untouched(tmp_path, monkeypatch):
+    static_dir, out_dir = _land_env(tmp_path, monkeypatch)
+    _write_static(static_dir / "cosmos.json", [dict(title="A", medium="Oil"), dict(title="B", medium="Ink")])
+    _write_static(static_dir / "other.json", [dict(title="Z", medium="Old")])
+    _write_reground(out_dir / "cosmos.json", [dict(title="A", medium="Photo"), dict(title="B", medium="Ink"),
+                                              dict(title="C", medium="New")])
+    _write_reground(out_dir / "other.json", [dict(title="Z", medium="CHANGED")])
+    other_before = (static_dir / "other.json").read_bytes()
+
+    report = rg.run_land(static_dir=static_dir, drops_path=tmp_path / "no-drops.json", collections=["cosmos"])
+
+    assert not report["refused"] and set(report["collections"]) == {"cosmos"}
+    assert report["collections"]["cosmos"]["appended"] == 1
+    items = json.loads((static_dir / "cosmos.json").read_text())["items"]
+    assert [i["title"] for i in items] == ["A", "B", "C"]
+    assert items[0]["medium"] == "Photo" and items[1] == dict(title="B", medium="Ink")
+    assert items[2] == dict(title="C", medium="New")
+    assert (static_dir / "other.json").read_bytes() == other_before
+
+
+def test_scoped_land_refuses_when_reground_has_fewer_rows_or_unknown_collection(tmp_path, monkeypatch):
+    static_dir, out_dir = _land_env(tmp_path, monkeypatch)
+    _write_static(static_dir / "cosmos.json", [dict(title="A"), dict(title="B")])
+    _write_reground(out_dir / "cosmos.json", [dict(title="A")])
+    before = (static_dir / "cosmos.json").read_bytes()
+    r = rg.run_land(static_dir=static_dir, drops_path=tmp_path / "no-drops.json", collections=["cosmos"])
+    assert r["refused"] and r["reason"] == "item count mismatch"
+    r = rg.run_land(static_dir=static_dir, drops_path=tmp_path / "no-drops.json", collections=["nope"])
+    assert r["refused"]
+    assert (static_dir / "cosmos.json").read_bytes() == before
+
+
+def test_unscoped_land_still_refuses_extra_reground_rows(tmp_path, monkeypatch):
+    static_dir, out_dir = _land_env(tmp_path, monkeypatch)
+    _write_static(static_dir / "cosmos.json", [dict(title="A")])
+    _write_reground(out_dir / "cosmos.json", [dict(title="A"), dict(title="B")])
+    r = rg.run_land(static_dir=static_dir, drops_path=tmp_path / "no-drops.json")
+    assert r["refused"] and r["reason"] == "item count mismatch"
