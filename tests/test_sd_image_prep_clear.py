@@ -103,6 +103,18 @@ def test_full_stops_status_timers_but_never_disables_them(tmp_path):
     for t in ("sd-watchdog.timer", "sd-metrics.timer"):
         assert f"--no-ask-password stop {t}" in calls
     assert "disable" not in calls and "mask" not in calls
+    assert "--no-ask-password stop sd-os-upgrade.timer" in calls
+
+
+def test_full_also_stops_active_services_not_inactive_ones(tmp_path):
+    (tmp_path / "data").mkdir()
+    body = ('systemctl() { echo "$*" >> "$LOG"; '
+            '[ "$1" = is-active ] && [ "$3" = sd-os-upgrade.service ]; return; }; clear_appliance_status')
+    r, calls = _run_with_systemctl_log(body, tmp_path)
+    assert r.returncode == 0, r.stderr
+    assert "--no-ask-password stop sd-os-upgrade.service" in calls
+    assert "stop sd-metrics.service" not in calls
+    assert "disable" not in calls
 
 
 def test_declare_capabilities_keeps_trailing_comment(tmp_path):
