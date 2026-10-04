@@ -960,12 +960,15 @@ async function saveDisplayName() {
 let _hostnameRedirectTimer = null;
 // Mirrors sd-conf RESERVED_HOSTNAMES: sd-hostname re-rolls these on every boot (a test pins the pairing).
 const _RESERVED_HOSTNAMES = ['raspberrypi', 'pieria', 'pieria-setup', 'pieria-bench-pi', 'localhost'];
+const _isIpLiteral = h => /^\d+\.\d+\.\d+\.\d+$/.test(h) || h.includes(':');
 
 function _goToNewAddress(newName, ips) {
     if (_hostnameRedirectTimer) { clearTimeout(_hostnameRedirectTimer); _hostnameRedirectTimer = null; }
     const port = location.port ? `:${location.port}` : '';
-    const url = `${location.protocol}//${newName}.local${port}/admin`;
-    const ip = (ips || []).find(a => /^\d+\.\d+\.\d+\.\d+$/.test(a));
+    // Opened by IP? The IP survives a rename; <new>.local may not resolve from this browser. Stay put.
+    const onIp = _isIpLiteral(location.hostname);
+    const url = onIp ? `${location.protocol}//${location.host}/admin` : `${location.protocol}//${newName}.local${port}/admin`;
+    const ip = onIp ? '' : (ips || []).find(a => /^\d+\.\d+\.\d+\.\d+$/.test(a));
     const statusEl = document.getElementById('maint-status');
     statusEl.style.display = 'block';
     statusEl.innerHTML = `✓ Renamed. Taking you to <a href="${_esc(url)}">${_esc(url)}</a>` +
