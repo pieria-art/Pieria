@@ -208,7 +208,7 @@ HEARTBEAT_PID=""
 heartbeat_start() {
   [ "$DRY_RUN" = "1" ] && return 0
   ( while :; do
-      sleep 5
+      sleep "${HEARTBEAT_INTERVAL:-5}"
       write_status running "apt: $(tail -n 1 "$LOG" 2>/dev/null | cut -c1-120)"
     done ) &
   HEARTBEAT_PID=$!

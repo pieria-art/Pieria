@@ -124,7 +124,8 @@ exit 0''')
              "SD_LOCK_FILE": str(self.tmp / "apt.lock"),
              "DRY_RUN": "0",
              "WAIT_HEALTHY_ATTEMPTS": "1",
-             "WAIT_HEALTHY_INTERVAL": "0"}
+             "WAIT_HEALTHY_INTERVAL": "0",
+             "HEARTBEAT_INTERVAL": "0.2"}
         e.update(env)
         return subprocess.run(["bash", str(_BIN / "sd-update"), str(self.root)],
                               capture_output=True, text=True, env=e)
