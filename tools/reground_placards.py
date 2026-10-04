@@ -3307,6 +3307,20 @@ def run_land(*, static_dir: Path | None = None, drops_path: str | Path | None = 
     for coll, (path, new_data) in plan.items():
         path.write_text(json.dumps(new_data, indent=1, ensure_ascii=False))
 
+    # A landing that adds/removes rows must keep index.json's per-collection `count` true. Only landed
+    # collections whose count actually changed are touched; nothing else in index.json changes.
+    index_path = static_dir / "index.json"
+    if plan and index_path.exists():
+        index = json.loads(index_path.read_text())
+        changed_idx = False
+        for c in index.get("collections", []):
+            if c.get("id") in plan and c.get("count") != len(plan[c["id"]][1]["items"]):
+                c["count"] = len(plan[c["id"]][1]["items"])
+                changed_idx = True
+        if changed_idx:
+            index_path.write_text(json.dumps(index, indent=1, ensure_ascii=False))
+            report["index_counts_updated"] = True
+
     return report
 
 

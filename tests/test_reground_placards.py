@@ -3191,3 +3191,32 @@ def test_extra_facts_esa_host_infers_cc_by_when_no_licence_field():
     assert rg._extra_facts_for_item({**rec, "licence": "CC0"})[0]["licence"] == "CC0-1.0"
     assert rg._extra_facts_for_item({**rec, "release_url": "https://nasa.gov/x"})[0]["licence"] == "PDM-1.0"
     assert rg._extra_facts_for_item({**rec, "release_url": "https://notesa.int/x"})[0]["licence"] == "PDM-1.0"
+
+
+def test_land_updates_index_count_only_for_landed_collections(tmp_path, monkeypatch):
+    static_dir, out_dir = _land_env(tmp_path, monkeypatch)
+    _write_static(static_dir / "cosmos.json", [dict(title="A")])
+    _write_static(static_dir / "other.json", [dict(title="Z")])
+    index = {"version": 1, "generated": "g", "collections": [
+        {"id": "cosmos", "title": "Cosmos", "count": 1, "cover_thumbnail": "c"},
+        {"id": "other", "title": "Other", "count": 99, "cover_thumbnail": "o"}]}
+    (static_dir / "index.json").write_text(json.dumps(index, indent=1, ensure_ascii=False))
+    _write_reground(out_dir / "cosmos.json", [dict(title="A"), dict(title="B"), dict(title="C")])
+    _write_reground(out_dir / "other.json", [dict(title="Z")])
+
+    rg.run_land(static_dir=static_dir, drops_path=tmp_path / "no-drops.json", collections=["cosmos"])
+
+    got = json.loads((static_dir / "index.json").read_text())
+    expect = json.loads(json.dumps(index))
+    expect["collections"][0]["count"] = 3
+    assert got == expect                      # other (stale 99, not landed) and all other keys untouched
+
+
+def test_land_leaves_index_untouched_when_counts_already_match(tmp_path, monkeypatch):
+    static_dir, out_dir = _land_env(tmp_path, monkeypatch)
+    _write_static(static_dir / "demo.json", [dict(title="A")])
+    raw = '{"collections": [{"id": "demo", "count": 1}]}'
+    (static_dir / "index.json").write_text(raw)
+    _write_reground(out_dir / "demo.json", [dict(title="A")])
+    rg.run_land(static_dir=static_dir, drops_path=tmp_path / "no-drops.json")
+    assert (static_dir / "index.json").read_text() == raw
