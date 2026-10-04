@@ -458,3 +458,18 @@ async def test_install_demo_packs_sets_default_playlist(monkeypatch):
     row = check.query(SettingsModel).filter(SettingsModel.setting_key == "default_playlist").first()
     assert row is not None and row.setting_value == "Masterpieces"
     check.close()
+
+
+@pytest.mark.parametrize("method,path", [
+    ("get", "/api/v1/info"), ("get", "/api/v1/docs"), ("get", "/api/v1/openapi.json"),
+    ("get", "/api/v1/displays"), ("post", "/api/v1/displays/demo/commands"),
+    ("post", "/api/v1/displays/demo/show"), ("post", "/api/v1/quiet"),
+    ("get", "/api/settings/api-tokens"), ("post", "/api/settings/api-tokens"),
+    ("delete", "/api/settings/api-tokens/1"),
+])
+def test_public_api_and_token_routes_are_refused_in_demo(demo_client, method, path):
+    """The default-deny sweep above skips Mounts, so the mounted /api/v1 sub-app (and the token
+    management routes) get an explicit refusal check (ADR-147). Even a same-origin caller is refused."""
+    r = getattr(demo_client, method)(path, headers={"Origin": "http://testserver",
+                                                    "Authorization": "Bearer pieria_x"})
+    assert r.status_code == 403

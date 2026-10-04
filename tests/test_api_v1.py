@@ -721,3 +721,19 @@ def test_v1_openapi_describes_the_a2_surface(env):
     assert schemas["Display"]["properties"]["paused"]["type"] == "boolean"
     assert set(schemas["QuietState"]["properties"]) == {"active", "source", "until"}
     assert set(spec["paths"]["/quiet"]) == {"get", "post"}
+
+
+# --- review fix: the token-management gate ----------------------------------------------------------
+
+def test_sec_fetch_site_alone_opens_only_the_list_route(env, monkeypatch):
+    """Sec-Fetch-Site is forgeable by any non-browser; it is accepted for the browser's Origin-less
+    same-origin GET (the list) and NEVER for mint/revoke."""
+    c, _ = env
+    monkeypatch.setattr(config, "APPLIANCE_UPDATE_TOKEN", "")
+    sfs = {"Sec-Fetch-Site": "same-origin"}
+    assert c.get("/api/settings/api-tokens", headers=sfs).status_code == 200
+    assert c.post("/api/settings/api-tokens", json={"name": "x", "scopes": ["control"]},
+                  headers=sfs).status_code == 403                       # curl-style forgery
+    assert c.delete("/api/settings/api-tokens/1", headers=sfs).status_code == 403
+    assert c.post("/api/settings/api-tokens", json={"name": "x", "scopes": ["control"]},
+                  headers={**ADMIN, **sfs}).status_code == 201          # a real same-origin browser POST

@@ -1,12 +1,15 @@
 """Internal management of public-API tokens (ADR-147) — what Admin -> API & Integrations calls.
 
 NOT part of the v1 contract (never in /api/v1/openapi.json). Gated like the other secret-handling
-surfaces: a trusted same-origin browser request, or the appliance token. One addition over a bare
-`require_trusted_request`: browsers do not send an `Origin` header on a same-origin GET, so the
-list route would 403 from the admin page itself; `Sec-Fetch-Site: same-origin` (set by the browser,
-not overridable from page JS) is accepted as the same-origin signal for it. A plain docker-compose
-install has no SD_APPLIANCE_UPDATE_TOKEN — the gate then admits same-origin browsers only, which is
-exactly the admin GUI (non-browser LAN callers are refused; they have no business minting tokens).
+surfaces: `require_trusted_request` (a same-origin `Origin`, or the appliance token). One addition, for
+the LIST route only: browsers omit `Origin` on a same-origin GET, so the admin page's own list call
+would 403; `Sec-Fetch-Site: same-origin` is accepted there. POST/DELETE (mint/revoke) NEVER accept it —
+browsers always send `Origin` on those, so they go through `require_trusted_request` alone.
+
+Be honest about what this is: like ADR-139, `Origin` and `Sec-Fetch-Site` are forgeable by a determined
+LAN client (any non-browser can set them). The gate stops browser CSRF and naive no-header clients
+(curl); it is NOT authentication. A plain docker-compose install has no SD_APPLIANCE_UPDATE_TOKEN — the
+gate then admits same-origin browsers only, which is the admin GUI.
 """
 
 from datetime import UTC, datetime
@@ -25,8 +28,8 @@ router = APIRouter()
 _DETAIL = "managing API tokens requires a same-origin request or a valid token"
 
 
-def _gate(request: Request, x_appliance_token: Optional[str]) -> None:
-    if request.headers.get("sec-fetch-site", "").lower() == "same-origin":
+def _gate(request: Request, x_appliance_token: Optional[str], fetch_metadata_ok: bool = False) -> None:
+    if fetch_metadata_ok and request.headers.get("sec-fetch-site", "").lower() == "same-origin":
         return
     require_trusted_request(request, x_appliance_token, detail=_DETAIL)
 
@@ -50,7 +53,7 @@ def _view(row) -> dict:
 async def list_api_tokens(request: Request, x_appliance_token: Optional[str] = Header(None),
                           db: Session = Depends(get_db)):
     """Every token (including revoked) — metadata only. The secret is never retrievable."""
-    _gate(request, x_appliance_token)
+    _gate(request, x_appliance_token, fetch_metadata_ok=True)
     return [_view(r) for r in api_tokens.list_tokens(db)]
 
 
