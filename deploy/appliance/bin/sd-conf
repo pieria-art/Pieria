@@ -15,7 +15,8 @@ Importable (the app loads it with SourceFileLoader — `deploy/` IS in the conta
     sd-conf [--conf PATH] validate KEY VALUE              # exit 0 = ok, 2 = rejected
     sd-conf [--conf PATH] export [--out PATH|-]            # non-secret mirror -> conf.json (or stdout)
 
-Writing preserves comments, ordering, and every key it was not asked to change (ADR-059 #1) — a
+Reading matches bash `.`-sourcing (an inline `# note` is not part of the value). Writing preserves comments
+(a rewritten line keeps its trailing one), ordering, and every key it was not asked to change (ADR-059 #1) — a
 wizard re-run once deleted EINK_*/WATCHDOG by rendering a fixed key set, and that must not recur.
 """
 from __future__ import annotations
@@ -157,12 +158,37 @@ def _line_key(raw: str):
     return line.split("=", 1)[0].strip() or None
 
 
+def split_conf_value(rest: str):
+    """Split the text after `KEY=` into (value, trailing), matching what bash `.`-sourcing yields for
+    the forms pieria.conf actually uses (ADR-137 conf comments):
+
+      KEY=value   # note   -> value  (an unquoted `#` starts a comment only when whitespace precedes it)
+      KEY="a # b"  # note  -> a # b  (quotes protect a `#`; text after the closing quote is ignored)
+      KEY='a # b'          -> a # b
+      KEY=   # note        -> ""
+
+    `trailing` is the raw suffix after the value token (leading whitespace + comment), kept so a writer
+    can preserve a line's comment. An unterminated quote is treated as an unquoted value. Copied
+    from eink_client.split_conf_value (standalone host script); a test pins the equality."""
+    lead = len(rest) - len(rest.lstrip())
+    body = rest[lead:]
+    if lead and body.startswith("#"):
+        return "", rest
+    if body[:1] in ("'", '"'):
+        end = body.find(body[0], 1)
+        if end != -1:
+            return body[1:end], body[end + 1:]
+    m = re.search(r"\s+#", body)
+    cut = m.start() if m else len(body)
+    return body[:cut].strip(), body[cut:]
+
+
 def get_key(text: str, key: str):
     """The FIRST assignment of `key`, or None. set_keys rewrites that same first line, so the two
     agree; a later duplicate is dropped on write precisely because it would win under `.`-sourcing."""
     for raw in (text or "").splitlines():
         if _line_key(raw) == key:
-            return raw.strip().split("=", 1)[1].strip()
+            return split_conf_value(raw.strip().split("=", 1)[1])[0]
     return None
 
 
@@ -181,7 +207,11 @@ def set_keys(text: str, updates: dict) -> str:
         if key in seen:
             continue
         seen.add(key)
-        out.append(f"{key}={updates[key]}")
+        # Keep the line's trailing `# note` (ADR-059 #1 / ADR-137): only the value token is replaced.
+        trailing = split_conf_value(raw.strip().split("=", 1)[1])[1]
+        if trailing and not trailing.lstrip().startswith("#"):
+            trailing = ""   # junk after a closing quote is not a comment — don't carry it forward
+        out.append(f"{key}={updates[key]}{trailing}")
     for key, value in updates.items():
         if key not in seen:
             out.append(f"{key}={value}")

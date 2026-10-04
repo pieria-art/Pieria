@@ -43,22 +43,14 @@ for _candidate in (_SCRIPT_DIR, _REPO_ROOT_CANDIDATE):
 
 
 def _load_conf(path: str | None) -> None:
-    """Parse KEY=VALUE lines from the appliance conf into os.environ (mirrors sd-quiet-hours'
-    `. "$CONF"` bash sourcing, minus real shell semantics — good enough for this flat conf format)."""
+    """Parse KEY=VALUE lines from the appliance conf into os.environ, matching bash `. "$CONF"` for the
+    forms the conf uses (inline `# note`, quoted values) via eink_client.parse_conf_text."""
     if not path or not os.path.isfile(path):
         return
+    from eink_client import parse_conf_text
+
     with open(path) as f:
-        for raw in f:
-            line = raw.strip()
-            if not line or line.startswith("#") or "=" not in line:
-                continue
-            key, _, val = line.partition("=")
-            key = key.strip()
-            val = val.strip()
-            if len(val) >= 2 and val[0] == val[-1] and val[0] in ("'", '"'):
-                val = val[1:-1]
-            if key:
-                os.environ[key] = val
+        os.environ.update(parse_conf_text(f.read()))
 
 
 def _make_dry_run_client():
