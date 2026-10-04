@@ -180,3 +180,23 @@ def test_0004_backfills_existing_gallery_links(db_path):
     eng.dispose()
     assert rows["Masterpieces"] == 1   # seeded from the pack -> linked
     assert rows["My Faves"] is None    # user-built -> untouched
+
+
+def test_unknown_nonretired_stamp_is_left_untouched_and_unmigrated(db_path, caplog, monkeypatch):
+    """A stamp this code has never heard of = DB from a NEWER release (sd-update rollback). Leave the
+    stamp alone, don't upgrade, don't raise, warn."""
+    import logging
+
+    import db_migrate
+    Base.metadata.create_all(create_engine(f"sqlite:///{db_path}"))
+    _set_legacy_stamp(db_path, "ffffdeadbeef")
+    assert "ffffdeadbeef" not in RETIRED_REVISIONS
+
+    def _no_upgrade(*a, **k):
+        raise AssertionError("command.upgrade must not run for a newer-release DB")
+    monkeypatch.setattr(db_migrate.command, "upgrade", _no_upgrade)
+
+    with caplog.at_level(logging.WARNING, logger="artwork-display-api.db_migrate"):
+        run_migrations(_cfg(db_path))
+    assert _stamp(db_path) == "ffffdeadbeef"
+    assert any("ffffdeadbeef" in r.message and "newer release" in r.message for r in caplog.records)

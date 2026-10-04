@@ -129,11 +129,19 @@ def run_migrations(cfg: Optional[Config] = None) -> None:
         core_present = "artworks" in inspect(engine).get_table_names()
         if core_present:
             current = _current_stamp(engine)
-            needs_reconcile = (
-                current is None
-                or current in RETIRED_REVISIONS
-                or not _is_known_revision(cfg, current)
-            )
+            if (current is not None and current not in RETIRED_REVISIONS
+                    and not _is_known_revision(cfg, current)):
+                # An unknown, non-retired stamp = the DB was written by a NEWER release (e.g. sd-update
+                # rolled back to the previous version). Rewriting the stamp would make the newer release
+                # replay its migrations onto a schema that already has them (duplicate column -> boot
+                # halts), so leave it alone. Migrations are additive by rule: older code runs on a
+                # newer schema.
+                logger.warning(
+                    "Alembic stamp %r is unknown to this release: the DB is from a newer release and is "
+                    "being run unmigrated (stamp untouched, no upgrade).", current,
+                )
+                return
+            needs_reconcile = current is None or current in RETIRED_REVISIONS
             if needs_reconcile and current != BASELINE:
                 _assert_schema_complete(engine)
                 logger.warning(
