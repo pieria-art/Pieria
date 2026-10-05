@@ -3132,7 +3132,7 @@ function editShapesRenderTabs() {
 }
 
 function _editShapeFlush() {
-    if (!editShapeCropper || !editShape) return;
+    if (!editShapeCropper || !editShapeCropper.ready || !editShape) return;
     const img = editShapeCropper.getImageData();
     const d = editShapeCropper.getData();
     editShapeBoxes[editShape] = [d.x / img.naturalWidth, d.y / img.naturalHeight,
@@ -3162,12 +3162,25 @@ function editShapeSelect(shape) {
         viewMode: 1, dragMode: 'move', aspectRatio: _shapeRatio(shape), autoCropArea: 0.9, restore: false,
         guides: true, center: true, highlight: false, background: false,
         ready() {
-            const img = editShapeCropper.getImageData();
-            const [x0, y0, x1, y1] = editShapeBoxes[shape];
-            editShapeCropper.setData({ x: x0 * img.naturalWidth, y: y0 * img.naturalHeight,
-                                       width: (x1 - x0) * img.naturalWidth, height: (y1 - y0) * img.naturalHeight });
+            const me = editShapeCropper;
+            // Natural-image coordinates of the saved box; applied now and re-asserted once layout has
+            // settled (a freshly shown tab can report a stale canvas at `ready`, leaving the
+            // autoCropArea-centred box on screen while the stored value is something else).
+            const apply = () => {
+                if (editShapeCropper !== me || !me.ready) return;
+                const img = me.getImageData();
+                const [x0, y0, x1, y1] = editShapeBoxes[shape];
+                me.setData({ x: x0 * img.naturalWidth, y: y0 * img.naturalHeight,
+                             width: (x1 - x0) * img.naturalWidth, height: (y1 - y0) * img.naturalHeight });
+            };
+            apply();
             ready = true;
             _editShapePreview();
+            requestAnimationFrame(() => requestAnimationFrame(() => {
+                if (editShapeDirty.has(shape) || editShapeCropper !== me) return;   // user already moved it
+                const img = me.getImageData(), d = me.getData(), [x0, y0] = editShapeBoxes[shape];
+                if (Math.abs(d.x - x0 * img.naturalWidth) > 2 || Math.abs(d.y - y0 * img.naturalHeight) > 2) apply();
+            }));
         },
         crop() { if (!ready) return; _editShapeFlush(); _editShapePreview(); },
         cropend() {
