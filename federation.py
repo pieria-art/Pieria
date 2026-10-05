@@ -228,11 +228,23 @@ async def sync_subscription(db, sub: SubscriptionModel, retrust: bool = False) -
     try:
         manifest = await fetch_manifest(sub.url)
     except FederationError as e:
-        sub.last_status = f"error: {e}"
-        sub.last_synced = datetime.now(UTC)
-        db.commit()
-        return sub
+        return record_sync_error(db, sub, e)
+    return apply_synced_manifest(db, sub, manifest, retrust)
 
+
+def record_sync_error(db, sub: SubscriptionModel, e: Exception) -> SubscriptionModel:
+    """The failed-fetch half of sync_subscription (sync DB work only — callers off the event loop
+    run this in a threadpool with their own short-lived session)."""
+    sub.last_status = f"error: {e}"
+    sub.last_synced = datetime.now(UTC)
+    db.commit()
+    return sub
+
+
+def apply_synced_manifest(db, sub: SubscriptionModel, manifest: dict,
+                          retrust: bool = False) -> SubscriptionModel:
+    """The apply half of sync_subscription (key pinning + cache the manifest). Pure sync DB work,
+    split out so routers can `await fetch_manifest` on the loop and apply in a threadpool."""
     trust = assess_trust(manifest)
     new_key = manifest_key(manifest)
     pinned = sub.pinned_public_key

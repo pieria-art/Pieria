@@ -150,7 +150,11 @@ def test_manifest_item_to_catalog_maps_series_and_resolution_tier():
 def client(monkeypatch):
     engine = create_engine("sqlite://", connect_args={"check_same_thread": False}, poolclass=StaticPool)
     Base.metadata.create_all(bind=engine)
-    db = sessionmaker(bind=engine, autocommit=False, autoflush=False)()
+    session_factory = sessionmaker(bind=engine, autocommit=False, autoflush=False)
+    db = session_factory()
+    # ADR-148: the async routes do their DB work in threadpool helpers with their own short sessions.
+    import routers.federation as routers_federation
+    monkeypatch.setattr(routers_federation, "SessionLocal", session_factory)
 
     def _override_db():
         yield db
