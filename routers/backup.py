@@ -224,7 +224,7 @@ def _refuse_if_busy_for_confirm() -> None:
 
 
 @router.get("/api/restore/status")
-async def restore_status(db: Session = Depends(get_db)):
+def restore_status(db: Session = Depends(get_db)):
     """Combined state for the UI: the upload/validate/stage/boot-apply status file, plus whatever's
     still pending from a DB point of view (pack re-download in progress, device conf not yet applied)."""
     status = restore.read_status()
@@ -254,8 +254,8 @@ async def retry_pending_packs(request: Request, x_appliance_token: Optional[str]
 
 
 @router.post("/api/restore/pending-conf/clear")
-async def clear_pending_conf(request: Request, x_appliance_token: Optional[str] = Header(None),
-                             db: Session = Depends(get_db)):
+def clear_pending_conf(request: Request, x_appliance_token: Optional[str] = Header(None),
+                       db: Session = Depends(get_db)):
     """The 'Apply device settings' button runs the EXISTING appliance bridge actions itself (no new
     root/bridge code — see the spec) and calls this once it's applied them all, so the prompt doesn't
     keep reappearing on every admin page load."""

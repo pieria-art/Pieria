@@ -32,7 +32,7 @@ router = APIRouter()
 
 
 @router.get("/api/health/host")
-async def get_host_health(db: Session = Depends(get_db)):
+def get_host_health(db: Session = Depends(get_db)):
     """Device Health console data: this box's host metrics + the displays it currently serves.
 
     All-in-one only — returns 404 on a generic/MS-01 server or thin-client topology (where the
@@ -224,9 +224,9 @@ def require_trusted_request(request: Request, x_appliance_token: Optional[str],
 
 
 @router.post("/api/appliance/update")
-async def appliance_update(req: ApplianceUpdateRequest, request: Request,
-                           x_appliance_token: Optional[str] = Header(None),
-                           db: Session = Depends(get_db)):
+def appliance_update(req: ApplianceUpdateRequest, request: Request,
+                     x_appliance_token: Optional[str] = Header(None),
+                     db: Session = Depends(get_db)):
     if not config.IS_APPLIANCE:
         raise HTTPException(status_code=403, detail="appliance update bridge not enabled")
     if req.action not in ALLOWED_UPDATE_ACTIONS:
