@@ -7,6 +7,7 @@ Review Queue approve/reject them.
 
 import asyncio
 import logging
+from pathlib import Path
 from typing import List, Optional
 
 from fastapi import APIRouter, BackgroundTasks, Depends, HTTPException, Query
@@ -242,11 +243,14 @@ async def approve_discovery(item_id: int, background_tasks: BackgroundTasks):
     # 1. Download full-res image via the shared robust downloader (descriptive UA — Wikimedia/NASA
     #    reject the default httpx UA — plus 429 retry, redirects, and image validation).
     filename = f"scouted_{item_id}_{item['proposed_title'].replace(' ', '_')[:50]}"
-    _, filename, w, h = await _download_image_to_library(item["source_url"], filename=filename)
+    dest, filename, w, h = await _download_image_to_library(item["source_url"], filename=filename)
 
     # 2. Add to database
     def _insert():
         with SessionLocal() as sdb:
+            row = sdb.query(DiscoveryQueueModel).filter(DiscoveryQueueModel.id == item_id).first()
+            if row is None:
+                return None   # rejected/cleared while the image was downloading
             new_art = ArtworkModel(
                 filename=filename,
                 original_width=w, original_height=h,
@@ -256,13 +260,19 @@ async def approve_discovery(item_id: int, background_tasks: BackgroundTasks):
                 status='processing'
             )
             sdb.add(new_art)
-            row = sdb.query(DiscoveryQueueModel).filter(DiscoveryQueueModel.id == item_id).first()
-            if row is not None:
-                row.status = 'approved'
+            row.status = 'approved'
             sdb.commit()
             return new_art.id
 
     new_art_id = await run_in_threadpool(_insert)
+    if new_art_id is None:
+        # Pre-split this raised StaleDataError and rolled back. Don't create the artwork; drop the file
+        # we just downloaded. The admin UI treats any non-ok response as "couldn't fetch" (toast).
+        try:
+            Path(dest).unlink(missing_ok=True)
+        except OSError as e:
+            logger.warning(f"[Discover] could not remove orphaned download {dest}: {e}")
+        raise HTTPException(409, detail="That discovery was removed while it was downloading.")
 
     # 3. Enrich with RAG Curator
     background_tasks.add_task(run_rag_pipeline, new_art_id, item["context_hints"], item["source_api"])
