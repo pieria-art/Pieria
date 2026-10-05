@@ -23,7 +23,7 @@ from config import LIBRARY_DIR
 from core.demo import normalize_display_id
 from core.licensing import LICENSE_NAMES, normalize_license, requires_attribution
 from core.media import lookup_artwork_filename, peek_canvas_image, render_canvas_image, run_image_work
-from core.playback import _playlist_name_if_playable, select_next_image, touch_active_display
+from core.playback import _playlist_name_if_playable, select_next_image_sync, touch_active_display
 from core.settings_util import (
     _HHMM_RE,
     _load_schedule,
@@ -84,7 +84,7 @@ def _resolve_display_playlist(db: Session, display_id: str) -> Optional[str]:
 
 
 @router.get("/api/displays/{display_id}/preferred-playlist")
-async def get_preferred_playlist(display_id: str, db: Session = Depends(get_db)):
+def get_preferred_playlist(display_id: str, db: Session = Depends(get_db)):
     """Which playlist a freshly-loaded display (no ?playlist= given) should show. Precedence:
     last-played for THIS display → the global `default_playlist` fallback → null (Canvas then picks the
     first non-empty). Only ever returns a playlist that still exists and has art."""
@@ -107,7 +107,7 @@ async def get_preferred_playlist(display_id: str, db: Session = Depends(get_db))
 
 
 @router.get("/api/displays/{display_id}/schedule-state")
-async def get_schedule_state(display_id: str, now: Optional[str] = Query(None), db: Session = Depends(get_db)):
+def get_schedule_state(display_id: str, now: Optional[str] = Query(None), db: Session = Depends(get_db)):
     """The display's current brightness/warmth/quiet, resolved server-side from the wall clock. The Canvas
     polls this (~60s) and applies a CSS overlay; the appliance CEC timer polls it for panel power. `now`
     (HH:MM) overrides the clock for testing / filming the warm-shift time-lapse without waiting for night."""
@@ -123,7 +123,7 @@ async def get_schedule_state(display_id: str, now: Optional[str] = Query(None), 
 
 
 @router.get("/next-image")
-async def get_next_image(
+def get_next_image(
     playlist_name: str,
     shuffle: Optional[bool] = Query(None),
     display_id: str = Query("default"),
@@ -136,8 +136,48 @@ async def get_next_image(
 ):
     """Stateful next-image selection — thin route over core.playback.select_next_image."""
     display_id = normalize_display_id(display_id)
-    return await select_next_image(playlist_name, shuffle, display_id, direction, db,
-                                   manual=manual, show_artwork_id=artwork_id)
+    return select_next_image_sync(playlist_name, shuffle, display_id, direction, db,
+                                  manual=manual, show_artwork_id=artwork_id)
+
+
+def _select_for_pull(display_id: str, playlist: Optional[str], shuffle: Optional[bool]) -> tuple:
+    """All the DB work of the e-ink pull (playlist resolve, selection, artwork lookup) on ONE short-lived
+    session, run via run_in_threadpool and closed before the render starts (M6 / ADR-148)."""
+    with SessionLocal() as db:
+        # Playlist binding is stateless (v1): explicit ?playlist=, else resolve one that can actually be
+        # PLAYED. This used to take `ORDER BY id LIMIT 1`, which is wrong the moment any empty playlist
+        # sorts first — and on a fresh out-of-box install it always does: seeding creates several empty
+        # starter galleries (ids 1-3) before the downloaded pack lands (id 4). The e-ink pull therefore
+        # 404'd forever on a brand-new device while /playlists and /artworks both looked perfectly healthy,
+        # and the panel just held its last frame. Found on the first real .img flash, 2026-07-21.
+        if not playlist:
+            playlist = _resolve_display_playlist(db, display_id)
+            if not playlist:
+                raise HTTPException(404, detail="No playlist with any artwork yet")
+
+        # Reuse the canonical selection brain (advances state once per fetch).
+        info = select_next_image_sync(
+            playlist_name=playlist, shuffle=shuffle, display_id=display_id, direction=1, db=db
+        )
+
+        art = db.query(ArtworkModel).filter(ArtworkModel.id == info["metadata"]["id"]).first()
+        if not art:
+            raise HTTPException(404, detail="Selected artwork not found")
+        path = LIBRARY_DIR / art.filename
+        if not path.exists():
+            raise HTTPException(404, detail="Artwork file missing")
+        aspect_crops, focal_x, focal_y = art.aspect_crops, art.focal_x, art.focal_y
+        license_id = normalize_license(art.license)
+        # Headers only for a work that actually requires attribution (CC BY) — a PD/CC0 row may still
+        # carry a courtesy `attribution` value (the v1 seed sets it from credit_line unconditionally),
+        # and that must NOT show up here (README's e-ink section documents CC BY only).
+        if requires_attribution(license_id):
+            credit, license_name, cc_source = art.attribution, LICENSE_NAMES.get(license_id), (
+                art.origin_url or art.attribution_url)
+        else:
+            credit = license_name = cc_source = None
+
+        return (info, path, aspect_crops, focal_x, focal_y, credit, license_name, cc_source)
 
 
 @router.get("/display/{display_id}/current.{ext}")
@@ -185,39 +225,8 @@ async def get_display_image(
     if palette not in PALETTES:
         raise HTTPException(400, detail=f"Unknown palette. Options: {', '.join(PALETTES)}")
 
-    with SessionLocal() as db:
-        # Playlist binding is stateless (v1): explicit ?playlist=, else resolve one that can actually be
-        # PLAYED. This used to take `ORDER BY id LIMIT 1`, which is wrong the moment any empty playlist
-        # sorts first — and on a fresh out-of-box install it always does: seeding creates several empty
-        # starter galleries (ids 1-3) before the downloaded pack lands (id 4). The e-ink pull therefore
-        # 404'd forever on a brand-new device while /playlists and /artworks both looked perfectly healthy,
-        # and the panel just held its last frame. Found on the first real .img flash, 2026-07-21.
-        if not playlist:
-            playlist = _resolve_display_playlist(db, display_id)
-            if not playlist:
-                raise HTTPException(404, detail="No playlist with any artwork yet")
-
-        # Reuse the canonical selection brain (advances state once per fetch).
-        info = await select_next_image(
-            playlist_name=playlist, shuffle=shuffle, display_id=display_id, direction=1, db=db
-        )
-
-        art = db.query(ArtworkModel).filter(ArtworkModel.id == info["metadata"]["id"]).first()
-        if not art:
-            raise HTTPException(404, detail="Selected artwork not found")
-        path = LIBRARY_DIR / art.filename
-        if not path.exists():
-            raise HTTPException(404, detail="Artwork file missing")
-        aspect_crops, focal_x, focal_y = art.aspect_crops, art.focal_x, art.focal_y
-        license_id = normalize_license(art.license)
-        # Headers only for a work that actually requires attribution (CC BY) — a PD/CC0 row may still
-        # carry a courtesy `attribution` value (the v1 seed sets it from credit_line unconditionally),
-        # and that must NOT show up here (README's e-ink section documents CC BY only).
-        if requires_attribution(license_id):
-            credit, license_name, cc_source = art.attribution, LICENSE_NAMES.get(license_id), (
-                art.origin_url or art.attribution_url)
-        else:
-            credit = license_name = cc_source = None
+    (info, path, aspect_crops, focal_x, focal_y,
+     credit, license_name, cc_source) = await run_in_threadpool(_select_for_pull, display_id, playlist, shuffle)
 
     try:
         # A1: crop + enhance + Floyd–Steinberg dither + encode is heavy and blocking — thread it so an
@@ -233,8 +242,10 @@ async def get_display_image(
         logger.error(f"[epaper] render failed for {path.name}: {e}", exc_info=True)
         raise HTTPException(500, detail="Render failed")
 
-    with SessionLocal() as db:
-        touch_active_display(db, display_id, refresh_s=interval)
+    def _touch():
+        with SessionLocal() as db:
+            touch_active_display(db, display_id, refresh_s=interval)
+    await run_in_threadpool(_touch)
 
     headers = {
         "X-Refresh-After": str(info["display_time"]),

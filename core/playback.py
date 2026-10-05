@@ -70,7 +70,14 @@ def placard_metadata(art: ArtworkModel) -> dict:
     }
 
 
-async def select_next_image(
+async def select_next_image(*args, **kwargs) -> dict:
+    """Async-compatible wrapper over `select_next_image_sync` (kept for existing `await` callers, e.g.
+    the Frame pusher). The selection body never awaits anything — it is pure sync DB work — so routes
+    should call `select_next_image_sync` from a plain `def` route / `run_in_threadpool` (ADR-148)."""
+    return select_next_image_sync(*args, **kwargs)
+
+
+def select_next_image_sync(
     playlist_name: str,
     shuffle: Optional[bool],
     display_id: str,
