@@ -11,10 +11,12 @@ router = APIRouter()
 
 @router.get("/api/demo")
 async def get_demo_status():
+    # `appliance` lets the admin skip /api/health/host (404 off-appliance) instead of logging it each load.
     if not config.DEMO_MODE:
-        return {"demo": False}
+        return {"demo": False, "appliance": config.IS_APPLIANCE}
     return {
         "demo": True,
+        "appliance": config.IS_APPLIANCE,
         "repo_url": "https://github.com/pieria-art/Pieria",
         "releases_url": "https://github.com/pieria-art/Pieria/releases/latest",
     }

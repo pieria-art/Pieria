@@ -297,13 +297,14 @@ def test_api_demo_reports_on(demo_client):
     body = demo_client.get("/api/demo").json()
     assert body == {
         "demo": True,
+        "appliance": False,
         "repo_url": "https://github.com/pieria-art/Pieria",
         "releases_url": "https://github.com/pieria-art/Pieria/releases/latest",
     }
 
 
 def test_api_demo_reports_off(client):
-    assert client.get("/api/demo").json() == {"demo": False}
+    assert client.get("/api/demo").json() == {"demo": False, "appliance": False}
 
 
 def test_normalize_display_id():

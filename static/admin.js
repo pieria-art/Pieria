@@ -409,11 +409,13 @@ window.createApiToken = createApiToken;
 // GET /api/demo tells us whether this box is the public demo. When it is: add body.demo (CSS hook +
 // the few JS hides below), banner at the top, and hide the nav tabs / sidebar controls that only lead
 // to mutations the server-side gate already 403s (this is UX polish — the real backstop is the gate).
+let isAppliance = null;   // null = unknown (probe /api/health/host); false = generic server, never probe
 async function initDemoMode() {
     let demo;
     try {
         demo = await fetch(`${API_BASE}/api/demo`).then(r => r.json());
     } catch (e) { return false; }
+    if (demo && typeof demo.appliance === 'boolean') isAppliance = demo.appliance;
     if (!demo || !demo.demo) return false;
     isDemoMode = true;
 
@@ -452,7 +454,7 @@ async function initDemoMode() {
 // server or a thin client the tab stays hidden.
 async function initDevicesCapability() {
     const btn = document.getElementById('nav-devices');
-    if (!btn) return;
+    if (!btn || isAppliance === false) return;
     try {
         const res = await fetch(`${API_BASE}/api/health/host`);
         if (res.ok) btn.style.display = '';
@@ -3068,6 +3070,7 @@ function _shapeRatio(k) { const [a, b] = k.split(':').map(Number); return a / b;
 // This box's own screen shapes. Displays don't report a pixel size, so use the appliance conf mirror
 // (/api/health/host, 404 off-appliance): ROTATE 90/270 or EINK_ORIENTATION=portrait -> portrait.
 async function _editOwnShapes() {
+    if (isAppliance === false) return null;
     try {
         const res = await fetch(`${API_BASE}/api/health/host`);
         if (!res.ok) return null;
