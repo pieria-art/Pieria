@@ -308,10 +308,15 @@ def apply_schedule_patch(db: Session, changes: dict) -> dict:
     return merged
 
 
-async def _catalog_remote_base(db: Session) -> Optional[str]:
-    """Optional remote override: a static base URL hosting index.json + <id>.json (no server needed)."""
+def _catalog_remote_base_sync(db: Session) -> Optional[str]:
+    """Optional remote override: a static base URL hosting index.json + <id>.json (no server needed).
+    Sync variant for plain-`def` routes (ADR-148); the async wrapper below keeps existing callers."""
     setting = db.query(SettingsModel).filter(SettingsModel.setting_key == "catalog_url").first()
     return setting.setting_value.rstrip("/") if setting and setting.setting_value else None
+
+
+async def _catalog_remote_base(db: Session) -> Optional[str]:
+    return _catalog_remote_base_sync(db)
 
 
 async def _fetch_remote_json(base: str, name: str):

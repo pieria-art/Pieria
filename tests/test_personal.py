@@ -21,10 +21,7 @@ from models import ArtworkModel, PlaylistModel, playlist_artwork
 def client(monkeypatch, tmp_path):
     engine = create_engine("sqlite://", connect_args={"check_same_thread": False}, poolclass=StaticPool)
     Base.metadata.create_all(bind=engine)
-    _factory = sessionmaker(bind=engine, autocommit=False, autoflush=False)
-    db = _factory()
-    # ADR-148: POST /upload's DB half opens its own short-lived SessionLocal in a worker thread.
-    monkeypatch.setattr(routers_library, "SessionLocal", _factory)
+    db = sessionmaker(bind=engine, autocommit=False, autoflush=False)()
 
     def _override_db():
         yield db

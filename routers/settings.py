@@ -9,6 +9,7 @@ from typing import Optional
 
 import httpx
 from fastapi import APIRouter, Depends, HTTPException
+from fastapi.concurrency import run_in_threadpool
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
 
@@ -18,14 +19,14 @@ from core import sun as sun_mod
 from core.playback import _frame_select
 from core.settings_util import (
     ScheduleError,
-    _catalog_remote_base,
+    _catalog_remote_base_sync,
     _fetch_remote_json,
     _load_schedule,
     _upsert_setting,
     apply_schedule_patch,
     schedule_changes,
 )
-from database import get_db
+from database import SessionLocal, get_db
 from models import PlaylistModel, SettingsModel
 
 router = APIRouter()
@@ -40,13 +41,13 @@ class DefaultPlaylistPayload(BaseModel):
 
 
 @router.get("/api/settings/default-playlist")
-async def get_default_playlist(db: Session = Depends(get_db)):
+def get_default_playlist(db: Session = Depends(get_db)):
     row = db.query(SettingsModel).filter(SettingsModel.setting_key == "default_playlist").first()
     return {"default_playlist": row.setting_value if row else None}
 
 
 @router.post("/api/settings/default-playlist")
-async def set_default_playlist(payload: DefaultPlaylistPayload, db: Session = Depends(get_db)):
+def set_default_playlist(payload: DefaultPlaylistPayload, db: Session = Depends(get_db)):
     """Pin the fallback playlist a display boots to when it has no last-played history (e.g. a brand-new
     wall display). Empty string clears it. Validated against existing playlists."""
     name = (payload.default_playlist or "").strip()
@@ -87,7 +88,7 @@ class DisplaySchedulePayload(BaseModel):
 
 
 @router.get("/api/settings/display-schedule/sun")
-async def get_display_schedule_sun(db: Session = Depends(get_db)):
+def get_display_schedule_sun(db: Session = Depends(get_db)):
     """Where the sun times come from and today's computed sunrise/sunset (for the admin hint)."""
     s = _load_schedule(db)
     loc = sun_mod.resolve_location(s)
@@ -101,12 +102,12 @@ async def get_display_schedule_sun(db: Session = Depends(get_db)):
 
 
 @router.get("/api/settings/display-schedule")
-async def get_display_schedule(db: Session = Depends(get_db)):
+def get_display_schedule(db: Session = Depends(get_db)):
     return _load_schedule(db)
 
 
 @router.post("/api/settings/display-schedule")
-async def set_display_schedule(payload: DisplaySchedulePayload, db: Session = Depends(get_db)):
+def set_display_schedule(payload: DisplaySchedulePayload, db: Session = Depends(get_db)):
     """Merge the given fields over the current schedule, validate, and persist as JSON."""
     try:
         return apply_schedule_patch(db, schedule_changes(payload))
@@ -119,7 +120,7 @@ async def set_display_schedule(payload: DisplaySchedulePayload, db: Session = De
 # -----------------------------------------------------------------------------
 
 @router.get("/api/settings/keys")
-async def get_api_keys(db: Session = Depends(get_db)):
+def get_api_keys(db: Session = Depends(get_db)):
     """Returns a map of which API keys are unlocked."""
     settings = db.query(SettingsModel).all()
     # Check for presence of keys
@@ -131,7 +132,7 @@ async def get_api_keys(db: Session = Depends(get_db)):
 
 
 @router.post("/api/settings/keys/{source}")
-async def verify_and_save_api_key(source: str, payload: dict, db: Session = Depends(get_db)):
+async def verify_and_save_api_key(source: str, payload: dict):
     """Validates an API key against the source museum backend and persists it."""
     key = payload.get("api_key")
     if not key: raise HTTPException(400, "api_key payload is required.")
@@ -157,13 +158,17 @@ async def verify_and_save_api_key(source: str, payload: dict, db: Session = Depe
     except Exception as e:
         raise HTTPException(401, detail=f"Validation Failed: {str(e)}")
 
-    setting = db.query(SettingsModel).filter(SettingsModel.setting_key == db_key).first()
-    if setting:
-        setting.setting_value = key
-    else:
-        setting = SettingsModel(setting_key=db_key, setting_value=key)
-        db.add(setting)
-    db.commit()
+    def _save():
+        # ADR-148: own short-lived session in a worker thread (the M6 pattern), not a request-scoped one.
+        with SessionLocal() as sdb:
+            setting = sdb.query(SettingsModel).filter(SettingsModel.setting_key == db_key).first()
+            if setting:
+                setting.setting_value = key
+            else:
+                sdb.add(SettingsModel(setting_key=db_key, setting_value=key))
+            sdb.commit()
+
+    await run_in_threadpool(_save)
     return {"status": "success", "source": source}
 
 
@@ -172,7 +177,7 @@ async def verify_and_save_api_key(source: str, payload: dict, db: Session = Depe
 # -----------------------------------------------------------------------------
 
 @router.get("/api/settings/ai")
-async def get_ai_settings(db: Session = Depends(get_db)):
+def get_ai_settings(db: Session = Depends(get_db)):
     """Returns the current AI engine config (never the raw key) + provider presets for the UI."""
     rows = {
         s.setting_key: s.setting_value
@@ -234,7 +239,7 @@ class ModelsRefreshPayload(BaseModel):
 
 
 @router.post("/api/settings/ai/models")
-async def refresh_ai_models(payload: ModelsRefreshPayload, db: Session = Depends(get_db)):
+async def refresh_ai_models(payload: ModelsRefreshPayload):
     """Fetch the provider's own model list (hard-filtered), cache it, and return it.
 
     Never sends a key anywhere but the provider's own base URL: preset providers ignore any
@@ -245,7 +250,11 @@ async def refresh_ai_models(payload: ModelsRefreshPayload, db: Session = Depends
     preset = ai_client.PRESETS.get(provider)
     if preset is None:
         raise HTTPException(400, f"Unknown provider: {provider}")
-    cfg = ai_client.get_ai_config(force=True)
+    def _read_cfg_and_caches():
+        with SessionLocal() as sdb:   # ADR-148: short-lived session in a worker thread
+            return ai_client.get_ai_config(force=True), _load_model_caches(sdb)
+
+    cfg, caches = await run_in_threadpool(_read_cfg_and_caches)
     user_url_ok = provider in ("ollama", "custom")
     if user_url_ok:
         base_url = (payload.base_url or "").strip().rstrip("/") or (
@@ -257,7 +266,6 @@ async def refresh_ai_models(payload: ModelsRefreshPayload, db: Session = Depends
     if not api_key and cfg["provider"] == provider and cfg["base_url"].rstrip("/") == base_url:
         api_key = cfg["api_key"]  # saved key, or the legacy GEMINI_API_KEY env for gemini
 
-    caches = _load_model_caches(db)
     try:
         models = await asyncio.to_thread(ai_client.fetch_provider_models, provider, base_url, api_key)
     except ai_client.AIConfigError as e:
@@ -269,11 +277,15 @@ async def refresh_ai_models(payload: ModelsRefreshPayload, db: Session = Depends
                 "fetched_at": "", "error": str(e)}
 
     fetched_at = datetime.now(UTC).isoformat()
-    _upsert_setting(
-        db, ai_client.MODELS_CACHE_PREFIX + provider,
-        json.dumps({"models": models, "fetched_at": fetched_at, "base_url": base_url}),
-    )
-    db.commit()
+    def _write_cache():
+        with SessionLocal() as sdb:
+            _upsert_setting(
+                sdb, ai_client.MODELS_CACHE_PREFIX + provider,
+                json.dumps({"models": models, "fetched_at": fetched_at, "base_url": base_url}),
+            )
+            sdb.commit()
+
+    await run_in_threadpool(_write_cache)
     return {"provider": provider, "models": models, "source": "live", "fetched_at": fetched_at, "error": ""}
 
 
@@ -288,7 +300,7 @@ class AISettingsPayload(BaseModel):
 
 
 @router.post("/api/settings/ai")
-async def save_ai_settings(payload: AISettingsPayload, db: Session = Depends(get_db)):
+async def save_ai_settings(payload: AISettingsPayload):
     """Validates a candidate AI config against the live endpoint, then persists it."""
     provider = payload.provider
     if provider not in ai_client.PRESETS:
@@ -299,7 +311,7 @@ async def save_ai_settings(payload: AISettingsPayload, db: Session = Depends(get
     base_url = (payload.base_url or ai_client.PRESETS[provider]["base_url"]).rstrip("/")
     # The stored key belongs to ONE (provider, base_url). Reusing it for any other target would hand a
     # credential to a host the user never gave it to (e.g. POST provider=custom, base_url=attacker).
-    cfg = ai_client.get_ai_config(force=True)
+    cfg = await run_in_threadpool(ai_client.get_ai_config, force=True)
     same_target = provider == cfg["provider"] and base_url == cfg["base_url"].rstrip("/")
     api_key = (payload.api_key or "").strip() or (cfg["api_key"] if same_target else "")
     key_optional = ai_client.PRESETS[provider].get("key_optional", False)
@@ -312,16 +324,20 @@ async def save_ai_settings(payload: AISettingsPayload, db: Session = Depends(get
     except Exception as e:
         raise HTTPException(401, detail=f"Validation failed: {str(e)}")
 
-    _upsert_setting(db, "ai_provider", provider)
-    _upsert_setting(db, "ai_base_url", base_url)
-    if api_key:
-        _upsert_setting(db, "ai_api_key", api_key)
-    elif not same_target:
-        _upsert_setting(db, "ai_api_key", "")  # never leave the old target's key bound to the new one
-    _upsert_setting(db, "ai_model", payload.model)
-    _upsert_setting(db, "ai_model_fast", (payload.model_fast or "").strip())
-    _upsert_setting(db, "ai_temperature", (payload.temperature or "").strip())
-    db.commit()
+    def _persist():
+        with SessionLocal() as sdb:   # ADR-148: short-lived session in a worker thread
+            _upsert_setting(sdb, "ai_provider", provider)
+            _upsert_setting(sdb, "ai_base_url", base_url)
+            if api_key:
+                _upsert_setting(sdb, "ai_api_key", api_key)
+            elif not same_target:
+                _upsert_setting(sdb, "ai_api_key", "")  # never leave the old target's key bound to the new one
+            _upsert_setting(sdb, "ai_model", payload.model)
+            _upsert_setting(sdb, "ai_model_fast", (payload.model_fast or "").strip())
+            _upsert_setting(sdb, "ai_temperature", (payload.temperature or "").strip())
+            sdb.commit()
+
+    await run_in_threadpool(_persist)
     ai_client.invalidate_config_cache()
     # We just proved this config works against the live endpoint, so any recorded failure describes the
     # OLD config. Leaving it would show "Auto-analysis failed: ..." to someone who has just fixed the
@@ -331,7 +347,7 @@ async def save_ai_settings(payload: AISettingsPayload, db: Session = Depends(get
 
 
 @router.get("/api/settings/ai/oauth/start")
-async def ai_oauth_start(callback_url: str, challenge: str):
+def ai_oauth_start(callback_url: str, challenge: str):
     """Assembles the OpenRouter authorization URL (PKCE). The client holds the code_verifier."""
     from urllib.parse import urlencode
     params = urlencode({
@@ -348,7 +364,7 @@ class OAuthExchangePayload(BaseModel):
 
 
 @router.post("/api/settings/ai/oauth/exchange")
-async def ai_oauth_exchange(payload: OAuthExchangePayload, db: Session = Depends(get_db)):
+async def ai_oauth_exchange(payload: OAuthExchangePayload):
     """Exchanges an OpenRouter auth code (+ PKCE verifier) for an API key and saves it."""
     try:
         async with httpx.AsyncClient() as client:
@@ -370,12 +386,16 @@ async def ai_oauth_exchange(payload: OAuthExchangePayload, db: Session = Depends
         raise HTTPException(401, detail=f"OAuth exchange failed: {str(e)}")
 
     provider = "openrouter"
-    _upsert_setting(db, "ai_provider", provider)
-    _upsert_setting(db, "ai_base_url", ai_client.PRESETS[provider]["base_url"])
-    _upsert_setting(db, "ai_api_key", key)
-    if not db.query(SettingsModel).filter(SettingsModel.setting_key == "ai_model").first():
-        _upsert_setting(db, "ai_model", ai_client.PRESETS[provider]["models"][0])
-    db.commit()
+    def _persist():
+        with SessionLocal() as sdb:   # ADR-148: short-lived session in a worker thread
+            _upsert_setting(sdb, "ai_provider", provider)
+            _upsert_setting(sdb, "ai_base_url", ai_client.PRESETS[provider]["base_url"])
+            _upsert_setting(sdb, "ai_api_key", key)
+            if not sdb.query(SettingsModel).filter(SettingsModel.setting_key == "ai_model").first():
+                _upsert_setting(sdb, "ai_model", ai_client.PRESETS[provider]["models"][0])
+            sdb.commit()
+
+    await run_in_threadpool(_persist)
     ai_client.invalidate_config_cache()
     return {"status": "success", "provider": provider}
 
@@ -387,7 +407,7 @@ async def ai_oauth_exchange(payload: OAuthExchangePayload, db: Session = Depends
 # core/playback.py — see that module's docstring for why.
 
 @router.get("/api/settings/frame")
-async def get_frame_settings(db: Session = Depends(get_db)):
+def get_frame_settings(db: Session = Depends(get_db)):
     """Current Frame TV config (+ last-push status) for the Settings panel."""
     cfg = frame_push.get_frame_config(force=True)
     return {
@@ -416,7 +436,7 @@ class FrameSettingsPayload(BaseModel):
 
 
 @router.post("/api/settings/frame")
-async def save_frame_settings(payload: FrameSettingsPayload, db: Session = Depends(get_db)):
+def save_frame_settings(payload: FrameSettingsPayload, db: Session = Depends(get_db)):
     """Persist Frame TV settings. Takes effect on the next push cycle (config cache invalidated)."""
     if payload.enabled and not (payload.host or "").strip():
         raise HTTPException(400, "A Frame TV host/IP is required to enable pushing.")
@@ -434,7 +454,7 @@ async def save_frame_settings(payload: FrameSettingsPayload, db: Session = Depen
 
 
 @router.post("/api/settings/frame/test")
-async def test_frame_push(db: Session = Depends(get_db)):
+async def test_frame_push():
     """One-shot 'Test / Push now'. Returns a structured result (never 500s) so the GUI can show a
     clean message with or without a TV present."""
     return await frame_push.run_test_push(_frame_select)
@@ -445,23 +465,27 @@ class CatalogSourcePayload(BaseModel):
 
 
 @router.get("/api/settings/catalog")
-async def get_catalog_source(db: Session = Depends(get_db)):
+def get_catalog_source(db: Session = Depends(get_db)):
     """Current remote catalog base URL (empty ⇒ serving the bundled catalog)."""
-    base = await _catalog_remote_base(db)
+    base = _catalog_remote_base_sync(db)
     return {"catalog_url": base or "", "using_remote": bool(base)}
 
 
 @router.post("/api/settings/catalog")
-async def save_catalog_source(payload: CatalogSourcePayload, db: Session = Depends(get_db)):
+async def save_catalog_source(payload: CatalogSourcePayload):
     """Set or clear the remote catalog base URL — a static host serving `index.json` + per-collection
     files (no server required). Validation is advisory: we test-fetch `index.json` and report the
     collection count, but still persist a currently-unreachable URL (the runtime fetch falls back to
     bundled on any failure) so the GUI can warn rather than block. An empty value reverts to bundled."""
     url = (payload.catalog_url or "").strip().rstrip("/")
     if not url:
-        row = db.query(SettingsModel).filter(SettingsModel.setting_key == "catalog_url").first()
-        if row:
-            db.delete(row); db.commit()
+        def _clear():
+            with SessionLocal() as sdb:   # ADR-148: short-lived session in a worker thread
+                row = sdb.query(SettingsModel).filter(SettingsModel.setting_key == "catalog_url").first()
+                if row:
+                    sdb.delete(row); sdb.commit()
+
+        await run_in_threadpool(_clear)
         return {"status": "success", "catalog_url": "", "using_remote": False,
                 "message": "Reverted to the bundled catalog."}
     if not url.startswith(("http://", "https://")):
@@ -482,8 +506,12 @@ async def save_catalog_source(payload: CatalogSourcePayload, db: Session = Depen
         warning = (f"Saved, but couldn't reach {url}/index.json right now ({e}). The app will keep "
                    f"using the bundled catalog until it becomes reachable.")
 
-    _upsert_setting(db, "catalog_url", url)
-    db.commit()
+    def _persist():
+        with SessionLocal() as sdb:
+            _upsert_setting(sdb, "catalog_url", url)
+            sdb.commit()
+
+    await run_in_threadpool(_persist)
     result = {"status": "success", "catalog_url": url, "using_remote": True}
     if warning:
         result["warning"] = warning
