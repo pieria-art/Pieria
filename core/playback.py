@@ -10,10 +10,13 @@ display, ws/remote, and health domains.
 import json
 import logging
 import random
+import threading
 from datetime import UTC, datetime, timedelta
 from typing import Optional
 
 from fastapi import HTTPException
+from sqlalchemy import delete
+from sqlalchemy.dialects.sqlite import insert as sqlite_insert
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 
@@ -70,6 +73,27 @@ def placard_metadata(art: ArtworkModel) -> dict:
     }
 
 
+# ADR-148 (race fix): selection/now-playing routes now run in the threadpool, so several requests for the
+# SAME display can interleave inside one worker (they used to serialize on the event loop). Two defences:
+#  1. every Settings-KV / active_displays INSERT on these hot paths is an atomic SQLite upsert, so a
+#     check-then-insert race can never surface as a UNIQUE-constraint 500 (or a silently lost touch);
+#  2. selection is serialized per display_id inside the process by a STRIPED lock (fixed size, so an
+#     unauthenticated caller inventing display_ids cannot grow it). Cross-worker races remain the
+#     pre-existing baseline — the upserts are what keeps them from failing.
+_SELECT_LOCKS = [threading.Lock() for _ in range(64)]
+
+
+def _select_lock(display_id: str) -> threading.Lock:
+    return _SELECT_LOCKS[hash(display_id) % len(_SELECT_LOCKS)]
+
+
+def _kv_upsert(db: Session, key: str, value: str) -> None:
+    """Atomic `INSERT ... ON CONFLICT(setting_key) DO UPDATE` for a Settings-KV row. Rides the caller's
+    commit. (Core statement: ORM objects already loaded for this key are not refreshed.)"""
+    db.execute(sqlite_insert(SettingsModel).values(setting_key=key, setting_value=value)
+               .on_conflict_do_update(index_elements=["setting_key"], set_={"setting_value": value}))
+
+
 async def select_next_image(*args, **kwargs) -> dict:
     """Async-compatible wrapper over `select_next_image_sync` (kept for existing `await` callers, e.g.
     the Frame pusher). The selection body never awaits anything — it is pure sync DB work — so routes
@@ -77,7 +101,14 @@ async def select_next_image(*args, **kwargs) -> dict:
     return select_next_image_sync(*args, **kwargs)
 
 
-def select_next_image_sync(
+def select_next_image_sync(*args, **kwargs) -> dict:
+    """Per-display serialized entry point (see _select_lock). Signature: see _select_next_image_locked."""
+    display_id = kwargs.get("display_id", args[2] if len(args) > 2 else "")
+    with _select_lock(display_id):
+        return _select_next_image_locked(*args, **kwargs)
+
+
+def _select_next_image_locked(
     playlist_name: str,
     shuffle: Optional[bool],
     display_id: str,
@@ -112,7 +143,7 @@ def select_next_image_sync(
         _lp_key = f"last_playlist:{display_id}"
         _lp_row = db.query(SettingsModel).filter(SettingsModel.setting_key == _lp_key).first()
         if _lp_row is None:
-            db.add(SettingsModel(setting_key=_lp_key, setting_value=playlist_name))
+            _kv_upsert(db, _lp_key, playlist_name)
         elif _lp_row.setting_value != playlist_name:
             _lp_row.setting_value = playlist_name
 
@@ -282,8 +313,12 @@ def _record_now_playing(db: Session, display_id: str, artwork_id: int, playlist_
             d.current_playlist = playlist_name
         else:
             touch_display_updated(db, display_id)
-            db.add(ActiveDisplayModel(display_id=display_id, current_artwork_id=artwork_id,
-                                      current_playlist=playlist_name))
+            db.execute(sqlite_insert(ActiveDisplayModel).values(
+                display_id=display_id, current_artwork_id=artwork_id, current_playlist=playlist_name,
+                last_seen_at=datetime.now(UTC))
+                .on_conflict_do_update(index_elements=["display_id"],
+                                       set_={"current_artwork_id": artwork_id,
+                                             "current_playlist": playlist_name}))
         _refresh_pause_hold(db, display_id, artwork_id, playlist_name)
         db.commit()
     except Exception as e:
@@ -394,7 +429,7 @@ def set_display_paused(db: Session, display_id: str, paused: bool) -> None:
         cur = db.query(ActiveDisplayModel).filter(ActiveDisplayModel.display_id == display_id).first()
         hold = ({"artwork_id": cur.current_artwork_id, "playlist": cur.current_playlist}
                 if cur and cur.current_artwork_id else {})
-        db.add(SettingsModel(setting_key=key, setting_value=json.dumps(hold)))
+        _kv_upsert(db, key, json.dumps(hold))
         touch_display_updated(db, display_id)
     elif not paused and row is not None:
         db.delete(row)
@@ -415,7 +450,7 @@ def touch_display_updated(db: Session, display_id: str, force: bool = False) -> 
     value = datetime.now(UTC).isoformat()
     row = db.query(SettingsModel).filter(SettingsModel.setting_key == key).first()
     if row is None:
-        db.add(SettingsModel(setting_key=key, setting_value=value))
+        _kv_upsert(db, key, value)
     else:
         row.setting_value = value
 
@@ -437,7 +472,7 @@ def set_pending_show(db: Session, display_id: str, artwork_id: int, ttl_sec: int
     value = json.dumps({"id": artwork_id, "exp": (datetime.now(UTC) + timedelta(seconds=ttl_sec)).timestamp()})
     row = db.query(SettingsModel).filter(SettingsModel.setting_key == key).first()
     if row is None:
-        db.add(SettingsModel(setting_key=key, setting_value=value))
+        _kv_upsert(db, key, value)
     else:
         row.setting_value = value
     db.commit()
@@ -446,17 +481,19 @@ def set_pending_show(db: Session, display_id: str, artwork_id: int, ttl_sec: int
 def _take_pending_show(db: Session, display_id: str) -> Optional["ArtworkModel"]:
     """Consume the pending show-next, if any and unexpired and still approved."""
     key = _SHOW_NEXT_PREFIX + display_id
-    row = db.query(SettingsModel).filter(SettingsModel.setting_key == key).first()
-    if row is None:
+    # Atomic consume-once: DELETE ... RETURNING hands the value to exactly one caller, even across threads
+    # or workers (a read-then-delete would let two concurrent pulls both serve the show-next).
+    taken = db.execute(delete(SettingsModel).where(SettingsModel.setting_key == key)
+                       .returning(SettingsModel.setting_value)).first()
+    db.commit()
+    if taken is None:
         return None
     try:
-        data = json.loads(row.setting_value)
+        data = json.loads(taken[0])
         ok = float(data["exp"]) > datetime.now(UTC).timestamp()
         art_id = int(data["id"])
     except (ValueError, KeyError, TypeError):
         ok, art_id = False, 0
-    db.delete(row)
-    db.commit()
     if not ok:
         return None
     return db.query(ArtworkModel).filter(ArtworkModel.id == art_id, ArtworkModel.status == 'approved').first()
@@ -552,20 +589,15 @@ def touch_active_display(db: Session, display_id: str, refresh_s: Optional[int] 
     e-ink client that hasn't been updated yet) leaves any previously-stored value untouched.
     """
     try:
-        d = db.query(ActiveDisplayModel).filter(ActiveDisplayModel.display_id == display_id).first()
-        if d:
-            d.last_seen_at = datetime.now(UTC)
-            d.kind = "eink"   # only the e-ink pull route calls this; the public API reports it (ADR-147)
-        else:
-            db.add(ActiveDisplayModel(display_id=display_id, kind="eink"))
+        # Atomic upserts (not query-then-add): concurrent pulls for one display must not lose the touch to
+        # an IntegrityError that this handler would swallow. kind: only the e-ink pull route calls this;
+        # the public API reports it (ADR-147).
+        now = datetime.now(UTC)
+        db.execute(sqlite_insert(ActiveDisplayModel).values(display_id=display_id, kind="eink", last_seen_at=now)
+                   .on_conflict_do_update(index_elements=["display_id"],
+                                          set_={"last_seen_at": now, "kind": "eink"}))
         if refresh_s is not None:
-            key = f"{_REFRESH_S_PREFIX}{display_id}"
-            row = db.query(SettingsModel).filter(SettingsModel.setting_key == key).first()
-            value = str(refresh_s)
-            if row is None:
-                db.add(SettingsModel(setting_key=key, setting_value=value))
-            elif row.setting_value != value:
-                row.setting_value = value
+            _kv_upsert(db, f"{_REFRESH_S_PREFIX}{display_id}", str(refresh_s))
         db.commit()
     except Exception as e:
         logger.error(f"touch_active_display error for {display_id}: {e}")
