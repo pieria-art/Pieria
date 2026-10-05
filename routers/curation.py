@@ -10,6 +10,7 @@ import logging
 from typing import List, Optional
 
 from fastapi import APIRouter, BackgroundTasks, Depends, HTTPException, Query
+from fastapi.concurrency import run_in_threadpool
 from pydantic import BaseModel
 from sqlalchemy import delete
 from sqlalchemy.orm import Session
@@ -158,7 +159,7 @@ async def batch_enrich(background_tasks: BackgroundTasks):
     return {"status": "Batch enrichment started in background"}
 
 @router.get("/api/discover/queue", response_model=List[DiscoveryQueueSchema])
-async def get_discovery_queue(
+def get_discovery_queue(
     session_id: Optional[str] = Query(None),
     db: Session = Depends(get_db)
 ):
@@ -226,37 +227,50 @@ async def load_more_discoveries(request: LoadMoreRequest, background_tasks: Back
     }
 
 @router.post("/api/discover/approve/{item_id}")
-async def approve_discovery(item_id: int, background_tasks: BackgroundTasks, db: Session = Depends(get_db)):
+async def approve_discovery(item_id: int, background_tasks: BackgroundTasks):
     """Downloads approved discovery and adds to library."""
-    item = db.query(DiscoveryQueueModel).filter(DiscoveryQueueModel.id == item_id).first()
-    if not item: raise HTTPException(404)
+    def _load():
+        with SessionLocal() as sdb:   # ADR-148: short-lived session in a worker thread (M6 pattern)
+            item = sdb.query(DiscoveryQueueModel).filter(DiscoveryQueueModel.id == item_id).first()
+            if not item: raise HTTPException(404)
+            return {"source_url": item.source_url, "proposed_title": item.proposed_title,
+                    "proposed_artist": item.proposed_artist, "context_hints": item.context_hints,
+                    "source_api": item.source_api}
+
+    item = await run_in_threadpool(_load)
 
     # 1. Download full-res image via the shared robust downloader (descriptive UA — Wikimedia/NASA
     #    reject the default httpx UA — plus 429 retry, redirects, and image validation).
-    filename = f"scouted_{item_id}_{item.proposed_title.replace(' ', '_')[:50]}"
-    _, filename, w, h = await _download_image_to_library(item.source_url, filename=filename)
+    filename = f"scouted_{item_id}_{item['proposed_title'].replace(' ', '_')[:50]}"
+    _, filename, w, h = await _download_image_to_library(item["source_url"], filename=filename)
 
     # 2. Add to database
-    new_art = ArtworkModel(
-        filename=filename,
-        original_width=w, original_height=h,
-        title=item.proposed_title,
-        agent_name=item.proposed_artist,
-        source_url=item.source_url,
-        status='processing'
-    )
-    db.add(new_art)
-    item.status = 'approved'
-    db.commit()
-    db.refresh(new_art)
+    def _insert():
+        with SessionLocal() as sdb:
+            new_art = ArtworkModel(
+                filename=filename,
+                original_width=w, original_height=h,
+                title=item["proposed_title"],
+                agent_name=item["proposed_artist"],
+                source_url=item["source_url"],
+                status='processing'
+            )
+            sdb.add(new_art)
+            row = sdb.query(DiscoveryQueueModel).filter(DiscoveryQueueModel.id == item_id).first()
+            if row is not None:
+                row.status = 'approved'
+            sdb.commit()
+            return new_art.id
+
+    new_art_id = await run_in_threadpool(_insert)
 
     # 3. Enrich with RAG Curator
-    background_tasks.add_task(run_rag_pipeline, new_art.id, item.context_hints, item.source_api)
+    background_tasks.add_task(run_rag_pipeline, new_art_id, item["context_hints"], item["source_api"])
 
-    return {"status": "Art added and fully enriched", "artwork_id": new_art.id}
+    return {"status": "Art added and fully enriched", "artwork_id": new_art_id}
 
 @router.post("/api/discover/reject/{item_id}")
-async def reject_discovery(item_id: int, db: Session = Depends(get_db)):
+def reject_discovery(item_id: int, db: Session = Depends(get_db)):
     """Removes a discovery from the queue."""
     item = db.query(DiscoveryQueueModel).filter(DiscoveryQueueModel.id == item_id).first()
     if not item: raise HTTPException(404)
@@ -265,14 +279,14 @@ async def reject_discovery(item_id: int, db: Session = Depends(get_db)):
     return {"status": "Rejected"}
 
 @router.delete("/api/discover/history")
-async def clear_rejected_history(db: Session = Depends(get_db)):
+def clear_rejected_history(db: Session = Depends(get_db)):
     """Deletes all rejected items from the discovery queue to free up the cache."""
     db.execute(delete(DiscoveryQueueModel).where(DiscoveryQueueModel.status == 'rejected'))
     db.commit()
     return {"status": "History cleared"}
 
 @router.delete("/api/discover/orphans")
-async def clear_orphaned_approvals(db: Session = Depends(get_db)):
+def clear_orphaned_approvals(db: Session = Depends(get_db)):
     """Deletes discovery queue items that were 'approved' but have no active artwork entry."""
     approved_items = db.query(DiscoveryQueueModel).filter(DiscoveryQueueModel.status == 'approved').all()
     artworks = db.query(ArtworkModel.filename).filter(ArtworkModel.filename.like('scouted_%')).all()
@@ -293,7 +307,7 @@ async def clear_orphaned_approvals(db: Session = Depends(get_db)):
     return {"status": f"Successfully cleared {orphans_deleted} orphaned approvals"}
 
 @router.delete("/api/discover/clear-pending")
-async def clear_pending_discoveries(db: Session = Depends(get_db)):
+def clear_pending_discoveries(db: Session = Depends(get_db)):
     """Deletes all pending items from the discovery queue. Useful for fresh test runs."""
     result = db.execute(delete(DiscoveryQueueModel).where(DiscoveryQueueModel.status == 'pending'))
     db.commit()
