@@ -995,3 +995,40 @@ def test_schedule_v1_sun_fields_round_trip(env):
     assert c.patch("/api/v1/schedule", json={"mode": "moon"}, headers=ctl).status_code == 422
     r = c.patch("/api/v1/schedule", json={"latitude": None, "longitude": None}, headers=ctl)
     assert r.json()["latitude"] is None and r.json()["mode"] == "sun"
+
+
+# --- quiet change -> live canvases re-poll schedule-state at once (refresh_schedule) ---------------------
+
+def _refresh_rows(db):
+    return sorted(r.target_display for r in db.query(RemoteCommandModel).filter_by(action="refresh_schedule"))
+
+
+def test_quiet_post_queues_refresh_for_live_canvas_only(env):
+    c, db = env
+    ctl = _mint(db, ["control"])
+    _display(db, "wall", kind="canvas")
+    _display(db, "stale", age_s=600, kind="canvas")       # not live: would expire in the queue
+    _display(db, "panel", kind="eink")                    # pull-based: no live channel
+    assert c.post("/api/v1/quiet", json={"mode": "on"}, headers=ctl).status_code == 200
+    assert _refresh_rows(db) == ["wall"]
+    assert json.loads(db.query(RemoteCommandModel).filter_by(action="refresh_schedule").one().payload) == {
+        "action": "refresh_schedule"}
+    assert c.post("/api/v1/quiet", json={"mode": "auto"}, headers=ctl).status_code == 200
+    assert _refresh_rows(db) == ["wall", "wall"]
+
+
+def test_schedule_saves_queue_refresh_only_for_quiet_fields(env):
+    c, db = env
+    ctl = _mint(db, ["control"])
+    _display(db, "wall", kind="canvas")
+    assert c.patch("/api/v1/schedule", json={"day_brightness": 0.9}, headers=ctl).status_code == 200
+    assert _refresh_rows(db) == []
+    assert c.patch("/api/v1/schedule", json={"quiet_enabled": True}, headers=ctl).status_code == 200
+    assert _refresh_rows(db) == ["wall"]
+    # the internal admin save goes through the same hook
+    r = c.post("/api/settings/display-schedule", json={"quiet_start": "01:00"}, headers=ADMIN)
+    assert r.status_code == 200
+    assert _refresh_rows(db) == ["wall", "wall"]
+    # a rejected change queues nothing
+    assert c.patch("/api/v1/schedule", json={"quiet_mode": "nuke"}, headers=ctl).status_code == 422
+    assert _refresh_rows(db) == ["wall", "wall"]

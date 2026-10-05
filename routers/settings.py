@@ -16,7 +16,7 @@ from sqlalchemy.orm import Session
 import ai_client
 import frame_push
 from core import sun as sun_mod
-from core.playback import _frame_select
+from core.playback import _frame_select, queue_schedule_refresh
 from core.settings_util import (
     ScheduleError,
     _catalog_remote_base_sync,
@@ -109,10 +109,14 @@ def get_display_schedule(db: Session = Depends(get_db)):
 @router.post("/api/settings/display-schedule")
 def set_display_schedule(payload: DisplaySchedulePayload, db: Session = Depends(get_db)):
     """Merge the given fields over the current schedule, validate, and persist as JSON."""
+    changes = schedule_changes(payload)
     try:
-        return apply_schedule_patch(db, schedule_changes(payload))
+        out = apply_schedule_patch(db, changes)
     except ScheduleError as e:
         raise HTTPException(400, detail=str(e))
+    if any(k.startswith("quiet_") for k in changes):
+        queue_schedule_refresh(db)   # live Canvases re-poll now, not at their next 60 s tick
+    return out
 
 
 # -----------------------------------------------------------------------------

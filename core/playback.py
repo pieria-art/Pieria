@@ -369,6 +369,24 @@ def queue_remote_command(db: Session, display_id: str, action: str,
     db.commit()
 
 
+def queue_schedule_refresh(db: Session) -> int:
+    """After a quiet change, tell every LIVE canvas display to re-poll schedule-state NOW instead of at its
+    next 60 s tick (so a blackout lands in ~1-2 s). Pull-based e-ink/Frame have no live channel and are
+    skipped; so are non-live rows (the 60 s command TTL would expire it before delivery anyway). Returns
+    the number of displays queued. Best-effort: a failure here must never fail the quiet change itself."""
+    n = 0
+    try:
+        now = datetime.now(UTC)
+        for row in db.query(ActiveDisplayModel).filter(ActiveDisplayModel.kind == "canvas").all():
+            if _is_live(row, now):
+                queue_remote_command(db, row.display_id, "refresh_schedule")
+                n += 1
+    except Exception:
+        logger.warning("queue_schedule_refresh failed", exc_info=True)
+        db.rollback()
+    return n
+
+
 def take_deliverable_commands(db: Session, display_id: str) -> list[dict]:
     """Pop this display's queued commands for the WS relay: returns the payloads of the fresh ones (in
     order) and deletes every row it saw, so an EXPIRED command (older than COMMAND_TTL_SEC) is purged

@@ -302,6 +302,10 @@ function connectWS() {
                 case 'show_artwork':
                     if (msg.artwork_id) startDisplayCycleManually(1, msg.artwork_id);
                     break;
+                case 'refresh_schedule':
+                    // Server changed a quiet setting/override: re-resolve now rather than at the 60 s tick.
+                    if (urlParams.get('schedule') !== 'off') refreshScheduleState();
+                    break;
                 case 'show_placard':
                     if (placardTimeout) clearTimeout(placardTimeout);
                     const manualShowTime = globalConfig.placard_manual !== null ? globalConfig.placard_manual : (currentPlaylistData?.placard_manual !== undefined ? currentPlaylistData.placard_manual : DEFAULT_SETTINGS.placard_manual);

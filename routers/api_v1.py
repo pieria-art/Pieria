@@ -43,6 +43,7 @@ from core.playback import (
     known_displays,
     placard_metadata,
     queue_remote_command,
+    queue_schedule_refresh,
     set_display_paused,
     set_pending_show,
     touch_display_updated,
@@ -697,10 +698,14 @@ def get_schedule(db: Session = Depends(get_db)):
               summary="Change part of the schedule", dependencies=[Depends(require_control)],
               responses={422: {"model": ErrorResponse, "description": "A value is out of range or malformed."}})
 def patch_schedule(body: SchedulePatch, db: Session = Depends(get_db)):
+    changes = schedule_changes(body)
     try:
-        return apply_schedule_patch(db, schedule_changes(body))
+        out = apply_schedule_patch(db, changes)
     except ScheduleError as e:
         raise ApiError(422, "validation_error", str(e))
+    if any(k.startswith("quiet_") for k in changes):
+        queue_schedule_refresh(db)   # live Canvases re-poll now, not at their next 60 s tick
+    return out
 
 
 @router.get("/schedule/state", response_model=ScheduleState, tags=["schedule"],
@@ -727,8 +732,8 @@ def get_quiet(db: Session = Depends(get_db)):
 def post_quiet(body: QuietRequest, db: Session = Depends(get_db)):
     """`mode:on` blanks the display now (Canvas blackout; the appliance also powers the panel off when
     quiet mode is `cec`); `mode:off` forces it awake; `mode:auto` clears the override. on/off end at
-    `until` or the next scheduled quiet boundary, whichever is first. Takes effect on the display's next
-    schedule poll (~60 s for the Canvas). Returns the resulting state, same as `GET /quiet`."""
+    `until` or the next scheduled quiet boundary, whichever is first. A live Canvas is told to re-poll at once
+    (~1-2 s); other displays pick it up on their next schedule poll. Returns the resulting state, same as `GET /quiet`."""
     until = body.until if body.mode != "auto" else None
     if until is not None:
         if until.tzinfo is None:
@@ -740,6 +745,7 @@ def post_quiet(body: QuietRequest, db: Session = Depends(get_db)):
         if until <= datetime.now(UTC):
             raise ApiError(422, "validation_error", "until must be in the future")
     set_quiet_override(db, _load_schedule(db), {"on": True, "off": False, "auto": None}[body.mode], until)
+    queue_schedule_refresh(db)   # live Canvases re-poll now (~1-2 s) instead of at their next 60 s tick
     return _quiet_view(db)
 
 
