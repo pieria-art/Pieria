@@ -11,13 +11,14 @@ from datetime import UTC, datetime
 from typing import List, Optional
 
 from fastapi import APIRouter, Depends, HTTPException, Response
+from fastapi.concurrency import run_in_threadpool
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
 
 import federation
 import publisher
 from core.settings_util import _upsert_setting
-from database import get_db
+from database import SessionLocal, get_db
 from models import PublisherCollectionModel, SettingsModel
 
 router = APIRouter()
@@ -138,12 +139,12 @@ class PublisherCollectionPayload(BaseModel):
 
 
 @router.get("/api/publisher/identity")
-async def get_publisher_identity(db: Session = Depends(get_db)):
+def get_publisher_identity(db: Session = Depends(get_db)):
     return _identity_public(_publisher_identity(db))
 
 
 @router.post("/api/publisher/identity")
-async def set_publisher_identity(payload: PublisherIdentityPayload, db: Session = Depends(get_db)):
+def set_publisher_identity(payload: PublisherIdentityPayload, db: Session = Depends(get_db)):
     """Save the publisher id/name/url and ensure an Ed25519 identity key exists. Generates a keypair on
     first save; `regenerate=true` rotates it — which invalidates the signature on anything already
     published (the response carries a warning the UI surfaces)."""
@@ -171,7 +172,7 @@ async def set_publisher_identity(payload: PublisherIdentityPayload, db: Session 
 
 
 @router.get("/api/publisher/collections")
-async def list_publisher_collections(db: Session = Depends(get_db)):
+def list_publisher_collections(db: Session = Depends(get_db)):
     return [_collection_summary(c) for c in
             db.query(PublisherCollectionModel).order_by(PublisherCollectionModel.id).all()]
 
@@ -184,18 +185,23 @@ async def _checked_cover(payload: PublisherCollectionPayload) -> str | None:
 
 
 @router.post("/api/publisher/collections")
-async def create_publisher_collection(payload: PublisherCollectionPayload, db: Session = Depends(get_db)):
+async def create_publisher_collection(payload: PublisherCollectionPayload):
     items = [it.model_dump() for it in payload.items]
     await _assert_public_urls(items)
     cover = await _checked_cover(payload)
-    slug = _unique_slug(db, payload.slug or payload.title)
     norm = [publisher.build_item(it) for it in items]
-    c = PublisherCollectionModel(
-        slug=slug, title=payload.title.strip(), description=(payload.description or "").strip() or None,
-        default_license=(payload.default_license or "").strip() or None, cover_image=cover,
-        items_json=json.dumps(norm), created_at=datetime.now(UTC), updated_at=datetime.now(UTC))
-    db.add(c); db.commit(); db.refresh(c)
-    return _collection_detail(c)
+
+    def _insert():
+        with SessionLocal() as sdb:   # ADR-148: short-lived session in a worker thread (M6 pattern)
+            slug = _unique_slug(sdb, payload.slug or payload.title)
+            c = PublisherCollectionModel(
+                slug=slug, title=payload.title.strip(), description=(payload.description or "").strip() or None,
+                default_license=(payload.default_license or "").strip() or None, cover_image=cover,
+                items_json=json.dumps(norm), created_at=datetime.now(UTC), updated_at=datetime.now(UTC))
+            sdb.add(c); sdb.commit(); sdb.refresh(c)
+            return _collection_detail(c)
+
+    return await run_in_threadpool(_insert)
 
 
 def _get_collection(db: Session, cid: int) -> PublisherCollectionModel:
@@ -206,37 +212,46 @@ def _get_collection(db: Session, cid: int) -> PublisherCollectionModel:
 
 
 @router.get("/api/publisher/collections/{cid}")
-async def get_publisher_collection(cid: int, db: Session = Depends(get_db)):
+def get_publisher_collection(cid: int, db: Session = Depends(get_db)):
     return _collection_detail(_get_collection(db, cid))
 
 
 @router.put("/api/publisher/collections/{cid}")
-async def update_publisher_collection(cid: int, payload: PublisherCollectionPayload,
-                                      db: Session = Depends(get_db)):
-    c = _get_collection(db, cid)
+async def update_publisher_collection(cid: int, payload: PublisherCollectionPayload):
+    def _exists():   # 404 before URL checks, as before
+        with SessionLocal() as sdb:
+            _get_collection(sdb, cid)
+
+    await run_in_threadpool(_exists)
     items = [it.model_dump() for it in payload.items]
     await _assert_public_urls(items)
     cover = await _checked_cover(payload)
-    if payload.slug and publisher._slugify(payload.slug) != c.slug:
-        c.slug = _unique_slug(db, payload.slug, exclude_id=c.id)
-    c.title = payload.title.strip()
-    c.description = (payload.description or "").strip() or None
-    c.default_license = (payload.default_license or "").strip() or None
-    c.cover_image = cover
-    c.items_json = json.dumps([publisher.build_item(it) for it in items])
-    c.updated_at = datetime.now(UTC)
-    db.commit(); db.refresh(c)
-    return _collection_detail(c)
+
+    def _write():
+        with SessionLocal() as sdb:   # ADR-148: short-lived session in a worker thread (M6 pattern)
+            c = _get_collection(sdb, cid)
+            if payload.slug and publisher._slugify(payload.slug) != c.slug:
+                c.slug = _unique_slug(sdb, payload.slug, exclude_id=c.id)
+            c.title = payload.title.strip()
+            c.description = (payload.description or "").strip() or None
+            c.default_license = (payload.default_license or "").strip() or None
+            c.cover_image = cover
+            c.items_json = json.dumps([publisher.build_item(it) for it in items])
+            c.updated_at = datetime.now(UTC)
+            sdb.commit(); sdb.refresh(c)
+            return _collection_detail(c)
+
+    return await run_in_threadpool(_write)
 
 
 @router.delete("/api/publisher/collections/{cid}")
-async def delete_publisher_collection(cid: int, db: Session = Depends(get_db)):
+def delete_publisher_collection(cid: int, db: Session = Depends(get_db)):
     db.delete(_get_collection(db, cid)); db.commit()
     return {"status": "removed"}
 
 
 @router.post("/api/publisher/collections/{cid}/validate")
-async def validate_publisher_collection(cid: int, db: Session = Depends(get_db)):
+def validate_publisher_collection(cid: int, db: Session = Depends(get_db)):
     c = _get_collection(db, cid)
     items = json.loads(c.items_json or "[]")
     _, errors = publisher.assemble_and_validate(_meta_for(c, _publisher_identity(db)), items)
@@ -244,17 +259,21 @@ async def validate_publisher_collection(cid: int, db: Session = Depends(get_db))
 
 
 @router.post("/api/publisher/collections/{cid}/export")
-async def export_publisher_collection(cid: int, db: Session = Depends(get_db)):
+async def export_publisher_collection(cid: int):
     """Assemble → validate → sign → download. 400 if no identity/key; 422 if the manifest is invalid."""
-    c = _get_collection(db, cid)
-    identity = _publisher_identity(db)
-    if not identity.get("publisher_private_key"):
-        raise HTTPException(400, detail="Set up your publisher identity first (it creates a signing key).")
-    items = json.loads(c.items_json or "[]")
+    def _load():
+        with SessionLocal() as sdb:   # ADR-148: short-lived session in a worker thread (M6 pattern)
+            c = _get_collection(sdb, cid)
+            identity = _publisher_identity(sdb)
+            if not identity.get("publisher_private_key"):
+                raise HTTPException(400, detail="Set up your publisher identity first (it creates a signing key).")
+            return (c.slug, _meta_for(c, identity), json.loads(c.items_json or "[]"), identity)
+
+    slug, meta, items, identity = await run_in_threadpool(_load)
     await _assert_public_urls(items)
     generated_at = datetime.now(UTC).isoformat(timespec="seconds")
     manifest, errors = publisher.assemble_validate_sign(
-        _meta_for(c, identity), items,
+        meta, items,
         identity["publisher_private_key"], identity.get("publisher_public_key"),
         generated_at=generated_at)
     if errors:
@@ -262,4 +281,4 @@ async def export_publisher_collection(cid: int, db: Session = Depends(get_db)):
     return Response(
         content=json.dumps(manifest, indent=2, ensure_ascii=False),
         media_type="application/json",
-        headers={"Content-Disposition": f'attachment; filename="{c.slug}.json"'})
+        headers={"Content-Disposition": f'attachment; filename="{slug}.json"'})
