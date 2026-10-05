@@ -124,3 +124,55 @@ def testing_session():
     finally:
         db.close()
         Base.metadata.drop_all(bind=engine)
+
+
+# ADR-148 (sync DB off the event loop): mixed routes do their DB work in threadpool helpers that open
+# their OWN short-lived `SessionLocal()` instead of the request-scoped `Depends(get_db)` session. Tests
+# isolate the DB by `app.dependency_overrides[get_db] = ...`; this fixture makes those module-level
+# `SessionLocal`s follow the same override (per call, so it works whenever the test installs it) rather
+# than every test file re-patching every router. Explicit per-test `monkeypatch.setattr(<router>,
+# "SessionLocal", ...)` still wins. close()/context-exit are no-ops so the test's shared session (and
+# the ORM objects it holds) survives a route's `with SessionLocal() as db:`.
+_SESSIONLOCAL_ROUTER_MODULES = ("federation", "packs", "catalog", "studio", "display", "ws", "backup", "health")
+
+
+class _SharedSession:
+    def __init__(self, session):
+        self._s = session
+
+    def __getattr__(self, name):
+        return getattr(self._s, name)
+
+    def __enter__(self):
+        return self._s
+
+    def __exit__(self, *exc):
+        return False
+
+    def close(self):
+        pass
+
+
+@pytest.fixture(autouse=True)
+def _router_sessionlocal_follows_get_db_override(monkeypatch):
+    import importlib
+
+    from app import app as _app
+    from database import get_db as _get_db
+
+    for name in _SESSIONLOCAL_ROUTER_MODULES:
+        try:
+            mod = importlib.import_module(f"routers.{name}")
+        except ImportError:
+            continue
+        real = getattr(mod, "SessionLocal", None)
+        if real is None:
+            continue
+
+        def _factory(_real=real):
+            override = _app.dependency_overrides.get(_get_db)
+            if override is None:
+                return _real()
+            gen = override()
+            return _SharedSession(next(gen) if hasattr(gen, "__next__") else gen)
+        monkeypatch.setattr(mod, "SessionLocal", _factory)

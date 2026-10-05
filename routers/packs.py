@@ -10,6 +10,7 @@ import logging
 import time
 
 from fastapi import APIRouter, Depends, HTTPException
+from fastapi.concurrency import run_in_threadpool
 from sqlalchemy.orm import Session
 
 import config
@@ -38,8 +39,25 @@ def _registry_url(db: Session) -> str:
     return row.setting_value if row and row.setting_value else PACK_REGISTRY_URL
 
 
+def _registry_url_and_installed() -> tuple[str, dict, dict]:
+    """(registry url, cid -> trust, cid -> metadata_refreshed_at) read in a short-lived session — the
+    async routes below call this via run_in_threadpool so no sync DB work runs on the event loop."""
+    with SessionLocal() as db:
+        url = _registry_url(db)
+        # cid -> trust for installed packs; every registry pack is Official (the signed pieria registry).
+        subs = db.query(SubscriptionModel).filter(SubscriptionModel.url.like("pack:%")).all()
+        installed = {s.url.split("pack:", 1)[1]: s.trust for s in subs}
+        refreshed = {s.url.split("pack:", 1)[1]: s.metadata_refreshed_at for s in subs}
+        return url, installed, refreshed
+
+
+def _lookup_registry_url() -> str:
+    with SessionLocal() as db:
+        return _registry_url(db)
+
+
 @router.get("/api/packs")
-async def list_packs(db: Session = Depends(get_db)):
+async def list_packs():
     """The registry annotated with per-collection install state (for the browse card). Degrades to an
     `error` field + empty list when the registry can't be reached, so the card shows a friendly message.
 
@@ -49,11 +67,7 @@ async def list_packs(db: Session = Depends(get_db)):
     if config.DEMO_MODE and _demo_cache["body"] is not None and time.monotonic() < _demo_cache["expires"]:
         return _demo_cache["body"]
 
-    url = _registry_url(db)
-    # cid -> trust for installed packs; every registry pack is Official (this is the signed pieria registry).
-    subs = db.query(SubscriptionModel).filter(SubscriptionModel.url.like("pack:%")).all()
-    installed = {s.url.split("pack:", 1)[1]: s.trust for s in subs}
-    refreshed = {s.url.split("pack:", 1)[1]: s.metadata_refreshed_at for s in subs}
+    url, installed, refreshed = await run_in_threadpool(_registry_url_and_installed)
     client = pack_fetch.new_client()
     try:
         reg = await pack_fetch.fetch_registry(client, url)
@@ -101,11 +115,11 @@ async def _install_job(collection_id: str, url: str) -> None:
 
 
 @router.post("/api/packs/{collection_id}/install")
-async def install_pack(collection_id: str, db: Session = Depends(get_db)):
+async def install_pack(collection_id: str):
     """Kick off a background download+install of one collection; the card polls /api/packs/status."""
     if _JOBS.get(collection_id, {}).get("state") == "in_progress":
         return {"state": "in_progress"}
-    url = _registry_url(db)
+    url = await run_in_threadpool(_lookup_registry_url)
     # Claim the slot BEFORE the await so a double-click can't start two installs; cleared on rejection.
     _JOBS[collection_id] = {"state": "in_progress"}
     # Validate against the same registry the job installs from, BEFORE spawning it: an unknown id
@@ -141,7 +155,7 @@ async def packs_status():
 
 
 @router.delete("/api/packs/{collection_id}")
-async def uninstall_pack(collection_id: str, db: Session = Depends(get_db)):
+def uninstall_pack(collection_id: str, db: Session = Depends(get_db)):
     """Tier-2 'Remove collection': fully uninstall a downloaded pack — drop its subscription + playlist and
     reclaim the disk of any artworks left unlinked (shared masters + personal photos are kept). Distinct
     from Tier-1 `DELETE /playlists/{id}`, which keeps every work in the library. 404 if not installed."""

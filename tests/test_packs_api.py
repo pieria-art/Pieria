@@ -271,6 +271,7 @@ async def test_install_cancellation_releases_slot(db, monkeypatch):
     async def hang(_c, _u):
         raise asyncio.CancelledError
     monkeypatch.setattr(pack_fetch, "fetch_registry", hang)
+    monkeypatch.setattr(packs_router, "SessionLocal", lambda: db)   # ADR-148: the route opens its own session
     with pytest.raises(asyncio.CancelledError):
-        await packs_router.install_pack("cosmos", db)
+        await packs_router.install_pack("cosmos")
     assert "cosmos" not in packs_router._JOBS
