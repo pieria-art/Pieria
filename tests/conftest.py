@@ -133,7 +133,8 @@ def testing_session():
 # than every test file re-patching every router. Explicit per-test `monkeypatch.setattr(<router>,
 # "SessionLocal", ...)` still wins. close()/context-exit are no-ops so the test's shared session (and
 # the ORM objects it holds) survives a route's `with SessionLocal() as db:`.
-_SESSIONLOCAL_ROUTER_MODULES = ("federation", "packs", "catalog", "studio", "display", "ws", "backup", "health")
+_SESSIONLOCAL_ROUTER_MODULES = ("federation", "packs", "catalog", "studio", "display", "ws", "backup", "health",
+                                "library", "settings", "publisher", "curation")
 
 
 class _SharedSession:
