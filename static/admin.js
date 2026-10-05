@@ -950,10 +950,10 @@ async function saveDisplayName() {
     const el = document.getElementById('ds-display-name');
     const value = (el.value || '').trim();
     if (!value) return;
-    await applianceAction('set-display-name', { display_id: value }, {
+    const queued = await applianceAction('set-display-name', { display_id: value }, {
         prompt: `Rename this display to “${value}”? The picture relaunches, and the phone remote will show the new name. Names are lowercased (“Living Room” becomes living_room).`,
     });
-    _dsLoaded = false;
+    if (queued) _dsLoaded = false;   // on cancel keep the typed value
 }
 
 // Renaming the network name MOVES this page: the old <name>.local stops answering once avahi
@@ -994,18 +994,18 @@ async function saveHostname() {
         prompt: `Rename this device to “${value}”?\n\nThe admin address will change to ${value}.local — this page, any bookmarks and the phone remote will need the new address. The picture relaunches, and this page takes you to the new address when it\u2019s done.`,
         danger: true, confirmText: 'Rename',
     });
+    if (!queued) return;   // cancelled / refused: keep what the user typed (don't let the poll re-sync the field)
     _dsLoaded = false;
-    if (!queued) return;
     _hostnameRedirectTimer = setTimeout(() => _goToNewAddress(value, []), 25000);
 }
 
 async function saveTimezone() {
     const value = (document.getElementById('ds-timezone').value || '').trim();
     if (!value) return;
-    await applianceAction('set-timezone', { timezone: value }, {
+    const queued = await applianceAction('set-timezone', { timezone: value }, {
         prompt: `Set this device's time zone to ${value}?\n\nNight & Quiet Hours follow this clock, so if the schedule boundary moves across the current time the TV may switch on or off once as it catches up. The app restarts to pick up the new zone.`,
     });
-    _dsLoaded = false;
+    if (queued) _dsLoaded = false;   // on cancel keep the typed value
 }
 
 async function saveWatchdog() {
@@ -1015,10 +1015,10 @@ async function saveWatchdog() {
         observe: 'Set self-heal to observe? It will watch and log problems but take no action.',
         off: 'Turn self-heal off? A frozen display will stay frozen until someone notices.',
     };
-    await applianceAction('set-watchdog', { watchdog: value }, {
+    const queued = await applianceAction('set-watchdog', { watchdog: value }, {
         prompt: prompts[value], danger: value === 'off',
     });
-    _dsLoaded = false;
+    if (queued) _dsLoaded = false;   // on cancel keep the selection
 }
 
 // Preview is the one action with no confirm: it IS the confirmation, and it undoes itself. The host
