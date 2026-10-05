@@ -25,7 +25,7 @@ from core.artwork_edits import assign_tracked
 from core.media import check_user_upload_pixel_ceiling, read_capped_upload, warm_canvas_cache_async
 from core.playlists import _link_artwork_to_playlist
 from core.schemas import ArtworkSchema
-from database import get_db
+from database import SessionLocal, get_db
 from models import ArtworkModel, PlaylistModel, playlist_artwork
 
 logger = logging.getLogger("artwork-display-api")
@@ -54,7 +54,6 @@ async def upload_personal_photo(
     caption: Optional[str] = Form(None),
     date: Optional[str] = Form(None),
     playlist_id: Optional[int] = Form(None),
-    db: Session = Depends(get_db),
 ):
     """Studio → My Photos: add one of the user's OWN photos to the local library. Unlike /upload, this
     deliberately skips the museum AI pipeline (the photo is never sent to a model — the privacy
@@ -97,20 +96,28 @@ async def upload_personal_photo(
     except Exception:
         raise HTTPException(400, detail="That file isn't a readable image.")
 
-    art = ArtworkModel(
-        filename=safe, original_width=w, original_height=h,
-        crop_width=float(w), crop_height=float(h),
-        title=(caption or None), date_display=(date or None),
-        is_personal=True, status="approved",
-    )
-    db.add(art); db.commit(); db.refresh(art)
-    warm_canvas_cache_async(art.id, safe)   # pre-render the display image so it's warm by display time
+    def _store_row():
+        # ADR-148: sync DB work in a threadpool on its OWN short session (the route awaits above/below).
+        with SessionLocal() as db:
+            art = ArtworkModel(
+                filename=safe, original_width=w, original_height=h,
+                crop_width=float(w), crop_height=float(h),
+                title=(caption or None), date_display=(date or None),
+                is_personal=True, status="approved",
+            )
+            db.add(art); db.commit(); db.refresh(art)
+            art_id = art.id
 
-    pl = db.query(PlaylistModel).filter(PlaylistModel.id == playlist_id).first() if playlist_id else None
-    if pl is None:
-        pl = _get_or_create_playlist(db, PERSONAL_PLAYLIST_NAME, is_personal=True)
-    _link_artwork_to_playlist(db, pl.id, art.id)
-    return art
+            pl = db.query(PlaylistModel).filter(PlaylistModel.id == playlist_id).first() if playlist_id else None
+            if pl is None:
+                pl = _get_or_create_playlist(db, PERSONAL_PLAYLIST_NAME, is_personal=True)
+            _link_artwork_to_playlist(db, pl.id, art_id)
+            db.refresh(art)
+            return art_id, ArtworkSchema.model_validate(art)
+
+    art_id, out = await run_in_threadpool(_store_row)
+    warm_canvas_cache_async(art_id, safe)   # pre-render the display image so it's warm by display time
+    return out
 
 
 STUDIO_CAPTION_PROMPT = (
@@ -128,18 +135,23 @@ class CaptionRequest(BaseModel):
 
 
 @router.post("/api/studio/caption/{artwork_id}")
-async def suggest_caption(artwork_id: int, payload: CaptionRequest, db: Session = Depends(get_db)):
+async def suggest_caption(artwork_id: int, payload: CaptionRequest):
     """Studio → My Photos: suggest an evocative, album-style caption for a personal photo via the
     configured vision model (opt-in). Returns the suggestion only — the user edits/accepts it in the
     UI. `model_is_local` tells the UI whether the photo stays on-device (a local Ollama/LM Studio
     model) or is sent to a cloud model, so the privacy note can be honest instead of a blanket warning."""
-    art = db.query(ArtworkModel).filter(ArtworkModel.id == artwork_id).first()
-    if not art:
-        raise HTTPException(404, detail="Artwork not found")
-    img_path = LIBRARY_DIR / art.filename
-    if not img_path.exists():
-        raise HTTPException(404, detail="Image file missing")
-    cfg = ai_client.get_ai_config(force=True)
+    def _lookup():
+        # ADR-148: short-lived session in a threadpool; get_ai_config(force=True) re-reads the DB too.
+        with SessionLocal() as db:
+            art = db.query(ArtworkModel).filter(ArtworkModel.id == artwork_id).first()
+            if not art:
+                raise HTTPException(404, detail="Artwork not found")
+            img_path = LIBRARY_DIR / art.filename
+            if not img_path.exists():
+                raise HTTPException(404, detail="Image file missing")
+        return img_path, ai_client.get_ai_config(force=True)
+
+    img_path, cfg = await run_in_threadpool(_lookup)
     if not cfg["configured"]:
         raise HTTPException(400, detail="No AI model is configured. Add one in Settings → AI Engine, "
                                         "or type a caption yourself.")
@@ -166,7 +178,7 @@ class PersonalPhotoUpdate(BaseModel):
 
 
 @router.patch("/api/studio/photo/{artwork_id}", response_model=ArtworkSchema)
-async def update_personal_photo(artwork_id: int, payload: PersonalPhotoUpdate, db: Session = Depends(get_db)):
+def update_personal_photo(artwork_id: int, payload: PersonalPhotoUpdate, db: Session = Depends(get_db)):
     """Studio → My Photos: save a personal photo's caption (title) and/or date. Restricted to personal
     photos so it can't be used to edit museum/catalog metadata."""
     art = db.query(ArtworkModel).filter(ArtworkModel.id == artwork_id).first()
@@ -181,7 +193,7 @@ async def update_personal_photo(artwork_id: int, payload: PersonalPhotoUpdate, d
 
 
 @router.get("/api/studio/photos")
-async def list_personal_photos(db: Session = Depends(get_db)):
+def list_personal_photos(db: Session = Depends(get_db)):
     """Studio gallery: every personal photo (`is_personal`) grouped by album, so the user can find and
     re-edit a photo they uploaded earlier (Studio was previously upload-only). A photo with no album
     lands in an "Unfiled" group; one in several albums appears under each. Newest first within a group."""
@@ -213,7 +225,7 @@ async def list_personal_photos(db: Session = Depends(get_db)):
 
 
 @router.get("/api/studio/albums")
-async def list_personal_albums(db: Session = Depends(get_db)):
+def list_personal_albums(db: Session = Depends(get_db)):
     """Personal albums for the My Photos chips — is_personal playlists only (Museum collections never
     appear here), including empty ones (so a freshly-created album shows immediately). Photo counts come
     from the playlist relationship. Sorted with the "My Photos" default first, then alphabetically."""
@@ -229,7 +241,7 @@ class StudioAlbumPayload(BaseModel):
 
 
 @router.post("/api/studio/albums")
-async def create_personal_album(payload: StudioAlbumPayload, db: Session = Depends(get_db)):
+def create_personal_album(payload: StudioAlbumPayload, db: Session = Depends(get_db)):
     """Create a personal album (a playlist flagged is_personal) from the My Photos chip row."""
     name = (payload.name or "").strip()
     if not name:
@@ -242,7 +254,7 @@ async def create_personal_album(payload: StudioAlbumPayload, db: Session = Depen
 
 
 @router.delete("/api/studio/albums/{album_id}")
-async def delete_personal_album(album_id: int, db: Session = Depends(get_db)):
+def delete_personal_album(album_id: int, db: Session = Depends(get_db)):
     """S2: delete a personal album (is_personal playlist). Photos are NOT deleted — they just become
     Unfiled; only the grouping goes. Scoped to personal albums (never a Museum collection) and refuses
     the default 'My Photos' album so gramps can't lose the home bucket."""
