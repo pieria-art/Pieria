@@ -18,6 +18,12 @@ ROUTERS = ["library", "settings", "publisher", "curation"]
 
 DB_METHODS = {"query", "execute", "commit", "add", "add_all", "delete", "refresh", "rollback", "flush", "scalar"}
 
+# Known helpers that hit the DB synchronously (they open their own SessionLocal). Calling one DIRECTLY from an
+# async def blocks the loop; pass it to run_in_threadpool instead (a bare reference is not a Call, so it passes).
+SYNC_DB_HELPERS = {"clear_failure", "get_failure", "get_ai_config", "get_frame_config", "_frame_select_sync",
+                   "select_next_image_sync", "is_redownloading_packs", "_load_schedule", "apply_schedule_patch",
+                   "_catalog_remote_base_sync"}
+
 # (file, function) -> why an async def may touch a session directly.
 ALLOWLIST = {
     ("library.py", "run_ai_pipeline"): (
@@ -69,6 +75,9 @@ def _violations(path: Path):
                 if (isinstance(f, ast.Attribute) and f.attr in DB_METHODS and isinstance(f.value, ast.Name)
                         and f.value.id in ("db", "session")):
                     out.append(f"{path.name}:{n.lineno} async {fn.name}: db.{f.attr}(...) on the event loop")
+                called = f.attr if isinstance(f, ast.Attribute) else getattr(f, "id", None)
+                if called in SYNC_DB_HELPERS:
+                    out.append(f"{path.name}:{n.lineno} async {fn.name}: sync-DB helper {called}() on the event loop")
                 if getattr(f, "id", None) == "SessionLocal":
                     out.append(f"{path.name}:{n.lineno} async {fn.name}: SessionLocal() opened on the event loop")
     return out
@@ -93,3 +102,6 @@ def test_guard_catches_a_violation(tmp_path):
     p = tmp_path / "bad.py"
     p.write_text("async def r(db=Depends(get_db)):\n    db.query(1)\n")
     assert len(_violations(p)) == 2
+    q = tmp_path / "bad2.py"
+    q.write_text("async def r():\n    ai_client.clear_failure()\n    await run_in_threadpool(ai_client.clear_failure)\n")
+    assert len(_violations(q)) == 1

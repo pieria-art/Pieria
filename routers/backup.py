@@ -247,7 +247,7 @@ async def retry_pending_packs(request: Request, x_appliance_token: Optional[str]
     require_trusted_request(request, x_appliance_token,
                             detail="this requires a same-origin request or a valid token")
     from core.lifespan import _restore_pending_packs_loop, _spawn, is_redownloading_packs
-    if is_redownloading_packs():
+    if await run_in_threadpool(is_redownloading_packs):   # blocking flock probe
         raise HTTPException(status_code=409, detail="pack re-download is already running")
     _spawn(_restore_pending_packs_loop())
     return {"status": "retrying"}

@@ -342,7 +342,7 @@ async def save_ai_settings(payload: AISettingsPayload):
     # We just proved this config works against the live endpoint, so any recorded failure describes the
     # OLD config. Leaving it would show "Auto-analysis failed: ..." to someone who has just fixed the
     # problem, until the next successful enrichment happened to clear it.
-    ai_client.clear_failure()
+    await run_in_threadpool(ai_client.clear_failure)   # writes the health rows via its own session
     return {"status": "success", "provider": provider, "model": payload.model}
 
 

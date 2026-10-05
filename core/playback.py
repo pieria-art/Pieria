@@ -580,7 +580,7 @@ def _playlist_name_if_playable(db: Session, name: Optional[str]) -> Optional[str
     return name if (pl and len(pl.artworks) > 0) else None
 
 
-async def _frame_select(playlist: str):
+def _frame_select_sync(playlist: str):
     """Selector injected into the Frame pusher: pick the current artwork for a playlist (reusing the
     bag-shuffle/affinity in get_next_image, on a dedicated display_id) and return (file_path, id, focal, aspect_crops).
 
@@ -596,7 +596,7 @@ async def _frame_select(playlist: str):
                 return None
             pl = first.name
         cfg = frame_push.get_frame_config()
-        info = await select_next_image(
+        info = select_next_image_sync(
             playlist_name=pl, shuffle=None, display_id=cfg["display_id"], direction=1, db=db
         )
         art_id = (info.get("metadata") or {}).get("id")
@@ -611,3 +611,10 @@ async def _frame_select(playlist: str):
         return None
     finally:
         db.close()
+
+
+async def _frame_select(playlist: str):
+    """Async facade for the Frame pusher / "Test / Push now": the selection is pure sync DB work, so it
+    runs in a worker thread on its own short-lived session instead of blocking the event loop (ADR-148)."""
+    from fastapi.concurrency import run_in_threadpool
+    return await run_in_threadpool(_frame_select_sync, playlist)
