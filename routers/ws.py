@@ -12,6 +12,7 @@ from datetime import UTC, datetime
 from typing import Optional
 
 from fastapi import APIRouter, Depends, HTTPException, WebSocket, WebSocketDisconnect
+from fastapi.concurrency import run_in_threadpool
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
 
@@ -40,7 +41,7 @@ router = APIRouter()
 # -----------------------------------------------------------------------------
 # GET /remote (the page) now lives in routers/pages.py.
 @router.get("/api/remote/displays")
-async def get_active_displays(db: Session = Depends(get_db)):
+def get_active_displays(db: Session = Depends(get_db)):
     """Displays the Remote should remember, each with what it's showing so the page can render the
     'now showing' panel + placard and highlight the active collection.
     Shape: {display_id, playlist, artwork, live}.
@@ -54,7 +55,7 @@ async def get_active_displays(db: Session = Depends(get_db)):
 
 
 @router.get("/api/displays/{display_id}/now-playing")
-async def get_display_now_playing(display_id: str, db: Session = Depends(get_db)):
+def get_display_now_playing(display_id: str, db: Session = Depends(get_db)):
     """What one display is currently showing (artwork + collection). artwork is null until the display
     has served a frame. `active` is the strict live window, unchanged — /api/remote/displays widened its
     listing for sleeping e-ink, this did not, so nothing that asks "is this display reachable?" moved."""
@@ -76,7 +77,7 @@ class RemoteChangeRequest(BaseModel):
 
 
 @router.post("/api/remote/change")
-async def remote_change_playlist(request: RemoteChangeRequest, db: Session = Depends(get_db)):
+def remote_change_playlist(request: RemoteChangeRequest, db: Session = Depends(get_db)):
     """Targeted command to change a playlist, mode, or trigger navigation on a specific display."""
     # H5r: display_id was the one place H5's validation didn't reach. Deliberately NOT
     # appliance_settings.validate("DISPLAY_ID", ...) — that's sd-conf's conf-writer rule
@@ -118,6 +119,9 @@ async def websocket_endpoint(websocket: WebSocket, display_id: str):
     # ping/pong that the *browser process* answers with the page's main thread wedged. The prod Pi sat
     # a week with `active: true`, a healthy watchdog, and a frozen picture (memory: prod-kiosk-wedge).
     # A dead page now goes `active: false` in LIVE_WINDOW_SEC, which the host watchdog acts on.
+    # ADR-148: this handler stays async (it awaits the socket), so every DB touch below is a plain sync
+    # function run via run_in_threadpool on its OWN short-lived SessionLocal — never a session shared
+    # across threads, never one held across an await.
     def _page_heartbeat():
         """Upsert last_seen_at for a heartbeat frame the page's JS actually sent."""
         try:
@@ -132,15 +136,23 @@ async def websocket_endpoint(websocket: WebSocket, display_id: str):
         except Exception as e:
             logger.error(f"Heartbeat error for {display_id}: {e}", exc_info=True)
 
+    def _take_commands() -> list[dict]:
+        with SessionLocal() as db:
+            # take_deliverable_commands drops (and purges) commands older than the TTL (ADR-147).
+            return take_deliverable_commands(db, display_id)
+
+    def _clear_active_row():
+        with SessionLocal() as db:
+            db.query(ActiveDisplayModel).filter(ActiveDisplayModel.display_id == display_id).delete()
+            db.commit()
+
     async def command_poller():
         """Polls the remote_commands table for actions targeting this specific display."""
         while True:
             try:
-                with SessionLocal() as db:
-                    # take_deliverable_commands drops (and purges) commands older than the TTL (ADR-147).
-                    for payload in take_deliverable_commands(db, display_id):
-                        logger.info(f"Relaying remote command to {display_id}: {payload.get('action')}")
-                        await manager.send_personal_message(payload, display_id)
+                for payload in await run_in_threadpool(_take_commands):
+                    logger.info(f"Relaying remote command to {display_id}: {payload.get('action')}")
+                    await manager.send_personal_message(payload, display_id)
             except Exception as e:
                 logger.error(f"Command poller error for {display_id}: {e}", exc_info=True)
             await asyncio.sleep(1)
@@ -154,7 +166,7 @@ async def websocket_endpoint(websocket: WebSocket, display_id: str):
             # broadcast to every screen (H5: that let one anonymous client inject to all displays).
             data = await websocket.receive_json()
             if isinstance(data, dict) and data.get("action") == "heartbeat":
-                _page_heartbeat()          # liveness only — never echoed to the display's sockets
+                await run_in_threadpool(_page_heartbeat)   # liveness only — never echoed to the display's sockets
                 continue
             if config.DEMO_MODE:
                 # Demo mode ignores every inbound message that isn't a heartbeat — with every display
@@ -170,6 +182,4 @@ async def websocket_endpoint(websocket: WebSocket, display_id: str):
     finally:
         poller_task.cancel()
         # Clean up heartbeat from DB immediately on clean disconnect
-        with SessionLocal() as db:
-            db.query(ActiveDisplayModel).filter(ActiveDisplayModel.display_id == display_id).delete()
-            db.commit()
+        await run_in_threadpool(_clear_active_row)
