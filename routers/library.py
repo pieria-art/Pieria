@@ -108,11 +108,11 @@ async def run_ai_pipeline(artwork_id: int):
 
 
 @router.get("/artworks", response_model=List[ArtworkSchema])
-async def get_full_library(db: Session = Depends(get_db)):
+def get_full_library(db: Session = Depends(get_db)):
     return db.query(ArtworkModel).all()
 
 @router.get("/playlists", response_model=List[PlaylistSchema])
-async def list_playlists(db: Session = Depends(get_db)):
+def list_playlists(db: Session = Depends(get_db)):
     # Underscore-prefixed names are internal pseudo-collections (e.g. "_derivatives", the optimized-image
     # display cache) — never real collections. Keep their rows + cached images, but never surface them in
     # the UI. Mirrors the sync-time skip of "_"-prefixed dirs; this is the matching display-layer guard,
@@ -155,14 +155,14 @@ async def list_playlists(db: Session = Depends(get_db)):
     return playlists
 
 @router.post("/playlists", response_model=PlaylistSchema)
-async def create_playlist(name: str = Form(...), db: Session = Depends(get_db)):
+def create_playlist(name: str = Form(...), db: Session = Depends(get_db)):
     existing = db.query(PlaylistModel).filter(PlaylistModel.name == name).first()
     if existing: raise HTTPException(status_code=400, detail="Exists")
     new_p = PlaylistModel(name=name); db.add(new_p); db.commit(); db.refresh(new_p)
     return new_p
 
 @router.patch("/playlists/{playlist_id}", response_model=PlaylistSchema)
-async def update_playlist(playlist_id: int, data: PlaylistUpdate, db: Session = Depends(get_db)):
+def update_playlist(playlist_id: int, data: PlaylistUpdate, db: Session = Depends(get_db)):
     p = db.query(PlaylistModel).filter(PlaylistModel.id == playlist_id).first()
     if not p: raise HTTPException(404)
     if data.name is not None:   # A4: rename (collision-guarded, no empty/internal "_" names)
@@ -183,13 +183,13 @@ async def update_playlist(playlist_id: int, data: PlaylistUpdate, db: Session = 
     db.commit(); db.refresh(p); return p
 
 @router.delete("/playlists/{playlist_id}")
-async def delete_playlist(playlist_id: int, db: Session = Depends(get_db)):
+def delete_playlist(playlist_id: int, db: Session = Depends(get_db)):
     p = db.query(PlaylistModel).filter(PlaylistModel.id == playlist_id).first()
     if not p: raise HTTPException(404)
     db.delete(p); db.commit(); return {"status": "ok"}
 
 @router.post("/playlists/{playlist_id}/restore-from-collection")
-async def restore_gallery(playlist_id: int, db: Session = Depends(get_db)):
+def restore_gallery(playlist_id: int, db: Session = Depends(get_db)):
     """Re-add the source Collection's works that were removed from this Gallery (non-destructive). 400 if
     the gallery isn't Collection-linked. Works deleted from the library need a Collection re-download."""
     from core import lifespan as lifespan_module  # lazy import — avoids import-time coupling
@@ -199,12 +199,12 @@ async def restore_gallery(playlist_id: int, db: Session = Depends(get_db)):
     return res
 
 @router.post("/playlists/{playlist_id}/artworks/{artwork_id}")
-async def link_artwork_to_playlist(playlist_id: int, artwork_id: int, db: Session = Depends(get_db)):
+def link_artwork_to_playlist(playlist_id: int, artwork_id: int, db: Session = Depends(get_db)):
     db.execute(playlist_artwork.insert().values(playlist_id=playlist_id, artwork_id=artwork_id))
     db.commit(); return {"status": "linked"}
 
 @router.delete("/playlists/{playlist_id}/artworks/{artwork_id}")
-async def unlink_artwork_from_playlist(playlist_id: int, artwork_id: int, db: Session = Depends(get_db)):
+def unlink_artwork_from_playlist(playlist_id: int, artwork_id: int, db: Session = Depends(get_db)):
     db.execute(delete(playlist_artwork).where(
         playlist_artwork.c.playlist_id == playlist_id,
         playlist_artwork.c.artwork_id == artwork_id
@@ -212,7 +212,7 @@ async def unlink_artwork_from_playlist(playlist_id: int, artwork_id: int, db: Se
     db.commit(); return {"status": "unlinked"}
 
 @router.post("/playlists/{playlist_id}/artworks")
-async def link_artworks_to_playlist(playlist_id: int, payload: ArtworkIds, db: Session = Depends(get_db)):
+def link_artworks_to_playlist(playlist_id: int, payload: ArtworkIds, db: Session = Depends(get_db)):
     """Bulk add: link many library artworks to a playlist in one call (the multi-select 'Add from
     Library'). Idempotent per artwork — reuses _link_artwork_to_playlist, which skips existing links
     and appends in order. A distinct path from the single /{artwork_id} POST, so no route collision."""
@@ -221,7 +221,7 @@ async def link_artworks_to_playlist(playlist_id: int, payload: ArtworkIds, db: S
     return {"status": "linked", "count": len(payload.artwork_ids)}
 
 @router.delete("/playlists/{playlist_id}/artworks")
-async def unlink_artworks_from_playlist(playlist_id: int, payload: ArtworkIds, db: Session = Depends(get_db)):
+def unlink_artworks_from_playlist(playlist_id: int, payload: ArtworkIds, db: Session = Depends(get_db)):
     """Bulk remove: unlink many artworks from a playlist (multi-select Remove). Removes only the
     association — the artworks stay in the library."""
     n = db.execute(delete(playlist_artwork).where(
@@ -230,7 +230,7 @@ async def unlink_artworks_from_playlist(playlist_id: int, payload: ArtworkIds, d
     db.commit(); return {"status": "unlinked", "count": n}
 
 @router.post("/playlists/{playlist_id}/reorder")
-async def reorder_playlist(playlist_id: int, request: ReorderRequest, db: Session = Depends(get_db)):
+def reorder_playlist(playlist_id: int, request: ReorderRequest, db: Session = Depends(get_db)):
     for index, art_id in enumerate(request.artwork_ids):
         db.execute(update(playlist_artwork).where(
             playlist_artwork.c.playlist_id == playlist_id,
@@ -239,7 +239,7 @@ async def reorder_playlist(playlist_id: int, request: ReorderRequest, db: Sessio
     db.commit(); return {"status": "success"}
 
 @router.post("/upload", response_model=ArtworkSchema)
-async def upload_artwork(background_tasks: BackgroundTasks, request: Request, file: UploadFile = File(...), playlist_id: Optional[int] = Form(None), db: Session = Depends(get_db)):
+async def upload_artwork(background_tasks: BackgroundTasks, request: Request, file: UploadFile = File(...), playlist_id: Optional[int] = Form(None)):
     if not LIBRARY_DIR.exists(): LIBRARY_DIR.mkdir(parents=True)
     # M4: this is an untrusted LAN-uploaded body — cap it (Content-Length pre-check + streamed read
     # limit, since the header alone isn't trustworthy) before it ever reaches Pillow.
@@ -281,16 +281,26 @@ async def upload_artwork(background_tasks: BackgroundTasks, request: Request, fi
         raise
     except Exception:
         raise HTTPException(400, detail="That file isn't a readable image.")
-    new_a = ArtworkModel(filename=fname, original_width=w, original_height=h, status='pending_review')
-    db.add(new_a); db.commit(); db.refresh(new_a)
-    if playlist_id:
-        db.execute(playlist_artwork.insert().values(playlist_id=playlist_id, artwork_id=new_a.id))
-        db.commit()
+    def _insert_row():
+        # ADR-148: the DB half runs in a worker thread on its OWN short-lived session (the M6 pattern),
+        # never the request-scoped one — a session must not hop threads, and a pool slot must not stay
+        # checked out across the awaits above.
+        with SessionLocal() as sdb:
+            new_a = ArtworkModel(filename=fname, original_width=w, original_height=h, status='pending_review')
+            sdb.add(new_a); sdb.commit(); sdb.refresh(new_a)
+            if playlist_id:
+                sdb.execute(playlist_artwork.insert().values(playlist_id=playlist_id, artwork_id=new_a.id))
+                sdb.commit()
+            sdb.refresh(new_a)
+            sdb.expunge(new_a)
+            return new_a
+
+    new_a = await run_in_threadpool(_insert_row)
     background_tasks.add_task(run_ai_pipeline, new_a.id)
     return new_a
 
 @router.get("/artworks/pending", response_model=List[ArtworkSchema])
-async def get_pending_artworks(db: Session = Depends(get_db)):
+def get_pending_artworks(db: Session = Depends(get_db)):
     return db.query(ArtworkModel).filter(ArtworkModel.status == 'pending_review').all()
 
 def _placard_values(data) -> dict:
@@ -300,7 +310,7 @@ def _placard_values(data) -> dict:
             "description_narrative": data.description_narrative, "tags": data.tags}
 
 @router.patch("/artworks/{artwork_id}/approve", response_model=ArtworkSchema)
-async def approve_artwork(artwork_id: int, data: ArtworkApproval, db: Session = Depends(get_db)):
+def approve_artwork(artwork_id: int, data: ArtworkApproval, db: Session = Depends(get_db)):
     art = db.query(ArtworkModel).filter(ArtworkModel.id == artwork_id).first()
     if not art: raise HTTPException(404)
     assign_tracked(art, _placard_values(data))
@@ -308,7 +318,7 @@ async def approve_artwork(artwork_id: int, data: ArtworkApproval, db: Session = 
     db.commit(); db.refresh(art); return art
 
 @router.post("/artworks/approve-bulk")
-async def bulk_approve_artworks(payload: ArtworkIds, db: Session = Depends(get_db)):
+def bulk_approve_artworks(payload: ArtworkIds, db: Session = Depends(get_db)):
     """Bulk-publish Review-Queue items using their already-enriched stored values (multi-select
     Approve). Only flips pending_review → approved, so it can't accidentally re-touch published or
     in-flight items; ids that aren't pending are skipped. Per-item edits happen via the Edit landing."""
@@ -321,7 +331,7 @@ async def bulk_approve_artworks(payload: ArtworkIds, db: Session = Depends(get_d
     db.commit(); return {"status": "approved", "count": len(arts)}
 
 @router.patch("/artworks/{artwork_id}/metadata", response_model=ArtworkSchema)
-async def update_artwork_metadata(artwork_id: int, data: ArtworkApproval, db: Session = Depends(get_db)):
+def update_artwork_metadata(artwork_id: int, data: ArtworkApproval, db: Session = Depends(get_db)):
     """Edit an already-approved artwork's placard metadata in place — the Edit landing's Save for
     museum/catalog works. Unlike /approve (the Review-Queue publish step), this does NOT touch status,
     so an approved piece stays approved. Personal photos edit via /api/studio/photo instead."""
@@ -352,7 +362,7 @@ async def get_artwork_preview(artwork_id: int):
     return Response(content=data, media_type="image/jpeg")
 
 @router.get("/art/{artwork_id}", response_class=HTMLResponse)
-async def artwork_detail_page(artwork_id: int, db: Session = Depends(get_db)):
+def artwork_detail_page(artwork_id: int, db: Session = Depends(get_db)):
     """Server-hosted 'Learn More' page the placard QR points at — works offline (no Google hand-off)."""
     art = db.query(ArtworkModel).filter(ArtworkModel.id == artwork_id).first()
     if not art:
@@ -431,7 +441,7 @@ async def artwork_detail_page(artwork_id: int, db: Session = Depends(get_db)):
 </div></body></html>""")
 
 @router.get("/api/credits")
-async def get_credits(db: Session = Depends(get_db)):
+def get_credits(db: Session = Depends(get_db)):
     """ADR-142: every installed work that requires attribution (CC BY), for Admin -> About -> Credits.
 
     Read-only, demo-mode allowed (core/demo.py). Returns one entry per artwork, plus a `note` line —
@@ -465,7 +475,7 @@ async def get_credits(db: Session = Depends(get_db)):
 
 
 @router.get("/artworks/{artwork_id}/placard")
-async def get_artwork_placard(artwork_id: int, db: Session = Depends(get_db)):
+def get_artwork_placard(artwork_id: int, db: Session = Depends(get_db)):
     """The placard text for one artwork, as JSON — what the phone Remote's 'Read placard' tile renders.
 
     Exists because an e-ink panel shows art ONLY (render_for_epaper bakes no text), so the phone is the
@@ -540,7 +550,7 @@ def _validate_aspect_crops(raw: dict, art: ArtworkModel) -> dict:
     return out
 
 @router.patch("/artworks/{artwork_id}/crop", response_model=ArtworkSchema)
-async def update_artwork_crop(artwork_id: int, payload: CropPayload, db: Session = Depends(get_db)):
+def update_artwork_crop(artwork_id: int, payload: CropPayload, db: Session = Depends(get_db)):
     """Persist a manual crop rectangle (original pixels) from the admin Cropper, plus optionally the
     normalized focal point (the Ken Burns / e-ink framing anchor). The admin crop modal calls this;
     it was previously missing, so manual crop-saves silently failed."""
@@ -579,13 +589,13 @@ def _wipe_artwork(db: Session, art: ArtworkModel) -> None:
     db.delete(art)
 
 @router.delete("/artworks/{artwork_id}")
-async def permanent_delete_artwork(artwork_id: int, db: Session = Depends(get_db)):
+def permanent_delete_artwork(artwork_id: int, db: Session = Depends(get_db)):
     art = db.query(ArtworkModel).filter(ArtworkModel.id == artwork_id).first()
     if not art: raise HTTPException(404)
     _wipe_artwork(db, art); db.commit(); return {"status": "wiped"}
 
 @router.post("/artworks/delete")
-async def bulk_delete_artworks(payload: ArtworkIds, db: Session = Depends(get_db)):
+def bulk_delete_artworks(payload: ArtworkIds, db: Session = Depends(get_db)):
     """Bulk permanent delete (multi-select Delete in the Library). POST (not DELETE) so the id list
     rides in the body without colliding with DELETE /artworks/{id}. Skips ids that no longer exist."""
     arts = db.query(ArtworkModel).filter(ArtworkModel.id.in_(payload.artwork_ids or [-1])).all()
