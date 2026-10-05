@@ -996,7 +996,35 @@ async function saveHostname() {
     });
     if (!queued) return;   // cancelled / refused: keep what the user typed (don't let the poll re-sync the field)
     _dsLoaded = false;
-    _hostnameRedirectTimer = setTimeout(() => _goToNewAddress(value, []), 25000);
+    _hostnameRedirectTimer = setTimeout(() => _hostnameRedirectTimeout(value), 25000);
+}
+
+// The 25 s fallback must not navigate on faith: with no root watcher the job stays "queued" and nothing
+// was renamed, so the new name never answers (Chrome error page). Go only if the host says done, or the
+// new name actually answers (no-cors ping resolves on any HTTP response, rejects on DNS/connect failure).
+async function _hostnameRedirectTimeout(newName) {
+    _hostnameRedirectTimer = null;
+    const port = location.port ? `:${location.port}` : '';
+    let target = null;
+    try {
+        const d = await (await fetch(`${API_BASE}/api/appliance/update/status`, { cache: 'no-store' })).json();
+        if (d && d.action === 'set-hostname' && d.state === 'done') target = d;
+    } catch (e) { /* the old name may already be gone — fall through to the probe */ }
+    if (!target) {
+        try {
+            const ctl = new AbortController();
+            const t = setTimeout(() => ctl.abort(), 4000);
+            await fetch(`${location.protocol}//${newName}.local${port}/api/demo`, { mode: 'no-cors', cache: 'no-store', signal: ctl.signal });
+            clearTimeout(t);
+            target = { new_hostname: newName, ips: [] };
+        } catch (e) { /* not answering */ }
+    }
+    if (target) { _goToNewAddress(target.new_hostname || newName, target.ips); return; }
+    if (_maintPoll) { clearInterval(_maintPoll); _maintPoll = null; }   // else the poll overwrites this message
+    _maintButtons(false);
+    const statusEl = document.getElementById('maint-status');
+    statusEl.style.display = 'block';
+    statusEl.textContent = `⏳ Rename still pending — the box may be busy. Check back shortly, or open this admin by the device’s IP address if ${newName}.local doesn’t answer.`;
 }
 
 async function saveTimezone() {
