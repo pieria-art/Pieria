@@ -188,7 +188,7 @@ class CommandAction(StrEnum):
 
 class Info(BaseModel):
     name: str = Field(description='Always "Pieria".', examples=["Pieria"])
-    version: str = Field(description="The server's release version.", examples=["1.0.6"])
+    version: str = Field(description="The server's release version.", examples=["1.1.0"])
     api_version: int = Field(description="Major version of this API. Always 1 under /api/v1.")
     appliance_mode: bool = Field(description="True on a Pieria appliance (Raspberry Pi image).")
     server_id: str = Field(description="UUID minted once on first use and stable across restarts and "

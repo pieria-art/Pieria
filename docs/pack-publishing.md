@@ -4,7 +4,7 @@ Operator procedure for the official registry (bucket `screendocent-packs`, serve
 Credentials: Infisical project `Screen-Docent` / env `prod` (`R2_ENDPOINT`, `R2_ACCESS_KEY_ID`,
 `R2_SECRET_ACCESS_KEY`); `SD_PACK_SIGNING_KEY` is Strongbox-only. Upload with `rclone :s3:` (wrap the call in
 `bash -c '...'` with single quotes under `infisical run`). rclone-to-R2 may log a `501` then succeed on
-attempt 2 - check the live result, not the log. Cloudflare Bot Fight Mode on `curwe.ai` must stay OFF (ADR-136).
+attempt 2 - check the live result, not the log. Always pass `--s3-no-check-bucket`: the R2 key is object-scoped, so a single-file `copyto` otherwise dies on `CreateBucket 403 AccessDenied`. Cloudflare Bot Fight Mode on `curwe.ai` must stay OFF (ADR-136).
 
 ## Packs
 
@@ -27,7 +27,7 @@ the old hotlink stays in `thumbnail_source_url` (provenance + the admin `onerror
    masters; `--fetch-remote` (last resort) downloads originals through the pack downloader.
 2. Upload `thumbs/*` (including `index.json`) to `:s3:screendocent-packs/thumbs/` **before** the catalog/app
    release that points at them, e.g.
-   `infisical run --projectId d274aa59-853d-48aa-bf82-dcbdcad0b2ba --env prod -- bash -c 'rclone --s3-provider=Cloudflare --s3-endpoint="$R2_ENDPOINT" --s3-access-key-id="$R2_ACCESS_KEY_ID" --s3-secret-access-key="$R2_SECRET_ACCESS_KEY" --header-upload "Content-Type: image/jpeg" --header-upload "Cache-Control: public, max-age=31536000, immutable" copy ./art-pack-dist/thumbs :s3:screendocent-packs/thumbs/ --exclude index.json && rclone ... copyto ./art-pack-dist/thumbs/index.json :s3:screendocent-packs/thumbs/index.json'`
+   `infisical run --projectId d274aa59-853d-48aa-bf82-dcbdcad0b2ba --env prod -- bash -c 'rclone --s3-provider=Cloudflare --s3-endpoint="$R2_ENDPOINT" --s3-access-key-id="$R2_ACCESS_KEY_ID" --s3-secret-access-key="$R2_SECRET_ACCESS_KEY" --s3-no-check-bucket --header-upload "Content-Type: image/jpeg" --header-upload "Cache-Control: public, max-age=31536000, immutable" copy ./art-pack-dist/thumbs :s3:screendocent-packs/thumbs/ --exclude index.json && rclone ... copyto ./art-pack-dist/thumbs/index.json :s3:screendocent-packs/thumbs/index.json'`
 3. Purge `thumbs/` in Cloudflare (thumb names are content-addressed by source URL, so a re-encode
    under the same name needs the purge).
 4. Spot-check through the public domain: pick ~10 entries from `index.json`, `curl -s https://packs.curwe.ai/<path> | sha256sum`

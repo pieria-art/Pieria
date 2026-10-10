@@ -3,6 +3,7 @@ onerror fallback, and the local installed-pack thumb route. Offline; no network.
 import hashlib
 import io
 import json
+import re
 from pathlib import Path
 
 from PIL import Image
@@ -131,7 +132,9 @@ def test_admin_has_onerror_fallback_and_cache_bump():
     js = (ROOT / "static" / "admin.js").read_text()
     assert "thumbnail_source_url" in js and 'onerror="catalogThumbFallback(this)"' in js
     assert "function catalogThumbFallback" in js
-    assert "admin.js?v=20261005b" in (ROOT / "static" / "admin.html").read_text()
+    # the cache key must be at least the thumbs change's (20261005b); later releases bump it further
+    key = re.search(r"admin\.js\?v=([\w-]+)", (ROOT / "static" / "admin.html").read_text()).group(1)
+    assert key >= "20261005b"
 
 
 # --- local installed-pack thumb route ---------------------------------------------------------------
