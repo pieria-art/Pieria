@@ -190,7 +190,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Martin%20Johnson%20Heade%20-%20Magnolias%20on%20Light%20Blue%20Velvet%20Cloth%20-%201983.791%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
    "thumbnail_url": "https://packs.curwe.ai/thumbs/79fdadd2bc3cfcd8be0fc37b3596d76ef87181464cf3d74d8ba037e9b84ba3fb.jpg",
    "focal_point": [
-    0.6,
+    0.5,
     0.58
    ],
    "featured_rank": 40,
@@ -204,7 +204,33 @@
    "below_floor_ok": true,
    "current_repository": "Art Institute of Chicago",
    "physical_dimensions": "38.6 × 61.8 cm (15 1/4 × 24 3/8 in.)",
-   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Martin%20Johnson%20Heade%20-%20Magnolias%20on%20Light%20Blue%20Velvet%20Cloth%20-%201983.791%20-%20Art%20Institute%20of%20Chicago.jpg?width=600"
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Martin%20Johnson%20Heade%20-%20Magnolias%20on%20Light%20Blue%20Velvet%20Cloth%20-%201983.791%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0702,
+     1.0,
+     1.0
+    ],
+    "9:16": [
+     0.3298,
+     0.0,
+     0.6702,
+     1.0
+    ],
+    "4:3": [
+     0.0967,
+     0.0,
+     0.9033,
+     1.0
+    ],
+    "3:4": [
+     0.2731,
+     0.0,
+     0.7269,
+     1.0
+    ]
+   }
   },
   {
    "title": "For Sunday's Dinner",
@@ -277,8 +303,8 @@
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frans%20Snyders%20-%20Still%20Life%20with%20Dead%20Game%2C%20Fruits%2C%20and%20Vegetables%20in%20a%20Market%20-%201981.182%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
    "thumbnail_url": "https://packs.curwe.ai/thumbs/d2c39bc5e20dc9007c78e04a26f1edb0a59dd111450892515c045d3c2946e1c4.jpg",
    "focal_point": [
-    0.2,
-    0.3
+    0.33,
+    0.4
    ],
    "featured_rank": 30,
    "license_verdict": "pd",
@@ -291,7 +317,33 @@
    "below_floor_ok": true,
    "current_repository": "Art Institute of Chicago",
    "physical_dimensions": "212 × 308 cm (83 1/2 × 121 1/4 in.); Framed: 251.5 × 348 × 10.2 cm (99 × 137 × 4 in.)",
-   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frans%20Snyders%20-%20Still%20Life%20with%20Dead%20Game%2C%20Fruits%2C%20and%20Vegetables%20in%20a%20Market%20-%201981.182%20-%20Art%20Institute%20of%20Chicago.jpg?width=600"
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Frans%20Snyders%20-%20Still%20Life%20with%20Dead%20Game%2C%20Fruits%2C%20and%20Vegetables%20in%20a%20Market%20-%201981.182%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0,
+     1.0,
+     0.8379
+    ],
+    "9:16": [
+     0.1412,
+     0.0,
+     0.5188,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0,
+     0.8951,
+     1.0
+    ],
+    "3:4": [
+     0.0783,
+     0.0,
+     0.5817,
+     1.0
+    ]
+   }
   },
   {
    "title": "Just Dessert",
@@ -593,8 +645,8 @@
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/John%20F.%20Francis%20-%20Wine%2C%20Cheese%2C%20and%20Fruit%20-%201994.239%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
    "thumbnail_url": "https://packs.curwe.ai/thumbs/9771f474e59546c91a167171c800e19aa38318f71c8b470ff04dfdcc24a06b90.jpg",
    "focal_point": [
-    0.4,
-    0.45
+    0.5,
+    0.55
    ],
    "featured_rank": 20,
    "license_verdict": "pd",
@@ -607,7 +659,33 @@
    "below_floor_ok": true,
    "current_repository": "Art Institute of Chicago",
    "physical_dimensions": "63.5 × 76.2 cm (25 × 30 in.)",
-   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/John%20F.%20Francis%20-%20Wine%2C%20Cheese%2C%20and%20Fruit%20-%201994.239%20-%20Art%20Institute%20of%20Chicago.jpg?width=600"
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/John%20F.%20Francis%20-%20Wine%2C%20Cheese%2C%20and%20Fruit%20-%201994.239%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.2129,
+     1.0,
+     0.8871
+    ],
+    "9:16": [
+     0.2653,
+     0.0,
+     0.7347,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1005,
+     1.0,
+     0.9995
+    ],
+    "3:4": [
+     0.1871,
+     0.0,
+     0.8129,
+     1.0
+    ]
+   }
   },
   {
    "title": "Lights of Other Days",

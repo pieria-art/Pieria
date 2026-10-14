@@ -188,8 +188,8 @@
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Winslow%20Homer%20-%20The%20Water%20Fan.jpg?width=3840",
    "thumbnail_url": "https://packs.curwe.ai/thumbs/1672f0613395149fb54a85a0ae4891b2483df71b89d17f7ab3e93b07abe88f74.jpg",
    "focal_point": [
-    0.39,
-    0.4
+    0.4,
+    0.48
    ],
    "featured_rank": 30,
    "license_verdict": "pd",
@@ -202,7 +202,33 @@
    "below_floor_ok": true,
    "current_repository": "Art Institute of Chicago",
    "physical_dimensions": "37.4 × 53.4 cm (14 3/4 × 21 1/16 in.)",
-   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Winslow%20Homer%20-%20The%20Water%20Fan.jpg?width=600"
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Winslow%20Homer%20-%20The%20Water%20Fan.jpg?width=600",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0823,
+     1.0,
+     0.8777
+    ],
+    "9:16": [
+     0.2011,
+     0.0,
+     0.5989,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0,
+     0.943,
+     1.0
+    ],
+    "3:4": [
+     0.1348,
+     0.0,
+     0.6652,
+     1.0
+    ]
+   }
   },
   {
    "title": "Life-Size Black Bass",
@@ -443,8 +469,8 @@
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Winslow%20Homer%20-%20Peach%20Blossoms%2C%201878.jpg?width=3840",
    "thumbnail_url": "https://packs.curwe.ai/thumbs/22bbf799195c7865d6c8936607e418e79712141d57b583d3c59b9dfbd727d1d5.jpg",
    "focal_point": [
-    0.52,
-    0.27
+    0.54,
+    0.38
    ],
    "featured_rank": 22,
    "license_verdict": "pd",
@@ -457,7 +483,33 @@
    "below_floor_ok": true,
    "current_repository": "Art Institute of Chicago",
    "physical_dimensions": "33.7 × 49 cm (13 1/4 × 19 5/8 in.)",
-   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Winslow%20Homer%20-%20Peach%20Blossoms%2C%201878.jpg?width=600"
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Winslow%20Homer%20-%20Peach%20Blossoms%2C%201878.jpg?width=600",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0,
+     1.0,
+     0.854
+    ],
+    "9:16": [
+     0.3548,
+     0.0,
+     0.7252,
+     1.0
+    ],
+    "4:3": [
+     0.1009,
+     0.0,
+     0.9791,
+     1.0
+    ],
+    "3:4": [
+     0.293,
+     0.0,
+     0.787,
+     1.0
+    ]
+   }
   },
   {
    "title": "Coast of Maine",
@@ -1095,8 +1147,8 @@
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/John%20Singer%20Sargent%20-%20Venetian%20Glass%20Workers%20-%201933.1217%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
    "thumbnail_url": "https://packs.curwe.ai/thumbs/aac4d5008fff94d1724600f0aa5b45abc72bb140f89e00b6855b57f69647c0fb.jpg",
    "focal_point": [
-    0.86,
-    0.46
+    0.5,
+    0.48
    ],
    "featured_rank": 30,
    "license_verdict": "pd",
@@ -1109,7 +1161,33 @@
    "below_floor_ok": true,
    "current_repository": "Art Institute of Chicago",
    "physical_dimensions": "56.5 × 84.5 cm (22 1/4 × 33 1/4 in.)",
-   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/John%20Singer%20Sargent%20-%20Venetian%20Glass%20Workers%20-%201933.1217%20-%20Art%20Institute%20of%20Chicago.jpg?width=600"
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/John%20Singer%20Sargent%20-%20Venetian%20Glass%20Workers%20-%201933.1217%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0493,
+     1.0,
+     0.9107
+    ],
+    "9:16": [
+     0.3163,
+     0.0,
+     0.6837,
+     1.0
+    ],
+    "4:3": [
+     0.0647,
+     0.0,
+     0.9353,
+     1.0
+    ],
+    "3:4": [
+     0.2551,
+     0.0,
+     0.7449,
+     1.0
+    ]
+   }
   },
   {
    "title": "Mrs. Charles Gifford Dyer (Mary Anthony)",
@@ -1126,8 +1204,8 @@
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Chicago%20art%20inst%20singer%20sargent%20m%20dyer.JPG?width=3840",
    "thumbnail_url": "https://packs.curwe.ai/thumbs/4d688c9a35ed5e6321265b5c82a8947794ca0b0f17bc977b41f6815bc63defe5.jpg",
    "focal_point": [
-    0.52,
-    0.26
+    0.57,
+    0.3
    ],
    "featured_rank": 26,
    "license_verdict": "pd",
@@ -1140,7 +1218,33 @@
    "below_floor_ok": true,
    "current_repository": "Art Institute of Chicago",
    "physical_dimensions": "62.2 × 43.8 cm (24 1/2 × 17 1/4 in.)",
-   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Chicago%20art%20inst%20singer%20sargent%20m%20dyer.JPG?width=600"
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Chicago%20art%20inst%20singer%20sargent%20m%20dyer.JPG?width=600",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0997,
+     1.0,
+     0.5003
+    ],
+    "9:16": [
+     0.1751,
+     0.0,
+     0.9649,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0329,
+     1.0,
+     0.5671
+    ],
+    "3:4": [
+     0.0,
+     0.0,
+     1.0,
+     0.9495
+    ]
+   }
   },
   {
    "title": "Rehearsal of the Pasdeloup Orchestra at the Cirque d'Hiver",

@@ -362,8 +362,8 @@
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pontormo%2C%20%28Jacopo%20Carrucci%29%20-%20Alessandro%20de%27%20Medici%20-%201933.1002%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
    "thumbnail_url": "https://packs.curwe.ai/thumbs/3d965f89b79267005004b5d29438ed76cb1727a2f57451caafda4eb7c3642346.jpg",
    "focal_point": [
-    0.45,
-    0.34
+    0.42,
+    0.4
    ],
    "featured_rank": 32,
    "license_verdict": "pd",
@@ -376,7 +376,33 @@
    "below_floor_ok": true,
    "current_repository": "Art Institute of Chicago",
    "physical_dimensions": "35.3 × 25.8 cm (13 7/8 × 10 1/8 in.); Framed: 47.7 × 42 × 6.1 cm (18 3/4 × 16 1/2 × 2 3/8 in.)",
-   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pontormo%2C%20%28Jacopo%20Carrucci%29%20-%20Alessandro%20de%27%20Medici%20-%201933.1002%20-%20Art%20Institute%20of%20Chicago.jpg?width=600"
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pontormo%2C%20%28Jacopo%20Carrucci%29%20-%20Alessandro%20de%27%20Medici%20-%201933.1002%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1734,
+     1.0,
+     0.6266
+    ],
+    "9:16": [
+     0.0709,
+     0.0,
+     0.7691,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0979,
+     1.0,
+     0.7021
+    ],
+    "3:4": [
+     0.0,
+     0.0,
+     0.9309,
+     1.0
+    ]
+   }
   },
   {
    "title": "Christ Carrying the Cross",

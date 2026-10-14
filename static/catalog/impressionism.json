@@ -417,8 +417,8 @@
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Claude%20Monet%20-%20Stacks%20of%20Wheat%20%28End%20of%20Day%2C%20Autumn%29%20-%201933.444%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
    "thumbnail_url": "https://packs.curwe.ai/thumbs/34fb33a1bcb3f6a56f26db214e1dbd66c1a9ddd658d5892fa27bd701414e1c83.jpg",
    "focal_point": [
-    0.7,
-    0.55
+    0.73,
+    0.56
    ],
    "featured_rank": 60,
    "license_verdict": "pd",
@@ -431,7 +431,33 @@
    "below_floor_ok": true,
    "current_repository": "Art Institute of Chicago",
    "physical_dimensions": "65.8 × 101 cm (27 7/8 × 39 3/4 in.); Framed: 90.9 × 125.5 × 123.2 cm (35 3/4 × 49 3/8 × 48 1/2 in.)",
-   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Claude%20Monet%20-%20Stacks%20of%20Wheat%20%28End%20of%20Day%2C%20Autumn%29%20-%201933.444%20-%20Art%20Institute%20of%20Chicago.jpg?width=600"
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Claude%20Monet%20-%20Stacks%20of%20Wheat%20%28End%20of%20Day%2C%20Autumn%29%20-%201933.444%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1228,
+     1.0,
+     0.9972
+    ],
+    "9:16": [
+     0.5491,
+     0.0,
+     0.9109,
+     1.0
+    ],
+    "4:3": [
+     0.1422,
+     0.0,
+     1.0,
+     1.0
+    ],
+    "3:4": [
+     0.4888,
+     0.0,
+     0.9712,
+     1.0
+    ]
+   }
   },
   {
    "title": "On the Bank of the Seine, Bennecourt",
@@ -505,7 +531,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Claude%20Monet%20-%20Apples%20and%20Grapes%20-%201933.1152%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
    "thumbnail_url": "https://packs.curwe.ai/thumbs/bd706f0499170a4f468a2b4f0d5e0fde554be593556bba4cf6c54d99d107ad99.jpg",
    "focal_point": [
-    0.55,
+    0.5,
     0.45
    ],
    "featured_rank": 30,
@@ -519,7 +545,33 @@
    "below_floor_ok": true,
    "current_repository": "Art Institute of Chicago",
    "physical_dimensions": "66.5 × 82.5 cm (26 3/16 × 32 1/2 in.); Framed: 88 × 103.9 × 10.2 cm (34 5/8 × 40 7/8 × 4 in.)",
-   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Claude%20Monet%20-%20Apples%20and%20Grapes%20-%201933.1152%20-%20Art%20Institute%20of%20Chicago.jpg?width=600"
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Claude%20Monet%20-%20Apples%20and%20Grapes%20-%201933.1152%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1019,
+     1.0,
+     0.7981
+    ],
+    "9:16": [
+     0.2727,
+     0.0,
+     0.7272,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0,
+     1.0,
+     0.9282
+    ],
+    "3:4": [
+     0.197,
+     0.0,
+     0.803,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Artist's House at Argenteuil",
@@ -1275,8 +1327,8 @@
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Hilaire%20Germain%20Edgar%20Degas%20-%20Henri%20Degas%20and%20His%20Niece%20Lucie%20Degas%20%28The%20Artist%27s%20Uncle%20and%20Cousin%29%20-%201933.429%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
    "thumbnail_url": "https://packs.curwe.ai/thumbs/e8236992446de32e44be34757270fa20250b455d199aef64410e907237c897bb.jpg",
    "focal_point": [
-    0.78,
-    0.2
+    0.64,
+    0.3
    ],
    "featured_rank": 25,
    "license_verdict": "pd",
@@ -1289,21 +1341,27 @@
    "aspect_crops": {
     "16:9": [
      0.0,
-     0.0499,
+     0.0,
      1.0,
-     0.7223
+     0.6726
     ],
     "9:16": [
-     0.5292,
+     0.4048,
      0.0,
-     0.9998,
+     0.8752,
      1.0
     ],
     "4:3": [
      0.0,
-     0.0299,
+     0.0,
      1.0,
-     0.9264
+     0.8968
+    ],
+    "3:4": [
+     0.3264,
+     0.0,
+     0.9536,
+     1.0
     ]
    },
    "below_floor_ok": true,
@@ -1497,8 +1555,8 @@
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Camille%20Pissarro%20-%20Le%20Crystal%20Palace%2C%20Londres.jpg?width=3840",
    "thumbnail_url": "https://packs.curwe.ai/thumbs/e1dc0566f3030abe3790c5536624cca14d36a4db5f4b11ccb0c489c532c8ed7e.jpg",
    "focal_point": [
-    0.27,
-    0.4
+    0.45,
+    0.65
    ],
    "featured_rank": 40,
    "license_verdict": "pd",
@@ -1511,7 +1569,33 @@
    "below_floor_ok": true,
    "current_repository": "Art Institute of Chicago",
    "physical_dimensions": "47.2 × 73.5 cm (19 × 29 in.); Framed: 72.3 × 98.4 cm (28 1/2 × 38 3/4 in.)",
-   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Camille%20Pissarro%20-%20Le%20Crystal%20Palace%2C%20Londres.jpg?width=600"
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Camille%20Pissarro%20-%20Le%20Crystal%20Palace%2C%20Londres.jpg?width=600",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1109,
+     1.0,
+     1.0
+    ],
+    "9:16": [
+     0.2721,
+     0.0,
+     0.6279,
+     1.0
+    ],
+    "4:3": [
+     0.0282,
+     0.0,
+     0.8718,
+     1.0
+    ],
+    "3:4": [
+     0.2128,
+     0.0,
+     0.6873,
+     1.0
+    ]
+   }
   },
   {
    "title": "Woman and Child at the Well",
@@ -1528,8 +1612,8 @@
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Young-woman-and-child-at-the-well-1882.jpg?width=3840",
    "thumbnail_url": "https://packs.curwe.ai/thumbs/f58c1435b90685a3c2007ef6dc13d52b444d3eb7148759d253470a4cb85c01ae.jpg",
    "focal_point": [
-    0.34,
-    0.28
+    0.55,
+    0.35
    ],
    "featured_rank": 25,
    "license_verdict": "pd",
@@ -1542,7 +1626,33 @@
    "below_floor_ok": true,
    "current_repository": "Art Institute of Chicago",
    "physical_dimensions": "81.5 × 66.4 cm (32 1/8 × 26 1/8 in.); Framed: 98.5 × 81.6 × 6.1 cm (38 3/4 × 32 1/8 × 2 3/8 in.)",
-   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Young-woman-and-child-at-the-well-1882.jpg?width=600"
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Young-woman-and-child-at-the-well-1882.jpg?width=600",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1216,
+     1.0,
+     0.5784
+    ],
+    "9:16": [
+     0.2036,
+     0.0,
+     0.8964,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0455,
+     1.0,
+     0.6545
+    ],
+    "3:4": [
+     0.0764,
+     0.0,
+     1.0,
+     1.0
+    ]
+   }
   },
   {
    "title": "Young Peasant Having Her Coffee",
@@ -2894,15 +3004,41 @@
    "license_verified": "2026-09-22",
    "featured_rank": 48,
    "focal_point": [
-    0.55,
-    0.5
+    0.6,
+    0.55
    ],
    "delivered_edge": 3000,
    "resolution_tier": "HD",
    "below_floor_ok": true,
    "current_repository": "Art Institute of Chicago",
    "physical_dimensions": "54.5 × 73.7 cm (21 7/16 × 29 in.); Framed: 71.5 × 90.5 × 9.6 cm (28 1/8 × 35 5/8 × 3 3/4 in.)",
-   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Alfred%20Sisley%20-%20The%20Seine%20at%20Port-Marly%2C%20Piles%20of%20Sand%20-%201933.1177%20-%20Art%20Institute%20of%20Chicago.jpg?width=600"
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Alfred%20Sisley%20-%20The%20Seine%20at%20Port-Marly%2C%20Piles%20of%20Sand%20-%201933.1177%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1628,
+     1.0,
+     0.9372
+    ],
+    "9:16": [
+     0.3957,
+     0.0,
+     0.8043,
+     1.0
+    ],
+    "4:3": [
+     0.0316,
+     0.0,
+     1.0,
+     1.0
+    ],
+    "3:4": [
+     0.3276,
+     0.0,
+     0.8724,
+     1.0
+    ]
+   }
   },
   {
    "title": "A Turn in the Road",
@@ -2982,15 +3118,41 @@
    "license_verified": "2026-09-22",
    "featured_rank": 22,
    "focal_point": [
-    0.68,
-    0.4
+    0.62,
+    0.5
    ],
    "delivered_edge": 3000,
    "resolution_tier": "HD",
    "below_floor_ok": true,
    "current_repository": "Art Institute of Chicago",
    "physical_dimensions": "63.5 × 80 cm (25 × 31 1/2 in.); Framed: 98.8 × 114.7 × 8 cm (38 7/8 × 45 1/8 × 3 1/8 in.)",
-   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jean%20Baptiste%20Armand%20Guillaumin%20-%20Mill%20of%20Pont%20Maupuit%20-%201933.1123%20-%20Art%20Institute%20of%20Chicago.jpg?width=600"
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jean%20Baptiste%20Armand%20Guillaumin%20-%20Mill%20of%20Pont%20Maupuit%20-%201933.1123%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1535,
+     1.0,
+     0.8465
+    ],
+    "9:16": [
+     0.3917,
+     0.0,
+     0.8483,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.038,
+     1.0,
+     0.962
+    ],
+    "3:4": [
+     0.3156,
+     0.0,
+     0.9244,
+     1.0
+    ]
+   }
   },
   {
    "title": "Paris Street; Rainy Day",

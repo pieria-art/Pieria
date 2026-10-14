@@ -361,8 +361,8 @@
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Samuel%20van%20Hoogstraten%20-%20Young%20woman%20at%20an%20open%20half-door%20%281645%29.jpg?width=3840",
    "thumbnail_url": "https://packs.curwe.ai/thumbs/911b9a428e85aac73d2d2e58c24e27a0b2bc5c2126fc07bf169aecb5b7a57370.jpg",
    "focal_point": [
-    0.5,
-    0.28
+    0.47,
+    0.35
    ],
    "featured_rank": 20,
    "license_verdict": "pd",
@@ -375,7 +375,33 @@
    "below_floor_ok": true,
    "current_repository": "Art Institute of Chicago",
    "physical_dimensions": "102.5 × 85.1 cm (40 3/8 × 33 1/2 in.); Framed: 121.6 × 104.4 × 5.7 cm (47 7/8 × 41 1/8 × 2 1/4 in.)",
-   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Samuel%20van%20Hoogstraten%20-%20Young%20woman%20at%20an%20open%20half-door%20%281645%29.jpg?width=600"
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Samuel%20van%20Hoogstraten%20-%20Young%20woman%20at%20an%20open%20half-door%20%281645%29.jpg?width=600",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.118,
+     1.0,
+     0.582
+    ],
+    "9:16": [
+     0.129,
+     0.0,
+     0.811,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0407,
+     1.0,
+     0.6593
+    ],
+    "3:4": [
+     0.0153,
+     0.0,
+     0.9247,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Child's Bath",
@@ -2126,8 +2152,8 @@
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/James%20McNeill%20Whistler%20-%20Arrangement%20in%20Flesh%20Color%20and%20Brown%2C%20Portrait%20of%20Arthur%20Jerome%20Eddy%20-%201931.501%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
    "thumbnail_url": "https://packs.curwe.ai/thumbs/bec2041c74283bbd08572b473eff770767f26740cedf913f2d860b2685db0485.jpg",
    "focal_point": [
-    0.45,
-    0.1
+    0.47,
+    0.15
    ],
    "featured_rank": 30,
    "license_verdict": "pd",
@@ -2140,7 +2166,33 @@
    "below_floor_ok": true,
    "current_repository": "Art Institute of Chicago",
    "physical_dimensions": "210.7 × 93.3 cm (82 15/16 × 36 3/4 in.)",
-   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/James%20McNeill%20Whistler%20-%20Arrangement%20in%20Flesh%20Color%20and%20Brown%2C%20Portrait%20of%20Arthur%20Jerome%20Eddy%20-%201931.501%20-%20Art%20Institute%20of%20Chicago.jpg?width=600"
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/James%20McNeill%20Whistler%20-%20Arrangement%20in%20Flesh%20Color%20and%20Brown%2C%20Portrait%20of%20Arthur%20Jerome%20Eddy%20-%201931.501%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0248,
+     1.0,
+     0.2752
+    ],
+    "9:16": [
+     0.0,
+     0.0,
+     1.0,
+     0.7911
+    ],
+    "4:3": [
+     0.0,
+     0.0,
+     1.0,
+     0.3338
+    ],
+    "3:4": [
+     0.0,
+     0.0,
+     1.0,
+     0.5933
+    ]
+   }
   },
   {
    "title": "Mrs. John Nicholson (Hannah Duncan) and John Nicholson, Jr.",
@@ -2499,8 +2551,8 @@
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Mrs.%20Philip%20Dupont%2C%20c.%201778%2C%20by%20Thomas%20Gainsborough%20-%20Art%20Institute%20of%20Chicago%20-%20DSC09480.JPG?width=3840",
    "thumbnail_url": "https://packs.curwe.ai/thumbs/bd0b6b950b2cf4f1c4f9d768ee58d0c463f67220439ec4ef3af0a7bcc8ed2ebf.jpg",
    "focal_point": [
-    0.48,
-    0.36
+    0.46,
+    0.35
    ],
    "featured_rank": 20,
    "license_verdict": "pd",
@@ -2513,7 +2565,33 @@
    "below_floor_ok": true,
    "current_repository": "Art Institute of Chicago",
    "physical_dimensions": "77.2 × 64.5 cm (30 3/8 × 25 3/8 in.); Framed: 95.3 × 84.5 × 8.9 cm (37 1/2 × 33 1/4 × 3 1/2 in.)",
-   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Mrs.%20Philip%20Dupont%2C%20c.%201778%2C%20by%20Thomas%20Gainsborough%20-%20Art%20Institute%20of%20Chicago%20-%20DSC09480.JPG?width=600"
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Mrs.%20Philip%20Dupont%2C%20c.%201778%2C%20by%20Thomas%20Gainsborough%20-%20Art%20Institute%20of%20Chicago%20-%20DSC09480.JPG?width=600",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1122,
+     1.0,
+     0.5878
+    ],
+    "9:16": [
+     0.1274,
+     0.0,
+     0.7926,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0329,
+     1.0,
+     0.6671
+    ],
+    "3:4": [
+     0.0166,
+     0.0,
+     0.9034,
+     1.0
+    ]
+   }
   },
   {
    "title": "Riter Fitzgerald",
@@ -2644,8 +2722,8 @@
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Gustave%20Courbet%20-%20R%C3%AAverie%20%281862%29.jpg?width=3840",
    "thumbnail_url": "https://packs.curwe.ai/thumbs/fc362194856c84beccc226f25000a50c8e79f28b8bfe963be2693c98cb2c0c0c.jpg",
    "focal_point": [
-    0.52,
-    0.32
+    0.55,
+    0.38
    ],
    "featured_rank": 25,
    "license_verdict": "pd",
@@ -2658,7 +2736,33 @@
    "below_floor_ok": true,
    "current_repository": "Art Institute of Chicago",
    "physical_dimensions": "63.5 × 77 cm (25 × 30 5/16 in.); Framed: 98.5 × 112.4 cm (38 3/4 × 44 1/4 in.)",
-   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Gustave%20Courbet%20-%20R%C3%AAverie%20%281862%29.jpg?width=600"
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Gustave%20Courbet%20-%20R%C3%AAverie%20%281862%29.jpg?width=600",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0309,
+     1.0,
+     0.7291
+    ],
+    "9:16": [
+     0.3234,
+     0.0,
+     0.7766,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0,
+     1.0,
+     0.9309
+    ],
+    "3:4": [
+     0.2479,
+     0.0,
+     0.8521,
+     1.0
+    ]
+   }
   },
   {
    "title": "Mère Grégoire",
@@ -2675,8 +2779,8 @@
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Gustave%20Courbet%20-%20M%C3%A8re%20Gr%C3%A9goire%20-%201930.78%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
    "thumbnail_url": "https://packs.curwe.ai/thumbs/7f610936044f7915992a2843e44b79d5a8260bf2530a2847de3628c25ac441ff.jpg",
    "focal_point": [
-    0.5,
-    0.28
+    0.55,
+    0.4
    ],
    "featured_rank": 25,
    "license_verdict": "pd",
@@ -2689,7 +2793,33 @@
    "below_floor_ok": true,
    "current_repository": "Art Institute of Chicago",
    "physical_dimensions": "129 × 97.5 cm (50 3/4 × 38 3/8 in.); Framed: 168 × 137.2 × 16.2 cm (66 1/8 × 54 × 6 3/8 in.)",
-   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Gustave%20Courbet%20-%20M%C3%A8re%20Gr%C3%A9goire%20-%201930.78%20-%20Art%20Institute%20of%20Chicago.jpg?width=600"
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Gustave%20Courbet%20-%20M%C3%A8re%20Gr%C3%A9goire%20-%201930.78%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1876,
+     1.0,
+     0.6124
+    ],
+    "9:16": [
+     0.1775,
+     0.0,
+     0.9225,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1168,
+     1.0,
+     0.6832
+    ],
+    "3:4": [
+     0.0068,
+     0.0,
+     1.0,
+     1.0
+    ]
+   }
   }
  ]
 }

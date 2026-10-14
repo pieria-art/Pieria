@@ -1675,15 +1675,41 @@
    "license_verified": "2026-09-22",
    "featured_rank": 52,
    "focal_point": [
-    0.4,
-    0.35
+    0.45,
+    0.3
    ],
    "delivered_edge": 3000,
    "resolution_tier": "HD",
    "below_floor_ok": true,
    "current_repository": "Art Institute of Chicago",
    "physical_dimensions": "248.5 × 174 cm (97 3/4 × 68 1/2 in.); Framed: 285 × 210.2 × 8.9 cm (112 3/16 × 82 3/4 × 3 1/2 in.)",
-   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Guido%20Reni%20-%20Salome%20with%20the%20Head%20of%20Saint%20John%20the%20Baptist%20-%201960.3%20-%20Art%20Institute%20of%20Chicago.jpg?width=600"
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Guido%20Reni%20-%20Salome%20with%20the%20Head%20of%20Saint%20John%20the%20Baptist%20-%201960.3%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.1024,
+     1.0,
+     0.4976
+    ],
+    "9:16": [
+     0.0497,
+     0.0,
+     0.8503,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0365,
+     1.0,
+     0.5635
+    ],
+    "3:4": [
+     0.0,
+     0.0,
+     1.0,
+     0.9369
+    ]
+   }
   },
   {
    "title": "Saint Romanus of Antioch and Saint Barulas",
@@ -1757,7 +1783,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Nicolas%20Poussin%20-%20Landscape%20with%20Saint%20John%20on%20Patmos%20-%201930.500%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
    "thumbnail_url": "https://packs.curwe.ai/thumbs/08c3e36a038609277428d1ba7d0f3abe842149e2f27f903ed11999390f056a7a.jpg",
    "focal_point": [
-    0.62,
+    0.61,
     0.82
    ],
    "featured_rank": 35,
@@ -1770,21 +1796,27 @@
    "resolution_tier": "HD",
    "aspect_crops": {
     "9:16": [
-     0.2999,
+     0.4019,
      0.0,
-     0.7161,
+     0.8181,
      1.0
     ],
     "4:3": [
-     0.0067,
+     0.0133,
      0.0,
-     0.9933,
+     1.0,
      1.0
     ],
     "3:4": [
-     0.2,
+     0.3325,
      0.0,
-     0.755,
+     0.8875,
+     1.0
+    ],
+    "16:9": [
+     0.0,
+     0.2399,
+     1.0,
      1.0
     ]
    },
@@ -1871,29 +1903,35 @@
    "license_verified": "2026-09-22",
    "featured_rank": 48,
    "focal_point": [
-    0.42,
-    0.22
+    0.55,
+    0.4
    ],
    "delivered_edge": 2250,
    "resolution_tier": "HD",
    "aspect_crops": {
     "9:16": [
-     0.1479,
+     0.1992,
      0.0,
-     0.8521,
+     0.9008,
      1.0
     ],
     "4:3": [
      0.0,
-     0.1401,
+     0.0993,
      1.0,
-     0.7391
+     0.7007
     ],
     "3:4": [
-     0.0308,
+     0.0646,
      0.0,
-     0.9698,
+     1.0,
      1.0
+    ],
+    "16:9": [
+     0.0,
+     0.1745,
+     1.0,
+     0.6255
     ]
    },
    "below_floor_ok": true,
@@ -1929,7 +1967,33 @@
    "resolution_tier": "4K",
    "current_repository": "Art Institute of Chicago",
    "physical_dimensions": "403.2 × 211.8 cm (158 3/4 × 83 7/16 in.); Framed: 461.6 × 256.5 × 14 cm (181 3/4 × 101 × 5 9/16 in.)",
-   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Domenikos%20Theotok%C3%B3poulos%2C%20called%20El%20Greco%20-%20The%20Assumption%20of%20the%20Virgin%20-%20Google%20Art%20Project.jpg?width=600"
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Domenikos%20Theotok%C3%B3poulos%2C%20called%20El%20Greco%20-%20The%20Assumption%20of%20the%20Virgin%20-%20Google%20Art%20Project.jpg?width=600",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.106,
+     1.0,
+     0.394
+    ],
+    "9:16": [
+     0.0,
+     0.0,
+     1.0,
+     0.9101
+    ],
+    "4:3": [
+     0.0,
+     0.058,
+     1.0,
+     0.442
+    ],
+    "3:4": [
+     0.0,
+     0.0,
+     1.0,
+     0.6826
+    ]
+   }
   },
   {
    "title": "The Crucifixion",

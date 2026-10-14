@@ -134,8 +134,8 @@
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Vincent%20van%20Gogh%20-%20A%20Peasant%20Woman%20Digging%20in%20Front%20of%20Her%20Cottage%20-%201968.92%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
    "thumbnail_url": "https://packs.curwe.ai/thumbs/b6c789604b90727902116a927e11abef2d1c883807ecf6b4456668ec459ad4c5.jpg",
    "focal_point": [
-    0.62,
-    0.72
+    0.65,
+    0.68
    ],
    "featured_rank": 25,
    "license_verdict": "pd",
@@ -148,7 +148,33 @@
    "below_floor_ok": true,
    "current_repository": "Art Institute of Chicago",
    "physical_dimensions": "31.3 × 42 cm (12 5/16 × 16 1/2 in.); Framed: 52.1 × 62.6 × 10.8 cm (20 1/2 × 24 5/8 × 4 1/4 in.)",
-   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Vincent%20van%20Gogh%20-%20A%20Peasant%20Woman%20Digging%20in%20Front%20of%20Her%20Cottage%20-%201968.92%20-%20Art%20Institute%20of%20Chicago.jpg?width=600"
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Vincent%20van%20Gogh%20-%20A%20Peasant%20Woman%20Digging%20in%20Front%20of%20Her%20Cottage%20-%201968.92%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.234,
+     1.0,
+     1.0
+    ],
+    "9:16": [
+     0.4435,
+     0.0,
+     0.8565,
+     1.0
+    ],
+    "4:3": [
+     0.0209,
+     0.0,
+     1.0,
+     1.0
+    ],
+    "3:4": [
+     0.3746,
+     0.0,
+     0.9254,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Drinkers",
@@ -336,8 +362,8 @@
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Vincent%20van%20Gogh%20-%20Terrace%20and%20Observation%20Deck%20at%20the%20Moulin%20de%20Blute-Fin%2C%20Montmartre%20-%201926.202%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
    "thumbnail_url": "https://packs.curwe.ai/thumbs/c051a3dd0872077b249b2ac6430b23a014937e4b183330261b138c1db5c675dc.jpg",
    "focal_point": [
-    0.7,
-    0.65
+    0.55,
+    0.45
    ],
    "featured_rank": 30,
    "license_verdict": "pd",
@@ -349,22 +375,28 @@
    "resolution_tier": "HD",
    "aspect_crops": {
     "3:4": [
-     0.0,
+     0.0068,
      0.0,
      1.0,
      1.0
     ],
     "9:16": [
-     0.0292,
+     0.1775,
      0.0,
-     0.7708,
+     0.9225,
      1.0
     ],
     "4:3": [
      0.0,
-     0.1503,
+     0.1668,
      1.0,
-     0.7192
+     0.7332
+    ],
+    "16:9": [
+     0.0,
+     0.2376,
+     1.0,
+     0.6624
     ]
    },
    "below_floor_ok": true,
@@ -443,8 +475,8 @@
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Van%20Gogh%20-%20Blick%20in%20den%20Park%20von%20Arles.jpeg?width=3840",
    "thumbnail_url": "https://packs.curwe.ai/thumbs/91f933b6596e5f2f6dd8571331f42fccf62284316406d4e193eaaeba5ceacca3.jpg",
    "focal_point": [
-    0.5,
-    0.4
+    0.48,
+    0.35
    ],
    "featured_rank": 22,
    "license_verdict": "pd",
@@ -457,7 +489,33 @@
    "below_floor_ok": true,
    "current_repository": "Art Institute of Chicago",
    "physical_dimensions": "49.3 × 61.3 cm (19 7/16 × 24 3/16 in.)",
-   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Van%20Gogh%20-%20Blick%20in%20den%20Park%20von%20Arles.jpeg?width=600"
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Van%20Gogh%20-%20Blick%20in%20den%20Park%20von%20Arles.jpeg?width=600",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0,
+     1.0,
+     0.7116
+    ],
+    "9:16": [
+     0.2577,
+     0.0,
+     0.7023,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0,
+     1.0,
+     0.9488
+    ],
+    "3:4": [
+     0.1836,
+     0.0,
+     0.7764,
+     1.0
+    ]
+   }
   },
   {
    "title": "The Basket of Apples",
@@ -701,8 +759,8 @@
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Paul%20C%C3%A9zanne%20-%20The%20Vase%20of%20Tulips%20-%201933.423%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
    "thumbnail_url": "https://packs.curwe.ai/thumbs/bfc2869b12b02ad09e75b6a8f93f80d2341b2e25b73071501654acabcab83aa6.jpg",
    "focal_point": [
-    0.45,
-    0.35
+    0.5,
+    0.42
    ],
    "featured_rank": 30,
    "license_verdict": "pd",
@@ -715,7 +773,33 @@
    "below_floor_ok": true,
    "current_repository": "Art Institute of Chicago",
    "physical_dimensions": "59.6 × 42.3 cm (23 1/2 × 16 5/8 in.); Framed: 84.5 × 67 × 10.2 cm (33 1/4 × 26 3/8 × 4 in.)",
-   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Paul%20C%C3%A9zanne%20-%20The%20Vase%20of%20Tulips%20-%201933.423%20-%20Art%20Institute%20of%20Chicago.jpg?width=600"
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Paul%20C%C3%A9zanne%20-%20The%20Vase%20of%20Tulips%20-%201933.423%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.2195,
+     1.0,
+     0.6205
+    ],
+    "9:16": [
+     0.1055,
+     0.0,
+     0.8945,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.1527,
+     1.0,
+     0.6873
+    ],
+    "3:4": [
+     0.0,
+     0.0,
+     1.0,
+     0.9505
+    ]
+   }
   },
   {
    "title": "The Bathers",
@@ -903,8 +987,8 @@
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Paul%20C%C3%A9zanne%20-%20Standing%20Bather%2C%20Seen%20from%20the%20Back%20-%202007.289%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
    "thumbnail_url": "https://packs.curwe.ai/thumbs/99364db7d7184ee00be88dda26c30c3a1d25c7906ef2e5a0f5e1b970d2311283.jpg",
    "focal_point": [
-    0.4,
-    0.2
+    0.42,
+    0.25
    ],
    "featured_rank": 30,
    "license_verdict": "pd",
@@ -917,7 +1001,33 @@
    "below_floor_ok": true,
    "current_repository": "Art Institute of Chicago",
    "physical_dimensions": "31.7 × 21.6 cm (12 1/2 × 8 1/2 in.); Framed: 53.4 × 42.3 × 8.9 cm (21 × 16 5/8 × 3 1/2 in.)",
-   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Paul%20C%C3%A9zanne%20-%20Standing%20Bather%2C%20Seen%20from%20the%20Back%20-%202007.289%20-%20Art%20Institute%20of%20Chicago.jpg?width=600"
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Paul%20C%C3%A9zanne%20-%20Standing%20Bather%2C%20Seen%20from%20the%20Back%20-%202007.289%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0562,
+     1.0,
+     0.4437
+    ],
+    "9:16": [
+     0.0117,
+     0.0,
+     0.8283,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.0,
+     1.0,
+     0.5167
+    ],
+    "3:4": [
+     0.0,
+     0.0,
+     1.0,
+     0.9185
+    ]
+   }
   },
   {
    "title": "A Sunday on La Grande Jatte — 1884",
@@ -990,8 +1100,8 @@
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Georges%20Seurat%20-%20Oil%20Sketch%20for%20%22La%20Grande%20Jatte%22%20-%201981.15%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
    "thumbnail_url": "https://packs.curwe.ai/thumbs/65d2fda1dc3b52cc824682c735e474404fd4f39ba0c1586c1283ddff1e3b304d.jpg",
    "focal_point": [
-    0.6,
-    0.35
+    0.58,
+    0.45
    ],
    "featured_rank": 45,
    "license_verdict": "pd",
@@ -1004,7 +1114,33 @@
    "below_floor_ok": true,
    "current_repository": "Art Institute of Chicago",
    "physical_dimensions": "15.5 × 24.3 cm (6 1/8 × 9 9/16 in.); Framed: 25.4 × 35.6 cm (10 × 14 in.)",
-   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Georges%20Seurat%20-%20Oil%20Sketch%20for%20%22La%20Grande%20Jatte%22%20-%201981.15%20-%20Art%20Institute%20of%20Chicago.jpg?width=600"
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Georges%20Seurat%20-%20Oil%20Sketch%20for%20%22La%20Grande%20Jatte%22%20-%201981.15%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.0,
+     1.0,
+     0.9063
+    ],
+    "9:16": [
+     0.4054,
+     0.0,
+     0.7546,
+     1.0
+    ],
+    "4:3": [
+     0.1662,
+     0.0,
+     0.9938,
+     1.0
+    ],
+    "3:4": [
+     0.3472,
+     0.0,
+     0.8127,
+     1.0
+    ]
+   }
   },
   {
    "title": "Final Study for \"Bathers at Asnières\"",
@@ -1799,28 +1935,34 @@
    "license_verified": "2026-09-22",
    "featured_rank": 55,
    "focal_point": [
-    0.55,
-    0.35
+    0.5,
+    0.45
    ],
    "delivered_edge": 2568,
    "resolution_tier": "HD",
    "aspect_crops": {
     "16:9": [
      0.0,
-     0.15,
+     0.129,
      1.0,
-     0.7895
+     0.771
     ],
     "4:3": [
      0.0,
-     0.0702,
+     0.022,
      1.0,
-     0.9228
+     0.878
     ],
     "3:4": [
-     0.05,
+     0.1714,
      0.0,
-     0.7097,
+     0.8286,
+     1.0
+    ],
+    "9:16": [
+     0.2536,
+     0.0,
+     0.7464,
      1.0
     ]
    },

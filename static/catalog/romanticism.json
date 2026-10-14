@@ -77,8 +77,8 @@
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Thomas%20Cole%20-%20New%20England%20Scenery%20-%201900.558%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
    "thumbnail_url": "https://packs.curwe.ai/thumbs/5e155903103c37c2fda3741c7f3e931a4137ec235c0b23f4fc943765606a96e3.jpg",
    "focal_point": [
-    0.5,
-    0.55
+    0.45,
+    0.6
    ],
    "featured_rank": 28,
    "license_verdict": "pd",
@@ -91,7 +91,33 @@
    "below_floor_ok": true,
    "current_repository": "Art Institute of Chicago",
    "physical_dimensions": "57.1 × 46.7 cm (22 1/2 × 18 3/8 in.)",
-   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Thomas%20Cole%20-%20New%20England%20Scenery%20-%201900.558%20-%20Art%20Institute%20of%20Chicago.jpg?width=600"
+   "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Thomas%20Cole%20-%20New%20England%20Scenery%20-%201900.558%20-%20Art%20Institute%20of%20Chicago.jpg?width=600",
+   "aspect_crops": {
+    "16:9": [
+     0.0,
+     0.3698,
+     1.0,
+     0.8303
+    ],
+    "9:16": [
+     0.1065,
+     0.0,
+     0.7935,
+     1.0
+    ],
+    "4:3": [
+     0.0,
+     0.293,
+     1.0,
+     0.907
+    ],
+    "3:4": [
+     0.0,
+     0.0,
+     0.9161,
+     1.0
+    ]
+   }
   },
   {
    "title": "Pergola with Oranges",
@@ -1274,8 +1300,8 @@
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/John%20Constable%20-%20Stoke-by-Nayland%20-%201922.4453%20-%20Art%20Institute%20of%20Chicago.jpg?width=3840",
    "thumbnail_url": "https://packs.curwe.ai/thumbs/e0ca51ee22eb0ccc7d7e9bcf0c88f5b2591804ecb347c765c27c2f62b653a9fb.jpg",
    "focal_point": [
-    0.62,
-    0.8
+    0.5,
+    0.6
    ],
    "featured_rank": 35,
    "license_verdict": "pd",
@@ -1288,20 +1314,26 @@
    "aspect_crops": {
     "16:9": [
      0.0,
-     0.15,
+     0.2179,
      1.0,
-     0.914
+     0.9821
     ],
     "9:16": [
-     0.4999,
+     0.293,
      0.0,
-     0.9141,
+     0.707,
      1.0
     ],
     "4:3": [
-     0.0092,
+     0.0093,
      0.0,
-     0.9908,
+     0.9907,
+     1.0
+    ],
+    "3:4": [
+     0.224,
+     0.0,
+     0.776,
      1.0
     ]
    },
