@@ -1530,7 +1530,7 @@
    "featured_rank": 42,
    "focal_point": [
     0.5,
-    0.719
+    0.6
    ],
    "delivered_edge": 7680,
    "resolution_tier": "8K",
@@ -1543,9 +1543,9 @@
     ],
     "4:3": [
      0.0,
-     0.1502,
+     0.2899,
      1.0,
-     0.7035
+     0.8431
     ],
     "3:4": [
      0.0,
@@ -1910,17 +1910,17 @@
    "license_verified": "2026-07-16",
    "featured_rank": 45,
    "focal_point": [
-    0.42,
-    0.55
+    0.47,
+    0.53
    ],
    "delivered_edge": 4848,
    "resolution_tier": "4K",
    "aspect_crops": {
     "16:9": [
      0.0,
-     0.5199,
+     0.45,
      1.0,
-     0.8058
+     0.7359
     ],
     "9:16": [
      0.0,
@@ -2463,8 +2463,8 @@
    "license_verified": "2026-07-16",
    "featured_rank": 28,
    "focal_point": [
-    0.63,
-    0.35
+    0.5,
+    0.55
    ],
    "delivered_edge": 3871,
    "resolution_tier": "4K",
@@ -3584,17 +3584,17 @@
    "license_verified": "2026-07-16",
    "featured_rank": 30,
    "focal_point": [
-    0.35,
-    0.78
+    0.37,
+    0.77
    ],
    "delivered_edge": 5716,
    "resolution_tier": "4K",
    "aspect_crops": {
     "16:9": [
      0.0,
-     0.1001,
+     0.2465,
      1.0,
-     0.8537
+     1.0
     ],
     "9:16": [
      0.1499,

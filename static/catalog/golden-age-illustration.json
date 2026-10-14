@@ -357,17 +357,17 @@
    "license_verified": "2026-07-16",
    "featured_rank": 35,
    "focal_point": [
-    0.5,
-    0.4
+    0.6,
+    0.1
    ],
    "delivered_edge": 7680,
    "resolution_tier": "8K",
    "aspect_crops": {
     "16:9": [
      0.0,
-     0.0501,
+     0.0201,
      1.0,
-     0.4279
+     0.3978
     ],
     "9:16": [
      0.0812,
@@ -633,16 +633,16 @@
    "featured_rank": 60,
    "focal_point": [
     0.5,
-    0.3
+    0.42
    ],
    "delivered_edge": 5640,
    "resolution_tier": "4K",
    "aspect_crops": {
     "16:9": [
      0.0,
-     0.27,
+     0.2115,
      1.0,
-     0.667
+     0.6085
     ],
     "9:16": [
      0.1014,
@@ -2019,7 +2019,7 @@
    "featured_rank": 88,
    "focal_point": [
     0.32,
-    0.42
+    0.2
    ],
    "delivered_edge": 7680,
    "resolution_tier": "8K",
@@ -2954,8 +2954,8 @@
    "license_verified": "2026-07-16",
    "featured_rank": 63,
    "focal_point": [
-    0.5,
-    0.798
+    0.45,
+    0.68
    ],
    "delivered_edge": 3946,
    "resolution_tier": "4K",
@@ -3029,9 +3029,9 @@
     ],
     "4:3": [
      0.0,
-     0.1002,
+     0.3007,
      1.0,
-     0.5988
+     0.7993
     ],
     "3:4": [
      0.0,
@@ -3456,9 +3456,9 @@
    "resolution_tier": "4K",
    "aspect_crops": {
     "16:9": [
-     0.0601,
+     0.1111,
      0.0,
-     0.9489,
+     1.0,
      1.0
     ],
     "9:16": [
@@ -4000,8 +4000,8 @@
    "license_verified": "2026-07-16",
    "featured_rank": 48,
    "focal_point": [
-    0.55,
-    0.4
+    0.5,
+    0.23
    ],
    "delivered_edge": 4336,
    "resolution_tier": "4K",
@@ -4055,8 +4055,8 @@
    "license_verified": "2026-07-16",
    "featured_rank": 46,
    "focal_point": [
-    0.5,
-    0.173
+    0.38,
+    0.3
    ],
    "delivered_edge": 4312,
    "resolution_tier": "4K",

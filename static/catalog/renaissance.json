@@ -1756,7 +1756,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Fra%20Angelico%20-%20Annunciation.jpg?width=3840",
    "thumbnail_url": "https://packs.curwe.ai/thumbs/5d4f90daac74ce130f5f9df3986b10d33781b5299738f0e63b10655fb4e337e3.jpg",
    "focal_point": [
-    0.6,
+    0.71,
     0.38
    ],
    "featured_rank": 65,
@@ -2430,9 +2430,9 @@
    "aspect_crops": {
     "9:16": [
      0.0,
-     0.0099,
+     0.0,
      1.0,
-     0.9808
+     0.9709
     ],
     "4:3": [
      0.0,
@@ -2694,8 +2694,8 @@
    "license_verified": "2026-07-16",
    "featured_rank": 30,
    "focal_point": [
-    0.32,
-    0.2
+    0.4,
+    0.25
    ],
    "delivered_edge": 4000,
    "resolution_tier": "4K",
@@ -2720,9 +2720,9 @@
     ],
     "3:4": [
      0.0,
-     0.08,
+     0.0,
      1.0,
-     0.92
+     0.84
     ]
    },
    "thumbnail_source_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Schule%2C%20Sandro%20Botticelli%20%281445%20-%201510%29%20-%20Virgin%20and%20Child%20with%20young%20st.%20John%20-%20I.172%20-%20Gem%C3%A4ldegalerie.jpg?width=600"
@@ -2912,8 +2912,8 @@
    "license_verified": "2026-07-16",
    "featured_rank": 55,
    "focal_point": [
-    0.65,
-    0.4
+    0.84,
+    0.27
    ],
    "delivered_edge": 7230,
    "resolution_tier": "4K",
@@ -3095,9 +3095,9 @@
      0.841
     ],
     "3:4": [
-     0.2002,
      0.0,
-     0.8938,
+     0.0,
+     0.6936,
      1.0
     ],
     "9:16": [
@@ -3298,8 +3298,8 @@
    "license_verified": "2026-07-16",
    "featured_rank": 60,
    "focal_point": [
-    0.42,
-    0.35
+    0.6,
+    0.62
    ],
    "delivered_edge": 5222,
    "resolution_tier": "4K",

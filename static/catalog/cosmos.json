@@ -5330,10 +5330,10 @@
    "attribution_url": "https://photojournal.jpl.nasa.gov/catalog/PIA23405",
    "aspect_crops": {
     "16:9": [
-     0.1256,
      0.0,
-     0.84,
-     0.986
+     0.0,
+     0.7245,
+     1.0
     ],
     "9:16": [
      0.1054,
