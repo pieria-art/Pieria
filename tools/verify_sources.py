@@ -30,6 +30,12 @@ from pathlib import Path
 import httpx
 from PIL import Image
 
+# We only ever read header dimensions here (never decode the raster), and some trusted sources are
+# legitimately >178 MP (NASA/ESA Cosmos masters: Carina 29566x14321). Pillow's decompression-bomb guard
+# raises on .size for those, which then fell through to a full multi-hundred-MB download that raised
+# again — 8 false "source rot" hard-fails a week from 2026-10-05. Same call as tools/build_pack.py.
+Image.MAX_IMAGE_PIXELS = None
+
 from config import SD_USER_AGENT
 from scout import MIN_DISPLAY_EDGE, _wm_throttle
 
