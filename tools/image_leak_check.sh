@@ -135,6 +135,8 @@ fi
 for f in "$R"/etc/ssh/ssh_host_*; do
   [ -e "$f" ] && fail "$(rel "$f") present (host keys must be absent)"
 done
+[ -e "$R/etc/systemd/system/ssh.service.d/10-pieria-hostkeys.conf" ] \
+  || fail "etc/systemd/system/ssh.service.d/10-pieria-hostkeys.conf missing (no host-key generation: owners could never enable SSH)"
 if [ -s "$R/etc/machine-id" ]; then
   mid=$(tr -d '[:space:]' < "$R/etc/machine-id")
   [ "$mid" != "uninitialized" ] && fail "etc/machine-id is set (must be empty or 'uninitialized')"

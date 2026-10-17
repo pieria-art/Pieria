@@ -203,14 +203,37 @@ The image ships with **no usable login**: `--full` regenerates host keys per uni
 surface is the **web admin UI**, not a terminal — gramps never needs a shell, and a unit sitting on a
 home network exposes no service with shared credentials.
 
-A technical owner is still never locked out, using two stock Raspberry Pi OS mechanisms (both verified
-present on the image — `sshswitch.service` and `userconf-pi`). From any computer with a card reader,
-on the FAT boot partition:
+A technical owner is still never locked out. From any computer with a card reader, on the FAT boot
+partition:
+
+**Bookworm-based images** use two stock Raspberry Pi OS mechanisms (`sshswitch.service` and `userconf-pi`):
 
 | Want | Drop this on the boot partition |
 |---|---|
 | SSH turned on | an empty file named `ssh` |
 | A login to use | `userconf.txt` containing `username:<openssl passwd -6 output>` |
+
+**Trixie-based images** use cloud-init. Raspberry Pi Imager's OS customisation is **not** offered for a
+custom `.img` (it is greyed out), so write two files to the boot partition by hand. `meta-data` is one
+line, `instance-id: <anything unique>`; `user-data` is:
+
+```
+#cloud-config
+users:
+  - name: pi
+    lock_passwd: true
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    ssh_authorized_keys:
+      - "ssh-ed25519 AAAA... you@laptop"
+ssh_pwauth: false
+runcmd:
+  - [ systemctl, enable, --now, ssh ]
+```
+
+The unit generates its own SSH host keys the first time `sshd` starts (an `ssh.service` drop-in runs
+`ssh-keygen -A`), so nothing else is needed.
+Use `pi` (or a new name) — **never `kiosk`**: that account autologins the browser, and giving it
+passwordless sudo would make the kiosk a path to root.
 
 This is the same partition the config lives on, so it needs no tooling we don't already rely on.
 

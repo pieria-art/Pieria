@@ -485,6 +485,10 @@ echo "==> Finalizing"
 systemctl set-default multi-user.target   # boot to console; autologin does the rest
 systemctl daemon-reload
 
+echo "==> Installing sshd host-key drop-in (sshd generates its own missing host keys at start)"
+install -D -m 0644 "$UNIT_SRC/ssh-hostkeys.conf" /etc/systemd/system/ssh.service.d/10-pieria-hostkeys.conf
+systemctl daemon-reload
+
 # ADR-059's meta-lesson, applied to the provisioner itself: VERIFY WHAT LANDED, NOT WHAT YOU SENT.
 # Nearly every unit above is enabled with `|| true` or `2>/dev/null ||`, so a failure prints one soft
 # line and scrolls away in a thousand lines of apt output. On an image build that is expensive — the
@@ -516,6 +520,11 @@ for u in $_expected; do
     *) printf '    %-28s %s   <-- NOT ENABLED\n' "$u" "$_state"; _missing=1 ;;
   esac
 done
+if [ -e /etc/systemd/system/ssh.service.d/10-pieria-hostkeys.conf ]; then
+  printf '    %-28s %s\n' "ssh host-key drop-in" "present"
+else
+  printf '    %-28s %s   <-- MISSING\n' "ssh host-key drop-in" "MISSING"; _missing=1
+fi
 # sd-setup.service is intentionally DISABLED here — sd-image-prep enables it for the .img.
 _setup_state="$(systemctl is-enabled sd-setup.service 2>/dev/null || true)"; [ -n "$_setup_state" ] || _setup_state="MISSING"
 printf '    %-28s %s (correct: sd-image-prep enables it on the image)\n' "sd-setup.service" "$_setup_state"

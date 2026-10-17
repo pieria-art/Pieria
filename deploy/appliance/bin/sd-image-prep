@@ -118,19 +118,28 @@ enable_setup_service() {
 # --- DESTRUCTIVE identity/network/log wipe (--full only) ------------------------------------------
 wipe_identity() {
   rm -f /etc/ssh/ssh_host_* 2>/dev/null || true
-  # Re-arm host-key regeneration. The unit is regenerate_ssh_host_keys (UNDERSCORES) — this used to try
-  # the hyphenated name and swallow the failure with `2>/dev/null || true`, so regeneration was NEVER
-  # armed: sshd then had no host keys on a flashed unit and refused every connection, permanently.
-  # Found on the first real .img flash, 2026-07-21. Report failure rather than hiding it.
+  # Host keys on a flashed unit come from TWO mechanisms:
+  #  1. regenerate_ssh_host_keys.service (UNDERSCORES) — Bookworm: runs once and generates keys. We keep
+  #     enabling it (harmless), but it is no longer the gate: on Trixie it carries ConditionFirstBoot=yes
+  #     (as does sshd-keygen.service) and never fires, because we leave /etc/machine-id EMPTY and
+  #     systemd >=250 does not treat an empty machine-id as first boot. Found on a cold-flashed Trixie
+  #     unit: ssh.service crash-looped with "no hostkeys available".
+  #  2. The ssh.service drop-in 10-pieria-hostkeys.conf (installed by install.sh) runs `ssh-keygen -A`
+  #     before sshd starts, on any distro. THIS is the gate.
+  # machine-id stays empty rather than 'uninitialized': true first-boot semantics make systemd run
+  # `systemctl preset-all`, which on Debian could re-enable ssh.service and other units we
+  # deliberately disable.
   local armed=0 u
   for u in regenerate_ssh_host_keys.service regenerate-ssh-host-keys.service; do
     if systemctl list-unit-files "$u" >/dev/null 2>&1 && systemctl enable "$u" >/dev/null 2>&1; then
       echo "  armed $u (each flashed unit generates its own host keys)"; armed=1; break
     fi
   done
-  if [ "$armed" != 1 ]; then
-    echo "  WARNING: could not arm SSH host-key regeneration — flashed units will have NO SSH" >&2
+  if [ ! -e /etc/systemd/system/ssh.service.d/10-pieria-hostkeys.conf ]; then
+    echo "  WARNING: ssh host-key drop-in missing — flashed units could never start sshd — re-run install.sh" >&2
     PREP_LEAK=1
+  elif [ "$armed" != 1 ]; then
+    echo "  INFO: could not enable regenerate_ssh_host_keys (expected on Trixie); the ssh.service drop-in generates keys instead"
   fi
 
   # A DISTRIBUTABLE image must trust nobody. Shipping an authorized_keys means every unit in the world
@@ -530,7 +539,8 @@ lock_login() {
   # enable it, and the escape hatch is a well-known idiom — drop an empty file named `ssh` on the FAT
   # boot partition (handled by raspberrypi-sys-mods' sshswitch) and it comes back on next boot. Set
   # credentials: on Bookworm a `userconf.txt`; on Trixie `userconfig.service` is masked and the route is
-  # Raspberry Pi Imager's OS customisation (cloud-init `user-data` on the boot partition). Both work from any computer with a card reader, so
+  # a hand-written cloud-init `user-data` (+ `meta-data`) on the boot partition (Imager greys out its OS
+  # customisation for custom images) — see docs/image-build.md#remote-access-on-a-shipped-unit. Both work from any computer with a card reader, so
   # a technical owner is never locked out, and a non-technical one has no exposed service at all.
   # The appliance's real management surface is the web admin UI, not a terminal.
   if systemctl disable --now ssh >/dev/null 2>&1 || systemctl disable --now sshd >/dev/null 2>&1; then
