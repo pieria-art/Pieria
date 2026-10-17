@@ -16,7 +16,8 @@
 #                   OS_UPDATE_* — settings the owner chose and the wizard never asks about again.
 #   --full          (DESTRUCTIVE — for a distributable image capture only) — everything --enable-setup
 #                   does, PLUS wipe machine identity (SSH host keys, /etc/machine-id), saved Wi-Fi
-#                   (NetworkManager system-connections), and logs, so the captured .img is clean and
+#                   (NetworkManager system-connections + Trixie's /etc/netplan), the cloud-init
+#                   seed on the boot partition (user-data/network-config/meta-data) + its state, and logs, so the captured .img is clean and
 #                   every flashed unit regenerates its own identity. Run this only right before you
 #                   power down and capture the card. (The app DB reset, if wanted, is a separate manual
 #                   capture-time step — this script never touches Artwork/ or the DB. It DOES empty
@@ -40,6 +41,10 @@ for c in "$SCRIPT_DIR/../config/pieria.conf.example" \
          "/usr/local/share/pieria/pieria.conf.example"; do
   [ -r "$c" ] && { CONF_EXAMPLE="$c"; break; }
 done
+
+# Set to 1 by any check that finds credentials/identity that may still ship. Destructive steps keep running
+# (they already started), but the POWEROFF step refuses and the script exits 1 — see the end of --full.
+PREP_LEAK=0
 
 require_root() {
   if [ "$(id -u)" -ne 0 ]; then echo "Please run as root:  sudo $0 $*" >&2; exit 1; fi
@@ -123,7 +128,10 @@ wipe_identity() {
       echo "  armed $u (each flashed unit generates its own host keys)"; armed=1; break
     fi
   done
-  [ "$armed" = 1 ] || echo "  WARNING: could not arm SSH host-key regeneration — flashed units will have NO SSH" >&2
+  if [ "$armed" != 1 ]; then
+    echo "  WARNING: could not arm SSH host-key regeneration — flashed units will have NO SSH" >&2
+    PREP_LEAK=1
+  fi
 
   # A DISTRIBUTABLE image must trust nobody. Shipping an authorized_keys means every unit in the world
   # accepts that key — a supply-chain hole, and easy to ship by accident (this master carried the
@@ -160,6 +168,118 @@ wipe_identity() {
 wipe_network() {
   rm -f /etc/NetworkManager/system-connections/* 2>/dev/null || true
   echo "  wiped saved Wi-Fi (NetworkManager system-connections)"
+  # NetworkManager's own state names the maintainer's networks (BSSIDs seen, per-connection timestamps,
+  # DHCP leases). NM REWRITES seen-bssids/timestamps at shutdown, so this live delete is best-effort;
+  # the authoritative scrub is the offline check on the powered-off card (tools/image_leak_check.sh).
+  # secret_key is deleted too: it would otherwise be SHARED by every flashed unit, and NM regenerates it
+  # when missing. NetworkManager.state is left alone.
+  if [ -d /var/lib/NetworkManager ]; then
+    find /var/lib/NetworkManager -maxdepth 1 -type f \( -name 'seen-bssids' -o -name 'timestamps' \
+      -o -name '*.lease' -o -name '*.leases' -o -name 'internal-*' -o -name 'secret_key' \) -delete 2>/dev/null || true
+    echo "  cleared NetworkManager state (seen-bssids, timestamps, leases, secret_key) — best-effort, NM rewrites at shutdown"
+  fi
+  # Trixie's NetworkManager uses the netplan backend: saved connections (Wi-Fi SSID + PSK included) live
+  # as /etc/netplan/90-NM-<uuid>.yaml (cloud-init may add 50-cloud-init.yaml), and system-connections/
+  # is empty. Wiping only the latter would ship the maintainer's Wi-Fi PSK and keep the setup-wizard AP
+  # from coming up near their network. No-op on Bookworm (no /etc/netplan).
+  local nplan=0
+  if [ -d /etc/netplan ]; then
+    nplan=$(find /etc/netplan -maxdepth 1 -type f \( -name '*.yaml' -o -name '*.yml' \) 2>/dev/null | wc -l)
+    find /etc/netplan -maxdepth 1 -type f \( -name '*.yaml' -o -name '*.yml' \) -delete 2>/dev/null || true
+  fi
+  # Read back — do not trust the rm. Any surviving file that looks like it carries credentials is fatal
+  # for a distributable image, same spirit as the host-key warning in wipe_identity.
+  local leaked
+  leaked=$(grep -rlEi 'psk|password|wifi-security|access-points' /etc/netplan /etc/NetworkManager/system-connections 2>/dev/null || true)
+  if [ -d /etc/wpa_supplicant ]; then
+    leaked="$leaked
+$(grep -lE 'psk=' /etc/wpa_supplicant/*.conf 2>/dev/null || true)"
+  fi
+  leaked=$(printf '%s\n' "$leaked" | sed '/^$/d')
+  if [ -d /var/lib/NetworkManager ]; then
+    local nmstate
+    nmstate=$(find /var/lib/NetworkManager -maxdepth 1 -type f \( -name 'seen-bssids' -o -name 'timestamps' \) 2>/dev/null || true)
+    [ -z "$nmstate" ] || echo "  INFO: NM state still present (NM rewrites at shutdown; image_leak_check.sh --scrub handles it): $(echo $nmstate)"
+  fi
+  if [ -n "$leaked" ]; then
+    echo "  WARNING: Wi-Fi credentials may STILL be on disk — do NOT capture this image:" >&2
+    printf '%s\n' "$leaked" | sed 's/^/    /' >&2
+    PREP_LEAK=1
+  else
+    echo "  cleared $nplan netplan file(s); no credential-bearing network config remains"
+  fi
+}
+
+# --- cloud-init seed + state (--full only) --------------------------------------------------------
+# Trixie's Raspberry Pi Imager customisation is cloud-init: user-data (password hash + ssh_authorized_keys),
+# network-config (Wi-Fi SSID + PSK) and meta-data stay PERMANENTLY on the FAT boot partition (Bookworm's
+# self-deleting firstrun.sh is gone). Left in place they ship the maintainer's credentials in every image.
+# cloud-init itself stays ENABLED (Josh's decision, 2026-10-17) so owners can still use Imager's OS
+# customisation on our .img — it is the Trixie replacement for userconf.txt. We only clean it.
+# No-op (one line) on Bookworm: no cloud-init, no seed files.
+wipe_cloud_init() {
+  local d f removed="" left="" bootdirs=""
+  # Only a MOUNTED boot partition counts: an unmounted /boot/firmware is an empty dir on the rootfs, and
+  # "no seed found" there would be a false all-clear.
+  for d in /boot/firmware /boot; do
+    if mountpoint -q "$d" 2>/dev/null; then
+      bootdirs="$bootdirs $d"
+    elif [ "$d" = /boot ] && [ -e /boot/cmdline.txt ]; then
+      bootdirs="$bootdirs $d"
+    fi
+  done
+  if [ -z "$bootdirs" ]; then
+    echo "  WARNING: boot partition not mounted — cannot verify the cloud-init seed is gone; do NOT capture this image" >&2
+    PREP_LEAK=1
+  fi
+  for d in $bootdirs; do
+    for f in user-data network-config meta-data; do
+      if [ -e "$d/$f" ]; then
+        rm -f "$d/$f" 2>/dev/null || true
+        removed="$removed $d/$f"
+      fi
+    done
+    # A surviving Bookworm-style firstrun.sh means Imager customisation never finished, so cmdline.txt
+    # probably still boots through systemd.run= / kernel-command-line.target. Do NOT delete it — flag it.
+    if [ -e "$d/firstrun.sh" ]; then
+      echo "  WARNING: $d/firstrun.sh present — Imager first-run never completed — boot this card once more before sysprep" >&2
+      PREP_LEAK=1
+    fi
+    if [ -f "$d/cmdline.txt" ] && grep -q 'systemd\.run=' "$d/cmdline.txt" 2>/dev/null; then
+      echo "  WARNING: $d/cmdline.txt still contains systemd.run= (Imager first-run hook) — boot this card once more before sysprep" >&2
+      PREP_LEAK=1
+    fi
+  done
+  if command -v cloud-init >/dev/null 2>&1; then
+    # --seed drops the NoCloud seed copy, --logs the cloud-init logs, --configs removes ONLY the generated
+    # /etc/ssh/sshd_config.d/50-cloud-init.conf and generated netplan. NOT --machine-id (wipe_identity
+    # owns that) and NOT --reboot. NOT disabled: no /etc/cloud/cloud-init.disabled.
+    if cloud-init clean --logs --seed --configs ssh_config network >/dev/null 2>&1; then
+      echo "  cloud-init clean --logs --seed --configs ssh_config network done (cloud-init left enabled)"
+    else
+      echo "  WARNING: 'cloud-init clean' failed — /var/lib/cloud may still hold the maintainer's instance data" >&2
+      PREP_LEAK=1
+    fi
+    if [ -e /etc/sudoers.d/90-cloud-init-users ]; then
+      rm -f /etc/sudoers.d/90-cloud-init-users
+      echo "  removed /etc/sudoers.d/90-cloud-init-users"
+    fi
+  fi
+  for d in $bootdirs; do
+    for f in user-data network-config meta-data; do
+      if [ -e "$d/$f" ]; then left="$left $d/$f"; fi
+    done
+  done
+  if [ -n "$left" ]; then
+    echo "  WARNING: cloud-init seed STILL present —$left — the Imager's Wi-Fi password / SSH key would ship; do NOT capture this image" >&2
+    PREP_LEAK=1
+  elif [ -n "$removed" ]; then
+    echo "  removed cloud-init seed from the boot partition:$removed"
+  elif ! command -v cloud-init >/dev/null 2>&1; then
+    echo "  (no cloud-init and no seed files — nothing to clean)"
+  else
+    echo "  (no cloud-init seed files on the boot partition)"
+  fi
 }
 
 # --- kiosk Chromium profile: no build-box browser state on a distributable image (--full only) ------
@@ -389,20 +509,28 @@ lock_login() {
     return 0
   fi
 
-  # Lock every human account (uid >= 1000, excluding nobody). `passwd -l` prefixes the hash with '!',
-  # so password auth fails while the account keeps working for file ownership and console autologin.
-  local locked=""
+  # Disable password login for every human account (uid >= 1000, excluding nobody) AND destroy the hash.
+  # `passwd -l` only prefixes '!' and leaves the real hash in /etc/shadow — every public .img would carry
+  # the maintainer's crackable password hash. `usermod -p '!*'` replaces it; the account keeps working for
+  # file ownership and console autologin.
+  local locked="" user uid shadowpw
   while IFS=: read -r user _ uid _ _ _ _; do
     [ "$uid" -ge 1000 ] 2>/dev/null || continue
     [ "$uid" -ge 65534 ] && continue
-    passwd -l "$user" >/dev/null 2>&1 && locked="$locked $user"
+    if usermod -p '!*' "$user" >/dev/null 2>&1; then locked="$locked $user"; fi
+    shadowpw=$(awk -F: -v u="$user" '$1==u{print $2}' /etc/shadow 2>/dev/null || true)
+    if [ "$shadowpw" != '!*' ]; then
+      echo "  WARNING: /etc/shadow hash for '$user' was NOT destroyed — the password hash would ship; do NOT capture this image" >&2
+      PREP_LEAK=1
+    fi
   done < /etc/passwd
-  echo "  locked password login for:${locked:- (none found)}"
+  echo "  destroyed password hash (set to '!*', login disabled) for:${locked:- (none found)}"
 
   # SSH off by default. This MATCHES the platform: Raspberry Pi OS Lite ships sshd disabled unless you
   # enable it, and the escape hatch is a well-known idiom — drop an empty file named `ssh` on the FAT
   # boot partition (handled by raspberrypi-sys-mods' sshswitch) and it comes back on next boot. Set
-  # credentials the same way with a `userconf.txt`. Both work from any computer with a card reader, so
+  # credentials: on Bookworm a `userconf.txt`; on Trixie `userconfig.service` is masked and the route is
+  # Raspberry Pi Imager's OS customisation (cloud-init `user-data` on the boot partition). Both work from any computer with a card reader, so
   # a technical owner is never locked out, and a non-technical one has no exposed service at all.
   # The appliance's real management surface is the web admin UI, not a terminal.
   if systemctl disable --now ssh >/dev/null 2>&1 || systemctl disable --now sshd >/dev/null 2>&1; then
@@ -458,6 +586,10 @@ case "${1:-}" in
   --full)
     require_root "$@"
     echo "==> sd-image-prep: FULL (destructive — for a distributable image capture)"
+    # `sudo -i` also sets SUDO_USER; only nag a direct `sudo sd-image-prep` call.
+    if [ -n "${SUDO_USER:-}" ] && [ -z "${SUDO_COMMAND##*sd-image-prep*}" ]; then
+      echo "NOTE: invoked via sudo — prefer 'sudo -i' first and run this from the root shell: lock_login destroys your password hash, so a refused poweroff would leave you without sudo."
+    fi
     quiesce_status_writers   # can abort (an OS upgrade is running) — before anything destructive
     wipe_secrets  # this can abort too, and it should abort before anything destructive happens
     clear_appliance_status
@@ -465,11 +597,25 @@ case "${1:-}" in
     declare_capabilities
     enable_setup_service
     wipe_network
+    wipe_cloud_init
     wipe_identity
     lock_login
     wipe_kiosk_chromium_profile
     clean_logs
     stamp_clock   # last: the floor should be as late as possible (see ADR-062)
+    if [ "$PREP_LEAK" = "1" ]; then
+      {
+        echo
+        echo "=============================================================================="
+        echo "NOT powering off: credentials may remain — fix and re-run; do not capture."
+        echo "You need a root shell to re-run (sudo will no longer work for a password-only user:"
+        echo "lock_login destroyed the password hash)."
+        echo "Scroll up for the WARNING lines. The destructive steps already ran; re-running"
+        echo "--full is safe. Do NOT dd this card until a run finishes with no WARNING."
+        echo "=============================================================================="
+      } >&2
+      exit 1
+    fi
     echo "Done. Power down now and capture the card (dd -> pishrink -> xz). Do NOT reboot this box"
     echo "on the bench — it would regenerate identity here instead of on the flashed units."
     # --full deletes the SSH host keys, so this command destroys its own remote access: any shutdown

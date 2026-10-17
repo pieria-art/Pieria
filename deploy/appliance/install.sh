@@ -468,12 +468,12 @@ if [ "${EINK_ENABLED:-0}" = "1" ]; then
   # it (see the script's header comment). Works whether or not ALL_IN_ONE is set.
   install -m 0644 "$REPO_ROOT/eink_client.py" /usr/local/bin/eink_client.py
 
-  echo "    Installing host Python deps (python3-pil via apt; httpx + inky[rpi] via pip)"
+  echo "    Installing host Python deps (python3-pil via apt; httpx + inky via pip)"
   apt-get install -y --no-install-recommends python3-pip python3-pil \
     || echo "    WARNING: python3-pip/python3-pil install failed — sd-eink may not run" >&2
   # Bookworm's system Python is externally-managed (PEP 668); --break-system-packages is the
   # documented escape hatch for a host-level script install like this one (not a packaged app venv).
-  pip3 install --break-system-packages --no-cache-dir httpx "inky[rpi]" \
+  pip3 install --break-system-packages --no-cache-dir httpx inky \
     || echo "    WARNING: pip install of httpx/inky failed — sd-eink may not run (Pi-gated: verify on the bench Pi)" >&2
 
   sed "s#__BOOT_CONF__#$BOOT_CONF#g" "$UNIT_SRC/sd-eink.service" > /etc/systemd/system/sd-eink.service

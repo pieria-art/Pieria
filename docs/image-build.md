@@ -95,7 +95,8 @@ card — that is what makes first boot fast.
 ## 4. Sysprep
 
 ```bash
-sudo POWEROFF=1 sd-image-prep --full
+# from a root shell (sudo -i first):
+POWEROFF=1 sd-image-prep --full
 ```
 
 This scrubs secrets, empties `data/appliance/` (this box's status files — conf/watchdog/metrics/update-check; done through `sd-mailbox`, and they regenerate on first boot), resets the boot conf to the placeholder (so first boot enters the wizard), enables
@@ -115,9 +116,14 @@ at capture time. If it stops you here, you skipped step 3's emptying.
   your SSH key to every unit in the world; the second ships a shared password and a listening sshd.
   Both exist only for private bench masters.
 
-**Verify:** read the command's own output before it powers off — it names the host-key unit it armed,
-the count of `authorized_keys` files removed, and the clock floor it stamped. If it warns that it
-could not arm host-key regeneration, **stop**: every flashed unit will refuse SSH forever.
+Run sysprep from a **root shell**: `sudo -i`, then `POWEROFF=1 sd-image-prep --full`. `lock_login`
+destroys the operator's password hash, and on Trixie `sudo` needs that password, so a refused poweroff
+would otherwise leave you unable to fix and re-run. The root shell survives.
+
+**Verify:** with `POWEROFF=1` you cannot read the output before the box powers off, so the script
+now **refuses to power off (exits 1)** if any leak check fails — a box that powered off passed its own
+checks. If it stays up with a `NOT powering off` banner, fix the `WARNING` lines and re-run; do not
+capture. The offline check in step 5 is the final gate.
 
 ---
 
@@ -128,8 +134,13 @@ With the card in the laptop reader, and after confirming the device node:
 ```bash
 lsblk -o NAME,SIZE,MODEL,TRAN            # CONFIRM which /dev/sdX is the card
 sudo dd if=/dev/sdX of=~/pieria-img/pieria-master.img bs=4M status=progress conv=fsync
+sudo ~/ai-workspace/Pieria/tools/image_leak_check.sh --scrub ~/pieria-img/pieria-master.img   # must end LEAK CHECK: PASS
 sudo pishrink -Z ~/pieria-img/pieria-master.img ~/pieria-img/pieria-release.img.xz
 ```
+
+NetworkManager rewrites its network state (seen BSSIDs, timestamps) at shutdown, so only a check of the
+powered-off card can be authoritative; `image_leak_check.sh` scrubs that state and also catches anything
+sysprep missed.
 
 `pishrink` shrinks the filesystem to its used size (~59 G → ~6 G), injects a first-boot auto-expand,
 and runs `e2fsck -pf` on the way — which also cleans an unclean journal, though that is a safety net,
