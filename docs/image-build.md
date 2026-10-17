@@ -17,7 +17,7 @@ step that reads state back rather than assuming the previous command worked.
 
 | | |
 |---|---|
-| **OS image** | `2025-05-13-raspios-bookworm-arm64-lite` — **Bookworm, not trixie.** Raspberry Pi Imager now defaults to trixie (python 3.13), which the e-ink stack does not support (ADR-053). Pick the older release explicitly under "Raspberry Pi OS (other)". |
+| **OS image** | **Raspberry Pi OS Lite (64-bit), Trixie** — the Imager default. Validated 2026-10-17 (ADR-149): the app runs in Docker, and the e-ink host client installs fine on Python 3.13. Bookworm still builds (1.0 was Bookworm); both are handled by every step below. |
 | **Cards** | Two, ideally. One is workable (capture-then-flash-back, ADR-060) but leaves no fallback if the capture is bad. |
 | **Reader** | A USB adapter. Note it presents as `/dev/sd*` — the same namespace as the laptop's own NVMe. **Confirm the device node before every destructive command.** |
 | **Laptop space** | ~65 GB free: the raw `dd` is the full card size before `pishrink` shrinks it. |
@@ -39,8 +39,8 @@ it exists only so you can drive the build.
 > Don't skip the customisation and plan to "just plug in a keyboard." Provisioning needs the network
 > anyway (apt, Docker, the R2 pack), so the box has to be online regardless.
 
-**Verify:** `ssh pi@<host>.local` and `cat /etc/os-release` — expect `bookworm`, and
-`python3 -V` should report **3.11.x**.
+**Verify:** `ssh pi@<host>.local` and `cat /etc/os-release` — expect `trixie` (`python3 -V` → 3.13.x).
+On Trixie, `pi` has no passwordless sudo — you'll type the Imager password for `sudo`.
 
 ---
 
@@ -186,8 +186,8 @@ Each of these has already cost real time.
 | Trap | What it looks like | Guard |
 |---|---|---|
 | Flavour not set on a fresh box | Finished card serves nothing; wizard's all-in-one choice does nothing | `install.sh` prints the flavour first and warns; pass `ALL_IN_ONE=1` |
-| trixie instead of Bookworm | e-ink stack won't install (python 3.13) | Pick the OS release explicitly in Imager |
-| Host-key regeneration not armed | Every flashed unit refuses SSH, permanently | `--full` reports which unit it armed; read it (ADR-060) |
+| Imager settings left on the card (Trixie) | Your Wi-Fi password, password hash and SSH key on every unit (cloud-init `user-data`/`network-config` stay on the boot partition) | `--full` removes the seed and refuses to power off if any survives; `image_leak_check.sh` re-checks offline (ADR-149) |
+| No SSH host keys on a flashed unit | An owner re-enables SSH and sshd crash-loops (`no hostkeys available`) | The `ssh.service` drop-in runs `ssh-keygen -A`; `--full` and the leak check fail if it's missing (ADR-060/149) |
 | `authorized_keys` shipped | Every unit in the world trusts your laptop | `--full` removes it and prints the count |
 | Gemini key shipped in `.env` or the DB | Your API key on every unit, billed to you | Don't pass `GEMINI_API_KEY`; `--full` scrubs `.env` and aborts on a key in the DB |
 | Plug pulled after `--full` | Dirty journal imaged into every unit | `POWEROFF=1` |
