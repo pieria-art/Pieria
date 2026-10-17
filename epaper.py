@@ -163,7 +163,8 @@ def _fit_rgb(image_path: Path, w: int, h: int, fit: str = "cover",
     mismatches the panel's — ADR-148).
 
     An optional normalized `crop_box` pre-crops to an authored region first; since that box is
-    authored AT the target aspect the subsequent fit is near-lossless, and focal stops mattering.
+    authored AT the target aspect the subsequent fit is near-lossless when the panel matches it; if the panel's aspect differs, the focal point (remapped
+    into the cropped region) still anchors the cover-fit.
     Absent/invalid box -> the focal path below, unchanged, so zero crop data is a true no-op.
 
     Shared by the e-ink renderer and the full-colour (Frame TV) renderer so the
@@ -189,6 +190,12 @@ def _fit_rgb(image_path: Path, w: int, h: int, fit: str = "cover",
             # a degenerate box on a tiny source would crop to nothing — keep the full frame instead
             if right - left >= 1 and lower - upper >= 1:
                 img = img.crop((left, upper, right, lower))
+                # focal is in full-image space; remap it into the cropped region so the fit below
+                # still anchors on the subject when the panel aspect differs from the box's
+                focal = (
+                    min(max((focal[0] - box[0]) / (box[2] - box[0]), 0.0), 1.0),
+                    min(max((focal[1] - box[1]) / (box[3] - box[1]), 0.0), 1.0),
+                )
         # ADR-085 closed by ADR-148: a work whose orientation doesn't match the panel's (portrait on a
         # landscape panel, or the reverse) always CROPS TO FILL — never side margins. The authored
         # `aspect_crops` box was applied above when present, else the focal-anchored cover below is the

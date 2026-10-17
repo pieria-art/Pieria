@@ -816,9 +816,13 @@ function pickCropForAspect(crops, w, h) {
 // Deliberately not the two-percentage background-size trick used by the legacy static-crop path:
 // that scales X and Y independently, which stretches the art whenever the crop's aspect doesn't
 // exactly match the viewport — and since we pick the NEAREST preset, it never exactly matches.
-// Uniform scale + a pixel offset that centres the crop keeps the geometry honest and just lets the
-// overflow spill past the edges, which is what "cover" should mean.
-function applyCropBox(element, img, box) {
+// Uniform scale keeps the geometry honest; the box always covers exactly in one dimension and the
+// visible window lies INSIDE the box in the other. That leftover overflow is anchored on the focal
+// point (window centred on it, clamped to stay within the box) rather than split equally off both
+// edges — centring cut the subject on far-off shapes like a 21:9 ultrawide (Birth of Venus lost her
+// head). Returns the focal point's position in ELEMENT space as {ox, oy} percentages (0..100), or
+// false when the dimensions are unusable.
+function applyCropBox(element, img, box, fx = 0.5, fy = 0.5) {
     const [x0, y0, x1, y1] = box;
     const W = img.naturalWidth, H = img.naturalHeight;
     const EW = element.clientWidth, EH = element.clientHeight;
@@ -826,12 +830,25 @@ function applyCropBox(element, img, box) {
 
     const cw = (x1 - x0) * W, ch = (y1 - y0) * H;
     const scale = Math.max(EW / cw, EH / ch);
-    const offX = EW / 2 - ((x0 + x1) / 2) * W * scale;
-    const offY = EH / 2 - ((y0 + y1) / 2) * H * scale;
+    // Window centre (image px), focal-centred and clamped inside the box; a window at least as big
+    // as the box falls back to the box centre.
+    const place = (f, lo, hi, size, view) => {
+        const half = view / 2;
+        if (view >= (hi - lo) * size) return ((lo + hi) / 2) * size;
+        return Math.min(Math.max(f * size, lo * size + half), hi * size - half);
+    };
+    const cxImg = place(fx, x0, x1, W, EW / scale);
+    const cyImg = place(fy, y0, y1, H, EH / scale);
+    const offX = EW / 2 - cxImg * scale;
+    const offY = EH / 2 - cyImg * scale;
+    const clamp100 = v => Math.min(Math.max(v, 0), 100);
 
     element.style.backgroundSize = `${(W * scale).toFixed(2)}px ${(H * scale).toFixed(2)}px`;
     element.style.backgroundPosition = `${offX.toFixed(2)}px ${offY.toFixed(2)}px`;
-    return true;
+    return {
+        ox: clamp100(((fx * W * scale + offX) / EW) * 100),
+        oy: clamp100(((fy * H * scale + offY) / EH) * 100),
+    };
 }
 
 function applyModeStyles(element, img, cropData, focal) {
@@ -867,7 +884,7 @@ function applyModeStyles(element, img, cropData, focal) {
         element.style.backgroundPosition = `${posX}% ${posY}%`;
         element.style.transform = 'none';
         element.style.transformOrigin = '';
-    } else if (displayMode === 'static-crop' && box && applyCropBox(element, img, box)) {
+    } else if (displayMode === 'static-crop' && box && applyCropBox(element, img, box, fx, fy)) {
         // No hand-set crop, but we have a preset composed for THIS screen shape — use it.
         element.style.transform = 'none';
         element.style.transformOrigin = '';
@@ -891,14 +908,15 @@ function applyModeStyles(element, img, cropData, focal) {
 function startKenBurns(element, fx, fy, img, box) {
     const SCALE = 1.12, BASE_DRIFT = 4;           // zoom depth + max drift (% of layer)
     // With an authored crop the composition is already chosen, so Ken Burns pans WITHIN it: the
-    // background is laid out to the crop and the focal point is remapped into crop space so the
-    // zoom still anchors on the subject. Without one, this is byte-for-byte the previous behaviour.
+    // background is laid out to the crop (window anchored on the focal point) and the transform
+    // origin is the focal point's position in ELEMENT space, so the zoom still anchors on the
+    // subject. Without one, this is byte-for-byte the previous behaviour.
     let ax = fx, ay = fy;
-    const cropped = box && img && applyCropBox(element, img, box);
-    if (cropped) {
-        const [x0, y0, x1, y1] = box;
-        ax = Math.min(Math.max((fx - x0) / (x1 - x0), 0), 1);
-        ay = Math.min(Math.max((fy - y0) / (y1 - y0), 0), 1);
+    const placed = box && img && applyCropBox(element, img, box, fx, fy);
+    const cropped = !!placed;
+    if (placed) {
+        ax = placed.ox / 100;
+        ay = placed.oy / 100;
     }
     const cx = 1 - 2 * Math.abs(ax - 0.5);        // centrality: 1 at center → 0 at the edge
     const cy = 1 - 2 * Math.abs(ay - 0.5);

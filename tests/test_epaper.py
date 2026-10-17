@@ -4,7 +4,7 @@ import io
 from pathlib import Path
 
 import pytest
-from PIL import Image
+from PIL import Image, ImageOps
 
 from epaper import (
     PALETTES,
@@ -330,6 +330,27 @@ def test_invalid_crop_box_falls_back_to_focal(tmp_path, bad):
     base = render_for_epaper(src, 120, 90, palette="spectra6", fmt="png", focal=(0.4, 0.3))
     assert render_for_epaper(src, 120, 90, palette="spectra6", fmt="png", focal=(0.4, 0.3),
                              crop_box=bad) == base
+
+
+def test_focal_is_remapped_into_crop_space(tmp_path):
+    """Box crops first, then the fit must anchor on the focal point IN CROP SPACE: a subject near the
+    top of the box stays in frame on a much wider panel (centring on the raw focal cut it)."""
+    img = Image.new("RGB", (1600, 900), (255, 255, 255))
+    for x in range(780, 820):          # black marker near the top of the box, full-image y 100..140
+        for y in range(100, 140):
+            img.putpixel((x, y), (0, 0, 0))
+    src = tmp_path / "marker.png"
+    img.save(src)
+    box = (0.0, 0.05, 1.0, 0.95)       # 16:9-ish box; marker at crop y ~ 0.06..0.16
+    focal = (0.5, 0.13)
+    wide = _fit_rgb(src, 400, 100, "cover", focal, box)
+    assert min(wide.convert("L").getdata()) < 60, "marker was cut out of the wide render"
+    # control: the old behaviour (focal used raw as crop-space centring) clips it
+    cropped = img.crop((0, 45, 1600, 855))
+    old = ImageOps.fit(cropped, (400, 100), method=Image.Resampling.LANCZOS, centering=(0.5, 0.0))
+    assert min(old.convert("L").getdata()) < 60  # sanity: top-anchored would see it
+    centred = ImageOps.fit(cropped, (400, 100), method=Image.Resampling.LANCZOS, centering=(0.5, 0.5))
+    assert min(centred.convert("L").getdata()) > 200, "control: centring should cut the marker"
 
 
 def test_normalize_crop_box_accepts_and_rejects():
