@@ -96,6 +96,9 @@ def test_install_creates_verified_subscriptions_and_playlists(tmp_path, monkeypa
         for a in artworks.values():
             assert a.is_seed is True and a.status == "approved"
             assert a.source_url.startswith("pack:")        # local sentinel, never fetchable
+        # header dims are stored (pack installs used to leave 0, which broke the admin framing editor)
+        for a in artworks.values():
+            assert (a.original_width, a.original_height) == (20, 20)
         # focal survived the round-trip
         assert (artworks["high.jpg"].focal_x, artworks["high.jpg"].focal_y) == (0.6, 0.4)
 
@@ -145,5 +148,27 @@ def test_install_is_idempotent(tmp_path, monkeypatch):
         assert lifespan_module.install_pack_subscriptions(db) is True   # pack_seeded guard → no-op
         assert (db.query(ArtworkModel).count(), db.query(SubscriptionModel).count(),
                 db.query(PlaylistModel).count()) == (n_art, n_sub, n_pl)
+    finally:
+        db.close()
+
+
+def test_backfill_artwork_dimensions(tmp_path, monkeypatch):
+    lib = tmp_path / "_Library"
+    lib.mkdir()
+    Image.new("RGB", (30, 10)).save(lib / "zero.jpg", "JPEG")
+    Image.new("RGB", (30, 10)).save(lib / "keep.jpg", "JPEG")
+    monkeypatch.setattr(lifespan_module, "LIBRARY_DIR", lib)
+    db = _db()
+    try:
+        db.add_all([
+            ArtworkModel(filename="zero.jpg", original_width=0, original_height=0, status="approved"),
+            ArtworkModel(filename="gone.jpg", original_width=0, original_height=0, status="approved"),
+            ArtworkModel(filename="keep.jpg", original_width=7, original_height=5, status="approved"),
+        ])
+        db.commit()
+        assert lifespan_module.backfill_artwork_dimensions(db) == 1
+        by = {a.filename: (a.original_width, a.original_height) for a in db.query(ArtworkModel).all()}
+        assert by == {"zero.jpg": (30, 10), "gone.jpg": (0, 0), "keep.jpg": (7, 5)}
+        assert lifespan_module.backfill_artwork_dimensions(db) == 0   # idempotent
     finally:
         db.close()

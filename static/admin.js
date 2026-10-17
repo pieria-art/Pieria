@@ -3111,6 +3111,7 @@ async function _editOwnShapes() {
 
 function _editDefaultBox(art, shape) {
     const W = art.original_width, H = art.original_height, r = _shapeRatio(shape);
+    if (!(W > 0 && H > 0)) return [0, 0, 1, 1];   // dims unknown even after image load: never emit NaN
     let bw, bh;
     if (W / H > r) { bh = 1; bw = (r * H) / W; } else { bw = 1; bh = W / (r * H); }
     const x0 = Math.min(1 - bw, Math.max(0, (art.focal_x ?? 0.5) - bw / 2));
@@ -3120,6 +3121,10 @@ function _editDefaultBox(art, shape) {
 
 function _editBoxFits(art, shape, box) {
     if (!Array.isArray(box) || box.length !== 4) return false;
+    if (!(art.original_width > 0 && art.original_height > 0)) {
+        // No dimensions to check the ratio against: trust a structurally valid saved box rather than NaN-reject it.
+        return box.every(v => typeof v === 'number' && v >= 0 && v <= 1) && box[0] < box[2] && box[1] < box[3];
+    }
     const got = ((box[2] - box[0]) * art.original_width) / ((box[3] - box[1]) * art.original_height);
     return Math.abs(got / _shapeRatio(shape) - 1) <= 0.03;
 }
@@ -3129,11 +3134,23 @@ async function editShapesInit(art) {
     editShape = null; editShapeBoxes = {}; editShapeDirty = new Set();
     editShapeEdited = false;
     const saved = art.aspect_crops || {};
+    const shapeImg = document.getElementById('edit-shape-image');
+    shapeImg.src = `${API_BASE}/artworks/${art.id}/preview?f=${encodeURIComponent(art.filename)}`;
+    document.getElementById('edit-shape-preview-img').src = shapeImg.src;
+    // Pack installs historically stored original_width/height = 0 (backfilled at boot now, but an older
+    // box or a failed backfill can still hand us zeros). Boxes are normalised, so the loaded image's
+    // natural size is an equally correct W/H; without it the ratio check and default box go NaN.
+    let dimsArt = art;
+    if (!(art.original_width > 0 && art.original_height > 0)) {
+        try { await shapeImg.decode(); } catch (e) { /* leave dims unknown; the guards above cope */ }
+        if (editId !== art.id) return;
+        if (shapeImg.naturalWidth > 0 && shapeImg.naturalHeight > 0) {
+            dimsArt = { ...art, original_width: shapeImg.naturalWidth, original_height: shapeImg.naturalHeight };
+        }
+    }
     EDIT_SHAPES.forEach(k => {
-        editShapeBoxes[k] = _editBoxFits(art, k, saved[k]) ? saved[k].slice() : _editDefaultBox(art, k);
+        editShapeBoxes[k] = _editBoxFits(dimsArt, k, saved[k]) ? saved[k].slice() : _editDefaultBox(dimsArt, k);
     });
-    document.getElementById('edit-shape-image').src = `${API_BASE}/artworks/${art.id}/preview?f=${encodeURIComponent(art.filename)}`;
-    document.getElementById('edit-shape-preview-img').src = document.getElementById('edit-shape-image').src;
     document.getElementById('edit-shape-status').textContent = '';
     const id = art.id;
     editShapeDisplayShapes = await _editOwnShapes();

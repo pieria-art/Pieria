@@ -9,6 +9,7 @@ import json
 import logging
 import os
 import shutil
+import threading
 from contextlib import asynccontextmanager
 from datetime import UTC, datetime
 
@@ -97,6 +98,61 @@ async def warm_all_canvas_cache() -> None:
             logger.warning(f"[Warm] thumbnail for art {art_id} ({filename}): {e}")
         done += 1
     logger.info(f"[Warm] display + thumbnail cache warm complete ({done}/{len(arts)}).")
+
+_DIMS_LOCK = threading.Lock()
+
+
+def _read_dims(path) -> tuple[int, int]:
+    """Pixel size from the image header only (no decode). (0, 0) when unreadable — never raises, so a
+    bad file can't fail a pack install. Pack masters can exceed PIL's decompression-bomb guard, which
+    only matters for decode (Image.open checks it too, so it is lifted around the header read). The
+    lock serialises the save/restore: two overlapping calls could otherwise restore None for good."""
+    with _DIMS_LOCK:
+        prev = Image.MAX_IMAGE_PIXELS
+        try:
+            Image.MAX_IMAGE_PIXELS = None
+            with Image.open(path) as im:
+                return int(im.size[0]), int(im.size[1])
+        except Exception as e:  # noqa: BLE001
+            logger.warning(f"[Dims] could not read size of {path}: {e}")
+            return 0, 0
+        finally:
+            Image.MAX_IMAGE_PIXELS = prev
+
+
+def backfill_artwork_dimensions(db: Session, batch: int = 200) -> int:
+    """One-shot idempotent boot task: pack installs historically stored original_width/height = 0, which
+    breaks the admin framing editor (NaN boxes). Fill 0/NULL rows from the file header when the master
+    exists in LIBRARY_DIR; commit every `batch` rows. Returns the number of rows filled."""
+    rows = (db.query(ArtworkModel)
+            .filter((ArtworkModel.original_width.is_(None)) | (ArtworkModel.original_width == 0)
+                    | (ArtworkModel.original_height.is_(None)) | (ArtworkModel.original_height == 0))
+            .all())
+    filled = 0
+    for art in rows:
+        path = LIBRARY_DIR / art.filename
+        if not path.exists():
+            continue
+        w, h = _read_dims(path)
+        if w <= 0 or h <= 0:
+            continue
+        art.original_width, art.original_height = w, h
+        filled += 1
+        if filled % batch == 0:
+            db.commit()
+    db.commit()
+    return filled
+
+
+def _backfill_dimensions_task() -> None:
+    """Short-lived own session (M6 pattern); never raises out of boot."""
+    try:
+        with SessionLocal() as db:
+            n = backfill_artwork_dimensions(db)
+        logger.info(f"[Startup] backfilled {n} artwork dimensions")
+    except Exception as e:  # noqa: BLE001
+        logger.warning(f"[Startup] artwork dimension backfill failed: {e}")
+
 
 def sync_db_with_filesystem(db: Session) -> None:
     if not ARTWORK_ROOT.exists():
@@ -202,10 +258,12 @@ def pre_seed_from_pack(db: Session) -> bool:
 
             if artwork is None:
                 fx, fy = _focal_xy(item)
+                dim_w, dim_h = _read_dims(LIBRARY_DIR / filename)
                 crops = _aspect_crops(item)
                 rank = item.get("featured_rank", 50)
                 artwork = ArtworkModel(
                     filename=filename,
+                    original_width=dim_w, original_height=dim_h,
                     status="approved",
                     title=item.get("title"), agent_name=item.get("agent_name"),
                     agent_role=item.get("agent_role"), creation_date=item.get("creation_date"),
@@ -488,11 +546,12 @@ def _install_collection(db: Session, cid: str, manifest: dict, *, require_verifi
         if artwork is None:
             fx, fy = _focal_xy(cat)
             crops = _aspect_crops(cat)
+            dim_w, dim_h = _read_dims(LIBRARY_DIR / local_file)
             # position → affinity (array is fame-sorted): first work ~1.0, last ~0.5, mirroring
             # pre_seed's 0.5+rank/100 weighting now that featured_rank is expressed as order.
             affinity = round(0.5 + (n - idx) / max(n, 1) * 0.5, 3)
             artwork = ArtworkModel(
-                filename=local_file, status="approved",
+                filename=local_file, original_width=dim_w, original_height=dim_h, status="approved",
                 title=cat.get("title"), agent_name=cat.get("agent_name"),
                 agent_role=cat.get("agent_role"), creation_date=cat.get("creation_date"),
                 cultural_context=cat.get("cultural_context"), medium=cat.get("medium"),
@@ -1115,6 +1174,9 @@ async def lifespan(app: FastAPI):
                 demo_packs_task = _spawn(_install_demo_packs_after_seed())
         finally:
             db.close()
+
+        # One-shot: fill 0/NULL original dimensions on pack-installed rows (idempotent, header reads).
+        await asyncio.to_thread(_backfill_dimensions_task)
 
         # Pre-render the capped Canvas derivatives + admin-grid thumbnails in the background so
         # neither the display nor a cold admin grid stalls on the one-time encode of a huge original
