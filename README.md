@@ -10,7 +10,7 @@
 2,800+ curated public-domain masterpieces, a museum placard for every work, slow pan-and-zoom motion.
 Open source, self-hosted, no subscription, no account — and nothing a vendor can switch off.
 
-**[▶ Live demo](https://demo.pieria.org)** · **[⬇ Download 1.0](https://github.com/pieria-art/Pieria/releases/latest)** · **[Get started](#-get-started--two-front-doors)** · **[Hardware](docs/hardware-profile.md)**
+**[▶ Watch the video](https://www.youtube.com/watch?v=ps1z6XsLLRI)** · **[Live demo](https://demo.pieria.org)** · **[⬇ Download](https://github.com/pieria-art/Pieria/releases/latest)** · **[Get started](#-get-started--two-front-doors)** · **[Hardware](docs/hardware-profile.md)**
 
 ![A Pieria display showing Vincent van Gogh's The Starry Night with a museum placard and a QR code linking to more detail](static/docs/hero-starry-night.jpg)
 
