@@ -178,6 +178,10 @@ frame how long (seconds) to deep-sleep before the next fetch; each GET advances 
 
 Thin clients that render the same curation brain on platforms people already run:
 
+- **[Home Assistant](https://github.com/pieria-art/pieria-homeassistant)** — install via HACS (custom
+  repository). Each display becomes a `media_player` (the stock media card shows the painting; playlists
+  are its sources), plus quiet-mode controls and `pieria.show_artwork` / `pieria.set_quiet` services for
+  automations. Local only, discovered over mDNS, using a token you create under **Settings → 🔌 API & Integrations**.
 - **[Samsung Frame TV](integrations/frame-tv/) (beta — not yet tested on a real Frame)** — push curated art into a Frame's **Art Mode** over
   your LAN (no Samsung account, no Art Store subscription). Configure it in **Settings → 🖼️ Samsung Frame TV**
   (IP, playlist, interval) and the server keeps the Frame updated, reusing the same curation brain.
@@ -188,7 +192,7 @@ Thin clients that render the same curation brain on platforms people already run
 - **[Public API](docs/api.md)** — a small, stable, token-authenticated HTTP API (`/api/v1`) to read what
   your walls are showing and control them: next/previous, switch collection, search, night schedule.
   Make a token under **Settings → 🔌 API & Integrations**; the live reference is at `/api/v1/docs`. It is
-  what the upcoming Home Assistant integration is built on.
+  what the Home Assistant integration is built on.
 
 ## 🏛️ VRA Core Metadata Architecture
 
