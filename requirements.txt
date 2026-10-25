@@ -14,8 +14,14 @@ pydantic==2.13.5
 python-multipart>=0.0.18,<0.1
 python-dotenv==1.0.1
 sqlalchemy==2.0.30
-Pillow==12.3.0
-pillow-heif==1.8.0
+# Pillow 13 fixes ~35 CVEs incl. a heap write in the bundled libopenjp2 reachable via Image.open()+load();
+# we open uploaded/downloaded images without a formats= restriction, so stay current.
+Pillow==13.0.0
+# Bumped alongside Pillow 13 (its floor is pillow>=11.1.0; 1.8.1 is current).
+pillow-heif==1.8.1
+# Explicit pin (was only transitive): 2026.7.22 still trusts the eMudhra emSign ECC Root CA - G3 whose
+# intermediates have compromised keys (GHSA-6q48-6c7w-9gw2, fixed in 2026.10.19).
+certifi==2026.10.23
 wikipedia==1.4.0
 httpx==0.28.1
 alembic==1.13.1

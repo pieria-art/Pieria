@@ -31,8 +31,8 @@ services:
 
   cloudflared:
     # Pinned to a real current release (verified via `gh api repos/cloudflare/cloudflared/releases/latest`
-    # at write-time, 2026-09-24) rather than :latest — bump deliberately, don't float.
-    image: cloudflare/cloudflared:2026.9.3
+    # at write-time, 2026-10-25) rather than :latest — bump deliberately, don't float.
+    image: cloudflare/cloudflared:2026.10.3
     container_name: pieria-demo-tunnel
     command: tunnel run
     env_file:
