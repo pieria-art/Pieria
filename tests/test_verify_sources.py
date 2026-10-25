@@ -246,3 +246,11 @@ def test_run_checks_integration(monkeypatch):
     checks = [_uc("source", url="https://artic.edu/a.jpg"), _uc("thumbnail", url="https://artic.edu/b.jpg")]
     results = asyncio.run(vs.run_checks(checks, client=_Client(_Resp(403, "text/html", b"blocked"))))
     assert len(results) == 2 and all(not r.ok for r in results)
+
+
+def test_cloudflare_origin_errors_are_transient_but_bad_cert_is_not():
+    # 2026-10-19: tile.loc.gov returned 525 for two masters that served fine an hour later; that red'd the weekly job.
+    for code in ("520", "522", "524", "525"):
+        assert vs._is_transient(f"HTTP {code}")
+    assert not vs._is_transient("HTTP 526")
+    assert not vs._is_transient("HTTP 404")

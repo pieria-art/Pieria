@@ -163,6 +163,10 @@ def collect_subscriptions(db) -> list[UrlCheck]:
 # on-the-fly thumbnail generation, which is slow on first hit then cached) must not read as rot.
 # Genuine rot still fails: 404/403/deleted/not-an-image are none of these and return immediately.
 _TRANSIENT_EXC = httpx.TransportError
+# Gateway-side 5xx. 520-525 are Cloudflare reporting that it could not reach the origin (seen 2026-10-19:
+# tile.loc.gov answered 525 for two masters that served fine an hour later). 526 (bad origin cert) is
+# left out on purpose, because an expired certificate stays expired.
+_RETRY_5XX = frozenset({500, 502, 503, 504, 520, 521, 522, 523, 524, 525})
 
 
 async def _get(client, url, **kw):
@@ -186,7 +190,7 @@ async def _get(client, url, **kw):
                 wait = 0.0
             await asyncio.sleep(min(wait or 2.0 * (attempt + 1), 30.0))
             continue
-        if code in (500, 502, 503, 504) and attempt < 4:  # transient server-side → back off and retry
+        if code in _RETRY_5XX and attempt < 4:  # transient server-side → back off and retry
             await asyncio.sleep(min(2.0 * (attempt + 1), 30.0))
             continue
         return r
@@ -367,7 +371,7 @@ def _is_transient(detail: str) -> bool:
     d = detail or ""
     if d.startswith("HTTP "):
         tok = (d.split() + [""])[1]
-        return tok in {"429", "500", "502", "503", "504", "None"}
+        return tok in {"429", "None"} | {str(c) for c in _RETRY_5XX}
     if d.startswith("error: "):
         return any(name in d for name in _TRANSIENT_EXC_NAMES)
     return False
